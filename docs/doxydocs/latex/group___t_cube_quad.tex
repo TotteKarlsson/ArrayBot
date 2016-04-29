@@ -1,0 +1,1567 @@
+\hypertarget{group___t_cube_quad}{}\section{T\+Cube Quad / T\+Cube Position Aligner}
+\label{group___t_cube_quad}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info}
+\begin{DoxyCompactList}\small\item\em Information about the device generated from serial number and U\+SB info block. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_t_l_i___hardware_information}{T\+L\+I\+\_\+\+Hardware\+Information}
+\begin{DoxyCompactList}\small\item\em Structure containing the Hardware Information. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_q_d___loop_parameters}{Q\+D\+\_\+\+Loop\+Parameters}
+\begin{DoxyCompactList}\small\item\em structure containing parameters in the feedback process. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_q_d___p_i_d_parameters}{Q\+D\+\_\+\+P\+I\+D\+Parameters}
+\begin{DoxyCompactList}\small\item\em Quad P\+ID parameters. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_q_d___low_pass_filter_parameters}{Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters}
+\begin{DoxyCompactList}\small\item\em Quad lowpassfilter parameters. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_q_d___notch_filter_parameters}{Q\+D\+\_\+\+Notch\+Filter\+Parameters}
+\begin{DoxyCompactList}\small\item\em Quad notchfilter parameters. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_q_d___position_demand_parameters}{Q\+D\+\_\+\+Position\+Demand\+Parameters}
+\begin{DoxyCompactList}\small\item\em structure containing parameters to contol position demand output. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_q_d___position}{Q\+D\+\_\+\+Position}
+\begin{DoxyCompactList}\small\item\em 2 Dimensional Position . \end{DoxyCompactList}\item 
+struct \hyperlink{struct_q_d___readings}{Q\+D\+\_\+\+Readings}
+\begin{DoxyCompactList}\small\item\em Structure holding position readings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___t_cube_quad_gaf6973086315a69c80cbf9099331197b4}{Q\+D\+\_\+\+Operating\+Mode} \+: short \{ \hyperlink{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a679c7a13608937579d18e748718a5f00}{Q\+D\+\_\+\+Mode\+Undefined} = 0, 
+\hyperlink{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a01dcbb1ff67f9720066ab854cef8e1ff}{Q\+D\+\_\+\+Monitor} = 1, 
+\hyperlink{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a54577cc608eefd01f1512ad5d270472f}{Q\+D\+\_\+\+Open\+Loop} = 2, 
+\hyperlink{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a625bd0c1c473afa1a1b650f952dad629}{Q\+D\+\_\+\+Closed\+Loop} = 3
+ \}\begin{DoxyCompactList}\small\item\em Values that represent the operating modes. \end{DoxyCompactList}
+\item 
+enum \hyperlink{group___t_cube_quad_gac883e8fbad1f829af985c3a4fd2e566d}{Q\+D\+\_\+\+Low\+Voltage\+Route} \+: short \{ \hyperlink{group___t_cube_quad_ggac883e8fbad1f829af985c3a4fd2e566dab9af17dbfc45225823112ab794329328}{Q\+D\+\_\+\+Route\+Undefined} = 0, 
+\hyperlink{group___t_cube_quad_ggac883e8fbad1f829af985c3a4fd2e566da650dd50fdb4ccdd5f5de352f8e708fe1}{Q\+D\+\_\+\+S\+M\+A\+Only} = 1, 
+\hyperlink{group___t_cube_quad_ggac883e8fbad1f829af985c3a4fd2e566dade7d36fed37407b1fc107a2ffd1e34e3}{Q\+D\+\_\+\+Hub\+And\+S\+MA} = 2
+ \}\begin{DoxyCompactList}\small\item\em Values that represent low voltage output routing. \end{DoxyCompactList}
+\item 
+enum \hyperlink{group___t_cube_quad_ga499dfc94972cba399344f62c70cd37ff}{Q\+D\+\_\+\+Open\+Loop\+Hold\+Values} \+: short \{ \hyperlink{group___t_cube_quad_gga499dfc94972cba399344f62c70cd37ffa57f4e16b6de1b6777c8fc670f8e21038}{Q\+D\+\_\+\+Hold\+On\+Zero} = 1, 
+\hyperlink{group___t_cube_quad_gga499dfc94972cba399344f62c70cd37ffac8c70c96f59c4b2e7f826b84f5426b96}{Q\+D\+\_\+\+Hold\+On\+Last\+Value} = 2
+ \}\begin{DoxyCompactList}\small\item\em Values that represent choice of value to hold at in open loop. \end{DoxyCompactList}
+\item 
+enum \hyperlink{group___t_cube_quad_gaf9cb69779549db4792c4e647b69eb29f}{Q\+D\+\_\+\+Filter\+Enable} \+: W\+O\+RD \{ \hyperlink{group___t_cube_quad_ggaf9cb69779549db4792c4e647b69eb29fab52470ce33fdc12e7130e7112b6c6501}{Q\+D\+\_\+\+Undefined} = 0, 
+\hyperlink{group___t_cube_quad_ggaf9cb69779549db4792c4e647b69eb29fa245d84225135fc5307d5b250f5df0513}{Q\+D\+\_\+\+Enabled} = 1, 
+\hyperlink{group___t_cube_quad_ggaf9cb69779549db4792c4e647b69eb29fa7381e7ed6a845cd5edba67dcc818513c}{Q\+D\+\_\+\+Disabled} = 2
+ \}\begin{DoxyCompactList}\small\item\em Filter enabled / disable states. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{T\+L\+I\+\_\+\+Build\+Device\+List} (void)
+\begin{DoxyCompactList}\small\item\em Build the Device\+List. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size} ()
+\begin{DoxyCompactList}\small\item\em Gets the device list size. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{T\+L\+I\+\_\+\+Get\+Device\+List} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver)
+\begin{DoxyCompactList}\small\item\em Get the entire contents of the device list. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver, int type\+ID)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+ID. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver, int $\ast$type\+I\+Ds, int length)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+I\+Ds. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer)
+\begin{DoxyCompactList}\small\item\em Get the entire contents of the device list. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer, int type\+ID)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+ID. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer, int $\ast$type\+I\+Ds, int length)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+I\+Ds. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+cdecl \hyperlink{group___t_cube_quad_ga9a51047fb30f95fa7549648f7020f5d1}{T\+L\+I\+\_\+\+Get\+Device\+Info} (char const $\ast$serial\+No, \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Get the device information from the U\+SB port. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga4c5de4f9f61b5d261b0801bf7af83231}{Q\+D\+\_\+\+Open} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Open the device for communications. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gad65d6381fa84b4fa41867e09a1fd6b64}{Q\+D\+\_\+\+Close} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Disconnect and close the device. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga6aa3e432f79ac38be892d81b2c264ed9}{Q\+D\+\_\+\+Identify} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Sends a command to the device to make it identify iteself. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga6f4c435f356e32db56e889935abd6ea9}{Q\+D\+\_\+\+Get\+Hardware\+Info} (char const $\ast$serial\+No, char $\ast$model\+No, D\+W\+O\+RD size\+Of\+Model\+No, W\+O\+RD $\ast$type, W\+O\+RD $\ast$num\+Channels, char $\ast$notes, D\+W\+O\+RD size\+Of\+Notes, D\+W\+O\+RD $\ast$firmware\+Version, W\+O\+RD $\ast$hardware\+Version, W\+O\+RD $\ast$modification\+State)
+\begin{DoxyCompactList}\small\item\em Gets the hardware information from the device. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gaa4b225f9fca67684ad557adb75aa4616}{Q\+D\+\_\+\+Get\+Hardware\+Info\+Block} (char const $\ast$serial\+No, \hyperlink{struct_t_l_i___hardware_information}{T\+L\+I\+\_\+\+Hardware\+Information} $\ast$hardware\+Info)
+\begin{DoxyCompactList}\small\item\em Gets the hardware information in a block. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga1242fda26fa6346f0110949e6e8a03c5}{Q\+D\+\_\+\+Get\+Firmware\+Version} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets version number of the device firmware. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gac5382e17ae2cae3724e465b1c763ad6b}{Q\+D\+\_\+\+Get\+Software\+Version} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets version number of the device software. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga10e570caf5ce43401f3feec23e7bb429}{Q\+D\+\_\+\+Load\+Settings} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Update device with stored settings. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga2c78062f80813de015142947ceb2a093}{Q\+D\+\_\+\+Persist\+Settings} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em persist the devices current settings. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga375cd2ff2eceab220270f22061567bce}{Q\+D\+\_\+\+Clear\+Message\+Queue} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Clears the device message queue. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga29fd175b8ba9cb173f5d805d9612c013}{Q\+D\+\_\+\+Register\+Message\+Callback} (char const $\ast$serial\+No, void($\ast$function\+Pointer)())
+\begin{DoxyCompactList}\small\item\em Registers a callback on the message queue. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gacc63bcc43be1a5d01d11d67ec00edbc9}{Q\+D\+\_\+\+Message\+Queue\+Size} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the Message\+Queue size. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga1b65d93f6ac5ba3e32b0dfbe4c9f7e8d}{Q\+D\+\_\+\+Get\+Next\+Message} (char const $\ast$serial\+No, W\+O\+RD $\ast$message\+Type, W\+O\+RD $\ast$message\+ID, D\+W\+O\+RD $\ast$message\+Data)
+\begin{DoxyCompactList}\small\item\em Get the next Message\+Queue item. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga567f20cd77ccf62488a8c1872892c93f}{Q\+D\+\_\+\+Wait\+For\+Message} (char const $\ast$serial\+No, W\+O\+RD $\ast$message\+Type, W\+O\+RD $\ast$message\+ID, D\+W\+O\+RD $\ast$message\+Data)
+\begin{DoxyCompactList}\small\item\em Wait for next Message\+Queue item. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams} (char const $\ast$serial\+No, \hyperlink{struct_q_d___loop_parameters}{Q\+D\+\_\+\+Loop\+Parameters} $\ast$loop\+Params)
+\begin{DoxyCompactList}\small\item\em Gets the feedback loop parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams} (char const $\ast$serial\+No, \hyperlink{struct_q_d___loop_parameters}{Q\+D\+\_\+\+Loop\+Parameters} $\ast$loop\+Params)
+\begin{DoxyCompactList}\small\item\em Sets the feedback loop parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}{Q\+D\+\_\+\+Get\+P\+I\+Dparams} (char const $\ast$serial\+No, \hyperlink{struct_q_d___p_i_d_parameters}{Q\+D\+\_\+\+P\+I\+D\+Parameters} $\ast$proportional\+Integral\+Differential\+Params)
+\begin{DoxyCompactList}\small\item\em Gets the feedback loop parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}{Q\+D\+\_\+\+Set\+P\+I\+Dparams} (char const $\ast$serial\+No, \hyperlink{struct_q_d___p_i_d_parameters}{Q\+D\+\_\+\+P\+I\+D\+Parameters} $\ast$proportional\+Integral\+Differential\+Params)
+\begin{DoxyCompactList}\small\item\em Sets the feedback loop parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams} (char const $\ast$serial\+No, \hyperlink{struct_q_d___low_pass_filter_parameters}{Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters} $\ast$low\+Pass\+Params)
+\begin{DoxyCompactList}\small\item\em Gets the low pass filter parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams} (char const $\ast$serial\+No, \hyperlink{struct_q_d___low_pass_filter_parameters}{Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters} $\ast$low\+Pass\+Params)
+\begin{DoxyCompactList}\small\item\em Sets the low pass filter parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}{Q\+D\+\_\+\+Get\+Notch\+Filterparams} (char const $\ast$serial\+No, \hyperlink{struct_q_d___notch_filter_parameters}{Q\+D\+\_\+\+Notch\+Filter\+Parameters} $\ast$notch\+Params)
+\begin{DoxyCompactList}\small\item\em Gets the notch filter parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}{Q\+D\+\_\+\+Set\+Notch\+Filterparams} (char const $\ast$serial\+No, \hyperlink{struct_q_d___notch_filter_parameters}{Q\+D\+\_\+\+Notch\+Filter\+Parameters} $\ast$notch\+Params)
+\begin{DoxyCompactList}\small\item\em Sets the notch filter parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga14ddb364d6ad9937df188ba95a6a7863}{Q\+D\+\_\+\+Get\+Pos\+Demand\+Params} (char const $\ast$serial\+No, \hyperlink{struct_q_d___position_demand_parameters}{Q\+D\+\_\+\+Position\+Demand\+Parameters} $\ast$demand\+Params)
+\begin{DoxyCompactList}\small\item\em Gets the position demand output parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga468ceea807cc228bad1f55058443535f}{Q\+D\+\_\+\+Set\+Pos\+Demand\+Params} (char const $\ast$serial\+No, \hyperlink{struct_q_d___position_demand_parameters}{Q\+D\+\_\+\+Position\+Demand\+Parameters} $\ast$demand\+Params)
+\begin{DoxyCompactList}\small\item\em Sets the position demand parameters. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI \hyperlink{group___t_cube_quad_gaf6973086315a69c80cbf9099331197b4}{Q\+D\+\_\+\+Operating\+Mode} \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga6915be0dd37f627781711f044310de8e}{Q\+D\+\_\+\+Get\+Operating\+Mode} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the operating mode. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga243d4bfde5718a7a9352275075dc4cd9}{Q\+D\+\_\+\+Set\+Operating\+Mode} (char const $\ast$serial\+No, \hyperlink{group___t_cube_quad_gaf6973086315a69c80cbf9099331197b4}{Q\+D\+\_\+\+Operating\+Mode} mode)
+\begin{DoxyCompactList}\small\item\em Sets the operating mode. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gad272971ac3d4729b1d1eebfab2aa05ea}{Q\+D\+\_\+\+Get\+L\+E\+D\+Brightness} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the L\+ED brightness. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga4bca494c43cf4602ac7f3ab167d0ec53}{Q\+D\+\_\+\+Set\+L\+E\+D\+Brightness} (char const $\ast$serial\+No, short brightness)
+\begin{DoxyCompactList}\small\item\em Sets the L\+ED brightness. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gaa7783e819581ab30ecb5fe70b550f7ac}{Q\+D\+\_\+\+Get\+Demanded\+Position} (char const $\ast$serial\+No, \hyperlink{struct_q_d___position}{Q\+D\+\_\+\+Position} $\ast$position)
+\begin{DoxyCompactList}\small\item\em Gets position demand output. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gac8fe51256b6bee509279fb5fe4aa08ab}{Q\+D\+\_\+\+Set\+Position} (char const $\ast$serial\+No, \hyperlink{struct_q_d___position}{Q\+D\+\_\+\+Position} $\ast$position)
+\begin{DoxyCompactList}\small\item\em Sets position demand output. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gaeb7c30780b3c1193884a69cc62badbde}{Q\+D\+\_\+\+Request\+Status} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Requests the state quantities (actual power, current and status bits). \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga4a5429ee2b8f8030563705bd482eb6a9}{Q\+D\+\_\+\+Request\+Reading} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Request reading. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga9b6e3a33060adfc57918626cd738aedd}{Q\+D\+\_\+\+Request\+Status\+Bits} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Request the status bits which identify the current device state. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_gac7963a5d307b284db9f046910e6ee072}{Q\+D\+\_\+\+Get\+Reading} (char const $\ast$serial\+No, \hyperlink{struct_q_d___readings}{Q\+D\+\_\+\+Readings} $\ast$reading)
+\begin{DoxyCompactList}\small\item\em Gets a reading. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga4fff9388adb9c4bd2ad3acbd784c7f9a}{Q\+D\+\_\+\+Get\+Status\+Bits} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Get the current status bits. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling} (char const $\ast$serial\+No, int milliseconds)
+\begin{DoxyCompactList}\small\item\em Starts the internal polling loop which continuously requests position and status. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI long \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga622327cedb16139b247646a5c5b7eb64}{Q\+D\+\_\+\+Polling\+Duration} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the polling loop duration. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga4e32e2561421618ae9f3e1cbbfc43aa3}{Q\+D\+\_\+\+Stop\+Polling} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Stops the internal polling loop. \end{DoxyCompactList}\item 
+T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___t_cube_quad_ga1e113c968390f23c379b852b980cfe0e}{Q\+D\+\_\+\+Request\+Settings} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Requests that all settings are download from device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This section details the Structures and Functions relavent to the T\+Cube Quad or T\+Cube Position Aligner~\newline
+ For an example of how to connect to the device and perform simple operations use the following links\+: 
+\begin{DoxyItemize}
+\item Example of using the Thorlabs.Motion\+Control.T\+Cube.Quad.D\+LL from a C or C++ project.~\newline
+ This requires the D\+LL to be dynamical linked.  
+\item Example of using the Thorlabs.Motion\+Control.T\+Cube.Quad.D\+LL from a C\# project~\newline
+ This uses Marshalling to load and access the C D\+LL.  
+\end{DoxyItemize}The Thorlabs.\+Motion\+Control.\+T\+Cube.\+Quad.\+D\+LL requires the following D\+L\+Ls 
+\begin{DoxyItemize}
+\item Thorlabs.\+Motion\+Control.\+Device\+Manager.  
+\end{DoxyItemize}
+
+\subsection{Enumeration Type Documentation}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Filter\+Enable@{Q\+D\+\_\+\+Filter\+Enable}}
+\index{Q\+D\+\_\+\+Filter\+Enable@{Q\+D\+\_\+\+Filter\+Enable}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Filter\+Enable}{QD_FilterEnable}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Q\+D\+\_\+\+Filter\+Enable} \+: W\+O\+RD}\hypertarget{group___t_cube_quad_gaf9cb69779549db4792c4e647b69eb29f}{}\label{group___t_cube_quad_gaf9cb69779549db4792c4e647b69eb29f}
+
+
+Filter enabled / disable states. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Q\+D\+\_\+\+Undefined@{Q\+D\+\_\+\+Undefined}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Undefined@{Q\+D\+\_\+\+Undefined}}\item[{\em 
+Q\+D\+\_\+\+Undefined\hypertarget{group___t_cube_quad_ggaf9cb69779549db4792c4e647b69eb29fab52470ce33fdc12e7130e7112b6c6501}{}\label{group___t_cube_quad_ggaf9cb69779549db4792c4e647b69eb29fab52470ce33fdc12e7130e7112b6c6501}
+}]Undefined. \index{Q\+D\+\_\+\+Enabled@{Q\+D\+\_\+\+Enabled}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Enabled@{Q\+D\+\_\+\+Enabled}}\item[{\em 
+Q\+D\+\_\+\+Enabled\hypertarget{group___t_cube_quad_ggaf9cb69779549db4792c4e647b69eb29fa245d84225135fc5307d5b250f5df0513}{}\label{group___t_cube_quad_ggaf9cb69779549db4792c4e647b69eb29fa245d84225135fc5307d5b250f5df0513}
+}]Filter enabled. \index{Q\+D\+\_\+\+Disabled@{Q\+D\+\_\+\+Disabled}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Disabled@{Q\+D\+\_\+\+Disabled}}\item[{\em 
+Q\+D\+\_\+\+Disabled\hypertarget{group___t_cube_quad_ggaf9cb69779549db4792c4e647b69eb29fa7381e7ed6a845cd5edba67dcc818513c}{}\label{group___t_cube_quad_ggaf9cb69779549db4792c4e647b69eb29fa7381e7ed6a845cd5edba67dcc818513c}
+}]Filter disabled. \end{description}
+\end{Desc}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Low\+Voltage\+Route@{Q\+D\+\_\+\+Low\+Voltage\+Route}}
+\index{Q\+D\+\_\+\+Low\+Voltage\+Route@{Q\+D\+\_\+\+Low\+Voltage\+Route}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Low\+Voltage\+Route}{QD_LowVoltageRoute}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Q\+D\+\_\+\+Low\+Voltage\+Route} \+: short}\hypertarget{group___t_cube_quad_gac883e8fbad1f829af985c3a4fd2e566d}{}\label{group___t_cube_quad_gac883e8fbad1f829af985c3a4fd2e566d}
+
+
+Values that represent low voltage output routing. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Q\+D\+\_\+\+Route\+Undefined@{Q\+D\+\_\+\+Route\+Undefined}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Route\+Undefined@{Q\+D\+\_\+\+Route\+Undefined}}\item[{\em 
+Q\+D\+\_\+\+Route\+Undefined\hypertarget{group___t_cube_quad_ggac883e8fbad1f829af985c3a4fd2e566dab9af17dbfc45225823112ab794329328}{}\label{group___t_cube_quad_ggac883e8fbad1f829af985c3a4fd2e566dab9af17dbfc45225823112ab794329328}
+}]Undefined. \index{Q\+D\+\_\+\+S\+M\+A\+Only@{Q\+D\+\_\+\+S\+M\+A\+Only}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+S\+M\+A\+Only@{Q\+D\+\_\+\+S\+M\+A\+Only}}\item[{\em 
+Q\+D\+\_\+\+S\+M\+A\+Only\hypertarget{group___t_cube_quad_ggac883e8fbad1f829af985c3a4fd2e566da650dd50fdb4ccdd5f5de352f8e708fe1}{}\label{group___t_cube_quad_ggac883e8fbad1f829af985c3a4fd2e566da650dd50fdb4ccdd5f5de352f8e708fe1}
+}]Output via S\+MA only. \index{Q\+D\+\_\+\+Hub\+And\+S\+MA@{Q\+D\+\_\+\+Hub\+And\+S\+MA}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Hub\+And\+S\+MA@{Q\+D\+\_\+\+Hub\+And\+S\+MA}}\item[{\em 
+Q\+D\+\_\+\+Hub\+And\+S\+MA\hypertarget{group___t_cube_quad_ggac883e8fbad1f829af985c3a4fd2e566dade7d36fed37407b1fc107a2ffd1e34e3}{}\label{group___t_cube_quad_ggac883e8fbad1f829af985c3a4fd2e566dade7d36fed37407b1fc107a2ffd1e34e3}
+}]Output via Hub and S\+MA. \end{description}
+\end{Desc}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Open\+Loop\+Hold\+Values@{Q\+D\+\_\+\+Open\+Loop\+Hold\+Values}}
+\index{Q\+D\+\_\+\+Open\+Loop\+Hold\+Values@{Q\+D\+\_\+\+Open\+Loop\+Hold\+Values}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Open\+Loop\+Hold\+Values}{QD_OpenLoopHoldValues}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Q\+D\+\_\+\+Open\+Loop\+Hold\+Values} \+: short}\hypertarget{group___t_cube_quad_ga499dfc94972cba399344f62c70cd37ff}{}\label{group___t_cube_quad_ga499dfc94972cba399344f62c70cd37ff}
+
+
+Values that represent choice of value to hold at in open loop. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Q\+D\+\_\+\+Hold\+On\+Zero@{Q\+D\+\_\+\+Hold\+On\+Zero}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Hold\+On\+Zero@{Q\+D\+\_\+\+Hold\+On\+Zero}}\item[{\em 
+Q\+D\+\_\+\+Hold\+On\+Zero\hypertarget{group___t_cube_quad_gga499dfc94972cba399344f62c70cd37ffa57f4e16b6de1b6777c8fc670f8e21038}{}\label{group___t_cube_quad_gga499dfc94972cba399344f62c70cd37ffa57f4e16b6de1b6777c8fc670f8e21038}
+}]Hold at zero volts. \index{Q\+D\+\_\+\+Hold\+On\+Last\+Value@{Q\+D\+\_\+\+Hold\+On\+Last\+Value}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Hold\+On\+Last\+Value@{Q\+D\+\_\+\+Hold\+On\+Last\+Value}}\item[{\em 
+Q\+D\+\_\+\+Hold\+On\+Last\+Value\hypertarget{group___t_cube_quad_gga499dfc94972cba399344f62c70cd37ffac8c70c96f59c4b2e7f826b84f5426b96}{}\label{group___t_cube_quad_gga499dfc94972cba399344f62c70cd37ffac8c70c96f59c4b2e7f826b84f5426b96}
+}]Hold at the last Closed Loop position. \end{description}
+\end{Desc}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Operating\+Mode@{Q\+D\+\_\+\+Operating\+Mode}}
+\index{Q\+D\+\_\+\+Operating\+Mode@{Q\+D\+\_\+\+Operating\+Mode}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Operating\+Mode}{QD_OperatingMode}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Q\+D\+\_\+\+Operating\+Mode} \+: short}\hypertarget{group___t_cube_quad_gaf6973086315a69c80cbf9099331197b4}{}\label{group___t_cube_quad_gaf6973086315a69c80cbf9099331197b4}
+
+
+Values that represent the operating modes. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Q\+D\+\_\+\+Mode\+Undefined@{Q\+D\+\_\+\+Mode\+Undefined}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Mode\+Undefined@{Q\+D\+\_\+\+Mode\+Undefined}}\item[{\em 
+Q\+D\+\_\+\+Mode\+Undefined\hypertarget{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a679c7a13608937579d18e748718a5f00}{}\label{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a679c7a13608937579d18e748718a5f00}
+}]Undefined. \index{Q\+D\+\_\+\+Monitor@{Q\+D\+\_\+\+Monitor}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Monitor@{Q\+D\+\_\+\+Monitor}}\item[{\em 
+Q\+D\+\_\+\+Monitor\hypertarget{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a01dcbb1ff67f9720066ab854cef8e1ff}{}\label{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a01dcbb1ff67f9720066ab854cef8e1ff}
+}]Monitor only. \index{Q\+D\+\_\+\+Open\+Loop@{Q\+D\+\_\+\+Open\+Loop}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Open\+Loop@{Q\+D\+\_\+\+Open\+Loop}}\item[{\em 
+Q\+D\+\_\+\+Open\+Loop\hypertarget{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a54577cc608eefd01f1512ad5d270472f}{}\label{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a54577cc608eefd01f1512ad5d270472f}
+}]Open loop mode. \index{Q\+D\+\_\+\+Closed\+Loop@{Q\+D\+\_\+\+Closed\+Loop}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Closed\+Loop@{Q\+D\+\_\+\+Closed\+Loop}}\item[{\em 
+Q\+D\+\_\+\+Closed\+Loop\hypertarget{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a625bd0c1c473afa1a1b650f952dad629}{}\label{group___t_cube_quad_ggaf6973086315a69c80cbf9099331197b4a625bd0c1c473afa1a1b650f952dad629}
+}]Closed loop mode. \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Clear\+Message\+Queue@{Q\+D\+\_\+\+Clear\+Message\+Queue}}
+\index{Q\+D\+\_\+\+Clear\+Message\+Queue@{Q\+D\+\_\+\+Clear\+Message\+Queue}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Clear\+Message\+Queue(char const $\ast$serial\+No)}{QD_ClearMessageQueue(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Clear\+Message\+Queue (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga375cd2ff2eceab220270f22061567bce}{}\label{group___t_cube_quad_ga375cd2ff2eceab220270f22061567bce}
+
+
+Clears the device message queue. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Close@{Q\+D\+\_\+\+Close}}
+\index{Q\+D\+\_\+\+Close@{Q\+D\+\_\+\+Close}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Close(char const $\ast$serial\+No)}{QD_Close(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Close (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gad65d6381fa84b4fa41867e09a1fd6b64}{}\label{group___t_cube_quad_gad65d6381fa84b4fa41867e09a1fd6b64}
+
+
+Disconnect and close the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial no of the device to be disconnected. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga4c5de4f9f61b5d261b0801bf7af83231}{Q\+D\+\_\+\+Open(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Demanded\+Position@{Q\+D\+\_\+\+Get\+Demanded\+Position}}
+\index{Q\+D\+\_\+\+Get\+Demanded\+Position@{Q\+D\+\_\+\+Get\+Demanded\+Position}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Demanded\+Position(char const $\ast$serial\+No, Q\+D\+\_\+\+Position $\ast$position)}{QD_GetDemandedPosition(char const *serialNo, QD_Position *position)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Demanded\+Position (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Position} $\ast$}]{position}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gaa7783e819581ab30ecb5fe70b550f7ac}{}\label{group___t_cube_quad_gaa7783e819581ab30ecb5fe70b550f7ac}
+
+
+Gets position demand output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em position} & Address of the \hyperlink{struct_q_d___position}{Q\+D\+\_\+\+Position} to receive the current Demanded Position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_gac8fe51256b6bee509279fb5fe4aa08ab}{Q\+D\+\_\+\+Set\+Position(char const $\ast$serial\+No, Q\+D\+\_\+\+Position $\ast$position)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Firmware\+Version@{Q\+D\+\_\+\+Get\+Firmware\+Version}}
+\index{Q\+D\+\_\+\+Get\+Firmware\+Version@{Q\+D\+\_\+\+Get\+Firmware\+Version}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Firmware\+Version(char const $\ast$serial\+No)}{QD_GetFirmwareVersion(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Firmware\+Version (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga1242fda26fa6346f0110949e6e8a03c5}{}\label{group___t_cube_quad_ga1242fda26fa6346f0110949e6e8a03c5}
+
+
+Gets version number of the device firmware. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The device firmware version number made up of 4 byte parts. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Hardware\+Info@{Q\+D\+\_\+\+Get\+Hardware\+Info}}
+\index{Q\+D\+\_\+\+Get\+Hardware\+Info@{Q\+D\+\_\+\+Get\+Hardware\+Info}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Hardware\+Info(char const $\ast$serial\+No, char $\ast$model\+No, D\+W\+O\+R\+D size\+Of\+Model\+No, W\+O\+R\+D $\ast$type, W\+O\+R\+D $\ast$num\+Channels, char $\ast$notes, D\+W\+O\+R\+D size\+Of\+Notes, D\+W\+O\+R\+D $\ast$firmware\+Version, W\+O\+R\+D $\ast$hardware\+Version, W\+O\+R\+D $\ast$modification\+State)}{QD_GetHardwareInfo(char const *serialNo, char *modelNo, DWORD sizeOfModelNo, WORD *type, WORD *numChannels, char *notes, DWORD sizeOfNotes, DWORD *firmwareVersion, WORD *hardwareVersion, WORD *modificationState)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Hardware\+Info (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{char $\ast$}]{model\+No, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Model\+No, }
+\item[{W\+O\+RD $\ast$}]{type, }
+\item[{W\+O\+RD $\ast$}]{num\+Channels, }
+\item[{char $\ast$}]{notes, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Notes, }
+\item[{D\+W\+O\+RD $\ast$}]{firmware\+Version, }
+\item[{W\+O\+RD $\ast$}]{hardware\+Version, }
+\item[{W\+O\+RD $\ast$}]{modification\+State}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga6f4c435f356e32db56e889935abd6ea9}{}\label{group___t_cube_quad_ga6f4c435f356e32db56e889935abd6ea9}
+
+
+Gets the hardware information from the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em model\+No} & Address of a buffer to receive the model number string. Minimum 8 characters \\
+\hline
+{\em size\+Of\+Model\+No} & The size of the model number buffer, minimum of 8 characters. \\
+\hline
+{\em type} & Address of a W\+O\+RD to receive the hardware type number. \\
+\hline
+{\em num\+Channels} & Address of a short to receive the number of channels. \\
+\hline
+{\em notes} & Address of a buffer to receive the notes describing the device. \\
+\hline
+{\em size\+Of\+Notes} & The size of the notes buffer, minimum of 48 characters. \\
+\hline
+{\em firmware\+Version} & Address of a D\+W\+O\+RD to receive the firmware version number made up of 4 byte parts. \\
+\hline
+{\em hardware\+Version} & Address of a W\+O\+RD to receive the hardware version number. \\
+\hline
+{\em modification\+State} & Address of a W\+O\+RD to receive the hardware modification state number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Hardware\+Info\+Block@{Q\+D\+\_\+\+Get\+Hardware\+Info\+Block}}
+\index{Q\+D\+\_\+\+Get\+Hardware\+Info\+Block@{Q\+D\+\_\+\+Get\+Hardware\+Info\+Block}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Hardware\+Info\+Block(char const $\ast$serial\+No, T\+L\+I\+\_\+\+Hardware\+Information $\ast$hardware\+Info)}{QD_GetHardwareInfoBlock(char const *serialNo, TLI_HardwareInformation *hardwareInfo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Hardware\+Info\+Block (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf T\+L\+I\+\_\+\+Hardware\+Information} $\ast$}]{hardware\+Info}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gaa4b225f9fca67684ad557adb75aa4616}{}\label{group___t_cube_quad_gaa4b225f9fca67684ad557adb75aa4616}
+
+
+Gets the hardware information in a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em hardware\+Info} & Address of a \hyperlink{struct_t_l_i___hardware_information}{T\+L\+I\+\_\+\+Hardware\+Information} structure to receive the hardware information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+L\+E\+D\+Brightness@{Q\+D\+\_\+\+Get\+L\+E\+D\+Brightness}}
+\index{Q\+D\+\_\+\+Get\+L\+E\+D\+Brightness@{Q\+D\+\_\+\+Get\+L\+E\+D\+Brightness}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+L\+E\+D\+Brightness(char const $\ast$serial\+No)}{QD_GetLEDBrightness(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI W\+O\+RD \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+L\+E\+D\+Brightness (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gad272971ac3d4729b1d1eebfab2aa05ea}{}\label{group___t_cube_quad_gad272971ac3d4729b1d1eebfab2aa05ea}
+
+
+Gets the L\+ED brightness. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Intensity from 0 (off) to 255. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga4bca494c43cf4602ac7f3ab167d0ec53}{Q\+D\+\_\+\+Set\+L\+E\+D\+Brightness(char const $\ast$ serial\+No, short brightness)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams@{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams}}
+\index{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams@{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}{QD_GetLoopPIDparams(char const *serialNo, QD_LoopParameters *loopParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Loop\+Parameters} $\ast$}]{loop\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}{}\label{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}
+
+
+Gets the feedback loop parameters. 
+
+This feature was added to the T\+P\+A101 device, hardware version \&lt 3
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em loop\+Params} & Address of the \hyperlink{struct_q_d___loop_parameters}{Q\+D\+\_\+\+Loop\+Parameters} to recieve the Feedback Loop Parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}{Q\+D\+\_\+\+Set\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}{Q\+D\+\_\+\+Get\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}{Q\+D\+\_\+\+Set\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}{Q\+D\+\_\+\+Get\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$notch\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams@{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams}}
+\index{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams@{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}{QD_GetLowPassFilterparams(char const *serialNo, QD_LowPassFilterParameters *lowPassParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters} $\ast$}]{low\+Pass\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}{}\label{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}
+
+
+Gets the low pass filter parameters. 
+
+This feature was added to the T\+P\+A101 device, hardware version \&lt 3
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em low\+Pass\+Params} & Address of the \hyperlink{struct_q_d___low_pass_filter_parameters}{Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters} to receive the Low Pass Filter Parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}{Q\+D\+\_\+\+Set\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}{Q\+D\+\_\+\+Get\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$notch\+Params)}, \hyperlink{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}{Q\+D\+\_\+\+Set\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}{Q\+D\+\_\+\+Get\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Next\+Message@{Q\+D\+\_\+\+Get\+Next\+Message}}
+\index{Q\+D\+\_\+\+Get\+Next\+Message@{Q\+D\+\_\+\+Get\+Next\+Message}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Next\+Message(char const $\ast$serial\+No, W\+O\+R\+D $\ast$message\+Type, W\+O\+R\+D $\ast$message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}{QD_GetNextMessage(char const *serialNo, WORD *messageType, WORD *messageID, DWORD *messageData)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Next\+Message (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{W\+O\+RD $\ast$}]{message\+Type, }
+\item[{W\+O\+RD $\ast$}]{message\+ID, }
+\item[{D\+W\+O\+RD $\ast$}]{message\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga1b65d93f6ac5ba3e32b0dfbe4c9f7e8d}{}\label{group___t_cube_quad_ga1b65d93f6ac5ba3e32b0dfbe4c9f7e8d}
+
+
+Get the next Message\+Queue item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em message\+Type} & The address of the parameter to receive the message Type. \\
+\hline
+{\em message\+ID} & The address of the parameter to receive the message id. \\
+\hline
+{\em message\+Data} & The address of the parameter to receive the message data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Q\+D\+\_\+\+Register\+Message\+Callback(char const $\ast$ serial\+No, void ($\ast$ function\+Pointer)()), \hyperlink{group___t_cube_quad_gacc63bcc43be1a5d01d11d67ec00edbc9}{Q\+D\+\_\+\+Message\+Queue\+Size(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga567f20cd77ccf62488a8c1872892c93f}{Q\+D\+\_\+\+Wait\+For\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Notch\+Filterparams@{Q\+D\+\_\+\+Get\+Notch\+Filterparams}}
+\index{Q\+D\+\_\+\+Get\+Notch\+Filterparams@{Q\+D\+\_\+\+Get\+Notch\+Filterparams}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$notch\+Params)}{QD_GetNotchFilterparams(char const *serialNo, QD_NotchFilterParameters *notchParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Notch\+Filterparams (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Notch\+Filter\+Parameters} $\ast$}]{notch\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}{}\label{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}
+
+
+Gets the notch filter parameters. 
+
+This feature was added to the T\+P\+A101 device, hardware version \&lt 3
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em notch\+Params} & Address of the \hyperlink{struct_q_d___notch_filter_parameters}{Q\+D\+\_\+\+Notch\+Filter\+Parameters} to receive the Notch Filter Parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}{Q\+D\+\_\+\+Set\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}{Q\+D\+\_\+\+Set\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}{Q\+D\+\_\+\+Get\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Operating\+Mode@{Q\+D\+\_\+\+Get\+Operating\+Mode}}
+\index{Q\+D\+\_\+\+Get\+Operating\+Mode@{Q\+D\+\_\+\+Get\+Operating\+Mode}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Operating\+Mode(char const $\ast$serial\+No)}{QD_GetOperatingMode(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI {\bf Q\+D\+\_\+\+Operating\+Mode} \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Operating\+Mode (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga6915be0dd37f627781711f044310de8e}{}\label{group___t_cube_quad_ga6915be0dd37f627781711f044310de8e}
+
+
+Gets the operating mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current operating mode. \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Monitoring only&1 \\\cline{1-2}
+Open Loop Mode&2 \\\cline{1-2}
+Closed Loop Mode&3 \\\cline{1-2}
+\end{longtabu}
+
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga243d4bfde5718a7a9352275075dc4cd9}{Q\+D\+\_\+\+Set\+Operating\+Mode(char const $\ast$ serial\+No, Q\+D\+\_\+\+Operating\+Mode mode)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+P\+I\+Dparams@{Q\+D\+\_\+\+Get\+P\+I\+Dparams}}
+\index{Q\+D\+\_\+\+Get\+P\+I\+Dparams@{Q\+D\+\_\+\+Get\+P\+I\+Dparams}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}{QD_GetPIDparams(char const *serialNo, QD_PIDParameters *proportionalIntegralDifferentialParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+P\+I\+Dparams (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+P\+I\+D\+Parameters} $\ast$}]{proportional\+Integral\+Differential\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}{}\label{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}
+
+
+Gets the feedback loop parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em proportional\+Integral\+Differential\+Params} & Address of the \hyperlink{struct_q_d___p_i_d_parameters}{Q\+D\+\_\+\+P\+I\+D\+Parameters} to recieve the Feedback Loop Parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}{Q\+D\+\_\+\+Set\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}{Q\+D\+\_\+\+Set\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}{Q\+D\+\_\+\+Get\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$notch\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Pos\+Demand\+Params@{Q\+D\+\_\+\+Get\+Pos\+Demand\+Params}}
+\index{Q\+D\+\_\+\+Get\+Pos\+Demand\+Params@{Q\+D\+\_\+\+Get\+Pos\+Demand\+Params}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Pos\+Demand\+Params(char const $\ast$serial\+No, Q\+D\+\_\+\+Position\+Demand\+Parameters $\ast$demand\+Params)}{QD_GetPosDemandParams(char const *serialNo, QD_PositionDemandParameters *demandParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Pos\+Demand\+Params (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Position\+Demand\+Parameters} $\ast$}]{demand\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga14ddb364d6ad9937df188ba95a6a7863}{}\label{group___t_cube_quad_ga14ddb364d6ad9937df188ba95a6a7863}
+
+
+Gets the position demand output parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em demand\+Params} & Address of the \hyperlink{struct_q_d___position_demand_parameters}{Q\+D\+\_\+\+Position\+Demand\+Parameters} to receive the Position Demand Output parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga468ceea807cc228bad1f55058443535f}{Q\+D\+\_\+\+Set\+Pos\+Demand\+Params(char const $\ast$serial\+No, Q\+D\+\_\+\+Position\+Demand\+Parameters $\ast$demand\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Reading@{Q\+D\+\_\+\+Get\+Reading}}
+\index{Q\+D\+\_\+\+Get\+Reading@{Q\+D\+\_\+\+Get\+Reading}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Reading(char const $\ast$serial\+No, Q\+D\+\_\+\+Readings $\ast$reading)}{QD_GetReading(char const *serialNo, QD_Readings *reading)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Reading (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Readings} $\ast$}]{reading}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gac7963a5d307b284db9f046910e6ee072}{}\label{group___t_cube_quad_gac7963a5d307b284db9f046910e6ee072}
+
+
+Gets a reading. 
+
+This returns the latest reading received from the device.~\newline
+ To get new readings, use \hyperlink{group___t_cube_quad_ga4a5429ee2b8f8030563705bd482eb6a9}{Q\+D\+\_\+\+Request\+Reading(char const $\ast$ serial\+No)} or use \hyperlink{group___t_cube_quad_gaeb7c30780b3c1193884a69cc62badbde}{Q\+D\+\_\+\+Request\+Status(char const $\ast$ serial\+No)} or use the polling functions, \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em reading} & Address of the \hyperlink{struct_q_d___readings}{Q\+D\+\_\+\+Readings} to receive the current Position Readings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga4a5429ee2b8f8030563705bd482eb6a9}{Q\+D\+\_\+\+Request\+Reading(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_gaeb7c30780b3c1193884a69cc62badbde}{Q\+D\+\_\+\+Request\+Status(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Software\+Version@{Q\+D\+\_\+\+Get\+Software\+Version}}
+\index{Q\+D\+\_\+\+Get\+Software\+Version@{Q\+D\+\_\+\+Get\+Software\+Version}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Software\+Version(char const $\ast$serial\+No)}{QD_GetSoftwareVersion(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Software\+Version (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gac5382e17ae2cae3724e465b1c763ad6b}{}\label{group___t_cube_quad_gac5382e17ae2cae3724e465b1c763ad6b}
+
+
+Gets version number of the device software. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The device software version number made up of 4 byte parts. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Get\+Status\+Bits@{Q\+D\+\_\+\+Get\+Status\+Bits}}
+\index{Q\+D\+\_\+\+Get\+Status\+Bits@{Q\+D\+\_\+\+Get\+Status\+Bits}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Get\+Status\+Bits(char const $\ast$serial\+No)}{QD_GetStatusBits(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Get\+Status\+Bits (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga4fff9388adb9c4bd2ad3acbd784c7f9a}{}\label{group___t_cube_quad_ga4fff9388adb9c4bd2ad3acbd784c7f9a}
+
+
+Get the current status bits. 
+
+This returns the latest status bits received from the device.~\newline
+ To get new status bits, use \hyperlink{group___t_cube_quad_ga9b6e3a33060adfc57918626cd738aedd}{Q\+D\+\_\+\+Request\+Status\+Bits(char const $\ast$ serial\+No)} or use \hyperlink{group___t_cube_quad_gaeb7c30780b3c1193884a69cc62badbde}{Q\+D\+\_\+\+Request\+Status(char const $\ast$ serial\+No)} or use the polling functions, \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The status bits from the device \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+0x00000001&Position monitoring mode (1=Enabled, 0=Disabled). \\\cline{1-2}
+0x00000002&Open loop operating mode (1=Enabled, 0=Disabled). \\\cline{1-2}
+0x00000004&Closed loop operating mode (1=Enabled, 0=Disabled). \\\cline{1-2}
+0x00000008&For Future Use. \\\cline{1-2}
+0x00000010&\\\cline{1-2}
+...&\\\cline{1-2}
+0x80000000&\\\cline{1-2}
+\end{longtabu}
+
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga9b6e3a33060adfc57918626cd738aedd}{Q\+D\+\_\+\+Request\+Status\+Bits(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_gaeb7c30780b3c1193884a69cc62badbde}{Q\+D\+\_\+\+Request\+Status(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Identify@{Q\+D\+\_\+\+Identify}}
+\index{Q\+D\+\_\+\+Identify@{Q\+D\+\_\+\+Identify}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Identify(char const $\ast$serial\+No)}{QD_Identify(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Identify (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga6aa3e432f79ac38be892d81b2c264ed9}{}\label{group___t_cube_quad_ga6aa3e432f79ac38be892d81b2c264ed9}
+
+
+Sends a command to the device to make it identify iteself. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Load\+Settings@{Q\+D\+\_\+\+Load\+Settings}}
+\index{Q\+D\+\_\+\+Load\+Settings@{Q\+D\+\_\+\+Load\+Settings}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Load\+Settings(char const $\ast$serial\+No)}{QD_LoadSettings(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Load\+Settings (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga10e570caf5ce43401f3feec23e7bb429}{}\label{group___t_cube_quad_ga10e570caf5ce43401f3feec23e7bb429}
+
+
+Update device with stored settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Message\+Queue\+Size@{Q\+D\+\_\+\+Message\+Queue\+Size}}
+\index{Q\+D\+\_\+\+Message\+Queue\+Size@{Q\+D\+\_\+\+Message\+Queue\+Size}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Message\+Queue\+Size(char const $\ast$serial\+No)}{QD_MessageQueueSize(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Message\+Queue\+Size (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gacc63bcc43be1a5d01d11d67ec00edbc9}{}\label{group___t_cube_quad_gacc63bcc43be1a5d01d11d67ec00edbc9}
+
+
+Gets the Message\+Queue size. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of messages in the queue. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Q\+D\+\_\+\+Register\+Message\+Callback(char const $\ast$ serial\+No, void ($\ast$ function\+Pointer)()), \hyperlink{group___t_cube_quad_ga1b65d93f6ac5ba3e32b0dfbe4c9f7e8d}{Q\+D\+\_\+\+Get\+Next\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}, \hyperlink{group___t_cube_quad_ga567f20cd77ccf62488a8c1872892c93f}{Q\+D\+\_\+\+Wait\+For\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Open@{Q\+D\+\_\+\+Open}}
+\index{Q\+D\+\_\+\+Open@{Q\+D\+\_\+\+Open}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Open(char const $\ast$serial\+No)}{QD_Open(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Open (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga4c5de4f9f61b5d261b0801bf7af83231}{}\label{group___t_cube_quad_ga4c5de4f9f61b5d261b0801bf7af83231}
+
+
+Open the device for communications. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial no of the device to be connected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_gad65d6381fa84b4fa41867e09a1fd6b64}{Q\+D\+\_\+\+Close(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Persist\+Settings@{Q\+D\+\_\+\+Persist\+Settings}}
+\index{Q\+D\+\_\+\+Persist\+Settings@{Q\+D\+\_\+\+Persist\+Settings}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Persist\+Settings(char const $\ast$serial\+No)}{QD_PersistSettings(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Persist\+Settings (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga2c78062f80813de015142947ceb2a093}{}\label{group___t_cube_quad_ga2c78062f80813de015142947ceb2a093}
+
+
+persist the devices current settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Polling\+Duration@{Q\+D\+\_\+\+Polling\+Duration}}
+\index{Q\+D\+\_\+\+Polling\+Duration@{Q\+D\+\_\+\+Polling\+Duration}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Polling\+Duration(char const $\ast$serial\+No)}{QD_PollingDuration(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI long \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Polling\+Duration (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga622327cedb16139b247646a5c5b7eb64}{}\label{group___t_cube_quad_ga622327cedb16139b247646a5c5b7eb64}
+
+
+Gets the polling loop duration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The time between polls in milliseconds or 0 if polling is not active. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}, \hyperlink{group___t_cube_quad_ga4e32e2561421618ae9f3e1cbbfc43aa3}{Q\+D\+\_\+\+Stop\+Polling(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Register\+Message\+Callback@{Q\+D\+\_\+\+Register\+Message\+Callback}}
+\index{Q\+D\+\_\+\+Register\+Message\+Callback@{Q\+D\+\_\+\+Register\+Message\+Callback}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Register\+Message\+Callback(char const $\ast$serial\+No, void($\ast$function\+Pointer)())}{QD_RegisterMessageCallback(char const *serialNo, void(*functionPointer)())}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Register\+Message\+Callback (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{void($\ast$)()}]{function\+Pointer}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga29fd175b8ba9cb173f5d805d9612c013}{}\label{group___t_cube_quad_ga29fd175b8ba9cb173f5d805d9612c013}
+
+
+Registers a callback on the message queue. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em function\+Pointer} & A function pointer to be called whenever messages are received. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_gacc63bcc43be1a5d01d11d67ec00edbc9}{Q\+D\+\_\+\+Message\+Queue\+Size(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga1b65d93f6ac5ba3e32b0dfbe4c9f7e8d}{Q\+D\+\_\+\+Get\+Next\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}, \hyperlink{group___t_cube_quad_ga567f20cd77ccf62488a8c1872892c93f}{Q\+D\+\_\+\+Wait\+For\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Request\+Reading@{Q\+D\+\_\+\+Request\+Reading}}
+\index{Q\+D\+\_\+\+Request\+Reading@{Q\+D\+\_\+\+Request\+Reading}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Request\+Reading(char const $\ast$serial\+No)}{QD_RequestReading(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Request\+Reading (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga4a5429ee2b8f8030563705bd482eb6a9}{}\label{group___t_cube_quad_ga4a5429ee2b8f8030563705bd482eb6a9}
+
+
+Request reading. 
+
+This needs to be called to get the device to send it\textquotesingle{}s current reading.~\newline
+ N\+O\+TE this is called automatically if Polling is enabled for the device using \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_gac7963a5d307b284db9f046910e6ee072}{Q\+D\+\_\+\+Get\+Reading(char const $\ast$serial\+No, Q\+D\+\_\+\+Readings $\ast$reading)}, \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Request\+Settings@{Q\+D\+\_\+\+Request\+Settings}}
+\index{Q\+D\+\_\+\+Request\+Settings@{Q\+D\+\_\+\+Request\+Settings}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Request\+Settings(char const $\ast$serial\+No)}{QD_RequestSettings(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Request\+Settings (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga1e113c968390f23c379b852b980cfe0e}{}\label{group___t_cube_quad_ga1e113c968390f23c379b852b980cfe0e}
+
+
+Requests that all settings are download from device. 
+
+This function requests that the device upload all it\textquotesingle{}s settings to the D\+LL.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Request\+Status@{Q\+D\+\_\+\+Request\+Status}}
+\index{Q\+D\+\_\+\+Request\+Status@{Q\+D\+\_\+\+Request\+Status}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Request\+Status(char const $\ast$serial\+No)}{QD_RequestStatus(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Request\+Status (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gaeb7c30780b3c1193884a69cc62badbde}{}\label{group___t_cube_quad_gaeb7c30780b3c1193884a69cc62badbde}
+
+
+Requests the state quantities (actual power, current and status bits). 
+
+This needs to be called to get the device to send it\textquotesingle{}s current status.~\newline
+ N\+O\+TE this is called automatically if Polling is enabled for the device using \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga4a5429ee2b8f8030563705bd482eb6a9}{Q\+D\+\_\+\+Request\+Reading(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga9b6e3a33060adfc57918626cd738aedd}{Q\+D\+\_\+\+Request\+Status\+Bits(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_gac7963a5d307b284db9f046910e6ee072}{Q\+D\+\_\+\+Get\+Reading(char const $\ast$serial\+No, Q\+D\+\_\+\+Readings $\ast$reading)}, \hyperlink{group___t_cube_quad_ga4fff9388adb9c4bd2ad3acbd784c7f9a}{Q\+D\+\_\+\+Get\+Status\+Bits(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Request\+Status\+Bits@{Q\+D\+\_\+\+Request\+Status\+Bits}}
+\index{Q\+D\+\_\+\+Request\+Status\+Bits@{Q\+D\+\_\+\+Request\+Status\+Bits}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Request\+Status\+Bits(char const $\ast$serial\+No)}{QD_RequestStatusBits(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Request\+Status\+Bits (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga9b6e3a33060adfc57918626cd738aedd}{}\label{group___t_cube_quad_ga9b6e3a33060adfc57918626cd738aedd}
+
+
+Request the status bits which identify the current device state. 
+
+This needs to be called to get the device to send it\textquotesingle{}s current status bits.~\newline
+ N\+O\+TE this is called automatically if Polling is enabled for the device using \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga4fff9388adb9c4bd2ad3acbd784c7f9a}{Q\+D\+\_\+\+Get\+Status\+Bits(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Set\+L\+E\+D\+Brightness@{Q\+D\+\_\+\+Set\+L\+E\+D\+Brightness}}
+\index{Q\+D\+\_\+\+Set\+L\+E\+D\+Brightness@{Q\+D\+\_\+\+Set\+L\+E\+D\+Brightness}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Set\+L\+E\+D\+Brightness(char const $\ast$serial\+No, short brightness)}{QD_SetLEDBrightness(char const *serialNo, short brightness)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Set\+L\+E\+D\+Brightness (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{brightness}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga4bca494c43cf4602ac7f3ab167d0ec53}{}\label{group___t_cube_quad_ga4bca494c43cf4602ac7f3ab167d0ec53}
+
+
+Sets the L\+ED brightness. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em brightness} & Intensity from 0 (off) to 255. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_gad272971ac3d4729b1d1eebfab2aa05ea}{Q\+D\+\_\+\+Get\+L\+E\+D\+Brightness(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams@{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams}}
+\index{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams@{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}{QD_SetLoopPIDparams(char const *serialNo, QD_LoopParameters *loopParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Loop\+Parameters} $\ast$}]{loop\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}{}\label{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}
+
+
+Sets the feedback loop parameters. 
+
+This feature was added to the T\+P\+A101 device, hardware version \&lt 3
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em loop\+Params} & Address of the \hyperlink{struct_q_d___loop_parameters}{Q\+D\+\_\+\+Loop\+Parameters} containing the new Feedback Loop Parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}{Q\+D\+\_\+\+Set\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}{Q\+D\+\_\+\+Get\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}{Q\+D\+\_\+\+Set\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}{Q\+D\+\_\+\+Get\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$notch\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams@{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams}}
+\index{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams@{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}{QD_SetLowPassFilterparams(char const *serialNo, QD_LowPassFilterParameters *lowPassParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters} $\ast$}]{low\+Pass\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}{}\label{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}
+
+
+Sets the low pass filter parameters. 
+
+This feature was added to the T\+P\+A101 device, hardware version \&lt 3
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em low\+Pass\+Params} & Address of the \hyperlink{struct_q_d___low_pass_filter_parameters}{Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters} containing the new Feedback Low Pass Filter Parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}{Q\+D\+\_\+\+Set\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}{Q\+D\+\_\+\+Get\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$notch\+Params)}, \hyperlink{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}{Q\+D\+\_\+\+Set\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}{Q\+D\+\_\+\+Get\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Set\+Notch\+Filterparams@{Q\+D\+\_\+\+Set\+Notch\+Filterparams}}
+\index{Q\+D\+\_\+\+Set\+Notch\+Filterparams@{Q\+D\+\_\+\+Set\+Notch\+Filterparams}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Set\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$notch\+Params)}{QD_SetNotchFilterparams(char const *serialNo, QD_NotchFilterParameters *notchParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Set\+Notch\+Filterparams (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Notch\+Filter\+Parameters} $\ast$}]{notch\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}{}\label{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}
+
+
+Sets the notch filter parameters. 
+
+This feature was added to the T\+P\+A101 device, hardware version \&lt 3
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em notch\+Params} & Address of the \hyperlink{struct_q_d___notch_filter_parameters}{Q\+D\+\_\+\+Notch\+Filter\+Parameters} containing the new Feedback Notch Filter Parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}{Q\+D\+\_\+\+Get\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$notch\+Params)}, \hyperlink{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}{Q\+D\+\_\+\+Set\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}{Q\+D\+\_\+\+Get\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Set\+Operating\+Mode@{Q\+D\+\_\+\+Set\+Operating\+Mode}}
+\index{Q\+D\+\_\+\+Set\+Operating\+Mode@{Q\+D\+\_\+\+Set\+Operating\+Mode}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Set\+Operating\+Mode(char const $\ast$serial\+No, Q\+D\+\_\+\+Operating\+Mode mode)}{QD_SetOperatingMode(char const *serialNo, QD_OperatingMode mode)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Set\+Operating\+Mode (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Operating\+Mode}}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga243d4bfde5718a7a9352275075dc4cd9}{}\label{group___t_cube_quad_ga243d4bfde5718a7a9352275075dc4cd9}
+
+
+Sets the operating mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em mode} & The current operating mode. \begin{tabularx}{\linewidth}{|*{2}{>{\raggedright\arraybackslash}X|}}\hline
+Monitoring only&1 \\\cline{1-2}
+Open Loop Mode&2 \\\cline{1-2}
+Closed Loop Mode&3 \\\cline{1-2}
+\end{tabularx}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga6915be0dd37f627781711f044310de8e}{Q\+D\+\_\+\+Get\+Operating\+Mode(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Set\+P\+I\+Dparams@{Q\+D\+\_\+\+Set\+P\+I\+Dparams}}
+\index{Q\+D\+\_\+\+Set\+P\+I\+Dparams@{Q\+D\+\_\+\+Set\+P\+I\+Dparams}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Set\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}{QD_SetPIDparams(char const *serialNo, QD_PIDParameters *proportionalIntegralDifferentialParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Set\+P\+I\+Dparams (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+P\+I\+D\+Parameters} $\ast$}]{proportional\+Integral\+Differential\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}{}\label{group___t_cube_quad_gac4cc242d12537c25f48b86e73138c3d1}
+
+
+Sets the feedback loop parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em proportional\+Integral\+Differential\+Params} & Address of the \hyperlink{struct_q_d___p_i_d_parameters}{Q\+D\+\_\+\+P\+I\+D\+Parameters} containing the new Feedback Loop Parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2e1be6be7d8bb5c822766a44205889ae}{Q\+D\+\_\+\+Get\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+P\+I\+D\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga9dfc01ca4b37b2f0c662b8d8def06e73}{Q\+D\+\_\+\+Get\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_gad75ed2cff04b2d218326841b2553af0a}{Q\+D\+\_\+\+Set\+Loop\+P\+I\+Dparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Loop\+Parameters $\ast$loop\+Params)}, \hyperlink{group___t_cube_quad_ga698c72e36ea50417955b08b69215fcf5}{Q\+D\+\_\+\+Get\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga2e8b2f659d9008af335d876976450bc5}{Q\+D\+\_\+\+Set\+Low\+Pass\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Low\+Pass\+Filter\+Parameters $\ast$low\+Pass\+Params)}, \hyperlink{group___t_cube_quad_ga00572c166108d5bd60ed0ab5eae7d83c}{Q\+D\+\_\+\+Set\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$proportional\+Integral\+Differential\+Params)}, \hyperlink{group___t_cube_quad_ga5132ce023e2c0248a42cb5cdf0a95c3e}{Q\+D\+\_\+\+Get\+Notch\+Filterparams(char const $\ast$serial\+No, Q\+D\+\_\+\+Notch\+Filter\+Parameters $\ast$notch\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Set\+Pos\+Demand\+Params@{Q\+D\+\_\+\+Set\+Pos\+Demand\+Params}}
+\index{Q\+D\+\_\+\+Set\+Pos\+Demand\+Params@{Q\+D\+\_\+\+Set\+Pos\+Demand\+Params}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Set\+Pos\+Demand\+Params(char const $\ast$serial\+No, Q\+D\+\_\+\+Position\+Demand\+Parameters $\ast$demand\+Params)}{QD_SetPosDemandParams(char const *serialNo, QD_PositionDemandParameters *demandParams)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Set\+Pos\+Demand\+Params (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Position\+Demand\+Parameters} $\ast$}]{demand\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga468ceea807cc228bad1f55058443535f}{}\label{group___t_cube_quad_ga468ceea807cc228bad1f55058443535f}
+
+
+Sets the position demand parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em demand\+Params} & Address of the \hyperlink{struct_q_d___position_demand_parameters}{Q\+D\+\_\+\+Position\+Demand\+Parameters} containing the new Position Demand Output parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga14ddb364d6ad9937df188ba95a6a7863}{Q\+D\+\_\+\+Get\+Pos\+Demand\+Params(char const $\ast$serial\+No, Q\+D\+\_\+\+Position\+Demand\+Parameters $\ast$demand\+Params)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Set\+Position@{Q\+D\+\_\+\+Set\+Position}}
+\index{Q\+D\+\_\+\+Set\+Position@{Q\+D\+\_\+\+Set\+Position}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Set\+Position(char const $\ast$serial\+No, Q\+D\+\_\+\+Position $\ast$position)}{QD_SetPosition(char const *serialNo, QD_Position *position)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Set\+Position (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf Q\+D\+\_\+\+Position} $\ast$}]{position}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gac8fe51256b6bee509279fb5fe4aa08ab}{}\label{group___t_cube_quad_gac8fe51256b6bee509279fb5fe4aa08ab}
+
+
+Sets position demand output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em position} & Address of the \hyperlink{struct_q_d___position}{Q\+D\+\_\+\+Position} containing the new Demanded Position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_gaa7783e819581ab30ecb5fe70b550f7ac}{Q\+D\+\_\+\+Get\+Demanded\+Position(char const $\ast$serial\+No, Q\+D\+\_\+\+Position $\ast$position)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Start\+Polling@{Q\+D\+\_\+\+Start\+Polling}}
+\index{Q\+D\+\_\+\+Start\+Polling@{Q\+D\+\_\+\+Start\+Polling}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Start\+Polling(char const $\ast$serial\+No, int milliseconds)}{QD_StartPolling(char const *serialNo, int milliseconds)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Start\+Polling (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{int}]{milliseconds}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{}\label{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}
+
+
+Starts the internal polling loop which continuously requests position and status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em milliseconds} & The milliseconds polling rate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga4e32e2561421618ae9f3e1cbbfc43aa3}{Q\+D\+\_\+\+Stop\+Polling(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga622327cedb16139b247646a5c5b7eb64}{Q\+D\+\_\+\+Polling\+Duration(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga9b6e3a33060adfc57918626cd738aedd}{Q\+D\+\_\+\+Request\+Status\+Bits(char const $\ast$ serial\+No)}, Q\+D\+\_\+\+Request\+Position(char const $\ast$ serial\+No)
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Stop\+Polling@{Q\+D\+\_\+\+Stop\+Polling}}
+\index{Q\+D\+\_\+\+Stop\+Polling@{Q\+D\+\_\+\+Stop\+Polling}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Stop\+Polling(char const $\ast$serial\+No)}{QD_StopPolling(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Stop\+Polling (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga4e32e2561421618ae9f3e1cbbfc43aa3}{}\label{group___t_cube_quad_ga4e32e2561421618ae9f3e1cbbfc43aa3}
+
+
+Stops the internal polling loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga3f338c62c0adfddacb0f927cf8889e8b}{Q\+D\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}, \hyperlink{group___t_cube_quad_ga622327cedb16139b247646a5c5b7eb64}{Q\+D\+\_\+\+Polling\+Duration(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!Q\+D\+\_\+\+Wait\+For\+Message@{Q\+D\+\_\+\+Wait\+For\+Message}}
+\index{Q\+D\+\_\+\+Wait\+For\+Message@{Q\+D\+\_\+\+Wait\+For\+Message}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{Q\+D\+\_\+\+Wait\+For\+Message(char const $\ast$serial\+No, W\+O\+R\+D $\ast$message\+Type, W\+O\+R\+D $\ast$message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}{QD_WaitForMessage(char const *serialNo, WORD *messageType, WORD *messageID, DWORD *messageData)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl Q\+D\+\_\+\+Wait\+For\+Message (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{W\+O\+RD $\ast$}]{message\+Type, }
+\item[{W\+O\+RD $\ast$}]{message\+ID, }
+\item[{D\+W\+O\+RD $\ast$}]{message\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga567f20cd77ccf62488a8c1872892c93f}{}\label{group___t_cube_quad_ga567f20cd77ccf62488a8c1872892c93f}
+
+
+Wait for next Message\+Queue item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em message\+Type} & The address of the parameter to receive the message Type. \\
+\hline
+{\em message\+ID} & The address of the parameter to receive the message id. \\
+\hline
+{\em message\+Data} & The address of the parameter to receive the message data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Q\+D\+\_\+\+Register\+Message\+Callback(char const $\ast$ serial\+No, void ($\ast$ function\+Pointer)()), \hyperlink{group___t_cube_quad_gacc63bcc43be1a5d01d11d67ec00edbc9}{Q\+D\+\_\+\+Message\+Queue\+Size(char const $\ast$ serial\+No)}, \hyperlink{group___t_cube_quad_ga1b65d93f6ac5ba3e32b0dfbe4c9f7e8d}{Q\+D\+\_\+\+Get\+Next\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!T\+L\+I\+\_\+\+Build\+Device\+List@{T\+L\+I\+\_\+\+Build\+Device\+List}}
+\index{T\+L\+I\+\_\+\+Build\+Device\+List@{T\+L\+I\+\_\+\+Build\+Device\+List}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Build\+Device\+List(void)}{TLI_BuildDeviceList(void)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Build\+Device\+List (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{}\label{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}
+
+
+Build the Device\+List. 
+
+This function builds an internal collection of all devices found on the U\+SB that are not currently open. ~\newline
+ N\+O\+TE, if a device is open, it will not appear in the list until the device has been closed. 
+
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!T\+L\+I\+\_\+\+Get\+Device\+Info@{T\+L\+I\+\_\+\+Get\+Device\+Info}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+Info@{T\+L\+I\+\_\+\+Get\+Device\+Info}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+Info(char const $\ast$serial\+No, T\+L\+I\+\_\+\+Device\+Info $\ast$info)}{TLI_GetDeviceInfo(char const *serialNo, TLI_DeviceInfo *info)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+Info (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf T\+L\+I\+\_\+\+Device\+Info} $\ast$}]{info}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga9a51047fb30f95fa7549648f7020f5d1}{}\label{group___t_cube_quad_ga9a51047fb30f95fa7549648f7020f5d1}
+
+
+Get the device information from the U\+SB port. 
+
+The Device Info is read from the U\+SB port not from the device itself.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial number of the device. \\
+\hline
+{\em info} & The \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info} device information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 if not. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!T\+L\+I\+\_\+\+Get\+Device\+List@{T\+L\+I\+\_\+\+Get\+Device\+List}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List@{T\+L\+I\+\_\+\+Get\+Device\+List}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver)}{TLI_GetDeviceList(SAFEARRAY **stringsReceiver)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{}\label{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}
+
+
+Get the entire contents of the device list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver, int type\+I\+D)}{TLI_GetDeviceListByType(SAFEARRAY **stringsReceiver, int typeID)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver, }
+\item[{int}]{type\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{}\label{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}
+
+
+Get the contents of the device list which match the supplied type\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+{\em type\+ID} & The type\+ID of devices to match, see Device serial numbers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}{TLI_GetDeviceListByTypeExt(char *receiveBuffer, DWORD sizeOfBuffer, int typeID)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer, }
+\item[{int}]{type\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{}\label{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}
+
+
+Get the contents of the device list which match the supplied type\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+{\em type\+ID} & The type\+ID of devices to be matched, see Device serial numbers\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver, int $\ast$type\+I\+Ds, int length)}{TLI_GetDeviceListByTypes(SAFEARRAY **stringsReceiver, int *typeIDs, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver, }
+\item[{int $\ast$}]{type\+I\+Ds, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{}\label{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}
+
+
+Get the contents of the device list which match the supplied type\+I\+Ds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+{\em type\+I\+Ds} & list of type\+I\+Ds of devices to be matched, see Device serial numbers\\
+\hline
+{\em length} & length of type list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$type\+I\+Ds, int length)}{TLI_GetDeviceListByTypesExt(char *receiveBuffer, DWORD sizeOfBuffer, int *typeIDs, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer, }
+\item[{int $\ast$}]{type\+I\+Ds, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{}\label{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}
+
+
+Get the contents of the device list which match the supplied type\+I\+Ds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+{\em type\+I\+Ds} & list of type\+I\+Ds of devices to be matched, see Device serial numbers\\
+\hline
+{\em length} & length of type list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!T\+L\+I\+\_\+\+Get\+Device\+List\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}{TLI_GetDeviceListExt(char *receiveBuffer, DWORD sizeOfBuffer)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{}\label{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}
+
+
+Get the entire contents of the device list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}!T\+L\+I\+\_\+\+Get\+Device\+List\+Size@{T\+L\+I\+\_\+\+Get\+Device\+List\+Size}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+Size@{T\+L\+I\+\_\+\+Get\+Device\+List\+Size}!T\+Cube Quad / T\+Cube Position Aligner@{T\+Cube Quad / T\+Cube Position Aligner}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}{TLI_GetDeviceListSize()}}]{\setlength{\rightskip}{0pt plus 5cm}T\+C\+U\+B\+E\+Q\+U\+A\+D\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}{}\label{group___t_cube_quad_ga2afece9535c5351276c468ff6e2e3af7}
+
+
+Gets the device list size. 
+
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxyReturn}{Returns}
+Number of devices in device list. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___t_cube_quad_ga9ca8fa5a7cdb1ddb3299a0d866fc4b8b}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___t_cube_quad_gaab70fcc5ef3277cb714a0c16ee2867d1}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___t_cube_quad_gaeddc9697622c2c1f46ff51585770f99f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gab873629414dcb54541faf0ece81d8d3b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___t_cube_quad_ga0006a1b1d106c95c0537659b0e32cbf0}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___t_cube_quad_ga82598a222eea22661c6aba9445f2eb82}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___t_cube_quad_gac4a383a74a1db526c3b771a741d70239}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}

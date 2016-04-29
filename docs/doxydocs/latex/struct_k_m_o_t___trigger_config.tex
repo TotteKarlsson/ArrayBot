@@ -1,0 +1,106 @@
+\hypertarget{struct_k_m_o_t___trigger_config}{}\section{K\+M\+O\+T\+\_\+\+Trigger\+Config Struct Reference}
+\label{struct_k_m_o_t___trigger_config}\index{K\+M\+O\+T\+\_\+\+Trigger\+Config@{K\+M\+O\+T\+\_\+\+Trigger\+Config}}
+
+
+K\+Cube motor trigger configuration.  
+
+
+
+
+{\ttfamily \#include $<$Thorlabs.\+Motion\+Control.\+K\+Cube.\+Brushless\+Motor.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+K\+M\+O\+T\+\_\+\+Trigger\+Port\+Mode \hyperlink{struct_k_m_o_t___trigger_config_aa3a6f017783b4ebff5ecacc491a6192f}{Trigger1\+Mode}
+\begin{DoxyCompactList}\small\item\em The trigger 1 mode. \end{DoxyCompactList}\item 
+K\+M\+O\+T\+\_\+\+Trigger\+Port\+Polarity \hyperlink{struct_k_m_o_t___trigger_config_a64783723d4b264a0ef10c6f9c22b9638}{Trigger1\+Polarity}
+\begin{DoxyCompactList}\small\item\em The trigger 1 polarity. \end{DoxyCompactList}\item 
+K\+M\+O\+T\+\_\+\+Trigger\+Port\+Mode \hyperlink{struct_k_m_o_t___trigger_config_a7fc46444eb8022abb6cc9c5eb0be8566}{Trigger2\+Mode}
+\begin{DoxyCompactList}\small\item\em The trigger 2 mode. \end{DoxyCompactList}\item 
+K\+M\+O\+T\+\_\+\+Trigger\+Port\+Polarity \hyperlink{struct_k_m_o_t___trigger_config_a2ad8fdca0dba83c72ccab7fbc5945391}{Trigger2\+Polarity}
+\begin{DoxyCompactList}\small\item\em The trigger 2 polarity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+K\+Cube motor trigger configuration. 
+
+
+
+\subsection{Member Data Documentation}
+\index{K\+M\+O\+T\+\_\+\+Trigger\+Config@{K\+M\+O\+T\+\_\+\+Trigger\+Config}!Trigger1\+Mode@{Trigger1\+Mode}}
+\index{Trigger1\+Mode@{Trigger1\+Mode}!K\+M\+O\+T\+\_\+\+Trigger\+Config@{K\+M\+O\+T\+\_\+\+Trigger\+Config}}
+\subsubsection[{\texorpdfstring{Trigger1\+Mode}{Trigger1Mode}}]{\setlength{\rightskip}{0pt plus 5cm}K\+M\+O\+T\+\_\+\+Trigger\+Port\+Mode K\+M\+O\+T\+\_\+\+Trigger\+Config\+::\+Trigger1\+Mode}\hypertarget{struct_k_m_o_t___trigger_config_aa3a6f017783b4ebff5ecacc491a6192f}{}\label{struct_k_m_o_t___trigger_config_aa3a6f017783b4ebff5ecacc491a6192f}
+
+
+The trigger 1 mode. 
+
+The trigger 1 operating mode\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+0&Trigger disabled \\\cline{1-2}
+1&Trigger Input -\/ General purpose logic input \\\cline{1-2}
+2&Trigger Input -\/ Move relative using relative move parameters \\\cline{1-2}
+3&Trigger Input -\/ Move absolute using absolute move parameters \\\cline{1-2}
+4&Trigger Input -\/ Perform a Home action \\\cline{1-2}
+10&Trigger Output -\/ General purpose output (set using M\+O\+T\+\_\+\+S\+E\+T\+\_\+\+D\+I\+G\+O\+U\+T\+P\+U\+TS) \\\cline{1-2}
+11&Trigger Output -\/ Set when device moving \\\cline{1-2}
+12&Trigger Output -\/ Set when at max velocity \\\cline{1-2}
+13&Trigger Output -\/ Set when at predefine position steps \\\cline{1-2}
+14&Trigger Output -\/ T\+BD mode \\\cline{1-2}
+\end{longtabu}
+\index{K\+M\+O\+T\+\_\+\+Trigger\+Config@{K\+M\+O\+T\+\_\+\+Trigger\+Config}!Trigger1\+Polarity@{Trigger1\+Polarity}}
+\index{Trigger1\+Polarity@{Trigger1\+Polarity}!K\+M\+O\+T\+\_\+\+Trigger\+Config@{K\+M\+O\+T\+\_\+\+Trigger\+Config}}
+\subsubsection[{\texorpdfstring{Trigger1\+Polarity}{Trigger1Polarity}}]{\setlength{\rightskip}{0pt plus 5cm}K\+M\+O\+T\+\_\+\+Trigger\+Port\+Polarity K\+M\+O\+T\+\_\+\+Trigger\+Config\+::\+Trigger1\+Polarity}\hypertarget{struct_k_m_o_t___trigger_config_a64783723d4b264a0ef10c6f9c22b9638}{}\label{struct_k_m_o_t___trigger_config_a64783723d4b264a0ef10c6f9c22b9638}
+
+
+The trigger 1 polarity. 
+
+The trigger 1 output polaritye\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+1&Output high when set \\\cline{1-2}
+2&Output low when set \\\cline{1-2}
+\end{longtabu}
+\index{K\+M\+O\+T\+\_\+\+Trigger\+Config@{K\+M\+O\+T\+\_\+\+Trigger\+Config}!Trigger2\+Mode@{Trigger2\+Mode}}
+\index{Trigger2\+Mode@{Trigger2\+Mode}!K\+M\+O\+T\+\_\+\+Trigger\+Config@{K\+M\+O\+T\+\_\+\+Trigger\+Config}}
+\subsubsection[{\texorpdfstring{Trigger2\+Mode}{Trigger2Mode}}]{\setlength{\rightskip}{0pt plus 5cm}K\+M\+O\+T\+\_\+\+Trigger\+Port\+Mode K\+M\+O\+T\+\_\+\+Trigger\+Config\+::\+Trigger2\+Mode}\hypertarget{struct_k_m_o_t___trigger_config_a7fc46444eb8022abb6cc9c5eb0be8566}{}\label{struct_k_m_o_t___trigger_config_a7fc46444eb8022abb6cc9c5eb0be8566}
+
+
+The trigger 2 mode. 
+
+The trigger 2 operating mode\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+0&Trigger disabled \\\cline{1-2}
+1&Trigger Input -\/ General purpose logic input \\\cline{1-2}
+2&Trigger Input -\/ Move relative using relative move parameters \\\cline{1-2}
+3&Trigger Input -\/ Move absolute using absolute move parameters \\\cline{1-2}
+4&Trigger Input -\/ Perform a Home action \\\cline{1-2}
+10&Trigger Output -\/ General purpose output (set using M\+O\+T\+\_\+\+S\+E\+T\+\_\+\+D\+I\+G\+O\+U\+T\+P\+U\+TS) \\\cline{1-2}
+11&Trigger Output -\/ Set when device moving \\\cline{1-2}
+12&Trigger Output -\/ Set when at max velocity \\\cline{1-2}
+13&Trigger Output -\/ Set when at predefine position steps \\\cline{1-2}
+14&Trigger Output -\/ T\+BD mode \\\cline{1-2}
+\end{longtabu}
+\index{K\+M\+O\+T\+\_\+\+Trigger\+Config@{K\+M\+O\+T\+\_\+\+Trigger\+Config}!Trigger2\+Polarity@{Trigger2\+Polarity}}
+\index{Trigger2\+Polarity@{Trigger2\+Polarity}!K\+M\+O\+T\+\_\+\+Trigger\+Config@{K\+M\+O\+T\+\_\+\+Trigger\+Config}}
+\subsubsection[{\texorpdfstring{Trigger2\+Polarity}{Trigger2Polarity}}]{\setlength{\rightskip}{0pt plus 5cm}K\+M\+O\+T\+\_\+\+Trigger\+Port\+Polarity K\+M\+O\+T\+\_\+\+Trigger\+Config\+::\+Trigger2\+Polarity}\hypertarget{struct_k_m_o_t___trigger_config_a2ad8fdca0dba83c72ccab7fbc5945391}{}\label{struct_k_m_o_t___trigger_config_a2ad8fdca0dba83c72ccab7fbc5945391}
+
+
+The trigger 2 polarity. 
+
+The trigger 2 output polarity\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+1&Output high when set \\\cline{1-2}
+2&Output low when set \\\cline{1-2}
+\end{longtabu}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Brushless\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+D\+C\+Servo.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Motorised\+Gripper.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Stepper\+Motor.\+h\end{DoxyCompactItemize}

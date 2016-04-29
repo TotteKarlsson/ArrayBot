@@ -1,0 +1,115 @@
+\hypertarget{struct_p_p_c___i_o_settings}{}\section{P\+P\+C\+\_\+\+I\+O\+Settings Struct Reference}
+\label{struct_p_p_c___i_o_settings}\index{P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}}
+
+
+P\+PC i/o settings.  
+
+
+
+
+{\ttfamily \#include $<$Thorlabs.\+Motion\+Control.\+Benchtop.\+Precision\+Piezo.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___benchtop_precision_piezo_gad49093cdbcb82112f991ef860e01c020}{P\+P\+C\+\_\+\+I\+O\+Control\+Mode} \hyperlink{struct_p_p_c___i_o_settings_ae30ae63a9fb6b9ffe1c446012fc4605f}{control\+Src}
+\begin{DoxyCompactList}\small\item\em Voltage/\+Position control input source. \end{DoxyCompactList}\item 
+\hyperlink{group___benchtop_precision_piezo_ga64728fb0465f2c9710369c2522d67c2e}{P\+P\+C\+\_\+\+I\+O\+Output\+Mode} \hyperlink{struct_p_p_c___i_o_settings_a360b86efc11cc5332343cbf001adba50}{monitor\+O\+P\+Sig}
+\begin{DoxyCompactList}\small\item\em Monitor output B\+NC signal. \end{DoxyCompactList}\item 
+\hyperlink{group___benchtop_precision_piezo_ga72e3a198a9389d179464550e7ff6b115}{P\+P\+C\+\_\+\+I\+O\+Feedback\+Source\+Definition} \hyperlink{struct_p_p_c___i_o_settings_a7438940f9ae0e57eef2c4199c40aa0b0}{monitor\+O\+P\+Bandwidth}
+\begin{DoxyCompactList}\small\item\em Monitor output bandwidth. \end{DoxyCompactList}\item 
+\hyperlink{group___benchtop_precision_piezo_ga72e3a198a9389d179464550e7ff6b115}{P\+P\+C\+\_\+\+I\+O\+Feedback\+Source\+Definition} \hyperlink{struct_p_p_c___i_o_settings_aba2cf51fb81d7c62d45b71a6da271a50}{feedback\+Src}
+\begin{DoxyCompactList}\small\item\em Type of feedback in operation. \end{DoxyCompactList}\item 
+\hyperlink{group___benchtop_precision_piezo_ga7230f1b629fed094899a6e47a99b1109}{P\+P\+C\+\_\+\+Display\+Intensity} \hyperlink{struct_p_p_c___i_o_settings_a8f2fdcfdda023028d3a662b9db82247e}{F\+P\+Brightness}
+\begin{DoxyCompactList}\small\item\em Brightness of the from panel L\+ED\textquotesingle{}s. \end{DoxyCompactList}\item 
+W\+O\+RD \hyperlink{struct_p_p_c___i_o_settings_a41fd4bd481149031465aad82cc717d8d}{reserved1}
+\begin{DoxyCompactList}\small\item\em reserved field. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+PC i/o settings. 
+
+
+
+\subsection{Member Data Documentation}
+\index{P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}!control\+Src@{control\+Src}}
+\index{control\+Src@{control\+Src}!P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{control\+Src}{controlSrc}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+P\+C\+\_\+\+I\+O\+Control\+Mode} P\+P\+C\+\_\+\+I\+O\+Settings\+::control\+Src}\hypertarget{struct_p_p_c___i_o_settings_ae30ae63a9fb6b9ffe1c446012fc4605f}{}\label{struct_p_p_c___i_o_settings_ae30ae63a9fb6b9ffe1c446012fc4605f}
+
+
+Voltage/\+Position control input source. 
+
+The enabled input sources\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+0&Software input only. \\\cline{1-2}
+1&Software and external B\+NC. \\\cline{1-2}
+2&Software and external joystick. \\\cline{1-2}
+2&Software, External B\+NC and Joystick. \\\cline{1-2}
+\end{longtabu}
+\index{P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}!feedback\+Src@{feedback\+Src}}
+\index{feedback\+Src@{feedback\+Src}!P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{feedback\+Src}{feedbackSrc}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+P\+C\+\_\+\+I\+O\+Feedback\+Source\+Definition} P\+P\+C\+\_\+\+I\+O\+Settings\+::feedback\+Src}\hypertarget{struct_p_p_c___i_o_settings_aba2cf51fb81d7c62d45b71a6da271a50}{}\label{struct_p_p_c___i_o_settings_aba2cf51fb81d7c62d45b71a6da271a50}
+
+
+Type of feedback in operation. 
+
+The feedback loop mode (read only)\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+1&Strain Gauge. \\\cline{1-2}
+2&Capacitive. \\\cline{1-2}
+\end{longtabu}
+\index{P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}!F\+P\+Brightness@{F\+P\+Brightness}}
+\index{F\+P\+Brightness@{F\+P\+Brightness}!P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{F\+P\+Brightness}{FPBrightness}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+P\+C\+\_\+\+Display\+Intensity} P\+P\+C\+\_\+\+I\+O\+Settings\+::\+F\+P\+Brightness}\hypertarget{struct_p_p_c___i_o_settings_a8f2fdcfdda023028d3a662b9db82247e}{}\label{struct_p_p_c___i_o_settings_a8f2fdcfdda023028d3a662b9db82247e}
+
+
+Brightness of the from panel L\+ED\textquotesingle{}s. 
+
+The display brightness\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+1&Bright. \\\cline{1-2}
+2&Dim. \\\cline{1-2}
+3&Off. \\\cline{1-2}
+\end{longtabu}
+\index{P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}!monitor\+O\+P\+Bandwidth@{monitor\+O\+P\+Bandwidth}}
+\index{monitor\+O\+P\+Bandwidth@{monitor\+O\+P\+Bandwidth}!P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{monitor\+O\+P\+Bandwidth}{monitorOPBandwidth}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+P\+C\+\_\+\+I\+O\+Feedback\+Source\+Definition} P\+P\+C\+\_\+\+I\+O\+Settings\+::monitor\+O\+P\+Bandwidth}\hypertarget{struct_p_p_c___i_o_settings_a7438940f9ae0e57eef2c4199c40aa0b0}{}\label{struct_p_p_c___i_o_settings_a7438940f9ae0e57eef2c4199c40aa0b0}
+
+
+Monitor output bandwidth. 
+
+The output bandwidth modes\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+1&Unfiltered. \\\cline{1-2}
+2&200\+Hz filter. \\\cline{1-2}
+\end{longtabu}
+\index{P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}!monitor\+O\+P\+Sig@{monitor\+O\+P\+Sig}}
+\index{monitor\+O\+P\+Sig@{monitor\+O\+P\+Sig}!P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{monitor\+O\+P\+Sig}{monitorOPSig}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+P\+C\+\_\+\+I\+O\+Output\+Mode} P\+P\+C\+\_\+\+I\+O\+Settings\+::monitor\+O\+P\+Sig}\hypertarget{struct_p_p_c___i_o_settings_a360b86efc11cc5332343cbf001adba50}{}\label{struct_p_p_c___i_o_settings_a360b86efc11cc5332343cbf001adba50}
+
+
+Monitor output B\+NC signal. 
+
+The Monitor output modes\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+1&High Voltage output. \\\cline{1-2}
+2&Position (Uncorrected). \\\cline{1-2}
+2&Position (Corrected). \\\cline{1-2}
+\end{longtabu}
+\index{P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}!reserved1@{reserved1}}
+\index{reserved1@{reserved1}!P\+P\+C\+\_\+\+I\+O\+Settings@{P\+P\+C\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{reserved1}{reserved1}}]{\setlength{\rightskip}{0pt plus 5cm}W\+O\+RD P\+P\+C\+\_\+\+I\+O\+Settings\+::reserved1}\hypertarget{struct_p_p_c___i_o_settings_a41fd4bd481149031465aad82cc717d8d}{}\label{struct_p_p_c___i_o_settings_a41fd4bd481149031465aad82cc717d8d}
+
+
+reserved field. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Precision\+Piezo.\+h\end{DoxyCompactItemize}

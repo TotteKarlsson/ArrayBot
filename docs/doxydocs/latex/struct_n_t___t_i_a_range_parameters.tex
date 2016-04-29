@@ -1,0 +1,123 @@
+\hypertarget{struct_n_t___t_i_a_range_parameters}{}\section{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters Struct Reference}
+\label{struct_n_t___t_i_a_range_parameters}\index{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}}
+
+
+Structure containing T\+IA range parameters.  
+
+
+
+
+{\ttfamily \#include $<$Thorlabs.\+Motion\+Control.\+Benchtop.\+Nano\+Trak.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___common_ga17a2e7154218bc950c0568a08a1307a8}{N\+T\+\_\+\+T\+I\+A\+Range\+Mode} \hyperlink{struct_n_t___t_i_a_range_parameters_af49ed5d87f7abee7308231db54cfc20e}{mode}
+\begin{DoxyCompactList}\small\item\em Chooses automatic or manual ranging and currently selected or new range. \hyperlink{group___common_ga17a2e7154218bc950c0568a08a1307a8}{N\+T\+\_\+\+T\+I\+A\+Range\+Mode} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Automatic Ranging at current range.&1 \\\cline{1-2}
+Manual Ranging at current range.&2 \\\cline{1-2}
+Manual Ranging using supplied range&3 \\\cline{1-2}
+Automatic ranging using supplied range&4 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+W\+O\+RD \hyperlink{struct_n_t___t_i_a_range_parameters_a7982ed805a6dc128de98b5685f748bbc}{up\+Limit}
+\begin{DoxyCompactList}\small\item\em Up switching threshold as a percentage of the current range.~\newline
+ When in an automatic mode, the range rises above this threshold, the T\+IA range will rise to the higher T\+IA range.~\newline
+ Range 0 to 1000 equivalent to 0 to 100\% \end{DoxyCompactList}\item 
+W\+O\+RD \hyperlink{struct_n_t___t_i_a_range_parameters_afd12c6ffce2da5fcd745f603e97cf71b}{down\+Limit}
+\begin{DoxyCompactList}\small\item\em Down switching threshold as a percentage of the current range.~\newline
+ When in an automatic mode, the range drops below this threshold, the T\+IA range will drop to the lower T\+IA range.~\newline
+ Range 0 to 1000 equivalent to 0 to 100\% \end{DoxyCompactList}\item 
+short \hyperlink{struct_n_t___t_i_a_range_parameters_ad242d8b828e74ea7aa1135b5e5b9126f}{settle\+Samples}
+\begin{DoxyCompactList}\small\item\em The number of samples for averaging to give auto-\/range input from 2 to 32. \end{DoxyCompactList}\item 
+\hyperlink{group___common_gafd24ee04cee037f4d90814dde903e2b2}{N\+T\+\_\+\+Odd\+Or\+Even} \hyperlink{struct_n_t___t_i_a_range_parameters_ac7f8eee4dcc92b12df0ecab2fe741868}{change\+To\+Odd\+Or\+Even}
+\begin{DoxyCompactList}\small\item\em parameter determining which T\+IA ranges to include when auto ranging\+: \hyperlink{group___common_gafd24ee04cee037f4d90814dde903e2b2}{N\+T\+\_\+\+Odd\+Or\+Even} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+All T\+IA Ranges.&1 \\\cline{1-2}
+Only use Odd T\+IA ranges.&2 \\\cline{1-2}
+Only use even T\+IA ranges&3 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+\hyperlink{group___common_ga2d700cb6733eb95975d787fb1915a74b}{N\+T\+\_\+\+T\+I\+A\+Range} \hyperlink{struct_n_t___t_i_a_range_parameters_a02d3a0e8bb4c179914d26b5a79a79956}{new\+Range}
+\begin{DoxyCompactList}\small\item\em T\+IA Range to use if in manual mode\+: ~\newline
+ \hyperlink{group___common_ga2d700cb6733eb95975d787fb1915a74b}{N\+T\+\_\+\+T\+I\+A\+Range} for T\+IA ranges. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure containing T\+IA range parameters. 
+
+
+
+\subsection{Member Data Documentation}
+\index{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}!change\+To\+Odd\+Or\+Even@{change\+To\+Odd\+Or\+Even}}
+\index{change\+To\+Odd\+Or\+Even@{change\+To\+Odd\+Or\+Even}!N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}}
+\subsubsection[{\texorpdfstring{change\+To\+Odd\+Or\+Even}{changeToOddOrEven}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf N\+T\+\_\+\+Odd\+Or\+Even} N\+T\+\_\+\+T\+I\+A\+Range\+Parameters\+::change\+To\+Odd\+Or\+Even}\hypertarget{struct_n_t___t_i_a_range_parameters_ac7f8eee4dcc92b12df0ecab2fe741868}{}\label{struct_n_t___t_i_a_range_parameters_ac7f8eee4dcc92b12df0ecab2fe741868}
+
+
+parameter determining which T\+IA ranges to include when auto ranging\+: \hyperlink{group___common_gafd24ee04cee037f4d90814dde903e2b2}{N\+T\+\_\+\+Odd\+Or\+Even} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+All T\+IA Ranges.&1 \\\cline{1-2}
+Only use Odd T\+IA ranges.&2 \\\cline{1-2}
+Only use even T\+IA ranges&3 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}!down\+Limit@{down\+Limit}}
+\index{down\+Limit@{down\+Limit}!N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}}
+\subsubsection[{\texorpdfstring{down\+Limit}{downLimit}}]{\setlength{\rightskip}{0pt plus 5cm}W\+O\+RD N\+T\+\_\+\+T\+I\+A\+Range\+Parameters\+::down\+Limit}\hypertarget{struct_n_t___t_i_a_range_parameters_afd12c6ffce2da5fcd745f603e97cf71b}{}\label{struct_n_t___t_i_a_range_parameters_afd12c6ffce2da5fcd745f603e97cf71b}
+
+
+Down switching threshold as a percentage of the current range.~\newline
+ When in an automatic mode, the range drops below this threshold, the T\+IA range will drop to the lower T\+IA range.~\newline
+ Range 0 to 1000 equivalent to 0 to 100\% 
+
+\index{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}!mode@{mode}}
+\index{mode@{mode}!N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}}
+\subsubsection[{\texorpdfstring{mode}{mode}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf N\+T\+\_\+\+T\+I\+A\+Range\+Mode} N\+T\+\_\+\+T\+I\+A\+Range\+Parameters\+::mode}\hypertarget{struct_n_t___t_i_a_range_parameters_af49ed5d87f7abee7308231db54cfc20e}{}\label{struct_n_t___t_i_a_range_parameters_af49ed5d87f7abee7308231db54cfc20e}
+
+
+Chooses automatic or manual ranging and currently selected or new range. \hyperlink{group___common_ga17a2e7154218bc950c0568a08a1307a8}{N\+T\+\_\+\+T\+I\+A\+Range\+Mode} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Automatic Ranging at current range.&1 \\\cline{1-2}
+Manual Ranging at current range.&2 \\\cline{1-2}
+Manual Ranging using supplied range&3 \\\cline{1-2}
+Automatic ranging using supplied range&4 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}!new\+Range@{new\+Range}}
+\index{new\+Range@{new\+Range}!N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}}
+\subsubsection[{\texorpdfstring{new\+Range}{newRange}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf N\+T\+\_\+\+T\+I\+A\+Range} N\+T\+\_\+\+T\+I\+A\+Range\+Parameters\+::new\+Range}\hypertarget{struct_n_t___t_i_a_range_parameters_a02d3a0e8bb4c179914d26b5a79a79956}{}\label{struct_n_t___t_i_a_range_parameters_a02d3a0e8bb4c179914d26b5a79a79956}
+
+
+T\+IA Range to use if in manual mode\+: ~\newline
+ \hyperlink{group___common_ga2d700cb6733eb95975d787fb1915a74b}{N\+T\+\_\+\+T\+I\+A\+Range} for T\+IA ranges. 
+
+\index{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}!settle\+Samples@{settle\+Samples}}
+\index{settle\+Samples@{settle\+Samples}!N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}}
+\subsubsection[{\texorpdfstring{settle\+Samples}{settleSamples}}]{\setlength{\rightskip}{0pt plus 5cm}short N\+T\+\_\+\+T\+I\+A\+Range\+Parameters\+::settle\+Samples}\hypertarget{struct_n_t___t_i_a_range_parameters_ad242d8b828e74ea7aa1135b5e5b9126f}{}\label{struct_n_t___t_i_a_range_parameters_ad242d8b828e74ea7aa1135b5e5b9126f}
+
+
+The number of samples for averaging to give auto-\/range input from 2 to 32. 
+
+\index{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}!up\+Limit@{up\+Limit}}
+\index{up\+Limit@{up\+Limit}!N\+T\+\_\+\+T\+I\+A\+Range\+Parameters@{N\+T\+\_\+\+T\+I\+A\+Range\+Parameters}}
+\subsubsection[{\texorpdfstring{up\+Limit}{upLimit}}]{\setlength{\rightskip}{0pt plus 5cm}W\+O\+RD N\+T\+\_\+\+T\+I\+A\+Range\+Parameters\+::up\+Limit}\hypertarget{struct_n_t___t_i_a_range_parameters_a7982ed805a6dc128de98b5685f748bbc}{}\label{struct_n_t___t_i_a_range_parameters_a7982ed805a6dc128de98b5685f748bbc}
+
+
+Up switching threshold as a percentage of the current range.~\newline
+ When in an automatic mode, the range rises above this threshold, the T\+IA range will rise to the higher T\+IA range.~\newline
+ Range 0 to 1000 equivalent to 0 to 100\% 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Nano\+Trak.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Modular\+Rack.\+Nano\+Trak.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Nano\+Trak.\+h\end{DoxyCompactItemize}

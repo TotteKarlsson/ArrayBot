@@ -1,0 +1,195 @@
+\hypertarget{struct_f_f___i_o_settings}{}\section{F\+F\+\_\+\+I\+O\+Settings Struct Reference}
+\label{struct_f_f___i_o_settings}\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+
+
+Structure containing settings specific to filter flipper input / output.  
+
+
+
+
+{\ttfamily \#include $<$Thor\+Labs.\+Motion\+Control.\+Filter\+Flipper.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{struct_f_f___i_o_settings_a89e6109b780b1b53ffc2ebc74e3ec902}{transit\+Time}
+\begin{DoxyCompactList}\small\item\em Time taken to get from one position to other in milliseconds.~\newline
+ Range 300 to 2800 ms. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{struct_f_f___i_o_settings_a6f718d677ca4d6e60e666f50619a890c}{A\+D\+Cspeed\+Value}
+\begin{DoxyCompactList}\small\item\em Value derived from transition time in A\+DC units. \end{DoxyCompactList}\item 
+\hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes} \hyperlink{struct_f_f___i_o_settings_afdac200b0f2def426f3f584456bc6286}{dig\+I\+O1\+Oper\+Mode}
+\begin{DoxyCompactList}\small\item\em I/O 1 Operating Mode \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Input Mode -\/ Filter\+Flipper toggles when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes})&0x01 \\\cline{1-2}
+Input Mode -\/ Filter\+Flipper goes to position when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes})&0x02 \\\cline{1-2}
+Output Mode -\/ Output signal set to match position, where 2 = Hi, 1 = Lo&0x04 \\\cline{1-2}
+Output Mode -\/ Output signal high when Filter\+Flipper is moving&0x08 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+\hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes} \hyperlink{struct_f_f___i_o_settings_a85757a1c3072fddd1c4793d487196867}{dig\+I\+O1\+Signal\+Mode}
+\begin{DoxyCompactList}\small\item\em I/O 1 Signal Mode \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Signal is raised when Button Pressed i.\+e. Hi to Lo. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}&0x01 \\\cline{1-2}
+Signal is raised on on rising edge Lo to Hi. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}&0x02 \\\cline{1-2}
+Toggle Positions, when set will swap Position 1 and 2&0x04 \\\cline{1-2}
+Output is set to either be hi when flipper at Position 2 or flipper is moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes})&0x10 \\\cline{1-2}
+Output is set to pulse when flipper operates, either when flipper reaches Position or flipper starts moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes})&0x20 \\\cline{1-2}
+Toggle output levels, when set will swap output logic levels&0x40 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+unsigned int \hyperlink{struct_f_f___i_o_settings_a63ea8fb4a80096fa5a8dc00506a0a7c0}{dig\+I\+O1\+Pulse\+Width}
+\begin{DoxyCompactList}\small\item\em Digital IO 1 pulse width in milliseconds,~\newline
+ Range 10 to 200 ms. \end{DoxyCompactList}\item 
+\hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes} \hyperlink{struct_f_f___i_o_settings_a10426ee21802861d3ee91ee752d98eb8}{dig\+I\+O2\+Oper\+Mode}
+\begin{DoxyCompactList}\small\item\em I/O 2 Operating Mode \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Input Mode -\/ Filter\+Flipper toggles when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes})&0x01 \\\cline{1-2}
+Input Mode -\/ Filter\+Flipper goes to position when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes})&0x02 \\\cline{1-2}
+Output Mode -\/ Output signal set to match position, where 2 = Hi, 1 = Lo&0x04 \\\cline{1-2}
+Output Mode -\/ Output signal high when Filter\+Flipper is moving&0x08 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+\hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes} \hyperlink{struct_f_f___i_o_settings_aa26b1d2f4827908e66271ef41e462452}{dig\+I\+O2\+Signal\+Mode}
+\begin{DoxyCompactList}\small\item\em I/O 2 Signal Mode \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Signal is raised when Button Pressed i.\+e. Hi to Lo. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}&0x01 \\\cline{1-2}
+Signal is raised on on rising edge Lo to Hi. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}&0x02 \\\cline{1-2}
+Toggle Positions, when set will swap Position 1 and 2&0x04 \\\cline{1-2}
+Output is set to either be hi when flipper at Position 2 or flipper is moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes})&0x10 \\\cline{1-2}
+Output is set to pulse when flipper operates, either when flipper reaches Position or flipper starts moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes})&0x20 \\\cline{1-2}
+Toggle output levels, when set will swap output logic levels&0x40 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+unsigned int \hyperlink{struct_f_f___i_o_settings_aae927b35d444d86cfc71e04922f6eb3b}{dig\+I\+O2\+Pulse\+Width}
+\begin{DoxyCompactList}\small\item\em Digital IO 2 pulse width in milliseconds,~\newline
+ Range 10 to 200 ms. \end{DoxyCompactList}\item 
+int \hyperlink{struct_f_f___i_o_settings_a230390646e0c21d2873a86a6a54abf05}{reserved1}
+\begin{DoxyCompactList}\small\item\em Not used. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{struct_f_f___i_o_settings_ad0782e694f6b52650d9ca129cbad623f}{reserved2}
+\begin{DoxyCompactList}\small\item\em Not used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure containing settings specific to filter flipper input / output. 
+
+
+
+\subsection{Member Data Documentation}
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!A\+D\+Cspeed\+Value@{A\+D\+Cspeed\+Value}}
+\index{A\+D\+Cspeed\+Value@{A\+D\+Cspeed\+Value}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{A\+D\+Cspeed\+Value}{ADCspeedValue}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int F\+F\+\_\+\+I\+O\+Settings\+::\+A\+D\+Cspeed\+Value}\hypertarget{struct_f_f___i_o_settings_a6f718d677ca4d6e60e666f50619a890c}{}\label{struct_f_f___i_o_settings_a6f718d677ca4d6e60e666f50619a890c}
+
+
+Value derived from transition time in A\+DC units. 
+
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!dig\+I\+O1\+Oper\+Mode@{dig\+I\+O1\+Oper\+Mode}}
+\index{dig\+I\+O1\+Oper\+Mode@{dig\+I\+O1\+Oper\+Mode}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{dig\+I\+O1\+Oper\+Mode}{digIO1OperMode}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+F\+\_\+\+I\+O\+Modes} F\+F\+\_\+\+I\+O\+Settings\+::dig\+I\+O1\+Oper\+Mode}\hypertarget{struct_f_f___i_o_settings_afdac200b0f2def426f3f584456bc6286}{}\label{struct_f_f___i_o_settings_afdac200b0f2def426f3f584456bc6286}
+
+
+I/O 1 Operating Mode \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Input Mode -\/ Filter\+Flipper toggles when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes})&0x01 \\\cline{1-2}
+Input Mode -\/ Filter\+Flipper goes to position when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes})&0x02 \\\cline{1-2}
+Output Mode -\/ Output signal set to match position, where 2 = Hi, 1 = Lo&0x04 \\\cline{1-2}
+Output Mode -\/ Output signal high when Filter\+Flipper is moving&0x08 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!dig\+I\+O1\+Pulse\+Width@{dig\+I\+O1\+Pulse\+Width}}
+\index{dig\+I\+O1\+Pulse\+Width@{dig\+I\+O1\+Pulse\+Width}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{dig\+I\+O1\+Pulse\+Width}{digIO1PulseWidth}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int F\+F\+\_\+\+I\+O\+Settings\+::dig\+I\+O1\+Pulse\+Width}\hypertarget{struct_f_f___i_o_settings_a63ea8fb4a80096fa5a8dc00506a0a7c0}{}\label{struct_f_f___i_o_settings_a63ea8fb4a80096fa5a8dc00506a0a7c0}
+
+
+Digital IO 1 pulse width in milliseconds,~\newline
+ Range 10 to 200 ms. 
+
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!dig\+I\+O1\+Signal\+Mode@{dig\+I\+O1\+Signal\+Mode}}
+\index{dig\+I\+O1\+Signal\+Mode@{dig\+I\+O1\+Signal\+Mode}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{dig\+I\+O1\+Signal\+Mode}{digIO1SignalMode}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+F\+\_\+\+Signal\+Modes} F\+F\+\_\+\+I\+O\+Settings\+::dig\+I\+O1\+Signal\+Mode}\hypertarget{struct_f_f___i_o_settings_a85757a1c3072fddd1c4793d487196867}{}\label{struct_f_f___i_o_settings_a85757a1c3072fddd1c4793d487196867}
+
+
+I/O 1 Signal Mode \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Signal is raised when Button Pressed i.\+e. Hi to Lo. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}&0x01 \\\cline{1-2}
+Signal is raised on on rising edge Lo to Hi. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}&0x02 \\\cline{1-2}
+Toggle Positions, when set will swap Position 1 and 2&0x04 \\\cline{1-2}
+Output is set to either be hi when flipper at Position 2 or flipper is moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes})&0x10 \\\cline{1-2}
+Output is set to pulse when flipper operates, either when flipper reaches Position or flipper starts moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes})&0x20 \\\cline{1-2}
+Toggle output levels, when set will swap output logic levels&0x40 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!dig\+I\+O2\+Oper\+Mode@{dig\+I\+O2\+Oper\+Mode}}
+\index{dig\+I\+O2\+Oper\+Mode@{dig\+I\+O2\+Oper\+Mode}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{dig\+I\+O2\+Oper\+Mode}{digIO2OperMode}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+F\+\_\+\+I\+O\+Modes} F\+F\+\_\+\+I\+O\+Settings\+::dig\+I\+O2\+Oper\+Mode}\hypertarget{struct_f_f___i_o_settings_a10426ee21802861d3ee91ee752d98eb8}{}\label{struct_f_f___i_o_settings_a10426ee21802861d3ee91ee752d98eb8}
+
+
+I/O 2 Operating Mode \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Input Mode -\/ Filter\+Flipper toggles when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes})&0x01 \\\cline{1-2}
+Input Mode -\/ Filter\+Flipper goes to position when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes})&0x02 \\\cline{1-2}
+Output Mode -\/ Output signal set to match position, where 2 = Hi, 1 = Lo&0x04 \\\cline{1-2}
+Output Mode -\/ Output signal high when Filter\+Flipper is moving&0x08 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!dig\+I\+O2\+Pulse\+Width@{dig\+I\+O2\+Pulse\+Width}}
+\index{dig\+I\+O2\+Pulse\+Width@{dig\+I\+O2\+Pulse\+Width}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{dig\+I\+O2\+Pulse\+Width}{digIO2PulseWidth}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int F\+F\+\_\+\+I\+O\+Settings\+::dig\+I\+O2\+Pulse\+Width}\hypertarget{struct_f_f___i_o_settings_aae927b35d444d86cfc71e04922f6eb3b}{}\label{struct_f_f___i_o_settings_aae927b35d444d86cfc71e04922f6eb3b}
+
+
+Digital IO 2 pulse width in milliseconds,~\newline
+ Range 10 to 200 ms. 
+
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!dig\+I\+O2\+Signal\+Mode@{dig\+I\+O2\+Signal\+Mode}}
+\index{dig\+I\+O2\+Signal\+Mode@{dig\+I\+O2\+Signal\+Mode}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{dig\+I\+O2\+Signal\+Mode}{digIO2SignalMode}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+F\+\_\+\+Signal\+Modes} F\+F\+\_\+\+I\+O\+Settings\+::dig\+I\+O2\+Signal\+Mode}\hypertarget{struct_f_f___i_o_settings_aa26b1d2f4827908e66271ef41e462452}{}\label{struct_f_f___i_o_settings_aa26b1d2f4827908e66271ef41e462452}
+
+
+I/O 2 Signal Mode \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Signal is raised when Button Pressed i.\+e. Hi to Lo. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}&0x01 \\\cline{1-2}
+Signal is raised on on rising edge Lo to Hi. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}&0x02 \\\cline{1-2}
+Toggle Positions, when set will swap Position 1 and 2&0x04 \\\cline{1-2}
+Output is set to either be hi when flipper at Position 2 or flipper is moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes})&0x10 \\\cline{1-2}
+Output is set to pulse when flipper operates, either when flipper reaches Position or flipper starts moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes})&0x20 \\\cline{1-2}
+Toggle output levels, when set will swap output logic levels&0x40 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!reserved1@{reserved1}}
+\index{reserved1@{reserved1}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{reserved1}{reserved1}}]{\setlength{\rightskip}{0pt plus 5cm}int F\+F\+\_\+\+I\+O\+Settings\+::reserved1}\hypertarget{struct_f_f___i_o_settings_a230390646e0c21d2873a86a6a54abf05}{}\label{struct_f_f___i_o_settings_a230390646e0c21d2873a86a6a54abf05}
+
+
+Not used. 
+
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!reserved2@{reserved2}}
+\index{reserved2@{reserved2}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{reserved2}{reserved2}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int F\+F\+\_\+\+I\+O\+Settings\+::reserved2}\hypertarget{struct_f_f___i_o_settings_ad0782e694f6b52650d9ca129cbad623f}{}\label{struct_f_f___i_o_settings_ad0782e694f6b52650d9ca129cbad623f}
+
+
+Not used. 
+
+\index{F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}!transit\+Time@{transit\+Time}}
+\index{transit\+Time@{transit\+Time}!F\+F\+\_\+\+I\+O\+Settings@{F\+F\+\_\+\+I\+O\+Settings}}
+\subsubsection[{\texorpdfstring{transit\+Time}{transitTime}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int F\+F\+\_\+\+I\+O\+Settings\+::transit\+Time}\hypertarget{struct_f_f___i_o_settings_a89e6109b780b1b53ffc2ebc74e3ec902}{}\label{struct_f_f___i_o_settings_a89e6109b780b1b53ffc2ebc74e3ec902}
+
+
+Time taken to get from one position to other in milliseconds.~\newline
+ Range 300 to 2800 ms. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thor\+Labs.\+Motion\+Control.\+Filter\+Flipper.\+h\end{DoxyCompactItemize}

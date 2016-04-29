@@ -1,0 +1,56 @@
+Controlling Thorlabs A\+PT using Python code using A\+P\+T.\+dll and A\+P\+T.\+lib, bypassing the activex controls. It even comes with a simple G\+U\+I!
+
+{\bfseries Installation}
+
+Obtain A\+P\+T.\+dll and A\+P\+T.\+lib from Thorlabs directly, or from the {\ttfamily A\+P\+T\+D\+L\+L\+Pack/\+D\+L\+L/} folder, picking the correct version ({\ttfamily x86} or {\ttfamily x64}) Place A\+P\+T.\+dll, A\+P\+T.\+lib and \hyperlink{_py_a_p_t_8py_source}{Py\+A\+P\+T.\+py} in the folder from which the scripts will be executed, or in the main add-\/on folder for python. You also require Thorlabs\+A\+PT software (obtainable from \href{http://www.thorlabs.us/software_pages/ViewSoftwarePage.cfm?Code=APT}{\tt Thor\+Labs A\+PT Software page} )
+
+{\bfseries Running the code}
+
+Ensure correct version (32 or 64 bit) A\+P\+T.\+dll and A\+P\+T.\+lib are in the folder containing the python script. \href{Example.py}{\tt {\ttfamily Example.\+py}} contains an example of how to load the module, control the motor, and close the object.
+
+{\bfseries Using the G\+UI}
+
+
+
+G\+UI is implemented using QT. First enter the serial number, and press the connect button. The G\+UI will attempt to connect to the A\+PT motor, and probe for it\textquotesingle{}s current position and velocity. If sucessfull, those values will be updated in the respective boxes. Pushbuttons under the position box are for movement in microns.
+
+{\bfseries Support}
+
+Py\+A\+PT Supports the following motors\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Motor }&{\bf H\+W\+T\+Y\+PE }&{\bf Description  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Motor }&{\bf H\+W\+T\+Y\+PE }&{\bf Description  }\\\cline{1-3}
+\endhead
+B\+S\+C001 &11 &1 Ch benchtop stepper driver \\\cline{1-3}
+B\+S\+C101 &12 &1 Ch benchtop stepper driver \\\cline{1-3}
+B\+S\+C002 &13 &2 Ch benchtop stepper driver \\\cline{1-3}
+B\+D\+C101 &14 &1 Ch benchtop DC servo driver \\\cline{1-3}
+S\+C\+C001 &21 &1 Ch stepper driver card (used within B\+S\+C102,103 units) \\\cline{1-3}
+D\+C\+C001 &22 &1 Ch DC servo driver card (used within B\+D\+C102,103 units) \\\cline{1-3}
+O\+D\+C001 &24 &1 Ch DC servo driver cube \\\cline{1-3}
+O\+S\+T001 &25 &1 Ch stepper driver cube \\\cline{1-3}
+M\+S\+T601 &26 &2 Ch modular stepper driver module \\\cline{1-3}
+T\+S\+T001 &29 &1 Ch Stepper driver T-\/\+Cube \\\cline{1-3}
+T\+D\+C001 &31 &1 Ch DC servo driver T-\/\+Cube \\\cline{1-3}
+L\+T\+S\+X\+XX &42 &L\+T\+S300/\+L\+T\+S150 Long Travel Integrated Driver/\+Stages \\\cline{1-3}
+L490\+MZ &43 &L490\+MZ Integrated Driver/\+Labjack \\\cline{1-3}
+B\+B\+D10X &44 &1/2/3 Ch benchtop brushless DC servo driver \\\cline{1-3}
+\end{longtabu}
+
+
+{\bfseries References}
+
+\href{http://www.thorlabs.us/software_pages/ViewSoftwarePage.cfm?Code=APT}{\tt Thor\+Labs A\+PT Software page} \href{http://www.thorlabs.us/software/apt/APT_Communications_Protocol_Rev_15.pdf}{\tt Thor\+Labs A\+PT Documentation page}
+
+{\bfseries Contact}
+
+This is still a rough copy that I am improving as I work on my project. Please report any bugs, and feel free to email me comments or suggestions. Even better\+: make the changes and push them back to me!
+
+Michael Leung \href{mailto:mcleung@stanford.edu}{\tt mcleung@stanford.\+edu} 

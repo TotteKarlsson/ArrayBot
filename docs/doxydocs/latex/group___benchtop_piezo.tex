@@ -1,0 +1,1857 @@
+\hypertarget{group___benchtop_piezo}{}\section{Benchtop Piezo}
+\label{group___benchtop_piezo}\index{Benchtop Piezo@{Benchtop Piezo}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info}
+\begin{DoxyCompactList}\small\item\em Information about the device generated from serial number and U\+SB info block. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_t_l_i___hardware_information}{T\+L\+I\+\_\+\+Hardware\+Information}
+\begin{DoxyCompactList}\small\item\em Structure containing the Hardware Information. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_p_z___feedback_loop_constants}{P\+Z\+\_\+\+Feedback\+Loop\+Constants}
+\begin{DoxyCompactList}\small\item\em Structure containing feedback loop constants. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_p_z___l_u_t_wave_parameters}{P\+Z\+\_\+\+L\+U\+T\+Wave\+Parameters}
+\begin{DoxyCompactList}\small\item\em Structure containing L\+UT output wave parameters. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_p_z___slew_rates}{P\+Z\+\_\+\+Slew\+Rates}
+\begin{DoxyCompactList}\small\item\em Structure containing slew rates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{T\+L\+I\+\_\+\+Build\+Device\+List} (void)
+\begin{DoxyCompactList}\small\item\em Build the Device\+List. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size} ()
+\begin{DoxyCompactList}\small\item\em Gets the device list size. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{T\+L\+I\+\_\+\+Get\+Device\+List} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver)
+\begin{DoxyCompactList}\small\item\em Get the entire contents of the device list. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver, int type\+ID)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+ID. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver, int $\ast$type\+I\+Ds, int length)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+I\+Ds. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer)
+\begin{DoxyCompactList}\small\item\em Get the entire contents of the device list. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer, int type\+ID)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+ID. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer, int $\ast$type\+I\+Ds, int length)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+I\+Ds. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+cdecl \hyperlink{group___benchtop_piezo_gac87d904f94fa99a2a8d934a43859efa8}{T\+L\+I\+\_\+\+Get\+Device\+Info} (char const $\ast$serial\+No, \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Get the device information from the U\+SB port. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga729b74c8ec2d761be3172e26fedad5b6}{P\+B\+C\+\_\+\+Open} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Open the device for communications. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gafd50098af9f87adc8a8df4f16963656c}{P\+B\+C\+\_\+\+Close} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Disconnect and close the device. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gaa323c0523ca2a43cb8fae38e8dd44f44}{P\+B\+C\+\_\+\+Identify} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Sends a command to the device to make it identify iteself. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga9e0ac14b041f051c0833e164e2840d46}{P\+B\+C\+\_\+\+Disconnect} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Tells the device that it is being disconnected. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga336704bb1c37c8a5c4eeff0c9d4f7bf0}{P\+B\+C\+\_\+\+Max\+Channel\+Count} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the number of channels available to this device. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gaa405d7b1512dcd0917315b5d7fea73d7}{P\+B\+C\+\_\+\+Is\+Channel\+Valid} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Verifies that the specified channel is valid. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga081a571f581a74d66341850b730910b1}{P\+B\+C\+\_\+\+Get\+Hardware\+Info} (char const $\ast$serial\+No, short channel, char $\ast$model\+No, D\+W\+O\+RD size\+Of\+Model\+No, W\+O\+RD $\ast$type, W\+O\+RD $\ast$num\+Channels, char $\ast$notes, D\+W\+O\+RD size\+Of\+Notes, D\+W\+O\+RD $\ast$firmware\+Version, W\+O\+RD $\ast$hardware\+Version, W\+O\+RD $\ast$modification\+State)
+\begin{DoxyCompactList}\small\item\em Gets the hardware information from the device. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga366f39eff139eaf0f33c0a1a07861f0f}{P\+B\+C\+\_\+\+Get\+Hardware\+Info\+Block} (char const $\ast$serial\+No, short channel, \hyperlink{struct_t_l_i___hardware_information}{T\+L\+I\+\_\+\+Hardware\+Information} $\ast$hardware\+Info)
+\begin{DoxyCompactList}\small\item\em Gets the hardware information in a block. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gac3424db2a67a38593d9988d5f1c47243}{P\+B\+C\+\_\+\+Get\+Num\+Channels} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the number of channels in the device. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga6109940067a1cfd0a3c3fd837b1a49c2}{P\+B\+C\+\_\+\+Get\+Firmware\+Version} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets version number of the device firmware. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gaf22ba3b3f6307b5f111a940b4563b6f2}{P\+B\+C\+\_\+\+Get\+Software\+Version} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets version number of the device software. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga781317653a700d4f23b6f2af90078f40}{P\+B\+C\+\_\+\+Load\+Settings} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Update device with stored settings. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gae95c8a498bb073d57569685f3eef2de8}{P\+B\+C\+\_\+\+Disable\+Channel} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Disable the channel so that motor can be moved by hand. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga9115eb1f940f658b5379ee76885e2513}{P\+B\+C\+\_\+\+Enable\+Channel} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Enable channel for computer control. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga3b9fce532e2b4b286a360b811e0f5b89}{P\+B\+C\+\_\+\+Register\+Message\+Callback} (char const $\ast$serial\+No, short channel, void($\ast$function\+Pointer)())
+\begin{DoxyCompactList}\small\item\em Registers a callback on the message queue. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gad72a2b5d23a26147fc87a9c85dee9350}{P\+B\+C\+\_\+\+Message\+Queue\+Size} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Gets the Message\+Queue size. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga2a21814d551f2dc52b1584969fabfa78}{P\+B\+C\+\_\+\+Clear\+Message\+Queue} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Clears the device message queue. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gaab08efdcd05665a338fee53e05ab71dd}{P\+B\+C\+\_\+\+Get\+Next\+Message} (char const $\ast$serial\+No, short channel, W\+O\+RD $\ast$message\+Type, W\+O\+RD $\ast$message\+ID, D\+W\+O\+RD $\ast$message\+Data)
+\begin{DoxyCompactList}\small\item\em Get the next Message\+Queue item if it is available. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gad1d5c600688c8d8fcca2d2482dcbc9e1}{P\+B\+C\+\_\+\+Wait\+For\+Message} (char const $\ast$serial\+No, short channel, W\+O\+RD $\ast$message\+Type, W\+O\+RD $\ast$message\+ID, D\+W\+O\+RD $\ast$message\+Data)
+\begin{DoxyCompactList}\small\item\em Get the next Message\+Queue item if it is available. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling} (char const $\ast$serial\+No, short channel, int milliseconds)
+\begin{DoxyCompactList}\small\item\em Starts the internal polling loop which continuously requests position and status. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI long \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga4b7ef09705f0e63d689cc571eaec58a0}{P\+B\+C\+\_\+\+Polling\+Duration} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Gets the polling loop duration. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gaa5540f372704707f78ce5a2089cfd238}{P\+B\+C\+\_\+\+Stop\+Polling} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Stops the internal polling loop. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga51dbf8b57a0aa4573b14fb2c7ee054ba}{P\+B\+C\+\_\+\+Request\+Settings} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Requests that all settings are download from device. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga10952ac0086c9f53b9a4af72f581f1e8}{P\+B\+C\+\_\+\+Request\+Status} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Requests the status bits and position. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga49e83f67d6a04916b1c5894e76bbb6f7}{P\+B\+C\+\_\+\+Request\+Status\+Bits} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Request the status bits which identify the current device state. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga0095db0a287edb66b317fcc5181a0888}{P\+B\+C\+\_\+\+Get\+Status\+Bits} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Get the current status bits. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga54ac17d898480e28e09cc88f5f7f3c1b}{P\+B\+C\+\_\+\+Request\+Position} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Requests the current output voltage or position depending on current mode. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga52a088bfcded53edcdeb9eab7fd2fbe7}{P\+B\+C\+\_\+\+Reset\+Parameters} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Resets all parameters to power-\/up values. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga1a45e67e276b30d7e1d29d3c40995dae}{P\+B\+C\+\_\+\+Set\+Zero} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Sets the voltage output to zero and defines the ensuing actuator position az zero. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI \hyperlink{group___common_gaa4ff718266308759b2633c56c9a813b1}{P\+Z\+\_\+\+Control\+Mode\+Types} \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga34e3a38fef9eaa8d8be9409954d315f6}{P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Gets the Position Control Mode. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga11ed757ba3a99c44d55130b3f3d90450}{P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode} (char const $\ast$serial\+No, short channel, \hyperlink{group___common_gaa4ff718266308759b2633c56c9a813b1}{P\+Z\+\_\+\+Control\+Mode\+Types} mode)
+\begin{DoxyCompactList}\small\item\em Sets the Position Control Mode. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gafaed4ba427e8b2564444a7c4b7190621}{P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Gets the maximum output voltage. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga2cfddbdce771d55fc8b2b5e78c0d9e9c}{P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage} (char const $\ast$serial\+No, short channel, short e\+Voltage)
+\begin{DoxyCompactList}\small\item\em Sets the maximum output voltage. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga02adac1221242fb3ecd4cb551174d1aa}{P\+B\+C\+\_\+\+Get\+Output\+Voltage} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Gets the set Output Voltage. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga1442cf3842443e3a27bc2836f395a9b8}{P\+B\+C\+\_\+\+Set\+Output\+Voltage} (char const $\ast$serial\+No, short channel, short volts)
+\begin{DoxyCompactList}\small\item\em Sets the output voltage. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI \hyperlink{group___common_ga695c409512b2dd48c64f0e8e6ee823c0}{P\+Z\+\_\+\+Input\+Source\+Flags} \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gaf53ed03684a5482a8fa450b71b51ab44}{P\+B\+C\+\_\+\+Get\+Voltage\+Source} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Gets the control voltage source. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga7a412aba3b38da2ef7cc170932d9f64b}{P\+B\+C\+\_\+\+Set\+Voltage\+Source} (char const $\ast$serial\+No, short channel, \hyperlink{group___common_ga695c409512b2dd48c64f0e8e6ee823c0}{P\+Z\+\_\+\+Input\+Source\+Flags} source)
+\begin{DoxyCompactList}\small\item\em Sets the control voltage source. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga1bf19f93fc2d58fababbe3c73789115e}{P\+B\+C\+\_\+\+Get\+Maximum\+Travel} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Gets the maximum travel of the device. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga2edcb0d0c6d47c895d2de0bdb47111ac}{P\+B\+C\+\_\+\+Get\+Position} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Gets the position when in closed loop mode. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gaf858eebb6670c7701dc6fc4025f77622}{P\+B\+C\+\_\+\+Set\+Position} (char const $\ast$serial\+No, short channel, short position)
+\begin{DoxyCompactList}\small\item\em Sets the position when in closed loop mode. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gab3824d5ecd5b40b22caa57c9daafb662}{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts} (char const $\ast$serial\+No, short channel, short $\ast$proportional\+Term, short $\ast$integral\+Term)
+\begin{DoxyCompactList}\small\item\em Gets the feedback loop parameters. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gacf192038a709dc20701927636318dac4}{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts} (char const $\ast$serial\+No, short channel, short proportional\+Term, short integral\+Term)
+\begin{DoxyCompactList}\small\item\em Sets the feedback loop constants. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga995e5eea809f0e79b6717459507c5945}{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block} (const char $\ast$serial\+No, short channel, \hyperlink{struct_p_z___feedback_loop_constants}{P\+Z\+\_\+\+Feedback\+Loop\+Constants} $\ast$proportional\+And\+Integral\+Constants)
+\begin{DoxyCompactList}\small\item\em Gets the feedback loop constants in a block. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga3e2e582db6dca87bab3955233bd229c6}{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block} (const char $\ast$serial\+No, short channel, \hyperlink{struct_p_z___feedback_loop_constants}{P\+Z\+\_\+\+Feedback\+Loop\+Constants} $\ast$proportional\+And\+Integral\+Constants)
+\begin{DoxyCompactList}\small\item\em Sets the feedback loop constants in a block. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga941b6d16e3fd57695672c57b5b0e37bb}{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Params} (const char $\ast$serial\+No, short channel, \hyperlink{struct_p_z___l_u_t_wave_parameters}{P\+Z\+\_\+\+L\+U\+T\+Wave\+Parameters} $\ast$L\+U\+Twave\+Params)
+\begin{DoxyCompactList}\small\item\em Sets the L\+UT output wave parameters. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_gae238585bba2493ad7e65da776927f0ef}{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Sample} (char const $\ast$serial\+No, short channel, short index, W\+O\+RD value)
+\begin{DoxyCompactList}\small\item\em Sets a waveform sample. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga6af51fab96fe60d9ce632398587a2dfc}{P\+B\+C\+\_\+\+Start\+L\+U\+Twave} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Starts the L\+UT waveform output. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga42b68554890aa817c3b6004534574ade}{P\+B\+C\+\_\+\+Stop\+L\+U\+Twave} (char const $\ast$serial\+No, short channel)
+\begin{DoxyCompactList}\small\item\em Stops the L\+UT waveform output. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga41405d96d0af5454544113c7af0e6923}{P\+B\+C\+\_\+\+Get\+Slew\+Rates} (const char $\ast$serial\+No, short channel, \hyperlink{struct_p_z___slew_rates}{P\+Z\+\_\+\+Slew\+Rates} $\ast$slew\+Rates)
+\begin{DoxyCompactList}\small\item\em Gets the slew rates. \end{DoxyCompactList}\item 
+B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___benchtop_piezo_ga47869a24e3975b8939fc8f1eb5935f40}{P\+B\+C\+\_\+\+Set\+Slew\+Rates} (const char $\ast$serial\+No, short channel, \hyperlink{struct_p_z___slew_rates}{P\+Z\+\_\+\+Slew\+Rates} $\ast$slew\+Rates)
+\begin{DoxyCompactList}\small\item\em Sets the slew rates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This section details the Structures and Functions relavent to the Benchtop Piezo~\newline
+ For an example of how to connect to the device and perform simple operations use the following links\+: 
+\begin{DoxyItemize}
+\item Example of using the Thorlabs.Motion\+Control.Benchtop.Piezo.D\+LL from a C or C++ project.~\newline
+ This requires the D\+LL to be dynamical linked.  
+\item Example of using the Thorlabs.Motion\+Control.Benchtop.Piezo.D\+LL from a C\# project~\newline
+ This uses Marshalling to load and access the C D\+LL.  
+\end{DoxyItemize}The Thorlabs.\+Motion\+Control.\+Benchtop.\+Piezo.\+D\+LL requires the following D\+L\+Ls 
+\begin{DoxyItemize}
+\item Thorlabs.\+Motion\+Control.\+Device\+Manager.  
+\end{DoxyItemize}
+
+\subsection{Function Documentation}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Clear\+Message\+Queue@{P\+B\+C\+\_\+\+Clear\+Message\+Queue}}
+\index{P\+B\+C\+\_\+\+Clear\+Message\+Queue@{P\+B\+C\+\_\+\+Clear\+Message\+Queue}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Clear\+Message\+Queue(char const $\ast$serial\+No, short channel)}{PBC_ClearMessageQueue(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Clear\+Message\+Queue (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga2a21814d551f2dc52b1584969fabfa78}{}\label{group___benchtop_piezo_ga2a21814d551f2dc52b1584969fabfa78}
+
+
+Clears the device message queue. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Close@{P\+B\+C\+\_\+\+Close}}
+\index{P\+B\+C\+\_\+\+Close@{P\+B\+C\+\_\+\+Close}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Close(char const $\ast$serial\+No)}{PBC_Close(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Close (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gafd50098af9f87adc8a8df4f16963656c}{}\label{group___benchtop_piezo_gafd50098af9f87adc8a8df4f16963656c}
+
+
+Disconnect and close the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial no of the device to be disconnected. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga729b74c8ec2d761be3172e26fedad5b6}{P\+B\+C\+\_\+\+Open(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Disable\+Channel@{P\+B\+C\+\_\+\+Disable\+Channel}}
+\index{P\+B\+C\+\_\+\+Disable\+Channel@{P\+B\+C\+\_\+\+Disable\+Channel}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Disable\+Channel(char const $\ast$serial\+No, short channel)}{PBC_DisableChannel(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Disable\+Channel (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gae95c8a498bb073d57569685f3eef2de8}{}\label{group___benchtop_piezo_gae95c8a498bb073d57569685f3eef2de8}
+
+
+Disable the channel so that motor can be moved by hand. 
+
+When disabled power is removed from the actuator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga9115eb1f940f658b5379ee76885e2513}{P\+B\+C\+\_\+\+Enable\+Channel(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Disconnect@{P\+B\+C\+\_\+\+Disconnect}}
+\index{P\+B\+C\+\_\+\+Disconnect@{P\+B\+C\+\_\+\+Disconnect}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Disconnect(char const $\ast$serial\+No)}{PBC_Disconnect(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Disconnect (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga9e0ac14b041f051c0833e164e2840d46}{}\label{group___benchtop_piezo_ga9e0ac14b041f051c0833e164e2840d46}
+
+
+Tells the device that it is being disconnected. 
+
+This does not disconnect the communications.~\newline
+ To disconnect the communications, call the \hyperlink{group___benchtop_piezo_gafd50098af9f87adc8a8df4f16963656c}{P\+B\+C\+\_\+\+Close(char const $\ast$ serial\+No)} function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Enable\+Channel@{P\+B\+C\+\_\+\+Enable\+Channel}}
+\index{P\+B\+C\+\_\+\+Enable\+Channel@{P\+B\+C\+\_\+\+Enable\+Channel}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Enable\+Channel(char const $\ast$serial\+No, short channel)}{PBC_EnableChannel(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Enable\+Channel (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga9115eb1f940f658b5379ee76885e2513}{}\label{group___benchtop_piezo_ga9115eb1f940f658b5379ee76885e2513}
+
+
+Enable channel for computer control. 
+
+When enabled power is applied to the actuator so it is fixed in position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gae95c8a498bb073d57569685f3eef2de8}{P\+B\+C\+\_\+\+Disable\+Channel(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts@{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts}}
+\index{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts@{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts(char const $\ast$serial\+No, short channel, short $\ast$proportional\+Term, short $\ast$integral\+Term)}{PBC_GetFeedbackLoopPIconsts(char const *serialNo, short channel, short *proportionalTerm, short *integralTerm)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{short $\ast$}]{proportional\+Term, }
+\item[{short $\ast$}]{integral\+Term}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gab3824d5ecd5b40b22caa57c9daafb662}{}\label{group___benchtop_piezo_gab3824d5ecd5b40b22caa57c9daafb662}
+
+
+Gets the feedback loop parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em proportional\+Term} & The address of the parameter to receive the proportional parameter. \\
+\hline
+{\em integral\+Term} & The address of the parameter to receive the integral parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gacf192038a709dc20701927636318dac4}{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts(char const $\ast$ serial\+No, short channel, short proportional\+Term, short integral\+Term)}, \hyperlink{group___benchtop_piezo_ga995e5eea809f0e79b6717459507c5945}{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block(const char $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Feedback\+Loop\+Constants $\ast$proportional\+And\+Integral\+Constants)}, \hyperlink{group___benchtop_piezo_ga3e2e582db6dca87bab3955233bd229c6}{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block(const char $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Feedback\+Loop\+Constants $\ast$proportional\+And\+Integral\+Constants)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block@{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block}}
+\index{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block@{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block(const char $\ast$serial\+No, short channel, P\+Z\+\_\+\+Feedback\+Loop\+Constants $\ast$proportional\+And\+Integral\+Constants)}{PBC_GetFeedbackLoopPIconstsBlock(const char *serialNo, short channel, PZ_FeedbackLoopConstants *proportionalAndIntegralConstants)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{{\bf P\+Z\+\_\+\+Feedback\+Loop\+Constants} $\ast$}]{proportional\+And\+Integral\+Constants}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga995e5eea809f0e79b6717459507c5945}{}\label{group___benchtop_piezo_ga995e5eea809f0e79b6717459507c5945}
+
+
+Gets the feedback loop constants in a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em proportional\+And\+Integral\+Constants} & The address of the \hyperlink{struct_p_z___feedback_loop_constants}{P\+Z\+\_\+\+Feedback\+Loop\+Constants} to receive the feedback loop constants. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gab3824d5ecd5b40b22caa57c9daafb662}{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts(char const $\ast$ serial\+No, short channel, short $\ast$ proportional\+Term, short $\ast$ integral\+Term)}, \hyperlink{group___benchtop_piezo_gacf192038a709dc20701927636318dac4}{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts(char const $\ast$ serial\+No, short channel, short proportional\+Term, short integral\+Term)}, \hyperlink{group___benchtop_piezo_ga3e2e582db6dca87bab3955233bd229c6}{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block(const char $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Feedback\+Loop\+Constants $\ast$proportional\+And\+Integral\+Constants)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Firmware\+Version@{P\+B\+C\+\_\+\+Get\+Firmware\+Version}}
+\index{P\+B\+C\+\_\+\+Get\+Firmware\+Version@{P\+B\+C\+\_\+\+Get\+Firmware\+Version}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Firmware\+Version(char const $\ast$serial\+No)}{PBC_GetFirmwareVersion(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Firmware\+Version (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga6109940067a1cfd0a3c3fd837b1a49c2}{}\label{group___benchtop_piezo_ga6109940067a1cfd0a3c3fd837b1a49c2}
+
+
+Gets version number of the device firmware. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The device firmware version number made up of 4 byte parts. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Hardware\+Info@{P\+B\+C\+\_\+\+Get\+Hardware\+Info}}
+\index{P\+B\+C\+\_\+\+Get\+Hardware\+Info@{P\+B\+C\+\_\+\+Get\+Hardware\+Info}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Hardware\+Info(char const $\ast$serial\+No, short channel, char $\ast$model\+No, D\+W\+O\+R\+D size\+Of\+Model\+No, W\+O\+R\+D $\ast$type, W\+O\+R\+D $\ast$num\+Channels, char $\ast$notes, D\+W\+O\+R\+D size\+Of\+Notes, D\+W\+O\+R\+D $\ast$firmware\+Version, W\+O\+R\+D $\ast$hardware\+Version, W\+O\+R\+D $\ast$modification\+State)}{PBC_GetHardwareInfo(char const *serialNo, short channel, char *modelNo, DWORD sizeOfModelNo, WORD *type, WORD *numChannels, char *notes, DWORD sizeOfNotes, DWORD *firmwareVersion, WORD *hardwareVersion, WORD *modificationState)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Hardware\+Info (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{char $\ast$}]{model\+No, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Model\+No, }
+\item[{W\+O\+RD $\ast$}]{type, }
+\item[{W\+O\+RD $\ast$}]{num\+Channels, }
+\item[{char $\ast$}]{notes, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Notes, }
+\item[{D\+W\+O\+RD $\ast$}]{firmware\+Version, }
+\item[{W\+O\+RD $\ast$}]{hardware\+Version, }
+\item[{W\+O\+RD $\ast$}]{modification\+State}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga081a571f581a74d66341850b730910b1}{}\label{group___benchtop_piezo_ga081a571f581a74d66341850b730910b1}
+
+
+Gets the hardware information from the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em model\+No} & Address of a buffer to receive the model number string. Minimum 8 characters \\
+\hline
+{\em size\+Of\+Model\+No} & The size of the model number buffer, minimum of 8 characters. \\
+\hline
+{\em type} & Address of a W\+O\+RD to receive the hardware type number. \\
+\hline
+{\em num\+Channels} & Address of a short to receive the number of channels. \\
+\hline
+{\em notes} & Address of a buffer to receive the notes describing the device. \\
+\hline
+{\em size\+Of\+Notes} & The size of the notes buffer, minimum of 48 characters. \\
+\hline
+{\em firmware\+Version} & Address of a D\+W\+O\+RD to receive the firmware version number made up of 4 byte parts. \\
+\hline
+{\em hardware\+Version} & Address of a W\+O\+RD to receive the hardware version number. \\
+\hline
+{\em modification\+State} & Address of a W\+O\+RD to receive the hardware modification state number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Hardware\+Info\+Block@{P\+B\+C\+\_\+\+Get\+Hardware\+Info\+Block}}
+\index{P\+B\+C\+\_\+\+Get\+Hardware\+Info\+Block@{P\+B\+C\+\_\+\+Get\+Hardware\+Info\+Block}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Hardware\+Info\+Block(char const $\ast$serial\+No, short channel, T\+L\+I\+\_\+\+Hardware\+Information $\ast$hardware\+Info)}{PBC_GetHardwareInfoBlock(char const *serialNo, short channel, TLI_HardwareInformation *hardwareInfo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Hardware\+Info\+Block (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{{\bf T\+L\+I\+\_\+\+Hardware\+Information} $\ast$}]{hardware\+Info}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga366f39eff139eaf0f33c0a1a07861f0f}{}\label{group___benchtop_piezo_ga366f39eff139eaf0f33c0a1a07861f0f}
+
+
+Gets the hardware information in a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em hardware\+Info} & Address of a \hyperlink{struct_t_l_i___hardware_information}{T\+L\+I\+\_\+\+Hardware\+Information} structure to receive the hardware information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Maximum\+Travel@{P\+B\+C\+\_\+\+Get\+Maximum\+Travel}}
+\index{P\+B\+C\+\_\+\+Get\+Maximum\+Travel@{P\+B\+C\+\_\+\+Get\+Maximum\+Travel}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Maximum\+Travel(char const $\ast$serial\+No, short channel)}{PBC_GetMaximumTravel(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI W\+O\+RD \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Maximum\+Travel (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga1bf19f93fc2d58fababbe3c73789115e}{}\label{group___benchtop_piezo_ga1bf19f93fc2d58fababbe3c73789115e}
+
+
+Gets the maximum travel of the device. 
+
+This requires an actuator with built in position sensing
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The distance in steps of 100nm,~\newline
+ range 0 to 65535 (10000 is equivalent to 1mm). 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage@{P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage}}
+\index{P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage@{P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage(char const $\ast$serial\+No, short channel)}{PBC_GetMaxOutputVoltage(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gafaed4ba427e8b2564444a7c4b7190621}{}\label{group___benchtop_piezo_gafaed4ba427e8b2564444a7c4b7190621}
+
+
+Gets the maximum output voltage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum output voltage, 750, 1000 or 1500 (75.\+0, 100.\+0, 150.\+0). 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga2cfddbdce771d55fc8b2b5e78c0d9e9c}{P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage(char const $\ast$ serial\+No, short channel, short e\+Voltage)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Next\+Message@{P\+B\+C\+\_\+\+Get\+Next\+Message}}
+\index{P\+B\+C\+\_\+\+Get\+Next\+Message@{P\+B\+C\+\_\+\+Get\+Next\+Message}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Next\+Message(char const $\ast$serial\+No, short channel, W\+O\+R\+D $\ast$message\+Type, W\+O\+R\+D $\ast$message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}{PBC_GetNextMessage(char const *serialNo, short channel, WORD *messageType, WORD *messageID, DWORD *messageData)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Next\+Message (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{W\+O\+RD $\ast$}]{message\+Type, }
+\item[{W\+O\+RD $\ast$}]{message\+ID, }
+\item[{D\+W\+O\+RD $\ast$}]{message\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gaab08efdcd05665a338fee53e05ab71dd}{}\label{group___benchtop_piezo_gaab08efdcd05665a338fee53e05ab71dd}
+
+
+Get the next Message\+Queue item if it is available. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em message\+Type} & Address of the W\+O\+RD to receive the message type. \\
+\hline
+{\em message\+ID} & Address of the W\+O\+RD to receive themessage ID. \\
+\hline
+{\em message\+Data} & Address of the D\+W\+O\+RD to receive the message\+Data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Num\+Channels@{P\+B\+C\+\_\+\+Get\+Num\+Channels}}
+\index{P\+B\+C\+\_\+\+Get\+Num\+Channels@{P\+B\+C\+\_\+\+Get\+Num\+Channels}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Num\+Channels(char const $\ast$serial\+No)}{PBC_GetNumChannels(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Num\+Channels (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gac3424db2a67a38593d9988d5f1c47243}{}\label{group___benchtop_piezo_gac3424db2a67a38593d9988d5f1c47243}
+
+
+Gets the number of channels in the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of channels. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Output\+Voltage@{P\+B\+C\+\_\+\+Get\+Output\+Voltage}}
+\index{P\+B\+C\+\_\+\+Get\+Output\+Voltage@{P\+B\+C\+\_\+\+Get\+Output\+Voltage}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Output\+Voltage(char const $\ast$serial\+No, short channel)}{PBC_GetOutputVoltage(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Output\+Voltage (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga02adac1221242fb3ecd4cb551174d1aa}{}\label{group___benchtop_piezo_ga02adac1221242fb3ecd4cb551174d1aa}
+
+
+Gets the set Output Voltage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The voltage as a percentage of Max\+Output\+Voltage,~\newline
+ range -\/32767 to 32767 equivalent to -\/100\% to 100\%. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga1442cf3842443e3a27bc2836f395a9b8}{P\+B\+C\+\_\+\+Set\+Output\+Voltage(char const $\ast$ serial\+No, short channel, short volts)}, \hyperlink{group___benchtop_piezo_ga2cfddbdce771d55fc8b2b5e78c0d9e9c}{P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage(char const $\ast$ serial\+No, short channel, short e\+Voltage)}, \hyperlink{group___benchtop_piezo_gafaed4ba427e8b2564444a7c4b7190621}{P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Position@{P\+B\+C\+\_\+\+Get\+Position}}
+\index{P\+B\+C\+\_\+\+Get\+Position@{P\+B\+C\+\_\+\+Get\+Position}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Position(char const $\ast$serial\+No, short channel)}{PBC_GetPosition(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Position (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga2edcb0d0c6d47c895d2de0bdb47111ac}{}\label{group___benchtop_piezo_ga2edcb0d0c6d47c895d2de0bdb47111ac}
+
+
+Gets the position when in closed loop mode. 
+
+The result is undefined if not in closed loop mode
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The position as a percentage of maximum travel,~\newline
+ range -\/32767 to 32767, equivalent to -\/100 to 100\%. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gaf858eebb6670c7701dc6fc4025f77622}{P\+B\+C\+\_\+\+Set\+Position(char const $\ast$ serial\+No, short channel, short position)}, \hyperlink{group___benchtop_piezo_ga11ed757ba3a99c44d55130b3f3d90450}{P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode(char const $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Control\+Mode\+Types mode)}, \hyperlink{group___benchtop_piezo_ga34e3a38fef9eaa8d8be9409954d315f6}{P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode@{P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode}}
+\index{P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode@{P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode(char const $\ast$serial\+No, short channel)}{PBC_GetPositionControlMode(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI {\bf P\+Z\+\_\+\+Control\+Mode\+Types} \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga34e3a38fef9eaa8d8be9409954d315f6}{}\label{group___benchtop_piezo_ga34e3a38fef9eaa8d8be9409954d315f6}
+
+
+Gets the Position Control Mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The control mode \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Open Loop&1 \\\cline{1-2}
+Closed Loop&2 \\\cline{1-2}
+Open Loop smoothed&3 \\\cline{1-2}
+Closed Loop smoothed&4 \\\cline{1-2}
+\end{longtabu}
+
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga11ed757ba3a99c44d55130b3f3d90450}{P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode(char const $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Control\+Mode\+Types mode)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Slew\+Rates@{P\+B\+C\+\_\+\+Get\+Slew\+Rates}}
+\index{P\+B\+C\+\_\+\+Get\+Slew\+Rates@{P\+B\+C\+\_\+\+Get\+Slew\+Rates}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Slew\+Rates(const char $\ast$serial\+No, short channel, P\+Z\+\_\+\+Slew\+Rates $\ast$slew\+Rates)}{PBC_GetSlewRates(const char *serialNo, short channel, PZ_SlewRates *slewRates)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Slew\+Rates (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{{\bf P\+Z\+\_\+\+Slew\+Rates} $\ast$}]{slew\+Rates}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga41405d96d0af5454544113c7af0e6923}{}\label{group___benchtop_piezo_ga41405d96d0af5454544113c7af0e6923}
+
+
+Gets the slew rates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em slew\+Rates} & The open mode and closed mode rates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Software\+Version@{P\+B\+C\+\_\+\+Get\+Software\+Version}}
+\index{P\+B\+C\+\_\+\+Get\+Software\+Version@{P\+B\+C\+\_\+\+Get\+Software\+Version}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Software\+Version(char const $\ast$serial\+No)}{PBC_GetSoftwareVersion(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Software\+Version (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gaf22ba3b3f6307b5f111a940b4563b6f2}{}\label{group___benchtop_piezo_gaf22ba3b3f6307b5f111a940b4563b6f2}
+
+
+Gets version number of the device software. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The device software version number made up of 4 byte parts. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Status\+Bits@{P\+B\+C\+\_\+\+Get\+Status\+Bits}}
+\index{P\+B\+C\+\_\+\+Get\+Status\+Bits@{P\+B\+C\+\_\+\+Get\+Status\+Bits}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Status\+Bits(char const $\ast$serial\+No, short channel)}{PBC_GetStatusBits(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Status\+Bits (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga0095db0a287edb66b317fcc5181a0888}{}\label{group___benchtop_piezo_ga0095db0a287edb66b317fcc5181a0888}
+
+
+Get the current status bits. 
+
+This returns the latest status bits received from the device.~\newline
+ To get new status bits, use \hyperlink{group___benchtop_piezo_ga49e83f67d6a04916b1c5894e76bbb6f7}{P\+B\+C\+\_\+\+Request\+Status\+Bits(char const $\ast$ serial\+No, short channel)} ~\newline
+ or use B\+P\+C\+\_\+\+Request\+Status(char const $\ast$ serial\+No) or use the polling functions, \hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel. \\
+\hline
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The status bits from the device \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+0x00000001&Piezo actuator connected (1=Connected, 0=Not connected). \\\cline{1-2}
+0x00000002&For Future Use. \\\cline{1-2}
+0x00000004&For Future Use. \\\cline{1-2}
+0x00000008&For Future Use. \\\cline{1-2}
+0x00000010&Piezo channel has been zeroed (1=Zeroed, 0=Not zeroed). \\\cline{1-2}
+0x00000020&Piezo channel is zeroing (1=Zeroing, 0=Not zeroing). \\\cline{1-2}
+0x00000040&For Future Use. \\\cline{1-2}
+0x00000080&For Future Use. \\\cline{1-2}
+0x00000100&Strain gauge feedback connected (1=Connected, 0=Not connected). \\\cline{1-2}
+0x00000200&For Future Use. \\\cline{1-2}
+0x00000400&Position control mode (1=Closed loop, 0=Open loop). \\\cline{1-2}
+0x00000800&For Future Use. \\\cline{1-2}
+0x00001000&\\\cline{1-2}
+...&\\\cline{1-2}
+0x00080000&\\\cline{1-2}
+0x00100000&Digital input 1 state (1=Logic High, 0=Logic Low). \\\cline{1-2}
+0x00200000&Digital input 2 state (1=Logic High, 0=Logic Low). \\\cline{1-2}
+0x00400000&Digital input 3 state (1=Logic High, 0=Logic Low). \\\cline{1-2}
+0x00800000&Digital input 4 state (1=Logic High, 0=Logic Low). \\\cline{1-2}
+0x01000000&Digital input 5 state (1=Logic High, 0=Logic Low). \\\cline{1-2}
+0x02000000&Digital input 6 state (1=Logic High, 0=Logic Low). \\\cline{1-2}
+0x04000000&Digital input 7 state (1=Logic High, 0=Logic Low). \\\cline{1-2}
+0x08000000&Digital input 8 state (1=Logic High, 0=Logic Low). \\\cline{1-2}
+0x10000000&For Future Use. \\\cline{1-2}
+0x20000000&Active (1=Indicates Unit Is Active, 0=Not Active). \\\cline{1-2}
+0x40000000&For Future Use. \\\cline{1-2}
+0x80000000&Channel enabled (1=Enabled, 0=Disabled). \\\cline{1-2}
+\end{longtabu}
+
+
+Bits 21 to 28 (Digital Input States) are only applicable if the associated digital input is fitted to your controller -\/ see the relevant handbook for more details. 
+\end{DoxyReturn}
+
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga49e83f67d6a04916b1c5894e76bbb6f7}{P\+B\+C\+\_\+\+Request\+Status\+Bits(char const $\ast$ serial\+No, short channel)}, P\+B\+C\+\_\+\+Request\+Status(char const $\ast$ serial\+No), \hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Get\+Voltage\+Source@{P\+B\+C\+\_\+\+Get\+Voltage\+Source}}
+\index{P\+B\+C\+\_\+\+Get\+Voltage\+Source@{P\+B\+C\+\_\+\+Get\+Voltage\+Source}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Get\+Voltage\+Source(char const $\ast$serial\+No, short channel)}{PBC_GetVoltageSource(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI {\bf P\+Z\+\_\+\+Input\+Source\+Flags} \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Get\+Voltage\+Source (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gaf53ed03684a5482a8fa450b71b51ab44}{}\label{group___benchtop_piezo_gaf53ed03684a5482a8fa450b71b51ab44}
+
+
+Gets the control voltage source. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The voltage source. \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Software Only&0 \\\cline{1-2}
+Software and External&1 \\\cline{1-2}
+Software and Potentiometer&2 \\\cline{1-2}
+Software, External and Potentiometer&3 \\\cline{1-2}
+\end{longtabu}
+
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga7a412aba3b38da2ef7cc170932d9f64b}{P\+B\+C\+\_\+\+Set\+Voltage\+Source(char const $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Input\+Source\+Flags source)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Identify@{P\+B\+C\+\_\+\+Identify}}
+\index{P\+B\+C\+\_\+\+Identify@{P\+B\+C\+\_\+\+Identify}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Identify(char const $\ast$serial\+No)}{PBC_Identify(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Identify (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gaa323c0523ca2a43cb8fae38e8dd44f44}{}\label{group___benchtop_piezo_gaa323c0523ca2a43cb8fae38e8dd44f44}
+
+
+Sends a command to the device to make it identify iteself. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Is\+Channel\+Valid@{P\+B\+C\+\_\+\+Is\+Channel\+Valid}}
+\index{P\+B\+C\+\_\+\+Is\+Channel\+Valid@{P\+B\+C\+\_\+\+Is\+Channel\+Valid}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Is\+Channel\+Valid(char const $\ast$serial\+No, short channel)}{PBC_IsChannelValid(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Is\+Channel\+Valid (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gaa405d7b1512dcd0917315b5d7fea73d7}{}\label{group___benchtop_piezo_gaa405d7b1512dcd0917315b5d7fea73d7}
+
+
+Verifies that the specified channel is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The requested channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the channel is valid. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Load\+Settings@{P\+B\+C\+\_\+\+Load\+Settings}}
+\index{P\+B\+C\+\_\+\+Load\+Settings@{P\+B\+C\+\_\+\+Load\+Settings}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Load\+Settings(char const $\ast$serial\+No)}{PBC_LoadSettings(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Load\+Settings (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga781317653a700d4f23b6f2af90078f40}{}\label{group___benchtop_piezo_ga781317653a700d4f23b6f2af90078f40}
+
+
+Update device with stored settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Max\+Channel\+Count@{P\+B\+C\+\_\+\+Max\+Channel\+Count}}
+\index{P\+B\+C\+\_\+\+Max\+Channel\+Count@{P\+B\+C\+\_\+\+Max\+Channel\+Count}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Max\+Channel\+Count(char const $\ast$serial\+No)}{PBC_MaxChannelCount(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Max\+Channel\+Count (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga336704bb1c37c8a5c4eeff0c9d4f7bf0}{}\label{group___benchtop_piezo_ga336704bb1c37c8a5c4eeff0c9d4f7bf0}
+
+
+Gets the number of channels available to this device. 
+
+This function returns ther number of available bays, not the number of bays filled.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of channels available on this device. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Message\+Queue\+Size@{P\+B\+C\+\_\+\+Message\+Queue\+Size}}
+\index{P\+B\+C\+\_\+\+Message\+Queue\+Size@{P\+B\+C\+\_\+\+Message\+Queue\+Size}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Message\+Queue\+Size(char const $\ast$serial\+No, short channel)}{PBC_MessageQueueSize(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Message\+Queue\+Size (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gad72a2b5d23a26147fc87a9c85dee9350}{}\label{group___benchtop_piezo_gad72a2b5d23a26147fc87a9c85dee9350}
+
+
+Gets the Message\+Queue size. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of messages in the queue. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Open@{P\+B\+C\+\_\+\+Open}}
+\index{P\+B\+C\+\_\+\+Open@{P\+B\+C\+\_\+\+Open}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Open(char const $\ast$serial\+No)}{PBC_Open(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Open (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga729b74c8ec2d761be3172e26fedad5b6}{}\label{group___benchtop_piezo_ga729b74c8ec2d761be3172e26fedad5b6}
+
+
+Open the device for communications. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial no of the device to be connected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gafd50098af9f87adc8a8df4f16963656c}{P\+B\+C\+\_\+\+Close(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Polling\+Duration@{P\+B\+C\+\_\+\+Polling\+Duration}}
+\index{P\+B\+C\+\_\+\+Polling\+Duration@{P\+B\+C\+\_\+\+Polling\+Duration}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Polling\+Duration(char const $\ast$serial\+No, short channel)}{PBC_PollingDuration(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI long \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Polling\+Duration (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga4b7ef09705f0e63d689cc571eaec58a0}{}\label{group___benchtop_piezo_ga4b7ef09705f0e63d689cc571eaec58a0}
+
+
+Gets the polling loop duration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The time between polls in milliseconds or 0 if polling is not active. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}, \hyperlink{group___benchtop_piezo_gaa5540f372704707f78ce5a2089cfd238}{P\+B\+C\+\_\+\+Stop\+Polling(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Register\+Message\+Callback@{P\+B\+C\+\_\+\+Register\+Message\+Callback}}
+\index{P\+B\+C\+\_\+\+Register\+Message\+Callback@{P\+B\+C\+\_\+\+Register\+Message\+Callback}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Register\+Message\+Callback(char const $\ast$serial\+No, short channel, void($\ast$function\+Pointer)())}{PBC_RegisterMessageCallback(char const *serialNo, short channel, void(*functionPointer)())}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Register\+Message\+Callback (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{void($\ast$)()}]{function\+Pointer}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga3b9fce532e2b4b286a360b811e0f5b89}{}\label{group___benchtop_piezo_ga3b9fce532e2b4b286a360b811e0f5b89}
+
+
+Registers a callback on the message queue. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em function\+Pointer} & A function pointer to be called whenever messages are received. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Request\+Position@{P\+B\+C\+\_\+\+Request\+Position}}
+\index{P\+B\+C\+\_\+\+Request\+Position@{P\+B\+C\+\_\+\+Request\+Position}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Request\+Position(char const $\ast$serial\+No, short channel)}{PBC_RequestPosition(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Request\+Position (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga54ac17d898480e28e09cc88f5f7f3c1b}{}\label{group___benchtop_piezo_ga54ac17d898480e28e09cc88f5f7f3c1b}
+
+
+Requests the current output voltage or position depending on current mode. 
+
+This needs to be called to get the device to send it\textquotesingle{}s current position.~\newline
+ N\+O\+TE this is called automatically if Polling is enabled for the device using \hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga2edcb0d0c6d47c895d2de0bdb47111ac}{P\+B\+C\+\_\+\+Get\+Position(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Request\+Settings@{P\+B\+C\+\_\+\+Request\+Settings}}
+\index{P\+B\+C\+\_\+\+Request\+Settings@{P\+B\+C\+\_\+\+Request\+Settings}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Request\+Settings(char const $\ast$serial\+No, short channel)}{PBC_RequestSettings(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Request\+Settings (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga51dbf8b57a0aa4573b14fb2c7ee054ba}{}\label{group___benchtop_piezo_ga51dbf8b57a0aa4573b14fb2c7ee054ba}
+
+
+Requests that all settings are download from device. 
+
+This function requests that the device upload all it\textquotesingle{}s settings to the D\+LL.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Request\+Status@{P\+B\+C\+\_\+\+Request\+Status}}
+\index{P\+B\+C\+\_\+\+Request\+Status@{P\+B\+C\+\_\+\+Request\+Status}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Request\+Status(char const $\ast$serial\+No, short channel)}{PBC_RequestStatus(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Request\+Status (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga10952ac0086c9f53b9a4af72f581f1e8}{}\label{group___benchtop_piezo_ga10952ac0086c9f53b9a4af72f581f1e8}
+
+
+Requests the status bits and position. 
+
+This needs to be called to get the device to send it\textquotesingle{}s current position and status bits.~\newline
+ N\+O\+TE this is called automatically if Polling is enabled for the device using \hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga49e83f67d6a04916b1c5894e76bbb6f7}{P\+B\+C\+\_\+\+Request\+Status\+Bits(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_ga2edcb0d0c6d47c895d2de0bdb47111ac}{P\+B\+C\+\_\+\+Get\+Position(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_ga0095db0a287edb66b317fcc5181a0888}{P\+B\+C\+\_\+\+Get\+Status\+Bits(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Request\+Status\+Bits@{P\+B\+C\+\_\+\+Request\+Status\+Bits}}
+\index{P\+B\+C\+\_\+\+Request\+Status\+Bits@{P\+B\+C\+\_\+\+Request\+Status\+Bits}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Request\+Status\+Bits(char const $\ast$serial\+No, short channel)}{PBC_RequestStatusBits(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Request\+Status\+Bits (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga49e83f67d6a04916b1c5894e76bbb6f7}{}\label{group___benchtop_piezo_ga49e83f67d6a04916b1c5894e76bbb6f7}
+
+
+Request the status bits which identify the current device state. 
+
+This needs to be called to get the device to send it\textquotesingle{}s current status bits.~\newline
+ N\+O\+TE this is called automatically if Polling is enabled for the device using \hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga0095db0a287edb66b317fcc5181a0888}{P\+B\+C\+\_\+\+Get\+Status\+Bits(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Reset\+Parameters@{P\+B\+C\+\_\+\+Reset\+Parameters}}
+\index{P\+B\+C\+\_\+\+Reset\+Parameters@{P\+B\+C\+\_\+\+Reset\+Parameters}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Reset\+Parameters(char const $\ast$serial\+No, short channel)}{PBC_ResetParameters(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Reset\+Parameters (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga52a088bfcded53edcdeb9eab7fd2fbe7}{}\label{group___benchtop_piezo_ga52a088bfcded53edcdeb9eab7fd2fbe7}
+
+
+Resets all parameters to power-\/up values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts@{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts}}
+\index{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts@{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts(char const $\ast$serial\+No, short channel, short proportional\+Term, short integral\+Term)}{PBC_SetFeedbackLoopPIconsts(char const *serialNo, short channel, short proportionalTerm, short integralTerm)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{short}]{proportional\+Term, }
+\item[{short}]{integral\+Term}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gacf192038a709dc20701927636318dac4}{}\label{group___benchtop_piezo_gacf192038a709dc20701927636318dac4}
+
+
+Sets the feedback loop constants. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em proportional\+Term} & The proportional gain term from 0 to 255. \\
+\hline
+{\em integral\+Term} & The integral gain term from 0 to 255. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gab3824d5ecd5b40b22caa57c9daafb662}{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts(char const $\ast$ serial\+No, short channel, short $\ast$ proportional\+Term, short $\ast$ integral\+Term)}, P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block(char const $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Feedback\+Loop\+Constants $\ast$proportional\+And\+Integral\+Constants), \hyperlink{group___benchtop_piezo_ga3e2e582db6dca87bab3955233bd229c6}{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block(const char $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Feedback\+Loop\+Constants $\ast$proportional\+And\+Integral\+Constants)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block@{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block}}
+\index{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block@{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block(const char $\ast$serial\+No, short channel, P\+Z\+\_\+\+Feedback\+Loop\+Constants $\ast$proportional\+And\+Integral\+Constants)}{PBC_SetFeedbackLoopPIconstsBlock(const char *serialNo, short channel, PZ_FeedbackLoopConstants *proportionalAndIntegralConstants)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts\+Block (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{{\bf P\+Z\+\_\+\+Feedback\+Loop\+Constants} $\ast$}]{proportional\+And\+Integral\+Constants}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga3e2e582db6dca87bab3955233bd229c6}{}\label{group___benchtop_piezo_ga3e2e582db6dca87bab3955233bd229c6}
+
+
+Sets the feedback loop constants in a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em proportional\+And\+Integral\+Constants} & The address of the \hyperlink{struct_p_z___feedback_loop_constants}{P\+Z\+\_\+\+Feedback\+Loop\+Constants} containing the new feedback loop constants. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gab3824d5ecd5b40b22caa57c9daafb662}{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts(char const $\ast$ serial\+No, short channel, short $\ast$ proportional\+Term, short $\ast$ integral\+Term)}, \hyperlink{group___benchtop_piezo_gacf192038a709dc20701927636318dac4}{P\+B\+C\+\_\+\+Set\+Feedback\+Loop\+P\+Iconsts(char const $\ast$ serial\+No, short channel, short proportional\+Term, short integral\+Term)}, \hyperlink{group___benchtop_piezo_ga995e5eea809f0e79b6717459507c5945}{P\+B\+C\+\_\+\+Get\+Feedback\+Loop\+P\+Iconsts\+Block(const char $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Feedback\+Loop\+Constants $\ast$proportional\+And\+Integral\+Constants)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Params@{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Params}}
+\index{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Params@{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Params}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Params(const char $\ast$serial\+No, short channel, P\+Z\+\_\+\+L\+U\+T\+Wave\+Parameters $\ast$\+L\+U\+Twave\+Params)}{PBC_SetLUTwaveParams(const char *serialNo, short channel, PZ_LUTWaveParameters *LUTwaveParams)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Params (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{{\bf P\+Z\+\_\+\+L\+U\+T\+Wave\+Parameters} $\ast$}]{L\+U\+Twave\+Params}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga941b6d16e3fd57695672c57b5b0e37bb}{}\label{group___benchtop_piezo_ga941b6d16e3fd57695672c57b5b0e37bb}
+
+
+Sets the L\+UT output wave parameters. 
+
+N\+O\+TE, the get function has never been implemented in firmware, so new parameters need to be generated each time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em L\+U\+Twave\+Params} & Address of the \hyperlink{struct_p_z___l_u_t_wave_parameters}{P\+Z\+\_\+\+L\+U\+T\+Wave\+Parameters} containing the new L\+UT wave parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Sample@{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Sample}}
+\index{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Sample@{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Sample}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Sample(char const $\ast$serial\+No, short channel, short index, W\+O\+R\+D value)}{PBC_SetLUTwaveSample(char const *serialNo, short channel, short index, WORD value)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+L\+U\+Twave\+Sample (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{short}]{index, }
+\item[{W\+O\+RD}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gae238585bba2493ad7e65da776927f0ef}{}\label{group___benchtop_piezo_gae238585bba2493ad7e65da776927f0ef}
+
+
+Sets a waveform sample. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em index} & The phase index in waveform where value is to be set. \\
+\hline
+{\em value} & The voltage or position as a percentage of full scale.~\newline
+ range -\/32767 to 32767, equivalemnt to -\/100\% to 100\% of maximum voltage / position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage@{P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage}}
+\index{P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage@{P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage(char const $\ast$serial\+No, short channel, short e\+Voltage)}{PBC_SetMaxOutputVoltage(char const *serialNo, short channel, short eVoltage)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{short}]{e\+Voltage}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga2cfddbdce771d55fc8b2b5e78c0d9e9c}{}\label{group___benchtop_piezo_ga2cfddbdce771d55fc8b2b5e78c0d9e9c}
+
+
+Sets the maximum output voltage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em e\+Voltage} & The maximum output voltage, 750, 1000 or 1500 (75.\+0, 100.\+0, 150.\+0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gafaed4ba427e8b2564444a7c4b7190621}{P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+Output\+Voltage@{P\+B\+C\+\_\+\+Set\+Output\+Voltage}}
+\index{P\+B\+C\+\_\+\+Set\+Output\+Voltage@{P\+B\+C\+\_\+\+Set\+Output\+Voltage}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+Output\+Voltage(char const $\ast$serial\+No, short channel, short volts)}{PBC_SetOutputVoltage(char const *serialNo, short channel, short volts)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+Output\+Voltage (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{short}]{volts}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga1442cf3842443e3a27bc2836f395a9b8}{}\label{group___benchtop_piezo_ga1442cf3842443e3a27bc2836f395a9b8}
+
+
+Sets the output voltage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em volts} & The voltage as a percentage of Max\+Output\+Voltage,~\newline
+ range -\/32767 to 32767 equivalent to -\/100\% to 100\%. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga02adac1221242fb3ecd4cb551174d1aa}{P\+B\+C\+\_\+\+Get\+Output\+Voltage(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_ga2cfddbdce771d55fc8b2b5e78c0d9e9c}{P\+B\+C\+\_\+\+Set\+Max\+Output\+Voltage(char const $\ast$ serial\+No, short channel, short e\+Voltage)}, \hyperlink{group___benchtop_piezo_gafaed4ba427e8b2564444a7c4b7190621}{P\+B\+C\+\_\+\+Get\+Max\+Output\+Voltage(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+Position@{P\+B\+C\+\_\+\+Set\+Position}}
+\index{P\+B\+C\+\_\+\+Set\+Position@{P\+B\+C\+\_\+\+Set\+Position}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+Position(char const $\ast$serial\+No, short channel, short position)}{PBC_SetPosition(char const *serialNo, short channel, short position)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+Position (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{short}]{position}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gaf858eebb6670c7701dc6fc4025f77622}{}\label{group___benchtop_piezo_gaf858eebb6670c7701dc6fc4025f77622}
+
+
+Sets the position when in closed loop mode. 
+
+The command is ignored if not in closed loop mode
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em position} & The position as a percentage of maximum travel,~\newline
+ range 0 to 32767, equivalent to 0 to 100\%. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga2edcb0d0c6d47c895d2de0bdb47111ac}{P\+B\+C\+\_\+\+Get\+Position(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_ga11ed757ba3a99c44d55130b3f3d90450}{P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode(char const $\ast$ serial\+No, short channel, P\+Z\+\_\+\+Control\+Mode\+Types mode)}, \hyperlink{group___benchtop_piezo_ga34e3a38fef9eaa8d8be9409954d315f6}{P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode@{P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode}}
+\index{P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode@{P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode(char const $\ast$serial\+No, short channel, P\+Z\+\_\+\+Control\+Mode\+Types mode)}{PBC_SetPositionControlMode(char const *serialNo, short channel, PZ_ControlModeTypes mode)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+Position\+Control\+Mode (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{{\bf P\+Z\+\_\+\+Control\+Mode\+Types}}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga11ed757ba3a99c44d55130b3f3d90450}{}\label{group___benchtop_piezo_ga11ed757ba3a99c44d55130b3f3d90450}
+
+
+Sets the Position Control Mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em mode} & The control mode \begin{tabularx}{\linewidth}{|*{2}{>{\raggedright\arraybackslash}X|}}\hline
+Open Loop&1 \\\cline{1-2}
+Closed Loop&2 \\\cline{1-2}
+Open Loop smoothed&3 \\\cline{1-2}
+Closed Loop smoothed&4 \\\cline{1-2}
+\end{tabularx}
+. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga34e3a38fef9eaa8d8be9409954d315f6}{P\+B\+C\+\_\+\+Get\+Position\+Control\+Mode(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+Slew\+Rates@{P\+B\+C\+\_\+\+Set\+Slew\+Rates}}
+\index{P\+B\+C\+\_\+\+Set\+Slew\+Rates@{P\+B\+C\+\_\+\+Set\+Slew\+Rates}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+Slew\+Rates(const char $\ast$serial\+No, short channel, P\+Z\+\_\+\+Slew\+Rates $\ast$slew\+Rates)}{PBC_SetSlewRates(const char *serialNo, short channel, PZ_SlewRates *slewRates)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+Slew\+Rates (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{{\bf P\+Z\+\_\+\+Slew\+Rates} $\ast$}]{slew\+Rates}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga47869a24e3975b8939fc8f1eb5935f40}{}\label{group___benchtop_piezo_ga47869a24e3975b8939fc8f1eb5935f40}
+
+
+Sets the slew rates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em slew\+Rates} & The open mode and closed mode rates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+Voltage\+Source@{P\+B\+C\+\_\+\+Set\+Voltage\+Source}}
+\index{P\+B\+C\+\_\+\+Set\+Voltage\+Source@{P\+B\+C\+\_\+\+Set\+Voltage\+Source}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+Voltage\+Source(char const $\ast$serial\+No, short channel, P\+Z\+\_\+\+Input\+Source\+Flags source)}{PBC_SetVoltageSource(char const *serialNo, short channel, PZ_InputSourceFlags source)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+Voltage\+Source (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{{\bf P\+Z\+\_\+\+Input\+Source\+Flags}}]{source}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga7a412aba3b38da2ef7cc170932d9f64b}{}\label{group___benchtop_piezo_ga7a412aba3b38da2ef7cc170932d9f64b}
+
+
+Sets the control voltage source. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em source} & The voltage source \begin{tabularx}{\linewidth}{|*{2}{>{\raggedright\arraybackslash}X|}}\hline
+Software Only&0 \\\cline{1-2}
+Software and External&1 \\\cline{1-2}
+Software and Potentiometer&2 \\\cline{1-2}
+Software, External and Potentiometer&3 \\\cline{1-2}
+\end{tabularx}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gaf53ed03684a5482a8fa450b71b51ab44}{P\+B\+C\+\_\+\+Get\+Voltage\+Source(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Set\+Zero@{P\+B\+C\+\_\+\+Set\+Zero}}
+\index{P\+B\+C\+\_\+\+Set\+Zero@{P\+B\+C\+\_\+\+Set\+Zero}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Set\+Zero(char const $\ast$serial\+No, short channel)}{PBC_SetZero(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Set\+Zero (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga1a45e67e276b30d7e1d29d3c40995dae}{}\label{group___benchtop_piezo_ga1a45e67e276b30d7e1d29d3c40995dae}
+
+
+Sets the voltage output to zero and defines the ensuing actuator position az zero. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Start\+L\+U\+Twave@{P\+B\+C\+\_\+\+Start\+L\+U\+Twave}}
+\index{P\+B\+C\+\_\+\+Start\+L\+U\+Twave@{P\+B\+C\+\_\+\+Start\+L\+U\+Twave}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Start\+L\+U\+Twave(char const $\ast$serial\+No, short channel)}{PBC_StartLUTwave(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Start\+L\+U\+Twave (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga6af51fab96fe60d9ce632398587a2dfc}{}\label{group___benchtop_piezo_ga6af51fab96fe60d9ce632398587a2dfc}
+
+
+Starts the L\+UT waveform output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully started. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Start\+Polling@{P\+B\+C\+\_\+\+Start\+Polling}}
+\index{P\+B\+C\+\_\+\+Start\+Polling@{P\+B\+C\+\_\+\+Start\+Polling}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$serial\+No, short channel, int milliseconds)}{PBC_StartPolling(char const *serialNo, short channel, int milliseconds)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Start\+Polling (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{int}]{milliseconds}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{}\label{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}
+
+
+Starts the internal polling loop which continuously requests position and status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em milliseconds} & The milliseconds polling rate. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gaa5540f372704707f78ce5a2089cfd238}{P\+B\+C\+\_\+\+Stop\+Polling(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_ga4b7ef09705f0e63d689cc571eaec58a0}{P\+B\+C\+\_\+\+Polling\+Duration(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_ga49e83f67d6a04916b1c5894e76bbb6f7}{P\+B\+C\+\_\+\+Request\+Status\+Bits(char const $\ast$ serial\+No, short channel)}, \hyperlink{group___benchtop_piezo_ga54ac17d898480e28e09cc88f5f7f3c1b}{P\+B\+C\+\_\+\+Request\+Position(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Stop\+L\+U\+Twave@{P\+B\+C\+\_\+\+Stop\+L\+U\+Twave}}
+\index{P\+B\+C\+\_\+\+Stop\+L\+U\+Twave@{P\+B\+C\+\_\+\+Stop\+L\+U\+Twave}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Stop\+L\+U\+Twave(char const $\ast$serial\+No, short channel)}{PBC_StopLUTwave(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Stop\+L\+U\+Twave (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga42b68554890aa817c3b6004534574ade}{}\label{group___benchtop_piezo_ga42b68554890aa817c3b6004534574ade}
+
+
+Stops the L\+UT waveform output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Stop\+Polling@{P\+B\+C\+\_\+\+Stop\+Polling}}
+\index{P\+B\+C\+\_\+\+Stop\+Polling@{P\+B\+C\+\_\+\+Stop\+Polling}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Stop\+Polling(char const $\ast$serial\+No, short channel)}{PBC_StopPolling(char const *serialNo, short channel)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Stop\+Polling (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gaa5540f372704707f78ce5a2089cfd238}{}\label{group___benchtop_piezo_gaa5540f372704707f78ce5a2089cfd238}
+
+
+Stops the internal polling loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gad1a674782790dffd614bbb6dd6713219}{P\+B\+C\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, short channel, int milliseconds)}, \hyperlink{group___benchtop_piezo_ga4b7ef09705f0e63d689cc571eaec58a0}{P\+B\+C\+\_\+\+Polling\+Duration(char const $\ast$ serial\+No, short channel)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Benchtop Piezo@{Benchtop Piezo}!P\+B\+C\+\_\+\+Wait\+For\+Message@{P\+B\+C\+\_\+\+Wait\+For\+Message}}
+\index{P\+B\+C\+\_\+\+Wait\+For\+Message@{P\+B\+C\+\_\+\+Wait\+For\+Message}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{P\+B\+C\+\_\+\+Wait\+For\+Message(char const $\ast$serial\+No, short channel, W\+O\+R\+D $\ast$message\+Type, W\+O\+R\+D $\ast$message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}{PBC_WaitForMessage(char const *serialNo, short channel, WORD *messageType, WORD *messageID, DWORD *messageData)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl P\+B\+C\+\_\+\+Wait\+For\+Message (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{short}]{channel, }
+\item[{W\+O\+RD $\ast$}]{message\+Type, }
+\item[{W\+O\+RD $\ast$}]{message\+ID, }
+\item[{D\+W\+O\+RD $\ast$}]{message\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gad1d5c600688c8d8fcca2d2482dcbc9e1}{}\label{group___benchtop_piezo_gad1d5c600688c8d8fcca2d2482dcbc9e1}
+
+
+Get the next Message\+Queue item if it is available. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em channel} & The channel. \\
+\hline
+{\em message\+Type} & Address of the W\+O\+RD to receive the message type. \\
+\hline
+{\em message\+ID} & Address of the W\+O\+RD to receive themessage ID. \\
+\hline
+{\em message\+Data} & Address of the D\+W\+O\+RD to receive the message\+Data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\index{Benchtop Piezo@{Benchtop Piezo}!T\+L\+I\+\_\+\+Build\+Device\+List@{T\+L\+I\+\_\+\+Build\+Device\+List}}
+\index{T\+L\+I\+\_\+\+Build\+Device\+List@{T\+L\+I\+\_\+\+Build\+Device\+List}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Build\+Device\+List(void)}{TLI_BuildDeviceList(void)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Build\+Device\+List (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{}\label{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}
+
+
+Build the Device\+List. 
+
+This function builds an internal collection of all devices found on the U\+SB that are not currently open. ~\newline
+ N\+O\+TE, if a device is open, it will not appear in the list until the device has been closed. 
+
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!T\+L\+I\+\_\+\+Get\+Device\+Info@{T\+L\+I\+\_\+\+Get\+Device\+Info}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+Info@{T\+L\+I\+\_\+\+Get\+Device\+Info}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+Info(char const $\ast$serial\+No, T\+L\+I\+\_\+\+Device\+Info $\ast$info)}{TLI_GetDeviceInfo(char const *serialNo, TLI_DeviceInfo *info)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+Info (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf T\+L\+I\+\_\+\+Device\+Info} $\ast$}]{info}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gac87d904f94fa99a2a8d934a43859efa8}{}\label{group___benchtop_piezo_gac87d904f94fa99a2a8d934a43859efa8}
+
+
+Get the device information from the U\+SB port. 
+
+The Device Info is read from the U\+SB port not from the device itself.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial number of the device. \\
+\hline
+{\em info} & The \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info} device information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 if not. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!T\+L\+I\+\_\+\+Get\+Device\+List@{T\+L\+I\+\_\+\+Get\+Device\+List}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List@{T\+L\+I\+\_\+\+Get\+Device\+List}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver)}{TLI_GetDeviceList(SAFEARRAY **stringsReceiver)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{}\label{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}
+
+
+Get the entire contents of the device list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver, int type\+I\+D)}{TLI_GetDeviceListByType(SAFEARRAY **stringsReceiver, int typeID)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver, }
+\item[{int}]{type\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{}\label{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}
+
+
+Get the contents of the device list which match the supplied type\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+{\em type\+ID} & The type\+ID of devices to match. \\
+\hline
+{\em type\+ID} & The type\+ID of devices to match, see Device serial numbers. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}{TLI_GetDeviceListByTypeExt(char *receiveBuffer, DWORD sizeOfBuffer, int typeID)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer, }
+\item[{int}]{type\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{}\label{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}
+
+
+Get the contents of the device list which match the supplied type\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+{\em type\+ID} & The type\+ID of devices to be matched, see Device serial numbers\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver, int $\ast$type\+I\+Ds, int length)}{TLI_GetDeviceListByTypes(SAFEARRAY **stringsReceiver, int *typeIDs, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver, }
+\item[{int $\ast$}]{type\+I\+Ds, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{}\label{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}
+
+
+Get the contents of the device list which match the supplied type\+I\+Ds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+{\em type\+I\+Ds} & list of type\+I\+Ds of devices to be matched, see Device serial numbers\\
+\hline
+{\em length} & length of type list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$type\+I\+Ds, int length)}{TLI_GetDeviceListByTypesExt(char *receiveBuffer, DWORD sizeOfBuffer, int *typeIDs, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer, }
+\item[{int $\ast$}]{type\+I\+Ds, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{}\label{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}
+
+
+Get the contents of the device list which match the supplied type\+I\+Ds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+{\em type\+I\+Ds} & list of type\+I\+Ds of devices to be matched, see Device serial numbers\\
+\hline
+{\em length} & length of type list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!T\+L\+I\+\_\+\+Get\+Device\+List\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}{TLI_GetDeviceListExt(char *receiveBuffer, DWORD sizeOfBuffer)}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{}\label{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}
+
+
+Get the entire contents of the device list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Benchtop Piezo@{Benchtop Piezo}!T\+L\+I\+\_\+\+Get\+Device\+List\+Size@{T\+L\+I\+\_\+\+Get\+Device\+List\+Size}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+Size@{T\+L\+I\+\_\+\+Get\+Device\+List\+Size}!Benchtop Piezo@{Benchtop Piezo}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}{TLI_GetDeviceListSize()}}]{\setlength{\rightskip}{0pt plus 5cm}B\+E\+N\+C\+H\+P\+I\+E\+Z\+O\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}{}\label{group___benchtop_piezo_ga15c823cbf22c07ff0a5cf2a7d3f8597a}
+
+
+Gets the device list size. 
+
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxyReturn}{Returns}
+Number of devices in device list. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___benchtop_piezo_gabd8d6e7c5ac04ea9a9107cae2f2f662e}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___benchtop_piezo_gae3d1c25e1b387122c1600a24ff4f674e}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___benchtop_piezo_gad7f13d4c222320e84fba53cb960356cc}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga813574fb20d46cab3e6a8b0e2a45c605}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___benchtop_piezo_ga5474cf4ed50cb05536cc6fbfdb9100d7}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___benchtop_piezo_ga870f66803e76829fd27a8bff9acaf06a}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___benchtop_piezo_ga3d0a2a6b6729344c9754408a561efa6b}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}

@@ -1,0 +1,1183 @@
+\hypertarget{group___filter_flipper}{}\section{Filter\+Flipper}
+\label{group___filter_flipper}\index{Filter\+Flipper@{Filter\+Flipper}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info}
+\begin{DoxyCompactList}\small\item\em Information about the device generated from serial number and U\+SB info block. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_t_l_i___hardware_information}{T\+L\+I\+\_\+\+Hardware\+Information}
+\begin{DoxyCompactList}\small\item\em Structure containing the Hardware Information. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_f_f___i_o_settings}{F\+F\+\_\+\+I\+O\+Settings}
+\begin{DoxyCompactList}\small\item\em Structure containing settings specific to filter flipper input / output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes} \+: W\+O\+RD \{ \hyperlink{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925a8b4395a9b8320459546caac329359aa4}{F\+F\+\_\+\+Toggle\+On\+Positive\+Edge} = 0x01, 
+\hyperlink{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925a6c47560c56905b0152a796aafb3ece04}{F\+F\+\_\+\+Set\+Position\+On\+Positive\+Edge} = 0x02, 
+\hyperlink{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925a504383eab193dae725e9c19cbd16ce89}{F\+F\+\_\+\+Output\+High\+At\+Set\+Position} = 0x04, 
+\hyperlink{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925af4a48d66bb4952eef14b54d401260929}{F\+F\+\_\+\+Output\+High\+Whem\+Moving} = 0x08
+ \}\begin{DoxyCompactList}\small\item\em Filter\+Flipper IO operations. \end{DoxyCompactList}
+\item 
+enum \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes} \+: W\+O\+RD \{ \\*
+\hyperlink{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aa791b8a165109c49d41d5ad06142fca38}{F\+F\+\_\+\+Input\+Button} = 0x01, 
+\hyperlink{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aa8658558cb04d68f7b6a13ca3316022ca}{F\+F\+\_\+\+Input\+Logic} = 0x02, 
+\hyperlink{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aab1e5887ceee0bbc01e2ebe28816c90f8}{F\+F\+\_\+\+Input\+Swap} = 0x04, 
+\hyperlink{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aaa080722be5b4fd9c0c567f572badb61e}{F\+F\+\_\+\+Output\+Level} = 0x10, 
+\\*
+\hyperlink{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aaa5076b7353004f7e2f924608c6d7ddd0}{F\+F\+\_\+\+Output\+Pulse} = 0x20, 
+\hyperlink{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aa4913e0d1cc2344a0a3f587f4e2a3a4a9}{F\+F\+\_\+\+Output\+Swap} = 0x40
+ \}\begin{DoxyCompactList}\small\item\em Filter\+Flipper IO operations. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{T\+L\+I\+\_\+\+Build\+Device\+List} (void)
+\begin{DoxyCompactList}\small\item\em Build the Device\+List. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size} ()
+\begin{DoxyCompactList}\small\item\em Gets the device list size. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{T\+L\+I\+\_\+\+Get\+Device\+List} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver)
+\begin{DoxyCompactList}\small\item\em Get the entire contents of the device list. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver, int type\+ID)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+ID. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gad804300914c144f54b9cd64441615206}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver, int $\ast$type\+I\+Ds, int length)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+I\+Ds. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer)
+\begin{DoxyCompactList}\small\item\em Get the entire contents of the device list. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer, int type\+ID)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+ID. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer, int $\ast$type\+I\+Ds, int length)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+I\+Ds. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+cdecl \hyperlink{group___filter_flipper_gaa995c0094733b0c8fc5e734a21594544}{T\+L\+I\+\_\+\+Get\+Device\+Info} (char const $\ast$serial\+No, \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Get the device information from the U\+SB port. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga1f5fa6fc8c81d28655e567fc1b71165a}{F\+F\+\_\+\+Open} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Open the device for communications. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga82fff625a5dc459aa6479c21f52dd295}{F\+F\+\_\+\+Close} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Disconnect and close the device. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void \hyperlink{group___filter_flipper_ga4d12df8998e0e426366d883d77b188c1}{F\+F\+\_\+\+Identify} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Sends a command to the device to make it identify iteself. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga7b83d4056426d23ab0cb15f9ff26a2c8}{F\+F\+\_\+\+Get\+Hardware\+Info} (char const $\ast$serial\+No, char $\ast$model\+No, D\+W\+O\+RD size\+Of\+Model\+No, W\+O\+RD $\ast$type, W\+O\+RD $\ast$num\+Channels, char $\ast$notes, D\+W\+O\+RD size\+Of\+Notes, D\+W\+O\+RD $\ast$firmware\+Version, W\+O\+RD $\ast$hardware\+Version, W\+O\+RD $\ast$modification\+State)
+\begin{DoxyCompactList}\small\item\em Gets the hardware information from the device. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gac54bd98148ff13d43e3e5d98a556b66b}{F\+F\+\_\+\+Get\+Firmware\+Version} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets version number of firmware. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga1205b1f0c0d7b365f09b1b883598b95c}{F\+F\+\_\+\+Get\+Software\+Version} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets version number of the device software. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga2e90fe2ac9fa22125f0dc53bcb96c06a}{F\+F\+\_\+\+Load\+Settings} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Update device with stored settings. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga11f1e483c3b3fb4fba8f932c186cb8ba}{F\+F\+\_\+\+Persist\+Settings} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Persist the devices current settings. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gab590fe36e9d766e1cdbb36b2c698437e}{F\+F\+\_\+\+Get\+Number\+Positions} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Get number of positions. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga6f1509c5fb08cd06ce649304b0f50b1e}{F\+F\+\_\+\+Home} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Home the device. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga60f079c7401ad389fb4f710651a6cc4f}{F\+F\+\_\+\+Move\+To\+Position} (char const $\ast$serial\+No, F\+F\+\_\+\+Positions position)
+\begin{DoxyCompactList}\small\item\em Move the device to the specified position (index). \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI F\+F\+\_\+\+Positions \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga28f4800e251eec14b2bb39d1c75cde45}{F\+F\+\_\+\+Get\+Position} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Get the current position. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \hyperlink{group___filter_flipper_ga21d4f0fdd6ba5064f911a909e7425766}{F\+F\+\_\+\+Get\+I\+O\+Settings} (const char $\ast$serial\+No, \hyperlink{struct_f_f___i_o_settings}{F\+F\+\_\+\+I\+O\+Settings} $\ast$settings)
+\begin{DoxyCompactList}\small\item\em Gets the I/O settings from filter flipper. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \hyperlink{group___filter_flipper_ga51ed4f4b82dc61d5d2df41a505b7b61c}{F\+F\+\_\+\+Set\+I\+O\+Settings} (const char $\ast$serial\+No, \hyperlink{struct_f_f___i_o_settings}{F\+F\+\_\+\+I\+O\+Settings} $\ast$settings)
+\begin{DoxyCompactList}\small\item\em Sets the settings on filter flipper. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI unsigned int \hyperlink{group___filter_flipper_ga6425f68bd69eb30971ba6136a739d067}{F\+F\+\_\+\+Get\+Transit\+Time} (const char $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the transit time. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \hyperlink{group___filter_flipper_ga8478e324ba6a17f9354d6ec9d769ca50}{F\+F\+\_\+\+Set\+Transit\+Time} (const char $\ast$serial\+No, unsigned int transit\+Time)
+\begin{DoxyCompactList}\small\item\em Sets the transit time. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga0822ea7134adab515f14531e9a9ca4ed}{F\+F\+\_\+\+Request\+Status} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Request status bits. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gafbd007b95ad585894c4ce816f35c31ac}{F\+F\+\_\+\+Get\+Status\+Bits} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Get the current status bits. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga612494804c3b7b119be179b436afc666}{F\+F\+\_\+\+Start\+Polling} (char const $\ast$serial\+No, int milliseconds)
+\begin{DoxyCompactList}\small\item\em Starts the internal polling loop which continuously requests position and status. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI long \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gaf3216d8a426422574793acfd180d629a}{F\+F\+\_\+\+Polling\+Duration} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the polling loop duration. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga717af7769c7fe52e6ef1c9e24cc29209}{F\+F\+\_\+\+Stop\+Polling} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Stops the internal polling loop. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga6433b811fe966ac616910acf3a3d00af}{F\+F\+\_\+\+Request\+Settings} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Requests that all settings are download from device. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga56534d9c3838d51850491ca9f26d22cc}{F\+F\+\_\+\+Clear\+Message\+Queue} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Clears the device message queue. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_ga61058da8283fc3c6c898afeae13ff7be}{F\+F\+\_\+\+Register\+Message\+Callback} (char const $\ast$serial\+No, void($\ast$function\+Pointer)())
+\begin{DoxyCompactList}\small\item\em Registers a callback on the message queue. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gadd2878f456236bfd619dcf3d98ffc4ba}{F\+F\+\_\+\+Message\+Queue\+Size} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the Message\+Queue size. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gab14979602ca09125a6c27d953c527c60}{F\+F\+\_\+\+Get\+Next\+Message} (char const $\ast$serial\+No, W\+O\+RD $\ast$message\+Type, W\+O\+RD $\ast$message\+ID, D\+W\+O\+RD $\ast$message\+Data)
+\begin{DoxyCompactList}\small\item\em Get the next Message\+Queue item. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___filter_flipper_gac02126b7973923982dcaa4cd54ea86fd}{F\+F\+\_\+\+Wait\+For\+Message} (char const $\ast$serial\+No, W\+O\+RD $\ast$message\+Type, W\+O\+RD $\ast$message\+ID, D\+W\+O\+RD $\ast$message\+Data)
+\begin{DoxyCompactList}\small\item\em Wait for next Message\+Queue item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This section details the Structures and Functions relavent to the Filter Flipper~\newline
+ For an example of how to connect to the device and perform simple operations use the following links\+: 
+\begin{DoxyItemize}
+\item Example of using the Thorlabs.Motion\+Control.Filter\+Flipper.D\+LL from a C or C++ project.~\newline
+ This requires the D\+LL to be dynamical linked.  
+\item Example of using the Thorlabs.Motion\+Control.Filter\+Flipper.D\+LL from a C\# project~\newline
+ This uses Marshalling to load and access the C D\+LL.  
+\end{DoxyItemize}The Thorlabs.\+Motion\+Control.\+Filter\+Flipper.\+D\+LL requires the following D\+L\+Ls 
+\begin{DoxyItemize}
+\item Thorlabs.\+Motion\+Control.\+Device\+Manager.  
+\end{DoxyItemize}
+
+\subsection{Enumeration Type Documentation}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+I\+O\+Modes@{F\+F\+\_\+\+I\+O\+Modes}}
+\index{F\+F\+\_\+\+I\+O\+Modes@{F\+F\+\_\+\+I\+O\+Modes}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+I\+O\+Modes}{FF_IOModes}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf F\+F\+\_\+\+I\+O\+Modes} \+: W\+O\+RD}\hypertarget{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{}\label{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}
+
+
+Filter\+Flipper IO operations. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{F\+F\+\_\+\+Toggle\+On\+Positive\+Edge@{F\+F\+\_\+\+Toggle\+On\+Positive\+Edge}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Toggle\+On\+Positive\+Edge@{F\+F\+\_\+\+Toggle\+On\+Positive\+Edge}}\item[{\em 
+F\+F\+\_\+\+Toggle\+On\+Positive\+Edge\hypertarget{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925a8b4395a9b8320459546caac329359aa4}{}\label{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925a8b4395a9b8320459546caac329359aa4}
+}]Input Mode -\/ Filter\+Flipper toggles when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes}). \index{F\+F\+\_\+\+Set\+Position\+On\+Positive\+Edge@{F\+F\+\_\+\+Set\+Position\+On\+Positive\+Edge}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Set\+Position\+On\+Positive\+Edge@{F\+F\+\_\+\+Set\+Position\+On\+Positive\+Edge}}\item[{\em 
+F\+F\+\_\+\+Set\+Position\+On\+Positive\+Edge\hypertarget{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925a6c47560c56905b0152a796aafb3ece04}{}\label{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925a6c47560c56905b0152a796aafb3ece04}
+}]Input Mode -\/ Filter\+Flipper goes to position when signalled (See \hyperlink{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{F\+F\+\_\+\+Signal\+Modes}) \index{F\+F\+\_\+\+Output\+High\+At\+Set\+Position@{F\+F\+\_\+\+Output\+High\+At\+Set\+Position}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Output\+High\+At\+Set\+Position@{F\+F\+\_\+\+Output\+High\+At\+Set\+Position}}\item[{\em 
+F\+F\+\_\+\+Output\+High\+At\+Set\+Position\hypertarget{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925a504383eab193dae725e9c19cbd16ce89}{}\label{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925a504383eab193dae725e9c19cbd16ce89}
+}]Output Mode -\/ Output signal set to match position, where 2 = Hi, 1 = Lo. \index{F\+F\+\_\+\+Output\+High\+Whem\+Moving@{F\+F\+\_\+\+Output\+High\+Whem\+Moving}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Output\+High\+Whem\+Moving@{F\+F\+\_\+\+Output\+High\+Whem\+Moving}}\item[{\em 
+F\+F\+\_\+\+Output\+High\+Whem\+Moving\hypertarget{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925af4a48d66bb4952eef14b54d401260929}{}\label{group___filter_flipper_gga3f9223ae197e5703d709034a238d3925af4a48d66bb4952eef14b54d401260929}
+}]Output Mode -\/ Output signal high when Filter\+Flipper is moving. \end{description}
+\end{Desc}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Signal\+Modes@{F\+F\+\_\+\+Signal\+Modes}}
+\index{F\+F\+\_\+\+Signal\+Modes@{F\+F\+\_\+\+Signal\+Modes}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Signal\+Modes}{FF_SignalModes}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf F\+F\+\_\+\+Signal\+Modes} \+: W\+O\+RD}\hypertarget{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}{}\label{group___filter_flipper_ga0049497885ad3480ad2ccbb1d354809a}
+
+
+Filter\+Flipper IO operations. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{F\+F\+\_\+\+Input\+Button@{F\+F\+\_\+\+Input\+Button}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Input\+Button@{F\+F\+\_\+\+Input\+Button}}\item[{\em 
+F\+F\+\_\+\+Input\+Button\hypertarget{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aa791b8a165109c49d41d5ad06142fca38}{}\label{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aa791b8a165109c49d41d5ad06142fca38}
+}]Signal is raised when Button Pressed i.\+e. Hi to Lo. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}. \index{F\+F\+\_\+\+Input\+Logic@{F\+F\+\_\+\+Input\+Logic}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Input\+Logic@{F\+F\+\_\+\+Input\+Logic}}\item[{\em 
+F\+F\+\_\+\+Input\+Logic\hypertarget{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aa8658558cb04d68f7b6a13ca3316022ca}{}\label{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aa8658558cb04d68f7b6a13ca3316022ca}
+}]Signal is raised on on rising edge Lo to Hi. Action taken is defined by \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}. \index{F\+F\+\_\+\+Input\+Swap@{F\+F\+\_\+\+Input\+Swap}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Input\+Swap@{F\+F\+\_\+\+Input\+Swap}}\item[{\em 
+F\+F\+\_\+\+Input\+Swap\hypertarget{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aab1e5887ceee0bbc01e2ebe28816c90f8}{}\label{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aab1e5887ceee0bbc01e2ebe28816c90f8}
+}]when set will swap Position 1 and 2. \index{F\+F\+\_\+\+Output\+Level@{F\+F\+\_\+\+Output\+Level}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Output\+Level@{F\+F\+\_\+\+Output\+Level}}\item[{\em 
+F\+F\+\_\+\+Output\+Level\hypertarget{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aaa080722be5b4fd9c0c567f572badb61e}{}\label{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aaa080722be5b4fd9c0c567f572badb61e}
+}]Output is set to either be hi when flipper at Position 2 or flipper is moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}). \index{F\+F\+\_\+\+Output\+Pulse@{F\+F\+\_\+\+Output\+Pulse}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Output\+Pulse@{F\+F\+\_\+\+Output\+Pulse}}\item[{\em 
+F\+F\+\_\+\+Output\+Pulse\hypertarget{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aaa5076b7353004f7e2f924608c6d7ddd0}{}\label{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aaa5076b7353004f7e2f924608c6d7ddd0}
+}]Output is set to pulse when flipper operates, either when flipper reaches Position or flipper starts moving (see \hyperlink{group___filter_flipper_ga3f9223ae197e5703d709034a238d3925}{F\+F\+\_\+\+I\+O\+Modes}). \index{F\+F\+\_\+\+Output\+Swap@{F\+F\+\_\+\+Output\+Swap}!Filter\+Flipper@{Filter\+Flipper}}\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Output\+Swap@{F\+F\+\_\+\+Output\+Swap}}\item[{\em 
+F\+F\+\_\+\+Output\+Swap\hypertarget{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aa4913e0d1cc2344a0a3f587f4e2a3a4a9}{}\label{group___filter_flipper_gga0049497885ad3480ad2ccbb1d354809aa4913e0d1cc2344a0a3f587f4e2a3a4a9}
+}]when set will swap output logic levels. \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Clear\+Message\+Queue@{F\+F\+\_\+\+Clear\+Message\+Queue}}
+\index{F\+F\+\_\+\+Clear\+Message\+Queue@{F\+F\+\_\+\+Clear\+Message\+Queue}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Clear\+Message\+Queue(char const $\ast$serial\+No)}{FF_ClearMessageQueue(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl F\+F\+\_\+\+Clear\+Message\+Queue (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga56534d9c3838d51850491ca9f26d22cc}{}\label{group___filter_flipper_ga56534d9c3838d51850491ca9f26d22cc}
+
+
+Clears the device message queue. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Close@{F\+F\+\_\+\+Close}}
+\index{F\+F\+\_\+\+Close@{F\+F\+\_\+\+Close}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Close(char const $\ast$serial\+No)}{FF_Close(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl F\+F\+\_\+\+Close (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga82fff625a5dc459aa6479c21f52dd295}{}\label{group___filter_flipper_ga82fff625a5dc459aa6479c21f52dd295}
+
+
+Disconnect and close the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial no of the device to be disconnected. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga1f5fa6fc8c81d28655e567fc1b71165a}{F\+F\+\_\+\+Open(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Get\+Firmware\+Version@{F\+F\+\_\+\+Get\+Firmware\+Version}}
+\index{F\+F\+\_\+\+Get\+Firmware\+Version@{F\+F\+\_\+\+Get\+Firmware\+Version}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Get\+Firmware\+Version(char const $\ast$serial\+No)}{FF_GetFirmwareVersion(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl F\+F\+\_\+\+Get\+Firmware\+Version (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gac54bd98148ff13d43e3e5d98a556b66b}{}\label{group___filter_flipper_gac54bd98148ff13d43e3e5d98a556b66b}
+
+
+Gets version number of firmware. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The firmware version number made up of 4 byte parts. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Get\+Hardware\+Info@{F\+F\+\_\+\+Get\+Hardware\+Info}}
+\index{F\+F\+\_\+\+Get\+Hardware\+Info@{F\+F\+\_\+\+Get\+Hardware\+Info}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Get\+Hardware\+Info(char const $\ast$serial\+No, char $\ast$model\+No, D\+W\+O\+R\+D size\+Of\+Model\+No, W\+O\+R\+D $\ast$type, W\+O\+R\+D $\ast$num\+Channels, char $\ast$notes, D\+W\+O\+R\+D size\+Of\+Notes, D\+W\+O\+R\+D $\ast$firmware\+Version, W\+O\+R\+D $\ast$hardware\+Version, W\+O\+R\+D $\ast$modification\+State)}{FF_GetHardwareInfo(char const *serialNo, char *modelNo, DWORD sizeOfModelNo, WORD *type, WORD *numChannels, char *notes, DWORD sizeOfNotes, DWORD *firmwareVersion, WORD *hardwareVersion, WORD *modificationState)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl F\+F\+\_\+\+Get\+Hardware\+Info (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{char $\ast$}]{model\+No, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Model\+No, }
+\item[{W\+O\+RD $\ast$}]{type, }
+\item[{W\+O\+RD $\ast$}]{num\+Channels, }
+\item[{char $\ast$}]{notes, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Notes, }
+\item[{D\+W\+O\+RD $\ast$}]{firmware\+Version, }
+\item[{W\+O\+RD $\ast$}]{hardware\+Version, }
+\item[{W\+O\+RD $\ast$}]{modification\+State}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga7b83d4056426d23ab0cb15f9ff26a2c8}{}\label{group___filter_flipper_ga7b83d4056426d23ab0cb15f9ff26a2c8}
+
+
+Gets the hardware information from the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em model\+No} & Address of a buffer to receive the model number string. Minimum 8 characters \\
+\hline
+{\em size\+Of\+Model\+No} & The size of the model number buffer, minimum of 8 characters. \\
+\hline
+{\em type} & Address of a W\+O\+RD to receive the hardware type number. \\
+\hline
+{\em num\+Channels} & Address of a short to receive the number of channels. \\
+\hline
+{\em notes} & Address of a buffer to receive the notes describing the device. \\
+\hline
+{\em size\+Of\+Notes} & The size of the notes buffer, minimum of 48 characters. \\
+\hline
+{\em firmware\+Version} & Address of a D\+W\+O\+RD to receive the firmware version number made up of 4 byte parts. \\
+\hline
+{\em hardware\+Version} & Address of a W\+O\+RD to receive the hardware version number. \\
+\hline
+{\em modification\+State} & Address of a W\+O\+RD to receive the hardware modification state number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Get\+I\+O\+Settings@{F\+F\+\_\+\+Get\+I\+O\+Settings}}
+\index{F\+F\+\_\+\+Get\+I\+O\+Settings@{F\+F\+\_\+\+Get\+I\+O\+Settings}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Get\+I\+O\+Settings(const char $\ast$serial\+No, F\+F\+\_\+\+I\+O\+Settings $\ast$settings)}{FF_GetIOSettings(const char *serialNo, FF_IOSettings *settings)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short F\+F\+\_\+\+Get\+I\+O\+Settings (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{serial\+No, }
+\item[{{\bf F\+F\+\_\+\+I\+O\+Settings} $\ast$}]{settings}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga21d4f0fdd6ba5064f911a909e7425766}{}\label{group___filter_flipper_ga21d4f0fdd6ba5064f911a909e7425766}
+
+
+Gets the I/O settings from filter flipper. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em settings} & The address of the \hyperlink{struct_f_f___i_o_settings}{F\+F\+\_\+\+I\+O\+Settings} structure to receive the Filter Flipper I/O settings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga51ed4f4b82dc61d5d2df41a505b7b61c}{F\+F\+\_\+\+Set\+I\+O\+Settings(const char $\ast$ serial\+No, F\+F\+\_\+\+I\+O\+Settings $\ast$settings)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Get\+Next\+Message@{F\+F\+\_\+\+Get\+Next\+Message}}
+\index{F\+F\+\_\+\+Get\+Next\+Message@{F\+F\+\_\+\+Get\+Next\+Message}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Get\+Next\+Message(char const $\ast$serial\+No, W\+O\+R\+D $\ast$message\+Type, W\+O\+R\+D $\ast$message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}{FF_GetNextMessage(char const *serialNo, WORD *messageType, WORD *messageID, DWORD *messageData)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl F\+F\+\_\+\+Get\+Next\+Message (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{W\+O\+RD $\ast$}]{message\+Type, }
+\item[{W\+O\+RD $\ast$}]{message\+ID, }
+\item[{D\+W\+O\+RD $\ast$}]{message\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gab14979602ca09125a6c27d953c527c60}{}\label{group___filter_flipper_gab14979602ca09125a6c27d953c527c60}
+
+
+Get the next Message\+Queue item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em message\+Type} & The address of the parameter to receive the message Type. \\
+\hline
+{\em message\+ID} & The address of the parameter to receive the message id. \\
+\hline
+{\em message\+Data} & The address of the parameter to receive the message data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+F\+F\+\_\+\+Register\+Message\+Callback(char const $\ast$ serial\+No, void ($\ast$ function\+Pointer)()), \hyperlink{group___filter_flipper_gadd2878f456236bfd619dcf3d98ffc4ba}{F\+F\+\_\+\+Message\+Queue\+Size(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_gac02126b7973923982dcaa4cd54ea86fd}{F\+F\+\_\+\+Wait\+For\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Get\+Number\+Positions@{F\+F\+\_\+\+Get\+Number\+Positions}}
+\index{F\+F\+\_\+\+Get\+Number\+Positions@{F\+F\+\_\+\+Get\+Number\+Positions}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Get\+Number\+Positions(char const $\ast$serial\+No)}{FF_GetNumberPositions(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl F\+F\+\_\+\+Get\+Number\+Positions (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gab590fe36e9d766e1cdbb36b2c698437e}{}\label{group___filter_flipper_gab590fe36e9d766e1cdbb36b2c698437e}
+
+
+Get number of positions. 
+
+The Get\+Number\+Positions function will get the maximum position reachable by the device.~\newline
+ The motor may need to be Homed before this parameter can be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of positions. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+F\+F\+\_\+\+Move\+To\+Position(char const $\ast$ serial\+No, int index), \hyperlink{group___filter_flipper_ga28f4800e251eec14b2bb39d1c75cde45}{F\+F\+\_\+\+Get\+Position(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_ga6f1509c5fb08cd06ce649304b0f50b1e}{F\+F\+\_\+\+Home(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Get\+Position@{F\+F\+\_\+\+Get\+Position}}
+\index{F\+F\+\_\+\+Get\+Position@{F\+F\+\_\+\+Get\+Position}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Get\+Position(char const $\ast$serial\+No)}{FF_GetPosition(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI F\+F\+\_\+\+Positions \+\_\+\+\_\+cdecl F\+F\+\_\+\+Get\+Position (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga28f4800e251eec14b2bb39d1c75cde45}{}\label{group___filter_flipper_ga28f4800e251eec14b2bb39d1c75cde45}
+
+
+Get the current position. 
+
+The current position is the last recorded position.~\newline
+ The current position is updated either by the polling mechanism or~\newline
+ by calling Request\+Position or Request\+Status.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current position 1 or 2. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gab590fe36e9d766e1cdbb36b2c698437e}{F\+F\+\_\+\+Get\+Number\+Positions(char const $\ast$ serial\+No)}, F\+F\+\_\+\+Move\+To\+Position(char const $\ast$ serial\+No, int index), \hyperlink{group___filter_flipper_ga6f1509c5fb08cd06ce649304b0f50b1e}{F\+F\+\_\+\+Home(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Get\+Software\+Version@{F\+F\+\_\+\+Get\+Software\+Version}}
+\index{F\+F\+\_\+\+Get\+Software\+Version@{F\+F\+\_\+\+Get\+Software\+Version}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Get\+Software\+Version(char const $\ast$serial\+No)}{FF_GetSoftwareVersion(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl F\+F\+\_\+\+Get\+Software\+Version (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga1205b1f0c0d7b365f09b1b883598b95c}{}\label{group___filter_flipper_ga1205b1f0c0d7b365f09b1b883598b95c}
+
+
+Gets version number of the device software. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The device software version number made up of 4 byte parts. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Get\+Status\+Bits@{F\+F\+\_\+\+Get\+Status\+Bits}}
+\index{F\+F\+\_\+\+Get\+Status\+Bits@{F\+F\+\_\+\+Get\+Status\+Bits}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Get\+Status\+Bits(char const $\ast$serial\+No)}{FF_GetStatusBits(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI D\+W\+O\+RD \+\_\+\+\_\+cdecl F\+F\+\_\+\+Get\+Status\+Bits (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gafbd007b95ad585894c4ce816f35c31ac}{}\label{group___filter_flipper_gafbd007b95ad585894c4ce816f35c31ac}
+
+
+Get the current status bits. 
+
+This returns the latest status bits received from the device.~\newline
+ To get new status bits, use \hyperlink{group___filter_flipper_ga0822ea7134adab515f14531e9a9ca4ed}{F\+F\+\_\+\+Request\+Status(char const $\ast$ serial\+No)} or use the polling functions, \hyperlink{group___filter_flipper_ga612494804c3b7b119be179b436afc666}{F\+F\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The status bits from the device \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+0x00000001&CW hardware limit switch (0=No contact, 1=Contact). \\\cline{1-2}
+0x00000002&C\+CW hardware limit switch (0=No contact, 1=Contact). \\\cline{1-2}
+0x00000004&Not applicable. \\\cline{1-2}
+0x00000008&Not applicable. \\\cline{1-2}
+0x00000010&Not applicable. \\\cline{1-2}
+0x00000020&Not applicable. \\\cline{1-2}
+0x00000040&Shaft jogging clockwise (1=Moving, 0=Stationary). \\\cline{1-2}
+0x00000080&Shaft jogging counterclockwise (1=Moving, 0=Stationary). \\\cline{1-2}
+0x00000100&Not applicable. \\\cline{1-2}
+0x00000200&\\\cline{1-2}
+...&\\\cline{1-2}
+0x00080000&\\\cline{1-2}
+0x00100000&Digital input 1 state (1=Logic high, 0=Logic low). \\\cline{1-2}
+0x00200000&Digital input 2 state (1=Logic high, 0=Logic low). \\\cline{1-2}
+0x00400000&Not applicable. \\\cline{1-2}
+0x00800000&\\\cline{1-2}
+...&\\\cline{1-2}
+0x02000000&\\\cline{1-2}
+0x04000000&For Future Use. \\\cline{1-2}
+0x08000000&For Future Use. \\\cline{1-2}
+0x10000000&For Future Use. \\\cline{1-2}
+0x20000000&Active (1=Active, 0=Not active). \\\cline{1-2}
+0x40000000&For Future Use. \\\cline{1-2}
+0x80000000&Channel enabled (1=Enabled, 0=Disabled). \\\cline{1-2}
+\end{longtabu}
+
+
+Bits 21 and 22 (Digital Input States) are only applicable if the associated digital input is fitted to your controller -\/ see the relevant handbook for more details. 
+\end{DoxyReturn}
+
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga0822ea7134adab515f14531e9a9ca4ed}{F\+F\+\_\+\+Request\+Status(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_ga612494804c3b7b119be179b436afc666}{F\+F\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Get\+Transit\+Time@{F\+F\+\_\+\+Get\+Transit\+Time}}
+\index{F\+F\+\_\+\+Get\+Transit\+Time@{F\+F\+\_\+\+Get\+Transit\+Time}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Get\+Transit\+Time(const char $\ast$serial\+No)}{FF_GetTransitTime(const char *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI unsigned int F\+F\+\_\+\+Get\+Transit\+Time (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga6425f68bd69eb30971ba6136a739d067}{}\label{group___filter_flipper_ga6425f68bd69eb30971ba6136a739d067}
+
+
+Gets the transit time. 
+
+\begin{DoxyReturn}{Returns}
+The transit time in milliseconds, range 300 to 2800 ms. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga8478e324ba6a17f9354d6ec9d769ca50}{F\+F\+\_\+\+Set\+Transit\+Time(const char $\ast$ serial\+No, unsigned int transit\+Time)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Home@{F\+F\+\_\+\+Home}}
+\index{F\+F\+\_\+\+Home@{F\+F\+\_\+\+Home}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Home(char const $\ast$serial\+No)}{FF_Home(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl F\+F\+\_\+\+Home (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga6f1509c5fb08cd06ce649304b0f50b1e}{}\label{group___filter_flipper_ga6f1509c5fb08cd06ce649304b0f50b1e}
+
+
+Home the device. 
+
+Homing the device will set the device to a known state and determine the home position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if move successfully started. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gab590fe36e9d766e1cdbb36b2c698437e}{F\+F\+\_\+\+Get\+Number\+Positions(char const $\ast$ serial\+No)}, F\+F\+\_\+\+Move\+To\+Position(char const $\ast$ serial\+No, int index), \hyperlink{group___filter_flipper_ga28f4800e251eec14b2bb39d1c75cde45}{F\+F\+\_\+\+Get\+Position(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Identify@{F\+F\+\_\+\+Identify}}
+\index{F\+F\+\_\+\+Identify@{F\+F\+\_\+\+Identify}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Identify(char const $\ast$serial\+No)}{FF_Identify(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void F\+F\+\_\+\+Identify (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga4d12df8998e0e426366d883d77b188c1}{}\label{group___filter_flipper_ga4d12df8998e0e426366d883d77b188c1}
+
+
+Sends a command to the device to make it identify iteself. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Load\+Settings@{F\+F\+\_\+\+Load\+Settings}}
+\index{F\+F\+\_\+\+Load\+Settings@{F\+F\+\_\+\+Load\+Settings}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Load\+Settings(char const $\ast$serial\+No)}{FF_LoadSettings(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl F\+F\+\_\+\+Load\+Settings (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga2e90fe2ac9fa22125f0dc53bcb96c06a}{}\label{group___filter_flipper_ga2e90fe2ac9fa22125f0dc53bcb96c06a}
+
+
+Update device with stored settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Message\+Queue\+Size@{F\+F\+\_\+\+Message\+Queue\+Size}}
+\index{F\+F\+\_\+\+Message\+Queue\+Size@{F\+F\+\_\+\+Message\+Queue\+Size}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Message\+Queue\+Size(char const $\ast$serial\+No)}{FF_MessageQueueSize(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl F\+F\+\_\+\+Message\+Queue\+Size (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gadd2878f456236bfd619dcf3d98ffc4ba}{}\label{group___filter_flipper_gadd2878f456236bfd619dcf3d98ffc4ba}
+
+
+Gets the Message\+Queue size. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of messages in the queue. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+F\+F\+\_\+\+Register\+Message\+Callback(char const $\ast$ serial\+No, void ($\ast$ function\+Pointer)()), \hyperlink{group___filter_flipper_gab14979602ca09125a6c27d953c527c60}{F\+F\+\_\+\+Get\+Next\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}, \hyperlink{group___filter_flipper_gac02126b7973923982dcaa4cd54ea86fd}{F\+F\+\_\+\+Wait\+For\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Move\+To\+Position@{F\+F\+\_\+\+Move\+To\+Position}}
+\index{F\+F\+\_\+\+Move\+To\+Position@{F\+F\+\_\+\+Move\+To\+Position}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Move\+To\+Position(char const $\ast$serial\+No, F\+F\+\_\+\+Positions position)}{FF_MoveToPosition(char const *serialNo, FF_Positions position)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl F\+F\+\_\+\+Move\+To\+Position (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{F\+F\+\_\+\+Positions}]{position}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga60f079c7401ad389fb4f710651a6cc4f}{}\label{group___filter_flipper_ga60f079c7401ad389fb4f710651a6cc4f}
+
+
+Move the device to the specified position (index). 
+
+The motor may need to be Homed before a position can be set
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em position} & The required position. must be 1 or 2. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if move successfully started. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gab590fe36e9d766e1cdbb36b2c698437e}{F\+F\+\_\+\+Get\+Number\+Positions(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_ga28f4800e251eec14b2bb39d1c75cde45}{F\+F\+\_\+\+Get\+Position(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_ga6f1509c5fb08cd06ce649304b0f50b1e}{F\+F\+\_\+\+Home(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Open@{F\+F\+\_\+\+Open}}
+\index{F\+F\+\_\+\+Open@{F\+F\+\_\+\+Open}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Open(char const $\ast$serial\+No)}{FF_Open(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl F\+F\+\_\+\+Open (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga1f5fa6fc8c81d28655e567fc1b71165a}{}\label{group___filter_flipper_ga1f5fa6fc8c81d28655e567fc1b71165a}
+
+
+Open the device for communications. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial no of the device to be connected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga82fff625a5dc459aa6479c21f52dd295}{F\+F\+\_\+\+Close(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Persist\+Settings@{F\+F\+\_\+\+Persist\+Settings}}
+\index{F\+F\+\_\+\+Persist\+Settings@{F\+F\+\_\+\+Persist\+Settings}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Persist\+Settings(char const $\ast$serial\+No)}{FF_PersistSettings(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl F\+F\+\_\+\+Persist\+Settings (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga11f1e483c3b3fb4fba8f932c186cb8ba}{}\label{group___filter_flipper_ga11f1e483c3b3fb4fba8f932c186cb8ba}
+
+
+Persist the devices current settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Polling\+Duration@{F\+F\+\_\+\+Polling\+Duration}}
+\index{F\+F\+\_\+\+Polling\+Duration@{F\+F\+\_\+\+Polling\+Duration}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Polling\+Duration(char const $\ast$serial\+No)}{FF_PollingDuration(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI long \+\_\+\+\_\+cdecl F\+F\+\_\+\+Polling\+Duration (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gaf3216d8a426422574793acfd180d629a}{}\label{group___filter_flipper_gaf3216d8a426422574793acfd180d629a}
+
+
+Gets the polling loop duration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The time between polls in milliseconds or 0 if polling is not active. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga612494804c3b7b119be179b436afc666}{F\+F\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}, \hyperlink{group___filter_flipper_ga717af7769c7fe52e6ef1c9e24cc29209}{F\+F\+\_\+\+Stop\+Polling(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Register\+Message\+Callback@{F\+F\+\_\+\+Register\+Message\+Callback}}
+\index{F\+F\+\_\+\+Register\+Message\+Callback@{F\+F\+\_\+\+Register\+Message\+Callback}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Register\+Message\+Callback(char const $\ast$serial\+No, void($\ast$function\+Pointer)())}{FF_RegisterMessageCallback(char const *serialNo, void(*functionPointer)())}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl F\+F\+\_\+\+Register\+Message\+Callback (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{void($\ast$)()}]{function\+Pointer}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga61058da8283fc3c6c898afeae13ff7be}{}\label{group___filter_flipper_ga61058da8283fc3c6c898afeae13ff7be}
+
+
+Registers a callback on the message queue. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em function\+Pointer} & A function pointer to be called whenever messages are received. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gadd2878f456236bfd619dcf3d98ffc4ba}{F\+F\+\_\+\+Message\+Queue\+Size(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_gab14979602ca09125a6c27d953c527c60}{F\+F\+\_\+\+Get\+Next\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}, \hyperlink{group___filter_flipper_gac02126b7973923982dcaa4cd54ea86fd}{F\+F\+\_\+\+Wait\+For\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Request\+Settings@{F\+F\+\_\+\+Request\+Settings}}
+\index{F\+F\+\_\+\+Request\+Settings@{F\+F\+\_\+\+Request\+Settings}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Request\+Settings(char const $\ast$serial\+No)}{FF_RequestSettings(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl F\+F\+\_\+\+Request\+Settings (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga6433b811fe966ac616910acf3a3d00af}{}\label{group___filter_flipper_ga6433b811fe966ac616910acf3a3d00af}
+
+
+Requests that all settings are download from device. 
+
+This function requests that the device upload all it\textquotesingle{}s settings to the D\+LL.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Request\+Status@{F\+F\+\_\+\+Request\+Status}}
+\index{F\+F\+\_\+\+Request\+Status@{F\+F\+\_\+\+Request\+Status}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Request\+Status(char const $\ast$serial\+No)}{FF_RequestStatus(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl F\+F\+\_\+\+Request\+Status (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga0822ea7134adab515f14531e9a9ca4ed}{}\label{group___filter_flipper_ga0822ea7134adab515f14531e9a9ca4ed}
+
+
+Request status bits. 
+
+This needs to be called to get the device to send it\textquotesingle{}s current status.~\newline
+ N\+O\+TE this is called automatically if Polling is enabled for the device using \hyperlink{group___filter_flipper_ga612494804c3b7b119be179b436afc666}{F\+F\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successfully requested. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gafbd007b95ad585894c4ce816f35c31ac}{F\+F\+\_\+\+Get\+Status\+Bits(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_ga612494804c3b7b119be179b436afc666}{F\+F\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Set\+I\+O\+Settings@{F\+F\+\_\+\+Set\+I\+O\+Settings}}
+\index{F\+F\+\_\+\+Set\+I\+O\+Settings@{F\+F\+\_\+\+Set\+I\+O\+Settings}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Set\+I\+O\+Settings(const char $\ast$serial\+No, F\+F\+\_\+\+I\+O\+Settings $\ast$settings)}{FF_SetIOSettings(const char *serialNo, FF_IOSettings *settings)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short F\+F\+\_\+\+Set\+I\+O\+Settings (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{serial\+No, }
+\item[{{\bf F\+F\+\_\+\+I\+O\+Settings} $\ast$}]{settings}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga51ed4f4b82dc61d5d2df41a505b7b61c}{}\label{group___filter_flipper_ga51ed4f4b82dc61d5d2df41a505b7b61c}
+
+
+Sets the settings on filter flipper. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em settings} & The address of the \hyperlink{struct_f_f___i_o_settings}{F\+F\+\_\+\+I\+O\+Settings} structure containing the new Filter Flipper I/O settings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga21d4f0fdd6ba5064f911a909e7425766}{F\+F\+\_\+\+Get\+I\+O\+Settings(const char $\ast$ serial\+No, F\+F\+\_\+\+I\+O\+Settings $\ast$settings)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Set\+Transit\+Time@{F\+F\+\_\+\+Set\+Transit\+Time}}
+\index{F\+F\+\_\+\+Set\+Transit\+Time@{F\+F\+\_\+\+Set\+Transit\+Time}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Set\+Transit\+Time(const char $\ast$serial\+No, unsigned int transit\+Time)}{FF_SetTransitTime(const char *serialNo, unsigned int transitTime)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short F\+F\+\_\+\+Set\+Transit\+Time (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{serial\+No, }
+\item[{unsigned int}]{transit\+Time}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga8478e324ba6a17f9354d6ec9d769ca50}{}\label{group___filter_flipper_ga8478e324ba6a17f9354d6ec9d769ca50}
+
+
+Sets the transit time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em transit\+Time} & The transit time in milliseconds, range 300 to 2800 ms. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga6425f68bd69eb30971ba6136a739d067}{F\+F\+\_\+\+Get\+Transit\+Time(const char $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Start\+Polling@{F\+F\+\_\+\+Start\+Polling}}
+\index{F\+F\+\_\+\+Start\+Polling@{F\+F\+\_\+\+Start\+Polling}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Start\+Polling(char const $\ast$serial\+No, int milliseconds)}{FF_StartPolling(char const *serialNo, int milliseconds)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl F\+F\+\_\+\+Start\+Polling (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{int}]{milliseconds}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga612494804c3b7b119be179b436afc666}{}\label{group___filter_flipper_ga612494804c3b7b119be179b436afc666}
+
+
+Starts the internal polling loop which continuously requests position and status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em milliseconds} & The milliseconds polling rate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga717af7769c7fe52e6ef1c9e24cc29209}{F\+F\+\_\+\+Stop\+Polling(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_gaf3216d8a426422574793acfd180d629a}{F\+F\+\_\+\+Polling\+Duration(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_ga0822ea7134adab515f14531e9a9ca4ed}{F\+F\+\_\+\+Request\+Status(char const $\ast$ serial\+No)}, F\+F\+\_\+\+Request\+Position(char const $\ast$ serial\+No)
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Stop\+Polling@{F\+F\+\_\+\+Stop\+Polling}}
+\index{F\+F\+\_\+\+Stop\+Polling@{F\+F\+\_\+\+Stop\+Polling}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Stop\+Polling(char const $\ast$serial\+No)}{FF_StopPolling(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl F\+F\+\_\+\+Stop\+Polling (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga717af7769c7fe52e6ef1c9e24cc29209}{}\label{group___filter_flipper_ga717af7769c7fe52e6ef1c9e24cc29209}
+
+
+Stops the internal polling loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga612494804c3b7b119be179b436afc666}{F\+F\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}, \hyperlink{group___filter_flipper_gaf3216d8a426422574793acfd180d629a}{F\+F\+\_\+\+Polling\+Duration(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Flipper@{Filter\+Flipper}!F\+F\+\_\+\+Wait\+For\+Message@{F\+F\+\_\+\+Wait\+For\+Message}}
+\index{F\+F\+\_\+\+Wait\+For\+Message@{F\+F\+\_\+\+Wait\+For\+Message}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{F\+F\+\_\+\+Wait\+For\+Message(char const $\ast$serial\+No, W\+O\+R\+D $\ast$message\+Type, W\+O\+R\+D $\ast$message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}{FF_WaitForMessage(char const *serialNo, WORD *messageType, WORD *messageID, DWORD *messageData)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl F\+F\+\_\+\+Wait\+For\+Message (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{W\+O\+RD $\ast$}]{message\+Type, }
+\item[{W\+O\+RD $\ast$}]{message\+ID, }
+\item[{D\+W\+O\+RD $\ast$}]{message\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gac02126b7973923982dcaa4cd54ea86fd}{}\label{group___filter_flipper_gac02126b7973923982dcaa4cd54ea86fd}
+
+
+Wait for next Message\+Queue item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em message\+Type} & The address of the parameter to receive the message Type. \\
+\hline
+{\em message\+ID} & The address of the parameter to receive the message id. \\
+\hline
+{\em message\+Data} & The address of the parameter to receive the message data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+F\+F\+\_\+\+Register\+Message\+Callback(char const $\ast$ serial\+No, void ($\ast$ function\+Pointer)()), \hyperlink{group___filter_flipper_gadd2878f456236bfd619dcf3d98ffc4ba}{F\+F\+\_\+\+Message\+Queue\+Size(char const $\ast$ serial\+No)}, \hyperlink{group___filter_flipper_gab14979602ca09125a6c27d953c527c60}{F\+F\+\_\+\+Get\+Next\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!T\+L\+I\+\_\+\+Build\+Device\+List@{T\+L\+I\+\_\+\+Build\+Device\+List}}
+\index{T\+L\+I\+\_\+\+Build\+Device\+List@{T\+L\+I\+\_\+\+Build\+Device\+List}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Build\+Device\+List(void)}{TLI_BuildDeviceList(void)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Build\+Device\+List (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{}\label{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}
+
+
+Build the Device\+List. 
+
+This function builds an internal collection of all devices found on the U\+SB that are not currently open. ~\newline
+ N\+O\+TE, if a device is open, it will not appear in the list until the device has been closed. 
+
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_flipper_gad804300914c144f54b9cd64441615206}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!T\+L\+I\+\_\+\+Get\+Device\+Info@{T\+L\+I\+\_\+\+Get\+Device\+Info}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+Info@{T\+L\+I\+\_\+\+Get\+Device\+Info}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+Info(char const $\ast$serial\+No, T\+L\+I\+\_\+\+Device\+Info $\ast$info)}{TLI_GetDeviceInfo(char const *serialNo, TLI_DeviceInfo *info)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+Info (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf T\+L\+I\+\_\+\+Device\+Info} $\ast$}]{info}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gaa995c0094733b0c8fc5e734a21594544}{}\label{group___filter_flipper_gaa995c0094733b0c8fc5e734a21594544}
+
+
+Get the device information from the U\+SB port. 
+
+The Device Info is read from the U\+SB port not from the device itself.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial number of the device. \\
+\hline
+{\em info} & The \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info} device information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 if not. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_flipper_gad804300914c144f54b9cd64441615206}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!T\+L\+I\+\_\+\+Get\+Device\+List@{T\+L\+I\+\_\+\+Get\+Device\+List}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List@{T\+L\+I\+\_\+\+Get\+Device\+List}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver)}{TLI_GetDeviceList(SAFEARRAY **stringsReceiver)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{}\label{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}
+
+
+Get the entire contents of the device list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_flipper_gad804300914c144f54b9cd64441615206}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver, int type\+I\+D)}{TLI_GetDeviceListByType(SAFEARRAY **stringsReceiver, int typeID)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver, }
+\item[{int}]{type\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{}\label{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}
+
+
+Get the contents of the device list which match the supplied type\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+{\em type\+ID} & The type\+ID of devices to match, see Device serial numbers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_flipper_gad804300914c144f54b9cd64441615206}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}{TLI_GetDeviceListByTypeExt(char *receiveBuffer, DWORD sizeOfBuffer, int typeID)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer, }
+\item[{int}]{type\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{}\label{group___filter_flipper_ga535456f85172aad061d297ca934412ad}
+
+
+Get the contents of the device list which match the supplied type\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+{\em type\+ID} & The type\+ID of devices to be matched, see Device serial numbers\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_flipper_gad804300914c144f54b9cd64441615206}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver, int $\ast$type\+I\+Ds, int length)}{TLI_GetDeviceListByTypes(SAFEARRAY **stringsReceiver, int *typeIDs, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver, }
+\item[{int $\ast$}]{type\+I\+Ds, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gad804300914c144f54b9cd64441615206}{}\label{group___filter_flipper_gad804300914c144f54b9cd64441615206}
+
+
+Get the contents of the device list which match the supplied type\+I\+Ds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+{\em type\+I\+Ds} & list of type\+I\+Ds of devices to be matched, see Device serial numbers\\
+\hline
+{\em length} & length of type list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$type\+I\+Ds, int length)}{TLI_GetDeviceListByTypesExt(char *receiveBuffer, DWORD sizeOfBuffer, int *typeIDs, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer, }
+\item[{int $\ast$}]{type\+I\+Ds, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{}\label{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}
+
+
+Get the contents of the device list which match the supplied type\+I\+Ds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+{\em type\+I\+Ds} & list of type\+I\+Ds of devices to be matched, see Device serial numbers\\
+\hline
+{\em length} & length of type list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_flipper_gad804300914c144f54b9cd64441615206}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!T\+L\+I\+\_\+\+Get\+Device\+List\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}{TLI_GetDeviceListExt(char *receiveBuffer, DWORD sizeOfBuffer)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{}\label{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}
+
+
+Get the entire contents of the device list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_flipper_gad804300914c144f54b9cd64441615206}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Flipper@{Filter\+Flipper}!T\+L\+I\+\_\+\+Get\+Device\+List\+Size@{T\+L\+I\+\_\+\+Get\+Device\+List\+Size}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+Size@{T\+L\+I\+\_\+\+Get\+Device\+List\+Size}!Filter\+Flipper@{Filter\+Flipper}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}{TLI_GetDeviceListSize()}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+F\+L\+I\+P\+P\+E\+R\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}{}\label{group___filter_flipper_gae5163b0be34e0ebe2cccb770adab48f8}
+
+
+Gets the device list size. 
+
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxyReturn}{Returns}
+Number of devices in device list. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_flipper_ga031def06ae0f33d88e550d252b576a33}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_flipper_ga1669b39290ccf3200dcda8217f694969}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_flipper_ga055e1d4b21fa2ac4f5dde17aa8c697b2}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_flipper_gad804300914c144f54b9cd64441615206}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_flipper_gabb660742d344c0e1b9d393c5dcb94431}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_flipper_ga535456f85172aad061d297ca934412ad}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_flipper_ga3f7225c13b39fa005980113335e8f700}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}

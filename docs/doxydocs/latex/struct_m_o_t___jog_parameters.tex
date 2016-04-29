@@ -1,0 +1,97 @@
+\hypertarget{struct_m_o_t___jog_parameters}{}\section{M\+O\+T\+\_\+\+Jog\+Parameters Struct Reference}
+\label{struct_m_o_t___jog_parameters}\index{M\+O\+T\+\_\+\+Jog\+Parameters@{M\+O\+T\+\_\+\+Jog\+Parameters}}
+
+
+Structure containing the jog parameters.  
+
+
+
+
+{\ttfamily \#include $<$Thorlabs.\+Motion\+Control.\+Benchtop.\+Brushless\+Motor.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___common_ga009eac484778f2873f249c8562d94a93}{M\+O\+T\+\_\+\+Jog\+Modes} \hyperlink{struct_m_o_t___jog_parameters_aa15b08d3db3bc35613c84323e3d09c88}{mode}
+\begin{DoxyCompactList}\small\item\em The jogging mode. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{struct_m_o_t___jog_parameters_aa9d309a4d04ddbdd7808e80e3e8d2be6}{step\+Size}
+\begin{DoxyCompactList}\small\item\em The step size in Device\+Units\+\_\+page. \end{DoxyCompactList}\item 
+\hyperlink{struct_m_o_t___velocity_parameters}{M\+O\+T\+\_\+\+Velocity\+Parameters} \hyperlink{struct_m_o_t___jog_parameters_acb940bd7d08f4ef13a1d7657bc980f66}{vel\+Params}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{struct_m_o_t___velocity_parameters}{M\+O\+T\+\_\+\+Velocity\+Parameters} for the jog. \end{DoxyCompactList}\item 
+\hyperlink{group___common_ga4b1f06d8365231862a18380e278c3c44}{M\+O\+T\+\_\+\+Stop\+Modes} \hyperlink{struct_m_o_t___jog_parameters_ab5411ddac06335df299b4de841a31575}{stop\+Mode}
+\begin{DoxyCompactList}\small\item\em The Stop Mode\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure containing the jog parameters. 
+
+Jogs are performed using a velocity profile over small fixed distances.~\newline
+ The move starts at the Minimum Velocity (always 0 at present) and accelerated to the Maximum Velocity using the defined Acceleration.~\newline
+ The move is usually completed using a similar deceleration.~\newline
+ For further information see Jogging 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{struct_m_o_t___velocity_parameters}{M\+O\+T\+\_\+\+Velocity\+Parameters}, \hyperlink{struct_m_o_t___homing_parameters}{M\+O\+T\+\_\+\+Homing\+Parameters}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Data Documentation}
+\index{M\+O\+T\+\_\+\+Jog\+Parameters@{M\+O\+T\+\_\+\+Jog\+Parameters}!mode@{mode}}
+\index{mode@{mode}!M\+O\+T\+\_\+\+Jog\+Parameters@{M\+O\+T\+\_\+\+Jog\+Parameters}}
+\subsubsection[{\texorpdfstring{mode}{mode}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+O\+T\+\_\+\+Jog\+Modes} M\+O\+T\+\_\+\+Jog\+Parameters\+::mode}\hypertarget{struct_m_o_t___jog_parameters_aa15b08d3db3bc35613c84323e3d09c88}{}\label{struct_m_o_t___jog_parameters_aa15b08d3db3bc35613c84323e3d09c88}
+
+
+The jogging mode. 
+
+The mode can be one of the following\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+1&Continuous Jogging~\newline
+The device will continue moving until the end stop is reached or the device button is raised \\\cline{1-2}
+2&Step Jogbr /$>$The device will move by a fixed amount as defined in this structure. \\\cline{1-2}
+\end{longtabu}
+\index{M\+O\+T\+\_\+\+Jog\+Parameters@{M\+O\+T\+\_\+\+Jog\+Parameters}!step\+Size@{step\+Size}}
+\index{step\+Size@{step\+Size}!M\+O\+T\+\_\+\+Jog\+Parameters@{M\+O\+T\+\_\+\+Jog\+Parameters}}
+\subsubsection[{\texorpdfstring{step\+Size}{stepSize}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int M\+O\+T\+\_\+\+Jog\+Parameters\+::step\+Size}\hypertarget{struct_m_o_t___jog_parameters_aa9d309a4d04ddbdd7808e80e3e8d2be6}{}\label{struct_m_o_t___jog_parameters_aa9d309a4d04ddbdd7808e80e3e8d2be6}
+
+
+The step size in Device\+Units\+\_\+page. 
+
+\index{M\+O\+T\+\_\+\+Jog\+Parameters@{M\+O\+T\+\_\+\+Jog\+Parameters}!stop\+Mode@{stop\+Mode}}
+\index{stop\+Mode@{stop\+Mode}!M\+O\+T\+\_\+\+Jog\+Parameters@{M\+O\+T\+\_\+\+Jog\+Parameters}}
+\subsubsection[{\texorpdfstring{stop\+Mode}{stopMode}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+O\+T\+\_\+\+Stop\+Modes} M\+O\+T\+\_\+\+Jog\+Parameters\+::stop\+Mode}\hypertarget{struct_m_o_t___jog_parameters_ab5411ddac06335df299b4de841a31575}{}\label{struct_m_o_t___jog_parameters_ab5411ddac06335df299b4de841a31575}
+
+
+The Stop Mode
+
+The Stop Mode determines how the jog should stop. \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+1&Immediate \\\cline{1-2}
+2&Profiled. \\\cline{1-2}
+\end{longtabu}
+\index{M\+O\+T\+\_\+\+Jog\+Parameters@{M\+O\+T\+\_\+\+Jog\+Parameters}!vel\+Params@{vel\+Params}}
+\index{vel\+Params@{vel\+Params}!M\+O\+T\+\_\+\+Jog\+Parameters@{M\+O\+T\+\_\+\+Jog\+Parameters}}
+\subsubsection[{\texorpdfstring{vel\+Params}{velParams}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+O\+T\+\_\+\+Velocity\+Parameters} M\+O\+T\+\_\+\+Jog\+Parameters\+::vel\+Params}\hypertarget{struct_m_o_t___jog_parameters_acb940bd7d08f4ef13a1d7657bc980f66}{}\label{struct_m_o_t___jog_parameters_acb940bd7d08f4ef13a1d7657bc980f66}
+
+
+The \hyperlink{struct_m_o_t___velocity_parameters}{M\+O\+T\+\_\+\+Velocity\+Parameters} for the jog. 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Brushless\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Stepper\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Brushless\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+D\+C\+Servo.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Motorised\+Gripper.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Stepper\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Modular\+Rack.\+Stepper\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+D\+C\+Servo.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Stepper\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+D\+I\+Engine.\+h\item 
+third\+\_\+party/\+Kinesis/Thorlabs.\+Motion\+Control.\+Integrated\+Stepper\+Motors.\+h\item 
+third\+\_\+party/\+Kinesis/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Brushless\+Motor.\+h\end{DoxyCompactItemize}

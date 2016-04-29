@@ -1,0 +1,113 @@
+\hypertarget{struct_n_t___circle_parameters}{}\section{N\+T\+\_\+\+Circle\+Parameters Struct Reference}
+\label{struct_n_t___circle_parameters}\index{N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}}
+
+
+Structure containing the scan circle parameters.  
+
+
+
+
+{\ttfamily \#include $<$Thorlabs.\+Motion\+Control.\+Benchtop.\+Nano\+Trak.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___common_gaa15281053f3be4074c276b8d182c3a70}{N\+T\+\_\+\+Circle\+Diameter\+Mode} \hyperlink{struct_n_t___circle_parameters_a69022159527426d37fa672804a957aaf}{mode}
+\begin{DoxyCompactList}\small\item\em Circle diameter mode, \hyperlink{group___common_gaa15281053f3be4074c276b8d182c3a70}{N\+T\+\_\+\+Circle\+Diameter\+Mode} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Use supplied Parameters.&1 \\\cline{1-2}
+Use supplied Algorithm.&2 \\\cline{1-2}
+use Lookup Table (L\+UT)&3 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+W\+O\+RD \hyperlink{struct_n_t___circle_parameters_a0495f436385f97e8e465a719c6039dee}{diameter}
+\begin{DoxyCompactList}\small\item\em Circle Diameter where 65535 corresponding to maximum voltage, 10 NT units. \end{DoxyCompactList}\item 
+W\+O\+RD \hyperlink{struct_n_t___circle_parameters_aeb6801107a47cc762b1e1b563537d032}{samples\+Per\+Revolution}
+\begin{DoxyCompactList}\small\item\em Number of samples read per revolution (multiple of 4). \end{DoxyCompactList}\item 
+W\+O\+RD \hyperlink{struct_n_t___circle_parameters_a3a53a5f2b233173e08694b5ca0a2350a}{min\+Diameter}
+\begin{DoxyCompactList}\small\item\em Minimum diameter imposed on algorithm 0 to 32767 in NT units. \end{DoxyCompactList}\item 
+W\+O\+RD \hyperlink{struct_n_t___circle_parameters_a9b8fa455d42b75480c050da143e468e0}{max\+Diameter}
+\begin{DoxyCompactList}\small\item\em Maximum diameter imposed on algorithm 0 to 32767 in NT units. \end{DoxyCompactList}\item 
+\hyperlink{group___common_ga3283dfae2d4aebfb73f1d3db07a36860}{N\+T\+\_\+\+Circle\+Adjustment} \hyperlink{struct_n_t___circle_parameters_a55ad72ec6eba3db04199555f7bacf1b5}{algorithm\+Adjustment}
+\begin{DoxyCompactList}\small\item\em Algorithm adjustment method\+: \hyperlink{group___common_ga3283dfae2d4aebfb73f1d3db07a36860}{N\+T\+\_\+\+Circle\+Adjustment} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Linear Algorithm.&1 \\\cline{1-2}
+Logarithmic algorithm.&2 \\\cline{1-2}
+Square algorithm&3 \\\cline{1-2}
+Cubic algorithm&4 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure containing the scan circle parameters. 
+
+
+
+\subsection{Member Data Documentation}
+\index{N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}!algorithm\+Adjustment@{algorithm\+Adjustment}}
+\index{algorithm\+Adjustment@{algorithm\+Adjustment}!N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}}
+\subsubsection[{\texorpdfstring{algorithm\+Adjustment}{algorithmAdjustment}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf N\+T\+\_\+\+Circle\+Adjustment} N\+T\+\_\+\+Circle\+Parameters\+::algorithm\+Adjustment}\hypertarget{struct_n_t___circle_parameters_a55ad72ec6eba3db04199555f7bacf1b5}{}\label{struct_n_t___circle_parameters_a55ad72ec6eba3db04199555f7bacf1b5}
+
+
+Algorithm adjustment method\+: \hyperlink{group___common_ga3283dfae2d4aebfb73f1d3db07a36860}{N\+T\+\_\+\+Circle\+Adjustment} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Linear Algorithm.&1 \\\cline{1-2}
+Logarithmic algorithm.&2 \\\cline{1-2}
+Square algorithm&3 \\\cline{1-2}
+Cubic algorithm&4 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}!diameter@{diameter}}
+\index{diameter@{diameter}!N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}}
+\subsubsection[{\texorpdfstring{diameter}{diameter}}]{\setlength{\rightskip}{0pt plus 5cm}W\+O\+RD N\+T\+\_\+\+Circle\+Parameters\+::diameter}\hypertarget{struct_n_t___circle_parameters_a0495f436385f97e8e465a719c6039dee}{}\label{struct_n_t___circle_parameters_a0495f436385f97e8e465a719c6039dee}
+
+
+Circle Diameter where 65535 corresponding to maximum voltage, 10 NT units. 
+
+\index{N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}!max\+Diameter@{max\+Diameter}}
+\index{max\+Diameter@{max\+Diameter}!N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}}
+\subsubsection[{\texorpdfstring{max\+Diameter}{maxDiameter}}]{\setlength{\rightskip}{0pt plus 5cm}W\+O\+RD N\+T\+\_\+\+Circle\+Parameters\+::max\+Diameter}\hypertarget{struct_n_t___circle_parameters_a9b8fa455d42b75480c050da143e468e0}{}\label{struct_n_t___circle_parameters_a9b8fa455d42b75480c050da143e468e0}
+
+
+Maximum diameter imposed on algorithm 0 to 32767 in NT units. 
+
+\index{N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}!min\+Diameter@{min\+Diameter}}
+\index{min\+Diameter@{min\+Diameter}!N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}}
+\subsubsection[{\texorpdfstring{min\+Diameter}{minDiameter}}]{\setlength{\rightskip}{0pt plus 5cm}W\+O\+RD N\+T\+\_\+\+Circle\+Parameters\+::min\+Diameter}\hypertarget{struct_n_t___circle_parameters_a3a53a5f2b233173e08694b5ca0a2350a}{}\label{struct_n_t___circle_parameters_a3a53a5f2b233173e08694b5ca0a2350a}
+
+
+Minimum diameter imposed on algorithm 0 to 32767 in NT units. 
+
+\index{N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}!mode@{mode}}
+\index{mode@{mode}!N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}}
+\subsubsection[{\texorpdfstring{mode}{mode}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf N\+T\+\_\+\+Circle\+Diameter\+Mode} N\+T\+\_\+\+Circle\+Parameters\+::mode}\hypertarget{struct_n_t___circle_parameters_a69022159527426d37fa672804a957aaf}{}\label{struct_n_t___circle_parameters_a69022159527426d37fa672804a957aaf}
+
+
+Circle diameter mode, \hyperlink{group___common_gaa15281053f3be4074c276b8d182c3a70}{N\+T\+\_\+\+Circle\+Diameter\+Mode} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Use supplied Parameters.&1 \\\cline{1-2}
+Use supplied Algorithm.&2 \\\cline{1-2}
+use Lookup Table (L\+UT)&3 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}!samples\+Per\+Revolution@{samples\+Per\+Revolution}}
+\index{samples\+Per\+Revolution@{samples\+Per\+Revolution}!N\+T\+\_\+\+Circle\+Parameters@{N\+T\+\_\+\+Circle\+Parameters}}
+\subsubsection[{\texorpdfstring{samples\+Per\+Revolution}{samplesPerRevolution}}]{\setlength{\rightskip}{0pt plus 5cm}W\+O\+RD N\+T\+\_\+\+Circle\+Parameters\+::samples\+Per\+Revolution}\hypertarget{struct_n_t___circle_parameters_aeb6801107a47cc762b1e1b563537d032}{}\label{struct_n_t___circle_parameters_aeb6801107a47cc762b1e1b563537d032}
+
+
+Number of samples read per revolution (multiple of 4). 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Nano\+Trak.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Modular\+Rack.\+Nano\+Trak.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Nano\+Trak.\+h\end{DoxyCompactItemize}

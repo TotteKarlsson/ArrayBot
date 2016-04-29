@@ -1,0 +1,123 @@
+\hypertarget{struct_q_d___position_demand_parameters}{}\section{Q\+D\+\_\+\+Position\+Demand\+Parameters Struct Reference}
+\label{struct_q_d___position_demand_parameters}\index{Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}}
+
+
+structure containing parameters to contol position demand output.  
+
+
+
+
+{\ttfamily \#include $<$Thorlabs.\+Motion\+Control.\+T\+Cube.\+Quad.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+int16 \hyperlink{struct_q_d___position_demand_parameters_aff941bd8c1bd12034c19a2991fc7be54}{min\+Xdemand}
+\begin{DoxyCompactList}\small\item\em Minimum X demand position, range -\/32768 to 32767 for -\/10V to +10V. \end{DoxyCompactList}\item 
+\+\_\+int16 \hyperlink{struct_q_d___position_demand_parameters_a9fc6a17b0a4d60e8f6cb0cfe1342f083}{min\+Ydemand}
+\begin{DoxyCompactList}\small\item\em Minimum Y demand position, range -\/32768 to 32767 for -\/10V to +10V. \end{DoxyCompactList}\item 
+\+\_\+int16 \hyperlink{struct_q_d___position_demand_parameters_a3c02bf39a07af94aa9766c7c15c87a2c}{max\+Xdemand}
+\begin{DoxyCompactList}\small\item\em Maximum X demand position, range -\/32768 to 32767 for -\/10V to +10V. \end{DoxyCompactList}\item 
+\+\_\+int16 \hyperlink{struct_q_d___position_demand_parameters_ad314407b08bb95670889056d5a58ab55}{max\+Ydemand}
+\begin{DoxyCompactList}\small\item\em Maximum Y demand position, range -\/32768 to 32767 for -\/10V to +10V. \end{DoxyCompactList}\item 
+\hyperlink{group___t_cube_quad_gac883e8fbad1f829af985c3a4fd2e566d}{Q\+D\+\_\+\+Low\+Voltage\+Route} \hyperlink{struct_q_d___position_demand_parameters_a58ceb02e61a3d4ebfa168026b7b11585}{low\+Voltage\+Output\+Route}
+\begin{DoxyCompactList}\small\item\em The Low Voltage Output route. \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Output via S\+MA only&1 \\\cline{1-2}
+Output via Hub and S\+MA&2 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+\hyperlink{group___t_cube_quad_ga499dfc94972cba399344f62c70cd37ff}{Q\+D\+\_\+\+Open\+Loop\+Hold\+Values} \hyperlink{struct_q_d___position_demand_parameters_ab15b99977db68066375cccee8df79a5c}{open\+Loop\+Option}
+\begin{DoxyCompactList}\small\item\em The Open loop hold modes \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Hold at zero volts&1 \\\cline{1-2}
+Hold at the last Closed Loop position&2 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+\+\_\+int16 \hyperlink{struct_q_d___position_demand_parameters_a96dcc5f4e7d7ff259491007b769b4f64}{x\+Feedback\+Signed\+Gain}
+\begin{DoxyCompactList}\small\item\em The X direction Signal Gain Factor, range -\/32767 to +32767 with negative reversing sense of x axis demand signal with gain up to 1.\+0 . \end{DoxyCompactList}\item 
+\+\_\+int16 \hyperlink{struct_q_d___position_demand_parameters_ac3bd6103f0b102e8802fedd565939602}{y\+Feedback\+Signed\+Gain}
+\begin{DoxyCompactList}\small\item\em The Y direction Signal Gain Factor, range -\/32767 to +32767 with negative reversing sense of y axis demand signal with gain up to 1.\+0 . \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+structure containing parameters to contol position demand output. 
+
+The position demand parameters. 
+
+\subsection{Member Data Documentation}
+\index{Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}!low\+Voltage\+Output\+Route@{low\+Voltage\+Output\+Route}}
+\index{low\+Voltage\+Output\+Route@{low\+Voltage\+Output\+Route}!Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}}
+\subsubsection[{\texorpdfstring{low\+Voltage\+Output\+Route}{lowVoltageOutputRoute}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+D\+\_\+\+Low\+Voltage\+Route} Q\+D\+\_\+\+Position\+Demand\+Parameters\+::low\+Voltage\+Output\+Route}\hypertarget{struct_q_d___position_demand_parameters_a58ceb02e61a3d4ebfa168026b7b11585}{}\label{struct_q_d___position_demand_parameters_a58ceb02e61a3d4ebfa168026b7b11585}
+
+
+The Low Voltage Output route. \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Output via S\+MA only&1 \\\cline{1-2}
+Output via Hub and S\+MA&2 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}!max\+Xdemand@{max\+Xdemand}}
+\index{max\+Xdemand@{max\+Xdemand}!Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}}
+\subsubsection[{\texorpdfstring{max\+Xdemand}{maxXdemand}}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+int16 Q\+D\+\_\+\+Position\+Demand\+Parameters\+::max\+Xdemand}\hypertarget{struct_q_d___position_demand_parameters_a3c02bf39a07af94aa9766c7c15c87a2c}{}\label{struct_q_d___position_demand_parameters_a3c02bf39a07af94aa9766c7c15c87a2c}
+
+
+Maximum X demand position, range -\/32768 to 32767 for -\/10V to +10V. 
+
+\index{Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}!max\+Ydemand@{max\+Ydemand}}
+\index{max\+Ydemand@{max\+Ydemand}!Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}}
+\subsubsection[{\texorpdfstring{max\+Ydemand}{maxYdemand}}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+int16 Q\+D\+\_\+\+Position\+Demand\+Parameters\+::max\+Ydemand}\hypertarget{struct_q_d___position_demand_parameters_ad314407b08bb95670889056d5a58ab55}{}\label{struct_q_d___position_demand_parameters_ad314407b08bb95670889056d5a58ab55}
+
+
+Maximum Y demand position, range -\/32768 to 32767 for -\/10V to +10V. 
+
+\index{Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}!min\+Xdemand@{min\+Xdemand}}
+\index{min\+Xdemand@{min\+Xdemand}!Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}}
+\subsubsection[{\texorpdfstring{min\+Xdemand}{minXdemand}}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+int16 Q\+D\+\_\+\+Position\+Demand\+Parameters\+::min\+Xdemand}\hypertarget{struct_q_d___position_demand_parameters_aff941bd8c1bd12034c19a2991fc7be54}{}\label{struct_q_d___position_demand_parameters_aff941bd8c1bd12034c19a2991fc7be54}
+
+
+Minimum X demand position, range -\/32768 to 32767 for -\/10V to +10V. 
+
+\index{Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}!min\+Ydemand@{min\+Ydemand}}
+\index{min\+Ydemand@{min\+Ydemand}!Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}}
+\subsubsection[{\texorpdfstring{min\+Ydemand}{minYdemand}}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+int16 Q\+D\+\_\+\+Position\+Demand\+Parameters\+::min\+Ydemand}\hypertarget{struct_q_d___position_demand_parameters_a9fc6a17b0a4d60e8f6cb0cfe1342f083}{}\label{struct_q_d___position_demand_parameters_a9fc6a17b0a4d60e8f6cb0cfe1342f083}
+
+
+Minimum Y demand position, range -\/32768 to 32767 for -\/10V to +10V. 
+
+\index{Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}!open\+Loop\+Option@{open\+Loop\+Option}}
+\index{open\+Loop\+Option@{open\+Loop\+Option}!Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}}
+\subsubsection[{\texorpdfstring{open\+Loop\+Option}{openLoopOption}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+D\+\_\+\+Open\+Loop\+Hold\+Values} Q\+D\+\_\+\+Position\+Demand\+Parameters\+::open\+Loop\+Option}\hypertarget{struct_q_d___position_demand_parameters_ab15b99977db68066375cccee8df79a5c}{}\label{struct_q_d___position_demand_parameters_ab15b99977db68066375cccee8df79a5c}
+
+
+The Open loop hold modes \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Hold at zero volts&1 \\\cline{1-2}
+Hold at the last Closed Loop position&2 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}!x\+Feedback\+Signed\+Gain@{x\+Feedback\+Signed\+Gain}}
+\index{x\+Feedback\+Signed\+Gain@{x\+Feedback\+Signed\+Gain}!Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}}
+\subsubsection[{\texorpdfstring{x\+Feedback\+Signed\+Gain}{xFeedbackSignedGain}}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+int16 Q\+D\+\_\+\+Position\+Demand\+Parameters\+::x\+Feedback\+Signed\+Gain}\hypertarget{struct_q_d___position_demand_parameters_a96dcc5f4e7d7ff259491007b769b4f64}{}\label{struct_q_d___position_demand_parameters_a96dcc5f4e7d7ff259491007b769b4f64}
+
+
+The X direction Signal Gain Factor, range -\/32767 to +32767 with negative reversing sense of x axis demand signal with gain up to 1.\+0 . 
+
+\index{Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}!y\+Feedback\+Signed\+Gain@{y\+Feedback\+Signed\+Gain}}
+\index{y\+Feedback\+Signed\+Gain@{y\+Feedback\+Signed\+Gain}!Q\+D\+\_\+\+Position\+Demand\+Parameters@{Q\+D\+\_\+\+Position\+Demand\+Parameters}}
+\subsubsection[{\texorpdfstring{y\+Feedback\+Signed\+Gain}{yFeedbackSignedGain}}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+int16 Q\+D\+\_\+\+Position\+Demand\+Parameters\+::y\+Feedback\+Signed\+Gain}\hypertarget{struct_q_d___position_demand_parameters_ac3bd6103f0b102e8802fedd565939602}{}\label{struct_q_d___position_demand_parameters_ac3bd6103f0b102e8802fedd565939602}
+
+
+The Y direction Signal Gain Factor, range -\/32767 to +32767 with negative reversing sense of y axis demand signal with gain up to 1.\+0 . 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Quad.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,170 @@
+\hypertarget{struct_t_l_i___device_info}{}\section{T\+L\+I\+\_\+\+Device\+Info Struct Reference}
+\label{struct_t_l_i___device_info}\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+
+
+Information about the device generated from serial number and U\+SB info block.  
+
+
+
+
+{\ttfamily \#include $<$Thorlabs.\+Motion\+Control.\+Benchtop.\+Brushless\+Motor.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+D\+W\+O\+RD \hyperlink{struct_t_l_i___device_info_af48200700520b9f35e899443b91d4fb0}{type\+ID}
+\begin{DoxyCompactList}\small\item\em The device Type ID, see Device serial numbers. \end{DoxyCompactList}\item 
+char \hyperlink{struct_t_l_i___device_info_a7c6ebe1654de910ad7b6fc4bc6b43d21}{description} \mbox{[}65\mbox{]}
+\begin{DoxyCompactList}\small\item\em The device description. \end{DoxyCompactList}\item 
+char \hyperlink{struct_t_l_i___device_info_a2643f38643f2dda9a0054389fabb2b6a}{serial\+No} \mbox{[}9\mbox{]}
+\begin{DoxyCompactList}\small\item\em The device serial number. \end{DoxyCompactList}\item 
+D\+W\+O\+RD \hyperlink{struct_t_l_i___device_info_aa0901ef8505517e5c9fdd4d1b8b425b5}{P\+ID}
+\begin{DoxyCompactList}\small\item\em The U\+SB P\+ID number. \end{DoxyCompactList}\item 
+bool \hyperlink{struct_t_l_i___device_info_acdc14f666331a4036bda902ffd5bbbc9}{is\+Known\+Type}
+\begin{DoxyCompactList}\small\item\em {\ttfamily true} if this object is a type known to the Motion Control software. \end{DoxyCompactList}\item 
+\hyperlink{group___common_gac8faf0d1045d287ba4c1013ab2cfffca}{M\+O\+T\+\_\+\+Motor\+Types} \hyperlink{struct_t_l_i___device_info_aa6a3567c98f84b12884c75d69bcd21bf}{motor\+Type}
+\begin{DoxyCompactList}\small\item\em The motor type (if a motor). \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+M\+O\+T\+\_\+\+Not\+Motor&0 \\\cline{1-2}
+M\+O\+T\+\_\+\+D\+C\+Motor&1 \\\cline{1-2}
+M\+O\+T\+\_\+\+Stepper\+Motor&2 \\\cline{1-2}
+M\+O\+T\+\_\+\+Brushless\+Motor&3 \\\cline{1-2}
+M\+O\+T\+\_\+\+Custom\+Motor&100 \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
+bool \hyperlink{struct_t_l_i___device_info_aaf0ff2a1be0eea8157894f9f2bfbc323}{is\+Piezo\+Device}
+\begin{DoxyCompactList}\small\item\em {\ttfamily true} if the device is a piezo device. \end{DoxyCompactList}\item 
+bool \hyperlink{struct_t_l_i___device_info_afb1c8b9fe2db839989f99d975ab83858}{is\+Laser}
+\begin{DoxyCompactList}\small\item\em {\ttfamily true} if the device is a laser. \end{DoxyCompactList}\item 
+bool \hyperlink{struct_t_l_i___device_info_a02a1fa0d7224a387b24757b754d6b880}{is\+Custom\+Type}
+\begin{DoxyCompactList}\small\item\em {\ttfamily true} if the device is a custom type. \end{DoxyCompactList}\item 
+bool \hyperlink{struct_t_l_i___device_info_a1473c581c566934b35fc56dc4699f975}{is\+Rack}
+\begin{DoxyCompactList}\small\item\em {\ttfamily true} if the device is a rack. \end{DoxyCompactList}\item 
+short \hyperlink{struct_t_l_i___device_info_a1f52f050d40870aa0cf566ce42774853}{max\+Channels}
+\begin{DoxyCompactList}\small\item\em Defines the number of channels available in this device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Information about the device generated from serial number and U\+SB info block. 
+
+Information about the device generated from serial number. 
+
+\subsection{Member Data Documentation}
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!description@{description}}
+\index{description@{description}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{description}{description}}]{\setlength{\rightskip}{0pt plus 5cm}char T\+L\+I\+\_\+\+Device\+Info\+::description}\hypertarget{struct_t_l_i___device_info_a7c6ebe1654de910ad7b6fc4bc6b43d21}{}\label{struct_t_l_i___device_info_a7c6ebe1654de910ad7b6fc4bc6b43d21}
+
+
+The device description. 
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!is\+Custom\+Type@{is\+Custom\+Type}}
+\index{is\+Custom\+Type@{is\+Custom\+Type}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{is\+Custom\+Type}{isCustomType}}]{\setlength{\rightskip}{0pt plus 5cm}bool T\+L\+I\+\_\+\+Device\+Info\+::is\+Custom\+Type}\hypertarget{struct_t_l_i___device_info_a02a1fa0d7224a387b24757b754d6b880}{}\label{struct_t_l_i___device_info_a02a1fa0d7224a387b24757b754d6b880}
+
+
+{\ttfamily true} if the device is a custom type. 
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!is\+Known\+Type@{is\+Known\+Type}}
+\index{is\+Known\+Type@{is\+Known\+Type}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{is\+Known\+Type}{isKnownType}}]{\setlength{\rightskip}{0pt plus 5cm}bool T\+L\+I\+\_\+\+Device\+Info\+::is\+Known\+Type}\hypertarget{struct_t_l_i___device_info_acdc14f666331a4036bda902ffd5bbbc9}{}\label{struct_t_l_i___device_info_acdc14f666331a4036bda902ffd5bbbc9}
+
+
+{\ttfamily true} if this object is a type known to the Motion Control software. 
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!is\+Laser@{is\+Laser}}
+\index{is\+Laser@{is\+Laser}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{is\+Laser}{isLaser}}]{\setlength{\rightskip}{0pt plus 5cm}bool T\+L\+I\+\_\+\+Device\+Info\+::is\+Laser}\hypertarget{struct_t_l_i___device_info_afb1c8b9fe2db839989f99d975ab83858}{}\label{struct_t_l_i___device_info_afb1c8b9fe2db839989f99d975ab83858}
+
+
+{\ttfamily true} if the device is a laser. 
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!is\+Piezo\+Device@{is\+Piezo\+Device}}
+\index{is\+Piezo\+Device@{is\+Piezo\+Device}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{is\+Piezo\+Device}{isPiezoDevice}}]{\setlength{\rightskip}{0pt plus 5cm}bool T\+L\+I\+\_\+\+Device\+Info\+::is\+Piezo\+Device}\hypertarget{struct_t_l_i___device_info_aaf0ff2a1be0eea8157894f9f2bfbc323}{}\label{struct_t_l_i___device_info_aaf0ff2a1be0eea8157894f9f2bfbc323}
+
+
+{\ttfamily true} if the device is a piezo device. 
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!is\+Rack@{is\+Rack}}
+\index{is\+Rack@{is\+Rack}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{is\+Rack}{isRack}}]{\setlength{\rightskip}{0pt plus 5cm}bool T\+L\+I\+\_\+\+Device\+Info\+::is\+Rack}\hypertarget{struct_t_l_i___device_info_a1473c581c566934b35fc56dc4699f975}{}\label{struct_t_l_i___device_info_a1473c581c566934b35fc56dc4699f975}
+
+
+{\ttfamily true} if the device is a rack. 
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!max\+Channels@{max\+Channels}}
+\index{max\+Channels@{max\+Channels}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{max\+Channels}{maxChannels}}]{\setlength{\rightskip}{0pt plus 5cm}short T\+L\+I\+\_\+\+Device\+Info\+::max\+Channels}\hypertarget{struct_t_l_i___device_info_a1f52f050d40870aa0cf566ce42774853}{}\label{struct_t_l_i___device_info_a1f52f050d40870aa0cf566ce42774853}
+
+
+Defines the number of channels available in this device. 
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!motor\+Type@{motor\+Type}}
+\index{motor\+Type@{motor\+Type}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{motor\+Type}{motorType}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+O\+T\+\_\+\+Motor\+Types} T\+L\+I\+\_\+\+Device\+Info\+::motor\+Type}\hypertarget{struct_t_l_i___device_info_aa6a3567c98f84b12884c75d69bcd21bf}{}\label{struct_t_l_i___device_info_aa6a3567c98f84b12884c75d69bcd21bf}
+
+
+The motor type (if a motor). \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+M\+O\+T\+\_\+\+Not\+Motor&0 \\\cline{1-2}
+M\+O\+T\+\_\+\+D\+C\+Motor&1 \\\cline{1-2}
+M\+O\+T\+\_\+\+Stepper\+Motor&2 \\\cline{1-2}
+M\+O\+T\+\_\+\+Brushless\+Motor&3 \\\cline{1-2}
+M\+O\+T\+\_\+\+Custom\+Motor&100 \\\cline{1-2}
+\end{longtabu}
+
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!P\+ID@{P\+ID}}
+\index{P\+ID@{P\+ID}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{P\+ID}{PID}}]{\setlength{\rightskip}{0pt plus 5cm}D\+W\+O\+RD T\+L\+I\+\_\+\+Device\+Info\+::\+P\+ID}\hypertarget{struct_t_l_i___device_info_aa0901ef8505517e5c9fdd4d1b8b425b5}{}\label{struct_t_l_i___device_info_aa0901ef8505517e5c9fdd4d1b8b425b5}
+
+
+The U\+SB P\+ID number. 
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!serial\+No@{serial\+No}}
+\index{serial\+No@{serial\+No}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{serial\+No}{serialNo}}]{\setlength{\rightskip}{0pt plus 5cm}char T\+L\+I\+\_\+\+Device\+Info\+::serial\+No}\hypertarget{struct_t_l_i___device_info_a2643f38643f2dda9a0054389fabb2b6a}{}\label{struct_t_l_i___device_info_a2643f38643f2dda9a0054389fabb2b6a}
+
+
+The device serial number. 
+
+\index{T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}!type\+ID@{type\+ID}}
+\index{type\+ID@{type\+ID}!T\+L\+I\+\_\+\+Device\+Info@{T\+L\+I\+\_\+\+Device\+Info}}
+\subsubsection[{\texorpdfstring{type\+ID}{typeID}}]{\setlength{\rightskip}{0pt plus 5cm}D\+W\+O\+RD T\+L\+I\+\_\+\+Device\+Info\+::type\+ID}\hypertarget{struct_t_l_i___device_info_af48200700520b9f35e899443b91d4fb0}{}\label{struct_t_l_i___device_info_af48200700520b9f35e899443b91d4fb0}
+
+
+The device Type ID, see Device serial numbers. 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Brushless\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Nano\+Trak.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Piezo.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Precision\+Piezo.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Benchtop.\+Stepper\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thor\+Labs.\+Motion\+Control.\+Filter\+Flipper.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+Filter\+Wheel.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Brushless\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+D\+C\+Servo.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Motorised\+Gripper.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Piezo.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+K\+Cube.\+Stepper\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thor\+Labs.\+Motion\+Control.\+Modular\+Rack.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+D\+C\+Servo.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Inertial\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Laser\+Diode.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Laser\+Source.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Nano\+Trak.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Piezo.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Quad.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Solenoid.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Stepper\+Motor.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Strain\+Gauge.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+T\+E\+C.\+h\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+D\+I\+Engine.\+h\item 
+third\+\_\+party/\+Kinesis/Thorlabs.\+Motion\+Control.\+Integrated\+Stepper\+Motors.\+h\item 
+third\+\_\+party/\+Kinesis/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Brushless\+Motor.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,60 @@
+\hypertarget{struct_s_c___cycle_parameters}{}\section{S\+C\+\_\+\+Cycle\+Parameters Struct Reference}
+\label{struct_s_c___cycle_parameters}\index{S\+C\+\_\+\+Cycle\+Parameters@{S\+C\+\_\+\+Cycle\+Parameters}}
+
+
+Structure containing the cycle parameters.  
+
+
+
+
+{\ttfamily \#include $<$Thorlabs.\+Motion\+Control.\+T\+Cube.\+Solenoid.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{struct_s_c___cycle_parameters_a1a6ce4376230caffb1828a855568f672}{open\+Time}
+\begin{DoxyCompactList}\small\item\em The on time, i.\+e. the pulse width when in automatic or triggered mode. (see \hyperlink{group___t_cube_solenoid_ga02b53b0f5b45f74b6b2da24cc6ff2895}{S\+C\+\_\+\+Operating\+Modes}) ~\newline
+ \end{DoxyCompactList}\item 
+unsigned int \hyperlink{struct_s_c___cycle_parameters_a871bacab41e33d3c5979a000021c0bcb}{closed\+Time}
+\begin{DoxyCompactList}\small\item\em The off time, i.\+e. the time between pulses in continuous mode. (see \hyperlink{group___t_cube_solenoid_ga02b53b0f5b45f74b6b2da24cc6ff2895}{S\+C\+\_\+\+Operating\+Modes})~\newline
+ \end{DoxyCompactList}\item 
+unsigned int \hyperlink{struct_s_c___cycle_parameters_a829e4ed3529bfe6ae3dc88098386a387}{num\+Cycles}
+\begin{DoxyCompactList}\small\item\em The number of on/off cycles when running in continuous mode. (see \hyperlink{group___t_cube_solenoid_ga02b53b0f5b45f74b6b2da24cc6ff2895}{S\+C\+\_\+\+Operating\+Modes})~\newline
+ Range 0 to 1000,000 where 0 represent unlimited. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure containing the cycle parameters. 
+
+Options for implementing the different automatic operation modes. 
+
+\subsection{Member Data Documentation}
+\index{S\+C\+\_\+\+Cycle\+Parameters@{S\+C\+\_\+\+Cycle\+Parameters}!closed\+Time@{closed\+Time}}
+\index{closed\+Time@{closed\+Time}!S\+C\+\_\+\+Cycle\+Parameters@{S\+C\+\_\+\+Cycle\+Parameters}}
+\subsubsection[{\texorpdfstring{closed\+Time}{closedTime}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int S\+C\+\_\+\+Cycle\+Parameters\+::closed\+Time}\hypertarget{struct_s_c___cycle_parameters_a871bacab41e33d3c5979a000021c0bcb}{}\label{struct_s_c___cycle_parameters_a871bacab41e33d3c5979a000021c0bcb}
+
+
+The off time, i.\+e. the time between pulses in continuous mode. (see \hyperlink{group___t_cube_solenoid_ga02b53b0f5b45f74b6b2da24cc6ff2895}{S\+C\+\_\+\+Operating\+Modes})~\newline
+ 
+
+Range 400 to 40,000,000 in steps of 0.\+25 milliseconds, i.\+e. (100ms to 10000s) \index{S\+C\+\_\+\+Cycle\+Parameters@{S\+C\+\_\+\+Cycle\+Parameters}!num\+Cycles@{num\+Cycles}}
+\index{num\+Cycles@{num\+Cycles}!S\+C\+\_\+\+Cycle\+Parameters@{S\+C\+\_\+\+Cycle\+Parameters}}
+\subsubsection[{\texorpdfstring{num\+Cycles}{numCycles}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int S\+C\+\_\+\+Cycle\+Parameters\+::num\+Cycles}\hypertarget{struct_s_c___cycle_parameters_a829e4ed3529bfe6ae3dc88098386a387}{}\label{struct_s_c___cycle_parameters_a829e4ed3529bfe6ae3dc88098386a387}
+
+
+The number of on/off cycles when running in continuous mode. (see \hyperlink{group___t_cube_solenoid_ga02b53b0f5b45f74b6b2da24cc6ff2895}{S\+C\+\_\+\+Operating\+Modes})~\newline
+ Range 0 to 1000,000 where 0 represent unlimited. 
+
+\index{S\+C\+\_\+\+Cycle\+Parameters@{S\+C\+\_\+\+Cycle\+Parameters}!open\+Time@{open\+Time}}
+\index{open\+Time@{open\+Time}!S\+C\+\_\+\+Cycle\+Parameters@{S\+C\+\_\+\+Cycle\+Parameters}}
+\subsubsection[{\texorpdfstring{open\+Time}{openTime}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int S\+C\+\_\+\+Cycle\+Parameters\+::open\+Time}\hypertarget{struct_s_c___cycle_parameters_a1a6ce4376230caffb1828a855568f672}{}\label{struct_s_c___cycle_parameters_a1a6ce4376230caffb1828a855568f672}
+
+
+The on time, i.\+e. the pulse width when in automatic or triggered mode. (see \hyperlink{group___t_cube_solenoid_ga02b53b0f5b45f74b6b2da24cc6ff2895}{S\+C\+\_\+\+Operating\+Modes}) ~\newline
+ 
+
+Range 400 to 40,000,000 in steps of 0.\+25 milliseconds, i.\+e. (100ms to 10000s) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+third\+\_\+party/\+Kinesis/\+Archive/Thorlabs.\+Motion\+Control.\+T\+Cube.\+Solenoid.\+h\end{DoxyCompactItemize}

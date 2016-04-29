@@ -1,0 +1,750 @@
+\hypertarget{group___filter_wheel}{}\section{Filter\+Wheel}
+\label{group___filter_wheel}\index{Filter\+Wheel@{Filter\+Wheel}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info}
+\begin{DoxyCompactList}\small\item\em Information about the device generated from serial number and U\+SB info block. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_t_l_i___hardware_information}{T\+L\+I\+\_\+\+Hardware\+Information}
+\begin{DoxyCompactList}\small\item\em Structure containing the Hardware Information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{T\+L\+I\+\_\+\+Build\+Device\+List} (void)
+\begin{DoxyCompactList}\small\item\em Build the Device\+List. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size} ()
+\begin{DoxyCompactList}\small\item\em Gets the device list size. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{T\+L\+I\+\_\+\+Get\+Device\+List} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver)
+\begin{DoxyCompactList}\small\item\em Get the entire contents of the device list. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver, int type\+ID)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+ID. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types} (S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$strings\+Receiver, int $\ast$type\+I\+Ds, int length)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+I\+Ds. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer)
+\begin{DoxyCompactList}\small\item\em Get the entire contents of the device list. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer, int type\+ID)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+ID. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext} (char $\ast$receive\+Buffer, D\+W\+O\+RD size\+Of\+Buffer, int $\ast$type\+I\+Ds, int length)
+\begin{DoxyCompactList}\small\item\em Get the contents of the device list which match the supplied type\+I\+Ds. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+cdecl \hyperlink{group___filter_wheel_gaffb9d6cbf2f939cd9fd74b26840493a6}{T\+L\+I\+\_\+\+Get\+Device\+Info} (char const $\ast$serial\+No, \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Get the device information from the U\+SB port. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_gad444eac2adfdc5dfad9961a4a1084d8c}{F\+W\+\_\+\+Open} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Open the device for communications. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga726d8408b947e250dc52f5aa3c7abbab}{F\+W\+\_\+\+Close} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Disconnect and close the device. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void \hyperlink{group___filter_wheel_gad804fa033a06376d2961e21c766347d6}{F\+W\+\_\+\+Identify} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Sends a command to the device to make it identify iteself. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_gacb93ed5e9b73f7bfd7ef6a68045f8368}{F\+W\+\_\+\+Get\+Number\+Positions} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Get number of positions. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga04537239d4bbe43655a8fa992f3141f9}{F\+W\+\_\+\+Move\+To\+Position} (char const $\ast$serial\+No, int index)
+\begin{DoxyCompactList}\small\item\em Move the device to the specified position (index). \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_gabb50982a1f3c8836555346d5947f0965}{F\+W\+\_\+\+Get\+Position} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Get the current position. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga448b61e98c986f7388b07a69ead45350}{F\+W\+\_\+\+Home} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Home the device. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga79799b551e6de1d02c0cb6c27a879cef}{F\+W\+\_\+\+Clear\+Message\+Queue} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Clears the device message queue. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_gaddc7fe2d1d6e3d5c26d650e4cce0d70d}{F\+W\+\_\+\+Register\+Message\+Callback} (char const $\ast$serial\+No, void($\ast$function\+Pointer)())
+\begin{DoxyCompactList}\small\item\em Registers a callback on the message queue. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga767581dcd0c08b1a9826bdb5f9850d30}{F\+W\+\_\+\+Message\+Queue\+Size} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the Message\+Queue size. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga92fcdb2f7fa2383dbc93b23cd7c0fa19}{F\+W\+\_\+\+Get\+Next\+Message} (char const $\ast$serial\+No, W\+O\+RD $\ast$message\+Type, W\+O\+RD $\ast$message\+ID, D\+W\+O\+RD $\ast$message\+Data)
+\begin{DoxyCompactList}\small\item\em Get the next Message\+Queue item. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga27182d565870af95c1ff5e05a384d2ae}{F\+W\+\_\+\+Wait\+For\+Message} (char const $\ast$serial\+No, W\+O\+RD $\ast$message\+Type, W\+O\+RD $\ast$message\+ID, D\+W\+O\+RD $\ast$message\+Data)
+\begin{DoxyCompactList}\small\item\em Wait for next Message\+Queue item. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga0451f7e6a0acbaec24a14481e4e2d21c}{F\+W\+\_\+\+Start\+Polling} (char const $\ast$serial\+No, int milliseconds)
+\begin{DoxyCompactList}\small\item\em Starts the internal polling loop which continuously requests position and status. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI long \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga727ca289270e56a353796d681128b57a}{F\+W\+\_\+\+Polling\+Duration} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Gets the polling loop duration. \end{DoxyCompactList}\item 
+F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl \hyperlink{group___filter_wheel_ga5d877a4c55de6a7b47dea9cf70661caa}{F\+W\+\_\+\+Stop\+Polling} (char const $\ast$serial\+No)
+\begin{DoxyCompactList}\small\item\em Stops the internal polling loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This section details the Structures and Functions relavent to the Filter Wheel~\newline
+ For an example of how to connect to the device and perform simple operations use the following links\+: 
+\begin{DoxyItemize}
+\item Example of using the Thorlabs.Motion\+Control.Filter\+Wheel.D\+LL from a C or C++ project.~\newline
+ This requires the D\+LL to be dynamical linked.  
+\item Example of using the Thorlabs.Motion\+Control.Filter\+Wheel.D\+LL from a C\# project~\newline
+ This uses Marshalling to load and access the C D\+LL.  
+\end{DoxyItemize}The Thorlabs.\+Motion\+Control.\+Filter\+Wheel.\+D\+LL requires the following D\+L\+Ls 
+\begin{DoxyItemize}
+\item Thorlabs.\+Motion\+Control.\+Device\+Manager.  
+\end{DoxyItemize}
+
+\subsection{Function Documentation}
+\index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Clear\+Message\+Queue@{F\+W\+\_\+\+Clear\+Message\+Queue}}
+\index{F\+W\+\_\+\+Clear\+Message\+Queue@{F\+W\+\_\+\+Clear\+Message\+Queue}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Clear\+Message\+Queue(char const $\ast$serial\+No)}{FW_ClearMessageQueue(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl F\+W\+\_\+\+Clear\+Message\+Queue (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga79799b551e6de1d02c0cb6c27a879cef}{}\label{group___filter_wheel_ga79799b551e6de1d02c0cb6c27a879cef}
+
+
+Clears the device message queue. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Close@{F\+W\+\_\+\+Close}}
+\index{F\+W\+\_\+\+Close@{F\+W\+\_\+\+Close}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Close(char const $\ast$serial\+No)}{FW_Close(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl F\+W\+\_\+\+Close (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga726d8408b947e250dc52f5aa3c7abbab}{}\label{group___filter_wheel_ga726d8408b947e250dc52f5aa3c7abbab}
+
+
+Disconnect and close the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial no of the device to be disconnected. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gad444eac2adfdc5dfad9961a4a1084d8c}{F\+W\+\_\+\+Open(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Get\+Next\+Message@{F\+W\+\_\+\+Get\+Next\+Message}}
+\index{F\+W\+\_\+\+Get\+Next\+Message@{F\+W\+\_\+\+Get\+Next\+Message}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Get\+Next\+Message(char const $\ast$serial\+No, W\+O\+R\+D $\ast$message\+Type, W\+O\+R\+D $\ast$message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}{FW_GetNextMessage(char const *serialNo, WORD *messageType, WORD *messageID, DWORD *messageData)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl F\+W\+\_\+\+Get\+Next\+Message (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{W\+O\+RD $\ast$}]{message\+Type, }
+\item[{W\+O\+RD $\ast$}]{message\+ID, }
+\item[{D\+W\+O\+RD $\ast$}]{message\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga92fcdb2f7fa2383dbc93b23cd7c0fa19}{}\label{group___filter_wheel_ga92fcdb2f7fa2383dbc93b23cd7c0fa19}
+
+
+Get the next Message\+Queue item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em message\+Type} & The address of the parameter to receive the message Type. \\
+\hline
+{\em message\+ID} & The address of the parameter to receive the message id. \\
+\hline
+{\em message\+Data} & The address of the parameter to receive the message data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+F\+W\+\_\+\+Register\+Message\+Callback(char const $\ast$ serial\+No, void ($\ast$ function\+Pointer)()), \hyperlink{group___filter_wheel_ga767581dcd0c08b1a9826bdb5f9850d30}{F\+W\+\_\+\+Message\+Queue\+Size(char const $\ast$ serial\+No)}, \hyperlink{group___filter_wheel_ga27182d565870af95c1ff5e05a384d2ae}{F\+W\+\_\+\+Wait\+For\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Get\+Number\+Positions@{F\+W\+\_\+\+Get\+Number\+Positions}}
+\index{F\+W\+\_\+\+Get\+Number\+Positions@{F\+W\+\_\+\+Get\+Number\+Positions}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Get\+Number\+Positions(char const $\ast$serial\+No)}{FW_GetNumberPositions(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl F\+W\+\_\+\+Get\+Number\+Positions (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_gacb93ed5e9b73f7bfd7ef6a68045f8368}{}\label{group___filter_wheel_gacb93ed5e9b73f7bfd7ef6a68045f8368}
+
+
+Get number of positions. 
+
+The Get\+Number\+Positions function will get the maximum position reachable by the device.~\newline
+ The motor may need to be Homed before this parameter can be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of positions. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_ga04537239d4bbe43655a8fa992f3141f9}{F\+W\+\_\+\+Move\+To\+Position(char const $\ast$ serial\+No, int index)}, \hyperlink{group___filter_wheel_gabb50982a1f3c8836555346d5947f0965}{F\+W\+\_\+\+Get\+Position(char const $\ast$ serial\+No)}, \hyperlink{group___filter_wheel_ga448b61e98c986f7388b07a69ead45350}{F\+W\+\_\+\+Home(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Get\+Position@{F\+W\+\_\+\+Get\+Position}}
+\index{F\+W\+\_\+\+Get\+Position@{F\+W\+\_\+\+Get\+Position}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Get\+Position(char const $\ast$serial\+No)}{FW_GetPosition(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl F\+W\+\_\+\+Get\+Position (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_gabb50982a1f3c8836555346d5947f0965}{}\label{group___filter_wheel_gabb50982a1f3c8836555346d5947f0965}
+
+
+Get the current position. 
+
+The current position is the last recorded position.~\newline
+ The current position is updated either by the polling mechanism or~\newline
+ by calling Request\+Position or Request\+Status.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current zero based position. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gacb93ed5e9b73f7bfd7ef6a68045f8368}{F\+W\+\_\+\+Get\+Number\+Positions(char const $\ast$ serial\+No)}, \hyperlink{group___filter_wheel_ga04537239d4bbe43655a8fa992f3141f9}{F\+W\+\_\+\+Move\+To\+Position(char const $\ast$ serial\+No, int index)}, \hyperlink{group___filter_wheel_ga448b61e98c986f7388b07a69ead45350}{F\+W\+\_\+\+Home(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Home@{F\+W\+\_\+\+Home}}
+\index{F\+W\+\_\+\+Home@{F\+W\+\_\+\+Home}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Home(char const $\ast$serial\+No)}{FW_Home(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl F\+W\+\_\+\+Home (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga448b61e98c986f7388b07a69ead45350}{}\label{group___filter_wheel_ga448b61e98c986f7388b07a69ead45350}
+
+
+Home the device. 
+
+Homing the device will set the device to a known state and determine the home position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if move successfully started. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gacb93ed5e9b73f7bfd7ef6a68045f8368}{F\+W\+\_\+\+Get\+Number\+Positions(char const $\ast$ serial\+No)}, \hyperlink{group___filter_wheel_ga04537239d4bbe43655a8fa992f3141f9}{F\+W\+\_\+\+Move\+To\+Position(char const $\ast$ serial\+No, int index)}, \hyperlink{group___filter_wheel_gabb50982a1f3c8836555346d5947f0965}{F\+W\+\_\+\+Get\+Position(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Identify@{F\+W\+\_\+\+Identify}}
+\index{F\+W\+\_\+\+Identify@{F\+W\+\_\+\+Identify}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Identify(char const $\ast$serial\+No)}{FW_Identify(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void F\+W\+\_\+\+Identify (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_gad804fa033a06376d2961e21c766347d6}{}\label{group___filter_wheel_gad804fa033a06376d2961e21c766347d6}
+
+
+Sends a command to the device to make it identify iteself. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Message\+Queue\+Size@{F\+W\+\_\+\+Message\+Queue\+Size}}
+\index{F\+W\+\_\+\+Message\+Queue\+Size@{F\+W\+\_\+\+Message\+Queue\+Size}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Message\+Queue\+Size(char const $\ast$serial\+No)}{FW_MessageQueueSize(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI int \+\_\+\+\_\+cdecl F\+W\+\_\+\+Message\+Queue\+Size (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga767581dcd0c08b1a9826bdb5f9850d30}{}\label{group___filter_wheel_ga767581dcd0c08b1a9826bdb5f9850d30}
+
+
+Gets the Message\+Queue size. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of messages in the queue. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+F\+W\+\_\+\+Register\+Message\+Callback(char const $\ast$ serial\+No, void ($\ast$ function\+Pointer)()), \hyperlink{group___filter_wheel_ga92fcdb2f7fa2383dbc93b23cd7c0fa19}{F\+W\+\_\+\+Get\+Next\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}, \hyperlink{group___filter_wheel_ga27182d565870af95c1ff5e05a384d2ae}{F\+W\+\_\+\+Wait\+For\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Move\+To\+Position@{F\+W\+\_\+\+Move\+To\+Position}}
+\index{F\+W\+\_\+\+Move\+To\+Position@{F\+W\+\_\+\+Move\+To\+Position}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Move\+To\+Position(char const $\ast$serial\+No, int index)}{FW_MoveToPosition(char const *serialNo, int index)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl F\+W\+\_\+\+Move\+To\+Position (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga04537239d4bbe43655a8fa992f3141f9}{}\label{group___filter_wheel_ga04537239d4bbe43655a8fa992f3141f9}
+
+
+Move the device to the specified position (index). 
+
+The motor may need to be Homed before a position can be set
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em index} & The Zero-\/based position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if move successfully started. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gacb93ed5e9b73f7bfd7ef6a68045f8368}{F\+W\+\_\+\+Get\+Number\+Positions(char const $\ast$ serial\+No)}, \hyperlink{group___filter_wheel_gabb50982a1f3c8836555346d5947f0965}{F\+W\+\_\+\+Get\+Position(char const $\ast$ serial\+No)}, \hyperlink{group___filter_wheel_ga448b61e98c986f7388b07a69ead45350}{F\+W\+\_\+\+Home(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Open@{F\+W\+\_\+\+Open}}
+\index{F\+W\+\_\+\+Open@{F\+W\+\_\+\+Open}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Open(char const $\ast$serial\+No)}{FW_Open(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl F\+W\+\_\+\+Open (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_gad444eac2adfdc5dfad9961a4a1084d8c}{}\label{group___filter_wheel_gad444eac2adfdc5dfad9961a4a1084d8c}
+
+
+Open the device for communications. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial no of the device to be connected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_ga726d8408b947e250dc52f5aa3c7abbab}{F\+W\+\_\+\+Close(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Polling\+Duration@{F\+W\+\_\+\+Polling\+Duration}}
+\index{F\+W\+\_\+\+Polling\+Duration@{F\+W\+\_\+\+Polling\+Duration}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Polling\+Duration(char const $\ast$serial\+No)}{FW_PollingDuration(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI long \+\_\+\+\_\+cdecl F\+W\+\_\+\+Polling\+Duration (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga727ca289270e56a353796d681128b57a}{}\label{group___filter_wheel_ga727ca289270e56a353796d681128b57a}
+
+
+Gets the polling loop duration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The time between polls in milliseconds or 0 if polling is not active. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_ga0451f7e6a0acbaec24a14481e4e2d21c}{F\+W\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}, \hyperlink{group___filter_wheel_ga5d877a4c55de6a7b47dea9cf70661caa}{F\+W\+\_\+\+Stop\+Polling(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Register\+Message\+Callback@{F\+W\+\_\+\+Register\+Message\+Callback}}
+\index{F\+W\+\_\+\+Register\+Message\+Callback@{F\+W\+\_\+\+Register\+Message\+Callback}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Register\+Message\+Callback(char const $\ast$serial\+No, void($\ast$function\+Pointer)())}{FW_RegisterMessageCallback(char const *serialNo, void(*functionPointer)())}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl F\+W\+\_\+\+Register\+Message\+Callback (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{void($\ast$)()}]{function\+Pointer}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_gaddc7fe2d1d6e3d5c26d650e4cce0d70d}{}\label{group___filter_wheel_gaddc7fe2d1d6e3d5c26d650e4cce0d70d}
+
+
+Registers a callback on the message queue. 
+
+see Device Messages for details on how to use messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em function\+Pointer} & A function pointer to be called whenever messages are received. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_ga767581dcd0c08b1a9826bdb5f9850d30}{F\+W\+\_\+\+Message\+Queue\+Size(char const $\ast$ serial\+No)}, \hyperlink{group___filter_wheel_ga92fcdb2f7fa2383dbc93b23cd7c0fa19}{F\+W\+\_\+\+Get\+Next\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}, \hyperlink{group___filter_wheel_ga27182d565870af95c1ff5e05a384d2ae}{F\+W\+\_\+\+Wait\+For\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Start\+Polling@{F\+W\+\_\+\+Start\+Polling}}
+\index{F\+W\+\_\+\+Start\+Polling@{F\+W\+\_\+\+Start\+Polling}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Start\+Polling(char const $\ast$serial\+No, int milliseconds)}{FW_StartPolling(char const *serialNo, int milliseconds)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl F\+W\+\_\+\+Start\+Polling (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{int}]{milliseconds}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga0451f7e6a0acbaec24a14481e4e2d21c}{}\label{group___filter_wheel_ga0451f7e6a0acbaec24a14481e4e2d21c}
+
+
+Starts the internal polling loop which continuously requests position and status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em milliseconds} & The milliseconds polling rate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_ga5d877a4c55de6a7b47dea9cf70661caa}{F\+W\+\_\+\+Stop\+Polling(char const $\ast$ serial\+No)}, \hyperlink{group___filter_wheel_ga727ca289270e56a353796d681128b57a}{F\+W\+\_\+\+Polling\+Duration(char const $\ast$ serial\+No)}, F\+W\+\_\+\+Request\+Position(char const $\ast$ serial\+No)
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Stop\+Polling@{F\+W\+\_\+\+Stop\+Polling}}
+\index{F\+W\+\_\+\+Stop\+Polling@{F\+W\+\_\+\+Stop\+Polling}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Stop\+Polling(char const $\ast$serial\+No)}{FW_StopPolling(char const *serialNo)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI void \+\_\+\+\_\+cdecl F\+W\+\_\+\+Stop\+Polling (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga5d877a4c55de6a7b47dea9cf70661caa}{}\label{group___filter_wheel_ga5d877a4c55de6a7b47dea9cf70661caa}
+
+
+Stops the internal polling loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_ga0451f7e6a0acbaec24a14481e4e2d21c}{F\+W\+\_\+\+Start\+Polling(char const $\ast$ serial\+No, int milliseconds)}, \hyperlink{group___filter_wheel_ga727ca289270e56a353796d681128b57a}{F\+W\+\_\+\+Polling\+Duration(char const $\ast$ serial\+No)}
+
+
+\end{DoxySeeAlso}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \index{Filter\+Wheel@{Filter\+Wheel}!F\+W\+\_\+\+Wait\+For\+Message@{F\+W\+\_\+\+Wait\+For\+Message}}
+\index{F\+W\+\_\+\+Wait\+For\+Message@{F\+W\+\_\+\+Wait\+For\+Message}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{F\+W\+\_\+\+Wait\+For\+Message(char const $\ast$serial\+No, W\+O\+R\+D $\ast$message\+Type, W\+O\+R\+D $\ast$message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}{FW_WaitForMessage(char const *serialNo, WORD *messageType, WORD *messageID, DWORD *messageData)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI bool \+\_\+\+\_\+cdecl F\+W\+\_\+\+Wait\+For\+Message (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{W\+O\+RD $\ast$}]{message\+Type, }
+\item[{W\+O\+RD $\ast$}]{message\+ID, }
+\item[{D\+W\+O\+RD $\ast$}]{message\+Data}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga27182d565870af95c1ff5e05a384d2ae}{}\label{group___filter_wheel_ga27182d565870af95c1ff5e05a384d2ae}
+
+
+Wait for next Message\+Queue item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The device serial no. \\
+\hline
+{\em message\+Type} & The address of the parameter to receive the message Type. \\
+\hline
+{\em message\+ID} & The address of the parameter to receive the message id. \\
+\hline
+{\em message\+Data} & The address of the parameter to receive the message data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if successful, false if not. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+F\+W\+\_\+\+Register\+Message\+Callback(char const $\ast$ serial\+No, void ($\ast$ function\+Pointer)()), \hyperlink{group___filter_wheel_ga767581dcd0c08b1a9826bdb5f9850d30}{F\+W\+\_\+\+Message\+Queue\+Size(char const $\ast$ serial\+No)}, \hyperlink{group___filter_wheel_ga92fcdb2f7fa2383dbc93b23cd7c0fa19}{F\+W\+\_\+\+Get\+Next\+Message(char const $\ast$ serial\+No, W\+O\+R\+D $\ast$ message\+Type, W\+O\+R\+D $\ast$ message\+I\+D, D\+W\+O\+R\+D $\ast$message\+Data)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!T\+L\+I\+\_\+\+Build\+Device\+List@{T\+L\+I\+\_\+\+Build\+Device\+List}}
+\index{T\+L\+I\+\_\+\+Build\+Device\+List@{T\+L\+I\+\_\+\+Build\+Device\+List}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Build\+Device\+List(void)}{TLI_BuildDeviceList(void)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Build\+Device\+List (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{}\label{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}
+
+
+Build the Device\+List. 
+
+This function builds an internal collection of all devices found on the U\+SB that are not currently open. ~\newline
+ N\+O\+TE, if a device is open, it will not appear in the list until the device has been closed. 
+
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!T\+L\+I\+\_\+\+Get\+Device\+Info@{T\+L\+I\+\_\+\+Get\+Device\+Info}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+Info@{T\+L\+I\+\_\+\+Get\+Device\+Info}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+Info(char const $\ast$serial\+No, T\+L\+I\+\_\+\+Device\+Info $\ast$info)}{TLI_GetDeviceInfo(char const *serialNo, TLI_DeviceInfo *info)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+Info (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{serial\+No, }
+\item[{{\bf T\+L\+I\+\_\+\+Device\+Info} $\ast$}]{info}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_gaffb9d6cbf2f939cd9fd74b26840493a6}{}\label{group___filter_wheel_gaffb9d6cbf2f939cd9fd74b26840493a6}
+
+
+Get the device information from the U\+SB port. 
+
+The Device Info is read from the U\+SB port not from the device itself.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+No} & The serial number of the device. \\
+\hline
+{\em info} & The \hyperlink{struct_t_l_i___device_info}{T\+L\+I\+\_\+\+Device\+Info} device information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 if not. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!T\+L\+I\+\_\+\+Get\+Device\+List@{T\+L\+I\+\_\+\+Get\+Device\+List}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List@{T\+L\+I\+\_\+\+Get\+Device\+List}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver)}{TLI_GetDeviceList(SAFEARRAY **stringsReceiver)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{}\label{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}
+
+
+Get the entire contents of the device list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver, int type\+I\+D)}{TLI_GetDeviceListByType(SAFEARRAY **stringsReceiver, int typeID)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver, }
+\item[{int}]{type\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{}\label{group___filter_wheel_gaead21eabc05883de7c247796b624685f}
+
+
+Get the contents of the device list which match the supplied type\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+{\em type\+ID} & The type\+ID of devices to match, see Device serial numbers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}{TLI_GetDeviceListByTypeExt(char *receiveBuffer, DWORD sizeOfBuffer, int typeID)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer, }
+\item[{int}]{type\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{}\label{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}
+
+
+Get the contents of the device list which match the supplied type\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+{\em type\+ID} & The type\+ID of devices to be matched, see Device serial numbers\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y $\ast$$\ast$strings\+Receiver, int $\ast$type\+I\+Ds, int length)}{TLI_GetDeviceListByTypes(SAFEARRAY **stringsReceiver, int *typeIDs, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types (
+\begin{DoxyParamCaption}
+\item[{S\+A\+F\+E\+A\+R\+R\+AY $\ast$$\ast$}]{strings\+Receiver, }
+\item[{int $\ast$}]{type\+I\+Ds, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{}\label{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}
+
+
+Get the contents of the device list which match the supplied type\+I\+Ds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em strings\+Receiver} & Outputs a S\+A\+F\+E\+A\+R\+R\+AY of strings holding device serial numbers. \\
+\hline
+{\em type\+I\+Ds} & list of type\+I\+Ds of devices to be matched, see Device serial numbers\\
+\hline
+{\em length} & length of type list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$type\+I\+Ds, int length)}{TLI_GetDeviceListByTypesExt(char *receiveBuffer, DWORD sizeOfBuffer, int *typeIDs, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer, }
+\item[{int $\ast$}]{type\+I\+Ds, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{}\label{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}
+
+
+Get the contents of the device list which match the supplied type\+I\+Ds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+{\em type\+I\+Ds} & list of type\+I\+Ds of devices to be matched, see Device serial numbers\\
+\hline
+{\em length} & length of type list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!T\+L\+I\+\_\+\+Get\+Device\+List\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext@{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}{TLI_GetDeviceListExt(char *receiveBuffer, DWORD sizeOfBuffer)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+Ext (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{receive\+Buffer, }
+\item[{D\+W\+O\+RD}]{size\+Of\+Buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{}\label{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}
+
+
+Get the entire contents of the device list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em receive\+Buffer} & a buffer in which to receive the list as a comma separated string. \\
+\hline
+{\em size\+Of\+Buffer} & The size of the output string buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error code (see Error Codes) or zero if successful. 
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}, \hyperlink{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
+\index{Filter\+Wheel@{Filter\+Wheel}!T\+L\+I\+\_\+\+Get\+Device\+List\+Size@{T\+L\+I\+\_\+\+Get\+Device\+List\+Size}}
+\index{T\+L\+I\+\_\+\+Get\+Device\+List\+Size@{T\+L\+I\+\_\+\+Get\+Device\+List\+Size}!Filter\+Wheel@{Filter\+Wheel}}
+\subsubsection[{\texorpdfstring{T\+L\+I\+\_\+\+Get\+Device\+List\+Size()}{TLI_GetDeviceListSize()}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+L\+T\+E\+R\+W\+H\+E\+E\+L\+D\+L\+L\+\_\+\+A\+PI short \+\_\+\+\_\+cdecl T\+L\+I\+\_\+\+Get\+Device\+List\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{group___filter_wheel_gab70216ae298601cd01373487ea91d400}{}\label{group___filter_wheel_gab70216ae298601cd01373487ea91d400}
+
+
+Gets the device list size. 
+
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxyReturn}{Returns}
+Number of devices in device list. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group___filter_wheel_ga0c11035264d2b74a111afaa55f6cdf12}{T\+L\+I\+\_\+\+Build\+Device\+List()}, \hyperlink{group___filter_wheel_ga5108d3e2ced09617e1adfa259754f617}{T\+L\+I\+\_\+\+Get\+Device\+List(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver)}, \hyperlink{group___filter_wheel_gaead21eabc05883de7c247796b624685f}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga2e486be17922acbc1db5b3344f8abfbe}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types(\+S\+A\+F\+E\+A\+R\+R\+A\+Y$\ast$$\ast$ strings\+Receiver, int $\ast$ type\+I\+Ds, int length)}, \hyperlink{group___filter_wheel_ga3122045f7f29b614f390f886e9f54f1b}{T\+L\+I\+\_\+\+Get\+Device\+List\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer)}, \hyperlink{group___filter_wheel_ga1d01498b8d43ad7ff580609dacae9577}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Type\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int type\+I\+D)}, \hyperlink{group___filter_wheel_ga673e28e9620177a30c2a4ddc66867432}{T\+L\+I\+\_\+\+Get\+Device\+List\+By\+Types\+Ext(char $\ast$receive\+Buffer, D\+W\+O\+R\+D size\+Of\+Buffer, int $\ast$ type\+I\+Ds, int length)}
+
+
+\end{DoxySeeAlso}
