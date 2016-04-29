@@ -33,3 +33,11 @@
 *.#00
 *.ils
 *.map
+Win32
+Debug
+*.bpl
+*.pdb
+*.user
+*.tlog
+*.unsuccessfulbuild
+*.lastbuildstate

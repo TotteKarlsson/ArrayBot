@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<SimulationCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Simulations>
+    <Simulation DeviceType="45" ID="45000001" SerialNo="45000001">
+      <Actuators>
+        <Actuators ActuatorName="HS LTS150 150mm Stage" />
+      </Actuators>
+    </Simulation>
+    <Simulation DeviceType="80" ID="80000001" SerialNo="80000001">
+      <Actuators>
+        <Actuators ActuatorName="ZFS25(B)" />
+      </Actuators>
+    </Simulation>
+  </Simulations>
+</SimulationCollection>
