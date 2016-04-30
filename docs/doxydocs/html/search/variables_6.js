@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gain',['gain',['../struct_n_t___gain_parameters.html#a498c084c73b88ed17b08114bb36f72b7',1,'NT_GainParameters']]]
+  ['type',['type',['../struct_hardware_information.html#a27a2c240cc697472222f749fd2b6ff5c',1,'HardwareInformation']]]
 ];

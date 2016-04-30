@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -94,20 +94,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for TCubeDCServo:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="class_t_cube_d_c_servo.png" usemap="#TCubeDCServo_map" alt=""/>
-  <map id="TCubeDCServo_map" name="TCubeDCServo_map">
-<area href="class_a_p_t_motor.html" alt="APTMotor" shape="rect" coords="0,112,101,136"/>
-<area href="class_a_p_t_device.html" alt="APTDevice" shape="rect" coords="0,56,101,80"/>
-<area href="class_a_b_object.html" alt="ABObject" shape="rect" coords="0,0,101,24"/>
+<div class="center"><img src="class_t_cube_d_c_servo__inherit__graph.png" border="0" usemap="#_t_cube_d_c_servo_inherit__map" alt="Inheritance graph"/></div>
+<map name="_t_cube_d_c_servo_inherit__map" id="_t_cube_d_c_servo_inherit__map">
+<area shape="rect" id="node2" href="class_a_p_t_motor.html" title="APTMotor" alt="" coords="20,155,100,181"/>
+<area shape="rect" id="node4" href="class_a_p_t_device.html" title="APTDevice" alt="" coords="17,80,103,107"/>
+<area shape="rect" id="node6" href="class_a_b_object.html" title="ABObject" alt="" coords="21,5,99,32"/>
 </map>
- </div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a31ea7bdfce103f01dbc82e7ec3abede7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31ea7bdfce103f01dbc82e7ec3abede7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>TCubeDCServo</b> (int serial)</td></tr>
 <tr class="separator:a31ea7bdfce103f01dbc82e7ec3abede7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e23f28f2a95079f515bab4d56d9da75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e23f28f2a95079f515bab4d56d9da75"></a>
+<a class="el" href="struct_hardware_information.html">HardwareInformation</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getHWInfo</b> ()</td></tr>
+<tr class="separator:a7e23f28f2a95079f515bab4d56d9da75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c27faf6d14020ac04a696069536c10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24c27faf6d14020ac04a696069536c10"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getEncoderCounts</b> ()</td></tr>
+<tr class="separator:a24c27faf6d14020ac04a696069536c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a756f667bda8e714d7e3e2fd19f84ff42"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a756f667bda8e714d7e3e2fd19f84ff42"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_cube_d_c_servo.html#a756f667bda8e714d7e3e2fd19f84ff42">isActive</a> ()</td></tr>
 <tr class="memdesc:a756f667bda8e714d7e3e2fd19f84ff42"><td class="mdescLeft">&#160;</td><td class="mdescRight">isActive checks if the device is active. <br /></td></tr>
@@ -118,6 +123,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isHoming</b> ()</td><
 <tr class="memitem:a2e56f6537586a0050c6b6edb745a627e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e56f6537586a0050c6b6edb745a627e"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isHomed</b> ()</td></tr>
 <tr class="separator:a2e56f6537586a0050c6b6edb745a627e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fda6f047d81d969ee021ea9b622248a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fda6f047d81d969ee021ea9b622248a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isForwarding</b> ()</td></tr>
+<tr class="separator:a9fda6f047d81d969ee021ea9b622248a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac668147877880e96d00ebf540bbc4a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acac668147877880e96d00ebf540bbc4a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isReversing</b> ()</td></tr>
+<tr class="separator:acac668147877880e96d00ebf540bbc4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb574051761c7704d30f5d4601f7a87f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb574051761c7704d30f5d4601f7a87f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>connect</b> ()</td></tr>
 <tr class="separator:afb574051761c7704d30f5d4601f7a87f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,16 +141,22 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>startPolling</b> ()</
 <tr class="memitem:aa3e0f3ada53bbb08aae20b71e54ae33a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3e0f3ada53bbb08aae20b71e54ae33a"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>stopPolling</b> ()</td></tr>
 <tr class="separator:aa3e0f3ada53bbb08aae20b71e54ae33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0786a6f3dea544aea859fddbfbe1a8c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0786a6f3dea544aea859fddbfbe1a8c4"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_cube_d_c_servo.html#a0786a6f3dea544aea859fddbfbe1a8c4">getPosition</a> ()</td></tr>
-<tr class="memdesc:a0786a6f3dea544aea859fddbfbe1a8c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">General commands. <br /></td></tr>
-<tr class="separator:a0786a6f3dea544aea859fddbfbe1a8c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b8aad68db7aed2f73b67d67281ecf38"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b8aad68db7aed2f73b67d67281ecf38"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_cube_d_c_servo.html#a0b8aad68db7aed2f73b67d67281ecf38">getPosition</a> ()</td></tr>
+<tr class="memdesc:a0b8aad68db7aed2f73b67d67281ecf38"><td class="mdescLeft">&#160;</td><td class="mdescRight">General commands. <br /></td></tr>
+<tr class="separator:a0b8aad68db7aed2f73b67d67281ecf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f7c1fbbb0f039250877f7f027cb9c4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f7c1fbbb0f039250877f7f027cb9c4c"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getVelocity</b> ()</td></tr>
 <tr class="separator:a5f7c1fbbb0f039250877f7f027cb9c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade39fcf6ca8a4547f43d313e41514e8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade39fcf6ca8a4547f43d313e41514e8d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocity</b> (double v)</td></tr>
+<tr class="separator:ade39fcf6ca8a4547f43d313e41514e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1ad26df8337681f5916dd486273e594"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1ad26df8337681f5916dd486273e594"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getAcceleration</b> ()</td></tr>
 <tr class="separator:aa1ad26df8337681f5916dd486273e594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f29204655a0ae97dbc31176c34b9e83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f29204655a0ae97dbc31176c34b9e83"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setAcceleration</b> (double a)</td></tr>
+<tr class="separator:a7f29204655a0ae97dbc31176c34b9e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae204b5c21b4caff2945a15d532656257"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae204b5c21b4caff2945a15d532656257"></a>
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getStatusBits</b> ()</td></tr>
 <tr class="separator:ae204b5c21b4caff2945a15d532656257"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,15 +170,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 <tr class="memitem:a6102f5d529f1122f5e9ebac31e5df0f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6102f5d529f1122f5e9ebac31e5df0f4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>jogForward</b> ()</td></tr>
 <tr class="separator:a6102f5d529f1122f5e9ebac31e5df0f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1aa493050ddf55d7363e03a0edc15fa6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1aa493050ddf55d7363e03a0edc15fa6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>jogBackward</b> ()</td></tr>
-<tr class="separator:a1aa493050ddf55d7363e03a0edc15fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaff34acc572b7c385c7d761fb9d17b4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaff34acc572b7c385c7d761fb9d17b4c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>moveForward</b> ()</td></tr>
-<tr class="separator:aaff34acc572b7c385c7d761fb9d17b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2339bc46a8c2434273157a721933a4b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2339bc46a8c2434273157a721933a4b1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>moveBackward</b> ()</td></tr>
-<tr class="separator:a2339bc46a8c2434273157a721933a4b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ce4754ceee5037d135cff70d590142"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33ce4754ceee5037d135cff70d590142"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>jogReverse</b> ()</td></tr>
+<tr class="separator:a33ce4754ceee5037d135cff70d590142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada716c22a6bf77ff7699fa36493faca0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada716c22a6bf77ff7699fa36493faca0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>forward</b> ()</td></tr>
+<tr class="separator:ada716c22a6bf77ff7699fa36493faca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb20a3616578c09d9a0b76fbcdd0e3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbb20a3616578c09d9a0b76fbcdd0e3c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>reverse</b> ()</td></tr>
+<tr class="separator:abbb20a3616578c09d9a0b76fbcdd0e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fbed128911d93cd01f461ea3e031d90"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fbed128911d93cd01f461ea3e031d90"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>moveDistance</b> (double distance)</td></tr>
 <tr class="separator:a5fbed128911d93cd01f461ea3e031d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,6 +218,9 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>mStatusBits<
 <tr class="memitem:ac7dc5734487a985f1522b57ffd2da8f8 inherit pro_attribs_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7dc5734487a985f1522b57ffd2da8f8"></a>
 <a class="el" href="struct_scaling_factors.html">ScalingFactors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mScalingFactors</b></td></tr>
 <tr class="separator:ac7dc5734487a985f1522b57ffd2da8f8 inherit pro_attribs_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79f9a9a1acb0c52a600bdf6fcd79e2dd inherit pro_attribs_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79f9a9a1acb0c52a600bdf6fcd79e2dd"></a>
+<a class="el" href="struct_hardware_information.html">HardwareInformation</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mHWInfo</b></td></tr>
+<tr class="separator:a79f9a9a1acb0c52a600bdf6fcd79e2dd inherit pro_attribs_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_a_p_t_device"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_a_p_t_device')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_a_p_t_device.html">APTDevice</a></td></tr>
 <tr class="memitem:a84777e2ac99df354edcbbccf881df188 inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84777e2ac99df354edcbbccf881df188"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>mSerial</b></td></tr>

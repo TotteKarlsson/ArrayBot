@@ -1,21 +1,5 @@
 var searchData=
 [
-  ['deaderrorband',['deadErrorBand',['../struct_m_o_t___brushless_current_loop_parameters.html#ac7bbd26dcb62055c57288e390483c2d9',1,'MOT_BrushlessCurrentLoopParameters']]],
-  ['demandedpos',['demandedPos',['../struct_q_d___readings.html#a6079ed031a93b1132466001608c6bd28',1,'QD_Readings']]],
-  ['derivativerecalculationtime',['derivativeRecalculationTime',['../struct_m_o_t___brushless_position_loop_parameters.html#aa2527a45a318f3d34974eae6658833ed',1,'MOT_BrushlessPositionLoopParameters']]],
-  ['description',['description',['../struct_t_l_i___device_info.html#a7c6ebe1654de910ad7b6fc4bc6b43d21',1,'TLI_DeviceInfo']]],
-  ['devicedependantdata',['deviceDependantData',['../struct_t_l_i___hardware_information.html#a89b2101a53d42124e37b55c289518869',1,'TLI_HardwareInformation']]],
-  ['diameter',['diameter',['../struct_n_t___circle_parameters.html#a0495f436385f97e8e465a719c6039dee',1,'NT_CircleParameters']]],
-  ['differentialgain',['differentialGain',['../struct_m_o_t___brushless_position_loop_parameters.html#a43d011b77bff1dea322c3094843fc7c5',1,'MOT_BrushlessPositionLoopParameters::differentialGain()'],['../struct_m_o_t___d_c___p_i_d_parameters.html#ad66ecfc0d02a8192860814496e1b60d7',1,'MOT_DC_PIDParameters::differentialGain()'],['../struct_q_d___loop_parameters.html#ab389908a74ae79151f9d63e91081ee4f',1,'QD_LoopParameters::differentialGain()'],['../struct_q_d___p_i_d_parameters.html#a6c68bd1f2567bbacfae56ecdd3ef6fd7',1,'QD_PIDParameters::differentialGain()'],['../struct_t_c___loop_parameters.html#acb876b6c832cb9ab6cfcd1c07e2a1776',1,'TC_LoopParameters::differentialGain()']]],
-  ['digio1opermode',['digIO1OperMode',['../struct_f_f___i_o_settings.html#afdac200b0f2def426f3f584456bc6286',1,'FF_IOSettings']]],
-  ['digio1pulsewidth',['digIO1PulseWidth',['../struct_f_f___i_o_settings.html#a63ea8fb4a80096fa5a8dc00506a0a7c0',1,'FF_IOSettings']]],
-  ['digio1signalmode',['digIO1SignalMode',['../struct_f_f___i_o_settings.html#a85757a1c3072fddd1c4793d487196867',1,'FF_IOSettings']]],
-  ['digio2opermode',['digIO2OperMode',['../struct_f_f___i_o_settings.html#a10426ee21802861d3ee91ee752d98eb8',1,'FF_IOSettings']]],
-  ['digio2pulsewidth',['digIO2PulseWidth',['../struct_f_f___i_o_settings.html#aae927b35d444d86cfc71e04922f6eb3b',1,'FF_IOSettings']]],
-  ['digio2signalmode',['digIO2SignalMode',['../struct_f_f___i_o_settings.html#aa26b1d2f4827908e66271ef41e462452',1,'FF_IOSettings']]],
-  ['direction',['direction',['../struct_m_o_t___homing_parameters.html#ad609201d95a81d0abf0250188709f5db',1,'MOT_HomingParameters']]],
-  ['directionsense',['directionSense',['../struct_m_o_t___joystick_parameters.html#a25f504f34b7678e0cb381a9371103c3e',1,'MOT_JoystickParameters']]],
-  ['displayintensity',['DisplayIntensity',['../struct_k_m_o_t___m_m_i_params.html#a10d63cd6b82f786f9d39299d4a2d05b5',1,'KMOT_MMIParams::DisplayIntensity()'],['../struct_k_p_z___m_m_i_params.html#a8d5ee0b6c55224eaabe22e95d55ea32c',1,'KPZ_MMIParams::DisplayIntensity()']]],
-  ['displaymode',['displayMode',['../struct_t_s_g___i_o_settings.html#a0d1d781fdd4e2229e79f6e004342b656',1,'TSG_IOSettings']]],
-  ['downlimit',['downLimit',['../struct_n_t___t_i_a_range_parameters.html#afd12c6ffce2da5fcd745f603e97cf71b',1,'NT_TIARangeParameters']]]
+  ['modelnumber',['modelNumber',['../struct_hardware_information.html#ad3267ad32790f2f58622ac3bf9b915de',1,'HardwareInformation']]],
+  ['modificationstate',['modificationState',['../struct_hardware_information.html#ac395fa02c1b83a7de3dd9c47d224c776',1,'HardwareInformation']]]
 ];

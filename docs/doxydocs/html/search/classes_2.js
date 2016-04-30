@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scalingfactors',['ScalingFactors',['../struct_scaling_factors.html',1,'']]]
+  ['hardwareinformation',['HardwareInformation',['../struct_hardware_information.html',1,'']]]
 ];
