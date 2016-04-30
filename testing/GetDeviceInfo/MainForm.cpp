@@ -377,9 +377,6 @@ void __fastcall TMain::TrackBar1Change(TObject *Sender)
 	Log(lInfo) <<"Applying new velocity:" <<fabs(vel)<<" at time: "<< Poco::DateTimeFormatter::format(now, "%H:%M:%S %i");
    	mLastMotorCommand = now;
 
- 	//Check if trackbar change caused the motor to change direction.
-    static lastPos = 0;
-
     if( fabs(vel) <= 0.1)
     {
     	motor->stop();
@@ -417,6 +414,12 @@ void __fastcall TMain::TrackBar1Change(TObject *Sender)
         }
         Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
     }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMain::ScrollBar1MouseLeave(TObject *Sender)
+{
+	ScrollBar1->Position = 0;
 }
 //---------------------------------------------------------------------------
 

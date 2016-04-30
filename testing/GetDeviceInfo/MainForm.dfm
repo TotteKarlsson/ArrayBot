@@ -326,6 +326,16 @@ object Main: TMain
         OnChange = TrackBar1Change
       end
     end
+    object ScrollBar1: TScrollBar
+      Left = 512
+      Top = 219
+      Width = 161
+      Height = 46
+      Min = -100
+      PageSize = 0
+      TabOrder = 2
+      OnMouseLeave = ScrollBar1MouseLeave
+    end
   end
   object ActionList1: TActionList
     Left = 560

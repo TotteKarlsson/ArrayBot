@@ -75,6 +75,7 @@ class TMain : public TForm
 	TLabel *mIsForwardingLabel;
 	TTimer *joyTimer;
 	TLabel *Label5;
+	TScrollBar *ScrollBar1;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -99,6 +100,7 @@ class TMain : public TForm
 	void __fastcall BitBtn3Click(TObject *Sender);
 	void __fastcall mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall TrackBar1Change(TObject *Sender);
+	void __fastcall ScrollBar1MouseLeave(TObject *Sender);
 
     private:	// User declarations
         DeviceManager		mDeviceManager;
