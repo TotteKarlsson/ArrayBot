@@ -13,19 +13,19 @@ File_10=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\includ
 File_11=TSourceModule,'p:\libs\dsl\Common\mtkStringUtils.cpp',0,1,1,1,1,0,0,,
 
 [Modules]
-Module0=P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h
+Module0=P:\ArrayBot\source\abAPTMotor.cpp
 Module1=P:\ArrayBot\source\abTCubeDCServo.cpp
-Module2=P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp
-Module3=P:\ArrayBot\source\abUtilities.cpp
-Module4=P:\ArrayBot\testing\GetDeviceInfo\GetTLDInfo.cbproj
-Module5=P:\ArrayBot\DiagnosticUI\DiagUI.cbproj
-Module6=P:\ArrayBot\source\abCore.cpp
-Module7=P:\ArrayBot\source\abAPTMotor.cpp
+Module2=P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h
+Module3=P:\ArrayBot\testing\GetDeviceInfo\GetTLDInfo.cbproj
+Module4=P:\ArrayBot\DiagnosticUI\DiagUI.cbproj
+Module5=P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp
+Module6=P:\ArrayBot\source\abUtilities.cpp
+Module7=P:\ArrayBot\source\abCore.cpp
 Module8=P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.BrushlessMotor.h
 Count=9
 EditWindowCount=1
 
-[P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h]
+[P:\ArrayBot\source\abAPTMotor.cpp]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
@@ -35,12 +35,7 @@ ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
-[P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp]
-ModuleType=TSourceModule
-FormState=1
-FormOnTop=0
-
-[P:\ArrayBot\source\abUtilities.cpp]
+[P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
@@ -51,12 +46,17 @@ ModuleType=TBaseProject
 [P:\ArrayBot\DiagnosticUI\DiagUI.cbproj]
 ModuleType=TBaseProject
 
-[P:\ArrayBot\source\abCore.cpp]
+[P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
-[P:\ArrayBot\source\abAPTMotor.cpp]
+[P:\ArrayBot\source\abUtilities.cpp]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[P:\ArrayBot\source\abCore.cpp]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
@@ -66,9 +66,13 @@ ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
+[P:\libs\dsl\VCL\Components\mtkFloatLabeledEdit.cpp]
+FormState=0
+FormOnTop=0
+
 [EditWindow0]
 ViewCount=9
-CurrentEditView=P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h
+CurrentEditView=P:\ArrayBot\source\abAPTMotor.cpp
 View0=0
 View1=1
 View2=2
@@ -94,10 +98,8 @@ ClientHeight=9258
 DockedToMainForm=1
 BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
-LeftPanelSize=805
-LeftPanelClients=DockSite2
-LeftPanelData=00000800010000000000921C0000000000000000000000000000000100000000921C000009000000446F636B5369746532FFFFFFFF
-RightPanelSize=2008
+LeftPanelSize=0
+RightPanelSize=2062
 RightPanelClients=DockSite3
 RightPanelData=00000800010000000000830C00000000000000FE1C0000000000000100000000830C000009000000446F636B5369746533FFFFFFFF
 BottomPanelSize=1572
@@ -106,6 +108,7 @@ BottomPanelData=0000080001020100000009000000446F636B5369746531D43000000000000002
 BottomMiddlePanelSize=0
 BottomMiddlePanelClients=DockSite0,GraphDrawingModel
 BottomMiddelPanelData=0000080001020200000009000000446F636B536974653010000000477261706844726177696E67566965779A1D00000000000002F106000000000000FFFFFFFF
+TabDockLeftClients=DockSite2=0
 
 [View0]
 CustomEditViewType=TEditView
@@ -127,18 +130,18 @@ TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=P:\ArrayBot\source\abAPTMotor.cpp
+EditViewName=P:\ArrayBot\source\abAPTMotor.h
 
 [View2]
 CustomEditViewType=TEditView
 Module=P:\ArrayBot\source\abTCubeDCServo.cpp
-CursorX=29
-CursorY=197
-TopLine=175
+CursorX=28
+CursorY=116
+TopLine=87
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=P:\ArrayBot\source\abTCubeDCServo.cpp
+EditViewName=P:\ArrayBot\source\abTCubeDCServo.h
 
 [View3]
 CustomEditViewType=TEditView
@@ -231,12 +234,10 @@ Dockable=1
 StayOnTop=0
 
 [Breakpoints]
-Count=5
+Count=3
 Breakpoint0='C:\Program Files (x86)\Winsoft\Joystick\Examples\CBuilder\UDemo.cpp',29,'',0,1,'',1,0,0,'',1,'','','',0,''
-Breakpoint1='P:\ArrayBot\source\abTCubeDCServo.cpp',29,'',0,1,'',1,0,0,'',1,'','','',0,''
-Breakpoint2='P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',299,'',0,1,'',1,0,0,'',1,'','','',0,''
-Breakpoint3='P:\ArrayBot\source\abTCubeDCServo.cpp',60,'',0,1,'',1,0,0,'',1,'','','',0,''
-Breakpoint4='P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',193,'',0,1,'',1,0,0,'',1,'','','',0,''
+Breakpoint1='P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',299,'',0,1,'',1,0,0,'',1,'','','',0,''
+Breakpoint2='P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',193,'',0,1,'',1,0,0,'',1,'','','',0,''
 
 [EmbarcaderoWin32Debugger_AddressBreakpoints]
 Count=0
@@ -247,8 +248,8 @@ Create=1
 Visible=1
 Docked=0
 State=2
-Left=164
-Top=293
+Left=141
+Top=273
 Width=8930
 Height=8525
 MaxLeft=-8
@@ -269,11 +270,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=2008
+Width=2062
 Height=7188
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2008
+ClientWidth=2062
 ClientHeight=7188
 TBDockHeight=5898
 LRDockWidth=2352
@@ -307,11 +308,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=2008
+Width=2062
 Height=6846
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2008
+ClientWidth=2062
 ClientHeight=6846
 TBDockHeight=7158
 LRDockWidth=2000
@@ -326,22 +327,17 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=805
-Height=7188
+Width=1727
+Height=6494
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=805
-ClientHeight=7188
+ClientWidth=1727
+ClientHeight=6494
 TBDockHeight=7070
 LRDockWidth=1891
 Dockable=1
 StayOnTop=0
-SplitPos=38
-
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Align,
-ExpandedItems=LiveBindings=0,"LiveBindings Designer=0",Margins=0,StyleElements=0,Touch=0,Constraints=0,Font=0,Anchors=0,BorderIcons=0,GlassFrame=0,HorzScrollBar=0,BevelEdges=0,Padding=0,EdgeBorders=0,GradientDrawingOptions=0,ActiveControl=0,ImageMargins=0
+SplitPos=109
 
 [TFileExplorerForm]
 PercentageSizes=1
@@ -349,7 +345,7 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-945
+Left=-938
 Top=-12
 Width=2844
 Height=6201
@@ -368,7 +364,7 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-1023
+Left=-1016
 Top=264
 Width=273
 Height=361
@@ -537,11 +533,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=2008
+Width=2062
 Height=6846
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2008
+ClientWidth=2062
 ClientHeight=6846
 TBDockHeight=4883
 LRDockWidth=7148
@@ -592,8 +588,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-33791
-Top=-969
+Left=-1016
+Top=-45
 Width=5305
 Height=4883
 MaxLeft=-1
@@ -612,7 +608,7 @@ Visible=0
 Docked=1
 State=0
 Left=-1024
-Top=-152
+Top=-102
 Width=1844
 Height=3145
 MaxLeft=-1
@@ -696,12 +692,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=2000
-Height=6904
+Width=1727
+Height=6494
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2000
-ClientHeight=6904
+ClientWidth=1727
+ClientHeight=6494
 TBDockHeight=3672
 LRDockWidth=1891
 Dockable=1
@@ -816,23 +812,23 @@ ActiveTabID=DebugLogView
 TabDockClients=DebugLogView,BreakpointWindow,ThreadStatusWindow,CallStackWindow,WatchWindow,LocalVarsWindow
 
 [DockSite2]
-HostDockSite=DockLeftPanel
+HostDockSite=LeftDockTabSet
 DockSiteType=1
 PercentageSizes=1
 Create=1
-Visible=1
+Visible=0
 Docked=1
 State=0
-Left=0
-Top=23
-Width=805
-Height=7432
+Left=1016
+Top=76
+Width=1852
+Height=7070
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=805
-ClientHeight=7432
+ClientWidth=1727
+ClientHeight=6738
 TBDockHeight=7070
-LRDockWidth=805
+LRDockWidth=1852
 Dockable=1
 StayOnTop=0
 TabPosition=0
@@ -849,19 +845,19 @@ Docked=1
 State=0
 Left=0
 Top=23
-Width=2008
+Width=2062
 Height=7432
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2008
+ClientWidth=2062
 ClientHeight=7432
 TBDockHeight=9014
-LRDockWidth=2008
+LRDockWidth=2062
 Dockable=1
 StayOnTop=0
 TabPosition=0
 ActiveTabID=ProjectManager
-TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,TemplateView,TFileExplorerForm,ModelViewTool
+TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,ModelViewTool,TFileExplorerForm,TemplateView
 
 [ActiveProject]
 ActiveProject=5

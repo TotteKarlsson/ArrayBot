@@ -5,7 +5,7 @@
 //#include "Thorlabs.MotionControl.TDIEngine.h"
 #include "mtkLogger.h"
 #include "abExceptions.h"
-#include <bitset>         // std::bitset
+#include <bitset>
 using namespace std;
 //---------------------------------------------------------------------------
 TCubeDCServo::TCubeDCServo(int serial)
@@ -26,15 +26,19 @@ bool TCubeDCServo::connect()
 
     //Find out what stage is connected
 
-    mScalingFactors.position = 34304;
-    mScalingFactors.velocity = 767367.49;
-	mScalingFactors.acceleration = 261.93;
+//    mScalingFactors.position = 34304;
+//    mScalingFactors.velocity = 767367.49;
+//	mScalingFactors.acceleration = 261.93;
+
+    mScalingFactors.position = 1919.64;
+    mScalingFactors.velocity = 42941.66;
+	mScalingFactors.acceleration = 14.66;
 
     if(res == 0)
     {
     	//BMC_LoadSettings(mSerial.c_str());
 	    // start the device polling at 200ms intervals
-    	if(!BMC_StartPolling(mSerial.c_str(), 200))
+    	if(!BMC_StartPolling(mSerial.c_str(), 250))
         {
         	Log(lError) <<"Failure in StartPolling function";
         }
@@ -111,7 +115,7 @@ bool TCubeDCServo::isReversing()
 	//Query for status bits
     unsigned long b = BMC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
-    return bits.test(6);
+    return bits.test(4);
 }
 
 bool TCubeDCServo::isActive()
@@ -156,7 +160,21 @@ void TCubeDCServo::home()
 
 void TCubeDCServo::stop()
 {
-	BMC_StopProfiled(mSerial.c_str());
+	if(isActive())
+    {
+//		int error = BMC_StopProfiled(mSerial.c_str());
+		int error = BMC_StopImmediate(mSerial.c_str());
+
+        if(error != 0)
+        {
+            Log(lError) <<tlError(error);
+        }
+
+//        while(isActive())
+//        {
+//            //Log(lInfo) << "Waiting ...";
+//        }
+    }
 }
 
 double TCubeDCServo::getPosition()
@@ -182,21 +200,31 @@ bool TCubeDCServo::setMaxVelocity(double vel)
 {
  	MOT_VelocityParameters parameters;
     BMC_GetVelParamsBlock(mSerial.c_str(), &parameters);
-    parameters.maxVelocity = vel * mScalingFactors.velocity;
-    int e = BMC_SetVelParamsBlock(mSerial.c_str(), &parameters);
 
-    if(e)
+    //Check difference
+    if(fabs(vel - parameters.maxVelocity) < 0.01)
     {
-	   	Log(lError) <<tlError(e);
+    	Log(lInfo) <<"velocity change to small..";
     }
+    else
 
-    if(isForwarding())
     {
-        forward();
-    }
-    else if (isReversing())
-    {
-        reverse();
+    	parameters.maxVelocity = vel * mScalingFactors.velocity;
+    	int e = BMC_SetVelParamsBlock(mSerial.c_str(), &parameters);
+
+        if(e)
+        {
+            Log(lError) <<tlError(e);
+        }
+
+        if(isForwarding())
+        {
+            forward();
+        }
+        else if (isReversing())
+        {
+            reverse();
+        }
     }
 
 	return false;
@@ -210,7 +238,6 @@ bool TCubeDCServo::setAcceleration(double a)
     BMC_SetVelParamsBlock(mSerial.c_str(), &parameters);
 	return false;
 }
-
 
 double TCubeDCServo::getAcceleration()
 {
@@ -249,13 +276,17 @@ void TCubeDCServo::forward()
 	if(isReversing())
     {
     	Log(lInfo) << "Forwarding requested, but motor is in reverse..";
-        stop();
+        return;
     }
 
-	int error = BMC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
-    if(error != 0)
+    //Don't send command if already doing what is needed
+//    if(!isForwarding())
     {
-    	Log(lError) <<tlError(error);
+        int error = BMC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+        if(error != 0)
+        {
+            Log(lError) <<tlError(error);
+        }
     }
 }
 
@@ -264,13 +295,17 @@ void TCubeDCServo::reverse()
 	if(isForwarding())
     {
     	Log(lInfo) << "Reversing requested, but motor is forwarding..";
-        stop();
+		return;
     }
 
-	int error = BMC_MoveAtVelocity(mSerial.c_str(), MOT_Reverse);
-    if(error !=0)
+    //Don't send command if already doing what is needed
+ //   if(!isReversing())
     {
-    	Log(lError) <<tlError(error);
+        int error = BMC_MoveAtVelocity(mSerial.c_str(), MOT_Reverse);
+        if(error !=0)
+        {
+            Log(lError) <<tlError(error);
+        }
     }
 }
 

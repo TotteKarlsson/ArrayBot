@@ -18,6 +18,20 @@ object Main: TMain
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
+  object Label4: TLabel
+    Left = 120
+    Top = 221
+    Width = 18
+    Height = 13
+    Caption = 'N/A'
+  end
+  object Label6: TLabel
+    Left = 120
+    Top = 202
+    Width = 18
+    Height = 13
+    Caption = 'N/A'
+  end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
@@ -121,25 +135,88 @@ object Main: TMain
       Caption = 'Device'
       TabOrder = 1
       object mIsActiveLabel: TLabel
-        Left = 17
-        Top = 215
+        Left = 112
+        Top = 175
         Width = 18
         Height = 13
         Caption = 'N/A'
       end
       object mIsHomingLabel: TLabel
-        Left = 80
-        Top = 215
+        Left = 112
+        Top = 194
         Width = 18
         Height = 13
         Caption = 'N/A'
       end
       object mIsHomedLabel: TLabel
-        Left = 153
-        Top = 215
+        Left = 112
+        Top = 213
         Width = 18
         Height = 13
         Caption = 'N/A'
+      end
+      object Label1: TLabel
+        Left = 17
+        Top = 175
+        Width = 49
+        Height = 13
+        Caption = 'Is Active: '
+      end
+      object Label2: TLabel
+        Left = 16
+        Top = 194
+        Width = 51
+        Height = 13
+        Caption = 'Is Homing:'
+      end
+      object Label3: TLabel
+        Left = 17
+        Top = 213
+        Width = 52
+        Height = 13
+        Caption = 'Is Homed: '
+      end
+      object Lbl2: TLabel
+        Left = 16
+        Top = 251
+        Width = 64
+        Height = 13
+        Caption = 'Is Reversing:'
+      end
+      object mVelocityLbl: TLabel
+        Left = 111
+        Top = 270
+        Width = 52
+        Height = 13
+        Caption = 'Is Homed: '
+      end
+      object Lbl: TLabel
+        Left = 16
+        Top = 232
+        Width = 70
+        Height = 13
+        Caption = 'Is Forwarding:'
+      end
+      object mIsReversingLabel: TLabel
+        Left = 112
+        Top = 251
+        Width = 18
+        Height = 13
+        Caption = 'N/A'
+      end
+      object mIsForwardingLabel: TLabel
+        Left = 112
+        Top = 232
+        Width = 18
+        Height = 13
+        Caption = 'N/A'
+      end
+      object Label5: TLabel
+        Left = 17
+        Top = 270
+        Width = 41
+        Height = 13
+        Caption = 'Velocity:'
       end
       object Button1: TButton
         Left = 16
@@ -214,15 +291,6 @@ object Main: TMain
         OnMouseDown = driveBtnDown
         OnMouseUp = driveBtnUp
       end
-      object Button5: TButton
-        Left = 192
-        Top = 24
-        Width = 75
-        Height = 25
-        Caption = 'Button5'
-        TabOrder = 9
-        OnClick = Button5Click
-      end
       object mMaxVelocity: mtkFloatLabeledEdit
         Left = 97
         Top = 136
@@ -243,25 +311,18 @@ object Main: TMain
         EditLabel.Width = 59
         EditLabel.Height = 13
         EditLabel.Caption = 'Acceleration'
-        TabOrder = 10
+        TabOrder = 9
         Text = '0.00'
         OnKeyDown = mMaxVelocityKeyDown
       end
-      object Button8: TButton
-        Left = 120
-        Top = 176
-        Width = 75
-        Height = 25
-        Caption = 'Button8'
-        TabOrder = 11
-      end
       object TrackBar1: TTrackBar
-        Left = 23
-        Top = 249
+        Left = 177
+        Top = 206
         Width = 150
         Height = 45
-        Min = -10
-        TabOrder = 12
+        Max = 1000
+        Frequency = 50
+        TabOrder = 10
         OnChange = TrackBar1Change
       end
     end
@@ -324,5 +385,11 @@ object Main: TMain
     OnException = ApplicationEvents1Exception
     Left = 480
     Top = 200
+  end
+  object joyTimer: TTimer
+    Enabled = False
+    Interval = 100
+    Left = 656
+    Top = 80
   end
 end

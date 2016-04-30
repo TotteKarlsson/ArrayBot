@@ -17,7 +17,9 @@
 #include "TIntegerLabeledEdit.h"
 #include "mtkFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
+#include "Poco/Timestamp.h"
 
+using Poco::Timestamp;
 class APTMotor;
 //---------------------------------------------------------------------------
 class TMain : public TForm
@@ -58,11 +60,21 @@ class TMain : public TForm
 	TToolBar *ToolBar2;
 	TBitBtn *BitBtn3;
 	TPanel *Panel2;
-	TButton *Button5;
 	mtkFloatLabeledEdit *mMaxVelocity;
 	mtkFloatLabeledEdit *mAcceleration;
-	TButton *Button8;
 	TTrackBar *TrackBar1;
+	TLabel *Label1;
+	TLabel *Label2;
+	TLabel *Label3;
+	TLabel *Lbl2;
+	TLabel *mVelocityLbl;
+	TLabel *Lbl;
+	TLabel *Label4;
+	TLabel *Label6;
+	TLabel *mIsReversingLabel;
+	TLabel *mIsForwardingLabel;
+	TTimer *joyTimer;
+	TLabel *Label5;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -85,7 +97,6 @@ class TMain : public TForm
 	void __fastcall StatusTimerTimer(TObject *Sender);
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
 	void __fastcall BitBtn3Click(TObject *Sender);
-	void __fastcall Button5Click(TObject *Sender);
 	void __fastcall mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall TrackBar1Change(TObject *Sender);
 
@@ -97,6 +108,7 @@ class TMain : public TForm
 		APTDevice* 			getCurrentDevice();
 		void __fastcall		OnException();
 		APTMotor*	        getCurrentMotor();
+       	Timestamp 			mLastMotorCommand;
 
 public:		// User declarations
 	__fastcall TMain(TComponent* Owner);

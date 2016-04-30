@@ -9,7 +9,7 @@
 #include "abTCubeDCServo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
-
+#include <bitset>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -276,9 +276,20 @@ void __fastcall TMain::StatusTimerTimer(TObject *Sender)
 
         motorPositionE->SetNumber(p);
 
-       	mIsActiveLabel->Caption = (motor->isActive()) 	? "Active" : "Idle";
-        mIsHomingLabel->Caption = (motor->isHoming()) 	? "Is homing" : "Not Homing";
-        mIsHomedLabel->Caption  = (motor->isHomed()) 	? "Is homed" : "Not Homed";
+       	mIsActiveLabel->Caption 	= (motor->isActive()) 	    ? "True" : "False";
+        mIsHomingLabel->Caption 	= (motor->isHoming()) 	    ? "True" : "False";
+        mIsHomedLabel->Caption  	= (motor->isHomed()) 	    ? "True" : "False";
+        mIsForwardingLabel->Caption = (motor->isForwarding()) 	? "True" : "False";
+        mIsReversingLabel->Caption  = (motor->isReversing()) 	? "True" : "False";
+
+		if(motor->isActive())
+        {
+			mVelocityLbl->Caption = FloatToStrF(v,ffFixed, 4,3);
+        }
+        else
+        {
+			mVelocityLbl->Caption = FloatToStrF(0,ffFixed, 4,3);
+        }
     }
 }
 
@@ -299,23 +310,6 @@ void __fastcall TMain::BitBtn3Click(TObject *Sender)
 	infoMemo->Clear();
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::Button5Click(TObject *Sender)
-{
-    int ii = devicesLB->ItemIndex;
-    if(ii > -1)
-    {
-        APTDevice* device = (APTDevice*) devicesLB->Items->Objects[ii];
-
-        //Check position for current device
-        APTMotor* motor = dynamic_cast<APTMotor*>(device);
-        if(!motor)
-        {
-        	return;
-        }
-        Log(lInfo) << motor->getEncoderCounts();
-    }
-}
 
 APTMotor* TMain::getCurrentMotor()
 {
@@ -345,14 +339,6 @@ void __fastcall TMain::mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftSta
             if(motor)
             {
                 motor->setMaxVelocity(vel);
-//                if(motor->isForwarding())
-//                {
-//                	motor->forward();
-//                }
-//                else if (motor->isReversing())
-//                {
-//                	motor->reverse();
-//                }
             }
         }
        	if(e == mAcceleration)
@@ -370,9 +356,6 @@ void __fastcall TMain::mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftSta
 
 void __fastcall TMain::TrackBar1Change(TObject *Sender)
 {
-	Log(lInfo) <<"Applying new velocity:" <<TrackBar1->Position/2.0;
-
-	double vel = TrackBar1->Position/2.0;
     APTMotor* motor = getCurrentMotor();
     if(motor == NULL)
     {
@@ -380,25 +363,60 @@ void __fastcall TMain::TrackBar1Change(TObject *Sender)
     	return;
     }
 
-    if(-0.1 >= vel <= 0.1 )
+	double vel = TrackBar1->Position/50.0;
+
+	Timestamp now;
+    Timestamp::TimeDiff diff = now - mLastMotorCommand;
+    Poco::Timespan span(diff);
+    if(diff < Poco::Timespan::MILLISECONDS*100)
+    {
+    	//Log(lInfo) << "Disregarding command. Time difference was: "<<Poco::DateTimeFormatter::format(span, "%i");
+        return;
+    }
+
+	Log(lInfo) <<"Applying new velocity:" <<fabs(vel)<<" at time: "<< Poco::DateTimeFormatter::format(now, "%H:%M:%S %i");
+   	mLastMotorCommand = now;
+
+ 	//Check if trackbar change caused the motor to change direction.
+    static lastPos = 0;
+
+    if( fabs(vel) <= 0.1)
     {
     	motor->stop();
         Log(lInfo) << "Stopping motor";
+        return;
     }
 
-    if (vel > 0.1)
+    if (vel > 0.5)
     {
-        motor->forward();
     	motor->setMaxVelocity(vel);
+        if(motor->isReversing())
+        {
+            motor->stop();
+        }
+
+        if(!motor->isForwarding())
+        {
+
+        	motor->forward();
+        }
+
         Log(lInfo) << "Setting forward velocity: "<<vel;
     }
-
-    if (vel < -0.1)
+    else
     {
-        motor->reverse();
     	motor->setMaxVelocity(fabs(vel));
-        Log(lInfo) << "Setting reverse velocity: "<<vel;
+        if(motor->isForwarding())
+        {
+            motor->stop();
+        }
+
+        if(!motor->isReversing())
+        {
+        	motor->reverse();
+        }
+        Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
     }
 }
-
+//---------------------------------------------------------------------------
 
