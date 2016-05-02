@@ -7,7 +7,7 @@
 #include "mtkStringList.h"
 //---------------------------------------------------------------------------
 class MotorMessageContainer;
-
+class APTMotor;
 using mtk::StringList;
 
 using mtk::gEmptyString;
@@ -25,6 +25,7 @@ class AB_CORE MotorMessageProcessor : public mtk::Thread
         virtual void                                worker();
         void                                        stop();
         bool                                        start(bool in_thread = true);
+        void										assignMotor(APTMotor* motor);
 
         void                                        pauseProcessing();
         void                                        resumeProcessing();
@@ -33,6 +34,7 @@ class AB_CORE MotorMessageProcessor : public mtk::Thread
 	protected:
 		long                                        mProcessedCount;
 		bool                                        mAllowProcessing;
+        APTMotor*									mMotor;
 
 		MotorMessageContainer&                      mMotorMessageContainer;
 };

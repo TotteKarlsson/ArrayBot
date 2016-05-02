@@ -13,7 +13,7 @@ mNrOfProcessedCommands(0)
 MotorMessageContainer::~MotorMessageContainer()
 {}
 
-void MotorMessageContainer::post(const string& msg)
+void MotorMessageContainer::post(const MotorCommand& msg)
 {
     //The list of motorCMDs are accessed by child threads
     {
@@ -30,37 +30,37 @@ void  MotorMessageContainer::wakeUpWatchers()
 	mNewCommandCondition.signal();
 }
 
-string MotorMessageContainer::pop()
+MotorCommand MotorMessageContainer::pop()
 {
-    string msg = "";
+    MotorCommand cmd(mcNone);
 
     //Scoped lock
     {
         Poco::ScopedLock<Poco::Mutex> lock(mListMutex);
         if(mCommands.size())
         {
-            msg = mCommands.front();
+            cmd = mCommands.front();
             mCommands.pop_front();
         }
     }
 
-    return msg;
+    return cmd;
 }
 
-string MotorMessageContainer::peek()
+MotorCommand MotorMessageContainer::peek()
 {
-    string msg = "";
+    MotorCommand cmd(mcNone);
 
     //Scoped lock
     {
         Poco::ScopedLock<Poco::Mutex> lock(mListMutex);
         if(mCommands.size())
         {
-            msg = mCommands.front();
+            cmd = mCommands.front();
         }
     }
 
-    return msg;
+    return cmd;
 }
 
 bool MotorMessageContainer::hasMessage()

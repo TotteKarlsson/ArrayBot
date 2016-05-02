@@ -4,6 +4,7 @@
 #include "CoreExporter.h"
 #include "Poco/Condition.h"
 #include "abMotorMessageProcessor.h"
+#include "abMotorCommand.h"
 //---------------------------------------------------------------------------
 using std::deque;
 
@@ -16,12 +17,13 @@ class AB_CORE MotorMessageContainer
 	public:
 												MotorMessageContainer();
 												~MotorMessageContainer();
-		void                                    post(const string& motorCMD);
+		void                                    post(const MotorCommand& cmd);
+//		void                                    post(const string& motorCMD);
 
 		bool                                    hasMessage();
 		int                                     count();
-		string                                  pop();
-		string                                  peek();
+		MotorCommand                            pop();
+		MotorCommand                            peek();
 
 												//The motorCMD proceesor is waiting
 												//for signals from the container
@@ -33,8 +35,9 @@ class AB_CORE MotorMessageContainer
 		Poco::Mutex                             mListMutex;
 		Poco::Condition                         mNewCommandCondition;
 		int 									mNrOfProcessedCommands;
+
 	private:
-		deque<string>                           mCommands;
+		deque<MotorCommand>                     mCommands;
 };
 
 #endif

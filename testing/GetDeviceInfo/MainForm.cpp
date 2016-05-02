@@ -103,6 +103,8 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
 
         	double a = motor->getAcceleration();
 			mAcceleration->SetNumber(a);
+
+            mMotorMessageProcessor.assignMotor(motor);
         }
 
 		StatusTimer->Enabled = true;
@@ -163,32 +165,39 @@ void __fastcall TMain::jogBackwardsExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::moveForwardExecute(TObject *Sender)
 {
-	//Use whatever speed is selected
-    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
-    if(motor)
-    {
-    	motor->forward();
-    }
+//	//Use whatever speed is selected
+//    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
+//    if(motor)
+//    {
+//    	motor->forward();
+//    }
+	MotorCommand cmd(mcForward);
+	mMotorMessageContainer.post(cmd);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::moveBackwardExecute(TObject *Sender)
 {
-	//Use whatever speed is selected
-    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
-    if(motor)
-    {
-    	motor->reverse();
-    }
+//	//Use whatever speed is selected
+//    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
+//    if(motor)
+//    {
+//    	motor->reverse();
+//    }
+	MotorCommand cmd(mcReverse);
+	mMotorMessageContainer.post(cmd);
 }
 
 void __fastcall TMain::stopMotorExecute(TObject *Sender)
 {
-    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
-    if(motor)
-    {
-    	motor->stop();
-    }
+//    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
+//    if(motor)
+//    {
+//    	motor->stop();
+//    }
+
+	MotorCommand cmd(mcStopHard);
+	mMotorMessageContainer.post(cmd);
 }
 
 void __fastcall TMain::driveBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
@@ -248,8 +257,6 @@ void __fastcall TMain::StatusTimerTimer(TObject *Sender)
         }
     }
 }
-
-
 
 APTMotor* TMain::getCurrentMotor()
 {

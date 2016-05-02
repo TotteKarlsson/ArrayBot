@@ -21,6 +21,7 @@
 #include "abMotorMessageProcessor.h"
 #include "abMotorMessageContainer.h"
 using Poco::Timestamp;
+
 class APTMotor;
 //---------------------------------------------------------------------------
 class TMain : public TForm

@@ -276,7 +276,6 @@ object Main: TMain
         Height = 25
         Caption = 'Forward'
         TabOrder = 7
-        OnClick = moveForwardExecute
         OnMouseDown = driveBtnDown
         OnMouseUp = driveBtnUp
       end
@@ -287,7 +286,6 @@ object Main: TMain
         Height = 25
         Caption = 'Backward'
         TabOrder = 8
-        OnClick = moveBackwardExecute
         OnMouseDown = driveBtnDown
         OnMouseUp = driveBtnUp
       end

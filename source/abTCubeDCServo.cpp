@@ -160,7 +160,7 @@ void TCubeDCServo::home()
 
 void TCubeDCServo::stop()
 {
-	if(isActive())
+//	if(isActive())
     {
 //		int error = BMC_StopProfiled(mSerial.c_str());
 		int error = BMC_StopImmediate(mSerial.c_str());

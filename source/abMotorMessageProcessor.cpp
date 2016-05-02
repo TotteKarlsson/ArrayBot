@@ -4,8 +4,8 @@
 #include "abMotorMessageContainer.h"
 #include "Poco/Mutex.h"
 #include "mtkLogger.h"
-
 #include "mtkUtils.h"
+#include "abAPTMotor.h"
 //---------------------------------------------------------------------------
 
 using Poco::Mutex;
@@ -28,6 +28,11 @@ MotorMessageProcessor::~MotorMessageProcessor()
     {
 		stop();
     }
+}
+
+void MotorMessageProcessor::assignMotor(APTMotor* motor)
+{
+	mMotor = motor;
 }
 
 bool MotorMessageProcessor::start(bool inThread)
@@ -87,8 +92,46 @@ void MotorMessageProcessor::worker()
 
             while(mMotorMessageContainer.hasMessage())
             {
-	           	string cmd = mMotorMessageContainer.pop();
+	           	MotorCommand cmd = mMotorMessageContainer.pop();
+
     	        Log(lInfo) << "Processing command: "<<cmd;
+                switch(cmd.getCore())
+                {
+                    case mcNone:
+					break;
+
+                    case mcStopHard:
+                    	mMotor->stop();
+					break;
+
+                    case mcStopProfiled:
+                    	mMotor->stop();
+					break;
+
+                    case mcForward:
+                    	mMotor->forward();
+					break;
+
+                    case mcReverse:
+                    	mMotor->reverse();
+					break;
+
+                    case mcJogForward:
+                    	mMotor->jogForward();
+					break;
+
+                    case mcJogReverse:
+                    	mMotor->jogReverse();
+					break;
+
+                    case mcMoveDistance:
+                    	mMotor->moveDistance(cmd.getFirstVariable());
+					break;
+
+                    case mcSetVelocity:
+					break;
+                }
+//                sleep(200);
             }
 
 		}//mutex
