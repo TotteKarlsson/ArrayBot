@@ -43,7 +43,6 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
-    ExplicitWidth = 771
     object BitBtn1: TBitBtn
       Left = 0
       Top = 0
@@ -71,9 +70,6 @@ object Main: TMain
     Align = alClient
     Caption = 'Panel1'
     TabOrder = 1
-    ExplicitTop = 337
-    ExplicitWidth = 771
-    ExplicitHeight = 308
     object infoMemo: TMemo
       Left = 1
       Top = 34
@@ -83,8 +79,6 @@ object Main: TMain
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
-      ExplicitWidth = 769
-      ExplicitHeight = 273
     end
     object ToolBar2: TToolBar
       Left = 1
@@ -95,7 +89,6 @@ object Main: TMain
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
-      ExplicitWidth = 769
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -114,7 +107,6 @@ object Main: TMain
     Height = 397
     Align = alTop
     TabOrder = 2
-    ExplicitWidth = 771
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
@@ -123,7 +115,6 @@ object Main: TMain
       Align = alLeft
       Caption = 'Devices'
       TabOrder = 0
-      ExplicitHeight = 299
       object devicesLB: TListBox
         Left = 2
         Top = 15
@@ -133,7 +124,6 @@ object Main: TMain
         ItemHeight = 13
         TabOrder = 0
         OnClick = devicesLBClick
-        ExplicitHeight = 282
       end
     end
     object GroupBox2: TGroupBox
@@ -144,7 +134,6 @@ object Main: TMain
       Align = alLeft
       Caption = 'Device'
       TabOrder = 1
-      ExplicitHeight = 299
       object mIsActiveLabel: TLabel
         Left = 112
         Top = 175
@@ -392,7 +381,7 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 512
+    Left = 520
     Top = 64
   end
   object StatusTimer: TTimer

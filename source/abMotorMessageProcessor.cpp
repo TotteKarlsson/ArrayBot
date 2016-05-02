@@ -24,8 +24,10 @@ mNotifyUI(NULL)
 //----------------------------------------------------------------
 MotorMessageProcessor::~MotorMessageProcessor()
 {
-	stop();
-//	mDB.close();
+	if(mIsRunning)
+    {
+		stop();
+    }
 }
 
 bool MotorMessageProcessor::start(bool inThread)
@@ -49,21 +51,6 @@ bool MotorMessageProcessor::start(bool inThread)
 void MotorMessageProcessor::pauseProcessing()
 {
 	mAllowProcessing = false;
-}
-
-bool MotorMessageProcessor::openDataBase(const string& db)
-{
-//	if(!fileExists(db))
-//	{
-//		return false;
-//	}
-//
-//	bool res = mDB.open(db);
-//	if(!res)
-//	{
-//		Log(lError) << "Order Processor failed opening database";
-//	}
-//	return res;
 }
 
 void MotorMessageProcessor::resumeProcessing()
@@ -94,57 +81,22 @@ void MotorMessageProcessor::worker()
 			Poco::ScopedLock<Poco::Mutex> lock(mMotorMessageContainer.mListMutex);
 			if(mMotorMessageContainer.count() == 0)
 			{
-				Log(lDebug3) << "Waiting for motorCMDs.";
+				Log(lDebug3) << "Waiting for motor commands.";
 				mMotorMessageContainer.mNewCommandCondition.wait(mMotorMessageContainer.mListMutex);
 			}
 
-            //Allow the processor to import all pending motorCMDs before updating stats in the UI
-			{
-//				Poco::ScopedLock<Poco::Mutex> lock(mDB.mDBMutex);
-//				while(mMotorMessageContainer.count() && mIsTimeToDie == false)
-//				{
-//					string motorCMDLine = mMotorMessageContainer.pop();
-//					StringList motorCMD(motorCMDLine,'|');
-//
-//					try
-//					{
-//						if(importOrderData(motorCMD))
-//						{
-//							importCustomerData(motorCMD);
-//							importStateOrRegionData(motorCMD);
-//							Log(lInfo) << "Importing Order: "<<(motorCMD[0]);
-//						}
-//						else
-//						{
-//							Log(lError) << "Failed importing motorCMD";
-//						}
-//					}
-//					catch(const mtk::SQLiteException& e)
-//					{
-//						switch(e.errorCode())
-//						{
-//							case 5: 	Log(lDebug2) << "Database is locked or busy. Failed to import motorCMD: "<<motorCMD[0];               break;
-//							case 19:	Log(lDebug2) << "Order already imported: "<<motorCMD[0];                                         break;
-//							default:  	Log(lDebug2) << "An unhandled SQLite exception: "<<motorCMD[0]<<" Message was: " << e.what();    break;
-//						}
-//					}
-//					catch(const mtk::MoleculixException& e)
-//					{
-//						Log(lDebug2) << "Exception: "<<e.what();
-//					}
-//				}
-//			   mDB.createStatistics();
-			} //DBMutex
+            while(mMotorMessageContainer.hasMessage())
+            {
+	           	string cmd = mMotorMessageContainer.pop();
+    	        Log(lInfo) << "Processing command: "<<cmd;
+            }
 
-//			if(mNotifyUI && mIsTimeToDie == false)
-//			{
-//				TThread::Synchronize(NULL, mNotifyUI);
-//			}
-		}//Order container mutex
+		}//mutex
 	}
 
 	mIsFinished = true;
 	mIsRunning = false;
+    Log(lInfo) << "Motor Message Processor finished";
 }
 
 

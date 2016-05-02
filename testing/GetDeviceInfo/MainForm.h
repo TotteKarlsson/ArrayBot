@@ -18,7 +18,8 @@
 #include "mtkFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
 #include "Poco/Timestamp.h"
-
+#include "abMotorMessageProcessor.h"
+#include "abMotorMessageContainer.h"
 using Poco::Timestamp;
 class APTMotor;
 //---------------------------------------------------------------------------
@@ -112,8 +113,8 @@ class TMain : public TForm
 		APTMotor*	                getCurrentMotor();
        	Timestamp 			        mLastMotorCommand;
 
-        MotorMessageProcessor		mMessageProcessor;
-        MessageContainer			mMessageContainer;
+        MotorMessageProcessor		mMotorMessageProcessor;
+        MotorMessageContainer  		mMotorMessageContainer;
 
 
 

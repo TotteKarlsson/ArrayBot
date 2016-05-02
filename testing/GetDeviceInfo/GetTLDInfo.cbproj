@@ -109,6 +109,9 @@
             <DependentOn>MainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Misc.cpp">
+            <BuildOrder>3</BuildOrder>
+        </CppCompile>
         <FormResources Include="MainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

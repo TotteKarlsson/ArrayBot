@@ -26,25 +26,10 @@ __fastcall TMain::TMain(TComponent* Owner)
 :
 TForm(Owner),
 logMsgMethod(&logMsg),
-mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod)
+mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
+mMotorMessageProcessor(mMotorMessageContainer)
 {
 	TMemoLogger::mMemoIsEnabled = false;
-}
-
-//This one is called from the reader thread
-void __fastcall TMain::logMsg()
-{
-    infoMemo->Lines->Add(vclstr(mLogFileReader.getData()));
-    mLogFileReader.purge();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-	if(Key == vkEscape)
-    {
-    	Close();
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -89,39 +74,10 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	mLogFileReader.start(true);
 
     connectAllDevicesExecute(Sender);
+
+	mMotorMessageProcessor.start(true);
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
-{
-	ShutDownTimer->Enabled = false;
-	if(mLogFileReader.isRunning())
-	{
-		Log(lDebug) << "Shutting down log file reader";
-		mLogFileReader.stop();
-	}
-	Close();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
-{
-	Log(lInfo) << "Closing down....";
-
-	//Check if we can close.. abort all threads..
-	CanClose = (mLogFileReader.isRunning()) ? false : true;
-
-	if(CanClose == false)
-	{
-		ShutDownTimer->Enabled = true;
-	}
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormClose(TObject *Sender, TCloseAction &Action)
-{
-	Log(lInfo) << "In FormClose";
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::devicesLBClick(TObject *Sender)
@@ -293,22 +249,6 @@ void __fastcall TMain::StatusTimerTimer(TObject *Sender)
     }
 }
 
-void __fastcall	TMain::OnException()
-{
-	Log(lInfo) << "Exception TMain::OnException()";
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::ApplicationEvents1Exception(TObject *Sender, Exception *E)
-{
-	Log(lInfo) << "Application Exception...."<<stdstr(E->Message);
-}
-
-
-void __fastcall TMain::BitBtn3Click(TObject *Sender)
-{
-	infoMemo->Clear();
-}
 
 
 APTMotor* TMain::getCurrentMotor()
@@ -387,28 +327,12 @@ void __fastcall TMain::TrackBar1Change(TObject *Sender)
     if (vel > 0.5)
     {
     	motor->setMaxVelocity(vel);
-//        if(motor->isReversing())
-//        {
-//            motor->stop();
-//        }
-//
-//        if(!motor->isForwarding())
-//        {
-
-        	motor->forward();
-//        }
-
+      	motor->forward();
         Log(lInfo) << "Setting forward velocity: "<<vel;
     }
     else
     {
     	motor->setMaxVelocity(fabs(vel));
-//        if(motor->isForwarding())
-//        {
-//            motor->stop();
-//        }
-//
-//        if(!motor->isReversing())
         {
         	motor->reverse();
         }
@@ -420,15 +344,16 @@ void __fastcall TMain::TrackBar1Change(TObject *Sender)
 
 void __fastcall TMain::Button5Click(TObject *Sender)
 {
-    APTMotor* motor = getCurrentMotor();
-    if(motor == NULL)
-    {
-    	Log(lInfo) << "Motor object is null..";
-    	return;
-    }
-
-	motor->forward();
-    motor->reverse();
+//    APTMotor* motor = getCurrentMotor();
+//    if(motor == NULL)
+//    {
+//    	Log(lInfo) << "Motor object is null..";
+//    	return;
+//    }
+//
+//	motor->forward();
+//    motor->reverse();
+   	mMotorMessageProcessor.stop();
 }
 
 

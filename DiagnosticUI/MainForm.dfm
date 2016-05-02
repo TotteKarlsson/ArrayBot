@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot DebugUI'
-  ClientHeight = 497
-  ClientWidth = 693
+  ClientHeight = 527
+  ClientWidth = 879
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,11 +17,11 @@ object Main: TMain
     Left = 0
     Top = 0
     Width = 185
-    Height = 357
+    Height = 387
     Align = alLeft
     Caption = 'Cover Slip Control'
     TabOrder = 0
-    ExplicitHeight = 410
+    ExplicitHeight = 357
     object Button1: TButton
       Left = 16
       Top = 24
@@ -542,15 +542,15 @@ object Main: TMain
     end
   end
   object GroupBox2: TGroupBox
-    Left = 508
+    Left = 694
     Top = 0
     Width = 185
-    Height = 357
+    Height = 387
     Align = alRight
     Caption = 'Whisker Control'
     TabOrder = 1
-    ExplicitLeft = 709
-    ExplicitHeight = 410
+    ExplicitLeft = 508
+    ExplicitHeight = 357
     object Button3: TButton
       Left = 24
       Top = 24
@@ -571,31 +571,31 @@ object Main: TMain
   object Panel1: TPanel
     Left = 185
     Top = 0
-    Width = 323
-    Height = 357
+    Width = 509
+    Height = 387
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 524
-    ExplicitHeight = 410
+    ExplicitWidth = 323
+    ExplicitHeight = 357
   end
   object Panel2: TPanel
     Left = 0
-    Top = 357
-    Width = 693
+    Top = 387
+    Width = 879
     Height = 140
     Align = alBottom
     Caption = 'Panel2'
     TabOrder = 3
-    ExplicitTop = 410
-    ExplicitWidth = 894
+    ExplicitTop = 357
+    ExplicitWidth = 693
     object infoMemo: TMemo
       Left = 186
       Top = 1
-      Width = 506
+      Width = 692
       Height = 138
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 707
+      ExplicitWidth = 506
     end
     object GroupBox3: TGroupBox
       Left = 1
