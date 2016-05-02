@@ -1,27 +1,27 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\vcl\vcl.Forms.hpp',0,1,1073,1,1093,0,0,,
-File_1=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\vcl\Vcl.Controls.hpp',0,1,2316,1,2337,0,0,,
-File_2=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\sdk\mmsystem.h',0,1,2285,1,2305,0,0,,
-File_3=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h',0,1,143,39,164,0,0,,
-File_4=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.BrushlessMotor.h',0,1,1337,27,1380,0,0,,
-File_5=TSourceModule,'P:\libs\dsl\VCL\Components\mtkFloatLabeledEdit.cpp',0,1,1,1,1,0,0,,
-File_6=TSourceModule,'P:\ArrayBot\source\abAPTMotor.cpp',0,1,1,2,12,0,0,,
-File_7=TSourceModule,'P:\ArrayBot\source\abTCubeDCServo.cpp',0,1,87,28,116,0,0,,
-File_8=TSourceModule,'P:\ArrayBot\source\abUtilities.cpp',0,1,1,22,16,0,0,,
-File_9=TSourceModule,'P:\ArrayBot\source\abCore.cpp',0,1,1,60,31,0,0,,
-File_10=TSourceModule,'P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',0,1,173,1,193,0,0,,
-File_11=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.DCServo.h',0,1,53,50,79,0,0,,
-File_12=TSourceModule,'P:\libs\dsl\Common\mtkLogLevel.cpp',0,1,1,1,14,0,0,,
-File_13=TSourceModule,'P:\libs\dsl\Common\mtkLogging.cpp',0,1,29,1,52,0,0,,
-File_14=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xlocnum',0,1,1027,1,1047,0,0,,
+File_0=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\sdk\mmsystem.h',0,1,2341,1,2361,0,0,,
+File_1=TSourceModule,'P:\ArrayBot\testing\joystick\Unit1.cpp',0,1,51,21,62,0,0,,
+File_2=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\vcl\vcl.Forms.hpp',0,1,1073,1,1093,0,0,,
+File_3=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\vcl\Vcl.Controls.hpp',0,1,2316,1,2337,0,0,,
+File_4=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h',0,1,143,39,164,0,0,,
+File_5=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.BrushlessMotor.h',0,1,1337,27,1380,0,0,,
+File_6=TSourceModule,'P:\libs\dsl\VCL\Components\mtkFloatLabeledEdit.cpp',0,1,1,1,1,0,0,,
+File_7=TSourceModule,'P:\ArrayBot\source\abAPTMotor.cpp',0,1,1,2,12,0,0,,
+File_8=TSourceModule,'P:\ArrayBot\source\abTCubeDCServo.cpp',0,1,87,28,116,0,0,,
+File_9=TSourceModule,'P:\ArrayBot\source\abUtilities.cpp',0,1,1,22,16,0,0,,
+File_10=TSourceModule,'P:\ArrayBot\source\abCore.cpp',0,1,1,60,31,0,0,,
+File_11=TSourceModule,'P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',0,1,173,1,193,0,0,,
+File_12=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.DCServo.h',0,1,53,50,79,0,0,,
+File_13=TSourceModule,'P:\libs\dsl\Common\mtkLogLevel.cpp',0,1,1,1,14,0,0,,
+File_14=TSourceModule,'P:\libs\dsl\Common\mtkLogging.cpp',0,1,29,1,52,0,0,,
 
 [Modules]
-Module0=P:\ArrayBot\testing\joystick\Unit1.cpp
+Module0=P:\ArrayBot\testing\joystick2\Unit1.cpp
 Module1=default.htm
 Count=2
 EditWindowCount=1
 
-[P:\ArrayBot\testing\joystick\Unit1.cpp]
+[P:\ArrayBot\testing\joystick2\Unit1.cpp]
 ModuleType=TSourceModule
 FormState=1
 FormOnTop=0
@@ -31,7 +31,7 @@ ModuleType=TURLModule
 
 [EditWindow0]
 ViewCount=2
-CurrentEditView=P:\ArrayBot\testing\joystick\Unit1.cpp
+CurrentEditView=P:\ArrayBot\testing\joystick2\Unit1.cpp
 View0=0
 View1=1
 PercentageSizes=1
@@ -69,14 +69,14 @@ WelcomePageURL=bds:/default.htm
 
 [View1]
 CustomEditViewType=TEditView
-Module=P:\ArrayBot\testing\joystick\Unit1.cpp
-CursorX=21
-CursorY=62
-TopLine=51
+Module=P:\ArrayBot\testing\joystick2\Unit1.cpp
+CursorX=24
+CursorY=145
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=P:\ArrayBot\testing\joystick\Unit1.cpp
+EditViewName=P:\ArrayBot\testing\joystick2\Unit1.cpp
 
 [Watches]
 Count=0
@@ -137,11 +137,11 @@ State=0
 Left=0
 Top=0
 Width=2062
-Height=6797
+Height=7109
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2062
-ClientHeight=6797
+ClientHeight=7109
 TBDockHeight=5898
 LRDockWidth=2352
 Dockable=1
@@ -175,11 +175,11 @@ State=0
 Left=0
 Top=0
 Width=2062
-Height=7109
+Height=6797
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2062
-ClientHeight=7109
+ClientHeight=6797
 TBDockHeight=7158
 LRDockWidth=2000
 Dockable=1
@@ -207,8 +207,8 @@ SplitPos=134
 
 [PropInspDesignerSelection]
 ArrangeBy=Name
-SelectedItem=Action,OnKeyDown
-ExpandedItems=Anchors=0,BorderIcons=0,Constraints=0,Font=0,GlassFrame=0,LiveBindings=0,"LiveBindings Designer=0",BevelEdges=0,Margins=0,EditLabel=1,StyleElements=0,EditLabel.Font=0,EditLabel.LiveBindings=0,"EditLabel.LiveBindings Designer=0",EditLabel.Margins=0,EditLabel.Touch=0,Touch=0,ImageMargins=0,Action=1,Action.LiveBindings=0,"Action.LiveBindings Designer=0",HorzScrollBar=0
+SelectedItem=Interval,OnKeyDown
+ExpandedItems=Anchors=0,BorderIcons=0,Constraints=0,Font=0,GlassFrame=0,LiveBindings=0,"LiveBindings Designer=0",BevelEdges=0,Margins=0,EditLabel=1,StyleElements=0,EditLabel.Font=0,EditLabel.LiveBindings=0,"EditLabel.LiveBindings Designer=0",EditLabel.Margins=0,EditLabel.Touch=0,Touch=0,ImageMargins=0,Action=1,Action.LiveBindings=0,"Action.LiveBindings Designer=0",HorzScrollBar=0,BackWall=0,Border=0,BottomAxis=0,BottomWall=0,DepthAxis=0,DepthTopAxis=0,Padding=0
 
 [TFileExplorerForm]
 PercentageSizes=1
@@ -460,7 +460,7 @@ Visible=0
 Docked=1
 State=0
 Left=-33784
-Top=-366
+Top=-399
 Width=5305
 Height=4883
 MaxLeft=-1
@@ -727,6 +727,6 @@ LRDockWidth=2062
 Dockable=1
 StayOnTop=0
 TabPosition=0
-ActiveTabID=ProjectManager
+ActiveTabID=ToolForm
 TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,TemplateView,TFileExplorerForm,ModelViewTool
 

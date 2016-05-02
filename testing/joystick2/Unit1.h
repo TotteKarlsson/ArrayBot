@@ -23,34 +23,15 @@ using std::deque;
 class TForm1 : public TForm
 {
 	__published:	// IDE-managed Components
-        TLabel *Label1;
-        TLabel *JoystickCount;
-        TLabel *JoysticksConnected;
-        TLabel *CurrentJoystick;
-        TLabel *JoystickMid;
-        TLabel *JoystickPid;
-        TLabel *JoystickXMin;
-        TLabel *JoystickXMax;
-        TLabel *JoystickYMin;
-        TLabel *JoystickYMax;
-        TLabel *JoystickNumButtons;
-        TLabel *JoystickName;
-        TLabel *JoystickMinPoll;
-        TLabel *JoystickMaxPoll;
-        TLabel *Label2;
-        TLabel *JoystickXPosition;
-        TLabel *JoystickYPosition;
-        TLabel *JoystickButton1;
-        TLabel *JoystickButton2;
-        TLabel *JoystickButton3;
-        TLabel *JoystickButton4;
         TImageList *ImageList1;
         TTimer *Timer1;
-        TLabel *JoystickZPosition;
-        TPanel *TargetPanel;
         TChart *Chart1;
         TFastLineSeries *Series1;
 	TTimer *Timer2;
+	TLabel *JoystickZPosition;
+	TFastLineSeries *Series2;
+	TLabel *JoystickAvgZPos;
+	TMemo *Memo1;
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Timer1Timer(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -63,29 +44,24 @@ class TForm1 : public TForm
         int DriverCount;
         bool Connected;
         int JoystickID;
-        JOYCAPS JoyCaps;
-        int YDivider;
-        int XDivider;
+	    JOYCAPS JoyCaps;
+        double mRunningZAverage;
+        double mAlpha;
+
         void ShowDeviceInfo(void);
         void ShowStatusInfo(void);
-        void __fastcall JMButtonUpdate(TMessage &msg);
-        void __fastcall JMMove(TMessage &msg);
         void __fastcall JMZMove(TMessage &msg);
 
 	public:							// User declarations
   		__fastcall 					TForm1(TComponent* Owner);
 
         BEGIN_MESSAGE_MAP
-          MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,JMButtonUpdate)
-          MESSAGE_HANDLER(MM_JOY1BUTTONUP,TMessage,JMButtonUpdate)
-          MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMMove)
-          MESSAGE_HANDLER(MM_JOY2MOVE,TMessage,JMMove)
-          MESSAGE_HANDLER(MM_JOY2BUTTONDOWN,TMessage,JMButtonUpdate)
-          MESSAGE_HANDLER(MM_JOY2BUTTONUP,TMessage,JMButtonUpdate)
           MESSAGE_HANDLER(MM_JOY1ZMOVE,TMessage,JMZMove)
         END_MESSAGE_MAP(TForm)
 
 		deque<double>			mZPos;
+		deque<double>			mZAvgPos;
+        double 					mValCommand;
 
 };
 //---------------------------------------------------------------------------

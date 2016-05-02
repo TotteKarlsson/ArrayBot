@@ -10,191 +10,32 @@ object Form1: TForm1
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = True
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 8
-    Top = 8
-    Width = 225
-    Height = 24
-    Caption = 'Joystick Device Information'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -21
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-  end
-  object JoystickCount: TLabel
-    Left = 8
-    Top = 32
-    Width = 66
-    Height = 13
-    Caption = 'JoystickCount'
-  end
-  object JoysticksConnected: TLabel
-    Left = 8
-    Top = 48
-    Width = 95
-    Height = 13
-    Caption = 'JoysticksConnected'
-  end
-  object CurrentJoystick: TLabel
-    Left = 8
-    Top = 64
-    Width = 72
-    Height = 13
-    Caption = 'CurrentJoystick'
-  end
-  object JoystickMid: TLabel
-    Left = 8
-    Top = 80
-    Width = 55
-    Height = 13
-    Caption = 'JoystickMid'
-  end
-  object JoystickPid: TLabel
-    Left = 8
-    Top = 96
-    Width = 53
-    Height = 13
-    Caption = 'JoystickPid'
-  end
-  object JoystickXMin: TLabel
-    Left = 8
-    Top = 128
-    Width = 62
-    Height = 13
-    Caption = 'JoystickXMin'
-  end
-  object JoystickXMax: TLabel
-    Left = 8
-    Top = 144
-    Width = 65
-    Height = 13
-    Caption = 'JoystickXMax'
-  end
-  object JoystickYMin: TLabel
-    Left = 8
-    Top = 160
-    Width = 62
-    Height = 13
-    Caption = 'JoystickYMin'
-  end
-  object JoystickYMax: TLabel
-    Left = 8
-    Top = 176
-    Width = 65
-    Height = 13
-    Caption = 'JoystickYMax'
-  end
-  object JoystickNumButtons: TLabel
-    Left = 8
-    Top = 192
-    Width = 96
-    Height = 13
-    Caption = 'JoystickNumButtons'
-  end
-  object JoystickName: TLabel
-    Left = 8
-    Top = 112
-    Width = 66
-    Height = 13
-    Caption = 'JoystickName'
-  end
-  object JoystickMinPoll: TLabel
-    Left = 8
-    Top = 208
-    Width = 72
-    Height = 13
-    Caption = 'JoystickMinPoll'
-  end
-  object JoystickMaxPoll: TLabel
-    Left = 8
-    Top = 224
-    Width = 75
-    Height = 13
-    Caption = 'JoystickMaxPoll'
-  end
-  object Label2: TLabel
-    Left = 8
-    Top = 256
-    Width = 220
-    Height = 20
-    Caption = 'Joystick Status Information'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clBlack
-    Font.Height = -16
-    Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object JoystickXPosition: TLabel
-    Left = 8
-    Top = 280
-    Width = 82
-    Height = 13
-    Caption = 'JoystickXPosition'
-  end
-  object JoystickYPosition: TLabel
-    Left = 8
-    Top = 296
-    Width = 82
-    Height = 13
-    Caption = 'JoystickYPosition'
-  end
-  object JoystickButton1: TLabel
-    Left = 8
-    Top = 328
-    Width = 75
-    Height = 13
-    Caption = 'JoystickButton1'
-  end
-  object JoystickButton2: TLabel
-    Left = 8
-    Top = 344
-    Width = 75
-    Height = 13
-    Caption = 'JoystickButton2'
-  end
-  object JoystickButton3: TLabel
-    Left = 8
-    Top = 360
-    Width = 75
-    Height = 13
-    Caption = 'JoystickButton3'
-  end
-  object JoystickButton4: TLabel
-    Left = 8
-    Top = 376
-    Width = 75
-    Height = 13
-    Caption = 'JoystickButton4'
-  end
   object JoystickZPosition: TLabel
-    Left = 8
-    Top = 311
+    Left = 368
+    Top = 40
     Width = 82
     Height = 13
-    Caption = 'JoystickYPosition'
+    Caption = 'JoystickZPosition'
   end
-  object TargetPanel: TPanel
-    Left = 248
-    Top = 22
-    Width = 337
-    Height = 161
-    TabOrder = 0
-    Visible = False
+  object JoystickAvgZPos: TLabel
+    Left = 368
+    Top = 59
+    Width = 82
+    Height = 13
+    Caption = 'JoystickZPosition'
   end
   object Chart1: TChart
     Left = 0
-    Top = 440
+    Top = 216
     Width = 719
-    Height = 124
+    Height = 348
     Legend.Visible = False
     Title.Text.Strings = (
       'TChart')
@@ -203,33 +44,57 @@ object Form1: TForm1
     LeftAxis.Automatic = False
     LeftAxis.AutomaticMaximum = False
     LeftAxis.AutomaticMinimum = False
-    LeftAxis.Maximum = 15.000000000000000000
-    LeftAxis.Minimum = -15.000000000000000000
+    LeftAxis.Maximum = 22.000000000000000000
+    LeftAxis.Minimum = -2.000000000000000000
     View3D = False
     Align = alBottom
-    TabOrder = 1
+    TabOrder = 0
     ColorPaletteIndex = 13
     object Series1: TFastLineSeries
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
       Marks.Visible = False
-      LinePen.Color = 10708548
+      SeriesColor = clLime
+      LinePen.Color = clLime
       LinePen.SmallDots = True
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
+    object Series2: TFastLineSeries
+      Marks.Arrow.Visible = True
+      Marks.Callout.Brush.Color = clBlack
+      Marks.Callout.Arrow.Visible = True
+      Marks.Visible = False
+      SeriesColor = clRed
+      LinePen.Color = clRed
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      YValues.Name = 'Y'
+      YValues.Order = loNone
+    end
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 0
+    Width = 217
+    Height = 216
+    Align = alLeft
+    Lines.Strings = (
+      'Memo1')
+    ScrollBars = ssBoth
+    TabOrder = 1
   end
   object ImageList1: TImageList
     DrawingStyle = dsTransparent
     Height = 76
     Width = 76
-    Left = 280
-    Top = 88
+    Left = 320
+    Top = 96
     Bitmap = {
-      494C01010100080010004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100080014004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000300100004C00000001002000000000000069
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3220,15 +3085,14 @@ object Form1: TForm1
       000000000000}
   end
   object Timer1: TTimer
-    Interval = 2000
     OnTimer = Timer1Timer
-    Left = 248
-    Top = 88
+    Left = 232
+    Top = 64
   end
   object Timer2: TTimer
     Interval = 150
     OnTimer = Timer2Timer
-    Left = 160
-    Top = 312
+    Left = 328
+    Top = 288
   end
 end
