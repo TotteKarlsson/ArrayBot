@@ -275,11 +275,10 @@ void TCubeDCServo::forward()
 {
 	if(isReversing())
     {
-    	Log(lInfo) << "Forwarding requested, but motor is in reverse..";
-        return;
+    	Log(lInfo) << "Forwarding requested, motor is in reverse..";
     }
 
-    //Don't send command if already doing what is needed
+//    //Don't send command if already doing what is needed
 //    if(!isForwarding())
     {
         int error = BMC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
@@ -288,6 +287,10 @@ void TCubeDCServo::forward()
             Log(lError) <<tlError(error);
         }
     }
+//    else
+//    {
+//    	Log(lWarning) <<"Motor is already forwarding..";
+//    }
 }
 
 void TCubeDCServo::reverse()
@@ -295,7 +298,7 @@ void TCubeDCServo::reverse()
 	if(isForwarding())
     {
     	Log(lInfo) << "Reversing requested, but motor is forwarding..";
-		return;
+//		return;
     }
 
     //Don't send command if already doing what is needed

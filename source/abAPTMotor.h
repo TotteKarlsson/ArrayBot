@@ -85,6 +85,7 @@ class AB_CORE APTMotor : public APTDevice
         unsigned long			            mStatusBits;
         ScalingFactors			            mScalingFactors;
 		HardwareInformation 				mHWInfo;
+
 };
 
 

@@ -34,6 +34,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <AllPackageLibs>rtl.lib</AllPackageLibs>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.5.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
@@ -88,6 +89,7 @@
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <LinkPackageImports>rtl.bpi</LinkPackageImports>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <BPILibOutputDir>$(DEBUG_INSTALL)\lib</BPILibOutputDir>
         <ILINK_LibraryPath>$(DEBUG_INSTALL)\lib;P:\ArrayBot\third_party\Kinesis;$(ILINK_LibraryPath)</ILINK_LibraryPath>
@@ -122,6 +124,13 @@
         </CppCompile>
         <CppCompile Include="abExceptions.cpp">
             <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abMotorMessageContainer.cpp">
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abMotorMessageProcessor.cpp">
+            <DependentOn>abMotorMessageProcessor.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
             <BuildOrder>8</BuildOrder>
