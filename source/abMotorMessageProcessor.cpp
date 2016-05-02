@@ -17,8 +17,7 @@ MotorMessageProcessor::MotorMessageProcessor(MotorMessageContainer& messageConta
 mtk::Thread(threadName),
 mAllowProcessing(true),
 mMotorMessageContainer(messageContainer),
-//mDB(db),
-mOrderProcessedCount(0),
+mProcessedCount(0),
 mNotifyUI(NULL)
 {}
 
@@ -148,12 +147,4 @@ void MotorMessageProcessor::worker()
 	mIsRunning = false;
 }
 
-bool MotorMessageProcessor::importOrderData(const StringList& motorCMD)
-{
-	return true;
 
-}
-bool MotorMessageProcessor::importCustomerData(const StringList& motorCMD)
-{
-	  return true;
-}

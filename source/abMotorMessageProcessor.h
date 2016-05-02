@@ -4,8 +4,6 @@
 #include <string>
 #include "mtkThread.h"
 #include "mtkConstants.h"
-//#include <System.Classes.hpp>
-//#include "amlAccountDB.h"
 #include "mtkStringList.h"
 //---------------------------------------------------------------------------
 class MotorMessageContainer;
@@ -31,16 +29,12 @@ class AB_CORE MotorMessageProcessor : public mtk::Thread
         void                                        pauseProcessing();
         void                                        resumeProcessing();
         UICallback                                  mNotifyUI;
-		bool										importOrderData(const StringList& motorCMD);
-		bool										importCustomerData(const StringList& motorCMD);
-		bool										importStateOrRegionData(const StringList& motorCMD);
 
 	protected:
-		long                                        mOrderProcessedCount;
+		long                                        mProcessedCount;
 		bool                                        mAllowProcessing;
-		string                                      mDBPath;
-		MotorMessageContainer&                             mMotorMessageContainer;
-//		AccountDB&                                  mDB;
+
+		MotorMessageContainer&                      mMotorMessageContainer;
 };
 
 #endif

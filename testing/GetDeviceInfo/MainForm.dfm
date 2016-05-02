@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'Device Tester'
-  ClientHeight = 645
-  ClientWidth = 771
+  ClientHeight = 611
+  ClientWidth = 927
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -35,7 +35,7 @@ object Main: TMain
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 771
+    Width = 927
     Height = 36
     ButtonHeight = 30
     ButtonWidth = 13
@@ -43,6 +43,7 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
+    ExplicitWidth = 771
     object BitBtn1: TBitBtn
       Left = 0
       Top = 0
@@ -64,31 +65,37 @@ object Main: TMain
   end
   object Panel1: TPanel
     Left = 0
-    Top = 337
-    Width = 771
-    Height = 308
+    Top = 433
+    Width = 927
+    Height = 178
     Align = alClient
     Caption = 'Panel1'
     TabOrder = 1
+    ExplicitTop = 337
+    ExplicitWidth = 771
+    ExplicitHeight = 308
     object infoMemo: TMemo
       Left = 1
       Top = 34
-      Width = 769
-      Height = 273
+      Width = 925
+      Height = 143
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
+      ExplicitWidth = 769
+      ExplicitHeight = 273
     end
     object ToolBar2: TToolBar
       Left = 1
       Top = 1
-      Width = 769
+      Width = 925
       Height = 33
       AutoSize = True
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
+      ExplicitWidth = 769
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -103,37 +110,41 @@ object Main: TMain
   object Panel2: TPanel
     Left = 0
     Top = 36
-    Width = 771
-    Height = 301
+    Width = 927
+    Height = 397
     Align = alTop
     TabOrder = 2
+    ExplicitWidth = 771
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 153
-      Height = 299
+      Height = 395
       Align = alLeft
       Caption = 'Devices'
       TabOrder = 0
+      ExplicitHeight = 299
       object devicesLB: TListBox
         Left = 2
         Top = 15
         Width = 149
-        Height = 282
+        Height = 378
         Align = alClient
         ItemHeight = 13
         TabOrder = 0
         OnClick = devicesLBClick
+        ExplicitHeight = 282
       end
     end
     object GroupBox2: TGroupBox
       Left = 154
       Top = 1
       Width = 335
-      Height = 299
+      Height = 395
       Align = alLeft
       Caption = 'Device'
       TabOrder = 1
+      ExplicitHeight = 299
       object mIsActiveLabel: TLabel
         Left = 112
         Top = 175
@@ -321,20 +332,20 @@ object Main: TMain
         Width = 150
         Height = 45
         Max = 1000
+        Min = -1000
         Frequency = 50
         TabOrder = 10
         OnChange = TrackBar1Change
       end
-    end
-    object ScrollBar1: TScrollBar
-      Left = 512
-      Top = 219
-      Width = 161
-      Height = 46
-      Min = -100
-      PageSize = 0
-      TabOrder = 2
-      OnMouseLeave = ScrollBar1MouseLeave
+      object Button5: TButton
+        Left = 240
+        Top = 24
+        Width = 75
+        Height = 25
+        Caption = 'Button5'
+        TabOrder = 11
+        OnClick = Button5Click
+      end
     end
   end
   object ActionList1: TActionList

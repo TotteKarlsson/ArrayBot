@@ -368,9 +368,9 @@ void __fastcall TMain::TrackBar1Change(TObject *Sender)
 	Timestamp now;
     Timestamp::TimeDiff diff = now - mLastMotorCommand;
     Poco::Timespan span(diff);
-    if(diff < Poco::Timespan::MILLISECONDS*100)
+    if(diff < Poco::Timespan::MILLISECONDS*250)
     {
-    	//Log(lInfo) << "Disregarding command. Time difference was: "<<Poco::DateTimeFormatter::format(span, "%i");
+    	Log(lInfo) << "Disregarding command. Time difference was: "<<Poco::DateTimeFormatter::format(span, "%i");
         return;
     }
 
@@ -387,28 +387,28 @@ void __fastcall TMain::TrackBar1Change(TObject *Sender)
     if (vel > 0.5)
     {
     	motor->setMaxVelocity(vel);
-        if(motor->isReversing())
-        {
-            motor->stop();
-        }
-
-        if(!motor->isForwarding())
-        {
+//        if(motor->isReversing())
+//        {
+//            motor->stop();
+//        }
+//
+//        if(!motor->isForwarding())
+//        {
 
         	motor->forward();
-        }
+//        }
 
         Log(lInfo) << "Setting forward velocity: "<<vel;
     }
     else
     {
     	motor->setMaxVelocity(fabs(vel));
-        if(motor->isForwarding())
-        {
-            motor->stop();
-        }
-
-        if(!motor->isReversing())
+//        if(motor->isForwarding())
+//        {
+//            motor->stop();
+//        }
+//
+//        if(!motor->isReversing())
         {
         	motor->reverse();
         }
@@ -417,9 +417,18 @@ void __fastcall TMain::TrackBar1Change(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMain::ScrollBar1MouseLeave(TObject *Sender)
+
+void __fastcall TMain::Button5Click(TObject *Sender)
 {
-	ScrollBar1->Position = 0;
+    APTMotor* motor = getCurrentMotor();
+    if(motor == NULL)
+    {
+    	Log(lInfo) << "Motor object is null..";
+    	return;
+    }
+
+	motor->forward();
+    motor->reverse();
 }
-//---------------------------------------------------------------------------
+
 
