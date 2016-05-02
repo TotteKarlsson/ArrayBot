@@ -53,7 +53,7 @@ class AB_CORE APTMotor : public APTDevice
         virtual bool		                isHoming() 	= 0;
         virtual bool		                isForwarding() 	= 0;
         virtual bool		                isReversing() 	= 0;
-
+		virtual bool 	   					switchDirection() = 0;
         virtual bool	                    connect() = 0;
         virtual bool	                    disconnect() = 0;
 
@@ -72,6 +72,7 @@ class AB_CORE APTMotor : public APTDevice
 						                    ///Control commands
 		virtual void 		                home() = 0;
         virtual void 		                stop() = 0;
+        virtual void 		                stopProfiled() = 0;
         virtual void		                jogForward() = 0;
         virtual void		                jogReverse() = 0;
         virtual void		                forward() = 0;

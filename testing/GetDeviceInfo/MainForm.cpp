@@ -108,6 +108,7 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
         }
 
 		StatusTimer->Enabled = true;
+        joyTimer->Enabled = true;
     }
 }
 
@@ -217,7 +218,10 @@ void __fastcall TMain::driveBtnDown(TObject *Sender, TMouseButton Button, TShift
 void __fastcall TMain::driveBtnUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y)
 {
-	stopMotorExecute(Sender);
+	if(!ContinousMoveCB->Checked)
+    {
+    	stopMotorExecute(Sender);
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -301,8 +305,18 @@ void __fastcall TMain::mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftSta
     }
 }
 
-void __fastcall TMain::TrackBar1Change(TObject *Sender)
+
+
+void __fastcall TMain::Button5Click(TObject *Sender)
 {
+	MotorCommand cmd(mcStopProfiled);
+	mMotorMessageContainer.post(cmd);
+}
+
+
+void __fastcall TMain::joyTimerTimer(TObject *Sender)
+{
+	//read trackbar
     APTMotor* motor = getCurrentMotor();
     if(motor == NULL)
     {
@@ -312,55 +326,78 @@ void __fastcall TMain::TrackBar1Change(TObject *Sender)
 
 	double vel = TrackBar1->Position/50.0;
 
-	Timestamp now;
-    Timestamp::TimeDiff diff = now - mLastMotorCommand;
-    Poco::Timespan span(diff);
-    if(diff < Poco::Timespan::MILLISECONDS*250)
+    if(mLastVel == vel)
     {
-    	Log(lInfo) << "Disregarding command. Time difference was: "<<Poco::DateTimeFormatter::format(span, "%i");
-        return;
+    	return ;
     }
 
-	Log(lInfo) <<"Applying new velocity:" <<fabs(vel)<<" at time: "<< Poco::DateTimeFormatter::format(now, "%H:%M:%S %i");
-   	mLastMotorCommand = now;
+
 
     if( fabs(vel) <= 0.1)
     {
-    	motor->stop();
-        Log(lInfo) << "Stopping motor";
+    	stopMotorExecute(Sender);
+//		//    	motor->stop();
+//        Log(lInfo) << "Stopping motor";
         return;
     }
 
     if (vel > 0.5)
     {
-    	motor->setMaxVelocity(vel);
-      	motor->forward();
+    	MotorCommand cmd(mcSetVelocity,  vel);
+		mMotorMessageContainer.post(cmd);
+		moveForwardExecute(Sender);
         Log(lInfo) << "Setting forward velocity: "<<vel;
     }
     else
     {
-    	motor->setMaxVelocity(fabs(vel));
-        {
-        	motor->reverse();
-        }
+    	MotorCommand cmd(mcSetVelocity,  fabs(vel));
+		mMotorMessageContainer.post(cmd);
+		moveBackwardExecute(Sender);
         Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
     }
+	mLastVel = vel;
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::IncreaseVelBtnClick(TObject *Sender)
+{
+	//Increase velocity
+	double delta = 	mVelDeltaE->GetNumber();
+
+    APTMotor* motor = getCurrentMotor();
+    if(motor == NULL)
+    {
+    	Log(lInfo) << "Motor object is null..";
+    	return;
+    }
+	double cVel = motor->getVelocity();
+	MotorCommand cmd(mcSetVelocity,  cVel + delta);
+	mMotorMessageContainer.post(cmd);
+}
+
+void __fastcall TMain::DecreaseVelBtnClick(TObject *Sender)
+{
+	//Increase velocity
+	double delta = 	mVelDeltaE->GetNumber();
+
+    APTMotor* motor = getCurrentMotor();
+    if(motor == NULL)
+    {
+    	Log(lInfo) << "Motor object is null..";
+    	return;
+    }
+	double cVel = motor->getVelocity();
+	MotorCommand cmd(mcSetVelocity,  cVel - delta);
+	mMotorMessageContainer.post(cmd);
+}
+
 //---------------------------------------------------------------------------
 
-
-void __fastcall TMain::Button5Click(TObject *Sender)
+void __fastcall TMain::switchdirectionBtnClick(TObject *Sender)
 {
-//    APTMotor* motor = getCurrentMotor();
-//    if(motor == NULL)
-//    {
-//    	Log(lInfo) << "Motor object is null..";
-//    	return;
-//    }
-//
-//	motor->forward();
-//    motor->reverse();
-   	mMotorMessageProcessor.stop();
+	MotorCommand cmd(mcSwitchDirection);
+	mMotorMessageContainer.post(cmd);
 }
 
+//---------------------------------------------------------------------------
 

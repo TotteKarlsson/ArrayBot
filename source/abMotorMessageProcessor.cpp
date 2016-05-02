@@ -98,14 +98,25 @@ void MotorMessageProcessor::worker()
                 switch(cmd.getCore())
                 {
                     case mcNone:
+		    	        Log(lWarning) << "Processing NONE command";
 					break;
 
                     case mcStopHard:
                     	mMotor->stop();
+                        //Wait until motor is stopped
+                        while(mMotor->isActive())
+                        {
+                        ;
+                        }
 					break;
 
                     case mcStopProfiled:
-                    	mMotor->stop();
+                    	mMotor->stopProfiled();
+                        while(mMotor->isActive())
+                        {
+                        ;
+                        }
+
 					break;
 
                     case mcForward:
@@ -129,9 +140,13 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcSetVelocity:
+                    	mMotor->setMaxVelocity(cmd.getFirstVariable());
+					break;
+                    case mcSwitchDirection:
+                    	mMotor->switchDirection();
 					break;
                 }
-//                sleep(200);
+                sleep(200);
             }
 
 		}//mutex

@@ -20,7 +20,8 @@ enum MotorCommandEnum
     mcJogReverse,
     mcMoveDistance,
     mcSetVelocity,
-    mcSetAcceleration
+    mcSetAcceleration,
+    mcSwitchDirection
 };
 
 string toString(MotorCommandEnum e);

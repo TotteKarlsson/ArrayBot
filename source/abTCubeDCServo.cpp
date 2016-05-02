@@ -12,7 +12,6 @@ TCubeDCServo::TCubeDCServo(int serial)
 : APTMotor(serial)
 {
 	mDeviceTypeID = (didTCubeDCServo);
-
 }
 
 TCubeDCServo::~TCubeDCServo()
@@ -74,6 +73,18 @@ double TCubeDCServo::getEncoderCounts()
 		mScalingFactors.acceleration = 261.93;
     }
     return 0;
+}
+
+bool TCubeDCServo::switchDirection()
+{
+	if(isForwarding())
+    {
+    	reverse();
+    }
+    else
+    {
+    	forward();
+    }
 }
 
 HardwareInformation TCubeDCServo::getHWInfo()
@@ -165,6 +176,23 @@ void TCubeDCServo::stop()
 //		int error = BMC_StopProfiled(mSerial.c_str());
 		int error = BMC_StopImmediate(mSerial.c_str());
 
+        if(error != 0)
+        {
+            Log(lError) <<tlError(error);
+        }
+
+//        while(isActive())
+//        {
+//            //Log(lInfo) << "Waiting ...";
+//        }
+    }
+}
+
+void TCubeDCServo::stopProfiled()
+{
+//	if(isActive())
+    {
+		int error = BMC_StopProfiled(mSerial.c_str());
         if(error != 0)
         {
             Log(lError) <<tlError(error);
@@ -273,10 +301,10 @@ void TCubeDCServo::jogReverse()
 
 void TCubeDCServo::forward()
 {
-	if(isReversing())
-    {
-    	Log(lInfo) << "Forwarding requested, motor is in reverse..";
-    }
+//	if(isReversing())
+//    {
+//    	Log(lInfo) << "Forwarding requested, motor is in reverse..";
+//    }
 
 //    //Don't send command if already doing what is needed
 //    if(!isForwarding())
@@ -295,11 +323,11 @@ void TCubeDCServo::forward()
 
 void TCubeDCServo::reverse()
 {
-	if(isForwarding())
-    {
-    	Log(lInfo) << "Reversing requested, but motor is forwarding..";
-//		return;
-    }
+//	if(isForwarding())
+//    {
+//    	Log(lInfo) << "Reversing requested, but motor is forwarding..";
+////		return;
+//    }
 
     //Don't send command if already doing what is needed
  //   if(!isReversing())

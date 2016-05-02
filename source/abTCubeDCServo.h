@@ -11,6 +11,7 @@ class AB_CORE TCubeDCServo : public APTMotor
 
 		HardwareInformation		        getHWInfo();
         double				 			getEncoderCounts();
+		bool							switchDirection();
 
         						        ///isActive checks if the device is active.
 		bool					        isActive();
@@ -35,6 +36,7 @@ class AB_CORE TCubeDCServo : public APTMotor
 				                        ///Control commands
 		void 		                    home();
         void 		                    stop();
+        void 		                    stopProfiled();
         void		                    jogForward();
         void		                    jogReverse();
         void		                    forward();

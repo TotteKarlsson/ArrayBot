@@ -262,16 +262,16 @@ object Main: TMain
         Text = '0.00'
       end
       object Button7: TButton
-        Left = 250
-        Top = 257
-        Width = 71
-        Height = 37
+        Left = 178
+        Top = 24
+        Width = 65
+        Height = 25
         Action = stopMotor
         TabOrder = 6
       end
       object fwdDriveBtn: TButton
-        Left = 17
-        Top = 87
+        Left = 145
+        Top = 208
         Width = 75
         Height = 25
         Caption = 'Forward'
@@ -280,8 +280,8 @@ object Main: TMain
         OnMouseUp = driveBtnUp
       end
       object revDriveBtn: TButton
-        Left = 98
-        Top = 87
+        Left = 226
+        Top = 208
         Width = 75
         Height = 25
         Caption = 'Backward'
@@ -294,9 +294,9 @@ object Main: TMain
         Top = 136
         Width = 66
         Height = 21
-        EditLabel.Width = 60
+        EditLabel.Width = 56
         EditLabel.Height = 13
-        EditLabel.Caption = 'Max Velocity'
+        EditLabel.Caption = 'Set Velocity'
         TabOrder = 5
         Text = '0.00'
         OnKeyDown = mMaxVelocityKeyDown
@@ -314,24 +314,69 @@ object Main: TMain
         OnKeyDown = mMaxVelocityKeyDown
       end
       object TrackBar1: TTrackBar
-        Left = 177
-        Top = 206
+        Left = 6
+        Top = 345
         Width = 150
         Height = 45
         Max = 1000
         Min = -1000
         Frequency = 50
         TabOrder = 10
-        OnChange = TrackBar1Change
       end
       object Button5: TButton
-        Left = 240
+        Left = 249
         Top = 24
         Width = 75
         Height = 25
-        Caption = 'Button5'
+        Caption = 'Stop Profiled'
         TabOrder = 11
         OnClick = Button5Click
+      end
+      object DecreaseVelBtn: TButton
+        Left = 256
+        Top = 295
+        Width = 50
+        Height = 25
+        Caption = '-'
+        TabOrder = 12
+        OnClick = DecreaseVelBtnClick
+      end
+      object IncreaseVelBtn: TButton
+        Left = 201
+        Top = 295
+        Width = 49
+        Height = 25
+        Caption = '+'
+        TabOrder = 13
+        OnClick = IncreaseVelBtnClick
+      end
+      object ContinousMoveCB: TCheckBox
+        Left = 145
+        Top = 185
+        Width = 78
+        Height = 17
+        Caption = 'Continous'
+        TabOrder = 14
+      end
+      object mVelDeltaE: mtkFloatLabeledEdit
+        Left = 200
+        Top = 268
+        Width = 121
+        Height = 21
+        EditLabel.Width = 84
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Vel Increase Step'
+        TabOrder = 15
+        Text = '2.00'
+      end
+      object switchdirectionBtn: TButton
+        Left = 216
+        Top = 326
+        Width = 89
+        Height = 25
+        Caption = 'Switch Direction'
+        TabOrder = 16
+        OnClick = switchdirectionBtnClick
       end
     end
   end
@@ -371,7 +416,7 @@ object Main: TMain
       OnExecute = moveBackwardExecute
     end
     object stopMotor: TAction
-      Caption = 'Stop'
+      Caption = 'Stop Hard'
       OnExecute = stopMotorExecute
     end
   end
@@ -384,10 +429,10 @@ object Main: TMain
   end
   object StatusTimer: TTimer
     Enabled = False
-    Interval = 300
+    Interval = 500
     OnTimer = StatusTimerTimer
-    Left = 424
-    Top = 96
+    Left = 472
+    Top = 120
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
@@ -396,7 +441,8 @@ object Main: TMain
   end
   object joyTimer: TTimer
     Enabled = False
-    Interval = 100
+    Interval = 200
+    OnTimer = joyTimerTimer
     Left = 656
     Top = 80
   end

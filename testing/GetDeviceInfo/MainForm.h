@@ -78,6 +78,11 @@ class TMain : public TForm
 	TTimer *joyTimer;
 	TLabel *Label5;
 	TButton *Button5;
+	TButton *DecreaseVelBtn;
+	TButton *IncreaseVelBtn;
+	TCheckBox *ContinousMoveCB;
+	mtkFloatLabeledEdit *mVelDeltaE;
+	TButton *switchdirectionBtn;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -101,8 +106,11 @@ class TMain : public TForm
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
 	void __fastcall BitBtn3Click(TObject *Sender);
 	void __fastcall mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall TrackBar1Change(TObject *Sender);
 	void __fastcall Button5Click(TObject *Sender);
+	void __fastcall joyTimerTimer(TObject *Sender);
+	void __fastcall IncreaseVelBtnClick(TObject *Sender);
+	void __fastcall DecreaseVelBtnClick(TObject *Sender);
+	void __fastcall switchdirectionBtnClick(TObject *Sender);
 
     private:	// User declarations
         DeviceManager		        mDeviceManager;
@@ -113,6 +121,7 @@ class TMain : public TForm
 		void __fastcall		        OnException();
 		APTMotor*	                getCurrentMotor();
        	Timestamp 			        mLastMotorCommand;
+        double						mLastVel;
 
         MotorMessageProcessor		mMotorMessageProcessor;
         MotorMessageContainer  		mMotorMessageContainer;
