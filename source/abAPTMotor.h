@@ -64,6 +64,8 @@ class AB_CORE APTMotor : public APTDevice
         virtual double	                    getPosition() = 0;
         virtual double	                    getVelocity() = 0;
         virtual bool	                    setMaxVelocity(double vel) = 0;
+		virtual bool	                    setMaxVelocityForward(double v) = 0;
+		virtual bool	                    setMaxVelocityReverse(double v) = 0;
 
         virtual double                      getAcceleration() = 0;
         virtual bool                        setAcceleration(double val) = 0;

@@ -68,6 +68,11 @@ string toString(MotorCommandEnum e)
         case mcSetVelocity:
         return "set velocity";
 
+        case mcSetVelocityForward:
+        return "set velocity forward";
+
+        case mcSetVelocityReverse:
+        return "set velocity reverse";
     default:
     	return "Unknown command!";
     }

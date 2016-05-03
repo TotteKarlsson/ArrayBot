@@ -15,6 +15,7 @@ object Main: TMain
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
@@ -107,6 +108,20 @@ object Main: TMain
     Height = 397
     Align = alTop
     TabOrder = 2
+    object JoystickZPosition: TLabel
+      Left = 600
+      Top = 208
+      Width = 81
+      Height = 13
+      Caption = 'JoystickZPosition'
+    end
+    object JoystickAvgZPos: TLabel
+      Left = 600
+      Top = 227
+      Width = 81
+      Height = 13
+      Caption = 'JoystickZPosition'
+    end
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
@@ -424,26 +439,19 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 520
-    Top = 64
+    Left = 32
+    Top = 208
   end
   object StatusTimer: TTimer
     Enabled = False
     Interval = 500
     OnTimer = StatusTimerTimer
-    Left = 472
-    Top = 120
+    Left = 40
+    Top = 136
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 480
-    Top = 200
-  end
-  object joyTimer: TTimer
-    Enabled = False
-    Interval = 200
-    OnTimer = joyTimerTimer
-    Left = 656
+    Left = 48
     Top = 80
   end
 end

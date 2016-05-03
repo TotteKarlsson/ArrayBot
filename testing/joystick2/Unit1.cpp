@@ -77,14 +77,6 @@ void __fastcall TForm1::JMZMove(TMessage &msg)
     }
 }
 
-void __fastcall TForm1::FormDestroy(TObject *Sender)
-{
-	if(Connected)
-    {
-  		joyReleaseCapture(JoystickID);
-    }
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
@@ -124,6 +116,14 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 
   ShowDeviceInfo(); // initialize the labels.
   ShowStatusInfo();
+}
+
+void __fastcall TForm1::FormDestroy(TObject *Sender)
+{
+	if(Connected)
+    {
+  		joyReleaseCapture(JoystickID);
+    }
 }
 
 

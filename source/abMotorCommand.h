@@ -20,6 +20,8 @@ enum MotorCommandEnum
     mcJogReverse,
     mcMoveDistance,
     mcSetVelocity,
+	mcSetVelocityForward,
+	mcSetVelocityReverse,
     mcSetAcceleration,
     mcSwitchDirection
 };

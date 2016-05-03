@@ -24,10 +24,13 @@ using namespace mtk;
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
-TForm(Owner),
-logMsgMethod(&logMsg),
-mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-mMotorMessageProcessor(mMotorMessageContainer)
+	TForm(Owner),
+	logMsgMethod(&logMsg),
+	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
+	mMotorMessageProcessor(mMotorMessageContainer),
+	mRunningZAverage(0),
+	mAlpha(0.1)
+
 {
 	TMemoLogger::mMemoIsEnabled = false;
 }
@@ -74,8 +77,59 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	mLogFileReader.start(true);
 
     connectAllDevicesExecute(Sender);
-
 	mMotorMessageProcessor.start(true);
+
+
+    mJoyStickConnected = false;
+    MMRESULT  JoyResult;
+    JOYINFO JoyInfo;
+
+    // the joystick could be disconnected even if the driver is
+    // loaded. use joyGetPos to detect if a joystick is connected
+    // it returns JOYERR_NOERROR if the joystick is plugged in
+	// find out how many joysticks the driver supports
+  	mJoyStickDriverCount = joyGetNumDevs();
+
+  	if(mJoyStickDriverCount == 0)    // can any joysticks be supported
+  	{
+		return;
+  	}
+    // test for joystick1
+    JoyResult = joyGetPos(JOYSTICKID1,&JoyInfo);
+    if(JoyResult != JOYERR_UNPLUGGED)
+    {
+      mJoyStickConnected = true;
+      mJoystickID = JOYSTICKID1;
+    }
+    else if(JoyResult == MMSYSERR_INVALPARAM)
+    {
+    	// INVALIDPARAM means something is bad. quit now without
+	    // checking for joystick 2
+      	Application->MessageBox(L"An error occured while calling joyGetPosEx", L"Error", MB_OK);
+    }
+    else if((JoyResult=joyGetPos(JOYSTICKID2,&JoyInfo)) == JOYERR_NOERROR)
+    {
+      // if joystick1 is unconnected, check for joystick2
+      mJoyStickConnected = true;
+      mJoystickID = JOYSTICKID2;
+    }
+
+//  ShowDeviceInfo(); // initialize the labels.
+//  ShowStatusInfo();
+    // use joyGetDevCaps to display information from JOYCAPS structure
+    // note that not all of the information from joyGetDevCaps is shown
+    // here. consult the win32 SDK help file for a full description of
+    // joyGetDevCaps
+    joyGetDevCaps(mJoystickID, &mJoyCaps, sizeof(JOYCAPS));
+
+    // Tell Windows we want to receive joystick events.
+    // Handle = receiver, JoystickID = joystick we're using
+    // 3rd arg = how often MM_JOYMOVE events happen
+	if(mJoyStickConnected)
+  	{
+    	joySetCapture(Handle, mJoystickID, 2*mJoyCaps.wPeriodMin,FALSE);
+  	}
+
 }
 
 
@@ -108,7 +162,6 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
         }
 
 		StatusTimer->Enabled = true;
-        joyTimer->Enabled = true;
     }
 }
 
@@ -191,12 +244,6 @@ void __fastcall TMain::moveBackwardExecute(TObject *Sender)
 
 void __fastcall TMain::stopMotorExecute(TObject *Sender)
 {
-//    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
-//    if(motor)
-//    {
-//    	motor->stop();
-//    }
-
 	MotorCommand cmd(mcStopHard);
 	mMotorMessageContainer.post(cmd);
 }
@@ -305,8 +352,6 @@ void __fastcall TMain::mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftSta
     }
 }
 
-
-
 void __fastcall TMain::Button5Click(TObject *Sender)
 {
 	MotorCommand cmd(mcStopProfiled);
@@ -314,51 +359,6 @@ void __fastcall TMain::Button5Click(TObject *Sender)
 }
 
 
-void __fastcall TMain::joyTimerTimer(TObject *Sender)
-{
-	//read trackbar
-    APTMotor* motor = getCurrentMotor();
-    if(motor == NULL)
-    {
-    	Log(lInfo) << "Motor object is null..";
-    	return;
-    }
-
-	double vel = TrackBar1->Position/50.0;
-
-    if(mLastVel == vel)
-    {
-    	return ;
-    }
-
-
-
-    if( fabs(vel) <= 0.1)
-    {
-    	stopMotorExecute(Sender);
-//		//    	motor->stop();
-//        Log(lInfo) << "Stopping motor";
-        return;
-    }
-
-    if (vel > 0.5)
-    {
-    	MotorCommand cmd(mcSetVelocity,  vel);
-		mMotorMessageContainer.post(cmd);
-		moveForwardExecute(Sender);
-        Log(lInfo) << "Setting forward velocity: "<<vel;
-    }
-    else
-    {
-    	MotorCommand cmd(mcSetVelocity,  fabs(vel));
-		mMotorMessageContainer.post(cmd);
-		moveBackwardExecute(Sender);
-        Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
-    }
-	mLastVel = vel;
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::IncreaseVelBtnClick(TObject *Sender)
 {
 	//Increase velocity
@@ -392,12 +392,76 @@ void __fastcall TMain::DecreaseVelBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-
 void __fastcall TMain::switchdirectionBtnClick(TObject *Sender)
 {
 	MotorCommand cmd(mcSwitchDirection);
 	mMotorMessageContainer.post(cmd);
 }
 
+bool sameSign(double x, double y)
+{
+	return x*y >= 0.0f;
+}
 //---------------------------------------------------------------------------
+void __fastcall TMain::JMXMove(TMessage &msg)
+{
+	double fullVelRange = 10.0;
+	double scalingFactor = fullVelRange/ 65535.0;
+	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2) * 2.0;
+
+	double step = fullVelRange / 4.0;
+    mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
+    JoystickZPosition->Caption = "X Position = " + FloatToStrF(pos, ffFixed, 4,2);
+    JoystickAvgZPos->Caption = "X Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
+
+	//Check if joystick value have changed more than previous command
+	double vel = mRunningZAverage;
+    if(fabs(vel - mValCommand) > step)
+    {
+    	stringstream msg;
+        msg<<"New value: "<<vel;
+        msg<<"Old value: "<<mValCommand;
+
+        Log(lInfo) << msg.str();
+
+        //Did we switch direction?
+        if(!sameSign(vel,mValCommand))
+        {
+			MotorCommand cmd(mcSwitchDirection);
+        }
+
+        mValCommand = vel;
+        if( fabs(mValCommand) <= step)
+        {
+            MotorCommand cmd(mcStopHard,  vel);
+            mMotorMessageContainer.post(cmd);
+            Log(lInfo) << "Motor is stopping. ";
+            return;
+        }
+
+        if (vel > step)
+        {
+            MotorCommand cmd(mcSetVelocityForward,  vel);
+            mMotorMessageContainer.post(cmd);
+            Log(lInfo) << "Setting forward velocity: "<<vel;
+        }
+        else
+        {
+            MotorCommand cmd(mcSetVelocityReverse,  fabs(vel));
+            mMotorMessageContainer.post(cmd);
+            Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
+        }
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::FormDestroy(TObject *Sender)
+{
+	if(mJoyStickConnected)
+    {
+  		joyReleaseCapture(mJoystickID);
+    }
+}
+
+
 

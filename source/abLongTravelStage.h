@@ -1,13 +1,13 @@
-#ifndef abTCubeDCServoH
-#define abTCubeDCServoH
+#ifndef abLongTravelStageH
+#define abLongTravelStageH
 #include "abAPTMotor.h"
 //---------------------------------------------------------------------------
 
-class AB_CORE TCubeDCServo : public APTMotor
+class AB_CORE LongTravelStage : public APTMotor
 {
     public:
-        						        TCubeDCServo(int serial);
-		virtual 		                ~TCubeDCServo();
+        						        LongTravelStage(int serial);
+		virtual 		                ~LongTravelStage();
 
 		HardwareInformation		        getHWInfo();
         double				 			getEncoderCounts();

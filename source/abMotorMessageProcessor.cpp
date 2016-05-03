@@ -18,7 +18,8 @@ mtk::Thread(threadName),
 mAllowProcessing(true),
 mMotorMessageContainer(messageContainer),
 mProcessedCount(0),
-mNotifyUI(NULL)
+mNotifyUI(NULL),
+mMotor(NULL)
 {}
 
 //----------------------------------------------------------------
@@ -95,6 +96,11 @@ void MotorMessageProcessor::worker()
 	           	MotorCommand cmd = mMotorMessageContainer.pop();
 
     	        Log(lInfo) << "Processing command: "<<cmd;
+                if(mMotor == NULL)
+                {
+                	break;
+                }
+
                 switch(cmd.getCore())
                 {
                     case mcNone:
@@ -102,20 +108,21 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcStopHard:
-                    	mMotor->stop();
-                        //Wait until motor is stopped
-                        while(mMotor->isActive())
-                        {
-                        ;
-                        }
-					break;
-
+//                    	mMotor->stop();
+//                        //Wait until motor is stopped
+////                        while(mMotor->isActive())
+////                        {
+////                        ;
+////                        }
+//					break;
+//
                     case mcStopProfiled:
-                    	mMotor->stopProfiled();
-                        while(mMotor->isActive())
-                        {
-                        ;
-                        }
+//                    	mMotor->stopProfiled();
+                    	mMotor->stop();
+//                        while(mMotor->isActive())
+//                        {
+//                        ;
+//                        }
 
 					break;
 
@@ -142,11 +149,20 @@ void MotorMessageProcessor::worker()
                     case mcSetVelocity:
                     	mMotor->setMaxVelocity(cmd.getFirstVariable());
 					break;
+
+                    case mcSetVelocityForward:
+                    	mMotor->setMaxVelocityForward(cmd.getFirstVariable());
+					break;
+
+                    case mcSetVelocityReverse:
+                    	mMotor->setMaxVelocityReverse(cmd.getFirstVariable());
+					break;
+
                     case mcSwitchDirection:
                     	mMotor->switchDirection();
 					break;
                 }
-                sleep(200);
+                sleep(100);
             }
 
 		}//mutex

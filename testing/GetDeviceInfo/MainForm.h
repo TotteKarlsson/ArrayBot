@@ -17,6 +17,7 @@
 #include "TIntegerLabeledEdit.h"
 #include "mtkFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
+#include <mmsystem.h>
 #include "Poco/Timestamp.h"
 #include "abMotorMessageProcessor.h"
 #include "abMotorMessageContainer.h"
@@ -75,7 +76,6 @@ class TMain : public TForm
 	TLabel *Label6;
 	TLabel *mIsReversingLabel;
 	TLabel *mIsForwardingLabel;
-	TTimer *joyTimer;
 	TLabel *Label5;
 	TButton *Button5;
 	TButton *DecreaseVelBtn;
@@ -83,6 +83,8 @@ class TMain : public TForm
 	TCheckBox *ContinousMoveCB;
 	mtkFloatLabeledEdit *mVelDeltaE;
 	TButton *switchdirectionBtn;
+	TLabel *JoystickZPosition;
+	TLabel *JoystickAvgZPos;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -107,10 +109,10 @@ class TMain : public TForm
 	void __fastcall BitBtn3Click(TObject *Sender);
 	void __fastcall mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall Button5Click(TObject *Sender);
-	void __fastcall joyTimerTimer(TObject *Sender);
 	void __fastcall IncreaseVelBtnClick(TObject *Sender);
 	void __fastcall DecreaseVelBtnClick(TObject *Sender);
 	void __fastcall switchdirectionBtnClick(TObject *Sender);
+	void __fastcall FormDestroy(TObject *Sender);
 
     private:	// User declarations
         DeviceManager		        mDeviceManager;
@@ -126,10 +128,23 @@ class TMain : public TForm
         MotorMessageProcessor		mMotorMessageProcessor;
         MotorMessageContainer  		mMotorMessageContainer;
 
+        int 						mJoystickID;
+        int 						mJoyStickDriverCount;
+        bool 						mJoyStickConnected;
+	    JOYCAPS 					mJoyCaps;
+        double 						mRunningZAverage;
+        double 						mValCommand;
+        double 						mAlpha;
+        void __fastcall 			JMXMove(TMessage &msg);
+
+	public:		// User declarations
+		__fastcall 					TMain(TComponent* Owner);
+
+        BEGIN_MESSAGE_MAP
+          MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMXMove)
+        END_MESSAGE_MAP(TForm)
 
 
-public:		// User declarations
-	__fastcall TMain(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TMain *Main;

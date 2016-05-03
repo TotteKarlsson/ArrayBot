@@ -10,9 +10,10 @@ File_7=TSourceModule,'C:\Users\matsk\Documents\Kinesis\Thorlabs.MotionControl.In
 
 [Modules]
 Module0=P:\ArrayBot\DiagnosticUI\MainForm.cpp
-Module1=P:\ArrayBot\DiagnosticUI\DiagUI.cbproj
+Module1=P:\ArrayBot\testing\joystick2\Unit1.cpp
 Module2=default.htm
-Count=3
+Module3=P:\ArrayBot\DiagnosticUI\DiagUI.cbproj
+Count=4
 EditWindowCount=1
 
 [P:\ArrayBot\DiagnosticUI\MainForm.cpp]
@@ -20,18 +21,24 @@ ModuleType=TSourceModule
 FormState=1
 FormOnTop=0
 
-[P:\ArrayBot\DiagnosticUI\DiagUI.cbproj]
-ModuleType=TBaseProject
+[P:\ArrayBot\testing\joystick2\Unit1.cpp]
+ModuleType=TSourceModule
+FormState=1
+FormOnTop=0
 
 [default.htm]
 ModuleType=TURLModule
 
+[P:\ArrayBot\DiagnosticUI\DiagUI.cbproj]
+ModuleType=TBaseProject
+
 [EditWindow0]
-ViewCount=3
+ViewCount=4
 CurrentEditView=P:\ArrayBot\DiagnosticUI\MainForm.cpp
 View0=0
 View1=1
 View2=2
+View3=3
 PercentageSizes=1
 Create=1
 Visible=1
@@ -74,9 +81,20 @@ TopLine=17
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=P:\ArrayBot\DiagnosticUI\MainForm.h
+EditViewName=P:\ArrayBot\DiagnosticUI\MainForm.cpp
 
 [View2]
+CustomEditViewType=TEditView
+Module=P:\ArrayBot\testing\joystick2\Unit1.cpp
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=P:\ArrayBot\testing\joystick2\Unit1.h
+
+[View3]
 CustomEditViewType=TEditView
 Module=P:\ArrayBot\DiagnosticUI\DiagUI.cpp
 CursorX=1
@@ -146,11 +164,11 @@ State=0
 Left=0
 Top=0
 Width=2062
-Height=6797
+Height=7109
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2062
-ClientHeight=6797
+ClientHeight=7109
 TBDockHeight=5898
 LRDockWidth=2352
 Dockable=1
@@ -213,6 +231,11 @@ LRDockWidth=1891
 Dockable=1
 StayOnTop=0
 SplitPos=134
+
+[PropInspDesignerSelection]
+ArrangeBy=Name
+SelectedItem=Action,OnKeyDown
+ExpandedItems=Anchors=0,BorderIcons=0,Constraints=0,Font=0,GlassFrame=0,LiveBindings=0,"LiveBindings Designer=0",BevelEdges=0,Margins=0,EditLabel=1,StyleElements=0,EditLabel.Font=0,EditLabel.LiveBindings=0,"EditLabel.LiveBindings Designer=0",EditLabel.Margins=0,EditLabel.Touch=0,Touch=0,ImageMargins=0,Action=1,Action.LiveBindings=0,"Action.LiveBindings Designer=0",HorzScrollBar=0,BackWall=0,Border=0,BottomAxis=0,BottomWall=0,DepthAxis=0,DepthTopAxis=0,Padding=0
 
 [TFileExplorerForm]
 PercentageSizes=1
@@ -464,7 +487,7 @@ Visible=0
 Docked=1
 State=0
 Left=-33784
-Top=-362
+Top=-399
 Width=5305
 Height=4883
 MaxLeft=-1
@@ -731,6 +754,6 @@ LRDockWidth=2062
 Dockable=1
 StayOnTop=0
 TabPosition=0
-ActiveTabID=ProjectManager
+ActiveTabID=ToolForm
 TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,ModelViewTool,TFileExplorerForm,TemplateView
 

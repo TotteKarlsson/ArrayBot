@@ -1,5 +1,5 @@
 #pragma hdrstop
-#include "abTCubeDCServo.h"
+#include "abLongTravelStage.h"
 #include "Thorlabs.MotionControl.TCube.BrushlessMotor.h"
 //#include "Thorlabs.MotionControl.TCube.DCServo.h"
 //#include "Thorlabs.MotionControl.TDIEngine.h"
@@ -8,16 +8,16 @@
 #include <bitset>
 using namespace std;
 //---------------------------------------------------------------------------
-TCubeDCServo::TCubeDCServo(int serial)
+LongTravelStage::LongTravelStage(int serial)
 : APTMotor(serial)
 {
-	mDeviceTypeID = (didTCubeDCServo);
+	mDeviceTypeID = (didLongTravelStage);
 }
 
-TCubeDCServo::~TCubeDCServo()
+LongTravelStage::~LongTravelStage()
 {}
 
-bool TCubeDCServo::connect()
+bool LongTravelStage::connect()
 {
     // load the device settings
     // open the device
@@ -50,18 +50,18 @@ bool TCubeDCServo::connect()
     return false;
 }
 
-bool TCubeDCServo::disconnect()
+bool LongTravelStage::disconnect()
 {
     mIsConnected = false;
     return false;
 }
 
-unsigned long TCubeDCServo::getStatusBits()
+unsigned long LongTravelStage::getStatusBits()
 {
 	return BMC_GetStatusBits(mSerial.c_str());
 }
 
-double TCubeDCServo::getEncoderCounts()
+double LongTravelStage::getEncoderCounts()
 {
 	long cnt1, cnt2, cnt3;
 	int err = BMC_GetMotorParams(mSerial.c_str(), &cnt1);
@@ -75,7 +75,7 @@ double TCubeDCServo::getEncoderCounts()
     return 0;
 }
 
-bool TCubeDCServo::switchDirection()
+bool LongTravelStage::switchDirection()
 {
 	if(isForwarding())
     {
@@ -87,7 +87,7 @@ bool TCubeDCServo::switchDirection()
     }
 }
 
-HardwareInformation TCubeDCServo::getHWInfo()
+HardwareInformation LongTravelStage::getHWInfo()
 {
 	TLI_HardwareInformation hwi;
 	int err  = BMC_GetHardwareInfoBlock(mSerial.c_str(), &hwi);
@@ -97,7 +97,7 @@ HardwareInformation TCubeDCServo::getHWInfo()
     return mHWInfo;
 }
 
-bool TCubeDCServo::isHomed()
+bool LongTravelStage::isHomed()
 {
 	//Query for status bits
     unsigned long b = BMC_GetStatusBits(mSerial.c_str());
@@ -105,7 +105,7 @@ bool TCubeDCServo::isHomed()
     return bits.test(10);
 }
 
-bool TCubeDCServo::isHoming()
+bool LongTravelStage::isHoming()
 {
 	//Query for status bits
     unsigned long b = BMC_GetStatusBits(mSerial.c_str());
@@ -113,7 +113,7 @@ bool TCubeDCServo::isHoming()
     return bits.test(9);
 }
 
-bool TCubeDCServo::isForwarding()
+bool LongTravelStage::isForwarding()
 {
 	//Query for status bits
     unsigned long b = BMC_GetStatusBits(mSerial.c_str());
@@ -121,7 +121,7 @@ bool TCubeDCServo::isForwarding()
     return bits.test(5);
 }
 
-bool TCubeDCServo::isReversing()
+bool LongTravelStage::isReversing()
 {
 	//Query for status bits
     unsigned long b = BMC_GetStatusBits(mSerial.c_str());
@@ -129,7 +129,7 @@ bool TCubeDCServo::isReversing()
     return bits.test(4);
 }
 
-bool TCubeDCServo::isActive()
+bool LongTravelStage::isActive()
 {
 	//Query for status bits
     unsigned long b = BMC_GetStatusBits(mSerial.c_str());
@@ -138,23 +138,23 @@ bool TCubeDCServo::isActive()
     return bits.test(4) || bits.test(5) || bits.test(6) || bits.test(7) ;
 }
 
-bool TCubeDCServo::identify()
+bool LongTravelStage::identify()
 {
 	BMC_Identify(mSerial.c_str());
     return true;
 }
 
-bool TCubeDCServo::startPolling()
+bool LongTravelStage::startPolling()
 {
     return false;
 }
 
-bool TCubeDCServo::stopPolling()
+bool LongTravelStage::stopPolling()
 {
     return false;
 }
 
-void TCubeDCServo::home()
+void LongTravelStage::home()
 {
   	if(!BMC_CanHome(mSerial.c_str()))
     {
@@ -169,7 +169,7 @@ void TCubeDCServo::home()
     }
 }
 
-void TCubeDCServo::stop()
+void LongTravelStage::stop()
 {
 //	if(isActive())
     {
@@ -188,7 +188,7 @@ void TCubeDCServo::stop()
     }
 }
 
-void TCubeDCServo::stopProfiled()
+void LongTravelStage::stopProfiled()
 {
 //	if(isActive())
     {
@@ -205,12 +205,12 @@ void TCubeDCServo::stopProfiled()
     }
 }
 
-double TCubeDCServo::getPosition()
+double LongTravelStage::getPosition()
 {
     return BMC_GetPosition(mSerial.c_str()) / mScalingFactors.position;
 }
 
-double TCubeDCServo::getVelocity()
+double LongTravelStage::getVelocity()
 {
 	int a(0);
   	int v (0);
@@ -225,7 +225,7 @@ double TCubeDCServo::getVelocity()
 }
 
 
-bool TCubeDCServo::setMaxVelocity(double vel)
+bool LongTravelStage::setMaxVelocity(double vel)
 {
  	MOT_VelocityParameters parameters;
     BMC_GetVelParamsBlock(mSerial.c_str(), &parameters);
@@ -258,19 +258,19 @@ bool TCubeDCServo::setMaxVelocity(double vel)
 	return false;
 }
 
-bool TCubeDCServo::setMaxVelocityForward(double vel)
+bool LongTravelStage::setMaxVelocityForward(double vel)
 {
 	setMaxVelocity(vel);
     forward();
 }
 
-bool TCubeDCServo::setMaxVelocityReverse(double vel)
+bool LongTravelStage::setMaxVelocityReverse(double vel)
 {
 	setMaxVelocity(vel);
     reverse();
 }
 
-bool TCubeDCServo::setAcceleration(double a)
+bool LongTravelStage::setAcceleration(double a)
 {
  	MOT_VelocityParameters parameters;
     BMC_GetVelParamsBlock(mSerial.c_str(), &parameters);
@@ -279,7 +279,7 @@ bool TCubeDCServo::setAcceleration(double a)
 	return false;
 }
 
-double TCubeDCServo::getAcceleration()
+double LongTravelStage::getAcceleration()
 {
 	int a(0);
   	int v (0);
@@ -293,7 +293,7 @@ double TCubeDCServo::getAcceleration()
   	return a/ mScalingFactors.acceleration;
 }
 
-void TCubeDCServo::jogForward()
+void LongTravelStage::jogForward()
 {
 	int error = BMC_MoveJog(mSerial.c_str(), MOT_Forwards);
     if(error != 0)
@@ -302,7 +302,7 @@ void TCubeDCServo::jogForward()
     }
 }
 
-void TCubeDCServo::jogReverse()
+void LongTravelStage::jogReverse()
 {
 	int error = BMC_MoveJog(mSerial.c_str(), MOT_Reverse);
     if(error != 0)
@@ -311,7 +311,7 @@ void TCubeDCServo::jogReverse()
     }
 }
 
-void TCubeDCServo::forward()
+void LongTravelStage::forward()
 {
 //	if(isReversing())
 //    {
@@ -333,7 +333,7 @@ void TCubeDCServo::forward()
 //    }
 }
 
-void TCubeDCServo::reverse()
+void LongTravelStage::reverse()
 {
 //	if(isForwarding())
 //    {
@@ -352,7 +352,7 @@ void TCubeDCServo::reverse()
     }
 }
 
-void TCubeDCServo::moveDistance(double distance)
+void LongTravelStage::moveDistance(double distance)
 {
 // 	Log(lError) <<msg.str();
 }
