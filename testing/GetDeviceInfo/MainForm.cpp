@@ -26,7 +26,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TForm(Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-	mMotorMessageProcessor(mMotorMessageContainer),
+//	mMotorMessageProcessor(mMotorMessageContainer),
 	mRunningZAverage(0),
 	mAlpha(0.9)
 {
@@ -75,7 +75,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	mLogFileReader.start(true);
 
     connectAllDevicesExecute(Sender);
-	mMotorMessageProcessor.start(true);
+//	mMotorMessageProcessor.start(true);
 
     mJoyStickConnected = false;
     MMRESULT  JoyResult;
@@ -157,7 +157,7 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
             a = motor->getJogAcceleration();
             mJogAcc->SetNumber(a);
             //
-            mMotorMessageProcessor.assignMotor(motor);
+//            mMotorMessageProcessor.assignMotor(motor);
         }
 
     	//Populate device frame
@@ -220,33 +220,40 @@ void __fastcall TMain::jogBackwardsExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::moveForwardExecute(TObject *Sender)
 {
-//	//Use whatever speed is selected
-//    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
-//    if(motor)
-//    {
-//    	motor->forward();
-//    }
-	MotorCommand cmd(mcForward);
-	mMotorMessageContainer.post(cmd);
+	//Use whatever speed is selected
+    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
+    if(motor)
+    {
+    	motor->forward();
+    }
+//	MotorCommand cmd(mcForward);
+//	mMotorMessageContainer.post(cmd);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::moveBackwardExecute(TObject *Sender)
 {
-//	//Use whatever speed is selected
-//    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
-//    if(motor)
-//    {
-//    	motor->reverse();
-//    }
-	MotorCommand cmd(mcReverse);
-	mMotorMessageContainer.post(cmd);
+	//Use whatever speed is selected
+    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
+    if(motor)
+    {
+    	motor->reverse();
+    }
+//	MotorCommand cmd(mcReverse);
+//	mMotorMessageContainer.post(cmd);
 }
 
 void __fastcall TMain::stopMotorExecute(TObject *Sender)
 {
-	MotorCommand cmd(mcStopHard);
-	mMotorMessageContainer.post(cmd);
+	//Use whatever speed is selected
+    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
+    if(motor)
+    {
+    	motor->reverse();
+    }
+//
+//	MotorCommand cmd(mcStopHard);
+//	mMotorMessageContainer.post(cmd);
 }
 
 //---------------------------------------------------------------------------
@@ -371,8 +378,9 @@ void __fastcall TMain::IncreaseVelBtnClick(TObject *Sender)
     	return;
     }
 	double cVel = motor->getVelocity();
-	MotorCommand cmd(mcSetVelocity,  cVel + delta);
-	mMotorMessageContainer.post(cmd);
+
+//	MotorCommand cmd(mcSetVelocity,  cVel + delta);
+//	mMotorMessageContainer.post(cmd);
 }
 
 void __fastcall TMain::DecreaseVelBtnClick(TObject *Sender)
@@ -387,167 +395,16 @@ void __fastcall TMain::DecreaseVelBtnClick(TObject *Sender)
     	return;
     }
 	double cVel = motor->getVelocity();
-	MotorCommand cmd(mcSetVelocity,  cVel - delta);
-	mMotorMessageContainer.post(cmd);
+
+//	MotorCommand cmd(mcSetVelocity,  cVel - delta);
+//	mMotorMessageContainer.post(cmd);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::switchdirectionBtnClick(TObject *Sender)
 {
-	MotorCommand cmd(mcSwitchDirection);
-	mMotorMessageContainer.post(cmd);
-}
-
-bool sameSign(double x, double y)
-{
-	return x*y >= 0.0f;
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::JMXMove(TMessage &msg)
-{
-	double fullVelRange = 5.0;
-    int nrOfSteps = 5;
-	double step = fullVelRange / nrOfSteps;
-
-	double scalingFactor = fullVelRange/ 65535.0;
-	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2.0) * 2.0;
-
-    mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
-
-    JoystickZPosition->Caption 	= "X Position = " + FloatToStrF(pos, ffFixed, 4,2);
-    JoystickAvgZPos->Caption 	= "X Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
-
-	//Check if joystick value have changed more than previous command
-	double vel = mRunningZAverage;
-    if(fabs(vel - mValCommand) > step)
-    {
-        //Did we switch direction?
-        if(!sameSign(vel,mValCommand))
-        {
-			MotorCommand cmd(mcSwitchDirection);
-        }
-
-        mValCommand = vel;
-        if( fabs(mValCommand) <= step)
-        {
-            MotorCommand cmd(mcStopHard,  vel);
-            mMotorMessageContainer.post(cmd);
-            Log(lInfo) << "Motor is stopping. ";
-            return;
-        }
-
-        if (vel > step)
-        {
-            MotorCommand cmd(mcSetVelocityForward,  fabs(vel));
-            mMotorMessageContainer.post(cmd);
-            Log(lInfo) << "Setting forward velocity: "<<vel;
-        }
-        else
-        {
-            MotorCommand cmd(mcSetVelocityReverse,  fabs(vel));
-            mMotorMessageContainer.post(cmd);
-            Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
-        }
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::JMYMove(TMessage &msg)
-{
-//	double fullVelRange = 5.0;
-//    int nrOfSteps = 5;
-//	double step = fullVelRange / nrOfSteps;
-//
-//	double scalingFactor = fullVelRange/ 65535.0;
-//	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2.0) * 2.0;
-//
-//    mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
-//
-//    JoystickZPosition->Caption 	= "X Position = " + FloatToStrF(pos, ffFixed, 4,2);
-//    JoystickAvgZPos->Caption 	= "X Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
-//
-//	//Check if joystick value have changed more than previous command
-//	double vel = mRunningZAverage;
-//    if(fabs(vel - mValCommand) > step)
-//    {
-//        //Did we switch direction?
-//        if(!sameSign(vel,mValCommand))
-//        {
-//			MotorCommand cmd(mcSwitchDirection);
-//        }
-//
-//        mValCommand = vel;
-//        if( fabs(mValCommand) <= step)
-//        {
-//            MotorCommand cmd(mcStopHard,  vel);
-//            mMotorMessageContainer.post(cmd);
-//            Log(lInfo) << "Motor is stopping. ";
-//            return;
-//        }
-//
-//        if (vel > step)
-//        {
-//            MotorCommand cmd(mcSetVelocityForward,  fabs(vel));
-//            mMotorMessageContainer.post(cmd);
-//            Log(lInfo) << "Setting forward velocity: "<<vel;
-//        }
-//        else
-//        {
-//            MotorCommand cmd(mcSetVelocityReverse,  fabs(vel));
-//            mMotorMessageContainer.post(cmd);
-//            Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
-//        }
-//    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::JMZMove(TMessage &msg)
-{
-//	double fullVelRange = 5.0;
-//    int nrOfSteps = 5;
-//	double step = fullVelRange / nrOfSteps;
-//
-//	double scalingFactor = fullVelRange/ 65535.0;
-//	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2.0) * 2.0;
-//
-//    mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
-//
-//    JoystickZPosition->Caption 	= "X Position = " + FloatToStrF(pos, ffFixed, 4,2);
-//    JoystickAvgZPos->Caption 	= "X Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
-//
-//	//Check if joystick value have changed more than previous command
-//	double vel = mRunningZAverage;
-//    if(fabs(vel - mValCommand) > step)
-//    {
-//        //Did we switch direction?
-//        if(!sameSign(vel,mValCommand))
-//        {
-//			MotorCommand cmd(mcSwitchDirection);
-//        }
-//
-//        mValCommand = vel;
-//        if( fabs(mValCommand) <= step)
-//        {
-//            MotorCommand cmd(mcStopHard,  vel);
-//            mMotorMessageContainer.post(cmd);
-//            Log(lInfo) << "Motor is stopping. ";
-//            return;
-//        }
-//
-//        if (vel > step)
-//        {
-//            MotorCommand cmd(mcSetVelocityForward,  fabs(vel));
-//            mMotorMessageContainer.post(cmd);
-//            Log(lInfo) << "Setting forward velocity: "<<vel;
-//        }
-//        else
-//        {
-//            MotorCommand cmd(mcSetVelocityReverse,  fabs(vel));
-//            mMotorMessageContainer.post(cmd);
-//            Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
-//        }
-//    }
+//	MotorCommand cmd(mcSwitchDirection);
+//	mMotorMessageContainer.post(cmd);
 }
 
 //---------------------------------------------------------------------------

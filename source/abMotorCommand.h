@@ -28,7 +28,7 @@ enum MotorCommandEnum
 
 string toString(MotorCommandEnum e);
 
-class AB_CORE MotorCommand : ABObject
+class AB_CORE MotorCommand : public ABObject
 {
 	public:
 							MotorCommand(MotorCommandEnum mce, double var=0);

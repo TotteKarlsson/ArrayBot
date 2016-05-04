@@ -3,6 +3,9 @@
 #include "abAPTDevice.h"
 #include "mtkTimer.h"
 #include "abDataStructures.h"
+#include "abMotorMessageProcessor.h"
+#include "abMotorMessageContainer.h"
+
 //---------------------------------------------------------------------------
 
 class AB_CORE APTMotor : public APTDevice
@@ -64,6 +67,11 @@ class AB_CORE APTMotor : public APTDevice
         unsigned long			            mStatusBits;
         ScalingFactors			            mScalingFactors;
 		HardwareInformation 				mHWInfo;
+
+		void                                post(const MotorCommand& cmd);
+        MotorMessageProcessor				mMotorMessageProcessor;
+        MotorMessageContainer  				mMotorMessageContainer;
+
 };
 
 

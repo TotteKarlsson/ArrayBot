@@ -97,15 +97,15 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <None Include="..\..\source\abDataStructures.h">
-            <BuildOrder>4</BuildOrder>
-        </None>
         <CppCompile Include="GetTLDInfo.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
         <PCHCompile Include="GetTLDInfoPCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
+        <CppCompile Include="JoyStick.cpp">
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
         <CppCompile Include="MainForm.cpp">
             <Form>Main</Form>
             <FormType>dfm</FormType>

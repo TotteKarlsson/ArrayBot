@@ -3,6 +3,7 @@
 #include "Thorlabs.MotionControl.TCube.StepperMotor.h"
 #include "mtkLogger.h"
 #include "abExceptions.h"
+#include "abMotorCommand.h"
 #include <bitset>
 using namespace std;
 
@@ -359,12 +360,21 @@ double TCubeStepperMotor::getJogAcceleration()
     return a  / mScalingFactors.acceleration;
 }
 
-void TCubeStepperMotor::jogForward()
+void TCubeStepperMotor::jogForward(bool inThread)
 {
-	int err = SCC_MoveJog(mSerial.c_str(), MOT_Forwards);
-    if(err != 0)
+	if(inThread)
     {
-    	Log(lError) <<tlError(err);
+		MotorCommand cmd(mcForward);
+		post(cmd);
+    }
+    else
+    {
+
+        int err = SCC_MoveJog(mSerial.c_str(), MOT_Forwards);
+        if(err != 0)
+        {
+            Log(lError) <<tlError(err);
+        }
     }
 }
 

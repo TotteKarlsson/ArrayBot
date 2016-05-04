@@ -108,21 +108,18 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcStopHard:
-//                    	mMotor->stop();
+                    	mMotor->stop();
 //                        //Wait until motor is stopped
 ////                        while(mMotor->isActive())
 ////                        {
 ////                        ;
 ////                        }
-//					break;
-//
+					break;
                     case mcStopProfiled:
-//                    	mMotor->stopProfiled();
-                    	mMotor->stop();
-//                        while(mMotor->isActive())
-//                        {
-//                        ;
-//                        }
+                    	mMotor->stopProfiled();
+
+                        while(mMotor->isActive())
+                        { ; }
 
 					break;
 

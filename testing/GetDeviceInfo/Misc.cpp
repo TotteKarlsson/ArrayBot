@@ -28,11 +28,11 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
 	}
 
-    if(mMotorMessageProcessor.isRunning())
-    {
-		Log(lDebug) << "Shutting MotorMessageProcessor";
-    	mMotorMessageProcessor.stop();
-    }
+//    if(mMotorMessageProcessor.isRunning())
+//    {
+//		Log(lDebug) << "Shutting MotorMessageProcessor";
+//    	mMotorMessageProcessor.stop();
+//    }
 
 	Close();
 }
@@ -44,10 +44,10 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 
 	//Check if we can close.. abort all threads..
 	CanClose = (mLogFileReader.isRunning()) ? false : true;
-	if(mMotorMessageProcessor.isRunning())
-    {
-    	CanClose == false;
-    }
+//	if(mMotorMessageProcessor.isRunning())
+//    {
+//    	CanClose == false;
+//    }
 
 	if(CanClose == false)
 	{

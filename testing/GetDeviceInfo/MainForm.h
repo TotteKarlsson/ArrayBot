@@ -142,8 +142,8 @@ class TMain : public TForm
        	Timestamp 			        mLastMotorCommand;
         double						mLastVel;
 
-        MotorMessageProcessor		mMotorMessageProcessor;
-        MotorMessageContainer  		mMotorMessageContainer;
+//        MotorMessageProcessor		mMotorMessageProcessor;
+//        MotorMessageContainer  		mMotorMessageContainer;
 
         int 						mJoystickID;
         int 						mJoyStickDriverCount;

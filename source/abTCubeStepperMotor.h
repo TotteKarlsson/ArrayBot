@@ -13,18 +13,17 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 		HardwareInformation		        getHWInfo();
         double				 			getEncoderCounts();
 		bool							switchDirection();
+        bool	                        connect();
+        bool	                        disconnect();
+        bool	                        startPolling();
+        bool	                        stopPolling();
 
-        						        ///isActive checks if the device is active.
+        						        ///Status functions
 		bool					        isActive();
 		bool					        isHoming();
 		bool					        isHomed();
         bool		                	isForwarding();
         bool		                	isReversing();
-        bool	                        connect();
-        bool	                        disconnect();
-
-        bool	                        startPolling();
-        bool	                        stopPolling();
 
 				                        //!General commands
         double	                        getPosition();
@@ -39,6 +38,7 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 
 				                        ///Control commands
 		void 		                    home();
+
         void 		                    stop();
         void 		                    stopProfiled();
 
@@ -46,8 +46,8 @@ class AB_CORE TCubeStepperMotor : public APTMotor
         double	                		getJogVelocity();
         double	                		getJogAcceleration();
 
-        void		                    jogForward();
-        void		                    jogReverse();
+        void		                    jogForward(bool inThread);
+        void		                    jogReverse(bool inThread);
         bool	                		setJogMode(JogModes mode = jmSingleStep, StopModes stopMode = smProfiled);
         bool	                		setJogVelocity(double v);
         bool	                		setJogAcceleration(double a);
@@ -59,6 +59,8 @@ class AB_CORE TCubeStepperMotor : public APTMotor
         bool		                    identify();
 
     protected:
+//        void		                    jogForward();
+//        void		                    jogReverse();
 
 };
 #endif
