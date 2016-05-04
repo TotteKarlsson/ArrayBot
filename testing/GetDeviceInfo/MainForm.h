@@ -97,6 +97,7 @@ class TMain : public TForm
 	TRadioGroup *RadioGroup1;
 	mtkFloatLabeledEdit *maxJoyVel;
 	TIntegerLabeledEdit *JoySteps;
+	TButton *Button5;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -124,6 +125,7 @@ class TMain : public TForm
 	void __fastcall mJogModeCBClick(TObject *Sender);
 	void __fastcall DeviceBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
+	void __fastcall Button5Click(TObject *Sender);
 
     private:	// User declarations
         DeviceManager		        mDeviceManager;

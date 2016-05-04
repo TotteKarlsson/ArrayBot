@@ -1,14 +1,14 @@
-#ifndef abLongTravelStageH
-#define abLongTravelStageH
+#ifndef abTCubeStepperMotorH
+#define abTCubeStepperMotorH
 #include "abAPTMotor.h"
-//#include "Thorlabs.MotionControl.IntegratedStepperMotors.h"
+//#include "Thorlabs.MotionControl.TCube.StepperMotor.h"
 //---------------------------------------------------------------------------
 
-class AB_CORE LongTravelStage : public APTMotor
+class AB_CORE TCubeStepperMotor : public APTMotor
 {
     public:
-        						        LongTravelStage(int serial);
-		virtual 		                ~LongTravelStage();
+        						        TCubeStepperMotor(int serial);
+		virtual 		                ~TCubeStepperMotor();
 
 		HardwareInformation		        getHWInfo();
         double				 			getEncoderCounts();

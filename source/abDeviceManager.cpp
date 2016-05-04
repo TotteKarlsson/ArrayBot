@@ -4,8 +4,9 @@
 #include "mtkUtils.h"
 #include "abUtilities.h"
 #include "abTCubeDCServo.h"
+#include "abTCubeStepperMotor.h"
 #include "abLongTravelStage.h"
-#include "Thorlabs.MotionControl.IntegratedStepperMotors.h"
+#include "ThorlabStructs.h"
 //---------------------------------------------------------------------------
 
 using namespace std;
@@ -107,26 +108,35 @@ int DeviceManager::connectAllDevices()
 
     //TCubeDCServos
     StringList serials(getSerialsForDeviceType(didTCubeDCServo));
-    Log(lDebug) <<"Connecting devices of type "<<toString(didTCubeDCServo);
-    for(int i = 0; i < serials.count(); i++)
+    if(serials.count())
     {
-		APTDevice* device = connectDevice(toInt(serials[i]));
+        Log(lDebug) <<"Connecting devices of type "<<toString(didTCubeDCServo);
+        for(int i = 0; i < serials.count(); i++)
+        {
+            APTDevice* device = connectDevice(toInt(serials[i]));
+        }
     }
 
     //LTS devices
     Log(lDebug) <<"Connecting devices of type "<<toString(didLongTravelStage);
     StringList lts_serials(getSerialsForDeviceType(didLongTravelStage));
-    for(int i = 0; i < lts_serials.count(); i++)
+    if(lts_serials.count())
     {
-		APTDevice* device = connectDevice(toInt(lts_serials[i]));
+        for(int i = 0; i < lts_serials.count(); i++)
+        {
+            APTDevice* device = connectDevice(toInt(lts_serials[i]));
+        }
     }
 
     //LTS devices
     Log(lDebug) <<"Connecting devices of type "<<toString(didTCubeStepperMotor);
     StringList tcsm_serials(getSerialsForDeviceType(didTCubeStepperMotor));
-    for(int i = 0; i < lts_serials.count(); i++)
+    if(tcsm_serials.count())
     {
-		APTDevice* device = connectDevice(toInt(tcsm_serials[i]));
+        for(int i = 0; i < tcsm_serials.count(); i++)
+        {
+            APTDevice* device = connectDevice(toInt(tcsm_serials[i]));
+        }
     }
 
 	return getNumberOfConnectedDevices();
@@ -135,6 +145,7 @@ int DeviceManager::connectAllDevices()
 APTDevice* DeviceManager::connectDevice(int serial)
 {
     Log(lDebug) <<"Connecting device with serial "<<serial;
+
     //First get device info so we know what to create
     TLI_DeviceInfo deviceInfo;
 
@@ -152,9 +163,14 @@ APTDevice* DeviceManager::connectDevice(int serial)
 
     switch(deviceInfo.typeID)
     {
-        case didTCubeDCServo:
-            Log(lInfo) << "Creating a "<<toString(didTCubeDCServo)<<" device";
-            device = new TCubeDCServo(serial);
+//        case didTCubeDCServo:
+//            Log(lInfo) << "Creating a "<<toString(didTCubeDCServo)<<" device";
+//            device = new TCubeDCServo(serial);
+//        break;
+
+        case didTCubeStepperMotor:
+            Log(lInfo) << "Creating a "<<toString(didTCubeStepperMotor)<<" device";
+            device = new TCubeStepperMotor(serial);
         break;
 
         case didLongTravelStage:

@@ -45,7 +45,6 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
-    ExplicitWidth = 927
     object BitBtn1: TBitBtn
       Left = 0
       Top = 0
@@ -82,8 +81,6 @@ object Main: TMain
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
-      ExplicitWidth = 925
-      ExplicitHeight = 143
     end
     object ToolBar2: TToolBar
       Left = 1
@@ -94,7 +91,6 @@ object Main: TMain
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
-      ExplicitWidth = 925
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -113,8 +109,6 @@ object Main: TMain
     Height = 468
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 927
-    ExplicitHeight = 397
     object DevicesGB: TGroupBox
       Left = 1
       Top = 1
@@ -123,7 +117,6 @@ object Main: TMain
       Align = alLeft
       Caption = 'Devices'
       TabOrder = 0
-      ExplicitHeight = 395
       object devicesLB: TListBox
         Left = 2
         Top = 15
@@ -167,8 +160,6 @@ object Main: TMain
         Align = alTop
         Caption = 'Jogging'
         TabOrder = 2
-        ExplicitTop = 97
-        ExplicitWidth = 451
         object Button3: TButton
           Left = 16
           Top = 23
@@ -238,9 +229,6 @@ object Main: TMain
         Align = alTop
         Caption = 'Status'
         TabOrder = 3
-        ExplicitLeft = 3
-        ExplicitTop = 9
-        ExplicitWidth = 563
         object Label1: TLabel
           Left = 17
           Top = 23
@@ -249,7 +237,7 @@ object Main: TMain
           Caption = 'Is Active: '
         end
         object Label2: TLabel
-          Left = 144
+          Left = 166
           Top = 23
           Width = 51
           Height = 13
@@ -270,14 +258,14 @@ object Main: TMain
           Caption = 'Velocity (mm/s):'
         end
         object Lbl: TLabel
-          Left = 144
+          Left = 166
           Top = 36
           Width = 70
           Height = 13
           Caption = 'Is Forwarding:'
         end
         object Lbl2: TLabel
-          Left = 144
+          Left = 166
           Top = 49
           Width = 64
           Height = 13
@@ -291,7 +279,7 @@ object Main: TMain
           Caption = 'N/A'
         end
         object mIsForwardingLabel: TLabel
-          Left = 220
+          Left = 242
           Top = 36
           Width = 18
           Height = 13
@@ -305,14 +293,14 @@ object Main: TMain
           Caption = 'N/A'
         end
         object mIsHomingLabel: TLabel
-          Left = 220
+          Left = 242
           Top = 23
           Width = 18
           Height = 13
           Caption = 'N/A'
         end
         object mIsReversingLabel: TLabel
-          Left = 220
+          Left = 242
           Top = 49
           Width = 18
           Height = 13
@@ -334,9 +322,6 @@ object Main: TMain
         Align = alTop
         Caption = 'Moving'
         TabOrder = 4
-        ExplicitLeft = 17
-        ExplicitTop = 169
-        ExplicitWidth = 330
         object ContinousMoveCB: TCheckBox
           Left = 169
           Top = 54
@@ -445,7 +430,6 @@ object Main: TMain
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 5
-        ExplicitWidth = 563
         object Button2: TButton
           Left = 15
           Top = 3
@@ -457,7 +441,7 @@ object Main: TMain
         object motorPositionE: mtkFloatLabeledEdit
           Left = 150
           Top = 1
-          Width = 95
+          Width = 83
           Height = 37
           EditLabel.Width = 37
           EditLabel.Height = 13
@@ -472,6 +456,15 @@ object Main: TMain
           TabOrder = 1
           Text = '0.00'
         end
+      end
+      object Button5: TButton
+        Left = 17
+        Top = 392
+        Width = 75
+        Height = 25
+        Caption = 'Get info'
+        TabOrder = 6
+        OnClick = Button5Click
       end
     end
     object JoyStickGB: TGroupBox

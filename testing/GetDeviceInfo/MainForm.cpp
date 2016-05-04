@@ -524,3 +524,16 @@ void __fastcall TMain::driveBtnUp(TObject *Sender, TMouseButton Button, TShiftSt
 
 
 
+void __fastcall TMain::Button5Click(TObject *Sender)
+{
+    APTMotor* motor = getCurrentMotor();
+    if(motor == NULL)
+    {
+    	Log(lInfo) << "Motor object is null..";
+    	return;
+    }
+	motor->getEncoderCounts();
+}
+//---------------------------------------------------------------------------
+
+

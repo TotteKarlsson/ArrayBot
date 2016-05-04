@@ -127,11 +127,11 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcForward:
-                    	mMotor->jogForward();
+                    	mMotor->forward();
 					break;
 
                     case mcReverse:
-                    	mMotor->jogReverse();
+                    	mMotor->reverse();
 					break;
 
                     case mcJogForward:
