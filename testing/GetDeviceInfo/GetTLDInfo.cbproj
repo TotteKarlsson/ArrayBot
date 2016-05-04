@@ -97,6 +97,9 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
+        <None Include="..\..\source\abDataStructures.h">
+            <BuildOrder>4</BuildOrder>
+        </None>
         <CppCompile Include="GetTLDInfo.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>

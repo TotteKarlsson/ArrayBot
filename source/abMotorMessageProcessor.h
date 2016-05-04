@@ -3,6 +3,7 @@
 #include "CoreExporter.h"
 #include <string>
 #include "mtkThread.h"
+#include "abABObject.h"
 #include "mtkConstants.h"
 #include "mtkStringList.h"
 //---------------------------------------------------------------------------
@@ -13,7 +14,7 @@ using mtk::StringList;
 using mtk::gEmptyString;
 typedef void __fastcall (__closure *UICallback)(void);
 
-class AB_CORE MotorMessageProcessor : public mtk::Thread
+class AB_CORE MotorMessageProcessor : public ABObject, public mtk::Thread
 {
     public:
                                                     MotorMessageProcessor(MotorMessageContainer& list, const string& threadName=gEmptyString);

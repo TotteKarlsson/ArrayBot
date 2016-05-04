@@ -97,9 +97,11 @@ Inheritance diagram for APTMotor:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_a_p_t_motor__inherit__graph.png" border="0" usemap="#_a_p_t_motor_inherit__map" alt="Inheritance graph"/></div>
 <map name="_a_p_t_motor_inherit__map" id="_a_p_t_motor_inherit__map">
-<area shape="rect" id="node7" href="class_t_cube_d_c_servo.html" title="TCubeDCServo" alt="" coords="5,229,115,256"/>
-<area shape="rect" id="node2" href="class_a_p_t_device.html" title="APTDevice" alt="" coords="17,80,103,107"/>
-<area shape="rect" id="node4" href="class_a_b_object.html" title="ABObject" alt="" coords="21,5,99,32"/>
+<area shape="rect" id="node7" href="class_long_travel_stage.html" title="LongTravelStage" alt="" coords="5,229,123,256"/>
+<area shape="rect" id="node9" href="class_t_cube_d_c_servo.html" title="TCubeDCServo" alt="" coords="147,229,256,256"/>
+<area shape="rect" id="node11" href="class_t_cube_stepper_motor.html" title="TCubeStepperMotor" alt="" coords="281,229,417,256"/>
+<area shape="rect" id="node2" href="class_a_p_t_device.html" title="APTDevice" alt="" coords="159,80,244,107"/>
+<area shape="rect" id="node4" href="class_a_b_object.html" title="ABObject" alt="" coords="162,5,240,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -129,6 +131,9 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isForwarding<
 <tr class="memitem:adaab909d33c86da8c01f1219b72275d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaab909d33c86da8c01f1219b72275d9"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isReversing</b> ()=0</td></tr>
 <tr class="separator:adaab909d33c86da8c01f1219b72275d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1207c29204bf7e36e35f35f3fd29606"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1207c29204bf7e36e35f35f3fd29606"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>switchDirection</b> ()=0</td></tr>
+<tr class="separator:ae1207c29204bf7e36e35f35f3fd29606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a283bc93f03eb9a54ebfab749444cb739"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a283bc93f03eb9a54ebfab749444cb739"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>connect</b> ()=0</td></tr>
 <tr class="separator:a283bc93f03eb9a54ebfab749444cb739"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,6 +156,12 @@ virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>getVelocity
 <tr class="memitem:a2750d0f7c655c6d049d865e56f15c3c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2750d0f7c655c6d049d865e56f15c3c9"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocity</b> (double vel)=0</td></tr>
 <tr class="separator:a2750d0f7c655c6d049d865e56f15c3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e00f34f87a9853edd84cc7e3a351508"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e00f34f87a9853edd84cc7e3a351508"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocityForward</b> (double v)=0</td></tr>
+<tr class="separator:a7e00f34f87a9853edd84cc7e3a351508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fefb790ba2a670b0f0084639d993b86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fefb790ba2a670b0f0084639d993b86"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocityReverse</b> (double v)=0</td></tr>
+<tr class="separator:a5fefb790ba2a670b0f0084639d993b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74b061f1f03449e112d9b03138427020"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74b061f1f03449e112d9b03138427020"></a>
 virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>getAcceleration</b> ()=0</td></tr>
 <tr class="separator:a74b061f1f03449e112d9b03138427020"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,9 +178,28 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a63cfe446c355e949b82d506fcf85cf70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63cfe446c355e949b82d506fcf85cf70"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()=0</td></tr>
 <tr class="separator:a63cfe446c355e949b82d506fcf85cf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2aaf16bfe566d855302005041f68f72"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2aaf16bfe566d855302005041f68f72"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>stopProfiled</b> ()=0</td></tr>
+<tr class="separator:af2aaf16bfe566d855302005041f68f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84b8a505dec66d65ff204cbb731f61fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84b8a505dec66d65ff204cbb731f61fc"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_p_t_motor.html#a84b8a505dec66d65ff204cbb731f61fc">setJogMode</a> (JogModes mode=jmSingleStep, StopModes stopMode=smProfiled)=0</td></tr>
+<tr class="memdesc:a84b8a505dec66d65ff204cbb731f61fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jogging. <br /></td></tr>
+<tr class="separator:a84b8a505dec66d65ff204cbb731f61fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51cf562c43edc0552f01521a52340026"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51cf562c43edc0552f01521a52340026"></a>
+virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>getJogVelocity</b> ()=0</td></tr>
+<tr class="separator:a51cf562c43edc0552f01521a52340026"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace44400c2b7acb203686385d8ecb4eb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace44400c2b7acb203686385d8ecb4eb7"></a>
+virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>getJogAcceleration</b> ()=0</td></tr>
+<tr class="separator:ace44400c2b7acb203686385d8ecb4eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bb4d20c8dd6031699239b9f900fdb6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0bb4d20c8dd6031699239b9f900fdb6f"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>jogForward</b> ()=0</td></tr>
 <tr class="separator:a0bb4d20c8dd6031699239b9f900fdb6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a441e59e6c7f7d5c6f11dad814893d0c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a441e59e6c7f7d5c6f11dad814893d0c5"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setJogVelocity</b> (double v)=0</td></tr>
+<tr class="separator:a441e59e6c7f7d5c6f11dad814893d0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abebb1008239eb5eded32b2bb2fdb7fc8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abebb1008239eb5eded32b2bb2fdb7fc8"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setJogAcceleration</b> (double a)=0</td></tr>
+<tr class="separator:abebb1008239eb5eded32b2bb2fdb7fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacb3f70c8d6c2ff21260404c11104a49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacb3f70c8d6c2ff21260404c11104a49"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>jogReverse</b> ()=0</td></tr>
 <tr class="separator:aacb3f70c8d6c2ff21260404c11104a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,7 +265,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsActive</b></td></t
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ab_a_p_t_motor_8h_source.html#l00042">42</a> of file <a class="el" href="ab_a_p_t_motor_8h_source.html">abAPTMotor.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_a_p_t_motor_8h_source.html#l00008">8</a> of file <a class="el" href="ab_a_p_t_motor_8h_source.html">abAPTMotor.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_a_p_t_motor_8h_source.html">abAPTMotor.h</a></li>
 <li>source/<a class="el" href="ab_a_p_t_motor_8cpp_source.html">abAPTMotor.cpp</a></li>

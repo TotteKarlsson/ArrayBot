@@ -11,7 +11,7 @@ using std::deque;
 //The motorCMD container is used after fetching new motorCMDs from amazon
 //An motorCMDs populator is popping motorCMDs from the container, pushing them into local database
 //The motorCMDs are simple strings
-class AB_CORE MotorMessageContainer
+class AB_CORE MotorMessageContainer : public ABObject
 {
 	friend  MotorMessageProcessor;
 	public:

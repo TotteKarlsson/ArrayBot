@@ -134,6 +134,10 @@ class TMain : public TForm
         void __fastcall             logMsg();
 		APTDevice* 			        getCurrentDevice();
 		void __fastcall		        OnException();
+        APTMotor* 					mXMotor;
+        APTMotor* 					mYMotor;
+        APTMotor* 					mZMotor;
+
 		APTMotor*	                getCurrentMotor();
        	Timestamp 			        mLastMotorCommand;
         double						mLastVel;
@@ -149,12 +153,16 @@ class TMain : public TForm
         double 						mValCommand;
         double 						mAlpha;
         void __fastcall 			JMXMove(TMessage &msg);
+        void __fastcall 			JMYMove(TMessage &msg);
+        void __fastcall 			JMZMove(TMessage &msg);
 
 	public:		// User declarations
 		__fastcall 					TMain(TComponent* Owner);
 
         BEGIN_MESSAGE_MAP
           MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMXMove)
+          MESSAGE_HANDLER(MM_JOY2MOVE,TMessage,JMYMove)
+          MESSAGE_HANDLER(MM_JOY1ZMOVE,TMessage,JMZMove)
         END_MESSAGE_MAP(TForm)
 };
 //---------------------------------------------------------------------------

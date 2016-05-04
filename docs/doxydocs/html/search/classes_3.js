@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scalingfactors',['ScalingFactors',['../struct_scaling_factors.html',1,'']]]
+  ['longtravelstage',['LongTravelStage',['../class_long_travel_stage.html',1,'']]]
 ];

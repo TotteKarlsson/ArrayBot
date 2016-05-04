@@ -1,20 +1,18 @@
 #ifndef abMotorMessageCreatorH
 #define abMotorMessageCreatorH
-#include "AMLCoreExporter.h"
+#include "CoreExporter.h"
 #include <string>
+#include "abABObject.h"
 #include "mtkThread.h"
 #include "mtkConstants.h"
 //---------------------------------------------------------------------------
-class Account;
 
-using namespace mtk;
-
-class AML_CORE MotorMessageCreator : public mtk::Thread
+class AB_CORE MotorMessageCreator : public mtk::Thread, public ABObject
 {
 	public:
-													MotorMessageCreator(const string& threadName=gEmptyString);
+													MotorMessageCreator(const string& threadName = mtk::gEmptyString);
 													~MotorMessageCreator();
-		void										setAccount(Account* acc);
+
 													// overridden from Thread
 		void                                        run();
 		virtual void                                worker();
@@ -24,7 +22,7 @@ class AML_CORE MotorMessageCreator : public mtk::Thread
 		bool                                        start(bool in_thread = true);
 
 	protected:
-		Account*            		                mAccount;
+
 		int											mRepeatRate;
 
 };

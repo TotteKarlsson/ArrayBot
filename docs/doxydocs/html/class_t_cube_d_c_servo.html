@@ -113,6 +113,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a24c27faf6d14020ac04a696069536c10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24c27faf6d14020ac04a696069536c10"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getEncoderCounts</b> ()</td></tr>
 <tr class="separator:a24c27faf6d14020ac04a696069536c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d94129208658ea7df8d3494a9dfed8e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d94129208658ea7df8d3494a9dfed8e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>switchDirection</b> ()</td></tr>
+<tr class="separator:a6d94129208658ea7df8d3494a9dfed8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a756f667bda8e714d7e3e2fd19f84ff42"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a756f667bda8e714d7e3e2fd19f84ff42"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_cube_d_c_servo.html#a756f667bda8e714d7e3e2fd19f84ff42">isActive</a> ()</td></tr>
 <tr class="memdesc:a756f667bda8e714d7e3e2fd19f84ff42"><td class="mdescLeft">&#160;</td><td class="mdescRight">isActive checks if the device is active. <br /></td></tr>
@@ -151,6 +154,12 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>getVelocity</b> ()<
 <tr class="memitem:ade39fcf6ca8a4547f43d313e41514e8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade39fcf6ca8a4547f43d313e41514e8d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocity</b> (double v)</td></tr>
 <tr class="separator:ade39fcf6ca8a4547f43d313e41514e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed0545fe602d1b48cde761171a8984be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed0545fe602d1b48cde761171a8984be"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocityForward</b> (double v)</td></tr>
+<tr class="separator:aed0545fe602d1b48cde761171a8984be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c235ed01845249865253d1486d5e1d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c235ed01845249865253d1486d5e1d9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocityReverse</b> (double v)</td></tr>
+<tr class="separator:a5c235ed01845249865253d1486d5e1d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1ad26df8337681f5916dd486273e594"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1ad26df8337681f5916dd486273e594"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getAcceleration</b> ()</td></tr>
 <tr class="separator:aa1ad26df8337681f5916dd486273e594"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,12 +176,31 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a56df33090fa949a9b94cab3779e69026"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56df33090fa949a9b94cab3779e69026"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 <tr class="separator:a56df33090fa949a9b94cab3779e69026"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb4bac79fcf23b9201a73238ffe92c78"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb4bac79fcf23b9201a73238ffe92c78"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>stopProfiled</b> ()</td></tr>
+<tr class="separator:acb4bac79fcf23b9201a73238ffe92c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78cffc7e382ce2bc885c93b90cc1b205"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78cffc7e382ce2bc885c93b90cc1b205"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_cube_d_c_servo.html#a78cffc7e382ce2bc885c93b90cc1b205">setJogMode</a> (JogModes mode=jmSingleStep, StopModes stopMode=smProfiled)</td></tr>
+<tr class="memdesc:a78cffc7e382ce2bc885c93b90cc1b205"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jogging. <br /></td></tr>
+<tr class="separator:a78cffc7e382ce2bc885c93b90cc1b205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a251d0a25c2b48b2951c5e3fa74da4a3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a251d0a25c2b48b2951c5e3fa74da4a3f"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getJogVelocity</b> ()</td></tr>
+<tr class="separator:a251d0a25c2b48b2951c5e3fa74da4a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43f1e3093adef477209cbe07be03becd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43f1e3093adef477209cbe07be03becd"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getJogAcceleration</b> ()</td></tr>
+<tr class="separator:a43f1e3093adef477209cbe07be03becd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6102f5d529f1122f5e9ebac31e5df0f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6102f5d529f1122f5e9ebac31e5df0f4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>jogForward</b> ()</td></tr>
 <tr class="separator:a6102f5d529f1122f5e9ebac31e5df0f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33ce4754ceee5037d135cff70d590142"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33ce4754ceee5037d135cff70d590142"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>jogReverse</b> ()</td></tr>
 <tr class="separator:a33ce4754ceee5037d135cff70d590142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6c7ff2d3c67aa421786de5b5c101c5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6c7ff2d3c67aa421786de5b5c101c5e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setJogVelocity</b> (double v)</td></tr>
+<tr class="separator:ad6c7ff2d3c67aa421786de5b5c101c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16bf8add7d3fb2374800d58f1bdf8649"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16bf8add7d3fb2374800d58f1bdf8649"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setJogAcceleration</b> (double a)</td></tr>
+<tr class="separator:a16bf8add7d3fb2374800d58f1bdf8649"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada716c22a6bf77ff7699fa36493faca0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada716c22a6bf77ff7699fa36493faca0"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>forward</b> ()</td></tr>
 <tr class="separator:ada716c22a6bf77ff7699fa36493faca0"><td class="memSeparator" colspan="2">&#160;</td></tr>

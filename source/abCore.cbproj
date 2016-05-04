@@ -134,6 +134,9 @@
         <CppCompile Include="abMotorMessageContainer.cpp">
             <BuildOrder>11</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abMotorMessageCreator.cpp">
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abMotorMessageProcessor.cpp">
             <DependentOn>abMotorMessageProcessor.h</DependentOn>
             <BuildOrder>11</BuildOrder>

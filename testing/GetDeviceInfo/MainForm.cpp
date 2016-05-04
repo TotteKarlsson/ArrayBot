@@ -1,7 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
-#include "abTLWrapper.h"
 #include "TMemoLogger.h"
 #include "mtkStringList.h"
 #include "abUtilities.h"
@@ -454,6 +453,104 @@ void __fastcall TMain::JMXMove(TMessage &msg)
 }
 
 //---------------------------------------------------------------------------
+void __fastcall TMain::JMYMove(TMessage &msg)
+{
+//	double fullVelRange = 5.0;
+//    int nrOfSteps = 5;
+//	double step = fullVelRange / nrOfSteps;
+//
+//	double scalingFactor = fullVelRange/ 65535.0;
+//	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2.0) * 2.0;
+//
+//    mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
+//
+//    JoystickZPosition->Caption 	= "X Position = " + FloatToStrF(pos, ffFixed, 4,2);
+//    JoystickAvgZPos->Caption 	= "X Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
+//
+//	//Check if joystick value have changed more than previous command
+//	double vel = mRunningZAverage;
+//    if(fabs(vel - mValCommand) > step)
+//    {
+//        //Did we switch direction?
+//        if(!sameSign(vel,mValCommand))
+//        {
+//			MotorCommand cmd(mcSwitchDirection);
+//        }
+//
+//        mValCommand = vel;
+//        if( fabs(mValCommand) <= step)
+//        {
+//            MotorCommand cmd(mcStopHard,  vel);
+//            mMotorMessageContainer.post(cmd);
+//            Log(lInfo) << "Motor is stopping. ";
+//            return;
+//        }
+//
+//        if (vel > step)
+//        {
+//            MotorCommand cmd(mcSetVelocityForward,  fabs(vel));
+//            mMotorMessageContainer.post(cmd);
+//            Log(lInfo) << "Setting forward velocity: "<<vel;
+//        }
+//        else
+//        {
+//            MotorCommand cmd(mcSetVelocityReverse,  fabs(vel));
+//            mMotorMessageContainer.post(cmd);
+//            Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
+//        }
+//    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::JMZMove(TMessage &msg)
+{
+//	double fullVelRange = 5.0;
+//    int nrOfSteps = 5;
+//	double step = fullVelRange / nrOfSteps;
+//
+//	double scalingFactor = fullVelRange/ 65535.0;
+//	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2.0) * 2.0;
+//
+//    mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
+//
+//    JoystickZPosition->Caption 	= "X Position = " + FloatToStrF(pos, ffFixed, 4,2);
+//    JoystickAvgZPos->Caption 	= "X Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
+//
+//	//Check if joystick value have changed more than previous command
+//	double vel = mRunningZAverage;
+//    if(fabs(vel - mValCommand) > step)
+//    {
+//        //Did we switch direction?
+//        if(!sameSign(vel,mValCommand))
+//        {
+//			MotorCommand cmd(mcSwitchDirection);
+//        }
+//
+//        mValCommand = vel;
+//        if( fabs(mValCommand) <= step)
+//        {
+//            MotorCommand cmd(mcStopHard,  vel);
+//            mMotorMessageContainer.post(cmd);
+//            Log(lInfo) << "Motor is stopping. ";
+//            return;
+//        }
+//
+//        if (vel > step)
+//        {
+//            MotorCommand cmd(mcSetVelocityForward,  fabs(vel));
+//            mMotorMessageContainer.post(cmd);
+//            Log(lInfo) << "Setting forward velocity: "<<vel;
+//        }
+//        else
+//        {
+//            MotorCommand cmd(mcSetVelocityReverse,  fabs(vel));
+//            mMotorMessageContainer.post(cmd);
+//            Log(lInfo) << "Setting reverse velocity: "<<fabs(vel);
+//        }
+//    }
+}
+
+//---------------------------------------------------------------------------
 void __fastcall TMain::FormDestroy(TObject *Sender)
 {
 	if(mJoyStickConnected)
@@ -522,8 +619,6 @@ void __fastcall TMain::driveBtnUp(TObject *Sender, TMouseButton Button, TShiftSt
     }
 }
 
-
-
 void __fastcall TMain::Button5Click(TObject *Sender)
 {
     APTMotor* motor = getCurrentMotor();
@@ -534,6 +629,6 @@ void __fastcall TMain::Button5Click(TObject *Sender)
     }
 	motor->getEncoderCounts();
 }
-//---------------------------------------------------------------------------
+
 
 
