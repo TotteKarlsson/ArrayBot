@@ -1,9 +1,10 @@
 object Main: TMain
   Left = 0
   Top = 0
+  ActiveControl = JoySteps
   Caption = 'Device Tester'
-  ClientHeight = 611
-  ClientWidth = 927
+  ClientHeight = 702
+  ClientWidth = 952
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -36,7 +37,7 @@ object Main: TMain
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 927
+    Width = 952
     Height = 36
     ButtonHeight = 30
     ButtonWidth = 13
@@ -44,6 +45,7 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
+    ExplicitWidth = 927
     object BitBtn1: TBitBtn
       Left = 0
       Top = 0
@@ -65,31 +67,34 @@ object Main: TMain
   end
   object Panel1: TPanel
     Left = 0
-    Top = 433
-    Width = 927
-    Height = 178
-    Align = alClient
+    Top = 504
+    Width = 952
+    Height = 198
+    Align = alBottom
     Caption = 'Panel1'
     TabOrder = 1
     object infoMemo: TMemo
       Left = 1
       Top = 34
-      Width = 925
-      Height = 143
+      Width = 950
+      Height = 163
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
+      ExplicitWidth = 925
+      ExplicitHeight = 143
     end
     object ToolBar2: TToolBar
       Left = 1
       Top = 1
-      Width = 925
+      Width = 950
       Height = 33
       AutoSize = True
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
+      ExplicitWidth = 925
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -104,300 +109,443 @@ object Main: TMain
   object Panel2: TPanel
     Left = 0
     Top = 36
-    Width = 927
-    Height = 397
-    Align = alTop
+    Width = 952
+    Height = 468
+    Align = alClient
     TabOrder = 2
-    object JoystickZPosition: TLabel
-      Left = 600
-      Top = 208
-      Width = 81
-      Height = 13
-      Caption = 'JoystickZPosition'
-    end
-    object JoystickAvgZPos: TLabel
-      Left = 600
-      Top = 227
-      Width = 81
-      Height = 13
-      Caption = 'JoystickZPosition'
-    end
-    object GroupBox1: TGroupBox
+    ExplicitWidth = 927
+    ExplicitHeight = 397
+    object DevicesGB: TGroupBox
       Left = 1
       Top = 1
       Width = 153
-      Height = 395
+      Height = 466
       Align = alLeft
       Caption = 'Devices'
       TabOrder = 0
+      ExplicitHeight = 395
       object devicesLB: TListBox
         Left = 2
         Top = 15
         Width = 149
-        Height = 378
+        Height = 449
         Align = alClient
         ItemHeight = 13
         TabOrder = 0
         OnClick = devicesLBClick
       end
     end
-    object GroupBox2: TGroupBox
+    object DeviceGB: TGroupBox
       Left = 154
       Top = 1
-      Width = 335
-      Height = 395
+      Width = 343
+      Height = 466
       Align = alLeft
       Caption = 'Device'
       TabOrder = 1
-      object mIsActiveLabel: TLabel
-        Left = 112
-        Top = 175
-        Width = 18
-        Height = 13
-        Caption = 'N/A'
-      end
-      object mIsHomingLabel: TLabel
-        Left = 112
-        Top = 194
-        Width = 18
-        Height = 13
-        Caption = 'N/A'
-      end
-      object mIsHomedLabel: TLabel
-        Left = 112
-        Top = 213
-        Width = 18
-        Height = 13
-        Caption = 'N/A'
-      end
-      object Label1: TLabel
-        Left = 17
-        Top = 175
-        Width = 49
-        Height = 13
-        Caption = 'Is Active: '
-      end
-      object Label2: TLabel
-        Left = 16
-        Top = 194
-        Width = 51
-        Height = 13
-        Caption = 'Is Homing:'
-      end
-      object Label3: TLabel
-        Left = 17
-        Top = 213
-        Width = 52
-        Height = 13
-        Caption = 'Is Homed: '
-      end
-      object Lbl2: TLabel
-        Left = 16
-        Top = 251
-        Width = 64
-        Height = 13
-        Caption = 'Is Reversing:'
-      end
-      object mVelocityLbl: TLabel
-        Left = 111
-        Top = 270
-        Width = 52
-        Height = 13
-        Caption = 'Is Homed: '
-      end
-      object Lbl: TLabel
-        Left = 16
-        Top = 232
-        Width = 70
-        Height = 13
-        Caption = 'Is Forwarding:'
-      end
-      object mIsReversingLabel: TLabel
-        Left = 112
-        Top = 251
-        Width = 18
-        Height = 13
-        Caption = 'N/A'
-      end
-      object mIsForwardingLabel: TLabel
-        Left = 112
-        Top = 232
-        Width = 18
-        Height = 13
-        Caption = 'N/A'
-      end
-      object Label5: TLabel
-        Left = 17
-        Top = 270
-        Width = 41
-        Height = 13
-        Caption = 'Velocity:'
-      end
       object Button1: TButton
-        Left = 16
-        Top = 24
+        Left = 6
+        Top = 345
         Width = 75
-        Height = 25
+        Height = 28
         Action = identifyCurrent
         TabOrder = 0
       end
-      object Button2: TButton
-        Left = 97
-        Top = 24
-        Width = 75
-        Height = 25
-        Action = homeDevice
+      object Button7: TButton
+        Left = 17
+        Top = 295
+        Width = 74
+        Height = 43
+        Action = stopMotor
         TabOrder = 1
       end
-      object Button3: TButton
-        Left = 16
-        Top = 55
-        Width = 75
-        Height = 25
-        Action = jogForward
+      object JoggingGB: TGroupBox
+        Left = 2
+        Top = 131
+        Width = 339
+        Height = 112
+        Align = alTop
+        Caption = 'Jogging'
         TabOrder = 2
+        ExplicitTop = 97
+        ExplicitWidth = 451
+        object Button3: TButton
+          Left = 16
+          Top = 23
+          Width = 50
+          Height = 25
+          Action = jogForward
+          TabOrder = 0
+          OnMouseDown = DeviceBtnDown
+        end
+        object Button4: TButton
+          Left = 72
+          Top = 23
+          Width = 50
+          Height = 25
+          Action = jogBackwards
+          TabOrder = 1
+          OnMouseDown = DeviceBtnDown
+        end
+        object mJogModeCB: TCheckBox
+          Left = 184
+          Top = 27
+          Width = 78
+          Height = 17
+          Caption = 'Continous'
+          TabOrder = 2
+          OnClick = mJogModeCBClick
+        end
+        object mJogAcc: mtkFloatLabeledEdit
+          Left = 97
+          Top = 81
+          Width = 66
+          Height = 21
+          EditLabel.Width = 59
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Acceleration'
+          TabOrder = 3
+          Text = '0.00'
+          OnKeyDown = mDeviceValueEdit
+        end
+        object mJogVelocity: mtkFloatLabeledEdit
+          Left = 21
+          Top = 81
+          Width = 66
+          Height = 21
+          EditLabel.Width = 37
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Velocity'
+          TabOrder = 4
+          Text = '0.00'
+          OnKeyDown = mDeviceValueEdit
+        end
+        object Button8: TButton
+          Left = 128
+          Top = 23
+          Width = 41
+          Height = 25
+          Action = stopMotor
+          TabOrder = 5
+          OnMouseDown = DeviceBtnDown
+        end
       end
-      object Button4: TButton
-        Left = 97
-        Top = 55
-        Width = 75
-        Height = 25
-        Action = jogBackwards
+      object GroupBox4: TGroupBox
+        Left = 2
+        Top = 49
+        Width = 339
+        Height = 82
+        Align = alTop
+        Caption = 'Status'
         TabOrder = 3
+        ExplicitLeft = 3
+        ExplicitTop = 9
+        ExplicitWidth = 563
+        object Label1: TLabel
+          Left = 17
+          Top = 23
+          Width = 49
+          Height = 13
+          Caption = 'Is Active: '
+        end
+        object Label2: TLabel
+          Left = 144
+          Top = 23
+          Width = 51
+          Height = 13
+          Caption = 'Is Homing:'
+        end
+        object Label3: TLabel
+          Left = 17
+          Top = 36
+          Width = 52
+          Height = 13
+          Caption = 'Is Homed: '
+        end
+        object Label5: TLabel
+          Left = 17
+          Top = 49
+          Width = 77
+          Height = 13
+          Caption = 'Velocity (mm/s):'
+        end
+        object Lbl: TLabel
+          Left = 144
+          Top = 36
+          Width = 70
+          Height = 13
+          Caption = 'Is Forwarding:'
+        end
+        object Lbl2: TLabel
+          Left = 144
+          Top = 49
+          Width = 64
+          Height = 13
+          Caption = 'Is Reversing:'
+        end
+        object mIsActiveLabel: TLabel
+          Left = 107
+          Top = 23
+          Width = 18
+          Height = 13
+          Caption = 'N/A'
+        end
+        object mIsForwardingLabel: TLabel
+          Left = 220
+          Top = 36
+          Width = 18
+          Height = 13
+          Caption = 'N/A'
+        end
+        object mIsHomedLabel: TLabel
+          Left = 107
+          Top = 36
+          Width = 18
+          Height = 13
+          Caption = 'N/A'
+        end
+        object mIsHomingLabel: TLabel
+          Left = 220
+          Top = 23
+          Width = 18
+          Height = 13
+          Caption = 'N/A'
+        end
+        object mIsReversingLabel: TLabel
+          Left = 220
+          Top = 49
+          Width = 18
+          Height = 13
+          Caption = 'N/A'
+        end
+        object mVelocityLbl: TLabel
+          Left = 107
+          Top = 49
+          Width = 19
+          Height = 13
+          Caption = '0.0 '
+        end
       end
-      object motorPositionE: mtkFloatLabeledEdit
-        Left = 16
-        Top = 136
-        Width = 75
-        Height = 21
-        EditLabel.Width = 37
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Position'
+      object MovingGB: TGroupBox
+        Left = 2
+        Top = 243
+        Width = 339
+        Height = 130
+        Align = alTop
+        Caption = 'Moving'
         TabOrder = 4
-        Text = '0.00'
+        ExplicitLeft = 17
+        ExplicitTop = 169
+        ExplicitWidth = 330
+        object ContinousMoveCB: TCheckBox
+          Left = 169
+          Top = 54
+          Width = 78
+          Height = 17
+          Caption = 'Continous'
+          TabOrder = 0
+        end
+        object IncreaseVelBtn: TButton
+          Left = 17
+          Top = 55
+          Width = 49
+          Height = 25
+          Caption = '+'
+          TabOrder = 1
+          OnClick = IncreaseVelBtnClick
+        end
+        object mAcceleration: mtkFloatLabeledEdit
+          Left = 231
+          Top = 27
+          Width = 50
+          Height = 21
+          EditLabel.Width = 59
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Acceleration'
+          TabOrder = 2
+          Text = '0.00'
+          OnKeyDown = mDeviceValueEdit
+        end
+        object mMaxVelocity: mtkFloatLabeledEdit
+          Left = 169
+          Top = 27
+          Width = 56
+          Height = 21
+          EditLabel.Width = 37
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Velocity'
+          TabOrder = 3
+          Text = '0.00'
+          OnKeyDown = mDeviceValueEdit
+        end
+        object mVelDeltaE: mtkFloatLabeledEdit
+          Left = 169
+          Top = 90
+          Width = 76
+          Height = 21
+          EditLabel.Width = 84
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Vel Increase Step'
+          TabOrder = 4
+          Text = '0.00'
+        end
+        object switchdirectionBtn: TButton
+          Left = 17
+          Top = 86
+          Width = 89
+          Height = 25
+          Caption = 'Switch Direction'
+          TabOrder = 5
+          OnClick = switchdirectionBtnClick
+        end
+        object DecreaseVelBtn: TButton
+          Left = 72
+          Top = 55
+          Width = 50
+          Height = 25
+          Caption = '-'
+          TabOrder = 6
+          OnClick = DecreaseVelBtnClick
+        end
+        object fwdDriveBtn: TButton
+          Left = 16
+          Top = 23
+          Width = 39
+          Height = 25
+          Caption = 'Fwd'
+          TabOrder = 7
+          OnMouseDown = DeviceBtnDown
+          OnMouseUp = driveBtnUp
+        end
+        object revDriveBtn: TButton
+          Left = 61
+          Top = 23
+          Width = 40
+          Height = 25
+          Caption = 'Rev'
+          TabOrder = 8
+          OnMouseDown = DeviceBtnDown
+          OnMouseUp = driveBtnUp
+        end
+        object Button6: TButton
+          Left = 107
+          Top = 23
+          Width = 41
+          Height = 25
+          Action = stopMotor
+          TabOrder = 9
+          OnMouseDown = DeviceBtnDown
+        end
       end
-      object Button7: TButton
-        Left = 178
-        Top = 24
-        Width = 65
-        Height = 25
-        Action = stopMotor
-        TabOrder = 6
-      end
-      object fwdDriveBtn: TButton
-        Left = 145
-        Top = 208
-        Width = 75
-        Height = 25
-        Caption = 'Forward'
-        TabOrder = 7
-        OnMouseDown = driveBtnDown
-        OnMouseUp = driveBtnUp
-      end
-      object revDriveBtn: TButton
-        Left = 226
-        Top = 208
-        Width = 75
-        Height = 25
-        Caption = 'Backward'
-        TabOrder = 8
-        OnMouseDown = driveBtnDown
-        OnMouseUp = driveBtnUp
-      end
-      object mMaxVelocity: mtkFloatLabeledEdit
-        Left = 97
-        Top = 136
-        Width = 66
-        Height = 21
-        EditLabel.Width = 56
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Set Velocity'
+      object Panel3: TPanel
+        Left = 2
+        Top = 15
+        Width = 339
+        Height = 34
+        Align = alTop
+        BevelOuter = bvNone
         TabOrder = 5
-        Text = '0.00'
-        OnKeyDown = mMaxVelocityKeyDown
+        ExplicitWidth = 563
+        object Button2: TButton
+          Left = 15
+          Top = 3
+          Width = 75
+          Height = 28
+          Action = homeDevice
+          TabOrder = 0
+        end
+        object motorPositionE: mtkFloatLabeledEdit
+          Left = 150
+          Top = 1
+          Width = 95
+          Height = 37
+          EditLabel.Width = 37
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Position'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Height = -24
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          LabelPosition = lpLeft
+          ParentFont = False
+          TabOrder = 1
+          Text = '0.00'
+        end
       end
-      object mAcceleration: mtkFloatLabeledEdit
-        Left = 177
-        Top = 136
-        Width = 66
-        Height = 21
-        EditLabel.Width = 59
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Acceleration'
-        TabOrder = 9
-        Text = '0.00'
-        OnKeyDown = mMaxVelocityKeyDown
+    end
+    object JoyStickGB: TGroupBox
+      Left = 501
+      Top = 0
+      Width = 185
+      Height = 425
+      Caption = 'JoyStick'
+      TabOrder = 2
+      object JoystickAvgZPos: TLabel
+        Left = 32
+        Top = 380
+        Width = 101
+        Height = 13
+        Caption = 'JoystickAVGZPosition'
       end
-      object TrackBar1: TTrackBar
-        Left = 6
-        Top = 345
-        Width = 150
-        Height = 45
-        Max = 1000
-        Min = -1000
-        Frequency = 50
-        TabOrder = 10
+      object JoystickZPosition: TLabel
+        Left = 32
+        Top = 361
+        Width = 81
+        Height = 13
+        Caption = 'JoystickZPosition'
       end
-      object Button5: TButton
-        Left = 249
-        Top = 24
-        Width = 75
-        Height = 25
-        Caption = 'Stop Profiled'
-        TabOrder = 11
-        OnClick = Button5Click
-      end
-      object DecreaseVelBtn: TButton
-        Left = 256
-        Top = 295
-        Width = 50
-        Height = 25
-        Caption = '-'
-        TabOrder = 12
-        OnClick = DecreaseVelBtnClick
-      end
-      object IncreaseVelBtn: TButton
-        Left = 201
-        Top = 295
-        Width = 49
-        Height = 25
-        Caption = '+'
-        TabOrder = 13
-        OnClick = IncreaseVelBtnClick
-      end
-      object ContinousMoveCB: TCheckBox
-        Left = 145
-        Top = 185
-        Width = 78
-        Height = 17
-        Caption = 'Continous'
-        TabOrder = 14
-      end
-      object mVelDeltaE: mtkFloatLabeledEdit
-        Left = 200
-        Top = 268
-        Width = 121
-        Height = 21
-        EditLabel.Width = 84
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Vel Increase Step'
-        TabOrder = 15
-        Text = '2.00'
-      end
-      object switchdirectionBtn: TButton
-        Left = 216
-        Top = 326
-        Width = 89
-        Height = 25
-        Caption = 'Switch Direction'
-        TabOrder = 16
-        OnClick = switchdirectionBtnClick
+      object GroupBox1: TGroupBox
+        Left = 3
+        Top = 16
+        Width = 179
+        Height = 201
+        Caption = 'Velocity Settings'
+        TabOrder = 0
+        object RadioGroup1: TRadioGroup
+          Left = 3
+          Top = 24
+          Width = 185
+          Height = 59
+          Caption = 'Presets'
+          Columns = 4
+          ItemIndex = 0
+          Items.Strings = (
+            '1'
+            '2'
+            '3'
+            '4')
+          TabOrder = 0
+        end
+        object maxJoyVel: mtkFloatLabeledEdit
+          Left = 16
+          Top = 112
+          Width = 65
+          Height = 21
+          EditLabel.Width = 60
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Max Velocity'
+          TabOrder = 1
+          Text = '0.00'
+        end
+        object JoySteps: TIntegerLabeledEdit
+          Left = 96
+          Top = 112
+          Width = 49
+          Height = 21
+          EditLabel.Width = 28
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Gears'
+          TabOrder = 2
+          Text = '4'
+          Value = 4
+        end
       end
     end
   end
   object ActionList1: TActionList
-    Left = 560
-    Top = 144
+    Left = 648
+    Top = 296
     object checkForDevices: TAction
       Caption = 'Devices Check'
       OnExecute = checkForDevicesExecute
@@ -415,11 +563,11 @@ object Main: TMain
       OnExecute = homeDeviceExecute
     end
     object jogForward: TAction
-      Caption = 'Jog Forward'
+      Caption = 'Fwd'
       OnExecute = jogForwardExecute
     end
     object jogBackwards: TAction
-      Caption = 'Jog Backward'
+      Caption = 'Rev'
       OnExecute = jogBackwardsExecute
     end
     object moveForward: TAction
@@ -431,7 +579,7 @@ object Main: TMain
       OnExecute = moveBackwardExecute
     end
     object stopMotor: TAction
-      Caption = 'Stop Hard'
+      Caption = 'Stop'
       OnExecute = stopMotorExecute
     end
   end

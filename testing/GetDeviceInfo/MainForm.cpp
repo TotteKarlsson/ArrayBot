@@ -29,8 +29,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
 	mMotorMessageProcessor(mMotorMessageContainer),
 	mRunningZAverage(0),
-	mAlpha(0.1)
-
+	mAlpha(0.9)
 {
 	TMemoLogger::mMemoIsEnabled = false;
 }
@@ -78,7 +77,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
     connectAllDevicesExecute(Sender);
 	mMotorMessageProcessor.start(true);
-
 
     mJoyStickConnected = false;
     MMRESULT  JoyResult;
@@ -129,9 +127,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
   	{
     	joySetCapture(Handle, mJoystickID, 2*mJoyCaps.wPeriodMin,FALSE);
   	}
-
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::devicesLBClick(TObject *Sender)
@@ -146,8 +142,6 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
     APTDevice* device = (APTDevice*) devicesLB->Items->Objects[ii];
     if(device)
     {
-    	//Populate device frame
-        device->identify();
         //Check position for current device
         APTMotor* motor = dynamic_cast<APTMotor*>(device);
         if(motor)
@@ -158,9 +152,17 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
         	double a = motor->getAcceleration();
 			mAcceleration->SetNumber(a);
 
+            v = motor->getJogVelocity();
+            mJogVelocity->SetNumber(v);
+
+            a = motor->getJogAcceleration();
+            mJogAcc->SetNumber(a);
+            //
             mMotorMessageProcessor.assignMotor(motor);
         }
 
+    	//Populate device frame
+        device->identify();
 		StatusTimer->Enabled = true;
     }
 }
@@ -190,7 +192,7 @@ APTDevice* TMain::getCurrentDevice()
 //---------------------------------------------------------------------------
 void __fastcall TMain::homeDeviceExecute(TObject *Sender)
 {
-    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
+    APTMotor* motor = getCurrentMotor();
     if(motor)
     {
     	motor->home();
@@ -200,7 +202,7 @@ void __fastcall TMain::homeDeviceExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::jogForwardExecute(TObject *Sender)
 {
-    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
+    APTMotor* motor = getCurrentMotor();
     if(motor)
     {
     	motor->jogForward();
@@ -209,10 +211,10 @@ void __fastcall TMain::jogForwardExecute(TObject *Sender)
 
 void __fastcall TMain::jogBackwardsExecute(TObject *Sender)
 {
-    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
+    APTMotor* motor = getCurrentMotor();
     if(motor)
     {
-    	motor->jogForward();
+    	motor->jogReverse();
     }
 }
 
@@ -248,29 +250,6 @@ void __fastcall TMain::stopMotorExecute(TObject *Sender)
 	mMotorMessageContainer.post(cmd);
 }
 
-void __fastcall TMain::driveBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
-{
-	TButton* btn = (TButton*) Sender;
-    if(btn == fwdDriveBtn)
-    {
-		moveForwardExecute(Sender);
-    }
-    else if(btn == revDriveBtn)
-    {
-		moveBackwardExecute(Sender);
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::driveBtnUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
-          int X, int Y)
-{
-	if(!ContinousMoveCB->Checked)
-    {
-    	stopMotorExecute(Sender);
-    }
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::StatusTimerTimer(TObject *Sender)
 {
@@ -292,6 +271,25 @@ void __fastcall TMain::StatusTimerTimer(TObject *Sender)
 
         motorPositionE->SetNumber(p);
 
+        bitset<32> bits(motor->getStatusBits());
+//        Log(lInfo) << bits;
+//        String line1 = " 0  1  2  3  4  5  6  7  8  9  10";
+//        String line2 = bits.test(0) ? " 1" : " 0";
+//        line2 += bits.test(1) ? "  1" : "  0" ;
+//        line2 += bits.test(2) ? "  1" : "  0" ;
+//        line2 += bits.test(3) ? "  1" : "  0" ;
+//        line2 += bits.test(4) ? "  1" : "  0" ;
+//        line2 += bits.test(5) ? "  1" : "  0" ;
+//        line2 += bits.test(6) ? "  1" : "  0" ;
+//        line2 += bits.test(7) ? "  1" : "  0" ;
+//        line2 += bits.test(8) ? "  1" : "  0" ;
+//        line2 += bits.test(9) ? "  1" : "  0" ;
+//        line2 += bits.test(10) ? "   1" : "   0" ;
+
+//		  Memo1->Clear();
+//        Memo1->Lines->Add(line1);
+//        Memo1->Lines->Add(line2);
+
        	mIsActiveLabel->Caption 	= (motor->isActive()) 	    ? "True" : "False";
         mIsHomingLabel->Caption 	= (motor->isHoming()) 	    ? "True" : "False";
         mIsHomedLabel->Caption  	= (motor->isHomed()) 	    ? "True" : "False";
@@ -300,7 +298,7 @@ void __fastcall TMain::StatusTimerTimer(TObject *Sender)
 
 		if(motor->isActive())
         {
-			mVelocityLbl->Caption = FloatToStrF(v,ffFixed, 4,3);
+			mVelocityLbl->Caption = FloatToStrF(v, ffFixed, 4,3);
         }
         else
         {
@@ -309,55 +307,58 @@ void __fastcall TMain::StatusTimerTimer(TObject *Sender)
     }
 }
 
-APTMotor* TMain::getCurrentMotor()
-{
-    int ii = devicesLB->ItemIndex;
-    if(ii > -1)
-    {
-        APTDevice* device = (APTDevice*) devicesLB->Items->Objects[ii];
-
-        //Check position for current device
-        return dynamic_cast<APTMotor*>(device);
-    }
-    return NULL;
-}
-
 //---------------------------------------------------------------------------
-void __fastcall TMain::mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 {
 	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
-	if(Key == vkReturn)
+	if(Key != vkReturn)
     {
-        APTMotor* motor = getCurrentMotor();
-    	if(e == mMaxVelocity)
-        {
-            double vel = mMaxVelocity->GetValue();
-            Log(lInfo) << "New velocity: " <<vel;
+    	return;
+    }
+    APTMotor* motor = getCurrentMotor();
+    if(e == mMaxVelocity)
+    {
+        double vel = mMaxVelocity->GetValue();
+        Log(lInfo) << "New velocity: " <<vel;
 
-            if(motor)
-            {
-                motor->setMaxVelocity(vel);
-            }
+        if(motor)
+        {
+            motor->setMaxVelocity(vel);
         }
-       	if(e == mAcceleration)
-        {
-            double a = mAcceleration->GetValue();
-            Log(lInfo) << "New acceleration: " <<a;
+    }
 
-            if(motor)
-            {
-                motor->setAcceleration(a);
-            }
+    if(e == mAcceleration)
+    {
+        double a = mAcceleration->GetValue();
+        Log(lInfo) << "New acceleration: " <<a;
+
+        if(motor)
+        {
+            motor->setAcceleration(a);
+        }
+    }
+
+    if(e == mJogVelocity)
+    {
+        double vel = mJogVelocity->GetValue();
+        Log(lInfo) << "New JOG velocity (mm/s): " <<vel;
+
+        if(motor)
+        {
+            motor->setJogVelocity(vel);
+        }
+    }
+    if(e == mJogAcc)
+    {
+        double a = mJogAcc->GetValue();
+        Log(lInfo) << "New JOG acceleration (mm/(s*s)): " <<a;
+
+        if(motor)
+        {
+            motor->setJogAcceleration(a);
         }
     }
 }
-
-void __fastcall TMain::Button5Click(TObject *Sender)
-{
-	MotorCommand cmd(mcStopProfiled);
-	mMotorMessageContainer.post(cmd);
-}
-
 
 void __fastcall TMain::IncreaseVelBtnClick(TObject *Sender)
 {
@@ -402,28 +403,26 @@ bool sameSign(double x, double y)
 {
 	return x*y >= 0.0f;
 }
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::JMXMove(TMessage &msg)
 {
-	double fullVelRange = 10.0;
-	double scalingFactor = fullVelRange/ 65535.0;
-	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2) * 2.0;
+	double fullVelRange = 5.0;
+    int nrOfSteps = 5;
+	double step = fullVelRange / nrOfSteps;
 
-	double step = fullVelRange / 4.0;
+	double scalingFactor = fullVelRange/ 65535.0;
+	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2.0) * 2.0;
+
     mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
-    JoystickZPosition->Caption = "X Position = " + FloatToStrF(pos, ffFixed, 4,2);
-    JoystickAvgZPos->Caption = "X Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
+
+    JoystickZPosition->Caption 	= "X Position = " + FloatToStrF(pos, ffFixed, 4,2);
+    JoystickAvgZPos->Caption 	= "X Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
 
 	//Check if joystick value have changed more than previous command
 	double vel = mRunningZAverage;
     if(fabs(vel - mValCommand) > step)
     {
-    	stringstream msg;
-        msg<<"New value: "<<vel;
-        msg<<"Old value: "<<mValCommand;
-
-        Log(lInfo) << msg.str();
-
         //Did we switch direction?
         if(!sameSign(vel,mValCommand))
         {
@@ -441,7 +440,7 @@ void __fastcall TMain::JMXMove(TMessage &msg)
 
         if (vel > step)
         {
-            MotorCommand cmd(mcSetVelocityForward,  vel);
+            MotorCommand cmd(mcSetVelocityForward,  fabs(vel));
             mMotorMessageContainer.post(cmd);
             Log(lInfo) << "Setting forward velocity: "<<vel;
         }
@@ -460,6 +459,66 @@ void __fastcall TMain::FormDestroy(TObject *Sender)
 	if(mJoyStickConnected)
     {
   		joyReleaseCapture(mJoystickID);
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mJogModeCBClick(TObject *Sender)
+{
+    APTMotor* motor = getCurrentMotor();
+    if(motor == NULL)
+    {
+    	Log(lInfo) << "Motor object is null..";
+    	return;
+    }
+
+	if(mJogModeCB->Checked)
+    {
+		motor->setJogMode(jmContinuous, smImmediate);
+    }
+    else
+    {
+		motor->setJogMode(jmSingleStep, smImmediate);
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::DeviceBtnDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y)
+{
+	TButton* btn = (TButton*)(Sender);
+    if(btn == Button3)
+    {
+		jogForwardExecute(NULL);
+    }
+
+    if(btn == Button4)
+    {
+		jogBackwardsExecute(NULL);
+    }
+
+    if(btn == Button8)
+    {
+	    stopMotorExecute(NULL);
+    }
+
+    if(btn == fwdDriveBtn)
+    {
+		moveForwardExecute(Sender);
+    }
+    else if(btn == revDriveBtn)
+    {
+		moveBackwardExecute(Sender);
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::driveBtnUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y)
+{
+	if(!ContinousMoveCB->Checked)
+    {
+    	stopMotorExecute(Sender);
     }
 }
 

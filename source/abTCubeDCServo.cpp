@@ -293,6 +293,32 @@ double TCubeDCServo::getAcceleration()
   	return a/ mScalingFactors.acceleration;
 }
 
+
+bool TCubeDCServo::setJogMode(JogModes jm, StopModes sm)
+{
+	int err = BMC_SetJogMode(mSerial.c_str(), jm, sm);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+        return false;
+    }
+  	return true;
+}
+
+double TCubeDCServo::getJogVelocity()
+{
+    int a, v;
+    BMC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    return v;
+}
+
+double TCubeDCServo::getJogAcceleration()
+{
+    int a, v;
+    BMC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    return a;
+}
+
 void TCubeDCServo::jogForward()
 {
 	int error = BMC_MoveJog(mSerial.c_str(), MOT_Forwards);
@@ -309,6 +335,16 @@ void TCubeDCServo::jogReverse()
     {
     	Log(lError) <<tlError(error);
     }
+}
+
+bool TCubeDCServo::setJogVelocity(double v)
+{
+	return false;
+}
+
+bool TCubeDCServo::setJogAcceleration(double a)
+{
+	return false;
 }
 
 void TCubeDCServo::forward()

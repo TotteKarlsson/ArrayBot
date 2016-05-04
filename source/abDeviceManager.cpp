@@ -4,6 +4,7 @@
 #include "mtkUtils.h"
 #include "abUtilities.h"
 #include "abTCubeDCServo.h"
+#include "abLongTravelStage.h"
 #include "Thorlabs.MotionControl.IntegratedStepperMotors.h"
 //---------------------------------------------------------------------------
 
@@ -103,16 +104,29 @@ int DeviceManager::connectAllDevices()
     }
 
     Log(lInfo) <<"There are "<<getNumberOfConnectableDevices()<<" available devices.";
+
+    //TCubeDCServos
     StringList serials(getSerialsForDeviceType(didTCubeDCServo));
-
-    //... other devices
-
-    //Connect devices
     Log(lDebug) <<"Connecting devices of type "<<toString(didTCubeDCServo);
     for(int i = 0; i < serials.count(); i++)
     {
 		APTDevice* device = connectDevice(toInt(serials[i]));
+    }
 
+    //LTS devices
+    Log(lDebug) <<"Connecting devices of type "<<toString(didLongTravelStage);
+    StringList lts_serials(getSerialsForDeviceType(didLongTravelStage));
+    for(int i = 0; i < lts_serials.count(); i++)
+    {
+		APTDevice* device = connectDevice(toInt(lts_serials[i]));
+    }
+
+    //LTS devices
+    Log(lDebug) <<"Connecting devices of type "<<toString(didTCubeStepperMotor);
+    StringList tcsm_serials(getSerialsForDeviceType(didTCubeStepperMotor));
+    for(int i = 0; i < lts_serials.count(); i++)
+    {
+		APTDevice* device = connectDevice(toInt(tcsm_serials[i]));
     }
 
 	return getNumberOfConnectedDevices();
@@ -142,14 +156,25 @@ APTDevice* DeviceManager::connectDevice(int serial)
             Log(lInfo) << "Creating a "<<toString(didTCubeDCServo)<<" device";
             device = new TCubeDCServo(serial);
         break;
+
+        case didLongTravelStage:
+            Log(lInfo) << "Creating a "<<toString(didLongTravelStage)<<" device";
+            device = new LongTravelStage(serial);
+        break;
+
+        default:
+			Log(lError) << "Device of type: "<<toString(deviceInfo.typeID)<<" was not created";
     }
 
-    //Add device to internal map
-    mDevices[serial] = device;
-    if(!device->connect())
+	if(device)
     {
-        //Flash LED
-        device->identify();
+        //Add device to internal map
+        mDevices[serial] = device;
+        if(!device->connect())
+        {
+            //Flash LED
+            device->identify();
+        }
     }
     return device;
 }

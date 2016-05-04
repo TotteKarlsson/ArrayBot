@@ -40,8 +40,16 @@ class AB_CORE TCubeDCServo : public APTMotor
 		void 		                    home();
         void 		                    stop();
         void 		                    stopProfiled();
+
+                                        ///Jogging
+        bool	                		setJogMode(JogModes mode = jmSingleStep, StopModes stopMode = smProfiled);
+        double	                		getJogVelocity();
+        double	                		getJogAcceleration();
+
         void		                    jogForward();
         void		                    jogReverse();
+        bool	                		setJogVelocity(double v);
+        bool	                		setJogAcceleration(double a);
         void		                    forward();
         void		                    reverse();
         void		                    moveDistance(double distance);

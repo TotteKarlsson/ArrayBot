@@ -125,6 +125,9 @@
         <CppCompile Include="abExceptions.cpp">
             <BuildOrder>9</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abLongTravelStage.cpp">
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abMotorCommand.cpp">
             <BuildOrder>12</BuildOrder>
         </CppCompile>
@@ -136,7 +139,8 @@
             <BuildOrder>11</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
-            <BuildOrder>8</BuildOrder>
+            <DependentOn>abTCubeDCServo.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTLWrapper.cpp">
             <DependentOn>abTLWrapper.h</DependentOn>

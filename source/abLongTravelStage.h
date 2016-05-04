@@ -1,6 +1,7 @@
 #ifndef abLongTravelStageH
 #define abLongTravelStageH
 #include "abAPTMotor.h"
+#include "Thorlabs.MotionControl.IntegratedStepperMotors.h"
 //---------------------------------------------------------------------------
 
 class AB_CORE LongTravelStage : public APTMotor
@@ -40,8 +41,17 @@ class AB_CORE LongTravelStage : public APTMotor
 		void 		                    home();
         void 		                    stop();
         void 		                    stopProfiled();
+
+										///Jogging
+        double	                		getJogVelocity();
+        double	                		getJogAcceleration();
+
         void		                    jogForward();
         void		                    jogReverse();
+        bool	                		setJogMode(JogModes mode = jmSingleStep, StopModes stopMode = smProfiled);
+        bool	                		setJogVelocity(double v);
+        bool	                		setJogAcceleration(double a);
+
         void		                    forward();
         void		                    reverse();
         void		                    moveDistance(double distance);

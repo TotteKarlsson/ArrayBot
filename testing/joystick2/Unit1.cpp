@@ -44,7 +44,6 @@ void TForm1::ShowDeviceInfo(void)
   	{
     	joySetCapture(Handle,JoystickID, 2*JoyCaps.wPeriodMin,FALSE);
   	}
-
 }
 
 void TForm1::ShowStatusInfo(void)
@@ -56,7 +55,6 @@ void TForm1::ShowStatusInfo(void)
 
     JOYINFO JoyInfo;
     joyGetPos(JoystickID,&JoyInfo); // get the initial joystick pos
-
 }
 
 void __fastcall TForm1::JMZMove(TMessage &msg)

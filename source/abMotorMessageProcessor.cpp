@@ -80,7 +80,7 @@ void MotorMessageProcessor::run()
 
 void MotorMessageProcessor::worker()
 {
-	Log(lDebug)<<"Entering Order Processor Worker Function.";
+	Log(lDebug)<<"Entering Command Processor Worker Function.";
 	while(mIsTimeToDie == false)
 	{
 		{
@@ -127,11 +127,11 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcForward:
-                    	mMotor->forward();
+                    	mMotor->jogForward();
 					break;
 
                     case mcReverse:
-                    	mMotor->reverse();
+                    	mMotor->jogReverse();
 					break;
 
                     case mcJogForward:
@@ -147,15 +147,18 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcSetVelocity:
-                    	mMotor->setMaxVelocity(cmd.getFirstVariable());
+                    	mMotor->setJogVelocity(cmd.getFirstVariable());
+                    	mMotor->jogForward();
 					break;
 
                     case mcSetVelocityForward:
-                    	mMotor->setMaxVelocityForward(cmd.getFirstVariable());
+                    	mMotor->setJogVelocity(cmd.getFirstVariable());
+                    	mMotor->jogForward();
 					break;
 
                     case mcSetVelocityReverse:
-                    	mMotor->setMaxVelocityReverse(cmd.getFirstVariable());
+                    	mMotor->setJogVelocity(cmd.getFirstVariable());
+                    	mMotor->jogReverse();
 					break;
 
                     case mcSwitchDirection:

@@ -39,6 +39,23 @@ struct HardwareInformation
     WORD modificationState;
 };
 
+	/// <summary> Values that represent the motor Jog Modes. </summary>
+	enum JogModes : short
+	{
+		jmJogModeUndefined = 0x00,///<Undefined
+		jmContinuous = 0x01,///<Continuous jogging
+		jmSingleStep = 0x02,///<Jog 1 step at a time
+	};
+
+	/// <summary> Values that represent the motor Jog Modes. </summary>
+	enum StopModes : short
+	{
+		smStopModeUndefined = 0x00,///<Undefined
+		smImmediate = 0x01,///<Stops immediate
+		smProfiled = 0x02,///<Stops using a velocity profile
+	};
+
+
 class AB_CORE APTMotor : public APTDevice
 {
     public:
@@ -62,6 +79,7 @@ class AB_CORE APTMotor : public APTDevice
 
 						                    //!General commands
         virtual double	                    getPosition() = 0;
+
         virtual double	                    getVelocity() = 0;
         virtual bool	                    setMaxVelocity(double vel) = 0;
 		virtual bool	                    setMaxVelocityForward(double v) = 0;
@@ -75,8 +93,17 @@ class AB_CORE APTMotor : public APTDevice
 		virtual void 		                home() = 0;
         virtual void 		                stop() = 0;
         virtual void 		                stopProfiled() = 0;
+
+        									///Jogging
+		virtual bool	     				setJogMode(JogModes mode = jmSingleStep, StopModes stopMode = smProfiled) = 0;
+        virtual double	                	getJogVelocity() = 0;
+        virtual double	          			getJogAcceleration() = 0;
+
         virtual void		                jogForward() = 0;
+        virtual bool	                    setJogVelocity(double v) = 0;
+        virtual bool	                    setJogAcceleration(double a) = 0;
         virtual void		                jogReverse() = 0;
+
         virtual void		                forward() = 0;
         virtual void		                reverse() = 0;
         virtual void		                moveDistance(double distance) = 0;

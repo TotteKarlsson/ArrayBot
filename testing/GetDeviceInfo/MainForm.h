@@ -28,7 +28,7 @@ class APTMotor;
 class TMain : public TForm
 {
     __published:	// IDE-managed Components
-        TGroupBox *GroupBox1;
+	TGroupBox *DevicesGB;
         TMemo *infoMemo;
 	TListBox *devicesLB;
         TToolBar *ToolBar1;
@@ -38,7 +38,7 @@ class TMain : public TForm
         TBitBtn *BitBtn2;
         TAction *connectAllDevices;
 	TTimer *ShutDownTimer;
-	TGroupBox *GroupBox2;
+	TGroupBox *DeviceGB;
 	TButton *Button1;
 	TAction *identifyCurrent;
 	TButton *Button2;
@@ -65,7 +65,6 @@ class TMain : public TForm
 	TPanel *Panel2;
 	mtkFloatLabeledEdit *mMaxVelocity;
 	mtkFloatLabeledEdit *mAcceleration;
-	TTrackBar *TrackBar1;
 	TLabel *Label1;
 	TLabel *Label2;
 	TLabel *Label3;
@@ -77,7 +76,6 @@ class TMain : public TForm
 	TLabel *mIsReversingLabel;
 	TLabel *mIsForwardingLabel;
 	TLabel *Label5;
-	TButton *Button5;
 	TButton *DecreaseVelBtn;
 	TButton *IncreaseVelBtn;
 	TCheckBox *ContinousMoveCB;
@@ -85,6 +83,20 @@ class TMain : public TForm
 	TButton *switchdirectionBtn;
 	TLabel *JoystickZPosition;
 	TLabel *JoystickAvgZPos;
+	mtkFloatLabeledEdit *mJogVelocity;
+	mtkFloatLabeledEdit *mJogAcc;
+	TCheckBox *mJogModeCB;
+	TGroupBox *JoggingGB;
+	TGroupBox *GroupBox4;
+	TGroupBox *MovingGB;
+	TButton *Button6;
+	TButton *Button8;
+	TPanel *Panel3;
+	TGroupBox *JoyStickGB;
+	TGroupBox *GroupBox1;
+	TRadioGroup *RadioGroup1;
+	mtkFloatLabeledEdit *maxJoyVel;
+	TIntegerLabeledEdit *JoySteps;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -100,19 +112,18 @@ class TMain : public TForm
 	void __fastcall moveForwardExecute(TObject *Sender);
 	void __fastcall moveBackwardExecute(TObject *Sender);
 	void __fastcall stopMotorExecute(TObject *Sender);
-	void __fastcall driveBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
-          int X, int Y);
-	void __fastcall driveBtnUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
-          int X, int Y);
+	void __fastcall driveBtnUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 	void __fastcall StatusTimerTimer(TObject *Sender);
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
 	void __fastcall BitBtn3Click(TObject *Sender);
-	void __fastcall mMaxVelocityKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall Button5Click(TObject *Sender);
+	void __fastcall mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall IncreaseVelBtnClick(TObject *Sender);
 	void __fastcall DecreaseVelBtnClick(TObject *Sender);
 	void __fastcall switchdirectionBtnClick(TObject *Sender);
 	void __fastcall FormDestroy(TObject *Sender);
+	void __fastcall mJogModeCBClick(TObject *Sender);
+	void __fastcall DeviceBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
 
     private:	// User declarations
         DeviceManager		        mDeviceManager;
@@ -143,8 +154,6 @@ class TMain : public TForm
         BEGIN_MESSAGE_MAP
           MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMXMove)
         END_MESSAGE_MAP(TForm)
-
-
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TMain *Main;
