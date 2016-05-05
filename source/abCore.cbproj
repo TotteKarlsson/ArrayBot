@@ -125,6 +125,18 @@
         <CppCompile Include="abExceptions.cpp">
             <BuildOrder>9</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abJoystick.cpp">
+            <DependentOn>abJoystick.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abJoystickAxis.cpp">
+            <DependentOn>abJoystickAxis.h</DependentOn>
+            <BuildOrder>15</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abJoyStickButton.cpp">
+            <DependentOn>abJoyStickButton.h</DependentOn>
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abLongTravelStage.cpp">
             <BuildOrder>14</BuildOrder>
         </CppCompile>

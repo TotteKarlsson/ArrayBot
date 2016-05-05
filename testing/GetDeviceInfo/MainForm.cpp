@@ -26,16 +26,19 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TForm(Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
+	mRunningXAverage(0),
+	mRunningYAverage(0),
 	mRunningZAverage(0),
-	mAlpha(0.9)
+	mAlpha(0.9),
+    mJoyStick((int) Handle)
 {
 	TMemoLogger::mMemoIsEnabled = false;
+
 }
 
 __fastcall TMain::~TMain()
-{
+{}
 
-}
 //---------------------------------------------------------------------------
 void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 {
@@ -78,57 +81,8 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	mLogFileReader.start(true);
 
     connectAllDevicesExecute(Sender);
-//	mMotorMessageProcessor.start(true);
 
-    mJoyStickConnected = false;
-    MMRESULT  JoyResult;
-    JOYINFO JoyInfo;
-
-    // the joystick could be disconnected even if the driver is
-    // loaded. use joyGetPos to detect if a joystick is connected
-    // it returns JOYERR_NOERROR if the joystick is plugged in
-	// find out how many joysticks the driver supports
-  	mJoyStickDriverCount = joyGetNumDevs();
-
-  	if(mJoyStickDriverCount == 0)    // can any joysticks be supported
-  	{
-		return;
-  	}
-    // test for joystick1
-    JoyResult = joyGetPos(JOYSTICKID1,&JoyInfo);
-    if(JoyResult != JOYERR_UNPLUGGED)
-    {
-      mJoyStickConnected = true;
-      mJoystickID = JOYSTICKID1;
-    }
-    else if(JoyResult == MMSYSERR_INVALPARAM)
-    {
-    	// INVALIDPARAM means something is bad. quit now without
-	    // checking for joystick 2
-      	Application->MessageBox(L"An error occured while calling joyGetPosEx", L"Error", MB_OK);
-    }
-    else if((JoyResult=joyGetPos(JOYSTICKID2,&JoyInfo)) == JOYERR_NOERROR)
-    {
-      // if joystick1 is unconnected, check for joystick2
-      mJoyStickConnected = true;
-      mJoystickID = JOYSTICKID2;
-    }
-
-//  ShowDeviceInfo(); // initialize the labels.
-//  ShowStatusInfo();
-    // use joyGetDevCaps to display information from JOYCAPS structure
-    // note that not all of the information from joyGetDevCaps is shown
-    // here. consult the win32 SDK help file for a full description of
-    // joyGetDevCaps
-    joyGetDevCaps(mJoystickID, &mJoyCaps, sizeof(JOYCAPS));
-
-    // Tell Windows we want to receive joystick events.
-    // Handle = receiver, JoystickID = joystick we're using
-    // 3rd arg = how often MM_JOYMOVE events happen
-	if(mJoyStickConnected)
-  	{
-    	joySetCapture(Handle, mJoystickID, 2*mJoyCaps.wPeriodMin,FALSE);
-  	}
+	mJoyStick.connect();
 }
 
 //---------------------------------------------------------------------------
@@ -160,7 +114,17 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
             a = motor->getJogAcceleration();
             mJogAcc->SetNumber(a);
             //
-//            mMotorMessageProcessor.assignMotor(motor);
+			mJoyStick.getXAxis().assignMotor(motor);
+			mJoyStick.getYAxis().assignMotor(motor);
+
+			mJoyStick.getXAxis().setMaxVelocity(mJogVelocity->GetNumber());
+			mJoyStick.getYAxis().setMaxVelocity(mJogVelocity->GetNumber());
+
+			mJoyStick.getButton(3).assignMotor(motor);
+			mJoyStick.getButton(4).assignMotor(motor);
+
+            mJoyStick.getButton(3).setForward();
+            mJoyStick.getButton(4).setReverse();
         }
 
     	//Populate device frame
@@ -352,6 +316,9 @@ void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState 
         if(motor)
         {
             motor->setJogVelocity(vel);
+			mJoyStick.getXAxis().setMaxVelocity(vel);
+			mJoyStick.getYAxis().setMaxVelocity(vel);
+
         }
     }
     if(e == mJogAcc)
@@ -407,14 +374,6 @@ void __fastcall TMain::switchdirectionBtnClick(TObject *Sender)
 //	mMotorMessageContainer.post(cmd);
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormDestroy(TObject *Sender)
-{
-	if(mJoyStickConnected)
-    {
-  		joyReleaseCapture(mJoystickID);
-    }
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mJogModeCBClick(TObject *Sender)

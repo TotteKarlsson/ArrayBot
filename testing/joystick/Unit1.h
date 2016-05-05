@@ -83,6 +83,7 @@ class TForm1 : public TForm
           MESSAGE_HANDLER(MM_JOY2BUTTONDOWN,TMessage,JMButtonUpdate)
           MESSAGE_HANDLER(MM_JOY2BUTTONUP,TMessage,JMButtonUpdate)
           MESSAGE_HANDLER(MM_JOY1ZMOVE,TMessage,JMZMove)
+          MESSAGE_HANDLER(MM_JOY2ZMOVE +1,TMessage,JMZMove)
         END_MESSAGE_MAP(TForm)
 
 		deque<double>			mZPos;

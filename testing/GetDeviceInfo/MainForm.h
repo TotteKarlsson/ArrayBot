@@ -17,10 +17,9 @@
 #include "TIntegerLabeledEdit.h"
 #include "mtkFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
-#include <mmsystem.h>
+
 #include "Poco/Timestamp.h"
-#include "abMotorMessageProcessor.h"
-#include "abMotorMessageContainer.h"
+#include "abJoyStick.h"
 using Poco::Timestamp;
 
 class APTMotor;
@@ -98,6 +97,18 @@ class TMain : public TForm
 	mtkFloatLabeledEdit *maxJoyVel;
 	TIntegerLabeledEdit *JoySteps;
 	TButton *Button5;
+	TLabel *Label7;
+	TLabel *Label8;
+	TLabel *JoystickXPosition;
+	TLabel *JoystickAVGXPosition;
+	TLabel *Label11;
+	TLabel *Label12;
+	TLabel *JoystickYPosition;
+	TLabel *JoystickAVGYPosition;
+	TLabel *JoystickButton1;
+	TLabel *JoystickButton2;
+	TLabel *JoystickButton3;
+	TLabel *JoystickButton4;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -121,7 +132,6 @@ class TMain : public TForm
 	void __fastcall IncreaseVelBtnClick(TObject *Sender);
 	void __fastcall DecreaseVelBtnClick(TObject *Sender);
 	void __fastcall switchdirectionBtnClick(TObject *Sender);
-	void __fastcall FormDestroy(TObject *Sender);
 	void __fastcall mJogModeCBClick(TObject *Sender);
 	void __fastcall DeviceBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
@@ -142,28 +152,31 @@ class TMain : public TForm
        	Timestamp 			        mLastMotorCommand;
         double						mLastVel;
 
-//        MotorMessageProcessor		mMotorMessageProcessor;
-//        MotorMessageContainer  		mMotorMessageContainer;
+		JoyStick					mJoyStick;
 
-        int 						mJoystickID;
-        int 						mJoyStickDriverCount;
-        bool 						mJoyStickConnected;
-	    JOYCAPS 					mJoyCaps;
+        double 						mRunningXAverage;
+        double 						mRunningYAverage;
         double 						mRunningZAverage;
-        double 						mValCommand;
         double 						mAlpha;
-        void __fastcall 			JMXMove(TMessage &msg);
-        void __fastcall 			JMYMove(TMessage &msg);
+        double 						mValCommand;
+
+        void __fastcall 			JMButtonUpUpdate(TMessage &msg);
+        void __fastcall 			JMButtonDownUpdate(TMessage &msg);
+        void __fastcall 			JMXYMove(TMessage &msg);
+//        void __fastcall 			JMYMove(TMessage &msg);
         void __fastcall 			JMZMove(TMessage &msg);
+
 
 	public:		// User declarations
 		__fastcall 					TMain(TComponent* Owner);
 		__fastcall 					~TMain();
 
         BEGIN_MESSAGE_MAP
-          MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMXMove)
-          MESSAGE_HANDLER(MM_JOY2MOVE,TMessage,JMYMove)
-          MESSAGE_HANDLER(MM_JOY1ZMOVE,TMessage,JMZMove)
+          MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMXYMove)
+//          MESSAGE_HANDLER(MM_JOY2MOVE,TMessage,JMYMove)
+          MESSAGE_HANDLER(MM_JOY2ZMOVE,TMessage,JMZMove)
+          MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,JMButtonDownUpdate)
+          MESSAGE_HANDLER(MM_JOY1BUTTONUP,	TMessage,JMButtonUpUpdate)
         END_MESSAGE_MAP(TForm)
 };
 //---------------------------------------------------------------------------

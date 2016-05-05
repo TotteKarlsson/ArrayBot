@@ -16,7 +16,6 @@ object Main: TMain
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
@@ -33,6 +32,34 @@ object Main: TMain
     Width = 18
     Height = 13
     Caption = 'N/A'
+  end
+  object Label7: TLabel
+    Left = 40
+    Top = 369
+    Width = 81
+    Height = 13
+    Caption = 'JoystickZPosition'
+  end
+  object Label8: TLabel
+    Left = 40
+    Top = 388
+    Width = 101
+    Height = 13
+    Caption = 'JoystickAVGZPosition'
+  end
+  object Label11: TLabel
+    Left = 48
+    Top = 377
+    Width = 81
+    Height = 13
+    Caption = 'JoystickZPosition'
+  end
+  object Label12: TLabel
+    Left = 48
+    Top = 396
+    Width = 101
+    Height = 13
+    Caption = 'JoystickAVGZPosition'
   end
   object ToolBar1: TToolBar
     Left = 0
@@ -471,22 +498,78 @@ object Main: TMain
       Left = 501
       Top = 0
       Width = 185
-      Height = 425
+      Height = 449
       Caption = 'JoyStick'
       TabOrder = 2
       object JoystickAvgZPos: TLabel
-        Left = 32
-        Top = 380
+        Left = 24
+        Top = 341
         Width = 101
         Height = 13
         Caption = 'JoystickAVGZPosition'
       end
       object JoystickZPosition: TLabel
-        Left = 32
-        Top = 361
+        Left = 24
+        Top = 322
         Width = 81
         Height = 13
         Caption = 'JoystickZPosition'
+      end
+      object JoystickXPosition: TLabel
+        Left = 24
+        Top = 231
+        Width = 81
+        Height = 13
+        Caption = 'JoystickZPosition'
+      end
+      object JoystickAVGXPosition: TLabel
+        Left = 24
+        Top = 250
+        Width = 101
+        Height = 13
+        Caption = 'JoystickAVGZPosition'
+      end
+      object JoystickYPosition: TLabel
+        Left = 24
+        Top = 277
+        Width = 81
+        Height = 13
+        Caption = 'JoystickZPosition'
+      end
+      object JoystickAVGYPosition: TLabel
+        Left = 24
+        Top = 296
+        Width = 101
+        Height = 13
+        Caption = 'JoystickAVGZPosition'
+      end
+      object JoystickButton1: TLabel
+        Left = 24
+        Top = 361
+        Width = 76
+        Height = 13
+        Caption = 'JoystickButton1'
+      end
+      object JoystickButton2: TLabel
+        Left = 24
+        Top = 380
+        Width = 76
+        Height = 13
+        Caption = 'JoystickButton1'
+      end
+      object JoystickButton3: TLabel
+        Left = 24
+        Top = 399
+        Width = 76
+        Height = 13
+        Caption = 'JoystickButton1'
+      end
+      object JoystickButton4: TLabel
+        Left = 24
+        Top = 418
+        Width = 76
+        Height = 13
+        Caption = 'JoystickButton1'
       end
       object GroupBox1: TGroupBox
         Left = 3
