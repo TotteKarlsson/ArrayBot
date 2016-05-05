@@ -20,6 +20,33 @@ DeviceManager::~DeviceManager()
     disConnectAll();
 }
 
+bool DeviceManager::disConnectAll()
+{
+    for(mDevicesIter = mDevices.begin(); mDevicesIter != mDevices.end(); mDevicesIter++)
+    {
+		APTDevice* dev = mDevicesIter->second;
+        if(dev)
+        {
+        	dev->disconnect();
+
+            //Todo: implement graceful shutdown of all devices
+            delete dev;
+        }
+    }
+    return true;
+}
+
+bool DeviceManager::disConnect(APTDevice* device)
+{
+    if(!device)
+    {
+        return disConnectAll();
+    }
+
+    bool result(false);
+    return result;
+}
+
 string DeviceManager::getInfo() const
 {
     stringstream info;
@@ -193,22 +220,6 @@ APTDevice* DeviceManager::connectDevice(int serial)
         }
     }
     return device;
-}
-
-bool DeviceManager::disConnectAll()
-{
-    return true;
-}
-
-bool DeviceManager::disConnect(APTDevice* device)
-{
-    if(!device)
-    {
-        return disConnectAll();
-    }
-
-    bool result(false);
-    return result;
 }
 
 APTDevice* DeviceManager::getDevice(int serial)

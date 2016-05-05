@@ -1,7 +1,6 @@
 #ifndef abLongTravelStageH
 #define abLongTravelStageH
 #include "abAPTMotor.h"
-//#include "Thorlabs.MotionControl.IntegratedStepperMotors.h"
 //---------------------------------------------------------------------------
 
 class AB_CORE LongTravelStage : public APTMotor
@@ -12,7 +11,7 @@ class AB_CORE LongTravelStage : public APTMotor
 
 		HardwareInformation		        getHWInfo();
         double				 			getEncoderCounts();
-		bool							switchDirection();
+
 
         						        ///isActive checks if the device is active.
 		bool					        isActive();
@@ -27,6 +26,7 @@ class AB_CORE LongTravelStage : public APTMotor
         bool	                        stopPolling();
 
 				                        //!General commands
+        bool		                    identify();
         double	                        getPosition();
         double	        		        getVelocity();
 		bool	                    	setMaxVelocity(double v);
@@ -39,24 +39,24 @@ class AB_CORE LongTravelStage : public APTMotor
 
 				                        ///Control commands
 		void 		                    home();
-        void 		                    stop();
-        void 		                    stopProfiled();
+
+		bool							switchDirection(bool inThread = true);
+        void 		                    stop(bool inThread = true);
+        void 		                    stopProfiled(bool inThread = true);
 
 										///Jogging
         double	                		getJogVelocity();
         double	                		getJogAcceleration();
 
-        void		                    jogForward();
-        void		                    jogReverse();
+        void		                    jogForward(bool inThread = true);
+        void		                    jogReverse(bool inThread = true);
         bool	                		setJogMode(JogModes mode = jmSingleStep, StopModes stopMode = smProfiled);
         bool	                		setJogVelocity(double v);
         bool	                		setJogAcceleration(double a);
 
-        void		                    forward();
-        void		                    reverse();
-        void		                    moveDistance(double distance);
-
-        bool		                    identify();
+        void		                    forward(bool inThread = true);
+        void		                    reverse(bool inThread = true);
+        void		                    moveDistance(double distance, bool inThread = true);
 
     protected:
 

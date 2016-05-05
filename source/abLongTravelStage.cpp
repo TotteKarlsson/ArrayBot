@@ -1,8 +1,6 @@
 #pragma hdrstop
 #include "abLongTravelStage.h"
 #include "Thorlabs.MotionControl.IntegratedStepperMotors.h"
-//#include "Thorlabs.MotionControl.TCube.DCServo.h"
-//#include "Thorlabs.MotionControl.TDIEngine.h"
 #include "mtkLogger.h"
 #include "abExceptions.h"
 #include <bitset>
@@ -16,7 +14,12 @@ LongTravelStage::LongTravelStage(int serial)
 }
 
 LongTravelStage::~LongTravelStage()
-{}
+{
+    if(isConnected())
+    {
+		disconnect();
+    }
+}
 
 bool LongTravelStage::connect()
 {
@@ -50,6 +53,9 @@ bool LongTravelStage::connect()
 
 bool LongTravelStage::disconnect()
 {
+    //Shut down message processor
+    APTMotor::disconnect();
+	ISC_Close(mSerial.c_str());
     mIsConnected = false;
     return false;
 }
@@ -73,16 +79,19 @@ double LongTravelStage::getEncoderCounts()
     return 0;
 }
 
-bool LongTravelStage::switchDirection()
+bool LongTravelStage::switchDirection(bool inThread)
 {
-	if(isForwarding())
-    {
-    	reverse();
-    }
-    else
-    {
-    	forward();
-    }
+	//The forward/reverse bits don't work so this function is disabled until they do
+
+//	if(isForwarding())
+//    {
+//    	reverse(inThread);
+//    }
+//    else
+//    {
+//    	forward(inThread);
+//    }
+	return false;
 }
 
 HardwareInformation LongTravelStage::getHWInfo()
@@ -166,26 +175,24 @@ void LongTravelStage::home()
     }
 }
 
-void LongTravelStage::stop()
+void LongTravelStage::stop(bool inThread)
 {
-//	if(isActive())
+	if(inThread)
     {
-//		int err = ISC_StopProfiled(mSerial.c_str());
+		MotorCommand cmd(mcStopHard);
+		post(cmd);
+    }
+    else
+    {
 		int err = ISC_StopImmediate(mSerial.c_str());
-
         if(err != 0)
         {
             Log(lError) <<tlError(err);
         }
-
-//        while(isActive())
-//        {
-//            //Log(lInfo) << "Waiting ...";
-//        }
     }
 }
 
-void LongTravelStage::stopProfiled()
+void LongTravelStage::stopProfiled(bool inThread)
 {
 //	if(isActive())
     {
@@ -221,26 +228,19 @@ double LongTravelStage::getVelocity()
   	return v / mScalingFactors.velocity;
 }
 
-
 bool LongTravelStage::setMaxVelocity(double vel)
 {
  	MOT_VelocityParameters p;
     ISC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-//    //Check difference
-//    if(fabs(vel - parameters.maxVelocity) < 1.0)
-//    {
-//    	Log(lInfo) <<"velocity change to small..";
-//    }
-//    else
-    {
-    	p.maxVelocity = vel * mScalingFactors.velocity;
-    	int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
+    p.maxVelocity = vel * mScalingFactors.velocity;
+    Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
+    int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
 
-        if(e)
-        {
-            Log(lError) <<tlError(e);
-        }
+    if(e)
+    {
+        Log(lError) <<tlError(e);
+    }
 
 //        if(isForwarding())
 //        {
@@ -250,21 +250,23 @@ bool LongTravelStage::setMaxVelocity(double vel)
 //        {
 //            reverse();
 //        }
-    }
 
-	return false;
+
+	return true;
 }
 
 bool LongTravelStage::setMaxVelocityForward(double vel)
 {
 	setMaxVelocity(vel);
     forward();
+    return true;
 }
 
 bool LongTravelStage::setMaxVelocityReverse(double vel)
 {
 	setMaxVelocity(vel);
     reverse();
+    return true;
 }
 
 bool LongTravelStage::setAcceleration(double a)
@@ -273,8 +275,8 @@ bool LongTravelStage::setAcceleration(double a)
     ISC_GetVelParamsBlock(mSerial.c_str(), &parameters);
 
     parameters.acceleration = a * mScalingFactors.acceleration;
-
     ISC_SetVelParamsBlock(mSerial.c_str(), &parameters);
+	Log(lDebug) << "Setting velocity parameters: "<<parameters.acceleration<<" : "<<parameters.maxVelocity;
 	return false;
 }
 
@@ -303,20 +305,6 @@ bool LongTravelStage::setJogMode(JogModes jm, StopModes sm)
   	return true;
 }
 
-bool LongTravelStage::setJogVelocity(double v)
-{
-    int acceleration;
-    int velocity;
-    ISC_GetJogVelParams(mSerial.c_str(), &acceleration, &velocity);
-    int err = ISC_SetJogVelParams(mSerial.c_str(), acceleration, v * mScalingFactors.velocity);
-
-    if(err != 0)
-    {
-    	Log(lError) <<tlError(err);
-    }
-	return true;
-}
-
 double LongTravelStage::getJogVelocity()
 {
     int a, v;
@@ -327,6 +315,20 @@ double LongTravelStage::getJogVelocity()
     }
 
     return v /  mScalingFactors.velocity;
+}
+
+bool LongTravelStage::setJogVelocity(double newVel)
+{
+    int a;
+    int v;
+    ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    int err = ISC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
+	Log(lDebug) << "Setting Jog Velocity parameters: "<<a<<" : "<<newVel * mScalingFactors.velocity;
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+    }
+	return true;
 }
 
 bool LongTravelStage::setJogAcceleration(double newAcc)
@@ -357,25 +359,42 @@ double LongTravelStage::getJogAcceleration()
     return a  / mScalingFactors.acceleration;
 }
 
-void LongTravelStage::jogForward()
+void LongTravelStage::jogForward(bool inThread)
 {
-	int err = ISC_MoveJog(mSerial.c_str(), MOT_Forwards);
-    if(err != 0)
+	if(inThread)
     {
-    	Log(lError) <<tlError(err);
+		MotorCommand cmd(mcJogForward);
+		post(cmd);
+    }
+    else
+    {
+        int err = ISC_MoveJog(mSerial.c_str(), MOT_Forwards);
+        if(err != 0)
+        {
+            Log(lError) <<tlError(err);
+        }
     }
 }
 
-void LongTravelStage::jogReverse()
+void LongTravelStage::jogReverse(bool inThread)
 {
-	int err = ISC_MoveJog(mSerial.c_str(), MOT_Reverse);
-    if(err != 0)
+	if(inThread)
     {
-    	Log(lError) <<tlError(err);
+		MotorCommand cmd(mcJogReverse);
+		post(cmd);
+    }
+    else
+    {
+        //Todo: tell thorlabs about the MOT_Reverse flag name
+        int err = ISC_MoveJog(mSerial.c_str(), MOT_Reverse);
+        if(err != 0)
+        {
+            Log(lError) <<tlError(err);
+        }
     }
 }
 
-void LongTravelStage::forward()
+void LongTravelStage::forward(bool inThread)
 {
 //	if(isReversing())
 //    {
@@ -397,7 +416,7 @@ void LongTravelStage::forward()
 //    }
 }
 
-void LongTravelStage::reverse()
+void LongTravelStage::reverse(bool inThread)
 {
 //	if(isForwarding())
 //    {
@@ -416,7 +435,7 @@ void LongTravelStage::reverse()
     }
 }
 
-void LongTravelStage::moveDistance(double distance)
+void LongTravelStage::moveDistance(double distance, bool inThread)
 {
 // 	Log(lError) <<msg.str();
 }

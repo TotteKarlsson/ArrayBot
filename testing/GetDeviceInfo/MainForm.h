@@ -158,6 +158,7 @@ class TMain : public TForm
 
 	public:		// User declarations
 		__fastcall 					TMain(TComponent* Owner);
+		__fastcall 					~TMain();
 
         BEGIN_MESSAGE_MAP
           MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMXMove)

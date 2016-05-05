@@ -165,7 +165,7 @@ object Main: TMain
           Top = 23
           Width = 50
           Height = 25
-          Action = jogForward
+          Caption = 'Fwd'
           TabOrder = 0
           OnMouseDown = DeviceBtnDown
         end
@@ -174,7 +174,7 @@ object Main: TMain
           Top = 23
           Width = 50
           Height = 25
-          Action = jogBackwards
+          Caption = 'Rev'
           TabOrder = 1
           OnMouseDown = DeviceBtnDown
         end
@@ -216,7 +216,7 @@ object Main: TMain
           Top = 23
           Width = 41
           Height = 25
-          Action = stopMotor
+          Caption = 'Stop'
           TabOrder = 5
           OnMouseDown = DeviceBtnDown
         end

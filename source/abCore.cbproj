@@ -144,10 +144,6 @@
         <CppCompile Include="abTCubeStepperMotor.cpp">
             <BuildOrder>8</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abTLWrapper.cpp">
-            <DependentOn>abTLWrapper.h</DependentOn>
-            <BuildOrder>6</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abUtilities.cpp">
             <DependentOn>abUtilities.h</DependentOn>
             <BuildOrder>5</BuildOrder>

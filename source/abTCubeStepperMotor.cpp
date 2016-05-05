@@ -76,16 +76,17 @@ double TCubeStepperMotor::getEncoderCounts()
     return 0;
 }
 
-bool TCubeStepperMotor::switchDirection()
+bool TCubeStepperMotor::switchDirection(bool inThread)
 {
 	if(isForwarding())
     {
-    	reverse();
+    	reverse(inThread);
     }
     else
     {
-    	forward();
+    	forward(inThread);
     }
+    return true;
 }
 
 HardwareInformation TCubeStepperMotor::getHWInfo()
@@ -169,7 +170,7 @@ void TCubeStepperMotor::home()
     }
 }
 
-void TCubeStepperMotor::stop()
+void TCubeStepperMotor::stop(bool inThread)
 {
 //	if(isActive())
     {
@@ -188,7 +189,7 @@ void TCubeStepperMotor::stop()
     }
 }
 
-void TCubeStepperMotor::stopProfiled()
+void TCubeStepperMotor::stopProfiled(bool inThread)
 {
 //	if(isActive())
     {
@@ -260,14 +261,14 @@ bool TCubeStepperMotor::setMaxVelocity(double vel)
 
 bool TCubeStepperMotor::setMaxVelocityForward(double vel)
 {
-	setMaxVelocity(vel);
-    forward();
+//	setMaxVelocity(vel);
+//    forward();
 }
 
 bool TCubeStepperMotor::setMaxVelocityReverse(double vel)
 {
-	setMaxVelocity(vel);
-    reverse();
+//	setMaxVelocity(vel);
+//    reverse();
 }
 
 bool TCubeStepperMotor::setAcceleration(double a)
@@ -364,7 +365,7 @@ void TCubeStepperMotor::jogForward(bool inThread)
 {
 	if(inThread)
     {
-		MotorCommand cmd(mcForward);
+		MotorCommand cmd(mcJogForward);
 		post(cmd);
     }
     else
@@ -378,16 +379,25 @@ void TCubeStepperMotor::jogForward(bool inThread)
     }
 }
 
-void TCubeStepperMotor::jogReverse()
+void TCubeStepperMotor::jogReverse(bool inThread)
 {
-	int err = SCC_MoveJog(mSerial.c_str(), MOT_Backwards);
-    if(err != 0)
+	if(inThread)
     {
-    	Log(lError) <<tlError(err);
+		MotorCommand cmd(mcJogReverse);
+		post(cmd);
+    }
+    else
+    {
+
+        int err = SCC_MoveJog(mSerial.c_str(), MOT_Backwards);
+        if(err != 0)
+        {
+            Log(lError) <<tlError(err);
+        }
     }
 }
 
-void TCubeStepperMotor::forward()
+void TCubeStepperMotor::forward(bool inThread)
 {
 //	if(isReversing())
 //    {
@@ -409,7 +419,7 @@ void TCubeStepperMotor::forward()
 //    }
 }
 
-void TCubeStepperMotor::reverse()
+void TCubeStepperMotor::reverse(bool inThread)
 {
 //	if(isForwarding())
 //    {
@@ -428,7 +438,7 @@ void TCubeStepperMotor::reverse()
     }
 }
 
-void TCubeStepperMotor::moveDistance(double distance)
+void TCubeStepperMotor::moveDistance(double distance, bool inThread)
 {
 // 	Log(lError) <<msg.str();
 }

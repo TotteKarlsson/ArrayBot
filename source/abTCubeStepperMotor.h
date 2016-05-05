@@ -12,7 +12,6 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 
 		HardwareInformation		        getHWInfo();
         double				 			getEncoderCounts();
-		bool							switchDirection();
         bool	                        connect();
         bool	                        disconnect();
         bool	                        startPolling();
@@ -24,6 +23,7 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 		bool					        isHomed();
         bool		                	isForwarding();
         bool		                	isReversing();
+		bool							switchDirection(bool inThread = true);
 
 				                        //!General commands
         double	                        getPosition();
@@ -39,22 +39,22 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 				                        ///Control commands
 		void 		                    home();
 
-        void 		                    stop();
-        void 		                    stopProfiled();
+        void 		                    stop(bool inThread = true);
+        void 		                    stopProfiled(bool inThread = true);
 
 										///Jogging
         double	                		getJogVelocity();
         double	                		getJogAcceleration();
 
-        void		                    jogForward(bool inThread);
-        void		                    jogReverse(bool inThread);
+        void		                    jogForward(bool inThread = true);
+        void		                    jogReverse(bool inThread = true);
         bool	                		setJogMode(JogModes mode = jmSingleStep, StopModes stopMode = smProfiled);
         bool	                		setJogVelocity(double v);
         bool	                		setJogAcceleration(double a);
 
-        void		                    forward();
-        void		                    reverse();
-        void		                    moveDistance(double distance);
+        void		                    forward(bool inThread = true);
+        void		                    reverse(bool inThread = true);
+        void		                    moveDistance(double distance, bool inThread = true);
 
         bool		                    identify();
 

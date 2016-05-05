@@ -26,13 +26,16 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TForm(Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-//	mMotorMessageProcessor(mMotorMessageContainer),
 	mRunningZAverage(0),
 	mAlpha(0.9)
 {
 	TMemoLogger::mMemoIsEnabled = false;
 }
 
+__fastcall TMain::~TMain()
+{
+
+}
 //---------------------------------------------------------------------------
 void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 {
@@ -204,6 +207,7 @@ void __fastcall TMain::jogForwardExecute(TObject *Sender)
     APTMotor* motor = getCurrentMotor();
     if(motor)
     {
+		Log(lDebug) << "Jog Forward executes";
     	motor->jogForward();
     }
 }
@@ -213,6 +217,7 @@ void __fastcall TMain::jogBackwardsExecute(TObject *Sender)
     APTMotor* motor = getCurrentMotor();
     if(motor)
     {
+		Log(lDebug) << "Jog Reverse Executes";
     	motor->jogReverse();
     }
 }
@@ -226,8 +231,6 @@ void __fastcall TMain::moveForwardExecute(TObject *Sender)
     {
     	motor->forward();
     }
-//	MotorCommand cmd(mcForward);
-//	mMotorMessageContainer.post(cmd);
 }
 
 //---------------------------------------------------------------------------
@@ -249,11 +252,8 @@ void __fastcall TMain::stopMotorExecute(TObject *Sender)
     APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
     if(motor)
     {
-    	motor->reverse();
+    	motor->stop();
     }
-//
-//	MotorCommand cmd(mcStopHard);
-//	mMotorMessageContainer.post(cmd);
 }
 
 //---------------------------------------------------------------------------

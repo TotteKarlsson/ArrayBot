@@ -8,11 +8,17 @@ APTMotor::APTMotor(int serialNo)
 	APTDevice(serialNo),
 	mMotorMessageProcessor(mMotorMessageContainer)
 {
+	mMotorMessageProcessor.assignMotor(this);
 	mMotorMessageProcessor.start(true);
 }
 
 APTMotor::~APTMotor()
 {}
+
+bool APTMotor::disconnect()
+{
+	mMotorMessageProcessor.stop();
+}
 
 void APTMotor::post(const MotorCommand& cmd)
 {

@@ -108,7 +108,7 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcStopHard:
-                    	mMotor->stop();
+                    	mMotor->stop(false);
 //                        //Wait until motor is stopped
 ////                        while(mMotor->isActive())
 ////                        {
@@ -116,7 +116,7 @@ void MotorMessageProcessor::worker()
 ////                        }
 					break;
                     case mcStopProfiled:
-                    	mMotor->stopProfiled();
+                    	mMotor->stopProfiled(false);
 
                         while(mMotor->isActive())
                         { ; }
@@ -124,23 +124,23 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcForward:
-                    	mMotor->forward();
+                    	mMotor->forward(false);
 					break;
 
                     case mcReverse:
-                    	mMotor->reverse();
+                    	mMotor->reverse(false);
 					break;
 
                     case mcJogForward:
-                    	mMotor->jogForward();
+                    	mMotor->jogForward(false);
 					break;
 
                     case mcJogReverse:
-                    	mMotor->jogReverse();
+                    	mMotor->jogReverse(false);
 					break;
 
                     case mcMoveDistance:
-                    	mMotor->moveDistance(cmd.getFirstVariable());
+                    	mMotor->moveDistance(cmd.getFirstVariable(), false);
 					break;
 
                     case mcSetVelocity:
@@ -150,16 +150,16 @@ void MotorMessageProcessor::worker()
 
                     case mcSetVelocityForward:
                     	mMotor->setJogVelocity(cmd.getFirstVariable());
-                    	mMotor->jogForward();
+                    	mMotor->jogForward(false);
 					break;
 
                     case mcSetVelocityReverse:
                     	mMotor->setJogVelocity(cmd.getFirstVariable());
-                    	mMotor->jogReverse();
+                    	mMotor->jogReverse(false);
 					break;
 
                     case mcSwitchDirection:
-                    	mMotor->switchDirection();
+                    	mMotor->switchDirection(false);
 					break;
                 }
                 sleep(100);
