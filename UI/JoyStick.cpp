@@ -6,11 +6,6 @@
 using namespace mtk;
 using namespace std;
 
-bool sameSign(double x, double y)
-{
-	return x*y >= 0.0f;
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::JMXYMove(TMessage &msg)
 {

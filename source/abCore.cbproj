@@ -160,6 +160,10 @@
             <DependentOn>abUtilities.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abXYZUnit.cpp">
+            <DependentOn>abXYZUnit.h</DependentOn>
+            <BuildOrder>17</BuildOrder>
+        </CppCompile>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

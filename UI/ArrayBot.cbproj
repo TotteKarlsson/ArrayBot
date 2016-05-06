@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{3CD03FA7-716C-4FF8-8822-FD8E62751537}</ProjectGuid>
+        <ProjectGuid>{D8205210-50E9-479E-99CA-FFDA6118628C}</ProjectGuid>
         <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
@@ -36,12 +36,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
-        <IncludePath>..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(IncludePath)</IncludePath>
+        <IncludePath>..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(IncludePath)</IncludePath>
         <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>

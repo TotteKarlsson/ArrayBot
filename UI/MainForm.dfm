@@ -502,15 +502,6 @@ object Main: TMain
           Text = '0.00'
         end
       end
-      object Button5: TButton
-        Left = 17
-        Top = 392
-        Width = 75
-        Height = 25
-        Caption = 'Get info'
-        TabOrder = 6
-        OnClick = Button5Click
-      end
     end
     object JoyStickGB: TGroupBox
       Left = 501

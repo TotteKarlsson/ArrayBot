@@ -23,6 +23,9 @@ JoyStick::~JoyStick()
 bool JoyStick::enable()
 {
 	mEnabled = true;
+    mXAxis.enable();
+    mYAxis.enable();
+    mZAxis.enable();
 }
 
 bool JoyStick::disable()

@@ -21,7 +21,8 @@ class AB_CORE DeviceManager : public ABObject
 {
     public:
                                                     DeviceManager();
-        virtual                                     ~DeviceManager();
+	    virtual                                     ~DeviceManager();
+    	bool										reBuildDeviceList();
 
         APTDevice*                                  connectDevice(int serial);
         int                                         connectAllDevices();

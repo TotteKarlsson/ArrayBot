@@ -10,19 +10,18 @@
 #include <Vcl.Buttons.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
-
-#include "abDeviceManager.h"
 #include "mtkLogFileReader.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "TIntegerLabeledEdit.h"
 #include "mtkFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
-
 #include "Poco/Timestamp.h"
 #include "abJoyStick.h"
+#include "abXYZUnit.h"
 using Poco::Timestamp;
 
 class APTMotor;
+
 //---------------------------------------------------------------------------
 class TMain : public TForm
 {
@@ -91,7 +90,6 @@ class TMain : public TForm
 	TButton *mJogStopBtn;
 	TPanel *Panel3;
 	TGroupBox *JoyStickGB;
-	TButton *Button5;
 	TLabel *Label7;
 	TLabel *Label8;
 	TLabel *JoystickXPosition;
@@ -137,20 +135,16 @@ class TMain : public TForm
 	void __fastcall jsAxisRGClick(TObject *Sender);
 
     private:	// User declarations
-        DeviceManager		        mDeviceManager;
         TThreadMethod               logMsgMethod;
         LogFileReader               mLogFileReader;
         void __fastcall             logMsg();
-		APTDevice* 			        getCurrentDevice();
-		APTMotor*	                getCurrentMotor();
 
+        XYZUnit						mXYZUnit;
 		void __fastcall		        OnException();
-
-       	Timestamp 			        mLastMotorCommand;
-        double						mLastVel;
-
+		APTDevice* 					getCurrentDevice();
+		APTMotor* 					getCurrentMotor();
 		JoyStick					mJoyStick;
-        double 						mValCommand;
+
 
         void __fastcall 			JMButtonUpUpdate(TMessage &msg);
         void __fastcall 			JMButtonDownUpdate(TMessage &msg);

@@ -13,11 +13,23 @@ using namespace std;
 using namespace mtk;
 
 DeviceManager::DeviceManager()
-{}
+{
+	buildDeviceList();
+}
 
 DeviceManager::~DeviceManager()
 {
     disConnectAll();
+}
+
+bool DeviceManager::reBuildDeviceList()
+{
+    if(!::buildDeviceList())
+    {
+    	Log(lError) <<"Failed re-building device list";
+        return false;
+    }
+	return true;
 }
 
 bool DeviceManager::disConnectAll()

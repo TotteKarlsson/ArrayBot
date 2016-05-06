@@ -70,7 +70,7 @@ void JoyStickAxis::Move(double newPosition)
 {
 	if(!mMotor)
     {
-        Log(lInfo) << "Motor object is null..";
+        //Log(lDebug) << "Motor object is null..";
     	return;
     }
     if(!isEnabled())

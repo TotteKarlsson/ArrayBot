@@ -26,10 +26,10 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TForm(Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-    mJoyStick((int) Handle)
+    mJoyStick((int) Handle),
+    mXYZUnit(&mJoyStick)
 {
 	TMemoLogger::mMemoIsEnabled = false;
-
 }
 
 __fastcall TMain::~TMain()
@@ -57,16 +57,14 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 void __fastcall TMain::connectAllDevicesExecute(TObject *Sender)
 {
 	//Connect all available devices
-    mDeviceManager.connectAllDevices();
-
-  	APTDevice* device = mDeviceManager.getFirst();
+  	APTDevice* device = mXYZUnit.mDeviceManager.getFirst();
 	while(device)
     {
 		string serial = device->getSerial();
 
         //Add to listbox
         devicesLB->Items->AddObject(serial.c_str(), (TObject*) device);
-        device = mDeviceManager.getNext();
+        device = mXYZUnit.mDeviceManager.getNext();
     }
 }
 
@@ -76,6 +74,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
 
+	mXYZUnit.initialize();
     connectAllDevicesExecute(Sender);
 
 	mJoyStick.connect();
@@ -117,17 +116,17 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
             StopMode sm = motor->getJogStopMode();
             mJogStopModeCB->Checked = (sm == smProfiled) ? true : false;
 
-			mJoyStick.getXAxis().assignMotor(motor);
-			mJoyStick.getYAxis().assignMotor(motor);
-
-			mJoyStick.getXAxis().setMaxVelocity(mJogVelocity->GetNumber());
-			mJoyStick.getYAxis().setMaxVelocity(mJogVelocity->GetNumber());
-
-			mJoyStick.getButton(3).assignMotor(motor);
-			mJoyStick.getButton(4).assignMotor(motor);
-
-            mJoyStick.getButton(3).setForward();
-            mJoyStick.getButton(4).setReverse();
+//			mJoyStick.getXAxis().assignMotor(motor);
+//			mJoyStick.getYAxis().assignMotor(motor);
+//
+//			mJoyStick.getXAxis().setMaxVelocity(mJogVelocity->GetNumber());
+//			mJoyStick.getYAxis().setMaxVelocity(mJogVelocity->GetNumber());
+//
+//			mJoyStick.getButton(3).assignMotor(motor);
+//			mJoyStick.getButton(4).assignMotor(motor);
+//
+//            mJoyStick.getButton(3).setForward();
+//            mJoyStick.getButton(4).setReverse();
 
             updateJoyStickAxes();
         }
@@ -140,27 +139,27 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
 
 void TMain::updateJoyStickAxes()
 {
-    switch(jsAxisRG->ItemIndex)
-    {
-        case 0:
-            mJoyStick.getXAxis().enable();
-            mJoyStick.getYAxis().disable();
-            mJoyStick.getZAxis().disable();
-        break;
-        case 1:
-            mJoyStick.getXAxis().disable();
-            mJoyStick.getYAxis().enable();
-            mJoyStick.getZAxis().disable();
-        break;
-        case 2:
-            mJoyStick.getXAxis().disable();
-            mJoyStick.getYAxis().disable();
-            mJoyStick.getZAxis().enable();
-        break;
-        default:
-            Log(lError) << "Bad joystick axes";
-        break;
-    }
+//    switch(jsAxisRG->ItemIndex)
+//    {
+//        case 0:
+//            mJoyStick.getXAxis().enable();
+//            mJoyStick.getYAxis().disable();
+//            mJoyStick.getZAxis().disable();
+//        break;
+//        case 1:
+//            mJoyStick.getXAxis().disable();
+//            mJoyStick.getYAxis().enable();
+//            mJoyStick.getZAxis().disable();
+//        break;
+//        case 2:
+//            mJoyStick.getXAxis().disable();
+//            mJoyStick.getYAxis().disable();
+//            mJoyStick.getZAxis().enable();
+//        break;
+//        default:
+//            Log(lError) << "Bad joystick axes";
+//        break;
+//    }
 }
 //---------------------------------------------------------------------------
 void __fastcall TMain::identifyCurrentExecute(TObject *Sender)
@@ -235,8 +234,6 @@ void __fastcall TMain::moveBackwardExecute(TObject *Sender)
     {
     	motor->reverse();
     }
-//	MotorCommand cmd(mcReverse);
-//	mMotorMessageContainer.post(cmd);
 }
 
 void __fastcall TMain::stopMotorExecute(TObject *Sender)
@@ -353,16 +350,16 @@ void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState 
 
 void __fastcall TMain::IncreaseVelBtnClick(TObject *Sender)
 {
-	//Increase velocity
-	double delta = 	mVelDeltaE->GetNumber();
-
-    APTMotor* motor = getCurrentMotor();
-    if(motor == NULL)
-    {
-    	Log(lInfo) << "Motor object is null..";
-    	return;
-    }
-	double cVel = motor->getVelocity();
+//	//Increase velocity
+//	double delta = 	mVelDeltaE->GetNumber();
+//
+//    APTMotor* motor = getCurrentMotor();
+//    if(motor == NULL)
+//    {
+//    	Log(lInfo) << "Motor object is null..";
+//    	return;
+//    }
+//	double cVel = motor->getVelocity();
 
 //	MotorCommand cmd(mcSetVelocity,  cVel + delta);
 //	mMotorMessageContainer.post(cmd);
@@ -370,16 +367,16 @@ void __fastcall TMain::IncreaseVelBtnClick(TObject *Sender)
 
 void __fastcall TMain::DecreaseVelBtnClick(TObject *Sender)
 {
-	//Increase velocity
-	double delta = 	mVelDeltaE->GetNumber();
-
-    APTMotor* motor = getCurrentMotor();
-    if(motor == NULL)
-    {
-    	Log(lInfo) << "Motor object is null..";
-    	return;
-    }
-	double cVel = motor->getVelocity();
+//	//Increase velocity
+//	double delta = 	mVelDeltaE->GetNumber();
+//
+//    APTMotor* motor = getCurrentMotor();
+//    if(motor == NULL)
+//    {
+//    	Log(lInfo) << "Motor object is null..";
+//    	return;
+//    }
+//	double cVel = motor->getVelocity();
 
 //	MotorCommand cmd(mcSetVelocity,  cVel - delta);
 //	mMotorMessageContainer.post(cmd);
@@ -465,21 +462,21 @@ void __fastcall TMain::DeviceBtnDown(TObject *Sender, TMouseButton Button,
 void __fastcall TMain::driveBtnUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y)
 {
-	if(!ContinousMoveCB->Checked)
-    {
-    	stopMotorExecute(Sender);
-    }
+//	if(!ContinousMoveCB->Checked)
+//    {
+//    	stopMotorExecute(Sender);
+//    }
 }
 
 void __fastcall TMain::Button5Click(TObject *Sender)
 {
-    APTMotor* motor = getCurrentMotor();
-    if(motor == NULL)
-    {
-    	Log(lInfo) << "Motor object is null..";
-    	return;
-    }
-	motor->getEncoderCounts();
+//    APTMotor* motor = getCurrentMotor();
+//    if(motor == NULL)
+//    {
+//    	Log(lInfo) << "Motor object is null..";
+//    	return;
+//    }
+//	motor->getEncoderCounts();
 }
 
 //---------------------------------------------------------------------------
@@ -491,6 +488,7 @@ void __fastcall TMain::jsAxisRGClick(TObject *Sender)
     {
 		updateJoyStickAxes();
     }
+
     else if(rg == jsStateRG)
     {
     	jsStateRG->ItemIndex == 0 ?
