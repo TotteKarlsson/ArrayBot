@@ -7,7 +7,9 @@ using namespace mtk;
 
 JoyStick::JoyStick(int hwnd)
 :
-mHandle(hwnd){
+mHandle(hwnd),
+mEnabled(false)
+{
 
 }
 
@@ -17,6 +19,20 @@ JoyStick::~JoyStick()
     {
   		joyReleaseCapture(mJoystickID);
     }
+}
+bool JoyStick::enable()
+{
+	mEnabled = true;
+}
+
+bool JoyStick::disable()
+{
+	mEnabled = false;
+}
+
+bool JoyStick::isEnabled()
+{
+	return mEnabled;
 }
 
 bool JoyStick::connect()
@@ -70,7 +86,7 @@ bool JoyStick::connect()
     // 3rd arg = how often MM_JOYMOVE events happen
 	if(mJoyStickConnected)
   	{
-    	joySetCapture((HWND) mHandle, mJoystickID, 2*mJoyCaps.wPeriodMin,FALSE);
+    	joySetCapture((HWND) mHandle, mJoystickID, 20*mJoyCaps.wPeriodMin,FALSE);
   	}
 	return mJoyStickConnected;
 }

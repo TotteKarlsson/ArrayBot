@@ -294,7 +294,7 @@ double TCubeDCServo::getAcceleration()
 }
 
 
-bool TCubeDCServo::setJogMode(JogModes jm, StopModes sm)
+bool TCubeDCServo::setJogMode(JogMoveMode jm, StopMode sm)
 {
 	int err = BMC_SetJogMode(mSerial.c_str(), jm, sm);
     if(err != 0)

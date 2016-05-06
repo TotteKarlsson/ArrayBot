@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['motorcommand',['MotorCommand',['../class_motor_command.html',1,'']]],
-  ['motormessagecontainer',['MotorMessageContainer',['../class_motor_message_container.html',1,'']]],
-  ['motormessagecreator',['MotorMessageCreator',['../class_motor_message_creator.html',1,'']]],
-  ['motormessageprocessor',['MotorMessageProcessor',['../class_motor_message_processor.html',1,'']]]
+  ['longtravelstage',['LongTravelStage',['../class_long_travel_stage.html',1,'']]]
 ];

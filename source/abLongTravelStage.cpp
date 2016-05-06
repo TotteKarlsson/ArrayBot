@@ -294,8 +294,9 @@ double LongTravelStage::getAcceleration()
   	return a / mScalingFactors.acceleration;
 }
 
-bool LongTravelStage::setJogMode(JogModes jm, StopModes sm)
+bool LongTravelStage::setJogMoveMode(JogMoveMode jm)
 {
+	StopMode sm = getJogStopMode();
 	int err = ISC_SetJogMode(mSerial.c_str(), jm, sm);
     if(err != 0)
     {
@@ -304,6 +305,45 @@ bool LongTravelStage::setJogMode(JogModes jm, StopModes sm)
     }
   	return true;
 }
+
+bool LongTravelStage::setJogStopMode(StopMode sm)
+{
+	JogMoveMode jmm = getJogMoveMode();
+	int err = ISC_SetJogMode(mSerial.c_str(), jmm, sm);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+        return false;
+    }
+  	return true;
+}
+
+JogMoveMode	LongTravelStage::getJogMoveMode()
+{
+	MOT_StopModes sm;
+    MOT_JogModes jm;
+	int err = ISC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+        return MOT_JogModeUndefined;
+    }
+  	return (JogMoveMode) jm;
+}
+
+StopMode LongTravelStage::getJogStopMode()
+{
+	MOT_StopModes sm;
+    MOT_JogModes jm;
+	int err = ISC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+        return MOT_StopModeUndefined;
+    }
+  	return (StopMode) sm;
+}
+
 
 double LongTravelStage::getJogVelocity()
 {

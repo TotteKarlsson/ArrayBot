@@ -16,7 +16,10 @@ class AB_CORE JoyStick : public ABObject
 							JoyStick(int Handle = NULL);
 							~JoyStick();
 		bool				connect();
+		bool				enable();
+        bool				disable();
 
+        bool				isEnabled();
     	JoyStickAxis&		getXAxis();
     	JoyStickAxis&		getYAxis();
     	JoyStickAxis&		getZAxis();
@@ -27,6 +30,7 @@ class AB_CORE JoyStick : public ABObject
                             //to the window
 	    int  				mHandle;
         int 				mJoystickID;
+        bool				mEnabled;
         bool 				mJoyStickConnected;
         int 				mJoyStickDriverCount;
 	    JOYCAPS 			mJoyCaps;

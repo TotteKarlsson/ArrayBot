@@ -11,7 +11,7 @@ using std::string;
 //---------------------------------------------------------------------------
 enum MotorCommandEnum
 {
-	mcNone= -1,
+	mcNone = -1,
 	mcStopHard = 0,
     mcStopProfiled,
     mcForward,

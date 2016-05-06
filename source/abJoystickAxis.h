@@ -17,12 +17,14 @@ class AB_CORE JoyStickAxis : public ABObject
 							~JoyStickAxis();
 		void				enable();
    		void				disable();
+		bool				isEnabled();
 
         void				assignMotor(APTMotor* motor);
 		void				setNumberOfGears(int g);
 		int  				getNumberOfGears();
         void				setMaxVelocity(double vel);
 		double				getMaxVelocity();
+        double 				getCurrentVelocity();
                             //This function is called by the UI
                             //as joystick messages are flowing in
 		void 				Move(double newPosition);
@@ -35,12 +37,9 @@ class AB_CORE JoyStickAxis : public ABObject
 		int					mMaxPosition;
         int					mNumberOfGears;
         double 				mMaxVelocity;
-
-
-        double 				mRunningZAverage;
-        double 				mValCommand;
+        double 				mLastSetVelocity;
+        double 				mRunningAverage;
         double 				mAlpha;
-
 };
 
 #endif

@@ -58,10 +58,10 @@ class TMain : public TForm
 	TLabel *mIsActiveLabel;
 	TLabel *mIsHomingLabel;
 	TLabel *mIsHomedLabel;
-	TPanel *Panel1;
+	TPanel *BottomPanel;
 	TToolBar *ToolBar2;
 	TBitBtn *BitBtn3;
-	TPanel *Panel2;
+	TPanel *TopPanel;
 	mtkFloatLabeledEdit *mMaxVelocity;
 	mtkFloatLabeledEdit *mAcceleration;
 	TLabel *Label1;
@@ -81,7 +81,6 @@ class TMain : public TForm
 	mtkFloatLabeledEdit *mVelDeltaE;
 	TButton *switchdirectionBtn;
 	TLabel *JoystickZPosition;
-	TLabel *JoystickAvgZPos;
 	mtkFloatLabeledEdit *mJogVelocity;
 	mtkFloatLabeledEdit *mJogAcc;
 	TCheckBox *mJogModeCB;
@@ -89,26 +88,25 @@ class TMain : public TForm
 	TGroupBox *GroupBox4;
 	TGroupBox *MovingGB;
 	TButton *Button6;
-	TButton *Button8;
+	TButton *mJogStopBtn;
 	TPanel *Panel3;
 	TGroupBox *JoyStickGB;
-	TGroupBox *GroupBox1;
-	TRadioGroup *RadioGroup1;
-	mtkFloatLabeledEdit *maxJoyVel;
-	TIntegerLabeledEdit *JoySteps;
 	TButton *Button5;
 	TLabel *Label7;
 	TLabel *Label8;
 	TLabel *JoystickXPosition;
-	TLabel *JoystickAVGXPosition;
 	TLabel *Label11;
 	TLabel *Label12;
 	TLabel *JoystickYPosition;
-	TLabel *JoystickAVGYPosition;
 	TLabel *JoystickButton1;
 	TLabel *JoystickButton2;
 	TLabel *JoystickButton3;
 	TLabel *JoystickButton4;
+	TRadioGroup *jsAxisRG;
+	TSplitter *Splitter1;
+	TRadioGroup *jsStateRG;
+	TIntegerLabeledEdit *mNrOfGearsLbl;
+	TCheckBox *mJogStopModeCB;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -136,6 +134,7 @@ class TMain : public TForm
 	void __fastcall DeviceBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
 	void __fastcall Button5Click(TObject *Sender);
+	void __fastcall jsAxisRGClick(TObject *Sender);
 
     private:	// User declarations
         DeviceManager		        mDeviceManager;
@@ -143,29 +142,21 @@ class TMain : public TForm
         LogFileReader               mLogFileReader;
         void __fastcall             logMsg();
 		APTDevice* 			        getCurrentDevice();
-		void __fastcall		        OnException();
-        APTMotor* 					mXMotor;
-        APTMotor* 					mYMotor;
-        APTMotor* 					mZMotor;
-
 		APTMotor*	                getCurrentMotor();
+
+		void __fastcall		        OnException();
+
        	Timestamp 			        mLastMotorCommand;
         double						mLastVel;
 
 		JoyStick					mJoyStick;
-
-        double 						mRunningXAverage;
-        double 						mRunningYAverage;
-        double 						mRunningZAverage;
-        double 						mAlpha;
         double 						mValCommand;
 
         void __fastcall 			JMButtonUpUpdate(TMessage &msg);
         void __fastcall 			JMButtonDownUpdate(TMessage &msg);
         void __fastcall 			JMXYMove(TMessage &msg);
-//        void __fastcall 			JMYMove(TMessage &msg);
         void __fastcall 			JMZMove(TMessage &msg);
-
+  		void						updateJoyStickAxes();
 
 	public:		// User declarations
 		__fastcall 					TMain(TComponent* Owner);
@@ -173,8 +164,7 @@ class TMain : public TForm
 
         BEGIN_MESSAGE_MAP
           MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMXYMove)
-//          MESSAGE_HANDLER(MM_JOY2MOVE,TMessage,JMYMove)
-          MESSAGE_HANDLER(MM_JOY2ZMOVE,TMessage,JMZMove)
+          MESSAGE_HANDLER(MM_JOY1ZMOVE,TMessage,JMZMove)
           MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,JMButtonDownUpdate)
           MESSAGE_HANDLER(MM_JOY1BUTTONUP,	TMessage,JMButtonUpUpdate)
         END_MESSAGE_MAP(TForm)

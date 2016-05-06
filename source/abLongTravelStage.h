@@ -50,7 +50,13 @@ class AB_CORE LongTravelStage : public APTMotor
 
         void		                    jogForward(bool inThread = true);
         void		                    jogReverse(bool inThread = true);
-        bool	                		setJogMode(JogModes mode = jmSingleStep, StopModes stopMode = smProfiled);
+
+        bool	                		setJogMoveMode(JogMoveMode mode);
+        bool	                		setJogStopMode(StopMode mode);
+
+        JogMoveMode	                		getJogMoveMode();
+		StopMode 						getJogStopMode();
+
         bool	                		setJogVelocity(double v);
         bool	                		setJogAcceleration(double a);
 

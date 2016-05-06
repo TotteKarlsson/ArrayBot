@@ -19,7 +19,8 @@ mAllowProcessing(true),
 mMotorMessageContainer(messageContainer),
 mProcessedCount(0),
 mNotifyUI(NULL),
-mMotor(NULL)
+mMotor(NULL),
+mLastProcessedCommand(mcNone)
 {}
 
 //----------------------------------------------------------------
@@ -35,6 +36,12 @@ void MotorMessageProcessor::assignMotor(APTMotor* motor)
 {
 	mMotor = motor;
 }
+
+MotorCommandEnum MotorMessageProcessor::getLastProcessedMessage()
+{
+	return mLastProcessedCommand;
+}
+
 
 bool MotorMessageProcessor::start(bool inThread)
 {
@@ -162,6 +169,7 @@ void MotorMessageProcessor::worker()
                     	mMotor->switchDirection(false);
 					break;
                 }
+                mLastProcessedCommand = cmd.getCore();
                 sleep(100);
             }
 

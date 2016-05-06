@@ -6,6 +6,8 @@
 #include "abABObject.h"
 #include "mtkConstants.h"
 #include "mtkStringList.h"
+#include "abMotorMessageProcessor.h"
+#include "abMotorCommand.h"
 //---------------------------------------------------------------------------
 class MotorMessageContainer;
 class APTMotor;
@@ -31,10 +33,12 @@ class AB_CORE MotorMessageProcessor : public ABObject, public mtk::Thread
         void                                        pauseProcessing();
         void                                        resumeProcessing();
         UICallback                                  mNotifyUI;
+        MotorCommandEnum							getLastProcessedMessage();
 
 	protected:
 		long                                        mProcessedCount;
 		bool                                        mAllowProcessing;
+		MotorCommandEnum							mLastProcessedCommand;
         APTMotor*									mMotor;
 
 		MotorMessageContainer&                      mMotorMessageContainer;

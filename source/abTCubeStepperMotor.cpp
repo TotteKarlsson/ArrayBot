@@ -23,13 +23,13 @@ bool TCubeStepperMotor::connect()
     // open the device
     int res = SCC_Open(toString(mSerial).c_str());
 
-    mScalingFactors.position 	 = 7471102; //52297717.00 / 7.0;
-    mScalingFactors.velocity 	 = 7471102; //52297717.00 / 7.0;
-	mScalingFactors.acceleration = 7471102; //52297717.00 / 7.0;
+    mScalingFactors.position 	 = 2184534;
+    mScalingFactors.velocity 	 = 1.1727e8;
+	mScalingFactors.acceleration = 2.403e4;
 
     if(res == 0)
     {
-    	//SCC_LoadSettings(mSerial.c_str());
+    	SCC_LoadSettings(mSerial.c_str());
 	    // start the device polling at 200ms intervals
     	if(!SCC_StartPolling(mSerial.c_str(), 200))
         {
@@ -172,20 +172,18 @@ void TCubeStepperMotor::home()
 
 void TCubeStepperMotor::stop(bool inThread)
 {
-//	if(isActive())
+	if(inThread)
     {
-//		int err = SCC_StopProfiled(mSerial.c_str());
+		MotorCommand cmd(mcStopHard);
+		post(cmd);
+    }
+    else
+    {
 		int err = SCC_StopImmediate(mSerial.c_str());
-
         if(err != 0)
         {
             Log(lError) <<tlError(err);
         }
-
-//        while(isActive())
-//        {
-//            //Log(lInfo) << "Waiting ...";
-//        }
     }
 }
 
@@ -208,7 +206,9 @@ void TCubeStepperMotor::stopProfiled(bool inThread)
 
 double TCubeStepperMotor::getPosition()
 {
-    return SCC_GetPosition(mSerial.c_str()) / mScalingFactors.position;
+    int pos = SCC_GetPosition(mSerial.c_str());
+    Log(lDebug4) <<"Pos = "<<pos;
+	return pos / mScalingFactors.position;
 }
 
 double TCubeStepperMotor::getVelocity()
@@ -222,64 +222,7 @@ double TCubeStepperMotor::getVelocity()
     {
     	Log(lError) <<tlError(err);
     }
-  	return v / mScalingFactors.velocity;
-}
-
-
-bool TCubeStepperMotor::setMaxVelocity(double vel)
-{
- 	MOT_VelocityParameters p;
-    SCC_GetVelParamsBlock(mSerial.c_str(), &p);
-
-//    //Check difference
-//    if(fabs(vel - parameters.maxVelocity) < 1.0)
-//    {
-//    	Log(lInfo) <<"velocity change to small..";
-//    }
-//    else
-    {
-    	p.maxVelocity = vel * mScalingFactors.velocity;
-    	int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
-
-        if(e)
-        {
-            Log(lError) <<tlError(e);
-        }
-
-//        if(isForwarding())
-//        {
-//            forward();
-//        }
-//        else if (isReversing())
-//        {
-//            reverse();
-//        }
-    }
-
-	return false;
-}
-
-bool TCubeStepperMotor::setMaxVelocityForward(double vel)
-{
-//	setMaxVelocity(vel);
-//    forward();
-}
-
-bool TCubeStepperMotor::setMaxVelocityReverse(double vel)
-{
-//	setMaxVelocity(vel);
-//    reverse();
-}
-
-bool TCubeStepperMotor::setAcceleration(double a)
-{
- 	MOT_VelocityParameters parameters;
-    SCC_GetVelParamsBlock(mSerial.c_str(), &parameters);
-
-    parameters.acceleration = a * mScalingFactors.acceleration;
-
-    SCC_SetVelParamsBlock(mSerial.c_str(), &parameters);
-	return false;
+  	return (double) v / mScalingFactors.velocity;
 }
 
 double TCubeStepperMotor::getAcceleration()
@@ -293,11 +236,64 @@ double TCubeStepperMotor::getAcceleration()
     {
     	Log(lError) <<tlError(err);
     }
-  	return a / mScalingFactors.acceleration;
+  	return (double) a / mScalingFactors.acceleration;
 }
 
-bool TCubeStepperMotor::setJogMode(JogModes jm, StopModes sm)
+bool TCubeStepperMotor::setMaxVelocity(double vel)
 {
+ 	MOT_VelocityParameters p;
+    SCC_GetVelParamsBlock(mSerial.c_str(), &p);
+
+    p.maxVelocity = vel * mScalingFactors.velocity;
+    Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
+    	int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
+
+    if(e)
+    {
+        Log(lError) <<tlError(e);
+    }
+
+//        if(isForwarding())
+//        {
+//            forward();
+//        }
+//        else if (isReversing())
+//        {
+//            reverse();
+//        }
+
+
+	return true;
+}
+
+bool TCubeStepperMotor::setMaxVelocityForward(double vel)
+{
+	setMaxVelocity(vel);
+    forward();
+    return true;
+}
+
+bool TCubeStepperMotor::setMaxVelocityReverse(double vel)
+{
+	setMaxVelocity(vel);
+    reverse();
+    return true;
+}
+
+bool TCubeStepperMotor::setAcceleration(double a)
+{
+ 	MOT_VelocityParameters parameters;
+    SCC_GetVelParamsBlock(mSerial.c_str(), &parameters);
+
+    parameters.acceleration = a * mScalingFactors.acceleration;
+    SCC_SetVelParamsBlock(mSerial.c_str(), &parameters);
+	Log(lDebug) << "Setting velocity parameters: "<<parameters.acceleration<<" : "<<parameters.maxVelocity;
+	return false;
+}
+
+bool TCubeStepperMotor::setJogMoveMode(JogMoveMode jm)
+{
+	StopMode sm = getJogStopMode();
 	int err = SCC_SetJogMode(mSerial.c_str(), jm, sm);
     if(err != 0)
     {
@@ -307,19 +303,44 @@ bool TCubeStepperMotor::setJogMode(JogModes jm, StopModes sm)
   	return true;
 }
 
-bool TCubeStepperMotor::setJogVelocity(double v)
+bool TCubeStepperMotor::setJogStopMode(StopMode sm)
 {
-    int acceleration;
-    int velocity;
-    SCC_GetJogVelParams(mSerial.c_str(), &acceleration, &velocity);
-    int err = SCC_SetJogVelParams(mSerial.c_str(), acceleration, v * mScalingFactors.velocity);
-
+	JogMoveMode jmm = getJogMoveMode();
+	int err = SCC_SetJogMode(mSerial.c_str(), jmm, sm);
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
+        return false;
     }
-	return true;
+  	return true;
 }
+
+JogMoveMode	TCubeStepperMotor::getJogMoveMode()
+{
+    MOT_JogModes jm;
+	MOT_StopModes sm;
+	int err = SCC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+        return MOT_JogModeUndefined;
+    }
+  	return (JogMoveMode) jm;
+}
+
+StopMode TCubeStepperMotor::getJogStopMode()
+{
+	MOT_StopModes sm;
+    MOT_JogModes jm;
+	int err = SCC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+        return MOT_StopModeUndefined;
+    }
+  	return (StopMode) sm;
+}
+
 
 double TCubeStepperMotor::getJogVelocity()
 {
@@ -330,7 +351,21 @@ double TCubeStepperMotor::getJogVelocity()
     	Log(lError) <<tlError(err);
     }
 
-    return v /  mScalingFactors.velocity;
+    return v / mScalingFactors.velocity;
+}
+
+bool TCubeStepperMotor::setJogVelocity(double newVel)
+{
+    int a;
+    int v;
+    SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    int err = SCC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
+	Log(lDebug) << "Setting Jog Velocity parameters: "<<a<<" : "<<newVel * mScalingFactors.velocity;
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+    }
+	return true;
 }
 
 bool TCubeStepperMotor::setJogAcceleration(double newAcc)
@@ -338,7 +373,7 @@ bool TCubeStepperMotor::setJogAcceleration(double newAcc)
     int a;
     int v;
     SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
-    int err = SCC_SetJogVelParams(mSerial.c_str(), v, newAcc * mScalingFactors.acceleration);
+    int err = SCC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v);
 
     if(err != 0)
     {
@@ -370,7 +405,6 @@ void TCubeStepperMotor::jogForward(bool inThread)
     }
     else
     {
-
         int err = SCC_MoveJog(mSerial.c_str(), MOT_Forwards);
         if(err != 0)
         {

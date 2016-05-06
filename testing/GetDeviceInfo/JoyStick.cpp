@@ -14,30 +14,29 @@ bool sameSign(double x, double y)
 //---------------------------------------------------------------------------
 void __fastcall TMain::JMXYMove(TMessage &msg)
 {
-	double fullVelRange = 5.0;
-    int nrOfSteps = 5;
-	double step = fullVelRange / nrOfSteps;
+	if(!mJoyStick.isEnabled())
+    {
+    	return;
+    }
 
-	double scalingFactor = fullVelRange/ 65535.0;
-	double xPos = (msg.LParamLo * scalingFactor - fullVelRange/2.0) * 2.0;
-	double yPos = (msg.LParamHi * scalingFactor - fullVelRange/2.0) * 2.0;
+    JoyStickAxis& x = mJoyStick.getXAxis();
+    JoyStickAxis& y = mJoyStick.getYAxis();
 
-    mRunningXAverage = (mAlpha * xPos) + (1.0 - mAlpha) * mRunningXAverage;
-    mRunningYAverage = (mAlpha * yPos) + (1.0 - mAlpha) * mRunningYAverage;
+    x.Move(msg.LParamLo);
+    y.Move(msg.LParamHi);
 
-    JoystickXPosition->Caption 		= "X Position = " + FloatToStrF(xPos, ffFixed, 4,2);
-    JoystickAVGXPosition->Caption 	= "X Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
-
-    JoystickYPosition->Caption 		= "Y Position = " + FloatToStrF(yPos, ffFixed, 4,2);
-    JoystickAVGYPosition->Caption 	= "Y Average Position = " + FloatToStrF(mRunningXAverage, ffFixed, 4,2);
-
-    mJoyStick.getXAxis().Move(msg.LParamLo);
-    mJoyStick.getYAxis().Move(msg.LParamHi);
+    JoystickXPosition->Caption 		= "X = " + FloatToStrF(x.getCurrentVelocity(), ffFixed, 4,2);
+    JoystickYPosition->Caption 		= "Y = " + FloatToStrF(y.getCurrentVelocity(), ffFixed, 4,2);
 }
 
-////---------------------------------------------------------------------------
-//void __fastcall TMain::JMYMove(TMessage &msg)
-//{
+//---------------------------------------------------------------------------
+void __fastcall TMain::JMZMove(TMessage &msg)
+{
+	if(!mJoyStick.isEnabled())
+    {
+    	return;
+    }
+
 //	double fullVelRange = 5.0;
 //    int nrOfSteps = 5;
 //	double step = fullVelRange / nrOfSteps;
@@ -45,28 +44,10 @@ void __fastcall TMain::JMXYMove(TMessage &msg)
 //	double scalingFactor = fullVelRange/ 65535.0;
 //	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2.0) * 2.0;
 //
-//    mRunningYAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningXAverage;
+//    mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
 //
-//    JoystickYPosition->Caption 		= "Y Position = " + FloatToStrF(pos, ffFixed, 4,2);
-//    JoystickAVGYPosition->Caption 	= "Y Average Position = " + FloatToStrF(mRunningXAverage, ffFixed, 4,2);
-//
-//    mJoyStick.getYAxis().Move(msg);
-//}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::JMZMove(TMessage &msg)
-{
-	double fullVelRange = 5.0;
-    int nrOfSteps = 5;
-	double step = fullVelRange / nrOfSteps;
-
-	double scalingFactor = fullVelRange/ 65535.0;
-	double pos = (msg.LParamLo * scalingFactor - fullVelRange/2.0) * 2.0;
-
-    mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
-
-    JoystickZPosition->Caption 	= "Z Position = " + FloatToStrF(pos, ffFixed, 4,2);
-    JoystickAvgZPos->Caption 	= "Z Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
+//    JoystickZPosition->Caption 	= "Z Position = " + FloatToStrF(pos, ffFixed, 4,2);
+//    JoystickAvgZPos->Caption 	= "Z Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
 
 //    mJoyStick.getZAxis().Move(msg);
 }
@@ -100,7 +81,6 @@ void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
     {
     	mJoyStick.getButton(4).up();
     }
-
 }
 
 void __fastcall TMain::JMButtonDownUpdate(TMessage &msg)

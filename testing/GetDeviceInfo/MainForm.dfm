@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
-  ActiveControl = JoySteps
+  ActiveControl = mNrOfGearsLbl
   Caption = 'Device Tester'
   ClientHeight = 702
   ClientWidth = 952
@@ -61,6 +61,16 @@ object Main: TMain
     Height = 13
     Caption = 'JoystickAVGZPosition'
   end
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 501
+    Width = 952
+    Height = 3
+    Cursor = crVSplit
+    Align = alTop
+    ExplicitLeft = 8
+    ExplicitTop = 544
+  end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
@@ -91,13 +101,12 @@ object Main: TMain
       TabOrder = 1
     end
   end
-  object Panel1: TPanel
+  object BottomPanel: TPanel
     Left = 0
     Top = 504
     Width = 952
     Height = 198
-    Align = alBottom
-    Caption = 'Panel1'
+    Align = alClient
     TabOrder = 1
     object infoMemo: TMemo
       Left = 1
@@ -129,18 +138,18 @@ object Main: TMain
       end
     end
   end
-  object Panel2: TPanel
+  object TopPanel: TPanel
     Left = 0
     Top = 36
     Width = 952
-    Height = 468
-    Align = alClient
+    Height = 465
+    Align = alTop
     TabOrder = 2
     object DevicesGB: TGroupBox
       Left = 1
       Top = 1
       Width = 153
-      Height = 466
+      Height = 463
       Align = alLeft
       Caption = 'Devices'
       TabOrder = 0
@@ -148,7 +157,7 @@ object Main: TMain
         Left = 2
         Top = 15
         Width = 149
-        Height = 449
+        Height = 446
         Align = alClient
         ItemHeight = 13
         TabOrder = 0
@@ -159,7 +168,7 @@ object Main: TMain
       Left = 154
       Top = 1
       Width = 343
-      Height = 466
+      Height = 463
       Align = alLeft
       Caption = 'Device'
       TabOrder = 1
@@ -238,7 +247,7 @@ object Main: TMain
           Text = '0.00'
           OnKeyDown = mDeviceValueEdit
         end
-        object Button8: TButton
+        object mJogStopBtn: TButton
           Left = 128
           Top = 23
           Width = 41
@@ -246,6 +255,15 @@ object Main: TMain
           Caption = 'Stop'
           TabOrder = 5
           OnMouseDown = DeviceBtnDown
+        end
+        object mJogStopModeCB: TCheckBox
+          Left = 184
+          Top = 50
+          Width = 78
+          Height = 17
+          Caption = 'Profiled Stop'
+          TabOrder = 6
+          OnClick = mJogModeCBClick
         end
       end
       object GroupBox4: TGroupBox
@@ -466,9 +484,9 @@ object Main: TMain
           TabOrder = 0
         end
         object motorPositionE: mtkFloatLabeledEdit
-          Left = 150
-          Top = 1
-          Width = 83
+          Left = 168
+          Top = -3
+          Width = 171
           Height = 37
           EditLabel.Width = 37
           EditLabel.Height = 13
@@ -496,126 +514,98 @@ object Main: TMain
     end
     object JoyStickGB: TGroupBox
       Left = 501
-      Top = 0
-      Width = 185
+      Top = 6
+      Width = 212
       Height = 449
       Caption = 'JoyStick'
       TabOrder = 2
-      object JoystickAvgZPos: TLabel
-        Left = 24
-        Top = 341
-        Width = 101
-        Height = 13
-        Caption = 'JoystickAVGZPosition'
-      end
       object JoystickZPosition: TLabel
-        Left = 24
-        Top = 322
+        Left = 16
+        Top = 116
         Width = 81
         Height = 13
         Caption = 'JoystickZPosition'
       end
       object JoystickXPosition: TLabel
-        Left = 24
-        Top = 231
+        Left = 16
+        Top = 78
         Width = 81
         Height = 13
         Caption = 'JoystickZPosition'
-      end
-      object JoystickAVGXPosition: TLabel
-        Left = 24
-        Top = 250
-        Width = 101
-        Height = 13
-        Caption = 'JoystickAVGZPosition'
       end
       object JoystickYPosition: TLabel
-        Left = 24
-        Top = 277
+        Left = 16
+        Top = 97
         Width = 81
         Height = 13
         Caption = 'JoystickZPosition'
       end
-      object JoystickAVGYPosition: TLabel
-        Left = 24
-        Top = 296
-        Width = 101
-        Height = 13
-        Caption = 'JoystickAVGZPosition'
-      end
       object JoystickButton1: TLabel
-        Left = 24
-        Top = 361
+        Left = 16
+        Top = 155
         Width = 76
         Height = 13
         Caption = 'JoystickButton1'
       end
       object JoystickButton2: TLabel
-        Left = 24
-        Top = 380
+        Left = 16
+        Top = 174
         Width = 76
         Height = 13
         Caption = 'JoystickButton1'
       end
       object JoystickButton3: TLabel
-        Left = 24
-        Top = 399
+        Left = 16
+        Top = 193
         Width = 76
         Height = 13
         Caption = 'JoystickButton1'
       end
       object JoystickButton4: TLabel
-        Left = 24
-        Top = 418
+        Left = 16
+        Top = 212
         Width = 76
         Height = 13
         Caption = 'JoystickButton1'
       end
-      object GroupBox1: TGroupBox
-        Left = 3
-        Top = 16
-        Width = 179
-        Height = 201
-        Caption = 'Velocity Settings'
+      object jsAxisRG: TRadioGroup
+        Left = 112
+        Top = 18
+        Width = 89
+        Height = 54
+        Caption = 'Joystick Axis'
+        Columns = 3
+        ItemIndex = 0
+        Items.Strings = (
+          'x'
+          'y'
+          'z')
         TabOrder = 0
-        object RadioGroup1: TRadioGroup
-          Left = 3
-          Top = 24
-          Width = 185
-          Height = 59
-          Caption = 'Presets'
-          Columns = 4
-          ItemIndex = 0
-          Items.Strings = (
-            '1'
-            '2'
-            '3'
-            '4')
-          TabOrder = 0
-        end
-        object maxJoyVel: mtkFloatLabeledEdit
-          Left = 16
-          Top = 112
-          Width = 65
-          Height = 21
-          EditLabel.Width = 60
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Max Velocity'
-          TabOrder = 1
-          Text = '0.00'
-        end
-        object JoySteps: TIntegerLabeledEdit
-          Left = 96
-          Top = 112
-          Width = 49
-          Height = 21
-          EditLabel.Width = 28
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Gears'
-          TabOrder = 2
-          Text = '4'
-          Value = 4
-        end
+        OnClick = jsAxisRGClick
+      end
+      object jsStateRG: TRadioGroup
+        Left = 17
+        Top = 18
+        Width = 89
+        Height = 54
+        Caption = 'State'
+        ItemIndex = 0
+        Items.Strings = (
+          'Enabled'
+          'Disabled')
+        TabOrder = 1
+        OnClick = jsAxisRGClick
+      end
+      object mNrOfGearsLbl: TIntegerLabeledEdit
+        Left = 16
+        Top = 248
+        Width = 65
+        Height = 21
+        EditLabel.Width = 55
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Nr of Gears'
+        TabOrder = 2
+        Text = '0'
       end
     end
   end

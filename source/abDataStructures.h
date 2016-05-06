@@ -37,15 +37,15 @@ struct HardwareInformation : public ABObject
 };
 
 /// <summary> Values that represent the motor Jog Modes. </summary>
-enum JogModes : short
+enum JogMoveMode : short
 {
 	jmJogModeUndefined = 0x00,///<Undefined
 	jmContinuous = 0x01,///<Continuous jogging
 	jmSingleStep = 0x02,///<Jog 1 step at a time
 };
 
-/// <summary> Values that represent the motor Jog Modes. </summary>
-enum StopModes : short
+/// <summary> Values that represent the motor Stop Modes. </summary>
+enum StopMode : short
 {
 	smStopModeUndefined = 0x00,///<Undefined
 	smImmediate = 0x01,///<Stops immediate

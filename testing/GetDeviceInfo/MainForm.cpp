@@ -26,10 +26,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TForm(Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-	mRunningXAverage(0),
-	mRunningYAverage(0),
-	mRunningZAverage(0),
-	mAlpha(0.9),
     mJoyStick((int) Handle)
 {
 	TMemoLogger::mMemoIsEnabled = false;
@@ -83,6 +79,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     connectAllDevicesExecute(Sender);
 
 	mJoyStick.connect();
+    mJoyStick.enable();
 }
 
 //---------------------------------------------------------------------------
@@ -113,7 +110,13 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
 
             a = motor->getJogAcceleration();
             mJogAcc->SetNumber(a);
-            //
+
+            JogMoveMode jm = motor->getJogMoveMode();
+            mJogModeCB->Checked = (jm == jmContinuous) ? true : false;
+
+            StopMode sm = motor->getJogStopMode();
+            mJogStopModeCB->Checked = (sm == smProfiled) ? true : false;
+
 			mJoyStick.getXAxis().assignMotor(motor);
 			mJoyStick.getYAxis().assignMotor(motor);
 
@@ -125,6 +128,8 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
 
             mJoyStick.getButton(3).setForward();
             mJoyStick.getButton(4).setReverse();
+
+            updateJoyStickAxes();
         }
 
     	//Populate device frame
@@ -133,6 +138,30 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
     }
 }
 
+void TMain::updateJoyStickAxes()
+{
+    switch(jsAxisRG->ItemIndex)
+    {
+        case 0:
+            mJoyStick.getXAxis().enable();
+            mJoyStick.getYAxis().disable();
+            mJoyStick.getZAxis().disable();
+        break;
+        case 1:
+            mJoyStick.getXAxis().disable();
+            mJoyStick.getYAxis().enable();
+            mJoyStick.getZAxis().disable();
+        break;
+        case 2:
+            mJoyStick.getXAxis().disable();
+            mJoyStick.getYAxis().disable();
+            mJoyStick.getZAxis().enable();
+        break;
+        default:
+            Log(lError) << "Bad joystick axes";
+        break;
+    }
+}
 //---------------------------------------------------------------------------
 void __fastcall TMain::identifyCurrentExecute(TObject *Sender)
 {
@@ -385,13 +414,28 @@ void __fastcall TMain::mJogModeCBClick(TObject *Sender)
     	return;
     }
 
-	if(mJogModeCB->Checked)
+	TCheckBox* cb = (TCheckBox*)(Sender);
+    if(cb == mJogModeCB)
     {
-		motor->setJogMode(jmContinuous, smImmediate);
+        if(mJogModeCB->Checked)
+        {
+            motor->setJogMoveMode(jmContinuous);
+        }
+        else
+        {
+            motor->setJogMoveMode(jmSingleStep);
+        }
     }
-    else
+    else if(cb == mJogStopModeCB)
     {
-		motor->setJogMode(jmSingleStep, smImmediate);
+        if(mJogStopModeCB->Checked)
+        {
+            motor->setJogStopMode(smProfiled);
+        }
+        else
+        {
+            motor->setJogStopMode(smImmediate);
+        }
     }
 }
 
@@ -399,6 +443,7 @@ void __fastcall TMain::mJogModeCBClick(TObject *Sender)
 void __fastcall TMain::DeviceBtnDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y)
 {
+
 	TButton* btn = (TButton*)(Sender);
     if(btn == Button3)
     {
@@ -410,9 +455,9 @@ void __fastcall TMain::DeviceBtnDown(TObject *Sender, TMouseButton Button,
 		jogBackwardsExecute(NULL);
     }
 
-    if(btn == Button8)
+    if(btn == mJogStopBtn)
     {
-	    stopMotorExecute(NULL);
+	    stopMotorExecute(btn);
     }
 
     if(btn == fwdDriveBtn)
@@ -423,6 +468,8 @@ void __fastcall TMain::DeviceBtnDown(TObject *Sender, TMouseButton Button,
     {
 		moveBackwardExecute(Sender);
     }
+
+    jsStateRG->ItemIndex = 1; //Disabled
 }
 
 //---------------------------------------------------------------------------
@@ -444,6 +491,22 @@ void __fastcall TMain::Button5Click(TObject *Sender)
     	return;
     }
 	motor->getEncoderCounts();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::jsAxisRGClick(TObject *Sender)
+{
+	TRadioGroup *rg = (TRadioGroup*)(Sender);
+
+	if(rg == jsAxisRG)
+    {
+		updateJoyStickAxes();
+    }
+    else if(rg == jsStateRG)
+    {
+    	jsStateRG->ItemIndex == 0 ?
+    		mJoyStick.enable() : mJoyStick.disable();
+    }
 }
 
 

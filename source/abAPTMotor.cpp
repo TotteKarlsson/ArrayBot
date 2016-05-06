@@ -26,4 +26,7 @@ void APTMotor::post(const MotorCommand& cmd)
 	mMotorMessageContainer.post(cmd);
 }
 
-
+MotorCommandEnum APTMotor::getLastCommand()
+{
+	return mMotorMessageProcessor.getLastProcessedMessage();
+}

@@ -47,7 +47,12 @@ class AB_CORE APTMotor : public APTDevice
         virtual void 		                stopProfiled(bool inThread = true) = 0;
 
         									///Jogging
-		virtual bool	     				setJogMode(JogModes mode = jmSingleStep, StopModes stopMode = smProfiled) = 0;
+		virtual bool	     				setJogMoveMode(JogMoveMode mode) = 0;
+		virtual bool	     				setJogStopMode(StopMode stopMode = smProfiled) = 0;
+		virtual JogMoveMode	     			getJogMoveMode() = 0;
+		virtual StopMode     				getJogStopMode() = 0;
+
+
         virtual double	                	getJogVelocity() = 0;
         virtual double	          			getJogAcceleration() = 0;
 
@@ -59,14 +64,13 @@ class AB_CORE APTMotor : public APTDevice
         virtual void		                forward(bool inThread = true) = 0;
         virtual void		                reverse(bool inThread = true) = 0;
         virtual void		                moveDistance(double distance, bool inThread = true) = 0;
-
-
-
+        MotorCommandEnum					getLastCommand();
     protected:
     	Timer				                mStatusTimer;
         unsigned long			            mStatusBits;
         ScalingFactors			            mScalingFactors;
 		HardwareInformation 				mHWInfo;
+
 
 		void                                post(const MotorCommand& cmd);
         MotorMessageProcessor				mMotorMessageProcessor;
