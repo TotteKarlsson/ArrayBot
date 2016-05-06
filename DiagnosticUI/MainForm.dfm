@@ -21,7 +21,6 @@ object Main: TMain
     Align = alLeft
     Caption = 'Cover Slip Control'
     TabOrder = 0
-    ExplicitHeight = 357
     object Button1: TButton
       Left = 16
       Top = 24
@@ -549,8 +548,6 @@ object Main: TMain
     Align = alRight
     Caption = 'Whisker Control'
     TabOrder = 1
-    ExplicitLeft = 508
-    ExplicitHeight = 357
     object Button3: TButton
       Left = 24
       Top = 24
@@ -575,8 +572,6 @@ object Main: TMain
     Height = 387
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 323
-    ExplicitHeight = 357
   end
   object Panel2: TPanel
     Left = 0
@@ -586,8 +581,6 @@ object Main: TMain
     Align = alBottom
     Caption = 'Panel2'
     TabOrder = 3
-    ExplicitTop = 357
-    ExplicitWidth = 693
     object infoMemo: TMemo
       Left = 186
       Top = 1
@@ -595,7 +588,6 @@ object Main: TMain
       Height = 138
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 506
     end
     object GroupBox3: TGroupBox
       Left = 1

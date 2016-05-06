@@ -376,7 +376,7 @@ bool LongTravelStage::setJogAcceleration(double newAcc)
     int a;
     int v;
     ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
-    int err = ISC_SetJogVelParams(mSerial.c_str(), v, newAcc * mScalingFactors.acceleration);
+    int err = ISC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v );
 
     if(err != 0)
     {

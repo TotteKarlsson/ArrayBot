@@ -10,8 +10,7 @@ TMain *Main;
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 	: TForm(Owner)
-{
-}
+{}
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::Joystick1Move(TObject *Sender, TButtons Pressed, int X, int Y)

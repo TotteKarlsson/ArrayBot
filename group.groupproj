@@ -18,6 +18,9 @@
         <Projects Include="testing\GetDeviceInfo\GetTLDInfo.cbproj">
             <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
+        <Projects Include="DiagnosticUI\DiagUI.cbproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +74,23 @@
     <Target Name="GetTLDInfo:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="testing\GetDeviceInfo\GetTLDInfo.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="DiagUI">
+        <MSBuild Projects="DiagnosticUI\DiagUI.cbproj"/>
+    </Target>
+    <Target Name="DiagUI:Clean">
+        <MSBuild Projects="DiagnosticUI\DiagUI.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DiagUI:Make">
+        <MSBuild Projects="DiagnosticUI\DiagUI.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;VCLCommon;DuneComponents;abCore;GetTLDInfo"/>
+        <CallTarget Targets="mtkCommon;VCLCommon;DuneComponents;abCore;GetTLDInfo;DiagUI"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;GetTLDInfo:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;GetTLDInfo:Clean;DiagUI:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;GetTLDInfo:Make"/>
+        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;GetTLDInfo:Make;DiagUI:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

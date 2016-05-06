@@ -309,56 +309,45 @@ void __fastcall TMain::StatusTimerTimer(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
+
 	if(Key != vkReturn)
     {
     	return;
     }
     APTMotor* motor = getCurrentMotor();
+
+    if(!motor)
+    {
+    	Log(lError) << "No motor to set values for";
+        return;
+    }
+
+	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
     if(e == mMaxVelocity)
     {
         double vel = mMaxVelocity->GetValue();
         Log(lInfo) << "New velocity: " <<vel;
-
-        if(motor)
-        {
-            motor->setMaxVelocity(vel);
-        }
+        motor->setMaxVelocity(vel);
     }
-
-    if(e == mAcceleration)
+    else if(e == mAcceleration)
     {
         double a = mAcceleration->GetValue();
         Log(lInfo) << "New acceleration: " <<a;
-
-        if(motor)
-        {
-            motor->setAcceleration(a);
-        }
+        motor->setAcceleration(a);
     }
-
-    if(e == mJogVelocity)
+    else if(e == mJogVelocity)
     {
         double vel = mJogVelocity->GetValue();
         Log(lInfo) << "New JOG velocity (mm/s): " <<vel;
-
-        if(motor)
-        {
-            motor->setJogVelocity(vel);
-			mJoyStick.getXAxis().setMaxVelocity(vel);
-			mJoyStick.getYAxis().setMaxVelocity(vel);
-
-        }
+        motor->setJogVelocity(vel);
+		mJoyStick.getXAxis().setMaxVelocity(vel);
+		mJoyStick.getYAxis().setMaxVelocity(vel);
     }
-    if(e == mJogAcc)
+    else if(e == mJogAcc)
     {
         double a = mJogAcc->GetValue();
         Log(lInfo) << "New JOG acceleration (mm/(s*s)): " <<a;
-
-        if(motor)
-        {
-            motor->setJogAcceleration(a);
-        }
+        motor->setJogAcceleration(a);
     }
 }
 

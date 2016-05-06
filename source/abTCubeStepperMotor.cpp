@@ -207,7 +207,7 @@ void TCubeStepperMotor::stopProfiled(bool inThread)
 double TCubeStepperMotor::getPosition()
 {
     int pos = SCC_GetPosition(mSerial.c_str());
-    Log(lDebug4) <<"Pos = "<<pos;
+//    Log(lDebug4) <<"Pos = "<<pos;
 	return pos / mScalingFactors.position;
 }
 
@@ -356,8 +356,7 @@ double TCubeStepperMotor::getJogVelocity()
 
 bool TCubeStepperMotor::setJogVelocity(double newVel)
 {
-    int a;
-    int v;
+    int a, v;
     SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
     int err = SCC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
 	Log(lDebug) << "Setting Jog Velocity parameters: "<<a<<" : "<<newVel * mScalingFactors.velocity;
@@ -370,8 +369,7 @@ bool TCubeStepperMotor::setJogVelocity(double newVel)
 
 bool TCubeStepperMotor::setJogAcceleration(double newAcc)
 {
-    int a;
-    int v;
+    int a, v;
     SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
     int err = SCC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v);
 
