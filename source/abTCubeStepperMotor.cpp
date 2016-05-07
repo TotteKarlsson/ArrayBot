@@ -239,7 +239,7 @@ double TCubeStepperMotor::getAcceleration()
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool TCubeStepperMotor::setMaxVelocity(double vel)
+bool TCubeStepperMotor::setVelocity(double vel)
 {
  	MOT_VelocityParameters p;
     SCC_GetVelParamsBlock(mSerial.c_str(), &p);
@@ -253,29 +253,19 @@ bool TCubeStepperMotor::setMaxVelocity(double vel)
         Log(lError) <<tlError(e);
     }
 
-//        if(isForwarding())
-//        {
-//            forward();
-//        }
-//        else if (isReversing())
-//        {
-//            reverse();
-//        }
-
-
 	return true;
 }
 
-bool TCubeStepperMotor::setMaxVelocityForward(double vel)
+bool TCubeStepperMotor::setVelocityForward(double vel)
 {
-	setMaxVelocity(vel);
+	setVelocity(vel);
     forward();
     return true;
 }
 
-bool TCubeStepperMotor::setMaxVelocityReverse(double vel)
+bool TCubeStepperMotor::setVelocityReverse(double vel)
 {
-	setMaxVelocity(vel);
+	setVelocity(vel);
     reverse();
     return true;
 }

@@ -139,12 +139,13 @@ class TMain : public TForm
         LogFileReader               mLogFileReader;
         void __fastcall             logMsg();
 
+        IniFile						mIniFile;
+		JoyStick					mJoyStick;
+
         XYZUnit						mXYZUnit;
 		void __fastcall		        OnException();
 		APTDevice* 					getCurrentDevice();
 		APTMotor* 					getCurrentMotor();
-		JoyStick					mJoyStick;
-
 
         void __fastcall 			JMButtonUpUpdate(TMessage &msg);
         void __fastcall 			JMButtonDownUpdate(TMessage &msg);

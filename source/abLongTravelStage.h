@@ -29,9 +29,10 @@ class AB_CORE LongTravelStage : public APTMotor
         bool		                    identify();
         double	                        getPosition();
         double	        		        getVelocity();
-		bool	                    	setMaxVelocity(double v);
-		bool	                    	setMaxVelocityForward(double v);
-		bool	                    	setMaxVelocityReverse(double v);
+
+		bool	                    	setVelocity(double v);
+		bool	                    	setVelocityForward(double v);
+		bool	                    	setVelocityReverse(double v);
 
         double          		        getAcceleration();
 		bool	                    	setAcceleration(double a);
@@ -45,6 +46,10 @@ class AB_CORE LongTravelStage : public APTMotor
         void 		                    stopProfiled(bool inThread = true);
 
 										///Jogging
+        bool	                		setJogVelocity(double v);
+        bool	                		setMaxJogVelocity(double v);
+        bool	                		setJogAcceleration(double a);
+
         double	                		getJogVelocity();
         double	                		getJogAcceleration();
 
@@ -54,11 +59,8 @@ class AB_CORE LongTravelStage : public APTMotor
         bool	                		setJogMoveMode(JogMoveMode mode);
         bool	                		setJogStopMode(StopMode mode);
 
-        JogMoveMode	                		getJogMoveMode();
-		StopMode 						getJogStopMode();
-
-        bool	                		setJogVelocity(double v);
-        bool	                		setJogAcceleration(double a);
+        JogMoveMode	                	getJogMoveMode();
+  		StopMode 						getJogStopMode();
 
         void		                    forward(bool inThread = true);
         void		                    reverse(bool inThread = true);

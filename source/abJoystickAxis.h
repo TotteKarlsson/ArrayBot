@@ -2,7 +2,7 @@
 #define abJoystickAxisH
 #include "CoreExporter.h"
 #include "abABObject.h"
-#include <Winapi.Messages.hpp>
+
 //---------------------------------------------------------------------------
 
 class APTMotor;

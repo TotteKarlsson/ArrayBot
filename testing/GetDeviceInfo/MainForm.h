@@ -102,11 +102,11 @@ class TMain : public TForm
 	TLabel *JoystickButton2;
 	TLabel *JoystickButton3;
 	TLabel *JoystickButton4;
-	TRadioGroup *jsAxisRG;
 	TSplitter *Splitter1;
 	TRadioGroup *jsStateRG;
 	TIntegerLabeledEdit *mNrOfGearsLbl;
 	TCheckBox *mJogStopModeCB;
+	TRadioGroup *jsAxisRG;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);

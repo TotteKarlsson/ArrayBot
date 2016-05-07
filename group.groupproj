@@ -15,9 +15,6 @@
         <Projects Include="source\abCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="testing\GetDeviceInfo\GetTLDInfo.cbproj">
-            <Dependencies>source\abCore.cbproj</Dependencies>
-        </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
             <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
@@ -65,15 +62,6 @@
     <Target Name="abCore:Make">
         <MSBuild Projects="source\abCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="GetTLDInfo" DependsOnTargets="abCore">
-        <MSBuild Projects="testing\GetDeviceInfo\GetTLDInfo.cbproj"/>
-    </Target>
-    <Target Name="GetTLDInfo:Clean" DependsOnTargets="abCore:Clean">
-        <MSBuild Projects="testing\GetDeviceInfo\GetTLDInfo.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="GetTLDInfo:Make" DependsOnTargets="abCore:Make">
-        <MSBuild Projects="testing\GetDeviceInfo\GetTLDInfo.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="ArrayBot" DependsOnTargets="abCore">
         <MSBuild Projects="UI\ArrayBot.cbproj"/>
     </Target>
@@ -84,13 +72,13 @@
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;VCLCommon;DuneComponents;abCore;GetTLDInfo;ArrayBot"/>
+        <CallTarget Targets="mtkCommon;VCLCommon;DuneComponents;abCore;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;GetTLDInfo:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;GetTLDInfo:Make;ArrayBot:Make"/>
+        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

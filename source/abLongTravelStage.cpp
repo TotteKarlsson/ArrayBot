@@ -228,7 +228,7 @@ double LongTravelStage::getVelocity()
   	return v / mScalingFactors.velocity;
 }
 
-bool LongTravelStage::setMaxVelocity(double vel)
+bool LongTravelStage::setVelocity(double vel)
 {
  	MOT_VelocityParameters p;
     ISC_GetVelParamsBlock(mSerial.c_str(), &p);
@@ -255,16 +255,16 @@ bool LongTravelStage::setMaxVelocity(double vel)
 	return true;
 }
 
-bool LongTravelStage::setMaxVelocityForward(double vel)
+bool LongTravelStage::setVelocityForward(double vel)
 {
-	setMaxVelocity(vel);
+	setVelocity(vel);
     forward();
     return true;
 }
 
-bool LongTravelStage::setMaxVelocityReverse(double vel)
+bool LongTravelStage::setVelocityReverse(double vel)
 {
-	setMaxVelocity(vel);
+	setVelocity(vel);
     reverse();
     return true;
 }

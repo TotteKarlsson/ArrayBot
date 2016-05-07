@@ -14,7 +14,7 @@ APTDevice::~APTDevice()
 
 string APTDevice::getSerial()
 {
-	return mSerial;
+	return mSerial.getValue();
 }
 bool APTDevice::isConnected()
 {

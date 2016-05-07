@@ -18,25 +18,25 @@ using mtk::IniFile;
 class AB_CORE XYZUnit : public ABObject
 {
 	public:
-    					        XYZUnit(JoyStick* js);
+    					        XYZUnit(const string& name, JoyStick* js, IniFile& iniFile);
     					        ~XYZUnit();
 		bool				    initialize();
 		APTMotor*			    getXMotor();
 		APTMotor*			    getYMotor();
 		APTMotor*			    getZMotor();
 
-        IniFileProperties	    mProperties;
+
         Property<int>		    mXMotorSerialNr;
         Property<int>		    mYMotorSerialNr;
         Property<int>		    mZMotorSerialNr;
     	DeviceManager	        mDeviceManager;
 
 	protected:
-
+        IniFileProperties	    mProperties;
         APTMotor*			    mXMotor;
         APTMotor*			    mYMotor;
         APTMotor*			    mZMotor;
         JoyStick*               mJoyStick;
-        IniFile					mIniFile;
+        IniFile&				mIniFile;
 };
 #endif

@@ -9,9 +9,7 @@ JoyStick::JoyStick(int hwnd)
 :
 mHandle(hwnd),
 mEnabled(false)
-{
-
-}
+{}
 
 JoyStick::~JoyStick()
 {
@@ -20,17 +18,20 @@ JoyStick::~JoyStick()
   		joyReleaseCapture(mJoystickID);
     }
 }
+
 bool JoyStick::enable()
 {
 	mEnabled = true;
     mXAxis.enable();
     mYAxis.enable();
     mZAxis.enable();
+    return true;
 }
 
 bool JoyStick::disable()
 {
 	mEnabled = false;
+    return true;
 }
 
 bool JoyStick::isEnabled()

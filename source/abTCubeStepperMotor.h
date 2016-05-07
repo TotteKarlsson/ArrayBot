@@ -28,12 +28,16 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 				                        //!General commands
         double	                        getPosition();
         double	        		        getVelocity();
-		bool	                    	setMaxVelocity(double v);
-		bool	                    	setMaxVelocityForward(double v);
-		bool	                    	setMaxVelocityReverse(double v);
+//        double	        		        getMaxVelocity();
+		bool	                    	setVelocity(double v);
+		bool	                    	setVelocityForward(double v);
+		bool	                    	setVelocityReverse(double v);
 
         double          		        getAcceleration();
-		bool	                    	setAcceleration(double a);
+//        double          		        getMaxAcceleration();
+
+    	bool	                    	setAcceleration(double a);
+
         unsigned long	                getStatusBits();
 
 				                        ///Control commands
@@ -51,11 +55,16 @@ class AB_CORE TCubeStepperMotor : public APTMotor
         bool	                		setJogMoveMode(JogMoveMode mode);
         bool	                		setJogStopMode(StopMode mode);
 
-        JogMoveMode	                		getJogMoveMode();
+        JogMoveMode	                   	getJogMoveMode();
 		StopMode 						getJogStopMode();
 
         bool	                		setJogVelocity(double v);
         bool	                		setJogAcceleration(double a);
+
+//        bool	                		setMaxJogVelocity(double v);
+//        bool	                		setMaxJogAcceleration(double a);
+//        double	        	        	getMaxJogVelocity();
+//        double	    	      			getMaxJogAcceleration();
 
         void		                    forward(bool inThread = true);
         void		                    reverse(bool inThread = true);

@@ -327,7 +327,7 @@ void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState 
     {
         double vel = mMaxVelocity->GetValue();
         Log(lInfo) << "New velocity: " <<vel;
-        motor->setMaxVelocity(vel);
+        motor->setVelocity(vel);
     }
     else if(e == mAcceleration)
     {

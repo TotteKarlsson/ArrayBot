@@ -4,6 +4,8 @@
 #include "abABObject.h"
 #include "mtkProperties.h"
 #include "abUtilities.h"
+#include "mtkProperties.h"
+
 using namespace mtk;
 struct HardwareInformation;
 
@@ -30,10 +32,8 @@ class AB_CORE APTDevice : public ABObject
 
 
     protected:
-    	string 			                        mSerial;
-
-        						                //Save custom settings to INI file
-		Properties		                        mSettings;
+		Properties								mProperties;
+    	Property<string>                        mSerial;
 
 								                //DeviceTypeID enum
         DeviceTypeID	   		                mDeviceTypeID;

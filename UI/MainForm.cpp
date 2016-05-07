@@ -26,8 +26,10 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TForm(Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
+    mIniFile("ArrayBot.ini"),
     mJoyStick((int) Handle),
-    mXYZUnit(&mJoyStick)
+    mXYZUnit("CoverSlip Properties", &mJoyStick, mIniFile)
+
 {
 	TMemoLogger::mMemoIsEnabled = false;
 }
@@ -324,7 +326,7 @@ void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState 
     {
         double vel = mMaxVelocity->GetValue();
         Log(lInfo) << "New velocity: " <<vel;
-        motor->setMaxVelocity(vel);
+        motor->setVelocity(vel);
     }
     else if(e == mAcceleration)
     {

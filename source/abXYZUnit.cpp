@@ -8,19 +8,19 @@
 //---------------------------------------------------------------------------
 
 using namespace mtk;
-XYZUnit::XYZUnit(JoyStick* js)
+XYZUnit::XYZUnit(const string& name, JoyStick* js, IniFile& iniFile)
 :
-mJoyStick(js),
-mXMotor(NULL),
-mYMotor(NULL),
-mZMotor(NULL),
 mXMotorSerialNr(-1),
 mYMotorSerialNr(-1),
 mZMotorSerialNr(-1),
-mIniFile("ArrayBotProps.ini")
+mXMotor(NULL),
+mYMotor(NULL),
+mZMotor(NULL),
+mJoyStick(js),
+mIniFile(iniFile)
 {
 	//Setup properties
-    mProperties.setSection("CoverSlip Properties");
+    mProperties.setSection(name);
     mProperties.add((BaseProperty*) &mXMotorSerialNr.setup("XMotorSerial", -1, true));
     mProperties.add((BaseProperty*) &mYMotorSerialNr.setup("YMotorSerial", -1, true));
     mProperties.add((BaseProperty*) &mZMotorSerialNr.setup("ZMotorSerial", -1, true));
@@ -47,6 +47,8 @@ bool XYZUnit::initialize()
     if(mXMotor)
     {
     	Log(lInfo) << "Xmotor is connected";
+        //Load Motor Properties
+
         if(mJoyStick)
         {
         	mJoyStick->getXAxis().assignMotor(mXMotor);

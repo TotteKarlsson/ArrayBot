@@ -240,9 +240,9 @@ object Main: TMain
           Top = 81
           Width = 66
           Height = 21
-          EditLabel.Width = 37
+          EditLabel.Width = 60
           EditLabel.Height = 13
-          EditLabel.Caption = 'Velocity'
+          EditLabel.Caption = 'Max Velocity'
           TabOrder = 4
           Text = '0.00'
           OnKeyDown = mDeviceValueEdit

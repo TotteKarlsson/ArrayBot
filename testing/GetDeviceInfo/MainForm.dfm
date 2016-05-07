@@ -568,6 +568,30 @@ object Main: TMain
         Height = 13
         Caption = 'JoystickButton1'
       end
+      object jsStateRG: TRadioGroup
+        Left = 17
+        Top = 18
+        Width = 89
+        Height = 54
+        Caption = 'State'
+        ItemIndex = 0
+        Items.Strings = (
+          'Enabled'
+          'Disabled')
+        TabOrder = 0
+        OnClick = jsAxisRGClick
+      end
+      object mNrOfGearsLbl: TIntegerLabeledEdit
+        Left = 16
+        Top = 248
+        Width = 65
+        Height = 21
+        EditLabel.Width = 55
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Nr of Gears'
+        TabOrder = 1
+        Text = '0'
+      end
       object jsAxisRG: TRadioGroup
         Left = 112
         Top = 18
@@ -580,32 +604,8 @@ object Main: TMain
           'x'
           'y'
           'z')
-        TabOrder = 0
-        OnClick = jsAxisRGClick
-      end
-      object jsStateRG: TRadioGroup
-        Left = 17
-        Top = 18
-        Width = 89
-        Height = 54
-        Caption = 'State'
-        ItemIndex = 0
-        Items.Strings = (
-          'Enabled'
-          'Disabled')
-        TabOrder = 1
-        OnClick = jsAxisRGClick
-      end
-      object mNrOfGearsLbl: TIntegerLabeledEdit
-        Left = 16
-        Top = 248
-        Width = 65
-        Height = 21
-        EditLabel.Width = 55
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Nr of Gears'
         TabOrder = 2
-        Text = '0'
+        OnClick = jsAxisRGClick
       end
     end
   end

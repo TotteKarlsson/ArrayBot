@@ -192,7 +192,9 @@ APTDevice* DeviceManager::connectDevice(int serial)
     int res = TLI_GetDeviceInfo(toString(serial).c_str(), &deviceInfo);
     if(res == 0)
     {
-	    Log(lInfo) <<"Failed getting device info";
+	    Log(lError) <<"Failed getting device info for device with serial:"<<serial;
+		Log(lError) <<"Device with serial "<<serial<<" was not created";
+        return NULL;
     }
 
     Log(lInfo) <<"Device info: "<< ::toString(deviceInfo);

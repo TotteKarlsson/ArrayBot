@@ -5,7 +5,7 @@
 #include "abDataStructures.h"
 #include "abMotorMessageProcessor.h"
 #include "abMotorMessageContainer.h"
-
+#include "mtkRange.h"
 //---------------------------------------------------------------------------
 
 class AB_CORE APTMotor : public APTDevice
@@ -29,13 +29,25 @@ class AB_CORE APTMotor : public APTDevice
         virtual bool	                    startPolling() = 0;
         virtual bool	                    stopPolling() = 0;
 
+											//!Motor ranges
+        virtual Range<double>               getVelocityRange();
+		virtual bool	                    setVelocityRange(DoubleRange vr);
+//        virtual double	                	getMaxJogVelocity();
+//        virtual double	          			getMaxJogAcceleration();
+//        virtual bool	                    setMaxJogAcceleration(double a);
+
+//        virtual bool                        setAccelerationRange(DoubleRange val);
+//        virtual DoubleRange                 getAccelerationRange();
+
 						                    //!General commands
         virtual bool		                identify() = 0;
         virtual double	                    getPosition() = 0;
+
         virtual double	                    getVelocity() = 0;
-        virtual bool	                    setMaxVelocity(double vel) = 0;
-		virtual bool	                    setMaxVelocityForward(double v) = 0;
-		virtual bool	                    setMaxVelocityReverse(double v) = 0;
+        virtual bool	                    setVelocity(double vel) = 0;
+
+		virtual bool	                    setVelocityForward(double v) = 0;
+		virtual bool	                    setVelocityReverse(double v) = 0;
 
         virtual double                      getAcceleration() = 0;
         virtual bool                        setAcceleration(double val) = 0;
@@ -52,8 +64,9 @@ class AB_CORE APTMotor : public APTDevice
 		virtual JogMoveMode	     			getJogMoveMode() = 0;
 		virtual StopMode     				getJogStopMode() = 0;
 
-
         virtual double	                	getJogVelocity() = 0;
+
+
         virtual double	          			getJogAcceleration() = 0;
 
         virtual void		                jogForward(bool inThread = true) = 0;
@@ -65,12 +78,17 @@ class AB_CORE APTMotor : public APTDevice
         virtual void		                reverse(bool inThread = true) = 0;
         virtual void		                moveDistance(double distance, bool inThread = true) = 0;
         MotorCommandEnum					getLastCommand();
+
     protected:
     	Timer				                mStatusTimer;
         unsigned long			            mStatusBits;
         ScalingFactors			            mScalingFactors;
 		HardwareInformation 				mHWInfo;
 
+        Property< Range<double> >  			mVelocityRange;
+//        Property<double>					mMaxJogVelocity;
+//        Property<double>					mMaxAcceleration;
+//        Property<double>					mMaxJogAcceleration;
 
 		void                                post(const MotorCommand& cmd);
         MotorMessageProcessor				mMotorMessageProcessor;

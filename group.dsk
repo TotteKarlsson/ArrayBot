@@ -1,59 +1,74 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'P:\ArrayBot\source\abLongTravelStage.cpp',0,1,343,49,361,0,0,,
-File_1=TSourceModule,'P:\ArrayBot\source\abTCubeStepperMotor.cpp',0,1,188,22,211,0,0,,{1,207,1}
-File_2=TSourceModule,'P:\ArrayBot\source\abAPTDevice.cpp',0,1,1,1,1,0,0,,
-File_3=TSourceModule,'P:\ArrayBot\source\abAPTMotor.cpp',0,1,1,1,1,0,0,,
-File_4=TSourceModule,'P:\libs\dsl\VCL\Components\mtkFloatLabeledEdit.cpp',0,1,126,1,149,0,0,,
-File_5=TSourceModule,'P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',0,1,301,25,320,0,0,,{1,344,50}
-File_6=TSourceModule,'P:\ArrayBot\source\CoreExporter.h',0,1,1,1,1,0,0,,
-File_7=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h',0,21,854,105,876,0,0,,
-File_8=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.StepperMotor.h',0,1,854,1,876,0,0,,
-File_9=TSourceModule,'P:\ArrayBot\source\abDataStructures.h',0,1,1,39,39,0,0,,
-File_10=TSourceModule,'P:\ArrayBot\source\abDeviceManager.cpp',0,1,178,47,205,0,0,,
-File_11=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xstring',0,1,1296,1,1319,0,0,,
+File_0=TSourceModule,'P:\libs\dsl\Common\mtkLogLevel.cpp',0,1,1,48,1,0,0,,
+File_1=TSourceModule,'P:\ArrayBot\source\abDeviceManager.cpp',0,1,188,1,219,0,0,,
+File_2=TSourceModule,'P:\ArrayBot\source\abLongTravelStage.cpp',0,1,1,1,11,0,0,,
+File_3=TSourceModule,'P:\ArrayBot\source\abTCubeStepperMotor.cpp',0,1,240,54,263,0,0,,
+File_4=TSourceModule,'P:\ArrayBot\source\abAPTDevice.cpp',0,1,1,30,17,0,0,,
+File_5=TSourceModule,'P:\ArrayBot\source\abJoystick.cpp',0,1,1,31,23,0,0,,
+File_6=TSourceModule,'P:\libs\dsl\Common\mtkStringUtils.cpp',0,1,1376,1,1391,0,0,,
+File_7=TSourceModule,'P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',0,1,319,40,336,0,0,,
+File_8=TSourceModule,'P:\libs\dsl\Common\mtkStopWatch.cpp',0,1,1,63,20,0,0,,
+File_9=TSourceModule,'P:\libs\dsl\Common\mtkTable.cpp',0,1,115,61,140,0,0,,
+File_10=TSourceModule,'P:\libs\dsl\Common\mtkConstants.cpp',0,1,1,1,1,0,0,,
 
 [Modules]
-Module0=P:\ArrayBot\source\abXYZUnit.cpp
-Module1=P:\ArrayBot\UI\JoyStick.cpp
-Module2=P:\ArrayBot\UI\Misc.cpp
-Module3=P:\ArrayBot\UI\MainForm.cpp
-Module4=P:\ArrayBot\source\abJoystickAxis.cpp
-Count=5
+Module0=P:\ArrayBot\source\abAPTMotor.cpp
+Module1=p:\libs\dsl\Common\mtkProperty.h
+Module2=P:\libs\dsl\Common\mtkRange.cpp
+Module3=P:\ArrayBot\source\abXYZUnit.cpp
+Module4=P:\ArrayBot\UI\ArrayBot.cbproj
+Module5=c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xstring
+Module6=P:\ArrayBot\UI\MainForm.cpp
+Count=7
 EditWindowCount=1
+
+[P:\ArrayBot\source\abAPTMotor.cpp]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[p:\libs\dsl\Common\mtkProperty.h]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[P:\libs\dsl\Common\mtkRange.cpp]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
 
 [P:\ArrayBot\source\abXYZUnit.cpp]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
-[P:\ArrayBot\UI\JoyStick.cpp]
-ModuleType=TSourceModule
-FormState=0
-FormOnTop=0
+[P:\ArrayBot\UI\ArrayBot.cbproj]
+ModuleType=TBaseProject
 
-[P:\ArrayBot\UI\Misc.cpp]
+[c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xstring]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
 [P:\ArrayBot\UI\MainForm.cpp]
 ModuleType=TSourceModule
-FormState=1
+FormState=0
 FormOnTop=0
 
-[P:\ArrayBot\source\abJoystickAxis.cpp]
-ModuleType=TSourceModule
+[P:\libs\dsl\VCL\Components\mtkFloatLabeledEdit.cpp]
 FormState=0
 FormOnTop=0
 
 [EditWindow0]
-ViewCount=5
-CurrentEditView=P:\ArrayBot\source\abXYZUnit.cpp
+ViewCount=7
+CurrentEditView=P:\ArrayBot\source\abAPTMotor.cpp
 View0=0
 View1=1
 View2=2
 View3=3
 View4=4
+View5=5
+View6=6
 PercentageSizes=1
 Create=1
 Visible=1
@@ -86,9 +101,9 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 [View0]
 CustomEditViewType=TEditView
 Module=P:\ArrayBot\UI\MainForm.cpp
-CursorX=14
-CursorY=28
-TopLine=1
+CursorX=1
+CursorY=29
+TopLine=19
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -96,47 +111,69 @@ EditViewName=P:\ArrayBot\UI\MainForm.cpp
 
 [View1]
 CustomEditViewType=TEditView
-Module=P:\ArrayBot\UI\Misc.cpp
-CursorX=60
-CursorY=20
-TopLine=49
+Module=P:\ArrayBot\UI\ArrayBot.cpp
+CursorX=1
+CursorY=28
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=P:\ArrayBot\UI\Misc.cpp
+EditViewName=P:\ArrayBot\UI\ArrayBot.cpp
 
 [View2]
 CustomEditViewType=TEditView
-Module=P:\ArrayBot\UI\JoyStick.cpp
-CursorX=18
-CursorY=20
-TopLine=12
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=P:\ArrayBot\UI\JoyStick.cpp
-
-[View3]
-CustomEditViewType=TEditView
 Module=P:\ArrayBot\source\abXYZUnit.cpp
 CursorX=1
-CursorY=7
-TopLine=1
+CursorY=46
+TopLine=19
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=P:\ArrayBot\source\abXYZUnit.cpp
 
-[View4]
+[View3]
 CustomEditViewType=TEditView
-Module=P:\ArrayBot\source\abJoystickAxis.cpp
-CursorX=20
-CursorY=67
-TopLine=52
+Module=c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xstring
+CursorX=43
+CursorY=805
+TopLine=728
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=P:\ArrayBot\source\abJoystickAxis.cpp
+EditViewName=c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xstring
+
+[View4]
+CustomEditViewType=TEditView
+Module=P:\libs\dsl\Common\mtkRange.cpp
+CursorX=38
+CursorY=15
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=P:\libs\dsl\Common\mtkRange.h
+
+[View5]
+CustomEditViewType=TEditView
+Module=P:\ArrayBot\source\abAPTMotor.cpp
+CursorX=1
+CursorY=9
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=P:\ArrayBot\source\abAPTMotor.cpp
+
+[View6]
+CustomEditViewType=TEditView
+Module=p:\libs\dsl\Common\mtkProperty.h
+CursorX=1
+CursorY=101
+TopLine=76
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=p:\libs\dsl\Common\mtkProperty.h
 
 [Watches]
 Count=0
@@ -163,10 +200,14 @@ Dockable=1
 StayOnTop=0
 
 [Breakpoints]
-Count=3
+Count=7
 Breakpoint0='C:\Program Files (x86)\Winsoft\Joystick\Examples\CBuilder\UDemo.cpp',29,'',0,1,'',1,0,0,'',1,'','','',0,''
 Breakpoint1='P:\ArrayBot\source\abLongTravelStage.cpp',470,'',0,1,'',1,0,0,'',1,'','','',0,''
 Breakpoint2='P:\ArrayBot\source\abTCubeStepperMotor.cpp',66,'',0,1,'',1,0,0,'',1,'','','',0,''
+Breakpoint3='P:\ArrayBot\source\abXYZUnit.cpp',44,'',0,1,'',1,0,0,'',1,'','','',0,''
+Breakpoint4='P:\ArrayBot\source\abAPTMotor.cpp',9,'',0,1,'',1,0,0,'',1,'','','',0,''
+Breakpoint5='P:\libs\dsl\Common\mtkRange.h',30,'',0,1,'',1,0,0,'',1,'','','',0,''
+Breakpoint6='P:\libs\dsl\Common\mtkRange.h',32,'',0,1,'',1,0,0,'',1,'','','',0,''
 
 [EmbarcaderoWin32Debugger_AddressBreakpoints]
 Count=0
@@ -517,8 +558,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-33784
-Top=-1252
+Left=-2040
+Top=-129
 Width=5305
 Height=4883
 MaxLeft=-1
@@ -627,7 +668,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=1891
 ClientHeight=3594
-TBDockHeight=7090
+TBDockHeight=3672
 LRDockWidth=1891
 Dockable=1
 StayOnTop=0
@@ -756,7 +797,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=1891
 ClientHeight=3818
-TBDockHeight=7090
+TBDockHeight=7070
 LRDockWidth=1891
 Dockable=1
 StayOnTop=0
@@ -786,8 +827,8 @@ Dockable=1
 StayOnTop=0
 TabPosition=0
 ActiveTabID=ProjectManager
-TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,TemplateView,TFileExplorerForm,ModelViewTool
+TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,ModelViewTool,TFileExplorerForm,TemplateView
 
 [ActiveProject]
-ActiveProject=6
+ActiveProject=5
 
