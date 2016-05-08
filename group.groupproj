@@ -3,11 +3,23 @@
         <ProjectGuid>{9D7B788E-1612-4D2A-99DA-365D58720234}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="..\dslib\Common\mtkCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\dslib\VCL\Common\VCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\dslib\VCL\Components\DuneComponents.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="source\abCore.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
             <Dependencies>source\abCore.cbproj</Dependencies>
+        </Projects>
+        <Projects Include="testing\GetDeviceInfo\GetTLDInfo.cbproj">
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -17,6 +29,33 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="mtkCommon">
+        <MSBuild Projects="..\dslib\Common\mtkCommon.cbproj"/>
+    </Target>
+    <Target Name="mtkCommon:Clean">
+        <MSBuild Projects="..\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkCommon:Make">
+        <MSBuild Projects="..\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLCommon">
+        <MSBuild Projects="..\dslib\VCL\Common\VCLCommon.cbproj"/>
+    </Target>
+    <Target Name="VCLCommon:Clean">
+        <MSBuild Projects="..\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLCommon:Make">
+        <MSBuild Projects="..\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DuneComponents">
+        <MSBuild Projects="..\dslib\VCL\Components\DuneComponents.cbproj"/>
+    </Target>
+    <Target Name="DuneComponents:Clean">
+        <MSBuild Projects="..\dslib\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneComponents:Make">
+        <MSBuild Projects="..\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="abCore">
         <MSBuild Projects="source\abCore.cbproj"/>
     </Target>
@@ -35,14 +74,23 @@
     <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="GetTLDInfo">
+        <MSBuild Projects="testing\GetDeviceInfo\GetTLDInfo.cbproj"/>
+    </Target>
+    <Target Name="GetTLDInfo:Clean">
+        <MSBuild Projects="testing\GetDeviceInfo\GetTLDInfo.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GetTLDInfo:Make">
+        <MSBuild Projects="testing\GetDeviceInfo\GetTLDInfo.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;ArrayBot"/>
+        <CallTarget Targets="mtkCommon;VCLCommon;DuneComponents;abCore;ArrayBot;GetTLDInfo"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean;GetTLDInfo:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;ArrayBot:Make"/>
+        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make;GetTLDInfo:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -91,9 +91,9 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <LinkPackageImports>rtl.bpi</LinkPackageImports>
         <Defines>POCO_STATIC;$(Defines)</Defines>
-        <BPILibOutputDir>$(DEBUG_INSTALL)\lib</BPILibOutputDir>
+        <BPILibOutputDir>$(DEBUG_BUILD)\lib</BPILibOutputDir>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;P:\ArrayBot\third_party\Kinesis;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <FinalOutputDir>$(DEBUG_INSTALL)\bin</FinalOutputDir>
+        <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>

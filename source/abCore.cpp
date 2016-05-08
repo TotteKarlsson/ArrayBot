@@ -27,9 +27,7 @@ extern "C" int _libmain(unsigned long reason)
 
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
-//#pragma comment(lib, "Thorlabs.MotionControl.TCube.BrushlessMotorB.lib")
 #pragma comment(lib, "Thorlabs.MotionControl.TCube.StepperMotorB.lib")
-//#pragma comment(lib, "Thorlabs.MotionControl.TCube.DCServoB.lib")
 #pragma comment(lib, "Thorlabs.MotionControl.TDIEngineB.lib")
 #pragma comment(lib, "Thorlabs.MotionControl.IntegratedStepperMotorsB.lib")
 

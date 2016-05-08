@@ -85,11 +85,11 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <Debugger_DebugSourcePath>P:\libs\dsl\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
-        <FinalOutputDir>$(DEBUG_INSTALL)\bin</FinalOutputDir>
+        <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;DuneComponents.bpi</LinkPackageImports>
-        <IncludePath>P:\ArrayBot\source;$(MOLECULIX_ROOT)\Common;$(DEBUG_INSTALL)\include;P:\ArrayBot\third_party\Kinesis;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>P:\ArrayBot\third_party\Kinesis;$(DEBUG_INSTALL)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>P:\ArrayBot\source;$(MOLECULIX_ROOT)\Common;$(DEBUG_BUILD)\include;P:\ArrayBot\third_party\Kinesis;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>P:\ArrayBot\third_party\Kinesis;$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
