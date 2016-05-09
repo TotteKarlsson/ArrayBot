@@ -12,27 +12,27 @@ File_9=TSourceModule,'P:\libs\dsl\Common\mtkTable.cpp',0,1,115,61,140,0,0,,
 File_10=TSourceModule,'P:\libs\dsl\Common\mtkConstants.cpp',0,1,1,1,1,0,0,,
 
 [Modules]
-Module0=P:\ArrayBot\source\abAPTMotor.cpp
-Module1=p:\libs\dsl\Common\mtkProperty.h
-Module2=P:\libs\dsl\Common\mtkRange.cpp
-Module3=P:\ArrayBot\source\abXYZUnit.cpp
-Module4=P:\ArrayBot\UI\ArrayBot.cbproj
+Module0=P:\ArrayBot\UI\MainForm.cpp
+Module1=default.htm
+Module2=P:\ArrayBot\UI\ArrayBot.cbproj
+Module3=P:\ArrayBot\source\abAPTMotor.cpp
+Module4=P:\ArrayBot\source\abXYZUnit.cpp
 Module5=c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xstring
-Module6=P:\ArrayBot\UI\MainForm.cpp
-Count=7
+Count=6
 EditWindowCount=1
 
+[P:\ArrayBot\UI\MainForm.cpp]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
+
+[default.htm]
+ModuleType=TURLModule
+
+[P:\ArrayBot\UI\ArrayBot.cbproj]
+ModuleType=TBaseProject
+
 [P:\ArrayBot\source\abAPTMotor.cpp]
-ModuleType=TSourceModule
-FormState=0
-FormOnTop=0
-
-[p:\libs\dsl\Common\mtkProperty.h]
-ModuleType=TSourceModule
-FormState=0
-FormOnTop=0
-
-[P:\libs\dsl\Common\mtkRange.cpp]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
@@ -42,33 +42,20 @@ ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
-[P:\ArrayBot\UI\ArrayBot.cbproj]
-ModuleType=TBaseProject
-
 [c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xstring]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
-[P:\ArrayBot\UI\MainForm.cpp]
-ModuleType=TSourceModule
-FormState=0
-FormOnTop=0
-
-[P:\libs\dsl\VCL\Components\mtkFloatLabeledEdit.cpp]
-FormState=0
-FormOnTop=0
-
 [EditWindow0]
-ViewCount=7
-CurrentEditView=P:\ArrayBot\source\abAPTMotor.cpp
+ViewCount=6
+CurrentEditView=P:\ArrayBot\UI\MainForm.cpp
 View0=0
 View1=1
 View2=2
 View3=3
 View4=4
 View5=5
-View6=6
 PercentageSizes=1
 Create=1
 Visible=1
@@ -99,6 +86,10 @@ BottomMiddlePanelClients=DockSite0,GraphDrawingModel
 BottomMiddelPanelData=0000080001020200000009000000446F636B536974653010000000477261706844726177696E67566965779A1D00000000000002F106000000000000FFFFFFFF
 
 [View0]
+CustomEditViewType=TWelcomePageView
+WelcomePageURL=bds:/default.htm
+
+[View1]
 CustomEditViewType=TEditView
 Module=P:\ArrayBot\UI\MainForm.cpp
 CursorX=1
@@ -109,7 +100,7 @@ Elisions=
 Bookmarks=
 EditViewName=P:\ArrayBot\UI\MainForm.cpp
 
-[View1]
+[View2]
 CustomEditViewType=TEditView
 Module=P:\ArrayBot\UI\ArrayBot.cpp
 CursorX=1
@@ -120,7 +111,7 @@ Elisions=
 Bookmarks=
 EditViewName=P:\ArrayBot\UI\ArrayBot.cpp
 
-[View2]
+[View3]
 CustomEditViewType=TEditView
 Module=P:\ArrayBot\source\abXYZUnit.cpp
 CursorX=1
@@ -131,7 +122,7 @@ Elisions=
 Bookmarks=
 EditViewName=P:\ArrayBot\source\abXYZUnit.cpp
 
-[View3]
+[View4]
 CustomEditViewType=TEditView
 Module=c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xstring
 CursorX=43
@@ -141,17 +132,6 @@ LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\xstring
-
-[View4]
-CustomEditViewType=TEditView
-Module=P:\libs\dsl\Common\mtkRange.cpp
-CursorX=38
-CursorY=15
-TopLine=1
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=P:\libs\dsl\Common\mtkRange.h
 
 [View5]
 CustomEditViewType=TEditView
@@ -163,17 +143,6 @@ LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=P:\ArrayBot\source\abAPTMotor.cpp
-
-[View6]
-CustomEditViewType=TEditView
-Module=p:\libs\dsl\Common\mtkProperty.h
-CursorX=1
-CursorY=101
-TopLine=76
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=p:\libs\dsl\Common\mtkProperty.h
 
 [Watches]
 Count=0
@@ -279,11 +248,11 @@ State=0
 Left=0
 Top=0
 Width=2062
-Height=6846
+Height=7432
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2062
-ClientHeight=6846
+ClientHeight=7432
 TBDockHeight=7158
 LRDockWidth=2000
 Dockable=1
@@ -315,8 +284,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-938
-Top=-12
+Left=-1016
+Top=-101
 Width=2844
 Height=6201
 MaxLeft=-1
@@ -335,7 +304,7 @@ Visible=0
 Docked=1
 State=0
 Left=-1016
-Top=264
+Top=-101
 Width=273
 Height=361
 MaxLeft=-1
@@ -439,11 +408,11 @@ State=0
 Left=0
 Top=0
 Width=2336
-Height=996
+Height=1230
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2336
-ClientHeight=996
+ClientHeight=1230
 TBDockHeight=2314
 LRDockWidth=2828
 Dockable=1
@@ -504,11 +473,11 @@ State=0
 Left=0
 Top=0
 Width=2062
-Height=6846
+Height=8770
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2062
-ClientHeight=6846
+ClientHeight=8770
 TBDockHeight=4883
 LRDockWidth=7148
 Dockable=1
@@ -520,8 +489,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=245
-Top=825
+Left=0
+Top=0
 Width=2859
 Height=3213
 MaxLeft=-1
@@ -558,8 +527,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-2040
-Top=-129
+Left=-1016
+Top=-101
 Width=5305
 Height=4883
 MaxLeft=-1
@@ -577,8 +546,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-1024
-Top=-152
+Left=0
+Top=-101
 Width=1844
 Height=3145
 MaxLeft=-1
@@ -766,7 +735,7 @@ Visible=0
 Docked=1
 State=0
 Left=0
-Top=23
+Top=0
 Width=3828
 Height=1104
 MaxLeft=-1
@@ -830,5 +799,5 @@ ActiveTabID=ProjectManager
 TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,ModelViewTool,TFileExplorerForm,TemplateView
 
 [ActiveProject]
-ActiveProject=5
+ActiveProject=4
 
