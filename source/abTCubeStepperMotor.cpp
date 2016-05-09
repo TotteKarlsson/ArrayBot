@@ -34,7 +34,7 @@ bool TCubeStepperMotor::connect()
         //Set jog mode to continous
         setJogMoveMode(jmContinuous);
         setJogVelocity(1.0);
-        setJogAcceleration(1.0);
+        setJogAcceleration(0.1);
 	    // start the device polling at 200ms intervals
     	if(!SCC_StartPolling(mSerial.c_str(), 200))
         {
@@ -194,25 +194,16 @@ void TCubeStepperMotor::stop(bool inThread)
 
 void TCubeStepperMotor::stopProfiled(bool inThread)
 {
-//	if(isActive())
+    int err = SCC_StopProfiled(mSerial.c_str());
+    if(err != 0)
     {
-		int err = SCC_StopProfiled(mSerial.c_str());
-        if(err != 0)
-        {
-            Log(lError) <<tlError(err);
-        }
-
-//        while(isActive())
-//        {
-//            //Log(lInfo) << "Waiting ...";
-//        }
+        Log(lError) <<tlError(err);
     }
 }
 
 double TCubeStepperMotor::getPosition()
 {
     int pos = SCC_GetPosition(mSerial.c_str());
-//    Log(lDebug4) <<"Pos = "<<pos;
 	return pos / mScalingFactors.position;
 }
 

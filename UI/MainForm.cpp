@@ -56,6 +56,32 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::FormCreate(TObject *Sender)
+{
+	TMemoLogger::mMemoIsEnabled = true;
+	mLogFileReader.start(true);
+
+	mXYZUnit.initialize();
+    connectAllDevicesExecute(Sender);
+
+    //Fill out edits
+    mMaxXYJogVelocityJoystick->SetNumber(mJoyStick.getXAxis().getMaxVelocity());
+    mXYJogAccelerationJoystick->SetNumber(mJoyStick.getXAxis().getAcceleration());
+
+    if(mXYZUnit.getZMotor())
+    {
+    	mMaxZJogVelocityJoystick->SetNumber(mXYZUnit.getZMotor()->getVelocity());
+    	mZJogAccelerationJoystick->SetNumber(mXYZUnit.getZMotor()->getAcceleration());
+    }
+
+	mNrOfGearsLbl->setValue(mJoyStick.getXAxis().getNumberOfGears());
+    mJoystickMessageRate->setValue(mJoyStick.getMessageRate());
+
+	mJoyStick.connect();
+//    mJoyStick.enable();
+}
+
 void __fastcall TMain::connectAllDevicesExecute(TObject *Sender)
 {
 	//Connect all available devices
@@ -68,19 +94,6 @@ void __fastcall TMain::connectAllDevicesExecute(TObject *Sender)
         devicesLB->Items->AddObject(serial.c_str(), (TObject*) device);
         device = mXYZUnit.mDeviceManager.getNext();
     }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormCreate(TObject *Sender)
-{
-	TMemoLogger::mMemoIsEnabled = true;
-	mLogFileReader.start(true);
-
-	mXYZUnit.initialize();
-    connectAllDevicesExecute(Sender);
-
-	mJoyStick.connect();
-    mJoyStick.enable();
 }
 
 //---------------------------------------------------------------------------
@@ -100,16 +113,10 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
         APTMotor* motor = dynamic_cast<APTMotor*>(device);
         if(motor)
         {
-        	double v = motor->getVelocity();
-			mMaxVelocity->SetNumber(v);
-
-        	double a = motor->getAcceleration();
-			mAcceleration->SetNumber(a);
-
-            v = motor->getJogVelocity();
+            double v = motor->getJogVelocity();
             mJogVelocity->SetNumber(v);
 
-            a = motor->getJogAcceleration();
+            double a = motor->getJogAcceleration();
             mJogAcc->SetNumber(a);
 
             JogMoveMode jm = motor->getJogMoveMode();
@@ -117,20 +124,6 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
 
             StopMode sm = motor->getJogStopMode();
             mJogStopModeCB->Checked = (sm == smProfiled) ? true : false;
-
-//			mJoyStick.getXAxis().assignMotor(motor);
-//			mJoyStick.getYAxis().assignMotor(motor);
-//
-//			mJoyStick.getXAxis().setMaxVelocity(mJogVelocity->GetNumber());
-//			mJoyStick.getYAxis().setMaxVelocity(mJogVelocity->GetNumber());
-//
-//			mJoyStick.getButton(3).assignMotor(motor);
-//			mJoyStick.getButton(4).assignMotor(motor);
-//
-//            mJoyStick.getButton(3).setForward();
-//            mJoyStick.getButton(4).setReverse();
-
-            updateJoyStickAxes();
         }
 
     	//Populate device frame
@@ -139,30 +132,6 @@ void __fastcall TMain::devicesLBClick(TObject *Sender)
     }
 }
 
-void TMain::updateJoyStickAxes()
-{
-//    switch(jsAxisRG->ItemIndex)
-//    {
-//        case 0:
-//            mJoyStick.getXAxis().enable();
-//            mJoyStick.getYAxis().disable();
-//            mJoyStick.getZAxis().disable();
-//        break;
-//        case 1:
-//            mJoyStick.getXAxis().disable();
-//            mJoyStick.getYAxis().enable();
-//            mJoyStick.getZAxis().disable();
-//        break;
-//        case 2:
-//            mJoyStick.getXAxis().disable();
-//            mJoyStick.getYAxis().disable();
-//            mJoyStick.getZAxis().enable();
-//        break;
-//        default:
-//            Log(lError) << "Bad joystick axes";
-//        break;
-//    }
-}
 //---------------------------------------------------------------------------
 void __fastcall TMain::identifyCurrentExecute(TObject *Sender)
 {
@@ -216,28 +185,6 @@ void __fastcall TMain::jogBackwardsExecute(TObject *Sender)
     }
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::moveForwardExecute(TObject *Sender)
-{
-	//Use whatever speed is selected
-    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
-    if(motor)
-    {
-    	motor->forward();
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::moveBackwardExecute(TObject *Sender)
-{
-	//Use whatever speed is selected
-    APTMotor* motor = dynamic_cast<APTMotor*>(getCurrentDevice());
-    if(motor)
-    {
-    	motor->reverse();
-    }
-}
-
 void __fastcall TMain::stopMotorExecute(TObject *Sender)
 {
 	//Use whatever speed is selected
@@ -246,6 +193,9 @@ void __fastcall TMain::stopMotorExecute(TObject *Sender)
     {
     	motor->stop();
     }
+
+	 mJoyStick.disable();
+    mXYZUnit.stopAll();
 }
 
 //---------------------------------------------------------------------------
@@ -270,23 +220,6 @@ void __fastcall TMain::StatusTimerTimer(TObject *Sender)
         motorPositionE->SetNumber(p);
 
         bitset<32> bits(motor->getStatusBits());
-//        Log(lInfo) << bits;
-//        String line1 = " 0  1  2  3  4  5  6  7  8  9  10";
-//        String line2 = bits.test(0) ? " 1" : " 0";
-//        line2 += bits.test(1) ? "  1" : "  0" ;
-//        line2 += bits.test(2) ? "  1" : "  0" ;
-//        line2 += bits.test(3) ? "  1" : "  0" ;
-//        line2 += bits.test(4) ? "  1" : "  0" ;
-//        line2 += bits.test(5) ? "  1" : "  0" ;
-//        line2 += bits.test(6) ? "  1" : "  0" ;
-//        line2 += bits.test(7) ? "  1" : "  0" ;
-//        line2 += bits.test(8) ? "  1" : "  0" ;
-//        line2 += bits.test(9) ? "  1" : "  0" ;
-//        line2 += bits.test(10) ? "   1" : "   0" ;
-
-//		  Memo1->Clear();
-//        Memo1->Lines->Add(line1);
-//        Memo1->Lines->Add(line2);
 
        	mIsActiveLabel->Caption 	= (motor->isActive()) 	    ? "True" : "False";
         mIsHomingLabel->Caption 	= (motor->isHoming()) 	    ? "True" : "False";
@@ -305,10 +238,8 @@ void __fastcall TMain::StatusTimerTimer(TObject *Sender)
     }
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift)
+void __fastcall TMain::DeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-
 	if(Key != vkReturn)
     {
     	return;
@@ -322,25 +253,11 @@ void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState 
     }
 
 	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
-    if(e == mMaxVelocity)
-    {
-        double vel = mMaxVelocity->GetValue();
-        Log(lInfo) << "New velocity: " <<vel;
-        motor->setVelocity(vel);
-    }
-    else if(e == mAcceleration)
-    {
-        double a = mAcceleration->GetValue();
-        Log(lInfo) << "New acceleration: " <<a;
-        motor->setAcceleration(a);
-    }
-    else if(e == mJogVelocity)
+    if(e == mJogVelocity)
     {
         double vel = mJogVelocity->GetValue();
         Log(lInfo) << "New JOG velocity (mm/s): " <<vel;
         motor->setJogVelocity(vel);
-		mJoyStick.getXAxis().setMaxVelocity(vel);
-		mJoyStick.getYAxis().setMaxVelocity(vel);
     }
     else if(e == mJogAcc)
     {
@@ -350,47 +267,57 @@ void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState 
     }
 }
 
-void __fastcall TMain::IncreaseVelBtnClick(TObject *Sender)
-{
-//	//Increase velocity
-//	double delta = 	mVelDeltaE->GetNumber();
-//
-//    APTMotor* motor = getCurrentMotor();
-//    if(motor == NULL)
-//    {
-//    	Log(lInfo) << "Motor object is null..";
-//    	return;
-//    }
-//	double cVel = motor->getVelocity();
-
-//	MotorCommand cmd(mcSetVelocity,  cVel + delta);
-//	mMotorMessageContainer.post(cmd);
-}
-
-void __fastcall TMain::DecreaseVelBtnClick(TObject *Sender)
-{
-//	//Increase velocity
-//	double delta = 	mVelDeltaE->GetNumber();
-//
-//    APTMotor* motor = getCurrentMotor();
-//    if(motor == NULL)
-//    {
-//    	Log(lInfo) << "Motor object is null..";
-//    	return;
-//    }
-//	double cVel = motor->getVelocity();
-
-//	MotorCommand cmd(mcSetVelocity,  cVel - delta);
-//	mMotorMessageContainer.post(cmd);
-}
-
 //---------------------------------------------------------------------------
-void __fastcall TMain::switchdirectionBtnClick(TObject *Sender)
+void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-//	MotorCommand cmd(mcSwitchDirection);
-//	mMotorMessageContainer.post(cmd);
-}
+	if(Key != vkReturn)
+    {
+    	return;
+    }
 
+	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
+    if(e == mMaxXYJogVelocityJoystick)
+    {
+        double vel = mMaxXYJogVelocityJoystick->GetValue();
+        Log(lInfo) << "New jog velocity (mm/s): " <<vel;
+		mJoyStick.getXAxis().setMaxVelocity(vel);
+		mJoyStick.getYAxis().setMaxVelocity(vel);
+    }
+    else if(e == mXYJogAccelerationJoystick)
+    {
+        double a = mXYJogAccelerationJoystick->GetValue();
+        Log(lInfo) << "New jog acceleration (mm/(s*s)): " <<a;
+        mXYZUnit.getXMotor()->setJogAcceleration(a);
+        mXYZUnit.getYMotor()->setJogAcceleration(a);
+    }
+    else if(e == mMaxZJogVelocityJoystick)
+    {
+        double v = mMaxZJogVelocityJoystick->GetValue();
+        Log(lInfo) << "New Z jog velocity (mm/s): " <<v;
+        mXYZUnit.getZMotor()->setJogVelocity(v);
+    }
+    else if(e == mZJogAccelerationJoystick)
+    {
+        double a = mZJogAccelerationJoystick->GetValue();
+        Log(lInfo) << "New Z jog acceleration (mm/(s*s)): " <<a;
+        mXYZUnit.getZMotor()->setJogAcceleration(a);
+    }
+    else if(e == mNrOfGearsLbl)
+    {
+        int g = mNrOfGearsLbl->getValue();
+        Log(lInfo) << "New number of gears): " <<g;
+        mJoyStick.getXAxis().setNumberOfGears(g);
+        mJoyStick.getYAxis().setNumberOfGears(g);
+    }
+    else if(e == mJoystickMessageRate)
+    {
+        int mr = mJoystickMessageRate->getValue();
+        Log(lInfo) << "New number message rate): " <<mr;
+        mJoyStick.setMessageRate(mr);
+
+    }
+
+}
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mJogModeCBClick(TObject *Sender)
@@ -448,16 +375,8 @@ void __fastcall TMain::DeviceBtnDown(TObject *Sender, TMouseButton Button,
 	    stopMotorExecute(btn);
     }
 
-    if(btn == fwdDriveBtn)
-    {
-		moveForwardExecute(Sender);
-    }
-    else if(btn == revDriveBtn)
-    {
-		moveBackwardExecute(Sender);
-    }
 
-    jsStateRG->ItemIndex = 1; //Disabled
+    jsStateRG->ItemIndex = 1; //Disable Joystick
 }
 
 //---------------------------------------------------------------------------
@@ -485,18 +404,10 @@ void __fastcall TMain::Button5Click(TObject *Sender)
 void __fastcall TMain::jsAxisRGClick(TObject *Sender)
 {
 	TRadioGroup *rg = (TRadioGroup*)(Sender);
-
-	if(rg == jsAxisRG)
-    {
-		updateJoyStickAxes();
-    }
-
-    else if(rg == jsStateRG)
-    {
-    	jsStateRG->ItemIndex == 0 ?
-    		mJoyStick.enable() : mJoyStick.disable();
-    }
+	if(rg == jsStateRG)
+   	{
+   		jsStateRG->ItemIndex == 0 ?
+   		mJoyStick.enable() : mJoyStick.disable();
+   	}
 }
-
-
 

@@ -8,7 +8,8 @@ using namespace mtk;
 JoyStick::JoyStick(int hwnd)
 :
 mHandle(hwnd),
-mEnabled(false)
+mEnabled(false),
+mMessageRate(20)
 {}
 
 JoyStick::~JoyStick()
@@ -37,6 +38,18 @@ bool JoyStick::disable()
 bool JoyStick::isEnabled()
 {
 	return mEnabled;
+}
+
+bool JoyStick::setMessageRate(int rate)
+{
+	Log(lInfo) << "Setting joystick message rate: "<<rate;
+	mMessageRate = rate;
+    return true;
+}
+
+int JoyStick::getMessageRate()
+{
+	return mMessageRate;
 }
 
 bool JoyStick::connect()
@@ -90,7 +103,7 @@ bool JoyStick::connect()
     // 3rd arg = how often MM_JOYMOVE events happen
 	if(mJoyStickConnected)
   	{
-    	joySetCapture((HWND) mHandle, mJoystickID, 20*mJoyCaps.wPeriodMin,FALSE);
+    	joySetCapture((HWND) mHandle, mJoystickID, mMessageRate*mJoyCaps.wPeriodMin,FALSE);
   	}
 	return mJoyStickConnected;
 }
