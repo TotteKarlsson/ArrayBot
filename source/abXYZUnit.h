@@ -20,6 +20,8 @@ class AB_CORE XYZUnit : public ABObject
 	public:
     					        XYZUnit(const string& name, JoyStick* js, IniFile& iniFile);
     					        ~XYZUnit();
+		string					getName();
+
 		bool				    initialize();
         bool					stopAll();
 
@@ -27,13 +29,14 @@ class AB_CORE XYZUnit : public ABObject
 		APTMotor*			    getYMotor();
 		APTMotor*			    getZMotor();
 
-		Property<string>		mName;
+
         Property<int>		    mXMotorSerialNr;
         Property<int>		    mYMotorSerialNr;
         Property<int>		    mZMotorSerialNr;
     	DeviceManager	        mDeviceManager;
 
 	protected:
+		string					mName;
         IniFileProperties	    mProperties;
         APTMotor*			    mXMotor;
         APTMotor*			    mYMotor;

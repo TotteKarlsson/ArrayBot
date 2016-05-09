@@ -13,7 +13,7 @@ XYZUnit::XYZUnit(const string& name, JoyStick* js, IniFile& iniFile)
 mXMotorSerialNr(-1),
 mYMotorSerialNr(-1),
 mZMotorSerialNr(-1),
-mName("<none>"),
+mName(name),
 mXMotor(NULL),
 mYMotor(NULL),
 mZMotor(NULL),
@@ -25,7 +25,7 @@ mIniFile(iniFile)
     mProperties.add((BaseProperty*) &mXMotorSerialNr.setup("XMotorSerial", -1, true));
     mProperties.add((BaseProperty*) &mYMotorSerialNr.setup("YMotorSerial", -1, true));
     mProperties.add((BaseProperty*) &mZMotorSerialNr.setup("ZMotorSerial", -1, true));
-    mProperties.add((BaseProperty*) &mName.setup("XYZUnit Name", 			"<none>", true));
+
 	//Load Properties
     mIniFile.load();
     mProperties.setIniFile(&mIniFile);
@@ -39,6 +39,10 @@ XYZUnit::~XYZUnit()
     mIniFile.save();
 }
 
+string XYZUnit::getName()
+{
+	return mName;
+}
 
 bool XYZUnit::initialize()
 {

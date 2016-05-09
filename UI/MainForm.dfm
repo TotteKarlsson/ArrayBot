@@ -116,7 +116,6 @@ object Main: TMain
     Height = 159
     Align = alClient
     TabOrder = 1
-    ExplicitHeight = 119
     object infoMemo: TMemo
       Left = 1
       Top = 34
@@ -126,7 +125,6 @@ object Main: TMain
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
-      ExplicitHeight = 84
     end
     object ToolBar2: TToolBar
       Left = 1
@@ -163,36 +161,40 @@ object Main: TMain
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 40
-      ExplicitTop = 0
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
-        ExplicitWidth = 281
-        ExplicitHeight = 165
-        object GroupBox1: TGroupBox
-          Left = 11
-          Top = 14
-          Width = 334
-          Height = 227
-          Caption = 'XYZ Unit'
+        inline TXYZUnitFrame1: TXYZUnitFrame
+          Left = 0
+          Top = 0
+          Width = 723
+          Height = 343
+          Align = alClient
           TabOrder = 0
-          object STDStringLabeledEdit1: TSTDStringLabeledEdit
-            Left = 12
-            Top = 32
-            Width = 121
-            Height = 21
-            EditLabel.Width = 27
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Name'
-            TabOrder = 0
+          ExplicitLeft = 56
+          ExplicitTop = 32
+          inherited mainGB: TGroupBox
+            Width = 723
+            Height = 343
+            ExplicitWidth = 681
+            ExplicitHeight = 619
+            inherited Panel1: TPanel
+              Width = 719
+              ExplicitWidth = 677
+            end
+            inherited ScrollBox1: TScrollBox
+              Width = 719
+              Height = 285
+              ExplicitLeft = 2
+              ExplicitTop = 56
+              ExplicitWidth = 677
+              ExplicitHeight = 561
+            end
           end
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Devices'
         ImageIndex = 1
-        ExplicitWidth = 281
-        ExplicitHeight = 165
         object DeviceGB: TGroupBox
           Left = 153
           Top = 0
@@ -201,8 +203,6 @@ object Main: TMain
           Align = alLeft
           Caption = 'Device'
           TabOrder = 0
-          ExplicitLeft = -62
-          ExplicitHeight = 165
           object Button1: TButton
             Left = 6
             Top = 249
@@ -426,8 +426,6 @@ object Main: TMain
           Align = alLeft
           Caption = 'Devices'
           TabOrder = 1
-          ExplicitLeft = -14
-          ExplicitTop = -3
           object devicesLB: TListBox
             Left = 2
             Top = 15
@@ -437,7 +435,6 @@ object Main: TMain
             ItemHeight = 13
             TabOrder = 0
             OnClick = devicesLBClick
-            ExplicitHeight = 354
           end
         end
       end
@@ -452,7 +449,6 @@ object Main: TMain
           Align = alClient
           Caption = 'JoyStick'
           TabOrder = 0
-          ExplicitTop = -1
           object mNrOfGearsLbl: TIntegerLabeledEdit
             Left = 17
             Top = 30

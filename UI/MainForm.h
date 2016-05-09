@@ -19,6 +19,7 @@
 #include "abJoyStick.h"
 #include "abXYZUnit.h"
 #include "TSTDStringLabeledEdit.h"
+#include "abXYZUnitFrame.h"
 using Poco::Timestamp;
 
 class APTMotor;
@@ -95,8 +96,7 @@ class TMain : public TForm
 	TTabSheet *TabSheet2;
 	TTabSheet *TabSheet3;
 	TRadioGroup *jsStateRG;
-	TGroupBox *GroupBox1;
-	TSTDStringLabeledEdit *STDStringLabeledEdit1;
+	TXYZUnitFrame *TXYZUnitFrame1;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);

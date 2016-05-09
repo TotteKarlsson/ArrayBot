@@ -14,6 +14,7 @@
 #pragma link "TIntegerLabeledEdit"
 #pragma link "mtkFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
+#pragma link "abXYZUnitFrame"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -29,8 +30,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
     mIniFile("ArrayBot.ini"),
     mJoyStick((int) Handle),
-    mXYZUnit1("CoverSlip Properties", &mJoyStick, mIniFile),
-    mXYZUnit2("Whisker Properties", &mJoyStick, mIniFile)
+    mXYZUnit1("CoverSlip Unit", &mJoyStick, mIniFile),
+    mXYZUnit2("Whisker Unit", &mJoyStick, mIniFile)
 
 {
 	TMemoLogger::mMemoIsEnabled = false;
@@ -63,6 +64,8 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 {
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
+
+	TXYZUnitFrame1->assignUnit(&mXYZUnit1);
 
 	mXYZUnit1.initialize();
     connectAllDevicesExecute(Sender);
