@@ -12,8 +12,8 @@ File_9=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include
 
 [Modules]
 Module0=P:\ArrayBot\source\abLongTravelStage.cpp
-Module1=P:\ArrayBot\UI\MainForm.cpp
-Module2=P:\ArrayBot\UI\ArrayBot.cbproj
+Module1=P:\ArrayBot\UI\ArrayBot.cbproj
+Module2=P:\ArrayBot\UI\MainForm.cpp
 Module3=P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h
 Module4=P:\ArrayBot\source\abXYZUnit.cpp
 Module5=P:\ArrayBot\source\abJoystickAxis.cpp
@@ -30,13 +30,13 @@ ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
-[P:\ArrayBot\UI\MainForm.cpp]
-ModuleType=TSourceModule
-FormState=1
-FormOnTop=0
-
 [P:\ArrayBot\UI\ArrayBot.cbproj]
 ModuleType=TBaseProject
+
+[P:\ArrayBot\UI\MainForm.cpp]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
 
 [P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h]
 ModuleType=TSourceModule
@@ -75,10 +75,6 @@ FormOnTop=0
 
 [P:\ArrayBot\UI\JoyStick.cpp]
 ModuleType=TSourceModule
-FormState=0
-FormOnTop=0
-
-[P:\libs\dslib\VCL\Components\mtkFloatLabeledEdit.cpp]
 FormState=0
 FormOnTop=0
 
@@ -139,9 +135,9 @@ EditViewName=P:\ArrayBot\UI\MainForm.cpp
 [View1]
 CustomEditViewType=TEditView
 Module=P:\ArrayBot\source\abLongTravelStage.cpp
-CursorX=70
-CursorY=36
-TopLine=23
+CursorX=75
+CursorY=39
+TopLine=26
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -377,11 +373,6 @@ LRDockWidth=1891
 Dockable=1
 StayOnTop=0
 SplitPos=139
-
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Name,OnClick
-ExpandedItems=BevelEdges=0,Constraints=0,Font=0,LiveBindings=0,"LiveBindings Designer=0",Margins=0
 
 [TFileExplorerForm]
 PercentageSizes=1
@@ -632,8 +623,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-14328
-Top=-465
+Left=-16376
+Top=-521
 Width=5305
 Height=4883
 MaxLeft=-1
@@ -901,7 +892,7 @@ Dockable=1
 StayOnTop=0
 TabPosition=0
 ActiveTabID=ProjectManager
-TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,ModelViewTool,TFileExplorerForm,TemplateView
+TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,TemplateView,TFileExplorerForm,ModelViewTool
 
 [ActiveProject]
 ActiveProject=5
