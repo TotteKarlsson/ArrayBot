@@ -192,9 +192,9 @@ object Form1: TForm1
   end
   object Chart1: TChart
     Left = 0
-    Top = 440
+    Top = 395
     Width = 719
-    Height = 124
+    Height = 169
     Legend.Visible = False
     Title.Text.Strings = (
       'TChart')
@@ -203,8 +203,8 @@ object Form1: TForm1
     LeftAxis.Automatic = False
     LeftAxis.AutomaticMaximum = False
     LeftAxis.AutomaticMinimum = False
-    LeftAxis.Maximum = 15.000000000000000000
-    LeftAxis.Minimum = -15.000000000000000000
+    LeftAxis.Maximum = 66000.000000000000000000
+    LeftAxis.Minimum = -100.000000000000000000
     View3D = False
     Align = alBottom
     TabOrder = 1
@@ -229,7 +229,7 @@ object Form1: TForm1
     Left = 280
     Top = 88
     Bitmap = {
-      494C01010100080010004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100080018004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000300100004C00000001002000000000000069
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

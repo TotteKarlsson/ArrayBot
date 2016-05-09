@@ -9,7 +9,7 @@ using namespace mtk;
 JoyStickAxis::JoyStickAxis()
 :
 	mMaxPosition(65535),
-    mNumberOfGears(10),
+    mNumberOfGears(3),
     mMaxVelocity(0),
 	mAcceleration(0),
     mIsEnabled(false),

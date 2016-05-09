@@ -19,9 +19,6 @@ void __fastcall TMain::JMXYMove(TMessage &msg)
 
     x.Move(msg.LParamLo);
     y.Move(msg.LParamHi);
-
-    JoystickXPosition->Caption 		= "X = " + FloatToStrF(x.getCurrentVelocity(), ffFixed, 4,2);
-    JoystickYPosition->Caption 		= "Y = " + FloatToStrF(y.getCurrentVelocity(), ffFixed, 4,2);
 }
 
 //---------------------------------------------------------------------------
@@ -49,24 +46,6 @@ void __fastcall TMain::JMZMove(TMessage &msg)
 
 void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
 {
-    // Windows us both sends both JM_BUTTONDOWN an
-    // JM_BUTTONUP messages. Both trigger this function
-    // This event only happens when a button changes state/
-    // you can find out which button was toggled by anding
-    // with JOY_BUTTONXCHG where X is the button number
-    JoystickButton1->Caption = (msg.WParam & JOY_BUTTON1) ?
-    "Button 1 = Pressed" : "Button 1 = Not Pressed";
-
-    JoystickButton2->Caption = (msg.WParam & JOY_BUTTON2) ?
-    "Button 2 = Pressed" : "Button 2 = Not Pressed";
-
-    JoystickButton3->Caption = (msg.WParam & JOY_BUTTON3) ?
-    "Button 3 = Pressed" : "Button 3 = Not Pressed";
-
-    JoystickButton4->Caption = (msg.WParam & JOY_BUTTON4) ?
-    "Button 4 = Pressed" : "Button 4 = Not Pressed";
-
-
     if(msg.WParam & JOY_BUTTON3CHG)
     {
     	mJoyStick.getButton(3).up();
@@ -80,24 +59,6 @@ void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
 
 void __fastcall TMain::JMButtonDownUpdate(TMessage &msg)
 {
-    // Windows us both sends both JM_BUTTONDOWN an
-    // JM_BUTTONUP messages. Both trigger this function
-    // This event only happens when a button changes state/
-    // you can find out which button was toggled by anding
-    // with JOY_BUTTONXCHG where X is the button number
-    JoystickButton1->Caption = (msg.WParam & JOY_BUTTON1) ?
-    "Button 1 = Pressed" : "Button 1 = Not Pressed";
-
-    JoystickButton2->Caption = (msg.WParam & JOY_BUTTON2) ?
-    "Button 2 = Pressed" : "Button 2 = Not Pressed";
-
-    JoystickButton3->Caption = (msg.WParam & JOY_BUTTON3) ?
-    "Button 3 = Pressed" : "Button 3 = Not Pressed";
-
-    JoystickButton4->Caption = (msg.WParam & JOY_BUTTON4) ?
-    "Button 4 = Pressed" : "Button 4 = Not Pressed";
-
-
     if(msg.WParam & JOY_BUTTON3CHG)
     {
     	mJoyStick.getButton(3).down();

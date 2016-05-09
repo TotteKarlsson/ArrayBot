@@ -9,6 +9,7 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
+USEFORM("..\source\VCL\XYZUnitFrame.cpp", Frame2); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";

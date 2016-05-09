@@ -111,7 +111,7 @@ void __fastcall TForm1::JMMove(TMessage &msg)
 
 void __fastcall TForm1::JMZMove(TMessage &msg)
 {
-	double pos = msg.LParamLo * 305e-6 - 10.0;
+	double pos = msg.LParamLo;// * 305e-6 - 10.0;
     JoystickZPosition->Caption = "Z Position = " + FloatToStrF(pos, ffFixed, 4,2);
     mZPos.push_back(pos);
 

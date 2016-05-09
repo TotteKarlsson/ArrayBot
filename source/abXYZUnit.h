@@ -27,7 +27,7 @@ class AB_CORE XYZUnit : public ABObject
 		APTMotor*			    getYMotor();
 		APTMotor*			    getZMotor();
 
-
+		Property<string>		mName;
         Property<int>		    mXMotorSerialNr;
         Property<int>		    mYMotorSerialNr;
         Property<int>		    mZMotorSerialNr;

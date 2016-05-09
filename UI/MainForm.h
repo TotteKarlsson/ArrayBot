@@ -18,6 +18,7 @@
 #include "Poco/Timestamp.h"
 #include "abJoyStick.h"
 #include "abXYZUnit.h"
+#include "TSTDStringLabeledEdit.h"
 using Poco::Timestamp;
 
 class APTMotor;
@@ -70,7 +71,6 @@ class TMain : public TForm
 	TLabel *mIsReversingLabel;
 	TLabel *mIsForwardingLabel;
 	TLabel *Label5;
-	TLabel *JoystickZPosition;
 	mtkFloatLabeledEdit *mJogVelocity;
 	mtkFloatLabeledEdit *mJogAcc;
 	TCheckBox *mJogModeCB;
@@ -81,23 +81,22 @@ class TMain : public TForm
 	TGroupBox *JoyStickGB;
 	TLabel *Label7;
 	TLabel *Label8;
-	TLabel *JoystickXPosition;
 	TLabel *Label11;
 	TLabel *Label12;
-	TLabel *JoystickYPosition;
-	TLabel *JoystickButton1;
-	TLabel *JoystickButton2;
-	TLabel *JoystickButton3;
-	TLabel *JoystickButton4;
 	TSplitter *Splitter1;
-	TRadioGroup *jsStateRG;
 	TIntegerLabeledEdit *mNrOfGearsLbl;
 	TCheckBox *mJogStopModeCB;
 	mtkFloatLabeledEdit *mMaxXYJogVelocityJoystick;
 	mtkFloatLabeledEdit *mXYJogAccelerationJoystick;
 	mtkFloatLabeledEdit *mMaxZJogVelocityJoystick;
 	mtkFloatLabeledEdit *mZJogAccelerationJoystick;
-	TIntegerLabeledEdit *mJoystickMessageRate;
+	TPageControl *PageControl1;
+	TTabSheet *TabSheet1;
+	TTabSheet *TabSheet2;
+	TTabSheet *TabSheet3;
+	TRadioGroup *jsStateRG;
+	TGroupBox *GroupBox1;
+	TSTDStringLabeledEdit *STDStringLabeledEdit1;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -112,7 +111,7 @@ class TMain : public TForm
 	void __fastcall jogBackwardsExecute(TObject *Sender);
 
 	void __fastcall stopMotorExecute(TObject *Sender);
-	void __fastcall driveBtnUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
+
 	void __fastcall StatusTimerTimer(TObject *Sender);
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
 	void __fastcall BitBtn3Click(TObject *Sender);
@@ -121,7 +120,7 @@ class TMain : public TForm
 	void __fastcall mJogModeCBClick(TObject *Sender);
 	void __fastcall DeviceBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
-	void __fastcall Button5Click(TObject *Sender);
+
 	void __fastcall jsAxisRGClick(TObject *Sender);
 	void __fastcall DeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 
@@ -134,7 +133,9 @@ class TMain : public TForm
         IniFile						mIniFile;
 		JoyStick					mJoyStick;
 
-        XYZUnit						mXYZUnit;
+        XYZUnit						mXYZUnit1;
+        XYZUnit						mXYZUnit2;
+
 		void __fastcall		        OnException();
 		APTDevice* 					getCurrentDevice();
 		APTMotor* 					getCurrentMotor();
