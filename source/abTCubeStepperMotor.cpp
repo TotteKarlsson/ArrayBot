@@ -30,6 +30,11 @@ bool TCubeStepperMotor::connect()
     if(res == 0)
     {
     	SCC_LoadSettings(mSerial.c_str());
+
+        //Set jog mode to continous
+        setJogMoveMode(jmContinuous);
+        setJogVelocity(1.0);
+        setJogAcceleration(1.0);
 	    // start the device polling at 200ms intervals
     	if(!SCC_StartPolling(mSerial.c_str(), 200))
         {

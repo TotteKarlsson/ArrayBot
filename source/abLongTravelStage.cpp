@@ -37,6 +37,10 @@ bool LongTravelStage::connect()
     if(res == 0)
     {
     	ISC_LoadSettings(mSerial.c_str());
+        setJogMoveMode(jmContinuous);
+        setJogVelocity(100.0);
+        setJogAcceleration(10.0);
+
 	    // start the device polling at 200ms intervals
     	if(!ISC_StartPolling(mSerial.c_str(), 200))
         {

@@ -47,7 +47,7 @@
         <ProjectType>CppDynamicLibrary</ProjectType>
         <Multithreaded>true</Multithreaded>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>..\third_party\Kinesis\;P:\ArrayBot\source\;$(MOLECULIX_ROOT)\Common;$(IncludePath)</IncludePath>
+        <IncludePath>..\third_party\Kinesis\;P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>..\third_party\Kinesis\;P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
@@ -67,7 +67,7 @@
         <PackageImports>VCLCommon;vtk;bindcompfmx;DBXSqliteDriver;vcldbx;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;vclie;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;Intraweb;IndyCore;vcl;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;inet;vclx;inetdbxpress;webdsnap;bdertl;DuneComponents;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
-        <IncludePath>$(DEBUG_INSTALL)\include;$(IncludePath)</IncludePath>
+        <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
         <BCC_DisableOptimizations>true</BCC_DisableOptimizations>
         <DCC_Optimize>false</DCC_Optimize>
@@ -92,8 +92,8 @@
         <LinkPackageImports>rtl.bpi</LinkPackageImports>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <BPILibOutputDir>$(DEBUG_INSTALL)\lib</BPILibOutputDir>
-        <ILINK_LibraryPath>$(DEBUG_INSTALL)\lib;P:\ArrayBot\third_party\Kinesis;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <FinalOutputDir>$(DEBUG_INSTALL)\bin</FinalOutputDir>
+        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;P:\ArrayBot\third_party\Kinesis;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
