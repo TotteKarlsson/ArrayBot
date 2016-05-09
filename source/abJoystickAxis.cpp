@@ -15,12 +15,18 @@ JoyStickAxis::JoyStickAxis()
     mIsEnabled(false),
     mZeroInMiddle(true),
 	mRunningAverage(0),
-	mAlpha(0.9)
+	mAlpha(0.9),
+    mSenseOfDirection(1)
 {
 }
 
 JoyStickAxis::~JoyStickAxis()
 {}
+
+void JoyStickAxis::setSenseOfDirection(int sign)
+{
+	mSenseOfDirection = sign;
+}
 
 void JoyStickAxis::enable()
 {
@@ -92,7 +98,7 @@ void JoyStickAxis::Move(double newPosition)
 	double scalingFactor = (fullVelRange * 2.0)/ mMaxPosition;
 	double newVelocity  = (newPosition - mMaxPosition/2.0) * scalingFactor;
 
-    mRunningAverage = newVelocity; //(mAlpha * mCurrentPosition) + (1.0 - mAlpha) * mRunningAverage;
+    mRunningAverage = newVelocity * mSenseOfDirection; //(mAlpha * mCurrentPosition) + (1.0 - mAlpha) * mRunningAverage;
 
     if( fabs(mRunningAverage) <= stepSize)
     {
@@ -118,7 +124,7 @@ void JoyStickAxis::Move(double newPosition)
    		mLastSetVelocity = mRunningAverage;
 
         //Forward or reverse?
-        if (mRunningAverage > stepSize)
+        if ((mRunningAverage > stepSize))
         {
 			mMotor->jogForward();
         }

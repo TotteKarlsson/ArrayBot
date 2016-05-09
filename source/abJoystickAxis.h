@@ -31,10 +31,13 @@ class AB_CORE JoyStickAxis : public ABObject
                             //as joystick messages are flowing in
 		void 				Move(double newPosition);
 
+        void				setSenseOfDirection(int sign);
+
 
     protected:
         bool				mIsEnabled;
         bool				mZeroInMiddle;
+        int					mSenseOfDirection;
 		APTMotor*			mMotor;
 		int					mMaxPosition;
         int					mNumberOfGears;

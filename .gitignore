@@ -42,3 +42,4 @@ Debug
 *.unsuccessfulbuild
 *.lastbuildstate
 *.dsk
+/*.dsk

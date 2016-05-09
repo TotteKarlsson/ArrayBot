@@ -3,8 +3,8 @@ object Main: TMain
   Top = 0
   ActiveControl = mJoystickMessageRate
   Caption = 'Device Tester'
-  ClientHeight = 702
-  ClientWidth = 952
+  ClientHeight = 531
+  ClientWidth = 733
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -63,18 +63,19 @@ object Main: TMain
   end
   object Splitter1: TSplitter
     Left = 0
-    Top = 501
-    Width = 952
+    Top = 409
+    Width = 733
     Height = 3
     Cursor = crVSplit
     Align = alTop
     ExplicitLeft = 8
     ExplicitTop = 544
+    ExplicitWidth = 952
   end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 952
+    Width = 733
     Height = 36
     ButtonHeight = 30
     ButtonWidth = 13
@@ -82,6 +83,7 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
+    ExplicitWidth = 952
     object BitBtn1: TBitBtn
       Left = 0
       Top = 0
@@ -103,30 +105,36 @@ object Main: TMain
   end
   object BottomPanel: TPanel
     Left = 0
-    Top = 504
-    Width = 952
-    Height = 198
+    Top = 412
+    Width = 733
+    Height = 119
     Align = alClient
     TabOrder = 1
+    ExplicitTop = 504
+    ExplicitWidth = 952
+    ExplicitHeight = 193
     object infoMemo: TMemo
       Left = 1
       Top = 34
-      Width = 950
-      Height = 163
+      Width = 731
+      Height = 84
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
+      ExplicitWidth = 950
+      ExplicitHeight = 158
     end
     object ToolBar2: TToolBar
       Left = 1
       Top = 1
-      Width = 950
+      Width = 731
       Height = 33
       AutoSize = True
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
+      ExplicitWidth = 950
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -141,48 +149,52 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 36
-    Width = 952
-    Height = 465
+    Width = 733
+    Height = 373
     Align = alTop
     TabOrder = 2
+    ExplicitWidth = 952
     object DevicesGB: TGroupBox
       Left = 1
       Top = 1
       Width = 153
-      Height = 463
+      Height = 371
       Align = alLeft
       Caption = 'Devices'
       TabOrder = 0
+      ExplicitHeight = 463
       object devicesLB: TListBox
         Left = 2
         Top = 15
         Width = 149
-        Height = 446
+        Height = 354
         Align = alClient
         ItemHeight = 13
         TabOrder = 0
         OnClick = devicesLBClick
+        ExplicitHeight = 446
       end
     end
     object DeviceGB: TGroupBox
       Left = 154
       Top = 1
       Width = 343
-      Height = 463
+      Height = 371
       Align = alLeft
       Caption = 'Device'
       TabOrder = 1
+      ExplicitHeight = 463
       object Button1: TButton
         Left = 145
-        Top = 351
+        Top = 249
         Width = 80
         Height = 69
         Action = identifyCurrent
         TabOrder = 0
       end
       object Button7: TButton
-        Left = 17
-        Top = 351
+        Left = 4
+        Top = 249
         Width = 122
         Height = 69
         Action = stopMotor
@@ -398,11 +410,13 @@ object Main: TMain
     object JoyStickGB: TGroupBox
       Left = 497
       Top = 1
-      Width = 454
-      Height = 463
+      Width = 235
+      Height = 371
       Align = alClient
       Caption = 'JoyStick'
       TabOrder = 2
+      ExplicitWidth = 454
+      ExplicitHeight = 463
       object JoystickZPosition: TLabel
         Left = 16
         Top = 116
