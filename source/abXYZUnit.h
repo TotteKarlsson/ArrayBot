@@ -21,6 +21,8 @@ class AB_CORE XYZUnit : public ABObject
     					        XYZUnit(const string& name, JoyStick* js, IniFile& iniFile);
     					        ~XYZUnit();
 		bool				    initialize();
+        bool					stopAll();
+
 		APTMotor*			    getXMotor();
 		APTMotor*			    getYMotor();
 		APTMotor*			    getZMotor();

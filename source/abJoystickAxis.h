@@ -23,7 +23,9 @@ class AB_CORE JoyStickAxis : public ABObject
 		void				setNumberOfGears(int g);
 		int  				getNumberOfGears();
         void				setMaxVelocity(double vel);
+        void				setAcceleration(double vel);
 		double				getMaxVelocity();
+		double				getAcceleration();
         double 				getCurrentVelocity();
                             //This function is called by the UI
                             //as joystick messages are flowing in
@@ -37,6 +39,7 @@ class AB_CORE JoyStickAxis : public ABObject
 		int					mMaxPosition;
         int					mNumberOfGears;
         double 				mMaxVelocity;
+        double 				mAcceleration;
         double 				mLastSetVelocity;
         double 				mRunningAverage;
         double 				mAlpha;

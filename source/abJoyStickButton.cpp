@@ -47,7 +47,6 @@ void JoyStickButton::down()
     {
     	mMotor->jogReverse();
     }
-
 }
 
 void JoyStickButton::up()
@@ -58,7 +57,7 @@ void JoyStickButton::up()
     	return;
     }
 
-	mMotor->stop();
+	mMotor->stopProfiled();
 }
 
 
