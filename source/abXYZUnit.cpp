@@ -48,10 +48,11 @@ bool XYZUnit::initialize()
     {
     	Log(lInfo) << "Xmotor is connected";
         //Load Motor Properties
-
         if(mJoyStick)
         {
         	mJoyStick->getXAxis().assignMotor(mXMotor);
+			mJoyStick->getXAxis().setMaxVelocity(mXMotor->getJogVelocity());
+			mJoyStick->getXAxis().setAcceleration(mXMotor->getJogAcceleration());
         }
     }
     else
@@ -66,8 +67,9 @@ bool XYZUnit::initialize()
         if(mJoyStick)
         {
         	mJoyStick->getYAxis().assignMotor(mYMotor);
+			mJoyStick->getYAxis().setMaxVelocity(mYMotor->getJogVelocity());
+			mJoyStick->getYAxis().setAcceleration(mYMotor->getJogAcceleration());
         }
-
     }
     else
     {
@@ -92,4 +94,37 @@ bool XYZUnit::initialize()
 		Log(lError) << "Zmotor is NOT connected";
     }
 	return true;
+}
+
+APTMotor* XYZUnit::getXMotor()
+{
+	return mXMotor;
+}
+
+APTMotor* XYZUnit::getYMotor()
+{
+	return mYMotor;
+}
+
+APTMotor* XYZUnit::getZMotor()
+{
+	return mZMotor;
+}
+
+bool XYZUnit::stopAll()
+{
+	if(mXMotor)
+    {
+    	mXMotor->stop();
+    }
+
+	if(mYMotor)
+    {
+    	mYMotor->stop();
+    }
+
+	if(mZMotor)
+    {
+    	mZMotor->stop();
+    }
 }

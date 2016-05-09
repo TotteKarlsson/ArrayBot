@@ -46,8 +46,6 @@ class TMain : public TForm
 	TButton *Button3;
 	TButton *Button4;
 	mtkFloatLabeledEdit *motorPositionE;
-	TButton *fwdDriveBtn;
-	TButton *revDriveBtn;
 	TAction *moveForward;
 	TAction *moveBackward;
 	TAction *stopMotor;
@@ -61,8 +59,6 @@ class TMain : public TForm
 	TToolBar *ToolBar2;
 	TBitBtn *BitBtn3;
 	TPanel *TopPanel;
-	mtkFloatLabeledEdit *mMaxVelocity;
-	mtkFloatLabeledEdit *mAcceleration;
 	TLabel *Label1;
 	TLabel *Label2;
 	TLabel *Label3;
@@ -74,19 +70,12 @@ class TMain : public TForm
 	TLabel *mIsReversingLabel;
 	TLabel *mIsForwardingLabel;
 	TLabel *Label5;
-	TButton *DecreaseVelBtn;
-	TButton *IncreaseVelBtn;
-	TCheckBox *ContinousMoveCB;
-	mtkFloatLabeledEdit *mVelDeltaE;
-	TButton *switchdirectionBtn;
 	TLabel *JoystickZPosition;
 	mtkFloatLabeledEdit *mJogVelocity;
 	mtkFloatLabeledEdit *mJogAcc;
 	TCheckBox *mJogModeCB;
 	TGroupBox *JoggingGB;
 	TGroupBox *GroupBox4;
-	TGroupBox *MovingGB;
-	TButton *Button6;
 	TButton *mJogStopBtn;
 	TPanel *Panel3;
 	TGroupBox *JoyStickGB;
@@ -100,11 +89,15 @@ class TMain : public TForm
 	TLabel *JoystickButton2;
 	TLabel *JoystickButton3;
 	TLabel *JoystickButton4;
-	TRadioGroup *jsAxisRG;
 	TSplitter *Splitter1;
 	TRadioGroup *jsStateRG;
 	TIntegerLabeledEdit *mNrOfGearsLbl;
 	TCheckBox *mJogStopModeCB;
+	mtkFloatLabeledEdit *mMaxXYJogVelocityJoystick;
+	mtkFloatLabeledEdit *mXYJogAccelerationJoystick;
+	mtkFloatLabeledEdit *mMaxZJogVelocityJoystick;
+	mtkFloatLabeledEdit *mZJogAccelerationJoystick;
+	TIntegerLabeledEdit *mJoystickMessageRate;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall connectAllDevicesExecute(TObject *Sender);
@@ -117,22 +110,21 @@ class TMain : public TForm
 	void __fastcall homeDeviceExecute(TObject *Sender);
 	void __fastcall jogForwardExecute(TObject *Sender);
 	void __fastcall jogBackwardsExecute(TObject *Sender);
-	void __fastcall moveForwardExecute(TObject *Sender);
-	void __fastcall moveBackwardExecute(TObject *Sender);
+
 	void __fastcall stopMotorExecute(TObject *Sender);
 	void __fastcall driveBtnUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 	void __fastcall StatusTimerTimer(TObject *Sender);
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
 	void __fastcall BitBtn3Click(TObject *Sender);
-	void __fastcall mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall IncreaseVelBtnClick(TObject *Sender);
-	void __fastcall DecreaseVelBtnClick(TObject *Sender);
-	void __fastcall switchdirectionBtnClick(TObject *Sender);
+	void __fastcall JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
+
 	void __fastcall mJogModeCBClick(TObject *Sender);
 	void __fastcall DeviceBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
 	void __fastcall Button5Click(TObject *Sender);
 	void __fastcall jsAxisRGClick(TObject *Sender);
+	void __fastcall DeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
     private:	// User declarations
         TThreadMethod               logMsgMethod;

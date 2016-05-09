@@ -37,6 +37,10 @@ bool LongTravelStage::connect()
     if(res == 0)
     {
     	ISC_LoadSettings(mSerial.c_str());
+//        setJogMoveMode(jmContinuous);
+//        setJogVelocity(1.0);
+//        setJogAcceleration(1.0);
+
 	    // start the device polling at 200ms intervals
     	if(!ISC_StartPolling(mSerial.c_str(), 200))
         {
@@ -194,18 +198,10 @@ void LongTravelStage::stop(bool inThread)
 
 void LongTravelStage::stopProfiled(bool inThread)
 {
-//	if(isActive())
+    int err = ISC_StopProfiled(mSerial.c_str());
+    if(err != 0)
     {
-		int err = ISC_StopProfiled(mSerial.c_str());
-        if(err != 0)
-        {
-            Log(lError) <<tlError(err);
-        }
-
-//        while(isActive())
-//        {
-//            //Log(lInfo) << "Waiting ...";
-//        }
+        Log(lError) <<tlError(err);
     }
 }
 
@@ -362,8 +358,9 @@ bool LongTravelStage::setJogVelocity(double newVel)
     int a;
     int v;
     ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
+
     int err = ISC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
-	Log(lDebug) << "Setting Jog Velocity parameters: "<<a<<" : "<<newVel * mScalingFactors.velocity;
+	Log(lDebug) << "Setting Jog Velocity parameters: "<<v<<" : "<<newVel * mScalingFactors.velocity;
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
@@ -375,8 +372,13 @@ bool LongTravelStage::setJogAcceleration(double newAcc)
 {
     int a;
     int v;
+
     ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
-    int err = ISC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v );
+	Log(lDebug) << "Setting Jog Acc Parameters: "<<a<<" : "<<newAcc * mScalingFactors.acceleration;
+
+    long newa = newAcc * mScalingFactors.acceleration;
+    int t =  newa;
+    int err = ISC_SetJogVelParams(mSerial.c_str(), t, v);
 
     if(err != 0)
     {

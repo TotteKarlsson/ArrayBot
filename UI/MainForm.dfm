@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
-  ActiveControl = mNrOfGearsLbl
+  ActiveControl = mJoystickMessageRate
   Caption = 'Device Tester'
   ClientHeight = 702
   ClientWidth = 952
@@ -173,18 +173,18 @@ object Main: TMain
       Caption = 'Device'
       TabOrder = 1
       object Button1: TButton
-        Left = 6
-        Top = 345
-        Width = 75
-        Height = 28
+        Left = 145
+        Top = 351
+        Width = 80
+        Height = 69
         Action = identifyCurrent
         TabOrder = 0
       end
       object Button7: TButton
         Left = 17
-        Top = 295
-        Width = 74
-        Height = 43
+        Top = 351
+        Width = 122
+        Height = 69
         Action = stopMotor
         TabOrder = 1
       end
@@ -233,7 +233,7 @@ object Main: TMain
           EditLabel.Caption = 'Acceleration'
           TabOrder = 3
           Text = '0.00'
-          OnKeyDown = mDeviceValueEdit
+          OnKeyDown = DeviceValueEdit
         end
         object mJogVelocity: mtkFloatLabeledEdit
           Left = 21
@@ -245,7 +245,7 @@ object Main: TMain
           EditLabel.Caption = 'Max Velocity'
           TabOrder = 4
           Text = '0.00'
-          OnKeyDown = mDeviceValueEdit
+          OnKeyDown = DeviceValueEdit
         end
         object mJogStopBtn: TButton
           Left = 128
@@ -359,114 +359,6 @@ object Main: TMain
           Caption = '0.0 '
         end
       end
-      object MovingGB: TGroupBox
-        Left = 2
-        Top = 243
-        Width = 339
-        Height = 130
-        Align = alTop
-        Caption = 'Moving'
-        TabOrder = 4
-        object ContinousMoveCB: TCheckBox
-          Left = 169
-          Top = 54
-          Width = 78
-          Height = 17
-          Caption = 'Continous'
-          TabOrder = 0
-        end
-        object IncreaseVelBtn: TButton
-          Left = 17
-          Top = 55
-          Width = 49
-          Height = 25
-          Caption = '+'
-          TabOrder = 1
-          OnClick = IncreaseVelBtnClick
-        end
-        object mAcceleration: mtkFloatLabeledEdit
-          Left = 231
-          Top = 27
-          Width = 50
-          Height = 21
-          EditLabel.Width = 59
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Acceleration'
-          TabOrder = 2
-          Text = '0.00'
-          OnKeyDown = mDeviceValueEdit
-        end
-        object mMaxVelocity: mtkFloatLabeledEdit
-          Left = 169
-          Top = 27
-          Width = 56
-          Height = 21
-          EditLabel.Width = 37
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Velocity'
-          TabOrder = 3
-          Text = '0.00'
-          OnKeyDown = mDeviceValueEdit
-        end
-        object mVelDeltaE: mtkFloatLabeledEdit
-          Left = 169
-          Top = 90
-          Width = 76
-          Height = 21
-          EditLabel.Width = 84
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Vel Increase Step'
-          TabOrder = 4
-          Text = '0.00'
-        end
-        object switchdirectionBtn: TButton
-          Left = 17
-          Top = 86
-          Width = 89
-          Height = 25
-          Caption = 'Switch Direction'
-          TabOrder = 5
-          OnClick = switchdirectionBtnClick
-        end
-        object DecreaseVelBtn: TButton
-          Left = 72
-          Top = 55
-          Width = 50
-          Height = 25
-          Caption = '-'
-          TabOrder = 6
-          OnClick = DecreaseVelBtnClick
-        end
-        object fwdDriveBtn: TButton
-          Left = 16
-          Top = 23
-          Width = 39
-          Height = 25
-          Caption = 'Fwd'
-          TabOrder = 7
-          OnMouseDown = DeviceBtnDown
-          OnMouseUp = driveBtnUp
-        end
-        object revDriveBtn: TButton
-          Left = 61
-          Top = 23
-          Width = 40
-          Height = 25
-          Caption = 'Rev'
-          TabOrder = 8
-          OnMouseDown = DeviceBtnDown
-          OnMouseUp = driveBtnUp
-        end
-        object Button6: TButton
-          Left = 107
-          Top = 23
-          Width = 41
-          Height = 25
-          Action = stopMotor
-          TabOrder = 9
-          OnMouseDown = DeviceBtnDown
-        end
-      end
       object Panel3: TPanel
         Left = 2
         Top = 15
@@ -474,7 +366,7 @@ object Main: TMain
         Height = 34
         Align = alTop
         BevelOuter = bvNone
-        TabOrder = 5
+        TabOrder = 4
         object Button2: TButton
           Left = 15
           Top = 3
@@ -504,10 +396,11 @@ object Main: TMain
       end
     end
     object JoyStickGB: TGroupBox
-      Left = 501
-      Top = 6
-      Width = 212
-      Height = 449
+      Left = 497
+      Top = 1
+      Width = 454
+      Height = 463
+      Align = alClient
       Caption = 'JoyStick'
       TabOrder = 2
       object JoystickZPosition: TLabel
@@ -522,87 +415,135 @@ object Main: TMain
         Top = 78
         Width = 81
         Height = 13
-        Caption = 'JoystickZPosition'
+        Caption = 'JoystickXPosition'
       end
       object JoystickYPosition: TLabel
         Left = 16
         Top = 97
         Width = 81
         Height = 13
-        Caption = 'JoystickZPosition'
+        Caption = 'JoystickYPosition'
       end
       object JoystickButton1: TLabel
         Left = 16
-        Top = 155
+        Top = 139
         Width = 76
         Height = 13
         Caption = 'JoystickButton1'
       end
       object JoystickButton2: TLabel
         Left = 16
-        Top = 174
+        Top = 158
         Width = 76
         Height = 13
-        Caption = 'JoystickButton1'
+        Caption = 'JoystickButton2'
       end
       object JoystickButton3: TLabel
         Left = 16
-        Top = 193
+        Top = 177
         Width = 76
         Height = 13
-        Caption = 'JoystickButton1'
+        Caption = 'JoystickButton3'
       end
       object JoystickButton4: TLabel
         Left = 16
-        Top = 212
+        Top = 196
         Width = 76
         Height = 13
-        Caption = 'JoystickButton1'
-      end
-      object jsAxisRG: TRadioGroup
-        Left = 112
-        Top = 18
-        Width = 89
-        Height = 54
-        Caption = 'Joystick Axis'
-        Columns = 3
-        ItemIndex = 0
-        Items.Strings = (
-          'x'
-          'y'
-          'z')
-        TabOrder = 0
-        OnClick = jsAxisRGClick
+        Caption = 'JoystickButton4'
       end
       object jsStateRG: TRadioGroup
         Left = 17
         Top = 18
-        Width = 89
+        Width = 160
         Height = 54
         Caption = 'State'
-        ItemIndex = 0
+        Columns = 2
+        ItemIndex = 1
         Items.Strings = (
           'Enabled'
           'Disabled')
-        TabOrder = 1
+        TabOrder = 0
         OnClick = jsAxisRGClick
       end
       object mNrOfGearsLbl: TIntegerLabeledEdit
         Left = 16
         Top = 248
-        Width = 65
+        Width = 41
         Height = 21
         EditLabel.Width = 55
         EditLabel.Height = 13
         EditLabel.Caption = 'Nr of Gears'
-        TabOrder = 2
+        TabOrder = 1
         Text = '0'
+        OnKeyDown = JoyStickValueEdit
+      end
+      object mMaxXYJogVelocityJoystick: mtkFloatLabeledEdit
+        Left = 17
+        Top = 290
+        Width = 66
+        Height = 21
+        EditLabel.Width = 75
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Max XY Velocity'
+        TabOrder = 2
+        Text = '0.00'
+        OnKeyDown = JoyStickValueEdit
+      end
+      object mXYJogAccelerationJoystick: mtkFloatLabeledEdit
+        Left = 97
+        Top = 290
+        Width = 66
+        Height = 21
+        EditLabel.Width = 74
+        EditLabel.Height = 13
+        EditLabel.Caption = 'XY Acceleration'
+        TabOrder = 3
+        Text = '0.00'
+        OnKeyDown = JoyStickValueEdit
+      end
+      object mMaxZJogVelocityJoystick: mtkFloatLabeledEdit
+        Left = 17
+        Top = 339
+        Width = 66
+        Height = 21
+        EditLabel.Width = 69
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Max Z Velocity'
+        TabOrder = 4
+        Text = '0.00'
+        OnKeyDown = JoyStickValueEdit
+      end
+      object mZJogAccelerationJoystick: mtkFloatLabeledEdit
+        Left = 97
+        Top = 339
+        Width = 66
+        Height = 21
+        EditLabel.Width = 68
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Z Acceleration'
+        TabOrder = 5
+        Text = '0.00'
+        OnKeyDown = JoyStickValueEdit
+      end
+      object mJoystickMessageRate: TIntegerLabeledEdit
+        Left = 97
+        Top = 248
+        Width = 73
+        Height = 21
+        EditLabel.Width = 92
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Message Rate (ms)'
+        TabOrder = 6
+        Text = '20'
+        OnKeyDown = JoyStickValueEdit
+        Value = 20
       end
     end
   end
   object ActionList1: TActionList
-    Left = 648
-    Top = 296
+    Left = 656
+    Top = 112
     object checkForDevices: TAction
       Caption = 'Devices Check'
       OnExecute = checkForDevicesExecute
@@ -629,11 +570,9 @@ object Main: TMain
     end
     object moveForward: TAction
       Caption = 'Forward'
-      OnExecute = moveForwardExecute
     end
     object moveBackward: TAction
       Caption = 'Backward'
-      OnExecute = moveBackwardExecute
     end
     object stopMotor: TAction
       Caption = 'Stop'
