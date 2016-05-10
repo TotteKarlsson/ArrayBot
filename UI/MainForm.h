@@ -32,11 +32,11 @@ class TMain : public TForm
         TMemo *infoMemo;
 	TListBox *devicesLB;
         TToolBar *ToolBar1;
-        TBitBtn *BitBtn1;
+	TBitBtn *InitCloseBtn;
         TActionList *ActionList1;
         TAction *checkForDevices;
         TBitBtn *BitBtn2;
-        TAction *connectAllDevices;
+	TAction *addDevicesToListBox;
 	TTimer *ShutDownTimer;
 	TGroupBox *DeviceGB;
 	TButton *Button1;
@@ -97,9 +97,12 @@ class TMain : public TForm
 	TTabSheet *TabSheet3;
 	TRadioGroup *jsStateRG;
 	TXYZUnitFrame *TXYZUnitFrame1;
+	TTabSheet *TabSheet4;
+	TAction *InitializeUnitsA;
+	TAction *ShutDownA;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
-        void __fastcall connectAllDevicesExecute(TObject *Sender);
+        void __fastcall addDevicesToListBoxExecute(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall ShutDownTimerTimer(TObject *Sender);
@@ -123,6 +126,8 @@ class TMain : public TForm
 
 	void __fastcall jsAxisRGClick(TObject *Sender);
 	void __fastcall DeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall InitializeUnitsAExecute(TObject *Sender);
+	void __fastcall ShutDownAExecute(TObject *Sender);
 
 
     private:	// User declarations

@@ -45,6 +45,7 @@ bool DeviceManager::disConnectAll()
             delete dev;
         }
     }
+    mDevices.clear();
     return true;
 }
 
@@ -227,7 +228,7 @@ APTDevice* DeviceManager::connectDevice(int serial)
     {
         //Add device to internal map
         mDevices[serial] = device;
-        if(!device->connect())
+        if(device->connect())
         {
             //Flash LED
             device->identify();

@@ -20,6 +20,7 @@ class AB_CORE XYZUnit : public ABObject
 	public:
     					        XYZUnit(const string& name, JoyStick* js, IniFile& iniFile);
     					        ~XYZUnit();
+		void				    shutDown();
 		string					getName();
 
 		bool				    initialize();

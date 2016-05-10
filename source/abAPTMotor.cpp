@@ -6,7 +6,9 @@
 APTMotor::APTMotor(int serialNo)
 :
 	APTDevice(serialNo),
-    mVelocityRange(DoubleRange(0.0, 0.0)),
+    mPositionRange(0,0),
+    mVelocityRange(0,0),
+    mAccelerationRange(0,0),
 	mMotorMessageProcessor(mMotorMessageContainer)
 {
 	mMotorMessageProcessor.assignMotor(this);
@@ -14,7 +16,15 @@ APTMotor::APTMotor(int serialNo)
 }
 
 APTMotor::~APTMotor()
-{}
+{
+	mMotorMessageProcessor.stop();
+    while(mMotorMessageProcessor.isRunning())
+    {
+		Log(lDebug) << "...";
+    }
+	Log(lDebug) <<"Destructing Motor with serial: "<<mSerial;
+    mProperties.write();
+}
 
 bool APTMotor::disconnect()
 {
@@ -41,38 +51,5 @@ bool APTMotor::setVelocityRange(DoubleRange vel)
 
 DoubleRange APTMotor::getVelocityRange()
 {
-	return mVelocityRange.getValue();
+	return mVelocityRange;
 }
-
-//bool APTMotor::setMaxAcceleration(double a)
-//{
-//	mMaxAcceleration = a;
-//	return true;
-//}
-//
-//double APTMotor::getMaxAcceleration()
-//{
-//	return mMaxAcceleration;
-//}
-//
-//bool APTMotor::setMaxJogVelocity(double vel)
-//{
-//	mMaxJogVelocity = vel;
-//	return true;
-//}
-//
-//double APTMotor::getMaxJogVelocity()
-//{
-//	return mMaxJogVelocity;
-//}
-//
-//bool APTMotor::setMaxJogAcceleration(double a)
-//{
-//	mMaxJogAcceleration = a;
-//	return true;
-//}
-//
-//double APTMotor::getMaxJogAcceleration()
-//{
-//	return mMaxJogAcceleration;
-//}

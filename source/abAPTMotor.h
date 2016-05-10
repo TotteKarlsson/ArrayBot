@@ -13,7 +13,7 @@ class AB_CORE APTMotor : public APTDevice
     public:
 						                    APTMotor(int serial);
 		virtual			                    ~APTMotor();
-        virtual HardwareInformation     	getHWInfo() = 0;
+        virtual HardwareInformation 	    getHWInfo() = 0;
 
         virtual double						getEncoderCounts() = 0;
 
@@ -32,12 +32,6 @@ class AB_CORE APTMotor : public APTDevice
 											//!Motor ranges
         virtual Range<double>               getVelocityRange();
 		virtual bool	                    setVelocityRange(DoubleRange vr);
-//        virtual double	                	getMaxJogVelocity();
-//        virtual double	          			getMaxJogAcceleration();
-//        virtual bool	                    setMaxJogAcceleration(double a);
-
-//        virtual bool                        setAccelerationRange(DoubleRange val);
-//        virtual DoubleRange                 getAccelerationRange();
 
 						                    //!General commands
         virtual bool		                identify() = 0;
@@ -65,8 +59,6 @@ class AB_CORE APTMotor : public APTDevice
 		virtual StopMode     				getJogStopMode() = 0;
 
         virtual double	                	getJogVelocity() = 0;
-
-
         virtual double	          			getJogAcceleration() = 0;
 
         virtual void		                jogForward(bool inThread = true) = 0;
@@ -80,15 +72,15 @@ class AB_CORE APTMotor : public APTDevice
         MotorCommandEnum					getLastCommand();
 
     protected:
+
     	Timer				                mStatusTimer;
         unsigned long			            mStatusBits;
-        ScalingFactors			            mScalingFactors;
-		HardwareInformation 				mHWInfo;
+        MotorScalingFactors		            mScalingFactors;
+		HardwareInformation 	  			mHWInfo;
 
-        Property< Range<double> >  			mVelocityRange;
-//        Property<double>					mMaxJogVelocity;
-//        Property<double>					mMaxAcceleration;
-//        Property<double>					mMaxJogAcceleration;
+        Range<double> 						mPositionRange;
+        Range<double> 						mVelocityRange;
+        Range<double> 						mAccelerationRange;
 
 		void                                post(const MotorCommand& cmd);
         MotorMessageProcessor				mMotorMessageProcessor;

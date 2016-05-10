@@ -3,7 +3,7 @@
 
 //!Scaling factors are used to convert a motors position, velocity and accelertation
 //!expressed in device units, into world physical units.
-struct ScalingFactors : public ABObject
+struct MotorScalingFactors : public ABObject
 {
 	double position;
     double velocity;

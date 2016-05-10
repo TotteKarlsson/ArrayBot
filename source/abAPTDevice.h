@@ -4,7 +4,8 @@
 #include "abABObject.h"
 #include "mtkProperties.h"
 #include "abUtilities.h"
-#include "mtkProperties.h"
+#include "mtkINIFileProperties.h"
+#include "mtkIniFile.h"
 
 using namespace mtk;
 struct HardwareInformation;
@@ -29,14 +30,17 @@ class AB_CORE APTDevice : public ABObject
         bool	        		                disable();
 
         string					                getSerial();
-
+        bool									loadProperties(IniFile& iniFile);
+        void									setName(const string& name);
+        string 									getName();
 
     protected:
-		Properties								mProperties;
+		IniFileProperties	  					mProperties;
     	Property<string>                        mSerial;
+    	Property<string>						mName;
 
 								                //DeviceTypeID enum
-        DeviceTypeID	   		                mDeviceTypeID;
+		DeviceTypeID		 	                mDeviceTypeID;
 
         						                //True if connection with hardware device is
                                                 //established

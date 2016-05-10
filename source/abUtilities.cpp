@@ -20,7 +20,6 @@ string toString(const TLI_DeviceInfo& val)
     return str.str();
 }
 
-
 bool buildDeviceList()
 {
     // Build list of connected device
@@ -56,6 +55,16 @@ StringList getSerialsForDeviceType(DeviceTypeID deviceID)
 	return serials;
 }
 
+DeviceTypeID getDeviceTypeID(const string& id)
+{
+    string sid = toUpperCase(id);
+    if (sid == "UNKNOWN")  			return didUnknown;
+    if (sid == "LONGTRAVELSTAGE")   return didLongTravelStage;
+    if (sid == "TCUBESTEPPERMOTOR") return didTCubeStepperMotor;
+    if (sid == "TCUBEDCSERVO")            return didTCubeDCServo;
+    return didUnknown;
+}
+
 string toString(DeviceTypeID value)
 {
 	switch(value)
@@ -80,13 +89,13 @@ string tlError(int err)
 
 	switch(err)
     {
-        case 0: 
+        case 0:
             str << "FT_OK - Success";
         break;
-        case 1: 
+        case 1:
             str << "FT_InvalidHandle - The FTDI functions have not been initialized.";
         break;
-        case 2: 
+        case 2:
             str << "FT_DeviceNotFound - The Device could not be found. \nThis can be generated if the function TLI_BuildDeviceList() has not been called.";
         break;
         case 3: 

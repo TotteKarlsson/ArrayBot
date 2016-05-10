@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot Version 0.1'
-  ClientHeight = 571
-  ClientWidth = 733
+  ClientHeight = 574
+  ClientWidth = 740
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -63,18 +63,17 @@ object Main: TMain
   object Splitter1: TSplitter
     Left = 0
     Top = 409
-    Width = 733
+    Width = 740
     Height = 3
     Cursor = crVSplit
-    Align = alTop
+    Align = alBottom
     ExplicitLeft = 8
-    ExplicitTop = 544
-    ExplicitWidth = 952
+    ExplicitTop = 437
   end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 733
+    Width = 740
     Height = 36
     ButtonHeight = 30
     ButtonWidth = 13
@@ -82,13 +81,13 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
-    object BitBtn1: TBitBtn
+    object InitCloseBtn: TBitBtn
       Left = 0
       Top = 0
       Width = 96
       Height = 30
-      Action = connectAllDevices
-      Caption = 'Connect All'
+      Action = InitializeUnitsA
+      Caption = 'Initialize'
       TabOrder = 0
     end
     object BitBtn2: TBitBtn
@@ -112,15 +111,15 @@ object Main: TMain
   object BottomPanel: TPanel
     Left = 0
     Top = 412
-    Width = 733
-    Height = 159
-    Align = alClient
+    Width = 740
+    Height = 162
+    Align = alBottom
     TabOrder = 1
     object infoMemo: TMemo
       Left = 1
       Top = 34
-      Width = 731
-      Height = 124
+      Width = 738
+      Height = 127
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
@@ -129,7 +128,7 @@ object Main: TMain
     object ToolBar2: TToolBar
       Left = 1
       Top = 1
-      Width = 731
+      Width = 738
       Height = 33
       AutoSize = True
       ButtonHeight = 33
@@ -149,84 +148,46 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 36
-    Width = 733
+    Width = 740
     Height = 373
-    Align = alTop
+    Align = alClient
     TabOrder = 2
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 731
+      Width = 738
       Height = 371
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
+      object TabSheet4: TTabSheet
+        Caption = 'The Bot'
+      end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
         inline TXYZUnitFrame1: TXYZUnitFrame
           Left = 0
           Top = 0
-          Width = 723
+          Width = 730
           Height = 343
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 723
+          ExplicitWidth = 730
           ExplicitHeight = 343
           inherited mainGB: TGroupBox
-            Width = 723
+            Width = 730
             Height = 343
-            ExplicitWidth = 723
+            ExplicitWidth = 730
             ExplicitHeight = 343
             inherited Panel1: TPanel
-              Width = 719
-              ExplicitWidth = 719
+              Width = 726
+              ExplicitWidth = 726
             end
             inherited ScrollBox1: TScrollBox
-              Width = 719
+              Width = 726
               Height = 285
-              ExplicitWidth = 719
+              ExplicitWidth = 726
               ExplicitHeight = 285
-              inherited TMotorFrame1: TMotorFrame
-                Height = 264
-                ExplicitLeft = 576
-                ExplicitTop = 0
-                ExplicitHeight = 264
-                inherited MotorGB: TGroupBox
-                  Height = 264
-                  inherited StatusGB: TGroupBox
-                    Top = 180
-                  end
-                end
-              end
-              inherited TMotorFrame3: TMotorFrame
-                Height = 264
-                ExplicitLeft = 288
-                ExplicitTop = 0
-                ExplicitHeight = 264
-                inherited MotorGB: TGroupBox
-                  Height = 264
-                  inherited StatusGB: TGroupBox
-                    Top = 180
-                  end
-                end
-              end
-              inherited MotorFrame2: TMotorFrame
-                Height = 264
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitHeight = 264
-                inherited MotorGB: TGroupBox
-                  Height = 264
-                  inherited StatusGB: TGroupBox
-                    Top = 180
-                  end
-                  inherited motorPositionE: mtkFloatLabeledEdit
-                    EditLabel.ExplicitLeft = 0
-                    EditLabel.ExplicitTop = -16
-                    EditLabel.ExplicitWidth = 71
-                  end
-                end
-              end
             end
           end
         end
@@ -483,7 +444,7 @@ object Main: TMain
         object JoyStickGB: TGroupBox
           Left = 0
           Top = 0
-          Width = 723
+          Width = 730
           Height = 343
           Align = alClient
           Caption = 'JoyStick'
@@ -573,9 +534,9 @@ object Main: TMain
       Caption = 'Devices Check'
       OnExecute = checkForDevicesExecute
     end
-    object connectAllDevices: TAction
+    object addDevicesToListBox: TAction
       Caption = 'Connect All'
-      OnExecute = connectAllDevicesExecute
+      OnExecute = addDevicesToListBoxExecute
     end
     object identifyCurrent: TAction
       Caption = 'Identify'
@@ -602,6 +563,14 @@ object Main: TMain
     object stopMotor: TAction
       Caption = 'Stop All'
       OnExecute = stopMotorExecute
+    end
+    object InitializeUnitsA: TAction
+      Caption = 'Initialize'
+      OnExecute = InitializeUnitsAExecute
+    end
+    object ShutDownA: TAction
+      Caption = 'ShutDown'
+      OnExecute = ShutDownAExecute
     end
   end
   object ShutDownTimer: TTimer

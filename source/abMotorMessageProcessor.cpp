@@ -98,7 +98,7 @@ void MotorMessageProcessor::worker()
 				mMotorMessageContainer.mNewCommandCondition.wait(mMotorMessageContainer.mListMutex);
 			}
 
-            while(mMotorMessageContainer.hasMessage())
+            while(mMotorMessageContainer.hasMessage() && mIsTimeToDie == false)
             {
 	           	MotorCommand cmd = mMotorMessageContainer.pop();
 

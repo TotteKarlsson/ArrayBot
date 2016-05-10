@@ -12,7 +12,7 @@
 
 class APTMotor;
 
-class TMotorFrame : public TFrame
+class PACKAGE TMotorFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *MotorGB;
@@ -29,15 +29,16 @@ __published:	// IDE-managed Components
 	TLabel *mIsHomingLabel;
 	TLabel *mIsReversingLabel;
 	TLabel *mVelocityLbl;
-	mtkFloatLabeledEdit *motorPositionE;
+	mtkFloatLabeledEdit *mMotorPositionE;
+	TTimer *mMotorStatusTimer;
+	void __fastcall mMotorStatusTimerTimer(TObject *Sender);
 private:	// User declarations
 	APTMotor*		mMotor;
 
 public:		// User declarations
-	__fastcall TMotorFrame(TComponent* Owner);
-    void			assignMotor(APTMotor* m);
+	__fastcall 				TMotorFrame(const string& name, TComponent* Owner);
+    void					assignMotor(APTMotor* m);
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TMotorFrame *MotorFrame;
-//---------------------------------------------------------------------------
 #endif

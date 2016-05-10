@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['setjogmode',['setJogMode',['../class_a_p_t_motor.html#a84b8a505dec66d65ff204cbb731f61fc',1,'APTMotor::setJogMode()'],['../class_long_travel_stage.html#a2121a74dde9f2ae42a3de242ec5ae764',1,'LongTravelStage::setJogMode()'],['../class_t_cube_d_c_servo.html#a78cffc7e382ce2bc885c93b90cc1b205',1,'TCubeDCServo::setJogMode()'],['../class_t_cube_stepper_motor.html#ae9cb56d3cb1c0fadf83a82523e6cf06c',1,'TCubeStepperMotor::setJogMode()']]]
+  ['setjogmode',['setJogMode',['../class_t_cube_d_c_servo.html#a97dc8fc2b3114a6982e6c5b408ed3933',1,'TCubeDCServo']]],
+  ['setjogmovemode',['setJogMoveMode',['../class_a_p_t_motor.html#a1ae9febb9328679daf577a51de1a2103',1,'APTMotor::setJogMoveMode()'],['../class_long_travel_stage.html#ac4cb98f8c043120d02896a8522637819',1,'LongTravelStage::setJogMoveMode()'],['../class_t_cube_stepper_motor.html#a27c61cad4379e48148d0d952057e9231',1,'TCubeStepperMotor::setJogMoveMode()']]],
+  ['setjogvelocity',['setJogVelocity',['../class_long_travel_stage.html#a5b5e50cb893036b529781d6f44c6bd88',1,'LongTravelStage']]]
 ];

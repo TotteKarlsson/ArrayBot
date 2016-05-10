@@ -1,7 +1,6 @@
 #ifndef abTCubeStepperMotorH
 #define abTCubeStepperMotorH
 #include "abAPTMotor.h"
-//#include "Thorlabs.MotionControl.TCube.StepperMotor.h"
 //---------------------------------------------------------------------------
 
 class AB_CORE TCubeStepperMotor : public APTMotor
@@ -10,7 +9,7 @@ class AB_CORE TCubeStepperMotor : public APTMotor
         						        TCubeStepperMotor(int serial);
 		virtual 		                ~TCubeStepperMotor();
 
-		HardwareInformation		        getHWInfo();
+		HardwareInformation	    		getHWInfo();
         double				 			getEncoderCounts();
         bool	                        connect();
         bool	                        disconnect();

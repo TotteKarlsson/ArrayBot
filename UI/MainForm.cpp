@@ -38,7 +38,9 @@ __fastcall TMain::TMain(TComponent* Owner)
 }
 
 __fastcall TMain::~TMain()
-{}
+{
+
+}
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
@@ -64,11 +66,12 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 {
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
+}
 
-	TXYZUnitFrame1->assignUnit(&mXYZUnit1);
-
+void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
+{
 	mXYZUnit1.initialize();
-    connectAllDevicesExecute(Sender);
+    addDevicesToListBoxExecute(Sender);
 
     //Fill out edits
     mMaxXYJogVelocityJoystick->SetNumber(mJoyStick.getXAxis().getMaxVelocity());
@@ -81,11 +84,23 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     }
 
 	mNrOfGearsLbl->setValue(mJoyStick.getXAxis().getNumberOfGears());
-
 	mJoyStick.connect();
+
+	TXYZUnitFrame1->assignUnit(&mXYZUnit1);
+    InitCloseBtn->Action = ShutDownA;
 }
 
-void __fastcall TMain::connectAllDevicesExecute(TObject *Sender)
+void __fastcall TMain::ShutDownAExecute(TObject *Sender)
+{
+	StatusTimer->Enabled = false;
+	devicesLB->Clear();
+
+    //The shutdown disconnects all devices
+	mXYZUnit1.shutDown();
+    InitCloseBtn->Action = InitializeUnitsA;
+}
+
+void __fastcall TMain::addDevicesToListBoxExecute(TObject *Sender)
 {
 	//Connect all available devices
   	APTDevice* device = mXYZUnit1.mDeviceManager.getFirst();
@@ -384,4 +399,8 @@ void __fastcall TMain::jsAxisRGClick(TObject *Sender)
    		mJoyStick.enable() : mJoyStick.disable();
    	}
 }
+
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
 

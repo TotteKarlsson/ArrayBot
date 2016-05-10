@@ -151,15 +151,15 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="memitem:a6faf13ab5f2dcd52c3742be7797a60f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6faf13ab5f2dcd52c3742be7797a60f5"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getVelocity</b> ()</td></tr>
 <tr class="separator:a6faf13ab5f2dcd52c3742be7797a60f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a645c1e4f0281905510766b318f11e33f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a645c1e4f0281905510766b318f11e33f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocity</b> (double v)</td></tr>
-<tr class="separator:a645c1e4f0281905510766b318f11e33f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea86f2cc117fce7178ac09082d2d7609"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea86f2cc117fce7178ac09082d2d7609"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocityForward</b> (double v)</td></tr>
-<tr class="separator:aea86f2cc117fce7178ac09082d2d7609"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9363f2b3f11fbd80aa9500160e34e45b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9363f2b3f11fbd80aa9500160e34e45b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocityReverse</b> (double v)</td></tr>
-<tr class="separator:a9363f2b3f11fbd80aa9500160e34e45b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0eb3dac7109d261928ce718ab794322"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0eb3dac7109d261928ce718ab794322"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocity</b> (double v)</td></tr>
+<tr class="separator:ad0eb3dac7109d261928ce718ab794322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82849db3f088e82518d219e9b5ce5f9d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82849db3f088e82518d219e9b5ce5f9d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityForward</b> (double v)</td></tr>
+<tr class="separator:a82849db3f088e82518d219e9b5ce5f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abda1237448acda6e89a075159347f14e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abda1237448acda6e89a075159347f14e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityReverse</b> (double v)</td></tr>
+<tr class="separator:abda1237448acda6e89a075159347f14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a563ea20f9d4727970e9754e2c4919051"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a563ea20f9d4727970e9754e2c4919051"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getAcceleration</b> ()</td></tr>
 <tr class="separator:a563ea20f9d4727970e9754e2c4919051"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,10 +192,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>jogForward</b> (bool 
 <tr class="memitem:acc8740224efb44c8ff55c0247f761419"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc8740224efb44c8ff55c0247f761419"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>jogReverse</b> (bool inThread=true)</td></tr>
 <tr class="separator:acc8740224efb44c8ff55c0247f761419"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9cb56d3cb1c0fadf83a82523e6cf06c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9cb56d3cb1c0fadf83a82523e6cf06c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_cube_stepper_motor.html#ae9cb56d3cb1c0fadf83a82523e6cf06c">setJogMode</a> (JogModes mode=jmSingleStep, StopModes stopMode=smProfiled)</td></tr>
-<tr class="memdesc:ae9cb56d3cb1c0fadf83a82523e6cf06c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jogging. <br /></td></tr>
-<tr class="separator:ae9cb56d3cb1c0fadf83a82523e6cf06c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27c61cad4379e48148d0d952057e9231"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27c61cad4379e48148d0d952057e9231"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_cube_stepper_motor.html#a27c61cad4379e48148d0d952057e9231">setJogMoveMode</a> (JogMoveMode mode)</td></tr>
+<tr class="memdesc:a27c61cad4379e48148d0d952057e9231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jogging. <br /></td></tr>
+<tr class="separator:a27c61cad4379e48148d0d952057e9231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab67293e142143072f474a56a47204e61"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab67293e142143072f474a56a47204e61"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setJogStopMode</b> (StopMode mode)</td></tr>
+<tr class="separator:ab67293e142143072f474a56a47204e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0af2b9a34caeca67412f76b99a1de805"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0af2b9a34caeca67412f76b99a1de805"></a>
+JogMoveMode&#160;</td><td class="memItemRight" valign="bottom"><b>getJogMoveMode</b> ()</td></tr>
+<tr class="separator:a0af2b9a34caeca67412f76b99a1de805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38414e078c921e1c11795ff8adda97c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38414e078c921e1c11795ff8adda97c6"></a>
+StopMode&#160;</td><td class="memItemRight" valign="bottom"><b>getJogStopMode</b> ()</td></tr>
+<tr class="separator:a38414e078c921e1c11795ff8adda97c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9a3adab98c0ac93551a084f61c7e87c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9a3adab98c0ac93551a084f61c7e87c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>setJogVelocity</b> (double v)</td></tr>
 <tr class="separator:aa9a3adab98c0ac93551a084f61c7e87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,6 +228,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a05a9fe8575fe7bfaf73d285704989827 inherit pub_methods_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05a9fe8575fe7bfaf73d285704989827"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>APTMotor</b> (int serial)</td></tr>
 <tr class="separator:a05a9fe8575fe7bfaf73d285704989827 inherit pub_methods_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26fa3cf9ad0ef38a30d1f8d58dc5d306 inherit pub_methods_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26fa3cf9ad0ef38a30d1f8d58dc5d306"></a>
+virtual Range&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_p_t_motor.html#a26fa3cf9ad0ef38a30d1f8d58dc5d306">getVelocityRange</a> ()</td></tr>
+<tr class="memdesc:a26fa3cf9ad0ef38a30d1f8d58dc5d306 inherit pub_methods_class_a_p_t_motor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor ranges. <br /></td></tr>
+<tr class="separator:a26fa3cf9ad0ef38a30d1f8d58dc5d306 inherit pub_methods_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb301fab65bc40b60ed41ec5667efc57 inherit pub_methods_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb301fab65bc40b60ed41ec5667efc57"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityRange</b> (DoubleRange vr)</td></tr>
+<tr class="separator:acb301fab65bc40b60ed41ec5667efc57 inherit pub_methods_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d45bca3613e6eed817d2ef5d4baab8b inherit pub_methods_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d45bca3613e6eed817d2ef5d4baab8b"></a>
 MotorCommandEnum&#160;</td><td class="memItemRight" valign="bottom"><b>getLastCommand</b> ()</td></tr>
 <tr class="separator:a5d45bca3613e6eed817d2ef5d4baab8b inherit pub_methods_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -258,6 +274,9 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>mStatusBits<
 <tr class="memitem:a79f9a9a1acb0c52a600bdf6fcd79e2dd inherit pro_attribs_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79f9a9a1acb0c52a600bdf6fcd79e2dd"></a>
 <a class="el" href="struct_hardware_information.html">HardwareInformation</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mHWInfo</b></td></tr>
 <tr class="separator:a79f9a9a1acb0c52a600bdf6fcd79e2dd inherit pro_attribs_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d6d124fcc9f709f884e6e13a5b1816f inherit pro_attribs_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d6d124fcc9f709f884e6e13a5b1816f"></a>
+Property&lt; Range&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mVelocityRange</b></td></tr>
+<tr class="separator:a5d6d124fcc9f709f884e6e13a5b1816f inherit pro_attribs_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a391a4a48e8036985da1f3c25a59db62a inherit pro_attribs_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a391a4a48e8036985da1f3c25a59db62a"></a>
 <a class="el" href="class_motor_message_processor.html">MotorMessageProcessor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mMotorMessageProcessor</b></td></tr>
 <tr class="separator:a391a4a48e8036985da1f3c25a59db62a inherit pro_attribs_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -265,12 +284,12 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>mStatusBits<
 <a class="el" href="class_motor_message_container.html">MotorMessageContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mMotorMessageContainer</b></td></tr>
 <tr class="separator:a493619719d45765e5852d13720f77b67 inherit pro_attribs_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_a_p_t_device"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_a_p_t_device')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_a_p_t_device.html">APTDevice</a></td></tr>
-<tr class="memitem:a84777e2ac99df354edcbbccf881df188 inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84777e2ac99df354edcbbccf881df188"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>mSerial</b></td></tr>
-<tr class="separator:a84777e2ac99df354edcbbccf881df188 inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2712ffda64d717fe01e4433f119024c inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2712ffda64d717fe01e4433f119024c"></a>
-Properties&#160;</td><td class="memItemRight" valign="bottom"><b>mSettings</b></td></tr>
-<tr class="separator:ae2712ffda64d717fe01e4433f119024c inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67eeb8fa1ed1b1d39d449dd081bc1239 inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67eeb8fa1ed1b1d39d449dd081bc1239"></a>
+Properties&#160;</td><td class="memItemRight" valign="bottom"><b>mProperties</b></td></tr>
+<tr class="separator:a67eeb8fa1ed1b1d39d449dd081bc1239 inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a009a68e635d0c3d1180716e03a0f04b6 inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a009a68e635d0c3d1180716e03a0f04b6"></a>
+Property&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mSerial</b></td></tr>
+<tr class="separator:a009a68e635d0c3d1180716e03a0f04b6 inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae326c547996edf6c317fedf922eafd32 inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae326c547996edf6c317fedf922eafd32"></a>
 DeviceTypeID&#160;</td><td class="memItemRight" valign="bottom"><b>mDeviceTypeID</b></td></tr>
 <tr class="separator:ae326c547996edf6c317fedf922eafd32 inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>

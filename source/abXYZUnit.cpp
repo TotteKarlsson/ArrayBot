@@ -34,6 +34,13 @@ mIniFile(iniFile)
 
 XYZUnit::~XYZUnit()
 {
+    mIniFile.save();
+}
+
+void XYZUnit::shutDown()
+{
+	mDeviceManager.disConnectAll();
+
 	//Save Properties
 	mProperties.write();
     mIniFile.save();
@@ -51,8 +58,11 @@ bool XYZUnit::initialize()
     mXMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mXMotorSerialNr));
     if(mXMotor)
     {
-    	Log(lInfo) << "Xmotor is connected";
+    	Log(lInfo) << "X motor is connected";
+
         //Load Motor Properties
+        mXMotor->loadProperties(mIniFile);
+        mXMotor->setName(mName + ":X");
         if(mJoyStick)
         {
         	mJoyStick->getXAxis().assignMotor(mXMotor);
@@ -63,13 +73,17 @@ bool XYZUnit::initialize()
     }
     else
     {
-		Log(lError) << "Xmotor is NOT connected";
+		Log(lError) << "X motor is NOT connected";
     }
 
     mYMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mYMotorSerialNr));
     if(mYMotor)
     {
-    	Log(lInfo) << "Ymotor is connected";
+    	Log(lInfo) << "Y motor is connected";
+        //Load Motor Properties
+        mYMotor->loadProperties(mIniFile);
+        mYMotor->setName(mName + ":Y");
+
         if(mJoyStick)
         {
         	mJoyStick->getYAxis().assignMotor(mYMotor);
@@ -79,13 +93,18 @@ bool XYZUnit::initialize()
     }
     else
     {
-		Log(lError) << "Ymotor is NOT connected";
+		Log(lError) << "Y motor is NOT connected";
     }
 
     mZMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mZMotorSerialNr));
     if(mZMotor)
     {
     	Log(lInfo) << "Zmotor is connected";
+
+        //Load Motor Properties
+        mZMotor->loadProperties(mIniFile);
+        mZMotor->setName(mName + ":Z");
+
         if(mJoyStick)
         {
    			mJoyStick->getButton(3).assignMotor(mZMotor);
@@ -97,7 +116,7 @@ bool XYZUnit::initialize()
     }
     else
     {
-		Log(lError) << "Zmotor is NOT connected";
+		Log(lError) << "Z motor is NOT connected";
     }
 	return true;
 }
@@ -133,4 +152,5 @@ bool XYZUnit::stopAll()
     {
     	mZMotor->stop();
     }
+    return true;
 }

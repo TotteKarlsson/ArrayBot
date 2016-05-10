@@ -1,16 +1,19 @@
 object MotorFrame: TMotorFrame
   Left = 0
   Top = 0
-  Width = 288
-  Height = 272
+  Width = 293
+  Height = 292
   TabOrder = 0
   object MotorGB: TGroupBox
     Left = 0
     Top = 0
     Width = 288
     Height = 272
-    Align = alClient
     Caption = 'Motor'
+    Constraints.MaxHeight = 272
+    Constraints.MaxWidth = 288
+    Constraints.MinHeight = 272
+    Constraints.MinWidth = 288
     TabOrder = 0
     DesignSize = (
       288
@@ -108,7 +111,7 @@ object MotorFrame: TMotorFrame
         Caption = '0.0 '
       end
     end
-    object motorPositionE: mtkFloatLabeledEdit
+    object mMotorPositionE: mtkFloatLabeledEdit
       Left = 168
       Top = 29
       Width = 102
@@ -126,5 +129,12 @@ object MotorFrame: TMotorFrame
       TabOrder = 1
       Text = '0.00'
     end
+  end
+  object mMotorStatusTimer: TTimer
+    Enabled = False
+    Interval = 250
+    OnTimer = mMotorStatusTimerTimer
+    Left = 176
+    Top = 88
   end
 end
