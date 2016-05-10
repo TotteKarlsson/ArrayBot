@@ -5,6 +5,9 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
+#include "mtkFloatLabeledEdit.h"
+#include "TIntLabel.h"
+#include <Vcl.ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 
 class APTMotor;
@@ -26,6 +29,7 @@ __published:	// IDE-managed Components
 	TLabel *mIsHomingLabel;
 	TLabel *mIsReversingLabel;
 	TLabel *mVelocityLbl;
+	mtkFloatLabeledEdit *motorPositionE;
 private:	// User declarations
 	APTMotor*		mMotor;
 

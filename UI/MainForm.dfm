@@ -170,24 +170,63 @@ object Main: TMain
           Height = 343
           Align = alClient
           TabOrder = 0
-          ExplicitLeft = 56
-          ExplicitTop = 32
+          ExplicitWidth = 723
+          ExplicitHeight = 343
           inherited mainGB: TGroupBox
             Width = 723
             Height = 343
-            ExplicitWidth = 681
-            ExplicitHeight = 619
+            ExplicitWidth = 723
+            ExplicitHeight = 343
             inherited Panel1: TPanel
               Width = 719
-              ExplicitWidth = 677
+              ExplicitWidth = 719
             end
             inherited ScrollBox1: TScrollBox
               Width = 719
               Height = 285
-              ExplicitLeft = 2
-              ExplicitTop = 56
-              ExplicitWidth = 677
-              ExplicitHeight = 561
+              ExplicitWidth = 719
+              ExplicitHeight = 285
+              inherited TMotorFrame1: TMotorFrame
+                Height = 264
+                ExplicitLeft = 576
+                ExplicitTop = 0
+                ExplicitHeight = 264
+                inherited MotorGB: TGroupBox
+                  Height = 264
+                  inherited StatusGB: TGroupBox
+                    Top = 180
+                  end
+                end
+              end
+              inherited TMotorFrame3: TMotorFrame
+                Height = 264
+                ExplicitLeft = 288
+                ExplicitTop = 0
+                ExplicitHeight = 264
+                inherited MotorGB: TGroupBox
+                  Height = 264
+                  inherited StatusGB: TGroupBox
+                    Top = 180
+                  end
+                end
+              end
+              inherited MotorFrame2: TMotorFrame
+                Height = 264
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitHeight = 264
+                inherited MotorGB: TGroupBox
+                  Height = 264
+                  inherited StatusGB: TGroupBox
+                    Top = 180
+                  end
+                  inherited motorPositionE: mtkFloatLabeledEdit
+                    EditLabel.ExplicitLeft = 0
+                    EditLabel.ExplicitTop = -16
+                    EditLabel.ExplicitWidth = 71
+                  end
+                end
+              end
             end
           end
         end

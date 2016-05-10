@@ -24,3 +24,4 @@ void TXYZUnitFrame::assignUnit(XYZUnit* u)
 	mUnit = u;
     mainGB->Caption = vclstr(u->getName());
 }
+

@@ -3,6 +3,8 @@
 #include "abMotorFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+#pragma link "mtkFloatLabeledEdit"
+#pragma link "TIntLabel"
 #pragma resource "*.dfm"
 TMotorFrame *MotorFrame;
 //---------------------------------------------------------------------------

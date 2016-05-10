@@ -18,7 +18,7 @@ class TXYZUnitFrame : public TFrame
 	TPanel *Panel1;
 	TScrollBox *ScrollBox1;
 	TMotorFrame *TMotorFrame1;
-	TMotorFrame *MotorFrame1;
+	TMotorFrame *TMotorFrame3;
 	TMotorFrame *MotorFrame2;
     private:	// User declarations
         XYZUnit*			mUnit;
