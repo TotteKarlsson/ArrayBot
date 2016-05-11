@@ -162,14 +162,119 @@ object Main: TMain
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        object Button5: TButton
+        object CoverSlipGB: TGroupBox
           Left = 16
-          Top = 32
-          Width = 75
-          Height = 25
-          Caption = 'Button5'
+          Top = 25
+          Width = 425
+          Height = 285
+          Caption = 'Cover Slip'
           TabOrder = 0
-          OnClick = Button5Click
+          object Panel1: TPanel
+            Left = 2
+            Top = 15
+            Width = 421
+            Height = 19
+            Align = alTop
+            BevelOuter = bvNone
+            TabOrder = 0
+          end
+          object GroupBox1: TGroupBox
+            Left = 2
+            Top = 34
+            Width = 421
+            Height = 114
+            Align = alTop
+            Caption = 'Positions'
+            TabOrder = 1
+            object Label9: TLabel
+              Left = 11
+              Top = 24
+              Width = 42
+              Height = 13
+              Caption = 'Positions'
+            end
+            object PositionsCB: TComboBox
+              Left = 11
+              Top = 40
+              Width = 126
+              Height = 21
+              ItemIndex = 0
+              TabOrder = 0
+              Text = 'Edit...'
+              OnChange = PositionsCBChange
+              Items.Strings = (
+                'Edit...')
+            end
+            object GotoPosBtn: TButton
+              Left = 143
+              Top = 38
+              Width = 27
+              Height = 25
+              Caption = '->'
+              TabOrder = 1
+              OnClick = GotoBtnClick
+            end
+            object mXPosE: mtkFloatLabeledEdit
+              Left = 192
+              Top = 40
+              Width = 57
+              Height = 21
+              EditLabel.Width = 6
+              EditLabel.Height = 13
+              EditLabel.Caption = 'X'
+              TabOrder = 2
+              Text = '0.00'
+            end
+            object mYPosE: mtkFloatLabeledEdit
+              Left = 255
+              Top = 40
+              Width = 57
+              Height = 21
+              EditLabel.Width = 6
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Y'
+              TabOrder = 3
+              Text = '0.00'
+            end
+            object mZPosE: mtkFloatLabeledEdit
+              Left = 318
+              Top = 40
+              Width = 57
+              Height = 21
+              EditLabel.Width = 6
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Z'
+              TabOrder = 4
+              Text = '0.00'
+            end
+            object Button5: TButton
+              Left = 381
+              Top = 38
+              Width = 31
+              Height = 25
+              Caption = '+'
+              TabOrder = 5
+              OnClick = Button5Click
+            end
+            object mPositionLabelE: TSTDStringLabeledEdit
+              Left = 192
+              Top = 80
+              Width = 121
+              Height = 21
+              EditLabel.Width = 67
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Position Name'
+              TabOrder = 6
+            end
+          end
+          object GroupBox2: TGroupBox
+            Left = 3
+            Top = 168
+            Width = 190
+            Height = 100
+            Caption = 'Moves'
+            TabOrder = 2
+          end
         end
       end
       object TabSheet1: TTabSheet

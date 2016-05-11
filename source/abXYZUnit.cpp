@@ -1,12 +1,10 @@
 #pragma hdrstop
-//#include <mmsystem.h>
 #include "abJoyStick.h"
 #include "abXYZUnit.h"
 #include "mtkLogger.h"
 #include "abAPTMotor.h"
 
 //---------------------------------------------------------------------------
-
 using namespace mtk;
 XYZUnit::XYZUnit(const string& name, JoyStick* js, IniFile& iniFile)
 :
@@ -30,10 +28,14 @@ mIniFile(iniFile)
     mIniFile.load();
     mProperties.setIniFile(&mIniFile);
     mProperties.read();
+
+    //Check for positions
 }
 
 XYZUnit::~XYZUnit()
 {
+	//Save positions
+
     mIniFile.save();
 }
 
@@ -51,6 +53,20 @@ string XYZUnit::getName()
 	return mName;
 }
 
+bool XYZUnit::moveToPosition(const XYZUnitPosition& pos)
+{
+	if(mXMotor && mYMotor && mZMotor)
+    {
+        //Check pos validity..
+        mXMotor->moveToPosition(pos.x());
+        mYMotor->moveToPosition(pos.y());
+        mZMotor->moveToPosition(pos.z());
+        return true;
+    }
+
+    return false;
+}
+
 bool XYZUnit::initialize()
 {
 	mDeviceManager.reBuildDeviceList();
@@ -62,6 +78,7 @@ bool XYZUnit::initialize()
 
         //Load Motor Properties
         mXMotor->loadProperties(mIniFile);
+
         mXMotor->setName(mName + ":X");
         if(mJoyStick)
         {

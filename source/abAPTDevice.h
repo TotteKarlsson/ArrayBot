@@ -36,6 +36,7 @@ class AB_CORE APTDevice : public ABObject
 
     protected:
 		IniFileProperties	  					mProperties;
+        virtual bool							applyProperties() = 0;
     	Property<string>                        mSerial;
     	Property<string>						mName;
 

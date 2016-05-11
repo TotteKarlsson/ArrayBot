@@ -45,6 +45,9 @@ bool APTDevice::loadProperties(IniFile& iniFile)
 	Log(lInfo) << "Loading properties for APT device with serial: "<<mSerial;
     mProperties.setIniFile(&iniFile);
     mProperties.read();
+
+    Log(lDebug) << "Applying properties";
+    applyProperties();
 }
 
 

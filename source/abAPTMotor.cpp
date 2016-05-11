@@ -31,6 +31,12 @@ APTMotor::~APTMotor()
     mProperties.write();
 }
 
+bool APTMotor::applyProperties()
+{
+	setJogVelocity(mManualJogVelocity);
+	setJogAcceleration(mManualJogAcceleration);
+}
+
 double APTMotor::getManualJogVelocity()
 {
 	return mManualJogVelocity;

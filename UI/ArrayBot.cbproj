@@ -97,6 +97,12 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="..\source\VCL\abEditPositionsForm.cpp">
+            <Form>Form2</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>..\source\VCL\abEditPositionsForm.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\source\VCL\abMotorFrame.cpp">
             <Form>MotorFrame</Form>
             <FormType>dfm</FormType>
@@ -132,6 +138,7 @@
         <FormResources Include="MainForm.dfm"/>
         <FormResources Include="..\source\VCL\abMotorFrame.dfm"/>
         <FormResources Include="..\source\VCL\abXYZUnitFrame.dfm"/>
+        <FormResources Include="..\source\VCL\abEditPositionsForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

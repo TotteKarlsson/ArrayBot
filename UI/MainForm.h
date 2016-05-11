@@ -102,7 +102,18 @@ class TMain : public TForm
 	TAction *InitializeUnitsA;
 	TAction *ShutDownA;
 	TMotorFrame *TMotorFrame1;
+	TGroupBox *CoverSlipGB;
+	TComboBox *PositionsCB;
+	TButton *GotoPosBtn;
+	TLabel *Label9;
+	TPanel *Panel1;
+	TGroupBox *GroupBox1;
+	TGroupBox *GroupBox2;
+	mtkFloatLabeledEdit *mXPosE;
+	mtkFloatLabeledEdit *mYPosE;
+	mtkFloatLabeledEdit *mZPosE;
 	TButton *Button5;
+	TSTDStringLabeledEdit *mPositionLabelE;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall addDevicesToListBoxExecute(TObject *Sender);
@@ -131,6 +142,8 @@ class TMain : public TForm
 	void __fastcall DeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall InitializeUnitsAExecute(TObject *Sender);
 	void __fastcall ShutDownAExecute(TObject *Sender);
+	void __fastcall GotoBtnClick(TObject *Sender);
+	void __fastcall PositionsCBChange(TObject *Sender);
 	void __fastcall Button5Click(TObject *Sender);
 
 

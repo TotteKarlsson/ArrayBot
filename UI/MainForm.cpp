@@ -406,26 +406,51 @@ void __fastcall TMain::jsAxisRGClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::Button5Click(TObject *Sender)
+void __fastcall TMain::GotoBtnClick(TObject *Sender)
 {
-	//
-    APTMotor* m1 = mXYZUnit1.getXMotor();
-    APTMotor* m2 = mXYZUnit1.getZMotor();
+    APTMotor* x = mXYZUnit1.getXMotor();
+    APTMotor* y = mXYZUnit1.getYMotor();
+    APTMotor* z = mXYZUnit1.getZMotor();
 
-    if(m1 && m2)
+    if(x && y && z)
     {
-    	if(m2->getPosition() > 20)
+    	int index = PositionsCB->ItemIndex;
+        if(index <= 0)
         {
-    		m1->jogReverse();
-	    	m2->jogReverse();
+        	return;
         }
-        else
+
+    	XYZUnitPosition* pos = (XYZUnitPosition*)PositionsCB->Items->Objects[index];
+        if(pos)
         {
-    		m1->jogForward();
-	    	m2->jogForward();
+	        mXYZUnit1.moveToPosition((*pos));
         }
     }
+}
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::PositionsCBChange(TObject *Sender)
+{
+	if(PositionsCB->ItemIndex == 0)
+    {
+    	//Open edit positions form
+
+    }
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::Button5Click(TObject *Sender)
+{
+	//Add position
+    XYZUnitPosition* newPos = new XYZUnitPosition(mPositionLabelE->getValue(),
+    			mXPosE->GetValue(),
+                mYPosE->GetValue(),
+                mZPosE->GetValue());
+
+	PositionsCB->Items->InsertObject(PositionsCB->Items->Count, newPos->getLabel().c_str(), (TObject*) newPos);
+
+	mXYZUnit1.positions().add(*newPos);
 }
 
 

@@ -164,6 +164,14 @@
             <DependentOn>abXYZUnit.h</DependentOn>
             <BuildOrder>17</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abXYZUnitPosition.cpp">
+            <DependentOn>abXYZUnitPosition.h</DependentOn>
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abXYZUnitPositions.cpp">
+            <DependentOn>abXYZUnitPositions.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

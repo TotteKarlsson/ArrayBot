@@ -71,8 +71,6 @@ class AB_CORE TCubeStepperMotor : public APTMotor
         bool		                    identify();
 
     protected:
-//        void		                    jogForward();
-//        void		                    jogReverse();
 
 };
 #endif

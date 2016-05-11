@@ -82,6 +82,7 @@ class AB_CORE APTMotor : public APTDevice
         unsigned long			            mStatusBits;
         MotorScalingFactors		            mScalingFactors;
 		HardwareInformation 	  			mHWInfo;
+        bool								applyProperties();
 
         Range<double> 						mPositionRange;
         Range<double> 						mVelocityRange;

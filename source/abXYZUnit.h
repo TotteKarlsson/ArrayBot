@@ -7,7 +7,7 @@
 #include "abDeviceManager.h"
 #include "mtkINIFileProperties.h"
 #include "mtkINIFile.h"
-
+#include "abXYZUnitPositions.h"
 //---------------------------------------------------------------------------
 class APTMotor;
 class JoyStick;
@@ -22,6 +22,7 @@ class AB_CORE XYZUnit : public ABObject
     					        ~XYZUnit();
 		void				    shutDown();
 		string					getName();
+        XYZUnitPositions&		positions(){return mPositions;}
 
 		bool				    initialize();
         bool					stopAll();
@@ -35,6 +36,7 @@ class AB_CORE XYZUnit : public ABObject
         Property<int>		    mYMotorSerialNr;
         Property<int>		    mZMotorSerialNr;
     	DeviceManager	        mDeviceManager;
+        bool					moveToPosition(const XYZUnitPosition& pos);
 
 	protected:
 		string					mName;
@@ -44,5 +46,6 @@ class AB_CORE XYZUnit : public ABObject
         APTMotor*			    mZMotor;
         JoyStick*               mJoyStick;
         IniFile&				mIniFile;
+        XYZUnitPositions		mPositions;
 };
 #endif
