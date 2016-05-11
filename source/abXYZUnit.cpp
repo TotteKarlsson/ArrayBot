@@ -6,7 +6,7 @@
 
 //---------------------------------------------------------------------------
 using namespace mtk;
-XYZUnit::XYZUnit(const string& name, JoyStick* js, IniFile& iniFile)
+XYZUnit::XYZUnit(const string& name, IniFile& iniFile)
 :
 mXMotorSerialNr(-1),
 mYMotorSerialNr(-1),
@@ -15,7 +15,7 @@ mName(name),
 mXMotor(NULL),
 mYMotor(NULL),
 mZMotor(NULL),
-mJoyStick(js),
+mJoyStick(NULL),
 mIniFile(iniFile)
 {
 	//Setup properties
@@ -35,7 +35,6 @@ mIniFile(iniFile)
 XYZUnit::~XYZUnit()
 {
 	//Save positions
-
     mIniFile.save();
 }
 
@@ -78,14 +77,7 @@ bool XYZUnit::initialize()
 
         //Load Motor Properties
         mXMotor->loadProperties(mIniFile);
-
         mXMotor->setName(mName + ":X");
-        if(mJoyStick)
-        {
-        	mJoyStick->getXAxis().assignMotor(mXMotor);
-			mJoyStick->getXAxis().setMaxVelocity(mXMotor->getJogVelocity());
-			mJoyStick->getXAxis().setAcceleration(mXMotor->getJogAcceleration());
-        }
     }
     else
     {
@@ -99,13 +91,6 @@ bool XYZUnit::initialize()
         //Load Motor Properties
         mYMotor->loadProperties(mIniFile);
         mYMotor->setName(mName + ":Y");
-
-        if(mJoyStick)
-        {
-        	mJoyStick->getYAxis().assignMotor(mYMotor);
-			mJoyStick->getYAxis().setMaxVelocity(mYMotor->getJogVelocity());
-			mJoyStick->getYAxis().setAcceleration(mYMotor->getJogAcceleration());
-        }
     }
     else
     {
@@ -120,21 +105,71 @@ bool XYZUnit::initialize()
         //Load Motor Properties
         mZMotor->loadProperties(mIniFile);
         mZMotor->setName(mName + ":Z");
-
-        if(mJoyStick)
-        {
-   			mJoyStick->getButton(3).assignMotor(mZMotor);
-			mJoyStick->getButton(4).assignMotor(mZMotor);
-
-            mJoyStick->getButton(3).setForward();
-            mJoyStick->getButton(4).setReverse();
-        }
     }
     else
     {
 		Log(lError) << "Z motor is NOT connected";
     }
 	return true;
+}
+
+void XYZUnit::enableJoyStick(JoyStick* js)
+{
+	if(!js)
+    {
+    	return;
+    }
+
+    mJoyStick = js;
+
+    if(mXMotor)
+    {
+        mJoyStick->getXAxis().assignMotor(mXMotor);
+        mJoyStick->getXAxis().setMaxVelocity(mXMotor->getJogVelocity());
+        mJoyStick->getXAxis().setAcceleration(mXMotor->getJogAcceleration());
+        mJoyStick->getXAxis().enable();
+    }
+    else
+    {
+    	mJoyStick->getXAxis().disable();
+    }
+
+
+    if(mYMotor)
+    {
+        mJoyStick->getYAxis().assignMotor(mYMotor);
+        mJoyStick->getYAxis().setMaxVelocity(mYMotor->getJogVelocity());
+        mJoyStick->getYAxis().setAcceleration(mYMotor->getJogAcceleration());
+        mJoyStick->getYAxis().enable();
+    }
+    else
+    {
+    	mJoyStick->getYAxis().disable();
+    }
+
+    if(mZMotor)
+    {
+        mJoyStick->getButton(3).assignMotor(mZMotor);
+        mJoyStick->getButton(4).assignMotor(mZMotor);
+        mJoyStick->getButton(3).setForward();
+        mJoyStick->getButton(4).setReverse();
+        mJoyStick->getButton(3).enable();
+        mJoyStick->getButton(4).enable();
+    }
+    else
+    {
+        mJoyStick->getButton(3).disable();
+        mJoyStick->getButton(4).disable();
+    }
+    mJoyStick->enable();
+}
+
+void XYZUnit::disableJoyStick()
+{
+	if(mJoyStick)
+    {
+		mJoyStick->disable();
+    }
 }
 
 APTMotor* XYZUnit::getXMotor()

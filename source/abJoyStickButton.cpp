@@ -7,7 +7,8 @@
 using namespace mtk;
 JoyStickButton::JoyStickButton()
 :
-	mIsForward(true)
+	mIsForward(true),
+    mIsEnabled(false)
 {}
 
 JoyStickButton::~JoyStickButton()
@@ -17,6 +18,16 @@ JoyStickButton::~JoyStickButton()
 void JoyStickButton::assignMotor(APTMotor* motor)
 {
 	mMotor = motor;
+}
+
+void JoyStickButton::enable()
+{
+	mIsEnabled = true;
+}
+
+void JoyStickButton::disable()
+{
+	mIsEnabled = false;
 }
 
 void JoyStickButton::setForward()
@@ -31,9 +42,9 @@ void JoyStickButton::setReverse()
 
 void JoyStickButton::down()
 {
-	if(!mMotor)
+	if(!mMotor || !mIsEnabled)
     {
-        Log(lInfo) << "Motor object is null..";
+        Log(lInfo) << "Motor object is null or JS button is disabled.";
     	return;
     }
 
@@ -51,7 +62,7 @@ void JoyStickButton::down()
 
 void JoyStickButton::up()
 {
-	if(!mMotor)
+	if(!mMotor || !mIsEnabled)
     {
         Log(lInfo) << "Motor is stopping";
     	return;
@@ -59,5 +70,3 @@ void JoyStickButton::up()
 
 	mMotor->stopProfiled();
 }
-
-

@@ -30,9 +30,8 @@ class AB_CORE JoyStickButton : public ABObject
 
     protected:
 		APTMotor*			mMotor;
-        bool				mIsForward;
         bool				mIsEnabled;
-
+        bool				mIsForward;
 };
 
 #endif

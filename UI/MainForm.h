@@ -55,22 +55,15 @@ class TMain : public TForm
 	TPanel *TopPanel;
 	TLabel *Label4;
 	TLabel *Label6;
-	TGroupBox *JoyStickGB;
 	TLabel *Label7;
 	TLabel *Label8;
 	TLabel *Label11;
 	TLabel *Label12;
 	TSplitter *Splitter1;
-	TIntegerLabeledEdit *mNrOfGearsLbl;
-	mtkFloatLabeledEdit *mMaxXYJogVelocityJoystick;
-	mtkFloatLabeledEdit *mXYJogAccelerationJoystick;
-	mtkFloatLabeledEdit *mMaxZJogVelocityJoystick;
-	mtkFloatLabeledEdit *mZJogAccelerationJoystick;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet1;
 	TTabSheet *TabSheet2;
 	TTabSheet *TabSheet3;
-	TRadioGroup *jsStateRG;
 	TXYZUnitFrame *TXYZUnitFrame1;
 	TTabSheet *TabSheet4;
 	TAction *InitializeUnitsA;
@@ -90,12 +83,12 @@ class TMain : public TForm
 	TPanel *Panel2;
 	TGroupBox *GroupBox5;
 	TGroupBox *GroupBox6;
-	mtkFloatLabeledEdit *mVertticalMoveDistanceE;
+	mtkFloatLabeledEdit *mVerticalMoveDistanceE;
 	mtkFloatLabeledEdit *mMoveAngleE;
 	mtkFloatLabeledEdit *mMoveVelHorizE;
 	mtkFloatLabeledEdit *mMoveAccelerationE;
 	mtkFloatLabeledEdit *mMoveVelocityVerticalE;
-	TButton *LiftRibbonBtn;
+	TButton *MoveBtn;
 	TComboBox *ComboBox1;
 	TButton *Button6;
 	mtkFloatLabeledEdit *tkFloatLabeledEdit1;
@@ -105,6 +98,14 @@ class TMain : public TForm
 	TButton *Button8;
 	TXYZUnitFrame *TXYZUnitFrame2;
 	TScrollBox *ScrollBox1;
+	TGroupBox *JoyStickGB;
+	TIntegerLabeledEdit *mNrOfGearsLbl;
+	mtkFloatLabeledEdit *mMaxXYJogVelocityJoystick;
+	mtkFloatLabeledEdit *mXYJogAccelerationJoystick;
+	mtkFloatLabeledEdit *mMaxZJogVelocityJoystick;
+	mtkFloatLabeledEdit *mZJogAccelerationJoystick;
+	TRadioGroup *jsStateRG;
+	TRadioGroup *JoyControlRG;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall addDevicesToListBoxExecute(TObject *Sender);
@@ -125,7 +126,8 @@ class TMain : public TForm
 	void __fastcall PositionsCBChange(TObject *Sender);
 	void __fastcall Button5Click(TObject *Sender);
 	void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall LiftRibbonBtnClick(TObject *Sender);
+	void __fastcall MoveBtnClick(TObject *Sender);
+	void __fastcall JoyControlRGClick(TObject *Sender);
 
 
     private:	// User declarations
@@ -135,13 +137,10 @@ class TMain : public TForm
 
         IniFile						mIniFile;
 		JoyStick					mJoyStick;
-
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
 
 		void __fastcall		        OnException();
-//		APTDevice* 					getCurrentDevice();
-//		APTMotor* 					getCurrentMotor();
 
         void __fastcall 			JMButtonUpUpdate(TMessage &msg);
         void __fastcall 			JMButtonDownUpdate(TMessage &msg);

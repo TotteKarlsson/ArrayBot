@@ -18,11 +18,13 @@ using mtk::IniFile;
 class AB_CORE XYZUnit : public ABObject
 {
 	public:
-    					        XYZUnit(const string& name, JoyStick* js, IniFile& iniFile);
+    					        XYZUnit(const string& name, IniFile& iniFile);
     					        ~XYZUnit();
 		void				    shutDown();
 		string					getName();
         XYZUnitPositions&		positions(){return mPositions;}
+        void					enableJoyStick(JoyStick* js);
+        void					disableJoyStick();
 
 		bool				    initialize();
         bool					stopAll();

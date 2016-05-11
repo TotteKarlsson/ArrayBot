@@ -158,11 +158,13 @@ object Main: TMain
       Top = 1
       Width = 948
       Height = 482
-      ActivePage = TabSheet1
+      ActivePage = TabSheet4
       Align = alClient
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitLeft = 0
+        ExplicitTop = 23
         object CoverSlipGB: TGroupBox
           Left = 16
           Top = 14
@@ -363,19 +365,19 @@ object Main: TMain
         end
         object GroupBox6: TGroupBox
           Left = 16
-          Top = 179
+          Top = 195
           Width = 383
-          Height = 241
+          Height = 190
           Caption = 'Coordinated Move'
           TabOrder = 2
-          object LiftRibbonBtn: TButton
+          object MoveBtn: TButton
             Left = 194
             Top = 32
             Width = 88
             Height = 57
             Caption = 'Start Move'
             TabOrder = 0
-            OnClick = LiftRibbonBtnClick
+            OnClick = MoveBtnClick
           end
           object mMoveAccelerationE: mtkFloatLabeledEdit
             Left = 97
@@ -408,6 +410,7 @@ object Main: TMain
             EditLabel.Width = 71
             EditLabel.Height = 13
             EditLabel.Caption = 'Velocity (horiz)'
+            Enabled = False
             TabOrder = 3
             Text = '0.00'
           end
@@ -423,7 +426,7 @@ object Main: TMain
             Text = '0.00'
             OnKeyDown = moveEdit
           end
-          object mVertticalMoveDistanceE: mtkFloatLabeledEdit
+          object mVerticalMoveDistanceE: mtkFloatLabeledEdit
             Left = 9
             Top = 127
             Width = 73
@@ -433,6 +436,102 @@ object Main: TMain
             EditLabel.Caption = 'Vertical move distance'
             TabOrder = 5
             Text = '0.00'
+          end
+        end
+        object JoyStickGB: TGroupBox
+          Left = 424
+          Top = 179
+          Width = 409
+          Height = 209
+          Caption = 'JoyStick'
+          TabOrder = 3
+          object mNrOfGearsLbl: TIntegerLabeledEdit
+            Left = 17
+            Top = 30
+            Width = 41
+            Height = 21
+            EditLabel.Width = 55
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Nr of Gears'
+            TabOrder = 0
+            Text = '0'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object mMaxXYJogVelocityJoystick: mtkFloatLabeledEdit
+            Left = 17
+            Top = 72
+            Width = 66
+            Height = 21
+            EditLabel.Width = 75
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Max XY Velocity'
+            TabOrder = 1
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object mXYJogAccelerationJoystick: mtkFloatLabeledEdit
+            Left = 97
+            Top = 72
+            Width = 66
+            Height = 21
+            EditLabel.Width = 74
+            EditLabel.Height = 13
+            EditLabel.Caption = 'XY Acceleration'
+            TabOrder = 2
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object mMaxZJogVelocityJoystick: mtkFloatLabeledEdit
+            Left = 17
+            Top = 121
+            Width = 66
+            Height = 21
+            EditLabel.Width = 69
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Max Z Velocity'
+            TabOrder = 3
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object mZJogAccelerationJoystick: mtkFloatLabeledEdit
+            Left = 97
+            Top = 121
+            Width = 66
+            Height = 21
+            EditLabel.Width = 68
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Z Acceleration'
+            TabOrder = 4
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object jsStateRG: TRadioGroup
+            Left = 17
+            Top = 148
+            Width = 144
+            Height = 45
+            Caption = 'State'
+            Columns = 2
+            ItemIndex = 1
+            Items.Strings = (
+              'Enabled'
+              'Disabled')
+            TabOrder = 5
+            OnClick = jsAxisRGClick
+          end
+          object JoyControlRG: TRadioGroup
+            Left = 200
+            Top = 24
+            Width = 153
+            Height = 105
+            Caption = 'JoyStick Control'
+            ItemIndex = 2
+            Items.Strings = (
+              'CoverSlip'
+              'Whisker'
+              'None')
+            TabOrder = 6
+            OnClick = JoyControlRGClick
           end
         end
       end
@@ -485,7 +584,6 @@ object Main: TMain
             inherited mainGB: TGroupBox
               Width = 936
               ExplicitWidth = 940
-              ExplicitHeight = 351
               inherited TopPanel: TPanel
                 Width = 932
                 ExplicitWidth = 936
@@ -493,7 +591,6 @@ object Main: TMain
               inherited ScrollBox1: TScrollBox
                 Width = 932
                 ExplicitWidth = 936
-                ExplicitHeight = 308
               end
             end
           end
@@ -566,89 +663,6 @@ object Main: TMain
       object TabSheet3: TTabSheet
         Caption = 'JoyStick'
         ImageIndex = 2
-        object JoyStickGB: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 940
-          Height = 454
-          Align = alClient
-          Caption = 'JoyStick'
-          TabOrder = 0
-          object mNrOfGearsLbl: TIntegerLabeledEdit
-            Left = 17
-            Top = 30
-            Width = 41
-            Height = 21
-            EditLabel.Width = 55
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Nr of Gears'
-            TabOrder = 0
-            Text = '0'
-            OnKeyDown = JoyStickValueEdit
-          end
-          object mMaxXYJogVelocityJoystick: mtkFloatLabeledEdit
-            Left = 17
-            Top = 72
-            Width = 66
-            Height = 21
-            EditLabel.Width = 75
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Max XY Velocity'
-            TabOrder = 1
-            Text = '0.00'
-            OnKeyDown = JoyStickValueEdit
-          end
-          object mXYJogAccelerationJoystick: mtkFloatLabeledEdit
-            Left = 97
-            Top = 72
-            Width = 66
-            Height = 21
-            EditLabel.Width = 74
-            EditLabel.Height = 13
-            EditLabel.Caption = 'XY Acceleration'
-            TabOrder = 2
-            Text = '0.00'
-            OnKeyDown = JoyStickValueEdit
-          end
-          object mMaxZJogVelocityJoystick: mtkFloatLabeledEdit
-            Left = 17
-            Top = 121
-            Width = 66
-            Height = 21
-            EditLabel.Width = 69
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Max Z Velocity'
-            TabOrder = 3
-            Text = '0.00'
-            OnKeyDown = JoyStickValueEdit
-          end
-          object mZJogAccelerationJoystick: mtkFloatLabeledEdit
-            Left = 97
-            Top = 121
-            Width = 66
-            Height = 21
-            EditLabel.Width = 68
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Z Acceleration'
-            TabOrder = 4
-            Text = '0.00'
-            OnKeyDown = JoyStickValueEdit
-          end
-          object jsStateRG: TRadioGroup
-            Left = 17
-            Top = 160
-            Width = 160
-            Height = 54
-            Caption = 'State'
-            Columns = 2
-            ItemIndex = 1
-            Items.Strings = (
-              'Enabled'
-              'Disabled')
-            TabOrder = 5
-            OnClick = jsAxisRGClick
-          end
-        end
       end
     end
   end
