@@ -82,7 +82,6 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
-    ExplicitWidth = 740
     object InitCloseBtn: TBitBtn
       Left = 0
       Top = 0
@@ -117,8 +116,6 @@ object Main: TMain
     Height = 162
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 412
-    ExplicitWidth = 740
     object infoMemo: TMemo
       Left = 1
       Top = 34
@@ -128,7 +125,6 @@ object Main: TMain
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
-      ExplicitWidth = 738
     end
     object ToolBar2: TToolBar
       Left = 1
@@ -139,7 +135,6 @@ object Main: TMain
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
-      ExplicitWidth = 738
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -158,8 +153,6 @@ object Main: TMain
     Height = 484
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 740
-    ExplicitHeight = 373
     object PageControl1: TPageControl
       Left = 1
       Top = 1
@@ -168,13 +161,8 @@ object Main: TMain
       ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 738
-      ExplicitHeight = 371
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 8
-        ExplicitTop = 26
-        ExplicitHeight = 415
         object CoverSlipGB: TGroupBox
           Left = 16
           Top = 14
@@ -190,7 +178,6 @@ object Main: TMain
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 0
-            ExplicitWidth = 421
           end
           object GroupBox1: TGroupBox
             Left = 2
@@ -200,7 +187,6 @@ object Main: TMain
             Align = alTop
             Caption = 'Positions'
             TabOrder = 1
-            ExplicitWidth = 421
             object PositionsCB: TComboBox
               Left = 11
               Top = 40
@@ -452,53 +438,63 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
-        ExplicitWidth = 730
-        ExplicitHeight = 343
-        inline TXYZUnitFrame1: TXYZUnitFrame
+        object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
           Width = 940
-          Height = 348
-          Align = alTop
+          Height = 454
+          Align = alClient
           TabOrder = 0
-          ExplicitWidth = 940
-          ExplicitHeight = 348
-          inherited mainGB: TGroupBox
-            Width = 940
+          ExplicitTop = 351
+          ExplicitHeight = 103
+          inline TXYZUnitFrame1: TXYZUnitFrame
+            Left = 0
+            Top = 351
+            Width = 936
             Height = 348
-            ExplicitWidth = 730
-            ExplicitHeight = 343
-            inherited TopPanel: TPanel
+            Align = alTop
+            TabOrder = 0
+            ExplicitTop = -249
+            ExplicitWidth = 919
+            ExplicitHeight = 348
+            inherited mainGB: TGroupBox
               Width = 936
-              ExplicitWidth = 726
-            end
-            inherited ScrollBox1: TScrollBox
-              Width = 936
-              Height = 305
+              Height = 348
+              ExplicitWidth = 940
+              ExplicitHeight = 348
+              inherited TopPanel: TPanel
+                Width = 932
+                ExplicitWidth = 936
+              end
+              inherited ScrollBox1: TScrollBox
+                Width = 932
+                Height = 305
+                ExplicitWidth = 936
+                ExplicitHeight = 305
+              end
             end
           end
-        end
-        inline XYZUnitFrame1: TXYZUnitFrame
-          Left = 0
-          Top = 348
-          Width = 940
-          Height = 351
-          Align = alTop
-          TabOrder = 1
-          ExplicitLeft = 184
-          ExplicitTop = 392
-          inherited mainGB: TGroupBox
-            Width = 940
-            ExplicitWidth = 632
-            ExplicitHeight = 351
-            inherited TopPanel: TPanel
+          inline TXYZUnitFrame2: TXYZUnitFrame
+            Left = 0
+            Top = 0
+            Width = 936
+            Height = 351
+            Align = alTop
+            TabOrder = 1
+            ExplicitWidth = 940
+            inherited mainGB: TGroupBox
               Width = 936
-              ExplicitWidth = 628
-            end
-            inherited ScrollBox1: TScrollBox
-              Width = 936
-              ExplicitWidth = 628
-              ExplicitHeight = 308
+              ExplicitWidth = 940
+              ExplicitHeight = 351
+              inherited TopPanel: TPanel
+                Width = 932
+                ExplicitWidth = 936
+              end
+              inherited ScrollBox1: TScrollBox
+                Width = 932
+                ExplicitWidth = 936
+                ExplicitHeight = 308
+              end
             end
           end
         end
@@ -506,8 +502,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Devices'
         ImageIndex = 1
-        ExplicitWidth = 730
-        ExplicitHeight = 343
         object DevicesGB: TGroupBox
           Left = 0
           Top = 0
@@ -516,7 +510,6 @@ object Main: TMain
           Align = alLeft
           Caption = 'Devices'
           TabOrder = 0
-          ExplicitHeight = 343
           object devicesLB: TListBox
             Left = 2
             Top = 15
@@ -526,7 +519,6 @@ object Main: TMain
             ItemHeight = 13
             TabOrder = 0
             OnClick = devicesLBClick
-            ExplicitHeight = 326
           end
         end
         inline TMotorFrame1: TMotorFrame
@@ -536,20 +528,20 @@ object Main: TMain
           Height = 454
           Align = alLeft
           TabOrder = 1
-          ExplicitLeft = 425
-          ExplicitHeight = 343
+          ExplicitLeft = 153
+          ExplicitHeight = 454
           inherited MotorGB: TGroupBox
-            Height = 343
+            Height = 454
             Align = alLeft
-            Constraints.MaxHeight = 343
-            ExplicitHeight = 343
+            Constraints.MaxHeight = 454
+            ExplicitHeight = 454
             inherited StatusGB: TGroupBox
-              Top = 259
-              ExplicitTop = 259
+              Top = 370
+              ExplicitTop = 370
             end
             inherited JoggingGB: TGroupBox
-              Top = 167
-              ExplicitTop = 167
+              Top = 278
+              ExplicitTop = 278
               inherited mFwdBtn: TButton
                 OnMouseDown = nil
               end
@@ -574,8 +566,6 @@ object Main: TMain
       object TabSheet3: TTabSheet
         Caption = 'JoyStick'
         ImageIndex = 2
-        ExplicitWidth = 730
-        ExplicitHeight = 343
         object JoyStickGB: TGroupBox
           Left = 0
           Top = 0
@@ -584,8 +574,6 @@ object Main: TMain
           Align = alClient
           Caption = 'JoyStick'
           TabOrder = 0
-          ExplicitWidth = 730
-          ExplicitHeight = 343
           object mNrOfGearsLbl: TIntegerLabeledEdit
             Left = 17
             Top = 30

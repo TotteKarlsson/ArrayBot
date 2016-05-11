@@ -72,6 +72,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
 {
 	mCoverSlip.initialize();
+	mWhisker.initialize();
+
+
     addDevicesToListBoxExecute(Sender);
 
     //Fill out edits
@@ -88,6 +91,7 @@ void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
 	mJoyStick.connect();
 
 	TXYZUnitFrame1->assignUnit(&mCoverSlip);
+	TXYZUnitFrame2->assignUnit(&mWhisker);
     InitCloseBtn->Action = ShutDownA;
 }
 
@@ -117,6 +121,18 @@ void __fastcall TMain::addDevicesToListBoxExecute(TObject *Sender)
         devicesLB->Items->AddObject(serial.c_str(), (TObject*) device);
         device = mCoverSlip.mDeviceManager.getNext();
     }
+
+	//Connect all available devices
+  	device = mWhisker.mDeviceManager.getFirst();
+	while(device)
+    {
+		string serial = device->getSerial();
+
+        //Add to listbox
+        devicesLB->Items->AddObject(serial.c_str(), (TObject*) device);
+        device = mWhisker.mDeviceManager.getNext();
+    }
+
 }
 
 //---------------------------------------------------------------------------

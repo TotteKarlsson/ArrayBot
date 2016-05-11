@@ -103,7 +103,8 @@ class TMain : public TForm
 	mtkFloatLabeledEdit *tkFloatLabeledEdit3;
 	TSTDStringLabeledEdit *STDStringLabeledEdit1;
 	TButton *Button8;
-	TXYZUnitFrame *XYZUnitFrame1;
+	TXYZUnitFrame *TXYZUnitFrame2;
+	TScrollBox *ScrollBox1;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall addDevicesToListBoxExecute(TObject *Sender);
