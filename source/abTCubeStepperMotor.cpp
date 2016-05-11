@@ -28,7 +28,7 @@ bool TCubeStepperMotor::connect()
     // open the device
     int res = SCC_Open(toString(mSerial).c_str());
 
-    mScalingFactors.position 	 = 2184534;
+    mScalingFactors.position 	 = 2184533.32;
     mScalingFactors.velocity 	 = 1.1727e8;
 	mScalingFactors.acceleration = 2.403e4;
 

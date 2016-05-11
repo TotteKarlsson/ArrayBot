@@ -9,6 +9,7 @@
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 #include <bitset>
+#include "mtkMathUtils.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -451,6 +452,66 @@ void __fastcall TMain::Button5Click(TObject *Sender)
 	PositionsCB->Items->InsertObject(PositionsCB->Items->Count, newPos->getLabel().c_str(), (TObject*) newPos);
 
 	mXYZUnit1.positions().add(*newPos);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	//Depending on which edit was edited, update the other ones
+	if(Key != vkReturn)
+    {
+    	return;
+    }
+
+	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
+
+    if(e == mMoveVelocityVerticalE || e == mMoveAngleE)
+    {
+    	//Update horiz value using the angle
+        double tanTheta = tan(toRadians(mMoveAngleE->GetValue()));
+        if(tanTheta != 0.0)
+        {
+        	mMoveVelHorizE->SetNumber(mMoveVelocityVerticalE->GetValue()/tanTheta);
+        }
+        else
+        {
+			mMoveVelHorizE->SetNumber(0.0);
+        }
+    }
+}
+
+void __fastcall TMain::LiftRibbonBtnClick(TObject *Sender)
+{
+	APTMotor* z = mXYZUnit1.getZMotor();
+    APTMotor* x = mXYZUnit1.getXMotor();
+    double tanTheta = tan(toRadians(mMoveAngleE->GetValue()));
+
+	//Update motors with current parameters and start the move
+    z->setJogVelocity(mMoveVelocityVerticalE->GetNumber());
+    z->setJogAcceleration(mMoveAccelerationE->GetNumber());
+
+    x->setJogVelocity(mMoveVelHorizE->GetNumber());
+    x->setJogAcceleration(mMoveAccelerationE->GetNumber()/tanTheta);
+
+    //get current positions and carry out some moveTo's
+    double xPos = x->getPosition();
+    double zPos = z->getPosition();
+
+	double newZPos = zPos + mVertticalMoveDistanceE->GetValue();
+	double newXPos;// = xPos + mVertticalMoveDistanceE->GetValue();
+    if(tanTheta != 0)
+    {
+		newXPos = xPos + (newZPos - zPos) / tanTheta;
+    }
+    else
+    {
+		newXPos = xPos;
+    }
+
+    Log(lInfo) << "Moving Vertical to: "<<newZPos;
+    Log(lInfo) << "Moving Horiz to: "<<newXPos;
+    z->moveToPosition(newZPos);
+    x->moveToPosition(newXPos);
 }
 
 

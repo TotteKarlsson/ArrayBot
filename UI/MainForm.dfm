@@ -163,10 +163,10 @@ object Main: TMain
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
         object CoverSlipGB: TGroupBox
-          Left = 16
+          Left = 24
           Top = 25
           Width = 425
-          Height = 285
+          Height = 296
           Caption = 'Cover Slip'
           TabOrder = 0
           object Panel1: TPanel
@@ -274,6 +274,72 @@ object Main: TMain
             Height = 100
             Caption = 'Moves'
             TabOrder = 2
+            object LiftRibbonBtn: TButton
+              Left = 16
+              Top = 32
+              Width = 75
+              Height = 25
+              Caption = 'Lift Ribbon'
+              TabOrder = 0
+              OnClick = LiftRibbonBtnClick
+            end
+          end
+          object mMoveVelocityVerticalE: mtkFloatLabeledEdit
+            Left = 208
+            Top = 184
+            Width = 73
+            Height = 17
+            EditLabel.Width = 83
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Velocity (vertical)'
+            TabOrder = 3
+            Text = '0.00'
+            OnKeyDown = moveEdit
+          end
+          object mMoveAccelerationE: mtkFloatLabeledEdit
+            Left = 304
+            Top = 184
+            Width = 73
+            Height = 17
+            EditLabel.Width = 59
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Acceleration'
+            TabOrder = 4
+            Text = '0.00'
+          end
+          object mMoveVelHorizE: mtkFloatLabeledEdit
+            Left = 304
+            Top = 224
+            Width = 73
+            Height = 17
+            EditLabel.Width = 71
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Velocity (horiz)'
+            TabOrder = 6
+            Text = '0.00'
+          end
+          object mVertticalMoveDistanceE: mtkFloatLabeledEdit
+            Left = 208
+            Top = 264
+            Width = 73
+            Height = 21
+            EditLabel.Width = 107
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Vertical move distance'
+            TabOrder = 7
+            Text = '0.00'
+          end
+          object mMoveAngleE: mtkFloatLabeledEdit
+            Left = 208
+            Top = 224
+            Width = 73
+            Height = 21
+            EditLabel.Width = 85
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Move Angle (deg)'
+            TabOrder = 5
+            Text = '0.00'
+            OnKeyDown = moveEdit
           end
         end
       end

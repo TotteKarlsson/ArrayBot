@@ -114,6 +114,12 @@ class TMain : public TForm
 	mtkFloatLabeledEdit *mZPosE;
 	TButton *Button5;
 	TSTDStringLabeledEdit *mPositionLabelE;
+	mtkFloatLabeledEdit *mMoveVelocityVerticalE;
+	TButton *LiftRibbonBtn;
+	mtkFloatLabeledEdit *mMoveAccelerationE;
+	mtkFloatLabeledEdit *mMoveVelHorizE;
+	mtkFloatLabeledEdit *mVertticalMoveDistanceE;
+	mtkFloatLabeledEdit *mMoveAngleE;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall addDevicesToListBoxExecute(TObject *Sender);
@@ -145,6 +151,8 @@ class TMain : public TForm
 	void __fastcall GotoBtnClick(TObject *Sender);
 	void __fastcall PositionsCBChange(TObject *Sender);
 	void __fastcall Button5Click(TObject *Sender);
+	void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall LiftRibbonBtnClick(TObject *Sender);
 
 
     private:	// User declarations

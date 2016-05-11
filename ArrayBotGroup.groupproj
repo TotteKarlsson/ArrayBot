@@ -3,12 +3,6 @@
         <ProjectGuid>{9D7B788E-1612-4D2A-99DA-365D58720234}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="P:\dslib\Common\mtkCommon.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\dslib\Common\Math\mtkMath.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="P:\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
@@ -29,24 +23,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="mtkCommon">
-        <MSBuild Projects="P:\dslib\Common\mtkCommon.cbproj"/>
-    </Target>
-    <Target Name="mtkCommon:Clean">
-        <MSBuild Projects="P:\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="mtkCommon:Make">
-        <MSBuild Projects="P:\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="mtkMath">
-        <MSBuild Projects="P:\dslib\Common\Math\mtkMath.cbproj"/>
-    </Target>
-    <Target Name="mtkMath:Clean">
-        <MSBuild Projects="P:\dslib\Common\Math\mtkMath.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="mtkMath:Make">
-        <MSBuild Projects="P:\dslib\Common\Math\mtkMath.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="VCLCommon">
         <MSBuild Projects="P:\dslib\VCL\Common\VCLCommon.cbproj"/>
     </Target>
@@ -84,13 +60,13 @@
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkMath;VCLCommon;DuneComponents;abCore;ArrayBot"/>
+        <CallTarget Targets="VCLCommon;DuneComponents;abCore;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make"/>
+        <CallTarget Targets="VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
