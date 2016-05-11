@@ -15,6 +15,7 @@
 #pragma link "mtkFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "abXYZUnitFrame"
+#pragma link "abMotorFrame"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -66,6 +67,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 {
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
+	InitializeUnitsAExecute(NULL);
 }
 
 void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
@@ -94,6 +96,10 @@ void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 {
 	StatusTimer->Enabled = false;
 	devicesLB->Clear();
+
+    mJoyStick.disable();
+
+    TXYZUnitFrame1->disable();
 
     //The shutdown disconnects all devices
 	mXYZUnit1.shutDown();
@@ -385,7 +391,6 @@ void __fastcall TMain::DeviceBtnDown(TObject *Sender, TMouseButton Button,
 	    stopMotorExecute(btn);
     }
 
-
     jsStateRG->ItemIndex = 1; //Disable Joystick
 }
 
@@ -401,6 +406,26 @@ void __fastcall TMain::jsAxisRGClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
+void __fastcall TMain::Button5Click(TObject *Sender)
+{
+	//
+    APTMotor* m1 = mXYZUnit1.getXMotor();
+    APTMotor* m2 = mXYZUnit1.getZMotor();
 
-//---------------------------------------------------------------------------
+    if(m1 && m2)
+    {
+    	if(m2->getPosition() > 20)
+        {
+    		m1->jogReverse();
+	    	m2->jogReverse();
+        }
+        else
+        {
+    		m1->jogForward();
+	    	m2->jogForward();
+        }
+    }
+
+}
+
 

@@ -27,19 +27,18 @@ bool LongTravelStage::connect()
     // open the device
     int res = ISC_Open(toString(mSerial).c_str());
 
-    //Find out what stage is connected
-
-    //Number 16 was found empirically(!)
-    mScalingFactors.position 	 = 25600.0 * 16.0;
-    mScalingFactors.velocity 	 = 25600.0 * 16.0;
-	mScalingFactors.acceleration = 25600.0 * 16.0;
+    mScalingFactors.position 	 = 409600.0;
+    mScalingFactors.velocity 	 = 21987328.0;
+	mScalingFactors.acceleration = 4506.0;
 
     if(res == 0)
     {
     	ISC_LoadSettings(mSerial.c_str());
+
+        //Set jog mode to continous
         setJogMoveMode(jmContinuous);
-        setJogVelocity(1.0);
-        setJogAcceleration(1.0);
+        //setJogVelocity(1.0);
+        //setJogAcceleration(1.0);
 
 	    // start the device polling at 200ms intervals
     	if(!ISC_StartPolling(mSerial.c_str(), 200))
@@ -72,14 +71,6 @@ unsigned long LongTravelStage::getStatusBits()
 double LongTravelStage::getEncoderCounts()
 {
 	long cnt1, cnt2, cnt3;
-//	int err = ISC_GetMotorParams(mSerial.c_str(), &cnt1);
-//	if(!err)
-//    {
-//    	//Fill out scaling factors
-//        mScalingFactors.position = 34304;
-//        mScalingFactors.velocity = 767367.49;
-//		mScalingFactors.acceleration = 261.93;
-//    }
     return 0;
 }
 
@@ -212,8 +203,7 @@ double LongTravelStage::getPosition()
 
 double LongTravelStage::getVelocity()
 {
-	int a(0);
-  	int v (0);
+	int a(0), v(0);
 
 	int err = ISC_GetVelParams(mSerial.c_str(), &a, &v);
 
@@ -224,6 +214,19 @@ double LongTravelStage::getVelocity()
   	return v / mScalingFactors.velocity;
 }
 
+double LongTravelStage::getAcceleration()
+{
+	int a(0), v(0);
+
+	int err = ISC_GetVelParams(mSerial.c_str(), &a, &v);
+
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+    }
+  	return (double) a / mScalingFactors.acceleration;
+}
+
 bool LongTravelStage::setVelocity(double vel)
 {
  	MOT_VelocityParameters p;
@@ -231,22 +234,13 @@ bool LongTravelStage::setVelocity(double vel)
 
     p.maxVelocity = vel * mScalingFactors.velocity;
     Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
+
     int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
 
     if(e)
     {
         Log(lError) <<tlError(e);
     }
-
-//        if(isForwarding())
-//        {
-//            forward();
-//        }
-//        else if (isReversing())
-//        {
-//            reverse();
-//        }
-
 
 	return true;
 }
@@ -276,20 +270,6 @@ bool LongTravelStage::setAcceleration(double a)
 	return false;
 }
 
-double LongTravelStage::getAcceleration()
-{
-	int a(0);
-  	int v (0);
-
-	int err = ISC_GetVelParams(mSerial.c_str(), &a, &v);
-
-    if(err != 0)
-    {
-    	Log(lError) <<tlError(err);
-    }
-  	return a / mScalingFactors.acceleration;
-}
-
 bool LongTravelStage::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();
@@ -316,8 +296,8 @@ bool LongTravelStage::setJogStopMode(StopMode sm)
 
 JogMoveMode	LongTravelStage::getJogMoveMode()
 {
-	MOT_StopModes sm;
     MOT_JogModes jm;
+	MOT_StopModes sm;
 	int err = ISC_GetJogMode(mSerial.c_str(), &jm, &sm);
     if(err != 0)
     {
@@ -355,12 +335,11 @@ double LongTravelStage::getJogVelocity()
 
 bool LongTravelStage::setJogVelocity(double newVel)
 {
-    int a;
-    int v;
+    int a, v;
     ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
 
     int err = ISC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
-	Log(lDebug) << "Setting Jog Velocity parameters: "<<v<<" : "<<newVel * mScalingFactors.velocity;
+	Log(lDebug) << "Setting Jog Velocity parameters: "<<a<<" : "<<newVel * mScalingFactors.velocity;
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
@@ -370,15 +349,9 @@ bool LongTravelStage::setJogVelocity(double newVel)
 
 bool LongTravelStage::setJogAcceleration(double newAcc)
 {
-    int a;
-    int v;
-
+    int a, v;
     ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
-	Log(lDebug) << "Setting Jog Acc Parameters: "<<a<<" : "<<newAcc * mScalingFactors.acceleration;
-
-    long newa = newAcc * mScalingFactors.acceleration;
-    int t =  newa;
-    int err = ISC_SetJogVelParams(mSerial.c_str(), t, v);
+    int err = ISC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v);
 
     if(err != 0)
     {
@@ -477,9 +450,23 @@ void LongTravelStage::reverse(bool inThread)
     }
 }
 
-void LongTravelStage::moveDistance(double distance, bool inThread)
+void LongTravelStage::moveToPosition(double pos, bool inThread)
 {
-// 	Log(lError) <<msg.str();
+	if(inThread)
+    {
+		MotorCommand cmd(mcMoveToPosition, pos);
+		post(cmd);
+    }
+    else
+    {
+    	setVelocity(getJogVelocity());
+    	setAcceleration(getJogAcceleration());
+        int err = ISC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
+        if(err != 0)
+        {
+            Log(lError) <<tlError(err);
+        }
+    }
 }
 
 

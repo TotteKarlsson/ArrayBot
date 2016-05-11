@@ -68,7 +68,6 @@ bool XYZUnit::initialize()
         	mJoyStick->getXAxis().assignMotor(mXMotor);
 			mJoyStick->getXAxis().setMaxVelocity(mXMotor->getJogVelocity());
 			mJoyStick->getXAxis().setAcceleration(mXMotor->getJogAcceleration());
-            mJoyStick->getXAxis().setSenseOfDirection(-1);
         }
     }
     else

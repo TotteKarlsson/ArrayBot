@@ -9,8 +9,13 @@ APTMotor::APTMotor(int serialNo)
     mPositionRange(0,0),
     mVelocityRange(0,0),
     mAccelerationRange(0,0),
+	mManualJogVelocity(0),
+	mManualJogAcceleration(0),
 	mMotorMessageProcessor(mMotorMessageContainer)
 {
+    mProperties.add((BaseProperty*) &mManualJogVelocity.setup("MANUAL_JOG_VELOCITY", 			0.0, true));
+    mProperties.add((BaseProperty*) &mManualJogAcceleration.setup("MANUAL_JOG_ACCELERATION", 			0.0, true));
+
 	mMotorMessageProcessor.assignMotor(this);
 	mMotorMessageProcessor.start(true);
 }
@@ -24,6 +29,26 @@ APTMotor::~APTMotor()
     }
 	Log(lDebug) <<"Destructing Motor with serial: "<<mSerial;
     mProperties.write();
+}
+
+double APTMotor::getManualJogVelocity()
+{
+	return mManualJogVelocity;
+}
+
+double APTMotor::getManualJogAcceleration()
+{
+	return mManualJogAcceleration;
+}
+
+void APTMotor::setManualJogVelocity(double v)
+{
+	mManualJogVelocity = v;
+}
+
+void APTMotor::setManualJogAcceleration(double a)
+{
+	mManualJogAcceleration = a;
 }
 
 bool APTMotor::disconnect()

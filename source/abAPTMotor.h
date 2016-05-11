@@ -68,8 +68,13 @@ class AB_CORE APTMotor : public APTDevice
 
         virtual void		                forward(bool inThread = true) = 0;
         virtual void		                reverse(bool inThread = true) = 0;
-        virtual void		                moveDistance(double distance, bool inThread = true) = 0;
+        virtual void		                moveToPosition(double position, bool inThread = true) = 0;
         MotorCommandEnum					getLastCommand();
+
+        double								getManualJogVelocity();
+        double								getManualJogAcceleration();
+        void								setManualJogVelocity(double v);
+        void								setManualJogAcceleration(double a);
 
     protected:
 
@@ -81,6 +86,8 @@ class AB_CORE APTMotor : public APTDevice
         Range<double> 						mPositionRange;
         Range<double> 						mVelocityRange;
         Range<double> 						mAccelerationRange;
+        Property<double>					mManualJogVelocity;
+        Property<double>					mManualJogAcceleration;
 
 		void                                post(const MotorCommand& cmd);
         MotorMessageProcessor				mMotorMessageProcessor;

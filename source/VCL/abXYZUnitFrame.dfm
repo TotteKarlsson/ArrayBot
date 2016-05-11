@@ -28,7 +28,6 @@ object XYZUnitFrame: TXYZUnitFrame
       Height = 344
       Align = alTop
       TabOrder = 1
-      ExplicitTop = 56
     end
   end
   object mMotorStatusTimer: TTimer

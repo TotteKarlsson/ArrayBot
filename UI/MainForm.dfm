@@ -157,11 +157,20 @@ object Main: TMain
       Top = 1
       Width = 738
       Height = 371
-      ActivePage = TabSheet1
+      ActivePage = TabSheet4
       Align = alClient
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        object Button5: TButton
+          Left = 16
+          Top = 32
+          Width = 75
+          Height = 25
+          Caption = 'Button5'
+          TabOrder = 0
+          OnClick = Button5Click
+        end
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
@@ -179,7 +188,7 @@ object Main: TMain
             Height = 343
             ExplicitWidth = 730
             ExplicitHeight = 343
-            inherited Panel1: TPanel
+            inherited TopPanel: TPanel
               Width = 726
               ExplicitWidth = 726
             end
@@ -198,7 +207,7 @@ object Main: TMain
         object DeviceGB: TGroupBox
           Left = 153
           Top = 0
-          Width = 343
+          Width = 272
           Height = 343
           Align = alLeft
           Caption = 'Device'
@@ -214,7 +223,7 @@ object Main: TMain
           object JoggingGB: TGroupBox
             Left = 2
             Top = 131
-            Width = 339
+            Width = 268
             Height = 112
             Align = alTop
             Caption = 'Jogging'
@@ -292,7 +301,7 @@ object Main: TMain
           object GroupBox4: TGroupBox
             Left = 2
             Top = 49
-            Width = 339
+            Width = 268
             Height = 82
             Align = alTop
             Caption = 'Status'
@@ -385,7 +394,7 @@ object Main: TMain
           object Panel3: TPanel
             Left = 2
             Top = 15
-            Width = 339
+            Width = 268
             Height = 34
             Align = alTop
             BevelOuter = bvNone
@@ -435,6 +444,43 @@ object Main: TMain
             ItemHeight = 13
             TabOrder = 0
             OnClick = devicesLBClick
+          end
+        end
+        inline TMotorFrame1: TMotorFrame
+          Left = 425
+          Top = 0
+          Width = 293
+          Height = 343
+          Align = alLeft
+          TabOrder = 2
+          ExplicitLeft = 425
+          ExplicitHeight = 343
+          inherited MotorGB: TGroupBox
+            Height = 343
+            Align = alLeft
+            Constraints.MaxHeight = 343
+            ExplicitHeight = 343
+            inherited StatusGB: TGroupBox
+              Top = 259
+              ExplicitTop = 259
+            end
+            inherited JoggingGB: TGroupBox
+              Top = 167
+              ExplicitTop = 167
+              inherited mFwdBtn: TButton
+                OnMouseDown = nil
+              end
+              inherited mRewBtn: TButton
+                OnMouseDown = nil
+              end
+              inherited mJogVelocity: mtkFloatLabeledEdit
+                OnKeyDown = nil
+              end
+            end
+          end
+          inherited ActionList1: TActionList
+            Left = 56
+            Top = 264
           end
         end
       end
@@ -528,8 +574,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    Left = 280
-    Top = 176
+    Left = 312
+    Top = 464
     object checkForDevices: TAction
       Caption = 'Devices Check'
       OnExecute = checkForDevicesExecute

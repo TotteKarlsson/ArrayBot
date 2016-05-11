@@ -41,6 +41,10 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 	CanClose = (mLogFileReader.isRunning()) ? false : true;
 
 
+	//Check if active stuff si going on.. if so call the ShutDown in the
+    //Timer fire    if(
+	ShutDownAExecute(NULL);
+
 	if(CanClose == false)
 	{
 		ShutDownTimer->Enabled = true;

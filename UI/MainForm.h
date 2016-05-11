@@ -20,6 +20,7 @@
 #include "abXYZUnit.h"
 #include "TSTDStringLabeledEdit.h"
 #include "abXYZUnitFrame.h"
+#include "abMotorFrame.h"
 using Poco::Timestamp;
 
 class APTMotor;
@@ -100,6 +101,8 @@ class TMain : public TForm
 	TTabSheet *TabSheet4;
 	TAction *InitializeUnitsA;
 	TAction *ShutDownA;
+	TMotorFrame *TMotorFrame1;
+	TButton *Button5;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall addDevicesToListBoxExecute(TObject *Sender);
@@ -128,6 +131,7 @@ class TMain : public TForm
 	void __fastcall DeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall InitializeUnitsAExecute(TObject *Sender);
 	void __fastcall ShutDownAExecute(TObject *Sender);
+	void __fastcall Button5Click(TObject *Sender);
 
 
     private:	// User declarations

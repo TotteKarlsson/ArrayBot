@@ -18,12 +18,13 @@ enum MotorCommandEnum
     mcReverse,
     mcJogForward,
     mcJogReverse,
-    mcMoveDistance,
     mcSetVelocity,
 	mcSetVelocityForward,
 	mcSetVelocityReverse,
     mcSetAcceleration,
-    mcSwitchDirection
+    mcSwitchDirection,
+    mcMoveDistance,
+    mcMoveToPosition
 };
 
 string toString(MotorCommandEnum e);

@@ -42,7 +42,6 @@ MotorCommandEnum MotorMessageProcessor::getLastProcessedMessage()
 	return mLastProcessedCommand;
 }
 
-
 bool MotorMessageProcessor::start(bool inThread)
 {
 	if(isRunning())
@@ -146,8 +145,12 @@ void MotorMessageProcessor::worker()
                     	mMotor->jogReverse(false);
 					break;
 
-                    case mcMoveDistance:
-                    	mMotor->moveDistance(cmd.getFirstVariable(), false);
+//                    case mcMoveDistance:
+//                    	mMotor->moveDistance(cmd.getFirstVariable(), false);
+//					break;
+
+                    case mcMoveToPosition:
+                    	mMotor->moveToPosition(cmd.getFirstVariable(), false);
 					break;
 
                     case mcSetVelocity:

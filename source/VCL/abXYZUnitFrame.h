@@ -15,9 +15,9 @@ class TXYZUnitFrame : public TFrame
 {
     __published:	// IDE-managed Components
         TGroupBox 		*mainGB;
-	TPanel *TopPanel;
+		TPanel 			*TopPanel;
         TScrollBox 		*ScrollBox1;
-	TTimer *mMotorStatusTimer;
+		TTimer 			*mMotorStatusTimer;
 	void __fastcall mMotorStatusTimerTimer(TObject *Sender);
 
     private:	// User declarations
@@ -27,8 +27,9 @@ class TXYZUnitFrame : public TFrame
         TMotorFrame*		mZMotorFrame;
 
     public:		// User declarations
-        __fastcall 		TXYZUnitFrame(TComponent* Owner);
-        void			assignUnit(XYZUnit* u);
+        __fastcall 			TXYZUnitFrame(TComponent* Owner);
+        void				assignUnit(XYZUnit* u);
+        void				disable();
 };
 extern PACKAGE TXYZUnitFrame *XYZUnitFrame;
 

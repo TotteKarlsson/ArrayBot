@@ -15,7 +15,12 @@ TCubeStepperMotor::TCubeStepperMotor(int serial)
 }
 
 TCubeStepperMotor::~TCubeStepperMotor()
-{}
+{
+    if(isConnected())
+    {
+		disconnect();
+    }
+}
 
 bool TCubeStepperMotor::connect()
 {
@@ -33,8 +38,9 @@ bool TCubeStepperMotor::connect()
 
         //Set jog mode to continous
         setJogMoveMode(jmContinuous);
-        setJogVelocity(1.0);
-        setJogAcceleration(0.1);
+        //setJogVelocity(1.0);
+        //setJogAcceleration(1.0);
+
 	    // start the device polling at 200ms intervals
     	if(!SCC_StartPolling(mSerial.c_str(), 200))
         {
@@ -51,6 +57,9 @@ bool TCubeStepperMotor::connect()
 
 bool TCubeStepperMotor::disconnect()
 {
+    //Shut down message processor
+    APTMotor::disconnect();
+	SCC_Close(mSerial.c_str());
     mIsConnected = false;
     return false;
 }
@@ -67,10 +76,7 @@ double TCubeStepperMotor::getEncoderCounts()
 	int err = SCC_GetMotorParams(mSerial.c_str(), &stepsPerRev, &gearBoxRatio, &pitch);
 	if(err)
     {
-    	//Fill out scaling factors
-        mScalingFactors.position = 34304;
-        mScalingFactors.velocity = 767367.49;
-		mScalingFactors.acceleration = 261.93;
+    	Log(lError) << "Failed getting Motor Parameters";
     }
     else
     {
@@ -83,15 +89,17 @@ double TCubeStepperMotor::getEncoderCounts()
 
 bool TCubeStepperMotor::switchDirection(bool inThread)
 {
-	if(isForwarding())
-    {
-    	reverse(inThread);
-    }
-    else
-    {
-    	forward(inThread);
-    }
-    return true;
+	//The forward/reverse bits don't work so this function is disabled until they do
+
+//	if(isForwarding())
+//    {
+//    	reverse(inThread);
+//    }
+//    else
+//    {
+//    	forward(inThread);
+//    }
+	return false;
 }
 
 HardwareInformation TCubeStepperMotor::getHWInfo()
@@ -203,14 +211,12 @@ void TCubeStepperMotor::stopProfiled(bool inThread)
 
 double TCubeStepperMotor::getPosition()
 {
-    int pos = SCC_GetPosition(mSerial.c_str());
-	return pos / mScalingFactors.position;
+    return SCC_GetPosition(mSerial.c_str()) / mScalingFactors.position;
 }
 
 double TCubeStepperMotor::getVelocity()
 {
-	int a(0);
-  	int v (0);
+	int a(0), v(0);
 
 	int err = SCC_GetVelParams(mSerial.c_str(), &a, &v);
 
@@ -223,8 +229,7 @@ double TCubeStepperMotor::getVelocity()
 
 double TCubeStepperMotor::getAcceleration()
 {
-	int a(0);
-  	int v (0);
+	int a(0), v(0);
 
 	int err = SCC_GetVelParams(mSerial.c_str(), &a, &v);
 
@@ -242,7 +247,8 @@ bool TCubeStepperMotor::setVelocity(double vel)
 
     p.maxVelocity = vel * mScalingFactors.velocity;
     Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
-    	int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
+
+    int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
 
     if(e)
     {
@@ -406,7 +412,7 @@ void TCubeStepperMotor::jogReverse(bool inThread)
     }
     else
     {
-
+        //Todo: tell thorlabs about the MOT_Reverse flag name
         int err = SCC_MoveJog(mSerial.c_str(), MOT_Backwards);
         if(err != 0)
         {
@@ -417,48 +423,39 @@ void TCubeStepperMotor::jogReverse(bool inThread)
 
 void TCubeStepperMotor::forward(bool inThread)
 {
-//	if(isReversing())
-//    {
-//    	Log(lInfo) << "Forwarding requested, motor is in reverse..";
-//    }
-
-//    //Don't send command if already doing what is needed
-//    if(!isForwarding())
+    int err = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+    if(err != 0)
     {
-        int err = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+        Log(lError) <<tlError(err);
+    }
+}
+
+void TCubeStepperMotor::reverse(bool inThread)
+{
+    int err = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Backwards);
+    if(err !=0)
+    {
+        Log(lError) <<tlError(err);
+    }
+}
+
+void TCubeStepperMotor::moveToPosition(double pos, bool inThread)
+{
+	if(inThread)
+    {
+		MotorCommand cmd(mcMoveToPosition, pos);
+		post(cmd);
+    }
+    else
+    {
+    	setVelocity(getJogVelocity());
+    	setAcceleration(getJogAcceleration());
+        int err = SCC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
         if(err != 0)
         {
             Log(lError) <<tlError(err);
         }
     }
-//    else
-//    {
-//    	Log(lWarning) <<"Motor is already forwarding..";
-//    }
-}
-
-void TCubeStepperMotor::reverse(bool inThread)
-{
-//	if(isForwarding())
-//    {
-//    	Log(lInfo) << "Reversing requested, but motor is forwarding..";
-////		return;
-//    }
-
-    //Don't send command if already doing what is needed
- //   if(!isReversing())
-    {
-        int err = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Backwards);
-        if(err !=0)
-        {
-            Log(lError) <<tlError(err);
-        }
-    }
-}
-
-void TCubeStepperMotor::moveDistance(double distance, bool inThread)
-{
-// 	Log(lError) <<msg.str();
 }
 
 

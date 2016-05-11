@@ -8,6 +8,9 @@
 #include "mtkFloatLabeledEdit.h"
 #include "TIntLabel.h"
 #include <Vcl.ExtCtrls.hpp>
+#include <System.Actions.hpp>
+#include <Vcl.ActnList.hpp>
+#include "mtkFloatLabel.h"
 //---------------------------------------------------------------------------
 
 class APTMotor;
@@ -20,7 +23,6 @@ __published:	// IDE-managed Components
 	TLabel *Label1;
 	TLabel *Label2;
 	TLabel *Label3;
-	TLabel *Label4;
 	TLabel *Lbl;
 	TLabel *Lbl2;
 	TLabel *mIsActiveLabel;
@@ -28,10 +30,34 @@ __published:	// IDE-managed Components
 	TLabel *mIsHomedLabel;
 	TLabel *mIsHomingLabel;
 	TLabel *mIsReversingLabel;
-	TLabel *mVelocityLbl;
 	mtkFloatLabeledEdit *mMotorPositionE;
 	TTimer *mMotorStatusTimer;
+	TButton *Button1;
+	TActionList *ActionList1;
+	TAction *identify;
+	TGroupBox *JoggingGB;
+	TButton *mFwdBtn;
+	TButton *mRewBtn;
+	mtkFloatLabeledEdit *mJogAcc;
+	mtkFloatLabeledEdit *mJogVelocity;
+	TButton *Button4;
+	TAction *home;
+	TLabel *Label4;
+	TLabel *Label5;
+	mtkFloatLabel *mJogVelLbl;
+	mtkFloatLabel *mJogAccLbl;
 	void __fastcall mMotorStatusTimerTimer(TObject *Sender);
+	void __fastcall identifyExecute(TObject *Sender);
+	void __fastcall homeExecute(TObject *Sender);
+	void __fastcall BtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
+	void __fastcall BtnUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
+	void __fastcall DevEdit(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mMotorPositionEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mMotorPositionEKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+
+
 private:	// User declarations
 	APTMotor*		mMotor;
 

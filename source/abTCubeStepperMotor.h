@@ -67,8 +67,7 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 
         void		                    forward(bool inThread = true);
         void		                    reverse(bool inThread = true);
-        void		                    moveDistance(double distance, bool inThread = true);
-
+        void		                	moveToPosition(double position, bool inThread = true);
         bool		                    identify();
 
     protected:

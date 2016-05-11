@@ -27,12 +27,25 @@ void TXYZUnitFrame::assignUnit(XYZUnit* u)
 	mUnit = u;
     mainGB->Caption = vclstr(u->getName());
 
-
 	//Start motor status timer
     mMotorStatusTimer->Enabled = true;
 }
 
-
+void TXYZUnitFrame::disable()
+{
+	if(mXMotorFrame)
+    {
+    	mXMotorFrame->mMotorStatusTimer->Enabled = false;
+    }
+	if(mYMotorFrame)
+    {
+    	mYMotorFrame->mMotorStatusTimer->Enabled = false;
+    }
+	if(mZMotorFrame)
+    {
+    	mZMotorFrame->mMotorStatusTimer->Enabled = false;
+    }
+}
 //---------------------------------------------------------------------------
 void __fastcall TXYZUnitFrame::mMotorStatusTimerTimer(TObject *Sender)
 {
