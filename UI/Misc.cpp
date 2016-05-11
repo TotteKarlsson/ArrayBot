@@ -5,18 +5,18 @@
 using namespace mtk;
 
 
-APTMotor* TMain::getCurrentMotor()
-{
-    int ii = devicesLB->ItemIndex;
-    if(ii > -1)
-    {
-        APTDevice* device = (APTDevice*) devicesLB->Items->Objects[ii];
-
-        //Check position for current device
-        return dynamic_cast<APTMotor*>(device);
-    }
-    return NULL;
-}
+//APTMotor* TMain::getCurrentMotor()
+//{
+//    int ii = devicesLB->ItemIndex;
+//    if(ii > -1)
+//    {
+//        APTDevice* device = (APTDevice*) devicesLB->Items->Objects[ii];
+//
+//        //Check position for current device
+//        return dynamic_cast<APTMotor*>(device);
+//    }
+//    return NULL;
+//}
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)

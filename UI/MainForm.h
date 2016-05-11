@@ -39,47 +39,22 @@ class TMain : public TForm
         TBitBtn *BitBtn2;
 	TAction *addDevicesToListBox;
 	TTimer *ShutDownTimer;
-	TGroupBox *DeviceGB;
-	TButton *Button1;
 	TAction *identifyCurrent;
-	TButton *Button2;
 	TAction *homeDevice;
 	TAction *jogForward;
 	TAction *jogBackwards;
-	TButton *Button3;
-	TButton *Button4;
-	mtkFloatLabeledEdit *motorPositionE;
 	TAction *moveForward;
 	TAction *moveBackward;
-	TAction *stopMotor;
+	TAction *stopAllA;
 	TButton *Button7;
 	TTimer *StatusTimer;
 	TApplicationEvents *ApplicationEvents1;
-	TLabel *mIsActiveLabel;
-	TLabel *mIsHomingLabel;
-	TLabel *mIsHomedLabel;
 	TPanel *BottomPanel;
 	TToolBar *ToolBar2;
 	TBitBtn *BitBtn3;
 	TPanel *TopPanel;
-	TLabel *Label1;
-	TLabel *Label2;
-	TLabel *Label3;
-	TLabel *Lbl2;
-	TLabel *mVelocityLbl;
-	TLabel *Lbl;
 	TLabel *Label4;
 	TLabel *Label6;
-	TLabel *mIsReversingLabel;
-	TLabel *mIsForwardingLabel;
-	TLabel *Label5;
-	mtkFloatLabeledEdit *mJogVelocity;
-	mtkFloatLabeledEdit *mJogAcc;
-	TCheckBox *mJogModeCB;
-	TGroupBox *JoggingGB;
-	TGroupBox *GroupBox4;
-	TButton *mJogStopBtn;
-	TPanel *Panel3;
 	TGroupBox *JoyStickGB;
 	TLabel *Label7;
 	TLabel *Label8;
@@ -87,7 +62,6 @@ class TMain : public TForm
 	TLabel *Label12;
 	TSplitter *Splitter1;
 	TIntegerLabeledEdit *mNrOfGearsLbl;
-	TCheckBox *mJogStopModeCB;
 	mtkFloatLabeledEdit *mMaxXYJogVelocityJoystick;
 	mtkFloatLabeledEdit *mXYJogAccelerationJoystick;
 	mtkFloatLabeledEdit *mMaxZJogVelocityJoystick;
@@ -105,21 +79,31 @@ class TMain : public TForm
 	TGroupBox *CoverSlipGB;
 	TComboBox *PositionsCB;
 	TButton *GotoPosBtn;
-	TLabel *Label9;
 	TPanel *Panel1;
 	TGroupBox *GroupBox1;
-	TGroupBox *GroupBox2;
 	mtkFloatLabeledEdit *mXPosE;
 	mtkFloatLabeledEdit *mYPosE;
 	mtkFloatLabeledEdit *mZPosE;
 	TButton *Button5;
 	TSTDStringLabeledEdit *mPositionLabelE;
-	mtkFloatLabeledEdit *mMoveVelocityVerticalE;
-	TButton *LiftRibbonBtn;
-	mtkFloatLabeledEdit *mMoveAccelerationE;
-	mtkFloatLabeledEdit *mMoveVelHorizE;
+	TGroupBox *GroupBox3;
+	TPanel *Panel2;
+	TGroupBox *GroupBox5;
+	TGroupBox *GroupBox6;
 	mtkFloatLabeledEdit *mVertticalMoveDistanceE;
 	mtkFloatLabeledEdit *mMoveAngleE;
+	mtkFloatLabeledEdit *mMoveVelHorizE;
+	mtkFloatLabeledEdit *mMoveAccelerationE;
+	mtkFloatLabeledEdit *mMoveVelocityVerticalE;
+	TButton *LiftRibbonBtn;
+	TComboBox *ComboBox1;
+	TButton *Button6;
+	mtkFloatLabeledEdit *tkFloatLabeledEdit1;
+	mtkFloatLabeledEdit *tkFloatLabeledEdit2;
+	mtkFloatLabeledEdit *tkFloatLabeledEdit3;
+	TSTDStringLabeledEdit *STDStringLabeledEdit1;
+	TButton *Button8;
+	TXYZUnitFrame *XYZUnitFrame1;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall addDevicesToListBoxExecute(TObject *Sender);
@@ -128,24 +112,12 @@ class TMain : public TForm
 	void __fastcall ShutDownTimerTimer(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall devicesLBClick(TObject *Sender);
-	void __fastcall identifyCurrentExecute(TObject *Sender);
-	void __fastcall homeDeviceExecute(TObject *Sender);
-	void __fastcall jogForwardExecute(TObject *Sender);
-	void __fastcall jogBackwardsExecute(TObject *Sender);
-
-	void __fastcall stopMotorExecute(TObject *Sender);
-
+	void __fastcall stopAllAExecute(TObject *Sender);
 	void __fastcall StatusTimerTimer(TObject *Sender);
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
 	void __fastcall BitBtn3Click(TObject *Sender);
 	void __fastcall JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-
-	void __fastcall mJogModeCBClick(TObject *Sender);
-	void __fastcall DeviceBtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
-          int X, int Y);
-
 	void __fastcall jsAxisRGClick(TObject *Sender);
-	void __fastcall DeviceValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall InitializeUnitsAExecute(TObject *Sender);
 	void __fastcall ShutDownAExecute(TObject *Sender);
 	void __fastcall GotoBtnClick(TObject *Sender);
@@ -163,12 +135,12 @@ class TMain : public TForm
         IniFile						mIniFile;
 		JoyStick					mJoyStick;
 
-        XYZUnit						mXYZUnit1;
-        XYZUnit						mXYZUnit2;
+        XYZUnit						mCoverSlip;
+        XYZUnit						mWhisker;
 
 		void __fastcall		        OnException();
-		APTDevice* 					getCurrentDevice();
-		APTMotor* 					getCurrentMotor();
+//		APTDevice* 					getCurrentDevice();
+//		APTMotor* 					getCurrentMotor();
 
         void __fastcall 			JMButtonUpUpdate(TMessage &msg);
         void __fastcall 			JMButtonDownUpdate(TMessage &msg);
