@@ -137,6 +137,8 @@ void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
     mJoyStick.disable();
     mCoverSlip.stopAll();
+    mWhisker.stopAll();
+
 }
 
 //---------------------------------------------------------------------------

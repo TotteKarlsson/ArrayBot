@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot Version 0.1'
-  ClientHeight = 592
-  ClientWidth = 755
+  ClientHeight = 685
+  ClientWidth = 950
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -62,8 +62,8 @@ object Main: TMain
   end
   object Splitter1: TSplitter
     Left = 0
-    Top = 427
-    Width = 755
+    Top = 520
+    Width = 950
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -74,7 +74,7 @@ object Main: TMain
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 755
+    Width = 950
     Height = 36
     ButtonHeight = 30
     ButtonWidth = 13
@@ -82,7 +82,6 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
-    ExplicitWidth = 950
     object InitCloseBtn: TBitBtn
       Left = 0
       Top = 0
@@ -104,50 +103,38 @@ object Main: TMain
     object Button7: TButton
       Left = 201
       Top = 0
-      Width = 80
+      Width = 122
       Height = 30
       Action = stopAllA
       TabOrder = 2
     end
-    object Button2: TButton
-      Left = 281
-      Top = 0
-      Width = 75
-      Height = 30
-      Caption = 'Toggle Log'
-      TabOrder = 3
-      OnClick = Button2Click
-    end
   end
   object BottomPanel: TPanel
     Left = 0
-    Top = 430
-    Width = 755
+    Top = 523
+    Width = 950
     Height = 162
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 950
     object infoMemo: TMemo
       Left = 1
       Top = 34
-      Width = 753
+      Width = 948
       Height = 127
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
-      ExplicitWidth = 948
     end
     object ToolBar2: TToolBar
       Left = 1
       Top = 1
-      Width = 753
+      Width = 948
       Height = 33
       AutoSize = True
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
-      ExplicitWidth = 948
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -162,45 +149,231 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 36
-    Width = 755
-    Height = 391
+    Width = 950
+    Height = 484
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 950
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 753
-      Height = 389
+      Width = 948
+      Height = 482
       ActivePage = TabSheet4
       Align = alClient
-      Constraints.MinHeight = 389
-      Constraints.MinWidth = 753
       TabOrder = 0
-      ExplicitWidth = 948
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 8
-        ExplicitTop = 27
+        object CoverSlipGB: TGroupBox
+          Left = 16
+          Top = 14
+          Width = 385
+          Height = 159
+          Caption = 'Cover Slip'
+          TabOrder = 0
+          object Panel1: TPanel
+            Left = 2
+            Top = 15
+            Width = 381
+            Height = 19
+            Align = alTop
+            BevelOuter = bvNone
+            TabOrder = 0
+          end
+          object GroupBox1: TGroupBox
+            Left = 2
+            Top = 34
+            Width = 381
+            Height = 114
+            Align = alTop
+            Caption = 'Positions'
+            TabOrder = 1
+            object PositionsCB: TComboBox
+              Left = 11
+              Top = 40
+              Width = 104
+              Height = 21
+              ItemIndex = 0
+              TabOrder = 0
+              Text = 'Edit...'
+              OnChange = PositionsCBChange
+              Items.Strings = (
+                'Edit...')
+            end
+            object GotoPosBtn: TButton
+              Left = 121
+              Top = 38
+              Width = 27
+              Height = 25
+              Caption = '->'
+              TabOrder = 1
+              OnClick = GotoBtnClick
+            end
+            object mXPosE: mtkFloatLabeledEdit
+              Left = 192
+              Top = 40
+              Width = 33
+              Height = 21
+              EditLabel.Width = 6
+              EditLabel.Height = 13
+              EditLabel.Caption = 'X'
+              TabOrder = 2
+              Text = '0.00'
+            end
+            object mYPosE: mtkFloatLabeledEdit
+              Left = 235
+              Top = 40
+              Width = 37
+              Height = 21
+              EditLabel.Width = 6
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Y'
+              TabOrder = 3
+              Text = '0.00'
+            end
+            object mZPosE: mtkFloatLabeledEdit
+              Left = 278
+              Top = 40
+              Width = 35
+              Height = 21
+              EditLabel.Width = 6
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Z'
+              TabOrder = 4
+              Text = '0.00'
+            end
+            object Button5: TButton
+              Left = 319
+              Top = 78
+              Width = 31
+              Height = 25
+              Caption = '+'
+              TabOrder = 5
+              OnClick = Button5Click
+            end
+            object mPositionLabelE: TSTDStringLabeledEdit
+              Left = 192
+              Top = 80
+              Width = 121
+              Height = 21
+              EditLabel.Width = 67
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Position Name'
+              TabOrder = 6
+            end
+          end
+        end
+        object GroupBox3: TGroupBox
+          Left = 445
+          Top = 14
+          Width = 425
+          Height = 159
+          Caption = 'Whisker'
+          TabOrder = 1
+          object Panel2: TPanel
+            Left = 2
+            Top = 15
+            Width = 421
+            Height = 19
+            Align = alTop
+            BevelOuter = bvNone
+            TabOrder = 0
+          end
+          object GroupBox5: TGroupBox
+            Left = 2
+            Top = 34
+            Width = 421
+            Height = 114
+            Align = alTop
+            Caption = 'Positions'
+            TabOrder = 1
+            object ComboBox1: TComboBox
+              Left = 11
+              Top = 32
+              Width = 104
+              Height = 21
+              ItemIndex = 0
+              TabOrder = 0
+              Text = 'Edit...'
+              OnChange = PositionsCBChange
+              Items.Strings = (
+                'Edit...')
+            end
+            object Button6: TButton
+              Left = 121
+              Top = 30
+              Width = 27
+              Height = 25
+              Caption = '->'
+              TabOrder = 1
+              OnClick = GotoBtnClick
+            end
+            object tkFloatLabeledEdit1: mtkFloatLabeledEdit
+              Left = 192
+              Top = 32
+              Width = 33
+              Height = 21
+              EditLabel.Width = 6
+              EditLabel.Height = 13
+              EditLabel.Caption = 'X'
+              TabOrder = 2
+              Text = '0.00'
+            end
+            object tkFloatLabeledEdit2: mtkFloatLabeledEdit
+              Left = 235
+              Top = 32
+              Width = 37
+              Height = 21
+              EditLabel.Width = 6
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Y'
+              TabOrder = 3
+              Text = '0.00'
+            end
+            object tkFloatLabeledEdit3: mtkFloatLabeledEdit
+              Left = 278
+              Top = 32
+              Width = 35
+              Height = 21
+              EditLabel.Width = 6
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Z'
+              TabOrder = 4
+              Text = '0.00'
+            end
+            object STDStringLabeledEdit1: TSTDStringLabeledEdit
+              Left = 192
+              Top = 72
+              Width = 121
+              Height = 21
+              EditLabel.Width = 67
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Position Name'
+              TabOrder = 5
+            end
+            object Button8: TButton
+              Left = 319
+              Top = 70
+              Width = 31
+              Height = 25
+              Caption = '+'
+              TabOrder = 6
+              OnClick = Button5Click
+            end
+          end
+        end
         object GroupBox6: TGroupBox
           Left = 16
-          Top = 19
-          Width = 329
-          Height = 166
+          Top = 195
+          Width = 383
+          Height = 190
           Caption = 'Coordinated Move'
-          TabOrder = 0
+          TabOrder = 2
           object MoveBtn: TButton
             Left = 194
-            Top = 36
-            Width = 127
-            Height = 109
+            Top = 32
+            Width = 88
+            Height = 57
             Caption = 'Start Move'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
             TabOrder = 0
             OnClick = MoveBtnClick
           end
@@ -264,15 +437,15 @@ object Main: TMain
           end
         end
         object JoyStickGB: TGroupBox
-          Left = 351
-          Top = 19
-          Width = 383
-          Height = 329
+          Left = 424
+          Top = 179
+          Width = 409
+          Height = 209
           Caption = 'JoyStick'
-          TabOrder = 1
+          TabOrder = 3
           object mNrOfGearsLbl: TIntegerLabeledEdit
-            Left = 192
-            Top = 286
+            Left = 17
+            Top = 30
             Width = 41
             Height = 21
             EditLabel.Width = 55
@@ -283,8 +456,8 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
           object mMaxXYJogVelocityJoystick: mtkFloatLabeledEdit
-            Left = 24
-            Top = 247
+            Left = 17
+            Top = 72
             Width = 66
             Height = 21
             EditLabel.Width = 75
@@ -295,8 +468,8 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
           object mXYJogAccelerationJoystick: mtkFloatLabeledEdit
-            Left = 104
-            Top = 247
+            Left = 97
+            Top = 72
             Width = 66
             Height = 21
             EditLabel.Width = 74
@@ -307,8 +480,8 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
           object mMaxZJogVelocityJoystick: mtkFloatLabeledEdit
-            Left = 24
-            Top = 286
+            Left = 17
+            Top = 121
             Width = 66
             Height = 21
             EditLabel.Width = 69
@@ -319,8 +492,8 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
           object mZJogAccelerationJoystick: mtkFloatLabeledEdit
-            Left = 104
-            Top = 286
+            Left = 97
+            Top = 121
             Width = 66
             Height = 21
             EditLabel.Width = 68
@@ -330,80 +503,49 @@ object Main: TMain
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
+          object jsStateRG: TRadioGroup
+            Left = 17
+            Top = 148
+            Width = 144
+            Height = 45
+            Caption = 'State'
+            Columns = 2
+            ItemIndex = 1
+            Items.Strings = (
+              'Enabled'
+              'Disabled')
+            TabOrder = 5
+            OnClick = jsAxisRGClick
+          end
           object JoyControlRG: TRadioGroup
-            Left = 16
-            Top = 141
-            Width = 342
-            Height = 76
-            Caption = 'Control'
-            Columns = 3
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Tahoma'
-            Font.Style = []
+            Left = 200
+            Top = 24
+            Width = 153
+            Height = 105
+            Caption = 'JoyStick Control'
             ItemIndex = 2
             Items.Strings = (
               'CoverSlip'
               'Whisker'
               'None')
-            ParentFont = False
-            TabOrder = 5
+            TabOrder = 6
             OnClick = JoyControlRGClick
           end
-          object JSSpeedsRG: TRadioGroup
-            Left = 16
-            Top = 30
-            Width = 344
-            Height = 105
-            Caption = 'Speed'
-            Columns = 3
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ItemIndex = 1
-            Items.Strings = (
-              'Fast '
-              'Medium'
-              'Slow')
-            ParentFont = False
-            TabOrder = 6
-            OnClick = JSSpeedsRGClick
-          end
-        end
-        object Button1: TButton
-          Left = 16
-          Top = 206
-          Width = 161
-          Height = 123
-          Action = stopAllA
-          Caption = 'Abort'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clRed
-          Font.Height = -27
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 2
         end
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
-        ExplicitWidth = 940
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
-          Width = 745
-          Height = 361
+          Width = 940
+          Height = 454
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 940
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
-            Width = 724
+            Width = 919
             Height = 348
             Align = alTop
             TabOrder = 0
@@ -411,18 +553,18 @@ object Main: TMain
             ExplicitWidth = 919
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
-              Width = 724
+              Width = 919
               Height = 348
-              ExplicitWidth = 724
+              ExplicitWidth = 919
               ExplicitHeight = 348
               inherited TopPanel: TPanel
-                Width = 720
-                ExplicitWidth = 720
+                Width = 915
+                ExplicitWidth = 915
               end
               inherited ScrollBox1: TScrollBox
-                Width = 720
+                Width = 915
                 Height = 305
-                ExplicitWidth = 720
+                ExplicitWidth = 915
                 ExplicitHeight = 305
               end
             end
@@ -430,27 +572,95 @@ object Main: TMain
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
             Top = 0
-            Width = 724
+            Width = 919
             Height = 351
             Align = alTop
             TabOrder = 1
             ExplicitWidth = 919
             inherited mainGB: TGroupBox
-              Width = 724
-              ExplicitWidth = 724
+              Width = 919
+              ExplicitWidth = 919
               ExplicitHeight = 351
               inherited TopPanel: TPanel
-                Width = 720
-                ExplicitWidth = 720
+                Width = 915
+                ExplicitWidth = 915
               end
               inherited ScrollBox1: TScrollBox
-                Width = 720
-                ExplicitWidth = 720
+                Width = 915
+                ExplicitWidth = 915
                 ExplicitHeight = 308
               end
             end
           end
         end
+      end
+      object TabSheet2: TTabSheet
+        Caption = 'Devices'
+        ImageIndex = 1
+        object DevicesGB: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 153
+          Height = 454
+          Align = alLeft
+          Caption = 'Devices'
+          TabOrder = 0
+          object devicesLB: TListBox
+            Left = 2
+            Top = 15
+            Width = 149
+            Height = 437
+            Align = alClient
+            ItemHeight = 13
+            TabOrder = 0
+            OnClick = devicesLBClick
+          end
+        end
+        inline TMotorFrame1: TMotorFrame
+          Left = 153
+          Top = 0
+          Width = 293
+          Height = 454
+          Align = alLeft
+          TabOrder = 1
+          ExplicitLeft = 153
+          ExplicitHeight = 454
+          inherited MotorGB: TGroupBox
+            Height = 454
+            Align = alLeft
+            Constraints.MaxHeight = 454
+            ExplicitHeight = 454
+            inherited StatusGB: TGroupBox
+              Top = 370
+              ExplicitTop = 370
+            end
+            inherited JoggingGB: TGroupBox
+              Top = 278
+              ExplicitTop = 278
+              inherited mFwdBtn: TButton
+                OnMouseDown = nil
+              end
+              inherited mRewBtn: TButton
+                OnMouseDown = nil
+              end
+              inherited mJogVelocity: mtkFloatLabeledEdit
+                OnKeyDown = nil
+              end
+            end
+          end
+          inherited mMotorStatusTimer: TTimer
+            Left = 184
+            Top = 120
+          end
+          inherited ActionList1: TActionList
+            Left = 216
+            Top = 216
+          end
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = 'JoyStick'
+        ImageIndex = 2
       end
     end
   end
@@ -463,6 +673,7 @@ object Main: TMain
     end
     object addDevicesToListBox: TAction
       Caption = 'Connect All'
+      OnExecute = addDevicesToListBoxExecute
     end
     object identifyCurrent: TAction
       Caption = 'Identify'
@@ -505,6 +716,7 @@ object Main: TMain
   object StatusTimer: TTimer
     Enabled = False
     Interval = 500
+    OnTimer = StatusTimerTimer
     Left = 112
     Top = 592
   end
