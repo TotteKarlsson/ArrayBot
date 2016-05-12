@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_a_p_t_device-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -134,15 +135,33 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>disable</b> ()</td></
 <tr class="memitem:ad82cad5cb10407cde9940d634ae9d195"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad82cad5cb10407cde9940d634ae9d195"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>getSerial</b> ()</td></tr>
 <tr class="separator:ad82cad5cb10407cde9940d634ae9d195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82cb8a57db8e88a2e717a50d25f9c90b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82cb8a57db8e88a2e717a50d25f9c90b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadProperties</b> (IniFile &amp;iniFile)</td></tr>
+<tr class="separator:a82cb8a57db8e88a2e717a50d25f9c90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0395dc9386c025ebff1cd3e8ea75232f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0395dc9386c025ebff1cd3e8ea75232f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const string &amp;name)</td></tr>
+<tr class="separator:a0395dc9386c025ebff1cd3e8ea75232f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a388f00ab76b03da2106dc8275f1a5d5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a388f00ab76b03da2106dc8275f1a5d5e"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
+<tr class="separator:a388f00ab76b03da2106dc8275f1a5d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a38ba8341e616b41cc02d63efdf8d615d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38ba8341e616b41cc02d63efdf8d615d"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>applyProperties</b> ()=0</td></tr>
+<tr class="separator:a38ba8341e616b41cc02d63efdf8d615d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a67eeb8fa1ed1b1d39d449dd081bc1239"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67eeb8fa1ed1b1d39d449dd081bc1239"></a>
-Properties&#160;</td><td class="memItemRight" valign="bottom"><b>mProperties</b></td></tr>
-<tr class="separator:a67eeb8fa1ed1b1d39d449dd081bc1239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac648a1f2f84b91fdfd681fc1176b8d72"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac648a1f2f84b91fdfd681fc1176b8d72"></a>
+IniFileProperties&#160;</td><td class="memItemRight" valign="bottom"><b>mProperties</b></td></tr>
+<tr class="separator:ac648a1f2f84b91fdfd681fc1176b8d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a009a68e635d0c3d1180716e03a0f04b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a009a68e635d0c3d1180716e03a0f04b6"></a>
 Property&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mSerial</b></td></tr>
 <tr class="separator:a009a68e635d0c3d1180716e03a0f04b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43d4c66eb3cbf4a92136b2406cab387f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43d4c66eb3cbf4a92136b2406cab387f"></a>
+Property&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mName</b></td></tr>
+<tr class="separator:a43d4c66eb3cbf4a92136b2406cab387f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae326c547996edf6c317fedf922eafd32"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae326c547996edf6c317fedf922eafd32"></a>
 DeviceTypeID&#160;</td><td class="memItemRight" valign="bottom"><b>mDeviceTypeID</b></td></tr>
 <tr class="separator:ae326c547996edf6c317fedf922eafd32"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,7 +174,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsActive</b></td></t
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ab_a_p_t_device_8h_source.html#l00014">14</a> of file <a class="el" href="ab_a_p_t_device_8h_source.html">abAPTDevice.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_a_p_t_device_8h_source.html#l00015">15</a> of file <a class="el" href="ab_a_p_t_device_8h_source.html">abAPTDevice.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_a_p_t_device_8h_source.html">abAPTDevice.h</a></li>
 <li>source/<a class="el" href="ab_a_p_t_device_8cpp_source.html">abAPTDevice.cpp</a></li>

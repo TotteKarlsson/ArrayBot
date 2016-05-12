@@ -229,12 +229,24 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>forward</b> (
 <tr class="memitem:abc616a048e2b712856c3d41934d685db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc616a048e2b712856c3d41934d685db"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>reverse</b> (bool inThread=true)=0</td></tr>
 <tr class="separator:abc616a048e2b712856c3d41934d685db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e1e6ae788720d7100b5e13b7cb5ac0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09e1e6ae788720d7100b5e13b7cb5ac0"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>moveDistance</b> (double distance, bool inThread=true)=0</td></tr>
-<tr class="separator:a09e1e6ae788720d7100b5e13b7cb5ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2caca492a23e560b29c8394c92c4a3ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2caca492a23e560b29c8394c92c4a3ff"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>moveToPosition</b> (double position, bool inThread=true)=0</td></tr>
+<tr class="separator:a2caca492a23e560b29c8394c92c4a3ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d45bca3613e6eed817d2ef5d4baab8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d45bca3613e6eed817d2ef5d4baab8b"></a>
 MotorCommandEnum&#160;</td><td class="memItemRight" valign="bottom"><b>getLastCommand</b> ()</td></tr>
 <tr class="separator:a5d45bca3613e6eed817d2ef5d4baab8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab67de529f9dfd11bde8400d552559e06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab67de529f9dfd11bde8400d552559e06"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getManualJogVelocity</b> ()</td></tr>
+<tr class="separator:ab67de529f9dfd11bde8400d552559e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fcac5b056b295bee06ba22b6e40161f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fcac5b056b295bee06ba22b6e40161f"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getManualJogAcceleration</b> ()</td></tr>
+<tr class="separator:a9fcac5b056b295bee06ba22b6e40161f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e83d6637691f6011d65d5849534d739"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e83d6637691f6011d65d5849534d739"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setManualJogVelocity</b> (double v)</td></tr>
+<tr class="separator:a2e83d6637691f6011d65d5849534d739"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a699b53685e8125ac8aaa5b9dfb527029"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a699b53685e8125ac8aaa5b9dfb527029"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setManualJogAcceleration</b> (double a)</td></tr>
+<tr class="separator:a699b53685e8125ac8aaa5b9dfb527029"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_a_p_t_device"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_a_p_t_device')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_a_p_t_device.html">APTDevice</a></td></tr>
 <tr class="memitem:a689fd8cfcf7b00be3c3978977841ad16 inherit pub_methods_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a689fd8cfcf7b00be3c3978977841ad16"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>APTDevice</b> (int serial)</td></tr>
@@ -251,9 +263,21 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>disable</b> ()</td></
 <tr class="memitem:ad82cad5cb10407cde9940d634ae9d195 inherit pub_methods_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad82cad5cb10407cde9940d634ae9d195"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>getSerial</b> ()</td></tr>
 <tr class="separator:ad82cad5cb10407cde9940d634ae9d195 inherit pub_methods_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82cb8a57db8e88a2e717a50d25f9c90b inherit pub_methods_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82cb8a57db8e88a2e717a50d25f9c90b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadProperties</b> (IniFile &amp;iniFile)</td></tr>
+<tr class="separator:a82cb8a57db8e88a2e717a50d25f9c90b inherit pub_methods_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0395dc9386c025ebff1cd3e8ea75232f inherit pub_methods_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0395dc9386c025ebff1cd3e8ea75232f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const string &amp;name)</td></tr>
+<tr class="separator:a0395dc9386c025ebff1cd3e8ea75232f inherit pub_methods_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a388f00ab76b03da2106dc8275f1a5d5e inherit pub_methods_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a388f00ab76b03da2106dc8275f1a5d5e"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
+<tr class="separator:a388f00ab76b03da2106dc8275f1a5d5e inherit pub_methods_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:af761bdcd72f9a7dffa2088454725df4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af761bdcd72f9a7dffa2088454725df4b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>applyProperties</b> ()</td></tr>
+<tr class="separator:af761bdcd72f9a7dffa2088454725df4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02d8768a7f9d7f81642b6355a4119589"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02d8768a7f9d7f81642b6355a4119589"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>post</b> (const <a class="el" href="class_motor_command.html">MotorCommand</a> &amp;cmd)</td></tr>
 <tr class="separator:a02d8768a7f9d7f81642b6355a4119589"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -266,15 +290,27 @@ Timer&#160;</td><td class="memItemRight" valign="bottom"><b>mStatusTimer</b></td
 <tr class="memitem:ad3f322af6da98d4193f0c0b3f1b55471"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3f322af6da98d4193f0c0b3f1b55471"></a>
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>mStatusBits</b></td></tr>
 <tr class="separator:ad3f322af6da98d4193f0c0b3f1b55471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7dc5734487a985f1522b57ffd2da8f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7dc5734487a985f1522b57ffd2da8f8"></a>
-<a class="el" href="struct_scaling_factors.html">ScalingFactors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mScalingFactors</b></td></tr>
-<tr class="separator:ac7dc5734487a985f1522b57ffd2da8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad24e922c8f881fcd97d7aceef175c3e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad24e922c8f881fcd97d7aceef175c3e2"></a>
+<a class="el" href="struct_motor_scaling_factors.html">MotorScalingFactors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mScalingFactors</b></td></tr>
+<tr class="separator:ad24e922c8f881fcd97d7aceef175c3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79f9a9a1acb0c52a600bdf6fcd79e2dd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79f9a9a1acb0c52a600bdf6fcd79e2dd"></a>
 <a class="el" href="struct_hardware_information.html">HardwareInformation</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mHWInfo</b></td></tr>
 <tr class="separator:a79f9a9a1acb0c52a600bdf6fcd79e2dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d6d124fcc9f709f884e6e13a5b1816f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d6d124fcc9f709f884e6e13a5b1816f"></a>
-Property&lt; Range&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mVelocityRange</b></td></tr>
-<tr class="separator:a5d6d124fcc9f709f884e6e13a5b1816f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99078f270aed4daf0244fcfc6b5a9a00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99078f270aed4daf0244fcfc6b5a9a00"></a>
+Range&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mPositionRange</b></td></tr>
+<tr class="separator:a99078f270aed4daf0244fcfc6b5a9a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bb24b9291503b068b23c6097ee5de67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7bb24b9291503b068b23c6097ee5de67"></a>
+Range&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mVelocityRange</b></td></tr>
+<tr class="separator:a7bb24b9291503b068b23c6097ee5de67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2ee66ed77baad5ee4c18ab9f2658036"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2ee66ed77baad5ee4c18ab9f2658036"></a>
+Range&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAccelerationRange</b></td></tr>
+<tr class="separator:aa2ee66ed77baad5ee4c18ab9f2658036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb13658d37804434a0f2c7a3f716ae52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb13658d37804434a0f2c7a3f716ae52"></a>
+Property&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mManualJogVelocity</b></td></tr>
+<tr class="separator:abb13658d37804434a0f2c7a3f716ae52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a193839fc4bbcd28f2c49c1993efe1b9e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a193839fc4bbcd28f2c49c1993efe1b9e"></a>
+Property&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mManualJogAcceleration</b></td></tr>
+<tr class="separator:a193839fc4bbcd28f2c49c1993efe1b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a391a4a48e8036985da1f3c25a59db62a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a391a4a48e8036985da1f3c25a59db62a"></a>
 <a class="el" href="class_motor_message_processor.html">MotorMessageProcessor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mMotorMessageProcessor</b></td></tr>
 <tr class="separator:a391a4a48e8036985da1f3c25a59db62a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,12 +318,15 @@ Property&lt; Range&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valig
 <a class="el" href="class_motor_message_container.html">MotorMessageContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mMotorMessageContainer</b></td></tr>
 <tr class="separator:a493619719d45765e5852d13720f77b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_a_p_t_device"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_a_p_t_device')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_a_p_t_device.html">APTDevice</a></td></tr>
-<tr class="memitem:a67eeb8fa1ed1b1d39d449dd081bc1239 inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67eeb8fa1ed1b1d39d449dd081bc1239"></a>
-Properties&#160;</td><td class="memItemRight" valign="bottom"><b>mProperties</b></td></tr>
-<tr class="separator:a67eeb8fa1ed1b1d39d449dd081bc1239 inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac648a1f2f84b91fdfd681fc1176b8d72 inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac648a1f2f84b91fdfd681fc1176b8d72"></a>
+IniFileProperties&#160;</td><td class="memItemRight" valign="bottom"><b>mProperties</b></td></tr>
+<tr class="separator:ac648a1f2f84b91fdfd681fc1176b8d72 inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a009a68e635d0c3d1180716e03a0f04b6 inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a009a68e635d0c3d1180716e03a0f04b6"></a>
 Property&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mSerial</b></td></tr>
 <tr class="separator:a009a68e635d0c3d1180716e03a0f04b6 inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43d4c66eb3cbf4a92136b2406cab387f inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43d4c66eb3cbf4a92136b2406cab387f"></a>
+Property&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mName</b></td></tr>
+<tr class="separator:a43d4c66eb3cbf4a92136b2406cab387f inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae326c547996edf6c317fedf922eafd32 inherit pro_attribs_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae326c547996edf6c317fedf922eafd32"></a>
 DeviceTypeID&#160;</td><td class="memItemRight" valign="bottom"><b>mDeviceTypeID</b></td></tr>
 <tr class="separator:ae326c547996edf6c317fedf922eafd32 inherit pro_attribs_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -104,12 +104,24 @@ Inheritance diagram for XYZUnit:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad1e649ffd3d58cc01cf123c235db4d7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1e649ffd3d58cc01cf123c235db4d7d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>XYZUnit</b> (const string &amp;name, <a class="el" href="class_joy_stick.html">JoyStick</a> *js, IniFile &amp;iniFile)</td></tr>
-<tr class="separator:ad1e649ffd3d58cc01cf123c235db4d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a231015839bb28466363bd51e75f65a68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a231015839bb28466363bd51e75f65a68"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>XYZUnit</b> (const string &amp;name, IniFile &amp;iniFile)</td></tr>
+<tr class="separator:a231015839bb28466363bd51e75f65a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25b85e4117310c9d5629933ee2a15d8e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25b85e4117310c9d5629933ee2a15d8e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>shutDown</b> ()</td></tr>
+<tr class="separator:a25b85e4117310c9d5629933ee2a15d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d5cab464b1df4e790aca2959a8d58a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d5cab464b1df4e790aca2959a8d58a6"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
 <tr class="separator:a8d5cab464b1df4e790aca2959a8d58a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec640d942d7425b7367a8cfe15cc9777"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec640d942d7425b7367a8cfe15cc9777"></a>
+<a class="el" href="class_x_y_z_unit_positions.html">XYZUnitPositions</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>positions</b> ()</td></tr>
+<tr class="separator:aec640d942d7425b7367a8cfe15cc9777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c357c28efcf7b24503d77490e4628f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c357c28efcf7b24503d77490e4628f5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>enableJoyStick</b> (<a class="el" href="class_joy_stick.html">JoyStick</a> *js)</td></tr>
+<tr class="separator:a4c357c28efcf7b24503d77490e4628f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa476166c2b142588495a1bfb810443a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa476166c2b142588495a1bfb810443a7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>disableJoyStick</b> ()</td></tr>
+<tr class="separator:aa476166c2b142588495a1bfb810443a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a973fc22893958eaf1ae3c03c0d5b8160"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a973fc22893958eaf1ae3c03c0d5b8160"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td></tr>
 <tr class="separator:a973fc22893958eaf1ae3c03c0d5b8160"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,6 +137,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>stopAll</b> ()</td></
 <tr class="memitem:a666a62e003f1dd1471ca6d7b5cd0528b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a666a62e003f1dd1471ca6d7b5cd0528b"></a>
 <a class="el" href="class_a_p_t_motor.html">APTMotor</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getZMotor</b> ()</td></tr>
 <tr class="separator:a666a62e003f1dd1471ca6d7b5cd0528b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e63464682d8e4a1678a6767226f5248"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e63464682d8e4a1678a6767226f5248"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>moveToPosition</b> (const <a class="el" href="class_x_y_z_unit_position.html">XYZUnitPosition</a> &amp;pos)</td></tr>
+<tr class="separator:a4e63464682d8e4a1678a6767226f5248"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -164,6 +179,9 @@ IniFileProperties&#160;</td><td class="memItemRight" valign="bottom"><b>mPropert
 <tr class="memitem:ae026cd3fb3dd46f46340530bf9930c83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae026cd3fb3dd46f46340530bf9930c83"></a>
 IniFile &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mIniFile</b></td></tr>
 <tr class="separator:ae026cd3fb3dd46f46340530bf9930c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36c15b7aa68e9f0b1c43600a22379692"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36c15b7aa68e9f0b1c43600a22379692"></a>
+<a class="el" href="class_x_y_z_unit_positions.html">XYZUnitPositions</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mPositions</b></td></tr>
+<tr class="separator:a36c15b7aa68e9f0b1c43600a22379692"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
