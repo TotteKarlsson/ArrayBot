@@ -77,8 +77,6 @@ void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
 	TXYZUnitFrame1->assignUnit(&mCoverSlip);
 	TXYZUnitFrame2->assignUnit(&mWhisker);
 
-    addDevicesToListBoxExecute(Sender);
-
     //JoyStick stuff.....
     mMaxXYJogVelocityJoystick->SetNumber(mJoyStick.getXAxis().getMaxVelocity());
     mXYJogAccelerationJoystick->SetNumber(mJoyStick.getXAxis().getAcceleration());
@@ -99,7 +97,6 @@ void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
 void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 {
 	StatusTimer->Enabled = false;
-	devicesLB->Clear();
 
     mJoyStick.disable();
 
@@ -120,39 +117,19 @@ void __fastcall TMain::JoyControlRGClick(TObject *Sender)
     {
     	mCoverSlip.enableJoyStick(&mJoyStick);
         mWhisker.disableJoyStick();
+		mJoyStick.enable();
     }
     else if(JoyControlRG->ItemIndex == 1)
     {
     	mCoverSlip.disableJoyStick();
         mWhisker.enableJoyStick(&mJoyStick);
+		mJoyStick.enable();
     }
     else
     {
       	mCoverSlip.disableJoyStick();
         mWhisker.disableJoyStick();
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::devicesLBClick(TObject *Sender)
-{
-	//Query the device
-    int ii = devicesLB->ItemIndex;
-    if(ii == -1)
-    {
-    	return;
-    }
-
-    APTDevice* device = (APTDevice*) devicesLB->Items->Objects[ii];
-    if(device)
-    {
-
-        APTMotor* motor = dynamic_cast<APTMotor*>(device);
-        if(motor)
-        {
-      		//Fill out motor frame
-        }
-        device->identify();
+   		mJoyStick.disable();
     }
 }
 
@@ -160,15 +137,6 @@ void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
     mJoyStick.disable();
     mCoverSlip.stopAll();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::StatusTimerTimer(TObject *Sender)
-{
-    int ii = devicesLB->ItemIndex;
-    if(ii > -1)
-    {
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -193,10 +161,8 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
         Log(lInfo) << "New jog acceleration (mm/(s*s)): " <<a;
         mCoverSlip.getXMotor()->setJogAcceleration(a);
         mCoverSlip.getYMotor()->setJogAcceleration(a);
-
         mWhisker.getXMotor()->setJogAcceleration(a);
         mWhisker.getYMotor()->setJogAcceleration(a);
-
     }
     else if(e == mMaxZJogVelocityJoystick)
     {
@@ -219,67 +185,37 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
         mJoyStick.getXAxis().setNumberOfGears(g);
         mJoyStick.getYAxis().setNumberOfGears(g);
     }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::jsAxisRGClick(TObject *Sender)
-{
-	TRadioGroup *rg = (TRadioGroup*)(Sender);
-	if(rg == jsStateRG)
-   	{
-   		jsStateRG->ItemIndex == 0 ?
-   		mJoyStick.enable() : mJoyStick.disable();
-   	}
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::GotoBtnClick(TObject *Sender)
-{
-    APTMotor* x = mCoverSlip.getXMotor();
-    APTMotor* y = mCoverSlip.getYMotor();
-    APTMotor* z = mCoverSlip.getZMotor();
-
-    if(x && y && z)
+    else if(Sender == NULL)
     {
-    	int index = PositionsCB->ItemIndex;
-        if(index <= 0)
+        double vel = mMaxXYJogVelocityJoystick->GetValue();
+        Log(lInfo) << "New jog velocity (mm/s): " <<vel;
+		mJoyStick.getXAxis().setMaxVelocity(vel);
+		mJoyStick.getYAxis().setMaxVelocity(vel);
+
+        double aXY = mXYJogAccelerationJoystick->GetValue();
+        Log(lInfo) << "New jog acceleration (mm/(s*s)): " <<aXY;
+
+        if(mCoverSlip.getXMotor() && mCoverSlip.getYMotor())
         {
-        	return;
+            mCoverSlip.getXMotor()->setJogAcceleration(aXY);
+            mCoverSlip.getYMotor()->setJogAcceleration(aXY);
+            mWhisker.getXMotor()->setJogAcceleration(aXY);
+            mWhisker.getYMotor()->setJogAcceleration(aXY);
         }
 
-    	XYZUnitPosition* pos = (XYZUnitPosition*)PositionsCB->Items->Objects[index];
-        if(pos)
+        double vZ = mMaxZJogVelocityJoystick->GetValue();
+        Log(lInfo) << "New Z jog velocity (mm/s): " <<vZ;
+        if(mCoverSlip.getZMotor())
         {
-	        mCoverSlip.moveToPosition((*pos));
+        	mCoverSlip.getZMotor()->setJogVelocity(vZ);
+	        mWhisker.getZMotor()->setJogVelocity(vZ);
+
+    	    double aZ = mZJogAccelerationJoystick->GetValue();
+	        Log(lInfo) << "New Z jog acceleration (mm/(s*s)): " <<aZ;
+	        mCoverSlip.getZMotor()->setJogAcceleration(aZ);
+        	mWhisker.getZMotor()->setJogAcceleration(aZ);
         }
     }
-    else
-    {
-    	Log(lError) << "Can't carry out move because one or more motors are not connected";
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::PositionsCBChange(TObject *Sender)
-{
-	if(PositionsCB->ItemIndex == 0)
-    {
-    	//Open edit positions form
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::Button5Click(TObject *Sender)
-{
-	//Add position
-    XYZUnitPosition* newPos = new XYZUnitPosition(mPositionLabelE->getValue(),
-    			mXPosE->GetValue(),
-                mYPosE->GetValue(),
-                mZPosE->GetValue());
-
-	PositionsCB->Items->InsertObject(PositionsCB->Items->Count, newPos->getLabel().c_str(), (TObject*) newPos);
-
-	mCoverSlip.positions().add(*newPos);
 }
 
 //---------------------------------------------------------------------------
@@ -321,6 +257,7 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
     	Log(lError) << "Can't carry out this move.. one motor is absent";
         return;
     }
+
     double vertVel 	= mMoveVelocityVerticalE->GetNumber();
     double horizVel = mMoveVelHorizE->GetNumber();
     double acc 		= mMoveAccelerationE->GetNumber();
@@ -340,7 +277,6 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
     yWM->setJogAcceleration(acc / tanTheta);
 
     //get current positions and carry out some moveTo's
-	//We may want to use MoveRelative instead..
     double yPos = yCSM->getPosition();
     double zPos = zCSM->getPosition();
 
@@ -348,7 +284,7 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
 	double newCSXPos = (tanTheta != 0) ?
     					yPos + (newCSZPos - zPos) / tanTheta : yPos;
 
-	//Calculate for whisker
+	//Calculate for the whisker
     yPos = yWM->getPosition();
     zPos = zWM->getPosition();
 
@@ -356,10 +292,12 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
 	double newWXPos = (tanTheta != 0) ?
     					(yPos + (newWZPos - zPos) / tanTheta) : yPos;
 
-    Log(lInfo) << "Moving CS Vertical to: "<<newCSZPos;
-    Log(lInfo) << "Moving CS Horiz to: "<<newCSXPos;
-    Log(lInfo) << "Moving W Vertical to: "<<newWZPos;
-    Log(lInfo) << "Moving W Horiz to: "<<newCSXPos;
+    Log(lInfo) << "Moving CS Vertical to: "	<<newCSZPos;
+    Log(lInfo) << "Moving CS Horiz to: "	<<newCSXPos;
+
+    Log(lInfo) << "Moving W Vertical to: "	<<newWZPos;
+    Log(lInfo) << "Moving W Horiz to: "		<<newCSXPos;
+
 
     yCSM->moveToPosition(newCSXPos);
     zCSM->moveToPosition(newCSZPos);
@@ -368,5 +306,43 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
     zWM->moveToPosition(newWZPos);
 }
 
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::JSSpeedsRGClick(TObject *Sender)
+{
+	if(JSSpeedsRG->ItemIndex == 0) //Fast
+    {
+		mMaxXYJogVelocityJoystick->SetNumber(30);
+		mXYJogAccelerationJoystick->SetNumber(10);
+		mMaxZJogVelocityJoystick->SetNumber(2);
+		mZJogAccelerationJoystick->SetNumber(1);
+
+        unsigned short key  = 13;
+        TShiftState ss;
+		JoyStickValueEdit(NULL, key, ss);
+    }
+    else if (JSSpeedsRG->ItemIndex == 1)
+    {
+		mMaxXYJogVelocityJoystick->SetNumber(10);
+		mXYJogAccelerationJoystick->SetNumber(5);
+		mMaxZJogVelocityJoystick->SetNumber(1);
+		mZJogAccelerationJoystick->SetNumber(1);
+
+        unsigned short key  = 13;
+        TShiftState ss;
+		JoyStickValueEdit(NULL, key, ss);
+    }
+    else if (JSSpeedsRG->ItemIndex == 2)
+    {
+		mMaxXYJogVelocityJoystick->SetNumber(1);
+		mXYJogAccelerationJoystick->SetNumber(1);
+		mMaxZJogVelocityJoystick->SetNumber(0.5);
+		mZJogAccelerationJoystick->SetNumber(.1);
+
+        unsigned short key  = 13;
+        TShiftState ss;
+		JoyStickValueEdit(NULL, key, ss);
+    }
+}
 
 

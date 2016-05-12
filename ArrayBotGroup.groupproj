@@ -3,6 +3,12 @@
         <ProjectGuid>{9D7B788E-1612-4D2A-99DA-365D58720234}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="P:\dslib\VCL\Common\VCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\dslib\VCL\Forms\DuneForms.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="source\abCore.cbproj">
             <Dependencies/>
         </Projects>
@@ -17,6 +23,24 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="VCLCommon">
+        <MSBuild Projects="P:\dslib\VCL\Common\VCLCommon.cbproj"/>
+    </Target>
+    <Target Name="VCLCommon:Clean">
+        <MSBuild Projects="P:\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLCommon:Make">
+        <MSBuild Projects="P:\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DuneForms">
+        <MSBuild Projects="P:\dslib\VCL\Forms\DuneForms.cbproj"/>
+    </Target>
+    <Target Name="DuneForms:Clean">
+        <MSBuild Projects="P:\dslib\VCL\Forms\DuneForms.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneForms:Make">
+        <MSBuild Projects="P:\dslib\VCL\Forms\DuneForms.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="abCore">
         <MSBuild Projects="source\abCore.cbproj"/>
     </Target>
@@ -36,13 +60,13 @@
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;ArrayBot"/>
+        <CallTarget Targets="VCLCommon;DuneForms;abCore;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="VCLCommon:Clean;DuneForms:Clean;abCore:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;ArrayBot:Make"/>
+        <CallTarget Targets="VCLCommon:Make;DuneForms:Make;abCore:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -5,31 +5,6 @@
 using namespace mtk;
 
 
-void __fastcall TMain::addDevicesToListBoxExecute(TObject *Sender)
-{
-	//Connect all available devices
-  	APTDevice* device = mCoverSlip.mDeviceManager.getFirst();
-	while(device)
-    {
-		string serial = device->getSerial();
-
-        //Add to listbox
-        devicesLB->Items->AddObject(serial.c_str(), (TObject*) device);
-        device = mCoverSlip.mDeviceManager.getNext();
-    }
-
-	//Connect all available devices
-  	device = mWhisker.mDeviceManager.getFirst();
-	while(device)
-    {
-		string serial = device->getSerial();
-
-        //Add to listbox
-        devicesLB->Items->AddObject(serial.c_str(), (TObject*) device);
-        device = mWhisker.mDeviceManager.getNext();
-    }
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 {

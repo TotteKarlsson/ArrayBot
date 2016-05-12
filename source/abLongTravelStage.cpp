@@ -37,13 +37,11 @@ bool LongTravelStage::connect()
 
         //Set jog mode to continous
         setJogMoveMode(jmContinuous);
-        //setJogVelocity(1.0);
-        //setJogAcceleration(1.0);
 
 	    // start the device polling at 200ms intervals
     	if(!ISC_StartPolling(mSerial.c_str(), 200))
         {
-        	Log(lError) <<"Failure in StartPolling function";
+        	Log(lError) <<"Failure in Start Polling function";
         }
         return true;
     }
@@ -320,7 +318,6 @@ StopMode LongTravelStage::getJogStopMode()
   	return (StopMode) sm;
 }
 
-
 double LongTravelStage::getJogVelocity()
 {
     int a, v;
@@ -411,42 +408,21 @@ void LongTravelStage::jogReverse(bool inThread)
 
 void LongTravelStage::forward(bool inThread)
 {
-//	if(isReversing())
-//    {
-//    	Log(lInfo) << "Forwarding requested, motor is in reverse..";
-//    }
-
-//    //Don't send command if already doing what is needed
-//    if(!isForwarding())
+	//TODO: use inThread logic
+    int err = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+    if(err != 0)
     {
-        int err = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
-        if(err != 0)
-        {
-            Log(lError) <<tlError(err);
-        }
+        Log(lError) <<tlError(err);
     }
-//    else
-//    {
-//    	Log(lWarning) <<"Motor is already forwarding..";
-//    }
 }
 
 void LongTravelStage::reverse(bool inThread)
 {
-//	if(isForwarding())
-//    {
-//    	Log(lInfo) << "Reversing requested, but motor is forwarding..";
-////		return;
-//    }
-
-    //Don't send command if already doing what is needed
- //   if(!isReversing())
+	//TODO: use inThread logic
+    int err = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Reverse);
+    if(err !=0)
     {
-        int err = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Reverse);
-        if(err !=0)
-        {
-            Log(lError) <<tlError(err);
-        }
+        Log(lError) <<tlError(err);
     }
 }
 
@@ -465,6 +441,7 @@ void LongTravelStage::moveToPosition(double pos, bool inThread)
         if(err != 0)
         {
             Log(lError) <<tlError(err);
+            Log(lError) <<"Tried to move to position: "<<pos<<" using the "<<getName()<<" device.";
         }
     }
 }

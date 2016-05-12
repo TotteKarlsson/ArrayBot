@@ -38,8 +38,6 @@ bool TCubeStepperMotor::connect()
 
         //Set jog mode to continous
         setJogMoveMode(jmContinuous);
-        //setJogVelocity(1.0);
-        //setJogAcceleration(1.0);
 
 	    // start the device polling at 200ms intervals
     	if(!SCC_StartPolling(mSerial.c_str(), 200))
@@ -454,9 +452,7 @@ void TCubeStepperMotor::moveToPosition(double pos, bool inThread)
         if(err != 0)
         {
             Log(lError) <<tlError(err);
+            Log(lError) <<"Tried to move to position: "<<pos<<" using the "<<getName()<<" device.";
         }
     }
 }
-
-
-
