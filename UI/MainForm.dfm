@@ -3,7 +3,7 @@ object Main: TMain
   Top = 0
   Caption = 'ArrayBot Version 0.1'
   ClientHeight = 592
-  ClientWidth = 950
+  ClientWidth = 755
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -63,7 +63,7 @@ object Main: TMain
   object Splitter1: TSplitter
     Left = 0
     Top = 427
-    Width = 950
+    Width = 755
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -74,7 +74,7 @@ object Main: TMain
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 950
+    Width = 755
     Height = 36
     ButtonHeight = 30
     ButtonWidth = 13
@@ -82,6 +82,7 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
+    ExplicitWidth = 950
     object InitCloseBtn: TBitBtn
       Left = 0
       Top = 0
@@ -103,39 +104,50 @@ object Main: TMain
     object Button7: TButton
       Left = 201
       Top = 0
-      Width = 122
+      Width = 80
       Height = 30
       Action = stopAllA
       TabOrder = 2
+    end
+    object Button2: TButton
+      Left = 281
+      Top = 0
+      Width = 75
+      Height = 30
+      Caption = 'Toggle Log'
+      TabOrder = 3
+      OnClick = Button2Click
     end
   end
   object BottomPanel: TPanel
     Left = 0
     Top = 430
-    Width = 950
+    Width = 755
     Height = 162
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 523
+    ExplicitWidth = 950
     object infoMemo: TMemo
       Left = 1
       Top = 34
-      Width = 948
+      Width = 753
       Height = 127
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
+      ExplicitWidth = 948
     end
     object ToolBar2: TToolBar
       Left = 1
       Top = 1
-      Width = 948
+      Width = 753
       Height = 33
       AutoSize = True
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
+      ExplicitWidth = 948
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -150,24 +162,26 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 36
-    Width = 950
+    Width = 755
     Height = 391
     Align = alClient
     TabOrder = 2
-    ExplicitHeight = 484
+    ExplicitWidth = 950
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 948
+      Width = 753
       Height = 389
       ActivePage = TabSheet4
       Align = alClient
+      Constraints.MinHeight = 389
+      Constraints.MinWidth = 753
       TabOrder = 0
-      ExplicitHeight = 482
+      ExplicitWidth = 948
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 0
-        ExplicitTop = 23
+        ExplicitLeft = 8
+        ExplicitTop = 27
         object GroupBox6: TGroupBox
           Left = 16
           Top = 19
@@ -178,9 +192,15 @@ object Main: TMain
           object MoveBtn: TButton
             Left = 194
             Top = 36
-            Width = 108
-            Height = 81
+            Width = 127
+            Height = 109
             Caption = 'Start Move'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
             TabOrder = 0
             OnClick = MoveBtnClick
           end
@@ -336,7 +356,7 @@ object Main: TMain
             Top = 30
             Width = 344
             Height = 105
-            Caption = 'Speeds'
+            Caption = 'Speed'
             Columns = 3
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -371,19 +391,19 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
-        ExplicitHeight = 454
+        ExplicitWidth = 940
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
-          Width = 940
+          Width = 745
           Height = 361
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 454
+          ExplicitWidth = 940
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
-            Width = 919
+            Width = 724
             Height = 348
             Align = alTop
             TabOrder = 0
@@ -391,18 +411,18 @@ object Main: TMain
             ExplicitWidth = 919
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
-              Width = 919
+              Width = 724
               Height = 348
-              ExplicitWidth = 919
+              ExplicitWidth = 724
               ExplicitHeight = 348
               inherited TopPanel: TPanel
-                Width = 915
-                ExplicitWidth = 915
+                Width = 720
+                ExplicitWidth = 720
               end
               inherited ScrollBox1: TScrollBox
-                Width = 915
+                Width = 720
                 Height = 305
-                ExplicitWidth = 915
+                ExplicitWidth = 720
                 ExplicitHeight = 305
               end
             end
@@ -410,22 +430,22 @@ object Main: TMain
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
             Top = 0
-            Width = 919
+            Width = 724
             Height = 351
             Align = alTop
             TabOrder = 1
             ExplicitWidth = 919
             inherited mainGB: TGroupBox
-              Width = 919
-              ExplicitWidth = 919
+              Width = 724
+              ExplicitWidth = 724
               ExplicitHeight = 351
               inherited TopPanel: TPanel
-                Width = 915
-                ExplicitWidth = 915
+                Width = 720
+                ExplicitWidth = 720
               end
               inherited ScrollBox1: TScrollBox
-                Width = 915
-                ExplicitWidth = 915
+                Width = 720
+                ExplicitWidth = 720
                 ExplicitHeight = 308
               end
             end

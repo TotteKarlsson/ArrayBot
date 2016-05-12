@@ -15,6 +15,7 @@ USEFORM("..\source\VCL\abEditPositionsForm.cpp", Form2);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
+extern string 		gApplicationRegistryRoot  = "\\Software\\Dune Scientific\\ArrayBot\\0.5.0";
 void setupLogging();
 
 //---------------------------------------------------------------------------
@@ -76,5 +77,6 @@ void setupLogging()
 #pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "VCLCommon.lib")
+#pragma comment(lib, "DuneForms.lib")
 
 

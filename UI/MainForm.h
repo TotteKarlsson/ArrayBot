@@ -21,12 +21,13 @@
 #include "TSTDStringLabeledEdit.h"
 #include "abXYZUnitFrame.h"
 #include "abMotorFrame.h"
+#include "TRegistryForm.h"
 using Poco::Timestamp;
 
 class APTMotor;
 
 //---------------------------------------------------------------------------
-class TMain : public TForm
+class TMain : public TRegistryForm
 {
     __published:	// IDE-managed Components
         TMemo *infoMemo;
@@ -82,6 +83,7 @@ class TMain : public TForm
         TRadioGroup *JoyControlRG;
 	TRadioGroup *JSSpeedsRG;
 	TButton *Button1;
+	TButton *Button2;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -98,6 +100,7 @@ class TMain : public TForm
         void __fastcall MoveBtnClick(TObject *Sender);
         void __fastcall JoyControlRGClick(TObject *Sender);
 		void __fastcall JSSpeedsRGClick(TObject *Sender);
+	void __fastcall Button2Click(TObject *Sender);
 
     private:	// User declarations
         TThreadMethod               logMsgMethod;

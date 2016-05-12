@@ -27,7 +27,7 @@ using namespace mtk;
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
-	TForm(Owner),
+	TRegistryForm("Test", "MainForm", Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
     mIniFile("ArrayBot.ini"),
@@ -343,6 +343,13 @@ void __fastcall TMain::JSSpeedsRGClick(TObject *Sender)
         TShiftState ss;
 		JoyStickValueEdit(NULL, key, ss);
     }
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::Button2Click(TObject *Sender)
+{
+	BottomPanel->Visible = !BottomPanel->Visible;
 }
 
 
