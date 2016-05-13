@@ -1,0 +1,4 @@
+Release 0.5 (May 13)
+=======================
+* Getting the API to function
+------ 2016 ------

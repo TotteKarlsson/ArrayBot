@@ -1,0 +1,8 @@
+The ArrayBot software package make use of the following ThirdParty software libraries:
+
+DSL
+    Dune Scientific Library
+POCO
+    Distributed under the Boost License
+    http://pocoproject.org/license.html
+

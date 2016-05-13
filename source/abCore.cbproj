@@ -47,8 +47,8 @@
         <ProjectType>CppDynamicLibrary</ProjectType>
         <Multithreaded>true</Multithreaded>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>..\third_party\Kinesis\;P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>..\third_party\Kinesis\;P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
