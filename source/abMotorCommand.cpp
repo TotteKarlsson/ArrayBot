@@ -65,6 +65,9 @@ string toString(MotorCommandEnum e)
         case mcMoveDistance:
         return "move distance";
 
+        case mcMoveToPosition:
+        return "move to position";
+
         case mcSetVelocity:
         return "set velocity";
 

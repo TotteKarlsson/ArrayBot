@@ -116,14 +116,16 @@ void __fastcall TMain::JoyControlRGClick(TObject *Sender)
     if(JoyControlRG->ItemIndex == 0)
     {
     	mCoverSlip.enableJoyStick(&mJoyStick);
+        mJoyStick.getXAxis().setSenseOfDirection(1);
         mWhisker.disableJoyStick();
 		mJoyStick.enable();
     }
     else if(JoyControlRG->ItemIndex == 1)
     {
-    	mCoverSlip.disableJoyStick();
         mWhisker.enableJoyStick(&mJoyStick);
-		mJoyStick.enable();
+        mJoyStick.getXAxis().setSenseOfDirection(-1);
+		mCoverSlip.disableJoyStick();
+        mJoyStick.enable();
     }
     else
     {
@@ -283,7 +285,7 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
     double zPos = zCSM->getPosition();
 
 	double newCSZPos = zPos + mVerticalMoveDistanceE->GetValue();
-	double newCSXPos = (tanTheta != 0) ?
+	double newCSYPos = (tanTheta != 0) ?
     					yPos + (newCSZPos - zPos) / tanTheta : yPos;
 
 	//Calculate for the whisker
@@ -291,47 +293,57 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
     zPos = zWM->getPosition();
 
 	double newWZPos = zPos + mVerticalMoveDistanceE->GetValue();
-	double newWXPos = (tanTheta != 0) ?
+	double newWYPos = (tanTheta != 0) ?
     					(yPos + (newWZPos - zPos) / tanTheta) : yPos;
 
     Log(lInfo) << "Moving CS Vertical to: "	<<newCSZPos;
-    Log(lInfo) << "Moving CS Horiz to: "	<<newCSXPos;
+    Log(lInfo) << "Moving CS Horiz to: "	<<newCSYPos;
 
     Log(lInfo) << "Moving W Vertical to: "	<<newWZPos;
-    Log(lInfo) << "Moving W Horiz to: "		<<newCSXPos;
+    Log(lInfo) << "Moving W Horiz to: "		<<newWYPos;
 
 
-    yCSM->moveToPosition(newCSXPos);
+    if(newCSYPos >=150 || newWYPos >=150 )
+    {
+    	Log(lError) << "New CoverSlip or Whisker Y position to big: "<<newCSYPos;
+        return;
+    }
+
+    if(newCSZPos >=25 || newWZPos >=25)
+    {
+    	Log(lError) << "New CoverSlip or Whisker Z position to big: "<<newWYPos;
+        return;
+    }
+
+    yCSM->moveToPosition(newCSYPos);
     zCSM->moveToPosition(newCSZPos);
 
-    yWM->moveToPosition(newWXPos);
+    yWM->moveToPosition(newWYPos);
     zWM->moveToPosition(newWZPos);
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::JSSpeedsRGClick(TObject *Sender)
 {
+    unsigned short key  = 13;
+    TShiftState ss;
 	if(JSSpeedsRG->ItemIndex == 0) //Fast
     {
 		mMaxXYJogVelocityJoystick->SetNumber(30);
 		mXYJogAccelerationJoystick->SetNumber(10);
-		mMaxZJogVelocityJoystick->SetNumber(2);
-		mZJogAccelerationJoystick->SetNumber(1);
 
-        unsigned short key  = 13;
-        TShiftState ss;
+		mMaxZJogVelocityJoystick->SetNumber(2);
+		mZJogAccelerationJoystick->SetNumber(1.5);
+
 		JoyStickValueEdit(NULL, key, ss);
     }
     else if (JSSpeedsRG->ItemIndex == 1)
     {
 		mMaxXYJogVelocityJoystick->SetNumber(10);
 		mXYJogAccelerationJoystick->SetNumber(5);
-		mMaxZJogVelocityJoystick->SetNumber(1);
-		mZJogAccelerationJoystick->SetNumber(1);
+		mMaxZJogVelocityJoystick->SetNumber(1.5);
+		mZJogAccelerationJoystick->SetNumber(3);
 
-        unsigned short key  = 13;
-        TShiftState ss;
 		JoyStickValueEdit(NULL, key, ss);
     }
     else if (JSSpeedsRG->ItemIndex == 2)
@@ -339,14 +351,11 @@ void __fastcall TMain::JSSpeedsRGClick(TObject *Sender)
 		mMaxXYJogVelocityJoystick->SetNumber(1);
 		mXYJogAccelerationJoystick->SetNumber(1);
 		mMaxZJogVelocityJoystick->SetNumber(0.5);
-		mZJogAccelerationJoystick->SetNumber(.1);
+		mZJogAccelerationJoystick->SetNumber(0.1);
 
-        unsigned short key  = 13;
-        TShiftState ss;
 		JoyStickValueEdit(NULL, key, ss);
     }
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::Button2Click(TObject *Sender)
