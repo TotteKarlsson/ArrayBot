@@ -82,7 +82,6 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
-    ExplicitWidth = 950
     object InitCloseBtn: TBitBtn
       Left = 0
       Top = 0
@@ -126,7 +125,6 @@ object Main: TMain
     Height = 162
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 950
     object infoMemo: TMemo
       Left = 1
       Top = 34
@@ -136,7 +134,6 @@ object Main: TMain
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
-      ExplicitWidth = 948
     end
     object ToolBar2: TToolBar
       Left = 1
@@ -147,7 +144,6 @@ object Main: TMain
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
-      ExplicitWidth = 948
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -166,7 +162,6 @@ object Main: TMain
     Height = 391
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 950
     object PageControl1: TPageControl
       Left = 1
       Top = 1
@@ -177,11 +172,8 @@ object Main: TMain
       Constraints.MinHeight = 389
       Constraints.MinWidth = 753
       TabOrder = 0
-      ExplicitWidth = 948
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 8
-        ExplicitTop = 27
         object GroupBox6: TGroupBox
           Left = 16
           Top = 19
@@ -391,7 +383,6 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
-        ExplicitWidth = 940
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -399,7 +390,6 @@ object Main: TMain
           Height = 361
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 940
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
@@ -408,7 +398,7 @@ object Main: TMain
             Align = alTop
             TabOrder = 0
             ExplicitTop = 351
-            ExplicitWidth = 919
+            ExplicitWidth = 724
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
               Width = 724
@@ -434,7 +424,7 @@ object Main: TMain
             Height = 351
             Align = alTop
             TabOrder = 1
-            ExplicitWidth = 919
+            ExplicitWidth = 724
             inherited mainGB: TGroupBox
               Width = 724
               ExplicitWidth = 724
