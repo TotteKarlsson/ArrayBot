@@ -61,7 +61,7 @@
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
-        <IncludePath>P:\ArrayBot\third_party\Kinesis;$(IncludePath)</IncludePath>
+        <IncludePath>$(KINESIS_LIBS);$(IncludePath)</IncludePath>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <PackageImports>VCLCommon;vtk;bindcompfmx;DBXSqliteDriver;vcldbx;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;vclie;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;Intraweb;IndyCore;vcl;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;inet;vclx;inetdbxpress;webdsnap;bdertl;DuneComponents;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
@@ -92,7 +92,7 @@
         <LinkPackageImports>rtl.bpi</LinkPackageImports>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <BPILibOutputDir>$(DEBUG_BUILD)\lib</BPILibOutputDir>
-        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;P:\ArrayBot\third_party\Kinesis;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(KINESIS_LIBS);$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
