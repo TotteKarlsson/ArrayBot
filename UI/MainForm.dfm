@@ -3,7 +3,7 @@ object Main: TMain
   Top = 0
   Caption = 'ArrayBot Version 0.1'
   ClientHeight = 592
-  ClientWidth = 755
+  ClientWidth = 766
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -63,7 +63,7 @@ object Main: TMain
   object Splitter1: TSplitter
     Left = 0
     Top = 427
-    Width = 755
+    Width = 766
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -74,7 +74,7 @@ object Main: TMain
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 755
+    Width = 766
     Height = 36
     ButtonHeight = 30
     ButtonWidth = 13
@@ -82,6 +82,7 @@ object Main: TMain
     List = True
     AllowTextButtons = True
     TabOrder = 0
+    ExplicitWidth = 755
     object InitCloseBtn: TBitBtn
       Left = 0
       Top = 0
@@ -121,29 +122,32 @@ object Main: TMain
   object BottomPanel: TPanel
     Left = 0
     Top = 430
-    Width = 755
+    Width = 766
     Height = 162
     Align = alBottom
     TabOrder = 1
+    ExplicitWidth = 755
     object infoMemo: TMemo
       Left = 1
       Top = 34
-      Width = 753
+      Width = 764
       Height = 127
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
+      ExplicitWidth = 753
     end
     object ToolBar2: TToolBar
       Left = 1
       Top = 1
-      Width = 753
+      Width = 764
       Height = 33
       AutoSize = True
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
+      ExplicitWidth = 753
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -158,22 +162,25 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 36
-    Width = 755
+    Width = 766
     Height = 391
     Align = alClient
     TabOrder = 2
+    ExplicitWidth = 755
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 753
+      Width = 764
       Height = 389
       ActivePage = TabSheet4
       Align = alClient
       Constraints.MinHeight = 389
       Constraints.MinWidth = 753
       TabOrder = 0
+      ExplicitWidth = 753
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitWidth = 745
         object GroupBox6: TGroupBox
           Left = 16
           Top = 19
@@ -383,17 +390,19 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
+        ExplicitWidth = 745
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
-          Width = 745
+          Width = 756
           Height = 361
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 745
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
-            Width = 724
+            Width = 735
             Height = 348
             Align = alTop
             TabOrder = 0
@@ -401,18 +410,18 @@ object Main: TMain
             ExplicitWidth = 724
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
-              Width = 724
+              Width = 735
               Height = 348
-              ExplicitWidth = 724
+              ExplicitWidth = 735
               ExplicitHeight = 348
               inherited TopPanel: TPanel
-                Width = 720
-                ExplicitWidth = 720
+                Width = 731
+                ExplicitWidth = 731
               end
               inherited ScrollBox1: TScrollBox
-                Width = 720
+                Width = 731
                 Height = 305
-                ExplicitWidth = 720
+                ExplicitWidth = 731
                 ExplicitHeight = 305
               end
             end
@@ -420,22 +429,22 @@ object Main: TMain
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
             Top = 0
-            Width = 724
+            Width = 735
             Height = 351
             Align = alTop
             TabOrder = 1
             ExplicitWidth = 724
             inherited mainGB: TGroupBox
-              Width = 724
-              ExplicitWidth = 724
+              Width = 735
+              ExplicitWidth = 735
               ExplicitHeight = 351
               inherited TopPanel: TPanel
-                Width = 720
-                ExplicitWidth = 720
+                Width = 731
+                ExplicitWidth = 731
               end
               inherited ScrollBox1: TScrollBox
-                Width = 720
-                ExplicitWidth = 720
+                Width = 731
+                ExplicitWidth = 731
                 ExplicitHeight = 308
               end
             end
