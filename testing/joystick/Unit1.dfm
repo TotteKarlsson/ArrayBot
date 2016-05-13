@@ -180,7 +180,7 @@ object Form1: TForm1
     Top = 311
     Width = 82
     Height = 13
-    Caption = 'JoystickYPosition'
+    Caption = 'JoystickZPosition'
   end
   object TargetPanel: TPanel
     Left = 248
@@ -192,9 +192,10 @@ object Form1: TForm1
   end
   object Chart1: TChart
     Left = 0
-    Top = 395
+    Top = 279
     Width = 719
     Height = 169
+    AllowPanning = pmNone
     Legend.Visible = False
     Title.Text.Strings = (
       'TChart')
@@ -208,19 +209,60 @@ object Form1: TForm1
     View3D = False
     Align = alBottom
     TabOrder = 1
+    ExplicitTop = 395
     ColorPaletteIndex = 13
     object Series1: TFastLineSeries
       Marks.Arrow.Visible = True
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
       Marks.Visible = False
-      LinePen.Color = 10708548
+      SeriesColor = clYellow
+      LinePen.Color = clYellow
       LinePen.SmallDots = True
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
     end
+    object Series2: TLineSeries
+      Marks.Arrow.Visible = True
+      Marks.Callout.Brush.Color = clBlack
+      Marks.Callout.Arrow.Visible = True
+      Marks.Visible = False
+      SeriesColor = clRed
+      Brush.BackColor = clDefault
+      Pointer.InflateMargins = True
+      Pointer.Style = psRectangle
+      Pointer.Visible = False
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      YValues.Name = 'Y'
+      YValues.Order = loNone
+    end
+    object Series3: TLineSeries
+      Marks.Arrow.Visible = True
+      Marks.Callout.Brush.Color = clBlack
+      Marks.Callout.Arrow.Visible = True
+      Marks.Visible = False
+      Brush.BackColor = clDefault
+      Pointer.InflateMargins = True
+      Pointer.Style = psRectangle
+      Pointer.Visible = False
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      YValues.Name = 'Y'
+      YValues.Order = loNone
+    end
+  end
+  object infoMemo: TMemo
+    Left = 0
+    Top = 448
+    Width = 719
+    Height = 116
+    Align = alBottom
+    Lines.Strings = (
+      'infoMemo')
+    TabOrder = 2
   end
   object ImageList1: TImageList
     DrawingStyle = dsTransparent
@@ -229,7 +271,7 @@ object Form1: TForm1
     Left = 280
     Top = 88
     Bitmap = {
-      494C01010100080018004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010008001C004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000300100004C00000001002000000000000069
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3220,7 +3262,7 @@ object Form1: TForm1
       000000000000}
   end
   object Timer1: TTimer
-    Interval = 2000
+    Interval = 10
     OnTimer = Timer1Timer
     Left = 248
     Top = 88

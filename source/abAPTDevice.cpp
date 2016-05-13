@@ -48,6 +48,7 @@ bool APTDevice::loadProperties(IniFile& iniFile)
 
     Log(lDebug) << "Applying properties";
     applyProperties();
+    return true;
 }
 
 

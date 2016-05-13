@@ -51,6 +51,9 @@ class TForm1 : public TForm
         TChart *Chart1;
         TFastLineSeries *Series1;
 	TTimer *Timer2;
+	TLineSeries *Series2;
+	TLineSeries *Series3;
+	TMemo *infoMemo;
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Timer1Timer(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -86,6 +89,8 @@ class TForm1 : public TForm
           MESSAGE_HANDLER(MM_JOY2ZMOVE +1,TMessage,JMZMove)
         END_MESSAGE_MAP(TForm)
 
+		deque<double>			mXPos;
+		deque<double>			mYPos;
 		deque<double>			mZPos;
 
 };

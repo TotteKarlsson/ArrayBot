@@ -34,3 +34,4 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	return 0;
 }
 //---------------------------------------------------------------------------
+#pragma comment(lib, "VCLCommon.lib")

@@ -180,7 +180,10 @@ object Main: TMain
       ExplicitWidth = 753
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitLeft = 0
+        ExplicitTop = 0
         ExplicitWidth = 745
+        ExplicitHeight = 0
         object GroupBox6: TGroupBox
           Left = 16
           Top = 19
@@ -390,7 +393,6 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
-        ExplicitWidth = 745
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -398,7 +400,6 @@ object Main: TMain
           Height = 361
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 745
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
@@ -407,7 +408,7 @@ object Main: TMain
             Align = alTop
             TabOrder = 0
             ExplicitTop = 351
-            ExplicitWidth = 724
+            ExplicitWidth = 735
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
               Width = 735
@@ -433,7 +434,7 @@ object Main: TMain
             Height = 351
             Align = alTop
             TabOrder = 1
-            ExplicitWidth = 724
+            ExplicitWidth = 735
             inherited mainGB: TGroupBox
               Width = 735
               ExplicitWidth = 735

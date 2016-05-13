@@ -53,8 +53,8 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 
     for(int i = 0; i < 90; i++)
     {
-		StringList serials = getSerialsForDeviceType(i);
-        for(int j = 0; j < serials.count(); j++)
+		StringList serials = getSerialsForDeviceType((DeviceTypeID) i);
+        for(u_int j = 0; j < serials.count(); j++)
         {
             Log(lInfo) <<"Found device of type '"<<::toString((DeviceTypeID) i)<<"' with serial: " <<serials[j];
         }
@@ -182,13 +182,13 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
         mCoverSlip.getZMotor()->setJogAcceleration(a);
         mWhisker.getZMotor()->setJogAcceleration(a);
     }
-    else if(e == mNrOfGearsLbl)
-    {
-        int g = mNrOfGearsLbl->getValue();
-        Log(lInfo) << "New number of gears): " <<g;
-        mJoyStick.getXAxis().setNumberOfGears(g);
-        mJoyStick.getYAxis().setNumberOfGears(g);
-    }
+//    else if(e == mNrOfGearsLbl)
+//    {
+//        int g = mNrOfGearsLbl->getValue();
+//        Log(lInfo) << "New number of gears): " <<g;
+//        mJoyStick.getXAxis().setNumberOfGears(g);
+//        mJoyStick.getYAxis().setNumberOfGears(g);
+//    }
     else if(Sender == NULL)
     {
         double vel = mMaxXYJogVelocityJoystick->GetValue();

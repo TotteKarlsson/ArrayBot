@@ -1,39 +1,57 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'P:\ArrayBot\testing\joystick\Unit1.cpp',0,1,125,48,128,0,0,,
-File_1=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\rtl\SystemTypes.h',0,1,114,1,132,0,0,,
-File_2=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\vcl\vcl.Forms.hpp',0,1,1073,1,1093,0,0,,
-File_3=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\vcl\Vcl.Controls.hpp',0,1,2316,1,2337,0,0,,
-File_4=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h',0,1,143,39,164,0,0,,
-File_5=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.BrushlessMotor.h',0,1,1337,27,1380,0,0,,
-File_6=TSourceModule,'P:\libs\dsl\VCL\Components\mtkFloatLabeledEdit.cpp',0,1,1,1,1,0,0,,
-File_7=TSourceModule,'P:\ArrayBot\source\abAPTMotor.cpp',0,1,1,2,12,0,0,,
-File_8=TSourceModule,'P:\ArrayBot\source\abTCubeDCServo.cpp',0,1,87,28,116,0,0,,
-File_9=TSourceModule,'P:\ArrayBot\source\abUtilities.cpp',0,1,1,22,16,0,0,,
-File_10=TSourceModule,'P:\ArrayBot\source\abCore.cpp',0,1,1,60,31,0,0,,
-File_11=TSourceModule,'P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',0,1,173,1,193,0,0,,
-File_12=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.DCServo.h',0,1,53,50,79,0,0,,
-File_13=TSourceModule,'P:\libs\dsl\Common\mtkLogLevel.cpp',0,1,1,1,14,0,0,,
-File_14=TSourceModule,'P:\libs\dsl\Common\mtkLogging.cpp',0,1,29,1,52,0,0,,
+File_0=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\rtl\SystemTypes.h',0,1,186,1,208,0,0,,
+File_1=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\dinkumware\deque',0,1,75,43,97,0,0,,
+File_2=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\rtl\Winapi.Messages.hpp',0,1,69,27,86,0,0,,
+File_3=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\vcl\vcl.Forms.hpp',0,1,1073,1,1093,0,0,,
+File_4=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\vcl\Vcl.Controls.hpp',0,1,2316,1,2337,0,0,,
+File_5=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.IntegratedStepperMotors.h',0,1,143,39,164,0,0,,
+File_6=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.BrushlessMotor.h',0,1,1337,27,1380,0,0,,
+File_7=TSourceModule,'P:\libs\dsl\VCL\Components\mtkFloatLabeledEdit.cpp',0,1,1,1,1,0,0,,
+File_8=TSourceModule,'P:\ArrayBot\source\abAPTMotor.cpp',0,1,1,2,12,0,0,,
+File_9=TSourceModule,'P:\ArrayBot\source\abTCubeDCServo.cpp',0,1,87,28,116,0,0,,
+File_10=TSourceModule,'P:\ArrayBot\source\abUtilities.cpp',0,1,1,22,16,0,0,,
+File_11=TSourceModule,'P:\ArrayBot\source\abCore.cpp',0,1,1,60,31,0,0,,
+File_12=TSourceModule,'P:\ArrayBot\testing\GetDeviceInfo\MainForm.cpp',0,1,173,1,193,0,0,,
+File_13=TSourceModule,'P:\ArrayBot\third_party\Kinesis\Thorlabs.MotionControl.TCube.DCServo.h',0,1,53,50,79,0,0,,
 
 [Modules]
-Module0=c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\sdk\mmsystem.h
+Module0=P:\ArrayBot\testing\joystick\Unit1.cpp
 Module1=default.htm
-Count=2
+Module2=P:\ArrayBot\testing\joystick\Project1.cbproj
+Module3=p:\libs\dslib\VCL\Common\TMemoLogger.cpp
+Module4=c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\sdk\mmsystem.h
+Count=5
 EditWindowCount=1
+
+[P:\ArrayBot\testing\joystick\Unit1.cpp]
+ModuleType=TSourceModule
+FormState=1
+FormOnTop=0
+
+[default.htm]
+ModuleType=TURLModule
+
+[P:\ArrayBot\testing\joystick\Project1.cbproj]
+ModuleType=TBaseProject
+
+[p:\libs\dslib\VCL\Common\TMemoLogger.cpp]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
 
 [c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\sdk\mmsystem.h]
 ModuleType=TSourceModule
 FormState=0
 FormOnTop=0
 
-[default.htm]
-ModuleType=TURLModule
-
 [EditWindow0]
-ViewCount=2
-CurrentEditView=c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\sdk\mmsystem.h
+ViewCount=5
+CurrentEditView=P:\ArrayBot\testing\joystick\Unit1.cpp
 View0=0
 View1=1
+View2=2
+View3=3
+View4=4
 PercentageSizes=1
 Create=1
 Visible=1
@@ -50,10 +68,10 @@ ClientHeight=9258
 DockedToMainForm=1
 BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
-LeftPanelSize=1797
+LeftPanelSize=1891
 LeftPanelClients=DockSite2
-LeftPanelData=00000800010000000000921C0000000000000000000000000000000100000000921C000009000000446F636B5369746532FFFFFFFF
-RightPanelSize=1516
+LeftPanelData=00000800010100000000B0180000000000000163070000000000000100000000DC1E000009000000446F636B5369746532FFFFFFFF
+RightPanelSize=2062
 RightPanelClients=DockSite3
 RightPanelData=00000800010000000000830C00000000000000FE1C0000000000000100000000830C000009000000446F636B5369746533FFFFFFFF
 BottomPanelSize=1328
@@ -77,6 +95,39 @@ LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=c:\program files (x86)\embarcadero\rad studio\10.0\include\windows\sdk\mmsystem.h
+
+[View2]
+CustomEditViewType=TEditView
+Module=P:\ArrayBot\testing\joystick\Project1.cpp
+CursorX=54
+CursorY=5
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=P:\ArrayBot\testing\joystick\Project1.cpp
+
+[View3]
+CustomEditViewType=TEditView
+Module=P:\ArrayBot\testing\joystick\Unit1.cpp
+CursorX=39
+CursorY=233
+TopLine=199
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=P:\ArrayBot\testing\joystick\Unit1.h
+
+[View4]
+CustomEditViewType=TEditView
+Module=p:\libs\dslib\VCL\Common\TMemoLogger.cpp
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=p:\libs\dslib\VCL\Common\TMemoLogger.h
 
 [Watches]
 Count=0
@@ -136,11 +187,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1516
+Width=2062
 Height=7432
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1516
+ClientWidth=2062
 ClientHeight=7432
 TBDockHeight=5898
 LRDockWidth=2352
@@ -174,12 +225,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1516
-Height=6846
+Width=2062
+Height=7432
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1516
-ClientHeight=6846
+ClientWidth=2062
+ClientHeight=7432
 TBDockHeight=7158
 LRDockWidth=2000
 Dockable=1
@@ -193,17 +244,17 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1797
-Height=7432
+Width=2000
+Height=6904
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1797
-ClientHeight=7432
+ClientWidth=2000
+ClientHeight=6904
 TBDockHeight=7070
 LRDockWidth=1891
 Dockable=1
 StayOnTop=0
-SplitPos=138
+SplitPos=147
 
 [TFileExplorerForm]
 PercentageSizes=1
@@ -211,7 +262,7 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-1008
+Left=-938
 Top=-12
 Width=2844
 Height=6201
@@ -230,7 +281,7 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-1086
+Left=-1016
 Top=264
 Width=273
 Height=361
@@ -399,11 +450,11 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1516
+Width=2062
 Height=6846
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1516
+ClientWidth=2062
 ClientHeight=6846
 TBDockHeight=4883
 LRDockWidth=7148
@@ -454,8 +505,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-22643
-Top=-495
+Left=-2040
+Top=-129
 Width=5305
 Height=4883
 MaxLeft=-1
@@ -558,12 +609,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=2000
-Height=6904
+Width=1891
+Height=7432
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2000
-ClientHeight=6904
+ClientWidth=1891
+ClientHeight=7432
 TBDockHeight=3672
 LRDockWidth=1891
 Dockable=1
@@ -687,18 +738,18 @@ Docked=1
 State=0
 Left=0
 Top=23
-Width=1797
+Width=1891
 Height=7676
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1797
+ClientWidth=1891
 ClientHeight=7676
 TBDockHeight=7070
-LRDockWidth=1797
+LRDockWidth=1891
 Dockable=1
 StayOnTop=0
 TabPosition=0
-ActiveTabID=PropertyInspector
+ActiveTabID=StructureView
 TabDockClients=PropertyInspector,StructureView,ClassBrowserTool
 
 [DockSite3]
@@ -711,17 +762,17 @@ Docked=1
 State=0
 Left=0
 Top=23
-Width=1516
+Width=2062
 Height=7676
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1516
+ClientWidth=2062
 ClientHeight=7676
 TBDockHeight=9014
-LRDockWidth=1516
+LRDockWidth=2062
 Dockable=1
 StayOnTop=0
 TabPosition=0
 ActiveTabID=ProjectManager
-TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,TemplateView,TFileExplorerForm,ModelViewTool
+TabDockClients=ProjectManager,ToolForm,DataExplorerContainer,ModelViewTool,TFileExplorerForm,TemplateView
 

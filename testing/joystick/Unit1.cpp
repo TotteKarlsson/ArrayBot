@@ -1,12 +1,16 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "unit1.h"
+#include "TMemoLogger.h"
 //---------------------------------------------------------------------------
 #pragma resource "*.dfm"
 TForm1 *Form1;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
-  : TForm(Owner){}
+  : TForm(Owner){
+
+  TMemoLogger::mMemoIsEnabled = true;
+  }
 
 //---------------------------------------------------------------------------
 void TForm1::ShowDeviceInfo(void)
@@ -35,7 +39,7 @@ void TForm1::ShowDeviceInfo(void)
     // 3rd arg = how often MM_JOYMOVE events happen
 	if(Connected)
   	{
-    	joySetCapture(Handle,JoystickID, 2*JoyCaps.wPeriodMin,FALSE);
+    	joySetCapture(Handle,JoystickID, 50*JoyCaps.wPeriodMin,FALSE);
   	}
 
     // calculate ratios to divide down the joystick value to a
@@ -107,19 +111,36 @@ void __fastcall TForm1::JMMove(TMessage &msg)
     JoystickXPosition->Caption = "X Position = " + IntToStr((int)Position.x);
     JoystickYPosition->Caption = "Y Position = " + IntToStr((int)Position.y);
     ImageList1->Draw(Canvas, ScreenX,ScreenY, 0);
+
+    mXPos.push_back(Position.x);
+    MLog() << "Test: "<<Position.X;
+    int sx = mXPos.size();
+    if(sx >= 100)
+    {
+    	mXPos.pop_front();
+
+    }
+
+//    mZPos.push_back(pos);
+//    int sz = mZPos.size();
+//    if(sz >= 100)
+//    {
+//    	mZPos.pop_front();
+//    }
+
 }
 
 void __fastcall TForm1::JMZMove(TMessage &msg)
 {
 	double pos = msg.LParamLo;// * 305e-6 - 10.0;
-    JoystickZPosition->Caption = "Z Position = " + FloatToStrF(pos, ffFixed, 4,2);
-    mZPos.push_back(pos);
-
-    int sz = mZPos.size();
-    if(sz >= 100)
-    {
-    	mZPos.pop_front();
-    }
+    JoystickZPosition->Caption = "Z Position = " + IntToStr(msg.LParamLo);
+//
+//    mZPos.push_back(pos);
+//    int sz = mZPos.size();
+//    if(sz >= 100)
+//    {
+//    	mZPos.pop_front();
+//    }
 }
 
 void __fastcall TForm1::JMButtonUpdate(TMessage &msg)
@@ -205,9 +226,12 @@ void __fastcall TForm1::Timer2Timer(TObject *Sender)
 {
 	//Plot Z positions
     Series1->Clear();
-    for(int i = 0; i < mZPos.size(); i++)
+    Series2->Clear();
+    for(int i = 0; i < mXPos.size(); i++)
     {
-	    Series1->AddXY(i, mZPos[i]);
+	    //Series1->AddXY(i, mZPos[i]);
+	    Series2->AddXY(i, mXPos[i]);
+//	    Series3->AddXY(i, mYPos[i]);
     }
 }
 
