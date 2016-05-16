@@ -35,7 +35,24 @@ bool APTMotor::applyProperties()
 {
 	setJogVelocity(mManualJogVelocity);
 	setJogAcceleration(mManualJogAcceleration);
+
+    setPotentiometerVelocity(mManualJogVelocity);
     return true;
+}
+
+bool APTMotor::switchDirection(bool inThread)
+{
+	//The forward/reverse bits don't work so this function is disabled until they do
+
+//	if(isForwarding())
+//    {
+//    	reverse(inThread);
+//    }
+//    else
+//    {
+//    	forward(inThread);
+//    }
+	return false;
 }
 
 double APTMotor::getManualJogVelocity()
@@ -56,6 +73,20 @@ void APTMotor::setManualJogVelocity(double v)
 void APTMotor::setManualJogAcceleration(double a)
 {
 	mManualJogAcceleration = a;
+}
+
+bool APTMotor::setVelocityForward(double vel)
+{
+	setVelocity(vel);
+    forward();
+    return true;
+}
+
+bool APTMotor::setVelocityReverse(double vel)
+{
+	setVelocity(vel);
+    reverse();
+    return true;
 }
 
 bool APTMotor::disconnect()

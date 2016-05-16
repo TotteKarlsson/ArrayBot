@@ -9,9 +9,14 @@ class AB_CORE LongTravelStage : public APTMotor
         						        LongTravelStage(int serial);
 		virtual 		                ~LongTravelStage();
 
+        bool	                        connect();
+        bool	                        disconnect();
+
+				                        ///Control commands
+		void 		                    home();
+
 		HardwareInformation		        getHWInfo();
         double				 			getEncoderCounts();
-
 
         						        ///isActive checks if the device is active.
 		bool					        isActive();
@@ -19,8 +24,6 @@ class AB_CORE LongTravelStage : public APTMotor
 		bool					        isHomed();
         bool		                	isForwarding();
         bool		                	isReversing();
-        bool	                        connect();
-        bool	                        disconnect();
 
         bool	                        startPolling();
         bool	                        stopPolling();
@@ -31,15 +34,11 @@ class AB_CORE LongTravelStage : public APTMotor
         double	        		        getVelocity();
 
 		bool	                    	setVelocity(double v);
-		bool	                    	setVelocityForward(double v);
-		bool	                    	setVelocityReverse(double v);
 
         double          		        getAcceleration();
 		bool	                    	setAcceleration(double a);
         unsigned long	                getStatusBits();
 
-				                        ///Control commands
-		void 		                    home();
 
 		bool							switchDirection(bool inThread = true);
         void 		                    stop(bool inThread = true);
@@ -65,7 +64,7 @@ class AB_CORE LongTravelStage : public APTMotor
         void		                    forward(bool inThread = true);
         void		                    reverse(bool inThread = true);
         void		                	moveToPosition(double position, bool inThread = true);
-
+        void							setPotentiometerVelocity(double v);
     protected:
 
 };

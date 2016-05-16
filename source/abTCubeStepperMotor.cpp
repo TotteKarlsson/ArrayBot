@@ -85,19 +85,9 @@ double TCubeStepperMotor::getEncoderCounts()
     return 0;
 }
 
-bool TCubeStepperMotor::switchDirection(bool inThread)
+void TCubeStepperMotor::setPotentiometerVelocity(double v)
 {
-	//The forward/reverse bits don't work so this function is disabled until they do
 
-//	if(isForwarding())
-//    {
-//    	reverse(inThread);
-//    }
-//    else
-//    {
-//    	forward(inThread);
-//    }
-	return false;
 }
 
 HardwareInformation TCubeStepperMotor::getHWInfo()
@@ -254,20 +244,6 @@ bool TCubeStepperMotor::setVelocity(double vel)
     }
 
 	return true;
-}
-
-bool TCubeStepperMotor::setVelocityForward(double vel)
-{
-	setVelocity(vel);
-    forward();
-    return true;
-}
-
-bool TCubeStepperMotor::setVelocityReverse(double vel)
-{
-	setVelocity(vel);
-    reverse();
-    return true;
 }
 
 bool TCubeStepperMotor::setAcceleration(double a)

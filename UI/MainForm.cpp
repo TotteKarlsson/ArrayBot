@@ -67,6 +67,14 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
 	InitializeUnitsAExecute(NULL);
+
+    //Select joystick control for CoverSlip Unit
+	JoyControlRG->ItemIndex = 0;
+    JoyControlRG->OnClick(NULL);
+
+    //Select medium speed
+	JSSpeedsRG->ItemIndex = 1;
+    JSSpeedsRG->OnClick(NULL);
 }
 
 void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
@@ -87,10 +95,7 @@ void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
     	mZJogAccelerationJoystick->SetNumber(mCoverSlip.getZMotor()->getAcceleration());
     }
 
-	mNrOfGearsLbl->setValue(mJoyStick.getXAxis().getNumberOfGears());
 	mJoyStick.connect();
-
-
     InitCloseBtn->Action = ShutDownA;
 }
 
@@ -182,41 +187,43 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
         mCoverSlip.getZMotor()->setJogAcceleration(a);
         mWhisker.getZMotor()->setJogAcceleration(a);
     }
-//    else if(e == mNrOfGearsLbl)
-//    {
-//        int g = mNrOfGearsLbl->getValue();
-//        Log(lInfo) << "New number of gears): " <<g;
-//        mJoyStick.getXAxis().setNumberOfGears(g);
-//        mJoyStick.getYAxis().setNumberOfGears(g);
-//    }
-    else if(Sender == NULL)
+    else if(Sender == NULL) //Manually update velocities
     {
         double vel = mMaxXYJogVelocityJoystick->GetValue();
+        double aXY = mXYJogAccelerationJoystick->GetValue();
         Log(lInfo) << "New jog velocity (mm/s): " <<vel;
+        Log(lInfo) << "New jog acceleration (mm/(s*s)): " <<aXY;
 		mJoyStick.getXAxis().setMaxVelocity(vel);
 		mJoyStick.getYAxis().setMaxVelocity(vel);
 
-        double aXY = mXYJogAccelerationJoystick->GetValue();
-        Log(lInfo) << "New jog acceleration (mm/(s*s)): " <<aXY;
+        double vZ  = mMaxZJogVelocityJoystick->GetValue();
+   	    double aZ  = mZJogAccelerationJoystick->GetValue();
 
+        Log(lInfo) << "New Z jog acceleration (mm/(s*s)): " <<aZ;
+        Log(lInfo) << "New Z jog velocity (mm/s): " <<vZ;
         if(mCoverSlip.getXMotor() && mCoverSlip.getYMotor())
         {
             mCoverSlip.getXMotor()->setJogAcceleration(aXY);
             mCoverSlip.getYMotor()->setJogAcceleration(aXY);
+
+            mCoverSlip.getXMotor()->setPotentiometerVelocity(vel);
+            mCoverSlip.getYMotor()->setPotentiometerVelocity(vel);
+        }
+        if(mWhisker.getXMotor() && mWhisker.getYMotor())
+        {
             mWhisker.getXMotor()->setJogAcceleration(aXY);
             mWhisker.getYMotor()->setJogAcceleration(aXY);
         }
 
-        double vZ = mMaxZJogVelocityJoystick->GetValue();
-        Log(lInfo) << "New Z jog velocity (mm/s): " <<vZ;
         if(mCoverSlip.getZMotor())
         {
         	mCoverSlip.getZMotor()->setJogVelocity(vZ);
-	        mWhisker.getZMotor()->setJogVelocity(vZ);
-
-    	    double aZ = mZJogAccelerationJoystick->GetValue();
-	        Log(lInfo) << "New Z jog acceleration (mm/(s*s)): " <<aZ;
 	        mCoverSlip.getZMotor()->setJogAcceleration(aZ);
+        }
+
+        if(mWhisker.getZMotor())
+        {
+	        mWhisker.getZMotor()->setJogVelocity(vZ);
         	mWhisker.getZMotor()->setJogAcceleration(aZ);
         }
     }
@@ -331,30 +338,24 @@ void __fastcall TMain::JSSpeedsRGClick(TObject *Sender)
     {
 		mMaxXYJogVelocityJoystick->SetNumber(30);
 		mXYJogAccelerationJoystick->SetNumber(10);
-
 		mMaxZJogVelocityJoystick->SetNumber(2);
 		mZJogAccelerationJoystick->SetNumber(1.5);
-
-		JoyStickValueEdit(NULL, key, ss);
     }
-    else if (JSSpeedsRG->ItemIndex == 1)
+    else if (JSSpeedsRG->ItemIndex == 1) //Medium
     {
 		mMaxXYJogVelocityJoystick->SetNumber(10);
 		mXYJogAccelerationJoystick->SetNumber(5);
 		mMaxZJogVelocityJoystick->SetNumber(1.5);
 		mZJogAccelerationJoystick->SetNumber(3);
-
-		JoyStickValueEdit(NULL, key, ss);
     }
-    else if (JSSpeedsRG->ItemIndex == 2)
+    else if (JSSpeedsRG->ItemIndex == 2) //Slow
     {
 		mMaxXYJogVelocityJoystick->SetNumber(1);
 		mXYJogAccelerationJoystick->SetNumber(1);
 		mMaxZJogVelocityJoystick->SetNumber(0.5);
 		mZJogAccelerationJoystick->SetNumber(0.1);
-
-		JoyStickValueEdit(NULL, key, ss);
     }
+	JoyStickValueEdit(NULL, key, ss);
 }
 
 //---------------------------------------------------------------------------

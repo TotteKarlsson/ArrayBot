@@ -13,6 +13,11 @@ class AB_CORE APTMotor : public APTDevice
     public:
 						                    APTMotor(int serial);
 		virtual			                    ~APTMotor();
+
+		virtual bool 	   					switchDirection(bool inThread = true);
+		virtual bool	                    setVelocityForward(double v);
+		virtual bool	                    setVelocityReverse(double v);
+
         virtual HardwareInformation 	    getHWInfo() = 0;
 
         virtual double						getEncoderCounts() = 0;
@@ -22,7 +27,7 @@ class AB_CORE APTMotor : public APTDevice
         virtual bool		                isHoming() 	= 0;
         virtual bool		                isForwarding() 	= 0;
         virtual bool		                isReversing() 	= 0;
-		virtual bool 	   					switchDirection(bool inThread = true) = 0;
+
         virtual bool	                    connect() = 0;
         virtual bool	                    disconnect() = 0;
 
@@ -40,8 +45,6 @@ class AB_CORE APTMotor : public APTDevice
         virtual double	                    getVelocity() = 0;
         virtual bool	                    setVelocity(double vel) = 0;
 
-		virtual bool	                    setVelocityForward(double v) = 0;
-		virtual bool	                    setVelocityReverse(double v) = 0;
 
         virtual double                      getAcceleration() = 0;
         virtual bool                        setAcceleration(double val) = 0;
@@ -75,6 +78,9 @@ class AB_CORE APTMotor : public APTDevice
         double								getManualJogAcceleration();
         void								setManualJogVelocity(double v);
         void								setManualJogAcceleration(double a);
+
+//        virtual double	    				getPotentiometerVelocity() = 0;
+        virtual void						setPotentiometerVelocity(double v) = 0;
 
     protected:
 

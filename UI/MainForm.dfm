@@ -125,7 +125,6 @@ object Main: TMain
     Height = 162
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 430
     object infoMemo: TMemo
       Left = 1
       Top = 34
@@ -163,7 +162,6 @@ object Main: TMain
     Height = 467
     Align = alClient
     TabOrder = 2
-    ExplicitHeight = 391
     object PageControl1: TPageControl
       Left = 1
       Top = 1
@@ -174,10 +172,8 @@ object Main: TMain
       Constraints.MinHeight = 389
       Constraints.MinWidth = 753
       TabOrder = 0
-      ExplicitHeight = 389
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitHeight = 361
         object GroupBox6: TGroupBox
           Left = 16
           Top = 19
@@ -266,18 +262,6 @@ object Main: TMain
           Height = 329
           Caption = 'JoyStick'
           TabOrder = 1
-          object mNrOfGearsLbl: TIntegerLabeledEdit
-            Left = 192
-            Top = 286
-            Width = 41
-            Height = 21
-            EditLabel.Width = 55
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Nr of Gears'
-            TabOrder = 0
-            Text = '0'
-            OnKeyDown = JoyStickValueEdit
-          end
           object mMaxXYJogVelocityJoystick: mtkFloatLabeledEdit
             Left = 24
             Top = 247
@@ -286,49 +270,49 @@ object Main: TMain
             EditLabel.Width = 75
             EditLabel.Height = 13
             EditLabel.Caption = 'Max XY Velocity'
-            TabOrder = 1
+            TabOrder = 0
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
           object mXYJogAccelerationJoystick: mtkFloatLabeledEdit
-            Left = 104
-            Top = 247
+            Left = 24
+            Top = 287
             Width = 66
             Height = 21
             EditLabel.Width = 74
             EditLabel.Height = 13
             EditLabel.Caption = 'XY Acceleration'
-            TabOrder = 2
+            TabOrder = 1
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
           object mMaxZJogVelocityJoystick: mtkFloatLabeledEdit
-            Left = 24
-            Top = 286
+            Left = 112
+            Top = 247
             Width = 66
             Height = 21
             EditLabel.Width = 69
             EditLabel.Height = 13
             EditLabel.Caption = 'Max Z Velocity'
-            TabOrder = 3
+            TabOrder = 2
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
           object mZJogAccelerationJoystick: mtkFloatLabeledEdit
-            Left = 104
-            Top = 286
+            Left = 112
+            Top = 287
             Width = 66
             Height = 21
             EditLabel.Width = 68
             EditLabel.Height = 13
             EditLabel.Caption = 'Z Acceleration'
-            TabOrder = 4
+            TabOrder = 3
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
           object JoyControlRG: TRadioGroup
             Left = 16
-            Top = 141
+            Top = 20
             Width = 342
             Height = 76
             Caption = 'Control'
@@ -344,12 +328,12 @@ object Main: TMain
               'Whisker'
               'None')
             ParentFont = False
-            TabOrder = 5
+            TabOrder = 4
             OnClick = JoyControlRGClick
           end
           object JSSpeedsRG: TRadioGroup
             Left = 16
-            Top = 30
+            Top = 102
             Width = 344
             Height = 105
             Caption = 'Speed'
@@ -365,7 +349,7 @@ object Main: TMain
               'Medium'
               'Slow')
             ParentFont = False
-            TabOrder = 6
+            TabOrder = 5
             OnClick = JSSpeedsRGClick
           end
         end
@@ -387,7 +371,6 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
-        ExplicitHeight = 361
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -395,7 +378,6 @@ object Main: TMain
           Height = 437
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 361
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351

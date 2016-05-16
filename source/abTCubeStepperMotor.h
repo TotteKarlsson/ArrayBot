@@ -22,19 +22,12 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 		bool					        isHomed();
         bool		                	isForwarding();
         bool		                	isReversing();
-		bool							switchDirection(bool inThread = true);
 
 				                        //!General commands
         double	                        getPosition();
         double	        		        getVelocity();
-//        double	        		        getMaxVelocity();
 		bool	                    	setVelocity(double v);
-		bool	                    	setVelocityForward(double v);
-		bool	                    	setVelocityReverse(double v);
-
-        double          		        getAcceleration();
-//        double          		        getMaxAcceleration();
-
+	    double          		        getAcceleration();
     	bool	                    	setAcceleration(double a);
 
         unsigned long	                getStatusBits();
@@ -60,15 +53,11 @@ class AB_CORE TCubeStepperMotor : public APTMotor
         bool	                		setJogVelocity(double v);
         bool	                		setJogAcceleration(double a);
 
-//        bool	                		setMaxJogVelocity(double v);
-//        bool	                		setMaxJogAcceleration(double a);
-//        double	        	        	getMaxJogVelocity();
-//        double	    	      			getMaxJogAcceleration();
-
         void		                    forward(bool inThread = true);
         void		                    reverse(bool inThread = true);
         void		                	moveToPosition(double position, bool inThread = true);
         bool		                    identify();
+        void							setPotentiometerVelocity(double v);
 
     protected:
 

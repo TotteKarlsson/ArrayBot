@@ -75,7 +75,6 @@ class TMain : public TRegistryForm
         TXYZUnitFrame *TXYZUnitFrame2;
         TScrollBox *ScrollBox1;
         TGroupBox *JoyStickGB;
-        TIntegerLabeledEdit *mNrOfGearsLbl;
         mtkFloatLabeledEdit *mMaxXYJogVelocityJoystick;
         mtkFloatLabeledEdit *mXYJogAccelerationJoystick;
         mtkFloatLabeledEdit *mMaxZJogVelocityJoystick;
