@@ -6,7 +6,7 @@
 #include "abTCubeDCServo.h"
 #include "abTCubeStepperMotor.h"
 #include "abLongTravelStage.h"
-#include "ThorlabStructs.h"
+#include "abThorlabStructs.h"
 //---------------------------------------------------------------------------
 
 using namespace std;

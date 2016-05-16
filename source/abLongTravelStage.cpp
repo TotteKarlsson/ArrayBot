@@ -271,7 +271,7 @@ bool LongTravelStage::setAcceleration(double a)
 bool LongTravelStage::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();
-	int err = ISC_SetJogMode(mSerial.c_str(), jm, sm);
+	int err = ISC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
