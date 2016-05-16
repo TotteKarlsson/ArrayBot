@@ -31,7 +31,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
     mIniFile("ArrayBot.ini"),
-    mJoyStick((int) Handle),
 	mAB(mIniFile),
     mBottomPanelHeight(100)
 {
@@ -44,6 +43,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
+
+    mAB.assignWindowHandle((int) Handle);
 }
 
 __fastcall TMain::~TMain()
@@ -58,7 +59,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
     sleep(100);
-	InitializeUnitsAExecute(NULL);
+	initBotAExecute(NULL);
 
     //Select joystick control for CoverSlip Unit
 	JoyControlRG->ItemIndex = 0;
@@ -70,7 +71,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     BottomPanel->Height = mBottomPanelHeight;
 }
 
-void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
+void __fastcall TMain::initBotAExecute(TObject *Sender)
 {
 	mAB.initialize();
 
@@ -78,8 +79,8 @@ void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
 	TXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
 
     //JoyStick stuff.....
-    mMaxXYJogVelocityJoystick->SetNumber(mJoyStick.getXAxis().getMaxVelocity());
-    mXYJogAccelerationJoystick->SetNumber(mJoyStick.getXAxis().getAcceleration());
+    mMaxXYJogVelocityJoystick->SetNumber(mAB.getJoyStick().getXAxis().getMaxVelocity());
+    mXYJogAccelerationJoystick->SetNumber(mAB.getJoyStick().getXAxis().getAcceleration());
 
     if(mAB.getCoverSlipUnit().getZMotor())
     {
@@ -87,7 +88,7 @@ void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
     	mZJogAccelerationJoystick->SetNumber(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
     }
 
-	mJoyStick.connect();
+	mAB.getJoyStick().connect();
     InitCloseBtn->Action = ShutDownA;
 }
 
@@ -95,15 +96,14 @@ void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 {
 	StatusTimer->Enabled = false;
 
-    mJoyStick.disable();
+    mAB.getJoyStick().disable();
 
     TXYZUnitFrame1->disable();
     TXYZUnitFrame2->disable();
 
     //The shutdown disconnects all devices
-	mAB.getCoverSlipUnit().shutDown();
-	mAB.getWhiskerUnit().shutDown();
-    InitCloseBtn->Action = InitializeUnitsA;
+    mAB.shutDown();
+    InitCloseBtn->Action = initBotA;
 }
 
 //---------------------------------------------------------------------------
@@ -112,32 +112,21 @@ void __fastcall TMain::JoyControlRGClick(TObject *Sender)
 	//Update joystick control
     if(JoyControlRG->ItemIndex == 0)
     {
-    	mAB.getCoverSlipUnit().enableJoyStick(&mJoyStick);
-        mJoyStick.getXAxis().setSenseOfDirection(1);
-        mAB.getWhiskerUnit().disableJoyStick();
-		mJoyStick.enable();
+    	mAB.enableCoverSlipJoyStick();
     }
     else if(JoyControlRG->ItemIndex == 1)
     {
-        mAB.getWhiskerUnit().enableJoyStick(&mJoyStick);
-        mJoyStick.getXAxis().setSenseOfDirection(-1);
-		mAB.getCoverSlipUnit().disableJoyStick();
-        mJoyStick.enable();
+    	mAB.enableWhiskerJoyStick();
     }
     else
     {
-      	mAB.getCoverSlipUnit().disableJoyStick();
-        mAB.getWhiskerUnit().disableJoyStick();
-   		mJoyStick.disable();
+    	mAB.disableJoyStick();
     }
 }
 
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
-    mJoyStick.disable();
-    mAB.getCoverSlipUnit().stopAll();
-    mAB.getWhiskerUnit().stopAll();
-
+	mAB.stopAll();
 }
 
 //---------------------------------------------------------------------------
@@ -153,8 +142,8 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
     {
         double vel = mMaxXYJogVelocityJoystick->GetValue();
         Log(lDebug) << "New jog velocity (mm/s): " <<vel;
-		mJoyStick.getXAxis().setMaxVelocity(vel);
-		mJoyStick.getYAxis().setMaxVelocity(vel);
+		mAB.getJoyStick().getXAxis().setMaxVelocity(vel);
+		mAB.getJoyStick().getYAxis().setMaxVelocity(vel);
     }
     else if(e == mXYJogAccelerationJoystick)
     {
@@ -185,8 +174,8 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
         double aXY = mXYJogAccelerationJoystick->GetValue();
         Log(lDebug) << "New jog velocity (mm/s): " <<vel;
         Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<aXY;
-		mJoyStick.getXAxis().setMaxVelocity(vel);
-		mJoyStick.getYAxis().setMaxVelocity(vel);
+		mAB.getJoyStick().getXAxis().setMaxVelocity(vel);
+		mAB.getJoyStick().getYAxis().setMaxVelocity(vel);
 
         double vZ  = mMaxZJogVelocityJoystick->GetValue();
    	    double aZ  = mZJogAccelerationJoystick->GetValue();

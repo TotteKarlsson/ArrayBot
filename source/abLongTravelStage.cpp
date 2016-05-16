@@ -300,8 +300,8 @@ bool LongTravelStage::setJogMoveMode(JogMoveMode jm)
 
 bool LongTravelStage::setJogStopMode(StopMode sm)
 {
-	JogMoveMode jmm = getJogMoveMode();
-	int err = ISC_SetJogMode(mSerial.c_str(), jmm, sm);
+	JogMoveMode jm = getJogMoveMode();
+	int err = ISC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
@@ -318,7 +318,7 @@ JogMoveMode	LongTravelStage::getJogMoveMode()
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
-        return MOT_JogModeUndefined;
+        return (JogMoveMode) MOT_JogModeUndefined;
     }
   	return (JogMoveMode) jm;
 }
@@ -331,7 +331,7 @@ StopMode LongTravelStage::getJogStopMode()
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
-        return MOT_StopModeUndefined;
+        return (StopMode) MOT_StopModeUndefined;
     }
   	return (StopMode) sm;
 }

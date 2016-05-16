@@ -1,6 +1,8 @@
 #pragma hdrstop
 #include "abJoystick.h"
 #include "mtkLogger.h"
+#include <windows.h>
+#include <mmsystem.h>
 //---------------------------------------------------------------------------
 
 using namespace mtk;
@@ -20,17 +22,14 @@ JoyStick::~JoyStick()
     }
 }
 
+void JoyStick::setWindowHandle(int handle)
+{
+	mHandle = handle;
+}
+
 bool JoyStick::enable()
 {
 	mEnabled = true;
-//    mXAxis.enable();
-//    mYAxis.enable();
-//    mZAxis.enable();
-//
-//    mButton1.enable();
-//    mButton2.enable();
-//    mButton3.enable();
-//    mButton4.enable();
     return true;
 }
 
@@ -47,7 +46,6 @@ bool JoyStick::isEnabled()
 
 bool JoyStick::setMessageRate(int rate)
 {
-	Log(lInfo) << "Setting joystick message rate: "<<rate;
 	mMessageRate = rate;
     return true;
 }
@@ -94,17 +92,15 @@ bool JoyStick::connect()
       mJoystickID = JOYSTICKID2;
     }
 
-	//  ShowDeviceInfo(); // initialize the labels.
-	//  ShowStatusInfo();
-
     // use joyGetDevCaps to display information from JOYCAPS structure
     // note that not all of the information from joyGetDevCaps is shown
     // here. consult the win32 SDK help file for a full description of
     // joyGetDevCaps
+    JOYCAPS 			        mJoyCaps;
     joyGetDevCaps(mJoystickID, &mJoyCaps, sizeof(JOYCAPS));
 
     // Tell Windows we want to receive joystick events.
-    // Handle = receiver, JoystickID = joystick we're using
+    // Handle = receiver, JoystickID = joystick that we're using
     // 3rd arg = how often MM_JOYMOVE events happen
 	if(mJoyStickConnected)
   	{

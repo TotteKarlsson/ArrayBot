@@ -260,7 +260,7 @@ bool TCubeStepperMotor::setAcceleration(double a)
 bool TCubeStepperMotor::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();
-	int err = SCC_SetJogMode(mSerial.c_str(), jm, sm);
+	int err = SCC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
@@ -271,8 +271,8 @@ bool TCubeStepperMotor::setJogMoveMode(JogMoveMode jm)
 
 bool TCubeStepperMotor::setJogStopMode(StopMode sm)
 {
-	JogMoveMode jmm = getJogMoveMode();
-	int err = SCC_SetJogMode(mSerial.c_str(), jmm, sm);
+	JogMoveMode jm = getJogMoveMode();
+	int err = SCC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
@@ -289,7 +289,7 @@ JogMoveMode	TCubeStepperMotor::getJogMoveMode()
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
-        return MOT_JogModeUndefined;
+        return (JogMoveMode) MOT_JogModeUndefined;
     }
   	return (JogMoveMode) jm;
 }
@@ -302,7 +302,7 @@ StopMode TCubeStepperMotor::getJogStopMode()
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
-        return MOT_StopModeUndefined;
+        return (StopMode) MOT_StopModeUndefined;
     }
   	return (StopMode) sm;
 }

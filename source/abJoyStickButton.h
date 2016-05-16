@@ -2,7 +2,7 @@
 #define abJoyStickButtonH
 #include "abExporter.h"
 #include "abABObject.h"
-#include <Winapi.Messages.hpp>
+//#include <Winapi.Messages.hpp>
 //---------------------------------------------------------------------------
 
 class APTMotor;

@@ -87,7 +87,7 @@ object Main: TMain
       Top = 0
       Width = 96
       Height = 30
-      Action = InitializeUnitsA
+      Action = initBotA
       Caption = 'Initialize'
       TabOrder = 0
     end
@@ -180,10 +180,6 @@ object Main: TMain
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox6: TGroupBox
           Left = 365
           Top = 19
@@ -347,10 +343,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -504,9 +496,9 @@ object Main: TMain
       Caption = 'Stop All'
       OnExecute = stopAllAExecute
     end
-    object InitializeUnitsA: TAction
+    object initBotA: TAction
       Caption = 'Initialize'
-      OnExecute = InitializeUnitsAExecute
+      OnExecute = initBotAExecute
     end
     object ShutDownA: TAction
       Caption = 'ShutDown'

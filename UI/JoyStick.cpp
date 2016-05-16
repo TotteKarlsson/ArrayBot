@@ -9,13 +9,13 @@ using namespace std;
 //---------------------------------------------------------------------------
 void __fastcall TMain::JMXYMove(TMessage &msg)
 {
-	if(!mJoyStick.isEnabled())
+	if(!mAB.getJoyStick().isEnabled())
     {
     	return;
     }
 
-    JoyStickAxis& x = mJoyStick.getXAxis();
-    JoyStickAxis& y = mJoyStick.getYAxis();
+    JoyStickAxis& x = mAB.getJoyStick().getXAxis();
+    JoyStickAxis& y = mAB.getJoyStick().getYAxis();
 
     x.Move(msg.LParamLo);
     y.Move(msg.LParamHi);
@@ -24,7 +24,7 @@ void __fastcall TMain::JMXYMove(TMessage &msg)
 //---------------------------------------------------------------------------
 void __fastcall TMain::JMZMove(TMessage &msg)
 {
-	if(!mJoyStick.isEnabled())
+	if(!mAB.getJoyStick().isEnabled())
     {
     	return;
     }
@@ -41,19 +41,19 @@ void __fastcall TMain::JMZMove(TMessage &msg)
 //    JoystickZPosition->Caption 	= "Z Position = " + FloatToStrF(pos, ffFixed, 4,2);
 //    JoystickAvgZPos->Caption 	= "Z Average Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
 
-//    mJoyStick.getZAxis().Move(msg);
+//    mAB.getJoyStick().getZAxis().Move(msg);
 }
 
 void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
 {
     if(msg.WParam & JOY_BUTTON3CHG)
     {
-    	mJoyStick.getButton(3).up();
+    	mAB.getJoyStick().getButton(3).up();
     }
 
     if(msg.WParam & JOY_BUTTON4CHG)
     {
-    	mJoyStick.getButton(4).up();
+    	mAB.getJoyStick().getButton(4).up();
     }
 }
 
@@ -61,12 +61,12 @@ void __fastcall TMain::JMButtonDownUpdate(TMessage &msg)
 {
     if(msg.WParam & JOY_BUTTON3CHG)
     {
-    	mJoyStick.getButton(3).down();
+    	mAB.getJoyStick().getButton(3).down();
     }
 
     if(msg.WParam & JOY_BUTTON4CHG)
     {
-    	mJoyStick.getButton(4).down();
+    	mAB.getJoyStick().getButton(4).down();
     }
 }
 

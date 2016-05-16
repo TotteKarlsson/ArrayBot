@@ -25,7 +25,7 @@
 #include "abArrayBot.h"
 #include "mtkIniFileProperties.h"
 
-
+#include <mmsystem.h>
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
@@ -69,7 +69,7 @@ class TMain : public TRegistryForm
         TTabSheet *TabSheet1;
         TXYZUnitFrame *TXYZUnitFrame1;
         TTabSheet *TabSheet4;
-        TAction *InitializeUnitsA;
+	TAction *initBotA;
         TAction *ShutDownA;
         TGroupBox *GroupBox6;
         mtkFloatLabeledEdit *mMoveAngleE;
@@ -102,7 +102,7 @@ class TMain : public TRegistryForm
         void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
         void __fastcall BitBtn3Click(TObject *Sender);
         void __fastcall JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-        void __fastcall InitializeUnitsAExecute(TObject *Sender);
+        void __fastcall initBotAExecute(TObject *Sender);
         void __fastcall ShutDownAExecute(TObject *Sender);
         void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall MoveBtnClick(TObject *Sender);
@@ -118,7 +118,7 @@ class TMain : public TRegistryForm
         Property<int>				mBottomPanelHeight;
 
         IniFile						mIniFile;
-		JoyStick					mJoyStick;
+//		JoyStick					mJoyStick;
         ArrayBot					mAB;
 
 		void __fastcall		        OnException();
@@ -134,8 +134,8 @@ class TMain : public TRegistryForm
 		__fastcall 					~TMain();
 
         BEGIN_MESSAGE_MAP
-          MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMXYMove)
-          MESSAGE_HANDLER(MM_JOY1ZMOVE,TMessage,JMZMove)
+          MESSAGE_HANDLER(MM_JOY1MOVE, TMessage, JMXYMove)
+          MESSAGE_HANDLER(MM_JOY1ZMOVE, TMessage, JMZMove)
           MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,JMButtonDownUpdate)
           MESSAGE_HANDLER(MM_JOY1BUTTONUP,	TMessage,JMButtonUpUpdate)
         END_MESSAGE_MAP(TForm)
