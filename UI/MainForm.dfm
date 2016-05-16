@@ -167,7 +167,7 @@ object Main: TMain
       Top = 1
       Width = 764
       Height = 465
-      ActivePage = TabSheet4
+      ActivePage = TabSheet2
       Align = alClient
       Constraints.MinHeight = 389
       Constraints.MinWidth = 753
@@ -196,63 +196,23 @@ object Main: TMain
             TabOrder = 0
             OnClick = MoveBtnClick
           end
-          object mMoveAccelerationE: mtkFloatLabeledEdit
-            Left = 97
-            Top = 36
-            Width = 73
-            Height = 21
-            EditLabel.Width = 59
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Acceleration'
-            TabOrder = 1
-            Text = '0.00'
-          end
           object mMoveAngleE: mtkFloatLabeledEdit
-            Left = 9
-            Top = 84
-            Width = 73
-            Height = 21
+            Left = 19
+            Top = 44
+            Width = 98
+            Height = 53
             EditLabel.Width = 85
             EditLabel.Height = 13
             EditLabel.Caption = 'Move Angle (deg)'
-            TabOrder = 2
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -37
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
             Text = '0.00'
             OnKeyDown = moveEdit
-          end
-          object mMoveVelHorizE: mtkFloatLabeledEdit
-            Left = 97
-            Top = 84
-            Width = 73
-            Height = 21
-            EditLabel.Width = 71
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Velocity (horiz)'
-            Enabled = False
-            TabOrder = 3
-            Text = '0.00'
-          end
-          object mMoveVelocityVerticalE: mtkFloatLabeledEdit
-            Left = 9
-            Top = 36
-            Width = 73
-            Height = 21
-            EditLabel.Width = 83
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Velocity (vertical)'
-            TabOrder = 4
-            Text = '0.00'
-            OnKeyDown = moveEdit
-          end
-          object mVerticalMoveDistanceE: mtkFloatLabeledEdit
-            Left = 9
-            Top = 127
-            Width = 73
-            Height = 21
-            EditLabel.Width = 107
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Vertical move distance'
-            TabOrder = 5
-            Text = '0.00'
           end
         end
         object JoyStickGB: TGroupBox
@@ -262,54 +222,6 @@ object Main: TMain
           Height = 329
           Caption = 'JoyStick'
           TabOrder = 1
-          object mMaxXYJogVelocityJoystick: mtkFloatLabeledEdit
-            Left = 24
-            Top = 247
-            Width = 66
-            Height = 21
-            EditLabel.Width = 75
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Max XY Velocity'
-            TabOrder = 0
-            Text = '0.00'
-            OnKeyDown = JoyStickValueEdit
-          end
-          object mXYJogAccelerationJoystick: mtkFloatLabeledEdit
-            Left = 24
-            Top = 287
-            Width = 66
-            Height = 21
-            EditLabel.Width = 74
-            EditLabel.Height = 13
-            EditLabel.Caption = 'XY Acceleration'
-            TabOrder = 1
-            Text = '0.00'
-            OnKeyDown = JoyStickValueEdit
-          end
-          object mMaxZJogVelocityJoystick: mtkFloatLabeledEdit
-            Left = 112
-            Top = 247
-            Width = 66
-            Height = 21
-            EditLabel.Width = 69
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Max Z Velocity'
-            TabOrder = 2
-            Text = '0.00'
-            OnKeyDown = JoyStickValueEdit
-          end
-          object mZJogAccelerationJoystick: mtkFloatLabeledEdit
-            Left = 112
-            Top = 287
-            Width = 66
-            Height = 21
-            EditLabel.Width = 68
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Z Acceleration'
-            TabOrder = 3
-            Text = '0.00'
-            OnKeyDown = JoyStickValueEdit
-          end
           object JoyControlRG: TRadioGroup
             Left = 16
             Top = 20
@@ -328,7 +240,7 @@ object Main: TMain
               'Whisker'
               'None')
             ParentFont = False
-            TabOrder = 4
+            TabOrder = 0
             OnClick = JoyControlRGClick
           end
           object JSSpeedsRG: TRadioGroup
@@ -349,7 +261,7 @@ object Main: TMain
               'Medium'
               'Slow')
             ParentFont = False
-            TabOrder = 5
+            TabOrder = 1
             OnClick = JSSpeedsRGClick
           end
         end
@@ -427,6 +339,128 @@ object Main: TMain
                 ExplicitHeight = 308
               end
             end
+          end
+        end
+      end
+      object TabSheet2: TTabSheet
+        Caption = 'Settings'
+        ImageIndex = 2
+        object JoyStickGB2: TGroupBox
+          Left = 11
+          Top = 16
+          Width = 238
+          Height = 169
+          Caption = 'JoyStick Velocities'
+          TabOrder = 0
+          object mZJogAccelerationJoystick: mtkFloatLabeledEdit
+            Left = 119
+            Top = 117
+            Width = 66
+            Height = 21
+            EditLabel.Width = 68
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Z Acceleration'
+            TabOrder = 0
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object mXYJogAccelerationJoystick: mtkFloatLabeledEdit
+            Left = 16
+            Top = 117
+            Width = 66
+            Height = 21
+            EditLabel.Width = 74
+            EditLabel.Height = 13
+            EditLabel.Caption = 'XY Acceleration'
+            TabOrder = 1
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object mMaxZJogVelocityJoystick: mtkFloatLabeledEdit
+            Left = 119
+            Top = 66
+            Width = 66
+            Height = 21
+            EditLabel.Width = 69
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Max Z Velocity'
+            TabOrder = 2
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object mMaxXYJogVelocityJoystick: mtkFloatLabeledEdit
+            Left = 16
+            Top = 66
+            Width = 66
+            Height = 21
+            EditLabel.Width = 75
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Max XY Velocity'
+            TabOrder = 3
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object ComboBox1: TComboBox
+            Left = 16
+            Top = 24
+            Width = 109
+            Height = 21
+            TabOrder = 4
+            Text = 'ComboBox1'
+          end
+        end
+        object GroupBox1: TGroupBox
+          Left = 255
+          Top = 16
+          Width = 241
+          Height = 169
+          Caption = 'Lift Parameters'
+          TabOrder = 1
+          object mMoveAccelerationE: mtkFloatLabeledEdit
+            Left = 105
+            Top = 36
+            Width = 73
+            Height = 21
+            EditLabel.Width = 59
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Acceleration'
+            TabOrder = 0
+            Text = '0.00'
+          end
+          object mMoveVelocityVerticalE: mtkFloatLabeledEdit
+            Left = 9
+            Top = 36
+            Width = 73
+            Height = 21
+            EditLabel.Width = 83
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Velocity (vertical)'
+            TabOrder = 1
+            Text = '0.00'
+            OnKeyDown = moveEdit
+          end
+          object mMoveVelHorizE: mtkFloatLabeledEdit
+            Left = 9
+            Top = 120
+            Width = 73
+            Height = 21
+            EditLabel.Width = 94
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Horiz distance (mm)'
+            Enabled = False
+            TabOrder = 2
+            Text = '0.00'
+          end
+          object mVerticalMoveDistanceE: mtkFloatLabeledEdit
+            Left = 9
+            Top = 80
+            Width = 73
+            Height = 21
+            EditLabel.Width = 86
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Lift Distance (mm)'
+            TabOrder = 3
+            Text = '0.00'
           end
         end
       end

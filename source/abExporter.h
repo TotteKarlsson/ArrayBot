@@ -1,5 +1,5 @@
-#ifndef CoreExporterH
-#define CoreExporterH
+#ifndef abExporterH
+#define abExporterH
 
 #if defined (_WIN32)
     #if defined(AB_STATIC)
