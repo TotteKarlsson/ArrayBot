@@ -113,6 +113,10 @@
             <DependentOn>abAPTMotor.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abArrayBot.cpp">
+            <DependentOn>abArrayBot.h</DependentOn>
+            <BuildOrder>20</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abCore.cpp">
             <BuildOrder>1</BuildOrder>
         </CppCompile>

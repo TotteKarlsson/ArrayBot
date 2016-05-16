@@ -2,14 +2,30 @@
 #define abArrayBotH
 #include "abExporter.h"
 #include "abABObject.h"
+#include "abXYZUnit.h"
 //---------------------------------------------------------------------------
-class ArrayBot : public ABObject
+
+struct CombinedMoveParameters
+{
+
+};
+
+class AB_CORE ArrayBot : public ABObject
 {
     public:
-					ArrayBot();
-					~ArrayBot();
+									ArrayBot(IniFile& ini);
+									~ArrayBot();
+		void 						initialize();
+
+        XYZUnit&					getCoverSlipUnit();
+        XYZUnit&					getWhiskerUnit();
 
     private:
+        IniFile&					mIniFile;
+    	CombinedMoveParameters		mCSLift;
+        XYZUnit						mCoverSlip;
+        XYZUnit						mWhisker;
+
 
 
 };

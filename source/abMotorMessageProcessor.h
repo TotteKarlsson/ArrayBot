@@ -1,6 +1,6 @@
 #ifndef abMotorMessageProcessorH
 #define abMotorMessageProcessorH
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include <string>
 #include "mtkThread.h"
 #include "abABObject.h"

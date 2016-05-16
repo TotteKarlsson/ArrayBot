@@ -118,8 +118,8 @@ void JoyStickAxis::Move(double newPosition)
 //	        return;
 //        }
 
-	    Log(lDebug) << "Axis numbers: ("<<newPosition<<","<<newVelocity<<","<<stepSize<<")";
-        Log(lInfo) << "Setting jog velocity: "<<fabs(mRunningAverage);
+	    Log(lDebug3) << "Axis numbers: ("<<newPosition<<","<<newVelocity<<","<<stepSize<<")";
+        Log(lDebug3) << "Setting jog velocity: "<<fabs(mRunningAverage);
 		mMotor->setJogVelocity(fabs(mRunningAverage));
    		mLastSetVelocity = mRunningAverage;
 

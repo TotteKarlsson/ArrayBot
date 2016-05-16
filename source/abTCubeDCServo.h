@@ -11,7 +11,6 @@ class AB_CORE TCubeDCServo : public APTMotor
 
 		HardwareInformation		        getHWInfo();
         double				 			getEncoderCounts();
-		bool							switchDirection();
 
         						        ///isActive checks if the device is active.
 		bool					        isActive();

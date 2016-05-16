@@ -1,7 +1,7 @@
 #ifndef abMotorMessageContainerH
 #define abMotorMessageContainerH
 #include <deque>
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include "Poco/Condition.h"
 #include "abMotorMessageProcessor.h"
 #include "abMotorCommand.h"

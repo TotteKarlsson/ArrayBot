@@ -4,6 +4,25 @@
 #include "abAPTMotor.h"
 using namespace mtk;
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
+{
+	if(!buildDeviceList())
+    {
+    	Log(lError) <<"Failed building device list";
+        return;
+    }
+
+    for(int i = 0; i < 90; i++)
+    {
+		StringList serials = getSerialsForDeviceType((DeviceTypeID) i);
+        for(u_int j = 0; j < serials.count(); j++)
+        {
+            Log(lInfo) <<"Found device of type '"<<::toString((DeviceTypeID) i)<<"' with serial: " <<serials[j];
+        }
+    }
+}
+
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
@@ -42,6 +61,7 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 void __fastcall TMain::FormClose(TObject *Sender, TCloseAction &Action)
 {
 	Log(lInfo) << "In FormClose";
+    mBottomPanelHeight = BottomPanel->Height;
 }
 
 void __fastcall	TMain::OnException()

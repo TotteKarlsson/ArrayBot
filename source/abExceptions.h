@@ -1,6 +1,6 @@
 #ifndef abExceptionsH
 #define abExceptionsH
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include "abABObject.h"
 #include <exception>
 #include <string>

@@ -194,11 +194,11 @@ APTDevice* DeviceManager::connectDevice(int serial)
     if(res == 0)
     {
 	    Log(lError) <<"Failed getting device info for device with serial:"<<serial;
-		Log(lError) <<"Device with serial "<<serial<<" was not created";
+		Log(lError) <<"Device with serial "<<serial<<" was not connected";
         return NULL;
     }
 
-    Log(lInfo) <<"Device info: "<< ::toString(deviceInfo);
+    Log(lDebug3) <<"Device info: "<< ::toString(deviceInfo);
 
     //Create and open the device
     APTDevice* device = NULL;
@@ -211,12 +211,12 @@ APTDevice* DeviceManager::connectDevice(int serial)
 //        break;
 
         case didTCubeStepperMotor:
-            Log(lInfo) << "Creating a "<<toString(didTCubeStepperMotor)<<" device";
+            Log(lDebug3) << "Creating a "<<toString(didTCubeStepperMotor)<<" device";
             device = new TCubeStepperMotor(serial);
         break;
 
         case didLongTravelStage:
-            Log(lInfo) << "Creating a "<<toString(didLongTravelStage)<<" device";
+            Log(lDebug3) << "Creating a "<<toString(didLongTravelStage)<<" device";
             device = new LongTravelStage(serial);
         break;
 

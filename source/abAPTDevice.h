@@ -1,6 +1,6 @@
 #ifndef abAPTDeviceH
 #define abAPTDeviceH
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include "abABObject.h"
 #include "mtkProperties.h"
 #include "abUtilities.h"

@@ -131,6 +131,12 @@ object Main: TMain
       Width = 764
       Height = 127
       Align = alClient
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
@@ -174,11 +180,15 @@ object Main: TMain
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox6: TGroupBox
-          Left = 16
+          Left = 365
           Top = 19
           Width = 329
-          Height = 166
+          Height = 181
           Caption = 'Coordinated Move'
           TabOrder = 0
           object MoveBtn: TButton
@@ -215,59 +225,9 @@ object Main: TMain
             OnKeyDown = moveEdit
           end
         end
-        object JoyStickGB: TGroupBox
-          Left = 351
-          Top = 19
-          Width = 383
-          Height = 329
-          Caption = 'JoyStick'
-          TabOrder = 1
-          object JoyControlRG: TRadioGroup
-            Left = 16
-            Top = 20
-            Width = 342
-            Height = 76
-            Caption = 'Control'
-            Columns = 3
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ItemIndex = 2
-            Items.Strings = (
-              'CoverSlip'
-              'Whisker'
-              'None')
-            ParentFont = False
-            TabOrder = 0
-            OnClick = JoyControlRGClick
-          end
-          object JSSpeedsRG: TRadioGroup
-            Left = 16
-            Top = 102
-            Width = 344
-            Height = 105
-            Caption = 'Speed'
-            Columns = 3
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ItemIndex = 1
-            Items.Strings = (
-              'Fast '
-              'Medium'
-              'Slow')
-            ParentFont = False
-            TabOrder = 1
-            OnClick = JSSpeedsRGClick
-          end
-        end
         object Button1: TButton
-          Left = 16
-          Top = 206
+          Left = 533
+          Top = 248
           Width = 161
           Height = 123
           Action = stopAllA
@@ -278,7 +238,49 @@ object Main: TMain
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          TabOrder = 1
+        end
+        object JoyControlRG: TRadioGroup
+          Left = 3
+          Top = 11
+          Width = 342
+          Height = 76
+          Caption = 'JoyStick Control'
+          Columns = 3
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ItemIndex = 2
+          Items.Strings = (
+            'CoverSlip'
+            'Whisker'
+            'None')
+          ParentFont = False
           TabOrder = 2
+          OnClick = JoyControlRGClick
+        end
+        object JSSpeedsRG: TRadioGroup
+          Left = 3
+          Top = 95
+          Width = 344
+          Height = 105
+          Caption = 'Speed'
+          Columns = 3
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ItemIndex = 1
+          Items.Strings = (
+            'Fast '
+            'Medium'
+            'Slow')
+          ParentFont = False
+          TabOrder = 3
+          OnClick = JSSpeedsRGClick
         end
       end
       object TabSheet1: TTabSheet
@@ -345,6 +347,10 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16

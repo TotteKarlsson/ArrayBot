@@ -1,6 +1,6 @@
 #ifndef abJoystickAxisH
 #define abJoystickAxisH
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include "abABObject.h"
 
 //---------------------------------------------------------------------------

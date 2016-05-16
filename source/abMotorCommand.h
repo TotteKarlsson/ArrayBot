@@ -1,6 +1,6 @@
 #ifndef abMotorCommandH
 #define abMotorCommandH
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include "abABObject.h"
 #include <string>
 #include <ostream>

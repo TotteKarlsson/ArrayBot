@@ -16,9 +16,7 @@ APTDevice::APTDevice(int serial)
 }
 
 APTDevice::~APTDevice()
-{
-
-}
+{}
 
 void APTDevice::setName(const string& name)
 {
@@ -42,7 +40,7 @@ bool APTDevice::isConnected()
 
 bool APTDevice::loadProperties(IniFile& iniFile)
 {
-	Log(lInfo) << "Loading properties for APT device with serial: "<<mSerial;
+	Log(lDebug) << "Loading properties for APT device with serial: "<<mSerial;
     mProperties.setIniFile(&iniFile);
     mProperties.read();
 

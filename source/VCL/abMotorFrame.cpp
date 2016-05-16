@@ -134,14 +134,14 @@ void __fastcall TMotorFrame::DevEdit(TObject *Sender, WORD &Key, TShiftState Shi
     if(e == mJogVelocity)
     {
         double vel = mJogVelocity->GetValue();
-        Log(lInfo) << "New JOG velocity (mm/s): " <<vel;
+        Log(lDebug) << "New JOG velocity (mm/s): " <<vel;
 		mMotor->setManualJogVelocity(vel);
         mMotor->setJogVelocity(vel);
     }
     else if(e == mJogAcc)
     {
         double a = mJogAcc->GetValue();
-        Log(lInfo) << "New JOG acceleration (mm/(s*s)): " <<a;
+        Log(lDebug) << "New JOG acceleration (mm/(s*s)): " <<a;
 		mMotor->setManualJogAcceleration(a);
         mMotor->setJogAcceleration(a);
     }

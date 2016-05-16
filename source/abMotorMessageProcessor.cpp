@@ -101,7 +101,7 @@ void MotorMessageProcessor::worker()
             {
 	           	MotorCommand cmd = mMotorMessageContainer.pop();
 
-    	        Log(lInfo) << "Processing command: "<<cmd;
+    	        Log(lDebug) << "Processing command: "<<cmd;
                 if(mMotor == NULL)
                 {
                 	break;

@@ -1,7 +1,7 @@
 #ifndef abJoystickH
 #define abJoystickH
 
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include "abABObject.h"
 #include "abJoyStickAxis.h"
 #include "abJoyStickButton.h"

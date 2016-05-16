@@ -20,8 +20,8 @@
 #pragma resource "*.dfm"
 TMain *Main;
 
-extern string       gLogFileLocation;
-extern string       gLogFileName;
+extern string gLogFileLocation;
+extern string gLogFileName;
 
 using namespace mtk;
 //---------------------------------------------------------------------------
@@ -32,33 +32,24 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
     mIniFile("ArrayBot.ini"),
     mJoyStick((int) Handle),
-    mCoverSlip("CoverSlip Unit", mIniFile),
-    mWhisker("Whisker Unit", mIniFile)
-
+	mAB(mIniFile),
+    mBottomPanelHeight(100)
 {
 	TMemoLogger::mMemoIsEnabled = false;
+
+    mIniFile.load();
+
+    mProperties.setSection("UI");
+    mProperties.add((BaseProperty*) &mBottomPanelHeight.setup("BOTTOM_PANEL_HEIGHT", 			100, true));
+
+	mProperties.setIniFile(&mIniFile);
+    mProperties.read();
 }
 
 __fastcall TMain::~TMain()
-{}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 {
-	if(!buildDeviceList())
-    {
-    	Log(lError) <<"Failed building device list";
-        return;
-    }
-
-    for(int i = 0; i < 90; i++)
-    {
-		StringList serials = getSerialsForDeviceType((DeviceTypeID) i);
-        for(u_int j = 0; j < serials.count(); j++)
-        {
-            Log(lInfo) <<"Found device of type '"<<::toString((DeviceTypeID) i)<<"' with serial: " <<serials[j];
-        }
-    }
+	mProperties.write();
+    mIniFile.save();
 }
 
 //---------------------------------------------------------------------------
@@ -66,33 +57,34 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 {
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
+    sleep(100);
 	InitializeUnitsAExecute(NULL);
 
     //Select joystick control for CoverSlip Unit
 	JoyControlRG->ItemIndex = 0;
     JoyControlRG->OnClick(NULL);
 
-    //Select medium speed
+    //Select medium speed on start
 	JSSpeedsRG->ItemIndex = 1;
     JSSpeedsRG->OnClick(NULL);
+    BottomPanel->Height = mBottomPanelHeight;
 }
 
 void __fastcall TMain::InitializeUnitsAExecute(TObject *Sender)
 {
-	mCoverSlip.initialize();
-	mWhisker.initialize();
+	mAB.initialize();
 
-	TXYZUnitFrame1->assignUnit(&mCoverSlip);
-	TXYZUnitFrame2->assignUnit(&mWhisker);
+	TXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
+	TXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
 
     //JoyStick stuff.....
     mMaxXYJogVelocityJoystick->SetNumber(mJoyStick.getXAxis().getMaxVelocity());
     mXYJogAccelerationJoystick->SetNumber(mJoyStick.getXAxis().getAcceleration());
 
-    if(mCoverSlip.getZMotor())
+    if(mAB.getCoverSlipUnit().getZMotor())
     {
-    	mMaxZJogVelocityJoystick->SetNumber(mCoverSlip.getZMotor()->getVelocity());
-    	mZJogAccelerationJoystick->SetNumber(mCoverSlip.getZMotor()->getAcceleration());
+    	mMaxZJogVelocityJoystick->SetNumber(mAB.getCoverSlipUnit().getZMotor()->getVelocity());
+    	mZJogAccelerationJoystick->SetNumber(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
     }
 
 	mJoyStick.connect();
@@ -109,8 +101,8 @@ void __fastcall TMain::ShutDownAExecute(TObject *Sender)
     TXYZUnitFrame2->disable();
 
     //The shutdown disconnects all devices
-	mCoverSlip.shutDown();
-	mWhisker.shutDown();
+	mAB.getCoverSlipUnit().shutDown();
+	mAB.getWhiskerUnit().shutDown();
     InitCloseBtn->Action = InitializeUnitsA;
 }
 
@@ -120,22 +112,22 @@ void __fastcall TMain::JoyControlRGClick(TObject *Sender)
 	//Update joystick control
     if(JoyControlRG->ItemIndex == 0)
     {
-    	mCoverSlip.enableJoyStick(&mJoyStick);
+    	mAB.getCoverSlipUnit().enableJoyStick(&mJoyStick);
         mJoyStick.getXAxis().setSenseOfDirection(1);
-        mWhisker.disableJoyStick();
+        mAB.getWhiskerUnit().disableJoyStick();
 		mJoyStick.enable();
     }
     else if(JoyControlRG->ItemIndex == 1)
     {
-        mWhisker.enableJoyStick(&mJoyStick);
+        mAB.getWhiskerUnit().enableJoyStick(&mJoyStick);
         mJoyStick.getXAxis().setSenseOfDirection(-1);
-		mCoverSlip.disableJoyStick();
+		mAB.getCoverSlipUnit().disableJoyStick();
         mJoyStick.enable();
     }
     else
     {
-      	mCoverSlip.disableJoyStick();
-        mWhisker.disableJoyStick();
+      	mAB.getCoverSlipUnit().disableJoyStick();
+        mAB.getWhiskerUnit().disableJoyStick();
    		mJoyStick.disable();
     }
 }
@@ -143,8 +135,8 @@ void __fastcall TMain::JoyControlRGClick(TObject *Sender)
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
     mJoyStick.disable();
-    mCoverSlip.stopAll();
-    mWhisker.stopAll();
+    mAB.getCoverSlipUnit().stopAll();
+    mAB.getWhiskerUnit().stopAll();
 
 }
 
@@ -160,71 +152,71 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
     if(e == mMaxXYJogVelocityJoystick)
     {
         double vel = mMaxXYJogVelocityJoystick->GetValue();
-        Log(lInfo) << "New jog velocity (mm/s): " <<vel;
+        Log(lDebug) << "New jog velocity (mm/s): " <<vel;
 		mJoyStick.getXAxis().setMaxVelocity(vel);
 		mJoyStick.getYAxis().setMaxVelocity(vel);
     }
     else if(e == mXYJogAccelerationJoystick)
     {
         double a = mXYJogAccelerationJoystick->GetValue();
-        Log(lInfo) << "New jog acceleration (mm/(s*s)): " <<a;
-        mCoverSlip.getXMotor()->setJogAcceleration(a);
-        mCoverSlip.getYMotor()->setJogAcceleration(a);
-        mWhisker.getXMotor()->setJogAcceleration(a);
-        mWhisker.getYMotor()->setJogAcceleration(a);
+        Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<a;
+        mAB.getCoverSlipUnit().getXMotor()->setJogAcceleration(a);
+        mAB.getCoverSlipUnit().getYMotor()->setJogAcceleration(a);
+        mAB.getWhiskerUnit().getXMotor()->setJogAcceleration(a);
+        mAB.getWhiskerUnit().getYMotor()->setJogAcceleration(a);
     }
     else if(e == mMaxZJogVelocityJoystick)
     {
         double v = mMaxZJogVelocityJoystick->GetValue();
-        Log(lInfo) << "New Z jog velocity (mm/s): " <<v;
-        mCoverSlip.getZMotor()->setJogVelocity(v);
-        mWhisker.getZMotor()->setJogVelocity(v);
+        Log(lDebug) << "New Z jog velocity (mm/s): " <<v;
+        mAB.getCoverSlipUnit().getZMotor()->setJogVelocity(v);
+        mAB.getWhiskerUnit().getZMotor()->setJogVelocity(v);
     }
     else if(e == mZJogAccelerationJoystick)
     {
         double a = mZJogAccelerationJoystick->GetValue();
-        Log(lInfo) << "New Z jog acceleration (mm/(s*s)): " <<a;
-        mCoverSlip.getZMotor()->setJogAcceleration(a);
-        mWhisker.getZMotor()->setJogAcceleration(a);
+        Log(lDebug) << "New Z jog acceleration (mm/(s*s)): " <<a;
+        mAB.getCoverSlipUnit().getZMotor()->setJogAcceleration(a);
+        mAB.getWhiskerUnit().getZMotor()->setJogAcceleration(a);
     }
     else if(Sender == NULL) //Manually update velocities
     {
         double vel = mMaxXYJogVelocityJoystick->GetValue();
         double aXY = mXYJogAccelerationJoystick->GetValue();
-        Log(lInfo) << "New jog velocity (mm/s): " <<vel;
-        Log(lInfo) << "New jog acceleration (mm/(s*s)): " <<aXY;
+        Log(lDebug) << "New jog velocity (mm/s): " <<vel;
+        Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<aXY;
 		mJoyStick.getXAxis().setMaxVelocity(vel);
 		mJoyStick.getYAxis().setMaxVelocity(vel);
 
         double vZ  = mMaxZJogVelocityJoystick->GetValue();
    	    double aZ  = mZJogAccelerationJoystick->GetValue();
 
-        Log(lInfo) << "New Z jog acceleration (mm/(s*s)): " <<aZ;
-        Log(lInfo) << "New Z jog velocity (mm/s): " <<vZ;
-        if(mCoverSlip.getXMotor() && mCoverSlip.getYMotor())
+        Log(lDebug) << "New Z jog acceleration (mm/(s*s)): " <<aZ;
+        Log(lDebug) << "New Z jog velocity (mm/s): " <<vZ;
+        if(mAB.getCoverSlipUnit().getXMotor() && mAB.getCoverSlipUnit().getYMotor())
         {
-            mCoverSlip.getXMotor()->setJogAcceleration(aXY);
-            mCoverSlip.getYMotor()->setJogAcceleration(aXY);
+            mAB.getCoverSlipUnit().getXMotor()->setJogAcceleration(aXY);
+            mAB.getCoverSlipUnit().getYMotor()->setJogAcceleration(aXY);
 
-            mCoverSlip.getXMotor()->setPotentiometerVelocity(vel);
-            mCoverSlip.getYMotor()->setPotentiometerVelocity(vel);
+            mAB.getCoverSlipUnit().getXMotor()->setPotentiometerVelocity(vel);
+            mAB.getCoverSlipUnit().getYMotor()->setPotentiometerVelocity(vel);
         }
-        if(mWhisker.getXMotor() && mWhisker.getYMotor())
+        if(mAB.getWhiskerUnit().getXMotor() && mAB.getWhiskerUnit().getYMotor())
         {
-            mWhisker.getXMotor()->setJogAcceleration(aXY);
-            mWhisker.getYMotor()->setJogAcceleration(aXY);
-        }
-
-        if(mCoverSlip.getZMotor())
-        {
-        	mCoverSlip.getZMotor()->setJogVelocity(vZ);
-	        mCoverSlip.getZMotor()->setJogAcceleration(aZ);
+            mAB.getWhiskerUnit().getXMotor()->setJogAcceleration(aXY);
+            mAB.getWhiskerUnit().getYMotor()->setJogAcceleration(aXY);
         }
 
-        if(mWhisker.getZMotor())
+        if(mAB.getCoverSlipUnit().getZMotor())
         {
-	        mWhisker.getZMotor()->setJogVelocity(vZ);
-        	mWhisker.getZMotor()->setJogAcceleration(aZ);
+        	mAB.getCoverSlipUnit().getZMotor()->setJogVelocity(vZ);
+	        mAB.getCoverSlipUnit().getZMotor()->setJogAcceleration(aZ);
+        }
+
+        if(mAB.getWhiskerUnit().getZMotor())
+        {
+	        mAB.getWhiskerUnit().getZMotor()->setJogVelocity(vZ);
+        	mAB.getWhiskerUnit().getZMotor()->setJogAcceleration(aZ);
         }
     }
 }
@@ -257,15 +249,15 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 
 void __fastcall TMain::MoveBtnClick(TObject *Sender)
 {
-    APTMotor* yCSM 	= mCoverSlip.getYMotor();
-	APTMotor* zCSM 	= mCoverSlip.getZMotor();
+    APTMotor* yCS 	= mAB.getCoverSlipUnit().getYMotor();
+	APTMotor* zCS 	= mAB.getCoverSlipUnit().getZMotor();
 
-    APTMotor* yWM 	= mWhisker.getYMotor();
-	APTMotor* zWM 	= mWhisker.getZMotor();
+    APTMotor* yW 	= mAB.getWhiskerUnit().getYMotor();
+	APTMotor* zW 	= mAB.getWhiskerUnit().getZMotor();
 
-	if(!yCSM || !zCSM || !yWM || !zWM)
+	if(!yCS || !zCS || !yW || !zW)
     {
-    	Log(lError) << "Can't carry out this move.. one motor is absent";
+    	Log(lError) << "Can't carry out this move.. at least one motor is absent";
         return;
     }
 
@@ -274,30 +266,30 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
     double acc 		= mMoveAccelerationE->GetNumber();
 
 	//Update motors with current parameters and start the move
-    zCSM->setJogVelocity(vertVel);
-    zCSM->setJogAcceleration(acc);
+    zCS->setJogVelocity(vertVel);
+    zCS->setJogAcceleration(acc);
 
-    zWM->setJogVelocity(vertVel);
-    zWM->setJogAcceleration(acc);
+    zW->setJogVelocity(vertVel);
+    zW->setJogAcceleration(acc);
 
     double tanTheta = tan(toRadians(mMoveAngleE->GetValue()));
-    yCSM->setJogVelocity(horizVel);
-    yCSM->setJogAcceleration(acc / tanTheta);
+    yCS->setJogVelocity(horizVel);
+    yCS->setJogAcceleration(acc / tanTheta);
 
-    yWM->setJogVelocity(horizVel);
-    yWM->setJogAcceleration(acc / tanTheta);
+    yW->setJogVelocity(horizVel);
+    yW->setJogAcceleration(acc / tanTheta);
 
     //get current positions and carry out some moveTo's
-    double yPos = yCSM->getPosition();
-    double zPos = zCSM->getPosition();
+    double yPos = yCS->getPosition();
+    double zPos = zCS->getPosition();
 
 	double newCSZPos = zPos + mVerticalMoveDistanceE->GetValue();
 	double newCSYPos = (tanTheta != 0) ?
     					yPos + (newCSZPos - zPos) / tanTheta : yPos;
 
 	//Calculate for the whisker
-    yPos = yWM->getPosition();
-    zPos = zWM->getPosition();
+    yPos = yW->getPosition();
+    zPos = zW->getPosition();
 
 	double newWZPos = zPos + mVerticalMoveDistanceE->GetValue();
 	double newWYPos = (tanTheta != 0) ?
@@ -322,11 +314,11 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
         return;
     }
 
-    yCSM->moveToPosition(newCSYPos);
-    zCSM->moveToPosition(newCSZPos);
+    yCS->moveToPosition(newCSYPos);
+    zCS->moveToPosition(newCSZPos);
 
-    yWM->moveToPosition(newWYPos);
-    zWM->moveToPosition(newWZPos);
+    yW->moveToPosition(newWYPos);
+    zW->moveToPosition(newWZPos);
 }
 
 //---------------------------------------------------------------------------

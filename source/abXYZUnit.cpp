@@ -25,18 +25,12 @@ mIniFile(iniFile)
     mProperties.add((BaseProperty*) &mZMotorSerialNr.setup("ZMotorSerial", -1, true));
 
 	//Load Properties
-    mIniFile.load();
     mProperties.setIniFile(&mIniFile);
-    mProperties.read();
 
-    //Check for positions
 }
 
 XYZUnit::~XYZUnit()
-{
-	//Save positions
-    mIniFile.save();
-}
+{}
 
 void XYZUnit::shutDown()
 {
@@ -44,7 +38,6 @@ void XYZUnit::shutDown()
 
 	//Save Properties
 	mProperties.write();
-    mIniFile.save();
 }
 
 string XYZUnit::getName()
@@ -68,12 +61,15 @@ bool XYZUnit::moveToPosition(const XYZUnitPosition& pos)
 
 bool XYZUnit::initialize()
 {
+    mProperties.read();
+
 	mDeviceManager.reBuildDeviceList();
+    Log(lInfo) << "Initializing: "<< mName;
 	//Setup all the motors
     mXMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mXMotorSerialNr));
     if(mXMotor)
     {
-    	Log(lInfo) << "X motor is connected";
+    	Log(lInfo)<<"X motor is connected";
 
         //Load Motor Properties
         mXMotor->loadProperties(mIniFile);

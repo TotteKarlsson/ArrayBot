@@ -22,9 +22,15 @@
 #include "abXYZUnitFrame.h"
 #include "abMotorFrame.h"
 #include "TRegistryForm.h"
-using Poco::Timestamp;
+#include "abArrayBot.h"
+#include "mtkIniFileProperties.h"
 
-class APTMotor;
+
+using Poco::Timestamp;
+using mtk::IniFileProperties;
+
+//class APTMotor;
+
 
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
@@ -70,7 +76,6 @@ class TMain : public TRegistryForm
         TButton *MoveBtn;
         TXYZUnitFrame *TXYZUnitFrame2;
         TScrollBox *ScrollBox1;
-        TGroupBox *JoyStickGB;
         TRadioGroup *JoyControlRG;
 	TRadioGroup *JSSpeedsRG;
 	TButton *Button1;
@@ -109,11 +114,12 @@ class TMain : public TRegistryForm
         TThreadMethod               logMsgMethod;
         LogFileReader               mLogFileReader;
         void __fastcall             logMsg();
+        IniFileProperties  			mProperties;
+        Property<int>				mBottomPanelHeight;
 
         IniFile						mIniFile;
 		JoyStick					mJoyStick;
-        XYZUnit						mCoverSlip;
-        XYZUnit						mWhisker;
+        ArrayBot					mAB;
 
 		void __fastcall		        OnException();
 

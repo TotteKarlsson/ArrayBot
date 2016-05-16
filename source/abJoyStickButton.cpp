@@ -42,13 +42,12 @@ void JoyStickButton::setReverse()
 
 void JoyStickButton::down()
 {
+    Log(lDebug3) << "JSButton Down.";
 	if(!mMotor || !mIsEnabled)
     {
         Log(lInfo) << "Motor object is null or JS button is disabled.";
     	return;
     }
-
-    Log(lInfo) << "Motor moving forward.";
 
 	if(mIsForward)
     {
@@ -62,9 +61,11 @@ void JoyStickButton::down()
 
 void JoyStickButton::up()
 {
-	if(!mMotor || !mIsEnabled)
+
+    Log(lDebug3) << "JSButton Up.";
+    if(!mMotor || !mIsEnabled)
     {
-        Log(lInfo) << "Motor is stopping";
+        Log(lInfo) << "Motor object is null or JS button is disabled.";
     	return;
     }
 

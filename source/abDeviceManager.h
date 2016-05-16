@@ -2,7 +2,7 @@
 #define abDeviceManagerH
 #include <string>
 #include <map>
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include "abABObject.h"
 #include "mtkConstants.h"
 #include "mtkStringList.h"

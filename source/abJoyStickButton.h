@@ -1,6 +1,6 @@
 #ifndef abJoyStickButtonH
 #define abJoyStickButtonH
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include "abABObject.h"
 #include <Winapi.Messages.hpp>
 //---------------------------------------------------------------------------

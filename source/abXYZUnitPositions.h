@@ -1,6 +1,6 @@
 #ifndef abXYZUnitPositionsH
 #define abXYZUnitPositionsH
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include "abABObject.h"
 #include <deque>
 #include "abXYZUnitPosition.h"

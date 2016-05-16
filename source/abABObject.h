@@ -1,6 +1,6 @@
 #ifndef abABObjectH
 #define abABObjectH
-#include "CoreExporter.h"
+#include "abExporter.h"
 //---------------------------------------------------------------------------
 
 class AB_CORE ABObject

@@ -1,6 +1,6 @@
 #ifndef abUtilitiesH
 #define abUtilitiesH
-#include "CoreExporter.h"
+#include "abExporter.h"
 #include <vector>
 #include <string>
 #include "mtkStringList.h"

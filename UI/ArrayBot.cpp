@@ -4,6 +4,8 @@
 #include <string>
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
+#include <Vcl.Styles.hpp>
+#include <Vcl.Themes.hpp>
 using namespace mtk;
 using namespace std;
 
@@ -68,6 +70,7 @@ void setupLogging()
 	LogOutput::mShowLogLevel = true;
 	LogOutput::mShowLogTime = false;
 	LogOutput::mUseLogTabs = false;
+	mtk::gLogger.setLogLevel(lInfo);
 	Log(lInfo) << "Logger was setup";
 }
 
