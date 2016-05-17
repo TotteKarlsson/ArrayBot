@@ -104,21 +104,6 @@ double LongTravelStage::getEncoderCounts()
     return 0;
 }
 
-bool LongTravelStage::switchDirection(bool inThread)
-{
-	//The forward/reverse bits don't work so this function is disabled until they do
-
-//	if(isForwarding())
-//    {
-//    	reverse(inThread);
-//    }
-//    else
-//    {
-//    	forward(inThread);
-//    }
-	return false;
-}
-
 HardwareInformation LongTravelStage::getHWInfo()
 {
 	TLI_HardwareInformation hwi;

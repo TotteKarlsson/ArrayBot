@@ -1,12 +1,13 @@
 #pragma hdrstop
 #include "abTCubeDCServo.h"
-#include "Thorlabs.MotionControl.TCube.BrushlessMotor.h"
-//#include "Thorlabs.MotionControl.TCube.DCServo.h"
+//#include "Thorlabs.MotionControl.TCube.BrushlessMotor.h"
+#include "Thorlabs.MotionControl.TCube.DCServo.h"
 //#include "Thorlabs.MotionControl.TDIEngine.h"
 #include "mtkLogger.h"
 #include "abExceptions.h"
 #include <bitset>
 using namespace std;
+
 //---------------------------------------------------------------------------
 TCubeDCServo::TCubeDCServo(int serial)
 : APTMotor(serial)
@@ -15,31 +16,34 @@ TCubeDCServo::TCubeDCServo(int serial)
 }
 
 TCubeDCServo::~TCubeDCServo()
-{}
+{
+    if(isConnected())
+    {
+		disconnect();
+    }
+}
 
 bool TCubeDCServo::connect()
 {
     // load the device settings
     // open the device
-    int res = BMC_Open(toString(mSerial).c_str());
+    int res = CC_Open(toString(mSerial).c_str());
 
-    //Find out what stage is connected
-
-//    mScalingFactors.position = 34304;
-//    mScalingFactors.velocity = 767367.49;
-//	mScalingFactors.acceleration = 261.93;
-
-    mScalingFactors.position = 1919.64;
-    mScalingFactors.velocity = 42941.66;
-	mScalingFactors.acceleration = 14.66;
+    mScalingFactors.position 	 = 409600.0;
+    mScalingFactors.velocity 	 = 21987328.0;
+	mScalingFactors.acceleration = 4506.0;
 
     if(res == 0)
     {
-    	//BMC_LoadSettings(mSerial.c_str());
+    	CC_LoadSettings(mSerial.c_str());
+
+        //Set jog mode to continous
+        setJogMoveMode(jmContinuous);
+
 	    // start the device polling at 200ms intervals
-    	if(!BMC_StartPolling(mSerial.c_str(), 250))
+    	if(!CC_StartPolling(mSerial.c_str(), 200))
         {
-        	Log(lError) <<"Failure in StartPolling function";
+        	Log(lError) <<"Failure in Start Polling function";
         }
         return true;
     }
@@ -52,45 +56,60 @@ bool TCubeDCServo::connect()
 
 bool TCubeDCServo::disconnect()
 {
+    //Shut down message processor
+    APTMotor::disconnect();
+	CC_Close(mSerial.c_str());
     mIsConnected = false;
     return false;
 }
 
+void TCubeDCServo::setPotentiometerVelocity(double v)
+{
+    //Divide the velocity by four and populate the ranges
+    //TODO: Clean this up later.. not sure how the SetPot function
+    //really are intended to work..?
+	WORD 	thDef;
+
+    double velStep = v / 4.;
+	double velocity = velStep;
+
+    int fullRange = 128;
+    int nrOfRanges = 4;
+    int range = 32; //128/4
+
+    int currRange = 1;
+
+    short err = CC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
+    velocity += (velStep);
+    err = CC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
+    velocity += velStep;
+    err = CC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
+    velocity += velStep;
+    err = CC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
+
+//	DWORD	vel;
+//    for(int i = 0; i < 127; i++)
+//    {
+//    	short err = CC_GetPotentiometerParams(mSerial.c_str(), i, &thDef, &vel);
+//        Log(lInfo) <<"Pos: "<<i<<"\t"<<"Def: "<<thDef<<"\tValue: "<<vel / mScalingFactors.velocity;
+//    }
+}
+
 unsigned long TCubeDCServo::getStatusBits()
 {
-	return BMC_GetStatusBits(mSerial.c_str());
+	return CC_GetStatusBits(mSerial.c_str());
 }
 
 double TCubeDCServo::getEncoderCounts()
 {
 	long cnt1, cnt2, cnt3;
-	int err = BMC_GetMotorParams(mSerial.c_str(), &cnt1);
-	if(!err)
-    {
-    	//Fill out scaling factors
-        mScalingFactors.position = 34304;
-        mScalingFactors.velocity = 767367.49;
-		mScalingFactors.acceleration = 261.93;
-    }
     return 0;
-}
-
-bool TCubeDCServo::switchDirection()
-{
-	if(isForwarding())
-    {
-    	reverse();
-    }
-    else
-    {
-    	forward();
-    }
 }
 
 HardwareInformation TCubeDCServo::getHWInfo()
 {
 	TLI_HardwareInformation hwi;
-	int err  = BMC_GetHardwareInfoBlock(mSerial.c_str(), &hwi);
+	int err  = CC_GetHardwareInfoBlock(mSerial.c_str(), &hwi);
     mHWInfo.serialNumber = hwi.serialNumber;
     mHWInfo.modelNumber = hwi.modelNumber;
     mHWInfo.type = hwi.type;
@@ -100,7 +119,7 @@ HardwareInformation TCubeDCServo::getHWInfo()
 bool TCubeDCServo::isHomed()
 {
 	//Query for status bits
-    unsigned long b = BMC_GetStatusBits(mSerial.c_str());
+    unsigned long b = CC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
     return bits.test(10);
 }
@@ -108,7 +127,7 @@ bool TCubeDCServo::isHomed()
 bool TCubeDCServo::isHoming()
 {
 	//Query for status bits
-    unsigned long b = BMC_GetStatusBits(mSerial.c_str());
+    unsigned long b = CC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
     return bits.test(9);
 }
@@ -116,7 +135,7 @@ bool TCubeDCServo::isHoming()
 bool TCubeDCServo::isForwarding()
 {
 	//Query for status bits
-    unsigned long b = BMC_GetStatusBits(mSerial.c_str());
+    unsigned long b = CC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
     return bits.test(5);
 }
@@ -124,7 +143,7 @@ bool TCubeDCServo::isForwarding()
 bool TCubeDCServo::isReversing()
 {
 	//Query for status bits
-    unsigned long b = BMC_GetStatusBits(mSerial.c_str());
+    unsigned long b = CC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
     return bits.test(4);
 }
@@ -132,15 +151,14 @@ bool TCubeDCServo::isReversing()
 bool TCubeDCServo::isActive()
 {
 	//Query for status bits
-    unsigned long b = BMC_GetStatusBits(mSerial.c_str());
-
+    unsigned long b = CC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
     return bits.test(4) || bits.test(5) || bits.test(6) || bits.test(7) ;
 }
 
 bool TCubeDCServo::identify()
 {
-	BMC_Identify(mSerial.c_str());
+	CC_Identify(mSerial.c_str());
     return true;
 }
 
@@ -156,12 +174,12 @@ bool TCubeDCServo::stopPolling()
 
 void TCubeDCServo::home()
 {
-  	if(!BMC_CanHome(mSerial.c_str()))
+  	if(!CC_CanHome(mSerial.c_str()))
     {
     	Log(lError) << "This device cannot be homed";
     }
 
-    int res = BMC_Home(mSerial.c_str());
+    int res = CC_Home(mSerial.c_str());
 
     if(res)
     {
@@ -169,134 +187,96 @@ void TCubeDCServo::home()
     }
 }
 
-void TCubeDCServo::stop()
+void TCubeDCServo::stop(bool inThread)
 {
-//	if(isActive())
+	if(inThread)
     {
-//		int error = BMC_StopProfiled(mSerial.c_str());
-		int error = BMC_StopImmediate(mSerial.c_str());
-
-        if(error != 0)
+		MotorCommand cmd(mcStopHard);
+		post(cmd);
+    }
+    else
+    {
+		int err = CC_StopImmediate(mSerial.c_str());
+        if(err != 0)
         {
-            Log(lError) <<tlError(error);
+            Log(lError) <<tlError(err);
         }
-
-//        while(isActive())
-//        {
-//            //Log(lInfo) << "Waiting ...";
-//        }
     }
 }
 
-void TCubeDCServo::stopProfiled()
+void TCubeDCServo::stopProfiled(bool inThread)
 {
-//	if(isActive())
+    int err = CC_StopProfiled(mSerial.c_str());
+    if(err != 0)
     {
-		int error = BMC_StopProfiled(mSerial.c_str());
-        if(error != 0)
-        {
-            Log(lError) <<tlError(error);
-        }
-
-//        while(isActive())
-//        {
-//            //Log(lInfo) << "Waiting ...";
-//        }
+        Log(lError) <<tlError(err);
     }
 }
 
 double TCubeDCServo::getPosition()
 {
-    return BMC_GetPosition(mSerial.c_str()) / mScalingFactors.position;
+    return CC_GetPosition(mSerial.c_str()) / mScalingFactors.position;
 }
 
 double TCubeDCServo::getVelocity()
 {
-	int a(0);
-  	int v (0);
+	int a(0), v(0);
 
-	int err = BMC_GetVelParams(mSerial.c_str(), &a, &v);
+	int err = CC_GetVelParams(mSerial.c_str(), &a, &v);
 
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
     }
-  	return v/ mScalingFactors.velocity;
+  	return v / mScalingFactors.velocity;
 }
 
-
-bool TCubeDCServo::setMaxVelocity(double vel)
+double TCubeDCServo::getAcceleration()
 {
- 	MOT_VelocityParameters parameters;
-    BMC_GetVelParamsBlock(mSerial.c_str(), &parameters);
+	int a(0), v(0);
 
-    //Check difference
-    if(fabs(vel - parameters.maxVelocity) < 1.0)
+	int err = CC_GetVelParams(mSerial.c_str(), &a, &v);
+
+    if(err != 0)
     {
-    	Log(lInfo) <<"velocity change to small..";
+    	Log(lError) <<tlError(err);
     }
-    else
+  	return (double) a / mScalingFactors.acceleration;
+}
+
+bool TCubeDCServo::setVelocity(double vel)
+{
+ 	MOT_VelocityParameters p;
+    CC_GetVelParamsBlock(mSerial.c_str(), &p);
+
+    p.maxVelocity = vel * mScalingFactors.velocity;
+    Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
+
+    int e = CC_SetVelParamsBlock(mSerial.c_str(), &p);
+
+    if(e)
     {
-    	parameters.maxVelocity = vel * mScalingFactors.velocity;
-    	int e = BMC_SetVelParamsBlock(mSerial.c_str(), &parameters);
-
-        if(e)
-        {
-            Log(lError) <<tlError(e);
-        }
-
-//        if(isForwarding())
-//        {
-//            forward();
-//        }
-//        else if (isReversing())
-//        {
-//            reverse();
-//        }
+        Log(lError) <<tlError(e);
     }
 
-	return false;
-}
-
-bool TCubeDCServo::setMaxVelocityForward(double vel)
-{
-	setMaxVelocity(vel);
-    forward();
-}
-
-bool TCubeDCServo::setMaxVelocityReverse(double vel)
-{
-	setMaxVelocity(vel);
-    reverse();
+	return true;
 }
 
 bool TCubeDCServo::setAcceleration(double a)
 {
  	MOT_VelocityParameters parameters;
-    BMC_GetVelParamsBlock(mSerial.c_str(), &parameters);
+    CC_GetVelParamsBlock(mSerial.c_str(), &parameters);
+
     parameters.acceleration = a * mScalingFactors.acceleration;
-    BMC_SetVelParamsBlock(mSerial.c_str(), &parameters);
+    CC_SetVelParamsBlock(mSerial.c_str(), &parameters);
+	Log(lDebug) << "Setting velocity parameters: "<<parameters.acceleration<<" : "<<parameters.maxVelocity;
 	return false;
 }
 
-double TCubeDCServo::getAcceleration()
+bool TCubeDCServo::setJogMoveMode(JogMoveMode jm)
 {
-	int a(0);
-  	int v (0);
-
-	int error = BMC_GetVelParams(mSerial.c_str(), &a, &v);
-
-    if(error != 0)
-    {
-    	Log(lError) <<tlError(error);
-    }
-  	return a/ mScalingFactors.acceleration;
-}
-
-
-bool TCubeDCServo::setJogMode(JogMoveMode jm, StopMode sm)
-{
-	int err = BMC_SetJogMode(mSerial.c_str(), jm, sm);
+	StopMode sm = getJogStopMode();
+	int err = CC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
     if(err != 0)
     {
     	Log(lError) <<tlError(err);
@@ -305,92 +285,170 @@ bool TCubeDCServo::setJogMode(JogMoveMode jm, StopMode sm)
   	return true;
 }
 
+bool TCubeDCServo::setJogStopMode(StopMode sm)
+{
+	JogMoveMode jm = getJogMoveMode();
+	int err = CC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+        return false;
+    }
+  	return true;
+}
+
+JogMoveMode	TCubeDCServo::getJogMoveMode()
+{
+    MOT_JogModes jm;
+	MOT_StopModes sm;
+	int err = CC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+        return (JogMoveMode) MOT_JogModeUndefined;
+    }
+  	return (JogMoveMode) jm;
+}
+
+StopMode TCubeDCServo::getJogStopMode()
+{
+	MOT_StopModes sm;
+    MOT_JogModes jm;
+	int err = CC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+        return (StopMode) MOT_StopModeUndefined;
+    }
+  	return (StopMode) sm;
+}
+
 double TCubeDCServo::getJogVelocity()
 {
     int a, v;
-    BMC_GetJogVelParams(mSerial.c_str(), &a, &v);
-    return v;
+    int err = CC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+    }
+
+    return v /  mScalingFactors.velocity;
+}
+
+bool TCubeDCServo::setJogVelocity(double newVel)
+{
+    int a, v;
+    CC_GetJogVelParams(mSerial.c_str(), &a, &v);
+
+    int err = CC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
+	Log(lDebug) << "Setting Jog Velocity parameters: "<<a<<" : "<<newVel * mScalingFactors.velocity;
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+    }
+	return true;
+}
+
+bool TCubeDCServo::setJogAcceleration(double newAcc)
+{
+    int a, v;
+    CC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    int err = CC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v);
+
+    if(err != 0)
+    {
+    	Log(lError) <<tlError(err);
+    }
+
+	return true;
 }
 
 double TCubeDCServo::getJogAcceleration()
 {
     int a, v;
-    BMC_GetJogVelParams(mSerial.c_str(), &a, &v);
-    return a;
-}
+    int err = CC_GetJogVelParams(mSerial.c_str(), &a, &v);
 
-void TCubeDCServo::jogForward()
-{
-	int error = BMC_MoveJog(mSerial.c_str(), MOT_Forwards);
-    if(error != 0)
+    if(err != 0)
     {
-    	Log(lError) <<tlError(error);
+    	Log(lError) <<tlError(err);
     }
+
+    return a  / mScalingFactors.acceleration;
 }
 
-void TCubeDCServo::jogReverse()
+void TCubeDCServo::jogForward(bool inThread)
 {
-	int error = BMC_MoveJog(mSerial.c_str(), MOT_Reverse);
-    if(error != 0)
+	if(inThread)
     {
-    	Log(lError) <<tlError(error);
+		MotorCommand cmd(mcJogForward);
+		post(cmd);
     }
-}
-
-bool TCubeDCServo::setJogVelocity(double v)
-{
-	return false;
-}
-
-bool TCubeDCServo::setJogAcceleration(double a)
-{
-	return false;
-}
-
-void TCubeDCServo::forward()
-{
-//	if(isReversing())
-//    {
-//    	Log(lInfo) << "Forwarding requested, motor is in reverse..";
-//    }
-
-//    //Don't send command if already doing what is needed
-//    if(!isForwarding())
+    else
     {
-        int error = BMC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
-        if(error != 0)
+        int err = CC_MoveJog(mSerial.c_str(), MOT_Forwards);
+        if(err != 0)
         {
-            Log(lError) <<tlError(error);
-        }
-    }
-//    else
-//    {
-//    	Log(lWarning) <<"Motor is already forwarding..";
-//    }
-}
-
-void TCubeDCServo::reverse()
-{
-//	if(isForwarding())
-//    {
-//    	Log(lInfo) << "Reversing requested, but motor is forwarding..";
-////		return;
-//    }
-
-    //Don't send command if already doing what is needed
- //   if(!isReversing())
-    {
-        int error = BMC_MoveAtVelocity(mSerial.c_str(), MOT_Reverse);
-        if(error !=0)
-        {
-            Log(lError) <<tlError(error);
+            Log(lError) <<tlError(err);
         }
     }
 }
 
-void TCubeDCServo::moveDistance(double distance)
+void TCubeDCServo::jogReverse(bool inThread)
 {
-// 	Log(lError) <<msg.str();
+	if(inThread)
+    {
+		MotorCommand cmd(mcJogReverse);
+		post(cmd);
+    }
+    else
+    {
+        //Todo: tell thorlabs about the MOT_Reverse flag name
+        int err = CC_MoveJog(mSerial.c_str(), MOT_Reverse);
+        if(err != 0)
+        {
+            Log(lError) <<tlError(err);
+        }
+    }
+}
+
+void TCubeDCServo::forward(bool inThread)
+{
+	//TODO: use inThread logic
+    int err = CC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+    if(err != 0)
+    {
+        Log(lError) <<tlError(err);
+    }
+}
+
+void TCubeDCServo::reverse(bool inThread)
+{
+	//TODO: use inThread logic
+    int err = CC_MoveAtVelocity(mSerial.c_str(), MOT_Reverse);
+    if(err !=0)
+    {
+        Log(lError) <<tlError(err);
+    }
+}
+
+void TCubeDCServo::moveToPosition(double pos, bool inThread)
+{
+	if(inThread)
+    {
+		MotorCommand cmd(mcMoveToPosition, pos);
+		post(cmd);
+    }
+    else
+    {
+    	setVelocity(getJogVelocity());
+    	setAcceleration(getJogAcceleration());
+        int err = CC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
+        if(err != 0)
+        {
+            Log(lError) <<tlError(err);
+            Log(lError) <<"Tried to move to position: "<<pos<<" using the "<<getName()<<" device.";
+        }
+    }
 }
 
 

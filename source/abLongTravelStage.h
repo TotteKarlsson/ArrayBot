@@ -39,8 +39,6 @@ class AB_CORE LongTravelStage : public APTMotor
 		bool	                    	setAcceleration(double a);
         unsigned long	                getStatusBits();
 
-
-		bool							switchDirection(bool inThread = true);
         void 		                    stop(bool inThread = true);
         void 		                    stopProfiled(bool inThread = true);
 

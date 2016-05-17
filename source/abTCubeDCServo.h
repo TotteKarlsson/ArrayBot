@@ -9,6 +9,12 @@ class AB_CORE TCubeDCServo : public APTMotor
         						        TCubeDCServo(int serial);
 		virtual 		                ~TCubeDCServo();
 
+        bool	                        connect();
+        bool	                        disconnect();
+
+				                        ///Control commands
+		void 		                    home();
+
 		HardwareInformation		        getHWInfo();
         double				 			getEncoderCounts();
 
@@ -18,43 +24,45 @@ class AB_CORE TCubeDCServo : public APTMotor
 		bool					        isHomed();
         bool		                	isForwarding();
         bool		                	isReversing();
-        bool	                        connect();
-        bool	                        disconnect();
 
         bool	                        startPolling();
         bool	                        stopPolling();
 
 				                        //!General commands
+        bool		                    identify();
         double	                        getPosition();
         double	        		        getVelocity();
-		bool	                    	setMaxVelocity(double v);
-		bool	                    	setMaxVelocityForward(double v);
-		bool	                    	setMaxVelocityReverse(double v);
+
+		bool	                    	setVelocity(double v);
 
         double          		        getAcceleration();
 		bool	                    	setAcceleration(double a);
         unsigned long	                getStatusBits();
 
-				                        ///Control commands
-		void 		                    home();
-        void 		                    stop();
-        void 		                    stopProfiled();
+        void 		                    stop(bool inThread = true);
+        void 		                    stopProfiled(bool inThread = true);
 
-                                        ///Jogging
-        bool	                		setJogMode(JogMoveMode mode = jmSingleStep, StopMode stopMode = smProfiled);
+										///Jogging
+        bool	                		setJogVelocity(double v);
+        bool	                		setMaxJogVelocity(double v);
+        bool	                		setJogAcceleration(double a);
+
         double	                		getJogVelocity();
         double	                		getJogAcceleration();
 
-        void		                    jogForward();
-        void		                    jogReverse();
-        bool	                		setJogVelocity(double v);
-        bool	                		setJogAcceleration(double a);
-        void		                    forward();
-        void		                    reverse();
-        void		                    moveDistance(double distance);
+        void		                    jogForward(bool inThread = true);
+        void		                    jogReverse(bool inThread = true);
 
-        bool		                    identify();
+        bool	                		setJogMoveMode(JogMoveMode mode);
+        bool	                		setJogStopMode(StopMode mode);
 
+        JogMoveMode	                	getJogMoveMode();
+  		StopMode 						getJogStopMode();
+
+        void		                    forward(bool inThread = true);
+        void		                    reverse(bool inThread = true);
+        void		                	moveToPosition(double position, bool inThread = true);
+        void							setPotentiometerVelocity(double v);
     protected:
 
 };

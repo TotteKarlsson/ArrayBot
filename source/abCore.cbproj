@@ -165,6 +165,9 @@
             <DependentOn>abMoveSequencer.h</DependentOn>
             <BuildOrder>21</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abTCubeDCServo.cpp">
+            <BuildOrder>23</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abTCubeStepperMotor.cpp">
             <BuildOrder>8</BuildOrder>
         </CppCompile>
