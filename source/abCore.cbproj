@@ -47,7 +47,7 @@
         <ProjectType>CppDynamicLibrary</ProjectType>
         <Multithreaded>true</Multithreaded>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(IncludePath)</IncludePath>
+        <IncludePath>P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
@@ -116,6 +116,10 @@
         <CppCompile Include="abArrayBot.cpp">
             <DependentOn>abArrayBot.h</DependentOn>
             <BuildOrder>20</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abCombinedMove.cpp">
+            <DependentOn>abCombinedMove.h</DependentOn>
+            <BuildOrder>24</BuildOrder>
         </CppCompile>
         <CppCompile Include="abCore.cpp">
             <BuildOrder>1</BuildOrder>

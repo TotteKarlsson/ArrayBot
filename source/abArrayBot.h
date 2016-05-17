@@ -5,12 +5,8 @@
 #include "abXYZUnit.h"
 #include "abJoyStick.h"
 #include "abCoverSlipAngleController.h"
+#include "abCombinedMove.h"
 //---------------------------------------------------------------------------
-
-struct CombinedMoveParameters
-{
-
-};
 
 class AB_CORE ArrayBot : public ABObject
 {
@@ -34,11 +30,12 @@ class AB_CORE ArrayBot : public ABObject
         bool						isActive();
         bool						isShuttingDown();
 		CoverSlipAngleController&	getAngleController();
+    	CombinedMove&				getCombinedMove(){return mCSLift;}
 
     private:
         IniFile&					mIniFile;
         bool						mIsShuttingDown;
-    	CombinedMoveParameters		mCSLift;
+    	CombinedMove				mCSLift;
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
         CoverSlipAngleController	mCSAngleController;

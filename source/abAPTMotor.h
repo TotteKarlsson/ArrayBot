@@ -83,7 +83,6 @@ class AB_CORE APTMotor : public APTDevice
         virtual void						setPotentiometerVelocity(double v) = 0;
 
     protected:
-
     	Timer				                mStatusTimer;
         unsigned long			            mStatusBits;
         MotorScalingFactors		            mScalingFactors;

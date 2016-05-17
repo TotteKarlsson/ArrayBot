@@ -30,7 +30,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TRegistryForm("Test", "MainForm", Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-    mIniFile("ArrayBot.ini"),
+    mIniFile("ArrayBot.ini", true),
 	mAB(mIniFile),
     mBottomPanelHeight(100),
     mBottomPanelVisible(true),
@@ -38,8 +38,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 {
 	TMemoLogger::mMemoIsEnabled = false;
 
-    mIniFile.load();
-
+	//Setup UI properties
     mProperties.setSection("UI");
     mProperties.add((BaseProperty*) &mBottomPanelHeight.setup("BOTTOM_PANEL_HEIGHT", 			100, true));
     mProperties.add((BaseProperty*) &mTopPanelHeight.setup("TOP_PANEL_HEIGHT", 					360, true));
@@ -71,6 +70,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	JSSpeedsRG->ItemIndex = 1;
     JSSpeedsRG->OnClick(NULL);
     mCSAngleE->SetNumber(mAB.getAngleController().getAngle() - 225);
+
+    //Assign editbox references to Lifting parameters
+    mMoveAngleE->SetNumberRef(mAB.getCombinedMove().mAngle.getReference());
 }
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
@@ -236,6 +238,8 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 			mMoveVelHorizE->SetNumber(0.0);
         }
     }
+
+    mMoveAngleE->Update();
 }
 
 void __fastcall TMain::MoveBtnClick(TObject *Sender)
@@ -305,10 +309,11 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
         return;
     }
 
+	//Initiate the move
     yCS->moveToPosition(newCSYPos);
-    zCS->moveToPosition(newCSZPos);
-
     yW->moveToPosition(newWYPos);
+
+    zCS->moveToPosition(newCSZPos);
     zW->moveToPosition(newWZPos);
 }
 
@@ -378,24 +383,6 @@ void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState 
     }
 
     mAB.getAngleController().setAngle(mCSAngleE->GetValue() + 225.0);
-}
-
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormShow(TObject *Sender)
-{
-    TopPanel->Height = mTopPanelHeight;
-    BottomPanel->Height = mBottomPanelHeight;
-
-	if(!mBottomPanelVisible)
-    {
-	    BottomPanel->Visible = false;
-		this->Height = this->Height - BottomPanel->Height;
-    }
-
-	this->Height = this->Height - 1;
-	this->Height = this->Height + 1;
-
 }
 
 

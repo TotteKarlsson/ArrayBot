@@ -90,6 +90,21 @@ void __fastcall TMain::ApplicationEvents1Exception(TObject *Sender, Exception *E
 	Log(lInfo) << "Application Exception...."<<stdstr(E->Message);
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::FormShow(TObject *Sender)
+{
+    TopPanel->Height = mTopPanelHeight;
+    BottomPanel->Height = mBottomPanelHeight;
+
+	if(!mBottomPanelVisible)
+    {
+	    BottomPanel->Visible = false;
+		this->Height = this->Height - BottomPanel->Height;
+    }
+
+	this->Height = this->Height - 1;
+	this->Height = this->Height + 1;
+}
 
 void __fastcall TMain::BitBtn3Click(TObject *Sender)
 {

@@ -9,8 +9,11 @@ mCoverSlip("CoverSlip Unit", mIniFile),
 mWhisker("Whisker Unit", mIniFile),
 mJoyStick(NULL),
 mCSAngleController("CS Angle Controller", mIniFile),
+mCSLift("COVERSLIP_LIFT"),
 mIsShuttingDown(false)
-{}
+{
+	mCSLift.readProperties(mIniFile);
+}
 
 ArrayBot::~ArrayBot()
 {}
@@ -27,9 +30,9 @@ bool ArrayBot::isShuttingDown()
 
 void ArrayBot::initialize()
 {
-	mCoverSlip.initialize();
-	mWhisker.initialize();
-    mCSAngleController.initialize();
+//	mCoverSlip.initialize();
+//	mWhisker.initialize();
+//    mCSAngleController.initialize();
 }
 
 CoverSlipAngleController& ArrayBot::getAngleController()
