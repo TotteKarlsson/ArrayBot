@@ -9,16 +9,27 @@ CoverSlipAngleController::CoverSlipAngleController(const string& name, IniFile& 
 :
 mMotorSerial(-1),
 mName(name),
+mAngle(0),
 mIniFile(iniFile),
 mAngleMotor(NULL)
 {
     mProperties.setSection(name);
     mProperties.add((BaseProperty*) &mMotorSerial.setup("CoverSlipAngleMotorSerial", -1, true));
+    mProperties.add((BaseProperty*) &mAngle.setup("Angle", 225, true));
     mProperties.setIniFile(&mIniFile);
 }
 
 CoverSlipAngleController::~CoverSlipAngleController()
 {}
+
+double CoverSlipAngleController::getAngle()
+{
+	if(mAngleMotor)
+    {
+		mAngle = mAngleMotor->getPosition();
+    }
+	return mAngle;
+}
 
 bool CoverSlipAngleController::isActive()
 {
@@ -81,6 +92,11 @@ string CoverSlipAngleController::getName() const
 
 void CoverSlipAngleController::setAngle(double a)
 {
+    mAngle = a;
+    if(mAngleMotor)
+    {
+        mAngleMotor->moveToPosition(a);
+    }
 
 }
 

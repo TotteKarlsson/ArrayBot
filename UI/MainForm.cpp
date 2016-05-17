@@ -32,7 +32,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
     mIniFile("ArrayBot.ini"),
 	mAB(mIniFile),
-    mBottomPanelHeight(100)
+    mBottomPanelHeight(100),
+    mTopPanelHeight(360)
 {
 	TMemoLogger::mMemoIsEnabled = false;
 
@@ -40,7 +41,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 
     mProperties.setSection("UI");
     mProperties.add((BaseProperty*) &mBottomPanelHeight.setup("BOTTOM_PANEL_HEIGHT", 			100, true));
-
+    mProperties.add((BaseProperty*) &mTopPanelHeight.setup("TOP_PANEL_HEIGHT", 					360, true));
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
 
@@ -62,12 +63,15 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	initBotAExecute(NULL);
 
     //Select joystick control for CoverSlip Unit
-	//	JoyControlRG->ItemIndex = 0;
-	//    JoyControlRG->OnClick(NULL);
+	//JoyControlRG->ItemIndex = 0;
+	//JoyControlRG->OnClick(NULL);
 
     //Select medium speed on start
 	JSSpeedsRG->ItemIndex = 1;
     JSSpeedsRG->OnClick(NULL);
+    mCSAngleE->SetNumber(mAB.getAngleController().getAngle() - 225);
+
+    TopPanel->Height = mTopPanelHeight;
     BottomPanel->Height = mBottomPanelHeight;
 }
 
@@ -355,6 +359,18 @@ void __fastcall TMain::Button3Click(TObject *Sender)
 void __fastcall TMain::stowBtnClick(TObject *Sender)
 {
 	mAB.stow();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	if(Key != vkReturn)
+    {
+    	return;
+    }
+
+    mAB.getAngleController().setAngle(mCSAngleE->GetValue() + 225.0);
+
 }
 
 

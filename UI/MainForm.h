@@ -96,6 +96,8 @@ class TMain : public TRegistryForm
 	TButton *Button4;
 	TTabSheet *TabSheet3;
 	TMotorFrame *TMotorFrame1;
+	TGroupBox *csaGB;
+	mtkFloatLabeledEdit *mCSAngleE;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -115,6 +117,8 @@ class TMain : public TRegistryForm
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall stowBtnClick(TObject *Sender);
+	void __fastcall mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
     private:	// User declarations
         TThreadMethod               logMsgMethod;
@@ -122,9 +126,9 @@ class TMain : public TRegistryForm
         void __fastcall             logMsg();
         IniFileProperties  			mProperties;
         Property<int>				mBottomPanelHeight;
+        Property<int>				mTopPanelHeight;
 
         IniFile						mIniFile;
-//		JoyStick					mJoyStick;
         ArrayBot					mAB;
 
 		void __fastcall		        OnException();

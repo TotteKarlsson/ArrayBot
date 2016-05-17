@@ -86,7 +86,7 @@ void TCubeDCServo::setPotentiometerVelocity(double v)
 //    err = CC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
 //    velocity += velStep;
 //    err = CC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
-
+//
 //	DWORD	vel;
 //    for(int i = 0; i < 127; i++)
 //    {

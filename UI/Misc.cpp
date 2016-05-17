@@ -74,6 +74,7 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 void __fastcall TMain::FormClose(TObject *Sender, TCloseAction &Action)
 {
 	Log(lInfo) << "In FormClose";
+    mTopPanelHeight = TopPanel->Height;
     mBottomPanelHeight = BottomPanel->Height;
 }
 
