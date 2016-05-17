@@ -31,6 +31,27 @@ mIniFile(iniFile)
 XYZUnit::~XYZUnit()
 {}
 
+bool XYZUnit::isActive()
+{
+	bool xa(false), ya(false), za(false);
+
+	if(mXMotor)
+    {
+        xa = mXMotor->isActive();
+    }
+
+	if(mYMotor)
+    {
+        ya = mYMotor->isActive();
+    }
+	if(mZMotor)
+    {
+        za = mZMotor->isActive();
+    }
+
+    return xa || ya || za;
+}
+
 bool XYZUnit::initialize()
 {
     mProperties.read();
@@ -83,6 +104,9 @@ bool XYZUnit::initialize()
 void XYZUnit::shutDown()
 {
 	mDeviceManager.disConnectAll();
+
+    //Now motors are NULL.. make them smart pointers
+    mXMotor = mYMotor = mZMotor = NULL;
 
 	//Save Properties
 	mProperties.write();

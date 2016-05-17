@@ -22,6 +22,7 @@ class AB_CORE CoverSlipAngleController : public ABObject
      							~CoverSlipAngleController();
 
 		bool				    initialize();
+		bool 					isActive();
 		void 					shutDown();
 		string					getName() const;
         void					setAngle(double a);
@@ -32,7 +33,7 @@ class AB_CORE CoverSlipAngleController : public ABObject
 
     private:
     	APTMotor*				mAngleMotor;
-        IniFile				    mIniFile;
+        IniFile&			    mIniFile;
         IniFileProperties	    mProperties;
 };
 

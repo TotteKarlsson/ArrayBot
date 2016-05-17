@@ -21,6 +21,8 @@ class AB_CORE XYZUnit : public ABObject
 	public:
     					        XYZUnit(const string& name, IniFile& iniFile);
     					        ~XYZUnit();
+		bool					isActive();
+
 		void					home();
 		void					stow();
 

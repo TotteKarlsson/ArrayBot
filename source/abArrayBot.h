@@ -31,10 +31,12 @@ class AB_CORE ArrayBot : public ABObject
         void						initWorkingPosition();
         void						stow();
         void						home();
-
+        bool						isActive();
+        bool						isShuttingDown();
 
     private:
         IniFile&					mIniFile;
+        bool						mIsShuttingDown;
     	CombinedMoveParameters		mCSLift;
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;

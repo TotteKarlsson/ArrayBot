@@ -19,6 +19,11 @@ mIniFile(iniFile)
 CoverSlipAngleController::~CoverSlipAngleController()
 {}
 
+bool CoverSlipAngleController::isActive()
+{
+	return (mAngleMotor) ? mAngleMotor->isActive() : false;
+}
+
 bool CoverSlipAngleController::initialize()
 {
 	mDeviceManager.reBuildDeviceList();
@@ -46,6 +51,9 @@ bool CoverSlipAngleController::initialize()
 void CoverSlipAngleController::shutDown()
 {
 	mDeviceManager.disConnectAll();
+
+    //Now motors are NULL.. make them smart pointers
+    mAngleMotor = NULL;
 
 	//Save Properties
 	mProperties.write();

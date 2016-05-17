@@ -205,10 +205,10 @@ APTDevice* DeviceManager::connectDevice(int serial)
 
     switch(deviceInfo.typeID)
     {
-//        case didTCubeDCServo:
-//            Log(lInfo) << "Creating a "<<toString(didTCubeDCServo)<<" device";
-//            device = new TCubeDCServo(serial);
-//        break;
+        case didTCubeDCServo:
+            Log(lInfo) << "Creating a "<<toString(didTCubeDCServo)<<" device";
+            device = new TCubeDCServo(serial);
+        break;
 
         case didTCubeStepperMotor:
             Log(lDebug3) << "Creating a "<<toString(didTCubeStepperMotor)<<" device";

@@ -8,13 +8,23 @@ mIniFile(ini),
 mCoverSlip("CoverSlip Unit", mIniFile),
 mWhisker("Whisker Unit", mIniFile),
 mJoyStick(NULL),
-mCSAngleController("CS Angle Controller", mIniFile)
+mCSAngleController("CS Angle Controller", mIniFile),
+mIsShuttingDown(false)
 {
 
 }
 
 ArrayBot::~ArrayBot()
+{}
+
+bool ArrayBot::isActive()
 {
+	return mCoverSlip.isActive() || mWhisker.isActive() || mCSAngleController.isActive();
+}
+
+bool ArrayBot::isShuttingDown()
+{
+	return mIsShuttingDown;
 }
 
 void ArrayBot::initialize()
@@ -27,9 +37,12 @@ void ArrayBot::initialize()
 //Todo: setup mechanism to check if the units were shutdown properly
 bool ArrayBot::shutDown()
 {
+	mIsShuttingDown = true;
+    getJoyStick().disable();
+	mCSAngleController.shutDown();
 	mCoverSlip.shutDown();
 	mWhisker.shutDown();
-	mCSAngleController.shutDown();
+
     return true;
 }
 
