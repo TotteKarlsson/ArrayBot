@@ -33,6 +33,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     mIniFile("ArrayBot.ini"),
 	mAB(mIniFile),
     mBottomPanelHeight(100),
+    mBottomPanelVisible(true),
     mTopPanelHeight(360)
 {
 	TMemoLogger::mMemoIsEnabled = false;
@@ -42,9 +43,9 @@ __fastcall TMain::TMain(TComponent* Owner)
     mProperties.setSection("UI");
     mProperties.add((BaseProperty*) &mBottomPanelHeight.setup("BOTTOM_PANEL_HEIGHT", 			100, true));
     mProperties.add((BaseProperty*) &mTopPanelHeight.setup("TOP_PANEL_HEIGHT", 					360, true));
+    mProperties.add((BaseProperty*) &mBottomPanelVisible.setup("BOTTOM_PANEL_VISIBLE",			true, true));
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
-
     mAB.assignWindowHandle((int) Handle);
 }
 
@@ -70,9 +71,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	JSSpeedsRG->ItemIndex = 1;
     JSSpeedsRG->OnClick(NULL);
     mCSAngleE->SetNumber(mAB.getAngleController().getAngle() - 225);
-
-    TopPanel->Height = mTopPanelHeight;
-    BottomPanel->Height = mBottomPanelHeight;
 }
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
@@ -380,6 +378,23 @@ void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState 
     }
 
     mAB.getAngleController().setAngle(mCSAngleE->GetValue() + 225.0);
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::FormShow(TObject *Sender)
+{
+    TopPanel->Height = mTopPanelHeight;
+    BottomPanel->Height = mBottomPanelHeight;
+
+	if(!mBottomPanelVisible)
+    {
+	    BottomPanel->Visible = false;
+		this->Height = this->Height - BottomPanel->Height;
+    }
+
+	this->Height = this->Height - 1;
+	this->Height = this->Height + 1;
 
 }
 

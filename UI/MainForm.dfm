@@ -1,9 +1,10 @@
 object Main: TMain
   Left = 0
   Top = 0
+  BorderStyle = bsToolWindow
   Caption = 'ArrayBot Version 0.1'
-  ClientHeight = 549
-  ClientWidth = 667
+  ClientHeight = 540
+  ClientWidth = 799
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,12 +17,13 @@ object Main: TMain
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 384
-    Width = 667
+    Top = 375
+    Width = 799
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -29,65 +31,19 @@ object Main: TMain
     ExplicitTop = 437
     ExplicitWidth = 740
   end
-  object ToolBar1: TToolBar
-    Left = 0
-    Top = 0
-    Width = 667
-    Height = 36
-    ButtonHeight = 30
-    ButtonWidth = 13
-    Caption = 'ToolBar1'
-    List = True
-    AllowTextButtons = True
-    TabOrder = 0
-    object InitCloseBtn: TBitBtn
-      Left = 0
-      Top = 0
-      Width = 96
-      Height = 30
-      Action = initBotA
-      Caption = 'Initialize'
-      TabOrder = 0
-    end
-    object BitBtn2: TBitBtn
-      Left = 96
-      Top = 0
-      Width = 105
-      Height = 30
-      Action = checkForDevices
-      Caption = 'Devices Check'
-      TabOrder = 1
-    end
-    object Button7: TButton
-      Left = 201
-      Top = 0
-      Width = 80
-      Height = 30
-      Action = stopAllA
-      TabOrder = 2
-    end
-    object Button2: TButton
-      Left = 281
-      Top = 0
-      Width = 75
-      Height = 30
-      Caption = 'Toggle Log'
-      TabOrder = 3
-      OnClick = Button2Click
-    end
-  end
   object BottomPanel: TPanel
     Left = 0
-    Top = 387
-    Width = 667
+    Top = 378
+    Width = 799
     Height = 162
     Align = alBottom
-    TabOrder = 1
+    TabOrder = 0
     ExplicitTop = 404
+    ExplicitWidth = 667
     object infoMemo: TMemo
       Left = 1
       Top = 34
-      Width = 665
+      Width = 797
       Height = 127
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
@@ -99,16 +55,18 @@ object Main: TMain
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
+      ExplicitWidth = 665
     end
     object ToolBar2: TToolBar
       Left = 1
       Top = 1
-      Width = 665
+      Width = 797
       Height = 33
       AutoSize = True
       ButtonHeight = 33
       Caption = 'ToolBar2'
       TabOrder = 1
+      ExplicitWidth = 665
       object BitBtn3: TBitBtn
         Left = 0
         Top = 0
@@ -122,24 +80,29 @@ object Main: TMain
   end
   object TopPanel: TPanel
     Left = 0
-    Top = 36
-    Width = 667
-    Height = 348
+    Top = 0
+    Width = 684
+    Height = 375
     Align = alClient
     Constraints.MinHeight = 348
-    TabOrder = 2
+    Constraints.MinWidth = 670
+    TabOrder = 1
+    ExplicitTop = 36
+    ExplicitWidth = 667
     ExplicitHeight = 365
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 665
-      Height = 346
+      Width = 682
+      Height = 373
       ActivePage = TabSheet4
       Align = alClient
       TabOrder = 0
-      ExplicitHeight = 363
+      ExplicitWidth = 665
+      ExplicitHeight = 346
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitWidth = 657
         ExplicitHeight = 335
         object GroupBox6: TGroupBox
           Left = 365
@@ -183,10 +146,10 @@ object Main: TMain
           end
         end
         object Button1: TButton
-          Left = 520
+          Left = 365
           Top = 191
-          Width = 129
-          Height = 98
+          Width = 284
+          Height = 104
           Action = stopAllA
           Caption = 'Abort'
           Font.Charset = DEFAULT_CHARSET
@@ -241,8 +204,8 @@ object Main: TMain
         end
         object csaGB: TGroupBox
           Left = 3
-          Top = 206
-          Width = 193
+          Top = 191
+          Width = 342
           Height = 104
           Caption = 'CoverSlip Angle'
           Font.Charset = DEFAULT_CHARSET
@@ -274,19 +237,21 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
+        ExplicitWidth = 657
         ExplicitHeight = 335
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
-          Width = 657
-          Height = 318
+          Width = 674
+          Height = 345
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 657
           ExplicitHeight = 335
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
-            Width = 636
+            Width = 653
             Height = 348
             Align = alTop
             TabOrder = 0
@@ -294,16 +259,16 @@ object Main: TMain
             ExplicitWidth = 636
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
-              Width = 636
+              Width = 653
               Height = 348
               ExplicitWidth = 636
               ExplicitHeight = 348
               inherited TopPanel: TPanel
-                Width = 632
+                Width = 649
                 ExplicitWidth = 632
               end
               inherited ScrollBox1: TScrollBox
-                Width = 632
+                Width = 649
                 Height = 305
                 ExplicitWidth = 632
                 ExplicitHeight = 305
@@ -313,21 +278,21 @@ object Main: TMain
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
             Top = 0
-            Width = 636
+            Width = 653
             Height = 351
             Align = alTop
             TabOrder = 1
             ExplicitWidth = 636
             inherited mainGB: TGroupBox
-              Width = 636
+              Width = 653
               ExplicitWidth = 636
               ExplicitHeight = 351
               inherited TopPanel: TPanel
-                Width = 632
+                Width = 649
                 ExplicitWidth = 632
               end
               inherited ScrollBox1: TScrollBox
-                Width = 632
+                Width = 649
                 ExplicitWidth = 632
                 ExplicitHeight = 308
               end
@@ -335,9 +300,55 @@ object Main: TMain
           end
         end
       end
+      object TabSheet3: TTabSheet
+        Caption = 'CS Angle Motor'
+        ImageIndex = 3
+        ExplicitWidth = 657
+        ExplicitHeight = 335
+        inline TMotorFrame1: TMotorFrame
+          Left = 0
+          Top = 0
+          Width = 293
+          Height = 292
+          TabOrder = 0
+          inherited MotorGB: TGroupBox
+            Width = 293
+            Height = 292
+            Align = alClient
+            Constraints.MaxHeight = 292
+            Constraints.MaxWidth = 293
+            ExplicitWidth = 293
+            ExplicitHeight = 292
+            inherited Button4: TButton [4]
+            end
+            inherited JoggingGB: TGroupBox [5]
+              Top = 116
+              Width = 289
+              ExplicitTop = 116
+              ExplicitWidth = 289
+            end
+            inherited mMotorPositionE: mtkFloatLabeledEdit [6]
+              Left = 173
+              EditLabel.ExplicitLeft = 173
+              EditLabel.ExplicitTop = 13
+              EditLabel.ExplicitWidth = 64
+              ExplicitLeft = 173
+            end
+            inherited StatusGB: TGroupBox [7]
+              Top = 208
+              Width = 289
+              ExplicitTop = 208
+              ExplicitWidth = 289
+            end
+            inherited Button1: TButton [8]
+            end
+          end
+        end
+      end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        ExplicitWidth = 657
         ExplicitHeight = 335
         object JoyStickGB2: TGroupBox
           Left = 11
@@ -476,50 +487,79 @@ object Main: TMain
           OnClick = stowBtnClick
         end
       end
-      object TabSheet3: TTabSheet
-        Caption = 'TabSheet3'
-        ImageIndex = 3
-        ExplicitHeight = 335
-        inline TMotorFrame1: TMotorFrame
-          Left = 0
-          Top = 0
-          Width = 293
-          Height = 292
-          TabOrder = 0
-          inherited MotorGB: TGroupBox
-            Width = 293
-            Height = 292
-            Align = alClient
-            Constraints.MaxHeight = 292
-            Constraints.MaxWidth = 293
-            ExplicitWidth = 293
-            ExplicitHeight = 292
-            inherited Button4: TButton [4]
-            end
-            inherited JoggingGB: TGroupBox [5]
-              Top = 116
-              Width = 289
-              ExplicitTop = 116
-              ExplicitWidth = 289
-            end
-            inherited mMotorPositionE: mtkFloatLabeledEdit [6]
-              Left = 173
-              EditLabel.ExplicitLeft = 173
-              EditLabel.ExplicitTop = 13
-              EditLabel.ExplicitWidth = 64
-              ExplicitLeft = 173
-            end
-            inherited StatusGB: TGroupBox [7]
-              Top = 208
-              Width = 289
-              ExplicitTop = 208
-              ExplicitWidth = 289
-            end
-            inherited Button1: TButton [8]
-            end
-          end
-        end
-      end
+    end
+  end
+  object Btnpanel: TPanel
+    Left = 684
+    Top = 0
+    Width = 115
+    Height = 375
+    Align = alRight
+    TabOrder = 2
+    ExplicitLeft = 552
+    ExplicitHeight = 447
+    object BitBtn2: TBitBtn
+      Left = 1
+      Top = 61
+      Width = 113
+      Height = 60
+      Action = checkForDevices
+      Align = alTop
+      BiDiMode = bdLeftToRight
+      Caption = 'Devices Check'
+      ParentBiDiMode = False
+      TabOrder = 0
+      ExplicitTop = 181
+      ExplicitWidth = 183
+    end
+    object Button2: TButton
+      Left = 1
+      Top = 121
+      Width = 113
+      Height = 60
+      Align = alTop
+      BiDiMode = bdLeftToRight
+      Caption = 'Toggle Log'
+      ParentBiDiMode = False
+      TabOrder = 1
+      OnClick = Button2Click
+      ExplicitTop = 247
+    end
+    object Button7: TButton
+      Left = 1
+      Top = 252
+      Width = 113
+      Height = 60
+      Action = stopAllA
+      Align = alBottom
+      BiDiMode = bdLeftToRight
+      ParentBiDiMode = False
+      TabOrder = 2
+      ExplicitLeft = 6
+      ExplicitTop = 234
+    end
+    object InitCloseBtn: TBitBtn
+      Left = 1
+      Top = 1
+      Width = 113
+      Height = 60
+      Action = initBotA
+      Align = alTop
+      BiDiMode = bdLeftToRight
+      Caption = 'Initialize'
+      ParentBiDiMode = False
+      TabOrder = 3
+      ExplicitWidth = 183
+    end
+    object Button5: TButton
+      Left = 1
+      Top = 312
+      Width = 113
+      Height = 62
+      Action = FileExit1
+      Align = alBottom
+      TabOrder = 4
+      ExplicitTop = 384
     end
   end
   object ActionList1: TActionList
@@ -561,6 +601,11 @@ object Main: TMain
     object ShutDownA: TAction
       Caption = 'ShutDown'
       OnExecute = ShutDownAExecute
+    end
+    object FileExit1: TFileExit
+      Caption = 'E&xit'
+      Hint = 'Exit|Quits the application'
+      ImageIndex = 43
     end
   end
   object ShutDownTimer: TTimer

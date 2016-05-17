@@ -26,6 +26,7 @@
 #include "mtkIniFileProperties.h"
 
 #include <mmsystem.h>
+#include <Vcl.StdActns.hpp>
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
@@ -37,7 +38,6 @@ class TMain : public TRegistryForm
 {
     __published:	// IDE-managed Components
         TMemo *infoMemo;
-        TToolBar *ToolBar1;
 		TBitBtn *InitCloseBtn;
         TActionList *ActionList1;
         TAction *checkForDevices;
@@ -92,6 +92,9 @@ class TMain : public TRegistryForm
 	TMotorFrame *TMotorFrame1;
 	TGroupBox *csaGB;
 	mtkFloatLabeledEdit *mCSAngleE;
+	TPanel *Btnpanel;
+	TButton *Button5;
+	TFileExit *FileExit1;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -112,6 +115,7 @@ class TMain : public TRegistryForm
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall stowBtnClick(TObject *Sender);
 	void __fastcall mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall FormShow(TObject *Sender);
 
 
     private:	// User declarations
@@ -120,7 +124,9 @@ class TMain : public TRegistryForm
         void __fastcall             logMsg();
         IniFileProperties  			mProperties;
         Property<int>				mBottomPanelHeight;
+        Property<bool>				mBottomPanelVisible;
         Property<int>				mTopPanelHeight;
+
 
         IniFile						mIniFile;
         ArrayBot					mAB;

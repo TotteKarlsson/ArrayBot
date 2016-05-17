@@ -32,6 +32,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         setupLogging();
         Log(lInfo) << "The Logfile was opened..";
 
+		TStyleManager::TrySetStyle("Luna");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->CreateForm(__classid(TForm2), &Form2);
 		Application->Run();
