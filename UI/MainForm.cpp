@@ -346,7 +346,17 @@ void __fastcall TMain::JSSpeedsRGClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::Button2Click(TObject *Sender)
 {
-	BottomPanel->Visible = !BottomPanel->Visible;
+    if(BottomPanel->Visible)
+    {
+		BottomPanel->Visible = false;
+		this->Height = this->Height - BottomPanel->Height;
+    }
+    else
+    {
+		BottomPanel->Visible = true;
+        this->Height = BottomPanel->Height + TopPanel->Height;
+        BottomPanel->Top = this->Height;
+    }
 }
 
 //---------------------------------------------------------------------------

@@ -58,12 +58,6 @@ class TMain : public TRegistryForm
         TToolBar *ToolBar2;
         TBitBtn *BitBtn3;
         TPanel *TopPanel;
-        TLabel *Label4;
-        TLabel *Label6;
-        TLabel *Label7;
-        TLabel *Label8;
-        TLabel *Label11;
-        TLabel *Label12;
         TSplitter *Splitter1;
         TPageControl *PageControl1;
         TTabSheet *TabSheet1;

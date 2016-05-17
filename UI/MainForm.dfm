@@ -2,7 +2,7 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot Version 0.1'
-  ClientHeight = 566
+  ClientHeight = 549
   ClientWidth = 667
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,51 +18,9 @@ object Main: TMain
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
-  object Label4: TLabel
-    Left = 120
-    Top = 221
-    Width = 18
-    Height = 13
-    Caption = 'N/A'
-  end
-  object Label6: TLabel
-    Left = 120
-    Top = 202
-    Width = 18
-    Height = 13
-    Caption = 'N/A'
-  end
-  object Label7: TLabel
-    Left = 40
-    Top = 369
-    Width = 81
-    Height = 13
-    Caption = 'JoystickZPosition'
-  end
-  object Label8: TLabel
-    Left = 40
-    Top = 388
-    Width = 101
-    Height = 13
-    Caption = 'JoystickAVGZPosition'
-  end
-  object Label11: TLabel
-    Left = 48
-    Top = 377
-    Width = 81
-    Height = 13
-    Caption = 'JoystickZPosition'
-  end
-  object Label12: TLabel
-    Left = 48
-    Top = 396
-    Width = 101
-    Height = 13
-    Caption = 'JoystickAVGZPosition'
-  end
   object Splitter1: TSplitter
     Left = 0
-    Top = 401
+    Top = 384
     Width = 667
     Height = 3
     Cursor = crVSplit
@@ -120,11 +78,12 @@ object Main: TMain
   end
   object BottomPanel: TPanel
     Left = 0
-    Top = 404
+    Top = 387
     Width = 667
     Height = 162
     Align = alBottom
     TabOrder = 1
+    ExplicitTop = 404
     object infoMemo: TMemo
       Left = 1
       Top = 34
@@ -165,19 +124,23 @@ object Main: TMain
     Left = 0
     Top = 36
     Width = 667
-    Height = 365
+    Height = 348
     Align = alClient
+    Constraints.MinHeight = 348
     TabOrder = 2
+    ExplicitHeight = 365
     object PageControl1: TPageControl
       Left = 1
       Top = 1
       Width = 665
-      Height = 363
+      Height = 346
       ActivePage = TabSheet4
       Align = alClient
       TabOrder = 0
+      ExplicitHeight = 363
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitHeight = 335
         object GroupBox6: TGroupBox
           Left = 365
           Top = 19
@@ -311,13 +274,15 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
+        ExplicitHeight = 335
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
           Width = 657
-          Height = 335
+          Height = 318
           Align = alClient
           TabOrder = 0
+          ExplicitHeight = 335
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
@@ -373,6 +338,7 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        ExplicitHeight = 335
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -513,6 +479,7 @@ object Main: TMain
       object TabSheet3: TTabSheet
         Caption = 'TabSheet3'
         ImageIndex = 3
+        ExplicitHeight = 335
         inline TMotorFrame1: TMotorFrame
           Left = 0
           Top = 0
