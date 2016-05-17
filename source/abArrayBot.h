@@ -4,6 +4,7 @@
 #include "abABObject.h"
 #include "abXYZUnit.h"
 #include "abJoyStick.h"
+#include "abCoverSlipAngleController.h"
 //---------------------------------------------------------------------------
 
 struct CombinedMoveParameters
@@ -27,12 +28,17 @@ class AB_CORE ArrayBot : public ABObject
 		void						enableCoverSlipJoyStick();
 		void						disableJoyStick();
         void						stopAll();
+        void						initWorkingPosition();
+        void						stow();
+        void						home();
+
 
     private:
         IniFile&					mIniFile;
     	CombinedMoveParameters		mCSLift;
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
+        CoverSlipAngleController	mCSAngleController;
         JoyStick					mJoyStick;
 };
 

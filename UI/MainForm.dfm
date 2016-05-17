@@ -461,6 +461,24 @@ object Main: TMain
             Text = '0.00'
           end
         end
+        object Button3: TButton
+          Left = 355
+          Top = 213
+          Width = 177
+          Height = 116
+          Caption = 'Home All'
+          TabOrder = 2
+          OnClick = Button3Click
+        end
+        object Button4: TButton
+          Left = 11
+          Top = 205
+          Width = 177
+          Height = 116
+          Caption = 'Stow'
+          TabOrder = 3
+          OnClick = stowBtnClick
+        end
       end
     end
   end

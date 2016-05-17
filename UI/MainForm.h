@@ -92,6 +92,8 @@ class TMain : public TRegistryForm
 	mtkFloatLabeledEdit *mMoveVelocityVerticalE;
 	mtkFloatLabeledEdit *mMoveVelHorizE;
 	mtkFloatLabeledEdit *mVerticalMoveDistanceE;
+	TButton *Button3;
+	TButton *Button4;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -109,6 +111,8 @@ class TMain : public TRegistryForm
         void __fastcall JoyControlRGClick(TObject *Sender);
 		void __fastcall JSSpeedsRGClick(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall stowBtnClick(TObject *Sender);
 
     private:	// User declarations
         TThreadMethod               logMsgMethod;

@@ -345,5 +345,16 @@ void __fastcall TMain::Button2Click(TObject *Sender)
 	BottomPanel->Visible = !BottomPanel->Visible;
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::Button3Click(TObject *Sender)
+{
+	mAB.home();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::stowBtnClick(TObject *Sender)
+{
+	mAB.stow();
+}
 
 

@@ -24,45 +24,16 @@ mIniFile(iniFile)
     mProperties.add((BaseProperty*) &mYMotorSerialNr.setup("YMotorSerial", -1, true));
     mProperties.add((BaseProperty*) &mZMotorSerialNr.setup("ZMotorSerial", -1, true));
 
-	//Load Properties
+	//assign inifile to use with the properties
     mProperties.setIniFile(&mIniFile);
-
 }
 
 XYZUnit::~XYZUnit()
 {}
 
-void XYZUnit::shutDown()
-{
-	mDeviceManager.disConnectAll();
-
-	//Save Properties
-	mProperties.write();
-}
-
-string XYZUnit::getName()
-{
-	return mName;
-}
-
-bool XYZUnit::moveToPosition(const XYZUnitPosition& pos)
-{
-	if(mXMotor && mYMotor && mZMotor)
-    {
-        //Check pos validity..
-        mXMotor->moveToPosition(pos.x());
-        mYMotor->moveToPosition(pos.y());
-        mZMotor->moveToPosition(pos.z());
-        return true;
-    }
-
-    return false;
-}
-
 bool XYZUnit::initialize()
 {
     mProperties.read();
-
 	mDeviceManager.reBuildDeviceList();
     Log(lInfo) << "Initializing: "<< mName;
 	//Setup all the motors
@@ -108,6 +79,77 @@ bool XYZUnit::initialize()
     }
 	return true;
 }
+
+void XYZUnit::shutDown()
+{
+	mDeviceManager.disConnectAll();
+
+	//Save Properties
+	mProperties.write();
+}
+
+void XYZUnit::stow()
+{
+}
+
+string XYZUnit::getName()
+{
+	return mName;
+}
+
+bool XYZUnit::moveToPosition(const XYZUnitPosition& pos)
+{
+	if(mXMotor && mYMotor && mZMotor)
+    {
+        //Check pos validity..
+        mXMotor->moveToPosition(pos.x());
+        mYMotor->moveToPosition(pos.y());
+        mZMotor->moveToPosition(pos.z());
+        return true;
+    }
+
+    return false;
+}
+
+void XYZUnit::home()
+{
+    if(mXMotor)
+    {
+    	Log(lDebug)<<"Homing X Motor..";
+		mXMotor->home();
+
+       	sleep(250);
+
+        bool isHoming = mXMotor->isHoming();
+        while(isHoming)
+        {
+        	sleep(100);
+        }
+    }
+
+    if(mYMotor)
+    {
+    	Log(lDebug)<<"Homing Y Motor..";
+		mYMotor->home();
+    }
+
+    if(mZMotor)
+    {
+    	Log(lDebug)<<"Homing Y Motor..";
+		mZMotor->home();
+    }
+
+    if(mZMotor && mYMotor)
+    {
+        while(mZMotor->isHoming() || mYMotor->isHoming())
+        {
+            sleep(100);
+            Log(lInfo) << "Homing...";
+        }
+    }
+
+}
+
 
 void XYZUnit::enableJoyStick(JoyStick* js)
 {

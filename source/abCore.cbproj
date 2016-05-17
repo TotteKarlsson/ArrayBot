@@ -123,6 +123,10 @@
         <PCHCompile Include="abCorePCH.h">
             <BuildOrder>0</BuildOrder>
         </PCHCompile>
+        <CppCompile Include="abCoverSlipAngleController.cpp">
+            <DependentOn>abCoverSlipAngleController.h</DependentOn>
+            <BuildOrder>22</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abDeviceManager.cpp">
             <BuildOrder>7</BuildOrder>
         </CppCompile>
@@ -156,6 +160,10 @@
         <CppCompile Include="abMotorMessageProcessor.cpp">
             <DependentOn>abMotorMessageProcessor.h</DependentOn>
             <BuildOrder>11</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abMoveSequencer.cpp">
+            <DependentOn>abMoveSequencer.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTCubeStepperMotor.cpp">
             <BuildOrder>8</BuildOrder>

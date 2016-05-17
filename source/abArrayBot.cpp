@@ -7,13 +7,30 @@ ArrayBot::ArrayBot(IniFile& ini)
 mIniFile(ini),
 mCoverSlip("CoverSlip Unit", mIniFile),
 mWhisker("Whisker Unit", mIniFile),
-mJoyStick(NULL)
+mJoyStick(NULL),
+mCSAngleController("CS Angle Controller", mIniFile)
 {
 
 }
 
 ArrayBot::~ArrayBot()
 {
+}
+
+void ArrayBot::initialize()
+{
+	mCoverSlip.initialize();
+	mWhisker.initialize();
+    mCSAngleController.initialize();
+}
+
+//Todo: setup mechanism to check if the units were shutdown properly
+bool ArrayBot::shutDown()
+{
+	mCoverSlip.shutDown();
+	mWhisker.shutDown();
+	mCSAngleController.shutDown();
+    return true;
 }
 
 void ArrayBot::stopAll()
@@ -44,7 +61,6 @@ void ArrayBot::disableJoyStick()
     mCoverSlip.disableJoyStick();
     mWhisker.disableJoyStick();
     mJoyStick.disable();
-
 }
 
 void ArrayBot::assignWindowHandle(int handle)
@@ -57,13 +73,22 @@ JoyStick& ArrayBot::getJoyStick()
 	return mJoyStick;
 }
 
-//Todo: setup mechanism to check if the units were shutdown properly
-bool ArrayBot::shutDown()
+void ArrayBot::home()
 {
-	mCoverSlip.shutDown();
-	mWhisker.shutDown();
+	mWhisker.home();
+    mCoverSlip.home();
+}
 
-    return true;
+void ArrayBot::initWorkingPosition()
+{
+	//Tell Whisker and Cover slip units to go to
+    //Working position
+}
+
+void ArrayBot::stow()
+{
+	mWhisker.stow();
+    mCoverSlip.stow();
 }
 
 XYZUnit& ArrayBot::getCoverSlipUnit()
@@ -74,12 +99,6 @@ XYZUnit& ArrayBot::getCoverSlipUnit()
 XYZUnit& ArrayBot::getWhiskerUnit()
 {
 	return mWhisker;
-}
-
-void ArrayBot::initialize()
-{
-	mCoverSlip.initialize();
-	mWhisker.initialize();
 }
 
 

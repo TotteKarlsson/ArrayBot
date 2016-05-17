@@ -2,10 +2,11 @@
 #pragma hdrstop
 #include <tchar.h>
 #include <string>
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
+#include "mtkLogger.h"
+#include "mtkVCLUtils.h"
+
 using namespace mtk;
 using namespace std;
 
