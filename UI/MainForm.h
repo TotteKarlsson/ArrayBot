@@ -38,10 +38,8 @@ class TMain : public TRegistryForm
 {
     __published:	// IDE-managed Components
         TMemo *infoMemo;
-		TBitBtn *InitCloseBtn;
         TActionList *ActionList1;
         TAction *checkForDevices;
-        TBitBtn *BitBtn2;
         TAction *addDevicesToListBox;
         TTimer *ShutDownTimer;
         TAction *identifyCurrent;
@@ -95,6 +93,8 @@ class TMain : public TRegistryForm
 	TPanel *Btnpanel;
 	TButton *Button5;
 	TFileExit *FileExit1;
+	TBitBtn *BitBtn1;
+	TBitBtn *InitCloseBtn;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);

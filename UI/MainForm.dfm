@@ -4,7 +4,7 @@ object Main: TMain
   BorderStyle = bsToolWindow
   Caption = 'ArrayBot Version 0.1'
   ClientHeight = 540
-  ClientWidth = 799
+  ClientWidth = 809
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,7 +23,7 @@ object Main: TMain
   object Splitter1: TSplitter
     Left = 0
     Top = 375
-    Width = 799
+    Width = 809
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -34,7 +34,7 @@ object Main: TMain
   object BottomPanel: TPanel
     Left = 0
     Top = 378
-    Width = 799
+    Width = 809
     Height = 162
     Align = alBottom
     TabOrder = 0
@@ -43,7 +43,7 @@ object Main: TMain
     object infoMemo: TMemo
       Left = 1
       Top = 34
-      Width = 797
+      Width = 807
       Height = 127
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
@@ -60,7 +60,7 @@ object Main: TMain
     object ToolBar2: TToolBar
       Left = 1
       Top = 1
-      Width = 797
+      Width = 807
       Height = 33
       AutoSize = True
       ButtonHeight = 33
@@ -81,7 +81,7 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 684
+    Width = 682
     Height = 375
     Align = alClient
     Constraints.MinHeight = 348
@@ -93,9 +93,9 @@ object Main: TMain
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 682
+      Width = 680
       Height = 373
-      ActivePage = TabSheet4
+      ActivePage = TabSheet2
       Align = alClient
       TabOrder = 0
       ExplicitWidth = 665
@@ -110,12 +110,18 @@ object Main: TMain
           Width = 284
           Height = 154
           Caption = 'Coordinated Move'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
           object MoveBtn: TButton
             Left = 138
-            Top = 22
+            Top = 65
             Width = 127
-            Height = 109
+            Height = 53
             Caption = 'Start Move'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -128,12 +134,12 @@ object Main: TMain
           end
           object mMoveAngleE: mtkFloatLabeledEdit
             Left = 19
-            Top = 44
+            Top = 65
             Width = 98
             Height = 53
-            EditLabel.Width = 85
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Move Angle (deg)'
+            EditLabel.Width = 53
+            EditLabel.Height = 25
+            EditLabel.Caption = 'Angle'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -37
@@ -164,8 +170,8 @@ object Main: TMain
           Left = 3
           Top = 11
           Width = 342
-          Height = 76
-          Caption = 'JoyStick Control'
+          Height = 62
+          Caption = 'Joystick control'
           Columns = 3
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -207,7 +213,7 @@ object Main: TMain
           Top = 191
           Width = 342
           Height = 104
-          Caption = 'CoverSlip Angle'
+          Caption = 'Coverslip Angle'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -21
@@ -217,12 +223,11 @@ object Main: TMain
           TabOrder = 4
           object mCSAngleE: mtkFloatLabeledEdit
             Left = 20
-            Top = 63
-            Width = 68
+            Top = 39
+            Width = 117
             Height = 33
-            EditLabel.Width = 111
+            EditLabel.Width = 7
             EditLabel.Height = 25
-            EditLabel.Caption = 'Angle (deg)'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -21
@@ -242,7 +247,7 @@ object Main: TMain
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
-          Width = 674
+          Width = 672
           Height = 345
           Align = alClient
           TabOrder = 0
@@ -251,7 +256,7 @@ object Main: TMain
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
-            Width = 653
+            Width = 651
             Height = 348
             Align = alTop
             TabOrder = 0
@@ -259,16 +264,16 @@ object Main: TMain
             ExplicitWidth = 636
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
-              Width = 653
+              Width = 651
               Height = 348
               ExplicitWidth = 636
               ExplicitHeight = 348
               inherited TopPanel: TPanel
-                Width = 649
+                Width = 647
                 ExplicitWidth = 632
               end
               inherited ScrollBox1: TScrollBox
-                Width = 649
+                Width = 647
                 Height = 305
                 ExplicitWidth = 632
                 ExplicitHeight = 305
@@ -278,21 +283,21 @@ object Main: TMain
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
             Top = 0
-            Width = 653
+            Width = 651
             Height = 351
             Align = alTop
             TabOrder = 1
             ExplicitWidth = 636
             inherited mainGB: TGroupBox
-              Width = 653
+              Width = 651
               ExplicitWidth = 636
               ExplicitHeight = 351
               inherited TopPanel: TPanel
-                Width = 649
+                Width = 647
                 ExplicitWidth = 632
               end
               inherited ScrollBox1: TScrollBox
-                Width = 649
+                Width = 647
                 ExplicitWidth = 632
                 ExplicitHeight = 308
               end
@@ -486,80 +491,104 @@ object Main: TMain
           TabOrder = 3
           OnClick = stowBtnClick
         end
+        object BitBtn1: TBitBtn
+          Left = 544
+          Top = 97
+          Width = 112
+          Height = 60
+          Action = checkForDevices
+          BiDiMode = bdLeftToRight
+          Caption = 'Devices Check'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentBiDiMode = False
+          ParentFont = False
+          TabOrder = 4
+        end
+        object InitCloseBtn: TBitBtn
+          Left = 544
+          Top = 31
+          Width = 112
+          Height = 60
+          Action = initBotA
+          BiDiMode = bdLeftToRight
+          Caption = 'Initialize'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentBiDiMode = False
+          ParentFont = False
+          TabOrder = 5
+        end
       end
     end
   end
   object Btnpanel: TPanel
-    Left = 684
+    Left = 682
     Top = 0
-    Width = 115
+    Width = 127
     Height = 375
     Align = alRight
     TabOrder = 2
-    ExplicitLeft = 552
-    ExplicitHeight = 447
-    object BitBtn2: TBitBtn
-      Left = 1
-      Top = 61
-      Width = 113
-      Height = 60
-      Action = checkForDevices
-      Align = alTop
-      BiDiMode = bdLeftToRight
-      Caption = 'Devices Check'
-      ParentBiDiMode = False
-      TabOrder = 0
-      ExplicitTop = 181
-      ExplicitWidth = 183
-    end
+    ExplicitLeft = 672
     object Button2: TButton
       Left = 1
-      Top = 121
-      Width = 113
+      Top = 1
+      Width = 125
       Height = 60
       Align = alTop
       BiDiMode = bdLeftToRight
       Caption = 'Toggle Log'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBiDiMode = False
-      TabOrder = 1
+      ParentFont = False
+      TabOrder = 0
       OnClick = Button2Click
       ExplicitTop = 247
+      ExplicitWidth = 113
     end
     object Button7: TButton
       Left = 1
       Top = 252
-      Width = 113
+      Width = 125
       Height = 60
       Action = stopAllA
       Align = alBottom
       BiDiMode = bdLeftToRight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBiDiMode = False
-      TabOrder = 2
-      ExplicitLeft = 6
-      ExplicitTop = 234
-    end
-    object InitCloseBtn: TBitBtn
-      Left = 1
-      Top = 1
-      Width = 113
-      Height = 60
-      Action = initBotA
-      Align = alTop
-      BiDiMode = bdLeftToRight
-      Caption = 'Initialize'
-      ParentBiDiMode = False
-      TabOrder = 3
-      ExplicitWidth = 183
+      ParentFont = False
+      TabOrder = 1
     end
     object Button5: TButton
       Left = 1
       Top = 312
-      Width = 113
+      Width = 125
       Height = 62
       Action = FileExit1
       Align = alBottom
-      TabOrder = 4
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
       ExplicitTop = 384
+      ExplicitWidth = 113
     end
   end
   object ActionList1: TActionList
