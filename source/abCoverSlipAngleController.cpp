@@ -9,7 +9,8 @@ CoverSlipAngleController::CoverSlipAngleController(const string& name, IniFile& 
 :
 mMotorSerial(-1),
 mName(name),
-mIniFile(iniFile)
+mIniFile(iniFile),
+mAngleMotor(NULL)
 {
     mProperties.setSection(name);
     mProperties.add((BaseProperty*) &mMotorSerial.setup("CoverSlipAngleMotorSerial", -1, true));
@@ -22,6 +23,19 @@ CoverSlipAngleController::~CoverSlipAngleController()
 bool CoverSlipAngleController::isActive()
 {
 	return (mAngleMotor) ? mAngleMotor->isActive() : false;
+}
+
+APTMotor* CoverSlipAngleController::getMotor()
+{
+	return mAngleMotor;
+}
+
+void CoverSlipAngleController::stop()
+{
+	if(mAngleMotor)
+    {
+	    mAngleMotor->stop();
+    }
 }
 
 bool CoverSlipAngleController::initialize()
@@ -39,6 +53,7 @@ bool CoverSlipAngleController::initialize()
 
         //Load Motor Properties
         mAngleMotor->loadProperties(mIniFile);
+        mAngleMotor->setName("CoverSlipAngleMotor");
     }
     else
     {

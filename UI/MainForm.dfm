@@ -173,7 +173,7 @@ object Main: TMain
       Top = 1
       Width = 764
       Height = 465
-      ActivePage = TabSheet2
+      ActivePage = TabSheet3
       Align = alClient
       Constraints.MinHeight = 389
       Constraints.MinWidth = 753
@@ -326,7 +326,6 @@ object Main: TMain
             inherited mainGB: TGroupBox
               Width = 735
               ExplicitWidth = 735
-              ExplicitHeight = 351
               inherited TopPanel: TPanel
                 Width = 731
                 ExplicitWidth = 731
@@ -334,7 +333,6 @@ object Main: TMain
               inherited ScrollBox1: TScrollBox
                 Width = 731
                 ExplicitWidth = 731
-                ExplicitHeight = 308
               end
             end
           end
@@ -478,6 +476,30 @@ object Main: TMain
           Caption = 'Stow'
           TabOrder = 3
           OnClick = stowBtnClick
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = 'TabSheet3'
+        ImageIndex = 3
+        ExplicitLeft = -156
+        ExplicitTop = 23
+        inline TMotorFrame1: TMotorFrame
+          Left = 0
+          Top = 0
+          Width = 293
+          Height = 292
+          TabOrder = 0
+          inherited MotorGB: TGroupBox
+            Align = alClient
+            ExplicitLeft = -45
+            ExplicitTop = -74
+            inherited JoggingGB: TGroupBox [6]
+            end
+            inherited Button4: TButton [7]
+            end
+            inherited Button1: TButton [8]
+            end
+          end
         end
       end
     end

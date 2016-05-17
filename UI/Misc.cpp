@@ -34,6 +34,16 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
 	}
 
+//	if(mAB.isActive())
+    {
+    	if(!mAB.isShuttingDown())
+        {
+    		StatusTimer->Enabled = false;
+	        TXYZUnitFrame1->disable();
+    	    TXYZUnitFrame2->disable();
+	    	mAB.shutDown();
+        }
+    }
 
 	Close();
 }
@@ -47,9 +57,12 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 	CanClose = (mLogFileReader.isRunning()) ? false : true;
 
 
-	//Check if active stuff si going on.. if so call the ShutDown in the
+	//Check if active stuff is going on.. if so call the ShutDown in the
     //Timer fire    if(
-	ShutDownAExecute(NULL);
+	if(mAB.isActive())
+    {
+    	CanClose = false;
+    }
 
 	if(CanClose == false)
 	{

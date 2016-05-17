@@ -26,6 +26,8 @@ class AB_CORE CoverSlipAngleController : public ABObject
 		void 					shutDown();
 		string					getName() const;
         void					setAngle(double a);
+		void					stop();
+		APTMotor*				getMotor();
 
         Property<int>		    mMotorSerial;
         Property<string>   	    mName;

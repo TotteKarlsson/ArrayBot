@@ -94,6 +94,8 @@ class TMain : public TRegistryForm
 	mtkFloatLabeledEdit *mVerticalMoveDistanceE;
 	TButton *Button3;
 	TButton *Button4;
+	TTabSheet *TabSheet3;
+	TMotorFrame *TMotorFrame1;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);

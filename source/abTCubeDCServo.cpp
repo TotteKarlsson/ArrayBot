@@ -29,9 +29,9 @@ bool TCubeDCServo::connect()
     // open the device
     int res = CC_Open(toString(mSerial).c_str());
 
-    mScalingFactors.position 	 = 409600.0;
-    mScalingFactors.velocity 	 = 21987328.0;
-	mScalingFactors.acceleration = 4506.0;
+    mScalingFactors.position = 1919.64;
+    mScalingFactors.velocity = 42941.66;
+	mScalingFactors.acceleration = 14.66;
 
     if(res == 0)
     {
@@ -79,13 +79,13 @@ void TCubeDCServo::setPotentiometerVelocity(double v)
 
     int currRange = 1;
 
-    short err = CC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
-    velocity += (velStep);
-    err = CC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
-    velocity += velStep;
-    err = CC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
-    velocity += velStep;
-    err = CC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
+//    short err = CC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
+//    velocity += (velStep);
+//    err = CC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
+//    velocity += velStep;
+//    err = CC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
+//    velocity += velStep;
+//    err = CC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
 
 //	DWORD	vel;
 //    for(int i = 0; i < 127; i++)
@@ -403,7 +403,7 @@ void TCubeDCServo::jogReverse(bool inThread)
     else
     {
         //Todo: tell thorlabs about the MOT_Reverse flag name
-        int err = CC_MoveJog(mSerial.c_str(), MOT_Reverse);
+        int err = CC_MoveJog(mSerial.c_str(), MOT_Backwards);
         if(err != 0)
         {
             Log(lError) <<tlError(err);
@@ -424,7 +424,7 @@ void TCubeDCServo::forward(bool inThread)
 void TCubeDCServo::reverse(bool inThread)
 {
 	//TODO: use inThread logic
-    int err = CC_MoveAtVelocity(mSerial.c_str(), MOT_Reverse);
+    int err = CC_MoveAtVelocity(mSerial.c_str(), MOT_Backwards);
     if(err !=0)
     {
         Log(lError) <<tlError(err);

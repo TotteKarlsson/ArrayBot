@@ -62,8 +62,8 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	initBotAExecute(NULL);
 
     //Select joystick control for CoverSlip Unit
-	JoyControlRG->ItemIndex = 0;
-    JoyControlRG->OnClick(NULL);
+	//	JoyControlRG->ItemIndex = 0;
+	//    JoyControlRG->OnClick(NULL);
 
     //Select medium speed on start
 	JSSpeedsRG->ItemIndex = 1;
@@ -78,6 +78,7 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 	TXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
 	TXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
 
+	TMotorFrame1->assignMotor(mAB.getAngleController().getMotor());
     //JoyStick stuff.....
     mMaxXYJogVelocityJoystick->SetNumber(mAB.getJoyStick().getXAxis().getMaxVelocity());
     mXYJogAccelerationJoystick->SetNumber(mAB.getJoyStick().getXAxis().getAcceleration());
@@ -95,7 +96,6 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 {
 	StatusTimer->Enabled = false;
-
     mAB.getJoyStick().disable();
 
     TXYZUnitFrame1->disable();

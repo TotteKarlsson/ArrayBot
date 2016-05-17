@@ -10,9 +10,7 @@ mWhisker("Whisker Unit", mIniFile),
 mJoyStick(NULL),
 mCSAngleController("CS Angle Controller", mIniFile),
 mIsShuttingDown(false)
-{
-
-}
+{}
 
 ArrayBot::~ArrayBot()
 {}
@@ -34,6 +32,11 @@ void ArrayBot::initialize()
     mCSAngleController.initialize();
 }
 
+CoverSlipAngleController& ArrayBot::getAngleController()
+{
+	return mCSAngleController;
+}
+
 //Todo: setup mechanism to check if the units were shutdown properly
 bool ArrayBot::shutDown()
 {
@@ -51,6 +54,7 @@ void ArrayBot::stopAll()
     mJoyStick.disable();
     mCoverSlip.stopAll();
     mWhisker.stopAll();
+	mCSAngleController.stop();
 }
 
 void ArrayBot::enableWhiskerJoyStick()

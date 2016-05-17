@@ -71,7 +71,8 @@ void setupLogging()
 	LogOutput::mShowLogLevel = true;
 	LogOutput::mShowLogTime = false;
 	LogOutput::mUseLogTabs = false;
-	mtk::gLogger.setLogLevel(lInfo);
+//	mtk::gLogger.setLogLevel(lInfo);
+	mtk::gLogger.setLogLevel(lDebug3);
 	Log(lInfo) << "Logger was setup";
 }
 

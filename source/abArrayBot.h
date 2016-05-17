@@ -33,6 +33,7 @@ class AB_CORE ArrayBot : public ABObject
         void						home();
         bool						isActive();
         bool						isShuttingDown();
+		CoverSlipAngleController&	getAngleController();
 
     private:
         IniFile&					mIniFile;
