@@ -27,6 +27,12 @@
 
 #include <mmsystem.h>
 #include <Vcl.StdActns.hpp>
+#include "RzButton.hpp"
+#include <Vcl.Menus.hpp>
+#include "RzEdit.hpp"
+#include "RzSpnEdt.hpp"
+#include <Vcl.Mask.hpp>
+#include "RzListVw.hpp"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
@@ -37,7 +43,6 @@ using mtk::IniFileProperties;
 class TMain : public TRegistryForm
 {
     __published:	// IDE-managed Components
-        TMemo *infoMemo;
         TActionList *ActionList1;
         TAction *checkForDevices;
         TAction *addDevicesToListBox;
@@ -52,9 +57,6 @@ class TMain : public TRegistryForm
         TButton *Button7;
         TTimer *StatusTimer;
         TApplicationEvents *ApplicationEvents1;
-        TPanel *BottomPanel;
-        TToolBar *ToolBar2;
-        TBitBtn *BitBtn3;
         TPanel *TopPanel;
         TSplitter *Splitter1;
         TPageControl *PageControl1;
@@ -65,7 +67,7 @@ class TMain : public TRegistryForm
         TAction *ShutDownA;
         TGroupBox *GroupBox6;
         TFloatLabeledEdit *mMoveAngleE;
-        TButton *MoveBtn;
+	TButton *LiftCSBtn;
         TXYZUnitFrame *TXYZUnitFrame2;
         TScrollBox *ScrollBox1;
         TRadioGroup *JoyControlRG;
@@ -88,13 +90,24 @@ class TMain : public TRegistryForm
 	TButton *Button4;
 	TTabSheet *TabSheet3;
 	TMotorFrame *TMotorFrame1;
-	TGroupBox *csaGB;
 	TFloatLabeledEdit *mCSAngleE;
 	TPanel *Btnpanel;
 	TButton *Button5;
 	TFileExit *FileExit1;
 	TBitBtn *BitBtn1;
 	TBitBtn *InitCloseBtn;
+	TPopupMenu *PopupMenu1;
+	TMenuItem *est1;
+	TMenuItem *est21;
+	TMenuItem *est31;
+	TRzSpinButtons *CSAngleButton;
+	TRzSpinButtons *LiftAngleButton;
+	TButton *InsertCSBtn;
+	TTabSheet *TabSheet5;
+	TPanel *BottomPanel;
+	TMemo *infoMemo;
+	TToolBar *ToolBar1;
+	TBitBtn *BitBtn2;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -108,7 +121,7 @@ class TMain : public TRegistryForm
         void __fastcall initBotAExecute(TObject *Sender);
         void __fastcall ShutDownAExecute(TObject *Sender);
         void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-        void __fastcall MoveBtnClick(TObject *Sender);
+        void __fastcall LiftCSBtnClick(TObject *Sender);
         void __fastcall JoyControlRGClick(TObject *Sender);
 		void __fastcall JSSpeedsRGClick(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
@@ -116,6 +129,12 @@ class TMain : public TRegistryForm
 	void __fastcall stowBtnClick(TObject *Sender);
 	void __fastcall mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormShow(TObject *Sender);
+	void __fastcall Button6DropDownClick(TObject *Sender);
+	void __fastcall LiftAngleButtonUpRightClick(TObject *Sender);
+	void __fastcall LiftAngleButtonDownLeftClick(TObject *Sender);
+//	void __fastcall CSAngleButtonDownLeftClick(TObject *Sender);
+//	void __fastcall CSAngleButtonUpRightClick(TObject *Sender);
+
 
 
     private:	// User declarations
@@ -126,7 +145,6 @@ class TMain : public TRegistryForm
         Property<int>				mBottomPanelHeight;
         Property<bool>				mBottomPanelVisible;
         Property<int>				mTopPanelHeight;
-
 
         IniFile						mIniFile;
         ArrayBot					mAB;

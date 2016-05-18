@@ -21,14 +21,17 @@ mAngle(0)
 }
 
 CombinedMove::~CombinedMove()
-{
-	mProperties.write();
-}
+{}
 
 bool CombinedMove::readProperties(IniFile& i)
 {
 	mProperties.setIniFile(&i);
     mProperties.read();
+}
+
+bool CombinedMove::writeProperties()
+{
+	mProperties.write();
 }
 
 double CombinedMove::getHorizontalDistance()

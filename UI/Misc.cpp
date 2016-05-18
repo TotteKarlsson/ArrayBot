@@ -124,3 +124,10 @@ void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift
     	Close();
     }
 }
+
+void __fastcall CSAngleButtonDownLeftClick(TObject *Sender)
+{}
+
+void __fastcall CSAngleButtonUpRightClick(TObject *Sender)
+{}
+

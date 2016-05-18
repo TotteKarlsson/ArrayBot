@@ -17,6 +17,10 @@
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "abXYZUnitFrame"
 #pragma link "abMotorFrame"
+#pragma link "RzButton"
+#pragma link "RzEdit"
+#pragma link "RzSpnEdt"
+#pragma link "RzListVw"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -69,10 +73,14 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     //Select medium speed on start
 	JSSpeedsRG->ItemIndex = 1;
     JSSpeedsRG->OnClick(NULL);
-    mCSAngleE->setValue(mAB.getAngleController().getAngle() - 225);
+
+	//Initialize UI
+    mCSAngleE->setValue(mAB.getAngleController().getAngle());
 
     //Assign editbox references to Lifting parameters
-//    mMoveAngleE->SetNumberRef(mAB.getCombinedMove().mAngle.getReference());
+    mMoveAngleE->assignExternalProperty(&(mAB.getCombinedMove().mAngle), true);
+    mCSAngleE->assignExternalProperty(&mAB.getAngleController().mAngle, true);
+
 }
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
@@ -242,7 +250,7 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
     mMoveAngleE->Update();
 }
 
-void __fastcall TMain::MoveBtnClick(TObject *Sender)
+void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
 {
     APTMotor* yCS 	= mAB.getCoverSlipUnit().getYMotor();
 	APTMotor* zCS 	= mAB.getCoverSlipUnit().getZMotor();
@@ -385,4 +393,23 @@ void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState 
     mAB.getAngleController().setAngle(mCSAngleE->getValue() + 225.0);
 }
 
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::Button6DropDownClick(TObject *Sender)
+{
+	PopupMenu1->Popup(0,0);
+}
+
+
+void __fastcall TMain::LiftAngleButtonUpRightClick(TObject *Sender)
+{
+ ;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMain::LiftAngleButtonDownLeftClick(TObject *Sender)
+{
+;
+}
+//---------------------------------------------------------------------------
 

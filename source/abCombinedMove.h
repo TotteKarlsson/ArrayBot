@@ -22,6 +22,7 @@ class AB_CORE CombinedMove : public ABObject
         double					getHorizontalAcceleration();
 		void 					calculate();
         bool					readProperties(IniFile& i);
+        bool					writeProperties();
 
     protected:
 		double					mHorizontalDistance;

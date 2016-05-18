@@ -48,7 +48,7 @@ bool ArrayBot::shutDown()
 	mCSAngleController.shutDown();
 	mCoverSlip.shutDown();
 	mWhisker.shutDown();
-
+	mCSLift.writeProperties();
     return true;
 }
 

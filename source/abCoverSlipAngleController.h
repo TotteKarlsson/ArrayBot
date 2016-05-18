@@ -18,27 +18,28 @@ class APTMotor;
 class AB_CORE CoverSlipAngleController : public ABObject
 {
 	public:
-      							CoverSlipAngleController(const string& name, IniFile& iniFile);
-     							~CoverSlipAngleController();
+      							            CoverSlipAngleController(const string& name, IniFile& iniFile);
+     							            ~CoverSlipAngleController();
 
-		bool				    initialize();
-		bool 					isActive();
-		void 					shutDown();
-		string					getName() const;
-        void					setAngle(double a);
-        double					getAngle();
-		void					stop();
-		APTMotor*				getMotor();
+		bool				                initialize();
+		bool 					            isActive();
+		void 					            shutDown();
+		string					            getName() const;
+        void					            setAngle(double a);
+        double					            getAngle();
+		void					            stop();
+		APTMotor*				            getMotor();
 
-        Property<int>		    mMotorSerial;
-        Property<double>  	    mAngle;
-        Property<string>   	    mName;
-    	DeviceManager	        mDeviceManager;
+        Property<int>		                mMotorSerial;
+        Property<double>  	                mAngle;
+        Property<string>   	                mName;
+    	DeviceManager	                    mDeviceManager;
 
     private:
-    	APTMotor*				mAngleMotor;
-        IniFile&			    mIniFile;
-        IniFileProperties	    mProperties;
+    	APTMotor*				            mAngleMotor;
+        IniFile&			                mIniFile;
+        IniFileProperties	                mProperties;
+        int									mAngleOffset;
 };
 
 #endif
