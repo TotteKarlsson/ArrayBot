@@ -60,25 +60,6 @@ bool DeviceManager::disConnect(APTDevice* device)
     return result;
 }
 
-string DeviceManager::getInfo() const
-{
-    stringstream info;
-//    info<<setw(50)<<left<<"Number of loaded devices:"          <<getNumberOfPlugins()<<"\n";
-//    info<<setw(50)<<left<<"Number of created device objects:"  <<mPluginObjects.size()<<"\n";
-//    if(getNumberOfDevices())
-//    {
-//        info<<setw(25)<<left<<"Plugin Libraries"<<"\n";
-//        mPluginsIter = mPlugins.begin();
-//        while(mPluginsIter != mPlugins.end())
-//        {
-//            PluginLib pl = (*mPluginsIter).second;
-//            info<<"  "<<setw(25)<<left<< getFileNameNoExtension(pl->getPath())<<"\n";
-//            ++mPluginsIter;
-//        }
-//    }
-    return info.str();
-}
-
 ostream& operator << (ostream& st, DeviceManager& pm)
 {
     st<<pm.getInfo();
@@ -257,3 +238,23 @@ int DeviceManager::getNumberOfConnectedDevices() const
 {
     return mDevices.size();
 }
+
+string DeviceManager::getInfo() const
+{
+    stringstream info;
+//    info<<setw(50)<<left<<"Number of loaded devices:"          <<getNumberOfPlugins()<<"\n";
+//    info<<setw(50)<<left<<"Number of created device objects:"  <<mPluginObjects.size()<<"\n";
+//    if(getNumberOfDevices())
+//    {
+//        info<<setw(25)<<left<<"Plugin Libraries"<<"\n";
+//        mPluginsIter = mPlugins.begin();
+//        while(mPluginsIter != mPlugins.end())
+//        {
+//            PluginLib pl = (*mPluginsIter).second;
+//            info<<"  "<<setw(25)<<left<< getFileNameNoExtension(pl->getPath())<<"\n";
+//            ++mPluginsIter;
+//        }
+//    }
+    return info.str();
+}
+

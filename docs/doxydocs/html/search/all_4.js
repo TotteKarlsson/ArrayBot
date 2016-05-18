@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['hardwareinformation',['HardwareInformation',['../struct_hardware_information.html',1,'']]],
-  ['hardwareversion',['hardwareVersion',['../struct_hardware_information.html#a7d186504db709662f8df4478ac840c6c',1,'HardwareInformation']]],
-  ['home',['home',['../class_a_p_t_motor.html#a6b9fd63180ace89c56f4fcd56d4ddfa9',1,'APTMotor::home()'],['../class_long_travel_stage.html#a56f814752ac382e0454759cc42d3d9fc',1,'LongTravelStage::home()'],['../class_t_cube_d_c_servo.html#a6921245c24f8f0c2c9416ec31a5ed79b',1,'TCubeDCServo::home()'],['../class_t_cube_stepper_motor.html#af8c0c576905cdeffbf3c8ba3f0f79276',1,'TCubeStepperMotor::home()']]]
+  ['firmwareversion',['firmwareVersion',['../struct_hardware_information.html#a37bfd8784b151e397b5fa02c609ef1ec',1,'HardwareInformation::firmwareVersion()'],['../struct_t_l_i___hardware_information.html#a853850c73c53b669035d424a89f32f57',1,'TLI_HardwareInformation::firmwareVersion()']]]
 ];

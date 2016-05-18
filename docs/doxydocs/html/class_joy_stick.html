@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>The joystick class encapsulate needed functionality in the ArrayBot API.  
+<p>The joystick class encapsulate needed functionality in the <a class="el" href="class_array_bot.html">ArrayBot</a> API.  
  <a href="class_joy_stick.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ab_joystick_8h_source.html">abJoystick.h</a>&gt;</code></p>
@@ -109,9 +110,9 @@ Inheritance diagram for JoyStick:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaa74d6d12faf224d017ddf400d474656"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa74d6d12faf224d017ddf400d474656"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>JoyStick</b> (int Handle=NULL)</td></tr>
-<tr class="separator:aaa74d6d12faf224d017ddf400d474656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a322b3e8b94cfedc214fae5f2b47a6b47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a322b3e8b94cfedc214fae5f2b47a6b47"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>JoyStick</b> (int Handle=0)</td></tr>
+<tr class="separator:a322b3e8b94cfedc214fae5f2b47a6b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0c0d95de3a51547f9a41a1bcb3a1750"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0c0d95de3a51547f9a41a1bcb3a1750"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>connect</b> ()</td></tr>
 <tr class="separator:af0c0d95de3a51547f9a41a1bcb3a1750"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,6 +143,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMessageRate</b> (i
 <tr class="memitem:afac92a91d9aca452ce759ac0ae28844c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afac92a91d9aca452ce759ac0ae28844c"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getMessageRate</b> ()</td></tr>
 <tr class="separator:afac92a91d9aca452ce759ac0ae28844c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13944a6c932472f1eb27f00d8420070e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13944a6c932472f1eb27f00d8420070e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setWindowHandle</b> (int handle)</td></tr>
+<tr class="separator:a13944a6c932472f1eb27f00d8420070e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -163,9 +167,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>mJoyStickConnected</b
 <tr class="memitem:a39c9190e3367ac99fac5da1a61409e30"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39c9190e3367ac99fac5da1a61409e30"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>mJoyStickDriverCount</b></td></tr>
 <tr class="separator:a39c9190e3367ac99fac5da1a61409e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9500170f814b04793e157318b668a1ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9500170f814b04793e157318b668a1ac"></a>
-JOYCAPS&#160;</td><td class="memItemRight" valign="bottom"><b>mJoyCaps</b></td></tr>
-<tr class="separator:a9500170f814b04793e157318b668a1ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5622408ebb642085031af5bf5c182d7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5622408ebb642085031af5bf5c182d7b"></a>
 <a class="el" href="class_joy_stick_axis.html">JoyStickAxis</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mXAxis</b></td></tr>
 <tr class="separator:a5622408ebb642085031af5bf5c182d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,9 +190,9 @@ JOYCAPS&#160;</td><td class="memItemRight" valign="bottom"><b>mJoyCaps</b></td><
 <tr class="separator:ae7b4bff595ea934ba525e789915c44f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The joystick class encapsulate needed functionality in the ArrayBot API. </p>
+<div class="textblock"><p>The joystick class encapsulate needed functionality in the <a class="el" href="class_array_bot.html">ArrayBot</a> API. </p>
 
-<p>Definition at line <a class="el" href="ab_joystick_8h_source.html#l00012">12</a> of file <a class="el" href="ab_joystick_8h_source.html">abJoystick.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_joystick_8h_source.html#l00013">13</a> of file <a class="el" href="ab_joystick_8h_source.html">abJoystick.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_joystick_8h_source.html">abJoystick.h</a></li>
 <li>source/<a class="el" href="ab_joystick_8cpp_source.html">abJoystick.cpp</a></li>

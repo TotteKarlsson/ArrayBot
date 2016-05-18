@@ -9,6 +9,9 @@
         <Projects Include="P:\libs\dslib\VCL\Components\DuneComponents.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Forms\DuneForms.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="source\abCore.cbproj">
             <Dependencies/>
         </Projects>
@@ -41,6 +44,15 @@
     <Target Name="DuneComponents:Make">
         <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="DuneForms">
+        <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj"/>
+    </Target>
+    <Target Name="DuneForms:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneForms:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="abCore">
         <MSBuild Projects="source\abCore.cbproj"/>
     </Target>
@@ -60,13 +72,13 @@
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="VCLCommon;DuneComponents;abCore;ArrayBot"/>
+        <CallTarget Targets="VCLCommon;DuneComponents;DuneForms;abCore;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make"/>
+        <CallTarget Targets="VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

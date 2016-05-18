@@ -38,7 +38,6 @@ object Main: TMain
     Height = 162
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 378
     object infoMemo: TMemo
       Left = 1
       Top = 34
@@ -90,19 +89,16 @@ object Main: TMain
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
     TabOrder = 1
-    ExplicitHeight = 375
     object PageControl1: TPageControl
       Left = 1
       Top = 1
       Width = 680
       Height = 360
-      ActivePage = TabSheet2
+      ActivePage = TabSheet4
       Align = alClient
       TabOrder = 0
-      ExplicitHeight = 373
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitHeight = 345
         object GroupBox6: TGroupBox
           Left = 365
           Top = 19
@@ -241,7 +237,6 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
-        ExplicitHeight = 345
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -249,7 +244,6 @@ object Main: TMain
           Height = 332
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 345
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
@@ -305,7 +299,6 @@ object Main: TMain
       object TabSheet3: TTabSheet
         Caption = 'CS Angle Motor'
         ImageIndex = 3
-        ExplicitHeight = 345
         inline TMotorFrame1: TMotorFrame
           Left = 0
           Top = 0
@@ -320,24 +313,24 @@ object Main: TMain
             Constraints.MaxWidth = 293
             ExplicitWidth = 293
             ExplicitHeight = 292
-            inherited JoggingGB: TGroupBox [4]
+            inherited StatusGB: TGroupBox
+              Top = 208
+              Width = 289
+              ExplicitTop = 208
+              ExplicitWidth = 289
+            end
+            inherited JoggingGB: TGroupBox [5]
               Top = 116
               Width = 289
               ExplicitTop = 116
               ExplicitWidth = 289
             end
-            inherited mMotorPositionE: TFloatLabeledEdit
+            inherited mMotorPositionE: TFloatLabeledEdit [6]
               Left = 173
               EditLabel.ExplicitLeft = 173
               EditLabel.ExplicitTop = 13
               EditLabel.ExplicitWidth = 64
               ExplicitLeft = 173
-            end
-            inherited StatusGB: TGroupBox [6]
-              Top = 208
-              Width = 289
-              ExplicitTop = 208
-              ExplicitWidth = 289
             end
             inherited Button1: TButton [7]
             end
@@ -347,7 +340,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitHeight = 345
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -528,7 +520,6 @@ object Main: TMain
     Height = 362
     Align = alRight
     TabOrder = 2
-    ExplicitHeight = 375
     object Button2: TButton
       Left = 1
       Top = 1
@@ -563,7 +554,6 @@ object Main: TMain
       ParentBiDiMode = False
       ParentFont = False
       TabOrder = 1
-      ExplicitTop = 252
     end
     object Button5: TButton
       Left = 1
@@ -579,7 +569,6 @@ object Main: TMain
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitTop = 312
     end
   end
   object ActionList1: TActionList

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['notes',['notes',['../struct_hardware_information.html#a052e27d3f01137410be67bec8c1cd5d2',1,'HardwareInformation']]],
-  ['numchannels',['numChannels',['../struct_hardware_information.html#a5f9cdad38bc5e0d0718e73bdebc9d0c9',1,'HardwareInformation']]]
+  ['leftbuttonposition',['leftButtonPosition',['../struct_m_o_t___button_parameters.html#ab2056c54cd93d585a85a7d3356559545',1,'MOT_ButtonParameters']]],
+  ['limitswitch',['limitSwitch',['../struct_m_o_t___homing_parameters.html#ab64d2806f38fa72a8df49fd870882f98',1,'MOT_HomingParameters']]],
+  ['longtravelstage',['LongTravelStage',['../class_long_travel_stage.html',1,'']]]
 ];

@@ -23,7 +23,6 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
     }
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 {
@@ -44,7 +43,6 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 	    	mAB.shutDown();
         }
     }
-
 	Close();
 }
 
@@ -126,6 +124,3 @@ void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift
     	Close();
     }
 }
-
-
-

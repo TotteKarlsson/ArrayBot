@@ -30,7 +30,7 @@ bool ArrayBot::isShuttingDown()
 
 void ArrayBot::initialize()
 {
-//	mCoverSlip.initialize();
+	mCoverSlip.initialize();
 //	mWhisker.initialize();
 //    mCSAngleController.initialize();
 }

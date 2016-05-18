@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -108,6 +109,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a231015839bb28466363bd51e75f65a68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a231015839bb28466363bd51e75f65a68"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>XYZUnit</b> (const string &amp;name, IniFile &amp;iniFile)</td></tr>
 <tr class="separator:a231015839bb28466363bd51e75f65a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a776043964d1819b1e1fa3be3ecbf3e9d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a776043964d1819b1e1fa3be3ecbf3e9d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td></tr>
+<tr class="separator:a776043964d1819b1e1fa3be3ecbf3e9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d32bd14eb242255a179c30b8b3683a3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d32bd14eb242255a179c30b8b3683a3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>home</b> ()</td></tr>
+<tr class="separator:a3d32bd14eb242255a179c30b8b3683a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c782c051a8c72eab3bcb9cf97d73c90"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c782c051a8c72eab3bcb9cf97d73c90"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>stow</b> ()</td></tr>
+<tr class="separator:a4c782c051a8c72eab3bcb9cf97d73c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25b85e4117310c9d5629933ee2a15d8e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25b85e4117310c9d5629933ee2a15d8e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>shutDown</b> ()</td></tr>
 <tr class="separator:a25b85e4117310c9d5629933ee2a15d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,6 +172,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a0c0a3fbe8791a19dc52715a4f1299dd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c0a3fbe8791a19dc52715a4f1299dd9"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>mName</b></td></tr>
 <tr class="separator:a0c0a3fbe8791a19dc52715a4f1299dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae026cd3fb3dd46f46340530bf9930c83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae026cd3fb3dd46f46340530bf9930c83"></a>
+IniFile &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mIniFile</b></td></tr>
+<tr class="separator:ae026cd3fb3dd46f46340530bf9930c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39301e0200d0e5a6e3c3dd02de1033aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39301e0200d0e5a6e3c3dd02de1033aa"></a>
 IniFileProperties&#160;</td><td class="memItemRight" valign="bottom"><b>mProperties</b></td></tr>
 <tr class="separator:a39301e0200d0e5a6e3c3dd02de1033aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,16 +190,13 @@ IniFileProperties&#160;</td><td class="memItemRight" valign="bottom"><b>mPropert
 <tr class="memitem:ad402a3dccd02271621b3c857c05bf177"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad402a3dccd02271621b3c857c05bf177"></a>
 <a class="el" href="class_joy_stick.html">JoyStick</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mJoyStick</b></td></tr>
 <tr class="separator:ad402a3dccd02271621b3c857c05bf177"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae026cd3fb3dd46f46340530bf9930c83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae026cd3fb3dd46f46340530bf9930c83"></a>
-IniFile &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mIniFile</b></td></tr>
-<tr class="separator:ae026cd3fb3dd46f46340530bf9930c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36c15b7aa68e9f0b1c43600a22379692"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36c15b7aa68e9f0b1c43600a22379692"></a>
 <a class="el" href="class_x_y_z_unit_positions.html">XYZUnitPositions</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mPositions</b></td></tr>
 <tr class="separator:a36c15b7aa68e9f0b1c43600a22379692"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ab_x_y_z_unit_8h_source.html#l00018">18</a> of file <a class="el" href="ab_x_y_z_unit_8h_source.html">abXYZUnit.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_x_y_z_unit_8h_source.html#l00019">19</a> of file <a class="el" href="ab_x_y_z_unit_8h_source.html">abXYZUnit.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_x_y_z_unit_8h_source.html">abXYZUnit.h</a></li>
 <li>source/<a class="el" href="ab_x_y_z_unit_8cpp_source.html">abXYZUnit.cpp</a></li>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['notes',['notes',['../struct_hardware_information.html#a052e27d3f01137410be67bec8c1cd5d2',1,'HardwareInformation']]],
-  ['numchannels',['numChannels',['../struct_hardware_information.html#a5f9cdad38bc5e0d0718e73bdebc9d0c9',1,'HardwareInformation']]]
+  ['firmwareversion',['firmwareVersion',['../struct_hardware_information.html#a37bfd8784b151e397b5fa02c609ef1ec',1,'HardwareInformation::firmwareVersion()'],['../struct_t_l_i___hardware_information.html#a853850c73c53b669035d424a89f32f57',1,'TLI_HardwareInformation::firmwareVersion()']]]
 ];

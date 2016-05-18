@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['firmwareversion',['firmwareVersion',['../struct_hardware_information.html#a37bfd8784b151e397b5fa02c609ef1ec',1,'HardwareInformation']]]
+  ['buttonmode',['buttonMode',['../struct_m_o_t___button_parameters.html#ad46c7e9e1f474b4cb8b40207cf54274f',1,'MOT_ButtonParameters']]]
 ];

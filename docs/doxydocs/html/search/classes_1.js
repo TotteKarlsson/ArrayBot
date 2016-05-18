@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['devicemanager',['DeviceManager',['../class_device_manager.html',1,'']]]
+  ['combinedmove',['CombinedMove',['../class_combined_move.html',1,'']]],
+  ['coverslipanglecontroller',['CoverSlipAngleController',['../class_cover_slip_angle_controller.html',1,'']]]
 ];

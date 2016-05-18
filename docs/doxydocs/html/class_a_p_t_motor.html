@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -112,6 +113,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a05a9fe8575fe7bfaf73d285704989827"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05a9fe8575fe7bfaf73d285704989827"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>APTMotor</b> (int serial)</td></tr>
 <tr class="separator:a05a9fe8575fe7bfaf73d285704989827"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7792d5cf785cf0e77a0be63248efb3b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7792d5cf785cf0e77a0be63248efb3b8"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>switchDirection</b> (bool inThread=true)</td></tr>
+<tr class="separator:a7792d5cf785cf0e77a0be63248efb3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a96d14d331b6b3afe6885fc8c4b0e11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a96d14d331b6b3afe6885fc8c4b0e11"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityForward</b> (double v)</td></tr>
+<tr class="separator:a1a96d14d331b6b3afe6885fc8c4b0e11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a944a015130c100dbff2f036fd754efa3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a944a015130c100dbff2f036fd754efa3"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityReverse</b> (double v)</td></tr>
+<tr class="separator:a944a015130c100dbff2f036fd754efa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ff23e8c8ff26b8d9fc4a7cbaf4c83a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ff23e8c8ff26b8d9fc4a7cbaf4c83a1"></a>
 virtual <a class="el" href="struct_hardware_information.html">HardwareInformation</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getHWInfo</b> ()=0</td></tr>
 <tr class="separator:a8ff23e8c8ff26b8d9fc4a7cbaf4c83a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,9 +143,6 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isForwarding<
 <tr class="memitem:adaab909d33c86da8c01f1219b72275d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaab909d33c86da8c01f1219b72275d9"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isReversing</b> ()=0</td></tr>
 <tr class="separator:adaab909d33c86da8c01f1219b72275d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6f8a1d85d6a627d05bece5196281a5d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6f8a1d85d6a627d05bece5196281a5d"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>switchDirection</b> (bool inThread=true)=0</td></tr>
-<tr class="separator:af6f8a1d85d6a627d05bece5196281a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a283bc93f03eb9a54ebfab749444cb739"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a283bc93f03eb9a54ebfab749444cb739"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>connect</b> ()=0</td></tr>
 <tr class="separator:a283bc93f03eb9a54ebfab749444cb739"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,12 +175,6 @@ virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>getVelocity
 <tr class="memitem:a4d2263c282b4f62a29635b06c06dee74"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d2263c282b4f62a29635b06c06dee74"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocity</b> (double vel)=0</td></tr>
 <tr class="separator:a4d2263c282b4f62a29635b06c06dee74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4a43702588c17b107ba22eec0573dfd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4a43702588c17b107ba22eec0573dfd"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityForward</b> (double v)=0</td></tr>
-<tr class="separator:ae4a43702588c17b107ba22eec0573dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a104038779ab14ffde053055db30204c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a104038779ab14ffde053055db30204c6"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityReverse</b> (double v)=0</td></tr>
-<tr class="separator:a104038779ab14ffde053055db30204c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74b061f1f03449e112d9b03138427020"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74b061f1f03449e112d9b03138427020"></a>
 virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>getAcceleration</b> ()=0</td></tr>
 <tr class="separator:a74b061f1f03449e112d9b03138427020"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -248,6 +249,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setManualJogVelocity<
 <tr class="memitem:a699b53685e8125ac8aaa5b9dfb527029"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a699b53685e8125ac8aaa5b9dfb527029"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setManualJogAcceleration</b> (double a)</td></tr>
 <tr class="separator:a699b53685e8125ac8aaa5b9dfb527029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3219423a53cd383a84f017dd4e02830b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3219423a53cd383a84f017dd4e02830b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setPotentiometerVelocity</b> (double v)=0</td></tr>
+<tr class="separator:a3219423a53cd383a84f017dd4e02830b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_a_p_t_device"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_a_p_t_device')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_a_p_t_device.html">APTDevice</a></td></tr>
 <tr class="memitem:a689fd8cfcf7b00be3c3978977841ad16 inherit pub_methods_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a689fd8cfcf7b00be3c3978977841ad16"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>APTDevice</b> (int serial)</td></tr>
