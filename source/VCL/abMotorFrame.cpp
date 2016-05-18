@@ -7,7 +7,7 @@
 #include "mtkLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "mtkFloatLabeledEdit"
+#pragma link "TFloatLabeledEdit"
 #pragma link "TIntLabel"
 #pragma link "mtkFloatLabel"
 #pragma resource "*.dfm"
@@ -29,8 +29,8 @@ void TMotorFrame::assignMotor(APTMotor* m)
     if(mMotor)
     {
     	MotorGB->Caption = vclstr(mMotor->getName() + " [" + mMotor->getSerial() + "]");
-        mJogVelocity->SetNumber(mMotor->getManualJogVelocity());
-        mJogAcc->SetNumber(mMotor->getManualJogAcceleration());
+        mJogVelocity->setValue(mMotor->getManualJogVelocity());
+        mJogAcc->setValue(mMotor->getManualJogAcceleration());
     	mMotorStatusTimer->Enabled = true;
     }
 }
@@ -47,7 +47,7 @@ void __fastcall TMotorFrame::mMotorStatusTimerTimer(TObject *Sender)
     double v = mMotor->getJogVelocity();
     double a = mMotor->getJogAcceleration();
 
-    mMotorPositionE->SetNumber(p);
+    mMotorPositionE->setValue(p);
     mJogVelLbl->SetValue(v);
 	mJogAccLbl->SetValue(a);
 
@@ -87,18 +87,18 @@ void __fastcall TMotorFrame::BtnDown(TObject *Sender, TMouseButton Button, TShif
 	TButton* btn = (TButton*)(Sender);
     if(btn == mFwdBtn)
     {
-        double vel = mJogVelocity->GetValue();
+        double vel = mJogVelocity->getValue();
         mMotor->setJogVelocity(vel);
-        double a = mJogAcc->GetValue();
+        double a = mJogAcc->getValue();
         mMotor->setJogAcceleration(a);
       	mMotor->jogForward();
     }
 
     if(btn == mRewBtn)
     {
-        double vel = mJogVelocity->GetValue();
+        double vel = mJogVelocity->getValue();
         mMotor->setJogVelocity(vel);
-        double a = mJogAcc->GetValue();
+        double a = mJogAcc->getValue();
         mMotor->setJogAcceleration(a);
       	mMotor->jogReverse();
     }
@@ -130,17 +130,17 @@ void __fastcall TMotorFrame::DevEdit(TObject *Sender, WORD &Key, TShiftState Shi
         return;
     }
 
-	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
+	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
     if(e == mJogVelocity)
     {
-        double vel = mJogVelocity->GetValue();
+        double vel = mJogVelocity->getValue();
         Log(lDebug) << "New JOG velocity (mm/s): " <<vel;
 		mMotor->setManualJogVelocity(vel);
         mMotor->setJogVelocity(vel);
     }
     else if(e == mJogAcc)
     {
-        double a = mJogAcc->GetValue();
+        double a = mJogAcc->getValue();
         Log(lDebug) << "New JOG acceleration (mm/(s*s)): " <<a;
 		mMotor->setManualJogAcceleration(a);
         mMotor->setJogAcceleration(a);
@@ -158,7 +158,7 @@ void __fastcall TMotorFrame::mMotorPositionEKeyDown(TObject *Sender, WORD &Key,
     }
 
     if(mMotor)
-		mMotor->moveToPosition(mMotorPositionE->GetValue());
+		mMotor->moveToPosition(mMotorPositionE->getValue());
 }
 
 //---------------------------------------------------------------------------

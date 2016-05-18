@@ -131,7 +131,7 @@ object Main: TMain
             TabOrder = 0
             OnClick = MoveBtnClick
           end
-          object mMoveAngleE: mtkFloatLabeledEdit
+          object mMoveAngleE: TFloatLabeledEdit
             Left = 19
             Top = 65
             Width = 98
@@ -220,7 +220,7 @@ object Main: TMain
           Font.Style = []
           ParentFont = False
           TabOrder = 4
-          object mCSAngleE: mtkFloatLabeledEdit
+          object mCSAngleE: TFloatLabeledEdit
             Left = 20
             Top = 39
             Width = 117
@@ -326,7 +326,7 @@ object Main: TMain
               ExplicitTop = 116
               ExplicitWidth = 289
             end
-            inherited mMotorPositionE: mtkFloatLabeledEdit
+            inherited mMotorPositionE: TFloatLabeledEdit
               Left = 173
               EditLabel.ExplicitLeft = 173
               EditLabel.ExplicitTop = 13
@@ -355,7 +355,7 @@ object Main: TMain
           Height = 169
           Caption = 'JoyStick Velocities'
           TabOrder = 0
-          object mZJogAccelerationJoystick: mtkFloatLabeledEdit
+          object mZJogAccelerationJoystick: TFloatLabeledEdit
             Left = 119
             Top = 117
             Width = 66
@@ -367,7 +367,7 @@ object Main: TMain
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
-          object mXYJogAccelerationJoystick: mtkFloatLabeledEdit
+          object mXYJogAccelerationJoystick: TFloatLabeledEdit
             Left = 16
             Top = 117
             Width = 66
@@ -379,7 +379,7 @@ object Main: TMain
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
-          object mMaxZJogVelocityJoystick: mtkFloatLabeledEdit
+          object mMaxZJogVelocityJoystick: TFloatLabeledEdit
             Left = 119
             Top = 66
             Width = 66
@@ -391,7 +391,7 @@ object Main: TMain
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
-          object mMaxXYJogVelocityJoystick: mtkFloatLabeledEdit
+          object mMaxXYJogVelocityJoystick: TFloatLabeledEdit
             Left = 16
             Top = 66
             Width = 66
@@ -419,7 +419,7 @@ object Main: TMain
           Height = 169
           Caption = 'Lift Parameters'
           TabOrder = 1
-          object mMoveAccelerationE: mtkFloatLabeledEdit
+          object mMoveAccelerationE: TFloatLabeledEdit
             Left = 105
             Top = 36
             Width = 73
@@ -430,7 +430,7 @@ object Main: TMain
             TabOrder = 0
             Text = '0.00'
           end
-          object mMoveVelocityVerticalE: mtkFloatLabeledEdit
+          object mMoveVelocityVerticalE: TFloatLabeledEdit
             Left = 9
             Top = 36
             Width = 73
@@ -442,7 +442,7 @@ object Main: TMain
             Text = '0.00'
             OnKeyDown = moveEdit
           end
-          object mMoveVelHorizE: mtkFloatLabeledEdit
+          object mMoveVelHorizE: TFloatLabeledEdit
             Left = 9
             Top = 120
             Width = 73
@@ -454,7 +454,7 @@ object Main: TMain
             TabOrder = 2
             Text = '0.00'
           end
-          object mVerticalMoveDistanceE: mtkFloatLabeledEdit
+          object mVerticalMoveDistanceE: TFloatLabeledEdit
             Left = 9
             Top = 80
             Width = 73

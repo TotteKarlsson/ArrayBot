@@ -152,7 +152,7 @@ object MotorFrame: TMotorFrame
         Caption = 'N/A'
       end
     end
-    object mMotorPositionE: mtkFloatLabeledEdit
+    object mMotorPositionE: TFloatLabeledEdit
       Left = 168
       Top = 29
       Width = 102
@@ -208,7 +208,7 @@ object MotorFrame: TMotorFrame
         OnMouseDown = BtnDown
         OnMouseUp = BtnUp
       end
-      object mJogAcc: mtkFloatLabeledEdit
+      object mJogAcc: TFloatLabeledEdit
         Left = 98
         Top = 32
         Width = 66
@@ -220,7 +220,7 @@ object MotorFrame: TMotorFrame
         Text = '0.00'
         OnKeyDown = DevEdit
       end
-      object mJogVelocity: mtkFloatLabeledEdit
+      object mJogVelocity: TFloatLabeledEdit
         Left = 10
         Top = 32
         Width = 66

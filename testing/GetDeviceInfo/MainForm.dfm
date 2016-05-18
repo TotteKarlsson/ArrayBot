@@ -223,7 +223,7 @@ object Main: TMain
           TabOrder = 2
           OnClick = mJogModeCBClick
         end
-        object mJogAcc: mtkFloatLabeledEdit
+        object mJogAcc: TFloatLabeledEdit
           Left = 97
           Top = 81
           Width = 66
@@ -235,7 +235,7 @@ object Main: TMain
           Text = '0.00'
           OnKeyDown = mDeviceValueEdit
         end
-        object mJogVelocity: mtkFloatLabeledEdit
+        object mJogVelocity: TFloatLabeledEdit
           Left = 21
           Top = 81
           Width = 66
@@ -384,7 +384,7 @@ object Main: TMain
           TabOrder = 1
           OnClick = IncreaseVelBtnClick
         end
-        object mAcceleration: mtkFloatLabeledEdit
+        object mAcceleration: TFloatLabeledEdit
           Left = 231
           Top = 27
           Width = 50
@@ -396,7 +396,7 @@ object Main: TMain
           Text = '0.00'
           OnKeyDown = mDeviceValueEdit
         end
-        object mMaxVelocity: mtkFloatLabeledEdit
+        object mMaxVelocity: TFloatLabeledEdit
           Left = 169
           Top = 27
           Width = 56
@@ -408,7 +408,7 @@ object Main: TMain
           Text = '0.00'
           OnKeyDown = mDeviceValueEdit
         end
-        object mVelDeltaE: mtkFloatLabeledEdit
+        object mVelDeltaE: TFloatLabeledEdit
           Left = 169
           Top = 90
           Width = 76
@@ -483,7 +483,7 @@ object Main: TMain
           Action = homeDevice
           TabOrder = 0
         end
-        object motorPositionE: mtkFloatLabeledEdit
+        object motorPositionE: TFloatLabeledEdit
           Left = 168
           Top = -3
           Width = 171

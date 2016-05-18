@@ -13,7 +13,7 @@
 #include "mtkLogFileReader.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "TIntegerLabeledEdit.h"
-#include "mtkFloatLabeledEdit.h"
+#include "TFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
 #include "Poco/Timestamp.h"
 #include "abJoyStick.h"
@@ -64,7 +64,7 @@ class TMain : public TRegistryForm
 	TAction *initBotA;
         TAction *ShutDownA;
         TGroupBox *GroupBox6;
-        mtkFloatLabeledEdit *mMoveAngleE;
+        TFloatLabeledEdit *mMoveAngleE;
         TButton *MoveBtn;
         TXYZUnitFrame *TXYZUnitFrame2;
         TScrollBox *ScrollBox1;
@@ -74,22 +74,22 @@ class TMain : public TRegistryForm
 	TButton *Button2;
 	TTabSheet *TabSheet2;
 	TGroupBox *JoyStickGB2;
-	mtkFloatLabeledEdit *mZJogAccelerationJoystick;
-	mtkFloatLabeledEdit *mXYJogAccelerationJoystick;
-	mtkFloatLabeledEdit *mMaxZJogVelocityJoystick;
-	mtkFloatLabeledEdit *mMaxXYJogVelocityJoystick;
+	TFloatLabeledEdit *mZJogAccelerationJoystick;
+	TFloatLabeledEdit *mXYJogAccelerationJoystick;
+	TFloatLabeledEdit *mMaxZJogVelocityJoystick;
+	TFloatLabeledEdit *mMaxXYJogVelocityJoystick;
 	TComboBox *ComboBox1;
 	TGroupBox *GroupBox1;
-	mtkFloatLabeledEdit *mMoveAccelerationE;
-	mtkFloatLabeledEdit *mMoveVelocityVerticalE;
-	mtkFloatLabeledEdit *mMoveVelHorizE;
-	mtkFloatLabeledEdit *mVerticalMoveDistanceE;
+	TFloatLabeledEdit *mMoveAccelerationE;
+	TFloatLabeledEdit *mMoveVelocityVerticalE;
+	TFloatLabeledEdit *mMoveVelHorizE;
+	TFloatLabeledEdit *mVerticalMoveDistanceE;
 	TButton *Button3;
 	TButton *Button4;
 	TTabSheet *TabSheet3;
 	TMotorFrame *TMotorFrame1;
 	TGroupBox *csaGB;
-	mtkFloatLabeledEdit *mCSAngleE;
+	TFloatLabeledEdit *mCSAngleE;
 	TPanel *Btnpanel;
 	TButton *Button5;
 	TFileExit *FileExit1;

@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
-#pragma link "mtkFloatLabeledEdit"
+#pragma link "TFloatLabeledEdit"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -322,7 +322,7 @@ void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState 
         return;
     }
 
-	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
+	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
     if(e == mMaxVelocity)
     {
         double vel = mMaxVelocity->GetValue();

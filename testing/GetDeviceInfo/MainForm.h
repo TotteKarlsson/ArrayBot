@@ -15,7 +15,7 @@
 #include "mtkLogFileReader.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "TIntegerLabeledEdit.h"
-#include "mtkFloatLabeledEdit.h"
+#include "TFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
 
 #include "Poco/Timestamp.h"
@@ -46,7 +46,7 @@ class TMain : public TForm
 	TAction *jogBackwards;
 	TButton *Button3;
 	TButton *Button4;
-	mtkFloatLabeledEdit *motorPositionE;
+	TFloatLabeledEdit *motorPositionE;
 	TButton *fwdDriveBtn;
 	TButton *revDriveBtn;
 	TAction *moveForward;
@@ -62,8 +62,8 @@ class TMain : public TForm
 	TToolBar *ToolBar2;
 	TBitBtn *BitBtn3;
 	TPanel *TopPanel;
-	mtkFloatLabeledEdit *mMaxVelocity;
-	mtkFloatLabeledEdit *mAcceleration;
+	TFloatLabeledEdit *mMaxVelocity;
+	TFloatLabeledEdit *mAcceleration;
 	TLabel *Label1;
 	TLabel *Label2;
 	TLabel *Label3;
@@ -78,11 +78,11 @@ class TMain : public TForm
 	TButton *DecreaseVelBtn;
 	TButton *IncreaseVelBtn;
 	TCheckBox *ContinousMoveCB;
-	mtkFloatLabeledEdit *mVelDeltaE;
+	TFloatLabeledEdit *mVelDeltaE;
 	TButton *switchdirectionBtn;
 	TLabel *JoystickZPosition;
-	mtkFloatLabeledEdit *mJogVelocity;
-	mtkFloatLabeledEdit *mJogAcc;
+	TFloatLabeledEdit *mJogVelocity;
+	TFloatLabeledEdit *mJogAcc;
 	TCheckBox *mJogModeCB;
 	TGroupBox *JoggingGB;
 	TGroupBox *GroupBox4;

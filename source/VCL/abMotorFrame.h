@@ -5,7 +5,7 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "mtkFloatLabeledEdit.h"
+#include "TFloatLabeledEdit.h"
 #include "TIntLabel.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <System.Actions.hpp>
@@ -30,7 +30,7 @@ __published:	// IDE-managed Components
 	TLabel *mIsHomedLabel;
 	TLabel *mIsHomingLabel;
 	TLabel *mIsReversingLabel;
-	mtkFloatLabeledEdit *mMotorPositionE;
+	TFloatLabeledEdit *mMotorPositionE;
 	TTimer *mMotorStatusTimer;
 	TButton *Button1;
 	TActionList *ActionList1;
@@ -38,8 +38,8 @@ __published:	// IDE-managed Components
 	TGroupBox *JoggingGB;
 	TButton *mFwdBtn;
 	TButton *mRewBtn;
-	mtkFloatLabeledEdit *mJogAcc;
-	mtkFloatLabeledEdit *mJogVelocity;
+	TFloatLabeledEdit *mJogAcc;
+	TFloatLabeledEdit *mJogVelocity;
 	TButton *Button4;
 	TAction *home;
 	TLabel *Label4;

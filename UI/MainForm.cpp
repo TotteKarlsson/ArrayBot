@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
-#pragma link "mtkFloatLabeledEdit"
+#pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "abXYZUnitFrame"
 #pragma link "abMotorFrame"
@@ -69,10 +69,10 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     //Select medium speed on start
 	JSSpeedsRG->ItemIndex = 1;
     JSSpeedsRG->OnClick(NULL);
-    mCSAngleE->SetNumber(mAB.getAngleController().getAngle() - 225);
+    mCSAngleE->setValue(mAB.getAngleController().getAngle() - 225);
 
     //Assign editbox references to Lifting parameters
-    mMoveAngleE->SetNumberRef(mAB.getCombinedMove().mAngle.getReference());
+//    mMoveAngleE->SetNumberRef(mAB.getCombinedMove().mAngle.getReference());
 }
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
@@ -84,13 +84,13 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 
 	TMotorFrame1->assignMotor(mAB.getAngleController().getMotor());
     //JoyStick stuff.....
-    mMaxXYJogVelocityJoystick->SetNumber(mAB.getJoyStick().getXAxis().getMaxVelocity());
-    mXYJogAccelerationJoystick->SetNumber(mAB.getJoyStick().getXAxis().getAcceleration());
+    mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getXAxis().getMaxVelocity());
+    mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getXAxis().getAcceleration());
 
     if(mAB.getCoverSlipUnit().getZMotor())
     {
-    	mMaxZJogVelocityJoystick->SetNumber(mAB.getCoverSlipUnit().getZMotor()->getVelocity());
-    	mZJogAccelerationJoystick->SetNumber(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
+    	mMaxZJogVelocityJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getVelocity());
+    	mZJogAccelerationJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
     }
 
 	mAB.getJoyStick().connect();
@@ -141,17 +141,17 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
     	return;
     }
 
-	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
+	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
     if(e == mMaxXYJogVelocityJoystick)
     {
-        double vel = mMaxXYJogVelocityJoystick->GetValue();
+        double vel = mMaxXYJogVelocityJoystick->getValue();
         Log(lDebug) << "New jog velocity (mm/s): " <<vel;
 		mAB.getJoyStick().getXAxis().setMaxVelocity(vel);
 		mAB.getJoyStick().getYAxis().setMaxVelocity(vel);
     }
     else if(e == mXYJogAccelerationJoystick)
     {
-        double a = mXYJogAccelerationJoystick->GetValue();
+        double a = mXYJogAccelerationJoystick->getValue();
         Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<a;
         mAB.getCoverSlipUnit().getXMotor()->setJogAcceleration(a);
         mAB.getCoverSlipUnit().getYMotor()->setJogAcceleration(a);
@@ -160,29 +160,29 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
     }
     else if(e == mMaxZJogVelocityJoystick)
     {
-        double v = mMaxZJogVelocityJoystick->GetValue();
+        double v = mMaxZJogVelocityJoystick->getValue();
         Log(lDebug) << "New Z jog velocity (mm/s): " <<v;
         mAB.getCoverSlipUnit().getZMotor()->setJogVelocity(v);
         mAB.getWhiskerUnit().getZMotor()->setJogVelocity(v);
     }
     else if(e == mZJogAccelerationJoystick)
     {
-        double a = mZJogAccelerationJoystick->GetValue();
+        double a = mZJogAccelerationJoystick->getValue();
         Log(lDebug) << "New Z jog acceleration (mm/(s*s)): " <<a;
         mAB.getCoverSlipUnit().getZMotor()->setJogAcceleration(a);
         mAB.getWhiskerUnit().getZMotor()->setJogAcceleration(a);
     }
     else if(Sender == NULL) //Manually update velocities
     {
-        double vel = mMaxXYJogVelocityJoystick->GetValue();
-        double aXY = mXYJogAccelerationJoystick->GetValue();
+        double vel = mMaxXYJogVelocityJoystick->getValue();
+        double aXY = mXYJogAccelerationJoystick->getValue();
         Log(lDebug) << "New jog velocity (mm/s): " <<vel;
         Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<aXY;
 		mAB.getJoyStick().getXAxis().setMaxVelocity(vel);
 		mAB.getJoyStick().getYAxis().setMaxVelocity(vel);
 
-        double vZ  = mMaxZJogVelocityJoystick->GetValue();
-   	    double aZ  = mZJogAccelerationJoystick->GetValue();
+        double vZ  = mMaxZJogVelocityJoystick->getValue();
+   	    double aZ  = mZJogAccelerationJoystick->getValue();
 
         Log(lDebug) << "New Z jog acceleration (mm/(s*s)): " <<aZ;
         Log(lDebug) << "New Z jog velocity (mm/s): " <<vZ;
@@ -223,19 +223,19 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
     	return;
     }
 
-	mtkFloatLabeledEdit* e = dynamic_cast<mtkFloatLabeledEdit*>(Sender);
+	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
 
     if(e == mMoveVelocityVerticalE || e == mMoveAngleE)
     {
     	//Update horiz value using the angle
-        double tanTheta = tan(toRadians(mMoveAngleE->GetValue()));
+        double tanTheta = tan(toRadians(mMoveAngleE->getValue()));
         if(tanTheta != 0.0)
         {
-        	mMoveVelHorizE->SetNumber(mMoveVelocityVerticalE->GetValue()/tanTheta);
+        	mMoveVelHorizE->setValue(mMoveVelocityVerticalE->getValue()/tanTheta);
         }
         else
         {
-			mMoveVelHorizE->SetNumber(0.0);
+			mMoveVelHorizE->setValue(0.0);
         }
     }
 
@@ -256,9 +256,9 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
         return;
     }
 
-    double vertVel 	= mMoveVelocityVerticalE->GetNumber();
-    double horizVel = mMoveVelHorizE->GetNumber();
-    double acc 		= mMoveAccelerationE->GetNumber();
+    double vertVel 	= mMoveVelocityVerticalE->getValue();
+    double horizVel = mMoveVelHorizE->getValue();
+    double acc 		= mMoveAccelerationE->getValue();
 
 	//Update motors with current parameters and start the move
     zCS->setJogVelocity(vertVel);
@@ -267,7 +267,7 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
     zW->setJogVelocity(vertVel);
     zW->setJogAcceleration(acc);
 
-    double tanTheta = tan(toRadians(mMoveAngleE->GetValue()));
+    double tanTheta = tan(toRadians(mMoveAngleE->getValue()));
     yCS->setJogVelocity(horizVel);
     yCS->setJogAcceleration(acc / tanTheta);
 
@@ -278,7 +278,7 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
     double yPos = yCS->getPosition();
     double zPos = zCS->getPosition();
 
-	double newCSZPos = zPos + mVerticalMoveDistanceE->GetValue();
+	double newCSZPos = zPos + mVerticalMoveDistanceE->getValue();
 	double newCSYPos = (tanTheta != 0) ?
     					yPos + (newCSZPos - zPos) / tanTheta : yPos;
 
@@ -286,7 +286,7 @@ void __fastcall TMain::MoveBtnClick(TObject *Sender)
     yPos = yW->getPosition();
     zPos = zW->getPosition();
 
-	double newWZPos = zPos + mVerticalMoveDistanceE->GetValue();
+	double newWZPos = zPos + mVerticalMoveDistanceE->getValue();
 	double newWYPos = (tanTheta != 0) ?
     					(yPos + (newWZPos - zPos) / tanTheta) : yPos;
 
@@ -324,24 +324,24 @@ void __fastcall TMain::JSSpeedsRGClick(TObject *Sender)
     TShiftState ss;
 	if(JSSpeedsRG->ItemIndex == 0) //Fast
     {
-		mMaxXYJogVelocityJoystick->SetNumber(30);
-		mXYJogAccelerationJoystick->SetNumber(10);
-		mMaxZJogVelocityJoystick->SetNumber(2);
-		mZJogAccelerationJoystick->SetNumber(1.5);
+		mMaxXYJogVelocityJoystick->setValue(30);
+		mXYJogAccelerationJoystick->setValue(10);
+		mMaxZJogVelocityJoystick->setValue(2);
+		mZJogAccelerationJoystick->setValue(1.5);
     }
     else if (JSSpeedsRG->ItemIndex == 1) //Medium
     {
-		mMaxXYJogVelocityJoystick->SetNumber(10);
-		mXYJogAccelerationJoystick->SetNumber(5);
-		mMaxZJogVelocityJoystick->SetNumber(1.5);
-		mZJogAccelerationJoystick->SetNumber(3);
+		mMaxXYJogVelocityJoystick->setValue(10);
+		mXYJogAccelerationJoystick->setValue(5);
+		mMaxZJogVelocityJoystick->setValue(1.5);
+		mZJogAccelerationJoystick->setValue(3);
     }
     else if (JSSpeedsRG->ItemIndex == 2) //Slow
     {
-		mMaxXYJogVelocityJoystick->SetNumber(1);
-		mXYJogAccelerationJoystick->SetNumber(1);
-		mMaxZJogVelocityJoystick->SetNumber(0.5);
-		mZJogAccelerationJoystick->SetNumber(0.1);
+		mMaxXYJogVelocityJoystick->setValue(1);
+		mXYJogAccelerationJoystick->setValue(1);
+		mMaxZJogVelocityJoystick->setValue(0.5);
+		mZJogAccelerationJoystick->setValue(0.1);
     }
 	JoyStickValueEdit(NULL, key, ss);
 }
@@ -382,7 +382,7 @@ void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState 
     	return;
     }
 
-    mAB.getAngleController().setAngle(mCSAngleE->GetValue() + 225.0);
+    mAB.getAngleController().setAngle(mCSAngleE->getValue() + 225.0);
 }
 
 
