@@ -20,6 +20,7 @@ class AB_CORE ArrayBot : public ABObject
         XYZUnit&					getWhiskerUnit();
         bool						shutDown();
         JoyStick&					getJoyStick();
+        JoyStickSettings&			getJoyStickSettings(){return mJSSettings;}
         void						assignWindowHandle(int Handle);
 		void						enableWhiskerJoyStick();
 		void						enableCoverSlipJoyStick();
@@ -32,6 +33,7 @@ class AB_CORE ArrayBot : public ABObject
         bool						isShuttingDown();
 		CoverSlipAngleController&	getAngleController();
     	CombinedMove&				getCombinedMove(){return mCSLift;}
+        bool						applyJoyStickSetting(const string& settingName);
 
     private:
         IniFile&					mIniFile;
@@ -44,7 +46,6 @@ class AB_CORE ArrayBot : public ABObject
 
         JoyStick					mJoyStick;
         JoyStickSettings			mJSSettings;
-
 };
 
 #endif

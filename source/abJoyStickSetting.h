@@ -17,6 +17,7 @@ class AB_CORE JoyStickSetting : public ABObject
 		string  		getLabel(){return mLabel;}
         vector<double> 	get();
         void			set(double maxXYVel, double xyAcc, double maxZVel, double zAcc);
+        string			asIniRecord();
 
     protected:
 		string			mLabel;

@@ -1,6 +1,10 @@
 #pragma hdrstop
 #include "abArrayBot.h"
+#include "mtkLogger.h"
+#include "abAPTMotor.h"
 //---------------------------------------------------------------------------
+
+using namespace mtk;
 
 ArrayBot::ArrayBot(IniFile& ini)
 :
@@ -10,7 +14,8 @@ mWhisker("Whisker Unit", mIniFile),
 mJoyStick(NULL),
 mCSAngleController("CS Angle Controller", mIniFile),
 mCSLift("COVERSLIP_LIFT"),
-mIsShuttingDown(false)
+mIsShuttingDown(false),
+mJSSettings("JOYSTICK_SETTINGS", mIniFile)
 {
 	mCSLift.readProperties(mIniFile);
 }
@@ -58,6 +63,55 @@ void ArrayBot::stopAll()
     mCoverSlip.stopAll();
     mWhisker.stopAll();
 	mCSAngleController.stop();
+}
+
+bool ArrayBot::applyJoyStickSetting(const string& settingName)
+{
+	JoyStickSetting *s = mJSSettings.getSetting(settingName);
+    if(!s)
+    {
+    	Log(lError) <<"No joystick setting with name: "<<settingName;
+        return false;
+    }
+
+	vector<double> vals = s->get();
+    Log(lDebug) << "New XY jog velocity (mm/s): " <<vals[0];
+    Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<vals[1];
+
+    getJoyStick().getXAxis().setMaxVelocity(vals[0]);
+    getJoyStick().getYAxis().setMaxVelocity(vals[1]);
+
+    Log(lDebug) << "New Z jog velocity (mm/s): " <<vals[2];
+    Log(lDebug) << "New Z jog acceleration (mm/(s*s)): " <<vals[3];
+
+    if(getCoverSlipUnit().getXMotor() && getCoverSlipUnit().getYMotor())
+    {
+        getCoverSlipUnit().getXMotor()->setJogAcceleration(vals[1]);
+        getCoverSlipUnit().getYMotor()->setJogAcceleration(vals[1]);
+
+        getCoverSlipUnit().getXMotor()->setPotentiometerVelocity(vals[0]);
+        getCoverSlipUnit().getYMotor()->setPotentiometerVelocity(vals[0]);
+    }
+
+    if(getWhiskerUnit().getXMotor() && getWhiskerUnit().getYMotor())
+    {
+        getWhiskerUnit().getXMotor()->setJogAcceleration(vals[1]);
+        getWhiskerUnit().getYMotor()->setJogAcceleration(vals[1]);
+    }
+
+    if(getCoverSlipUnit().getZMotor())
+    {
+        getCoverSlipUnit().getZMotor()->setJogVelocity(vals[2]);
+        getCoverSlipUnit().getZMotor()->setJogAcceleration(vals[3]);
+    }
+
+    if(getWhiskerUnit().getZMotor())
+    {
+        getWhiskerUnit().getZMotor()->setJogVelocity(vals[2]);
+        getWhiskerUnit().getZMotor()->setJogAcceleration(vals[3]);
+    }
+
+	return true;
 }
 
 void ArrayBot::enableWhiskerJoyStick()

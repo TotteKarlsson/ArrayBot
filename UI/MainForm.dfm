@@ -1,10 +1,9 @@
 object Main: TMain
   Left = 0
   Top = 0
-  BorderStyle = bsNone
   Caption = 'ArrayBot Version 0.1'
-  ClientHeight = 852
-  ClientWidth = 1278
+  ClientHeight = 814
+  ClientWidth = 1262
   Color = clBtnFace
   Constraints.MaxHeight = 852
   Constraints.MaxWidth = 1278
@@ -26,15 +25,15 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 13
   object Btnpanel: TPanel
-    Left = 1151
+    Left = 1135
     Top = 0
     Width = 127
-    Height = 852
+    Height = 814
     Align = alRight
     TabOrder = 0
     object Button7: TButton
       Left = 1
-      Top = 729
+      Top = 691
       Width = 125
       Height = 60
       Action = stopAllA
@@ -51,7 +50,7 @@ object Main: TMain
     end
     object Button5: TButton
       Left = 1
-      Top = 789
+      Top = 751
       Width = 125
       Height = 62
       Action = FileExit1
@@ -68,8 +67,8 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 1151
-    Height = 852
+    Width = 1135
+    Height = 814
     Align = alClient
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
@@ -77,21 +76,18 @@ object Main: TMain
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 1149
-      Height = 850
-      ActivePage = TabSheet2
+      Width = 1133
+      Height = 812
+      ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
       TabWidth = 100
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        DesignSize = (
-          1141
-          780)
         object GroupBox2: TGroupBox
-          Left = 19
-          Top = 17
+          Left = 387
+          Top = 25
           Width = 366
           Height = 312
           Caption = 'Coverslip Operations'
@@ -175,24 +171,9 @@ object Main: TMain
             OnClick = LiftCSBtnClick
           end
         end
-        object Button1: TButton
-          Left = 843
-          Top = 662
-          Width = 284
-          Height = 104
-          Action = stopAllA
-          Anchors = [akRight, akBottom]
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clRed
-          Font.Height = -43
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 1
-        end
         object JSGB: TGroupBox
-          Left = 760
-          Top = 17
+          Left = 24
+          Top = 25
           Width = 345
           Height = 224
           Caption = 'Joystick'
@@ -202,7 +183,7 @@ object Main: TMain
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 1
           object mJSCSBtn: TSpeedButton
             Left = 23
             Top = 32
@@ -262,37 +243,37 @@ object Main: TMain
         end
       end
       object TabSheet1: TTabSheet
-        Caption = 'XYZ Units'
+        Caption = 'Motors'
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
-          Width = 1141
-          Height = 780
+          Width = 1125
+          Height = 742
           Align = alClient
           TabOrder = 0
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
-            Width = 1137
+            Width = 1104
             Height = 348
             Align = alTop
             TabOrder = 0
             ExplicitTop = 351
-            ExplicitWidth = 1137
+            ExplicitWidth = 1121
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
-              Width = 1137
+              Width = 1104
               Height = 348
-              ExplicitWidth = 1137
+              ExplicitWidth = 1121
               ExplicitHeight = 348
               inherited TopPanel: TPanel
-                Width = 1133
-                ExplicitWidth = 1133
+                Width = 1100
+                ExplicitWidth = 1117
               end
               inherited ScrollBox1: TScrollBox
-                Width = 1133
+                Width = 1100
                 Height = 305
-                ExplicitWidth = 1133
+                ExplicitWidth = 1117
                 ExplicitHeight = 305
               end
             end
@@ -300,64 +281,35 @@ object Main: TMain
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
             Top = 0
-            Width = 1137
+            Width = 1104
             Height = 351
             Align = alTop
             TabOrder = 1
-            ExplicitWidth = 1137
+            ExplicitWidth = 1121
             inherited mainGB: TGroupBox
-              Width = 1137
-              ExplicitWidth = 1137
+              Width = 1104
+              ExplicitWidth = 1121
               ExplicitHeight = 351
               inherited TopPanel: TPanel
-                Width = 1133
-                ExplicitWidth = 1133
+                Width = 1100
+                ExplicitWidth = 1117
               end
               inherited ScrollBox1: TScrollBox
-                Width = 1133
-                ExplicitWidth = 1133
+                Width = 1100
+                ExplicitWidth = 1117
                 ExplicitHeight = 308
               end
             end
           end
-        end
-      end
-      object TabSheet3: TTabSheet
-        Caption = 'CS Angle Motor'
-        ImageIndex = 3
-        inline TMotorFrame1: TMotorFrame
-          Left = 0
-          Top = 0
-          Width = 293
-          Height = 292
-          TabOrder = 0
-          inherited MotorGB: TGroupBox
-            Width = 293
+          inline TMotorFrame1: TMotorFrame
+            Left = 0
+            Top = 699
+            Width = 1104
             Height = 292
-            Align = alClient
-            Constraints.MaxHeight = 292
-            Constraints.MaxWidth = 293
-            ExplicitWidth = 293
-            ExplicitHeight = 292
-            inherited JoggingGB: TGroupBox [4]
-              Top = 116
-              Width = 289
-              ExplicitTop = 116
-              ExplicitWidth = 289
-            end
-            inherited StatusGB: TGroupBox [5]
-              Top = 208
-              Width = 289
-              ExplicitTop = 208
-              ExplicitWidth = 289
-            end
-            inherited mMotorPositionE: TFloatLabeledEdit [7]
-              Left = 173
-              EditLabel.ExplicitLeft = 173
-              EditLabel.ExplicitTop = 13
-              EditLabel.ExplicitWidth = 64
-              ExplicitLeft = 173
-            end
+            Align = alBottom
+            TabOrder = 2
+            ExplicitTop = 446
+            ExplicitWidth = 1104
           end
         end
       end
@@ -373,7 +325,7 @@ object Main: TMain
           TabOrder = 0
           object mZJogAccelerationJoystick: TFloatLabeledEdit
             Left = 119
-            Top = 117
+            Top = 133
             Width = 66
             Height = 21
             EditLabel.Width = 68
@@ -385,7 +337,7 @@ object Main: TMain
           end
           object mXYJogAccelerationJoystick: TFloatLabeledEdit
             Left = 16
-            Top = 117
+            Top = 133
             Width = 66
             Height = 21
             EditLabel.Width = 74
@@ -397,7 +349,7 @@ object Main: TMain
           end
           object mMaxZJogVelocityJoystick: TFloatLabeledEdit
             Left = 119
-            Top = 66
+            Top = 82
             Width = 66
             Height = 21
             EditLabel.Width = 69
@@ -409,7 +361,7 @@ object Main: TMain
           end
           object mMaxXYJogVelocityJoystick: TFloatLabeledEdit
             Left = 16
-            Top = 66
+            Top = 82
             Width = 66
             Height = 21
             EditLabel.Width = 75
@@ -419,13 +371,24 @@ object Main: TMain
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
-          object ComboBox1: TComboBox
+          object JoyStickSettingsCB: TComboBox
             Left = 16
             Top = 24
             Width = 109
             Height = 21
+            Style = csDropDownList
             TabOrder = 4
-            Text = 'ComboBox1'
+            OnChange = JoyStickSettingsCBChange
+          end
+          object AddJsSettingBtn: TButton
+            Left = 137
+            Top = 22
+            Width = 21
+            Height = 21
+            Caption = '+'
+            TabOrder = 5
+            Visible = False
+            OnClick = AddJsSettingBtnClick
           end
         end
         object GroupBox1: TGroupBox
@@ -541,15 +504,15 @@ object Main: TMain
         object BottomPanel: TPanel
           Left = 0
           Top = 0
-          Width = 1141
-          Height = 780
+          Width = 1125
+          Height = 742
           Align = alClient
           TabOrder = 0
           object infoMemo: TMemo
             Left = 1
             Top = 51
-            Width = 1139
-            Height = 728
+            Width = 1123
+            Height = 690
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -564,7 +527,7 @@ object Main: TMain
           object ToolBar1: TToolBar
             Left = 1
             Top = 1
-            Width = 1139
+            Width = 1123
             Height = 50
             ButtonHeight = 44
             Caption = 'ToolBar1'

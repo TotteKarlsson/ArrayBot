@@ -35,7 +35,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VCL_Custom_Styles>&quot;Luna|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Luna.vsf&quot;</VCL_Custom_Styles>
+        <VCL_Custom_Styles>&quot;Aqua Light Slate|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\AquaLightSlate.vsf&quot;;&quot;Cobalt XEMedia|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\CobaltXEMedia.vsf&quot;</VCL_Custom_Styles>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
@@ -109,6 +109,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="..\source\VCL\abAddJoyStickSetting.cpp">
+            <Form>JoyStickSettingForm</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>..\source\VCL\abAddJoyStickSetting.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\source\VCL\abEditPositionsForm.cpp">
             <Form>Form2</Form>
             <FormType>dfm</FormType>
@@ -158,6 +164,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="..\source\VCL\abEditPositionsForm.dfm"/>
         <FormResources Include="..\source\VCL\abXYZUnitFrame.dfm"/>
         <FormResources Include="..\source\VCL\abMotorFrame.dfm"/>
+        <FormResources Include="..\source\VCL\abAddJoyStickSetting.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

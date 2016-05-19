@@ -1,6 +1,8 @@
 #pragma hdrstop
 #include "abJoyStickSetting.h"
+#include <sstream>
 //---------------------------------------------------------------------------
+using namespace std;
 
 JoyStickSetting::JoyStickSetting(const string& lbl, double maxXYVel, double xyAcc, double maxZVel, double zAcc)
 :
@@ -30,5 +32,13 @@ void JoyStickSetting::set(double maxXYVel, double xyAcc, double maxZVel, double 
     mXYAcceleration = xyAcc;
     mMaxZVelocity = maxZVel;
     mZAcceleration = zAcc;
+}
+
+string	JoyStickSetting::asIniRecord()
+{
+	stringstream s;
+    s<<mMaxXYVelocity << "," << mXYAcceleration<<","<<
+       mMaxZVelocity  << "," << mZAcceleration;
+	return s.str();
 }
 

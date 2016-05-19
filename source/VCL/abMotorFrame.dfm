@@ -16,9 +16,6 @@ object MotorFrame: TMotorFrame
     Constraints.MinHeight = 272
     Constraints.MinWidth = 288
     TabOrder = 0
-    DesignSize = (
-      288
-      272)
     object Label4: TLabel
       Left = 141
       Top = 62
@@ -157,7 +154,6 @@ object MotorFrame: TMotorFrame
       Top = 29
       Width = 102
       Height = 27
-      Anchors = [akTop, akRight]
       EditLabel.Width = 64
       EditLabel.Height = 13
       EditLabel.Caption = 'Position (mm)'

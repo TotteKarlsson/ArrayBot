@@ -10,6 +10,7 @@
 #include "mtkLogger.h"
 #include <bitset>
 #include "mtkMathUtils.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -33,7 +34,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     mBottomPanelHeight(100),
     mBottomPanelVisible(true),
     mTopPanelHeight(360),
-    mIniFile("ArrayBot.ini", true),
+    mIniFile("ArrayBot.ini", true, true),
 	mAB(mIniFile)
 {
 	TMemoLogger::mMemoIsEnabled = false;
@@ -71,6 +72,16 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
     mJSNoneBtn->Down 		= true;
 	mJSSpeedMediumBtn->Click();
+
+    //JoyStick Settings
+    JoyStickSettings& js = mAB.getJoyStickSettings();
+    JoyStickSetting* jss = js.getFirst();
+    while(jss)
+    {
+    	JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
+        jss = js.getNext();
+    }
+	JoyStickSettingsCB->ItemIndex = 0;
 }
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
@@ -108,108 +119,9 @@ void __fastcall TMain::ShutDownAExecute(TObject *Sender)
     InitCloseBtn->Action = initBotA;
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::JoyControlRGClick(TObject *Sender)
-{
-//	//Update joystick control
-//    if(JoyControlRG->ItemIndex == 0)
-//    {
-//    	mAB.enableCoverSlipJoyStick();
-//    }
-//    else if(JoyControlRG->ItemIndex == 1)
-//    {
-//    	mAB.enableWhiskerJoyStick();
-//    }
-//    else
-//    {
-//    	mAB.disableJoyStick();
-//    }
-}
-
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
 	mAB.stopAll();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-	if(Key != vkReturn)
-    {
-    	return;
-    }
-
-	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
-    if(e == mMaxXYJogVelocityJoystick)
-    {
-        double vel = mMaxXYJogVelocityJoystick->getValue();
-        Log(lDebug) << "New jog velocity (mm/s): " <<vel;
-		mAB.getJoyStick().getXAxis().setMaxVelocity(vel);
-		mAB.getJoyStick().getYAxis().setMaxVelocity(vel);
-    }
-    else if(e == mXYJogAccelerationJoystick)
-    {
-        double a = mXYJogAccelerationJoystick->getValue();
-        Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<a;
-        mAB.getCoverSlipUnit().getXMotor()->setJogAcceleration(a);
-        mAB.getCoverSlipUnit().getYMotor()->setJogAcceleration(a);
-        mAB.getWhiskerUnit().getXMotor()->setJogAcceleration(a);
-        mAB.getWhiskerUnit().getYMotor()->setJogAcceleration(a);
-    }
-    else if(e == mMaxZJogVelocityJoystick)
-    {
-        double v = mMaxZJogVelocityJoystick->getValue();
-        Log(lDebug) << "New Z jog velocity (mm/s): " <<v;
-        mAB.getCoverSlipUnit().getZMotor()->setJogVelocity(v);
-        mAB.getWhiskerUnit().getZMotor()->setJogVelocity(v);
-    }
-    else if(e == mZJogAccelerationJoystick)
-    {
-        double a = mZJogAccelerationJoystick->getValue();
-        Log(lDebug) << "New Z jog acceleration (mm/(s*s)): " <<a;
-        mAB.getCoverSlipUnit().getZMotor()->setJogAcceleration(a);
-        mAB.getWhiskerUnit().getZMotor()->setJogAcceleration(a);
-    }
-    else if(Sender == NULL) //Manually update velocities
-    {
-        double vel = mMaxXYJogVelocityJoystick->getValue();
-        double aXY = mXYJogAccelerationJoystick->getValue();
-        Log(lDebug) << "New jog velocity (mm/s): " <<vel;
-        Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<aXY;
-		mAB.getJoyStick().getXAxis().setMaxVelocity(vel);
-		mAB.getJoyStick().getYAxis().setMaxVelocity(vel);
-
-        double vZ  = mMaxZJogVelocityJoystick->getValue();
-   	    double aZ  = mZJogAccelerationJoystick->getValue();
-
-        Log(lDebug) << "New Z jog acceleration (mm/(s*s)): " <<aZ;
-        Log(lDebug) << "New Z jog velocity (mm/s): " <<vZ;
-        if(mAB.getCoverSlipUnit().getXMotor() && mAB.getCoverSlipUnit().getYMotor())
-        {
-            mAB.getCoverSlipUnit().getXMotor()->setJogAcceleration(aXY);
-            mAB.getCoverSlipUnit().getYMotor()->setJogAcceleration(aXY);
-
-            mAB.getCoverSlipUnit().getXMotor()->setPotentiometerVelocity(vel);
-            mAB.getCoverSlipUnit().getYMotor()->setPotentiometerVelocity(vel);
-        }
-        if(mAB.getWhiskerUnit().getXMotor() && mAB.getWhiskerUnit().getYMotor())
-        {
-            mAB.getWhiskerUnit().getXMotor()->setJogAcceleration(aXY);
-            mAB.getWhiskerUnit().getYMotor()->setJogAcceleration(aXY);
-        }
-
-        if(mAB.getCoverSlipUnit().getZMotor())
-        {
-        	mAB.getCoverSlipUnit().getZMotor()->setJogVelocity(vZ);
-	        mAB.getCoverSlipUnit().getZMotor()->setJogAcceleration(aZ);
-        }
-
-        if(mAB.getWhiskerUnit().getZMotor())
-        {
-	        mAB.getWhiskerUnit().getZMotor()->setJogVelocity(vZ);
-        	mAB.getWhiskerUnit().getZMotor()->setJogAcceleration(aZ);
-        }
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -401,34 +313,47 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
     }
 }
 
-
 void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
 {
     TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
 	if(btn == mJSSpeedFastBtn) //Fast
     {
-		mMaxXYJogVelocityJoystick->setValue(30);
-		mXYJogAccelerationJoystick->setValue(10);
-		mMaxZJogVelocityJoystick->setValue(2);
-		mZJogAccelerationJoystick->setValue(1.5);
+    	//Apply "FAST" JS setting
+        mAB.applyJoyStickSetting("Fast");
     }
     else if (btn == mJSSpeedMediumBtn) //Medium
     {
-		mMaxXYJogVelocityJoystick->setValue(10);
-		mXYJogAccelerationJoystick->setValue(5);
-		mMaxZJogVelocityJoystick->setValue(1.5);
-		mZJogAccelerationJoystick->setValue(3);
+        mAB.applyJoyStickSetting("Medium");
     }
     else if (btn == mJSSpeedSlowBtn) //Slow
     {
-		mMaxXYJogVelocityJoystick->setValue(1);
-		mXYJogAccelerationJoystick->setValue(1);
-		mMaxZJogVelocityJoystick->setValue(0.5);
-		mZJogAccelerationJoystick->setValue(0.1);
+        mAB.applyJoyStickSetting("Slow");
     }
-	unsigned short key  = 13;
-    TShiftState ss;
-	JoyStickValueEdit(NULL, key, ss);
+}
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	if(Key != vkReturn)
+    {
+    	return;
+    }
+
+	//Get current setting
+    int index = JoyStickSettingsCB->ItemIndex;
+    if(index == -1)
+    {
+    	return;
+    }
+
+    JoyStickSetting* jss = (JoyStickSetting*) JoyStickSettingsCB->Items->Objects[index];
+    if(!jss)
+    {
+    	return;
+    }
+
+    // Update setting from edits
+    jss->set(mMaxXYJogVelocityJoystick->getValue(), mXYJogAccelerationJoystick->getValue(),
+			 mMaxZJogVelocityJoystick->getValue(), mZJogAccelerationJoystick->getValue());
 }
 

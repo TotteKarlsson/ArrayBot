@@ -67,7 +67,6 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mMoveAngleE;
 	TFloatLabeledEdit *mCSAngleE;
 	TButton *InsertCSBtn;
-	TButton *Button1;
 	TGroupBox *JSGB;
 	TSpeedButton *mJSCSBtn;
 	TSpeedButton *mJSWhiskerBtn;
@@ -79,7 +78,6 @@ class TMain : public TRegistryForm
 	TScrollBox *ScrollBox1;
 	TXYZUnitFrame *TXYZUnitFrame1;
 	TXYZUnitFrame *TXYZUnitFrame2;
-	TTabSheet *TabSheet3;
 	TMotorFrame *TMotorFrame1;
 	TTabSheet *TabSheet2;
 	TGroupBox *JoyStickGB2;
@@ -87,7 +85,7 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mXYJogAccelerationJoystick;
 	TFloatLabeledEdit *mMaxZJogVelocityJoystick;
 	TFloatLabeledEdit *mMaxXYJogVelocityJoystick;
-	TComboBox *ComboBox1;
+	TComboBox *JoyStickSettingsCB;
 	TGroupBox *GroupBox1;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
@@ -102,6 +100,7 @@ class TMain : public TRegistryForm
 	TMemo *infoMemo;
 	TToolBar *ToolBar1;
 	TBitBtn *BitBtn2;
+	TButton *AddJsSettingBtn;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -116,7 +115,7 @@ class TMain : public TRegistryForm
         void __fastcall ShutDownAExecute(TObject *Sender);
         void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall LiftCSBtnClick(TObject *Sender);
-        void __fastcall JoyControlRGClick(TObject *Sender);
+
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall stowBtnClick(TObject *Sender);
@@ -127,6 +126,8 @@ class TMain : public TRegistryForm
 	void __fastcall LiftAngleButtonDownLeftClick(TObject *Sender);
 	void __fastcall JSControlClick(TObject *Sender);
 	void __fastcall JSSpeedBtnClick(TObject *Sender);
+	void __fastcall AddJsSettingBtnClick(TObject *Sender);
+	void __fastcall JoyStickSettingsCBChange(TObject *Sender);
 
 
 
