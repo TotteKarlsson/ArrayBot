@@ -17,10 +17,6 @@
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "abXYZUnitFrame"
 #pragma link "abMotorFrame"
-#pragma link "RzButton"
-#pragma link "RzEdit"
-#pragma link "RzSpnEdt"
-#pragma link "RzListVw"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -34,11 +30,11 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TRegistryForm("Test", "MainForm", Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-    mIniFile("ArrayBot.ini", true),
-	mAB(mIniFile),
     mBottomPanelHeight(100),
     mBottomPanelVisible(true),
-    mTopPanelHeight(360)
+    mTopPanelHeight(360),
+    mIniFile("ArrayBot.ini", true),
+	mAB(mIniFile)
 {
 	TMemoLogger::mMemoIsEnabled = false;
 
@@ -66,14 +62,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     sleep(100);
 	initBotAExecute(NULL);
 
-    //Select joystick control for CoverSlip Unit
-	//JoyControlRG->ItemIndex = 0;
-	//JoyControlRG->OnClick(NULL);
-
-    //Select medium speed on start
-	JSSpeedsRG->ItemIndex = 1;
-    JSSpeedsRG->OnClick(NULL);
-
 	//Initialize UI
     mCSAngleE->setValue(mAB.getAngleController().getAngle());
 
@@ -81,6 +69,8 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     mMoveAngleE->assignExternalProperty(&(mAB.getCombinedMove().mAngle), true);
     mCSAngleE->assignExternalProperty(&mAB.getAngleController().mAngle, true);
 
+    mJSNoneBtn->Down 		= true;
+	mJSSpeedMediumBtn->Click();
 }
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
@@ -121,19 +111,19 @@ void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::JoyControlRGClick(TObject *Sender)
 {
-	//Update joystick control
-    if(JoyControlRG->ItemIndex == 0)
-    {
-    	mAB.enableCoverSlipJoyStick();
-    }
-    else if(JoyControlRG->ItemIndex == 1)
-    {
-    	mAB.enableWhiskerJoyStick();
-    }
-    else
-    {
-    	mAB.disableJoyStick();
-    }
+//	//Update joystick control
+//    if(JoyControlRG->ItemIndex == 0)
+//    {
+//    	mAB.enableCoverSlipJoyStick();
+//    }
+//    else if(JoyControlRG->ItemIndex == 1)
+//    {
+//    	mAB.enableWhiskerJoyStick();
+//    }
+//    else
+//    {
+//    	mAB.disableJoyStick();
+//    }
 }
 
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
@@ -326,35 +316,6 @@ void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::JSSpeedsRGClick(TObject *Sender)
-{
-    unsigned short key  = 13;
-    TShiftState ss;
-	if(JSSpeedsRG->ItemIndex == 0) //Fast
-    {
-		mMaxXYJogVelocityJoystick->setValue(30);
-		mXYJogAccelerationJoystick->setValue(10);
-		mMaxZJogVelocityJoystick->setValue(2);
-		mZJogAccelerationJoystick->setValue(1.5);
-    }
-    else if (JSSpeedsRG->ItemIndex == 1) //Medium
-    {
-		mMaxXYJogVelocityJoystick->setValue(10);
-		mXYJogAccelerationJoystick->setValue(5);
-		mMaxZJogVelocityJoystick->setValue(1.5);
-		mZJogAccelerationJoystick->setValue(3);
-    }
-    else if (JSSpeedsRG->ItemIndex == 2) //Slow
-    {
-		mMaxXYJogVelocityJoystick->setValue(1);
-		mXYJogAccelerationJoystick->setValue(1);
-		mMaxZJogVelocityJoystick->setValue(0.5);
-		mZJogAccelerationJoystick->setValue(0.1);
-    }
-	JoyStickValueEdit(NULL, key, ss);
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::Button2Click(TObject *Sender)
 {
     if(BottomPanel->Visible)
@@ -394,22 +355,80 @@ void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState 
 }
 
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::Button6DropDownClick(TObject *Sender)
-{
-	PopupMenu1->Popup(0,0);
-}
-
-
 void __fastcall TMain::LiftAngleButtonUpRightClick(TObject *Sender)
 {
- ;
+// 	TRzSpinButtons* btn = dynamic_cast<TRzSpinButtons*>(Sender);
+//    if(btn == LiftAngleButton)
+//    {
+//	    mMoveAngleE->setValue(mMoveAngleE->getValue() + 1);
+//    }
+//    else if (btn == CSAngleButton)
+//    {
+//		mCSAngleE->setValue(mCSAngleE->getValue() + 1);
+//    }
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMain::LiftAngleButtonDownLeftClick(TObject *Sender)
 {
-;
+// 	TRzSpinButtons* btn = dynamic_cast<TRzSpinButtons*>(Sender);
+//    if(btn == LiftAngleButton)
+//    {
+//	    mMoveAngleE->setValue(mMoveAngleE->getValue() + 1);
+//    }
+//    else if (btn == CSAngleButton)
+//    {
+//		mCSAngleE->setValue(mCSAngleE->getValue() + 1);
+//    }
 }
+
 //---------------------------------------------------------------------------
+void __fastcall TMain::JSControlClick(TObject *Sender)
+{
+	//Setup Joystick control
+    TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
+    if(btn == mJSCSBtn)
+    {
+		mAB.enableCoverSlipJoyStick();
+    }
+    else if(btn == mJSWhiskerBtn)
+    {
+	 	mAB.enableWhiskerJoyStick();
+    }
+    else
+    {
+	 	mAB.disableJoyStick();
+    }
+}
+
+
+void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
+{
+    TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
+	if(btn == mJSSpeedFastBtn) //Fast
+    {
+		mMaxXYJogVelocityJoystick->setValue(30);
+		mXYJogAccelerationJoystick->setValue(10);
+		mMaxZJogVelocityJoystick->setValue(2);
+		mZJogAccelerationJoystick->setValue(1.5);
+    }
+    else if (btn == mJSSpeedMediumBtn) //Medium
+    {
+		mMaxXYJogVelocityJoystick->setValue(10);
+		mXYJogAccelerationJoystick->setValue(5);
+		mMaxZJogVelocityJoystick->setValue(1.5);
+		mZJogAccelerationJoystick->setValue(3);
+    }
+    else if (btn == mJSSpeedSlowBtn) //Slow
+    {
+		mMaxXYJogVelocityJoystick->setValue(1);
+		mXYJogAccelerationJoystick->setValue(1);
+		mMaxZJogVelocityJoystick->setValue(0.5);
+		mZJogAccelerationJoystick->setValue(0.1);
+    }
+	unsigned short key  = 13;
+    TShiftState ss;
+	JoyStickValueEdit(NULL, key, ss);
+
+}
 
