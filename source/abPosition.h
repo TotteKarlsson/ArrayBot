@@ -1,5 +1,5 @@
-#ifndef abXYZUnitPositionH
-#define abXYZUnitPositionH
+#ifndef abPositionH
+#define abPositionH
 #include "abExporter.h"
 #include "abABObject.h"
 #include "Math/mtkPoint.h"

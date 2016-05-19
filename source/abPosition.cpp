@@ -1,5 +1,5 @@
 #pragma hdrstop
-#include "abXYZUnitPosition.h"
+#include "abPosition.h"
 //---------------------------------------------------------------------------
 
 XYZUnitPosition::XYZUnitPosition(const string& lbl, double x, double y, double z)
