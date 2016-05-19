@@ -19,7 +19,6 @@ class AB_CORE APTMotor : public APTDevice
 		virtual bool	                    setVelocityReverse(double v);
 
         virtual HardwareInformation 	    getHWInfo() = 0;
-
         virtual double						getEncoderCounts() = 0;
 
 		virtual bool   		                isActive() 	= 0;
@@ -98,8 +97,6 @@ class AB_CORE APTMotor : public APTDevice
 		void                                post(const MotorCommand& cmd);
         MotorMessageProcessor				mMotorMessageProcessor;
         MotorMessageContainer  				mMotorMessageContainer;
-
 };
-
 
 #endif

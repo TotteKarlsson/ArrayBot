@@ -12,10 +12,10 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
-USEFORM("..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("..\source\VCL\abLoggingForm.cpp", Form1);
 USEFORM("..\source\VCL\abEditPositionsForm.cpp", Form2);
 USEFORM("..\source\VCL\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
-USEFORM("..\source\VCL\abLoggingForm.cpp", Form1);
+USEFORM("..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";

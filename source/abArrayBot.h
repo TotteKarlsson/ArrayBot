@@ -6,6 +6,7 @@
 #include "abJoyStick.h"
 #include "abCoverSlipAngleController.h"
 #include "abCombinedMove.h"
+#include "abJoyStickSettings.h"
 //---------------------------------------------------------------------------
 
 class AB_CORE ArrayBot : public ABObject
@@ -35,11 +36,15 @@ class AB_CORE ArrayBot : public ABObject
     private:
         IniFile&					mIniFile;
         bool						mIsShuttingDown;
-    	CombinedMove				mCSLift;
+
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
         CoverSlipAngleController	mCSAngleController;
+		CombinedMove				mCSLift;
+
         JoyStick					mJoyStick;
+        JoyStickSettings			mJSSettings;
+
 };
 
 #endif

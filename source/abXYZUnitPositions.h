@@ -11,20 +11,18 @@ typedef deque<XYZUnitPosition> UnitPositions;
 class AB_CORE XYZUnitPositions : public ABObject
 {
 	public:
-								XYZUnitPositions();
-								~XYZUnitPositions();
-		bool					add(const XYZUnitPosition& pos);
-        bool					remove(const string& lbl);
-        XYZUnitPosition*        getFirst() const;
-        XYZUnitPosition*        getNext() const;
-        XYZUnitPosition*        getPrevious() const;
-        XYZUnitPosition*        getCurrent() const;
+								        XYZUnitPositions();
+								        ~XYZUnitPositions();
+		bool					        add(const XYZUnitPosition& pos);
+        bool					        remove(const string& lbl);
+        XYZUnitPosition*                getFirst() const;
+        XYZUnitPosition*                getNext() const;
+        XYZUnitPosition*                getPrevious() const;
+        XYZUnitPosition*                getCurrent() const;
 
 
 	protected:
-    	mutable
-        UnitPositions			mPositions;
-    	mutable
-        UnitPositions::iterator mPositionsIter;
+    	mutable UnitPositions			mPositions;
+    	mutable UnitPositions::iterator mPositionsIter;
 };
 #endif

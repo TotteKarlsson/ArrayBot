@@ -149,6 +149,14 @@
             <DependentOn>abJoyStickButton.h</DependentOn>
             <BuildOrder>14</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abJoyStickSetting.cpp">
+            <DependentOn>abJoyStickSetting.h</DependentOn>
+            <BuildOrder>26</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abJoyStickSettings.cpp">
+            <DependentOn>abJoyStickSettings.h</DependentOn>
+            <BuildOrder>25</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abLongTravelStage.cpp">
             <BuildOrder>14</BuildOrder>
         </CppCompile>

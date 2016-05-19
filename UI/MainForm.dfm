@@ -32,8 +32,6 @@ object Main: TMain
     Height = 852
     Align = alRight
     TabOrder = 0
-    ExplicitLeft = 1145
-    ExplicitHeight = 821
     object Button7: TButton
       Left = 1
       Top = 729
@@ -50,7 +48,6 @@ object Main: TMain
       ParentBiDiMode = False
       ParentFont = False
       TabOrder = 0
-      ExplicitTop = 698
     end
     object Button5: TButton
       Left = 1
@@ -66,7 +63,6 @@ object Main: TMain
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      ExplicitTop = 758
     end
   end
   object TopPanel: TPanel
@@ -78,23 +74,18 @@ object Main: TMain
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
     TabOrder = 1
-    ExplicitWidth = 1145
-    ExplicitHeight = 821
     object PageControl1: TPageControl
       Left = 1
       Top = 1
       Width = 1149
       Height = 850
-      ActivePage = TabSheet4
+      ActivePage = TabSheet2
       Align = alClient
       TabHeight = 60
       TabOrder = 0
       TabWidth = 100
-      ExplicitWidth = 1143
-      ExplicitHeight = 819
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitHeight = 777
         DesignSize = (
           1141
           780)
@@ -198,7 +189,6 @@ object Main: TMain
           Font.Style = []
           ParentFont = False
           TabOrder = 1
-          ExplicitTop = 659
         end
         object JSGB: TGroupBox
           Left = 760
@@ -273,7 +263,6 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'XYZ Units'
-        ExplicitHeight = 777
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -281,7 +270,6 @@ object Main: TMain
           Height = 780
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 777
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
@@ -337,7 +325,6 @@ object Main: TMain
       object TabSheet3: TTabSheet
         Caption = 'CS Angle Motor'
         ImageIndex = 3
-        ExplicitHeight = 777
         inline TMotorFrame1: TMotorFrame
           Left = 0
           Top = 0
@@ -358,20 +345,18 @@ object Main: TMain
               ExplicitTop = 116
               ExplicitWidth = 289
             end
-            inherited mMotorPositionE: TFloatLabeledEdit
-              Left = 173
-              EditLabel.ExplicitLeft = 173
-              EditLabel.ExplicitTop = 13
-              EditLabel.ExplicitWidth = 64
-              ExplicitLeft = 173
-            end
-            inherited StatusGB: TGroupBox [6]
+            inherited StatusGB: TGroupBox [5]
               Top = 208
               Width = 289
               ExplicitTop = 208
               ExplicitWidth = 289
             end
-            inherited Button1: TButton [7]
+            inherited mMotorPositionE: TFloatLabeledEdit [7]
+              Left = 173
+              EditLabel.ExplicitLeft = 173
+              EditLabel.ExplicitTop = 13
+              EditLabel.ExplicitWidth = 64
+              ExplicitLeft = 173
             end
           end
         end
@@ -379,7 +364,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitHeight = 777
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -500,7 +484,7 @@ object Main: TMain
         end
         object Button2: TButton
           Left = 194
-          Top = 205
+          Top = 421
           Width = 177
           Height = 116
           Caption = 'Home All'
@@ -509,7 +493,7 @@ object Main: TMain
         end
         object Button3: TButton
           Left = 11
-          Top = 205
+          Top = 421
           Width = 177
           Height = 116
           Caption = 'Stow'
@@ -554,7 +538,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitHeight = 777
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -562,7 +545,6 @@ object Main: TMain
           Height = 780
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 777
           object infoMemo: TMemo
             Left = 1
             Top = 51
@@ -578,7 +560,6 @@ object Main: TMain
             ScrollBars = ssVertical
             TabOrder = 0
             WordWrap = False
-            ExplicitHeight = 725
           end
           object ToolBar1: TToolBar
             Left = 1
@@ -610,7 +591,7 @@ object Main: TMain
   end
   object ActionList1: TActionList
     Left = 304
-    Top = 488
+    Top = 648
     object checkForDevices: TAction
       Caption = 'Devices Check'
       OnExecute = checkForDevicesExecute
@@ -659,17 +640,17 @@ object Main: TMain
     Interval = 100
     OnTimer = ShutDownTimerTimer
     Left = 32
-    Top = 488
+    Top = 648
   end
   object StatusTimer: TTimer
     Enabled = False
     Interval = 500
     Left = 120
-    Top = 488
+    Top = 648
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
     Left = 200
-    Top = 488
+    Top = 648
   end
 end
