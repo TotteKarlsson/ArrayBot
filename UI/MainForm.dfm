@@ -5,10 +5,6 @@ object Main: TMain
   ClientHeight = 814
   ClientWidth = 1262
   Color = clBtnFace
-  Constraints.MaxHeight = 852
-  Constraints.MaxWidth = 1278
-  Constraints.MinHeight = 852
-  Constraints.MinWidth = 1278
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -259,21 +255,21 @@ object Main: TMain
             Align = alTop
             TabOrder = 0
             ExplicitTop = 351
-            ExplicitWidth = 1121
+            ExplicitWidth = 1104
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
               Width = 1104
               Height = 348
-              ExplicitWidth = 1121
+              ExplicitWidth = 1104
               ExplicitHeight = 348
               inherited TopPanel: TPanel
                 Width = 1100
-                ExplicitWidth = 1117
+                ExplicitWidth = 1100
               end
               inherited ScrollBox1: TScrollBox
                 Width = 1100
                 Height = 305
-                ExplicitWidth = 1117
+                ExplicitWidth = 1100
                 ExplicitHeight = 305
               end
             end
@@ -285,18 +281,18 @@ object Main: TMain
             Height = 351
             Align = alTop
             TabOrder = 1
-            ExplicitWidth = 1121
+            ExplicitWidth = 1104
             inherited mainGB: TGroupBox
               Width = 1104
-              ExplicitWidth = 1121
+              ExplicitWidth = 1104
               ExplicitHeight = 351
               inherited TopPanel: TPanel
                 Width = 1100
-                ExplicitWidth = 1117
+                ExplicitWidth = 1100
               end
               inherited ScrollBox1: TScrollBox
                 Width = 1100
-                ExplicitWidth = 1117
+                ExplicitWidth = 1100
                 ExplicitHeight = 308
               end
             end
@@ -308,7 +304,7 @@ object Main: TMain
             Height = 292
             Align = alBottom
             TabOrder = 2
-            ExplicitTop = 446
+            ExplicitTop = 699
             ExplicitWidth = 1104
           end
         end

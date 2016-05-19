@@ -7,15 +7,12 @@
 using std::list;
 //---------------------------------------------------------------------------
 
-class Move
-{};
-
 
 class MoveSequencer : public ABObject
 {
 	public:
 
 	private:
-    	list<Move>				mMoves;
+
 };
 #endif

@@ -20,7 +20,7 @@ class AB_CORE XYZUnitPosition : public ABObject
         double 					z() const;
 
 	protected:
-    	mtk::Point				mPosition;
+    	Point					mPosition;
         string					mLabel;
 };
 
