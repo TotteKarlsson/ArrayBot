@@ -121,7 +121,7 @@ string XYZUnit::getName()
 	return mName;
 }
 
-bool XYZUnit::moveToPosition(const XYZUnitPosition& pos)
+bool XYZUnit::moveToPosition(const Position& pos)
 {
 	if(mXMotor && mYMotor && mZMotor)
     {
@@ -133,6 +133,25 @@ bool XYZUnit::moveToPosition(const XYZUnitPosition& pos)
     }
 
     return false;
+}
+
+bool  XYZUnit::moveRelative(const Position& pos)
+{
+	if(mXMotor)
+    {
+    	mXMotor->moveRelative(pos.x());
+    }
+
+	if(mYMotor)
+    {
+    	mYMotor->moveRelative(pos.y());
+    }
+
+   	if(mZMotor)
+    {
+    	mZMotor->moveRelative(pos.z());
+    }
+    return true;
 }
 
 void XYZUnit::home()

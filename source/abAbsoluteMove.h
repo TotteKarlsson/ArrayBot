@@ -8,8 +8,11 @@
 class AB_CORE AbsoluteMove : public Move
 {
     public:
-        AbsoluteMove(){}
-        ~AbsoluteMove(){}
+        				AbsoluteMove(XYZUnit* unit, Position& p);
+        				~AbsoluteMove(){}
+
+        bool			execute();
+        bool			undo();
 
     protected:
 

@@ -6,11 +6,16 @@
 #include "abMove.h"
 //---------------------------------------------------------------------------
 
+///A relative move moves the XYZ unit relative to its current position
+
 class AB_CORE RelativeMove : public Move
 {
     public:
-        RelativeMove(){}
-        ~RelativeMove(){}
+        				RelativeMove(XYZUnit* unit, Position& p);
+        				~RelativeMove(){}
+        bool			execute();
+        bool			undo();
+
 
     protected:
 

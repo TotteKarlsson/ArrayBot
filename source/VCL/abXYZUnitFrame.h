@@ -7,10 +7,11 @@
 #include <Vcl.Forms.hpp>
 #include "TSTDStringLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "abXYZUnit.h"
+//#include "abXYZUnit.h"
 #include "abMotorFrame.h"
 //---------------------------------------------------------------------------
 
+class XYZUnit;
 class TXYZUnitFrame : public TFrame
 {
     __published:	// IDE-managed Components

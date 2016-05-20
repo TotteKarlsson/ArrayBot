@@ -55,6 +55,12 @@ bool APTMotor::switchDirection(bool inThread)
 	return false;
 }
 
+void APTMotor::moveRelative(double position, bool inThread)
+{
+	double curr_pos = getPosition();
+    moveToPosition(curr_pos + position);
+}
+
 double APTMotor::getManualJogVelocity()
 {
 	return mManualJogVelocity;

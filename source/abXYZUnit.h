@@ -2,13 +2,15 @@
 #define abXYZUnitH
 #include "abExporter.h"
 #include "abABObject.h"
-
 #include "abUtilities.h"
 #include "abDeviceManager.h"
 #include "mtkProperties.h"
 #include "mtkINIFileProperties.h"
 #include "mtkINIFile.h"
-#include "abXYZUnitPositions.h"
+#include "abPositions.h"
+#include "abMoveSequencer.h"
+
+
 //---------------------------------------------------------------------------
 class APTMotor;
 class JoyStick;
@@ -28,7 +30,7 @@ class AB_CORE XYZUnit : public ABObject
 
 		void				    shutDown();
 		string					getName();
-        XYZUnitPositions&		positions(){return mPositions;}
+        Positions&				positions(){return mPositions;}
         void					enableJoyStick(JoyStick* js);
         void					disableJoyStick();
 
@@ -46,7 +48,8 @@ class AB_CORE XYZUnit : public ABObject
         						//Todo: move the devicemanager to ArrayBot and
                                 //use a reference for each class needing to use it
     	DeviceManager	        mDeviceManager;
-        bool					moveToPosition(const XYZUnitPosition& pos);
+        bool					moveToPosition(const Position& pos);
+        bool					moveRelative(const Position& pos);
 
 	protected:
 		string					mName;
@@ -56,6 +59,8 @@ class AB_CORE XYZUnit : public ABObject
         APTMotor*			    mYMotor;
         APTMotor*			    mZMotor;
         JoyStick*               mJoyStick;
-        XYZUnitPositions		mPositions;
+        Positions				mPositions;
+        MoveSequencer			mMoveSequencer;
+
 };
 #endif

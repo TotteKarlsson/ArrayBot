@@ -189,6 +189,14 @@
             <DependentOn>abMoveSequencer.h</DependentOn>
             <BuildOrder>21</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abPosition.cpp">
+            <DependentOn>abPosition.h</DependentOn>
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abPositions.cpp">
+            <DependentOn>abPositions.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abRelativeMove.cpp">
             <DependentOn>abRelativeMove.h</DependentOn>
             <BuildOrder>30</BuildOrder>
@@ -206,14 +214,6 @@
         <CppCompile Include="abXYZUnit.cpp">
             <DependentOn>abXYZUnit.h</DependentOn>
             <BuildOrder>17</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abXYZUnitPosition.cpp">
-            <DependentOn>abXYZUnitPosition.h</DependentOn>
-            <BuildOrder>19</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abXYZUnitPositions.cpp">
-            <DependentOn>abXYZUnitPositions.h</DependentOn>
-            <BuildOrder>18</BuildOrder>
         </CppCompile>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

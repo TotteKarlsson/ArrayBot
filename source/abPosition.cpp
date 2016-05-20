@@ -2,37 +2,31 @@
 #include "abPosition.h"
 //---------------------------------------------------------------------------
 
-XYZUnitPosition::XYZUnitPosition(const string& lbl, double x, double y, double z)
+Position::Position(const string& lbl, double x, double y, double z)
 :
 mPosition(x,y,z),
 mLabel(lbl)
 {}
 
-XYZUnitPosition::~XYZUnitPosition()
+Position::~Position()
 {}
 
-string XYZUnitPosition::getLabel()
+string Position::getLabel()
 {
 	return mLabel;
 }
 
-double XYZUnitPosition::x() const
+double Position::x() const
 {
 	return mPosition.x();
 }
 
-double XYZUnitPosition::y() const
+double Position::y() const
 {
 	return mPosition.y();
 }
 
-double XYZUnitPosition::z() const
+double Position::z() const
 {
 	return mPosition.z();
 }
-
-//Point XYZUnitPosition::getPosition()
-//{
-//	return mPosition;
-//}
-

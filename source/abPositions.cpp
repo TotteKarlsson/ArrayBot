@@ -1,27 +1,27 @@
 #pragma hdrstop
-#include "abXYZUnitPositions.h"
+#include "abPositions.h"
 //---------------------------------------------------------------------------
 
-XYZUnitPositions::XYZUnitPositions()
+Positions::Positions()
 {}
 
-XYZUnitPositions::~XYZUnitPositions()
+Positions::~Positions()
 {}
 
-bool XYZUnitPositions::add(const XYZUnitPosition& pos)
+bool Positions::add(const Position& pos)
 {
 	//Check label
     mPositions.push_front(pos);
     return true;
 }
 
-bool XYZUnitPositions::remove(const string& lbl)
+bool Positions::remove(const string& lbl)
 {
 	//Find item
     return false;
 }
 
-XYZUnitPosition* XYZUnitPositions::getFirst() const
+Position* Positions::getFirst() const
 {
     mPositionsIter = mPositions.begin();
     if(mPositionsIter != mPositions.end())
@@ -31,7 +31,7 @@ XYZUnitPosition* XYZUnitPositions::getFirst() const
     return NULL;
 }
 
-XYZUnitPosition* XYZUnitPositions::getCurrent() const
+Position* Positions::getCurrent() const
 {
     if(mPositionsIter != mPositions.end())
     {
@@ -40,7 +40,7 @@ XYZUnitPosition* XYZUnitPositions::getCurrent() const
     return NULL;
 }
 
-XYZUnitPosition* XYZUnitPositions::getNext() const
+Position* Positions::getNext() const
 {
     if(mPositionsIter != mPositions.end())
     {
@@ -53,7 +53,7 @@ XYZUnitPosition* XYZUnitPositions::getNext() const
     return NULL;
 }
 
-XYZUnitPosition* XYZUnitPositions::getPrevious() const
+Position* Positions::getPrevious() const
 {
     if(mPositionsIter != mPositions.end())
     {

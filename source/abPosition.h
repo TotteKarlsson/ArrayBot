@@ -4,23 +4,27 @@
 #include "abABObject.h"
 #include "Math/mtkPoint.h"
 #include <string>
+//---------------------------------------------------------------------------
 
 using std::string;
 using mtk::Point;
 
-//---------------------------------------------------------------------------
-class AB_CORE XYZUnitPosition : public ABObject
+//! A Position is a point in XYZ space.
+/*!
+The position can be named using the Label attribute
+*/
+class AB_CORE Position : public ABObject
 {
 	public:
-								XYZUnitPosition(const string& lbl, double x, double y, double z);
-								~XYZUnitPosition();
+								Position(const string& lbl, double x, double y, double z);
+								~Position();
 		string					getLabel();
         double					x() const;
         double 					y() const;
         double 					z() const;
 
 	protected:
-    	Point					mPosition;
+    	mtk::Point				mPosition;
         string					mLabel;
 };
 
