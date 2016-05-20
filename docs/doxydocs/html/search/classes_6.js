@@ -14,5 +14,6 @@ var searchData=
   ['motormessageprocessor',['MotorMessageProcessor',['../class_motor_message_processor.html',1,'']]],
   ['motorscalingfactors',['MotorScalingFactors',['../struct_motor_scaling_factors.html',1,'']]],
   ['move',['Move',['../class_move.html',1,'']]],
+  ['movesequence',['MoveSequence',['../class_move_sequence.html',1,'']]],
   ['movesequencer',['MoveSequencer',['../class_move_sequencer.html',1,'']]]
 ];

@@ -2,21 +2,21 @@
 #define abAbsoluteMoveH
 #include "abExporter.h"
 #include "abABObject.h"
-#include "abMove.h"
+#include "abSMove.h"
 //---------------------------------------------------------------------------
 
-class AB_CORE AbsoluteMove : public Move
-{
-    public:
-        				AbsoluteMove(XYZUnit* unit, Position& p);
-        				~AbsoluteMove(){}
-
-        bool			execute();
-        bool			undo();
-
-    protected:
-
-    private:
-
-};
+//class AB_CORE AbsoluteMove : public SMove
+//{
+//    public:
+////        				AbsoluteMove(ABObject* unit, Position& p);
+////        				~AbsoluteMove(){}
+////
+////        bool			execute();
+////        bool			undo();
+//
+//    protected:
+//
+//    private:
+//
+//};
 #endif

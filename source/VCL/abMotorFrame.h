@@ -1,6 +1,5 @@
 #ifndef abMotorFrameH
 #define abMotorFrameH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>

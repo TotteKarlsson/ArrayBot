@@ -177,10 +177,6 @@
             <DependentOn>abMotorMessageProcessor.h</DependentOn>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abMove.cpp">
-            <DependentOn>abMove.h</DependentOn>
-            <BuildOrder>28</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abMoveSequence.cpp">
             <DependentOn>abMoveSequence.h</DependentOn>
             <BuildOrder>27</BuildOrder>
@@ -200,6 +196,10 @@
         <CppCompile Include="abRelativeMove.cpp">
             <DependentOn>abRelativeMove.h</DependentOn>
             <BuildOrder>30</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abSMove.cpp">
+            <DependentOn>abSMove.h</DependentOn>
+            <BuildOrder>28</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
             <BuildOrder>23</BuildOrder>

@@ -8,12 +8,11 @@
 #include "mtkINIFileProperties.h"
 #include "mtkINIFile.h"
 #include "abPositions.h"
-#include "abMoveSequencer.h"
-
 
 //---------------------------------------------------------------------------
 class APTMotor;
 class JoyStick;
+class MoveSequencer;
 using mtk::IniFileProperties;
 using mtk::Property;
 using mtk::IniFile;
@@ -48,7 +47,10 @@ class AB_CORE XYZUnit : public ABObject
         						//Todo: move the devicemanager to ArrayBot and
                                 //use a reference for each class needing to use it
     	DeviceManager	        mDeviceManager;
-        bool					moveToPosition(const Position& pos);
+
+        						//!Move absolute moves to pos, regardless of
+                                //current position
+        bool					moveAbsolute(const Position& pos);
         bool					moveRelative(const Position& pos);
 
 	protected:
@@ -60,7 +62,5 @@ class AB_CORE XYZUnit : public ABObject
         APTMotor*			    mZMotor;
         JoyStick*               mJoyStick;
         Positions				mPositions;
-        MoveSequencer			mMoveSequencer;
-
 };
 #endif

@@ -22,5 +22,6 @@ var searchData=
   ['motortype',['motorType',['../struct_t_l_i___device_info.html#aa6a3567c98f84b12884c75d69bcd21bf',1,'TLI_DeviceInfo']]],
   ['move',['Move',['../class_move.html',1,'']]],
   ['movepercentage',['movePercentage',['../struct_m_o_t___power_parameters.html#aca9f0ebd5a40f420cfe5ec7e8bd14cb2',1,'MOT_PowerParameters']]],
+  ['movesequence',['MoveSequence',['../class_move_sequence.html',1,'']]],
   ['movesequencer',['MoveSequencer',['../class_move_sequencer.html',1,'']]]
 ];

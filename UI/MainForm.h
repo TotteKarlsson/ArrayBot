@@ -17,7 +17,6 @@
 #include <Vcl.AppEvnts.hpp>
 #include "Poco/Timestamp.h"
 #include "abJoyStick.h"
-#include "abXYZUnit.h"
 #include "TSTDStringLabeledEdit.h"
 #include "abXYZUnitFrame.h"
 #include "abMotorFrame.h"
