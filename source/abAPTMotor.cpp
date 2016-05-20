@@ -58,7 +58,7 @@ bool APTMotor::switchDirection(bool inThread)
 void APTMotor::moveRelative(double position, bool inThread)
 {
 	double curr_pos = getPosition();
-    moveToPosition(curr_pos + position);
+    moveAbsolute(curr_pos + position);
 }
 
 double APTMotor::getManualJogVelocity()

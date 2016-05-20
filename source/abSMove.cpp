@@ -2,8 +2,8 @@
 #include "abSMove.h"
 
 //---------------------------------------------------------------------------
-//Move::Move(ABObject* unit, Position& p)
-//:
-//mUnit(unit),
-//mPosition(p)
-//{}
+SMove::SMove(ABObject* unit, Position& p)
+:
+mUnit(unit),
+mPosition(p)
+{}

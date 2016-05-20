@@ -431,7 +431,7 @@ void TCubeDCServo::reverse(bool inThread)
     }
 }
 
-void TCubeDCServo::moveToPosition(double pos, bool inThread)
+void TCubeDCServo::moveAbsolute(double pos, bool inThread)
 {
 	if(inThread)
     {

@@ -8,8 +8,9 @@
 #include "mtkINIFileProperties.h"
 #include "mtkINIFile.h"
 #include "abPositions.h"
-
+#include "abMoveSequencer.h"
 //---------------------------------------------------------------------------
+
 class APTMotor;
 class JoyStick;
 class MoveSequencer;
@@ -62,5 +63,6 @@ class AB_CORE XYZUnit : public ABObject
         APTMotor*			    mZMotor;
         JoyStick*               mJoyStick;
         Positions				mPositions;
+        MoveSequencer			mMoveSequencer;
 };
 #endif

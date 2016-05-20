@@ -159,7 +159,9 @@ void __fastcall TMotorFrame::mMotorPositionEKeyDown(TObject *Sender, WORD &Key,
     }
 
     if(mMotor)
-		mMotor->moveToPosition(mMotorPositionE->getValue());
+    {
+		mMotor->moveAbsolute(mMotorPositionE->getValue());
+    }
 }
 
 //---------------------------------------------------------------------------

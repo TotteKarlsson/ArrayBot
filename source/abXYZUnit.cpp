@@ -126,9 +126,9 @@ bool XYZUnit::moveAbsolute(const Position& pos)
 	if(mXMotor && mYMotor && mZMotor)
     {
         //Check pos validity..
-        mXMotor->moveToPosition(pos.x());
-        mYMotor->moveToPosition(pos.y());
-        mZMotor->moveToPosition(pos.z());
+        mXMotor->moveAbsolute(pos.x());
+        mYMotor->moveAbsolute(pos.y());
+        mZMotor->moveAbsolute(pos.z());
         return true;
     }
 

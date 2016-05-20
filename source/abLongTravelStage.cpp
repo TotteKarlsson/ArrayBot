@@ -429,7 +429,7 @@ void LongTravelStage::reverse(bool inThread)
     }
 }
 
-void LongTravelStage::moveToPosition(double pos, bool inThread)
+void LongTravelStage::moveAbsolute(double pos, bool inThread)
 {
 	if(inThread)
     {

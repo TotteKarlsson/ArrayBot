@@ -37,7 +37,7 @@ void CoverSlipAngleController::setAngle(double a)
     mAngle = a;
     if(mAngleMotor)
     {
-        mAngleMotor->moveToPosition(a + mAngleOffset);
+        mAngleMotor->moveAbsolute(a + mAngleOffset);
     }
 }
 

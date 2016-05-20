@@ -21,17 +21,17 @@ class AB_CORE APTMotor : public APTDevice
         virtual HardwareInformation 	    getHWInfo() = 0;
         virtual double						getEncoderCounts() = 0;
 
-		virtual bool   		                isActive() 	= 0;
-        virtual bool		                isHomed() 	= 0;
-        virtual bool		                isHoming() 	= 0;
+		virtual bool   		                isActive() 		= 0;
+        virtual bool		                isHomed() 		= 0;
+        virtual bool		                isHoming() 		= 0;
         virtual bool		                isForwarding() 	= 0;
         virtual bool		                isReversing() 	= 0;
 
-        virtual bool	                    connect() = 0;
-        virtual bool	                    disconnect() = 0;
+        virtual bool	                    connect() 		= 0;
+        virtual bool	                    disconnect() 	= 0;
 
-        virtual bool	                    startPolling() = 0;
-        virtual bool	                    stopPolling() = 0;
+        virtual bool	                    startPolling() 	= 0;
+        virtual bool	                    stopPolling() 	= 0;
 
 											//!Motor ranges
         virtual Range<double>               getVelocityRange();
@@ -70,7 +70,7 @@ class AB_CORE APTMotor : public APTDevice
 
         virtual void		                forward(bool inThread = true) = 0;
         virtual void		                reverse(bool inThread = true) = 0;
-        virtual void		                moveToPosition(double position, bool inThread = true) = 0;
+        virtual void		                moveAbsolute(double position, bool inThread = true) = 0;
         virtual void		                moveRelative(double position, bool inThread = true);
         MotorCommandEnum					getLastCommand();
 

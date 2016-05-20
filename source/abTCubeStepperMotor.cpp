@@ -413,7 +413,7 @@ void TCubeStepperMotor::reverse(bool inThread)
     }
 }
 
-void TCubeStepperMotor::moveToPosition(double pos, bool inThread)
+void TCubeStepperMotor::moveAbsolute(double pos, bool inThread)
 {
 	if(inThread)
     {

@@ -7,8 +7,6 @@
 #include "abCoverSlipAngleController.h"
 #include "abCombinedMove.h"
 #include "abJoyStickSettings.h"
-#include "abMoveSequencer.h"
-//#include "abMoveSequence.h"
 //---------------------------------------------------------------------------
 
 class AB_CORE ArrayBot : public ABObject
@@ -43,8 +41,6 @@ class AB_CORE ArrayBot : public ABObject
 
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
-        MoveSequencer				mMoveSequencer1;
-        MoveSequencer				mMoveSequencer2;
 
         CoverSlipAngleController	mCSAngleController;
 		CombinedMove				mCSLift;
