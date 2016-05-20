@@ -70,8 +70,8 @@ class AB_CORE APTMotor : public APTDevice
 
         virtual void		                forward(bool inThread = true) = 0;
         virtual void		                reverse(bool inThread = true) = 0;
-        virtual void		                moveAbsolute(double position, bool inThread = true) = 0;
-        virtual void		                moveRelative(double position, bool inThread = true);
+        virtual bool		                moveAbsolute(double position, bool inThread = true) = 0;
+        virtual bool		                moveRelative(double position, bool inThread = true);
         MotorCommandEnum					getLastCommand();
 
         double								getManualJogVelocity();

@@ -2,13 +2,14 @@
 #include "abPositions.h"
 //---------------------------------------------------------------------------
 
+using ab::Position;
 Positions::Positions()
 {}
 
 Positions::~Positions()
 {}
 
-bool Positions::add(const Position& pos)
+bool Positions::add(const ab::Position& pos)
 {
 	//Check label
     mPositions.push_front(pos);

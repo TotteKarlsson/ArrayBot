@@ -61,7 +61,7 @@ class AB_CORE TCubeDCServo : public APTMotor
 
         void		                    forward(bool inThread = true);
         void		                    reverse(bool inThread = true);
-        void		                	moveAbsolute(double position, bool inThread = true);
+        bool		                	moveAbsolute(double position, bool inThread = true);
         void							setPotentiometerVelocity(double v);
     protected:
 

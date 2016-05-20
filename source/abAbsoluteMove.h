@@ -5,18 +5,20 @@
 #include "abSMove.h"
 //---------------------------------------------------------------------------
 
-//class AB_CORE AbsoluteMove : public SMove
-//{
-//    public:
-////        				AbsoluteMove(ABObject* unit, Position& p);
-////        				~AbsoluteMove(){}
-////
-////        bool			execute();
-////        bool			undo();
-//
-//    protected:
-//
-//    private:
-//
-//};
+class AB_CORE AbsoluteMove : public SMove
+{
+    public:
+        				AbsoluteMove(ABObject* unit, const ab::Position& p);
+        				~AbsoluteMove(){}
+        virtual string	getType(){return "ABSOLUTE";}
+        virtual bool	isActive();
+        virtual bool	achievedPosition();
+        bool			execute();
+        bool			undo();
+
+    protected:
+
+    private:
+
+};
 #endif

@@ -28,6 +28,7 @@
 #include <Vcl.StdActns.hpp>
 #include <Vcl.Menus.hpp>
 #include <Vcl.Mask.hpp>
+#include <Vcl.Grids.hpp>
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -66,6 +67,23 @@ class TMain : public TRegistryForm
 	TToolBar *ToolBar1;
 	TBitBtn *BitBtn2;
 	TMotorFrame *TMotorFrame1;
+	TGroupBox *GroupBox1;
+	TGroupBox *GroupBox2;
+	TFloatLabeledEdit *mMovePosE;
+	TButton *mStartBtn;
+	TButton *Button2;
+	TButton *Button3;
+	TListBox *mMovesLB;
+	TFloatLabeledEdit *mMaxVelE;
+	TFloatLabeledEdit *mAccE;
+	TTimer *seqtimer;
+	TLabel *runLbl;
+	TButton *mFwdBtn;
+	TComboBox *SequencesCB;
+	TLabel *Label1;
+	TButton *mSaveSequenceBtn;
+	TButton *mAddMoveBtn;
+	TFloatLabeledEdit *mDwellTimeE;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -77,6 +95,14 @@ class TMain : public TRegistryForm
         void __fastcall ShutDownAExecute(TObject *Sender);
 	void __fastcall mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormShow(TObject *Sender);
+	void __fastcall mAddMoveBtnClick(TObject *Sender);
+	void __fastcall mStartBtnClick(TObject *Sender);
+	void __fastcall seqtimerTimer(TObject *Sender);
+	void __fastcall mSaveSequenceBtnClick(TObject *Sender);
+	void __fastcall SequencesCBChange(TObject *Sender);
+	void __fastcall mMovesLBClick(TObject *Sender);
+	void __fastcall moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
     private:	// User declarations
         TThreadMethod               logMsgMethod;
@@ -90,6 +116,7 @@ class TMain : public TRegistryForm
         IniFile						mIniFile;
         DeviceManager				mManager;
 		APTMotor*					mMotor;
+        MoveSequencer				mMoveSequencer;
 		void __fastcall		        OnException();
 
 

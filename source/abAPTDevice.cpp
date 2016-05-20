@@ -49,4 +49,11 @@ bool APTDevice::loadProperties(IniFile& iniFile)
     return true;
 }
 
+bool APTDevice::writeProperties(IniFile& iniFile)
+{
+	Log(lDebug) << "Writing properties for APT device with serial: "<<mSerial;
+    mProperties.setIniFile(&iniFile);
+    mProperties.write();
+    return true;
+}
 

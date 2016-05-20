@@ -9,26 +9,28 @@
 //---------------------------------------------------------------------------
 
 using std::list;
-using std::vector;
 using std::string;
 
 class AB_CORE MoveSequence : public ABObject
 {
     public:
-								MoveSequence(){}
+								MoveSequence();
 				        		~MoveSequence(){}
+		bool					assignUnit(ABObject* o);
 		void					clear();
-
+        bool					load(const string& fName);
+        bool					save();
 		bool 					add(SMove* move);
 		bool 					remove(const string& lbl);
 
-        SMove*                   getFirst() const;
-        SMove*                   getNext() const;
-        SMove*                   getPrevious() const;
-        SMove*                   getCurrent() const;
+        SMove*                 	getFirst() const;
+        SMove*                  getNext() const;
+        SMove*                  getPrevious() const;
+        SMove*                  getCurrent() const;
 
     protected:
-		mutable vector<SMove*>  		 mMoves;
+  		string					mName;
+		mutable list<SMove*>  			 mMoves;
         mutable list<SMove*>::iterator   mMovesIter;
 };
 

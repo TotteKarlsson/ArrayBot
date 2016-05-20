@@ -2,10 +2,14 @@
 #include "abPosition.h"
 //---------------------------------------------------------------------------
 
+namespace ab
+{
+
 Position::Position(const string& lbl, double x, double y, double z)
 :
 mPosition(x,y,z),
-mLabel(lbl)
+mLabel(lbl),
+mResolution(10.e-6)
 {}
 
 Position::~Position()
@@ -29,4 +33,6 @@ double Position::y() const
 double Position::z() const
 {
 	return mPosition.z();
+}
+
 }

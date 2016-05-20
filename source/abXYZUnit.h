@@ -51,8 +51,8 @@ class AB_CORE XYZUnit : public ABObject
 
         						//!Move absolute moves to pos, regardless of
                                 //current position
-        bool					moveAbsolute(const Position& pos);
-        bool					moveRelative(const Position& pos);
+        bool					moveAbsolute(const ab::Position& pos);
+        bool					moveRelative(const ab::Position& pos);
 
 	protected:
 		string					mName;

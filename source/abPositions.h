@@ -13,16 +13,16 @@ class AB_CORE Positions : public ABObject
 	public:
 								        Positions();
 								        ~Positions();
-		bool					        add(const Position& pos);
+		bool					        add(const ab::Position& pos);
         bool					        remove(const string& lbl);
-        Position*                       getFirst() const;
-        Position*                       getNext() const;
-        Position*                       getPrevious() const;
-        Position*                       getCurrent() const;
+        ab::Position*                       getFirst() const;
+        ab::Position*                       getNext() const;
+        ab::Position*                       getPrevious() const;
+        ab::Position*                       getCurrent() const;
 
 
 	protected:
-    	mutable deque<Position> 		mPositions;
-    	mutable deque<Position>::iterator mPositionsIter;
+    	mutable deque<ab::Position> 		mPositions;
+    	mutable deque<ab::Position>::iterator mPositionsIter;
 };
 #endif

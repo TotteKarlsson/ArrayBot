@@ -121,7 +121,7 @@ string XYZUnit::getName()
 	return mName;
 }
 
-bool XYZUnit::moveAbsolute(const Position& pos)
+bool XYZUnit::moveAbsolute(const ab::Position& pos)
 {
 	if(mXMotor && mYMotor && mZMotor)
     {
@@ -135,7 +135,7 @@ bool XYZUnit::moveAbsolute(const Position& pos)
     return false;
 }
 
-bool  XYZUnit::moveRelative(const Position& pos)
+bool  XYZUnit::moveRelative(const ab::Position& pos)
 {
 	if(mXMotor)
     {

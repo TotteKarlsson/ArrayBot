@@ -1,7 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "abEditPositionsForm.h"
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
