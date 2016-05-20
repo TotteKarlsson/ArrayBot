@@ -220,11 +220,11 @@ void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
     }
 
 	//Initiate the move
-    yCS->moveToPosition(newCSYPos);
-    yW->moveToPosition(newWYPos);
+    yCS->moveAbsolute(newCSYPos);
+    yW->moveAbsolute(newWYPos);
 
-    zCS->moveToPosition(newCSZPos);
-    zW->moveToPosition(newWZPos);
+    zCS->moveAbsolute(newCSZPos);
+    zW->moveAbsolute(newWZPos);
 }
 
 //---------------------------------------------------------------------------
