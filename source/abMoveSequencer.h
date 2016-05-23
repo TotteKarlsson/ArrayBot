@@ -24,7 +24,7 @@ class AB_CORE MoveSequencer : public ABObject
         void		        reverse();
         void		        stop();
         bool				isRunning();
-        void		        addMove(SMove* newMove);
+        void		        addMove(SpatialMove* newMove);
         MoveSequence&		getSequence(){return mSequence;}
 
 	private:

@@ -13,7 +13,7 @@ mName("MoveSequence")
 
 bool MoveSequence::assignUnit(ABObject* o)
 {
-    SMove* move = getFirst();
+    SpatialMove* move = getFirst();
     while(move)
     {
     	move->assignUnit(o);
@@ -47,7 +47,7 @@ bool MoveSequence::load(const string& fName)
 
         	key = sec->getKey("POSITION");
             double x = key->asFloat();
-	    	SMove* move = new AbsoluteMove(NULL, ab::Position(name, x, 0.0,0.0));
+	    	SpatialMove* move = new AbsoluteMove(NULL, ab::Position(name, x, 0.0,0.0));
 
             key = sec->getKey("MAX_VELOCITY", true);
 			double vel = key->asFloat();
@@ -76,7 +76,7 @@ bool MoveSequence::save()
 	//Save to file
 	IniFile f(mName + ".moves");
 
-    SMove* move = getFirst();
+    SpatialMove* move = getFirst();
     int count = 1;
     while(move)
     {
@@ -101,7 +101,7 @@ bool MoveSequence::save()
     f.save();
 }
 
-bool MoveSequence::add(SMove* pos)
+bool MoveSequence::add(SpatialMove* pos)
 {
 	//Check label
     mMoves.push_back(pos);
@@ -115,7 +115,7 @@ bool MoveSequence::remove(const string& lbl)
     return false;
 }
 
-SMove* MoveSequence::getFirst() const
+SpatialMove* MoveSequence::getFirst() const
 {
     mMovesIter = mMoves.begin();
     if(mMovesIter != mMoves.end())
@@ -125,7 +125,7 @@ SMove* MoveSequence::getFirst() const
     return NULL;
 }
 
-SMove* MoveSequence::getCurrent() const
+SpatialMove* MoveSequence::getCurrent() const
 {
     if(mMovesIter != mMoves.end())
     {
@@ -134,7 +134,7 @@ SMove* MoveSequence::getCurrent() const
     return NULL;
 }
 
-SMove* MoveSequence::getNext() const
+SpatialMove* MoveSequence::getNext() const
 {
     if(mMovesIter != mMoves.end())
     {
@@ -147,7 +147,7 @@ SMove* MoveSequence::getNext() const
     return NULL;
 }
 
-SMove* MoveSequence::getPrevious() const
+SpatialMove* MoveSequence::getPrevious() const
 {
     if(mMovesIter != mMoves.end())
     {

@@ -57,10 +57,10 @@ __published:	// IDE-managed Components
 	void __fastcall mMotorPositionEKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 
 
-private:	// User declarations
-	APTMotor*		mMotor;
+private:
+	APTMotor*				mMotor;
 
-public:		// User declarations
+public:
 	__fastcall 				TMotorFrame(const string& name, TComponent* Owner);
     void					assignMotor(APTMotor* m);
 };

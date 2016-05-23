@@ -42,6 +42,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -101,6 +102,20 @@ Inheritance diagram for TCubeStepperMotor:</div>
 <area shape="rect" id="node2" href="class_a_p_t_motor.html" title="APTMotor" alt="" coords="33,155,113,181"/>
 <area shape="rect" id="node4" href="class_a_p_t_device.html" title="APTDevice" alt="" coords="31,80,116,107"/>
 <area shape="rect" id="node6" href="class_a_b_object.html" title="ABObject" alt="" coords="34,5,112,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for TCubeStepperMotor:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_t_cube_stepper_motor__coll__graph.png" border="0" usemap="#_t_cube_stepper_motor_coll__map" alt="Collaboration graph"/></div>
+<map name="_t_cube_stepper_motor_coll__map" id="_t_cube_stepper_motor_coll__map">
+<area shape="rect" id="node2" href="class_a_p_t_motor.html" title="APTMotor" alt="" coords="671,220,751,247"/>
+<area shape="rect" id="node17" href="class_motor_message_processor.html" title="MotorMessageProcessor" alt="" coords="1001,316,1167,343"/>
+<area shape="rect" id="node4" href="class_a_p_t_device.html" title="APTDevice" alt="" coords="303,59,388,85"/>
+<area shape="rect" id="node6" href="class_a_b_object.html" title="ABObject" alt="" coords="30,227,109,253"/>
+<area shape="rect" id="node12" href="struct_hardware_information.html" title="HardwareInformation" alt="" coords="276,113,415,140"/>
+<area shape="rect" id="node22" href="class_motor_message_container.html" title="MotorMessageContainer" alt="" coords="264,376,427,403"/>
+<area shape="rect" id="node32" href="struct_motor_scaling_factors.html" title="MotorScalingFactors" alt="" coords="274,164,417,191"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -210,9 +225,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>forward</b> (bool inT
 <tr class="memitem:ad85631e9baef96b7da2b20e656b016dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad85631e9baef96b7da2b20e656b016dc"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>reverse</b> (bool inThread=true)</td></tr>
 <tr class="separator:ad85631e9baef96b7da2b20e656b016dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa76dec83fa674a4b24d2dab58e4ce12f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa76dec83fa674a4b24d2dab58e4ce12f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>moveToPosition</b> (double position, bool inThread=true)</td></tr>
-<tr class="separator:aa76dec83fa674a4b24d2dab58e4ce12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e916838da1d5bd74b11e5ac29e39616"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e916838da1d5bd74b11e5ac29e39616"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>moveAbsolute</b> (double position, bool inThread=true)</td></tr>
+<tr class="separator:a7e916838da1d5bd74b11e5ac29e39616"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad93daab7afbbb9d3e4eed7e8a0894a22"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad93daab7afbbb9d3e4eed7e8a0894a22"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_cube_stepper_motor.html#ad93daab7afbbb9d3e4eed7e8a0894a22">identify</a> ()</td></tr>
 <tr class="memdesc:ad93daab7afbbb9d3e4eed7e8a0894a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">General commands. <br /></td></tr>
@@ -240,6 +255,9 @@ virtual Range&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <tr class="memitem:acb301fab65bc40b60ed41ec5667efc57 inherit pub_methods_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb301fab65bc40b60ed41ec5667efc57"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityRange</b> (DoubleRange vr)</td></tr>
 <tr class="separator:acb301fab65bc40b60ed41ec5667efc57 inherit pub_methods_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13c7329447f7d0a90de9337c6f60b0ec inherit pub_methods_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13c7329447f7d0a90de9337c6f60b0ec"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>moveRelative</b> (double position, bool inThread=true)</td></tr>
+<tr class="separator:a13c7329447f7d0a90de9337c6f60b0ec inherit pub_methods_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d45bca3613e6eed817d2ef5d4baab8b inherit pub_methods_class_a_p_t_motor"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d45bca3613e6eed817d2ef5d4baab8b"></a>
 MotorCommandEnum&#160;</td><td class="memItemRight" valign="bottom"><b>getLastCommand</b> ()</td></tr>
 <tr class="separator:a5d45bca3613e6eed817d2ef5d4baab8b inherit pub_methods_class_a_p_t_motor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -274,6 +292,9 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>getSerial</b> ()</t
 <tr class="memitem:a82cb8a57db8e88a2e717a50d25f9c90b inherit pub_methods_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82cb8a57db8e88a2e717a50d25f9c90b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadProperties</b> (IniFile &amp;iniFile)</td></tr>
 <tr class="separator:a82cb8a57db8e88a2e717a50d25f9c90b inherit pub_methods_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a038c982effb428e75c5baf88fd039b03 inherit pub_methods_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a038c982effb428e75c5baf88fd039b03"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>writeProperties</b> (IniFile &amp;iniFile)</td></tr>
+<tr class="separator:a038c982effb428e75c5baf88fd039b03 inherit pub_methods_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0395dc9386c025ebff1cd3e8ea75232f inherit pub_methods_class_a_p_t_device"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0395dc9386c025ebff1cd3e8ea75232f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const string &amp;name)</td></tr>
 <tr class="separator:a0395dc9386c025ebff1cd3e8ea75232f inherit pub_methods_class_a_p_t_device"><td class="memSeparator" colspan="2">&#160;</td></tr>

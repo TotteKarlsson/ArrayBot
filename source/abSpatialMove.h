@@ -1,5 +1,5 @@
-#ifndef abSMoveH
-#define abSMoveH
+#ifndef abSpatialMoveH
+#define abSpatialMoveH
 #include "abExporter.h"
 #include "abABObject.h"
 #include "abPosition.h"
@@ -7,11 +7,11 @@
 
 //!The move baseclass contain the general logic for a 'move' of
 //any type of object
-class AB_CORE SMove : public ABObject
+class AB_CORE SpatialMove : public ABObject
 {
     public:
-        				SMove(ABObject* unit, const ab::Position& p, double maxVel = 0, double acc = 0, double dwellTime = 0);
-    	virtual			~SMove(){}
+        				SpatialMove(ABObject* unit, const ab::Position& p, double maxVel = 0, double acc = 0, double dwellTime = 0);
+    	virtual			~SpatialMove(){}
 		void			assignUnit(ABObject* o){mUnit = o;}
         virtual bool	execute() = 0;
         virtual	bool	undo() = 0;

@@ -20,8 +20,10 @@ var searchData=
   ['motormessageprocessor',['MotorMessageProcessor',['../class_motor_message_processor.html',1,'']]],
   ['motorscalingfactors',['MotorScalingFactors',['../struct_motor_scaling_factors.html',1,'']]],
   ['motortype',['motorType',['../struct_t_l_i___device_info.html#aa6a3567c98f84b12884c75d69bcd21bf',1,'TLI_DeviceInfo']]],
-  ['move',['Move',['../class_move.html',1,'']]],
+  ['moveabsolute',['moveAbsolute',['../class_x_y_z_unit.html#a8ce1765b42e11a1d568f77a1d7ac8324',1,'XYZUnit']]],
   ['movepercentage',['movePercentage',['../struct_m_o_t___power_parameters.html#aca9f0ebd5a40f420cfe5ec7e8bd14cb2',1,'MOT_PowerParameters']]],
   ['movesequence',['MoveSequence',['../class_move_sequence.html',1,'']]],
-  ['movesequencer',['MoveSequencer',['../class_move_sequencer.html',1,'']]]
+  ['movesequencer',['MoveSequencer',['../class_move_sequencer.html',1,'']]],
+  ['mposition',['mPosition',['../class_s_move.html#ac663bfbbdd30c26e70782f98d30c001d',1,'SMove']]],
+  ['munit',['mUnit',['../class_s_move.html#ae7d0d8749b35617a9f2cce787836e152',1,'SMove']]]
 ];

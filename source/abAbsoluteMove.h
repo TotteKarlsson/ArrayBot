@@ -2,10 +2,10 @@
 #define abAbsoluteMoveH
 #include "abExporter.h"
 #include "abABObject.h"
-#include "abSMove.h"
+#include "abSpatialMove.h"
 //---------------------------------------------------------------------------
 
-class AB_CORE AbsoluteMove : public SMove
+class AB_CORE AbsoluteMove : public SpatialMove
 {
     public:
         				AbsoluteMove(ABObject* unit, const ab::Position& p);

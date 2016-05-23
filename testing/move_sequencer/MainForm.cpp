@@ -167,7 +167,7 @@ void __fastcall TMain::SequencesCBChange(TObject *Sender)
     	//Fill out listbox
 		MoveSequence& seq = mMoveSequencer.getSequence();
 
-        SMove* move = seq.getFirst();
+        SpatialMove* move = seq.getFirst();
         while(move)
         {
     		mMovesLB->Items->AddObject(move->getPositionName().c_str(), (TObject*) move);
@@ -188,7 +188,7 @@ void __fastcall TMain::mMovesLBClick(TObject *Sender)
     	return;
     }
 
-    SMove* move = (SMove*) mMovesLB->Items->Objects[i];
+    SpatialMove* move = (SpatialMove*) mMovesLB->Items->Objects[i];
 
     if(move)
     {
@@ -210,7 +210,7 @@ void __fastcall TMain::moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift
     }
 
 
-    SMove* move = (SMove*) mMovesLB->Items->Objects[i];
+    SpatialMove* move = (SpatialMove*) mMovesLB->Items->Objects[i];
 
 	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
 

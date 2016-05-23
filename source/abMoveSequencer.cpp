@@ -1,6 +1,6 @@
 #pragma hdrstop
 #include "abMoveSequencer.h"
-#include "abSMove.h"
+#include "abSpatialMove.h"
 #include "mtkLogger.h"
 //---------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ void MoveSequencer::runThreaded()
 	if(!isRunning())
     {
     	//Check if are to forward
-        SMove* aMove = mSequence.getCurrent();
+        SpatialMove* aMove = mSequence.getCurrent();
         if(!aMove)
         {
         	//We have finished
@@ -49,6 +49,7 @@ void MoveSequencer::runThreaded()
 
         if(aMove && aMove->achievedPosition() == true )
         {
+        	sleep(aMove->getDwellTime());
         	forward();
         }
     }
@@ -57,7 +58,7 @@ void MoveSequencer::runThreaded()
 void MoveSequencer::start(bool cont)
 {
 	mRunContinous = cont;
-	SMove* aMove = mSequence.getFirst();
+	SpatialMove* aMove = mSequence.getFirst();
     if(aMove)
     {
     	Log(lError) << "Executing first move";
@@ -76,7 +77,7 @@ void MoveSequencer::start(bool cont)
 
 void MoveSequencer::forward()
 {
-	SMove* aMove = mSequence.getNext();
+	SpatialMove* aMove = mSequence.getNext();
     if(aMove)
     {
     	aMove->execute();
@@ -89,7 +90,7 @@ void MoveSequencer::forward()
 
 void MoveSequencer::reverse()
 {
-	SMove* aMove = mSequence.getCurrent();
+	SpatialMove* aMove = mSequence.getCurrent();
     if(aMove)
     {
     	aMove->undo();
@@ -103,14 +104,14 @@ void MoveSequencer::reverse()
 void MoveSequencer::stop()
 {}
 
-void MoveSequencer::addMove(SMove* newMove)
+void MoveSequencer::addMove(SpatialMove* newMove)
 {
 	mSequence.add(newMove);
 }
 
 bool MoveSequencer::isRunning()
 {
-	SMove* m = mSequence.getCurrent();
+	SpatialMove* m = mSequence.getCurrent();
     if(m)
     {
 	    return m->isActive();

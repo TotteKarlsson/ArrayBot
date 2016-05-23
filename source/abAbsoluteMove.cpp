@@ -7,7 +7,7 @@
 using ab::Position;
 AbsoluteMove::AbsoluteMove(ABObject* unit, const Position& p)
 :
-SMove(unit, p)
+SpatialMove(unit, p)
 {}
 
 bool AbsoluteMove::execute()
@@ -21,7 +21,10 @@ bool AbsoluteMove::execute()
 	APTMotor* m = dynamic_cast<APTMotor*>(mUnit);
     if(m)
     {
-		return m->moveAbsolute(mPosition.x());
+    	m->setJogVelocity(mMaxVelocity);
+        m->setJogAcceleration(mAcceleration);
+
+        return m->moveAbsolute(mPosition.x());
     }
 
     return false;

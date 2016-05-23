@@ -114,7 +114,7 @@ object MotorFrame: TMotorFrame
         Caption = 'Is Reversing:'
       end
       object mIsActiveLabel: TLabel
-        Left = 107
+        Left = 68
         Top = 23
         Width = 18
         Height = 13
@@ -128,7 +128,7 @@ object MotorFrame: TMotorFrame
         Caption = 'N/A'
       end
       object mIsHomedLabel: TLabel
-        Left = 107
+        Left = 68
         Top = 36
         Width = 18
         Height = 13

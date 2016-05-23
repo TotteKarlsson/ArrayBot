@@ -1,8 +1,8 @@
 #pragma hdrstop
-#include "abSMove.h"
+#include "abSpatialMove.h"
 
 //---------------------------------------------------------------------------
-SMove::SMove(ABObject* unit, const ab::Position& p, double maxVel, double acc, double dwellTime)
+SpatialMove::SpatialMove(ABObject* unit, const ab::Position& p, double maxVel, double acc, double dwellTime)
 :
 mUnit(unit),
 mPosition(p),
