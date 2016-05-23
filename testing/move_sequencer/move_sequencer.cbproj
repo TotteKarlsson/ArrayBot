@@ -123,6 +123,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\..\source\abProcess.h</DependentOn>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\..\source\abProcessSequence.cpp">
+            <DependentOn>..\..\source\abProcessSequence.h</DependentOn>
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\..\source\VCL\abEditPositionsForm.cpp">
             <Form>Form2</Form>
             <FormType>dfm</FormType>

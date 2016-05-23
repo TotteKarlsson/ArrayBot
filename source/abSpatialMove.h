@@ -5,19 +5,24 @@
 #include "abPosition.h"
 //---------------------------------------------------------------------------
 
-enum MoveType {mtAbsolute = 0, mtRelative};
+enum MoveType {mtAbsolute = 0, mtRelative, mtUnknown};
+MoveType	toMoveType(const string& mt);
 //!The move baseclass contain the general logic for a 'move' of
 //any type of object
 class AB_CORE SpatialMove : public Process
 {
     public:
-        	   			            SpatialMove(ABObject* unit, MoveType type, const ab::Position& p, double maxVel = 0, double acc = 0, double dwellTime = 0);
+        	   			            SpatialMove(const string& lbl, ABObject* unit, MoveType type = mtAbsolute, const ab::Position& p = ab::Position("", 0,0,0), double maxVel = 0, double acc = 0, double dwellTime = 0);
     	virtual			            ~SpatialMove(){}
+
+        virtual bool				write(mtk::IniSection* sec);
+        virtual bool				read(mtk::IniSection* sec);
+
 		void			            assignUnit(ABObject* o){mUnit = o;}
         virtual bool	            execute();
         virtual	bool	            undo();
         virtual bool	            isActive();
-        virtual MoveType            getType(){return mMoveType;}
+        virtual MoveType            getMoveType(){return mMoveType;}
         virtual bool	            achievedPosition();
 
         ab::Position&	            getPosition(){return mPosition;}

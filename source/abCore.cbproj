@@ -177,10 +177,6 @@
             <DependentOn>abMoveSequence.h</DependentOn>
             <BuildOrder>27</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abMoveSequencer.cpp">
-            <DependentOn>abMoveSequencer.h</DependentOn>
-            <BuildOrder>21</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abPosition.cpp">
             <DependentOn>abPosition.h</DependentOn>
             <BuildOrder>19</BuildOrder>
@@ -192,6 +188,13 @@
         <CppCompile Include="abProcess.cpp">
             <DependentOn>abProcess.h</DependentOn>
             <BuildOrder>29</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abProcessSequence.cpp">
+            <BuildOrder>30</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abProcessSequencer.cpp">
+            <DependentOn>abProcessSequencer.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
         </CppCompile>
         <CppCompile Include="abSpatialMove.cpp">
             <DependentOn>abSpatialMove.h</DependentOn>
