@@ -11,7 +11,6 @@
 #include <bitset>
 #include "mtkMathUtils.h"
 #include "abDeviceManager.h"
-#include "abAbsoluteMove.h"
 #include "abPosition.h"
 
 
@@ -99,7 +98,7 @@ void __fastcall TMain::mAddMoveBtnClick(TObject *Sender)
 {
 	//Create and add a move to the sequencer
     ab::Position pos("", 0.0, 0.0, 0.0);
-	AbsoluteMove *move = new AbsoluteMove(mMotor, pos);
+	SpatialMove *move = new SpatialMove(mMotor, mtAbsolute, pos);
 
     mMoveSequencer.addMove(move);
 

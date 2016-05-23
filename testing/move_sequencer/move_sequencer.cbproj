@@ -119,6 +119,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="..\..\source\abProcess.cpp">
+            <DependentOn>..\..\source\abProcess.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\..\source\VCL\abEditPositionsForm.cpp">
             <Form>Form2</Form>
             <FormType>dfm</FormType>

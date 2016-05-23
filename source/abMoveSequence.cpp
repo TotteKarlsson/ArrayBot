@@ -1,7 +1,7 @@
 #pragma hdrstop
 #include "abMoveSequence.h"
 #include "mtkIniFile.h"
-#include "abAbsoluteMove.h"
+#include "abSpatialMove.h"
 
 using namespace mtk;
 
@@ -47,7 +47,7 @@ bool MoveSequence::load(const string& fName)
 
         	key = sec->getKey("POSITION");
             double x = key->asFloat();
-	    	SpatialMove* move = new AbsoluteMove(NULL, ab::Position(name, x, 0.0,0.0));
+	    	SpatialMove* move = new SpatialMove(NULL, mtAbsolute, ab::Position(name, x, 0.0,0.0));
 
             key = sec->getKey("MAX_VELOCITY", true);
 			double vel = key->asFloat();
@@ -86,13 +86,11 @@ bool MoveSequence::save()
         	IniKey* key = sec->createKey("POSITION_NAME", move->getPositionName());
 
             double x = move->getPosition().x();
-           	key = sec->createKey("TYPE", move->getType());
-           	key = sec->createKey("POSITION", toString(x));
-           	key = sec->createKey("MAX_VELOCITY", toString(move->getMaxVelocity()));
-            key = sec->createKey("ACCELERATION", toString(move->getAcceleration()));
-			key = sec->createKey("DWELL_TIME",   toString(move->getDwellTime()));
-
-
+           	key = sec->createKey("TYPE", 			toString(move->getType()));
+           	key = sec->createKey("POSITION", 		toString(x));
+           	key = sec->createKey("MAX_VELOCITY", 	toString(move->getMaxVelocity()));
+            key = sec->createKey("ACCELERATION", 	toString(move->getAcceleration()));
+			key = sec->createKey("DWELL_TIME",   	toString(move->getDwellTime()));
         }
         count++;
         move = getNext();
