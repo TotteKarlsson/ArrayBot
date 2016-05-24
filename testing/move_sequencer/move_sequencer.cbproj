@@ -119,14 +119,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="..\..\source\abProcess.cpp">
-            <DependentOn>..\..\source\abProcess.h</DependentOn>
-            <BuildOrder>7</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\..\source\abProcessSequence.cpp">
-            <DependentOn>..\..\source\abProcessSequence.h</DependentOn>
-            <BuildOrder>8</BuildOrder>
-        </CppCompile>
         <CppCompile Include="..\..\source\VCL\abEditPositionsForm.cpp">
             <Form>Form2</Form>
             <FormType>dfm</FormType>
@@ -162,9 +154,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
         <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="..\..\source\VCL\abEditPositionsForm.dfm"/>
-        <FormResources Include="..\..\source\VCL\abLoggingForm.dfm"/>
         <FormResources Include="..\..\source\VCL\abMotorFrame.dfm"/>
+        <FormResources Include="..\..\source\VCL\abLoggingForm.dfm"/>
+        <FormResources Include="..\..\source\VCL\abEditPositionsForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

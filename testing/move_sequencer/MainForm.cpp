@@ -12,7 +12,7 @@
 #include "mtkMathUtils.h"
 #include "abDeviceManager.h"
 #include "abPosition.h"
-
+#include "abSpatialMove.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -28,6 +28,7 @@ extern string gLogFileLocation;
 extern string gLogFileName;
 
 using namespace mtk;
+
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
@@ -37,21 +38,13 @@ __fastcall TMain::TMain(TComponent* Owner)
     mBottomPanelHeight(100),
     mBottomPanelVisible(true),
     mTopPanelHeight(360),
-    mIniFile("move_sequencer.ini", true, true)
+    mIniFile("move_sequencer.ini", true, true), //Means we are reading ini paras on startup
+    mXYZUnit("MyUnit", mIniFile)
 {
 	TMemoLogger::mMemoIsEnabled = false;
 
-    mManager.connectAllDevices();
-
-    APTDevice* d = mManager.getFirst();
-    if(d)
-    {
-    	mMotor = dynamic_cast<APTMotor*>(d);
-        if(mMotor)
-        {
-			mMotor->loadProperties(mIniFile);
-        }
-    }
+//    mManager.connectAllDevices();
+	mXYZUnit.initialize();
 	//Setup UI properties
     mProperties.setSection("UI");
     mProperties.add((BaseProperty*) &mBottomPanelHeight.setup("BOTTOM_PANEL_HEIGHT", 			100, true));
@@ -73,13 +66,27 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
 
-	if(mMotor)
-    {
-    	TMotorFrame1->assignMotor(mMotor);
-    }
+	//Creates frames for each motor
+    createMotorFrame(mXYZUnit.getXMotor());
+    createMotorFrame(mXYZUnit.getYMotor());
+    createMotorFrame(mXYZUnit.getZMotor());
 
 	//Initialize UI
 }
+
+bool TMain::createMotorFrame(APTMotor* mtr)
+{
+	if(!mtr)
+    {
+    	return false;
+    }
+    TMotorFrame *f = new TMotorFrame(mtr->getName(), ScrollBox1);
+   	f->assignMotor(mtr);
+    f->Parent = ScrollBox1;
+    f->Align = alTop;
+}
+
+
 void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 {
 	StatusTimer->Enabled = false;
@@ -98,17 +105,17 @@ void __fastcall TMain::mAddMoveBtnClick(TObject *Sender)
 {
 	//Create and add a move to the sequencer
     ab::Position pos("", 0.0, 0.0, 0.0);
-	SpatialMove *move = new SpatialMove(mMotor, mtAbsolute, pos);
-
-    mMoveSequencer.addMove(move);
-
-    //Update LB
-    if(move->getPositionName() == "")
-    {
-    	string lbl = "Pos: " + mtk::toString(mMovesLB->Count + 1);
-        move->setPositionName(lbl);
-    }
-    mMovesLB->Items->AddObject(move->getPositionName().c_str(), (TObject*) move);
+//	SpatialMove *move = new SpatialMove("", mMotor, mtAbsolute, pos);
+//
+//    mProcessSequencer.addProcess(move);
+//
+//    //Update LB
+//    if(move->getPositionName() == "")
+//    {
+//    	string lbl = "Pos: " + mtk::toString(mMovesLB->Count + 1);
+//        move->setPositionName(lbl);
+//    }
+//    mMovesLB->Items->AddObject(move->getPositionName().c_str(), (TObject*) move);
 }
 
 //---------------------------------------------------------------------------
@@ -117,12 +124,12 @@ void __fastcall TMain::mStartBtnClick(TObject *Sender)
 	TButton* btn = (TButton*)Sender;
     if(btn==mStartBtn)
     {
-		mMoveSequencer.start(true);
+		mProcessSequencer.start(true);
 		seqtimer->Enabled = true;
     }
     else if(btn==mFwdBtn)
     {
-    	mMoveSequencer.forward();
+    	mProcessSequencer.forward();
 		seqtimer->Enabled = true;
     }
 }
@@ -131,51 +138,48 @@ void __fastcall TMain::mStartBtnClick(TObject *Sender)
 void __fastcall TMain::seqtimerTimer(TObject *Sender)
 {
 	//Check what the sequencer is doing
-	if(mMoveSequencer.isRunning())
+	if(mProcessSequencer.isRunning())
     {
     	runLbl->Caption = "Is Running";
     }
     else
     {
       	runLbl->Caption = "Idle";
-//		seqtimer->Enabled = false;
     }
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mSaveSequenceBtnClick(TObject *Sender)
 {
 	//Save Current Sequence
-    mMoveSequencer.save();
+    mProcessSequencer.save();
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::SequencesCBChange(TObject *Sender)
 {
-	//Load the sequence
-    int index = SequencesCB->ItemIndex;
-    if(index == -1)
-    {
-    	return;
-    }
-    string fName(stdstr(SequencesCB->Items->Strings[index]) + ".moves");
-
-	if(mMoveSequencer.load(fName))
-    {
-    	//Fill out listbox
-		MoveSequence& seq = mMoveSequencer.getSequence();
-
-        SpatialMove* move = seq.getFirst();
-        while(move)
-        {
-    		mMovesLB->Items->AddObject(move->getPositionName().c_str(), (TObject*) move);
-            move = seq.getNext();
-        }
-    }
-    mMoveSequencer.assignUnit(mMotor);
+//	//Load the sequence
+//    int index = SequencesCB->ItemIndex;
+//    if(index == -1)
+//    {
+//    	return;
+//    }
+//    string fName(stdstr(SequencesCB->Items->Strings[index]) + ".moves");
+//
+//	if(mProcessSequencer.load(fName))
+//    {
+//    	//Fill out listbox
+//		ProcessSequence& seq = mProcessSequencer.getSequence();
+//
+//        Process* move = seq.getFirst();
+//        while(move)
+//        {
+//    		mMovesLB->Items->AddObject(move->getLabel().c_str(), (TObject*) move);
+//            move = seq.getNext();
+//        }
+//    }
+//    mProcessSequencer.assignUnit(mMotor);
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mMovesLBClick(TObject *Sender)
@@ -198,7 +202,6 @@ void __fastcall TMain::mMovesLBClick(TObject *Sender)
     }
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 {
@@ -208,11 +211,8 @@ void __fastcall TMain::moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift
     	return;
     }
 
-
     SpatialMove* move = (SpatialMove*) mMovesLB->Items->Objects[i];
-
 	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
-
 
 //    if(e == mMovePosE)
     {
@@ -235,6 +235,11 @@ void __fastcall TMain::moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift
 		move->setDwellTime(mDwellTimeE->getValue());
     }
 
+}
+
+void __fastcall TMain::stopAllAExecute(TObject *Sender)
+{
+;
 }
 
 

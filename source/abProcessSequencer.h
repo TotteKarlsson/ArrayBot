@@ -7,14 +7,15 @@
 #include "mtkTimer.h"
 
 using mtk::Timer;
+class SpatialMove;
 //---------------------------------------------------------------------------
 typedef void (__closure *MyOnTimerCFPtr)(); //Need to research this and make it portable
 
-class AB_CORE MoveSequencer : public ABObject
+class AB_CORE ProcessSequencer : public ABObject
 {
 	public:
-			      	        MoveSequencer();
-                  	        ~MoveSequencer(){}
+			      	        ProcessSequencer();
+                  	        ~ProcessSequencer(){}
 		bool				assignUnit(ABObject* o);
 		bool				load(const string& seqFName);
 		bool				save();
@@ -24,11 +25,11 @@ class AB_CORE MoveSequencer : public ABObject
         void		        reverse();
         void		        stop();
         bool				isRunning();
-        void		        addMove(SpatialMove* newMove);
-        MoveSequence&		getSequence(){return mSequence;}
+        void		        addProcess(Process* newMove);
+        ProcessSequence&   	getSequence(){return mSequence;}
 
 	private:
-    	MoveSequence		mSequence;
+    	ProcessSequence		mSequence;
         bool				mRunContinous;
         bool				mIsRunning;
         Timer				mSequenceTimer;

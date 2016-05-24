@@ -5,6 +5,9 @@
 #include <bitset>
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
+#include "mtkStringUtils.h"
+
+
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)
@@ -20,7 +23,7 @@ __fastcall TMotorFrame::TMotorFrame(const string& name, TComponent* Owner)
 	: TFrame(Owner),
     mMotor(NULL)
 {
-    TFrame::Name = (vclstr("Frame_" + name));
+    TFrame::Name = (vclstr("Frame_" + replaceCharacter('-', '_', name)));
 }
 
 //---------------------------------------------------------------------------
@@ -33,6 +36,11 @@ void TMotorFrame::assignMotor(APTMotor* m)
         mJogVelocity->setValue(mMotor->getManualJogVelocity());
         mJogAcc->setValue(mMotor->getManualJogAcceleration());
     	mMotorStatusTimer->Enabled = true;
+    	EnableDisableFrame(this, true);
+    }
+    else
+    {
+    	EnableDisableFrame(this, false);
     }
 }
 

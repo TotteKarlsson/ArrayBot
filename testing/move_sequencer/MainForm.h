@@ -1,6 +1,5 @@
 #ifndef MainFormH
 #define MainFormH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -23,7 +22,6 @@
 #include "TRegistryForm.h"
 #include "abArrayBot.h"
 #include "mtkIniFileProperties.h"
-
 #include <mmsystem.h>
 #include <Vcl.StdActns.hpp>
 #include <Vcl.Menus.hpp>
@@ -34,7 +32,6 @@ using Poco::Timestamp;
 using mtk::IniFileProperties;
 
 class APTMotor;
-
 
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
@@ -66,7 +63,6 @@ class TMain : public TRegistryForm
 	TMemo *infoMemo;
 	TToolBar *ToolBar1;
 	TBitBtn *BitBtn2;
-	TMotorFrame *TMotorFrame1;
 	TGroupBox *GroupBox1;
 	TGroupBox *GroupBox2;
 	TFloatLabeledEdit *mMovePosE;
@@ -84,6 +80,7 @@ class TMain : public TRegistryForm
 	TButton *mSaveSequenceBtn;
 	TButton *mAddMoveBtn;
 	TFloatLabeledEdit *mDwellTimeE;
+	TScrollBox *ScrollBox1;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -102,7 +99,7 @@ class TMain : public TRegistryForm
 	void __fastcall SequencesCBChange(TObject *Sender);
 	void __fastcall mMovesLBClick(TObject *Sender);
 	void __fastcall moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-
+	void __fastcall stopAllAExecute(TObject *Sender);
 
     private:	// User declarations
         TThreadMethod               logMsgMethod;
@@ -115,9 +112,12 @@ class TMain : public TRegistryForm
 
         IniFile						mIniFile;
         DeviceManager				mManager;
-		APTMotor*					mMotor;
-        MoveSequencer				mMoveSequencer;
+        ProcessSequencer  			mProcessSequencer;
+
+        XYZUnit						mXYZUnit;
 		void __fastcall		        OnException();
+
+		bool 						createMotorFrame(APTMotor* mtr);
 
 
 	public:		// User declarations

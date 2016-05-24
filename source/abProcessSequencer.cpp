@@ -1,12 +1,15 @@
 #pragma hdrstop
 #include "abProcessSequencer.h"
-#include "abSpatialMove.h"
 #include "mtkLogger.h"
+#include "abProcess.h"
+#include "mtkUtils.h"
+
+
 //---------------------------------------------------------------------------
 
 using namespace mtk;
 
-MoveSequencer::MoveSequencer()
+ProcessSequencer::ProcessSequencer()
 :
 mIsRunning(false),
 mSequenceTimer(100)
@@ -15,50 +18,50 @@ mSequenceTimer(100)
 	mSequenceTimer.assignTimerFunction(inThreadCB);
 }
 
-bool MoveSequencer::assignUnit(ABObject* o)
+bool ProcessSequencer::assignUnit(ABObject* o)
 {
 	mSequence.assignUnit(o);
 }
 
-bool MoveSequencer::load(const string& seqFName)
+bool ProcessSequencer::load(const string& seqFName)
 {
-	mSequence.load(seqFName);
+	mSequence.read(seqFName);
 }
 
-bool MoveSequencer::save()
+bool ProcessSequencer::save()
 {
-	mSequence.save();
+	mSequence.write();
 }
 
-void MoveSequencer::clear()
+void ProcessSequencer::clear()
 {
 	mSequence.clear();
 }
 
-void MoveSequencer::runThreaded()
+void ProcessSequencer::runThreaded()
 {
 	if(!isRunning())
     {
     	//Check if are to forward
-        SpatialMove* aMove = mSequence.getCurrent();
-        if(!aMove)
+        Process* p = mSequence.getCurrent();
+        if(!p)
         {
         	//We have finished
             mSequenceTimer.stop();
         }
 
-        if(aMove && aMove->achievedPosition() == true )
+        if(p && p->isDone() == true )
         {
-        	sleep(aMove->getDwellTime());
+        	sleep(p->getDwellTime());
         	forward();
         }
     }
 }
 
-void MoveSequencer::start(bool cont)
+void ProcessSequencer::start(bool cont)
 {
 	mRunContinous = cont;
-	SpatialMove* aMove = mSequence.getFirst();
+	Process* aMove = mSequence.getFirst();
     if(aMove)
     {
     	Log(lError) << "Executing first move";
@@ -75,9 +78,9 @@ void MoveSequencer::start(bool cont)
     }
 }
 
-void MoveSequencer::forward()
+void ProcessSequencer::forward()
 {
-	SpatialMove* aMove = mSequence.getNext();
+	Process* aMove = mSequence.getNext();
     if(aMove)
     {
     	aMove->execute();
@@ -88,9 +91,9 @@ void MoveSequencer::forward()
     }
 }
 
-void MoveSequencer::reverse()
+void ProcessSequencer::reverse()
 {
-	SpatialMove* aMove = mSequence.getCurrent();
+	Process* aMove = mSequence.getCurrent();
     if(aMove)
     {
     	aMove->undo();
@@ -101,17 +104,17 @@ void MoveSequencer::reverse()
     }
 }
 
-void MoveSequencer::stop()
+void ProcessSequencer::stop()
 {}
 
-void MoveSequencer::addMove(SpatialMove* newMove)
+void ProcessSequencer::addProcess(Process* newMove)
 {
 	mSequence.add(newMove);
 }
 
-bool MoveSequencer::isRunning()
+bool ProcessSequencer::isRunning()
 {
-	SpatialMove* m = mSequence.getCurrent();
+	Process* m = mSequence.getCurrent();
     if(m)
     {
 	    return m->isActive();

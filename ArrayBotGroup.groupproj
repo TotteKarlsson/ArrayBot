@@ -22,7 +22,7 @@
             <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
         <Projects Include="testing\move_sequencer\move_sequencer.cbproj">
-            <Dependencies/>
+            <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -86,13 +86,13 @@
     <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="move_sequencer">
+    <Target Name="move_sequencer" DependsOnTargets="abCore">
         <MSBuild Projects="testing\move_sequencer\move_sequencer.cbproj"/>
     </Target>
-    <Target Name="move_sequencer:Clean">
+    <Target Name="move_sequencer:Clean" DependsOnTargets="abCore:Clean">
         <MSBuild Projects="testing\move_sequencer\move_sequencer.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="move_sequencer:Make">
+    <Target Name="move_sequencer:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="testing\move_sequencer\move_sequencer.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">

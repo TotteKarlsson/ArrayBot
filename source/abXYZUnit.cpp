@@ -65,7 +65,7 @@ bool XYZUnit::initialize()
 
         //Load Motor Properties
         mXMotor->loadProperties(mIniFile);
-        mXMotor->setName(mName + ":X");
+        mXMotor->setName(mName + "_X");
     }
     else
     {
@@ -78,7 +78,7 @@ bool XYZUnit::initialize()
     	Log(lInfo) << "Y motor is connected";
         //Load Motor Properties
         mYMotor->loadProperties(mIniFile);
-        mYMotor->setName(mName + ":Y");
+        mYMotor->setName(mName + "_Y");
     }
     else
     {
@@ -92,7 +92,7 @@ bool XYZUnit::initialize()
 
         //Load Motor Properties
         mZMotor->loadProperties(mIniFile);
-        mZMotor->setName(mName + ":Z");
+        mZMotor->setName(mName + "_Z");
     }
     else
     {
@@ -190,9 +190,7 @@ void XYZUnit::home()
             Log(lInfo) << "Homing...";
         }
     }
-
 }
-
 
 void XYZUnit::enableJoyStick(JoyStick* js)
 {

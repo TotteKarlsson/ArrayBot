@@ -29,9 +29,9 @@ bool TCubeDCServo::connect()
     // open the device
     int res = CC_Open(toString(mSerial).c_str());
 
-    mScalingFactors.position = 1919.64;
-    mScalingFactors.velocity = 42941.66;
-	mScalingFactors.acceleration = 14.66;
+    mScalingFactors.position = 34304.0;
+    mScalingFactors.velocity = 767367.49;
+	mScalingFactors.acceleration = 261.93;
 
     if(res == 0)
     {

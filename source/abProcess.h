@@ -22,8 +22,12 @@ class AB_CORE Process : public ABObject
 		void			            assignUnit(ABObject* o){mUnit = o;}
         string						getLabel(){return mLabel;}
 
+        double			            getDwellTime(){return mDwellTime;}
+        bool			            setDwellTime(double dt){mDwellTime = dt; return true;}
+
         virtual bool	            isActive() 	= 0;
         virtual bool	            execute() 	= 0;
+        virtual	bool 			 	isDone()    = 0;
         virtual	bool	            undo() 		= 0;
 
         virtual bool				read(mtk::IniSection* sec) = 0;
@@ -44,6 +48,7 @@ class AB_CORE Process : public ABObject
         mtk::IniSection*	   		mIniSection;
 
         string						mLabel;
+        double			            mDwellTime;
 };
 
 

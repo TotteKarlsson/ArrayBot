@@ -11,8 +11,7 @@ Process(lbl, unit),
 mMoveType(type),
 mPosition(p),
 mMaxVelocity(0),
-mAcceleration(0),
-mDwellTime(0)
+mAcceleration(0)
 {
 	mProcessType = (ptSpatialMove);
 }
@@ -109,7 +108,7 @@ bool SpatialMove::undo()
 	return false;
 }
 
-bool SpatialMove::achievedPosition()
+bool SpatialMove::isDone()
 {
 	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
     if(o)
@@ -146,5 +145,19 @@ MoveType toMoveType(const string& mt)
     }
 
     return mtUnknown;
+}
 
+string	toString(MoveType mt)
+{
+	if(mt == mtAbsolute)
+    {
+    	return "ABSOLUTE";
+    }
+
+	if(mt == mtRelative)
+    {
+    	return "RELATIVE";
+    }
+
+    return "UNKNOWN";
 }

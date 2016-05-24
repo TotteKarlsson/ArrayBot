@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot Version 0.1'
-  ClientHeight = 814
-  ClientWidth = 1262
+  ClientHeight = 567
+  ClientWidth = 884
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,15 +21,15 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 13
   object Btnpanel: TPanel
-    Left = 1135
+    Left = 757
     Top = 0
     Width = 127
-    Height = 814
+    Height = 567
     Align = alRight
     TabOrder = 0
     object Button7: TButton
       Left = 1
-      Top = 691
+      Top = 444
       Width = 125
       Height = 60
       Action = stopAllA
@@ -46,7 +46,7 @@ object Main: TMain
     end
     object Button5: TButton
       Left = 1
-      Top = 751
+      Top = 504
       Width = 125
       Height = 62
       Action = FileExit1
@@ -63,8 +63,8 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 1135
-    Height = 814
+    Width = 757
+    Height = 567
     Align = alClient
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
@@ -72,8 +72,8 @@ object Main: TMain
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 1133
-      Height = 812
+      Width = 755
+      Height = 565
       ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
@@ -81,26 +81,13 @@ object Main: TMain
       TabWidth = 100
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
-        inline TMotorFrame1: TMotorFrame
-          Left = 0
-          Top = 0
-          Width = 293
-          Height = 742
-          Align = alLeft
-          TabOrder = 0
-          ExplicitHeight = 742
-        end
         object GroupBox1: TGroupBox
           Left = 312
           Top = 3
           Width = 393
           Height = 294
           Caption = 'Move Sequencer'
-          TabOrder = 1
+          TabOrder = 0
           object runLbl: TLabel
             Left = 136
             Top = 229
@@ -245,26 +232,36 @@ object Main: TMain
             OnClick = mAddMoveBtnClick
           end
         end
+        object ScrollBox1: TScrollBox
+          Left = 0
+          Top = 0
+          Width = 306
+          Height = 495
+          Align = alLeft
+          TabOrder = 1
+        end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
         ExplicitLeft = 0
         ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
+        ExplicitWidth = 1125
+        ExplicitHeight = 742
         object BottomPanel: TPanel
           Left = 0
           Top = 0
-          Width = 1125
-          Height = 742
+          Width = 747
+          Height = 495
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 1125
+          ExplicitHeight = 742
           object infoMemo: TMemo
             Left = 1
             Top = 51
-            Width = 1123
-            Height = 690
+            Width = 745
+            Height = 443
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -275,15 +272,18 @@ object Main: TMain
             ScrollBars = ssVertical
             TabOrder = 0
             WordWrap = False
+            ExplicitWidth = 1123
+            ExplicitHeight = 690
           end
           object ToolBar1: TToolBar
             Left = 1
             Top = 1
-            Width = 1123
+            Width = 745
             Height = 50
             ButtonHeight = 44
             Caption = 'ToolBar1'
             TabOrder = 1
+            ExplicitWidth = 1123
             object BitBtn2: TBitBtn
               Left = 0
               Top = 0
@@ -334,6 +334,7 @@ object Main: TMain
     end
     object stopAllA: TAction
       Caption = 'Stop All'
+      OnExecute = stopAllAExecute
     end
     object initBotA: TAction
       Caption = 'Initialize'

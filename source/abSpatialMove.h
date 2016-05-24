@@ -7,6 +7,8 @@
 
 enum MoveType {mtAbsolute = 0, mtRelative, mtUnknown};
 MoveType	toMoveType(const string& mt);
+string		toString(MoveType mt);
+
 //!The move baseclass contain the general logic for a 'move' of
 //any type of object
 class AB_CORE SpatialMove : public Process
@@ -20,10 +22,10 @@ class AB_CORE SpatialMove : public Process
 
 		void			            assignUnit(ABObject* o){mUnit = o;}
         virtual bool	            execute();
+		bool 						isDone();
         virtual	bool	            undo();
         virtual bool	            isActive();
         virtual MoveType            getMoveType(){return mMoveType;}
-        virtual bool	            achievedPosition();
 
         ab::Position&	            getPosition(){return mPosition;}
         double			            getMaxVelocity(){return mMaxVelocity;}
@@ -49,7 +51,6 @@ class AB_CORE SpatialMove : public Process
         MoveType 		            mMoveType;
         double			            mMaxVelocity;
         double			            mAcceleration;
-        double			            mDwellTime;
 };
 
 #endif
