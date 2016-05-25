@@ -3,6 +3,9 @@
         <ProjectGuid>{9D7B788E-1612-4D2A-99DA-365D58720234}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="P:\libs\dslib\VCL\Components\DuneComponents.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="source\abCore.cbproj">
             <Dependencies/>
         </Projects>
@@ -20,6 +23,15 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="DuneComponents">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj"/>
+    </Target>
+    <Target Name="DuneComponents:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneComponents:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="abCore">
         <MSBuild Projects="source\abCore.cbproj"/>
     </Target>
@@ -48,13 +60,13 @@
         <MSBuild Projects="testing\move_sequencer\move_sequencer.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;ArrayBot;move_sequencer"/>
+        <CallTarget Targets="DuneComponents;abCore;ArrayBot;move_sequencer"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;ArrayBot:Clean;move_sequencer:Clean"/>
+        <CallTarget Targets="DuneComponents:Clean;abCore:Clean;ArrayBot:Clean;move_sequencer:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;ArrayBot:Make;move_sequencer:Make"/>
+        <CallTarget Targets="DuneComponents:Make;abCore:Make;ArrayBot:Make;move_sequencer:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
