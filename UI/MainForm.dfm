@@ -85,7 +85,7 @@ object Main: TMain
           Left = 387
           Top = 25
           Width = 366
-          Height = 312
+          Height = 264
           Caption = 'Coverslip Operations'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -235,6 +235,44 @@ object Main: TMain
             GroupIndex = 15
             Caption = 'Slow'
             OnClick = JSSpeedBtnClick
+          end
+        end
+        object GroupBox3: TGroupBox
+          Left = 24
+          Top = 272
+          Width = 223
+          Height = 153
+          Caption = 'Camera'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 2
+          object mCameraAngleEdit: TFloatLabeledEdit
+            Left = 23
+            Top = 65
+            Width = 98
+            Height = 31
+            EditLabel.Width = 47
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Angle'
+            EditLabel.Font.Charset = DEFAULT_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -19
+            EditLabel.Font.Name = 'Tahoma'
+            EditLabel.Font.Style = []
+            EditLabel.ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            Text = '0.00'
+            OnKeyDown = mCSAngleEKeyDown
           end
         end
       end

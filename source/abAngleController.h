@@ -15,6 +15,9 @@ using mtk::IniFileProperties;
 using mtk::Property;
 class APTMotor;
 
+//!An angle controller is an object that
+//controls a motor that controls an angle.
+
 class AB_CORE AngleController : public ABObject
 {
 	public:
@@ -32,6 +35,7 @@ class AB_CORE AngleController : public ABObject
 
         Property<int>		                mMotorSerial;
         Property<double>  	                mAngle;
+        Property<int>						mAngleOffset;
         Property<string>   	                mName;
     	DeviceManager	                    mDeviceManager;
 
@@ -39,7 +43,7 @@ class AB_CORE AngleController : public ABObject
     	APTMotor*				            mAngleMotor;
         IniFile&			                mIniFile;
         IniFileProperties	                mProperties;
-        int									mAngleOffset;
+
 };
 
 #endif

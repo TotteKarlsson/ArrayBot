@@ -100,6 +100,8 @@ class TMain : public TRegistryForm
 	TToolBar *ToolBar1;
 	TBitBtn *BitBtn2;
 	TButton *AddJsSettingBtn;
+	TGroupBox *GroupBox3;
+	TFloatLabeledEdit *mCameraAngleEdit;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);

@@ -10,13 +10,14 @@ AngleController::AngleController(const string& name, IniFile& iniFile)
 mMotorSerial(-1),
 mName(name),
 mAngle(0),
+mAngleOffset(0),
 mIniFile(iniFile),
-mAngleMotor(NULL),
-mAngleOffset(225)
+mAngleMotor(NULL)
 {
     mProperties.setSection(name);
-    mProperties.add((BaseProperty*) &mMotorSerial.setup("CoverSlipAngleMotorSerial", -1, true));
-    mProperties.add((BaseProperty*) &mAngle.setup("Angle", 1, true));
+    mProperties.add((BaseProperty*) &mMotorSerial.setup("MOTOR_SERIAL", -1, true));
+    mProperties.add((BaseProperty*) &mAngle.setup("ANGLE", 1, true));
+    mProperties.add((BaseProperty*) &mAngleOffset.setup("ANGLE_OFFSET", 1, true));
     mProperties.setIniFile(&mIniFile);
 }
 
@@ -64,21 +65,20 @@ bool AngleController::initialize()
 	mDeviceManager.reBuildDeviceList();
     mProperties.read();
 
-
     Log(lInfo) << "Initializing: "<< mName;
 	//Setup the motor
     mAngleMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mMotorSerial));
     if(mAngleMotor)
     {
-    	Log(lInfo)<<"CoverSlip Angle control  motor is connected";
+    	Log(lInfo)<<"Motor to control "<<mName<<" is connected";
 
         //Load Motor Properties
         mAngleMotor->loadProperties(mIniFile);
-        mAngleMotor->setName("CoverSlipAngleMotor");
+        mAngleMotor->setName(mName + "_MOTOR");
     }
     else
     {
-		Log(lError) << "The CoverSlip Angle control motor is NOT connected";
+		Log(lError) <<"Motor to control "<<mName<<" is not connected";
     }
 
 	return true;

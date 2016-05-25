@@ -26,12 +26,17 @@ class AB_CORE ArrayBot : public ABObject
 		void						enableCoverSlipJoyStick();
 		void						disableJoyStick();
         void						stopAll();
+
         void						initWorkingPosition();
+
         void						stow();
         void						home();
         bool						isActive();
         bool						isShuttingDown();
-		AngleController&	getAngleController();
+
+		AngleController&			getCoverSlipAngleController();
+		AngleController&			getCameraAngleController();
+
     	CombinedMove&				getCombinedMove(){return mCSLift;}
         bool						applyJoyStickSetting(const string& settingName);
 
@@ -42,7 +47,7 @@ class AB_CORE ArrayBot : public ABObject
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
 
-        AngleController				mCSAngleController;
+        AngleController				mCoverSlipAngleController;
 
         AngleController				mCameraAngleController;
 		CombinedMove				mCSLift;

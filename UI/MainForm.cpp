@@ -64,11 +64,11 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	initBotAExecute(NULL);
 
 	//Initialize UI
-    mCSAngleE->setValue(mAB.getAngleController().getAngle());
+    mCSAngleE->setValue(mAB.getCoverSlipAngleController().getAngle());
 
     //Assign editbox references to Lifting parameters
     mMoveAngleE->assignExternalProperty(&(mAB.getCombinedMove().mAngle), true);
-    mCSAngleE->assignExternalProperty(&mAB.getAngleController().mAngle, true);
+    mCSAngleE->assignExternalProperty(&mAB.getCoverSlipAngleController().mAngle, true);
 
     mJSNoneBtn->Down 		= true;
 	mJSSpeedMediumBtn->Click();
@@ -91,7 +91,7 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 	TXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
 	TXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
 
-	TMotorFrame1->assignMotor(mAB.getAngleController().getMotor());
+	TMotorFrame1->assignMotor(mAB.getCoverSlipAngleController().getMotor());
     //JoyStick stuff.....
     mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getXAxis().getMaxVelocity());
     mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getXAxis().getAcceleration());
@@ -258,14 +258,21 @@ void __fastcall TMain::stowBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
+	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
 	if(Key != vkReturn)
     {
     	return;
     }
 
-    mAB.getAngleController().setAngle(mCSAngleE->getValue() + 225.0);
+    if(e == mCSAngleE)
+    {
+    	mAB.getCoverSlipAngleController().setAngle(mCSAngleE->getValue() + 225.0);
+    }
+    else if (e == mCameraAngleEdit)
+    {
+    	mAB.getCameraAngleController().setAngle(mCameraAngleEdit->getValue());
+    }
 }
-
 
 void __fastcall TMain::LiftAngleButtonUpRightClick(TObject *Sender)
 {

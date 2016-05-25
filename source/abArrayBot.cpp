@@ -9,13 +9,14 @@ using namespace mtk;
 ArrayBot::ArrayBot(IniFile& ini)
 :
 mIniFile(ini),
-mCoverSlip("CoverSlip Unit", mIniFile),
-mWhisker("Whisker Unit", mIniFile),
+mCoverSlip("COVERSLIP UNIT", mIniFile),
+mWhisker("WHISKER UNIT", mIniFile),
 mJoyStick(NULL),
-mCSAngleController("CS Angle Controller", mIniFile),
-mCSLift("COVERSLIP_LIFT"),
+mCoverSlipAngleController("COVERSLIP ANGLE CONTROLLER", mIniFile),
+mCameraAngleController("CAMERA ANGLE CONTROLLER", mIniFile),
+mCSLift("COVERSLIP LIFT"),
 mIsShuttingDown(false),
-mJSSettings("JOYSTICK_SETTINGS", mIniFile)
+mJSSettings("JOYSTICK SETTINGS", mIniFile)
 {
 	mCSLift.readProperties(mIniFile);
 }
@@ -25,7 +26,7 @@ ArrayBot::~ArrayBot()
 
 bool ArrayBot::isActive()
 {
-	return mCoverSlip.isActive() || mWhisker.isActive() || mCSAngleController.isActive();
+	return mCoverSlip.isActive() || mWhisker.isActive() || mCoverSlipAngleController.isActive() || mCameraAngleController.isActive();
 }
 
 bool ArrayBot::isShuttingDown()
@@ -36,13 +37,19 @@ bool ArrayBot::isShuttingDown()
 void ArrayBot::initialize()
 {
 	mCoverSlip.initialize();
-//	mWhisker.initialize();
-//    mCSAngleController.initialize();
+	mWhisker.initialize();
+    mCoverSlipAngleController.initialize();
+    mCameraAngleController.initialize();
 }
 
-AngleController& ArrayBot::getAngleController()
+AngleController& ArrayBot::getCoverSlipAngleController()
 {
-	return mCSAngleController;
+	return mCoverSlipAngleController;
+}
+
+AngleController& ArrayBot::getCameraAngleController()
+{
+	return mCameraAngleController;
 }
 
 //Todo: setup mechanism to check if the units were shutdown properly
@@ -50,7 +57,8 @@ bool ArrayBot::shutDown()
 {
 	mIsShuttingDown = true;
     getJoyStick().disable();
-	mCSAngleController.shutDown();
+	mCoverSlipAngleController.shutDown();
+	mCameraAngleController.shutDown();
 	mCoverSlip.shutDown();
 	mWhisker.shutDown();
 	mCSLift.writeProperties();
@@ -62,7 +70,7 @@ void ArrayBot::stopAll()
     mJoyStick.disable();
     mCoverSlip.stopAll();
     mWhisker.stopAll();
-	mCSAngleController.stop();
+	mCoverSlipAngleController.stop();
 }
 
 bool ArrayBot::applyJoyStickSetting(const string& settingName)
