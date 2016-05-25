@@ -1,20 +1,20 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
-#include "TMemoLogger.h"
-#include "mtkStringList.h"
-#include "abUtilities.h"
 #include "abAPTMotor.h"
-#include "abTCubeDCServo.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
-#include <bitset>
-#include "mtkMathUtils.h"
 #include "abDeviceManager.h"
+#include "abLinearMove.h"
 #include "abPosition.h"
-#include "abSpatialMove.h"
-
+#include "abTCubeDCServo.h"
+#include "abUtilities.h"
+#include "mtkLogger.h"
+#include "mtkMathUtils.h"
+#include "mtkStringList.h"
+#include "mtkVCLUtils.h"
+#include "TMemoLogger.h"
+#include <bitset>
 //---------------------------------------------------------------------------
+
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TFloatLabeledEdit"
@@ -34,22 +34,15 @@ __fastcall TMain::TMain(TComponent* Owner)
 :
 	TRegistryForm("Test", "MainForm", Owner),
 	logMsgMethod(&logMsg),
-	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "move_sequencer", gLogFileName), logMsgMethod),
-    mBottomPanelHeight(100),
-    mBottomPanelVisible(true),
-    mTopPanelHeight(360),
+	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
     mIniFile("move_sequencer.ini", true, true), //Means we are reading ini paras on startup
     mXYZUnit("MyUnit", mIniFile)
 {
 	TMemoLogger::mMemoIsEnabled = false;
 
-//    mManager.connectAllDevices();
 	mXYZUnit.initialize();
 	//Setup UI properties
     mProperties.setSection("UI");
-    mProperties.add((BaseProperty*) &mBottomPanelHeight.setup("BOTTOM_PANEL_HEIGHT", 			100, true));
-    mProperties.add((BaseProperty*) &mTopPanelHeight.setup("TOP_PANEL_HEIGHT", 					360, true));
-    mProperties.add((BaseProperty*) &mBottomPanelVisible.setup("BOTTOM_PANEL_VISIBLE",			true, true));
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
 }
@@ -72,6 +65,23 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     createMotorFrame(mXYZUnit.getZMotor());
 
 	//Initialize UI
+    //Fill out sequencer frame
+	if(mXYZUnit.getXMotor())
+    {
+    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit.getXMotor()->getName().c_str(), (TObject*) mXYZUnit.getXMotor() );
+    }
+
+	if(mXYZUnit.getYMotor())
+    {
+    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit.getYMotor()->getName().c_str(), (TObject*) mXYZUnit.getYMotor() );
+    }
+
+	if(mXYZUnit.getZMotor())
+    {
+    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit.getZMotor()->getName().c_str(), (TObject*) mXYZUnit.getZMotor() );
+    }
+
+
 }
 
 bool TMain::createMotorFrame(APTMotor* mtr)
@@ -84,6 +94,7 @@ bool TMain::createMotorFrame(APTMotor* mtr)
    	f->assignMotor(mtr);
     f->Parent = ScrollBox1;
     f->Align = alTop;
+    return true;
 }
 
 
@@ -105,17 +116,30 @@ void __fastcall TMain::mAddMoveBtnClick(TObject *Sender)
 {
 	//Create and add a move to the sequencer
     ab::Position pos("", 0.0, 0.0, 0.0);
-//	SpatialMove *move = new SpatialMove("", mMotor, mtAbsolute, pos);
-//
-//    mProcessSequencer.addProcess(move);
-//
-//    //Update LB
-//    if(move->getPositionName() == "")
-//    {
-//    	string lbl = "Pos: " + mtk::toString(mMovesLB->Count + 1);
-//        move->setPositionName(lbl);
-//    }
-//    mMovesLB->Items->AddObject(move->getPositionName().c_str(), (TObject*) move);
+	if(MotorsCB->ItemIndex == -1)
+    {
+    	Log(lError) << "No motor is selected. can't create move";
+    	return;
+    }
+
+    APTMotor* motor = (APTMotor*) MotorsCB->Items->Objects[MotorsCB->ItemIndex];
+    if(!motor)
+    {
+    	Log(lError) << "No motor is selected. can't create move";
+    	return;
+    }
+
+	LinearMove *move = new LinearMove("", motor, mtAbsolute, pos);
+
+    mMoveSequencer.addProcess(move);
+
+    //Update LB
+    if(move->getPositionName() == "")
+    {
+    	string lbl = "MOVE " + mtk::toString(mMovesLB->Count + 1);
+        move->setPositionName(lbl);
+    }
+    mMovesLB->Items->AddObject(move->getPositionName().c_str(), (TObject*) move);
 }
 
 //---------------------------------------------------------------------------
@@ -124,27 +148,11 @@ void __fastcall TMain::mStartBtnClick(TObject *Sender)
 	TButton* btn = (TButton*)Sender;
     if(btn==mStartBtn)
     {
-		mProcessSequencer.start(true);
-		seqtimer->Enabled = true;
+		mMoveSequencer.start(true);
     }
     else if(btn==mFwdBtn)
     {
-    	mProcessSequencer.forward();
-		seqtimer->Enabled = true;
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::seqtimerTimer(TObject *Sender)
-{
-	//Check what the sequencer is doing
-	if(mProcessSequencer.isRunning())
-    {
-    	runLbl->Caption = "Is Running";
-    }
-    else
-    {
-      	runLbl->Caption = "Idle";
+    	mMoveSequencer.forward();
     }
 }
 
@@ -152,33 +160,34 @@ void __fastcall TMain::seqtimerTimer(TObject *Sender)
 void __fastcall TMain::mSaveSequenceBtnClick(TObject *Sender)
 {
 	//Save Current Sequence
-    mProcessSequencer.save();
+    mMoveSequencer.save();
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::SequencesCBChange(TObject *Sender)
 {
-//	//Load the sequence
-//    int index = SequencesCB->ItemIndex;
-//    if(index == -1)
-//    {
-//    	return;
-//    }
-//    string fName(stdstr(SequencesCB->Items->Strings[index]) + ".moves");
-//
-//	if(mProcessSequencer.load(fName))
-//    {
-//    	//Fill out listbox
-//		ProcessSequence& seq = mProcessSequencer.getSequence();
-//
-//        Process* move = seq.getFirst();
-//        while(move)
-//        {
-//    		mMovesLB->Items->AddObject(move->getLabel().c_str(), (TObject*) move);
-//            move = seq.getNext();
-//        }
-//    }
-//    mProcessSequencer.assignUnit(mMotor);
+	//Load the sequence
+    int index = SequencesCB->ItemIndex;
+    if(index == -1)
+    {
+    	return;
+    }
+    string fName(stdstr(SequencesCB->Items->Strings[index]) + ".moves");
+
+	if(mMoveSequencer.load(fName))
+    {
+    	//Fill out listbox
+		ProcessSequence& seq = mMoveSequencer.getSequence();
+
+        Process* move = seq.getFirst();
+        while(move)
+        {
+    		mMovesLB->Items->AddObject(move->getLabel().c_str(), (TObject*) move);
+            move = seq.getNext();
+        }
+    }
+
+    mMoveSequencer.assignUnit(&mXYZUnit);
 }
 
 //---------------------------------------------------------------------------
@@ -191,7 +200,7 @@ void __fastcall TMain::mMovesLBClick(TObject *Sender)
     	return;
     }
 
-    SpatialMove* move = (SpatialMove*) mMovesLB->Items->Objects[i];
+    LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
 
     if(move)
     {
@@ -199,6 +208,13 @@ void __fastcall TMain::mMovesLBClick(TObject *Sender)
         mMaxVelE->setValue(move->getMaxVelocity());
         mAccE->setValue(move->getAcceleration());
         mDwellTimeE->setValue(move->getDwellTime());
+
+        APTMotor* mtr = dynamic_cast<APTMotor*>(move->getUnit());
+        if(mtr)
+        {
+        	int idx = MotorsCB->Items->IndexOf(mtr->getName().c_str());
+			MotorsCB->ItemIndex = idx;
+        }
     }
 }
 
@@ -211,7 +227,7 @@ void __fastcall TMain::moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift
     	return;
     }
 
-    SpatialMove* move = (SpatialMove*) mMovesLB->Items->Objects[i];
+    LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
 	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
 
 //    if(e == mMovePosE)
@@ -240,6 +256,25 @@ void __fastcall TMain::moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
 ;
+}
+
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::MotorsCBChange(TObject *Sender)
+{
+	//Check if a motor is selected
+    APTMotor* motor = (APTMotor*) MotorsCB->Items->Objects[MotorsCB->ItemIndex];
+    if(motor)
+    {
+    	mMovePosE->Enabled = true;
+        mAccE->Enabled = true;
+    }
+    else
+    {
+    	mMovePosE->Enabled = false;
+        mAccE->Enabled = false;
+    }
 }
 
 

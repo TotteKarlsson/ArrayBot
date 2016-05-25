@@ -11,7 +11,7 @@ namespace mtk
 	class IniSection;
 }
 
-enum ProcessType {ptSpatialMove = 0};
+enum ProcessType {ptLinearMove = 0};
 
 class AB_CORE Process : public ABObject
 {
@@ -20,6 +20,7 @@ class AB_CORE Process : public ABObject
 							        ~Process(){}
 
 		void			            assignUnit(ABObject* o){mUnit = o;}
+		ABObject*					getUnit(){return mUnit;}
         string						getLabel(){return mLabel;}
 
         double			            getDwellTime(){return mDwellTime;}

@@ -4,7 +4,7 @@
 #include "abABObject.h"
 #include "abXYZUnit.h"
 #include "abJoyStick.h"
-#include "abCoverSlipAngleController.h"
+#include "abAngleController.h"
 #include "abCombinedMove.h"
 #include "abJoyStickSettings.h"
 //---------------------------------------------------------------------------
@@ -31,7 +31,7 @@ class AB_CORE ArrayBot : public ABObject
         void						home();
         bool						isActive();
         bool						isShuttingDown();
-		CoverSlipAngleController&	getAngleController();
+		AngleController&	getAngleController();
     	CombinedMove&				getCombinedMove(){return mCSLift;}
         bool						applyJoyStickSetting(const string& settingName);
 
@@ -42,7 +42,9 @@ class AB_CORE ArrayBot : public ABObject
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
 
-        CoverSlipAngleController	mCSAngleController;
+        AngleController				mCSAngleController;
+
+        AngleController				mCameraAngleController;
 		CombinedMove				mCSLift;
 
         JoyStick					mJoyStick;

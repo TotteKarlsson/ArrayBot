@@ -30,10 +30,11 @@ class AB_CORE APTDevice : public ABObject
         bool	        		                disable();
 
         string					                getSerial();
+        string 									getName();
+        void									setName(const string& name);
+
         bool									loadProperties(IniFile& iniFile);
         bool									writeProperties(IniFile& iniFile);
-        void									setName(const string& name);
-        string 									getName();
 
     protected:
 		IniFileProperties	  					mProperties;

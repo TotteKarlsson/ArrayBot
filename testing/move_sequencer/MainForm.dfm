@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
-  Caption = 'ArrayBot Version 0.1'
+  Caption = 'Move Sequencer Version 0.1'
   ClientHeight = 567
   ClientWidth = 884
   Color = clBtnFace
@@ -85,33 +85,26 @@ object Main: TMain
           Left = 312
           Top = 3
           Width = 393
-          Height = 294
+          Height = 390
           Caption = 'Move Sequencer'
           TabOrder = 0
-          object runLbl: TLabel
-            Left = 136
-            Top = 229
-            Width = 29
-            Height = 13
-            Caption = 'runLbl'
-          end
           object Label1: TLabel
-            Left = 24
-            Top = 21
+            Left = 264
+            Top = 15
             Width = 52
             Height = 13
             Caption = 'Sequences'
           end
           object GroupBox2: TGroupBox
-            Left = 184
-            Top = 15
-            Width = 185
+            Left = 16
+            Top = 17
+            Width = 169
             Height = 206
             Caption = 'Move'
             TabOrder = 0
             object mMovePosE: TFloatLabeledEdit
               Left = 16
-              Top = 32
+              Top = 59
               Width = 65
               Height = 21
               EditLabel.Width = 37
@@ -123,7 +116,7 @@ object Main: TMain
             end
             object mMaxVelE: TFloatLabeledEdit
               Left = 16
-              Top = 80
+              Top = 107
               Width = 65
               Height = 21
               EditLabel.Width = 60
@@ -135,7 +128,7 @@ object Main: TMain
             end
             object mAccE: TFloatLabeledEdit
               Left = 87
-              Top = 80
+              Top = 107
               Width = 65
               Height = 21
               EditLabel.Width = 59
@@ -147,7 +140,7 @@ object Main: TMain
             end
             object mDwellTimeE: TFloatLabeledEdit
               Left = 15
-              Top = 120
+              Top = 147
               Width = 65
               Height = 21
               EditLabel.Width = 74
@@ -157,10 +150,19 @@ object Main: TMain
               Text = '0.0'
               OnKeyDown = moveParEdit
             end
+            object MotorsCB: TComboBox
+              Left = 16
+              Top = 17
+              Width = 105
+              Height = 21
+              TabOrder = 4
+              Text = 'Select Motor'
+              OnChange = MotorsCBChange
+            end
           end
           object mStartBtn: TButton
-            Left = 24
-            Top = 248
+            Left = 32
+            Top = 296
             Width = 75
             Height = 25
             Caption = 'Start'
@@ -168,24 +170,24 @@ object Main: TMain
             OnClick = mStartBtnClick
           end
           object Button2: TButton
-            Left = 274
-            Top = 248
+            Left = 282
+            Top = 296
             Width = 75
             Height = 25
             Caption = 'Stop'
             TabOrder = 2
           end
           object Button3: TButton
-            Left = 193
-            Top = 248
+            Left = 201
+            Top = 296
             Width = 75
             Height = 25
             Caption = 'Pause'
             TabOrder = 3
           end
           object mMovesLB: TListBox
-            Left = 24
-            Top = 74
+            Left = 264
+            Top = 68
             Width = 121
             Height = 97
             ItemHeight = 13
@@ -193,8 +195,8 @@ object Main: TMain
             OnClick = mMovesLBClick
           end
           object mFwdBtn: TButton
-            Left = 105
-            Top = 248
+            Left = 113
+            Top = 296
             Width = 75
             Height = 25
             Caption = 'Fwd'
@@ -202,8 +204,8 @@ object Main: TMain
             OnClick = mStartBtnClick
           end
           object SequencesCB: TComboBox
-            Left = 24
-            Top = 40
+            Left = 264
+            Top = 34
             Width = 121
             Height = 21
             ItemIndex = 0
@@ -214,17 +216,17 @@ object Main: TMain
               'MoveSequence')
           end
           object mSaveSequenceBtn: TButton
-            Left = 22
-            Top = 177
-            Width = 75
+            Left = 262
+            Top = 171
+            Width = 51
             Height = 25
             Caption = 'Save'
             TabOrder = 7
             OnClick = mSaveSequenceBtnClick
           end
           object mAddMoveBtn: TButton
-            Left = 24
-            Top = 208
+            Left = 194
+            Top = 79
             Width = 58
             Height = 25
             Caption = 'Add Move'
@@ -246,8 +248,8 @@ object Main: TMain
         ImageIndex = 4
         ExplicitLeft = 0
         ExplicitTop = 0
-        ExplicitWidth = 1125
-        ExplicitHeight = 742
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -255,8 +257,6 @@ object Main: TMain
           Height = 495
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1125
-          ExplicitHeight = 742
           object infoMemo: TMemo
             Left = 1
             Top = 51
@@ -272,8 +272,6 @@ object Main: TMain
             ScrollBars = ssVertical
             TabOrder = 0
             WordWrap = False
-            ExplicitWidth = 1123
-            ExplicitHeight = 690
           end
           object ToolBar1: TToolBar
             Left = 1
@@ -283,7 +281,6 @@ object Main: TMain
             ButtonHeight = 44
             Caption = 'ToolBar1'
             TabOrder = 1
-            ExplicitWidth = 1123
             object BitBtn2: TBitBtn
               Left = 0
               Top = 0
@@ -361,12 +358,5 @@ object Main: TMain
     Interval = 500
     Left = 120
     Top = 648
-  end
-  object seqtimer: TTimer
-    Enabled = False
-    Interval = 200
-    OnTimer = seqtimerTimer
-    Left = 528
-    Top = 272
   end
 end

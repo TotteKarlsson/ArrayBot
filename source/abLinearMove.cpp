@@ -1,11 +1,11 @@
 #pragma hdrstop
-#include "abSpatialMove.h"
+#include "abLinearMove.h"
 #include "abXYZUnit.h"
 #include "abAPTMotor.h"
 #include "abPosition.h"
 using namespace ab;
 //---------------------------------------------------------------------------
-SpatialMove::SpatialMove(const string& lbl, ABObject* unit, MoveType type, const ab::Position& p, double maxVel, double acc, double dwellTime)
+LinearMove::LinearMove(const string& lbl, ABObject* unit, MoveType type, const ab::Position& p, double maxVel, double acc, double dwellTime)
 :
 Process(lbl, unit),
 mMoveType(type),
@@ -13,22 +13,30 @@ mPosition(p),
 mMaxVelocity(0),
 mAcceleration(0)
 {
-	mProcessType = (ptSpatialMove);
+	mProcessType = ptLinearMove;
+    APTMotor* mtr = dynamic_cast<APTMotor*>(unit);
+    if(mtr)
+    {
+    	mMotorName = mtr->getName();
+    }
 }
 
-bool SpatialMove::write(IniSection* sec)
+bool LinearMove::write(IniSection* sec)
 {
     IniKey* key = sec->createKey("LABEL", getLabel());
 
     double x = getPosition().x();
     key = sec->createKey("TYPE", 			toString(getMoveType()));
+    key = sec->createKey("MOTOR_NAME",   	toString(mMotorName));
     key = sec->createKey("POSITION", 		toString(x));
     key = sec->createKey("MAX_VELOCITY", 	toString(getMaxVelocity()));
     key = sec->createKey("ACCELERATION", 	toString(getAcceleration()));
     key = sec->createKey("DWELL_TIME",   	toString(getDwellTime()));
+
+    return true;
 }
 
-bool SpatialMove::read(IniSection* sec)
+bool LinearMove::read(IniSection* sec)
 {
 	if(!sec)
 	{
@@ -41,6 +49,13 @@ bool SpatialMove::read(IniSection* sec)
     {
         mMoveType = toMoveType(key->mValue);;
     }
+
+    key = sec->getKey("MOTOR_NAME");
+    if(key)
+    {
+        mMotorName = key->mValue;
+    }
+
 
     key = sec->getKey("POSITION_NAME");
     if(key)
@@ -75,7 +90,7 @@ bool SpatialMove::read(IniSection* sec)
     return true;
 }
 
-bool SpatialMove::execute()
+bool LinearMove::execute()
 {
 	XYZUnit* o = dynamic_cast<XYZUnit*>(mUnit);
     if(o)
@@ -95,7 +110,7 @@ bool SpatialMove::execute()
     return false;
 }
 
-bool SpatialMove::undo()
+bool LinearMove::undo()
 {
 	Position p("undo pos", mPosition.x() * -1, mPosition.y() * -1, mPosition.z() * -1);
 
@@ -108,7 +123,7 @@ bool SpatialMove::undo()
 	return false;
 }
 
-bool SpatialMove::isDone()
+bool LinearMove::isDone()
 {
 	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
     if(o)
@@ -120,7 +135,7 @@ bool SpatialMove::isDone()
     return false;
 }
 
-bool SpatialMove::isActive()
+bool LinearMove::isActive()
 {
 	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
     if(o)

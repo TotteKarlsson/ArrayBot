@@ -106,6 +106,10 @@
         <CppCompile Include="abABObject.cpp">
             <BuildOrder>2</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abAngleController.cpp">
+            <DependentOn>abAngleController.h</DependentOn>
+            <BuildOrder>22</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abAPTDevice.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
@@ -127,10 +131,6 @@
         <PCHCompile Include="abCorePCH.h">
             <BuildOrder>0</BuildOrder>
         </PCHCompile>
-        <CppCompile Include="abCoverSlipAngleController.cpp">
-            <DependentOn>abCoverSlipAngleController.h</DependentOn>
-            <BuildOrder>22</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abDeviceManager.cpp">
             <BuildOrder>7</BuildOrder>
         </CppCompile>
@@ -156,6 +156,9 @@
         <CppCompile Include="abJoyStickSettings.cpp">
             <DependentOn>abJoyStickSettings.h</DependentOn>
             <BuildOrder>25</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abLinearMove.cpp">
+            <BuildOrder>30</BuildOrder>
         </CppCompile>
         <CppCompile Include="abLongTravelStage.cpp">
             <BuildOrder>14</BuildOrder>
@@ -195,10 +198,6 @@
         <CppCompile Include="abProcessSequencer.cpp">
             <DependentOn>abProcessSequencer.h</DependentOn>
             <BuildOrder>21</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abSpatialMove.cpp">
-            <DependentOn>abSpatialMove.h</DependentOn>
-            <BuildOrder>28</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
             <BuildOrder>23</BuildOrder>

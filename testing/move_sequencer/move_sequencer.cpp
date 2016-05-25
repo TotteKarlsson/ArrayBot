@@ -17,8 +17,8 @@ USEFORM("..\..\source\VCL\abLoggingForm.cpp", Form1);
 USEFORM("..\..\source\VCL\abEditPositionsForm.cpp", Form2);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
-extern string       gLogFileName                = "ArrayBot.log";
-extern string 		gApplicationRegistryRoot  = "\\Software\\Dune Scientific\\ArrayBot\\0.5.0";
+extern string       gLogFileName                = "Sequencer.log";
+extern string 		gApplicationRegistryRoot  = "\\Software\\Dune Scientific\\Sequencer\\0.5.0";
 void setupLogging();
 
 //---------------------------------------------------------------------------
@@ -74,7 +74,7 @@ void setupLogging()
 	LogOutput::mShowLogTime = false;
 	LogOutput::mUseLogTabs = false;
 //	mtk::gLogger.setLogLevel(lInfo);
-	mtk::gLogger.setLogLevel(lDebug3);
+	mtk::gLogger.setLogLevel(lDebug5);
 	Log(lInfo) << "Logger was setup";
 }
 

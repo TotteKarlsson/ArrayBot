@@ -26,12 +26,12 @@ CombinedMove::~CombinedMove()
 bool CombinedMove::readProperties(IniFile& i)
 {
 	mProperties.setIniFile(&i);
-    mProperties.read();
+    return mProperties.read();
 }
 
 bool CombinedMove::writeProperties()
 {
-	mProperties.write();
+	return mProperties.write();
 }
 
 double CombinedMove::getHorizontalDistance()

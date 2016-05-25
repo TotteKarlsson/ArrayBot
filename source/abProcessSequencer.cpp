@@ -6,12 +6,10 @@
 
 
 //---------------------------------------------------------------------------
-
 using namespace mtk;
 
 ProcessSequencer::ProcessSequencer()
 :
-mIsRunning(false),
 mSequenceTimer(100)
 {
 	inThreadCB = runThreaded;
@@ -21,16 +19,17 @@ mSequenceTimer(100)
 bool ProcessSequencer::assignUnit(ABObject* o)
 {
 	mSequence.assignUnit(o);
+    return true;
 }
 
 bool ProcessSequencer::load(const string& seqFName)
 {
-	mSequence.read(seqFName);
+	return mSequence.read(seqFName);
 }
 
 bool ProcessSequencer::save()
 {
-	mSequence.write();
+	return mSequence.write();
 }
 
 void ProcessSequencer::clear()
@@ -42,15 +41,14 @@ void ProcessSequencer::runThreaded()
 {
 	if(!isRunning())
     {
-    	//Check if are to forward
+    	//Check if are to move forward in the sequence
         Process* p = mSequence.getCurrent();
         if(!p)
         {
         	//We have finished
             mSequenceTimer.stop();
         }
-
-        if(p && p->isDone() == true )
+        else if(p->isDone() == true )
         {
         	sleep(p->getDwellTime());
         	forward();

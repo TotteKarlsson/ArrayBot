@@ -3,18 +3,6 @@
         <ProjectGuid>{9D7B788E-1612-4D2A-99DA-365D58720234}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="P:\libs\dslib\Common\mtkCommon.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\dslib\VCL\Components\DuneComponents.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\dslib\VCL\Forms\DuneForms.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="source\abCore.cbproj">
             <Dependencies/>
         </Projects>
@@ -32,42 +20,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="mtkCommon">
-        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj"/>
-    </Target>
-    <Target Name="mtkCommon:Clean">
-        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="mtkCommon:Make">
-        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="VCLCommon">
-        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
-    </Target>
-    <Target Name="VCLCommon:Clean">
-        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="VCLCommon:Make">
-        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="DuneComponents">
-        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj"/>
-    </Target>
-    <Target Name="DuneComponents:Clean">
-        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="DuneComponents:Make">
-        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="DuneForms">
-        <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj"/>
-    </Target>
-    <Target Name="DuneForms:Clean">
-        <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="DuneForms:Make">
-        <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="abCore">
         <MSBuild Projects="source\abCore.cbproj"/>
     </Target>
@@ -96,13 +48,13 @@
         <MSBuild Projects="testing\move_sequencer\move_sequencer.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;VCLCommon;DuneComponents;DuneForms;abCore;ArrayBot;move_sequencer"/>
+        <CallTarget Targets="abCore;ArrayBot;move_sequencer"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;ArrayBot:Clean;move_sequencer:Clean"/>
+        <CallTarget Targets="abCore:Clean;ArrayBot:Clean;move_sequencer:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;ArrayBot:Make;move_sequencer:Make"/>
+        <CallTarget Targets="abCore:Make;ArrayBot:Make;move_sequencer:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

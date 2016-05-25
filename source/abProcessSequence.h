@@ -3,7 +3,6 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include <list>
-#include <vector>
 #include <string>
 
 //---------------------------------------------------------------------------
@@ -16,11 +15,13 @@ class AB_CORE ProcessSequence : public ABObject
     public:
 										    ProcessSequence();
 				        		            ~ProcessSequence();
-		bool					            assignUnit(ABObject* o);
+
 		void					            clear();
-        bool					            read(const string& fName);
-        bool					            write();
-		bool 					            add(Process* p);
+        virtual bool	 		            read(const string& fName);
+        virtual bool			            write();
+
+		virtual bool	   		            assignUnit(ABObject* o);
+		virtual bool 			            add(Process* p);
 		bool 					            remove(const string& lbl);
 
         Process*                 	        getFirst() const;
@@ -30,6 +31,9 @@ class AB_CORE ProcessSequence : public ABObject
 
     protected:
   		string					        	mName;
+        string								mFileExtension;
+
+        									//!List of abstract Processes
 		mutable list<Process*>  			mProcesses;
         mutable list<Process*>::iterator 	mProcessIter;
 };

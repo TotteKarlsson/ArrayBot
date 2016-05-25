@@ -40,7 +40,7 @@ void ArrayBot::initialize()
 //    mCSAngleController.initialize();
 }
 
-CoverSlipAngleController& ArrayBot::getAngleController()
+AngleController& ArrayBot::getAngleController()
 {
 	return mCSAngleController;
 }

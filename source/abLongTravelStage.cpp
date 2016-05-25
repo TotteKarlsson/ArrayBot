@@ -445,8 +445,10 @@ bool LongTravelStage::moveAbsolute(double pos, bool inThread)
         {
             Log(lError) <<tlError(err);
             Log(lError) <<"Tried to move to position: "<<pos<<" using the "<<getName()<<" device.";
+            return false;
         }
     }
+	return true;
 }
 
 

@@ -1,5 +1,5 @@
-#ifndef abSpatialMoveH
-#define abSpatialMoveH
+#ifndef abLinearMoveH
+#define abLinearMoveH
 #include "abExporter.h"
 #include "abProcess.h"
 #include "abPosition.h"
@@ -11,16 +11,15 @@ string		toString(MoveType mt);
 
 //!The move baseclass contain the general logic for a 'move' of
 //any type of object
-class AB_CORE SpatialMove : public Process
+class AB_CORE LinearMove : public Process
 {
     public:
-        	   			            SpatialMove(const string& lbl, ABObject* unit, MoveType type = mtAbsolute, const ab::Position& p = ab::Position("", 0,0,0), double maxVel = 0, double acc = 0, double dwellTime = 0);
-    	virtual			            ~SpatialMove(){}
+        	   			            LinearMove(const string& lbl, ABObject* unit, MoveType type = mtAbsolute, const ab::Position& p = ab::Position("", 0,0,0), double maxVel = 0, double acc = 0, double dwellTime = 0);
+    	virtual			            ~LinearMove(){}
 
         virtual bool				write(mtk::IniSection* sec);
         virtual bool				read(mtk::IniSection* sec);
 
-		void			            assignUnit(ABObject* o){mUnit = o;}
         virtual bool	            execute();
 		bool 						isDone();
         virtual	bool	            undo();
@@ -51,6 +50,7 @@ class AB_CORE SpatialMove : public Process
         MoveType 		            mMoveType;
         double			            mMaxVelocity;
         double			            mAcceleration;
+        string						mMotorName;
 };
 
 #endif

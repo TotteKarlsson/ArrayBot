@@ -72,8 +72,6 @@ class TMain : public TRegistryForm
 	TListBox *mMovesLB;
 	TFloatLabeledEdit *mMaxVelE;
 	TFloatLabeledEdit *mAccE;
-	TTimer *seqtimer;
-	TLabel *runLbl;
 	TButton *mFwdBtn;
 	TComboBox *SequencesCB;
 	TLabel *Label1;
@@ -81,6 +79,7 @@ class TMain : public TRegistryForm
 	TButton *mAddMoveBtn;
 	TFloatLabeledEdit *mDwellTimeE;
 	TScrollBox *ScrollBox1;
+	TComboBox *MotorsCB;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -94,25 +93,23 @@ class TMain : public TRegistryForm
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall mAddMoveBtnClick(TObject *Sender);
 	void __fastcall mStartBtnClick(TObject *Sender);
-	void __fastcall seqtimerTimer(TObject *Sender);
+
 	void __fastcall mSaveSequenceBtnClick(TObject *Sender);
 	void __fastcall SequencesCBChange(TObject *Sender);
 	void __fastcall mMovesLBClick(TObject *Sender);
 	void __fastcall moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall stopAllAExecute(TObject *Sender);
+	void __fastcall MotorsCBChange(TObject *Sender);
 
     private:	// User declarations
         TThreadMethod               logMsgMethod;
         LogFileReader               mLogFileReader;
         void __fastcall             logMsg();
         IniFileProperties  			mProperties;
-        Property<int>				mBottomPanelHeight;
-        Property<bool>				mBottomPanelVisible;
-        Property<int>				mTopPanelHeight;
 
         IniFile						mIniFile;
-        DeviceManager				mManager;
-        ProcessSequencer  			mProcessSequencer;
+
+        ProcessSequencer  			mMoveSequencer;
 
         XYZUnit						mXYZUnit;
 		void __fastcall		        OnException();

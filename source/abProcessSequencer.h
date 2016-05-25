@@ -7,7 +7,7 @@
 #include "mtkTimer.h"
 
 using mtk::Timer;
-class SpatialMove;
+class LinearMove;
 //---------------------------------------------------------------------------
 typedef void (__closure *MyOnTimerCFPtr)(); //Need to research this and make it portable
 
@@ -25,13 +25,12 @@ class AB_CORE ProcessSequencer : public ABObject
         void		        reverse();
         void		        stop();
         bool				isRunning();
-        void		        addProcess(Process* newMove);
+        void		        addProcess(Process* p);
         ProcessSequence&   	getSequence(){return mSequence;}
 
 	private:
     	ProcessSequence		mSequence;
         bool				mRunContinous;
-        bool				mIsRunning;
         Timer				mSequenceTimer;
 		void			    runThreaded();
 		MyOnTimerCFPtr	    inThreadCB;

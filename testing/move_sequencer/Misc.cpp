@@ -33,8 +33,6 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
 	}
 
-    mManager.disConnectAll();
-
 	Close();
 }
 
@@ -56,9 +54,6 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 void __fastcall TMain::FormClose(TObject *Sender, TCloseAction &Action)
 {
 	Log(lInfo) << "In FormClose";
-    mTopPanelHeight = TopPanel->Height;
-    mBottomPanelHeight = BottomPanel->Height;
-    mBottomPanelVisible  = BottomPanel->Visible;
 }
 
 void __fastcall	TMain::OnException()
@@ -75,17 +70,6 @@ void __fastcall TMain::ApplicationEvents1Exception(TObject *Sender, Exception *E
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormShow(TObject *Sender)
 {
-    TopPanel->Height = mTopPanelHeight;
-    BottomPanel->Height = mBottomPanelHeight;
-
-	if(!mBottomPanelVisible)
-    {
-	    BottomPanel->Visible = false;
-		this->Height = this->Height - BottomPanel->Height;
-    }
-
-	this->Height = this->Height - 1;
-	this->Height = this->Height + 1;
 }
 
 void __fastcall TMain::BitBtn3Click(TObject *Sender)

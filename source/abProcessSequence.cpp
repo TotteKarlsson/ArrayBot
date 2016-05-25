@@ -2,7 +2,7 @@
 #include "abProcessSequence.h"
 #include "abProcess.h"
 #include "mtkIniFile.h"
-#include "abSpatialMove.h"
+#include "abLinearMove.h"
 #include "mtkLogger.h"
 //---------------------------------------------------------------------------
 
@@ -10,7 +10,8 @@ using namespace mtk;
 
 ProcessSequence::ProcessSequence()
 :
-mName("MoveSequence")
+mName("MoveSequence"),
+mFileExtension("proc")
 {}
 
 ProcessSequence::~ProcessSequence()
@@ -18,12 +19,13 @@ ProcessSequence::~ProcessSequence()
 
 bool ProcessSequence::assignUnit(ABObject* o)
 {
-    Process* move = getFirst();
-    while(move)
+    Process* p = getFirst();
+    while(p)
     {
-    	move->assignUnit(o);
-        move = getNext();
+    	p->assignUnit(o);
+        p = getNext();
     }
+    return true;
 }
 
 void ProcessSequence::clear()
@@ -43,7 +45,7 @@ bool ProcessSequence::read(const string& fName)
     	key = sec->getKey("PROCESS_TYPE");
         if(key && key->mValue == "SPATIAL_MOVE")
         {
-	    	SpatialMove* p = new SpatialMove(sec->mName, NULL);
+	    	LinearMove* p = new LinearMove(sec->mName, NULL);
 
             if(p->read(sec))
             {
@@ -64,7 +66,7 @@ bool ProcessSequence::read(const string& fName)
 bool ProcessSequence::write()
 {
 	//Save to file
-	IniFile f(mName + ".proc");
+	IniFile f(mName + "." + mFileExtension);
 
     Process* process = getFirst();
     int count = 1;

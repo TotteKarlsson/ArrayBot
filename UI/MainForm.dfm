@@ -74,7 +74,7 @@ object Main: TMain
       Top = 1
       Width = 1133
       Height = 812
-      ActivePage = TabSheet2
+      ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -321,7 +321,7 @@ object Main: TMain
           TabOrder = 0
           object mZJogAccelerationJoystick: TFloatLabeledEdit
             Left = 119
-            Top = 133
+            Top = 130
             Width = 66
             Height = 21
             EditLabel.Width = 68
@@ -332,8 +332,8 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
           object mXYJogAccelerationJoystick: TFloatLabeledEdit
-            Left = 16
-            Top = 133
+            Left = 119
+            Top = 82
             Width = 66
             Height = 21
             EditLabel.Width = 74
@@ -344,8 +344,8 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
           object mMaxZJogVelocityJoystick: TFloatLabeledEdit
-            Left = 119
-            Top = 82
+            Left = 16
+            Top = 130
             Width = 66
             Height = 21
             EditLabel.Width = 69
@@ -497,10 +497,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
