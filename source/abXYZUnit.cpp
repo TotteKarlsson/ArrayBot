@@ -213,7 +213,6 @@ void XYZUnit::enableJoyStick(JoyStick* js)
     	mJoyStick->getXAxis().disable();
     }
 
-
     if(mYMotor)
     {
         mJoyStick->getYAxis().assignMotor(mYMotor);
@@ -228,16 +227,16 @@ void XYZUnit::enableJoyStick(JoyStick* js)
 
     if(mZMotor)
     {
-        mJoyStick->getButton(3).assignMotor(mZMotor);
+        mJoyStick->getButton(2).assignMotor(mZMotor);
         mJoyStick->getButton(4).assignMotor(mZMotor);
-        mJoyStick->getButton(3).setForward();
-        mJoyStick->getButton(4).setReverse();
-        mJoyStick->getButton(3).enable();
+        mJoyStick->getButton(4).setForward();
+        mJoyStick->getButton(2).setReverse();
+        mJoyStick->getButton(2).enable();
         mJoyStick->getButton(4).enable();
     }
     else
     {
-        mJoyStick->getButton(3).disable();
+        mJoyStick->getButton(2).disable();
         mJoyStick->getButton(4).disable();
     }
     mJoyStick->enable();

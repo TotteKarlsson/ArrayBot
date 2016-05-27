@@ -92,6 +92,8 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 	TXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
 
 	TMotorFrame1->assignMotor(mAB.getCoverSlipAngleController().getMotor());
+	TMotorFrame2->assignMotor(mAB.getCameraAngleController().getMotor());
+
     //JoyStick stuff.....
     mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getXAxis().getMaxVelocity());
     mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getXAxis().getAcceleration());
@@ -266,7 +268,7 @@ void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState 
 
     if(e == mCSAngleE)
     {
-    	mAB.getCoverSlipAngleController().setAngle(mCSAngleE->getValue() + 225.0);
+    	mAB.getCoverSlipAngleController().setAngle(mCSAngleE->getValue());
     }
     else if (e == mCameraAngleEdit)
     {
@@ -363,4 +365,5 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
     jss->set(mMaxXYJogVelocityJoystick->getValue(), mXYJogAccelerationJoystick->getValue(),
 			 mMaxZJogVelocityJoystick->getValue(), mZJogAccelerationJoystick->getValue());
 }
+
 

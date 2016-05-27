@@ -12,9 +12,6 @@
         <Projects Include="UI\ArrayBot.cbproj">
             <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
-        <Projects Include="testing\move_sequencer\move_sequencer.cbproj">
-            <Dependencies>source\abCore.cbproj</Dependencies>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -50,23 +47,14 @@
     <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="move_sequencer" DependsOnTargets="abCore">
-        <MSBuild Projects="testing\move_sequencer\move_sequencer.cbproj"/>
-    </Target>
-    <Target Name="move_sequencer:Clean" DependsOnTargets="abCore:Clean">
-        <MSBuild Projects="testing\move_sequencer\move_sequencer.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="move_sequencer:Make" DependsOnTargets="abCore:Make">
-        <MSBuild Projects="testing\move_sequencer\move_sequencer.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="DuneComponents;abCore;ArrayBot;move_sequencer"/>
+        <CallTarget Targets="DuneComponents;abCore;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DuneComponents:Clean;abCore:Clean;ArrayBot:Clean;move_sequencer:Clean"/>
+        <CallTarget Targets="DuneComponents:Clean;abCore:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DuneComponents:Make;abCore:Make;ArrayBot:Make;move_sequencer:Make"/>
+        <CallTarget Targets="DuneComponents:Make;abCore:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

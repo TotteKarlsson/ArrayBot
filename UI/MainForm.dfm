@@ -2,7 +2,7 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot Version 0.1'
-  ClientHeight = 814
+  ClientHeight = 697
   ClientWidth = 1262
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,12 +24,12 @@ object Main: TMain
     Left = 1135
     Top = 0
     Width = 127
-    Height = 814
+    Height = 697
     Align = alRight
     TabOrder = 0
     object Button7: TButton
       Left = 1
-      Top = 691
+      Top = 574
       Width = 125
       Height = 60
       Action = stopAllA
@@ -46,7 +46,7 @@ object Main: TMain
     end
     object Button5: TButton
       Left = 1
-      Top = 751
+      Top = 634
       Width = 125
       Height = 62
       Action = FileExit1
@@ -64,7 +64,7 @@ object Main: TMain
     Left = 0
     Top = 0
     Width = 1135
-    Height = 814
+    Height = 697
     Align = alClient
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
@@ -73,7 +73,7 @@ object Main: TMain
       Left = 1
       Top = 1
       Width = 1133
-      Height = 812
+      Height = 695
       ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
@@ -282,17 +282,18 @@ object Main: TMain
           Left = 0
           Top = 0
           Width = 1125
-          Height = 742
+          Height = 625
+          VertScrollBar.Position = 370
           Align = alClient
           TabOrder = 0
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
-            Top = 351
+            Top = -19
             Width = 1104
             Height = 348
             Align = alTop
             TabOrder = 0
-            ExplicitTop = 351
+            ExplicitTop = -19
             ExplicitWidth = 1104
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
@@ -314,11 +315,12 @@ object Main: TMain
           end
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
-            Top = 0
+            Top = -370
             Width = 1104
             Height = 351
             Align = alTop
             TabOrder = 1
+            ExplicitTop = -370
             ExplicitWidth = 1104
             inherited mainGB: TGroupBox
               Width = 1104
@@ -337,12 +339,22 @@ object Main: TMain
           end
           inline TMotorFrame1: TMotorFrame
             Left = 0
-            Top = 699
+            Top = 621
             Width = 1104
             Height = 292
             Align = alBottom
             TabOrder = 2
-            ExplicitTop = 699
+            ExplicitTop = 621
+            ExplicitWidth = 1104
+          end
+          inline TMotorFrame2: TMotorFrame
+            Left = 0
+            Top = 329
+            Width = 1104
+            Height = 292
+            Align = alBottom
+            TabOrder = 3
+            ExplicitTop = 329
             ExplicitWidth = 1104
           end
         end
@@ -539,14 +551,14 @@ object Main: TMain
           Left = 0
           Top = 0
           Width = 1125
-          Height = 742
+          Height = 625
           Align = alClient
           TabOrder = 0
           object infoMemo: TMemo
             Left = 1
             Top = 51
             Width = 1123
-            Height = 690
+            Height = 573
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText

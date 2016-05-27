@@ -47,9 +47,9 @@ void __fastcall TMain::JMZMove(TMessage &msg)
 
 void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
 {
-    if(msg.WParam & JOY_BUTTON3CHG)
+    if(msg.WParam & JOY_BUTTON2CHG)
     {
-    	mAB.getJoyStick().getButton(3).up();
+    	mAB.getJoyStick().getButton(2).up();
     }
 
     if(msg.WParam & JOY_BUTTON4CHG)
@@ -60,9 +60,9 @@ void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
 
 void __fastcall TMain::JMButtonDownUpdate(TMessage &msg)
 {
-    if(msg.WParam & JOY_BUTTON3CHG)
+    if(msg.WParam & JOY_BUTTON2CHG)
     {
-    	mAB.getJoyStick().getButton(3).down();
+    	mAB.getJoyStick().getButton(2).down();
     }
 
     if(msg.WParam & JOY_BUTTON4CHG)

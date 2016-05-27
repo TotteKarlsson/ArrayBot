@@ -102,6 +102,7 @@ class TMain : public TRegistryForm
 	TButton *AddJsSettingBtn;
 	TGroupBox *GroupBox3;
 	TFloatLabeledEdit *mCameraAngleEdit;
+	TMotorFrame *TMotorFrame2;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);

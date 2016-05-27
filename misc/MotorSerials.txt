@@ -1,0 +1,9 @@
+Coverslip Y : 45863011
+CoverSlip X: 45864118
+CoverSLip Z: 80861696
+CoverSLip angle: 83865152
+
+Whisker Y: 45867369
+Whisker X: 45862794
+Whisker Z: 80857738
+Camera angle: 83861462
