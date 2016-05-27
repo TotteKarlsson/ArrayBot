@@ -1,4 +1,5 @@
-Release 0.5 (May 13)
+Release 0.5.1 (May 27)
 =======================
-* Getting the API to function
+* This release can move all stages using a joystick
+
 ------ 2016 ------
