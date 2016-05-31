@@ -228,6 +228,18 @@ object MotorFrame: TMotorFrame
         Text = '0.00'
         OnKeyDown = DevEdit
       end
+      object mPotentiometerSettingE: TFloatLabeledEdit
+        Left = 194
+        Top = 57
+        Width = 66
+        Height = 21
+        EditLabel.Width = 96
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Pot. Velocity (mm/s)'
+        TabOrder = 4
+        Text = '0.00'
+        OnKeyDown = DevEdit
+      end
     end
     object Button4: TButton
       Left = 77

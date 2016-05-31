@@ -54,6 +54,7 @@ class TForm1 : public TForm
 	TLineSeries *Series2;
 	TLineSeries *Series3;
 	TMemo *infoMemo;
+	TLabel *JoystickButton5;
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Timer1Timer(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -79,14 +80,18 @@ class TForm1 : public TForm
   		__fastcall 					TForm1(TComponent* Owner);
 
         BEGIN_MESSAGE_MAP
-          MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,JMButtonUpdate)
-          MESSAGE_HANDLER(MM_JOY1BUTTONUP,TMessage,JMButtonUpdate)
-          MESSAGE_HANDLER(MM_JOY1MOVE,TMessage,JMMove)
-          MESSAGE_HANDLER(MM_JOY2MOVE,TMessage,JMMove)
-          MESSAGE_HANDLER(MM_JOY2BUTTONDOWN,TMessage,JMButtonUpdate)
-          MESSAGE_HANDLER(MM_JOY2BUTTONUP,TMessage,JMButtonUpdate)
-          MESSAGE_HANDLER(MM_JOY1ZMOVE,TMessage,JMZMove)
-          MESSAGE_HANDLER(MM_JOY2ZMOVE +1,TMessage,JMZMove)
+          MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,		JMButtonUpdate)
+          MESSAGE_HANDLER(MM_JOY1BUTTONUP,	TMessage,		JMButtonUpdate)
+          MESSAGE_HANDLER(JOY_BUTTON1CHG,	TMessage,		JMButtonUpdate)
+
+          MESSAGE_HANDLER(MM_JOY2BUTTONDOWN,TMessage,		JMButtonUpdate)
+          MESSAGE_HANDLER(MM_JOY2BUTTONUP,	TMessage,		JMButtonUpdate)
+
+          MESSAGE_HANDLER(MM_JOY1MOVE,		TMessage,       JMMove)
+          MESSAGE_HANDLER(MM_JOY2MOVE,		TMessage,       JMMove)
+
+          MESSAGE_HANDLER(MM_JOY1ZMOVE,		TMessage,		JMZMove)
+//          MESSAGE_HANDLER(MM_JOY2ZMOVE +1,	TMessage,		JMZMove)
         END_MESSAGE_MAP(TForm)
 
 		deque<double>			mXPos;

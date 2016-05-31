@@ -179,9 +179,9 @@ void MotorMessageProcessor::worker()
 		}//mutex
 	}
 
+    Log(lInfo) << "Motor Message Processor finished";
 	mIsFinished = true;
 	mIsRunning = false;
-    Log(lInfo) << "Motor Message Processor finished";
 }
 
 

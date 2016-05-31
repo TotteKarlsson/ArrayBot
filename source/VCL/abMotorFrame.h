@@ -45,6 +45,7 @@ __published:	// IDE-managed Components
 	TLabel *Label5;
 	mtkFloatLabel *mJogVelLbl;
 	mtkFloatLabel *mJogAccLbl;
+	TFloatLabeledEdit *mPotentiometerSettingE;
 	void __fastcall mMotorStatusTimerTimer(TObject *Sender);
 	void __fastcall identifyExecute(TObject *Sender);
 	void __fastcall homeExecute(TObject *Sender);
@@ -63,6 +64,7 @@ private:
 public:
 	__fastcall 				TMotorFrame(const string& name, TComponent* Owner);
     void					assignMotor(APTMotor* m);
+
 };
 
 extern PACKAGE TMotorFrame *MotorFrame;

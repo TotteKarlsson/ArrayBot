@@ -84,7 +84,7 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
 
 	vector<double> vals = s->get();
     Log(lDebug) << "New XY jog velocity (mm/s): " <<vals[0];
-    Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<vals[1];
+    Log(lDebug) << "New XY jog acceleration (mm/(s*s)): " <<vals[1];
 
     getJoyStick().getXAxis().setMaxVelocity(vals[0]);
     getJoyStick().getYAxis().setMaxVelocity(vals[0]);
@@ -94,11 +94,11 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
 
     if(getCoverSlipUnit().getXMotor() && getCoverSlipUnit().getYMotor())
     {
-        getCoverSlipUnit().getXMotor()->setJogAcceleration(vals[1]);
-        getCoverSlipUnit().getYMotor()->setJogAcceleration(vals[1]);
-
         getCoverSlipUnit().getXMotor()->setPotentiometerVelocity(vals[0]);
         getCoverSlipUnit().getYMotor()->setPotentiometerVelocity(vals[0]);
+
+        getCoverSlipUnit().getXMotor()->setJogAcceleration(vals[1]);
+        getCoverSlipUnit().getYMotor()->setJogAcceleration(vals[1]);
     }
 
     if(getWhiskerUnit().getXMotor() && getWhiskerUnit().getYMotor())
@@ -122,19 +122,24 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
 	return true;
 }
 
+void ArrayBot::enableCoverSlipJoyStick()
+{
+ 	//enable angle motor control
+    mCoverSlipAngleController.enableJoyStick(&getJoyStick());
+
+    mCoverSlip.enableJoyStick(&getJoyStick());
+    mJoyStick.getXAxis().setSenseOfDirection(1);
+
+
+    mWhisker.disableJoyStick();
+    mJoyStick.enable();
+}
+
 void ArrayBot::enableWhiskerJoyStick()
 {
     mWhisker.enableJoyStick(&getJoyStick());
 	mJoyStick.getXAxis().setSenseOfDirection(-1);
     mCoverSlip.disableJoyStick();
-    mJoyStick.enable();
-}
-
-void ArrayBot::enableCoverSlipJoyStick()
-{
-    mCoverSlip.enableJoyStick(&getJoyStick());
-    mJoyStick.getXAxis().setSenseOfDirection(1);
-    mWhisker.disableJoyStick();
     mJoyStick.enable();
 }
 

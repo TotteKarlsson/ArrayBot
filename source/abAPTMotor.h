@@ -78,7 +78,7 @@ class AB_CORE APTMotor : public APTDevice
         void								setManualJogVelocity(double v);
         void								setManualJogAcceleration(double a);
 
-//        virtual double	    				getPotentiometerVelocity() = 0;
+        virtual double	    				getPotentiometerVelocity();
         virtual void						setPotentiometerVelocity(double v) = 0;
 
     protected:
@@ -93,6 +93,8 @@ class AB_CORE APTMotor : public APTDevice
         Range<double> 						mAccelerationRange;
         Property<double>					mManualJogVelocity;
         Property<double>					mManualJogAcceleration;
+
+        Property<double>					mPotentiometerVelocity;
 
 		void                                post(const MotorCommand& cmd);
         MotorMessageProcessor				mMotorMessageProcessor;

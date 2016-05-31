@@ -56,6 +56,12 @@ void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
     {
     	mAB.getJoyStick().getButton(4).up();
     }
+
+    if(msg.WParam & JOY_BUTTON6)
+    {
+    	mAB.getJoyStick().getButton(4).up();
+    }
+
 }
 
 void __fastcall TMain::JMButtonDownUpdate(TMessage &msg)

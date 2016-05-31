@@ -7,10 +7,10 @@
 TForm1 *Form1;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
-  : TForm(Owner){
-
+  : TForm(Owner)
+{
   TMemoLogger::mMemoIsEnabled = true;
-  }
+}
 
 //---------------------------------------------------------------------------
 void TForm1::ShowDeviceInfo(void)
@@ -48,42 +48,6 @@ void TForm1::ShowDeviceInfo(void)
     YDivider = (JoyCaps.wYmax - JoyCaps.wYmin)/ TargetPanel->Height;
 }
 
-void TForm1::ShowStatusInfo(void)
-{
-    if(!Connected)
-    {
-        JoystickXPosition->Visible = false;
-        JoystickYPosition->Visible = false;
-        JoystickButton1->Visible   = false;
-        JoystickButton2->Visible   = false;
-        JoystickButton3->Visible   = false;
-        JoystickButton4->Visible   = false;
-        JoystickButton4->Visible   = false;
-        return;
-    }
-
-    JOYINFO JoyInfo;
-    joyGetPos(JoystickID,&JoyInfo); // get the initial joystick pos
-    Position.x = JoyInfo.wXpos;     // save values
-    Position.y = JoyInfo.wYpos;     // and update each caption
-    JoystickXPosition->Caption = "X Position = " + IntToStr((int)Position.x);
-    JoystickYPosition->Caption = "Y Position = " + IntToStr((int)Position.y);
-
-  	// The bits of wButtons tell which buttons have been pressed. bitwise
-  	// and with JOY_BUTTONX to determine if a button X is pressed. buttons
-  	// that are not connected are reported as not pressed.
-    JoystickButton1->Caption = (JoyInfo.wButtons & JOY_BUTTON1) ?
-    "Button 1 = Pressed" : "Button 1 = Not Pressed";
-
-    JoystickButton2->Caption = (JoyInfo.wButtons & JOY_BUTTON2) ?
-    "Button 2 = Pressed" : "Button 2 = Not Pressed";
-
-    JoystickButton3->Caption = (JoyInfo.wButtons & JOY_BUTTON3) ?
-    "Button 3 = Pressed" : "Button 3 = Not Pressed";
-
-    JoystickButton4->Caption = (JoyInfo.wButtons & JOY_BUTTON4) ?
-    "Button 4 = Pressed" : "Button 4 = Not Pressed";
-}
 
 void __fastcall TForm1::JMMove(TMessage &msg)
 {
@@ -150,6 +114,7 @@ void __fastcall TForm1::JMButtonUpdate(TMessage &msg)
     // This event only happens when a button changes state/
     // you can find out which button was toggled by anding
     // with JOY_BUTTONXCHG where X is the button number
+
     JoystickButton1->Caption = (msg.WParam & JOY_BUTTON1) ?
     "Button 1 = Pressed" : "Button 1 = Not Pressed";
 
@@ -161,6 +126,10 @@ void __fastcall TForm1::JMButtonUpdate(TMessage &msg)
 
     JoystickButton4->Caption = (msg.WParam & JOY_BUTTON4) ?
     "Button 4 = Pressed" : "Button 4 = Not Pressed";
+
+    JoystickButton5->Caption = (msg.WParam & JOY_BUTTON5) ?
+    "Button 5 = Pressed" : "Button 5 = Not Pressed";
+
 }
 
 void __fastcall TForm1::FormDestroy(TObject *Sender)
@@ -184,7 +153,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 {
     Connected = false;
     MMRESULT  JoyResult;
-    JOYINFO JoyInfo;
+    JOYINFOEX JoyInfo;
 
     // the joystick could be disconnected even if the driver is
     // loaded. use joyGetPos to detect if a joystick is connected
@@ -197,7 +166,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 		return;
   	}
     // test for joystick1
-    JoyResult = joyGetPos(JOYSTICKID1,&JoyInfo);
+    JoyResult = joyGetPosEx(JOYSTICKID1, &JoyInfo);
     if(JoyResult != JOYERR_UNPLUGGED)
     {
       Connected = true;
@@ -210,7 +179,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 
       	Application->MessageBox(L"An error occured while calling joyGetPosEx", L"Error", MB_OK);
     }
-    else if((JoyResult=joyGetPos(JOYSTICKID2,&JoyInfo)) == JOYERR_NOERROR)
+    else if((JoyResult=joyGetPosEx(JOYSTICKID2, &JoyInfo)) == JOYERR_NOERROR)
     {
       // if joystick1 is unconnected, check for joystick2
       Connected = true;
@@ -244,4 +213,49 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
     }
 }
 
+
+void TForm1::ShowStatusInfo(void)
+{
+    if(!Connected)
+    {
+        JoystickXPosition->Visible = false;
+        JoystickYPosition->Visible = false;
+        JoystickButton1->Visible   = false;
+        JoystickButton2->Visible   = false;
+        JoystickButton3->Visible   = false;
+        JoystickButton4->Visible   = false;
+        JoystickButton5->Visible   = false;
+        return;
+    }
+
+    JOYINFOEX JoyInfo;
+
+	JoyInfo.dwSize = sizeof(JOYINFOEX);
+	JoyInfo.dwFlags = JOY_RETURNALL;
+    joyGetPosEx(JoystickID, &JoyInfo); // get the initial joystick pos
+
+    Position.x = JoyInfo.dwXpos;     // save values
+    Position.y = JoyInfo.dwYpos;     // and update each caption
+
+    JoystickXPosition->Caption = "X Position = " + IntToStr((int)Position.x);
+    JoystickYPosition->Caption = "Y Position = " + IntToStr((int)Position.y);
+
+  	// The bits of wButtons tell which buttons have been pressed. bitwise
+  	// and with JOY_BUTTONX to determine if a button X is pressed. buttons
+  	// that are not connected are reported as not pressed.
+    JoystickButton1->Caption = (JoyInfo.dwButtons & JOY_BUTTON1) ?
+    "Button 1 = Pressed" : "Button 1 = Not Pressed";
+
+    JoystickButton2->Caption = (JoyInfo.dwButtons & JOY_BUTTON2) ?
+    "Button 2 = Pressed" : "Button 2 = Not Pressed";
+
+    JoystickButton3->Caption = (JoyInfo.dwButtons & JOY_BUTTON3) ?
+    "Button 3 = Pressed" : "Button 3 = Not Pressed";
+
+    JoystickButton4->Caption = (JoyInfo.dwButtons & JOY_BUTTON4) ?
+    "Button 4 = Pressed" : "Button 4 = Not Pressed";
+
+    JoystickButton5->Caption = (JoyInfo.dwButtons & JOY_BUTTON5) ?
+    "Button 5 = Pressed" : "Button 5 = Not Pressed";
+}
 

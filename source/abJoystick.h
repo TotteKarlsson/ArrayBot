@@ -50,6 +50,15 @@ class AB_CORE JoyStick : public ABObject
         JoyStickButton		        mButton2;
         JoyStickButton		        mButton3;
         JoyStickButton		        mButton4;
+
+        JoyStickButton		        mButton5;
+        JoyStickButton		        mButton6;
+        JoyStickButton		        mButton7;
+        JoyStickButton		        mButton8;
+
+        JoyStickButton		        mButton9;
+        JoyStickButton		        mButton10;
+
 };
 
 #endif

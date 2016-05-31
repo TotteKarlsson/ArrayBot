@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 191
   Top = 107
   Caption = 'JOYSTICK'
-  ClientHeight = 564
+  ClientHeight = 704
   ClientWidth = 719
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -148,29 +148,29 @@ object Form1: TForm1
     Caption = 'JoystickYPosition'
   end
   object JoystickButton1: TLabel
-    Left = 8
-    Top = 328
+    Left = 280
+    Top = 263
     Width = 75
     Height = 13
     Caption = 'JoystickButton1'
   end
   object JoystickButton2: TLabel
-    Left = 8
-    Top = 344
+    Left = 280
+    Top = 279
     Width = 75
     Height = 13
     Caption = 'JoystickButton2'
   end
   object JoystickButton3: TLabel
-    Left = 8
-    Top = 360
+    Left = 280
+    Top = 295
     Width = 75
     Height = 13
     Caption = 'JoystickButton3'
   end
   object JoystickButton4: TLabel
-    Left = 8
-    Top = 376
+    Left = 280
+    Top = 311
     Width = 75
     Height = 13
     Caption = 'JoystickButton4'
@@ -182,6 +182,13 @@ object Form1: TForm1
     Height = 13
     Caption = 'JoystickZPosition'
   end
+  object JoystickButton5: TLabel
+    Left = 409
+    Top = 263
+    Width = 75
+    Height = 13
+    Caption = 'JoystickButton1'
+  end
   object TargetPanel: TPanel
     Left = 248
     Top = 22
@@ -192,7 +199,7 @@ object Form1: TForm1
   end
   object Chart1: TChart
     Left = 0
-    Top = 279
+    Top = 419
     Width = 719
     Height = 169
     AllowPanning = pmNone
@@ -209,7 +216,7 @@ object Form1: TForm1
     View3D = False
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 395
+    ExplicitTop = 279
     ColorPaletteIndex = 13
     object Series1: TFastLineSeries
       Marks.Arrow.Visible = True
@@ -256,13 +263,14 @@ object Form1: TForm1
   end
   object infoMemo: TMemo
     Left = 0
-    Top = 448
+    Top = 588
     Width = 719
     Height = 116
     Align = alBottom
     Lines.Strings = (
       'infoMemo')
     TabOrder = 2
+    ExplicitTop = 448
   end
   object ImageList1: TImageList
     DrawingStyle = dsTransparent
@@ -271,7 +279,7 @@ object Form1: TForm1
     Left = 280
     Top = 88
     Bitmap = {
-      494C0101010008001C004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100080024004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000300100004C00000001002000000000000069
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

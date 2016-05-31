@@ -74,7 +74,7 @@ object Main: TMain
       Top = 1
       Width = 1133
       Height = 695
-      ActivePage = TabSheet4
+      ActivePage = TabSheet1
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -99,10 +99,10 @@ object Main: TMain
           ParentFont = False
           TabOrder = 0
           object LiftCSBtn: TButton
-            Left = 212
-            Top = 136
-            Width = 127
-            Height = 50
+            Left = 20
+            Top = 128
+            Width = 133
+            Height = 81
             Caption = 'Lift'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -112,24 +112,6 @@ object Main: TMain
             ParentFont = False
             TabOrder = 0
             OnClick = LiftCSBtnClick
-          end
-          object mMoveAngleE: TFloatLabeledEdit
-            Left = 74
-            Top = 172
-            Width = 98
-            Height = 31
-            EditLabel.Width = 77
-            EditLabel.Height = 23
-            EditLabel.Caption = 'Lift angle'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -19
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 1
-            Text = '0.00'
-            OnKeyDown = moveEdit
           end
           object mCSAngleE: TFloatLabeledEdit
             Left = 74
@@ -151,24 +133,9 @@ object Main: TMain
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
-            TabOrder = 2
+            TabOrder = 1
             Text = '0.00'
             OnKeyDown = mCSAngleEKeyDown
-          end
-          object InsertCSBtn: TButton
-            Left = 212
-            Top = 192
-            Width = 127
-            Height = 50
-            Caption = 'Insert'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -16
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 3
-            OnClick = LiftCSBtnClick
           end
         end
         object JSGB: TGroupBox
@@ -329,7 +296,6 @@ object Main: TMain
             inherited mainGB: TGroupBox
               Width = 1104
               ExplicitWidth = 1104
-              ExplicitHeight = 351
               inherited TopPanel: TPanel
                 Width = 1100
                 ExplicitWidth = 1100
@@ -337,7 +303,6 @@ object Main: TMain
               inherited ScrollBox1: TScrollBox
                 Width = 1100
                 ExplicitWidth = 1100
-                ExplicitHeight = 308
               end
             end
           end
@@ -661,12 +626,6 @@ object Main: TMain
     Interval = 100
     OnTimer = ShutDownTimerTimer
     Left = 32
-    Top = 648
-  end
-  object StatusTimer: TTimer
-    Enabled = False
-    Interval = 500
-    Left = 120
     Top = 648
   end
   object ApplicationEvents1: TApplicationEvents

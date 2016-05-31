@@ -2,6 +2,7 @@
 #include "abAngleController.h"
 #include "mtkLogger.h"
 #include "abAPTMotor.h"
+#include "abJoyStick.h"
 //---------------------------------------------------------------------------
 using namespace mtk;
 
@@ -12,7 +13,8 @@ mName(name),
 mAngle(0),
 mAngleOffset(0),
 mIniFile(iniFile),
-mAngleMotor(NULL)
+mMotor(NULL),
+mJoyStick(NULL)
 {
     mProperties.setSection(name);
     mProperties.add((BaseProperty*) &mMotorSerial.setup("MOTOR_SERIAL", -1, true));
@@ -24,11 +26,39 @@ mAngleMotor(NULL)
 AngleController::~AngleController()
 {}
 
+void AngleController::enableJoyStick(JoyStick* js)
+{
+	if(!js)
+    {
+    	return;
+    }
+
+    mJoyStick = js;
+
+   if(mMotor)
+    {
+        mJoyStick->getButton(6).assignMotor(mMotor);
+        mJoyStick->getButton(8).assignMotor(mMotor);
+
+        mJoyStick->getButton(6).setReverse();
+        mJoyStick->getButton(8).setForward();
+
+        mJoyStick->getButton(6).enable();
+        mJoyStick->getButton(8).enable();
+    }
+    else
+    {
+        mJoyStick->getButton(6).disable();
+        mJoyStick->getButton(8).disable();
+    }
+    mJoyStick->enable();
+}
+
 double AngleController::getAngle()
 {
-	if(mAngleMotor)
+	if(mMotor)
     {
-		mAngle = mAngleMotor->getPosition();
+		mAngle = mMotor->getPosition();
     }
 	return mAngle - mAngleOffset;
 }
@@ -36,27 +66,27 @@ double AngleController::getAngle()
 void AngleController::setAngle(double a)
 {
     mAngle = a;
-    if(mAngleMotor)
+    if(mMotor)
     {
-        mAngleMotor->moveAbsolute(a + mAngleOffset);
+        mMotor->moveAbsolute(a + mAngleOffset);
     }
 }
 
 bool AngleController::isActive()
 {
-	return (mAngleMotor) ? mAngleMotor->isActive() : false;
+	return (mMotor) ? mMotor->isActive() : false;
 }
 
 APTMotor* AngleController::getMotor()
 {
-	return mAngleMotor;
+	return mMotor;
 }
 
 void AngleController::stop()
 {
-	if(mAngleMotor)
+	if(mMotor)
     {
-	    mAngleMotor->stop();
+	    mMotor->stop();
     }
 }
 
@@ -67,14 +97,14 @@ bool AngleController::initialize()
 
     Log(lInfo) << "Initializing: "<< mName;
 	//Setup the motor
-    mAngleMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mMotorSerial));
-    if(mAngleMotor)
+    mMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mMotorSerial));
+    if(mMotor)
     {
     	Log(lInfo)<<"Motor to control "<<mName<<" is connected";
 
         //Load Motor Properties
-        mAngleMotor->loadProperties(mIniFile);
-        mAngleMotor->setName(mName + "_MOTOR");
+        mMotor->loadProperties(mIniFile);
+        mMotor->setName(mName + "_MOTOR");
     }
     else
     {
@@ -89,7 +119,7 @@ void AngleController::shutDown()
 	mDeviceManager.disConnectAll();
 
     //Now motors are NULL.. make them smart pointers
-    mAngleMotor = NULL;
+    mMotor = NULL;
 
 	//Save Properties
 	mProperties.write();

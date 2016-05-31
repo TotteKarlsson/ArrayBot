@@ -51,7 +51,6 @@ class TMain : public TRegistryForm
         TAction *moveBackward;
         TAction *stopAllA;
         TButton *Button7;
-        TTimer *StatusTimer;
         TApplicationEvents *ApplicationEvents1;
 	TAction *initBotA;
         TAction *ShutDownA;
@@ -63,9 +62,7 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet4;
 	TGroupBox *GroupBox2;
 	TButton *LiftCSBtn;
-	TFloatLabeledEdit *mMoveAngleE;
 	TFloatLabeledEdit *mCSAngleE;
-	TButton *InsertCSBtn;
 	TGroupBox *JSGB;
 	TSpeedButton *mJSCSBtn;
 	TSpeedButton *mJSWhiskerBtn;
@@ -138,9 +135,6 @@ class TMain : public TRegistryForm
         LogFileReader               mLogFileReader;
         void __fastcall             logMsg();
         IniFileProperties  			mProperties;
-        Property<int>				mBottomPanelHeight;
-        Property<bool>				mBottomPanelVisible;
-        Property<int>				mTopPanelHeight;
 
         IniFile						mIniFile;
         ArrayBot					mAB;

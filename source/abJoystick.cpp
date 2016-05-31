@@ -128,10 +128,17 @@ JoyStickButton& JoyStick::getButton(int nr)
 {
 	switch(nr)
     {
-    	case 1: return mButton1;
-    	case 2: return mButton2;
-    	case 3: return mButton3;
-    	case 4: return mButton4;
+    	case 1:  return mButton1;
+    	case 2:  return mButton2;
+    	case 3:  return mButton3;
+    	case 4:  return mButton4;
+    	case 5:  return mButton5;
+    	case 6:  return mButton6;
+    	case 7:  return mButton7;
+    	case 8:  return mButton8;
+    	case 9:  return mButton9;
+    	case 10: return mButton10;
+
         default:
         	Log(lError) <<"We don't have that button";
             throw("Bad stuff..");

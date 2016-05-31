@@ -44,6 +44,7 @@ bool XYZUnit::isActive()
     {
         ya = mYMotor->isActive();
     }
+
 	if(mZMotor)
     {
         za = mZMotor->isActive();
@@ -57,6 +58,7 @@ bool XYZUnit::initialize()
     mProperties.read();
 	mDeviceManager.reBuildDeviceList();
     Log(lInfo) << "Initializing: "<< mName;
+
 	//Setup all the motors
     mXMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mXMotorSerialNr));
     if(mXMotor)
@@ -113,8 +115,7 @@ void XYZUnit::shutDown()
 }
 
 void XYZUnit::stow()
-{
-}
+{}
 
 string XYZUnit::getName()
 {
@@ -135,7 +136,7 @@ bool XYZUnit::moveAbsolute(const ab::Position& pos)
     return false;
 }
 
-bool  XYZUnit::moveRelative(const ab::Position& pos)
+bool XYZUnit::moveRelative(const ab::Position& pos)
 {
 	if(mXMotor)
     {
@@ -160,14 +161,6 @@ void XYZUnit::home()
     {
     	Log(lDebug)<<"Homing X Motor..";
 		mXMotor->home();
-
-       	sleep(250);
-
-        bool isHoming = mXMotor->isHoming();
-        while(isHoming)
-        {
-        	sleep(100);
-        }
     }
 
     if(mYMotor)
@@ -178,7 +171,7 @@ void XYZUnit::home()
 
     if(mZMotor)
     {
-    	Log(lDebug)<<"Homing Y Motor..";
+    	Log(lDebug)<<"Homing Z Motor..";
 		mZMotor->home();
     }
 
@@ -229,8 +222,10 @@ void XYZUnit::enableJoyStick(JoyStick* js)
     {
         mJoyStick->getButton(2).assignMotor(mZMotor);
         mJoyStick->getButton(4).assignMotor(mZMotor);
-        mJoyStick->getButton(4).setForward();
+
         mJoyStick->getButton(2).setReverse();
+        mJoyStick->getButton(4).setForward();
+
         mJoyStick->getButton(2).enable();
         mJoyStick->getButton(4).enable();
     }

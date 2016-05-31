@@ -35,11 +35,13 @@ void TMotorFrame::assignMotor(APTMotor* m)
     	MotorGB->Caption = vclstr(mMotor->getName() + " [" + mMotor->getSerial() + "]");
         mJogVelocity->setValue(mMotor->getManualJogVelocity());
         mJogAcc->setValue(mMotor->getManualJogAcceleration());
+	    mPotentiometerSettingE->setValue(mMotor->getPotentiometerVelocity());
     	mMotorStatusTimer->Enabled = true;
     	EnableDisableFrame(this, true);
     }
     else
     {
+    	mMotorStatusTimer->Enabled = false;
     	EnableDisableFrame(this, false);
     }
 }
@@ -55,11 +57,11 @@ void __fastcall TMotorFrame::mMotorStatusTimerTimer(TObject *Sender)
     double p = mMotor->getPosition();
     double v = mMotor->getJogVelocity();
     double a = mMotor->getJogAcceleration();
+    double vp = mMotor->getPotentiometerVelocity();
 
     mMotorPositionE->setValue(p);
     mJogVelLbl->SetValue(v);
 	mJogAccLbl->SetValue(a);
-
 
     bitset<32> bits(mMotor->getStatusBits());
 
@@ -146,6 +148,8 @@ void __fastcall TMotorFrame::DevEdit(TObject *Sender, WORD &Key, TShiftState Shi
         Log(lDebug) << "New JOG velocity (mm/s): " <<vel;
 		mMotor->setManualJogVelocity(vel);
         mMotor->setJogVelocity(vel);
+
+        mMotor->setPotentiometerVelocity(vel);
     }
     else if(e == mJogAcc)
     {
@@ -153,6 +157,12 @@ void __fastcall TMotorFrame::DevEdit(TObject *Sender, WORD &Key, TShiftState Shi
         Log(lDebug) << "New JOG acceleration (mm/(s*s)): " <<a;
 		mMotor->setManualJogAcceleration(a);
         mMotor->setJogAcceleration(a);
+    }
+    else if(e == mPotentiometerSettingE)
+    {
+        double v = mPotentiometerSettingE->getValue();
+        Log(lDebug) << "New Pot vel (mm/(s)): " <<v;
+		mMotor->setPotentiometerVelocity(v);
     }
 }
 

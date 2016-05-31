@@ -68,7 +68,8 @@ void LongTravelStage::setPotentiometerVelocity(double v)
     //really are intended to work..?
 	WORD 	thDef;
 
-    double velStep = v / 4.;
+    mPotentiometerVelocity = v;
+    double velStep = v;// / 4.;
 	double velocity = velStep;
 
     int fullRange = 128;

@@ -38,7 +38,7 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <ILINK_LibraryPath>P:\tests\joystick\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <IncludePath>P:\tests\joystick\;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;Tee.lib;vclimg.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;Tee.lib;vclimg.lib;VCLCommon.lib;vclactnband.lib;vclx.lib</AllPackageLibs>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
@@ -85,7 +85,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <LinkPackageImports>rtl.bpi;vcl.bpi;Tee.bpi;vclimg.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;Tee.bpi;vclimg.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>

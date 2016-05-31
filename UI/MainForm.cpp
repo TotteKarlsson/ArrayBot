@@ -32,9 +32,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TRegistryForm("Test", "MainForm", Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-    mBottomPanelHeight(100),
-    mBottomPanelVisible(true),
-    mTopPanelHeight(360),
     mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
 	mAB(mIniFile)
 {
@@ -42,9 +39,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 
 	//Setup UI properties
     mProperties.setSection("UI");
-    mProperties.add((BaseProperty*) &mBottomPanelHeight.setup("BOTTOM_PANEL_HEIGHT", 			100, true));
-    mProperties.add((BaseProperty*) &mTopPanelHeight.setup("TOP_PANEL_HEIGHT", 					360, true));
-    mProperties.add((BaseProperty*) &mBottomPanelVisible.setup("BOTTOM_PANEL_VISIBLE",			true, true));
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
     mAB.assignWindowHandle((int) Handle);
@@ -67,9 +61,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	//Initialize UI
     mCSAngleE->setValue(mAB.getCoverSlipAngleController().getAngle());
 
-    //Assign editbox references to Lifting parameters
-    mMoveAngleE->assignExternalProperty(&(mAB.getCombinedMove().mAngle), true);
-    mCSAngleE->assignExternalProperty(&mAB.getCoverSlipAngleController().mAngle, true);
+//    //Assign editbox references to Lifting parameters
+//    mMoveAngleE->assignExternalProperty(&(mAB.getCombinedMove().mAngle), true);
+//    mCSAngleE->assignExternalProperty(&mAB.getCoverSlipAngleController().mAngle, true);
 
     mJSNoneBtn->Down 		= true;
 	mJSSpeedMediumBtn->Click();
@@ -111,14 +105,22 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 
 void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 {
-	StatusTimer->Enabled = false;
     mAB.getJoyStick().disable();
+
+	TMotorFrame1->assignMotor(NULL);
+	TMotorFrame2->assignMotor(NULL);
 
     TXYZUnitFrame1->disable();
     TXYZUnitFrame2->disable();
 
     //The shutdown disconnects all devices
     mAB.shutDown();
+
+	while(mAB.isActive())
+    {
+    	sleep(100);
+    }
+
     InitCloseBtn->Action = initBotA;
 }
 
@@ -138,39 +140,35 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 
 	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
 
-    if(e == mMoveVelocityVerticalE || e == mMoveAngleE)
-    {
-    	//Update horiz value using the angle
-        double tanTheta = tan(toRadians(mMoveAngleE->getValue()));
-        if(tanTheta != 0.0)
-        {
-        	mMoveVelHorizE->setValue(mMoveVelocityVerticalE->getValue()/tanTheta);
-        }
-        else
-        {
-			mMoveVelHorizE->setValue(0.0);
-        }
-    }
+//    if(e == mMoveVelocityVerticalE || e == mMoveAngleE)
+//    {
+//    	//Update horiz value using the angle
+//        double tanTheta = tan(toRadians(mMoveAngleE->getValue()));
+//        if(tanTheta != 0.0)
+//        {
+//        	mMoveVelHorizE->setValue(mMoveVelocityVerticalE->getValue()/tanTheta);
+//        }
+//        else
+//        {
+//			mMoveVelHorizE->setValue(0.0);
+//        }
+//    }
 
-    mMoveAngleE->Update();
+//    mMoveAngleE->Update();
 }
 
 void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
 {
-    APTMotor* yCS 	= mAB.getCoverSlipUnit().getYMotor();
 	APTMotor* zCS 	= mAB.getCoverSlipUnit().getZMotor();
-
-    APTMotor* yW 	= mAB.getWhiskerUnit().getYMotor();
 	APTMotor* zW 	= mAB.getWhiskerUnit().getZMotor();
 
-	if(!yCS || !zCS || !yW || !zW)
+	if(!zCS || !zW)
     {
     	Log(lError) << "Can't carry out this move.. at least one motor is absent";
         return;
     }
 
     double vertVel 	= mMoveVelocityVerticalE->getValue();
-    double horizVel = mMoveVelHorizE->getValue();
     double acc 		= mMoveAccelerationE->getValue();
 
 	//Update motors with current parameters and start the move
@@ -180,55 +178,101 @@ void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
     zW->setJogVelocity(vertVel);
     zW->setJogAcceleration(acc);
 
-    double tanTheta = tan(toRadians(mMoveAngleE->getValue()));
-    yCS->setJogVelocity(horizVel);
-    yCS->setJogAcceleration(acc / tanTheta);
-
-    yW->setJogVelocity(horizVel);
-    yW->setJogAcceleration(acc / tanTheta);
-
     //get current positions and carry out some moveTo's
-    double yPos = yCS->getPosition();
     double zPos = zCS->getPosition();
 
 	double newCSZPos = zPos + mVerticalMoveDistanceE->getValue();
-	double newCSYPos = (tanTheta != 0) ?
-    					yPos + (newCSZPos - zPos) / tanTheta : yPos;
 
-	//Calculate for the whisker
-    yPos = yW->getPosition();
     zPos = zW->getPosition();
 
 	double newWZPos = zPos + mVerticalMoveDistanceE->getValue();
-	double newWYPos = (tanTheta != 0) ?
-    					(yPos + (newWZPos - zPos) / tanTheta) : yPos;
 
     Log(lInfo) << "Moving CS Vertical to: "	<<newCSZPos;
-    Log(lInfo) << "Moving CS Horiz to: "	<<newCSYPos;
-
     Log(lInfo) << "Moving W Vertical to: "	<<newWZPos;
-    Log(lInfo) << "Moving W Horiz to: "		<<newWYPos;
-
-
-    if(newCSYPos >=150 || newWYPos >=150 )
-    {
-    	Log(lError) << "New CoverSlip or Whisker Y position to big: "<<newCSYPos;
-        return;
-    }
 
     if(newCSZPos >=25 || newWZPos >=25)
     {
-    	Log(lError) << "New CoverSlip or Whisker Z position to big: "<<newWYPos;
+    	Log(lError) << "New CoverSlip or Whisker Z position to big: "<<newWZPos;
         return;
     }
 
 	//Initiate the move
-    yCS->moveAbsolute(newCSYPos);
-    yW->moveAbsolute(newWYPos);
-
     zCS->moveAbsolute(newCSZPos);
     zW->moveAbsolute(newWZPos);
 }
+
+//OLD LIFT CODE
+//    APTMotor* yCS 	= mAB.getCoverSlipUnit().getYMotor();
+//	APTMotor* zCS 	= mAB.getCoverSlipUnit().getZMotor();
+//
+//    APTMotor* yW 	= mAB.getWhiskerUnit().getYMotor();
+//	APTMotor* zW 	= mAB.getWhiskerUnit().getZMotor();
+//
+//	if(!yCS || !zCS || !yW || !zW)
+//    {
+//    	Log(lError) << "Can't carry out this move.. at least one motor is absent";
+//        return;
+//    }
+//
+//    double vertVel 	= mMoveVelocityVerticalE->getValue();
+//    double horizVel = mMoveVelHorizE->getValue();
+//    double acc 		= mMoveAccelerationE->getValue();
+//
+//	//Update motors with current parameters and start the move
+//    zCS->setJogVelocity(vertVel);
+//    zCS->setJogAcceleration(acc);
+//
+//    zW->setJogVelocity(vertVel);
+//    zW->setJogAcceleration(acc);
+//
+//    double tanTheta = tan(toRadians(mMoveAngleE->getValue()));
+//    yCS->setJogVelocity(horizVel);
+//    yCS->setJogAcceleration(acc / tanTheta);
+//
+//    yW->setJogVelocity(horizVel);
+//    yW->setJogAcceleration(acc / tanTheta);
+//
+//    //get current positions and carry out some moveTo's
+//    double yPos = yCS->getPosition();
+//    double zPos = zCS->getPosition();
+//
+//	double newCSZPos = zPos + mVerticalMoveDistanceE->getValue();
+//	double newCSYPos = (tanTheta != 0) ?
+//    					yPos + (newCSZPos - zPos) / tanTheta : yPos;
+//
+//	//Calculate for the whisker
+//    yPos = yW->getPosition();
+//    zPos = zW->getPosition();
+//
+//	double newWZPos = zPos + mVerticalMoveDistanceE->getValue();
+//	double newWYPos = (tanTheta != 0) ?
+//    					(yPos + (newWZPos - zPos) / tanTheta) : yPos;
+//
+//    Log(lInfo) << "Moving CS Vertical to: "	<<newCSZPos;
+//    Log(lInfo) << "Moving CS Horiz to: "	<<newCSYPos;
+//
+//    Log(lInfo) << "Moving W Vertical to: "	<<newWZPos;
+//    Log(lInfo) << "Moving W Horiz to: "		<<newWYPos;
+//
+//
+//    if(newCSYPos >=150 || newWYPos >=150 )
+//    {
+//    	Log(lError) << "New CoverSlip or Whisker Y position to big: "<<newCSYPos;
+//        return;
+//    }
+//
+//    if(newCSZPos >=25 || newWZPos >=25)
+//    {
+//    	Log(lError) << "New CoverSlip or Whisker Z position to big: "<<newWYPos;
+//        return;
+//    }
+//
+//	//Initiate the move
+//    yCS->moveAbsolute(newCSYPos);
+//    yW->moveAbsolute(newWYPos);
+//
+//    zCS->moveAbsolute(newCSZPos);
+//    zW->moveAbsolute(newWZPos);
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::Button2Click(TObject *Sender)
@@ -366,5 +410,6 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
     jss->set(mMaxXYJogVelocityJoystick->getValue(), mXYJogAccelerationJoystick->getValue(),
 			 mMaxZJogVelocityJoystick->getValue(), mZJogAccelerationJoystick->getValue());
 }
+
 
 

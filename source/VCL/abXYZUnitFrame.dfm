@@ -12,8 +12,6 @@ object XYZUnitFrame: TXYZUnitFrame
     Align = alClient
     Caption = 'XYZ Unit'
     TabOrder = 0
-    ExplicitWidth = 720
-    ExplicitHeight = 402
     object TopPanel: TPanel
       Left = 2
       Top = 15
@@ -22,7 +20,6 @@ object XYZUnitFrame: TXYZUnitFrame
       Align = alTop
       BevelOuter = bvLowered
       TabOrder = 0
-      ExplicitWidth = 716
     end
     object ScrollBox1: TScrollBox
       Left = 2
@@ -31,8 +28,6 @@ object XYZUnitFrame: TXYZUnitFrame
       Height = 308
       Align = alClient
       TabOrder = 1
-      ExplicitWidth = 716
-      ExplicitHeight = 344
     end
   end
   object mMotorStatusTimer: TTimer

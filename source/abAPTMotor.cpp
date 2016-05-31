@@ -11,10 +11,13 @@ APTMotor::APTMotor(int serialNo)
     mAccelerationRange(0,0),
 	mManualJogVelocity(0),
 	mManualJogAcceleration(0),
+	mPotentiometerVelocity(0),
 	mMotorMessageProcessor(mMotorMessageContainer)
 {
     mProperties.add((BaseProperty*) &mManualJogVelocity.setup("MANUAL_JOG_VELOCITY"			, 			0.1, true));
+
     mProperties.add((BaseProperty*) &mManualJogAcceleration.setup("MANUAL_JOG_ACCELERATION"	, 			0.1, true));
+    mProperties.add((BaseProperty*) &mPotentiometerVelocity.setup("POTENTIOMETER_VELOCITY"	, 			1, true));
 
 	mMotorMessageProcessor.assignMotor(this);
 	mMotorMessageProcessor.start(true);
@@ -31,12 +34,12 @@ APTMotor::~APTMotor()
     mProperties.write();
 }
 
+
 bool APTMotor::applyProperties()
 {
 	setJogVelocity(mManualJogVelocity);
 	setJogAcceleration(mManualJogAcceleration);
-
-    setPotentiometerVelocity(mManualJogVelocity);
+    setPotentiometerVelocity(mPotentiometerVelocity);
     return true;
 }
 
@@ -79,6 +82,11 @@ void APTMotor::setManualJogVelocity(double v)
 void APTMotor::setManualJogAcceleration(double a)
 {
 	mManualJogAcceleration = a;
+}
+
+double APTMotor::getPotentiometerVelocity()
+{
+	return mPotentiometerVelocity;
 }
 
 bool APTMotor::setVelocityForward(double vel)
