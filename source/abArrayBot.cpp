@@ -87,7 +87,7 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
     Log(lDebug) << "New jog acceleration (mm/(s*s)): " <<vals[1];
 
     getJoyStick().getXAxis().setMaxVelocity(vals[0]);
-    getJoyStick().getYAxis().setMaxVelocity(vals[1]);
+    getJoyStick().getYAxis().setMaxVelocity(vals[0]);
 
     Log(lDebug) << "New Z jog velocity (mm/s): " <<vals[2];
     Log(lDebug) << "New Z jog acceleration (mm/(s*s)): " <<vals[3];
