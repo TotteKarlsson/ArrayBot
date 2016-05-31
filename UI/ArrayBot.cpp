@@ -21,6 +21,7 @@ USEFORM("..\source\VCL\abLoggingForm.cpp", Form1);
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
 extern string 		gApplicationRegistryRoot  = "\\Software\\Dune Scientific\\ArrayBot\\0.5.0";
+extern string 		gAppDataFolder = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 void setupLogging();
 
 //---------------------------------------------------------------------------

@@ -23,6 +23,7 @@ TMain *Main;
 
 extern string gLogFileLocation;
 extern string gLogFileName;
+extern string gAppDataFolder;
 
 using namespace mtk;
 //---------------------------------------------------------------------------
@@ -34,7 +35,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     mBottomPanelHeight(100),
     mBottomPanelVisible(true),
     mTopPanelHeight(360),
-    mIniFile("ArrayBot.ini", true, true),
+    mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
 	mAB(mIniFile)
 {
 	TMemoLogger::mMemoIsEnabled = false;
