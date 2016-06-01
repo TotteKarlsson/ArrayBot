@@ -1,5 +1,5 @@
-#ifndef Unit1H
-#define Unit1H
+#ifndef TMainH
+#define TMainH
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>

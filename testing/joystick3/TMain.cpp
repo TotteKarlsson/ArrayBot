@@ -1,15 +1,12 @@
 #include <vcl.h>
 #pragma hdrstop
-
-#include "Unit1.h"
+#include "TMain.h"
 #include "TMemoLogger.h"
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 
-
 using namespace mtk;
-
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

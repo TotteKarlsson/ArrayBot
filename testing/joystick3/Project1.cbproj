@@ -106,13 +106,13 @@
         <PCHCompile Include="Project1PCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
-        <CppCompile Include="Unit1.cpp">
+        <CppCompile Include="TMain.cpp">
             <Form>Main</Form>
             <FormType>dfm</FormType>
-            <DependentOn>Unit1.h</DependentOn>
+            <DependentOn>TMain.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <FormResources Include="Unit1.dfm"/>
+        <FormResources Include="TMain.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

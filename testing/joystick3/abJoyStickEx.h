@@ -7,6 +7,8 @@
 
 const int gMaxNrOfJoySticks = 16;
 
+enum ButtonState {bsUp = 0, bsDown};
+
 typedef void (__closure *JoyStickEvent)(); //Need to research this and make it portable
 
 class JoyStickEx
@@ -28,6 +30,7 @@ class JoyStickEx
 	private:
             int 				mJoyStickID;
             void 				readCapabilities();
+            ButtonState			mButton1;
 };
 
 

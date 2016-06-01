@@ -11,7 +11,7 @@ using std::string;
 using namespace mtk;
 
 //---------------------------------------------------------------------------
-USEFORM("Unit1.cpp", Main);
+USEFORM("TMain.cpp", Main);
 //---------------------------------------------------------------------------
 void setupLogging();
 extern string  gLogFileName                = "JoyStickt.log";
