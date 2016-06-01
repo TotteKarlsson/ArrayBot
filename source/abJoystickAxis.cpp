@@ -92,7 +92,7 @@ void JoyStickAxis::Move(double newPosition)
     }
 
 	double fullVelRange = getMaxVelocity();
-    int nrOfSteps 		= getNumberOfGears();
+    int    nrOfSteps  	= getNumberOfGears();
 	double stepSize 	= fullVelRange  / nrOfSteps;
 
 	double scalingFactor = (fullVelRange * 2.0)/ mMaxPosition;

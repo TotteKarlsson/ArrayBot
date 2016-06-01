@@ -27,6 +27,7 @@ class AB_CORE JoyStickAxis : public ABObject
 		double				getMaxVelocity();
 		double				getAcceleration();
         double 				getCurrentVelocity();
+
                             //This function is called by the UI
                             //as joystick messages are flowing in
 		void 				Move(double newPosition);
