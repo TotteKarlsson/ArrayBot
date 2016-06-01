@@ -7,11 +7,11 @@
 
 class APTMotor;
 ///The joystick Axis class encapsulate needed functionality in the ArrayBot API
+///for movement of a motor, by a joystick.
 ///In short, a joystick axis have an associated motor to control, as well as a
 ///function that is called from the UI controlling the motor
 class AB_CORE JoyStickAxis : public ABObject
 {
-
     public:
 							JoyStickAxis();
 							~JoyStickAxis();
@@ -31,9 +31,7 @@ class AB_CORE JoyStickAxis : public ABObject
                             //This function is called by the UI
                             //as joystick messages are flowing in
 		void 				Move(double newPosition);
-
         void				setSenseOfDirection(int sign);
-
 
     protected:
         bool				mIsEnabled;

@@ -11,12 +11,10 @@ using namespace std;
 
 JoyStickEx::JoyStickEx()
 :
-mNrOfButtons(14)
+mNrOfButtons(14),
+mMoveResolution(1000)
 {
     mJoyStickID = JOYSTICKID1; //Support only one for now
-
-    mJoyInfo.dwSize = sizeof(JOYINFOEX);
-    mJoyInfo.dwFlags  =  JOY_RETURNALL;
 
     mUpdateStateTimer.setInterval(20);
 	mUpdateStateTimer.OnTimerC = refresh;
@@ -58,6 +56,30 @@ void JoyStickEx::readCapabilities()
     }
 }
 
+void JoyStickEx::setAxisEvent(int axis, JoyStickAxisEvent move)
+{
+    switch(axis)
+    {
+    	case 1:
+			mX1Axis.mEvent = move;
+		break;
+
+        case 2:
+			mY1Axis.mEvent = move;
+		break;
+
+    	case 3:
+			mX2Axis.mEvent = move;
+		break;
+
+        case 4:
+			mY2Axis.mEvent = move;
+		break;
+
+    }
+
+}
+
 void JoyStickEx::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
 {
 	mButtons[btnNr  - 1].mEvents = ButtonEvents(up, down);
@@ -79,10 +101,52 @@ void JoyStickEx::refresh()
 		throw("Failed getting joystick status");
     }
 
-    //Get retrieved buttons states
+    //Check X1 Axis
+    if(abs((int) (mX1Axis.mPosition - mJoyInfo.dwXpos)) > mMoveResolution)
+    {
+    	if(mX1Axis.mEvent)
+        {
+	        Log(lDebug5) << "Calling X1 AxisEvent";
+            mX1Axis.mEvent(mJoyInfo.dwXpos);
+        }
+        mX1Axis.mPosition = mJoyInfo.dwXpos;
+    }
+
+    //Check Y1 Axis
+    if(abs((int) (mY1Axis.mPosition - mJoyInfo.dwYpos)) > mMoveResolution)
+    {
+    	if(mY1Axis.mEvent)
+        {
+	        Log(lDebug5) << "Calling Y1 AxisEvent";
+            mY1Axis.mEvent(mJoyInfo.dwYpos);
+        }
+        mY1Axis.mPosition = mJoyInfo.dwYpos;
+    }
+
+    //Check X2 Axis  (Z - axis in API struc)
+    if(abs((int) (mX2Axis.mPosition - mJoyInfo.dwZpos)) > mMoveResolution)
+    {
+    	if(mX2Axis.mEvent)
+        {
+	        Log(lDebug5) << "Calling X2 AxisEvent";
+            mX2Axis.mEvent(mJoyInfo.dwZpos);
+        }
+        mX2Axis.mPosition = mJoyInfo.dwZpos;
+    }
+
+    //Check Y2 Axis (
+    if(abs((int) (mY2Axis.mPosition - mJoyInfo.dwRpos)) > mMoveResolution)
+    {
+    	if(mY2Axis.mEvent)
+        {
+	        Log(lDebug5) << "Calling Y2 AxisEvent";
+            mY2Axis.mEvent(mJoyInfo.dwRpos);
+        }
+        mY2Axis.mPosition = mJoyInfo.dwRpos;
+    }
+
+    //Process retrieved buttons states
     bitset<32> buttonStates(mJoyInfo.dwButtons);
-
-
     for(int i = 0; i < mNrOfButtons; i++)
     {
         if(buttonStates.at(i) && mButtons[i].mButtonState == bsUp)
@@ -104,7 +168,6 @@ void JoyStickEx::refresh()
             }
             mButtons[i].mButtonState = bsUp;
         }
-
     }
 }
 

@@ -68,6 +68,11 @@ __published:	// IDE-managed Components
         void 				onButton14Down();
         void 				onButton14Up();
 
+        void 				onX1AxisMove(int pos);
+        void 				onY1AxisMove(int pos);
+
+        void 				onX2AxisMove(int pos);
+        void 				onY2AxisMove(int pos);
 
         TThreadMethod               logMsgMethod;
         LogFileReader               mLogFileReader;

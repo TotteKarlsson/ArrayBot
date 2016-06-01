@@ -36,6 +36,11 @@ mLogFileReader(joinPath(".", gLogFileName), logMsgMethod)
     mJS.setButtonEvents(13,onButton13Down, onButton13Up		);
     mJS.setButtonEvents(14,onButton14Down, onButton14Up		);
 
+	mJS.setAxisEvent(1, onX1AxisMove);
+	mJS.setAxisEvent(2, onY1AxisMove);
+
+	mJS.setAxisEvent(3, onX2AxisMove);
+	mJS.setAxisEvent(4, onY2AxisMove);
 
 	//Start JS poll
     mJS.enable();
@@ -115,6 +120,26 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
     }
 
 	Close();
+}
+
+void TMain::onX1AxisMove(int pos)
+{
+	Log(lInfo) << "X1 Axis is moving: "<<pos;
+}
+
+void TMain::onY1AxisMove(int pos)
+{
+	Log(lInfo) << "Y1 Axis is moving: "<<pos;
+}
+
+void TMain::onX2AxisMove(int pos)
+{
+	Log(lInfo) << "X2 Axis is moving: "<<pos;
+}
+
+void TMain::onY2AxisMove(int pos)
+{
+	Log(lInfo) << "Y2 Axis is moving: "<<pos;
 }
 
 void TMain::onButton1Up()
