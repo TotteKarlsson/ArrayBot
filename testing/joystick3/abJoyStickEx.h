@@ -10,7 +10,7 @@ const int gMaxNrOfJoySticks = 16;
 class JoyStickEx
 {
 	public:
-                                joystick()
+                                mJoyStickEx()
                                 {
                                     deadzone = 0.1;
                                     mJoyStickID = -1;
@@ -26,21 +26,21 @@ class JoyStickEx
             double 							deadzone;
 
 
-            JOYINFOEX 						mJoyInfoExStruc;
+            JOYINFOEX 						mJoyInfo;
             JOYCAPS 						mJoyStickCapabilities;
 
             int 							mListOfJoySticks[gMaxNrOfJoySticks];
             int								mCurrentJoyStickID;
             int 							mJoyStickID;
 
-
+            void 							refresh();
 	private:
-            JoyStickEx(JoyStickEx& a) { *this = a; }
+//            JoyStickEx(JoyStickEx& a) { *this = a; }
 
 
             JoyStickEx* operator = (const JoyStickEx *a) { *this = *a; return this; }
             void init_list();
-            void refresh();
+
             void refresh_cp();
 };
 
@@ -53,9 +53,9 @@ void JoyStickEx::init_list()
 
     for (i = 0; i < gMaxNrOfJoySticks; i++)
     {
-        mJoyInfoExStruc.dwSize = sizeof(JOYINFOEX);
-        mJoyInfoExStruc.dwFlags  =  JOY_RETURNALL;
-        if (joyGetPosEx(i, &mJoyInfoExStruc)  ==  JOYERR_NOERROR)
+        mJoyInfo.dwSize = sizeof(JOYINFOEX);
+        mJoyInfo.dwFlags  =  JOY_RETURNALL;
+        if (joyGetPosEx(i, &mJoyInfo)  ==  JOYERR_NOERROR)
         {
             mListOfJoySticks[mCurrentJoyStickID] = i;
             mCurrentJoyStickID++;
@@ -88,11 +88,11 @@ void JoyStickEx::refresh()
     if (mJoyStickID == -1)
     return;
 
-    mJoyInfoExStruc.dwSize  =  sizeof(JOYINFOEX);
+    mJoyInfo.dwSize  =  sizeof(JOYINFOEX);
 
-    mJoyInfoExStruc.dwFlags = JOY_RETURNALL;
+    mJoyInfo.dwFlags = JOY_RETURNALL;
 
-    joyGetPosEx(mJoyStickID, &mJoyInfoExStruc);
+    joyGetPosEx(mJoyStickID, &mJoyInfo);
 
 }
 
