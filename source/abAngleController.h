@@ -34,6 +34,7 @@ class AB_CORE AngleController : public ABObject
 		void					            stop();
 		APTMotor*				            getMotor();
 		void								enableJoyStick(JoyStick* js);
+		void								disableJoyStick();
         Property<int>		                mMotorSerial;
         Property<double>  	                mAngle;
         Property<int>						mAngleOffset;

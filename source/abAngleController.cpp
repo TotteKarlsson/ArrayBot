@@ -37,21 +37,29 @@ void AngleController::enableJoyStick(JoyStick* js)
 
    if(mMotor)
     {
-        mJoyStick->getButton(6).assignMotor(mMotor);
-        mJoyStick->getButton(8).assignMotor(mMotor);
+        mJoyStick->getButton(1).assignMotor(mMotor);
+        mJoyStick->getButton(3).assignMotor(mMotor);
 
-        mJoyStick->getButton(6).setReverse();
-        mJoyStick->getButton(8).setForward();
+        mJoyStick->getButton(1).setReverse();
+        mJoyStick->getButton(3).setForward();
 
-        mJoyStick->getButton(6).enable();
-        mJoyStick->getButton(8).enable();
+        mJoyStick->getButton(1).enable();
+        mJoyStick->getButton(3).enable();
     }
     else
     {
-        mJoyStick->getButton(6).disable();
-        mJoyStick->getButton(8).disable();
+        mJoyStick->getButton(1).disable();
+        mJoyStick->getButton(3).disable();
     }
     mJoyStick->enable();
+}
+
+void AngleController::disableJoyStick()
+{
+	if(mJoyStick)
+    {
+		mJoyStick->disable();
+    }
 }
 
 double AngleController::getAngle()

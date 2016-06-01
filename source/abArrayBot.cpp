@@ -130,15 +130,17 @@ void ArrayBot::enableCoverSlipJoyStick()
     mCoverSlip.enableJoyStick(&getJoyStick());
     mJoyStick.getXAxis().setSenseOfDirection(1);
 
-
     mWhisker.disableJoyStick();
     mJoyStick.enable();
 }
 
 void ArrayBot::enableWhiskerJoyStick()
 {
-    mWhisker.enableJoyStick(&getJoyStick());
-	mJoyStick.getXAxis().setSenseOfDirection(-1);
+    mCameraAngleController.enableJoyStick(&getJoyStick());
+	mWhisker.enableJoyStick(&getJoyStick());
+    mJoyStick.getXAxis().setSenseOfDirection(-1);
+
+  	mCoverSlipAngleController.disableJoyStick();
     mCoverSlip.disableJoyStick();
     mJoyStick.enable();
 }

@@ -47,28 +47,42 @@ void __fastcall TMain::JMZMove(TMessage &msg)
 
 void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
 {
+    if(msg.WParam & JOY_BUTTON1CHG)
+    {
+    	mAB.getJoyStick().getButton(1).up();
+    }
+
     if(msg.WParam & JOY_BUTTON2CHG)
     {
     	mAB.getJoyStick().getButton(2).up();
+    }
+
+    if(msg.WParam & JOY_BUTTON3CHG)
+    {
+    	mAB.getJoyStick().getButton(3).up();
     }
 
     if(msg.WParam & JOY_BUTTON4CHG)
     {
     	mAB.getJoyStick().getButton(4).up();
     }
-
-    if(msg.WParam & JOY_BUTTON6)
-    {
-    	mAB.getJoyStick().getButton(4).up();
-    }
-
 }
 
 void __fastcall TMain::JMButtonDownUpdate(TMessage &msg)
 {
-    if(msg.WParam & JOY_BUTTON2CHG)
+    if(msg.WParam & JOY_BUTTON1CHG)
+    {
+    	mAB.getJoyStick().getButton(1).down();
+    }
+
+ 	if(msg.WParam & JOY_BUTTON2CHG)
     {
     	mAB.getJoyStick().getButton(2).down();
+    }
+
+	if(msg.WParam & JOY_BUTTON3CHG)
+    {
+    	mAB.getJoyStick().getButton(3).down();
     }
 
     if(msg.WParam & JOY_BUTTON4CHG)
