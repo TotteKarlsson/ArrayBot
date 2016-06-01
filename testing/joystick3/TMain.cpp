@@ -20,8 +20,25 @@ TForm(Owner),
 logMsgMethod(&logMsg),
 mLogFileReader(joinPath(".", gLogFileName), logMsgMethod)
 {
+    //Associate functions with events
+    mJS.setButtonEvents(1, onButton1Down,  onButton1Up    );
+    mJS.setButtonEvents(2, onButton2Down,  onButton2Up    );
+    mJS.setButtonEvents(3, onButton3Down,  onButton3Up    );
+    mJS.setButtonEvents(4, onButton4Down,  onButton4Up    );
+    mJS.setButtonEvents(5, onButton5Down,  onButton5Up    );
+    mJS.setButtonEvents(6, onButton6Down,  onButton6Up    );
+    mJS.setButtonEvents(7, onButton7Down,  onButton7Up    );
+    mJS.setButtonEvents(8, onButton8Down,  onButton8Up    );
+    mJS.setButtonEvents(9, onButton9Down,  onButton9Up    );
+    mJS.setButtonEvents(10,onButton10Down, onButton10Up		);
+    mJS.setButtonEvents(11,onButton11Down, onButton11Up		);
+    mJS.setButtonEvents(12,onButton12Down, onButton12Up		);
+    mJS.setButtonEvents(13,onButton13Down, onButton13Up		);
+    mJS.setButtonEvents(14,onButton14Down, onButton14Up		);
 
 
+	//Start JS poll
+    mJS.enable();
 }
 
 //This one is called from the reader thread
@@ -34,11 +51,6 @@ void __fastcall TMain::logMsg()
 //---------------------------------------------------------------------------
 void __fastcall TMain::Timer1Timer(TObject *Sender)
 {
-// some (locally) global variable
-
-    // do this in some timer or whatever
-    mJS.refresh();
-
     // this just prints the joystick state on VCL Form->Canvas you can rewrite it to what you want:
     int dy= 20;
     int x= 10;
@@ -52,22 +64,7 @@ void __fastcall TMain::Timer1Timer(TObject *Sender)
     Canvas->TextOut(x,y+=dy,AnsiString().sprintf("v: %i",mJS.mJoyInfo.dwVpos));
     Canvas->TextOut(x,y+=dy,AnsiString().sprintf("b: %i",mJS.mJoyInfo.dwButtons));
 	Canvas->TextOut(x,y+=dy,AnsiString().sprintf("z: %i",mJS.mJoyInfo.dwPOV));
-
-
-	 mJS.OnButton1Down 	= onButton1Down;
-	 mJS.OnButton1Up 	= onButton1Up;
 }
-
-void  TMain::onButton1Down()
-{
-	Button1->Caption ="DOWN";
-}
-
-void  TMain::onButton1Up()
-{
-	Button1->Caption ="UP";
-}
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
@@ -78,13 +75,11 @@ void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift
     }
 }
 
-
 void __fastcall TMain::FormShow(TObject *Sender)
 {
 	TMemoLogger::mMemoIsEnabled = true;
     mLogFileReader.start();
 }
-
 
 void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
@@ -93,15 +88,16 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
     	CanClose = false;
     }
 
+    if(mJS.isEnabled())
+    {
+    	CanClose = false;
+    }
+
 	if(CanClose == false)
 	{
 		ShutDownTimer->Enabled = true;
 	}
-
 }
-
-
-//---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
@@ -113,7 +109,151 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
 	}
 
+    if(mJS.isEnabled())
+    {
+    	mJS.disable();
+    }
+
 	Close();
 }
 
+void TMain::onButton1Up()
+{
+	Button1->Caption ="UP";
+}
+
+void TMain::onButton1Down()
+{
+	Button1->Caption ="DOWN";
+}
+
+void TMain::onButton2Up()
+{
+	Button2->Caption ="UP";
+}
+
+void TMain::onButton2Down()
+{
+	Button2->Caption ="DOWN";
+}
+
+void TMain::onButton3Up()
+{
+	Button3->Caption ="UP";
+}
+
+void TMain::onButton3Down()
+{
+	Button3->Caption ="DOWN";
+}
+
+void TMain::onButton4Up()
+{
+	Button4->Caption ="UP";
+}
+
+void TMain::onButton4Down()
+{
+	Button4->Caption ="DOWN";
+}
+
+void TMain::onButton5Up()
+{
+	Button5->Caption ="UP";
+}
+
+void TMain::onButton5Down()
+{
+	Button5->Caption ="DOWN";
+}
+
+void TMain::onButton6Up()
+{
+	Button6->Caption ="UP";
+}
+
+void TMain::onButton6Down()
+{
+	Button6->Caption ="DOWN";
+}
+
+void TMain::onButton7Up()
+{
+	Button7->Caption ="UP";
+}
+
+void TMain::onButton7Down()
+{
+	Button7->Caption ="DOWN";
+}
+
+void TMain::onButton8Up()
+{
+	Button8->Caption ="UP";
+}
+
+void TMain::onButton8Down()
+{
+	Button8->Caption ="DOWN";
+}
+
+void TMain::onButton9Up()
+{
+	Button9->Caption ="UP";
+}
+
+void TMain::onButton9Down()
+{
+	Button9->Caption ="DOWN";
+}
+
+void TMain::onButton10Up()
+{
+	Button10->Caption ="UP";
+}
+
+void TMain::onButton10Down()
+{
+	Button10->Caption ="DOWN";
+}
+
+void TMain::onButton11Up()
+{
+	Button11->Caption ="UP";
+}
+
+void TMain::onButton11Down()
+{
+	Button11->Caption ="DOWN";
+}
+
+void TMain::onButton12Up()
+{
+	Button12->Caption ="UP";
+}
+
+void TMain::onButton12Down()
+{
+	Button12->Caption ="DOWN";
+}
+
+void TMain::onButton13Up()
+{
+	Button13->Caption ="UP";
+}
+
+void TMain::onButton13Down()
+{
+	Button13->Caption ="DOWN";
+}
+
+void TMain::onButton14Up()
+{
+	Button14->Caption ="UP";
+}
+
+void TMain::onButton14Down()
+{
+	Button14->Caption ="DOWN";
+}
 

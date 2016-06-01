@@ -1,6 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
+  AlphaBlend = True
   Caption = 'Main'
   ClientHeight = 451
   ClientWidth = 712
@@ -30,10 +31,114 @@ object Main: TMain
   object Button1: TButton
     Left = 24
     Top = 200
-    Width = 65
-    Height = 65
+    Width = 40
+    Height = 40
     Caption = 'Up'
     TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 71
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 2
+  end
+  object Button3: TButton
+    Left = 118
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 3
+  end
+  object Button4: TButton
+    Left = 165
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 4
+  end
+  object Button5: TButton
+    Left = 213
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 5
+  end
+  object Button6: TButton
+    Left = 260
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 6
+  end
+  object Button7: TButton
+    Left = 307
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 7
+  end
+  object Button8: TButton
+    Left = 354
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 8
+  end
+  object Button9: TButton
+    Left = 402
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 9
+  end
+  object Button10: TButton
+    Left = 449
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 10
+  end
+  object Button11: TButton
+    Left = 496
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 11
+  end
+  object Button12: TButton
+    Left = 543
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 12
+  end
+  object Button13: TButton
+    Left = 591
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 13
+  end
+  object Button14: TButton
+    Left = 637
+    Top = 200
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 14
   end
   object Timer1: TTimer
     Interval = 50
