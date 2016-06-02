@@ -140,7 +140,7 @@ object Main: TMain
     Caption = 'Up'
     TabOrder = 14
   end
-  object Button15: TButton
+  object POVButton1: TButton
     Left = 130
     Top = 76
     Width = 40
@@ -148,7 +148,7 @@ object Main: TMain
     Caption = 'Up'
     TabOrder = 15
   end
-  object Button16: TButton
+  object POVButton4: TButton
     Left = 191
     Top = 16
     Width = 40
@@ -156,7 +156,7 @@ object Main: TMain
     Caption = 'Up'
     TabOrder = 16
   end
-  object Button17: TButton
+  object POVButton3: TButton
     Left = 256
     Top = 76
     Width = 40
@@ -164,7 +164,7 @@ object Main: TMain
     Caption = 'Up'
     TabOrder = 17
   end
-  object Button18: TButton
+  object POVButton2: TButton
     Left = 191
     Top = 136
     Width = 40

@@ -29,10 +29,10 @@ __published:	// IDE-managed Components
 	TButton *Button12;
 	TButton *Button13;
 	TButton *Button14;
-	TButton *Button15;
-	TButton *Button16;
-	TButton *Button17;
-	TButton *Button18;
+	TButton *POVButton1;
+	TButton *POVButton4;
+	TButton *POVButton3;
+	TButton *POVButton2;
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormShow(TObject *Sender);
@@ -54,7 +54,6 @@ __published:	// IDE-managed Components
         void 				onButton5Up();
         void 				onButton6Down();
         void 				onButton6Up();
-
         void 				onButton7Down();
         void 				onButton7Up();
         void 				onButton8Down();
@@ -77,6 +76,15 @@ __published:	// IDE-managed Components
 
         void 				onX2AxisMove(int pos);
         void 				onY2AxisMove(int pos);
+
+        void 				onPOVButton1Down();
+        void 				onPOVButton1Up();
+        void 				onPOVButton2Down();
+        void 				onPOVButton2Up();
+        void 				onPOVButton3Down();
+        void 				onPOVButton3Up();
+        void 				onPOVButton4Down();
+        void 				onPOVButton4Up();
 
         TThreadMethod               logMsgMethod;
         LogFileReader               mLogFileReader;

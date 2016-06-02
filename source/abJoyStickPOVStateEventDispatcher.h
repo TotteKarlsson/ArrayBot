@@ -25,7 +25,7 @@ class AB_CORE JoyStickPOVStateEventDispatcher  : public ABObject
                                 //!and the associated Event is fired
                                 //!The POV state is a number between 0 - 65000
                                 //!There are 9 possible numbers
-		int						mPOVState;
+		unsigned int  			mPOVState;
 
     	ButtonEvents 			mLeftButtonEvents;
     	ButtonEvents 			mRightButtonEvents;

@@ -4,7 +4,7 @@
 
 JoyStickPOVStateEventDispatcher::JoyStickPOVStateEventDispatcher()
 :
-mPOVState(0)
+mPOVState(65535)
 
 {
 

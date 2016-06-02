@@ -57,6 +57,22 @@ void JoyStickMessageDispatcher::readCapabilities()
    	mEnabled = true;
 }
 
+void JoyStickMessageDispatcher::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
+{
+	mButtons[btnNr  - 1].mEvents = ButtonEvents(up, down);
+}
+
+void JoyStickMessageDispatcher::setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
+{
+	switch(btnNr)
+    {
+		case 1: mPOV.mLeftButtonEvents 	= ButtonEvents(up, down); break;
+		case 2: mPOV.mDownButtonEvents 	= ButtonEvents(up, down); break;
+		case 3: mPOV.mRightButtonEvents = ButtonEvents(up, down); break;
+		case 4: mPOV.mUpButtonEvents 	= ButtonEvents(up, down); break;
+    }
+}
+
 void JoyStickMessageDispatcher::setAxisEvent(int axis, JoyStickAxisEvent event)
 {
     switch(axis)
@@ -66,11 +82,6 @@ void JoyStickMessageDispatcher::setAxisEvent(int axis, JoyStickAxisEvent event)
     	case 3:	mX2Axis.mEvent = event;		break;
         case 4:	mY2Axis.mEvent = event;		break;
     }
-}
-
-void JoyStickMessageDispatcher::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
-{
-	mButtons[btnNr  - 1].mEvents = ButtonEvents(up, down);
 }
 
 //---------------------------------------------------------------------------
@@ -164,7 +175,79 @@ void JoyStickMessageDispatcher::refresh()
     if(mJoyInfo.dwPOV != mPOV.mPOVState)
     {
         Log(lDebug5) << "POV State changed";
+
+
+        //Get out of old state
+    	switch(mPOV.mPOVState)
+        {
+        	case pvUp:
+            	if(mPOV.mUpButtonEvents.second)
+                {
+            		mPOV.mUpButtonEvents.second();
+                }
+			break;
+
+        	case pvRight:
+            	if(mPOV.mRightButtonEvents.second)
+                {
+            		mPOV.mRightButtonEvents.second();
+                }
+			break;
+
+        	case pvDown:
+            	if(mPOV.mDownButtonEvents.second)
+                {
+            		mPOV.mDownButtonEvents.second();
+                }
+			break;
+        	case pvLeft:
+            	if(mPOV.mLeftButtonEvents.second)
+                {
+            		mPOV.mLeftButtonEvents.second();
+                }
+			break;
+        }
+
+        //Emply new state
+        switch(mJoyInfo.dwPOV)
+        {
+        	case 0:
+            	if(mPOV.mUpButtonEvents.first)
+                {
+            		mPOV.mUpButtonEvents.first();
+                }
+			break;
+
+        	case 9000:
+            	if(mPOV.mRightButtonEvents.first)
+                {
+            		mPOV.mRightButtonEvents.first();
+                }
+			break;
+
+        	case 18000:
+            	if(mPOV.mDownButtonEvents.first)
+                {
+            		mPOV.mDownButtonEvents.first();
+                }
+			break;
+        	case 27000:
+            	if(mPOV.mLeftButtonEvents.first)
+                {
+            		mPOV.mLeftButtonEvents.first();
+                }
+			break;
+            case 65535:
+	           	Log(lInfo) <<"POV not engaged anymore.";
+            break;
+            default:
+            	Log(lInfo) <<"User presssed two POV buttons at the same time.";
+			break;
+        }
+
+        mPOV.mPOVState = mJoyInfo.dwPOV;
     }
+
 
 }
 

@@ -37,6 +37,11 @@ mJS(14)
     mJS.setButtonEvents(13,onButton13Down, onButton13Up	  );
     mJS.setButtonEvents(14,onButton14Down, onButton14Up	  );
 
+    mJS.setPOVButtonEvents(1,onPOVButton1Down, onPOVButton1Up	  );
+    mJS.setPOVButtonEvents(2,onPOVButton2Down, onPOVButton2Up	  );
+    mJS.setPOVButtonEvents(3,onPOVButton3Down, onPOVButton3Up	  );
+    mJS.setPOVButtonEvents(4,onPOVButton4Down, onPOVButton4Up	  );
+
 	mJS.setAxisEvent(1, onX1AxisMove);
 	mJS.setAxisEvent(2, onY1AxisMove);
 
@@ -69,7 +74,7 @@ void __fastcall TMain::Timer1Timer(TObject *Sender)
     Canvas->TextOut(x,y+=dy,AnsiString().sprintf("u: %i",mJS.mJoyInfo.dwUpos));
     Canvas->TextOut(x,y+=dy,AnsiString().sprintf("v: %i",mJS.mJoyInfo.dwVpos));
     Canvas->TextOut(x,y+=dy,AnsiString().sprintf("b: %i",mJS.mJoyInfo.dwButtons));
-	Canvas->TextOut(x,y+=dy,AnsiString().sprintf("z: %i",mJS.mJoyInfo.dwPOV));
+	Canvas->TextOut(x,y+=dy,AnsiString().sprintf("POV: %i",mJS.mJoyInfo.dwPOV));
 }
 
 //---------------------------------------------------------------------------
@@ -281,5 +286,45 @@ void TMain::onButton14Up()
 void TMain::onButton14Down()
 {
 	Button14->Caption ="DOWN";
+}
+
+void TMain::onPOVButton1Up()
+{
+	POVButton1->Caption ="UP";
+}
+
+void TMain::onPOVButton1Down()
+{
+	POVButton1->Caption ="DOWN";
+}
+
+void TMain::onPOVButton2Up()
+{
+	POVButton2->Caption ="UP";
+}
+
+void TMain::onPOVButton2Down()
+{
+	POVButton2->Caption ="DOWN";
+}
+
+void TMain::onPOVButton3Up()
+{
+	POVButton3->Caption ="UP";
+}
+
+void TMain::onPOVButton3Down()
+{
+	POVButton3->Caption ="DOWN";
+}
+
+void TMain::onPOVButton4Up()
+{
+	POVButton4->Caption ="UP";
+}
+
+void TMain::onPOVButton4Down()
+{
+	POVButton4->Caption ="DOWN";
 }
 
