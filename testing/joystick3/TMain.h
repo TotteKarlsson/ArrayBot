@@ -39,7 +39,6 @@ __published:	// IDE-managed Components
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall ShutDownTimerTimer(TObject *Sender);
 
-
 	private:	// User declarations
 		JoyStickMessageDispatcher 			mJS;
         void 				onButton1Down();

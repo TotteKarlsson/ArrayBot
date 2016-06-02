@@ -5,7 +5,6 @@
 #include "abABObject.h"
 #include "abJoyStickAxis.h"
 #include "abJoyStickButton.h"
-//#include <mmsystem.h>
 //---------------------------------------------------------------------------
 
 ///The joystick class encapsulate needed functionality in the ArrayBot API
@@ -13,51 +12,44 @@ class AB_CORE JoyStick : public ABObject
 {
 
     public:
-							        JoyStick(int Handle = 0);
+							        JoyStick();
 							        ~JoyStick();
-		bool				        connect();
+
 		bool				        enable();
         bool				        disable();
 
         bool				        isEnabled();
-    	JoyStickAxis&		        getXAxis();
-    	JoyStickAxis&		        getYAxis();
-    	JoyStickAxis&		        getZAxis();
-		JoyStickButton&		        getButton(int nr);
+    	JoyStickAxis&		        getX1Axis();
+    	JoyStickAxis&		        getX2Axis();
+    	JoyStickAxis&		        getY1Axis();
+    	JoyStickAxis&		        getY2Axis();
 
-        bool						setMessageRate(int rate);
-        int 						getMessageRate();
-		void						setWindowHandle(int handle);
+		JoyStickButton&		        getButton(int nr);
+		JoyStickButton&		        getPOVButton(int nr);
 
     protected:
-    						        //To get joystick messages, we need a handle
-                                    //to the window
-	    int  				        mHandle;
-        int 				        mJoystickID;
 
         							//Approximate in ms
-        int							mMessageRate;
         bool				        mEnabled;
-        bool 				        mJoyStickConnected;
-        int 				        mJoyStickDriverCount;
 
-    	JoyStickAxis		        mXAxis;
-    	JoyStickAxis		        mYAxis;
-    	JoyStickAxis		        mZAxis;
+    	JoyStickAxis		        mX1Axis;
+    	JoyStickAxis		        mX2Axis;
+    	JoyStickAxis		        mY1Axis;
+    	JoyStickAxis		        mY2Axis;
+
 
         JoyStickButton		        mButton1;
         JoyStickButton		        mButton2;
         JoyStickButton		        mButton3;
         JoyStickButton		        mButton4;
 
-        JoyStickButton		        mButton5;
-        JoyStickButton		        mButton6;
-        JoyStickButton		        mButton7;
-        JoyStickButton		        mButton8;
+        JoyStickButton		        mPOVButton1;
+        JoyStickButton		        mPOVButton2;
+        JoyStickButton		        mPOVButton3;
+        JoyStickButton		        mPOVButton4;
 
         JoyStickButton		        mButton9;
         JoyStickButton		        mButton10;
-
 };
 
 #endif

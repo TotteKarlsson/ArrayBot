@@ -50,7 +50,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	{
 		try
 		{
-			throw Exception("");
+			throw Exception("Unhandled exception");
 		}
 		catch (Exception &exception)
 		{
@@ -78,7 +78,7 @@ void setupLogging()
 	LogOutput::mShowLogTime = false;
 	LogOutput::mUseLogTabs = false;
 //	mtk::gLogger.setLogLevel(lInfo);
-	mtk::gLogger.setLogLevel(lDebug3);
+	mtk::gLogger.setLogLevel(lDebug5);
 	Log(lInfo) << "Logger was setup";
 }
 

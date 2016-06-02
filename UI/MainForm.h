@@ -32,9 +32,6 @@
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
-//class APTMotor;
-
-
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
 {
@@ -65,7 +62,6 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mCSAngleE;
 	TGroupBox *JSGB;
 	TSpeedButton *mJSCSBtn;
-	TSpeedButton *mJSWhiskerBtn;
 	TSpeedButton *mJSNoneBtn;
 	TSpeedButton *mJSSpeedFastBtn;
 	TSpeedButton *mJSSpeedMediumBtn;
@@ -121,16 +117,12 @@ class TMain : public TRegistryForm
 	void __fastcall mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormShow(TObject *Sender);
 
-	void __fastcall LiftAngleButtonUpRightClick(TObject *Sender);
-	void __fastcall LiftAngleButtonDownLeftClick(TObject *Sender);
 	void __fastcall JSControlClick(TObject *Sender);
 	void __fastcall JSSpeedBtnClick(TObject *Sender);
 	void __fastcall AddJsSettingBtnClick(TObject *Sender);
 	void __fastcall JoyStickSettingsCBChange(TObject *Sender);
 
-
-
-    private:	// User declarations
+    private:
         TThreadMethod               logMsgMethod;
         LogFileReader               mLogFileReader;
         void __fastcall             logMsg();
@@ -141,21 +133,16 @@ class TMain : public TRegistryForm
 
 		void __fastcall		        OnException();
 
-        void __fastcall 			JMButtonUpUpdate(TMessage &msg);
-        void __fastcall 			JMButtonDownUpdate(TMessage &msg);
-        void __fastcall 			JMXYMove(TMessage &msg);
-        void __fastcall 			JMZMove(TMessage &msg);
-  		void						updateJoyStickAxes();
 
 	public:		// User declarations
 		__fastcall 					TMain(TComponent* Owner);
 		__fastcall 					~TMain();
 
         BEGIN_MESSAGE_MAP
-          MESSAGE_HANDLER(MM_JOY1MOVE, TMessage, JMXYMove)
-          MESSAGE_HANDLER(MM_JOY1ZMOVE, TMessage, JMZMove)
-          MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,JMButtonDownUpdate)
-          MESSAGE_HANDLER(MM_JOY1BUTTONUP,	TMessage,JMButtonUpUpdate)
+//          MESSAGE_HANDLER(MM_JOY1MOVE, TMessage, JMXYMove)
+//          MESSAGE_HANDLER(MM_JOY1ZMOVE, TMessage, JMZMove)
+//          MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,JMButtonDownUpdate)
+//          MESSAGE_HANDLER(MM_JOY1BUTTONUP,	TMessage,JMButtonUpUpdate)
         END_MESSAGE_MAP(TForm)
 };
 

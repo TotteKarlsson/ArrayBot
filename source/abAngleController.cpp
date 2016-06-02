@@ -34,23 +34,45 @@ void AngleController::enableJoyStick(JoyStick* js)
     }
 
     mJoyStick = js;
-
-   if(mMotor)
+	if(mName == "COVERSLIP ANGLE CONTROLLER")
     {
-        mJoyStick->getButton(1).assignMotor(mMotor);
-        mJoyStick->getButton(3).assignMotor(mMotor);
+        if(mMotor)
+        {
+            mJoyStick->getPOVButton(1).assignMotor(mMotor);
+            mJoyStick->getPOVButton(3).assignMotor(mMotor);
 
-        mJoyStick->getButton(1).setReverse();
-        mJoyStick->getButton(3).setForward();
+            mJoyStick->getPOVButton(1).setReverse();
+            mJoyStick->getPOVButton(3).setForward();
 
-        mJoyStick->getButton(1).enable();
-        mJoyStick->getButton(3).enable();
+            mJoyStick->getPOVButton(1).enable();
+            mJoyStick->getPOVButton(3).enable();
+        }
+        else
+        {
+            mJoyStick->getPOVButton(1).disable();
+            mJoyStick->getPOVButton(3).disable();
+        }
     }
-    else
+    else if(mName == "CAMERA ANGLE CONTROLLER")
     {
-        mJoyStick->getButton(1).disable();
-        mJoyStick->getButton(3).disable();
+        if(mMotor)
+        {
+            mJoyStick->getButton(1).assignMotor(mMotor);
+            mJoyStick->getButton(3).assignMotor(mMotor);
+
+            mJoyStick->getButton(1).setReverse();
+            mJoyStick->getButton(3).setForward();
+
+            mJoyStick->getButton(1).enable();
+            mJoyStick->getButton(3).enable();
+        }
+        else
+        {
+            mJoyStick->getButton(1).disable();
+            mJoyStick->getButton(3).disable();
+        }
     }
+
     mJoyStick->enable();
 }
 

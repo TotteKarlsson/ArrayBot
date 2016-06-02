@@ -61,7 +61,6 @@ void JoyStickButton::down()
 
 void JoyStickButton::up()
 {
-
     Log(lDebug3) << "JSButton Up.";
     if(!mMotor || !mIsEnabled)
     {

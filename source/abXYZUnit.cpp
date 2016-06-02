@@ -194,46 +194,93 @@ void XYZUnit::enableJoyStick(JoyStick* js)
 
     mJoyStick = js;
 
-    if(mXMotor)
+    if(mName == "COVERSLIP UNIT")
     {
-        mJoyStick->getXAxis().assignMotor(mXMotor);
-        mJoyStick->getXAxis().setMaxVelocity(mXMotor->getJogVelocity());
-        mJoyStick->getXAxis().setAcceleration(mXMotor->getJogAcceleration());
-        mJoyStick->getXAxis().enable();
+        if(mXMotor)
+        {
+            mJoyStick->getX1Axis().assignMotor(mXMotor);
+            mJoyStick->getX1Axis().setMaxVelocity(mXMotor->getJogVelocity());
+            mJoyStick->getX1Axis().setAcceleration(mXMotor->getJogAcceleration());
+            mJoyStick->getX1Axis().enable();
+        }
+        else
+        {
+            mJoyStick->getX1Axis().disable();
+        }
+
+        if(mYMotor)
+        {
+            mJoyStick->getY1Axis().assignMotor(mYMotor);
+            mJoyStick->getY1Axis().setMaxVelocity(mYMotor->getJogVelocity());
+            mJoyStick->getY1Axis().setAcceleration(mYMotor->getJogAcceleration());
+            mJoyStick->getY1Axis().enable();
+        }
+        else
+        {
+            mJoyStick->getY1Axis().disable();
+        }
+
+        if(mZMotor)
+        {
+            mJoyStick->getPOVButton(2).assignMotor(mZMotor);
+            mJoyStick->getPOVButton(4).assignMotor(mZMotor);
+
+            mJoyStick->getPOVButton(2).setReverse();
+            mJoyStick->getPOVButton(4).setForward();
+
+            mJoyStick->getPOVButton(2).enable();
+            mJoyStick->getPOVButton(4).enable();
+        }
+        else
+        {
+            mJoyStick->getPOVButton(2).disable();
+            mJoyStick->getPOVButton(4).disable();
+        }
     }
-    else
+    else if(mName == "WHISKER UNIT")
     {
-    	mJoyStick->getXAxis().disable();
+        if(mXMotor)
+        {
+            mJoyStick->getX2Axis().assignMotor(mXMotor);
+            mJoyStick->getX2Axis().setMaxVelocity(mXMotor->getJogVelocity());
+            mJoyStick->getX2Axis().setAcceleration(mXMotor->getJogAcceleration());
+            mJoyStick->getX2Axis().enable();
+        }
+        else
+        {
+            mJoyStick->getX2Axis().disable();
+        }
+
+        if(mYMotor)
+        {
+            mJoyStick->getY2Axis().assignMotor(mYMotor);
+            mJoyStick->getY2Axis().setMaxVelocity(mYMotor->getJogVelocity());
+            mJoyStick->getY2Axis().setAcceleration(mYMotor->getJogAcceleration());
+            mJoyStick->getY2Axis().enable();
+        }
+        else
+        {
+            mJoyStick->getY2Axis().disable();
+        }
+
+        if(mZMotor)
+        {
+            mJoyStick->getButton(2).assignMotor(mZMotor);
+            mJoyStick->getButton(4).assignMotor(mZMotor);
+
+            mJoyStick->getButton(2).setReverse();
+            mJoyStick->getButton(4).setForward();
+
+            mJoyStick->getButton(2).enable();
+            mJoyStick->getButton(4).enable();
+        }
+        else
+        {
+            mJoyStick->getButton(2).disable();
+            mJoyStick->getButton(4).disable();
+        }
     }
 
-    if(mYMotor)
-    {
-        mJoyStick->getYAxis().assignMotor(mYMotor);
-        mJoyStick->getYAxis().setMaxVelocity(mYMotor->getJogVelocity());
-        mJoyStick->getYAxis().setAcceleration(mYMotor->getJogAcceleration());
-        mJoyStick->getYAxis().enable();
-    }
-    else
-    {
-    	mJoyStick->getYAxis().disable();
-    }
-
-    if(mZMotor)
-    {
-        mJoyStick->getButton(2).assignMotor(mZMotor);
-        mJoyStick->getButton(4).assignMotor(mZMotor);
-
-        mJoyStick->getButton(2).setReverse();
-        mJoyStick->getButton(4).setForward();
-
-        mJoyStick->getButton(2).enable();
-        mJoyStick->getButton(4).enable();
-    }
-    else
-    {
-        mJoyStick->getButton(2).disable();
-        mJoyStick->getButton(4).disable();
-    }
     mJoyStick->enable();
 }
 

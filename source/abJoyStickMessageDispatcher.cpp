@@ -15,7 +15,7 @@ mEnabled(false)
 {
     mJoyStickID = JOYSTICKID1; //Support only one for now
 
-    mUpdateStateTimer.setInterval(20);
+    mUpdateStateTimer.setInterval(30);
 	mUpdateStateTimer.OnTimerC = refresh;
     readCapabilities();
 
@@ -25,6 +25,9 @@ mEnabled(false)
     	mButtons.push_back(JoyStickButtonStateEventDispatcher());
     }
 }
+
+JoyStickMessageDispatcher::~JoyStickMessageDispatcher()
+{}
 
 bool JoyStickMessageDispatcher::isEnabled()
 {
@@ -211,33 +214,33 @@ void JoyStickMessageDispatcher::refresh()
         //Emply new state
         switch(mJoyInfo.dwPOV)
         {
-        	case 0:
+        	case pvUp:
             	if(mPOV.mUpButtonEvents.first)
                 {
             		mPOV.mUpButtonEvents.first();
                 }
 			break;
 
-        	case 9000:
+        	case pvRight:
             	if(mPOV.mRightButtonEvents.first)
                 {
             		mPOV.mRightButtonEvents.first();
                 }
 			break;
 
-        	case 18000:
+        	case pvDown:
             	if(mPOV.mDownButtonEvents.first)
                 {
             		mPOV.mDownButtonEvents.first();
                 }
 			break;
-        	case 27000:
+        	case pvLeft:
             	if(mPOV.mLeftButtonEvents.first)
                 {
             		mPOV.mLeftButtonEvents.first();
                 }
 			break;
-            case 65535:
+            case pvNotEngaged:
 	           	Log(lInfo) <<"POV not engaged anymore.";
             break;
             default:

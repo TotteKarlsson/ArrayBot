@@ -30,7 +30,7 @@ class AB_CORE JoyStickAxis : public ABObject
 
                             //This function is called by the UI
                             //as joystick messages are flowing in
-		void 				Move(double newPosition);
+		void 				Move(int joyPosition);
         void				setSenseOfDirection(int sign);
 
     protected:

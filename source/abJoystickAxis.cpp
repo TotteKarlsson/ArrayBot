@@ -83,7 +83,7 @@ double JoyStickAxis::getCurrentVelocity()
 	return mLastSetVelocity;
 }
 
-void JoyStickAxis::Move(double newPosition)
+void JoyStickAxis::Move(int newPosition)
 {
 	if(!mMotor || !isEnabled())
     {

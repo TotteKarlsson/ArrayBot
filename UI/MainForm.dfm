@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
-  Caption = 'ArrayBot Version 0.1'
+  Caption = 'ArrayBot Version 0.5.3'
   ClientHeight = 697
   ClientWidth = 1262
   Color = clBtnFace
@@ -153,16 +153,7 @@ object Main: TMain
             Width = 100
             Height = 75
             GroupIndex = 10
-            Caption = 'Coverslip'
-            OnClick = JSControlClick
-          end
-          object mJSWhiskerBtn: TSpeedButton
-            Left = 123
-            Top = 32
-            Width = 100
-            Height = 75
-            GroupIndex = 10
-            Caption = 'Whisker'
+            Caption = 'Enable'
             OnClick = JSControlClick
           end
           object mJSNoneBtn: TSpeedButton
@@ -512,10 +503,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

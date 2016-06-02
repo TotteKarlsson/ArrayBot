@@ -26,7 +26,7 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
 {
 	public:
                                         JoyStickMessageDispatcher(int nrOfButtons);
-					                    ~JoyStickMessageDispatcher(){}
+					                    ~JoyStickMessageDispatcher();
 			void				        setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
 			void				        setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
 			void				        setAxisEvent(int axis, JoyStickAxisEvent move);

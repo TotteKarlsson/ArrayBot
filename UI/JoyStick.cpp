@@ -8,74 +8,74 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::JMXYMove(TMessage &msg)
-{
-	if(!mAB.getJoyStick().isEnabled())
-    {
-    	return;
-    }
-
-    JoyStickAxis& x = mAB.getJoyStick().getXAxis();
-    JoyStickAxis& y = mAB.getJoyStick().getYAxis();
-
-    x.Move(msg.LParamLo);
-    y.Move(msg.LParamHi);
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::JMZMove(TMessage &msg)
-{
-	if(!mAB.getJoyStick().isEnabled())
-    {
-    	return;
-    }
-}
-
-void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
-{
-    if(msg.WParam & JOY_BUTTON1CHG)
-    {
-    	mAB.getJoyStick().getButton(1).up();
-    }
-
-    if(msg.WParam & JOY_BUTTON2CHG)
-    {
-    	mAB.getJoyStick().getButton(2).up();
-    }
-
-    if(msg.WParam & JOY_BUTTON3CHG)
-    {
-    	mAB.getJoyStick().getButton(3).up();
-    }
-
-    if(msg.WParam & JOY_BUTTON4CHG)
-    {
-    	mAB.getJoyStick().getButton(4).up();
-    }
-}
-
-void __fastcall TMain::JMButtonDownUpdate(TMessage &msg)
-{
-    if(msg.WParam & JOY_BUTTON1CHG)
-    {
-    	mAB.getJoyStick().getButton(1).down();
-    }
-
- 	if(msg.WParam & JOY_BUTTON2CHG)
-    {
-    	mAB.getJoyStick().getButton(2).down();
-    }
-
-	if(msg.WParam & JOY_BUTTON3CHG)
-    {
-    	mAB.getJoyStick().getButton(3).down();
-    }
-
-    if(msg.WParam & JOY_BUTTON4CHG)
-    {
-    	mAB.getJoyStick().getButton(4).down();
-    }
-}
+//void __fastcall TMain::JMXYMove(TMessage &msg)
+//{
+//	if(!mAB.getJoyStick().isEnabled())
+//    {
+//    	return;
+//    }
+//
+//    JoyStickAxis& x = mAB.getJoyStick().getXAxis();
+//    JoyStickAxis& y = mAB.getJoyStick().getYAxis();
+//
+//    x.Move(msg.LParamLo);
+//    y.Move(msg.LParamHi);
+//}
+//
+////---------------------------------------------------------------------------
+//void __fastcall TMain::JMZMove(TMessage &msg)
+//{
+//	if(!mAB.getJoyStick().isEnabled())
+//    {
+//    	return;
+//    }
+//}
+//
+//void __fastcall TMain::JMButtonUpUpdate(TMessage &msg)
+//{
+//    if(msg.WParam & JOY_BUTTON1CHG)
+//    {
+//    	mAB.getJoyStick().getButton(1).up();
+//    }
+//
+//    if(msg.WParam & JOY_BUTTON2CHG)
+//    {
+//    	mAB.getJoyStick().getButton(2).up();
+//    }
+//
+//    if(msg.WParam & JOY_BUTTON3CHG)
+//    {
+//    	mAB.getJoyStick().getButton(3).up();
+//    }
+//
+//    if(msg.WParam & JOY_BUTTON4CHG)
+//    {
+//    	mAB.getJoyStick().getButton(4).up();
+//    }
+//}
+//
+//void __fastcall TMain::JMButtonDownUpdate(TMessage &msg)
+//{
+//    if(msg.WParam & JOY_BUTTON1CHG)
+//    {
+//    	mAB.getJoyStick().getButton(1).down();
+//    }
+//
+// 	if(msg.WParam & JOY_BUTTON2CHG)
+//    {
+//    	mAB.getJoyStick().getButton(2).down();
+//    }
+//
+//	if(msg.WParam & JOY_BUTTON3CHG)
+//    {
+//    	mAB.getJoyStick().getButton(3).down();
+//    }
+//
+//    if(msg.WParam & JOY_BUTTON4CHG)
+//    {
+//    	mAB.getJoyStick().getButton(4).down();
+//    }
+//}
 
 void __fastcall TMain::AddJsSettingBtnClick(TObject *Sender)
 {

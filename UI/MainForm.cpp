@@ -41,7 +41,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
-    mAB.assignWindowHandle((int) Handle);
+//    mAB.assignWindowHandle((int) Handle);
 }
 
 __fastcall TMain::~TMain()
@@ -65,7 +65,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 //    mMoveAngleE->assignExternalProperty(&(mAB.getCombinedMove().mAngle), true);
 //    mCSAngleE->assignExternalProperty(&mAB.getCoverSlipAngleController().mAngle, true);
 
-    mJSNoneBtn->Down 		= true;
+    mJSNoneBtn->Down	= true;
 	mJSSpeedMediumBtn->Click();
 
     //JoyStick Settings
@@ -90,8 +90,8 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 	TMotorFrame2->assignMotor(mAB.getCameraAngleController().getMotor());
 
     //JoyStick stuff.....
-    mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getXAxis().getMaxVelocity());
-    mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getXAxis().getAcceleration());
+    mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getX1Axis().getMaxVelocity());
+    mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getX1Axis().getAcceleration());
 
     if(mAB.getCoverSlipUnit().getZMotor())
     {
@@ -99,7 +99,6 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
     	mZJogAccelerationJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
     }
 
-	mAB.getJoyStick().connect();
     InitCloseBtn->Action = ShutDownA;
 }
 
@@ -139,22 +138,6 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
     }
 
 	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
-
-//    if(e == mMoveVelocityVerticalE || e == mMoveAngleE)
-//    {
-//    	//Update horiz value using the angle
-//        double tanTheta = tan(toRadians(mMoveAngleE->getValue()));
-//        if(tanTheta != 0.0)
-//        {
-//        	mMoveVelHorizE->setValue(mMoveVelocityVerticalE->getValue()/tanTheta);
-//        }
-//        else
-//        {
-//			mMoveVelHorizE->setValue(0.0);
-//        }
-//    }
-
-//    mMoveAngleE->Update();
 }
 
 void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
@@ -200,79 +183,6 @@ void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
     zCS->moveAbsolute(newCSZPos);
     zW->moveAbsolute(newWZPos);
 }
-
-//OLD LIFT CODE
-//    APTMotor* yCS 	= mAB.getCoverSlipUnit().getYMotor();
-//	APTMotor* zCS 	= mAB.getCoverSlipUnit().getZMotor();
-//
-//    APTMotor* yW 	= mAB.getWhiskerUnit().getYMotor();
-//	APTMotor* zW 	= mAB.getWhiskerUnit().getZMotor();
-//
-//	if(!yCS || !zCS || !yW || !zW)
-//    {
-//    	Log(lError) << "Can't carry out this move.. at least one motor is absent";
-//        return;
-//    }
-//
-//    double vertVel 	= mMoveVelocityVerticalE->getValue();
-//    double horizVel = mMoveVelHorizE->getValue();
-//    double acc 		= mMoveAccelerationE->getValue();
-//
-//	//Update motors with current parameters and start the move
-//    zCS->setJogVelocity(vertVel);
-//    zCS->setJogAcceleration(acc);
-//
-//    zW->setJogVelocity(vertVel);
-//    zW->setJogAcceleration(acc);
-//
-//    double tanTheta = tan(toRadians(mMoveAngleE->getValue()));
-//    yCS->setJogVelocity(horizVel);
-//    yCS->setJogAcceleration(acc / tanTheta);
-//
-//    yW->setJogVelocity(horizVel);
-//    yW->setJogAcceleration(acc / tanTheta);
-//
-//    //get current positions and carry out some moveTo's
-//    double yPos = yCS->getPosition();
-//    double zPos = zCS->getPosition();
-//
-//	double newCSZPos = zPos + mVerticalMoveDistanceE->getValue();
-//	double newCSYPos = (tanTheta != 0) ?
-//    					yPos + (newCSZPos - zPos) / tanTheta : yPos;
-//
-//	//Calculate for the whisker
-//    yPos = yW->getPosition();
-//    zPos = zW->getPosition();
-//
-//	double newWZPos = zPos + mVerticalMoveDistanceE->getValue();
-//	double newWYPos = (tanTheta != 0) ?
-//    					(yPos + (newWZPos - zPos) / tanTheta) : yPos;
-//
-//    Log(lInfo) << "Moving CS Vertical to: "	<<newCSZPos;
-//    Log(lInfo) << "Moving CS Horiz to: "	<<newCSYPos;
-//
-//    Log(lInfo) << "Moving W Vertical to: "	<<newWZPos;
-//    Log(lInfo) << "Moving W Horiz to: "		<<newWYPos;
-//
-//
-//    if(newCSYPos >=150 || newWYPos >=150 )
-//    {
-//    	Log(lError) << "New CoverSlip or Whisker Y position to big: "<<newCSYPos;
-//        return;
-//    }
-//
-//    if(newCSZPos >=25 || newWZPos >=25)
-//    {
-//    	Log(lError) << "New CoverSlip or Whisker Z position to big: "<<newWYPos;
-//        return;
-//    }
-//
-//	//Initiate the move
-//    yCS->moveAbsolute(newCSYPos);
-//    yW->moveAbsolute(newWYPos);
-//
-//    zCS->moveAbsolute(newCSZPos);
-//    zW->moveAbsolute(newWZPos);
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::Button2Click(TObject *Sender)
@@ -321,33 +231,6 @@ void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState 
     }
 }
 
-void __fastcall TMain::LiftAngleButtonUpRightClick(TObject *Sender)
-{
-// 	TRzSpinButtons* btn = dynamic_cast<TRzSpinButtons*>(Sender);
-//    if(btn == LiftAngleButton)
-//    {
-//	    mMoveAngleE->setValue(mMoveAngleE->getValue() + 1);
-//    }
-//    else if (btn == CSAngleButton)
-//    {
-//		mCSAngleE->setValue(mCSAngleE->getValue() + 1);
-//    }
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TMain::LiftAngleButtonDownLeftClick(TObject *Sender)
-{
-// 	TRzSpinButtons* btn = dynamic_cast<TRzSpinButtons*>(Sender);
-//    if(btn == LiftAngleButton)
-//    {
-//	    mMoveAngleE->setValue(mMoveAngleE->getValue() + 1);
-//    }
-//    else if (btn == CSAngleButton)
-//    {
-//		mCSAngleE->setValue(mCSAngleE->getValue() + 1);
-//    }
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::JSControlClick(TObject *Sender)
 {
@@ -355,11 +238,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
     TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
     if(btn == mJSCSBtn)
     {
-		mAB.enableCoverSlipJoyStick();
-    }
-    else if(btn == mJSWhiskerBtn)
-    {
-	 	mAB.enableWhiskerJoyStick();
+		mAB.enableJoyStick();
     }
     else
     {
