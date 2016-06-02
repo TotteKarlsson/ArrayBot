@@ -39,7 +39,7 @@ void TForm1::ShowDeviceInfo(void)
     // 3rd arg = how often MM_JOYMOVE events happen
 	if(Connected)
   	{
-    	joySetCapture(Handle,JoystickID, 50*JoyCaps.wPeriodMin,FALSE);
+    	joySetCapture(Handle,JoystickID, 20*JoyCaps.wPeriodMin,FALSE);
   	}
 
     // calculate ratios to divide down the joystick value to a
@@ -76,14 +76,14 @@ void __fastcall TForm1::JMMove(TMessage &msg)
     JoystickYPosition->Caption = "Y Position = " + IntToStr((int)Position.y);
     ImageList1->Draw(Canvas, ScreenX,ScreenY, 0);
 
-    mXPos.push_back(Position.x);
-    MLog() << "Test: "<<Position.X;
-    int sx = mXPos.size();
-    if(sx >= 100)
-    {
-    	mXPos.pop_front();
-
-    }
+//    mXPos.push_back(Position.x);
+//    MLog() << "Test: "<<Position.X;
+//    int sx = mXPos.size();
+//    if(sx >= 100)
+//    {
+//    	mXPos.pop_front();
+//
+//    }
 
 //    mZPos.push_back(pos);
 //    int sz = mZPos.size();
@@ -142,10 +142,10 @@ void __fastcall TForm1::FormDestroy(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Timer1Timer(TObject *Sender)
 {
-	for (int j=0; j< ControlCount;j++)
-    {
-  		Controls[j]->Refresh();
-    }
+//	for (int j=0; j< ControlCount;j++)
+//    {
+//  		Controls[j]->Refresh();
+//    }
 }
 
 //---------------------------------------------------------------------------
@@ -193,15 +193,15 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 
 void __fastcall TForm1::Timer2Timer(TObject *Sender)
 {
-	//Plot Z positions
-    Series1->Clear();
-    Series2->Clear();
-    for(int i = 0; i < mXPos.size(); i++)
-    {
-	    //Series1->AddXY(i, mZPos[i]);
-	    Series2->AddXY(i, mXPos[i]);
-//	    Series3->AddXY(i, mYPos[i]);
-    }
+//	//Plot Z positions
+//    Series1->Clear();
+//    Series2->Clear();
+//    for(int i = 0; i < mXPos.size(); i++)
+//    {
+//	    //Series1->AddXY(i, mZPos[i]);
+//	    Series2->AddXY(i, mXPos[i]);
+////	    Series3->AddXY(i, mYPos[i]);
+//    }
 }
 
 //---------------------------------------------------------------------------

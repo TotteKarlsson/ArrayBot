@@ -216,7 +216,6 @@ object Form1: TForm1
     View3D = False
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 279
     ColorPaletteIndex = 13
     object Series1: TFastLineSeries
       Marks.Arrow.Visible = True
@@ -270,7 +269,6 @@ object Form1: TForm1
     Lines.Strings = (
       'infoMemo')
     TabOrder = 2
-    ExplicitTop = 448
   end
   object ImageList1: TImageList
     DrawingStyle = dsTransparent
@@ -279,7 +277,7 @@ object Form1: TForm1
     Left = 280
     Top = 88
     Bitmap = {
-      494C01010100080024004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100080028004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000300100004C00000001002000000000000069
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3270,12 +3268,13 @@ object Form1: TForm1
       000000000000}
   end
   object Timer1: TTimer
-    Interval = 10
+    Interval = 50
     OnTimer = Timer1Timer
     Left = 248
     Top = 88
   end
   object Timer2: TTimer
+    Enabled = False
     Interval = 150
     OnTimer = Timer2Timer
     Left = 160

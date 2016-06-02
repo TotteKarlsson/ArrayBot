@@ -96,8 +96,8 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="abJoyStickEx.cpp">
-            <DependentOn>abJoyStickEx.h</DependentOn>
+        <CppCompile Include="abJoyStickMessageDispatcher.cpp">
+            <DependentOn>abJoyStickMessageDispatcher.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
         <CppCompile Include="Project1.cpp">

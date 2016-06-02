@@ -1,5 +1,5 @@
 #pragma hdrstop
-#include "abJoyStickEx.h"
+#include "abJoyStickMessageDispatcher.h"
 #include <directinput.hpp>
 #include <bitset>
 #include "mtkLogger.h"
@@ -9,7 +9,7 @@ using namespace mtk;
 //---------------------------------------------------------------------------
 using namespace std;
 
-JoyStickEx::JoyStickEx()
+JoyStickMessageDispatcher::JoyStickMessageDispatcher()
 :
 mNrOfButtons(14),
 mMoveResolution(1000)
@@ -27,22 +27,22 @@ mMoveResolution(1000)
     }
 }
 
-bool JoyStickEx::isEnabled()
+bool JoyStickMessageDispatcher::isEnabled()
 {
 	return mUpdateStateTimer.isRunning();
 }
 
-bool JoyStickEx::enable()
+bool JoyStickMessageDispatcher::enable()
 {
 	return mUpdateStateTimer.start();
 }
 
-void JoyStickEx::disable()
+void JoyStickMessageDispatcher::disable()
 {
 	mUpdateStateTimer.stop();
 }
 
-void JoyStickEx::readCapabilities()
+void JoyStickMessageDispatcher::readCapabilities()
 {
     if (mJoyStickID == -1)
     {
@@ -56,7 +56,7 @@ void JoyStickEx::readCapabilities()
     }
 }
 
-void JoyStickEx::setAxisEvent(int axis, JoyStickAxisEvent move)
+void JoyStickMessageDispatcher::setAxisEvent(int axis, JoyStickAxisEvent move)
 {
     switch(axis)
     {
@@ -80,13 +80,13 @@ void JoyStickEx::setAxisEvent(int axis, JoyStickAxisEvent move)
 
 }
 
-void JoyStickEx::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
+void JoyStickMessageDispatcher::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
 {
 	mButtons[btnNr  - 1].mEvents = ButtonEvents(up, down);
 }
 
 //---------------------------------------------------------------------------
-void JoyStickEx::refresh()
+void JoyStickMessageDispatcher::refresh()
 {
     if (mJoyStickID == -1)
     {

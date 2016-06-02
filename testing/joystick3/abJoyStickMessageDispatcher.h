@@ -1,5 +1,5 @@
-#ifndef abJoyStickExH
-#define abJoyStickExH
+#ifndef abJoyStickMessageDispatcherH
+#define abJoyStickMessageDispatcherH
 #include <dinput.h>
 #include <windows.h>
 #include <mmsystem.h>
@@ -35,11 +35,11 @@ class JoyStickAxis
     	JoyStickAxisEvent 	mEvent;
 };
 
-class JoyStickEx
+class JoyStickMessageDispatcher
 {
 	public:
-                                JoyStickEx();
-					            ~JoyStickEx(){}
+                                JoyStickMessageDispatcher();
+					            ~JoyStickMessageDispatcher(){}
 			void				setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
 			void				setAxisEvent(int axis, JoyStickAxisEvent move);
 

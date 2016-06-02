@@ -5,7 +5,7 @@
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
 #include <Vcl.ExtCtrls.hpp>
-#include "abJoyStickEx.h"
+#include "abJoyStickMessageDispatcher.h"
 #include "mtkLogFileReader.h"
 //---------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ __published:	// IDE-managed Components
 
 
 	private:	// User declarations
-		JoyStickEx 			mJS;
+		JoyStickMessageDispatcher 			mJS;
         void 				onButton1Down();
         void 				onButton1Up();
         void 				onButton2Down();
