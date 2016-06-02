@@ -29,6 +29,10 @@ __published:	// IDE-managed Components
 	TButton *Button12;
 	TButton *Button13;
 	TButton *Button14;
+	TButton *Button15;
+	TButton *Button16;
+	TButton *Button17;
+	TButton *Button18;
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormShow(TObject *Sender);

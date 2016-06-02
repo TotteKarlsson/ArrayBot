@@ -29,128 +29,160 @@ object Main: TMain
     TabOrder = 0
   end
   object Button1: TButton
-    Left = 24
-    Top = 200
+    Left = 370
+    Top = 76
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 1
   end
   object Button2: TButton
-    Left = 71
-    Top = 200
+    Left = 431
+    Top = 136
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 2
   end
   object Button3: TButton
-    Left = 118
-    Top = 200
+    Left = 496
+    Top = 76
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 3
   end
   object Button4: TButton
-    Left = 165
-    Top = 200
+    Left = 431
+    Top = 16
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 4
   end
   object Button5: TButton
-    Left = 213
-    Top = 200
+    Left = 115
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 5
   end
   object Button6: TButton
-    Left = 260
-    Top = 200
+    Left = 162
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 6
   end
   object Button7: TButton
-    Left = 307
-    Top = 200
+    Left = 209
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 7
   end
   object Button8: TButton
-    Left = 354
-    Top = 200
+    Left = 256
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 8
   end
   object Button9: TButton
-    Left = 402
-    Top = 200
+    Left = 304
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 9
   end
   object Button10: TButton
-    Left = 449
-    Top = 200
+    Left = 351
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 10
   end
   object Button11: TButton
-    Left = 496
-    Top = 200
+    Left = 398
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 11
   end
   object Button12: TButton
-    Left = 543
-    Top = 200
+    Left = 445
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 12
   end
   object Button13: TButton
-    Left = 591
-    Top = 200
+    Left = 493
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 13
   end
   object Button14: TButton
-    Left = 637
-    Top = 200
+    Left = 539
+    Top = 264
     Width = 40
     Height = 40
     Caption = 'Up'
     TabOrder = 14
   end
+  object Button15: TButton
+    Left = 130
+    Top = 76
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 15
+  end
+  object Button16: TButton
+    Left = 191
+    Top = 16
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 16
+  end
+  object Button17: TButton
+    Left = 256
+    Top = 76
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 17
+  end
+  object Button18: TButton
+    Left = 191
+    Top = 136
+    Width = 40
+    Height = 40
+    Caption = 'Up'
+    TabOrder = 18
+  end
   object Timer1: TTimer
     Interval = 50
     OnTimer = Timer1Timer
-    Left = 184
-    Top = 64
+    Left = 272
+    Top = 160
   end
   object ShutDownTimer: TTimer
     Enabled = False
     Interval = 10
     OnTimer = ShutDownTimerTimer
-    Left = 440
-    Top = 80
+    Left = 608
+    Top = 56
   end
 end

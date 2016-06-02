@@ -9,10 +9,11 @@ using namespace mtk;
 //---------------------------------------------------------------------------
 using namespace std;
 
-JoyStickMessageDispatcher::JoyStickMessageDispatcher()
+JoyStickMessageDispatcher::JoyStickMessageDispatcher(int nrOfButtons)
 :
-mNrOfButtons(14),
-mMoveResolution(1000)
+mNrOfButtons(nrOfButtons),
+mMoveResolution(1000),
+mEnabled(false)
 {
     mJoyStickID = JOYSTICKID1; //Support only one for now
 
@@ -23,7 +24,7 @@ mMoveResolution(1000)
     //Setup buttons
     for(int i = 0; i < mNrOfButtons; i++)
     {
-    	mButtons.push_back(Button());
+    	mButtons.push_back(JoyStickButtonStateEventDispatcher());
     }
 }
 
@@ -52,32 +53,32 @@ void JoyStickMessageDispatcher::readCapabilities()
     int res = joyGetDevCaps(mJoyStickID, &mCapabilities, sizeof(JOYCAPS));
     if(res != JOYERR_NOERROR)
     {
+    	mEnabled = false;
 		throw("Failed getting joystick capablities");
     }
+   	mEnabled = true;
 }
 
-void JoyStickMessageDispatcher::setAxisEvent(int axis, JoyStickAxisEvent move)
+void JoyStickMessageDispatcher::setAxisEvent(int axis, JoyStickAxisEvent event)
 {
     switch(axis)
     {
     	case 1:
-			mX1Axis.mEvent = move;
+			mX1Axis.mEvent = event;
 		break;
 
         case 2:
-			mY1Axis.mEvent = move;
+			mY1Axis.mEvent = event;
 		break;
 
     	case 3:
-			mX2Axis.mEvent = move;
+			mX2Axis.mEvent = event;
 		break;
 
         case 4:
-			mY2Axis.mEvent = move;
+			mY2Axis.mEvent = event;
 		break;
-
     }
-
 }
 
 void JoyStickMessageDispatcher::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
@@ -98,6 +99,8 @@ void JoyStickMessageDispatcher::refresh()
     int res = joyGetPosEx(mJoyStickID, &mJoyInfo);
     if(res != JOYERR_NOERROR)
     {
+   	    mJoyStickID = -1;
+    	mEnabled = false;
 		throw("Failed getting joystick status");
     }
 
@@ -134,7 +137,7 @@ void JoyStickMessageDispatcher::refresh()
         mX2Axis.mPosition = mJoyInfo.dwZpos;
     }
 
-    //Check Y2 Axis (
+    //Check Y2 Axis
     if(abs((int) (mY2Axis.mPosition - mJoyInfo.dwRpos)) > mMoveResolution)
     {
     	if(mY2Axis.mEvent)

@@ -38,9 +38,9 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib</AllPackageLibs>
         <Multithreaded>true</Multithreaded>
-        <ILINK_LibraryPath>P:\ArrayBot\testing\joystick3\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\source\;P:\ArrayBot\testing\joystick3\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>P:\ArrayBot\testing\joystick3\;$(IncludePath)</IncludePath>
+        <IncludePath>..\..\source\;P:\ArrayBot\testing\joystick3\;$(IncludePath)</IncludePath>
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <ProjectType>CppVCLApplication</ProjectType>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
@@ -96,6 +96,10 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="..\..\source\abJoyStickAxisStateEventDispatcher.cpp">
+            <DependentOn>..\..\source\abJoyStickAxisStateEventDispatcher.h</DependentOn>
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abJoyStickMessageDispatcher.cpp">
             <DependentOn>abJoyStickMessageDispatcher.h</DependentOn>
             <BuildOrder>3</BuildOrder>

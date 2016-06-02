@@ -6,12 +6,12 @@
 //---------------------------------------------------------------------------
 
 class APTMotor;
-///The joystick Axis class encapsulate needed functionality in the ArrayBot API
-///In short, a joystick axis have an associated motor to control, as well as a
-///function that is called from the UI controlling the motor
+///The joystick button class encapsulate needed functionality in the ArrayBot API for
+///what happens when a JS button is pressed.
+///A joystick button have an associated motor to control, where
+///a pressed button basically means 'go'. and depressed button stops the motor.
 class AB_CORE JoyStickButton : public ABObject
 {
-
     public:
 							JoyStickButton();
 							~JoyStickButton();

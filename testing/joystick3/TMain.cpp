@@ -18,7 +18,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 :
 TForm(Owner),
 logMsgMethod(&logMsg),
-mLogFileReader(joinPath(".", gLogFileName), logMsgMethod)
+mLogFileReader(joinPath(".", gLogFileName), logMsgMethod),
+mJS(14)
 {
     //Associate functions with events
     mJS.setButtonEvents(1, onButton1Down,  onButton1Up    );
@@ -30,11 +31,11 @@ mLogFileReader(joinPath(".", gLogFileName), logMsgMethod)
     mJS.setButtonEvents(7, onButton7Down,  onButton7Up    );
     mJS.setButtonEvents(8, onButton8Down,  onButton8Up    );
     mJS.setButtonEvents(9, onButton9Down,  onButton9Up    );
-    mJS.setButtonEvents(10,onButton10Down, onButton10Up		);
-    mJS.setButtonEvents(11,onButton11Down, onButton11Up		);
-    mJS.setButtonEvents(12,onButton12Down, onButton12Up		);
-    mJS.setButtonEvents(13,onButton13Down, onButton13Up		);
-    mJS.setButtonEvents(14,onButton14Down, onButton14Up		);
+    mJS.setButtonEvents(10,onButton10Down, onButton10Up	  );
+    mJS.setButtonEvents(11,onButton11Down, onButton11Up	  );
+    mJS.setButtonEvents(12,onButton12Down, onButton12Up	  );
+    mJS.setButtonEvents(13,onButton13Down, onButton13Up	  );
+    mJS.setButtonEvents(14,onButton14Down, onButton14Up	  );
 
 	mJS.setAxisEvent(1, onX1AxisMove);
 	mJS.setAxisEvent(2, onY1AxisMove);
