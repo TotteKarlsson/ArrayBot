@@ -61,21 +61,10 @@ void JoyStickMessageDispatcher::setAxisEvent(int axis, JoyStickAxisEvent event)
 {
     switch(axis)
     {
-    	case 1:
-			mX1Axis.mEvent = event;
-		break;
-
-        case 2:
-			mY1Axis.mEvent = event;
-		break;
-
-    	case 3:
-			mX2Axis.mEvent = event;
-		break;
-
-        case 4:
-			mY2Axis.mEvent = event;
-		break;
+    	case 1:	mX1Axis.mEvent = event;		break;
+        case 2:	mY1Axis.mEvent = event;		break;
+    	case 3:	mX2Axis.mEvent = event;		break;
+        case 4:	mY2Axis.mEvent = event;		break;
     }
 }
 
@@ -170,5 +159,12 @@ void JoyStickMessageDispatcher::refresh()
             mButtons[i].mButtonState = bsUp;
         }
     }
+
+    //Process POV event
+    if(mJoyInfo.dwPOV != mPOV.mPOVState)
+    {
+        Log(lDebug5) << "POV State changed";
+    }
+
 }
 

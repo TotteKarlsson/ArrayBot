@@ -1,9 +1,8 @@
 #ifndef abJoyStickMessageDispatcherH
 #define abJoyStickMessageDispatcherH
-#include "abExporter.h"
-#include "abABObject.h"
 #include "abJoyStickButtonStateEventDispatcher.h"
 #include "abJoyStickAxisStateEventDispatcher.h"
+#include "abJoyStickPOVStateEventDispatcher.h"
 
 #include <windows.h>
 #include <mmsystem.h>
@@ -15,6 +14,7 @@ using mtk::Timer;
 using std::deque;
 typedef deque<JoyStickButtonStateEventDispatcher> ButtonDeque;
 typedef JoyStickAxisStateEventDispatcher JSAxis;
+typedef JoyStickPOVStateEventDispatcher JSPOV; //!Point of view dispatcher
 
 
 /*!The JoyStickMessageDispatcher is tailor made for the ArrayBot. The dispatcher
@@ -52,6 +52,8 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
             JSAxis		        		mY1Axis;
             JSAxis		        		mX2Axis;
             JSAxis		        		mY2Axis;
+
+            JSPOV						mPOV;
 
             Timer				        mUpdateStateTimer;
 };

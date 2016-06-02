@@ -133,6 +133,9 @@
         <CppCompile Include="abDeviceManager.cpp">
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <None Include="abEnums.h">
+            <BuildOrder>35</BuildOrder>
+        </None>
         <CppCompile Include="abExceptions.cpp">
             <BuildOrder>9</BuildOrder>
         </CppCompile>
@@ -152,9 +155,15 @@
             <DependentOn>abJoyStickButton.h</DependentOn>
             <BuildOrder>14</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abJoyStickButtonStateEventDispatcher.cpp">
+            <BuildOrder>33</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abJoyStickMessageDispatcher.cpp">
             <DependentOn>abJoyStickMessageDispatcher.h</DependentOn>
             <BuildOrder>32</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abJoyStickPOVStateEventDispatcher.cpp">
+            <BuildOrder>34</BuildOrder>
         </CppCompile>
         <CppCompile Include="abJoyStickSetting.cpp">
             <DependentOn>abJoyStickSetting.h</DependentOn>
