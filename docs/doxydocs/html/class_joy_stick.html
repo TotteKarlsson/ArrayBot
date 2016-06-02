@@ -27,7 +27,7 @@
    <div id="projectname">ArrayBot
    &#160;<span id="projectnumber">0.5</span>
    </div>
-   <div id="projectbrief">Control Thorlab Devices using C++</div>
+   <div id="projectbrief">Robot Control of various Thorlab motors and Arduin using C++</div>
   </td>
  </tr>
  </tbody>
@@ -114,14 +114,14 @@ Collaboration diagram for JoyStick:</div>
 <div class="center"><img src="class_joy_stick__coll__graph.png" border="0" usemap="#_joy_stick_coll__map" alt="Collaboration graph"/></div>
 <map name="_joy_stick_coll__map" id="_joy_stick_coll__map">
 <area shape="rect" id="node2" href="class_a_b_object.html" title="ABObject" alt="" coords="30,261,109,288"/>
-<area shape="rect" id="node4" href="class_joy_stick_axis.html" title="JoyStickAxis" alt="" coords="1035,207,1133,233"/>
-<area shape="rect" id="node9" href="class_a_p_t_device.html" title="APTDevice" alt="" coords="303,76,388,103"/>
+<area shape="rect" id="node4" href="class_joy_stick_axis.html" title="The joystick Axis class encapsulate needed functionality in the ArrayBot API for movement of a motor..." alt="" coords="1035,207,1133,233"/>
+<area shape="rect" id="node9" href="class_a_p_t_device.html" title="APTDevice" alt="" coords="303,79,388,105"/>
 <area shape="rect" id="node16" href="struct_hardware_information.html" title="HardwareInformation" alt="" coords="276,295,415,321"/>
-<area shape="rect" id="node21" href="class_motor_message_processor.html" title="MotorMessageProcessor" alt="" coords="1001,525,1167,552"/>
-<area shape="rect" id="node26" href="class_motor_message_container.html" title="MotorMessageContainer" alt="" coords="264,497,427,524"/>
-<area shape="rect" id="node36" href="struct_motor_scaling_factors.html" title="MotorScalingFactors" alt="" coords="274,447,417,473"/>
-<area shape="rect" id="node40" href="class_joy_stick_button.html" title="JoyStickButton" alt="" coords="1029,296,1139,323"/>
-<area shape="rect" id="node7" href="class_a_p_t_motor.html" title="APTMotor" alt="" coords="671,385,751,412"/>
+<area shape="rect" id="node21" href="class_motor_message_processor.html" title="MotorMessageProcessor" alt="" coords="1001,533,1167,560"/>
+<area shape="rect" id="node26" href="class_motor_message_container.html" title="MotorMessageContainer" alt="" coords="264,500,427,527"/>
+<area shape="rect" id="node36" href="struct_motor_scaling_factors.html" title="Scaling factors are used to convert a motors position, velocity and accelertation expressed in device..." alt="" coords="274,449,417,476"/>
+<area shape="rect" id="node40" href="class_joy_stick_button.html" title="The joystick button class encapsulate needed functionality in the ArrayBot API for what happens when ..." alt="" coords="1029,399,1139,425"/>
+<area shape="rect" id="node7" href="class_a_p_t_motor.html" title="APTMotor" alt="" coords="671,399,751,425"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -205,6 +205,24 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>mJoyStickDriverCount</
 <tr class="memitem:ae7b4bff595ea934ba525e789915c44f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae7b4bff595ea934ba525e789915c44f4"></a>
 <a class="el" href="class_joy_stick_button.html">JoyStickButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mButton4</b></td></tr>
 <tr class="separator:ae7b4bff595ea934ba525e789915c44f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5f62e1241fca112c29b04f2ca90a240"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5f62e1241fca112c29b04f2ca90a240"></a>
+<a class="el" href="class_joy_stick_button.html">JoyStickButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mButton5</b></td></tr>
+<tr class="separator:ac5f62e1241fca112c29b04f2ca90a240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0da469f484db4f11220ae25c8ec76eee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0da469f484db4f11220ae25c8ec76eee"></a>
+<a class="el" href="class_joy_stick_button.html">JoyStickButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mButton6</b></td></tr>
+<tr class="separator:a0da469f484db4f11220ae25c8ec76eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a239b9480b4f4c2902aa17076977ff6d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a239b9480b4f4c2902aa17076977ff6d3"></a>
+<a class="el" href="class_joy_stick_button.html">JoyStickButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mButton7</b></td></tr>
+<tr class="separator:a239b9480b4f4c2902aa17076977ff6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e38818684262b298618a71f1f33f824"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e38818684262b298618a71f1f33f824"></a>
+<a class="el" href="class_joy_stick_button.html">JoyStickButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mButton8</b></td></tr>
+<tr class="separator:a5e38818684262b298618a71f1f33f824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e7e8ebd7124412c820be6c14086bbdb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e7e8ebd7124412c820be6c14086bbdb"></a>
+<a class="el" href="class_joy_stick_button.html">JoyStickButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mButton9</b></td></tr>
+<tr class="separator:a4e7e8ebd7124412c820be6c14086bbdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaddb5eebe5327d98a9548818db0a74c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaddb5eebe5327d98a9548818db0a74c"></a>
+<a class="el" href="class_joy_stick_button.html">JoyStickButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mButton10</b></td></tr>
+<tr class="separator:adaddb5eebe5327d98a9548818db0a74c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The joystick class encapsulate needed functionality in the <a class="el" href="class_array_bot.html">ArrayBot</a> API. </p>

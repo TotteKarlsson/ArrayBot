@@ -27,7 +27,7 @@
    <div id="projectname">ArrayBot
    &#160;<span id="projectnumber">0.5</span>
    </div>
-   <div id="projectbrief">Control Thorlab Devices using C++</div>
+   <div id="projectbrief">Robot Control of various Thorlab motors and Arduin using C++</div>
   </td>
  </tr>
  </tbody>
@@ -96,6 +96,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>The joystick button class encapsulate needed functionality in the <a class="el" href="class_array_bot.html">ArrayBot</a> API for what happens when a JS button is pressed.  
+ <a href="class_joy_stick_button.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ab_joy_stick_button_8h_source.html">abJoyStickButton.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for JoyStickButton:</div>
@@ -115,7 +118,7 @@ Collaboration diagram for JoyStickButton:</div>
 <area shape="rect" id="node13" href="struct_hardware_information.html" title="HardwareInformation" alt="" coords="276,184,415,211"/>
 <area shape="rect" id="node18" href="class_motor_message_processor.html" title="MotorMessageProcessor" alt="" coords="1001,387,1167,413"/>
 <area shape="rect" id="node23" href="class_motor_message_container.html" title="MotorMessageContainer" alt="" coords="264,463,427,489"/>
-<area shape="rect" id="node33" href="struct_motor_scaling_factors.html" title="MotorScalingFactors" alt="" coords="274,235,417,261"/>
+<area shape="rect" id="node33" href="struct_motor_scaling_factors.html" title="Scaling factors are used to convert a motors position, velocity and accelertation expressed in device..." alt="" coords="274,235,417,261"/>
 <area shape="rect" id="node4" href="class_a_p_t_motor.html" title="APTMotor" alt="" coords="671,291,751,317"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -157,9 +160,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsForward</b></td></
 <tr class="separator:ae24c682e011669c848decf61b8d951f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The joystick Axis class encapsulate needed functionality in the <a class="el" href="class_array_bot.html">ArrayBot</a> API In short, a joystick axis have an associated motor to control, as well as a function that is called from the UI controlling the motor </p>
+<div class="textblock"><p>The joystick button class encapsulate needed functionality in the <a class="el" href="class_array_bot.html">ArrayBot</a> API for what happens when a JS button is pressed. </p>
+<p>A joystick button have an associated motor to control, where a pressed button basically means 'go'. and depressed button stops the motor. </p>
 
-<p>Definition at line <a class="el" href="ab_joy_stick_button_8h_source.html#l00012">12</a> of file <a class="el" href="ab_joy_stick_button_8h_source.html">abJoyStickButton.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_joy_stick_button_8h_source.html#l00013">13</a> of file <a class="el" href="ab_joy_stick_button_8h_source.html">abJoyStickButton.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_joy_stick_button_8h_source.html">abJoyStickButton.h</a></li>
 <li>source/<a class="el" href="ab_joy_stick_button_8cpp_source.html">abJoyStickButton.cpp</a></li>

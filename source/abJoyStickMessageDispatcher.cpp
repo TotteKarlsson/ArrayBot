@@ -2,9 +2,10 @@
 #include "abJoyStickMessageDispatcher.h"
 #include <bitset>
 #include "mtkLogger.h"
-
 //---------------------------------------------------------------------------
+
 using namespace std;
+using namespace mtk;
 
 JoyStickMessageDispatcher::JoyStickMessageDispatcher(int nrOfButtons)
 :

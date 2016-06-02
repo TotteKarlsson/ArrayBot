@@ -1,5 +1,6 @@
 #ifndef abJoyStickButtonStateEventDispatcherH
 #define abJoyStickButtonStateEventDispatcherH
+#include "abABObject.h"
 #include <utility>
 
 using std::pair;
@@ -9,7 +10,7 @@ typedef void (__closure *JoyStickEvent)(); //Need to research this and make it p
 typedef pair<JoyStickEvent, JoyStickEvent> ButtonEvents;
 
 //Helper classes
-class JoyStickButtonStateEventDispatcher
+class JoyStickButtonStateEventDispatcher  : public ABObject
 {
 	public:
 				    	JoyStickButtonStateEventDispatcher() : mButtonState(bsUp){};

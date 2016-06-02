@@ -1,8 +1,10 @@
 #ifndef abJoyStickMessageDispatcherH
 #define abJoyStickMessageDispatcherH
+#include "abExporter.h"
+#include "abABObject.h"
 #include "abJoyStickButtonStateEventDispatcher.h"
 #include "abJoyStickAxisStateEventDispatcher.h"
-#include "abExporter.h"
+
 #include <windows.h>
 #include <mmsystem.h>
 #include "mtkTimer.h"
@@ -11,9 +13,16 @@
 
 using mtk::Timer;
 using std::deque;
-typedef   deque<JoyStickButtonStateEventDispatcher> ButtonDeque;
+typedef deque<JoyStickButtonStateEventDispatcher> ButtonDeque;
+typedef JoyStickAxisStateEventDispatcher JSAxis;
 
-class AB_CORE JoyStickMessageDispatcher
+
+/*!The JoyStickMessageDispatcher is tailor made for the ArrayBot. The dispatcher
+uses the right side of a PS3 joystick for the right side of the ArrayBot, and
+the left side designated for the left side of the ArrayBot. The POV buttons are
+used for x-y motions for the left (whisker) side of the Arraybot.
+*/
+class AB_CORE JoyStickMessageDispatcher : public ABObject
 {
 	public:
                                         JoyStickMessageDispatcher(int nrOfButtons);
@@ -39,14 +48,11 @@ class AB_CORE JoyStickMessageDispatcher
 
 			ButtonDeque 		        mButtons;
 
-            JoyStickAxis		        mX1Axis;
-            JoyStickAxis		        mY1Axis;
-
-            JoyStickAxis		        mX2Axis;
-            JoyStickAxis		        mY2Axis;
+            JSAxis		        		mX1Axis;
+            JSAxis		        		mY1Axis;
+            JSAxis		        		mX2Axis;
+            JSAxis		        		mY2Axis;
 
             Timer				        mUpdateStateTimer;
 };
-
-
 #endif

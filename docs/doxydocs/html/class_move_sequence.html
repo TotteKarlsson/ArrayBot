@@ -27,7 +27,7 @@
    <div id="projectname">ArrayBot
    &#160;<span id="projectnumber">0.5</span>
    </div>
-   <div id="projectbrief">Control Thorlab Devices using C++</div>
+   <div id="projectbrief">Robot Control of various Thorlab motors and Arduin using C++</div>
   </td>
  </tr>
  </tbody>
@@ -100,7 +100,8 @@ Inheritance diagram for MoveSequence:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_move_sequence__inherit__graph.png" border="0" usemap="#_move_sequence_inherit__map" alt="Inheritance graph"/></div>
 <map name="_move_sequence_inherit__map" id="_move_sequence_inherit__map">
-<area shape="rect" id="node2" href="class_a_b_object.html" title="ABObject" alt="" coords="21,5,99,32"/>
+<area shape="rect" id="node2" href="class_process_sequence.html" title="ProcessSequence" alt="" coords="5,80,133,107"/>
+<area shape="rect" id="node4" href="class_a_b_object.html" title="ABObject" alt="" coords="30,5,108,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -108,58 +109,63 @@ Collaboration diagram for MoveSequence:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_move_sequence__coll__graph.png" border="0" usemap="#_move_sequence_coll__map" alt="Collaboration graph"/></div>
 <map name="_move_sequence_coll__map" id="_move_sequence_coll__map">
-<area shape="rect" id="node2" href="class_a_b_object.html" title="ABObject" alt="" coords="5,5,83,32"/>
+<area shape="rect" id="node2" href="class_process_sequence.html" title="ProcessSequence" alt="" coords="104,109,232,136"/>
+<area shape="rect" id="node4" href="class_a_b_object.html" title="ABObject" alt="" coords="5,5,83,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7b3478f682639fb77132c7c7da2f9b70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b3478f682639fb77132c7c7da2f9b70"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>assignUnit</b> (<a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
-<tr class="separator:a7b3478f682639fb77132c7c7da2f9b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b8aec7a1b5cd41866f9bee577a724cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b8aec7a1b5cd41866f9bee577a724cc"></a>
+<tr class="memitem:a20685721e68cfe8178c7fb9f745dfe52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20685721e68cfe8178c7fb9f745dfe52"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
-<tr class="separator:a7b8aec7a1b5cd41866f9bee577a724cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af774bdcb063d74e0359ec338d2bddb76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af774bdcb063d74e0359ec338d2bddb76"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> (const string &amp;fName)</td></tr>
-<tr class="separator:af774bdcb063d74e0359ec338d2bddb76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8454fe0c9493a4d735ce562103cef7f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8454fe0c9493a4d735ce562103cef7f6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>save</b> ()</td></tr>
-<tr class="separator:a8454fe0c9493a4d735ce562103cef7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a34b59b669cf5204ccb24aed8bbb032"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a34b59b669cf5204ccb24aed8bbb032"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (<a class="el" href="class_s_move.html">SMove</a> *move)</td></tr>
-<tr class="separator:a1a34b59b669cf5204ccb24aed8bbb032"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3affa8c3f05a984742f67fcd0bd2891"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac3affa8c3f05a984742f67fcd0bd2891"></a>
+<tr class="separator:a20685721e68cfe8178c7fb9f745dfe52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0affa263797acc0a519ec4ea51d868a3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0affa263797acc0a519ec4ea51d868a3"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (const string &amp;fName)</td></tr>
+<tr class="separator:a0affa263797acc0a519ec4ea51d868a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a790638b48eaddd5adc40d2fa722a7484"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a790638b48eaddd5adc40d2fa722a7484"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> ()</td></tr>
+<tr class="separator:a790638b48eaddd5adc40d2fa722a7484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83af47f86e1d81d925f43e0f482574bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83af47f86e1d81d925f43e0f482574bf"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>assignUnit</b> (<a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
+<tr class="separator:a83af47f86e1d81d925f43e0f482574bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33b521c86e1bb874f68e904d9388f2d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33b521c86e1bb874f68e904d9388f2d1"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (<a class="el" href="class_process.html">Process</a> *p)</td></tr>
+<tr class="separator:a33b521c86e1bb874f68e904d9388f2d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53f60b63e773300f002b43a546616cc7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53f60b63e773300f002b43a546616cc7"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (const string &amp;lbl)</td></tr>
-<tr class="separator:ac3affa8c3f05a984742f67fcd0bd2891"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a804093fa71374eb857e6deae2ca07695"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a804093fa71374eb857e6deae2ca07695"></a>
-<a class="el" href="class_s_move.html">SMove</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getFirst</b> () const </td></tr>
-<tr class="separator:a804093fa71374eb857e6deae2ca07695"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf576258654b8d03d822c501d772950b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf576258654b8d03d822c501d772950b"></a>
-<a class="el" href="class_s_move.html">SMove</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getNext</b> () const </td></tr>
-<tr class="separator:adf576258654b8d03d822c501d772950b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abeecbf0c11c1e1125b765783968a6f18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abeecbf0c11c1e1125b765783968a6f18"></a>
-<a class="el" href="class_s_move.html">SMove</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPrevious</b> () const </td></tr>
-<tr class="separator:abeecbf0c11c1e1125b765783968a6f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac884df288208a190e20dc7bd400da09f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac884df288208a190e20dc7bd400da09f"></a>
-<a class="el" href="class_s_move.html">SMove</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrent</b> () const </td></tr>
-<tr class="separator:ac884df288208a190e20dc7bd400da09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a53f60b63e773300f002b43a546616cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a33fb70d88c7eb22ecaf6fa09a507e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58a33fb70d88c7eb22ecaf6fa09a507e"></a>
+<a class="el" href="class_process.html">Process</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getFirst</b> () const </td></tr>
+<tr class="separator:a58a33fb70d88c7eb22ecaf6fa09a507e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92c86235280b733988260f418be917cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92c86235280b733988260f418be917cb"></a>
+<a class="el" href="class_process.html">Process</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getNext</b> () const </td></tr>
+<tr class="separator:a92c86235280b733988260f418be917cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42ec6cfef8728c5ba0ddb46d734b149c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42ec6cfef8728c5ba0ddb46d734b149c"></a>
+<a class="el" href="class_process.html">Process</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPrevious</b> () const </td></tr>
+<tr class="separator:a42ec6cfef8728c5ba0ddb46d734b149c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a238f745cf4b202702cd6e13dc1dc0c0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a238f745cf4b202702cd6e13dc1dc0c0b"></a>
+<a class="el" href="class_process.html">Process</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrent</b> () const </td></tr>
+<tr class="separator:a238f745cf4b202702cd6e13dc1dc0c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:add875515b21df509328bd4e5be675115"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add875515b21df509328bd4e5be675115"></a>
+<tr class="memitem:af3851cd1cf601fa38fd385b8faea5613"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3851cd1cf601fa38fd385b8faea5613"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>mName</b></td></tr>
-<tr class="separator:add875515b21df509328bd4e5be675115"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59fe3980af1759874819f04d6a598983"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59fe3980af1759874819f04d6a598983"></a>
-list&lt; <a class="el" href="class_s_move.html">SMove</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mMoves</b></td></tr>
-<tr class="separator:a59fe3980af1759874819f04d6a598983"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b2a98e0213953ee8acd3aeb7e9e79bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b2a98e0213953ee8acd3aeb7e9e79bb"></a>
-list&lt; <a class="el" href="class_s_move.html">SMove</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>mMovesIter</b></td></tr>
-<tr class="separator:a3b2a98e0213953ee8acd3aeb7e9e79bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:af3851cd1cf601fa38fd385b8faea5613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3c2a4bed974e111c985f1ae4229d3f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3c2a4bed974e111c985f1ae4229d3f7"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>mFileExtension</b></td></tr>
+<tr class="separator:aa3c2a4bed974e111c985f1ae4229d3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3430e102924a9728eff924b2cf41373b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3430e102924a9728eff924b2cf41373b"></a>
+list&lt; <a class="el" href="class_process.html">Process</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process_sequence.html#a3430e102924a9728eff924b2cf41373b">mProcesses</a></td></tr>
+<tr class="memdesc:a3430e102924a9728eff924b2cf41373b"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of abstract Processes. <br /></td></tr>
+<tr class="separator:a3430e102924a9728eff924b2cf41373b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b362851c333bdefa81b9c52393a553f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b362851c333bdefa81b9c52393a553f"></a>
+list&lt; <a class="el" href="class_process.html">Process</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>mProcessIter</b></td></tr>
+<tr class="separator:a6b362851c333bdefa81b9c52393a553f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ab_move_sequence_8h_source.html#l00014">14</a> of file <a class="el" href="ab_move_sequence_8h_source.html">abMoveSequence.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_move_sequence_8h_source.html#l00015">15</a> of file <a class="el" href="ab_move_sequence_8h_source.html">abMoveSequence.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_move_sequence_8h_source.html">abMoveSequence.h</a></li>
 <li>source/<a class="el" href="ab_move_sequence_8cpp_source.html">abMoveSequence.cpp</a></li>
