@@ -8,7 +8,6 @@
 //#include <mmsystem.h>
 //---------------------------------------------------------------------------
 
-//struct JOYCAPS;
 ///The joystick class encapsulate needed functionality in the ArrayBot API
 class AB_CORE JoyStick : public ABObject
 {

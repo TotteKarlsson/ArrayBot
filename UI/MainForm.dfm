@@ -74,17 +74,13 @@ object Main: TMain
       Top = 1
       Width = 1133
       Height = 695
-      ActivePage = TabSheet1
+      ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
       TabWidth = 100
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox2: TGroupBox
           Left = 387
           Top = 25
@@ -331,10 +327,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
