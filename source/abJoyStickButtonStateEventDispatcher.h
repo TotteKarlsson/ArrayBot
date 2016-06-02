@@ -15,9 +15,9 @@ class JoyStickButtonStateEventDispatcher
 				    	JoyStickButtonStateEventDispatcher() : mButtonState(bsUp){};
 
                         //!The buttons state is checked against
-                        //status value retrieved in a polling loop. If
-                        //the value changed, the state is updated
-                        //and the associated Event is fired
+                        //!status value retrieved in a polling loop. If
+                        //!the value changed, the state is updated
+                        //!and the associated Event is fired
 		ButtonState 	mButtonState;
     	ButtonEvents 	mEvents;
 };

@@ -96,14 +96,6 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="..\..\source\abJoyStickAxisStateEventDispatcher.cpp">
-            <DependentOn>..\..\source\abJoyStickAxisStateEventDispatcher.h</DependentOn>
-            <BuildOrder>4</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickMessageDispatcher.cpp">
-            <DependentOn>abJoyStickMessageDispatcher.h</DependentOn>
-            <BuildOrder>3</BuildOrder>
-        </CppCompile>
         <CppCompile Include="Project1.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>

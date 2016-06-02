@@ -144,9 +144,17 @@
             <DependentOn>abJoystickAxis.h</DependentOn>
             <BuildOrder>15</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abJoyStickAxisStateEventDispatcher.cpp">
+            <DependentOn>abJoyStickAxisStateEventDispatcher.h</DependentOn>
+            <BuildOrder>31</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abJoyStickButton.cpp">
             <DependentOn>abJoyStickButton.h</DependentOn>
             <BuildOrder>14</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abJoyStickMessageDispatcher.cpp">
+            <DependentOn>abJoyStickMessageDispatcher.h</DependentOn>
+            <BuildOrder>32</BuildOrder>
         </CppCompile>
         <CppCompile Include="abJoyStickSetting.cpp">
             <DependentOn>abJoyStickSetting.h</DependentOn>
