@@ -7,7 +7,6 @@
 #include "abAngleController.h"
 #include "abCombinedMove.h"
 #include "abJoyStickSettings.h"
-#include "abJoyStickMessageDispatcher.h"
 //---------------------------------------------------------------------------
 
 class AB_CORE ArrayBot : public ABObject
@@ -55,8 +54,6 @@ class AB_CORE ArrayBot : public ABObject
         JoyStick					mJoyStick;
         JoyStickSettings			mJSSettings;
 
-        							//Todo: Make this prettier later
-		JoyStickMessageDispatcher 	mJS;
 
 									//!Moving joystick axes
         void 				        onX1AxisMove(int pos);
@@ -64,9 +61,6 @@ class AB_CORE ArrayBot : public ABObject
 
         void 				        onX2AxisMove(int pos);
         void 				        onY2AxisMove(int pos);
-
-
-
 
 };
 

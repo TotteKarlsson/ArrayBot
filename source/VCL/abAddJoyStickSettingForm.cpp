@@ -2,12 +2,13 @@
 #pragma hdrstop
 #include "abAddJoyStickSettingForm.h"
 //---------------------------------------------------------------------------
+
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 TAddJoyStickSettingForm *AddJoyStickSettingForm;
-//---------------------------------------------------------------------------
+
 
 __fastcall TAddJoyStickSettingForm::TAddJoyStickSettingForm(TComponent* Owner)
 	: TForm(Owner)

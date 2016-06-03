@@ -1,20 +1,22 @@
-#ifndef abJoystickH
-#define abJoystickH
-
+#ifndef abArrayBotJoystickH
+#define abArrayBotJoystickH
 #include "abExporter.h"
 #include "abABObject.h"
 #include "abJoyStickAxis.h"
 #include "abJoyStickButton.h"
+#include "abJoyStickMessageDispatcher.h"
 //---------------------------------------------------------------------------
 
-///The joystick class encapsulate needed functionality in the ArrayBot API
+/*!The joystick class is designed for the ArrayBot hardware. Joystick buttons and
+axes are named to reflect the ArrayBot setup. The mechanism for reacting to
+physical JoyStick events are mediated by the JoyStickMessageDispather classes.
+*/
+
 class AB_CORE JoyStick : public ABObject
 {
-
     public:
 							        JoyStick();
 							        ~JoyStick();
-
 		bool				        enable();
         bool				        disable();
 
@@ -28,15 +30,17 @@ class AB_CORE JoyStick : public ABObject
 		JoyStickButton&		        getPOVButton(int nr);
 
     protected:
-
-        							//Approximate in ms
         bool				        mEnabled;
 
-    	JoyStickAxis		        mX1Axis;
-    	JoyStickAxis		        mX2Axis;
-    	JoyStickAxis		        mY1Axis;
-    	JoyStickAxis		        mY2Axis;
+		JoyStickMessageDispatcher 	mJS;
 
+        							//!Coverslip XY axes
+    	JoyStickAxis		        mX1Axis;
+    	JoyStickAxis		        mY1Axis;
+
+									//!Whisker XY axes
+    	JoyStickAxis		        mX2Axis;
+    	JoyStickAxis		        mY2Axis;
 
         JoyStickButton		        mButton1;
         JoyStickButton		        mButton2;

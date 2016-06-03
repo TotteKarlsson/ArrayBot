@@ -16,42 +16,9 @@ mCoverSlipAngleController("COVERSLIP ANGLE CONTROLLER", mIniFile),
 mCameraAngleController("CAMERA ANGLE CONTROLLER", mIniFile),
 mCSLift("COVERSLIP LIFT"),
 mIsShuttingDown(false),
-mJSSettings("JOYSTICK SETTINGS", mIniFile),
-mJS(14)
+mJSSettings("JOYSTICK SETTINGS", mIniFile)
 {
 	mCSLift.readProperties(mIniFile);
-
-    //Associate functions with events
-
-    mJS.setButtonEvents(1, mJoyStick.getButton(1).down,  mJoyStick.getButton(1).up    );
-    mJS.setButtonEvents(2, mJoyStick.getButton(2).down,  mJoyStick.getButton(2).up    );
-    mJS.setButtonEvents(3, mJoyStick.getButton(3).down,  mJoyStick.getButton(3).up    );
-    mJS.setButtonEvents(4, mJoyStick.getButton(4).down,  mJoyStick.getButton(4).up    );
-
-    //    mJS.setButtonEvents(5, onButton5Down,  onButton5Up    );
-//    mJS.setButtonEvents(6, onButton6Down,  onButton6Up    );
-//    mJS.setButtonEvents(7, onButton7Down,  onButton7Up    );
-//    mJS.setButtonEvents(8, onButton8Down,  onButton8Up    );
-//    mJS.setButtonEvents(9, onButton9Down,  onButton9Up    );
-//    mJS.setButtonEvents(10,onButton10Down, onButton10Up	  );
-//    mJS.setButtonEvents(11,onButton11Down, onButton11Up	  );
-//    mJS.setButtonEvents(12,onButton12Down, onButton12Up	  );
-//    mJS.setButtonEvents(13,onButton13Down, onButton13Up	  );
-//    mJS.setButtonEvents(14,onButton14Down, onButton14Up	  );
-//
-    mJS.setPOVButtonEvents(1, mJoyStick.getPOVButton(1).down,  mJoyStick.getPOVButton(1).up    );
-    mJS.setPOVButtonEvents(2, mJoyStick.getPOVButton(2).down,  mJoyStick.getPOVButton(2).up    );
-    mJS.setPOVButtonEvents(3, mJoyStick.getPOVButton(3).down,  mJoyStick.getPOVButton(3).up    );
-    mJS.setPOVButtonEvents(4, mJoyStick.getPOVButton(4).down,  mJoyStick.getPOVButton(4).up    );
-
-	mJS.setAxisEvent(1, mJoyStick.getX1Axis().Move);
-	mJS.setAxisEvent(2, mJoyStick.getY1Axis().Move);
-
-	mJS.setAxisEvent(3,  mJoyStick.getX2Axis().Move);
-	mJS.setAxisEvent(4,  mJoyStick.getY2Axis().Move);
-
-	//Start JS poll
-    mJS.enable();
 }
 
 ArrayBot::~ArrayBot()
@@ -59,7 +26,7 @@ ArrayBot::~ArrayBot()
 
 bool ArrayBot::isActive()
 {
-	return mCoverSlip.isActive() || mWhisker.isActive() || mCoverSlipAngleController.isActive() || mCameraAngleController.isActive() ||     mJS.isEnabled();
+	return mCoverSlip.isActive() || mWhisker.isActive() || mCoverSlipAngleController.isActive() || mCameraAngleController.isActive() ||     mJoyStick.isEnabled();
 }
 
 bool ArrayBot::isShuttingDown()
@@ -89,7 +56,6 @@ AngleController& ArrayBot::getCameraAngleController()
 bool ArrayBot::shutDown()
 {
     getJoyStick().disable();
-    mJS.disable();
 	mCoverSlipAngleController.shutDown();
 	mCameraAngleController.shutDown();
 	mCoverSlip.shutDown();
@@ -181,11 +147,6 @@ void ArrayBot::disableJoyStick()
     mJoyStick.disable();
 }
 
-//void ArrayBot::assignWindowHandle(int handle)
-//{
-//	mJoyStick.setWindowHandle(handle);
-//}
-
 JoyStick& ArrayBot::getJoyStick()
 {
 	return mJoyStick;
@@ -218,38 +179,5 @@ XYZUnit& ArrayBot::getWhiskerUnit()
 {
 	return mWhisker;
 }
-
-//void ArrayBot::onButton1Down()
-//{
-//	Log(lDebug5) << "Button 1 was clicked";
-//}
-//
-//void ArrayBot::onButton1Up()
-//{
-//	Log(lDebug5) << "Button 1 was released";
-//}
-
-
-//void ArrayBot::onButton2Up()
-//{
-//	Button2->Caption ="UP";
-//}
-//
-//void ArrayBot::onButton2Down()
-//{
-//	Button2->Caption ="DOWN";
-//}
-
-//void ArrayBot::onButton3Up()
-//{
-//	Log(lDebug5) << "Button 3 was clicked";
-//}
-//
-//void ArrayBot::onButton3Down()
-//{
-//	Log(lDebug5) << "Button 3 was released";
-//}
-//
-
 
 

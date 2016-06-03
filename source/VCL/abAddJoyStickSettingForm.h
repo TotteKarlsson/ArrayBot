@@ -1,6 +1,5 @@
 #ifndef abAddJoyStickSettingFormH
 #define abAddJoyStickSettingFormH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -10,6 +9,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include "abJoyStickSetting.h";
 //---------------------------------------------------------------------------
+
 class TAddJoyStickSettingForm : public TForm
 {
 __published:	// IDE-managed Components
@@ -25,7 +25,7 @@ public:		// User declarations
 	__fastcall TAddJoyStickSettingForm(TComponent* Owner);
     JoyStickSetting		getSetting();
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TAddJoyStickSettingForm *AddJoyStickSettingForm;
-//---------------------------------------------------------------------------
+
 #endif
