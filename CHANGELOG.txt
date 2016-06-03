@@ -84,9 +84,13 @@ Release 0.5.1 (May 27)
 * Adding logic to throttle messages to the hardware devices
 * Added testing of joystick
 * Setting up code for threads..
+
+Release 0.5.0 (Apr 24)
+=======================
 * Initial commit
+* Transfered code from a temporary bitbucket repository
 
 ------ 2016 ------
 
-This changelog contain messasges for changes to both the ARRAYBOT API, as
-well as the Araaybot UI.
+This changelog contain messasges for changes related both to the ARRAYBOT API, as
+well as the Arraybot UI.
