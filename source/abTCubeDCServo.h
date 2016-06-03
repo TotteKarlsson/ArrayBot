@@ -11,6 +11,8 @@ class AB_CORE TCubeDCServo : public APTMotor
 
         bool	                        connect();
         bool	                        disconnect();
+        bool	                        enable();
+        bool	                        disable();
 
 				                        ///Control commands
 		void 		                    home();
@@ -24,6 +26,7 @@ class AB_CORE TCubeDCServo : public APTMotor
 		bool					        isHomed();
         bool		                	isForwarding();
         bool		                	isReversing();
+        bool		                	isEnabled();
 
         bool	                        startPolling();
         bool	                        stopPolling();

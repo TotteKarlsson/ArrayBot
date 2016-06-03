@@ -14,6 +14,11 @@ class AB_CORE APTMotor : public APTDevice
 						                    APTMotor(int serial);
 		virtual			                    ~APTMotor();
 
+        virtual bool	                    connect() 		= 0;
+        virtual bool	                    disconnect() 	= 0;
+
+        virtual bool	                    enable() 		= 0;
+        virtual bool	                    disable() 		= 0;
 		virtual bool 	   					switchDirection(bool inThread = true);
 		virtual bool	                    setVelocityForward(double v);
 		virtual bool	                    setVelocityReverse(double v);
@@ -26,9 +31,7 @@ class AB_CORE APTMotor : public APTDevice
         virtual bool		                isHoming() 		= 0;
         virtual bool		                isForwarding() 	= 0;
         virtual bool		                isReversing() 	= 0;
-
-        virtual bool	                    connect() 		= 0;
-        virtual bool	                    disconnect() 	= 0;
+        virtual bool		                isEnabled() 	= 0;
 
         virtual bool	                    startPolling() 	= 0;
         virtual bool	                    stopPolling() 	= 0;

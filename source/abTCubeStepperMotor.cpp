@@ -39,6 +39,9 @@ bool TCubeStepperMotor::connect()
         //Set jog mode to continous
         setJogMoveMode(jmContinuous);
 
+        int en = SCC_EnableChannel(mSerial.c_str());
+        Log(lDebug) << "Enabling Code: "<<en;
+
 	    // start the device polling at 200ms intervals
     	if(!SCC_StartPolling(mSerial.c_str(), 200))
         {
@@ -60,6 +63,28 @@ bool TCubeStepperMotor::disconnect()
 	SCC_Close(mSerial.c_str());
     mIsConnected = false;
     return false;
+}
+
+bool TCubeStepperMotor::enable()
+{
+	int err = SCC_EnableChannel(mSerial.c_str());
+    if(err != 0)
+    {
+        Log(lError) <<tlError(err);
+        return false;
+    }
+    return true;
+}
+
+bool TCubeStepperMotor::disable()
+{
+	int err = SCC_DisableChannel(mSerial.c_str());
+    if(err != 0)
+    {
+        Log(lError) <<tlError(err);
+        return false;
+    }
+    return true;
 }
 
 unsigned long TCubeStepperMotor::getStatusBits()
@@ -138,6 +163,14 @@ bool TCubeStepperMotor::isActive()
     unsigned long b = SCC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
     return bits.test(4) || bits.test(5) || bits.test(6) || bits.test(7) ;
+}
+
+bool TCubeStepperMotor::isEnabled()
+{
+	//Query for status bits
+    unsigned long b = SCC_GetStatusBits(mSerial.c_str());
+    bitset<32> bits(b);
+    return bits.test(31);
 }
 
 bool TCubeStepperMotor::identify()

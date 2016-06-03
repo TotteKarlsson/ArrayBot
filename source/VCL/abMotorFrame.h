@@ -46,6 +46,9 @@ __published:	// IDE-managed Components
 	mtkFloatLabel *mJogVelLbl;
 	mtkFloatLabel *mJogAccLbl;
 	TFloatLabeledEdit *mPotentiometerSettingE;
+	TLabel *Label6;
+	TLabel *mIsEnabledLbl;
+	TButton *EnableDisableBtn;
 	void __fastcall mMotorStatusTimerTimer(TObject *Sender);
 	void __fastcall identifyExecute(TObject *Sender);
 	void __fastcall homeExecute(TObject *Sender);
@@ -56,6 +59,7 @@ __published:	// IDE-managed Components
 	void __fastcall DevEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mMotorPositionEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mMotorPositionEKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall EnableDisableBtnClick(TObject *Sender);
 
 
 private:

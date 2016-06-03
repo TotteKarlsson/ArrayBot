@@ -33,6 +33,7 @@ bool TCubeDCServo::connect()
     mScalingFactors.position = 1919.64;
     mScalingFactors.velocity = 42941.66;
 	mScalingFactors.acceleration = 14.66;
+
 //    mScalingFactors.position = 34304.0;
 //    mScalingFactors.velocity = 767367.49;
 //	mScalingFactors.acceleration = 261.93;
@@ -44,6 +45,9 @@ bool TCubeDCServo::connect()
         //Set jog mode to continous
         setJogMoveMode(jmContinuous);
 
+        //int en = CC_EnableChannel(mSerial.c_str());
+
+//        Log(lDebug) << "Enabling Code: "<<en;
 	    // start the device polling at 200ms intervals
     	if(!CC_StartPolling(mSerial.c_str(), 200))
         {
@@ -64,7 +68,29 @@ bool TCubeDCServo::disconnect()
     APTMotor::disconnect();
 	CC_Close(mSerial.c_str());
     mIsConnected = false;
-    return false;
+    return true;
+}
+
+bool TCubeDCServo::enable()
+{
+	int err = CC_EnableChannel(mSerial.c_str());
+    if(err != 0)
+    {
+        Log(lError) <<tlError(err);
+        return false;
+    }
+    return true;
+}
+
+bool TCubeDCServo::disable()
+{
+	int err = CC_DisableChannel(mSerial.c_str());
+    if(err != 0)
+    {
+        Log(lError) <<tlError(err);
+        return false;
+    }
+    return true;
 }
 
 void TCubeDCServo::setPotentiometerVelocity(double v)
@@ -158,6 +184,14 @@ bool TCubeDCServo::isActive()
     unsigned long b = CC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
     return bits.test(4) || bits.test(5) || bits.test(6) || bits.test(7) ;
+}
+
+bool TCubeDCServo::isEnabled()
+{
+	//Query for status bits
+    unsigned long b = CC_GetStatusBits(mSerial.c_str());
+    bitset<32> bits(b);
+    return bits.test(31);
 }
 
 bool TCubeDCServo::identify()

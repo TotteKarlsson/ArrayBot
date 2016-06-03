@@ -35,6 +35,8 @@ bool LongTravelStage::connect()
     {
     	ISC_LoadSettings(mSerial.c_str());
 
+        int en = ISC_EnableChannel(mSerial.c_str());
+        Log(lDebug) << "Enabling Code: "<<en;
         //Set jog mode to continous
         setJogMoveMode(jmContinuous);
 
@@ -61,6 +63,28 @@ bool LongTravelStage::disconnect()
     return false;
 }
 
+
+bool LongTravelStage::enable()
+{
+	int err = ISC_EnableChannel(mSerial.c_str());
+    if(err != 0)
+    {
+        Log(lError) <<tlError(err);
+        return false;
+    }
+    return true;
+}
+
+bool LongTravelStage::disable()
+{
+	int err = ISC_DisableChannel(mSerial.c_str());
+    if(err != 0)
+    {
+        Log(lError) <<tlError(err);
+        return false;
+    }
+    return true;
+}
 void LongTravelStage::setPotentiometerVelocity(double v)
 {
     //Divide the velocity by four and populate the ranges
@@ -153,6 +177,14 @@ bool LongTravelStage::isActive()
     unsigned long b = ISC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
     return bits.test(4) || bits.test(5) || bits.test(6) || bits.test(7) ;
+}
+
+bool LongTravelStage::isEnabled()
+{
+	//Query for status bits
+    unsigned long b = ISC_GetStatusBits(mSerial.c_str());
+    bitset<32> bits(b);
+    return bits.test(31);
 }
 
 bool LongTravelStage::identify()

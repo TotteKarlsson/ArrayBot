@@ -9,10 +9,14 @@ class AB_CORE TCubeStepperMotor : public APTMotor
         						        TCubeStepperMotor(int serial);
 		virtual 		                ~TCubeStepperMotor();
 
-		HardwareInformation	    		getHWInfo();
-        double				 			getEncoderCounts();
         bool	                        connect();
         bool	                        disconnect();
+        bool	                        enable();
+        bool	                        disable();
+
+		HardwareInformation	    		getHWInfo();
+        double				 			getEncoderCounts();
+
         bool	                        startPolling();
         bool	                        stopPolling();
 
@@ -22,6 +26,7 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 		bool					        isHomed();
         bool		                	isForwarding();
         bool		                	isReversing();
+		bool 							isEnabled();
 
 				                        //!General commands
         double	                        getPosition();

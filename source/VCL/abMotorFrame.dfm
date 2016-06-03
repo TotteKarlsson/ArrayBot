@@ -114,7 +114,7 @@ object MotorFrame: TMotorFrame
         Caption = 'Is Reversing:'
       end
       object mIsActiveLabel: TLabel
-        Left = 68
+        Left = 72
         Top = 23
         Width = 18
         Height = 13
@@ -128,7 +128,7 @@ object MotorFrame: TMotorFrame
         Caption = 'N/A'
       end
       object mIsHomedLabel: TLabel
-        Left = 68
+        Left = 72
         Top = 36
         Width = 18
         Height = 13
@@ -143,6 +143,20 @@ object MotorFrame: TMotorFrame
       end
       object mIsReversingLabel: TLabel
         Left = 242
+        Top = 49
+        Width = 18
+        Height = 13
+        Caption = 'N/A'
+      end
+      object Label6: TLabel
+        Left = 17
+        Top = 49
+        Width = 57
+        Height = 13
+        Caption = 'Is Enabled: '
+      end
+      object mIsEnabledLbl: TLabel
+        Left = 72
         Top = 49
         Width = 18
         Height = 13
@@ -248,6 +262,16 @@ object MotorFrame: TMotorFrame
       Height = 28
       Action = home
       TabOrder = 4
+    end
+    object EnableDisableBtn: TButton
+      Left = 16
+      Top = 52
+      Width = 55
+      Height = 28
+      Action = identify
+      Caption = 'EnableDisableBtn'
+      TabOrder = 5
+      OnClick = EnableDisableBtnClick
     end
   end
   object mMotorStatusTimer: TTimer

@@ -7,9 +7,7 @@
 #include "mtkLogger.h"
 #include "mtkStringUtils.h"
 
-
 //---------------------------------------------------------------------------
-
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
 #pragma link "TIntLabel"
@@ -70,8 +68,10 @@ void __fastcall TMotorFrame::mMotorStatusTimerTimer(TObject *Sender)
     mIsHomedLabel->Caption  	= (mMotor->isHomed()) 	    ? "True" : "False";
     mIsForwardingLabel->Caption = (mMotor->isForwarding()) 	? "True" : "False";
     mIsReversingLabel->Caption  = (mMotor->isReversing()) 	? "True" : "False";
-}
+    mIsEnabledLbl->Caption  	= (mMotor->isEnabled()) 	? "True" : "False";
 
+    EnableDisableBtn->Caption = (mMotor->isEnabled()) 		? "Disable" : "Enable";
+}
 
 //---------------------------------------------------------------------------
 void __fastcall TMotorFrame::identifyExecute(TObject *Sender)
@@ -148,7 +148,6 @@ void __fastcall TMotorFrame::DevEdit(TObject *Sender, WORD &Key, TShiftState Shi
         Log(lDebug) << "New JOG velocity (mm/s): " <<vel;
 		mMotor->setManualJogVelocity(vel);
         mMotor->setJogVelocity(vel);
-
         mMotor->setPotentiometerVelocity(vel);
     }
     else if(e == mJogAcc)
@@ -190,6 +189,22 @@ void __fastcall TMotorFrame::mMotorPositionEKeyUp(TObject *Sender, WORD &Key,
     {
 		mMotorStatusTimer->Enabled = true;
     	return;
+    }
+}
+
+
+void __fastcall TMotorFrame::EnableDisableBtnClick(TObject *Sender)
+{
+	if(mMotor)
+    {
+    	if(mMotor->isEnabled())
+        {
+        	mMotor->disable();
+        }
+        else
+        {
+        	mMotor->enable();
+        }
     }
 }
 
