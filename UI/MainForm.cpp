@@ -65,7 +65,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 //    mMoveAngleE->assignExternalProperty(&(mAB.getCombinedMove().mAngle), true);
 //    mCSAngleE->assignExternalProperty(&mAB.getCoverSlipAngleController().mAngle, true);
 
-    mJSNoneBtn->Down	= true;
 	mJSSpeedMediumBtn->Click();
 
     //JoyStick Settings
@@ -89,7 +88,7 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 	TMotorFrame1->assignMotor(mAB.getCoverSlipAngleController().getMotor());
 	TMotorFrame2->assignMotor(mAB.getCameraAngleController().getMotor());
 
-    //JoyStick stuff.....
+    //ArrayBotJoyStick stuff.....
     mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getX1Axis().getMaxVelocity());
     mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getX1Axis().getAcceleration());
 
@@ -185,22 +184,6 @@ void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::Button2Click(TObject *Sender)
-{
-    if(BottomPanel->Visible)
-    {
-		BottomPanel->Visible = false;
-		this->Height = this->Height - BottomPanel->Height;
-    }
-    else
-    {
-		BottomPanel->Visible = true;
-        this->Height = BottomPanel->Height + TopPanel->Height;
-        BottomPanel->Top = this->Height;
-    }
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::Button3Click(TObject *Sender)
 {
 	mAB.home();
@@ -236,7 +219,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
 {
 	//Setup Joystick control
     TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
-    if(btn == mJSCSBtn)
+    if(btn->Caption == "Enable")
     {
 		mAB.enableJoyStick();
     }
@@ -244,6 +227,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
     {
 	 	mAB.disableJoyStick();
     }
+    btn->Caption = (mAB.getJoyStick().isEnabled()) ? "Disable" : "Enable";
 }
 
 void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
@@ -287,7 +271,9 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
 
     // Update setting from edits
     jss->set(mMaxXYJogVelocityJoystick->getValue(), mXYJogAccelerationJoystick->getValue(),
-			 mMaxZJogVelocityJoystick->getValue(), mZJogAccelerationJoystick->getValue());
+			 mMaxZJogVelocityJoystick->getValue(), mZJogAccelerationJoystick->getValue(),
+             mAngleControlVelE->getValue(), mAngleControllerAccE->getValue()
+             );
 }
 
 

@@ -14,7 +14,7 @@ using mtk::IniFile;
 using mtk::IniFileProperties;
 using mtk::Property;
 class APTMotor;
-class JoyStick;
+class ArrayBotJoyStick;
 
 //!An angle controller is an object that
 //controls a motor that controls an angle.
@@ -33,7 +33,7 @@ class AB_CORE AngleController : public ABObject
         double					            getAngle();
 		void					            stop();
 		APTMotor*				            getMotor();
-		void								enableJoyStick(JoyStick* js);
+		void								enableJoyStick(ArrayBotJoyStick* js);
 		void								disableJoyStick();
         Property<int>		                mMotorSerial;
         Property<double>  	                mAngle;
@@ -43,10 +43,9 @@ class AB_CORE AngleController : public ABObject
 
     private:
     	APTMotor*				            mMotor;
-        JoyStick*               			mJoyStick;
+        ArrayBotJoyStick*               	mJoyStick;
         IniFile&			                mIniFile;
         IniFileProperties	                mProperties;
-
 };
 
 #endif

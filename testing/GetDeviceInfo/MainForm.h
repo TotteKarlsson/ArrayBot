@@ -149,7 +149,7 @@ class TMain : public TForm
        	Timestamp 			        mLastMotorCommand;
         double						mLastVel;
 
-		JoyStick					mJoyStick;
+		ArrayBotJoyStick					mJoyStick;
         double 						mValCommand;
 
         void __fastcall 			JMButtonUpUpdate(TMessage &msg);

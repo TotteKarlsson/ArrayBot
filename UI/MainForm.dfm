@@ -29,11 +29,11 @@ object Main: TMain
     TabOrder = 0
     object Button7: TButton
       Left = 1
-      Top = 574
+      Top = 126
       Width = 125
-      Height = 60
+      Height = 125
       Action = stopAllA
-      Align = alBottom
+      Align = alTop
       BiDiMode = bdLeftToRight
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -46,11 +46,11 @@ object Main: TMain
     end
     object Button5: TButton
       Left = 1
-      Top = 634
+      Top = 1
       Width = 125
-      Height = 62
+      Height = 125
       Action = FileExit1
-      Align = alBottom
+      Align = alTop
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
@@ -74,7 +74,7 @@ object Main: TMain
       Top = 1
       Width = 1133
       Height = 695
-      ActivePage = TabSheet4
+      ActivePage = TabSheet2
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -152,18 +152,8 @@ object Main: TMain
             Top = 32
             Width = 100
             Height = 75
-            GroupIndex = 10
+            AllowAllUp = True
             Caption = 'Enable'
-            OnClick = JSControlClick
-          end
-          object mJSNoneBtn: TSpeedButton
-            Left = 223
-            Top = 32
-            Width = 100
-            Height = 75
-            GroupIndex = 10
-            Down = True
-            Caption = 'None'
             OnClick = JSControlClick
           end
           object mJSSpeedFastBtn: TSpeedButton
@@ -322,7 +312,7 @@ object Main: TMain
           Left = 11
           Top = 16
           Width = 238
-          Height = 169
+          Height = 241
           Caption = 'JoyStick Velocities'
           TabOrder = 0
           object mZJogAccelerationJoystick: TFloatLabeledEdit
@@ -391,6 +381,30 @@ object Main: TMain
             TabOrder = 5
             Visible = False
             OnClick = AddJsSettingBtnClick
+          end
+          object mAngleControlVelE: TFloatLabeledEdit
+            Left = 16
+            Top = 178
+            Width = 66
+            Height = 21
+            EditLabel.Width = 91
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Angle Ctrl. Velocity'
+            TabOrder = 6
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
+          end
+          object mAngleControllerAccE: TFloatLabeledEdit
+            Left = 119
+            Top = 178
+            Width = 66
+            Height = 21
+            EditLabel.Width = 71
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Angle Ctrl Acc.'
+            TabOrder = 7
+            Text = '0.00'
+            OnKeyDown = JoyStickValueEdit
           end
         end
         object GroupBox1: TGroupBox

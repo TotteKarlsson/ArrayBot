@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------
 
 class APTMotor;
-class JoyStick;
+class ArrayBotJoyStick;
 class MoveSequencer;
 using mtk::IniFileProperties;
 using mtk::Property;
@@ -31,7 +31,7 @@ class AB_CORE XYZUnit : public ABObject
 		void				    shutDown();
 		string					getName();
         Positions&				positions(){return mPositions;}
-        void					enableJoyStick(JoyStick* js);
+        void					enableJoyStick(ArrayBotJoyStick* js);
         void					disableJoyStick();
 
 		bool				    initialize();
@@ -45,8 +45,8 @@ class AB_CORE XYZUnit : public ABObject
         Property<int>		    mYMotorSerialNr;
         Property<int>		    mZMotorSerialNr;
 
-        						//Todo: move the devicemanager to ArrayBot and
-                                //use a reference for each class needing to use it
+        						//TODO: move the devicemanager to ArrayBot and
+                                //use a reference for each class that needs to use it
     	DeviceManager	        mDeviceManager;
 
         						//!Move absolute moves to pos, regardless of
@@ -58,10 +58,12 @@ class AB_CORE XYZUnit : public ABObject
 		string					mName;
         IniFile&				mIniFile;
         IniFileProperties	    mProperties;
+
+        						//!XYZ stages
         APTMotor*			    mXMotor;
         APTMotor*			    mYMotor;
         APTMotor*			    mZMotor;
-        JoyStick*               mJoyStick;
+        ArrayBotJoyStick*               mJoyStick;
         Positions				mPositions;
         ProcessSequencer 		mMoveSequencer;
 };

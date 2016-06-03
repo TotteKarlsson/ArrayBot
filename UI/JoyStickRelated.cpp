@@ -2,14 +2,13 @@
 #pragma hdrstop
 #include "MainForm.h"
 #include "mtkLogger.h"
-#include "abAPTMotor.h"
-#include "abAddJoyStickSetting.h"
+#include "abAddJoyStickSettingForm.h"
 using namespace mtk;
 using namespace std;
 
 void __fastcall TMain::AddJsSettingBtnClick(TObject *Sender)
 {
-    TJoyStickSettingForm* f = new TJoyStickSettingForm(NULL);
+    TAddJoyStickSettingForm* f = new TAddJoyStickSettingForm(NULL);
     int mr = f->ShowModal();
     if(mr == mrOk)
     {
@@ -36,15 +35,15 @@ void __fastcall TMain::JoyStickSettingsCBChange(TObject *Sender)
     if(js)
     {
 		vector<double> s(js->get());
-        if(s.size() == 4)
+        if(s.size() == 6)
         {
 			mMaxXYJogVelocityJoystick->setValue(s[0]);
 			mXYJogAccelerationJoystick->setValue(s[1]);
 			mMaxZJogVelocityJoystick->setValue(s[2]);
 			mZJogAccelerationJoystick->setValue(s[3]);
+			mAngleControlVelE->setValue(s[4]);
+			mAngleControllerAccE->setValue(s[5]);
+
         }
     }
 }
-
-
-

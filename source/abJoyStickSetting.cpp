@@ -4,13 +4,15 @@
 //---------------------------------------------------------------------------
 using namespace std;
 
-JoyStickSetting::JoyStickSetting(const string& lbl, double maxXYVel, double xyAcc, double maxZVel, double zAcc)
+JoyStickSetting::JoyStickSetting(const string& lbl, double maxXYVel, double xyAcc, double maxZVel, double zAcc, double angleVel, double angleAcc)
 :
 mLabel(lbl),
-mMaxXYVelocity(maxXYVel),
+mXYVelocity(maxXYVel),
 mXYAcceleration(xyAcc),
-mMaxZVelocity(maxZVel),
-mZAcceleration(zAcc)
+mZVelocity(maxZVel),
+mZAcceleration(zAcc),
+mAngleControllerVelocity(angleVel),
+mAngleControllerAccleration(angleAcc)
 {}
 
 JoyStickSetting::~JoyStickSetting()
@@ -18,27 +20,32 @@ JoyStickSetting::~JoyStickSetting()
 
 vector<double> JoyStickSetting::get()
 {
-	vector<double> s(4);
-    s[0] = mMaxXYVelocity;
+	vector<double> s(6);
+    s[0] = mXYVelocity;
     s[1] = mXYAcceleration;
-    s[2] = mMaxZVelocity;
+    s[2] = mZVelocity;
     s[3] = mZAcceleration;
+    s[4] = mAngleControllerVelocity;
+    s[5] = mAngleControllerAccleration;
     return s;
 }
 
-void JoyStickSetting::set(double maxXYVel, double xyAcc, double maxZVel, double zAcc)
+void JoyStickSetting::set(double maxXYVel, double xyAcc, double maxZVel, double zAcc, double angleVelocity, double angleAcc)
 {
-    mMaxXYVelocity = maxXYVel;
+    mXYVelocity 	= maxXYVel;
     mXYAcceleration = xyAcc;
-    mMaxZVelocity = maxZVel;
-    mZAcceleration = zAcc;
+    mZVelocity 		= maxZVel;
+    mZAcceleration 	= zAcc;
+	mAngleControllerVelocity = angleVelocity;
+    mAngleControllerAccleration = angleAcc;
 }
 
 string	JoyStickSetting::asIniRecord()
 {
 	stringstream s;
-    s<<mMaxXYVelocity << "," << mXYAcceleration<<","<<
-       mMaxZVelocity  << "," << mZAcceleration;
+    s<<mXYVelocity << "," << mXYAcceleration<<","<<
+       mZVelocity  << "," << mZAcceleration<<","<<
+       mAngleControllerVelocity<< "," << mAngleControllerAccleration;
 	return s.str();
 }
 

@@ -3,7 +3,7 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include "abXYZUnit.h"
-#include "abJoyStick.h"
+#include "abArrayBotJoyStick.h"
 #include "abAngleController.h"
 #include "abCombinedMove.h"
 #include "abJoyStickSettings.h"
@@ -19,8 +19,9 @@ class AB_CORE ArrayBot : public ABObject
         XYZUnit&					getCoverSlipUnit();
         XYZUnit&					getWhiskerUnit();
         bool						shutDown();
-        JoyStick&					getJoyStick();
-        JoyStickSettings&			getJoyStickSettings(){return mJSSettings;}
+
+        ArrayBotJoyStick&					getJoyStick();
+        JoyStickSettings&			getJoyStickSettings();
 
 		void						enableJoyStick();
 		void						disableJoyStick();
@@ -40,8 +41,11 @@ class AB_CORE ArrayBot : public ABObject
         bool						applyJoyStickSetting(const string& settingName);
 
     private:
-        IniFile&					mIniFile;
         bool						mIsShuttingDown;
+        IniFile&					mIniFile;
+
+        ArrayBotJoyStick					mJoyStick;
+        JoyStickSettings			mJSSettings;
 
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
@@ -50,18 +54,6 @@ class AB_CORE ArrayBot : public ABObject
 
         AngleController				mCameraAngleController;
 		CombinedMove				mCSLift;
-
-        JoyStick					mJoyStick;
-        JoyStickSettings			mJSSettings;
-
-
-									//!Moving joystick axes
-        void 				        onX1AxisMove(int pos);
-        void 				        onY1AxisMove(int pos);
-
-        void 				        onX2AxisMove(int pos);
-        void 				        onY2AxisMove(int pos);
-
 };
 
 #endif

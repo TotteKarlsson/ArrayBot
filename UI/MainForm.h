@@ -16,7 +16,6 @@
 #include "TFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
 #include "Poco/Timestamp.h"
-#include "abJoyStick.h"
 #include "TSTDStringLabeledEdit.h"
 #include "abXYZUnitFrame.h"
 #include "abMotorFrame.h"
@@ -62,7 +61,6 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mCSAngleE;
 	TGroupBox *JSGB;
 	TSpeedButton *mJSCSBtn;
-	TSpeedButton *mJSNoneBtn;
 	TSpeedButton *mJSSpeedFastBtn;
 	TSpeedButton *mJSSpeedMediumBtn;
 	TSpeedButton *mJSSpeedSlowBtn;
@@ -96,22 +94,23 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox3;
 	TFloatLabeledEdit *mCameraAngleEdit;
 	TMotorFrame *TMotorFrame2;
-        void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-        void __fastcall checkForDevicesExecute(TObject *Sender);
-        void __fastcall FormCreate(TObject *Sender);
-        void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
-        void __fastcall ShutDownTimerTimer(TObject *Sender);
-        void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-        void __fastcall stopAllAExecute(TObject *Sender);
-        void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
-        void __fastcall BitBtn3Click(TObject *Sender);
-        void __fastcall JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-        void __fastcall initBotAExecute(TObject *Sender);
-        void __fastcall ShutDownAExecute(TObject *Sender);
-        void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-        void __fastcall LiftCSBtnClick(TObject *Sender);
+	TFloatLabeledEdit *mAngleControlVelE;
+	TFloatLabeledEdit *mAngleControllerAccE;
+    void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+    void __fastcall checkForDevicesExecute(TObject *Sender);
+    void __fastcall FormCreate(TObject *Sender);
+    void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
+    void __fastcall ShutDownTimerTimer(TObject *Sender);
+    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+    void __fastcall stopAllAExecute(TObject *Sender);
+    void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
+    void __fastcall BitBtn3Click(TObject *Sender);
+    void __fastcall JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
+    void __fastcall initBotAExecute(TObject *Sender);
+    void __fastcall ShutDownAExecute(TObject *Sender);
+    void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
+    void __fastcall LiftCSBtnClick(TObject *Sender);
 
-	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall stowBtnClick(TObject *Sender);
 	void __fastcall mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);

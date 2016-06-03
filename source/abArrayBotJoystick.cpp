@@ -5,76 +5,76 @@
 
 using namespace mtk;
 
-JoyStick::JoyStick()
+ArrayBotJoyStick::ArrayBotJoyStick()
 :
 mEnabled(false),
 mJS(14)
 {
     //Associate events with buttons
-    mJS.setButtonEvents(1, this->getButton(1).down,  this->getButton(1).up    );
-    mJS.setButtonEvents(2, this->getButton(2).down,  this->getButton(2).up    );
-    mJS.setButtonEvents(3, this->getButton(3).down,  this->getButton(3).up    );
-    mJS.setButtonEvents(4, this->getButton(4).down,  this->getButton(4).up    );
+    mJS.setButtonEvents(1, mButton1.down,  mButton1.up    );
+    mJS.setButtonEvents(2, mButton2.down,  mButton2.up    );
+    mJS.setButtonEvents(3, mButton3.down,  mButton3.up    );
+    mJS.setButtonEvents(4, mButton4.down,  mButton4.up    );
 
-    mJS.setPOVButtonEvents(1, this->getPOVButton(1).down,  this->getPOVButton(1).up    );
-    mJS.setPOVButtonEvents(2, this->getPOVButton(2).down,  this->getPOVButton(2).up    );
-    mJS.setPOVButtonEvents(3, this->getPOVButton(3).down,  this->getPOVButton(3).up    );
-    mJS.setPOVButtonEvents(4, this->getPOVButton(4).down,  this->getPOVButton(4).up    );
+    mJS.setPOVButtonEvents(1, mPOVButton1.down,  mPOVButton1.up    );
+    mJS.setPOVButtonEvents(2, mPOVButton2.down,  mPOVButton2.up    );
+    mJS.setPOVButtonEvents(3, mPOVButton3.down,  mPOVButton3.up    );
+    mJS.setPOVButtonEvents(4, mPOVButton4.down,  mPOVButton4.up    );
 
-	mJS.setAxisEvent(1, this->getX1Axis().Move);
-	mJS.setAxisEvent(2, this->getY1Axis().Move);
+	mJS.setAxisEvent(1, mX1Axis.Move);
+	mJS.setAxisEvent(2, mY1Axis.Move);
 
-	mJS.setAxisEvent(3,  this->getX2Axis().Move);
-	mJS.setAxisEvent(4,  this->getY2Axis().Move);
+	mJS.setAxisEvent(3,  mX2Axis.Move);
+	mJS.setAxisEvent(4,  mY2Axis.Move);
 
 	//Start JS poll
     mJS.enable();
 }
 
-JoyStick::~JoyStick()
+ArrayBotJoyStick::~ArrayBotJoyStick()
 {}
 
 
-bool JoyStick::enable()
+bool ArrayBotJoyStick::enable()
 {
     mJS.enable();
 	mEnabled = true;
     return true;
 }
 
-bool JoyStick::disable()
+bool ArrayBotJoyStick::disable()
 {
     mJS.disable();
 	mEnabled = false;
     return true;
 }
 
-bool JoyStick::isEnabled()
+bool ArrayBotJoyStick::isEnabled()
 {
 	return mEnabled;
 }
 
-JoyStickAxis& JoyStick::getX1Axis()
+JoyStickAxis& ArrayBotJoyStick::getX1Axis()
 {
 	return mX1Axis;
 }
 
-JoyStickAxis& JoyStick::getX2Axis()
+JoyStickAxis& ArrayBotJoyStick::getX2Axis()
 {
 	return mX2Axis;
 }
 
-JoyStickAxis& JoyStick::getY1Axis()
+JoyStickAxis& ArrayBotJoyStick::getY1Axis()
 {
 	return mY1Axis;
 }
 
-JoyStickAxis& JoyStick::getY2Axis()
+JoyStickAxis& ArrayBotJoyStick::getY2Axis()
 {
 	return mY2Axis;
 }
 
-JoyStickButton& JoyStick::getButton(int nr)
+JoyStickButton& ArrayBotJoyStick::getButton(int nr)
 {
 	switch(nr)
     {
@@ -91,7 +91,7 @@ JoyStickButton& JoyStick::getButton(int nr)
     }
 }
 
-JoyStickButton& JoyStick::getPOVButton(int nr)
+JoyStickButton& ArrayBotJoyStick::getPOVButton(int nr)
 {
 	switch(nr)
     {

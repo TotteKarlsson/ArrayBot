@@ -12,11 +12,11 @@ axes are named to reflect the ArrayBot setup. The mechanism for reacting to
 physical JoyStick events are mediated by the JoyStickMessageDispather classes.
 */
 
-class AB_CORE JoyStick : public ABObject
+class AB_CORE ArrayBotJoyStick : public ABObject
 {
     public:
-							        JoyStick();
-							        ~JoyStick();
+							        ArrayBotJoyStick();
+							        ~ArrayBotJoyStick();
 		bool				        enable();
         bool				        disable();
 

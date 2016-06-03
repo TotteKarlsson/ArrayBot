@@ -2,7 +2,7 @@
 #include "abAngleController.h"
 #include "mtkLogger.h"
 #include "abAPTMotor.h"
-#include "abJoyStick.h"
+#include "abArrayBotJoyStick.h"
 //---------------------------------------------------------------------------
 using namespace mtk;
 
@@ -26,7 +26,7 @@ mJoyStick(NULL)
 AngleController::~AngleController()
 {}
 
-void AngleController::enableJoyStick(JoyStick* js)
+void AngleController::enableJoyStick(ArrayBotJoyStick* js)
 {
 	if(!js)
     {

@@ -1,5 +1,5 @@
 #pragma hdrstop
-#include "abJoyStick.h"
+#include "abArrayBotJoyStick.h"
 #include "abXYZUnit.h"
 #include "mtkLogger.h"
 #include "abAPTMotor.h"
@@ -185,7 +185,7 @@ void XYZUnit::home()
     }
 }
 
-void XYZUnit::enableJoyStick(JoyStick* js)
+void XYZUnit::enableJoyStick(ArrayBotJoyStick* js)
 {
 	if(!js)
     {

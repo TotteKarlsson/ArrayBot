@@ -24,6 +24,11 @@ mJSSettings("JOYSTICK SETTINGS", mIniFile)
 ArrayBot::~ArrayBot()
 {}
 
+JoyStickSettings& ArrayBot::getJoyStickSettings()
+{
+	return mJSSettings;
+}
+
 bool ArrayBot::isActive()
 {
 	return mCoverSlip.isActive() || mWhisker.isActive() || mCoverSlipAngleController.isActive() || mCameraAngleController.isActive() ||     mJoyStick.isEnabled();
@@ -75,14 +80,14 @@ void ArrayBot::stopAll()
 
 bool ArrayBot::applyJoyStickSetting(const string& settingName)
 {
-	JoyStickSetting *s = mJSSettings.getSetting(settingName);
-    if(!s)
+	JoyStickSetting *jss = mJSSettings.getSetting(settingName);
+    if(!jss)
     {
     	Log(lError) <<"No joystick setting with name: "<<settingName;
         return false;
     }
 
-	vector<double> vals = s->get();
+	vector<double> vals = jss->get();
     Log(lDebug) << "New XY jog velocity (mm/s): " <<vals[0];
     Log(lDebug) << "New XY jog acceleration (mm/(s*s)): " <<vals[1];
 
@@ -147,7 +152,7 @@ void ArrayBot::disableJoyStick()
     mJoyStick.disable();
 }
 
-JoyStick& ArrayBot::getJoyStick()
+ArrayBotJoyStick& ArrayBot::getJoyStick()
 {
 	return mJoyStick;
 }
