@@ -1,7 +1,7 @@
-object JoyStickSettingForm: TJoyStickSettingForm
+object AddJoyStickSettingForm: TAddJoyStickSettingForm
   Left = 0
   Top = 0
-  Caption = 'Joystick Setting'
+  Caption = 'Add Joystick Setting'
   ClientHeight = 224
   ClientWidth = 379
   Color = clBtnFace

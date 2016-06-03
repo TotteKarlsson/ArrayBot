@@ -1,18 +1,19 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "abAddJoyStickSetting.h"
+#include "abAddJoyStickSettingForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
-TJoyStickSettingForm *JoyStickSettingForm;
+TAddJoyStickSettingForm *AddJoyStickSettingForm;
 //---------------------------------------------------------------------------
-__fastcall TJoyStickSettingForm::TJoyStickSettingForm(TComponent* Owner)
+
+__fastcall TAddJoyStickSettingForm::TAddJoyStickSettingForm(TComponent* Owner)
 	: TForm(Owner)
 {}
 
-JoyStickSetting	TJoyStickSettingForm::getSetting()
+JoyStickSetting	TAddJoyStickSettingForm::getSetting()
 {
 	return JoyStickSetting(
     mSettingsNameE->getValue(),  mMaxXYVelocityE->getValue(),

@@ -1,5 +1,5 @@
-#ifndef abAddJoyStickSettingH
-#define abAddJoyStickSettingH
+#ifndef abAddJoyStickSettingFormH
+#define abAddJoyStickSettingFormH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -10,7 +10,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include "abJoyStickSetting.h";
 //---------------------------------------------------------------------------
-class TJoyStickSettingForm : public TForm
+class TAddJoyStickSettingForm : public TForm
 {
 __published:	// IDE-managed Components
 	TSTDStringLabeledEdit *mSettingsNameE;
@@ -22,10 +22,10 @@ __published:	// IDE-managed Components
 	TButton *Button2;
 private:	// User declarations
 public:		// User declarations
-	__fastcall TJoyStickSettingForm(TComponent* Owner);
+	__fastcall TAddJoyStickSettingForm(TComponent* Owner);
     JoyStickSetting		getSetting();
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TJoyStickSettingForm *JoyStickSettingForm;
+extern PACKAGE TAddJoyStickSettingForm *AddJoyStickSettingForm;
 //---------------------------------------------------------------------------
 #endif
