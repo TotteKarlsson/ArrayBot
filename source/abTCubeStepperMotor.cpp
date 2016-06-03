@@ -112,7 +112,35 @@ double TCubeStepperMotor::getEncoderCounts()
 
 void TCubeStepperMotor::setPotentiometerVelocity(double v)
 {
+    //Divide the velocity by four and populate the ranges
+    //TODO: Clean this up later.. not sure how the SetPot function
+    //really are intended to work..?
+	WORD 	thDef;
 
+    mPotentiometerVelocity = v;
+    double velStep = v;// / 4.;
+	double velocity = velStep;
+
+    int fullRange = 128;
+    int nrOfRanges = 4;
+    int range = 32; //128/4
+
+    int currRange = 1;
+
+    short err = SCC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
+    velocity += (velStep);
+    err = SCC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
+    velocity += velStep;
+    err = SCC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
+    velocity += velStep;
+    err = SCC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
+
+//	DWORD	vel;
+//    for(int i = 0; i < 127; i++)
+//    {
+//    	short err = ISC_GetPotentiometerParams(mSerial.c_str(), i, &thDef, &vel);
+//        Log(lInfo) <<"Pos: "<<i<<"\t"<<"Def: "<<thDef<<"\tValue: "<<vel / mScalingFactors.velocity;
+//    }
 }
 
 HardwareInformation TCubeStepperMotor::getHWInfo()

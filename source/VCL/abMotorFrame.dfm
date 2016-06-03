@@ -269,7 +269,7 @@ object MotorFrame: TMotorFrame
       Width = 55
       Height = 28
       Action = identify
-      Caption = 'EnableDisableBtn'
+      Caption = 'EnableBtn'
       TabOrder = 5
       OnClick = EnableDisableBtnClick
     end

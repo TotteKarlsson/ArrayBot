@@ -100,7 +100,8 @@ void TCubeDCServo::setPotentiometerVelocity(double v)
     //really are intended to work..?
 	WORD 	thDef;
 
-    double velStep = v / 4.;
+    mPotentiometerVelocity = v;
+    double velStep = v;// / 4.;
 	double velocity = velStep;
 
     int fullRange = 128;
@@ -109,18 +110,18 @@ void TCubeDCServo::setPotentiometerVelocity(double v)
 
     int currRange = 1;
 
-//    short err = CC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
-//    velocity += (velStep);
-//    err = CC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
-//    velocity += velStep;
-//    err = CC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
-//    velocity += velStep;
-//    err = CC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
-//
+    short err = CC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
+    velocity += (velStep);
+    err = CC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
+    velocity += velStep;
+    err = CC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
+    velocity += velStep;
+    err = CC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
+
 //	DWORD	vel;
 //    for(int i = 0; i < 127; i++)
 //    {
-//    	short err = CC_GetPotentiometerParams(mSerial.c_str(), i, &thDef, &vel);
+//    	short err = ISC_GetPotentiometerParams(mSerial.c_str(), i, &thDef, &vel);
 //        Log(lInfo) <<"Pos: "<<i<<"\t"<<"Def: "<<thDef<<"\tValue: "<<vel / mScalingFactors.velocity;
 //    }
 }
