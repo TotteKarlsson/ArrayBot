@@ -54,6 +54,15 @@ void JoyStickMessageDispatcher::readCapabilities()
     int res = joyGetDevCaps(mJoyStickID, &mCapabilities, sizeof(JOYCAPS));
     if(res != JOYERR_NOERROR)
     {
+    	if(res == MMSYSERR_NODRIVER)
+        {
+			throw("There is no valid driver for the joystick.");
+        }
+        else if(res == MMSYSERR_INVALPARAM)
+        {
+			throw("Invalid joystick parameter.");
+        }
+
     	mEnabled = false;
 		throw("Failed getting joystick capablities");
     }

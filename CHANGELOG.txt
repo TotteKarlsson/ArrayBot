@@ -1,5 +1,92 @@
+Release 0.5.3 (Jun 3)
+=======================
+* Enabled ability to use a PS3 controller to controll all XY stages
+* Enabled button control of both angle motors
+* Enabled button  control of both z-axis stages
+
 Release 0.5.1 (May 27)
 =======================
 * This release can move all stages using a joystick
+* Changed up/down buttons
+* Updated ini template file
+* Added controller for Camera angle to ArrayBot API and UI
+* Adding another angle controller to ArrayBot
+* Renaming spatialMove to LinearMove
+* Added more doxygen docs
+* More move/process logic
+* Added/rename Process sequencer, more abstract than MoveSequencer
+* Added process class, abstract class for a process to be used with the
+* Process sequencer
+* Adding logic to ProcessSequencer
+* Achieved a simple UI sequencer
+* Refactoring: moveToPosition -> moveAbsolute
+* Fixing up cyclic header dependencies
+* More move logic
+* Renamed XYZUnitPostiion to Position
+* Added units for implementation of move logic
+* Added code to deal with JoyStick velocity settings
+* Added units for JoyStick Settings
+* Added release script for setup application
+* Created release scripts
+* Updated doxygen docs
+* More fixes to reading float numbers
+* Fixing FloatLabeled Edit reference
+* Cleaned up UI
+* Added property to restore window size correctly
+* Added angle control for the cover slip
+* Re enabled TCube DC servo motor unit - for the angle controller
+* Fixed INI reading for the CS angle controller
+* Added CoverSlipAngleController and class for a MoveSequencer
+* Consolodating logic into ArrayBot class
+* Added inifile saves of MainForm properties
+* Added class to capture ArrayBot concepts
+* Renamed CoreExporter to abExporter
+* Fixed velocity settings for potentiometers on devices
+* Added ini template
+* Added 'custom' Thorlab structs
+* Updated misc files
+* Added sense of direction for whisker x-axis
+* Getting ready to test a consolidated move
+* Organizing two XYZUnits
+* Got coordinated move at an angle working
+* Added some initial logic for handling positions
+* Implemented goto position
+* Added a 'manual' jog velocity and acceleration to use in UI
+* Fixed Unit and motor frames
+* Work on initialization and destruction
+* Added frames for XYZ unit and Motor
+* Refining the UI
+* First test on real system
+* Added initial velocity, acceleration settings for the motors
+* Compiled with somewhat new dsl structure
+* More work on getting motor properties going
+* Adding range properties for velocity, acceleration, backlash, position and jogstep
+* First version of XYZ control
+* Creating initial UI for testing
+* Before Creating XYZUnit, i.e. unit handling 3 motors
+* Added enable/disable functions for Joystick and Joystick axes
+* Fixed subtle bug for setting velocity and acceleration for the ZFS unit
+* Using JogMoveMode and JogStopMode for jogging parameter instead of just JogMode
+* Added Joystick functions.
+* Fine control over each axis and each button
+* Added some logic for disconnecting and destroying devices
+* Added threaded/unthreaded motor calls
+* Cleaning up code before putting things together
+* Added support for z stage motor
+* Got LTS control under control
+* Preparing code for z stage stepper motor
+* Adding support for Long Travel stages LTS150
+* Added weighted average to input stream
+* More joystick testing
+* About to test with joystick
+* Added class for motor commands
+* Organising test code
+* Adding logic to throttle messages to the hardware devices
+* Added testing of joystick
+* Setting up code for threads..
+* Initial commit
 
 ------ 2016 ------
+
+This changelog contain messasges for changes to both the ARRAYBOT API, as
+well as the Araaybot UI.

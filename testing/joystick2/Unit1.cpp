@@ -17,6 +17,10 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 void __fastcall TForm1::Timer1Timer(TObject *Sender)
 {
 	//Check if joystick value have changed more than previous command
+    if(!mZAvgPos.size())
+    {
+    	return;
+    }
 	double val = mZAvgPos[mZAvgPos.size() -1];
     if(fabs(val - mValCommand) > 1.0)
     {
