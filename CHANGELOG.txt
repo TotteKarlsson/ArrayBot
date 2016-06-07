@@ -1,3 +1,10 @@
+Release 0.5.5 (Jun 7)
+=======================
+* Fixed joystick bug and improved response a little.
+* Fixed initialization of joystick speeds
+* Dealing with quick JS response
+* Added code to handle an absent JoyStick
+
 Release 0.5.4 (Jun 6)
 =======================
 * Fixed issues with enabled/disabled motors.
