@@ -1,8 +1,6 @@
 #pragma hdrstop
 #include "abTCubeDCServo.h"
-//#include "Thorlabs.MotionControl.TCube.BrushlessMotor.h"
 #include "Thorlabs.MotionControl.TCube.DCServo.h"
-//#include "Thorlabs.MotionControl.TDIEngine.h"
 #include "mtkLogger.h"
 #include "abExceptions.h"
 #include <bitset>
@@ -29,7 +27,7 @@ bool TCubeDCServo::connect()
     // open the device
     int res = CC_Open(toString(mSerial).c_str());
 
-
+	//we need to find out what actuatr is connected
     mScalingFactors.position = 1919.64;
     mScalingFactors.velocity = 42941.66;
 	mScalingFactors.acceleration = 14.66;
@@ -45,9 +43,8 @@ bool TCubeDCServo::connect()
         //Set jog mode to continous
         setJogMoveMode(jmContinuous);
 
-        //int en = CC_EnableChannel(mSerial.c_str());
-
-//        Log(lDebug) << "Enabling Code: "<<en;
+        int en = CC_EnableChannel(mSerial.c_str());
+        Log(lDebug) << "Enabling Code: "<<en;
 	    // start the device polling at 200ms intervals
     	if(!CC_StartPolling(mSerial.c_str(), 200))
         {
@@ -98,26 +95,26 @@ void TCubeDCServo::setPotentiometerVelocity(double v)
     //Divide the velocity by four and populate the ranges
     //TODO: Clean this up later.. not sure how the SetPot function
     //really are intended to work..?
-	WORD 	thDef;
-
-    mPotentiometerVelocity = v;
-    double velStep = v;// / 4.;
-	double velocity = velStep;
-
-    int fullRange = 128;
-    int nrOfRanges = 4;
-    int range = 32; //128/4
-
-    int currRange = 1;
-
-    short err = CC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
-    velocity += (velStep);
-    err = CC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
-    velocity += velStep;
-    err = CC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
-    velocity += velStep;
-    err = CC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
-
+//	WORD 	thDef;
+//
+//    mPotentiometerVelocity = v;
+//    double velStep = v;// / 4.;
+//	double velocity = velStep;
+//
+//    int fullRange = 128;
+//    int nrOfRanges = 4;
+//    int range = 32; //128/4
+//
+//    int currRange = 1;
+//
+//    short err = CC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
+//    velocity += (velStep);
+//    err = CC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
+//    velocity += velStep;
+//    err = CC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
+//    velocity += velStep;
+//    err = CC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
+//
 //	DWORD	vel;
 //    for(int i = 0; i < 127; i++)
 //    {

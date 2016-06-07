@@ -208,4 +208,14 @@ void __fastcall TMotorFrame::EnableDisableBtnClick(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMotorFrame::StopBtnClick(TObject *Sender)
+{
+	if(mMotor)
+    {
+		mMotor->stop();
+    }
+}
+
+
 

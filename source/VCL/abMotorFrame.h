@@ -49,6 +49,7 @@ __published:	// IDE-managed Components
 	TLabel *Label6;
 	TLabel *mIsEnabledLbl;
 	TButton *EnableDisableBtn;
+	TButton *StopBtn;
 	void __fastcall mMotorStatusTimerTimer(TObject *Sender);
 	void __fastcall identifyExecute(TObject *Sender);
 	void __fastcall homeExecute(TObject *Sender);
@@ -60,6 +61,7 @@ __published:	// IDE-managed Components
 	void __fastcall mMotorPositionEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mMotorPositionEKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall EnableDisableBtnClick(TObject *Sender);
+	void __fastcall StopBtnClick(TObject *Sender);
 
 
 private:

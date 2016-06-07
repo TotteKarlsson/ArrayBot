@@ -1,3 +1,15 @@
+Release 0.5.4 (Jun 6)
+=======================
+* Fixed issues with enabled/disabled motors.
+* Added ability to enable/disable motors
+* A motor does sometime get disabled, for various reasons. When disabled, no current is
+* holding the motor so moving the motor manually is ok (I guess).
+* Renamed JoyStick to ArrayBotJoyStick
+* Added Joystick settings for the Angle controllers
+* Renamed abJoyStick to abArrayBotJoyStick
+* Renamed formname
+
+* Cleaned up 
 Release 0.5.3 (Jun 3)
 =======================
 * Enabled ability to use a PS3 controller to controll all XY stages

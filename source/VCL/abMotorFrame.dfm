@@ -24,11 +24,11 @@ object MotorFrame: TMotorFrame
       Caption = 'Jog Velocity (mm/s):'
     end
     object Label5: TLabel
-      Left = 119
+      Left = 157
       Top = 77
-      Width = 119
+      Width = 81
       Height = 13
-      Caption = 'Jog Acceleration (mm/s):'
+      Caption = 'Jog Acc. (mm/s):'
     end
     object mJogVelLbl: mtkFloatLabel
       Left = 244
@@ -243,8 +243,8 @@ object MotorFrame: TMotorFrame
         OnKeyDown = DevEdit
       end
       object mPotentiometerSettingE: TFloatLabeledEdit
-        Left = 194
-        Top = 57
+        Left = 170
+        Top = 63
         Width = 66
         Height = 21
         EditLabel.Width = 96
@@ -268,10 +268,18 @@ object MotorFrame: TMotorFrame
       Top = 52
       Width = 55
       Height = 28
-      Action = identify
       Caption = 'EnableBtn'
       TabOrder = 5
       OnClick = EnableDisableBtnClick
+    end
+    object StopBtn: TButton
+      Left = 77
+      Top = 52
+      Width = 55
+      Height = 28
+      Caption = 'Stop'
+      TabOrder = 6
+      OnClick = StopBtnClick
     end
   end
   object mMotorStatusTimer: TTimer
