@@ -11,6 +11,7 @@
 #include <VCLTee.Series.hpp>
 #include <VCLTee.TeEngine.hpp>
 #include <VCLTee.TeeProcs.hpp>
+#include "TFloatLabeledEdit.h"
 #include <vcl.Controls.hpp>
 #include <vcl.StdCtrls.hpp>
 #include <vcl.Forms.hpp>
@@ -32,6 +33,7 @@ class TForm1 : public TForm
 	TFastLineSeries *Series2;
 	TLabel *JoystickAvgZPos;
 	TMemo *Memo1;
+	TFloatLabeledEdit *mAlpha;
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Timer1Timer(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -46,7 +48,7 @@ class TForm1 : public TForm
         int JoystickID;
 	    JOYCAPS JoyCaps;
         double mRunningZAverage;
-        double mAlpha;
+//        double mAlpha;
 
         void ShowDeviceInfo(void);
         void ShowStatusInfo(void);

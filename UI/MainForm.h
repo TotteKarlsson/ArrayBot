@@ -96,6 +96,7 @@ class TMain : public TRegistryForm
 	TMotorFrame *TMotorFrame2;
 	TFloatLabeledEdit *mAngleControlVelE;
 	TFloatLabeledEdit *mAngleControllerAccE;
+	TButton *Button1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -120,6 +121,7 @@ class TMain : public TRegistryForm
 	void __fastcall JSSpeedBtnClick(TObject *Sender);
 	void __fastcall AddJsSettingBtnClick(TObject *Sender);
 	void __fastcall JoyStickSettingsCBChange(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
 
     private:
         TThreadMethod               logMsgMethod;

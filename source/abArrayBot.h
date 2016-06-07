@@ -39,6 +39,8 @@ class AB_CORE ArrayBot : public ABObject
 
     	CombinedMove&				getCombinedMove(){return mCSLift;}
         bool						applyJoyStickSetting(const string& settingName);
+        bool						readINIParameters();
+        bool						writeINIParameters();
 
     private:
         bool						mIsShuttingDown;

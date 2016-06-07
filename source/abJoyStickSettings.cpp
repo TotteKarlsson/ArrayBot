@@ -9,6 +9,16 @@ JoyStickSettings::JoyStickSettings(const string& iniSection, IniFile& iniFile)
 mIniSection(iniSection),
 mIniFile(iniFile)
 {
+    readINIParameters();
+}
+
+JoyStickSettings::~JoyStickSettings()
+{
+	writeINIParameters();
+}
+
+bool JoyStickSettings::readINIParameters()
+{
 	IniSection* sec =  mIniFile.getSection(mIniSection, true);
 
     if(sec)
@@ -22,9 +32,10 @@ mIniFile(iniFile)
             aKey = sec->getNext();
         }
     }
+    return true;
 }
 
-JoyStickSettings::~JoyStickSettings()
+bool JoyStickSettings::writeINIParameters()
 {
 	//For each setting, create a iniKey and write to inifile
 	JoyStickSetting* jss = getFirst();
@@ -38,14 +49,13 @@ JoyStickSettings::~JoyStickSettings()
         }
 		jss = getNext();
     }
+    return true;
 }
-
 
 JoyStickSetting* JoyStickSettings::add(const JoyStickSetting& pos)
 {
 	//Check label
     mSettings.push_front(pos);
-
     return &(*(mSettings.begin()));
 }
 

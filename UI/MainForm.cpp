@@ -53,6 +53,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 
 __fastcall TMain::~TMain()
 {
+	delete mAB;
 	mProperties.write();
     mIniFile.save();
 }
@@ -68,13 +69,11 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	//Initialize UI
     mCSAngleE->setValue(mAB->getCoverSlipAngleController().getAngle());
 
-//    //Assign editbox references to Lifting parameters
-//    mMoveAngleE->assignExternalProperty(&(mAB->getCombinedMove().mAngle), true);
-//    mCSAngleE->assignExternalProperty(&mAB->getCoverSlipAngleController().mAngle, true);
+    //Assign editbox references to Lifting parameters
+	//    mMoveAngleE->assignExternalProperty(&(mAB->getCombinedMove().mAngle), true);
+	//    mCSAngleE->assignExternalProperty(&mAB->getCoverSlipAngleController().mAngle, true);
 
-	mJSSpeedMediumBtn->Click();
-
-    //JoyStick Settings
+    //JoyStick Settings CB
     JoyStickSettings& js = mAB->getJoyStickSettings();
     JoyStickSetting* jss = js.getFirst();
     while(jss)
@@ -82,7 +81,10 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     	JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
         jss = js.getNext();
     }
+
 	JoyStickSettingsCB->ItemIndex = 0;
+    JoyStickSettingsCB->OnChange(NULL);
+	mJSSpeedMediumBtn->Click();
 }
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
@@ -239,6 +241,23 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
 	 	mAB->disableJoyStick();
     }
     btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable" : "Enable";
+
+    //There is a 'bug' regarding speed settings
+    //Programatically apply currently selected setting
+	if(mJSSpeedFastBtn->Down)
+    {
+		mJSSpeedFastBtn->Click();
+    }
+
+	if(mJSSpeedMediumBtn->Down)
+    {
+		mJSSpeedMediumBtn->Click();
+    }
+
+	if(mJSSpeedSlowBtn->Down)
+    {
+		mJSSpeedSlowBtn->Click();
+    }
 }
 
 void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
@@ -287,5 +306,11 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
              );
 }
 
+
+//Save parameters
+void __fastcall TMain::Button1Click(TObject *Sender)
+{
+	mAB->writeINIParameters();
+}
 
 

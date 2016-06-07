@@ -12,7 +12,7 @@ JoyStickMessageDispatcher::JoyStickMessageDispatcher(int nrOfButtons)
 :
 mEnabled(false),
 mCanEnable(false),
-mMoveResolution(1000),
+mMoveResolution(100),
 mNrOfButtons(nrOfButtons)
 {
     mJoyStickID = JOYSTICKID1; //Support only one for now
@@ -39,14 +39,8 @@ bool JoyStickMessageDispatcher::isEnabled()
 
 bool JoyStickMessageDispatcher::enable()
 {
-	if(mCanEnable)
-    {
-		return mUpdateStateTimer.start();
-    }
-    else
-    {
-    	return false;
-    }
+    mUpdateStateTimer.start();
+    return mCanEnable ?  true : false;
 }
 
 void JoyStickMessageDispatcher::disable()
@@ -127,44 +121,40 @@ void JoyStickMessageDispatcher::refresh()
     }
 
     //Check X1 Axis
-    if(abs((int) (mX1Axis.mPosition - mJoyInfo.dwXpos)) > mMoveResolution)
+//    if(abs((int) (mX1Axis.mPosition - mJoyInfo.dwXpos)) > mMoveResolution)
     {
     	if(mX1Axis.mEvent)
         {
-	        Log(lDebug5) << "Calling X1 AxisEvent";
             mX1Axis.mEvent(mJoyInfo.dwXpos);
         }
         mX1Axis.mPosition = mJoyInfo.dwXpos;
     }
 
     //Check Y1 Axis
-    if(abs((int) (mY1Axis.mPosition - mJoyInfo.dwYpos)) > mMoveResolution)
+//    if(abs((int) (mY1Axis.mPosition - mJoyInfo.dwYpos)) > mMoveResolution)
     {
     	if(mY1Axis.mEvent)
         {
-	        Log(lDebug5) << "Calling Y1 AxisEvent";
             mY1Axis.mEvent(mJoyInfo.dwYpos);
         }
         mY1Axis.mPosition = mJoyInfo.dwYpos;
     }
 
     //Check X2 Axis  (Z - axis in API struc)
-    if(abs((int) (mX2Axis.mPosition - mJoyInfo.dwZpos)) > mMoveResolution)
+//    if(abs((int) (mX2Axis.mPosition - mJoyInfo.dwZpos)) > mMoveResolution)
     {
     	if(mX2Axis.mEvent)
         {
-	        Log(lDebug5) << "Calling X2 AxisEvent";
             mX2Axis.mEvent(mJoyInfo.dwZpos);
         }
         mX2Axis.mPosition = mJoyInfo.dwZpos;
     }
 
     //Check Y2 Axis
-    if(abs((int) (mY2Axis.mPosition - mJoyInfo.dwRpos)) > mMoveResolution)
+//    if(abs((int) (mY2Axis.mPosition - mJoyInfo.dwRpos)) > mMoveResolution)
     {
     	if(mY2Axis.mEvent)
         {
-	        Log(lDebug5) << "Calling Y2 AxisEvent";
             mY2Axis.mEvent(mJoyInfo.dwRpos);
         }
         mY2Axis.mPosition = mJoyInfo.dwRpos;
@@ -271,7 +261,5 @@ void JoyStickMessageDispatcher::refresh()
 
         mPOV.mPOVState = mJoyInfo.dwPOV;
     }
-
-
 }
 

@@ -23,6 +23,8 @@ class AB_CORE JoyStickSettings : public ABObject
         JoyStickSetting*                getNext() const;
         JoyStickSetting*                getPrevious() const;
         JoyStickSetting*                getCurrent() const;
+        bool							readINIParameters();
+        bool							writeINIParameters();
 
     protected:
 		string							mIniSection;

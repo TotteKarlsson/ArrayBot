@@ -573,6 +573,15 @@ object Main: TMain
           ParentFont = False
           TabOrder = 5
         end
+        object Button1: TButton
+          Left = 11
+          Top = 270
+          Width = 118
+          Height = 83
+          Caption = 'Save Parameters'
+          TabOrder = 6
+          OnClick = Button1Click
+        end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'

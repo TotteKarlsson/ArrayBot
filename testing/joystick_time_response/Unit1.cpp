@@ -2,6 +2,7 @@
 #pragma hdrstop
 #include "unit1.h"
 //---------------------------------------------------------------------------
+#pragma link "TFloatLabeledEdit"
 #pragma resource "*.dfm"
 TForm1 *Form1;
 //---------------------------------------------------------------------------
@@ -9,7 +10,6 @@ __fastcall TForm1::TForm1(TComponent* Owner)
   :
   TForm(Owner),
   mRunningZAverage(0),
-  mAlpha(0.05),
   mValCommand(0)
   {}
 
@@ -29,53 +29,6 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
 	    Memo1->Lines->Add("Old value ");
 	    Memo1->Lines->Add(FloatToStrF(mValCommand, ffFixed, 4,2));
         mValCommand = val;
-    }
-}
-
-  //---------------------------------------------------------------------------
-void TForm1::ShowDeviceInfo(void)
-{
-    // use joyGetDevCaps to display information from JOYCAPS structure
-    // note that not all of the information from joyGetDevCaps is shown
-    // here. consult the win32 SDK help file for a full description of
-    // joyGetDevCaps
-    joyGetDevCaps(JoystickID,&JoyCaps, sizeof(JOYCAPS));
-
-    // Tell Windows we want to receive joystick events.
-    // Handle = receiver, JoystickID = joystick we're using
-    // 3rd arg = how often MM_JOYMOVE events happen
-	if(Connected)
-  	{
-    	joySetCapture(Handle,JoystickID, 2*JoyCaps.wPeriodMin,FALSE);
-  	}
-}
-
-void TForm1::ShowStatusInfo(void)
-{
-    if(!Connected)
-    {
-        return;
-    }
-
-    JOYINFO JoyInfo;
-    joyGetPos(JoystickID,&JoyInfo); // get the initial joystick pos
-}
-
-void __fastcall TForm1::JMZMove(TMessage &msg)
-{
-	double pos = msg.LParamLo * 305e-6;
-    mRunningZAverage = (mAlpha * pos) + (1.0 - mAlpha) * mRunningZAverage;
-    JoystickZPosition->Caption = "Z Position = " + FloatToStrF(pos, ffFixed, 4,2);
-    JoystickAvgZPos->Caption = "Z Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
-
-    mZPos.push_back(pos);
-    mZAvgPos.push_back(mRunningZAverage);
-
-    int sz = mZPos.size();
-    if(sz >= 100)
-    {
-    	mZPos.pop_front();
-		mZAvgPos.pop_front();
     }
 }
 
@@ -118,6 +71,54 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 
   ShowDeviceInfo(); // initialize the labels.
   ShowStatusInfo();
+}
+
+  //---------------------------------------------------------------------------
+void TForm1::ShowDeviceInfo(void)
+{
+    // use joyGetDevCaps to display information from JOYCAPS structure
+    // note that not all of the information from joyGetDevCaps is shown
+    // here. consult the win32 SDK help file for a full description of
+    // joyGetDevCaps
+    joyGetDevCaps(JoystickID,&JoyCaps, sizeof(JOYCAPS));
+
+    // Tell Windows we want to receive joystick events.
+    // Handle = receiver, JoystickID = joystick we're using
+    // 3rd arg = how often MM_JOYMOVE events happen
+	if(Connected)
+  	{
+    	joySetCapture(Handle,JoystickID, 2*JoyCaps.wPeriodMin,FALSE);
+  	}
+}
+
+void TForm1::ShowStatusInfo(void)
+{
+    if(!Connected)
+    {
+        return;
+    }
+
+    JOYINFO JoyInfo;
+    joyGetPos(JoystickID,&JoyInfo); // get the initial joystick pos
+}
+
+void __fastcall TForm1::JMZMove(TMessage &msg)
+{
+	//Make Z being between 0 - 20.
+	double pos = msg.LParamLo * 305e-6;
+    mRunningZAverage 			= (mAlpha->getValue() * pos) + (1.0 - mAlpha->getValue()) * mRunningZAverage;
+    JoystickZPosition->Caption 	= "Z Position = " + FloatToStrF(pos, ffFixed, 4,2);
+    JoystickAvgZPos->Caption 	= "AVG Z Position = " + FloatToStrF(mRunningZAverage, ffFixed, 4,2);
+
+    mZPos.push_back(pos);
+    mZAvgPos.push_back(mRunningZAverage);
+
+    int sz = mZPos.size();
+    if(sz >= 100)
+    {
+    	mZPos.pop_front();
+		mZAvgPos.pop_front();
+    }
 }
 
 void __fastcall TForm1::FormDestroy(TObject *Sender)

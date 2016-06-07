@@ -29,6 +29,16 @@ JoyStickSettings& ArrayBot::getJoyStickSettings()
 	return mJSSettings;
 }
 
+bool ArrayBot::readINIParameters()
+{
+	mJSSettings.readINIParameters();
+}
+
+bool ArrayBot::writeINIParameters()
+{
+	mJSSettings.writeINIParameters();
+}
+
 bool ArrayBot::isActive()
 {
 	return mCoverSlip.isActive() || mWhisker.isActive() || mCoverSlipAngleController.isActive() || mCameraAngleController.isActive() ||     mJoyStick.isEnabled();

@@ -138,11 +138,11 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcJogForward:
-                    	mMotor->jogForward(false);
+	                    	mMotor->jogForward(false);
 					break;
 
                     case mcJogReverse:
-                    	mMotor->jogReverse(false);
+	                    	mMotor->jogReverse(false);
 					break;
 
 //                    case mcMoveDistance:

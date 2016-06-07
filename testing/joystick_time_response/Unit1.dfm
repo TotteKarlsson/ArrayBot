@@ -55,8 +55,8 @@ object Form1: TForm1
       Marks.Callout.Brush.Color = clBlack
       Marks.Callout.Arrow.Visible = True
       Marks.Visible = False
-      SeriesColor = clLime
-      LinePen.Color = clLime
+      SeriesColor = clBlue
+      LinePen.Color = clBlue
       LinePen.SmallDots = True
       XValues.Name = 'X'
       XValues.Order = loAscending
@@ -87,6 +87,17 @@ object Form1: TForm1
     ScrollBars = ssBoth
     TabOrder = 1
   end
+  object mAlpha: TFloatLabeledEdit
+    Left = 241
+    Top = 37
+    Width = 56
+    Height = 21
+    EditLabel.Width = 27
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Alpha'
+    TabOrder = 2
+    Text = '0.0'
+  end
   object ImageList1: TImageList
     DrawingStyle = dsTransparent
     Height = 76
@@ -94,7 +105,7 @@ object Form1: TForm1
     Left = 320
     Top = 96
     Bitmap = {
-      494C01010100080020004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010100080028004C004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000300100004C00000001002000000000000069
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
