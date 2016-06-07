@@ -20,10 +20,10 @@ class AB_CORE ArrayBot : public ABObject
         XYZUnit&					getWhiskerUnit();
         bool						shutDown();
 
-        ArrayBotJoyStick&					getJoyStick();
+        ArrayBotJoyStick&			getJoyStick();
         JoyStickSettings&			getJoyStickSettings();
 
-		void						enableJoyStick();
+		bool						enableJoyStick();
 		void						disableJoyStick();
         void						stopAll();
 
@@ -44,7 +44,7 @@ class AB_CORE ArrayBot : public ABObject
         bool						mIsShuttingDown;
         IniFile&					mIniFile;
 
-        ArrayBotJoyStick					mJoyStick;
+        ArrayBotJoyStick			mJoyStick;
         JoyStickSettings			mJSSettings;
 
         XYZUnit						mCoverSlip;

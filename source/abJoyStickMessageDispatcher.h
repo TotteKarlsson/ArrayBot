@@ -34,7 +34,6 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
 								        //Remove these strucs later on
             JOYINFOEX 			        mJoyInfo;
             JOYCAPS 			        mCapabilities;
-
             void 				        refresh();
             bool				        isEnabled();
             bool				        enable();
@@ -43,9 +42,13 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
 	private:
             int 				        mJoyStickID;
             bool				        mEnabled;
+
+            							//!If no joystick is found
+                                        //!mCanEnable is false
+            bool						mCanEnable;
             int					        mMoveResolution;
             const int			        mNrOfButtons;
-            void 				        readCapabilities();
+            bool 				        readCapabilities();
 
 			ButtonDeque 		        mButtons;
 
@@ -53,7 +56,6 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
             JSAxis		        		mY1Axis;
             JSAxis		        		mX2Axis;
             JSAxis		        		mY2Axis;
-
             JSPOV						mPOV;
 
             Timer				        mUpdateStateTimer;

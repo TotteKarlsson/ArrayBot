@@ -6,7 +6,7 @@
 #include <Vcl.Themes.hpp>
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-
+#include "abExceptions.h"
 using namespace mtk;
 using namespace std;
 
@@ -42,6 +42,10 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	{
 		Application->ShowException(&exception);
 	}
+    catch(const ABException& e)
+    {
+		Application->ShowException(&Exception(e.what()));
+    }
 	catch (...)
 	{
 		try
@@ -83,7 +87,7 @@ void setupLogging()
 #pragma comment(lib, "mtkMath.lib")
 #pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
-#pragma comment(lib, "VCLCommon.lib")
+#pragma comment(lib, "VCLCommon.bpi")
 #pragma comment(lib, "DuneForms.lib")
 
 

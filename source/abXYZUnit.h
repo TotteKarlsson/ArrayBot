@@ -31,8 +31,8 @@ class AB_CORE XYZUnit : public ABObject
 		void				    shutDown();
 		string					getName();
         Positions&				positions(){return mPositions;}
-        void					enableJoyStick(ArrayBotJoyStick* js);
-        void					disableJoyStick();
+        void					attachJoyStick(ArrayBotJoyStick* js);
+        void					detachJoyStick();
 
 		bool				    initialize();
         bool					stopAll();
@@ -63,7 +63,8 @@ class AB_CORE XYZUnit : public ABObject
         APTMotor*			    mXMotor;
         APTMotor*			    mYMotor;
         APTMotor*			    mZMotor;
-        ArrayBotJoyStick*               mJoyStick;
+
+        ArrayBotJoyStick*       mJoyStick;
         Positions				mPositions;
         ProcessSequencer 		mMoveSequencer;
 };

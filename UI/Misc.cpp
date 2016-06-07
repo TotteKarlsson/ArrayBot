@@ -35,11 +35,11 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 
 //	if(mAB.isActive())
     {
-    	if(!mAB.isShuttingDown())
+    	if(!mAB->isShuttingDown())
         {
 	        TXYZUnitFrame1->disable();
     	    TXYZUnitFrame2->disable();
-	    	mAB.shutDown();
+	    	mAB->shutDown();
         }
     }
 	Close();
@@ -56,7 +56,7 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 
 	//Check if active stuff is going on.. if so call the ShutDown in the
     //Timer fire    if(
-	if(mAB.isActive())
+	if(mAB->isActive())
     {
     	CanClose = false;
     }

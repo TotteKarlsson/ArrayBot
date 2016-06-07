@@ -128,7 +128,10 @@ class TMain : public TRegistryForm
         IniFileProperties  			mProperties;
 
         IniFile						mIniFile;
-        ArrayBot					mAB;
+        							//!Arraybot is allocated on the stack.
+                                    //!So that we can cat ch exceptions in the
+                                    //!constructor
+        ArrayBot*					mAB;
 
 		void __fastcall		        OnException();
 

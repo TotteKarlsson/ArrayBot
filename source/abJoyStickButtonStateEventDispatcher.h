@@ -7,10 +7,10 @@
 using std::pair;
 
 //---------------------------------------------------------------------------
-typedef void (__closure *JoyStickEvent)(); //Need to research this and make it portable
+typedef void (__closure *JoyStickEvent)();
 typedef pair<JoyStickEvent, JoyStickEvent> ButtonEvents;
 
-//Helper classes
+//Helper class
 class AB_CORE JoyStickButtonStateEventDispatcher  : public ABObject
 {
 	public:

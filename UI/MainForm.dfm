@@ -262,18 +262,14 @@ object Main: TMain
               ExplicitWidth = 1104
               ExplicitHeight = 348
               inherited TopPanel: TPanel
-                Top = 27
                 Width = 1100
-                ExplicitTop = 27
                 ExplicitWidth = 1100
               end
               inherited ScrollBox1: TScrollBox
-                Top = 53
                 Width = 1100
-                Height = 293
-                ExplicitTop = 53
+                Height = 305
                 ExplicitWidth = 1100
-                ExplicitHeight = 293
+                ExplicitHeight = 305
               end
             end
           end
@@ -290,18 +286,12 @@ object Main: TMain
               Width = 1104
               ExplicitWidth = 1104
               inherited TopPanel: TPanel
-                Top = 27
                 Width = 1100
-                ExplicitTop = 27
                 ExplicitWidth = 1100
               end
               inherited ScrollBox1: TScrollBox
-                Top = 53
                 Width = 1100
-                Height = 296
-                ExplicitTop = 53
                 ExplicitWidth = 1100
-                ExplicitHeight = 296
               end
             end
           end
@@ -378,10 +368,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -591,10 +577,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

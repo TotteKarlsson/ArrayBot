@@ -130,25 +130,25 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
 	return true;
 }
 
-void ArrayBot::enableJoyStick()
+bool ArrayBot::enableJoyStick()
 {
  	//enable angle motor controls
-    mCoverSlipAngleController.enableJoyStick(&getJoyStick());
-    mCameraAngleController.enableJoyStick(&getJoyStick());
+    mCoverSlipAngleController.attachJoyStick(&getJoyStick());
+    mCameraAngleController.detachJoyStick();
 
-    mCoverSlip.enableJoyStick(&getJoyStick());
+    mCoverSlip.attachJoyStick(&getJoyStick());
     mJoyStick.getX1Axis().setSenseOfDirection(1);
 
-	mWhisker.enableJoyStick(&getJoyStick());
+	mWhisker.attachJoyStick(&getJoyStick());
     mJoyStick.getX2Axis().setSenseOfDirection(-1);
 
-    mJoyStick.enable();
+    return mJoyStick.enable();
 }
 
 void ArrayBot::disableJoyStick()
 {
-    mCoverSlip.disableJoyStick();
-    mWhisker.disableJoyStick();
+    mCoverSlip.detachJoyStick();
+    mWhisker.detachJoyStick();
     mJoyStick.disable();
 }
 

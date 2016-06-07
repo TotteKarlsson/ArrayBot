@@ -26,11 +26,11 @@ mJoyStick(NULL)
 AngleController::~AngleController()
 {}
 
-void AngleController::enableJoyStick(ArrayBotJoyStick* js)
+bool AngleController::attachJoyStick(ArrayBotJoyStick* js)
 {
 	if(!js)
     {
-    	return;
+    	return false;
     }
 
     mJoyStick = js;
@@ -73,15 +73,12 @@ void AngleController::enableJoyStick(ArrayBotJoyStick* js)
         }
     }
 
-    mJoyStick->enable();
+    return mJoyStick->enable();
 }
 
-void AngleController::disableJoyStick()
+void AngleController::detachJoyStick()
 {
-	if(mJoyStick)
-    {
-		mJoyStick->disable();
-    }
+	mJoyStick = NULL;
 }
 
 double AngleController::getAngle()

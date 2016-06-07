@@ -33,8 +33,8 @@ class AB_CORE AngleController : public ABObject
         double					            getAngle();
 		void					            stop();
 		APTMotor*				            getMotor();
-		void								enableJoyStick(ArrayBotJoyStick* js);
-		void								disableJoyStick();
+		bool								attachJoyStick(ArrayBotJoyStick* js);
+		void								detachJoyStick();
         Property<int>		                mMotorSerial;
         Property<double>  	                mAngle;
         Property<int>						mAngleOffset;
@@ -43,6 +43,8 @@ class AB_CORE AngleController : public ABObject
 
     private:
     	APTMotor*				            mMotor;
+
+        									//Dumb pointer
         ArrayBotJoyStick*               	mJoyStick;
         IniFile&			                mIniFile;
         IniFileProperties	                mProperties;

@@ -185,7 +185,7 @@ void XYZUnit::home()
     }
 }
 
-void XYZUnit::enableJoyStick(ArrayBotJoyStick* js)
+void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
 {
 	if(!js)
     {
@@ -280,16 +280,11 @@ void XYZUnit::enableJoyStick(ArrayBotJoyStick* js)
             mJoyStick->getButton(4).disable();
         }
     }
-
-    mJoyStick->enable();
 }
 
-void XYZUnit::disableJoyStick()
+void XYZUnit::detachJoyStick()
 {
-	if(mJoyStick)
-    {
-		mJoyStick->disable();
-    }
+	mJoyStick = NULL;
 }
 
 APTMotor* XYZUnit::getXMotor()

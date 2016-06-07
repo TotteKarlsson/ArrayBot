@@ -2,6 +2,7 @@
 #include "abJoyStickMessageDispatcher.h"
 #include <bitset>
 #include "mtkLogger.h"
+#include "abExceptions.h"
 //---------------------------------------------------------------------------
 
 using namespace std;
@@ -9,16 +10,18 @@ using namespace mtk;
 
 JoyStickMessageDispatcher::JoyStickMessageDispatcher(int nrOfButtons)
 :
-mNrOfButtons(nrOfButtons),
+mEnabled(false),
+mCanEnable(false),
 mMoveResolution(1000),
-mEnabled(false)
+mNrOfButtons(nrOfButtons)
 {
     mJoyStickID = JOYSTICKID1; //Support only one for now
 
     mUpdateStateTimer.setInterval(30);
 	mUpdateStateTimer.OnTimerC = refresh;
-    readCapabilities();
 
+   	mEnabled = readCapabilities();
+	mCanEnable = mEnabled;
     //Setup buttons
     for(int i = 0; i < mNrOfButtons; i++)
     {
@@ -36,7 +39,14 @@ bool JoyStickMessageDispatcher::isEnabled()
 
 bool JoyStickMessageDispatcher::enable()
 {
-	return mUpdateStateTimer.start();
+	if(mCanEnable)
+    {
+		return mUpdateStateTimer.start();
+    }
+    else
+    {
+    	return false;
+    }
 }
 
 void JoyStickMessageDispatcher::disable()
@@ -44,11 +54,12 @@ void JoyStickMessageDispatcher::disable()
 	mUpdateStateTimer.stop();
 }
 
-void JoyStickMessageDispatcher::readCapabilities()
+bool JoyStickMessageDispatcher::readCapabilities()
 {
-    if (mJoyStickID == -1)
+    if(mJoyStickID == -1)
     {
-    	return;
+		Log(lError) << "Invalid JoyStickID.";
+    	return false;
     }
 
     int res = joyGetDevCaps(mJoyStickID, &mCapabilities, sizeof(JOYCAPS));
@@ -56,17 +67,18 @@ void JoyStickMessageDispatcher::readCapabilities()
     {
     	if(res == MMSYSERR_NODRIVER)
         {
-			throw("There is no valid driver for the joystick.");
+			Log(lError) << "There is no valid driver for the joystick.";
         }
         else if(res == MMSYSERR_INVALPARAM)
         {
-			throw("Invalid joystick parameter.");
+			Log(lError) << "Invalid joystick parameter.";
         }
 
-    	mEnabled = false;
-		throw("Failed getting joystick capablities");
+		//throw(ABException("Failed getting joystick capablities"));
+        Log(lError) <<"Failed getting joystick capablities";
+        return false;
     }
-   	mEnabled = true;
+	return true;
 }
 
 void JoyStickMessageDispatcher::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)

@@ -10,6 +10,7 @@
 #include "mtkLogger.h"
 #include <bitset>
 #include "mtkMathUtils.h"
+#include "abExceptions.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -32,16 +33,22 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TRegistryForm("Test", "MainForm", Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-    mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
-	mAB(mIniFile)
+    mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true)
 {
 	TMemoLogger::mMemoIsEnabled = false;
 
+    try
+    {
+		mAB = new ArrayBot(mIniFile);
+    }
+    catch(const ABException& e)
+    {
+		MessageDlg(e.Message().c_str(), mtWarning, TMsgDlgButtons() << mbOK, 0);
+    }
 	//Setup UI properties
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
-//    mAB.assignWindowHandle((int) Handle);
 }
 
 __fastcall TMain::~TMain()
@@ -59,16 +66,16 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	initBotAExecute(NULL);
 
 	//Initialize UI
-    mCSAngleE->setValue(mAB.getCoverSlipAngleController().getAngle());
+    mCSAngleE->setValue(mAB->getCoverSlipAngleController().getAngle());
 
 //    //Assign editbox references to Lifting parameters
-//    mMoveAngleE->assignExternalProperty(&(mAB.getCombinedMove().mAngle), true);
-//    mCSAngleE->assignExternalProperty(&mAB.getCoverSlipAngleController().mAngle, true);
+//    mMoveAngleE->assignExternalProperty(&(mAB->getCombinedMove().mAngle), true);
+//    mCSAngleE->assignExternalProperty(&mAB->getCoverSlipAngleController().mAngle, true);
 
 	mJSSpeedMediumBtn->Click();
 
     //JoyStick Settings
-    JoyStickSettings& js = mAB.getJoyStickSettings();
+    JoyStickSettings& js = mAB->getJoyStickSettings();
     JoyStickSetting* jss = js.getFirst();
     while(jss)
     {
@@ -80,22 +87,22 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
 {
-	mAB.initialize();
+	mAB->initialize();
 
-	TXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
-	TXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
+	TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
+	TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
 
-	TMotorFrame1->assignMotor(mAB.getCoverSlipAngleController().getMotor());
-	TMotorFrame2->assignMotor(mAB.getCameraAngleController().getMotor());
+	TMotorFrame1->assignMotor(mAB->getCoverSlipAngleController().getMotor());
+	TMotorFrame2->assignMotor(mAB->getCameraAngleController().getMotor());
 
     //ArrayBotJoyStick stuff.....
-    mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getX1Axis().getMaxVelocity());
-    mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getX1Axis().getAcceleration());
+    mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
+    mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
 
-    if(mAB.getCoverSlipUnit().getZMotor())
+    if(mAB->getCoverSlipUnit().getZMotor())
     {
-    	mMaxZJogVelocityJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getVelocity());
-    	mZJogAccelerationJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
+    	mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
+    	mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
     }
 
     InitCloseBtn->Action = ShutDownA;
@@ -103,7 +110,7 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 
 void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 {
-    mAB.getJoyStick().disable();
+    mAB->getJoyStick().disable();
 
 	TMotorFrame1->assignMotor(NULL);
 	TMotorFrame2->assignMotor(NULL);
@@ -112,9 +119,9 @@ void __fastcall TMain::ShutDownAExecute(TObject *Sender)
     TXYZUnitFrame2->disable();
 
     //The shutdown disconnects all devices
-    mAB.shutDown();
+    mAB->shutDown();
 
-	while(mAB.isActive())
+	while(mAB->isActive())
     {
     	sleep(100);
     }
@@ -124,7 +131,7 @@ void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
-	mAB.stopAll();
+	mAB->stopAll();
 }
 
 //---------------------------------------------------------------------------
@@ -141,8 +148,8 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 
 void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
 {
-	APTMotor* zCS 	= mAB.getCoverSlipUnit().getZMotor();
-	APTMotor* zW 	= mAB.getWhiskerUnit().getZMotor();
+	APTMotor* zCS 	= mAB->getCoverSlipUnit().getZMotor();
+	APTMotor* zW 	= mAB->getWhiskerUnit().getZMotor();
 
 	if(!zCS || !zW)
     {
@@ -186,13 +193,13 @@ void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::Button3Click(TObject *Sender)
 {
-	mAB.home();
+	mAB->home();
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::stowBtnClick(TObject *Sender)
 {
-	mAB.stow();
+	mAB->stow();
 }
 
 //---------------------------------------------------------------------------
@@ -206,11 +213,11 @@ void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState 
 
     if(e == mCSAngleE)
     {
-    	mAB.getCoverSlipAngleController().setAngle(mCSAngleE->getValue());
+    	mAB->getCoverSlipAngleController().setAngle(mCSAngleE->getValue());
     }
     else if (e == mCameraAngleEdit)
     {
-    	mAB.getCameraAngleController().setAngle(mCameraAngleEdit->getValue());
+    	mAB->getCameraAngleController().setAngle(mCameraAngleEdit->getValue());
     }
 }
 
@@ -221,13 +228,17 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
     TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
     if(btn->Caption == "Enable")
     {
-		mAB.enableJoyStick();
+		if(!mAB->enableJoyStick())
+        {
+        	MessageDlg("Failed enabling the JoyStick. \r Please see the LogFile for Errors. \r JoyStick support is disabled for the rest of this session.", mtWarning, TMsgDlgButtons() << mbOK, 0);
+            mJSCSBtn->Enabled = false;
+        }
     }
     else
     {
-	 	mAB.disableJoyStick();
+	 	mAB->disableJoyStick();
     }
-    btn->Caption = (mAB.getJoyStick().isEnabled()) ? "Disable" : "Enable";
+    btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable" : "Enable";
 }
 
 void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
@@ -236,15 +247,15 @@ void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
 	if(btn == mJSSpeedFastBtn) //Fast
     {
     	//Apply "FAST" JS setting
-        mAB.applyJoyStickSetting("Fast");
+        mAB->applyJoyStickSetting("Fast");
     }
     else if (btn == mJSSpeedMediumBtn) //Medium
     {
-        mAB.applyJoyStickSetting("Medium");
+        mAB->applyJoyStickSetting("Medium");
     }
     else if (btn == mJSSpeedSlowBtn) //Slow
     {
-        mAB.applyJoyStickSetting("Slow");
+        mAB->applyJoyStickSetting("Slow");
     }
 }
 

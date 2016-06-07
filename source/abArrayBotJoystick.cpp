@@ -37,9 +37,8 @@ ArrayBotJoyStick::~ArrayBotJoyStick()
 
 bool ArrayBotJoyStick::enable()
 {
-    mJS.enable();
-	mEnabled = true;
-    return true;
+    mEnabled = mJS.enable();
+    return mEnabled;
 }
 
 bool ArrayBotJoyStick::disable()

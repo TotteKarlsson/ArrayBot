@@ -14,7 +14,7 @@ void __fastcall TMain::AddJsSettingBtnClick(TObject *Sender)
     {
     	//Create a new setting
         JoyStickSetting jss(f->getSetting());
-	 	JoyStickSettings& js = mAB.getJoyStickSettings();
+	 	JoyStickSettings& js = mAB->getJoyStickSettings();
         JoyStickSetting* jsp = js.add(jss);
 
 	    //Update the drop down
