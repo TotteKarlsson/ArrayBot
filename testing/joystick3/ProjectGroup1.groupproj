@@ -9,9 +9,6 @@
         <Projects Include="Project1.cbproj">
             <Dependencies>..\..\source\abCore.cbproj</Dependencies>
         </Projects>
-        <Projects Include="..\..\UI\ArrayBot.cbproj">
-            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -38,23 +35,14 @@
     <Target Name="Project1:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="Project1.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBot" DependsOnTargets="abCore">
-        <MSBuild Projects="..\..\UI\ArrayBot.cbproj"/>
-    </Target>
-    <Target Name="ArrayBot:Clean" DependsOnTargets="abCore:Clean">
-        <MSBuild Projects="..\..\UI\ArrayBot.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make">
-        <MSBuild Projects="..\..\UI\ArrayBot.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;Project1;ArrayBot"/>
+        <CallTarget Targets="abCore;Project1"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;Project1:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="abCore:Clean;Project1:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;Project1:Make;ArrayBot:Make"/>
+        <CallTarget Targets="abCore:Make;Project1:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
