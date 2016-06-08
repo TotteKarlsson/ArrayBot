@@ -33,7 +33,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         setupLogging();
         Log(lInfo) << "The Logfile was opened..";
 
-		TStyleManager::TrySetStyle("Aqua Light Slate");
+		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->CreateForm(__classid(TAddJoyStickSettingForm), &AddJoyStickSettingForm);
 		Application->Run();

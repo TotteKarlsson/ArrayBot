@@ -60,7 +60,6 @@ class TMain : public TRegistryForm
 	TButton *LiftCSBtn;
 	TFloatLabeledEdit *mCSAngleE;
 	TGroupBox *JSGB;
-	TSpeedButton *mJSCSBtn;
 	TSpeedButton *mJSSpeedFastBtn;
 	TSpeedButton *mJSSpeedMediumBtn;
 	TSpeedButton *mJSSpeedSlowBtn;
@@ -97,6 +96,9 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mAngleControlVelE;
 	TFloatLabeledEdit *mAngleControllerAccE;
 	TButton *Button1;
+	TSpeedButton *mJSCSBtn;
+	TTimer *UIUpdateTimer;
+	TRadioGroup *mXYCtrlRG;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -122,6 +124,8 @@ class TMain : public TRegistryForm
 	void __fastcall AddJsSettingBtnClick(TObject *Sender);
 	void __fastcall JoyStickSettingsCBChange(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall UIUpdateTimerTimer(TObject *Sender);
+	void __fastcall mXYCtrlRGClick(TObject *Sender);
 
     private:
         TThreadMethod               logMsgMethod;

@@ -40,9 +40,10 @@ object Main: TMain
       Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
+      ImageIndex = 0
       ParentBiDiMode = False
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 1
     end
     object Button5: TButton
       Left = 1
@@ -57,7 +58,7 @@ object Main: TMain
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
     end
   end
   object TopPanel: TPanel
@@ -94,7 +95,7 @@ object Main: TMain
         Font.Style = []
         ParentFont = False
         object GroupBox2: TGroupBox
-          Left = 387
+          Left = 491
           Top = 25
           Width = 366
           Height = 264
@@ -122,7 +123,7 @@ object Main: TMain
             OnClick = LiftCSBtnClick
           end
           object mCSAngleE: TFloatLabeledEdit
-            Left = 74
+            Left = 18
             Top = 57
             Width = 98
             Height = 31
@@ -149,8 +150,8 @@ object Main: TMain
         object JSGB: TGroupBox
           Left = 24
           Top = 25
-          Width = 345
-          Height = 224
+          Width = 461
+          Height = 423
           Caption = 'Joystick'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -159,48 +160,55 @@ object Main: TMain
           Font.Style = []
           ParentFont = False
           TabOrder = 1
-          object mJSCSBtn: TSpeedButton
-            Left = 23
-            Top = 32
-            Width = 100
-            Height = 75
-            AllowAllUp = True
-            Caption = 'Enable'
-            OnClick = JSControlClick
-          end
           object mJSSpeedFastBtn: TSpeedButton
-            Left = 23
-            Top = 128
-            Width = 100
-            Height = 75
+            Left = 15
+            Top = 57
+            Width = 140
+            Height = 100
             GroupIndex = 15
             Caption = 'Fast'
             OnClick = JSSpeedBtnClick
           end
           object mJSSpeedMediumBtn: TSpeedButton
-            Left = 123
-            Top = 128
-            Width = 100
-            Height = 75
+            Left = 161
+            Top = 57
+            Width = 140
+            Height = 100
             GroupIndex = 15
             Down = True
             Caption = 'Medium'
             OnClick = JSSpeedBtnClick
           end
           object mJSSpeedSlowBtn: TSpeedButton
-            Left = 223
-            Top = 128
-            Width = 100
-            Height = 75
+            Left = 308
+            Top = 57
+            Width = 140
+            Height = 100
             GroupIndex = 15
             Caption = 'Slow'
             OnClick = JSSpeedBtnClick
           end
+          object mXYCtrlRG: TRadioGroup
+            Left = 15
+            Top = 184
+            Width = 426
+            Height = 105
+            Caption = 'XY Control'
+            Columns = 4
+            ItemIndex = 0
+            Items.Strings = (
+              'X && Y'
+              'X'
+              'Y'
+              'None')
+            TabOrder = 0
+            OnClick = mXYCtrlRGClick
+          end
         end
         object GroupBox3: TGroupBox
-          Left = 24
-          Top = 272
-          Width = 223
+          Left = 491
+          Top = 295
+          Width = 366
           Height = 153
           Caption = 'Camera'
           Font.Charset = DEFAULT_CHARSET
@@ -368,10 +376,15 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
+        object mJSCSBtn: TSpeedButton
+          Left = 135
+          Top = 270
+          Width = 113
+          Height = 83
+          AllowAllUp = True
+          Caption = 'Enable'
+          OnClick = JSControlClick
+        end
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -590,10 +603,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -701,6 +710,13 @@ object Main: TMain
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
     Left = 200
+    Top = 648
+  end
+  object UIUpdateTimer: TTimer
+    Enabled = False
+    Interval = 150
+    OnTimer = UIUpdateTimerTimer
+    Left = 392
     Top = 648
   end
 end

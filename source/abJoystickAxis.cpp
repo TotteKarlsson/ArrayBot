@@ -16,7 +16,8 @@ JoyStickAxis::JoyStickAxis()
     mZeroInMiddle(true),
 	mRunningAverage(0),
 	mAlpha(1),
-    mSenseOfDirection(1)
+    mSenseOfDirection(1),
+    mMotor(NULL)
 {
 }
 

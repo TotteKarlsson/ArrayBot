@@ -33,6 +33,11 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
 	}
 
+    if(UIUpdateTimer->Enabled)
+    {
+        UIUpdateTimer->Enabled = false;
+    }
+
 //	if(mAB.isActive())
     {
     	if(!mAB->isShuttingDown())
@@ -53,10 +58,14 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 	//Check if we can close.. abort all threads..
 	CanClose = (mLogFileReader.isRunning()) ? false : true;
 
-
 	//Check if active stuff is going on.. if so call the ShutDown in the
     //Timer fire    if(
 	if(mAB->isActive())
+    {
+    	CanClose = false;
+    }
+
+    if(UIUpdateTimer->Enabled)
     {
     	CanClose = false;
     }

@@ -144,7 +144,7 @@ bool ArrayBot::enableJoyStick()
 {
  	//enable angle motor controls
     mCoverSlipAngleController.attachJoyStick(&getJoyStick());
-    mCameraAngleController.detachJoyStick();
+    mCameraAngleController.attachJoyStick(&getJoyStick());
 
     mCoverSlip.attachJoyStick(&getJoyStick());
     mJoyStick.getX1Axis().setSenseOfDirection(1);

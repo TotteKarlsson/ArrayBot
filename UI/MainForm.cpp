@@ -85,6 +85,8 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	JoyStickSettingsCB->ItemIndex = 0;
     JoyStickSettingsCB->OnChange(NULL);
 	mJSSpeedMediumBtn->Click();
+    mJSCSBtn->Click();
+    UIUpdateTimer->Enabled = true;
 }
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
@@ -235,6 +237,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
         	MessageDlg("Failed enabling the JoyStick. \r Please see the LogFile for Errors. \r JoyStick support is disabled for the rest of this session.", mtWarning, TMsgDlgButtons() << mbOK, 0);
             mJSCSBtn->Enabled = false;
         }
+        mXYCtrlRG->ItemIndex = 0;
     }
     else
     {
@@ -311,6 +314,65 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
 void __fastcall TMain::Button1Click(TObject *Sender)
 {
 	mAB->writeINIParameters();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
+{
+    //Read UI Values
+	if(mAB->getCoverSlipAngleController().getMotor())
+    {
+    	double pos = mAB->getCoverSlipAngleController().getMotor()->getPosition();
+        mCSAngleE->setValue(pos);
+    }
+    else
+    {
+    	mCSAngleE->Enabled = false;
+    }
+
+    //Read UI Values
+	if(mAB->getCameraAngleController().getMotor())
+    {
+    	double pos = mAB->getCameraAngleController().getMotor()->getPosition();
+        mCameraAngleEdit->setValue(pos);
+    }
+    else
+    {
+    	mCameraAngleEdit->Enabled = false;
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
+{
+	if(mXYCtrlRG->ItemIndex == 0)//Both X&Y
+    {
+        mAB->getJoyStick().getY1Axis().enable();
+        mAB->getJoyStick().getY2Axis().enable();
+        mAB->getJoyStick().getX1Axis().enable();
+        mAB->getJoyStick().getX2Axis().enable();
+    }
+    else if(mXYCtrlRG->ItemIndex == 1)//Only X
+    {
+        mAB->getJoyStick().getX1Axis().enable();
+        mAB->getJoyStick().getX2Axis().enable();
+        mAB->getJoyStick().getY1Axis().disable();
+        mAB->getJoyStick().getY2Axis().disable();
+    }
+    else if(mXYCtrlRG->ItemIndex == 2)//Only Z
+    {
+        mAB->getJoyStick().getY1Axis().enable();
+        mAB->getJoyStick().getY2Axis().enable();
+        mAB->getJoyStick().getX1Axis().disable();
+        mAB->getJoyStick().getX2Axis().disable();
+    }
+    else
+    {
+        mAB->getJoyStick().getY1Axis().disable();
+        mAB->getJoyStick().getY2Axis().disable();
+        mAB->getJoyStick().getX1Axis().disable();
+        mAB->getJoyStick().getX2Axis().disable();
+    }
 }
 
 
