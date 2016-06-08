@@ -1,5 +1,5 @@
 #pragma hdrstop
-#include "abCombinedMove.h"
+#include "abPairedMove.h"
 #include "mtkBaseProperty.h"
 #include "mtkMathUtils.h"
 //---------------------------------------------------------------------------

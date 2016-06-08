@@ -27,9 +27,26 @@ object Main: TMain
     Height = 697
     Align = alRight
     TabOrder = 0
-    object Button7: TButton
+    object mJSCSBtn: TSpeedButton
       Left = 1
       Top = 126
+      Width = 125
+      Height = 134
+      Align = alTop
+      AllowAllUp = True
+      Caption = 'Enable JoyStick'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = JSControlClick
+      ExplicitTop = 251
+    end
+    object Button7: TSpeedButton
+      Left = 1
+      Top = 1
       Width = 125
       Height = 125
       Action = stopAllA
@@ -40,25 +57,33 @@ object Main: TMain
       Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
-      ImageIndex = 0
+      ParentFont = False
       ParentBiDiMode = False
-      ParentFont = False
-      TabOrder = 1
+      ExplicitTop = 126
     end
-    object Button5: TButton
+    object BottomBtnPanel: TPanel
       Left = 1
-      Top = 1
+      Top = 391
       Width = 125
-      Height = 125
-      Action = FileExit1
-      Align = alTop
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
+      Height = 305
+      Align = alBottom
       TabOrder = 0
+      object Button5: TSpeedButton
+        Left = 1
+        Top = 179
+        Width = 123
+        Height = 125
+        Action = FileExit1
+        Align = alBottom
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        ExplicitTop = 1
+        ExplicitWidth = 125
+      end
     end
   end
   object TopPanel: TPanel
@@ -218,7 +243,7 @@ object Main: TMain
           Left = 491
           Top = 144
           Width = 446
-          Height = 193
+          Height = 345
           Caption = 'Lift'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -227,9 +252,22 @@ object Main: TMain
           Font.Style = []
           ParentFont = False
           TabOrder = 2
+          object LiftBtn: TSpeedButton
+            Left = 16
+            Top = 177
+            Width = 409
+            Height = 136
+            Action = liftA
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
           object mMoveAccelerationE: TFloatLabeledEdit
-            Left = 121
-            Top = 52
+            Left = 137
+            Top = 100
             Width = 73
             Height = 31
             EditLabel.Width = 101
@@ -240,7 +278,7 @@ object Main: TMain
           end
           object mMoveVelocityVerticalE: TFloatLabeledEdit
             Left = 17
-            Top = 52
+            Top = 100
             Width = 73
             Height = 31
             EditLabel.Width = 63
@@ -251,8 +289,8 @@ object Main: TMain
             OnKeyDown = moveEdit
           end
           object mVerticalMoveDistanceE: TFloatLabeledEdit
-            Left = 19
-            Top = 112
+            Left = 267
+            Top = 100
             Width = 73
             Height = 31
             EditLabel.Width = 154
@@ -261,20 +299,18 @@ object Main: TMain
             TabOrder = 2
             Text = '0.00'
           end
-          object LiftCSBtn: TButton
-            Left = 256
-            Top = 41
-            Width = 169
-            Height = 136
-            Caption = 'Lift'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -16
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
+          object ComboBox1: TComboBox
+            Left = 16
+            Top = 32
+            Width = 409
+            Height = 31
+            ItemIndex = 0
             TabOrder = 3
-            OnClick = LiftCSBtnClick
+            Text = 'Quick'
+            Items.Strings = (
+              'Quick'
+              'Medium'
+              'Slow')
           end
         end
       end
@@ -408,15 +444,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        object mJSCSBtn: TSpeedButton
-          Left = 135
-          Top = 270
-          Width = 113
-          Height = 83
-          AllowAllUp = True
-          Caption = 'Enable JoyStick'
-          OnClick = JSControlClick
-        end
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -677,6 +704,14 @@ object Main: TMain
       Hint = 'Exit|Quits the application'
       ImageIndex = 43
     end
+    object abortLiftA: TAction
+      Caption = 'Abort Lift'
+      OnExecute = abortLiftAExecute
+    end
+    object liftA: TAction
+      Caption = 'Lift'
+      OnExecute = liftAExecute
+    end
   end
   object ShutDownTimer: TTimer
     Enabled = False
@@ -695,6 +730,13 @@ object Main: TMain
     Interval = 150
     OnTimer = UIUpdateTimerTimer
     Left = 392
+    Top = 648
+  end
+  object mLiftTimer: TTimer
+    Enabled = False
+    Interval = 150
+    OnTimer = mLiftTimerTimer
+    Left = 544
     Top = 648
   end
 end

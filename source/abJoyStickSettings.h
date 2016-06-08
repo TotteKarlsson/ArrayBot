@@ -31,8 +31,5 @@ class AB_CORE JoyStickSettings : public ABObject
         IniFile&						mIniFile;
 		mutable JSSettings   			mSettings;
     	mutable JSSettings::iterator 	mSettingsIter;
-
-
-
 };
 #endif

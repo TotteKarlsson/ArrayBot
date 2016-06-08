@@ -41,7 +41,7 @@ bool ArrayBot::writeINIParameters()
 
 bool ArrayBot::isActive()
 {
-	return mCoverSlip.isActive() || mWhisker.isActive() || mCoverSlipAngleController.isActive() || mCameraAngleController.isActive() ||     mJoyStick.isEnabled();
+	return mCoverSlip.isActive() || mWhisker.isActive() || mCoverSlipAngleController.isActive() || mCameraAngleController.isActive();
 }
 
 bool ArrayBot::isShuttingDown()

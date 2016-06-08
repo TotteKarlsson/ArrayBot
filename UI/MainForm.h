@@ -46,18 +46,15 @@ class TMain : public TRegistryForm
         TAction *moveForward;
         TAction *moveBackward;
         TAction *stopAllA;
-        TButton *Button7;
         TApplicationEvents *ApplicationEvents1;
 	TAction *initBotA;
         TAction *ShutDownA;
 	TPanel *Btnpanel;
-	TButton *Button5;
 	TFileExit *FileExit1;
 	TPanel *TopPanel;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet4;
 	TGroupBox *AnglesGB;
-	TButton *LiftCSBtn;
 	TFloatLabeledEdit *mCSAngleE;
 	TGroupBox *JSGB;
 	TSpeedButton *mJSSpeedFastBtn;
@@ -90,13 +87,21 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mAngleControlVelE;
 	TFloatLabeledEdit *mAngleControllerAccE;
 	TButton *Button1;
-	TSpeedButton *mJSCSBtn;
 	TTimer *UIUpdateTimer;
 	TRadioGroup *mXYCtrlRG;
 	TGroupBox *LiftGB;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
 	TFloatLabeledEdit *mVerticalMoveDistanceE;
+	TSpeedButton *mJSCSBtn;
+	TSpeedButton *Button7;
+	TSpeedButton *Button5;
+	TPanel *BottomBtnPanel;
+	TTimer *mLiftTimer;
+	TAction *abortLiftA;
+	TAction *liftA;
+	TSpeedButton *LiftBtn;
+	TComboBox *ComboBox1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -110,7 +115,6 @@ class TMain : public TRegistryForm
     void __fastcall initBotAExecute(TObject *Sender);
     void __fastcall ShutDownAExecute(TObject *Sender);
     void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-    void __fastcall LiftCSBtnClick(TObject *Sender);
 
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall stowBtnClick(TObject *Sender);
@@ -125,6 +129,9 @@ class TMain : public TRegistryForm
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mXYCtrlRGClick(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
+	void __fastcall mLiftTimerTimer(TObject *Sender);
+	void __fastcall abortLiftAExecute(TObject *Sender);
+	void __fastcall liftAExecute(TObject *Sender);
 
     private:
         TThreadMethod               logMsgMethod;

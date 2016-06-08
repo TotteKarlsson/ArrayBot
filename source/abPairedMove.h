@@ -1,5 +1,5 @@
-#ifndef abCombinedMoveH
-#define abCombinedMoveH
+#ifndef abPairedMoveH
+#define abPairedMoveH
 #include "abExporter.h"
 #include "abABObject.h"
 #include "mtkINIFileProperties.h"

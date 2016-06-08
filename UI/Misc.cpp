@@ -38,6 +38,11 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         UIUpdateTimer->Enabled = false;
     }
 
+	if(mAB->getJoyStick().isEnabled())
+    {
+		mAB->getJoyStick().disable();
+    }
+
 	if(mAB->isActive())
     {
     	if(!mAB->isShuttingDown())
@@ -65,12 +70,15 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 
 	//Check if active stuff is going on.. if so call the ShutDown in the
     //Timer fire    if(
-	if(mAB->isActive())
+	if(mAB->getJoyStick().isEnabled())
     {
     	CanClose = false;
     }
-
-    if(UIUpdateTimer->Enabled)
+	else if(mAB->isActive())
+    {
+    	CanClose = false;
+    }
+    else if(UIUpdateTimer->Enabled)
     {
     	CanClose = false;
     }

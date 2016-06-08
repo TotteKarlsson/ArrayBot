@@ -73,8 +73,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     mCSAngleE->setValue(mAB->getCoverSlipAngleController().getAngle());
 
     //Assign editbox references to Lifting parameters
-	//    mMoveAngleE->assignExternalProperty(&(mAB->getCombinedMove().mAngle), true);
-	//    mCSAngleE->assignExternalProperty(&mAB->getCoverSlipAngleController().mAngle, true);
+	mMoveVelocityVerticalE->assignExternalProperty(&(mAB->getCombinedMove().mVerticalVelocity), true);
+	mMoveAccelerationE->assignExternalProperty(&(mAB->getCombinedMove().mVerticalAcceleration), true);
+	mVerticalMoveDistanceE->assignExternalProperty(&(mAB->getCombinedMove().mVerticalDistance), true);
 
     //JoyStick Settings CB
     JoyStickSettings& js = mAB->getJoyStickSettings();
@@ -153,59 +154,6 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
 	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
 }
 
-void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
-{
-	APTMotor* zCS 	= mAB->getCoverSlipUnit().getZMotor();
-	APTMotor* zW 	= mAB->getWhiskerUnit().getZMotor();
-
-	if(!zCS || !zW)
-    {
-    	Log(lError) << "Can't carry out this move.. at least one motor is absent";
-        return;
-    }
-
-    double vertVel 	= mMoveVelocityVerticalE->getValue();
-    double acc 		= mMoveAccelerationE->getValue();
-    double vertDist = mVerticalMoveDistanceE->getValue();
-    if(vertVel == 0 || acc == 0 || vertDist == 0)
-    {
-        MessageDlg(L"Velocity, acceleration and vertical distance need all to be non zero", mtError, TMsgDlgButtons() << mbOK, 0);
-        return;
-    }
-	//Update motors with current parameters and start the move
-    zCS->setJogVelocity(vertVel);
-    zCS->setJogAcceleration(acc);
-
-    zW->setJogVelocity(vertVel);
-    zW->setJogAcceleration(acc);
-
-    //get current positions and carry out some moveTo's
-    double zPos = zCS->getPosition();
-
-	double newCSZPos = zPos + mVerticalMoveDistanceE->getValue();
-
-    zPos = zW->getPosition();
-
-	double newWZPos = zPos + mVerticalMoveDistanceE->getValue();
-
-    Log(lInfo) << "Moving CS Vertical to: "	<<newCSZPos;
-    Log(lInfo) << "Moving W Vertical to: "	<<newWZPos;
-
-    if(newCSZPos >=25 || newWZPos >=25)
-    {
-    	stringstream s;
-        s << "New CoverSlip or Whisker Z position to big ("<<newWZPos<<","<<newCSZPos<<") Max position is 25 mm" ;
-    	Log(lError) << s.str();
-        MessageDlg(s.str().c_str(), mtError, TMsgDlgButtons() << mbOK, 0);
-        return;
-    }
-
-	//Initiate the move
-    zCS->moveAbsolute(newCSZPos);
-    zW->moveAbsolute(newWZPos);
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::Button3Click(TObject *Sender)
 {
 	mAB->home();
@@ -423,6 +371,80 @@ void TMain::onJSButton6Click()
 void __fastcall TMain::Button4Click(TObject *Sender)
 {
 	onJSButton5Click();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mLiftTimerTimer(TObject *Sender)
+{
+	if(mAB->isActive())
+    {
+    	LiftBtn->Action = abortLiftA;
+    }
+    else
+    {
+    	LiftBtn->Action = liftA;
+		mLiftTimer->Enabled = false;
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::abortLiftAExecute(TObject *Sender)
+{
+	mAB->stopAll();
+    Log(lInfo) << "The lift was aborted";
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::liftAExecute(TObject *Sender)
+{
+	APTMotor* zCS 	= mAB->getCoverSlipUnit().getZMotor();
+	APTMotor* zW 	= mAB->getWhiskerUnit().getZMotor();
+
+	if(!zCS || !zW)
+    {
+    	Log(lError) << "Can't carry out this move.. at least one motor is absent";
+        return;
+    }
+
+    double vertVel 	= mMoveVelocityVerticalE->getValue();
+    double acc 		= mMoveAccelerationE->getValue();
+    double vertDist = mVerticalMoveDistanceE->getValue();
+    if(vertVel == 0 || acc == 0 || vertDist == 0)
+    {
+        MessageDlg(L"Velocity, acceleration and vertical distance need all to be non zero", mtError, TMsgDlgButtons() << mbOK, 0);
+        return;
+    }
+	//Update motors with current parameters and start the move
+    zCS->setJogVelocity(vertVel);
+    zCS->setJogAcceleration(acc);
+
+    zW->setJogVelocity(vertVel);
+    zW->setJogAcceleration(acc);
+
+    //get current positions and carry out some moveTo's
+    double zPos = zCS->getPosition();
+	double newCSZPos = zPos + mVerticalMoveDistanceE->getValue();
+
+    zPos = zW->getPosition();
+
+	double newWZPos = zPos + mVerticalMoveDistanceE->getValue();
+
+    Log(lInfo) << "Moving CS Vertical to: "	<<newCSZPos;
+    Log(lInfo) << "Moving W Vertical to: "	<<newWZPos;
+
+    if(newCSZPos >=25 || newWZPos >=25)
+    {
+    	stringstream s;
+        s << "New CoverSlip or Whisker Z position to big ("<<newWZPos<<","<<newCSZPos<<") Max position is 25 mm" ;
+    	Log(lError) << s.str();
+        MessageDlg(s.str().c_str(), mtError, TMsgDlgButtons() << mbOK, 0);
+        return;
+    }
+
+	//Initiate the move
+    zCS->moveAbsolute(newCSZPos);
+    zW->moveAbsolute(newWZPos);
+    mLiftTimer->Enabled = true;
 }
 
 
