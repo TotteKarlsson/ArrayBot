@@ -1,3 +1,11 @@
+Release 0.5.7 (Jun 8)
+=======================
+* Added lifting code
+* Updated UI with updated notification of angles and lift action
+* Fixed reading writing of lift parameters
+* New class implementing a PairedMove
+* Refactoring
+
 Release 0.5.6 (Jun 8)
 =======================
 * Added cycling of speeds and XY stages enabled
