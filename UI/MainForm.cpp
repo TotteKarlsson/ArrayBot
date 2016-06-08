@@ -166,7 +166,12 @@ void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
 
     double vertVel 	= mMoveVelocityVerticalE->getValue();
     double acc 		= mMoveAccelerationE->getValue();
-
+    double vertDist = mVerticalMoveDistanceE->getValue();
+    if(vertVel == 0 || acc == 0 || vertDist == 0)
+    {
+        MessageDlg(L"Velocity, acceleration and vertical distance need all to be non zero", mtError, TMsgDlgButtons() << mbOK, 0);
+        return;
+    }
 	//Update motors with current parameters and start the move
     zCS->setJogVelocity(vertVel);
     zCS->setJogAcceleration(acc);
@@ -188,7 +193,10 @@ void __fastcall TMain::LiftCSBtnClick(TObject *Sender)
 
     if(newCSZPos >=25 || newWZPos >=25)
     {
-    	Log(lError) << "New CoverSlip or Whisker Z position to big: "<<newWZPos;
+    	stringstream s;
+        s << "New CoverSlip or Whisker Z position to big ("<<newWZPos<<","<<newCSZPos<<") Max position is 25 mm" ;
+    	Log(lError) << s.str();
+        MessageDlg(s.str().c_str(), mtError, TMsgDlgButtons() << mbOK, 0);
         return;
     }
 
@@ -233,7 +241,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
 {
 	//Setup Joystick control
     TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
-    if(btn->Caption == "Enable")
+    if(btn->Caption == "Enable JoyStick")
     {
 		if(!mAB->enableJoyStick())
         {
@@ -246,7 +254,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
     {
 	 	mAB->disableJoyStick();
     }
-    btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable" : "Enable";
+    btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JoyStick" : "Enable JoyStick";
 
     //There is a 'bug' regarding speed settings
     //Programatically apply currently selected setting

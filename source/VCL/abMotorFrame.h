@@ -66,7 +66,7 @@ __published:	// IDE-managed Components
 
 private:
 	APTMotor*				mMotor;
-
+	static int				mFrameNr;
 public:
 	__fastcall 				TMotorFrame(const string& name, TComponent* Owner);
     void					assignMotor(APTMotor* m);

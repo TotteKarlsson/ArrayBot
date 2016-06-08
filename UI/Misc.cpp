@@ -38,13 +38,18 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         UIUpdateTimer->Enabled = false;
     }
 
-//	if(mAB.isActive())
+	if(mAB->isActive())
     {
     	if(!mAB->isShuttingDown())
         {
 	        TXYZUnitFrame1->disable();
     	    TXYZUnitFrame2->disable();
 	    	mAB->shutDown();
+        }
+        else
+        {
+        	//Weird..
+            mAB->shutDown();
         }
     }
 	Close();

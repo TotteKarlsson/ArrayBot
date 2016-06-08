@@ -1,3 +1,10 @@
+Release 0.5.6 (Jun 8)
+=======================
+* Added cycling of speeds and XY stages enabled
+* Added icons
+* Changed XY control to use a RadioGroup control
+* Fixed Camera angle bug
+
 Release 0.5.5 (Jun 7)
 =======================
 * Fixed joystick bug and improved response a little.

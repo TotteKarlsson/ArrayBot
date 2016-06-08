@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
-  Caption = 'ArrayBot Version 0.5.5'
+  Caption = 'ArrayBot Version 0.5.6'
   ClientHeight = 697
   ClientWidth = 1262
   Color = clBtnFace
@@ -94,12 +94,12 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        object GroupBox2: TGroupBox
+        object AnglesGB: TGroupBox
           Left = 491
           Top = 25
           Width = 366
-          Height = 264
-          Caption = 'Coverslip Operations'
+          Height = 104
+          Caption = 'Angles'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -19
@@ -107,29 +107,38 @@ object Main: TMain
           Font.Style = []
           ParentFont = False
           TabOrder = 0
-          object LiftCSBtn: TButton
-            Left = 20
-            Top = 128
-            Width = 133
-            Height = 81
-            Caption = 'Lift'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -16
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-            OnClick = LiftCSBtnClick
-          end
           object mCSAngleE: TFloatLabeledEdit
             Left = 18
             Top = 57
             Width = 98
             Height = 31
-            EditLabel.Width = 127
+            EditLabel.Width = 74
             EditLabel.Height = 23
-            EditLabel.Caption = 'Coverslip Angle'
+            EditLabel.Caption = 'Coverslip'
+            EditLabel.Font.Charset = DEFAULT_CHARSET
+            EditLabel.Font.Color = clWindowText
+            EditLabel.Font.Height = -19
+            EditLabel.Font.Name = 'Tahoma'
+            EditLabel.Font.Style = []
+            EditLabel.ParentFont = False
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            Text = '0.00'
+            OnKeyDown = mCSAngleEKeyDown
+          end
+          object mCameraAngleEdit: TFloatLabeledEdit
+            Left = 151
+            Top = 57
+            Width = 98
+            Height = 31
+            EditLabel.Width = 64
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Camera'
             EditLabel.Font.Charset = DEFAULT_CHARSET
             EditLabel.Font.Color = clWindowText
             EditLabel.Font.Height = -19
@@ -151,7 +160,7 @@ object Main: TMain
           Left = 24
           Top = 25
           Width = 461
-          Height = 423
+          Height = 312
           Caption = 'Joystick'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -162,7 +171,7 @@ object Main: TMain
           TabOrder = 1
           object mJSSpeedFastBtn: TSpeedButton
             Left = 307
-            Top = 57
+            Top = 44
             Width = 140
             Height = 100
             GroupIndex = 15
@@ -171,7 +180,7 @@ object Main: TMain
           end
           object mJSSpeedMediumBtn: TSpeedButton
             Left = 161
-            Top = 57
+            Top = 44
             Width = 140
             Height = 100
             GroupIndex = 15
@@ -181,7 +190,7 @@ object Main: TMain
           end
           object mJSSpeedSlowBtn: TSpeedButton
             Left = 15
-            Top = 57
+            Top = 44
             Width = 140
             Height = 100
             GroupIndex = 15
@@ -204,52 +213,68 @@ object Main: TMain
             TabOrder = 0
             OnClick = mXYCtrlRGClick
           end
-          object Button4: TButton
-            Left = 15
-            Top = 320
-            Width = 75
-            Height = 25
-            Caption = 'Button4'
-            TabOrder = 1
-            OnClick = Button4Click
-          end
         end
-        object GroupBox3: TGroupBox
+        object LiftGB: TGroupBox
           Left = 491
-          Top = 295
-          Width = 366
-          Height = 153
-          Caption = 'Camera'
+          Top = 144
+          Width = 446
+          Height = 193
+          Caption = 'Lift'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -21
+          Font.Height = -19
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
           TabOrder = 2
-          object mCameraAngleEdit: TFloatLabeledEdit
-            Left = 23
-            Top = 65
-            Width = 98
+          object mMoveAccelerationE: TFloatLabeledEdit
+            Left = 121
+            Top = 52
+            Width = 73
             Height = 31
-            EditLabel.Width = 47
+            EditLabel.Width = 101
             EditLabel.Height = 23
-            EditLabel.Caption = 'Angle'
-            EditLabel.Font.Charset = DEFAULT_CHARSET
-            EditLabel.Font.Color = clWindowText
-            EditLabel.Font.Height = -19
-            EditLabel.Font.Name = 'Tahoma'
-            EditLabel.Font.Style = []
-            EditLabel.ParentFont = False
+            EditLabel.Caption = 'Acceleration'
+            TabOrder = 1
+            Text = '0.00'
+          end
+          object mMoveVelocityVerticalE: TFloatLabeledEdit
+            Left = 17
+            Top = 52
+            Width = 73
+            Height = 31
+            EditLabel.Width = 63
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Velocity'
+            TabOrder = 0
+            Text = '0.00'
+            OnKeyDown = moveEdit
+          end
+          object mVerticalMoveDistanceE: TFloatLabeledEdit
+            Left = 19
+            Top = 112
+            Width = 73
+            Height = 31
+            EditLabel.Width = 154
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Lift Distance (mm)'
+            TabOrder = 2
+            Text = '0.00'
+          end
+          object LiftCSBtn: TButton
+            Left = 256
+            Top = 41
+            Width = 169
+            Height = 136
+            Caption = 'Lift'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
-            Font.Height = -19
+            Font.Height = -16
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
-            TabOrder = 0
-            Text = '0.00'
-            OnKeyDown = mCSAngleEKeyDown
+            TabOrder = 3
+            OnClick = LiftCSBtnClick
           end
         end
       end
@@ -260,17 +285,16 @@ object Main: TMain
           Top = 0
           Width = 1125
           Height = 625
-          VertScrollBar.Position = 370
           Align = alClient
           TabOrder = 0
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
-            Top = -19
+            Top = 351
             Width = 1104
             Height = 348
             Align = alTop
             TabOrder = 0
-            ExplicitTop = -19
+            ExplicitTop = 351
             ExplicitWidth = 1104
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
@@ -292,12 +316,11 @@ object Main: TMain
           end
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
-            Top = -370
+            Top = 0
             Width = 1104
             Height = 351
             Align = alTop
             TabOrder = 1
-            ExplicitTop = -370
             ExplicitWidth = 1104
             inherited mainGB: TGroupBox
               Width = 1104
@@ -314,12 +337,12 @@ object Main: TMain
           end
           inline TMotorFrame1: TMotorFrame
             Left = 0
-            Top = 621
+            Top = 991
             Width = 1104
             Height = 292
             Align = alBottom
             TabOrder = 2
-            ExplicitTop = 621
+            ExplicitTop = 991
             ExplicitWidth = 1104
             inherited MotorGB: TGroupBox
               inherited mMotorPositionE: TFloatLabeledEdit
@@ -348,12 +371,12 @@ object Main: TMain
           end
           inline TMotorFrame2: TMotorFrame
             Left = 0
-            Top = 329
+            Top = 699
             Width = 1104
             Height = 292
             Align = alBottom
             TabOrder = 3
-            ExplicitTop = 329
+            ExplicitTop = 699
             ExplicitWidth = 1104
             inherited MotorGB: TGroupBox
               inherited mMotorPositionE: TFloatLabeledEdit
@@ -391,7 +414,7 @@ object Main: TMain
           Width = 113
           Height = 83
           AllowAllUp = True
-          Caption = 'Enable'
+          Caption = 'Enable JoyStick'
           OnClick = JSControlClick
         end
         object JoyStickGB2: TGroupBox
@@ -409,7 +432,7 @@ object Main: TMain
             EditLabel.Width = 68
             EditLabel.Height = 13
             EditLabel.Caption = 'Z Acceleration'
-            TabOrder = 0
+            TabOrder = 3
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
@@ -445,7 +468,7 @@ object Main: TMain
             EditLabel.Width = 75
             EditLabel.Height = 13
             EditLabel.Caption = 'Max XY Velocity'
-            TabOrder = 3
+            TabOrder = 0
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
@@ -455,7 +478,7 @@ object Main: TMain
             Width = 109
             Height = 21
             Style = csDropDownList
-            TabOrder = 4
+            TabOrder = 6
             OnChange = JoyStickSettingsCBChange
           end
           object AddJsSettingBtn: TButton
@@ -464,7 +487,7 @@ object Main: TMain
             Width = 21
             Height = 21
             Caption = '+'
-            TabOrder = 5
+            TabOrder = 7
             Visible = False
             OnClick = AddJsSettingBtnClick
           end
@@ -476,7 +499,7 @@ object Main: TMain
             EditLabel.Width = 91
             EditLabel.Height = 13
             EditLabel.Caption = 'Angle Ctrl. Velocity'
-            TabOrder = 6
+            TabOrder = 4
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
@@ -488,63 +511,9 @@ object Main: TMain
             EditLabel.Width = 71
             EditLabel.Height = 13
             EditLabel.Caption = 'Angle Ctrl Acc.'
-            TabOrder = 7
+            TabOrder = 5
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
-          end
-        end
-        object GroupBox1: TGroupBox
-          Left = 255
-          Top = 16
-          Width = 241
-          Height = 169
-          Caption = 'Lift Parameters'
-          TabOrder = 1
-          object mMoveAccelerationE: TFloatLabeledEdit
-            Left = 105
-            Top = 36
-            Width = 73
-            Height = 21
-            EditLabel.Width = 59
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Acceleration'
-            TabOrder = 0
-            Text = '0.00'
-          end
-          object mMoveVelocityVerticalE: TFloatLabeledEdit
-            Left = 9
-            Top = 36
-            Width = 73
-            Height = 21
-            EditLabel.Width = 83
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Velocity (vertical)'
-            TabOrder = 1
-            Text = '0.00'
-            OnKeyDown = moveEdit
-          end
-          object mMoveVelHorizE: TFloatLabeledEdit
-            Left = 9
-            Top = 120
-            Width = 73
-            Height = 21
-            EditLabel.Width = 94
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Horiz distance (mm)'
-            Enabled = False
-            TabOrder = 2
-            Text = '0.00'
-          end
-          object mVerticalMoveDistanceE: TFloatLabeledEdit
-            Left = 9
-            Top = 80
-            Width = 73
-            Height = 21
-            EditLabel.Width = 86
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Lift Distance (mm)'
-            TabOrder = 3
-            Text = '0.00'
           end
         end
         object Button2: TButton
@@ -553,7 +522,7 @@ object Main: TMain
           Width = 177
           Height = 116
           Caption = 'Home All'
-          TabOrder = 2
+          TabOrder = 1
           OnClick = Button3Click
         end
         object Button3: TButton
@@ -562,14 +531,14 @@ object Main: TMain
           Width = 177
           Height = 116
           Caption = 'Stow'
-          TabOrder = 3
+          TabOrder = 2
           OnClick = stowBtnClick
         end
         object BitBtn1: TBitBtn
-          Left = 544
-          Top = 97
-          Width = 112
-          Height = 60
+          Left = 304
+          Top = 32
+          Width = 160
+          Height = 87
           Action = checkForDevices
           BiDiMode = bdLeftToRight
           Caption = 'Devices Check'
@@ -580,16 +549,16 @@ object Main: TMain
           Font.Style = []
           ParentBiDiMode = False
           ParentFont = False
-          TabOrder = 4
+          TabOrder = 3
         end
         object InitCloseBtn: TBitBtn
-          Left = 544
-          Top = 31
-          Width = 112
-          Height = 60
+          Left = 488
+          Top = 32
+          Width = 160
+          Height = 88
           Action = initBotA
           BiDiMode = bdLeftToRight
-          Caption = 'Initialize'
+          Caption = 'Initialize Devices'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -16
@@ -597,7 +566,7 @@ object Main: TMain
           Font.Style = []
           ParentBiDiMode = False
           ParentFont = False
-          TabOrder = 5
+          TabOrder = 4
         end
         object Button1: TButton
           Left = 11
@@ -605,7 +574,7 @@ object Main: TMain
           Width = 118
           Height = 83
           Caption = 'Save Parameters'
-          TabOrder = 6
+          TabOrder = 5
           OnClick = Button1Click
         end
       end
@@ -696,11 +665,11 @@ object Main: TMain
       OnExecute = stopAllAExecute
     end
     object initBotA: TAction
-      Caption = 'Initialize'
+      Caption = 'Initialize Devices'
       OnExecute = initBotAExecute
     end
     object ShutDownA: TAction
-      Caption = 'ShutDown'
+      Caption = 'Disconnect Devices'
       OnExecute = ShutDownAExecute
     end
     object FileExit1: TFileExit

@@ -77,7 +77,7 @@ object MotorFrame: TMotorFrame
       Height = 82
       Align = alBottom
       Caption = 'Status'
-      TabOrder = 0
+      TabOrder = 5
       object Label1: TLabel
         Left = 17
         Top = 23
@@ -177,7 +177,7 @@ object MotorFrame: TMotorFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 4
       Text = '0.00'
       OnKeyDown = mMotorPositionEKeyDown
       OnKeyUp = mMotorPositionEKeyUp
@@ -188,7 +188,7 @@ object MotorFrame: TMotorFrame
       Width = 55
       Height = 28
       Action = identify
-      TabOrder = 2
+      TabOrder = 0
     end
     object JoggingGB: TGroupBox
       Left = 2
@@ -197,14 +197,14 @@ object MotorFrame: TMotorFrame
       Height = 92
       Align = alBottom
       Caption = 'Jogging'
-      TabOrder = 3
+      TabOrder = 6
       object mFwdBtn: TButton
         Left = 10
         Top = 59
         Width = 47
         Height = 25
         Caption = 'Fwd'
-        TabOrder = 0
+        TabOrder = 2
         OnMouseDown = BtnDown
         OnMouseUp = BtnUp
       end
@@ -214,7 +214,7 @@ object MotorFrame: TMotorFrame
         Width = 44
         Height = 25
         Caption = 'Rev'
-        TabOrder = 1
+        TabOrder = 3
         OnMouseDown = BtnDown
         OnMouseUp = BtnUp
       end
@@ -226,7 +226,7 @@ object MotorFrame: TMotorFrame
         EditLabel.Width = 114
         EditLabel.Height = 13
         EditLabel.Caption = 'Acceleration (mm/(s*s))'
-        TabOrder = 2
+        TabOrder = 1
         Text = '0.00'
         OnKeyDown = DevEdit
       end
@@ -238,14 +238,14 @@ object MotorFrame: TMotorFrame
         EditLabel.Width = 73
         EditLabel.Height = 13
         EditLabel.Caption = 'Velocity (mm/s)'
-        TabOrder = 3
+        TabOrder = 0
         Text = '0.00'
         OnKeyDown = DevEdit
       end
       object mPotentiometerSettingE: TFloatLabeledEdit
         Left = 170
-        Top = 63
-        Width = 66
+        Top = 65
+        Width = 90
         Height = 21
         EditLabel.Width = 96
         EditLabel.Height = 13
@@ -261,7 +261,7 @@ object MotorFrame: TMotorFrame
       Width = 55
       Height = 28
       Action = home
-      TabOrder = 4
+      TabOrder = 1
     end
     object EnableDisableBtn: TButton
       Left = 16
@@ -269,7 +269,7 @@ object MotorFrame: TMotorFrame
       Width = 55
       Height = 28
       Caption = 'EnableBtn'
-      TabOrder = 5
+      TabOrder = 2
       OnClick = EnableDisableBtnClick
     end
     object StopBtn: TButton
@@ -278,7 +278,7 @@ object MotorFrame: TMotorFrame
       Width = 55
       Height = 28
       Caption = 'Stop'
-      TabOrder = 6
+      TabOrder = 3
       OnClick = StopBtnClick
     end
   end

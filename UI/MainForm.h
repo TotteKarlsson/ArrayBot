@@ -56,7 +56,7 @@ class TMain : public TRegistryForm
 	TPanel *TopPanel;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet4;
-	TGroupBox *GroupBox2;
+	TGroupBox *AnglesGB;
 	TButton *LiftCSBtn;
 	TFloatLabeledEdit *mCSAngleE;
 	TGroupBox *JSGB;
@@ -75,11 +75,6 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mMaxZJogVelocityJoystick;
 	TFloatLabeledEdit *mMaxXYJogVelocityJoystick;
 	TComboBox *JoyStickSettingsCB;
-	TGroupBox *GroupBox1;
-	TFloatLabeledEdit *mMoveAccelerationE;
-	TFloatLabeledEdit *mMoveVelocityVerticalE;
-	TFloatLabeledEdit *mMoveVelHorizE;
-	TFloatLabeledEdit *mVerticalMoveDistanceE;
 	TButton *Button2;
 	TButton *Button3;
 	TBitBtn *BitBtn1;
@@ -90,7 +85,6 @@ class TMain : public TRegistryForm
 	TToolBar *ToolBar1;
 	TBitBtn *BitBtn2;
 	TButton *AddJsSettingBtn;
-	TGroupBox *GroupBox3;
 	TFloatLabeledEdit *mCameraAngleEdit;
 	TMotorFrame *TMotorFrame2;
 	TFloatLabeledEdit *mAngleControlVelE;
@@ -99,7 +93,10 @@ class TMain : public TRegistryForm
 	TSpeedButton *mJSCSBtn;
 	TTimer *UIUpdateTimer;
 	TRadioGroup *mXYCtrlRG;
-	TButton *Button4;
+	TGroupBox *LiftGB;
+	TFloatLabeledEdit *mMoveAccelerationE;
+	TFloatLabeledEdit *mMoveVelocityVerticalE;
+	TFloatLabeledEdit *mVerticalMoveDistanceE;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);

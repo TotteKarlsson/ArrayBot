@@ -16,12 +16,13 @@
 TMotorFrame *MotorFrame;
 
 using namespace mtk;
+int TMotorFrame::mFrameNr = 0;
 //---------------------------------------------------------------------------
 __fastcall TMotorFrame::TMotorFrame(const string& name, TComponent* Owner)
 	: TFrame(Owner),
     mMotor(NULL)
 {
-    TFrame::Name = (vclstr("Frame_" + replaceCharacter('-', '_', name)));
+    TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', name) + mtk::toString(++mFrameNr));
 }
 
 //---------------------------------------------------------------------------
