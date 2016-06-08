@@ -65,17 +65,12 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	mLogFileReader.start(true);
 	initBotAExecute(NULL);
 
-    //OverRide joysticks button events
+    //Over ride joysticks button events
     mAB->getJoyStick().setButtonEvents(5, NULL, onJSButton5Click);
     mAB->getJoyStick().setButtonEvents(6, NULL, onJSButton6Click);
 
 	//Initialize UI
     mCSAngleE->setValue(mAB->getCoverSlipAngleController().getAngle());
-
-    //Assign editbox references to Lifting parameters
-	mMoveVelocityVerticalE->assignExternalProperty(&(mAB->getCombinedMove().mVerticalVelocity), true);
-	mMoveAccelerationE->assignExternalProperty(&(mAB->getCombinedMove().mVerticalAcceleration), true);
-	mVerticalMoveDistanceE->assignExternalProperty(&(mAB->getCombinedMove().mVerticalDistance), true);
 
     //JoyStick Settings CB
     JoyStickSettings& js = mAB->getJoyStickSettings();
@@ -90,6 +85,20 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     JoyStickSettingsCB->OnChange(NULL);
 	mJSSpeedMediumBtn->Click();
     mJSCSBtn->Click();
+
+    //Lift Settings CB
+    PairedMoves& pms = mAB->getLiftMoves();
+    PairedMove* pm = pms.getFirst();
+    while(pm)
+    {
+    	string key = pm->mLabel;
+    	mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
+        pm = pms.getNext();
+    }
+
+	mLiftCB->ItemIndex = 0;
+    mLiftCB->OnChange(NULL);
+
     UIUpdateTimer->Enabled = true;
 }
 
@@ -394,57 +403,49 @@ void __fastcall TMain::abortLiftAExecute(TObject *Sender)
     Log(lInfo) << "The lift was aborted";
 }
 
+PairedMove* TMain::getCurrentPairedMove()
+{
+	if(mLiftCB->ItemIndex > -1)
+    {
+    	return (PairedMove*) mLiftCB->Items->Objects[mLiftCB->ItemIndex];
+    }
+}
 //---------------------------------------------------------------------------
 void __fastcall TMain::liftAExecute(TObject *Sender)
 {
-	APTMotor* zCS 	= mAB->getCoverSlipUnit().getZMotor();
-	APTMotor* zW 	= mAB->getWhiskerUnit().getZMotor();
+	PairedMove* pm = getCurrentPairedMove();
 
-	if(!zCS || !zW)
+    pm->assignMotor1(mAB->getCoverSlipUnit().getZMotor());
+    pm->assignMotor2(mAB->getWhiskerUnit().getZMotor());
+    if(!pm)
     {
     	Log(lError) << "Can't carry out this move.. at least one motor is absent";
         return;
     }
 
-    double vertVel 	= mMoveVelocityVerticalE->getValue();
-    double acc 		= mMoveAccelerationE->getValue();
-    double vertDist = mVerticalMoveDistanceE->getValue();
-    if(vertVel == 0 || acc == 0 || vertDist == 0)
+    if(!pm->check())
     {
-        MessageDlg(L"Velocity, acceleration and vertical distance need all to be non zero", mtError, TMsgDlgButtons() << mbOK, 0);
-        return;
-    }
-	//Update motors with current parameters and start the move
-    zCS->setJogVelocity(vertVel);
-    zCS->setJogAcceleration(acc);
-
-    zW->setJogVelocity(vertVel);
-    zW->setJogAcceleration(acc);
-
-    //get current positions and carry out some moveTo's
-    double zPos = zCS->getPosition();
-	double newCSZPos = zPos + mVerticalMoveDistanceE->getValue();
-
-    zPos = zW->getPosition();
-
-	double newWZPos = zPos + mVerticalMoveDistanceE->getValue();
-
-    Log(lInfo) << "Moving CS Vertical to: "	<<newCSZPos;
-    Log(lInfo) << "Moving W Vertical to: "	<<newWZPos;
-
-    if(newCSZPos >=25 || newWZPos >=25)
-    {
-    	stringstream s;
-        s << "New CoverSlip or Whisker Z position to big ("<<newWZPos<<","<<newCSZPos<<") Max position is 25 mm" ;
-    	Log(lError) << s.str();
-        MessageDlg(s.str().c_str(), mtError, TMsgDlgButtons() << mbOK, 0);
+		Log(lError) << pm->getCheckMessage();
+        MessageDlg(pm->getCheckMessage().c_str(), mtError, TMsgDlgButtons() << mbOK, 0);
         return;
     }
 
-	//Initiate the move
-    zCS->moveAbsolute(newCSZPos);
-    zW->moveAbsolute(newWZPos);
+    pm->execute();
     mLiftTimer->Enabled = true;
+   	LiftBtn->Action = abortLiftA;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mLiftCBChange(TObject *Sender)
+{
+	//Update edits
+    //Assign editbox references to Lifting parameters
+	PairedMove* pm = getCurrentPairedMove();
+
+   	mVerticalMoveDistanceE->setReference(pm->mDistance);
+	mMoveVelocityVerticalE->setReference(pm->mVelocity);
+	mMoveAccelerationE->setReference(pm->mAcceleration);
+
 }
 
 

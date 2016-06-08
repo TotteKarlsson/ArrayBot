@@ -5,8 +5,9 @@
 #include "abXYZUnit.h"
 #include "abArrayBotJoyStick.h"
 #include "abAngleController.h"
-#include "abCombinedMove.h"
+#include "abPairedMoves.h"
 #include "abJoyStickSettings.h"
+
 //---------------------------------------------------------------------------
 
 class AB_CORE ArrayBot : public ABObject
@@ -14,6 +15,7 @@ class AB_CORE ArrayBot : public ABObject
     public:
 									ArrayBot(IniFile& ini);
 									~ArrayBot();
+
 		void 						initialize();
 
         XYZUnit&					getCoverSlipUnit();
@@ -37,7 +39,8 @@ class AB_CORE ArrayBot : public ABObject
 		AngleController&			getCoverSlipAngleController();
 		AngleController&			getCameraAngleController();
 
-    	CombinedMove&				getCombinedMove(){return mCSLift;}
+    	PairedMoves&	 			getLiftMoves(){return mLifts;}
+
         bool						applyJoyStickSetting(const string& settingName);
         bool						readINIParameters();
         bool						writeINIParameters();
@@ -55,7 +58,10 @@ class AB_CORE ArrayBot : public ABObject
         AngleController				mCoverSlipAngleController;
 
         AngleController				mCameraAngleController;
-		CombinedMove				mCSLift;
+
+        							//!List of Lifts
+        PairedMoves					mLifts;
+
 };
 
 #endif

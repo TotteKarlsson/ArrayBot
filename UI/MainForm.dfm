@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
-  Caption = 'ArrayBot Version 0.5.6'
+  Caption = 'ArrayBot Version 0.5.7'
   ClientHeight = 697
   ClientWidth = 1262
   Color = clBtnFace
@@ -266,7 +266,7 @@ object Main: TMain
             ParentFont = False
           end
           object mMoveAccelerationE: TFloatLabeledEdit
-            Left = 137
+            Left = 305
             Top = 100
             Width = 73
             Height = 31
@@ -277,7 +277,7 @@ object Main: TMain
             Text = '0.00'
           end
           object mMoveVelocityVerticalE: TFloatLabeledEdit
-            Left = 17
+            Left = 202
             Top = 100
             Width = 73
             Height = 31
@@ -289,9 +289,9 @@ object Main: TMain
             OnKeyDown = moveEdit
           end
           object mVerticalMoveDistanceE: TFloatLabeledEdit
-            Left = 267
+            Left = 27
             Top = 100
-            Width = 73
+            Width = 86
             Height = 31
             EditLabel.Width = 154
             EditLabel.Height = 23
@@ -299,18 +299,14 @@ object Main: TMain
             TabOrder = 2
             Text = '0.00'
           end
-          object ComboBox1: TComboBox
+          object mLiftCB: TComboBox
             Left = 16
             Top = 32
             Width = 409
             Height = 31
-            ItemIndex = 0
             TabOrder = 3
-            Text = 'Quick'
-            Items.Strings = (
-              'Quick'
-              'Medium'
-              'Slow')
+            Text = '<none>'
+            OnChange = mLiftCBChange
           end
         end
       end
@@ -734,7 +730,7 @@ object Main: TMain
   end
   object mLiftTimer: TTimer
     Enabled = False
-    Interval = 150
+    Interval = 200
     OnTimer = mLiftTimerTimer
     Left = 544
     Top = 648

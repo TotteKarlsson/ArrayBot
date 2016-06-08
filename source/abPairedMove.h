@@ -2,35 +2,33 @@
 #define abPairedMoveH
 #include "abExporter.h"
 #include "abABObject.h"
-#include "mtkINIFileProperties.h"
+#include <string>
 //---------------------------------------------------------------------------
-using mtk::Property;
-using mtk::IniFileProperties;
-using mtk::IniFile;
+using std::string;
 
-class AB_CORE CombinedMove : public ABObject
+class APTMotor;
+class AB_CORE PairedMove : public ABObject
 {
     public:
-                                        CombinedMove(const string& name);
-                                        ~CombinedMove();
+                                        PairedMove(const string& name, double d = 0, double v = 0, double a = 0);
+                                        ~PairedMove();
+		void							assignMotor1(APTMotor* motor);
+		void							assignMotor2(APTMotor* motor);
+		string            				mLabel;
+        double            		        mDistance;
+        double            		        mVelocity;
+        double            		        mAcceleration;
 
-        Property<double>		        mVerticalDistance;
-        Property<double>		        mVerticalVelocity;
-        Property<double>		        mVerticalAcceleration;
-        Property<double>		        mAngle;
-		double					        getHorizontalDistance();
-        double					        getHorizontalAcceleration();
-		void 					        calculate();
-        bool					        readProperties(IniFile& i);
-        bool					        writeProperties();
+        bool							execute();
+        bool							check();
+        string							getCheckMessage();
+        string			            	asIniRecord();
 
     protected:
-		double					        mHorizontalDistance;
-        double					        mHorizontalVelocity;
-        double					        mHorizontalAcceleration;
+		APTMotor*						mMotor1;
+		APTMotor*						mMotor2;
+        string							mCheckMessage;
 
-    private:
-        IniFileProperties	   	        mProperties;
 };
 
 #endif

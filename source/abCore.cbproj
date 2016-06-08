@@ -196,6 +196,9 @@
             <DependentOn>abPairedMove.h</DependentOn>
             <BuildOrder>24</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abPairedMoves.cpp">
+            <BuildOrder>36</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abPosition.cpp">
             <DependentOn>abPosition.h</DependentOn>
             <BuildOrder>19</BuildOrder>

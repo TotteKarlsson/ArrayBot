@@ -18,7 +18,6 @@ JoyStickSetting	TAddJoyStickSettingForm::getSetting()
 {
 	return JoyStickSetting(
     mSettingsNameE->getValue(),  mMaxXYVelocityE->getValue(),
-    mXYAcc->getValue(), mMaxZVelocityE->getValue(), mZAccE->getValue())
-    ;
+    mXYAcc->getValue(), mMaxZVelocityE->getValue(), mZAccE->getValue());
 }
 

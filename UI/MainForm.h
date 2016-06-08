@@ -101,7 +101,7 @@ class TMain : public TRegistryForm
 	TAction *abortLiftA;
 	TAction *liftA;
 	TSpeedButton *LiftBtn;
-	TComboBox *ComboBox1;
+	TComboBox *mLiftCB;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -132,6 +132,7 @@ class TMain : public TRegistryForm
 	void __fastcall mLiftTimerTimer(TObject *Sender);
 	void __fastcall abortLiftAExecute(TObject *Sender);
 	void __fastcall liftAExecute(TObject *Sender);
+	void __fastcall mLiftCBChange(TObject *Sender);
 
     private:
         TThreadMethod               logMsgMethod;
@@ -144,6 +145,8 @@ class TMain : public TRegistryForm
                                     //!So that we can cat ch exceptions in the
                                     //!constructor
         ArrayBot*					mAB;
+		PairedMove* 				getCurrentPairedMove();
+
 
 		void __fastcall		        OnException();
         void						onJSButton5Click();

@@ -14,12 +14,10 @@ mWhisker("WHISKER UNIT", mIniFile),
 mJoyStick(),
 mCoverSlipAngleController("COVERSLIP ANGLE CONTROLLER", mIniFile),
 mCameraAngleController("CAMERA ANGLE CONTROLLER", mIniFile),
-mCSLift("COVERSLIP LIFT"),
 mIsShuttingDown(false),
-mJSSettings("JOYSTICK SETTINGS", mIniFile)
-{
-	mCSLift.readProperties(mIniFile);
-}
+mJSSettings("JOYSTICK SETTINGS", mIniFile),
+mLifts("PAIRED_MOVES", mIniFile)
+{}
 
 ArrayBot::~ArrayBot()
 {}
@@ -31,12 +29,14 @@ JoyStickSettings& ArrayBot::getJoyStickSettings()
 
 bool ArrayBot::readINIParameters()
 {
+	mLifts.readINIParameters();
 	mJSSettings.readINIParameters();
 }
 
 bool ArrayBot::writeINIParameters()
 {
 	mJSSettings.writeINIParameters();
+    mLifts.writeINIParameters();
 }
 
 bool ArrayBot::isActive()
@@ -75,7 +75,6 @@ bool ArrayBot::shutDown()
 	mCameraAngleController.shutDown();
 	mCoverSlip.shutDown();
 	mWhisker.shutDown();
-	mCSLift.writeProperties();
 	mIsShuttingDown = true;
     return true;
 }

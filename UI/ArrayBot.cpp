@@ -12,9 +12,9 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
-USEFORM("..\source\VCL\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
-USEFORM("..\source\VCL\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
 USEFORM("..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("..\source\VCL\abAddLiftForm.cpp", AddLiftSettingForm);
+USEFORM("..\source\VCL\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
@@ -36,7 +36,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Title = "ArrayBot - Software for Robots";
 		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
-		Application->CreateForm(__classid(TAddJoyStickSettingForm), &AddJoyStickSettingForm);
+		Application->CreateForm(__classid(TAddLiftSettingForm), &AddLiftSettingForm);
 		Application->Run();
 	}
 	catch (Exception &exception)

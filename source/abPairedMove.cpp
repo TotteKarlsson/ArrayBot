@@ -2,55 +2,108 @@
 #include "abPairedMove.h"
 #include "mtkBaseProperty.h"
 #include "mtkMathUtils.h"
-//---------------------------------------------------------------------------
+#include "mtkLogger.h"
+#include "abAPTMotor.h"
 
+//---------------------------------------------------------------------------
 using namespace mtk;
 
-CombinedMove::CombinedMove(const string& name)
+PairedMove::PairedMove(const string& name, double d, double v, double a)
 :
-mVerticalDistance(0),
-mVerticalVelocity(0),
-mVerticalAcceleration(0),
-mAngle(0)
+mDistance(d),
+mVelocity(v),
+mAcceleration(a),
+mLabel(name)
 {
-    mProperties.setSection(name);
-    mProperties.add((BaseProperty*) &mVerticalDistance.setup(		"VERTICAL_DISTANCE", 			0, true));
-    mProperties.add((BaseProperty*) &mVerticalVelocity.setup(		"VERTICAL_VELOCITY", 			0, true));
-    mProperties.add((BaseProperty*) &mVerticalAcceleration.setup(	"VERTICAL_ACCELERATION", 		0, true));
-    mProperties.add((BaseProperty*) &mAngle.setup(					"ANGLE", 						0, true));
 }
 
-CombinedMove::~CombinedMove()
+PairedMove::~PairedMove()
 {}
 
-bool CombinedMove::readProperties(IniFile& i)
+string PairedMove::asIniRecord()
 {
-	mProperties.setIniFile(&i);
-    return mProperties.read();
+	stringstream s;
+    s << mDistance << "," << mVelocity << ", "<< mAcceleration;
+	return s.str();
 }
 
-bool CombinedMove::writeProperties()
+void PairedMove::assignMotor1(APTMotor* motor)
 {
-	return mProperties.write();
+	mMotor1 = motor;
 }
 
-double CombinedMove::getHorizontalDistance()
+void PairedMove::assignMotor2(APTMotor* motor)
 {
-	return mHorizontalDistance;
+	mMotor2 = motor;
 }
 
-double CombinedMove::getHorizontalAcceleration()
+bool PairedMove::check()
 {
-	return mHorizontalAcceleration;
+	if(!mMotor1 || !mMotor2)
+    {
+        mCheckMessage = "Motors are not assigned for the Paired move";
+        return false;
+    }
+
+    if(mVelocity == 0 || mAcceleration == 0 || mDistance == 0)
+    {
+        mCheckMessage = "Velocity, acceleration and vertical distance need all to be non zero";
+    	Log(lError) << mCheckMessage;
+        return false;
+    }
+    //get current positions and carry out some moveTo's
+	double newZ1Pos = mMotor1->getPosition() + mDistance;
+	double newZ2Pos = mMotor2->getPosition() + mDistance;
+
+    if(newZ1Pos > 25)
+    {
+    	stringstream s;
+        s << "New position ("<<newZ2Pos<<") to big for motor with label: \""<<mMotor1->getName()<<"\"\rMax position is 25.0 mm";
+    	Log(lError) << s.str();
+        mCheckMessage = s.str();
+        return false;
+    }
+
+    if(newZ2Pos > 25)
+    {
+    	stringstream s;
+        s << "New position ("<<newZ2Pos<<") to big for motor with label: \""<<mMotor2->getName()<<"\"\rMax position is 25.0 mm";
+    	Log(lError) << s.str();
+        mCheckMessage = s.str();
+        return false;
+    }
 }
 
-void CombinedMove::calculate()
+bool PairedMove::execute()
 {
-	//Move parameters are calculated from vertical distance, angle and acceleration
-    double tanTheta = tan(toRadians(mAngle));
+	if(!check())
+    {
+    	return false;
+    }
 
-	mHorizontalVelocity 	= mVerticalVelocity / tanTheta;
-	mHorizontalAcceleration = mVerticalAcceleration / tanTheta;
+    //get current positions and carry out some moveTo's
+	double newZ1Pos = mMotor1->getPosition() + mDistance;
+	double newZ2Pos = mMotor2->getPosition() + mDistance;
 
+	//Update motors with current parameters and start the move
+    mMotor1->setJogVelocity(mVelocity);
+    mMotor2->setJogAcceleration(mAcceleration);
+
+    mMotor1->setJogVelocity(mVelocity);
+    mMotor2->setJogAcceleration(mAcceleration);
+
+    Log(lInfo) << "Moving Motor 1 to: "	<<newZ1Pos;
+    Log(lInfo) << "Moving Motor 2 to: "	<<newZ2Pos;
+
+	//Initiate the move
+    mMotor1->moveAbsolute(newZ1Pos);
+    mMotor2->moveAbsolute(newZ2Pos);
+	return true;
+}
+
+
+string PairedMove::getCheckMessage()
+{
+	return mCheckMessage;
 }
 
