@@ -254,6 +254,7 @@ void JoyStickMessageDispatcher::refresh()
             case pvNotEngaged:
 	           	Log(lInfo) <<"POV not engaged anymore.";
             break;
+
             default:
             	Log(lInfo) <<"User presssed two POV buttons at the same time.";
 			break;

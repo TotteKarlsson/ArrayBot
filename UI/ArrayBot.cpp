@@ -33,6 +33,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         setupLogging();
         Log(lInfo) << "The Logfile was opened..";
 
+		Application->Title = "ArrayBot - Software for Robots";
 		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->CreateForm(__classid(TAddJoyStickSettingForm), &AddJoyStickSettingForm);

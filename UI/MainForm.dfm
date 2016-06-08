@@ -161,7 +161,7 @@ object Main: TMain
           ParentFont = False
           TabOrder = 1
           object mJSSpeedFastBtn: TSpeedButton
-            Left = 15
+            Left = 307
             Top = 57
             Width = 140
             Height = 100
@@ -180,7 +180,7 @@ object Main: TMain
             OnClick = JSSpeedBtnClick
           end
           object mJSSpeedSlowBtn: TSpeedButton
-            Left = 308
+            Left = 15
             Top = 57
             Width = 140
             Height = 100
@@ -203,6 +203,15 @@ object Main: TMain
               'None')
             TabOrder = 0
             OnClick = mXYCtrlRGClick
+          end
+          object Button4: TButton
+            Left = 15
+            Top = 320
+            Width = 75
+            Height = 25
+            Caption = 'Button4'
+            TabOrder = 1
+            OnClick = Button4Click
           end
         end
         object GroupBox3: TGroupBox

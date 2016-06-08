@@ -63,8 +63,11 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 {
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
-    sleep(100);
 	initBotAExecute(NULL);
+
+    //OverRide joysticks button events
+    mAB->getJoyStick().setButtonEvents(5, NULL, onJSButton5Click);
+    mAB->getJoyStick().setButtonEvents(6, NULL, onJSButton6Click);
 
 	//Initialize UI
     mCSAngleE->setValue(mAB->getCoverSlipAngleController().getAngle());
@@ -373,6 +376,45 @@ void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
         mAB->getJoyStick().getX1Axis().disable();
         mAB->getJoyStick().getX2Axis().disable();
     }
+}
+
+void TMain::onJSButton5Click()
+{
+	//Cycle xy setting
+    if(mXYCtrlRG->ItemIndex < 3)
+    {
+    	mXYCtrlRG->ItemIndex++;
+    }
+    else
+    {
+	    mXYCtrlRG->ItemIndex = 0;
+    }
+}
+
+void TMain::onJSButton6Click()
+{
+	//Check speed setting, go from slower to faster
+	if(mJSSpeedSlowBtn->Down)
+    {
+	    mJSSpeedMediumBtn->Down = true;
+		mJSSpeedMediumBtn->Click();
+    }
+	else if(mJSSpeedFastBtn->Down)
+    {
+	    mJSSpeedSlowBtn->Down = true;
+		mJSSpeedSlowBtn->Click();
+    }
+	else if(mJSSpeedMediumBtn->Down)
+    {
+	    mJSSpeedFastBtn->Down = true;
+		mJSSpeedFastBtn->Click();
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::Button4Click(TObject *Sender)
+{
+	onJSButton5Click();
 }
 
 

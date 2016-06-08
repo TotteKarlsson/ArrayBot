@@ -28,11 +28,12 @@ class AB_CORE ArrayBotJoyStick : public ABObject
 
 		JoyStickButton&		        getButton(int nr);
 		JoyStickButton&		        getPOVButton(int nr);
+        void						setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
 
     protected:
         bool				        mEnabled;
 
-		JoyStickMessageDispatcher 	mJS;
+		JoyStickMessageDispatcher 	mJSMessageDispatcher;
 
         							//!Coverslip XY axes
     	JoyStickAxis		        mX1Axis;
@@ -46,6 +47,9 @@ class AB_CORE ArrayBotJoyStick : public ABObject
         JoyStickButton		        mButton2;
         JoyStickButton		        mButton3;
         JoyStickButton		        mButton4;
+
+        JoyStickButton		        mButton5;
+        JoyStickButton		        mButton6;
 
         JoyStickButton		        mPOVButton1;
         JoyStickButton		        mPOVButton2;

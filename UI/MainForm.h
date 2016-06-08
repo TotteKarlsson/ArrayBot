@@ -99,6 +99,7 @@ class TMain : public TRegistryForm
 	TSpeedButton *mJSCSBtn;
 	TTimer *UIUpdateTimer;
 	TRadioGroup *mXYCtrlRG;
+	TButton *Button4;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -126,6 +127,7 @@ class TMain : public TRegistryForm
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mXYCtrlRGClick(TObject *Sender);
+	void __fastcall Button4Click(TObject *Sender);
 
     private:
         TThreadMethod               logMsgMethod;
@@ -140,7 +142,8 @@ class TMain : public TRegistryForm
         ArrayBot*					mAB;
 
 		void __fastcall		        OnException();
-
+        void						onJSButton5Click();
+        void						onJSButton6Click();
 
 	public:		// User declarations
 		__fastcall 					TMain(TComponent* Owner);

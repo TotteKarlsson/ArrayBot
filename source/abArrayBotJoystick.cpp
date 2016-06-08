@@ -8,42 +8,50 @@ using namespace mtk;
 ArrayBotJoyStick::ArrayBotJoyStick()
 :
 mEnabled(false),
-mJS(14)
+mJSMessageDispatcher(14)
 {
     //Associate events with buttons
-    mJS.setButtonEvents(1, mButton1.down,  mButton1.up    );
-    mJS.setButtonEvents(2, mButton2.down,  mButton2.up    );
-    mJS.setButtonEvents(3, mButton3.down,  mButton3.up    );
-    mJS.setButtonEvents(4, mButton4.down,  mButton4.up    );
+    mJSMessageDispatcher.setButtonEvents(1, mButton1.down,  mButton1.up    );
+    mJSMessageDispatcher.setButtonEvents(2, mButton2.down,  mButton2.up    );
+    mJSMessageDispatcher.setButtonEvents(3, mButton3.down,  mButton3.up    );
+    mJSMessageDispatcher.setButtonEvents(4, mButton4.down,  mButton4.up    );
 
-    mJS.setPOVButtonEvents(1, mPOVButton1.down,  mPOVButton1.up    );
-    mJS.setPOVButtonEvents(2, mPOVButton2.down,  mPOVButton2.up    );
-    mJS.setPOVButtonEvents(3, mPOVButton3.down,  mPOVButton3.up    );
-    mJS.setPOVButtonEvents(4, mPOVButton4.down,  mPOVButton4.up    );
+    mJSMessageDispatcher.setButtonEvents(5, mButton5.down,  mButton5.up    );
+    mJSMessageDispatcher.setButtonEvents(6, mButton6.down,  mButton6.up    );
 
-	mJS.setAxisEvent(1, mX1Axis.Move);
-	mJS.setAxisEvent(2, mY1Axis.Move);
+    mJSMessageDispatcher.setPOVButtonEvents(1, mPOVButton1.down,  mPOVButton1.up    );
+    mJSMessageDispatcher.setPOVButtonEvents(2, mPOVButton2.down,  mPOVButton2.up    );
+    mJSMessageDispatcher.setPOVButtonEvents(3, mPOVButton3.down,  mPOVButton3.up    );
+    mJSMessageDispatcher.setPOVButtonEvents(4, mPOVButton4.down,  mPOVButton4.up    );
 
-	mJS.setAxisEvent(3,  mX2Axis.Move);
-	mJS.setAxisEvent(4,  mY2Axis.Move);
+	mJSMessageDispatcher.setAxisEvent(1, mX1Axis.Move);
+	mJSMessageDispatcher.setAxisEvent(2, mY1Axis.Move);
+
+	mJSMessageDispatcher.setAxisEvent(3,  mX2Axis.Move);
+	mJSMessageDispatcher.setAxisEvent(4,  mY2Axis.Move);
 
 	//Start JS poll
-    mJS.enable();
+    mJSMessageDispatcher.enable();
 }
 
 ArrayBotJoyStick::~ArrayBotJoyStick()
 {}
 
 
+void ArrayBotJoyStick::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
+{
+	mJSMessageDispatcher.setButtonEvents(btnNr, up, down);
+}
+
 bool ArrayBotJoyStick::enable()
 {
-    mEnabled = mJS.enable();
+    mEnabled = mJSMessageDispatcher.enable();
     return mEnabled;
 }
 
 bool ArrayBotJoyStick::disable()
 {
-    mJS.disable();
+    mJSMessageDispatcher.disable();
 	mEnabled = false;
     return true;
 }
