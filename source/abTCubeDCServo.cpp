@@ -27,24 +27,25 @@ bool TCubeDCServo::connect()
     // open the device
     int res = CC_Open(toString(mSerial).c_str());
 
-	//we need to find out what actuatr is connected
-    mScalingFactors.position = 1919.64;
-    mScalingFactors.velocity = 42941.66;
-	mScalingFactors.acceleration = 14.66;
+	//we need to find out what actuator is connected
+    //USE THESE
+//    mScalingFactors.position = 1919.64;
+//    mScalingFactors.velocity = 42941.66;
+//	mScalingFactors.acceleration = 14.66;
 
-//    mScalingFactors.position = 34304.0;
-//    mScalingFactors.velocity = 767367.49;
-//	mScalingFactors.acceleration = 261.93;
+    mScalingFactors.position = 34304.0;
+    mScalingFactors.velocity = 767367.49;
+	mScalingFactors.acceleration = 261.93;
 
     if(res == 0)
     {
     	CC_LoadSettings(mSerial.c_str());
 
+        int en = CC_EnableChannel(mSerial.c_str());
+        Log(lDebug) << "Enabling Code: "<<en;
         //Set jog mode to continous
         setJogMoveMode(jmContinuous);
 
-        int en = CC_EnableChannel(mSerial.c_str());
-        Log(lDebug) << "Enabling Code: "<<en;
 	    // start the device polling at 200ms intervals
     	if(!CC_StartPolling(mSerial.c_str(), 200))
         {
@@ -476,8 +477,8 @@ bool TCubeDCServo::moveAbsolute(double pos, bool inThread)
     }
     else
     {
-    	setVelocity(getJogVelocity());
-    	setAcceleration(getJogAcceleration());
+//    	setVelocity(getJogVelocity());
+//    	setAcceleration(getJogAcceleration());
         int err = CC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
         if(err != 0)
         {

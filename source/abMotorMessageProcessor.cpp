@@ -153,10 +153,10 @@ void MotorMessageProcessor::worker()
                     	mMotor->moveAbsolute(cmd.getFirstVariable(), false);
 					break;
 
-                    case mcSetVelocity:
-                    	mMotor->setJogVelocity(cmd.getFirstVariable());
-                    	mMotor->jogForward();
-					break;
+//                    case mcSetVelocity:
+//                    	mMotor->setJogVelocity(cmd.getFirstVariable());
+//                    	mMotor->jogForward();
+//					break;
 
                     case mcSetVelocityForward:
                     	mMotor->setJogVelocity(cmd.getFirstVariable());

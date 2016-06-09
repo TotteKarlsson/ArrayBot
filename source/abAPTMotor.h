@@ -14,6 +14,7 @@ class AB_CORE APTMotor : public APTDevice
 						                    APTMotor(int serial);
 		virtual			                    ~APTMotor();
 
+        double								getMaxPosition();
         virtual bool	                    connect() 		= 0;
         virtual bool	                    disconnect() 	= 0;
 
@@ -35,6 +36,7 @@ class AB_CORE APTMotor : public APTDevice
 
         virtual bool	                    startPolling() 	= 0;
         virtual bool	                    stopPolling() 	= 0;
+
 
 											//!Motor ranges
         virtual Range<double>               getVelocityRange();
@@ -91,7 +93,7 @@ class AB_CORE APTMotor : public APTDevice
 		HardwareInformation 	  			mHWInfo;
         bool								applyProperties();
 
-        Range<double> 						mPositionRange;
+        Property< Range<double> > 			mPositionRange;
         Range<double> 						mVelocityRange;
         Range<double> 						mAccelerationRange;
         Property<double>					mManualJogVelocity;

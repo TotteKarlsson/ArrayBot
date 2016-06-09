@@ -409,6 +409,7 @@ PairedMove* TMain::getCurrentPairedMove()
     {
     	return (PairedMove*) mLiftCB->Items->Objects[mLiftCB->ItemIndex];
     }
+    return NULL;
 }
 //---------------------------------------------------------------------------
 void __fastcall TMain::liftAExecute(TObject *Sender)

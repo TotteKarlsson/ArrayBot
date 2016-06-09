@@ -31,12 +31,14 @@ bool ArrayBot::readINIParameters()
 {
 	mLifts.readINIParameters();
 	mJSSettings.readINIParameters();
+    return true;
 }
 
 bool ArrayBot::writeINIParameters()
 {
 	mJSSettings.writeINIParameters();
     mLifts.writeINIParameters();
+    return true;
 }
 
 bool ArrayBot::isActive()

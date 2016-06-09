@@ -471,8 +471,8 @@ bool LongTravelStage::moveAbsolute(double pos, bool inThread)
     }
     else
     {
-    	setVelocity(getJogVelocity());
-    	setAcceleration(getJogAcceleration());
+//    	setVelocity(getJogVelocity());
+//    	setAcceleration(getJogAcceleration());
         int err = ISC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
         if(err != 0)
         {

@@ -243,7 +243,7 @@ object Main: TMain
           Left = 491
           Top = 144
           Width = 446
-          Height = 345
+          Height = 425
           Caption = 'Lift'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -254,7 +254,7 @@ object Main: TMain
           TabOrder = 2
           object LiftBtn: TSpeedButton
             Left = 16
-            Top = 177
+            Top = 257
             Width = 409
             Height = 136
             Action = liftA

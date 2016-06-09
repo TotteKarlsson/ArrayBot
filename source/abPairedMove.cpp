@@ -55,23 +55,24 @@ bool PairedMove::check()
 	double newZ1Pos = mMotor1->getPosition() + mDistance;
 	double newZ2Pos = mMotor2->getPosition() + mDistance;
 
-    if(newZ1Pos > 25)
+    if(newZ1Pos > mMotor1->getMaxPosition())
     {
     	stringstream s;
-        s << "New position ("<<newZ2Pos<<") to big for motor with label: \""<<mMotor1->getName()<<"\"\rMax position is 25.0 mm";
+        s << "New position ("<<newZ1Pos<<") to big for motor with label: \""<<mMotor1->getName()<<"\"\rMax position is "<<mMotor1->getMaxPosition()<<" mm";
     	Log(lError) << s.str();
         mCheckMessage = s.str();
         return false;
     }
 
-    if(newZ2Pos > 25)
+    if(newZ2Pos > mMotor2->getMaxPosition())
     {
     	stringstream s;
-        s << "New position ("<<newZ2Pos<<") to big for motor with label: \""<<mMotor2->getName()<<"\"\rMax position is 25.0 mm";
+        s << "New position ("<<newZ2Pos<<") to big for motor with label: \""<<mMotor2->getName()<<"\"\rMax position is "<<mMotor2->getMaxPosition()<<" mm";
     	Log(lError) << s.str();
         mCheckMessage = s.str();
         return false;
     }
+    return true;
 }
 
 bool PairedMove::execute()
@@ -86,11 +87,11 @@ bool PairedMove::execute()
 	double newZ2Pos = mMotor2->getPosition() + mDistance;
 
 	//Update motors with current parameters and start the move
-    mMotor1->setJogVelocity(mVelocity);
-    mMotor2->setJogAcceleration(mAcceleration);
+    mMotor1->setVelocity(mVelocity);
+    mMotor1->setAcceleration(mAcceleration);
 
-    mMotor1->setJogVelocity(mVelocity);
-    mMotor2->setJogAcceleration(mAcceleration);
+    mMotor2->setVelocity(mVelocity);
+    mMotor2->setAcceleration(mAcceleration);
 
     Log(lInfo) << "Moving Motor 1 to: "	<<newZ1Pos;
     Log(lInfo) << "Moving Motor 2 to: "	<<newZ2Pos;

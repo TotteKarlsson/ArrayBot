@@ -6,7 +6,7 @@
 APTMotor::APTMotor(int serialNo)
 :
 	APTDevice(serialNo),
-    mPositionRange(0,0),
+    mPositionRange(Range<double>(0,0)),
     mVelocityRange(0,0),
     mAccelerationRange(0,0),
 	mManualJogVelocity(0),
@@ -15,9 +15,9 @@ APTMotor::APTMotor(int serialNo)
 	mMotorMessageProcessor(mMotorMessageContainer)
 {
     mProperties.add((BaseProperty*) &mManualJogVelocity.setup("MANUAL_JOG_VELOCITY"			, 			0.1, true));
-
     mProperties.add((BaseProperty*) &mManualJogAcceleration.setup("MANUAL_JOG_ACCELERATION"	, 			0.1, true));
     mProperties.add((BaseProperty*) &mPotentiometerVelocity.setup("POTENTIOMETER_VELOCITY"	, 			1, true));
+    mProperties.add((BaseProperty*) &mPositionRange.setup("POSITION_RANGE"					, 			Range<double>(0,0), true));
 
 	mMotorMessageProcessor.assignMotor(this);
 	mMotorMessageProcessor.start(true);
@@ -34,6 +34,10 @@ APTMotor::~APTMotor()
     mProperties.write();
 }
 
+double APTMotor::getMaxPosition()
+{
+	return mPositionRange.getValue().getMax();
+}
 
 bool APTMotor::applyProperties()
 {
