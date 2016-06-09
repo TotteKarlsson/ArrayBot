@@ -160,8 +160,7 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
     {
     	return;
     }
-
-	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
+	//These are already referenced so no need for any updates
 }
 
 void __fastcall TMain::Button3Click(TObject *Sender)
@@ -407,6 +406,9 @@ void __fastcall TMain::abortLiftAExecute(TObject *Sender)
 {
 	mAB->stopAll();
     Log(lInfo) << "The lift was aborted";
+
+    //Re-enable the joystick.
+	mAB->enableJoyStick();
 }
 
 PairedMove* TMain::getCurrentPairedMove()
@@ -417,6 +419,7 @@ PairedMove* TMain::getCurrentPairedMove()
     }
     return NULL;
 }
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::liftAExecute(TObject *Sender)
 {
@@ -437,6 +440,8 @@ void __fastcall TMain::liftAExecute(TObject *Sender)
         return;
     }
 
+    //Re-enable the joystick.
+	mAB->disableJoyStick();
     pm->execute();
     mLiftTimer->Enabled = true;
    	LiftBtn->Action = abortLiftA;

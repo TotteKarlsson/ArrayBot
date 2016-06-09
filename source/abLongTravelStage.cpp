@@ -295,12 +295,19 @@ bool LongTravelStage::setVelocity(double vel)
 
 bool LongTravelStage::setAcceleration(double a)
 {
- 	MOT_VelocityParameters parameters;
-    ISC_GetVelParamsBlock(mSerial.c_str(), &parameters);
+ 	MOT_VelocityParameters p;
+    ISC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-    parameters.acceleration = a * mScalingFactors.acceleration;
-    ISC_SetVelParamsBlock(mSerial.c_str(), &parameters);
-	Log(lDebug) << "Setting velocity parameters: "<<parameters.acceleration<<" : "<<parameters.maxVelocity;
+    p.acceleration = a * mScalingFactors.acceleration;
+	Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
+
+    int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
+
+    if(e)
+    {
+        Log(lError) <<tlError(e);
+    }
+
 	return false;
 }
 

@@ -83,6 +83,7 @@ bool ArrayBot::shutDown()
 
 void ArrayBot::stopAll()
 {
+	//In case the JoyStick is running amok, disable it
     mJoyStick.disable();
     mCoverSlip.stopAll();
     mWhisker.stopAll();
@@ -122,6 +123,9 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
 
     if(getWhiskerUnit().getXMotor() && getWhiskerUnit().getYMotor())
     {
+        getWhiskerUnit().getXMotor()->setPotentiometerVelocity(vals[0]);
+        getWhiskerUnit().getYMotor()->setPotentiometerVelocity(vals[0]);
+
         getWhiskerUnit().getXMotor()->setJogAcceleration(vals[1]);
         getWhiskerUnit().getYMotor()->setJogAcceleration(vals[1]);
     }

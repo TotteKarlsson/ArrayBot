@@ -16,7 +16,6 @@ mMoveResolution(100),
 mNrOfButtons(nrOfButtons)
 {
     mJoyStickID = JOYSTICKID1; //Support only one for now
-
     mUpdateStateTimer.setInterval(30);
 	mUpdateStateTimer.OnTimerC = refresh;
 
@@ -222,7 +221,7 @@ void JoyStickMessageDispatcher::refresh()
 			break;
         }
 
-        //Emply new state
+        //Employ new state
         switch(mJoyInfo.dwPOV)
         {
         	case pvUp:

@@ -11,18 +11,20 @@ mEnabled(false),
 mJSMessageDispatcher(14)
 {
     //Associate events with buttons
-    mJSMessageDispatcher.setButtonEvents(1, mButton1.down,  mButton1.up    );
-    mJSMessageDispatcher.setButtonEvents(2, mButton2.down,  mButton2.up    );
-    mJSMessageDispatcher.setButtonEvents(3, mButton3.down,  mButton3.up    );
-    mJSMessageDispatcher.setButtonEvents(4, mButton4.down,  mButton4.up    );
+    mJSMessageDispatcher.setButtonEvents(1, mButton1.down,  mButton1.up);
+    														//!Z- down
+    mJSMessageDispatcher.setButtonEvents(2, mButton2.down,  mButton2.up);
+    mJSMessageDispatcher.setButtonEvents(3, mButton3.down,  mButton3.up);
+    														//!Z-up
+    mJSMessageDispatcher.setButtonEvents(4, mButton4.down,  mButton4.up);
 
-    mJSMessageDispatcher.setButtonEvents(5, mButton5.down,  mButton5.up    );
-    mJSMessageDispatcher.setButtonEvents(6, mButton6.down,  mButton6.up    );
+    mJSMessageDispatcher.setButtonEvents(5, mButton5.down,  mButton5.up);
+    mJSMessageDispatcher.setButtonEvents(6, mButton6.down,  mButton6.up);
 
-    mJSMessageDispatcher.setPOVButtonEvents(1, mPOVButton1.down,  mPOVButton1.up    );
-    mJSMessageDispatcher.setPOVButtonEvents(2, mPOVButton2.down,  mPOVButton2.up    );
-    mJSMessageDispatcher.setPOVButtonEvents(3, mPOVButton3.down,  mPOVButton3.up    );
-    mJSMessageDispatcher.setPOVButtonEvents(4, mPOVButton4.down,  mPOVButton4.up    );
+    mJSMessageDispatcher.setPOVButtonEvents(1, mPOVButton1.down,  mPOVButton1.up);
+    mJSMessageDispatcher.setPOVButtonEvents(2, mPOVButton2.down,  mPOVButton2.up);
+    mJSMessageDispatcher.setPOVButtonEvents(3, mPOVButton3.down,  mPOVButton3.up);
+    mJSMessageDispatcher.setPOVButtonEvents(4, mPOVButton4.down,  mPOVButton4.up);
 
 	mJSMessageDispatcher.setAxisEvent(1, mX1Axis.Move);
 	mJSMessageDispatcher.setAxisEvent(2, mY1Axis.Move);

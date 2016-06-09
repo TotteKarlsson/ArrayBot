@@ -23,7 +23,7 @@ PairedMove::~PairedMove()
 string PairedMove::asIniRecord()
 {
 	stringstream s;
-    s << mDistance << "," << mVelocity << ", "<< mAcceleration;
+    s << mDistance << "," << mVelocity << ","<< mAcceleration;
 	return s.str();
 }
 

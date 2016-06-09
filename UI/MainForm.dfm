@@ -275,6 +275,7 @@ object Main: TMain
             EditLabel.Caption = 'Acceleration'
             TabOrder = 1
             Text = '0.00'
+            OnKeyDown = moveEdit
           end
           object mMoveVelocityVerticalE: TFloatLabeledEdit
             Left = 202
@@ -298,6 +299,7 @@ object Main: TMain
             EditLabel.Caption = 'Lift Distance (mm)'
             TabOrder = 2
             Text = '0.00'
+            OnKeyDown = moveEdit
           end
           object mLiftCB: TComboBox
             Left = 16

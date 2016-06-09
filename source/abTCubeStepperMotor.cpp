@@ -36,11 +36,10 @@ bool TCubeStepperMotor::connect()
     {
     	SCC_LoadSettings(mSerial.c_str());
 
-        //Set jog mode to continous
-        setJogMoveMode(jmContinuous);
-
         int en = SCC_EnableChannel(mSerial.c_str());
         Log(lDebug) << "Enabling Code: "<<en;
+        //Set jog mode to continous
+        setJogMoveMode(jmContinuous);
 
 	    // start the device polling at 200ms intervals
     	if(!SCC_StartPolling(mSerial.c_str(), 200))
@@ -62,7 +61,7 @@ bool TCubeStepperMotor::disconnect()
     APTMotor::disconnect();
 	SCC_Close(mSerial.c_str());
     mIsConnected = false;
-    return false;
+    return true;
 }
 
 bool TCubeStepperMotor::enable()
@@ -85,29 +84,6 @@ bool TCubeStepperMotor::disable()
         return false;
     }
     return true;
-}
-
-unsigned long TCubeStepperMotor::getStatusBits()
-{
-	return SCC_GetStatusBits(mSerial.c_str());
-}
-
-double TCubeStepperMotor::getEncoderCounts()
-{
-	long stepsPerRev, gearBoxRatio;
-    float pitch;
-	int err = SCC_GetMotorParams(mSerial.c_str(), &stepsPerRev, &gearBoxRatio, &pitch);
-	if(err)
-    {
-    	Log(lError) << "Failed getting Motor Parameters";
-    }
-    else
-    {
-    	Log(lInfo) << "StepsPerRev: "<<stepsPerRev;
-    	Log(lInfo) << "GearBoxRatio: "<<gearBoxRatio;
-    	Log(lInfo) << "Pitch: "<<pitch;
-    }
-    return 0;
 }
 
 void TCubeStepperMotor::setPotentiometerVelocity(double v)
@@ -142,6 +118,35 @@ void TCubeStepperMotor::setPotentiometerVelocity(double v)
 //        Log(lInfo) <<"Pos: "<<i<<"\t"<<"Def: "<<thDef<<"\tValue: "<<vel / mScalingFactors.velocity;
 //    }
 }
+
+unsigned long TCubeStepperMotor::getStatusBits()
+{
+	return SCC_GetStatusBits(mSerial.c_str());
+}
+
+double TCubeStepperMotor::getEncoderCounts()
+{
+	long cnt1, cnt2, cnt3;
+    return 0;
+}
+
+//double TCubeStepperMotor::getEncoderCounts()
+//{
+//	long stepsPerRev, gearBoxRatio;
+//    float pitch;
+//	int err = SCC_GetMotorParams(mSerial.c_str(), &stepsPerRev, &gearBoxRatio, &pitch);
+//	if(err)
+//    {
+//    	Log(lError) << "Failed getting Motor Parameters";
+//    }
+//    else
+//    {
+//    	Log(lInfo) << "StepsPerRev: "<<stepsPerRev;
+//    	Log(lInfo) << "GearBoxRatio: "<<gearBoxRatio;
+//    	Log(lInfo) << "Pitch: "<<pitch;
+//    }
+//    return 0;
+//}
 
 HardwareInformation TCubeStepperMotor::getHWInfo()
 {
@@ -458,6 +463,7 @@ void TCubeStepperMotor::jogReverse(bool inThread)
 
 void TCubeStepperMotor::forward(bool inThread)
 {
+	//TODO: use inThread logic
     int err = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
     if(err != 0)
     {
@@ -467,6 +473,7 @@ void TCubeStepperMotor::forward(bool inThread)
 
 void TCubeStepperMotor::reverse(bool inThread)
 {
+	//TODO: use inThread logic
     int err = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Backwards);
     if(err !=0)
     {
@@ -483,8 +490,6 @@ bool TCubeStepperMotor::moveAbsolute(double pos, bool inThread)
     }
     else
     {
-    	setVelocity(getJogVelocity());
-    	setAcceleration(getJogAcceleration());
         int err = SCC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
         if(err != 0)
         {
