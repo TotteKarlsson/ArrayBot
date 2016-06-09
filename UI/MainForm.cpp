@@ -398,6 +398,9 @@ void __fastcall TMain::mLiftTimerTimer(TObject *Sender)
     {
     	LiftBtn->Action = liftA;
 		mLiftTimer->Enabled = false;
+
+    	//Re-enable the joystick.
+		mAB->enableJoyStick();
     }
 }
 

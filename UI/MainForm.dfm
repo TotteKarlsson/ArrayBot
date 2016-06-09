@@ -119,6 +119,10 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object AnglesGB: TGroupBox
           Left = 491
           Top = 25
@@ -442,6 +446,10 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -606,6 +614,10 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
