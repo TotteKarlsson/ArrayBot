@@ -68,6 +68,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     //Over ride joysticks button events
     mAB->getJoyStick().setButtonEvents(5, NULL, onJSButton5Click);
     mAB->getJoyStick().setButtonEvents(6, NULL, onJSButton6Click);
+    mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
 
 	//Initialize UI
     mCSAngleE->setValue(mAB->getCoverSlipAngleController().getAngle());
@@ -376,6 +377,11 @@ void TMain::onJSButton6Click()
     }
 }
 
+void TMain::onJSButton14Click()
+{
+	LiftBtn->Click();
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::Button4Click(TObject *Sender)
 {
@@ -446,7 +452,6 @@ void __fastcall TMain::mLiftCBChange(TObject *Sender)
    	mVerticalMoveDistanceE->setReference(pm->mDistance);
 	mMoveVelocityVerticalE->setReference(pm->mVelocity);
 	mMoveAccelerationE->setReference(pm->mAcceleration);
-
 }
 
 

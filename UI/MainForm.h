@@ -152,6 +152,9 @@ class TMain : public TRegistryForm
         void						onJSButton5Click();
         void						onJSButton6Click();
 
+        							//!Button 14 initiate/cancel a lift operation
+        void						onJSButton14Click();
+
 	public:		// User declarations
 		__fastcall 					TMain(TComponent* Owner);
 		__fastcall 					~TMain();

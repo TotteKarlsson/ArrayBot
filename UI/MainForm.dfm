@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
-  Caption = 'ArrayBot Version 0.5.7'
+  Caption = 'ArrayBot Version 0.5.8'
   ClientHeight = 697
   ClientWidth = 1262
   Color = clBtnFace

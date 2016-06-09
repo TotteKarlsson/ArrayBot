@@ -1,3 +1,10 @@
+Release 0.5.8 (Jun 9)
+=======================
+* Added position ranges for each motor
+* Fixed Paired move known bugs
+* Implemented Button 14 on PS4 controller to do the lift
+* Added getMaxPosition function motors
+
 Release 0.5.7 (Jun 8)
 =======================
 * Added lifting code
