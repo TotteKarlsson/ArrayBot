@@ -13,6 +13,7 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
+USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 USEFORM("MainForm.cpp", Main);
@@ -124,27 +125,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	return 0;
 }
 
-void setupLogging()
-{
-	//Get Application folder
-	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
-	if(!folderExists(fldr))
-	{
-		createFolder(fldr);
-	}
-
-	gLogFileLocation = fldr;
-
-	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
-	clearFile(fullLogFileName);
-	mtk::gLogger.logToFile(fullLogFileName);
-	LogOutput::mShowLogLevel = true;
-	LogOutput::mShowLogTime = false;
-	LogOutput::mUseLogTabs = false;
-//	mtk::gLogger.setLogLevel(lInfo);
-	mtk::gLogger.setLogLevel(lDebug5);
-	Log(lInfo) << "Logger was setup";
-}
 
 //---------------------------------------------------------------------------
 #pragma comment(lib, "mtkCommon.lib")

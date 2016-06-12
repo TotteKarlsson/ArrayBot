@@ -1,7 +1,7 @@
-#ifndef amlUtilitiesH
-#define amlUtilitiesH
+#ifndef abUtilitiesH
+#define abUtilitiesH
 //#include "abCoreExporter.h"
-#include "amlDataStructures.h"
+#include "abUIDataStructures.h"
 #include "mtkSQLite.h"
 #include "mtkStringList.h"
 
@@ -15,7 +15,5 @@ AML_CORE void setupLogging();
 
 AML_CORE bool sendAppMessage(ApplicationMessageEnum msg, void* struc = NULL);
 
-AML_CORE string updateStateOrRegionData(const string& sor);
-AML_CORE StringList fixStatesOrRegionsData(const StringList& orders);
 
 #endif

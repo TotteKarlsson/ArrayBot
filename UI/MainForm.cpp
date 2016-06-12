@@ -13,7 +13,7 @@
 #include "mtkMathUtils.h"
 #include "abExceptions.h"
 #include "TSplashForm.h"
-
+#include "TAboutArrayBotForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -525,6 +525,17 @@ void __fastcall TMain::LogLevelCBChange(TObject *Sender)
     }
 
     gLogger.setLogLevel(mLogLevel);
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mAboutBtnClick(TObject *Sender)
+{
+	//Show about frame
+    TAboutArrayBotForm* af = new TAboutArrayBotForm(this);
+    af->ShowModal();
+    delete af;
+
 }
 
 

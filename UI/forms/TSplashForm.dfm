@@ -25,9 +25,9 @@ object SplashForm: TSplashForm
   TextHeight = 13
   object logLabel: TLabel
     Left = 32
-    Top = 200
+    Top = 72
     Width = 79
-    Height = 22
+    Height = 18
     Caption = 'Initializing...'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed

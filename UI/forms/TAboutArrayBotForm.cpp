@@ -1,32 +1,30 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TAboutAmalyticoForm.h"
+#include "TAboutArrayBotForm.h"
 #include "TShowFileContentForm.h"
 #include "mtkApplicationInfo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TAboutAmalyticoFrame"
+#pragma link "TAboutArrayBotFrame"
 #pragma resource "*.dfm"
-TAboutAmalyticoForm *AboutAmalyticoForm;
+TAboutArrayBotForm *AboutArrayBotForm;
 
 using namespace mtk;
 //---------------------------------------------------------------------------
-__fastcall TAboutAmalyticoForm::TAboutAmalyticoForm(mtk::ApplicationLicenseController& lc, TRegistrationFile* reg, TComponent* Owner)
+__fastcall TAboutArrayBotForm::TAboutArrayBotForm(TComponent* Owner)
     : TForm(Owner),
-    mLC(lc),
-    mRegistrationComponent(reg),
-    mRemoteDownloadURL("http://www.moleculix.com/downloads/Amalytico"),
+    mRemoteDownloadURL(""),
     mRemoteVersion("")
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoForm::FormShow(TObject *Sender)
+void __fastcall TAboutArrayBotForm::FormShow(TObject *Sender)
 {
     if(!mAboutFrame)
     {
-        mAboutFrame = new TAboutAmalyticoFrame(mLC, mRegistrationComponent, this);
+        mAboutFrame = new TAboutArrayBotFrame(this);
         mAboutFrame->Visible = false;
         mAboutFrame->populate();
         mAboutFrame->Parent =  this;
@@ -37,13 +35,13 @@ void __fastcall TAboutAmalyticoForm::FormShow(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoForm::Button4Click(TObject *Sender)
+void __fastcall TAboutArrayBotForm::Button4Click(TObject *Sender)
 {
     CloseModal();
 }
 
 
-//void __fastcall TAboutAmalyticoForm::Button2Click(TObject *Sender)
+//void __fastcall TAboutArrayBotForm::Button2Click(TObject *Sender)
 //{
 //    TShowFileContentForm* e = new TShowFileContentForm(Application);
 //    e->Memo1->Lines->LoadFromFile("LICENSE.txt");
@@ -52,12 +50,12 @@ void __fastcall TAboutAmalyticoForm::Button4Click(TObject *Sender)
 //}
 //---------------------------------------------------------------------------
 
-void __fastcall TAboutAmalyticoForm::Button3Click(TObject *Sender)
+void __fastcall TAboutArrayBotForm::Button3Click(TObject *Sender)
 {
     try
     {
         TShowFileContentForm* e = new TShowFileContentForm(Application);
-        e->Caption = "Amalytico ChangeLog";
+        e->Caption = "ArrayBot ChangeLog";
         e->Memo1->Lines->LoadFromFile("CHANGELOG.txt");
         e->ShowModal();
         delete e;
@@ -69,7 +67,7 @@ void __fastcall TAboutAmalyticoForm::Button3Click(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoForm::Button1Click(TObject *Sender)
+void __fastcall TAboutArrayBotForm::Button1Click(TObject *Sender)
 {
     if(startsWith(stdstr(checkForUpdateA->Caption), "Check"))
     {
@@ -87,7 +85,7 @@ void __fastcall TAboutAmalyticoForm::Button1Click(TObject *Sender)
 
 //---------------------------------------------------------------------------
 //Executed in a thread
-void __fastcall TAboutAmalyticoForm::NotifyAboutUpdate(const string& data)
+void __fastcall TAboutArrayBotForm::NotifyAboutUpdate(const string& data)
 {
     if(data.size())
     {
@@ -133,7 +131,7 @@ void __fastcall TAboutAmalyticoForm::NotifyAboutUpdate(const string& data)
 }
 
 //Executed in a thread
-void __fastcall TAboutAmalyticoForm::NotifyAboutChangeLog(const string& data)
+void __fastcall TAboutArrayBotForm::NotifyAboutChangeLog(const string& data)
 {
     if(data.size())
     {
@@ -158,7 +156,7 @@ void __fastcall TAboutAmalyticoForm::NotifyAboutChangeLog(const string& data)
 
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoForm::checkForUpdateAExecute(TObject *Sender)
+void __fastcall TAboutArrayBotForm::checkForUpdateAExecute(TObject *Sender)
 {
     if(startsWith(stdstr(checkForUpdateA->Caption), "Check"))
     {
@@ -175,7 +173,7 @@ void __fastcall TAboutAmalyticoForm::checkForUpdateAExecute(TObject *Sender)
 }
 
 
-void __fastcall TAboutAmalyticoForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+void __fastcall TAboutArrayBotForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     if(Key == VK_ESCAPE)
     {
@@ -184,7 +182,7 @@ void __fastcall TAboutAmalyticoForm::FormKeyDown(TObject *Sender, WORD &Key, TSh
 }
 
 
-void __fastcall TAboutAmalyticoForm::retrieveChangeLogAExecute(TObject *Sender)
+void __fastcall TAboutArrayBotForm::retrieveChangeLogAExecute(TObject *Sender)
 {
     mGetNewestChangeLogThread.setURL(joinPath(joinPath(mRemoteDownloadURL, mRemoteVersion.asString("major.minor.patch"),'/'), "CHANGELOG.txt", '/'));
     mGetNewestChangeLogThread.assignCallBack(NotifyAboutChangeLog);
@@ -193,14 +191,14 @@ void __fastcall TAboutAmalyticoForm::retrieveChangeLogAExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TAboutAmalyticoForm::FormClose(TObject *Sender, TCloseAction &Action)
+void __fastcall TAboutArrayBotForm::FormClose(TObject *Sender, TCloseAction &Action)
 
 {
 //    Action = caFree;
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoForm::FormCloseQuery(TObject *Sender, bool &CanClose)
+void __fastcall TAboutArrayBotForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
     //Check threads...
 }

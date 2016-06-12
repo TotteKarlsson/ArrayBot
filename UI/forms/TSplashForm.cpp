@@ -116,7 +116,7 @@ void __fastcall TSplashForm::FormShow(TObject *Sender)
 
     if(!mAFrame)
     {
-        mAFrame = new TAboutAmalyticoFrame(this);
+        mAFrame = new TAboutArrayBotFrame(this);
         mAFrame->Visible = false;
         mAFrame->Color = this->Color;
         mAFrame->populate();

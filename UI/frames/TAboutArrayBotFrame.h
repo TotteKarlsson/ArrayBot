@@ -22,7 +22,7 @@
 using std::string;
 using namespace mtk;
 //---------------------------------------------------------------------------
-class PACKAGE TAboutAmalyticoFrame : public TFrame
+class PACKAGE TAboutArrayBotFrame : public TFrame
 {
 __published:	// IDE-managed Components
     TLabel *Label1;
@@ -59,10 +59,10 @@ __published:	// IDE-managed Components
 
 
     public:		// User declarations
-                                            __fastcall  TAboutAmalyticoFrame(TComponent* Owner);
+                                            __fastcall  TAboutArrayBotFrame(TComponent* Owner);
         void                                            populate();
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TAboutAmalyticoFrame *AboutAmalyticoFrame;
+extern PACKAGE TAboutArrayBotFrame *AboutArrayBotFrame;
 //---------------------------------------------------------------------------
 #endif

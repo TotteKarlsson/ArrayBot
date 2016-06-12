@@ -12,7 +12,7 @@
 #include "mtkTimer.h"
 #include "mtkMessageContainer.h"
 #include "dslTSplashMessageProcessor.h"
-#include "TAboutAmalyticoFrame.h"
+#include "TAboutArrayBotFrame.h"
 #include "SKGenerator.hpp"
 using Poco::Timespan;
 using mtk::MessageContainer;
@@ -50,7 +50,7 @@ class PACKAGE TSplashForm : public TForm
         void                            __fastcall          onWritingLogMessage();
         bool                                                isOnShowTime();
         void                                                setShowTime(int ms);
-        TAboutAmalyticoFrame*                               mAFrame;
+        TAboutArrayBotFrame*                               mAFrame;
 	__published:
 
 };

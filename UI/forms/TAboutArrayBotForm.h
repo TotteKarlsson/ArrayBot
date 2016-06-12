@@ -1,11 +1,11 @@
-#ifndef TAboutAmalyticoFormH
-#define TAboutAmalyticoFormH
+#ifndef TAboutArrayBotFormH
+#define TAboutArrayBotFormH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "TAboutAmalyticoFrame.h"
+#include "TAboutArrayBotFrame.h"
 #include "mtkApplicationLicenseController.h"
 #include "mtkVersion.h"
 #include "mtkGetRemoteTextFileDataThread.h"
@@ -14,12 +14,11 @@
 #include <Vcl.ActnList.hpp>
 //---------------------------------------------------------------------------
 
-class PACKAGE TAboutAmalyticoForm : public TForm
+class PACKAGE TAboutArrayBotForm : public TForm
 {
 __published:	// IDE-managed Components
-    TAboutAmalyticoFrame *TAboutAmalyticoFrame1;
+    TAboutArrayBotFrame *TAboutArrayBotFrame1;
     TPanel *Panel1;
-    TButton *Button1;
     TButton *Button3;
     TButton *Button4;
     TActionList *ActionList1;
@@ -37,10 +36,8 @@ __published:	// IDE-managed Components
 
 private:	// User declarations
         bool                                            mStartCheckForChangeLogThread;
-        mtk::ApplicationLicenseController&              mLC;
         Version                                         mRemoteVersion;
-        TRegistrationFile*                              mRegistrationComponent;
-        TAboutAmalyticoFrame*                           mAboutFrame;
+        TAboutArrayBotFrame*                           	mAboutFrame;
         GetRemoteTextFileDataThread                     mGetRemoteVersionThread;
         GetRemoteTextFileDataThread                     mGetNewestChangeLogThread;
         string                                          mRemoteDownloadURL;
@@ -49,9 +46,9 @@ private:	// User declarations
         void                                __fastcall  NotifyAboutChangeLog(const string& data);
 
 public:		// User declarations
-    __fastcall TAboutAmalyticoForm(mtk::ApplicationLicenseController& lc, TRegistrationFile* reg, TComponent* Owner);
+    __fastcall TAboutArrayBotForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TAboutAmalyticoForm *AboutAmalyticoForm;
+extern PACKAGE TAboutArrayBotForm *AboutArrayBotForm;
 //---------------------------------------------------------------------------
 #endif

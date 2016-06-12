@@ -138,7 +138,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\source\VCL\abXYZUnitFrame.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
-        <CppCompile Include="amlUtilities.cpp">
+        <CppCompile Include="abUtilities.cpp">
             <BuildOrder>11</BuildOrder>
         </CppCompile>
         <CppCompile Include="ArrayBot.cpp">
@@ -147,6 +147,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PCHCompile Include="ArrayBotPCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
+        <CppCompile Include="forms\TAboutArrayBotForm.cpp">
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
         <CppCompile Include="forms\TShowFileContentForm.cpp">
             <Form>ShowFileContentForm</Form>
             <DependentOn>forms\TShowFileContentForm.h</DependentOn>
@@ -158,6 +161,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
         <CppCompile Include="frames\TAboutArrayBotFrame.cpp">
+            <Form>AboutArrayBotFrame</Form>
             <BuildOrder>12</BuildOrder>
         </CppCompile>
         <CppCompile Include="JoyStickRelated.cpp">
@@ -172,6 +176,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Misc.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="forms\TSplashForm.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
         <FormResources Include="MainForm.dfm"/>

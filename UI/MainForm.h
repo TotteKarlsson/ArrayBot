@@ -104,6 +104,7 @@ class TMain : public TRegistryForm
 	TComboBox *mLiftCB;
 	TTimer *mStartupTimer;
 	TComboBox *LogLevelCB;
+	TSpeedButton *mAboutBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -137,6 +138,7 @@ class TMain : public TRegistryForm
 	void __fastcall mLiftCBChange(TObject *Sender);
 	void __fastcall mStartupTimerTimer(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
+	void __fastcall mAboutBtnClick(TObject *Sender);
 
     private:
         TThreadMethod                   logMsgMethod;

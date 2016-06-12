@@ -61,6 +61,24 @@ object Main: TMain
       ParentBiDiMode = False
       ExplicitTop = 126
     end
+    object mAboutBtn: TSpeedButton
+      Left = 1
+      Top = 260
+      Width = 125
+      Height = 134
+      Align = alTop
+      AllowAllUp = True
+      Caption = 'About'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = mAboutBtnClick
+      ExplicitLeft = 25
+      ExplicitTop = 382
+    end
     object BottomBtnPanel: TPanel
       Left = 1
       Top = 391
@@ -119,6 +137,10 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object AnglesGB: TGroupBox
           Left = 491
           Top = 25
@@ -442,6 +464,10 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -606,6 +632,10 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -628,8 +658,6 @@ object Main: TMain
             ScrollBars = ssVertical
             TabOrder = 0
             WordWrap = False
-            ExplicitTop = 51
-            ExplicitHeight = 573
           end
           object ToolBar1: TToolBar
             Left = 1

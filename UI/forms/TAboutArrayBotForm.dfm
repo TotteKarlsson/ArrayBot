@@ -1,10 +1,10 @@
-object AboutAmalyticoForm: TAboutAmalyticoForm
+object AboutArrayBotForm: TAboutArrayBotForm
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'AboutAmalyticoForm'
-  ClientHeight = 430
-  ClientWidth = 832
+  Caption = 'About ArrayBot'
+  ClientHeight = 335
+  ClientWidth = 714
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,11 +20,11 @@ object AboutAmalyticoForm: TAboutAmalyticoForm
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  inline TAboutAmalyticoFrame1: TAboutAmalyticoFrame
+  inline TAboutArrayBotFrame1: TAboutArrayBotFrame
     Left = 0
     Top = 0
-    Width = 832
-    Height = 358
+    Width = 714
+    Height = 288
     Align = alClient
     AutoSize = True
     Color = clBtnFace
@@ -34,49 +34,46 @@ object AboutAmalyticoForm: TAboutAmalyticoForm
     ExplicitWidth = 832
     ExplicitHeight = 358
     DesignSize = (
-      832
-      358)
+      714
+      288)
     inherited Image1: TImage
-      Left = 430
-      Top = 7
-      ExplicitLeft = 439
-      ExplicitTop = 7
+      Left = 523
+      Top = 16
+      ExplicitLeft = 437
+      ExplicitTop = 16
     end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 358
-    Width = 832
-    Height = 72
+    Top = 288
+    Width = 714
+    Height = 47
     Align = alBottom
     BevelOuter = bvLowered
     TabOrder = 1
-    object Button1: TButton
-      Left = 34
-      Top = 14
-      Width = 125
-      Height = 40
-      Caption = 'Check for new version'
-      TabOrder = 0
-      OnClick = Button1Click
-    end
+    ExplicitWidth = 614
+    DesignSize = (
+      714
+      47)
     object Button3: TButton
-      Left = 188
-      Top = 14
-      Width = 141
+      Left = 20
+      Top = 5
+      Width = 101
       Height = 40
-      Action = TAboutAmalyticoFrame1.showChangeLog
-      TabOrder = 1
+      Action = TAboutArrayBotFrame1.showChangeLog
+      TabOrder = 0
     end
     object Button4: TButton
-      Left = 708
-      Top = 14
-      Width = 100
+      Left = 607
+      Top = 5
+      Width = 90
       Height = 40
+      Anchors = [akTop, akRight]
       Caption = 'Close'
       ModalResult = 1
-      TabOrder = 2
+      TabOrder = 1
       OnClick = Button4Click
+      ExplicitLeft = 507
     end
   end
   object ActionList1: TActionList

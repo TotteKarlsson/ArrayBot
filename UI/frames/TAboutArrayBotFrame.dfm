@@ -1,4 +1,4 @@
-object AboutAmalyticoFrame: TAboutAmalyticoFrame
+object AboutArrayBotFrame: TAboutArrayBotFrame
   Left = 0
   Top = 0
   Width = 625

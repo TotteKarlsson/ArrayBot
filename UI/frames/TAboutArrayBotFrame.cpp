@@ -15,12 +15,12 @@
 #pragma link "mtkURLLabel"
 #pragma link "mtkURLLabel"
 #pragma resource "*.dfm"
-TAboutAmalyticoFrame *AboutAmalyticoFrame;
+TAboutArrayBotFrame *AboutArrayBotFrame;
 
 using namespace std;
 using namespace mtk;
 //---------------------------------------------------------------------------
-__fastcall TAboutAmalyticoFrame::TAboutAmalyticoFrame(TComponent* Owner)
+__fastcall TAboutArrayBotFrame::TAboutArrayBotFrame(TComponent* Owner)
 :
 TFrame(Owner),
 mRemoteDownloadURL(""),
@@ -28,7 +28,7 @@ mRemoteVersion("")
 {}
 
 //---------------------------------------------------------------------------
-void TAboutAmalyticoFrame::populate()
+void TAboutArrayBotFrame::populate()
 {
     stringstream ss;
     mtkApplicationInfo appInfo(Application);
@@ -40,13 +40,13 @@ void TAboutAmalyticoFrame::populate()
     versionLabel->Caption = String("Version: ") + versionMajorMinorPatch;
 }
 
-void TAboutAmalyticoFrame::serialKeyEnteringObjectsVisible(bool setVisibility)
+void TAboutArrayBotFrame::serialKeyEnteringObjectsVisible(bool setVisibility)
 {
 }
 
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoFrame::checkForUpdateAExecute(TObject *Sender)
+void __fastcall TAboutArrayBotFrame::checkForUpdateAExecute(TObject *Sender)
 {
     if(startsWith(stdstr(checkForUpdateA->Caption), "Check"))
     {
@@ -62,7 +62,7 @@ void __fastcall TAboutAmalyticoFrame::checkForUpdateAExecute(TObject *Sender)
     }
 }
 
-void __fastcall TAboutAmalyticoFrame::retrieveChangeLogAExecute(TObject *Sender)
+void __fastcall TAboutArrayBotFrame::retrieveChangeLogAExecute(TObject *Sender)
 {
     mGetNewestChangeLogThread.setURL(joinPath(joinPath(mRemoteDownloadURL, mRemoteVersion.asString("major.minor.patch"),'/'), "CHANGELOG.txt", '/'));
     mGetNewestChangeLogThread.assignCallBack(NotifyAboutChangeLog);
@@ -71,7 +71,7 @@ void __fastcall TAboutAmalyticoFrame::retrieveChangeLogAExecute(TObject *Sender)
 
 //---------------------------------------------------------------------------
 //Executed in a thread
-void __fastcall TAboutAmalyticoFrame::NotifyAboutUpdate(const string& data)
+void __fastcall TAboutArrayBotFrame::NotifyAboutUpdate(const string& data)
 {
     if(data.size())
     {
@@ -114,7 +114,7 @@ void __fastcall TAboutAmalyticoFrame::NotifyAboutUpdate(const string& data)
 }
 
 //Executed in a thread
-void __fastcall TAboutAmalyticoFrame::NotifyAboutChangeLog(const string& data)
+void __fastcall TAboutArrayBotFrame::NotifyAboutChangeLog(const string& data)
 {
     if(data.size())
     {
@@ -138,7 +138,7 @@ void __fastcall TAboutAmalyticoFrame::NotifyAboutChangeLog(const string& data)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoFrame::ThreadCheckTimerTimer(TObject *Sender)
+void __fastcall TAboutArrayBotFrame::ThreadCheckTimerTimer(TObject *Sender)
 {
     if(mStartCheckForChangeLogThread)
     {
@@ -148,7 +148,7 @@ void __fastcall TAboutAmalyticoFrame::ThreadCheckTimerTimer(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoFrame::showChangeLogExecute(TObject *Sender)
+void __fastcall TAboutArrayBotFrame::showChangeLogExecute(TObject *Sender)
 {
     try
     {
@@ -164,7 +164,7 @@ void __fastcall TAboutAmalyticoFrame::showChangeLogExecute(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoFrame::CloseAExecute(TObject *Sender)
+void __fastcall TAboutArrayBotFrame::CloseAExecute(TObject *Sender)
 {
 //    //Tell the application to go to the home tab
 //  	HWND hWnd = Application->MainForm->Handle;
