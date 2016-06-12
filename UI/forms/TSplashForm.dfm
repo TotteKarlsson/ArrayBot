@@ -4,8 +4,8 @@ object SplashForm: TSplashForm
   BorderStyle = bsNone
   Caption = 'SplashForm'
   ClientHeight = 359
-  ClientWidth = 738
-  Color = clSkyBlue
+  ClientWidth = 615
+  Color = clHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -25,9 +25,9 @@ object SplashForm: TSplashForm
   TextHeight = 13
   object logLabel: TLabel
     Left = 32
-    Top = 320
-    Width = 80
-    Height = 19
+    Top = 200
+    Width = 79
+    Height = 22
     Caption = 'Initializing...'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
@@ -38,17 +38,17 @@ object SplashForm: TSplashForm
     StyleElements = [seClient, seBorder]
   end
   object Label1: TLabel
-    Left = 488
-    Top = 320
-    Width = 235
-    Height = 19
-    Caption = 'Copyright Dune Scientific, LLC 2016'
+    Left = 289
+    Top = 321
+    Width = 311
+    Height = 30
+    Caption = 'Smith Lab.  - Allen institute 2016'
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -16
-    Font.Name = 'Myriad Pro'
-    Font.Style = []
+    Font.Height = -21
+    Font.Name = 'Segoe UI Semibold'
+    Font.Style = [fsItalic]
     ParentColor = False
     ParentFont = False
     StyleElements = [seClient, seBorder]
@@ -57,11 +57,7 @@ object SplashForm: TSplashForm
     Enabled = False
     Interval = 50
     OnTimer = closeTimerTimer
-    Left = 464
-    Top = 128
-  end
-  object RegistrationFile1: TRegistrationFile
-    Left = 256
-    Top = 72
+    Left = 48
+    Top = 240
   end
 end

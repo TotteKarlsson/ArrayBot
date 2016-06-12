@@ -14,9 +14,11 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
-USEFORM("..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 USEFORM("..\source\VCL\abAddLiftForm.cpp", AddLiftSettingForm);
 USEFORM("..\source\VCL\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
+USEFORM("..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
+USEFORM("forms\TSplashForm.cpp", SplashForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
@@ -31,7 +33,7 @@ extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
-extern bool         gHideSplash                 = true;
+extern bool         gHideSplash                 = false;
 extern TSplashForm* gSplashForm                 = NULL;
 //extern SQLite       gDB                         ;
 
@@ -77,16 +79,27 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         }
 
         setupLogging();
+        Log(lInfo) << "The Logfile was opened..";
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 
-
-        Log(lInfo) << "The Logfile was opened..";
+        gSplashForm = new TSplashForm(Application);
+        if(!gHideSplash)
+        {
+            Application->ShowMainForm = false;
+            gSplashForm->Show();
+            gSplashForm->Update();
+        }
+        else
+        {
+            gSplashForm->Close();
+        }
 
 		Application->Title = "ArrayBot - Software for Robots";
 		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->CreateForm(__classid(TAddLiftSettingForm), &AddLiftSettingForm);
+		Application->CreateForm(__classid(TShowFileContentForm), &ShowFileContentForm);
 		Application->Run();
 	}
 	catch (Exception &exception)

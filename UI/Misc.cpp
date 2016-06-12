@@ -2,9 +2,11 @@
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
+#include "TSplashForm.h"
 using namespace mtk;
 
 static HWND gOtherAppWindow = NULL;
+extern TSplashForm*  gSplashForm;
 //---------------------------------------------------------------------------
 void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 {
@@ -83,6 +85,15 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
     {
     	CanClose = false;
     }
+   	else if(gSplashForm && gSplashForm->isOnShowTime())
+	{
+		CanClose = false;
+	}
+    else
+    {
+    	CanClose = true;
+    }
+
 
 	if(CanClose == false)
 	{
@@ -141,6 +152,12 @@ void __fastcall CSAngleButtonDownLeftClick(TObject *Sender)
 
 void __fastcall CSAngleButtonUpRightClick(TObject *Sender)
 {}
+
+void TMain::setupWindowTitle()
+{
+	string title = createWindowTitle("ArrayBot", Application);
+	this->Caption = vclstr(title);
+}
 
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)

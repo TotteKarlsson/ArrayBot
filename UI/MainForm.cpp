@@ -8,9 +8,11 @@
 #include "abTCubeDCServo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
+
 #include <bitset>
 #include "mtkMathUtils.h"
 #include "abExceptions.h"
+#include "TSplashForm.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -25,7 +27,8 @@ TMain *Main;
 extern string gLogFileLocation;
 extern string gLogFileName;
 extern string gAppDataFolder;
-
+extern TSplashForm*  gSplashForm;
+extern bool             gAppIsStartingUp;
 using namespace mtk;
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
@@ -33,7 +36,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TRegistryForm("Test", "MainForm", Owner),
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
-    mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true)
+    mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
+    mLogLevel(lAny)
 {
 	TMemoLogger::mMemoIsEnabled = false;
 
@@ -49,6 +53,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
+	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
 }
 
 __fastcall TMain::~TMain()
@@ -61,6 +66,7 @@ __fastcall TMain::~TMain()
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
 {
+    mStartupTimer->Enabled = true;
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
 	initBotAExecute(NULL);
@@ -460,6 +466,65 @@ void __fastcall TMain::mLiftCBChange(TObject *Sender)
    	mVerticalMoveDistanceE->setReference(pm->mDistance);
 	mMoveVelocityVerticalE->setReference(pm->mVelocity);
 	mMoveAccelerationE->setReference(pm->mAcceleration);
+}
+
+
+void __fastcall TMain::mStartupTimerTimer(TObject *Sender)
+{
+	mStartupTimer->Enabled = false;
+
+    //Licensing stuff
+    gSplashForm->addLogMessage("Validating License");
+	gSplashForm->addLogMessage("Setting up window title");
+	setupWindowTitle();
+
+	gAppIsStartingUp = false;
+
+	//Tell the splash screen to go away
+	gSplashForm->addLogMessage("Starting up...");
+	Application->ProcessMessages();
+	TMemoLogger::mMemoIsEnabled = true;
+
+	gSplashForm->mMainAppIsRunning = true;
+	this->Visible = true;
+	while(gSplashForm->isOnShowTime() == true)
+	{
+		//In order to show whats going on on the splash screen
+		Application->ProcessMessages();
+		if(gSplashForm->Visible == false)
+		{
+			break;
+		}
+	}
+
+	gSplashForm->Close();
+	gLogger.setLogLevel(mLogLevel);
+
+	if(mLogLevel == lInfo)
+	{
+		LogLevelCB->ItemIndex = 0;
+	}
+	else if(mLogLevel == lAny)
+	{
+		LogLevelCB->ItemIndex = 1;
+	}
+
+//	mLogFileReader.start(true);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::LogLevelCBChange(TObject *Sender)
+{
+    if(LogLevelCB->ItemIndex == 0)
+    {
+        mLogLevel = lInfo;
+    }
+    else if(LogLevelCB->ItemIndex == 1)
+    {
+        mLogLevel = lAny;
+    }
+
+    gLogger.setLogLevel(mLogLevel);
 }
 
 

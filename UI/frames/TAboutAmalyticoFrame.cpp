@@ -20,13 +20,10 @@ TAboutAmalyticoFrame *AboutAmalyticoFrame;
 using namespace std;
 using namespace mtk;
 //---------------------------------------------------------------------------
-__fastcall TAboutAmalyticoFrame::TAboutAmalyticoFrame(mtk::ApplicationLicenseController& lc, TRegistrationFile* reg, TComponent* Owner)
+__fastcall TAboutAmalyticoFrame::TAboutAmalyticoFrame(TComponent* Owner)
 :
 TFrame(Owner),
-mIsUnlocking(false),
-mLC(lc),
-RegistrationFile1(reg),
-mRemoteDownloadURL("http://www.moleculix.com/downloads/Amalytico"),
+mRemoteDownloadURL(""),
 mRemoteVersion("")
 {}
 
@@ -40,164 +37,13 @@ void TAboutAmalyticoFrame::populate()
     Version version(stdstr(appInfo.mVersion));
     ss <<version.getMajor()<<"."<<version.getMinor()<<"."<<version.getPatch();
     String versionMajorMinorPatch(ss.str().c_str());
-
     versionLabel->Caption = String("Version: ") + versionMajorMinorPatch;
-
-
-
-    RegistrationFile1->FileName = "amalytico-0.5.regi";
-    // file checksum (SHA256)
-    RegistrationFile1->FileChecksum = "134691e5754087835d24a30a1dce562703de19924f8a16bf827d91aab865d5c8";
-    // ID String
-    RegistrationFile1->IDString = "PreRelease";
-
-    //Check if application been validated. If not, setup in trial mode
-    RegistrationFile1->SerialKey = vclstr(mLC.retrieveActivationKey());
-
-	int result = RegistrationFile1->ValidateSerialKey();
-    bool isActivated = (result == 0) ? true : false;
-    mLC.isActivated(isActivated);
-    mLC.isActivated() == true ? mLC.setLicenseMode(lmActivated) : mLC.setLicenseMode(lmTrial);
-
-
-    if(mLC.getLicenseMode() == lmTrial)
-    {
-        ss.str("");
-        //Setup license info
-        Poco::Timespan ts = mLC.getTrialPeriodLeft();
-        if(ts < 0)
-        {
-            ts = 0;
-        }
-        ss<<"License: Time limited trial mode license ("<<Poco::DateTimeFormatter::format(ts, "%d")
-        <<" days left out of "
-        <<Poco::DateTimeFormatter::format(mLC.getTrialPeriod(), "%d")
-        <<" days total).";
-        ProdLicenseLbl->Caption = vclstr(ss.str());
-        ProdLicenseLbl->Visible = true;
-        UnlockBtn->Visible = true;
-    }
-    else
-    {
-        //Product is activated!
-        serialKeyEnteringObjectsVisible(false);
-        StartUnlockProcedureA->Visible = false;
-
-        ss.str("");
-        ss<<"Licence: Activated\n";
-        ss<<"This product is licensed to be used on one computer.";
-        ProdLicenseLbl->Caption = vclstr(ss.str());
-        ProdLicenseLbl->Visible = true;
-    }
-
-    ss.str("");
-    if(mLC.hasExpirationDate())
-    {
-
-        expirationLabel->Visible = true;
-        expirationLabel->Color = clRed;
-        ss<<"This product is a pre-release version and will expire on "<<Poco::DateTimeFormatter::format(mLC.getExpirationDate(), "%b %e, %Y");
-        expirationLabel->Caption = vclstr(ss.str());
-    }
 }
 
 void TAboutAmalyticoFrame::serialKeyEnteringObjectsVisible(bool setVisibility)
 {
-    UnlockBtn->Visible = setVisibility;
-    Edit1->Visible = setVisibility;
-    Edit2->Visible = setVisibility;
-    Edit3->Visible = setVisibility;
-    Edit4->Visible = setVisibility;
-    Edit5->Visible = setVisibility;
-    SubmitKeyButton->Visible = setVisibility;
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoFrame::StartUnlockProcedureAExecute(TObject *Sender)
-{
-    mIsUnlocking = !mIsUnlocking;
-    Edit1->Visible = mIsUnlocking;
-    Edit2->Visible = mIsUnlocking;
-    Edit3->Visible = mIsUnlocking;
-    Edit4->Visible = mIsUnlocking;
-    Edit5->Visible = mIsUnlocking;
-    ValidateKeyAction->Visible = mIsUnlocking;
-    SubmitKeyButton->Visible = mIsUnlocking;
-
-    UnlockBtn->Caption = (mIsUnlocking) ? "Cancel Unlocking" : "Unlock";
-    if(mIsUnlocking)
-    {
-        Edit1->SetFocus();
-    }
-}
-
-void __fastcall TAboutAmalyticoFrame::Edit1KeyPress(TObject *Sender, System::WideChar &Key)
-{
-    //Check which edit user are filling out. If full, jump to next edit
-    TEdit* theEdit = dynamic_cast<TEdit*>(Sender);
-    if(!theEdit)
-    {
-        return;
-    }
-
-    if(theEdit->Text.Length() >= 4)
-    {
-        //Gotta jump
-        SelectNext(theEdit, true, true);
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoFrame::ValidateKeyActionExecute(TObject *Sender)
-{
-    // Serial key to check...
-    RegistrationFile1->SerialKey = Edit1->Text + Edit2->Text + Edit3->Text + Edit4->Text + Edit5->Text;
-    int result = RegistrationFile1->ValidateSerialKey();
-
-    // Serial key to check...
-    if (result == 0)
-    {
-        //A valid key was entered..
-        //Put this key into the registry for later retrieval
-        mLC.storeActivationKey(stdstr(RegistrationFile1->SerialKey));
-        stringstream ss;
-        ss<<"LicenceType: This license allow usage on one single computer";
-        ProdLicenseLbl->Caption = vclstr(ss.str());
-        StartUnlockProcedureAExecute(NULL);
-        StartUnlockProcedureA->Visible = false;
-
-        mLC.isActivated(true);
-
-        //Tell the application that it is unlocked!
-       	HWND hWnd = Application->MainForm->Handle;
-        LRESULT res = SendMessage(hWnd, UWM_CHECK_LICENSE, 0, 0);
-    	if(res)
-	    {
-		    Log(lDebug)<<"Sending tab changed message was unsuccesful";
-    	}
-    }
-
-    if (result == -1)
-    {
-        ShowMessage("Can't validate! \nAn important file for serial key validation could not be found!");
-    }
-
-    if (result == -2)
-    {
-        ShowMessage("Hash check failed!");
-    }
-
-    if (result == -3)
-    {
-        ShowMessage("That serial key is not valid!");
-        Edit1->SetFocus();
-    }
-
-    if (result == -4)
-    {
-        ShowMessage("File reading error!");
-    }
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TAboutAmalyticoFrame::checkForUpdateAExecute(TObject *Sender)
@@ -300,17 +146,6 @@ void __fastcall TAboutAmalyticoFrame::ThreadCheckTimerTimer(TObject *Sender)
         retrieveChangeLogA->Execute();
     }
 }
-
-
-//---------------------------------------------------------------------------
-void __fastcall TAboutAmalyticoFrame::showLicenseText(TObject *Sender)
-{
-    TShowFileContentForm* e = new TShowFileContentForm(Application);
-    e->Memo1->Lines->LoadFromFile("LICENSE.txt");
-    e->ShowModal();
-    delete e;
-}
-
 
 //---------------------------------------------------------------------------
 void __fastcall TAboutAmalyticoFrame::showChangeLogExecute(TObject *Sender)

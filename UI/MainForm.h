@@ -27,7 +27,7 @@
 #include <Vcl.StdActns.hpp>
 #include <Vcl.Menus.hpp>
 #include <Vcl.Mask.hpp>
-
+#include "mtkLogLevel.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
@@ -102,6 +102,8 @@ class TMain : public TRegistryForm
 	TAction *liftA;
 	TSpeedButton *LiftBtn;
 	TComboBox *mLiftCB;
+	TTimer *mStartupTimer;
+	TComboBox *LogLevelCB;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -133,31 +135,34 @@ class TMain : public TRegistryForm
 	void __fastcall abortLiftAExecute(TObject *Sender);
 	void __fastcall liftAExecute(TObject *Sender);
 	void __fastcall mLiftCBChange(TObject *Sender);
+	void __fastcall mStartupTimerTimer(TObject *Sender);
+	void __fastcall LogLevelCBChange(TObject *Sender);
 
     private:
-        TThreadMethod               logMsgMethod;
-        LogFileReader               mLogFileReader;
-        void __fastcall             logMsg();
-        IniFileProperties  			mProperties;
+        TThreadMethod                   logMsgMethod;
+        LogFileReader                   mLogFileReader;
+        void __fastcall                 logMsg();
+		void 						    setupWindowTitle();
+        IniFile						    mIniFile;
+        IniFileProperties  			    mProperties;
+		mtk::Property<mtk::LogLevel>    mLogLevel;
+        							    //!Arraybot is allocated on the stack.
+                                        //!So that we can catch exceptions in the
+                                        //!constructor
+        ArrayBot*					    mAB;
+		PairedMove* 				    getCurrentPairedMove();
 
-        IniFile						mIniFile;
-        							//!Arraybot is allocated on the stack.
-                                    //!So that we can cat ch exceptions in the
-                                    //!constructor
-        ArrayBot*					mAB;
-		PairedMove* 				getCurrentPairedMove();
 
+		void __fastcall		            OnException();
+        void						    onJSButton5Click();
+        void						    onJSButton6Click();
 
-		void __fastcall		        OnException();
-        void						onJSButton5Click();
-        void						onJSButton6Click();
-
-        							//!Button 14 initiate/cancel a lift operation
-        void						onJSButton14Click();
+        							    //!Button 14 initiate/cancel a lift operation
+        void						    onJSButton14Click();
 
 	public:		// User declarations
-		__fastcall 					TMain(TComponent* Owner);
-		__fastcall 					~TMain();
+		__fastcall 					    TMain(TComponent* Owner);
+		__fastcall 					    ~TMain();
 
         BEGIN_MESSAGE_MAP
 //          MESSAGE_HANDLER(MM_JOY1MOVE, TMessage, JMXYMove)

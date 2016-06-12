@@ -23,7 +23,6 @@ class PACKAGE TSplashForm : public TForm
     TTimer *closeTimer;
     TLabel *logLabel;
     TLabel *Label1;
-    TRegistrationFile *RegistrationFile1;
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall closeTimerTimer(TObject *Sender);
@@ -52,7 +51,6 @@ class PACKAGE TSplashForm : public TForm
         bool                                                isOnShowTime();
         void                                                setShowTime(int ms);
         TAboutAmalyticoFrame*                               mAFrame;
-//        TRegistrationFile*                                  mRegistrationComponent;
 	__published:
 
 };

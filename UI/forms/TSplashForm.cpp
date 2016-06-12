@@ -116,9 +116,7 @@ void __fastcall TSplashForm::FormShow(TObject *Sender)
 
     if(!mAFrame)
     {
-        mtk::ApplicationLicenseController    mLC(gApplicationRegistryRoot);
-//--        mLC.
-        mAFrame = new TAboutAmalyticoFrame(mLC, RegistrationFile1, this);
+        mAFrame = new TAboutAmalyticoFrame(this);
         mAFrame->Visible = false;
         mAFrame->Color = this->Color;
         mAFrame->populate();
@@ -126,7 +124,6 @@ void __fastcall TSplashForm::FormShow(TObject *Sender)
         mAFrame->AutoSize = true;
         mAFrame->Align = alClient;
         mAFrame->Visible = true;
-        mAFrame->UnlockBtn ->Visible = false;
         logLabel->Parent = mAFrame;
     }
 }

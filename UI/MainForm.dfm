@@ -100,7 +100,7 @@ object Main: TMain
       Top = 1
       Width = 1133
       Height = 695
-      ActivePage = TabSheet4
+      ActivePage = TabSheet5
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -119,10 +119,6 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object AnglesGB: TGroupBox
           Left = 491
           Top = 25
@@ -446,10 +442,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -614,10 +606,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -627,9 +615,9 @@ object Main: TMain
           TabOrder = 0
           object infoMemo: TMemo
             Left = 1
-            Top = 51
+            Top = 31
             Width = 1123
-            Height = 573
+            Height = 593
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -640,20 +628,23 @@ object Main: TMain
             ScrollBars = ssVertical
             TabOrder = 0
             WordWrap = False
+            ExplicitTop = 51
+            ExplicitHeight = 573
           end
           object ToolBar1: TToolBar
             Left = 1
             Top = 1
             Width = 1123
-            Height = 50
-            ButtonHeight = 44
+            Height = 30
+            AutoSize = True
+            ButtonHeight = 30
             Caption = 'ToolBar1'
             TabOrder = 1
             object BitBtn2: TBitBtn
               Left = 0
               Top = 0
               Width = 75
-              Height = 44
+              Height = 30
               Caption = 'Clear'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
@@ -663,6 +654,24 @@ object Main: TMain
               ParentFont = False
               TabOrder = 0
               OnClick = BitBtn3Click
+            end
+            object LogLevelCB: TComboBox
+              Left = 75
+              Top = 0
+              Width = 145
+              Height = 31
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -19
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+              Text = 'INFO'
+              OnChange = LogLevelCBChange
+              Items.Strings = (
+                'INFO'
+                'Everything')
             end
           end
         end
@@ -748,5 +757,12 @@ object Main: TMain
     OnTimer = mLiftTimerTimer
     Left = 544
     Top = 648
+  end
+  object mStartupTimer: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = mStartupTimerTimer
+    Left = 32
+    Top = 552
   end
 end
