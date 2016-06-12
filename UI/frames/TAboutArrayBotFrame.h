@@ -1,5 +1,5 @@
-#ifndef TAboutAmalyticoFrameH
-#define TAboutAmalyticoFrameH
+#ifndef TAboutArrayBotFrameH
+#define TAboutArrayBotFrameH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>

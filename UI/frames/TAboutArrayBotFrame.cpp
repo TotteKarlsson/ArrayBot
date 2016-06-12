@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include <sstream>
-#include "TAboutAmalyticoFrame.h"
+#include "TAboutArrayBotFrame.h"
 #include "mtkStringList.h"
 #include "mtkVCLUtils.h"
 #include "mtkApplicationInfo.h"

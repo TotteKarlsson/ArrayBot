@@ -13,12 +13,12 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
+USEFORM("forms\TSplashForm.cpp", SplashForm);
+USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 USEFORM("MainForm.cpp", Main);
+USEFORM("..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 USEFORM("..\source\VCL\abAddLiftForm.cpp", AddLiftSettingForm);
 USEFORM("..\source\VCL\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
-USEFORM("..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("forms\TSplashForm.cpp", SplashForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";

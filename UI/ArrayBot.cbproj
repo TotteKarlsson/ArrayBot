@@ -157,7 +157,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>forms\TSplashForm.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
-        <CppCompile Include="frames\TAboutAmalyticoFrame.cpp">
+        <CppCompile Include="frames\TAboutArrayBotFrame.cpp">
             <BuildOrder>12</BuildOrder>
         </CppCompile>
         <CppCompile Include="JoyStickRelated.cpp">
@@ -172,12 +172,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Misc.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <FormResources Include="forms\TSplashForm.dfm"/>
+        <FormResources Include="forms\TShowFileContentForm.dfm"/>
         <FormResources Include="MainForm.dfm"/>
+        <FormResources Include="..\source\VCL\abMotorFrame.dfm"/>
         <FormResources Include="..\source\VCL\abAddLiftForm.dfm"/>
         <FormResources Include="..\source\VCL\abXYZUnitFrame.dfm"/>
-        <FormResources Include="..\source\VCL\abMotorFrame.dfm"/>
-        <FormResources Include="forms\TShowFileContentForm.dfm"/>
-        <FormResources Include="forms\TSplashForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
