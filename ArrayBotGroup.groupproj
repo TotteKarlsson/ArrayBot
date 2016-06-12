@@ -6,6 +6,9 @@
         <Projects Include="P:\libs\dslib\Common\mtkCommon.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\libs\dslib\Common\Math\mtkMath.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
@@ -34,6 +37,15 @@
     </Target>
     <Target Name="mtkCommon:Make">
         <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="mtkMath">
+        <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj"/>
+    </Target>
+    <Target Name="mtkMath:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkMath:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Make"/>
     </Target>
     <Target Name="VCLCommon">
         <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
@@ -72,13 +84,13 @@
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;VCLCommon;DuneComponents;abCore;ArrayBot"/>
+        <CallTarget Targets="mtkCommon;mtkMath;VCLCommon;DuneComponents;abCore;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

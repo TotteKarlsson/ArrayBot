@@ -4,6 +4,7 @@
 #include "abAPTMotor.h"
 using namespace mtk;
 
+static HWND gOtherAppWindow = NULL;
 //---------------------------------------------------------------------------
 void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 {
@@ -140,4 +141,22 @@ void __fastcall CSAngleButtonDownLeftClick(TObject *Sender)
 
 void __fastcall CSAngleButtonUpRightClick(TObject *Sender)
 {}
+
+
+BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
+{
+	static TCHAR buffer[50];
+	GetWindowText(hwnd, buffer, 50);
+
+	if(_tcsstr(buffer, L"Amalytico"))
+	{
+		// do something with hwnd here
+		gOtherAppWindow = hwnd;
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+
 
