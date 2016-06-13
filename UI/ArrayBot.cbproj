@@ -100,6 +100,7 @@ xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y
 xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y
 xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y
 xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y
+xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y
 $(PostBuildEvent)]]></PostBuildEvent>
         <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;CSKGenerator.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
@@ -263,7 +264,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y</PostBuildEvent>
+        <PostBuildEvent>xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

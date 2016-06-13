@@ -11,7 +11,6 @@
 #include "Poco/DateTimeFormatter.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "SKGenerator"
 #pragma link "mtkURLLabel"
 #pragma link "mtkURLLabel"
 #pragma resource "*.dfm"

@@ -5,7 +5,6 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "SKGenerator.hpp"
 #include "mtkApplicationLicenseController.h"
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>

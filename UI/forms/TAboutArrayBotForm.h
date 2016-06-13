@@ -1,6 +1,5 @@
 #ifndef TAboutArrayBotFormH
 #define TAboutArrayBotFormH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -33,12 +32,9 @@ private:	// User declarations
         bool                                            mStartCheckForChangeLogThread;
         TAboutArrayBotFrame*                           	mAboutFrame;
 
-
-
 public:		// User declarations
     __fastcall TAboutArrayBotForm(TComponent* Owner);
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TAboutArrayBotForm *AboutArrayBotForm;
-//---------------------------------------------------------------------------
 #endif
