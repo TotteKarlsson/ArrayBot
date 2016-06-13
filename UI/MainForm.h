@@ -28,20 +28,25 @@
 #include <Vcl.Menus.hpp>
 #include <Vcl.Mask.hpp>
 #include "mtkLogLevel.h"
+#include "abUIDataStructures.h"
+
+#include "abApplicationMessages.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
+
+typedef void __fastcall (__closure *callback)(void);
 
 class InitBotThread : public mtk::Thread
 {
 	public:
     					InitBotThread();
-                        assingBot(ArrayBot* bot){mTheBot = bot;}
+        void            assingBot(ArrayBot* bot){mTheBot = bot;}
     	ArrayBot* 		mTheBot;
         void			run();
-
+        callback		onFinishedInit;
 };
-//---------------------------------------------------------------------------
 
+//---------------------------------------------------------------------------
 class TMain : public TRegistryForm
 {
     __published:	// IDE-managed Components
@@ -152,10 +157,13 @@ class TMain : public TRegistryForm
         TThreadMethod                   logMsgMethod;
         LogFileReader                   mLogFileReader;
         void __fastcall                 logMsg();
+
 		void 						    setupWindowTitle();
         void __fastcall					init();
 
         InitBotThread					mInitBotThread;
+        void __fastcall					onFinishedInitBot();
+
         IniFile						    mIniFile;
         IniFileProperties  			    mProperties;
 		mtk::Property<mtk::LogLevel>    mLogLevel;
@@ -166,8 +174,6 @@ class TMain : public TRegistryForm
         ArrayBot*					    mAB;
 		PairedMove* 				    getCurrentPairedMove();
 
-
-		void __fastcall		            test();
 		void __fastcall		            OnException();
         void						    onJSButton5Click();
         void						    onJSButton6Click();
@@ -179,11 +185,13 @@ class TMain : public TRegistryForm
 		__fastcall 					    TMain(TComponent* Owner);
 		__fastcall 					    ~TMain();
 
+		void __fastcall                 AppInBox(mlxStructMessage &Msg);
         BEGIN_MESSAGE_MAP
 //          MESSAGE_HANDLER(MM_JOY1MOVE, TMessage, JMXYMove)
 //          MESSAGE_HANDLER(MM_JOY1ZMOVE, TMessage, JMZMove)
 //          MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,JMButtonDownUpdate)
 //          MESSAGE_HANDLER(MM_JOY1BUTTONUP,	TMessage,JMButtonUpUpdate)
+            MESSAGE_HANDLER(UWM_MESSAGE,        mlxStructMessage,         AppInBox);
         END_MESSAGE_MAP(TForm)
 };
 

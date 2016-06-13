@@ -1,3 +1,17 @@
+Release 0.5.9 (Jun 13)
+=======================
+* Fixed splash screen messages
+* Added About form
+* Renamed FrameUnit
+* Added more files for startup logic
+* Added code for preventing two instances of ArrayBot to be running
+* Added skeleton code for a splash screen
+* Added skeleton code for about box
+* Added skelton code for reading the Changelog file
+* Updated release script
+* Enable joystick after a move
+* Finding "lift bug"
+
 Release 0.5.8 (Jun 9)
 =======================
 * Added position ranges for each motor

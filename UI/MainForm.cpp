@@ -31,11 +31,6 @@ extern TSplashForm*  gSplashForm;
 extern bool             gAppIsStartingUp;
 using namespace mtk;
 
-//void InitBotThread::start(bool)
-//{
-//	run();
-//}
-
 InitBotThread::InitBotThread()
 :
 mTheBot(NULL)
@@ -46,6 +41,9 @@ void InitBotThread::run()
     if(mTheBot)
     {
         mTheBot->initialize();
+        Log(lInfo) << "Finished ArrayBot Init";
+
+        TThread::Synchronize(NULL, onFinishedInit);
     }
     mIsFinished = true;
 }
@@ -77,7 +75,10 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
+
+	//Load motors in a thread
     mInitBotThread.assingBot(mAB);
+    mInitBotThread.onFinishedInit = this->onFinishedInitBot;
 	mInitBotThread.start();
 }
 
@@ -269,7 +270,6 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
              mAngleControlVelE->getValue(), mAngleControllerAccE->getValue()
              );
 }
-
 
 //Save parameters
 void __fastcall TMain::Button1Click(TObject *Sender)
@@ -467,10 +467,6 @@ void __fastcall TMain::init()
 	TMemoLogger::mMemoIsEnabled = true;
 	gSplashForm->mMainAppIsRunning = true;
 
-	//Load motors etc...
-//  	initBotAExecute(NULL);
-
-
     //Over ride joysticks button events
     mAB->getJoyStick().setButtonEvents(5, NULL, onJSButton5Click);
     mAB->getJoyStick().setButtonEvents(6, NULL, onJSButton6Click);
@@ -513,7 +509,6 @@ void __fastcall TMain::init()
 		//In order to show whats going on on the splash screen
 		if(gSplashForm->Visible == false)
 		{
-
 			break;
 		}
 	}
@@ -546,12 +541,19 @@ void __fastcall TMain::LogLevelCBChange(TObject *Sender)
     gLogger.setLogLevel(mLogLevel);
 }
 
-
-void __fastcall TMain::test()
+//---------------------------------------------------------------------------
+void __fastcall TMain::mAboutBtnClick(TObject *Sender)
 {
-//	initBot();
-	mAB->initialize();
+	//Show about frame
+    TAboutArrayBotForm* af = new TAboutArrayBotForm(this);
+    af->ShowModal();
+    delete af;
 
+}
+
+void __fastcall	TMain::onFinishedInitBot()
+{
+	Log(lInfo) << "Synching arraybot with UI";
 	TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
 	TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
 
@@ -570,14 +572,34 @@ void __fastcall TMain::test()
 
     InitCloseBtn->Action = ShutDownA;
 }
-//---------------------------------------------------------------------------
-void __fastcall TMain::mAboutBtnClick(TObject *Sender)
-{
-	//Show about frame
-    TAboutArrayBotForm* af = new TAboutArrayBotForm(this);
-    af->ShowModal();
-    delete af;
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::AppInBox(mlxStructMessage &msg)
+{
+    if(msg.lparam == NULL)
+    {
+        return;
+    }
+
+    try
+    {
+        ApplicationMessageEnum aMsg = msg.lparam->mMessageEnum;
+
+        switch(aMsg)
+        {
+            case abSplashWasClosed:
+                Log(lDebug2) << "Splash form sent message that it was closed";
+                gSplashForm = NULL;
+            break;
+
+            default:
+            break ;
+        }
+	}
+	catch(...)
+	{
+		Log(lError) << "Received an unhandled windows message!";
+	}
 }
 
 

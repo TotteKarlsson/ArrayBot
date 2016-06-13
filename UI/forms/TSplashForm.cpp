@@ -52,7 +52,6 @@ void __fastcall TSplashForm::logMsg()
     }
 	mLogFileReader.purge();
     Application->ProcessMessages();
-//    sleep(100);
 }
 
 
@@ -61,7 +60,7 @@ void __fastcall TSplashForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
     //Send message to application that the splash form is closing
     HWND hWnd = Application->MainForm->Handle;
-    if(sendAppMessage(amSplashWasClosed) != true)
+    if(sendAppMessage(abSplashWasClosed) != true)
     {
         Log(lDebug)<<"Sending UWM_SPLASH_IS_CLOSING was unsuccesful";
     }
@@ -81,12 +80,6 @@ void __fastcall TSplashForm::CreateParams(TCreateParams& Params)
   Params.Style &= ~WS_CAPTION;
 }
 
-void __fastcall TSplashForm::onWritingLogMessage()
-{
-//    TAboutArrayBotFrame1->logLabel->Caption = vclstr(mLogMessages.pop());
-
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
@@ -94,10 +87,6 @@ void __fastcall TSplashForm::FormCloseQuery(TObject *Sender, bool &CanClose)
     {
     	CanClose = false;
     }
-//    else if(mMessageProcessor.isRunning())
-//    {
-//        CanClose = false;
-//    }
     else if(mLogFileReader.isRunning())
     {
         CanClose = false;
@@ -118,10 +107,6 @@ void __fastcall TSplashForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 void __fastcall TSplashForm::closeTimerTimer(TObject *Sender)
 {
 	closeTimer->Enabled = false;
-//    if(mMessageProcessor.isRunning())
-//    {
-//    	mMessageProcessor.stop();
-//    }
     if(mLogFileReader.isRunning())
     {
     	mLogFileReader.stop();
@@ -145,24 +130,6 @@ void __fastcall TSplashForm::FormShow(TObject *Sender)
 {
     mShowTimer.start();
     TAboutArrayBotFrame1->populate();
-//    if(!mMessageProcessor.isRunning())
-//    {
-//        //We may hide/show the form
-//        mMessageProcessor.start(true);
-//    }
-
-//    if(!mAFrame)
-//    {
-//        mAFrame = new TAboutArrayBotFrame(this);
-//        mAFrame->Visible = false;
-//        mAFrame->Color = this->Color;
-//        mAFrame->populate();
-//        mAFrame->Parent =  this;
-//        mAFrame->AutoSize = true;
-//        mAFrame->Align = alClient;
-//        mAFrame->Visible = true;
-//        logLabel->Parent = mAFrame;
-//    }
 }
 
 bool TSplashForm::isOnShowTime()

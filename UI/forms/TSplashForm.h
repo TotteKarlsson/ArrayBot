@@ -47,14 +47,11 @@ class PACKAGE TSplashForm : public TForm
         bool                                                mMainAppIsRunning;
 
         mtk::Timer                                          mShowTimer;
-        void                            __fastcall          onWritingLogMessage();
         bool                                                isOnShowTime();
         void                                                setShowTime(int ms);
         TAboutArrayBotFrame*                               	mAFrame;
 	__published:
 
 };
-//---------------------------------------------------------------------------
-//extern PACKAGE TSplashForm *SplashForm;
 
 #endif

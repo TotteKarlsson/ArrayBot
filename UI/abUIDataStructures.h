@@ -6,7 +6,7 @@
 
 enum ApplicationMessageEnum
 {
-    amSplashWasClosed,
+    abSplashWasClosed,
 };
 
 using Poco::DateTime;
