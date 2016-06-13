@@ -12,10 +12,10 @@ string toString(const TLI_DeviceInfo& val)
 {
 	stringstream str;
     str
-    <<"Device Type ID: "<<val.typeID<<"\n"
-    <<"Description: "	<<val.description<<"\n"
-	<<"Serial: "		<<val.serialNo<<"\n"
-	<<"Is Known Type: " <<val.isKnownType<<"\n";
+    <<"Device Type ID: "<<val.typeID<<"\t"
+    <<"Description: "	<<val.description<<"\t"
+	<<"Serial: "		<<val.serialNo<<"\t"
+	<<"Is Known Type: " <<val.isKnownType<<"\t";
 
     return str.str();
 }

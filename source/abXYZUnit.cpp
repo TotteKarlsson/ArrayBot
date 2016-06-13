@@ -57,7 +57,7 @@ bool XYZUnit::initialize()
 {
     mProperties.read();
 	mDeviceManager.reBuildDeviceList();
-    Log(lInfo) << "Initializing: "<< mName;
+    Log(lInfo) << "Initializing XYZUnit: "<< mName;
 
 	//Setup all the motors
     mXMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mXMotorSerialNr));

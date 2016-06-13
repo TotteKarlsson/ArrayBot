@@ -18,28 +18,13 @@ object SplashForm: TSplashForm
   StyleElements = [seFont, seBorder]
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
-  OnHide = FormHide
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object logLabel: TLabel
-    Left = 32
-    Top = 72
-    Width = 79
-    Height = 18
-    Caption = 'Initializing...'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clRed
-    Font.Height = -16
-    Font.Name = 'Myriad Pro'
-    Font.Style = []
-    ParentFont = False
-    StyleElements = [seClient, seBorder]
-  end
   object Label1: TLabel
     Left = 289
-    Top = 321
+    Top = 325
     Width = 311
     Height = 30
     Caption = 'Smith Lab.  - Allen institute 2016'
@@ -52,6 +37,23 @@ object SplashForm: TSplashForm
     ParentColor = False
     ParentFont = False
     StyleElements = [seClient, seBorder]
+  end
+  inline TAboutArrayBotFrame1: TAboutArrayBotFrame
+    Left = 0
+    Top = 0
+    Width = 615
+    Height = 301
+    Align = alTop
+    TabOrder = 0
+    ExplicitWidth = 615
+    inherited Image1: TImage
+      Width = 164
+      ExplicitWidth = 164
+    end
+    inherited ThreadCheckTimer: TTimer
+      Left = 128
+      Top = 144
+    end
   end
   object closeTimer: TTimer
     Enabled = False

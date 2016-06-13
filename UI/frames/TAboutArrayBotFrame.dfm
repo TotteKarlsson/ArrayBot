@@ -2,17 +2,17 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
   Left = 0
   Top = 0
   Width = 625
-  Height = 346
+  Height = 301
   TabOrder = 0
   DesignSize = (
     625
-    346)
+    301)
   object Image1: TImage
     Left = 448
     Top = 9
     Width = 174
     Height = 168
-    Anchors = [akTop, akRight]
+    Anchors = [akLeft, akTop, akRight]
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000001000000
       010008060000005C72A8660000673D4944415478DAED5D077C1CC5F99D5571EF
@@ -871,6 +871,20 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+  end
+  object logLabel: TLabel
+    Left = 34
+    Top = 192
+    Width = 79
+    Height = 18
+    Caption = 'Initializing...'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -16
+    Font.Name = 'Myriad Pro'
+    Font.Style = []
+    ParentFont = False
+    StyleElements = [seClient, seBorder]
   end
   object ActionList1: TActionList
     Left = 304

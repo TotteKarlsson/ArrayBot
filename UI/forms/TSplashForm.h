@@ -11,9 +11,9 @@
 #include <Vcl.Imaging.jpeg.hpp>
 #include "mtkTimer.h"
 #include "mtkMessageContainer.h"
-#include "dslTSplashMessageProcessor.h"
 #include "TAboutArrayBotFrame.h"
-#include "SKGenerator.hpp"
+#include "mtkLogFileReader.h"
+
 using Poco::Timespan;
 using mtk::MessageContainer;
 //---------------------------------------------------------------------------
@@ -21,15 +21,15 @@ class PACKAGE TSplashForm : public TForm
 {
 	__published:	// IDE-managed Components
     TTimer *closeTimer;
-    TLabel *logLabel;
     TLabel *Label1;
+	TAboutArrayBotFrame *TAboutArrayBotFrame1;
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall closeTimerTimer(TObject *Sender);
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormShow(TObject *Sender);
     void __fastcall Image2Click(TObject *Sender);
-    void __fastcall FormHide(TObject *Sender);
+
 
 	private:
 		void __fastcall                                     CreateParams(TCreateParams& Params);	// User declarations
@@ -37,8 +37,9 @@ class PACKAGE TSplashForm : public TForm
 		bool                                                mCanClose;
 		bool												mShownForAMinimumTime;
 
-        MessageContainer                                    mLogMessages;
-        SplashMessageProcessor                              mMessageProcessor;
+        TThreadMethod                   					logMsgMethod;
+        LogFileReader                   					mLogFileReader;
+        void __fastcall                 					logMsg();
 
 	public:		// User declarations
 										__fastcall          TSplashForm(TComponent* Owner);
@@ -46,11 +47,10 @@ class PACKAGE TSplashForm : public TForm
         bool                                                mMainAppIsRunning;
 
         mtk::Timer                                          mShowTimer;
-        void                                                addLogMessage(const string& msg);
         void                            __fastcall          onWritingLogMessage();
         bool                                                isOnShowTime();
         void                                                setShowTime(int ms);
-        TAboutArrayBotFrame*                               mAFrame;
+        TAboutArrayBotFrame*                               	mAFrame;
 	__published:
 
 };

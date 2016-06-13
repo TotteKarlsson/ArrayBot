@@ -118,7 +118,7 @@ object Main: TMain
       Top = 1
       Width = 1133
       Height = 695
-      ActivePage = TabSheet5
+      ActivePage = TabSheet4
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -785,12 +785,5 @@ object Main: TMain
     OnTimer = mLiftTimerTimer
     Left = 544
     Top = 648
-  end
-  object mStartupTimer: TTimer
-    Enabled = False
-    Interval = 100
-    OnTimer = mStartupTimerTimer
-    Left = 32
-    Top = 552
   end
 end

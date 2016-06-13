@@ -1,5 +1,5 @@
-#ifndef abUtilitiesH
-#define abUtilitiesH
+#ifndef abUIUtilitiesH
+#define abUIUtilitiesH
 //#include "abCoreExporter.h"
 #include "abUIDataStructures.h"
 #include "mtkSQLite.h"

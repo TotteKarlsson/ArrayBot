@@ -94,7 +94,6 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
     	CanClose = true;
     }
 
-
 	if(CanClose == false)
 	{
 		ShutDownTimer->Enabled = true;
@@ -121,7 +120,6 @@ void __fastcall TMain::ApplicationEvents1Exception(TObject *Sender, Exception *E
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormShow(TObject *Sender)
 {
-
 	this->Height = this->Height - 1;
 	this->Height = this->Height + 1;
 }
@@ -162,13 +160,23 @@ void TMain::setupWindowTitle()
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 {
-	static TCHAR buffer[50];
-	GetWindowText(hwnd, buffer, 50);
+	int length = ::GetWindowTextLength( hwnd );
+	if(!length )
+	    return TRUE;
 
-	if(_tcsstr(buffer, L"Amalytico"))
+	TCHAR* buffer;
+    buffer = new TCHAR[length + 1];
+	GetWindowText(hwnd, buffer, length + 1);
+
+    string s(stdstr(buffer));
+	if(startsWith(s, "ArrayBot"))
 	{
 		// do something with hwnd here
 		gOtherAppWindow = hwnd;
+        SetFocus(hwnd);
+        delete buffer;
+
+        //Stop enumerating..
 		return FALSE;
 	}
 

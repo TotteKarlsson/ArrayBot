@@ -31,7 +31,17 @@
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
+class InitBotThread : public mtk::Thread
+{
+	public:
+    					InitBotThread();
+                        assingBot(ArrayBot* bot){mTheBot = bot;}
+    	ArrayBot* 		mTheBot;
+        void			run();
+
+};
 //---------------------------------------------------------------------------
+
 class TMain : public TRegistryForm
 {
     __published:	// IDE-managed Components
@@ -102,7 +112,6 @@ class TMain : public TRegistryForm
 	TAction *liftA;
 	TSpeedButton *LiftBtn;
 	TComboBox *mLiftCB;
-	TTimer *mStartupTimer;
 	TComboBox *LogLevelCB;
 	TSpeedButton *mAboutBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -136,7 +145,6 @@ class TMain : public TRegistryForm
 	void __fastcall abortLiftAExecute(TObject *Sender);
 	void __fastcall liftAExecute(TObject *Sender);
 	void __fastcall mLiftCBChange(TObject *Sender);
-	void __fastcall mStartupTimerTimer(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
 
@@ -145,9 +153,13 @@ class TMain : public TRegistryForm
         LogFileReader                   mLogFileReader;
         void __fastcall                 logMsg();
 		void 						    setupWindowTitle();
+        void __fastcall					init();
+
+        InitBotThread					mInitBotThread;
         IniFile						    mIniFile;
         IniFileProperties  			    mProperties;
 		mtk::Property<mtk::LogLevel>    mLogLevel;
+
         							    //!Arraybot is allocated on the stack.
                                         //!So that we can catch exceptions in the
                                         //!constructor
@@ -155,6 +167,7 @@ class TMain : public TRegistryForm
 		PairedMove* 				    getCurrentPairedMove();
 
 
+		void __fastcall		            test();
 		void __fastcall		            OnException();
         void						    onJSButton5Click();
         void						    onJSButton6Click();

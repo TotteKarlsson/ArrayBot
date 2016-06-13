@@ -13,9 +13,9 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
-USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
+USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("MainForm.cpp", Main);
 USEFORM("..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 USEFORM("..\source\VCL\abAddLiftForm.cpp", AddLiftSettingForm);

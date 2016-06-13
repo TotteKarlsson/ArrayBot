@@ -93,7 +93,8 @@
         <VerInfo_Release>8</VerInfo_Release>
         <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileDescription=;FileVersion=0.5.8.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <PostBuildEvent><![CDATA[xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y
+        <PostBuildEvent><![CDATA[xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y
+xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y
 xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y
 xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y
 xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y
@@ -138,7 +139,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\source\VCL\abXYZUnitFrame.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abUtilities.cpp">
+        <CppCompile Include="abUIUtilities.cpp">
             <BuildOrder>11</BuildOrder>
         </CppCompile>
         <CppCompile Include="ArrayBot.cpp">
@@ -176,9 +177,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Misc.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="forms\TSplashForm.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="MainForm.dfm"/>
         <FormResources Include="..\source\VCL\abMotorFrame.dfm"/>
         <FormResources Include="..\source\VCL\abAddLiftForm.dfm"/>
@@ -262,7 +263,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y</PostBuildEvent>
+        <PostBuildEvent>xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

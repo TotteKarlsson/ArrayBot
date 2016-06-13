@@ -30,6 +30,26 @@ extern string gAppDataFolder;
 extern TSplashForm*  gSplashForm;
 extern bool             gAppIsStartingUp;
 using namespace mtk;
+
+//void InitBotThread::start(bool)
+//{
+//	run();
+//}
+
+InitBotThread::InitBotThread()
+:
+mTheBot(NULL)
+{}
+
+void InitBotThread::run()
+{
+    if(mTheBot)
+    {
+        mTheBot->initialize();
+    }
+    mIsFinished = true;
+}
+
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
@@ -37,9 +57,11 @@ __fastcall TMain::TMain(TComponent* Owner)
 	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
     mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
-    mLogLevel(lAny)
+    mLogLevel(lAny),
+    mInitBotThread()
 {
 	TMemoLogger::mMemoIsEnabled = false;
+   	mLogFileReader.start(true);
 
     try
     {
@@ -49,11 +71,14 @@ __fastcall TMain::TMain(TComponent* Owner)
     {
 		MessageDlg(e.Message().c_str(), mtWarning, TMsgDlgButtons() << mbOK, 0);
     }
+
 	//Setup UI properties
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
     mProperties.read();
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
+    mInitBotThread.assingBot(mAB);
+	mInitBotThread.start();
 }
 
 __fastcall TMain::~TMain()
@@ -66,46 +91,8 @@ __fastcall TMain::~TMain()
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
 {
-    mStartupTimer->Enabled = true;
+    init();
 	TMemoLogger::mMemoIsEnabled = true;
-	mLogFileReader.start(true);
-	initBotAExecute(NULL);
-
-    //Over ride joysticks button events
-    mAB->getJoyStick().setButtonEvents(5, NULL, onJSButton5Click);
-    mAB->getJoyStick().setButtonEvents(6, NULL, onJSButton6Click);
-    mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
-
-	//Initialize UI
-    mCSAngleE->setValue(mAB->getCoverSlipAngleController().getAngle());
-
-    //JoyStick Settings CB
-    JoyStickSettings& js = mAB->getJoyStickSettings();
-    JoyStickSetting* jss = js.getFirst();
-    while(jss)
-    {
-    	JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
-        jss = js.getNext();
-    }
-
-	JoyStickSettingsCB->ItemIndex = 0;
-    JoyStickSettingsCB->OnChange(NULL);
-	mJSSpeedMediumBtn->Click();
-    mJSCSBtn->Click();
-
-    //Lift Settings CB
-    PairedMoves& pms = mAB->getLiftMoves();
-    PairedMove* pm = pms.getFirst();
-    while(pm)
-    {
-    	string key = pm->mLabel;
-    	mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
-        pm = pms.getNext();
-    }
-
-	mLiftCB->ItemIndex = 0;
-    mLiftCB->OnChange(NULL);
-
     UIUpdateTimer->Enabled = true;
 }
 
@@ -469,30 +456,64 @@ void __fastcall TMain::mLiftCBChange(TObject *Sender)
 }
 
 
-void __fastcall TMain::mStartupTimerTimer(TObject *Sender)
+void __fastcall TMain::init()
 {
-	mStartupTimer->Enabled = false;
-
-    //Licensing stuff
-    gSplashForm->addLogMessage("Validating License");
-	gSplashForm->addLogMessage("Setting up window title");
 	setupWindowTitle();
 
 	gAppIsStartingUp = false;
 
 	//Tell the splash screen to go away
-	gSplashForm->addLogMessage("Starting up...");
 	Application->ProcessMessages();
 	TMemoLogger::mMemoIsEnabled = true;
-
 	gSplashForm->mMainAppIsRunning = true;
+
+	//Load motors etc...
+//  	initBotAExecute(NULL);
+
+
+    //Over ride joysticks button events
+    mAB->getJoyStick().setButtonEvents(5, NULL, onJSButton5Click);
+    mAB->getJoyStick().setButtonEvents(6, NULL, onJSButton6Click);
+    mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
+
+	//Initialize UI
+    mCSAngleE->setValue(mAB->getCoverSlipAngleController().getAngle());
+
+    //JoyStick Settings CB
+    JoyStickSettings& js = mAB->getJoyStickSettings();
+    JoyStickSetting* jss = js.getFirst();
+    while(jss)
+    {
+    	JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
+        jss = js.getNext();
+    }
+
+	JoyStickSettingsCB->ItemIndex = 0;
+    JoyStickSettingsCB->OnChange(NULL);
+	mJSSpeedMediumBtn->Click();
+    mJSCSBtn->Click();
+
+    //Lift Settings CB
+    PairedMoves& pms = mAB->getLiftMoves();
+    PairedMove* pm = pms.getFirst();
+    while(pm)
+    {
+    	string key = pm->mLabel;
+    	mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
+        pm = pms.getNext();
+    }
+
+	mLiftCB->ItemIndex = 0;
+    mLiftCB->OnChange(NULL);
+
 	this->Visible = true;
-	while(gSplashForm->isOnShowTime() == true)
+	while(gSplashForm->isOnShowTime() == true || mInitBotThread.isAlive())
 	{
+       	Application->ProcessMessages();
 		//In order to show whats going on on the splash screen
-		Application->ProcessMessages();
 		if(gSplashForm->Visible == false)
 		{
+
 			break;
 		}
 	}
@@ -508,8 +529,6 @@ void __fastcall TMain::mStartupTimerTimer(TObject *Sender)
 	{
 		LogLevelCB->ItemIndex = 1;
 	}
-
-//	mLogFileReader.start(true);
 }
 
 //---------------------------------------------------------------------------
@@ -528,6 +547,29 @@ void __fastcall TMain::LogLevelCBChange(TObject *Sender)
 }
 
 
+void __fastcall TMain::test()
+{
+//	initBot();
+	mAB->initialize();
+
+	TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
+	TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
+
+	TMotorFrame1->assignMotor(mAB->getCoverSlipAngleController().getMotor());
+	TMotorFrame2->assignMotor(mAB->getCameraAngleController().getMotor());
+
+    //ArrayBotJoyStick stuff.....
+    mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
+    mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
+
+    if(mAB->getCoverSlipUnit().getZMotor())
+    {
+    	mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
+    	mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
+    }
+
+    InitCloseBtn->Action = ShutDownA;
+}
 //---------------------------------------------------------------------------
 void __fastcall TMain::mAboutBtnClick(TObject *Sender)
 {

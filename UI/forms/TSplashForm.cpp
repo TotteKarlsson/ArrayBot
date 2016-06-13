@@ -2,38 +2,59 @@
 #pragma hdrstop
 #include "TSplashForm.h"
 #include "mtkVCLUtils.h"
-#include "amlApplicationMessages.h"
+#include "abApplicationMessages.h"
 #include "mtkLogger.h"
-#include "amlUtilities.h"
+#include "abUIUtilities.h"
 #include "mtkApplicationLicenseController.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "SKGenerator"
 #pragma resource "*.dfm"
-//TSplashForm *SplashForm;
 
 using namespace mtk;
 
 extern string gApplicationRegistryRoot;
-
+extern string gLogFileLocation;
+extern string gLogFileName;
 //---------------------------------------------------------------------------
 __fastcall TSplashForm::TSplashForm(TComponent* Owner)
 :
-TForm(Owner),
-mCanClose(true),
-mMinimumTimeShowing(3*Poco::Timespan::SECONDS),
-mMessageProcessor(this, mLogMessages),
-mMainAppIsRunning(false)
+	TForm(Owner),
+	mCanClose(true),
+	mMinimumTimeShowing(5*Poco::Timespan::SECONDS),
+	mMainAppIsRunning(false),
+	logMsgMethod(&logMsg),
+	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod)
 {
-    mMessageProcessor.FOnWritingMessage = onWritingLogMessage;
+   	mLogFileReader.start(true);
 }
 
 __fastcall TSplashForm::~TSplashForm()
 {
 	closeTimer->Enabled = false;
-    mMessageProcessor.stop();
-    mShowTimer.stop();
 }
+
+bool startsWith(const string& prefix, const string& theStr)
+{
+	if (theStr.find(prefix) == 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+void __fastcall TSplashForm::logMsg()
+{
+	string lmsg = mLogFileReader.getData();
+
+    if(::startsWith("INFO", lmsg))
+    {
+   		TAboutArrayBotFrame1->logLabel->Caption = lmsg.c_str();
+    }
+	mLogFileReader.purge();
+    Application->ProcessMessages();
+//    sleep(100);
+}
+
 
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::FormClose(TObject *Sender, TCloseAction &Action)
@@ -53,10 +74,6 @@ void TSplashForm::setShowTime(int ms)
     mMinimumTimeShowing = (ms*Poco::Timespan::SECONDS);
 }
 
-void TSplashForm::addLogMessage(const string& msg)
-{
-    mLogMessages.post(msg);
-}
 
 void __fastcall TSplashForm::CreateParams(TCreateParams& Params)
 {
@@ -66,30 +83,50 @@ void __fastcall TSplashForm::CreateParams(TCreateParams& Params)
 
 void __fastcall TSplashForm::onWritingLogMessage()
 {
-    logLabel->Caption = vclstr(mLogMessages.pop());
+//    TAboutArrayBotFrame1->logLabel->Caption = vclstr(mLogMessages.pop());
+
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
-    CanClose =  !isOnShowTime();
-
-    if(mMessageProcessor.isRunning())
+    if(isOnShowTime())
+    {
+    	CanClose = false;
+    }
+//    else if(mMessageProcessor.isRunning())
+//    {
+//        CanClose = false;
+//    }
+    else if(mLogFileReader.isRunning())
     {
         CanClose = false;
-        closeTimer->Enabled = true;
+    }
+    else
+    {
+    	CanClose = true;
     }
 
-    if(mMainAppIsRunning && mLogMessages.getNrOfMessages() == 0)
+    if(CanClose == false)
     {
-        mMessageProcessor.stop();
+    	closeTimer->Enabled = true;
     }
+
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::closeTimerTimer(TObject *Sender)
 {
 	closeTimer->Enabled = false;
+//    if(mMessageProcessor.isRunning())
+//    {
+//    	mMessageProcessor.stop();
+//    }
+    if(mLogFileReader.isRunning())
+    {
+    	mLogFileReader.stop();
+    }
+
     Close();
 }
 
@@ -107,25 +144,25 @@ void __fastcall TSplashForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState
 void __fastcall TSplashForm::FormShow(TObject *Sender)
 {
     mShowTimer.start();
+    TAboutArrayBotFrame1->populate();
+//    if(!mMessageProcessor.isRunning())
+//    {
+//        //We may hide/show the form
+//        mMessageProcessor.start(true);
+//    }
 
-    if(!mMessageProcessor.isRunning())
-    {
-        //We may hide/show the form
-        mMessageProcessor.start(true);
-    }
-
-    if(!mAFrame)
-    {
-        mAFrame = new TAboutArrayBotFrame(this);
-        mAFrame->Visible = false;
-        mAFrame->Color = this->Color;
-        mAFrame->populate();
-        mAFrame->Parent =  this;
-        mAFrame->AutoSize = true;
-        mAFrame->Align = alClient;
-        mAFrame->Visible = true;
-        logLabel->Parent = mAFrame;
-    }
+//    if(!mAFrame)
+//    {
+//        mAFrame = new TAboutArrayBotFrame(this);
+//        mAFrame->Visible = false;
+//        mAFrame->Color = this->Color;
+//        mAFrame->populate();
+//        mAFrame->Parent =  this;
+//        mAFrame->AutoSize = true;
+//        mAFrame->Align = alClient;
+//        mAFrame->Visible = true;
+//        logLabel->Parent = mAFrame;
+//    }
 }
 
 bool TSplashForm::isOnShowTime()
@@ -142,10 +179,7 @@ void __fastcall TSplashForm::Image2Click(TObject *Sender)
     Close();
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TSplashForm::FormHide(TObject *Sender)
-{
-//    mMessageProcessor.pause();
-}
+
+
 
 

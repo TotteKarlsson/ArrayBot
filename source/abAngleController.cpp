@@ -122,7 +122,7 @@ bool AngleController::initialize()
 	mDeviceManager.reBuildDeviceList();
     mProperties.read();
 
-    Log(lInfo) << "Initializing: "<< mName;
+    Log(lInfo) << "Initializing AngleController: "<< mName;
 	//Setup the motor
     mMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mMotorSerial));
     if(mMotor)
