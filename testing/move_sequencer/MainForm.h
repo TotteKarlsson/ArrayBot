@@ -63,26 +63,8 @@ class TMain : public TRegistryForm
 	TMemo *infoMemo;
 	TToolBar *ToolBar1;
 	TBitBtn *BitBtn2;
-	TGroupBox *GroupBox1;
-	TGroupBox *GroupBox2;
-	TFloatLabeledEdit *mMovePosE;
-	TButton *mStartBtn;
-	TListBox *mMovesLB;
-	TFloatLabeledEdit *mMaxVelE;
-	TFloatLabeledEdit *mAccE;
-	TComboBox *mSequencesCB;
-	TLabel *Label1;
-	TButton *mSaveSequenceBtn;
-	TButton *mAddMoveBtn;
-	TFloatLabeledEdit *mDwellTimeE;
 	TScrollBox *ScrollBox1;
-	TComboBox *MotorsCB;
-	TLabel *Label2;
-	TButton *mDeleteSequenceBtn;
-	TButton *mAddSeqBtn;
-	TSTDStringLabeledEdit *mMovePositionLabel;
-	TButton *mDeleteMoveBtn;
-	TTimer *mSequenceTimer;
+	TScrollBox *ScrollBox2;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -92,21 +74,9 @@ class TMain : public TRegistryForm
         void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
         void __fastcall BitBtn3Click(TObject *Sender);
         void __fastcall ShutDownAExecute(TObject *Sender);
-	void __fastcall mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall FormShow(TObject *Sender);
-	void __fastcall mAddMoveBtnClick(TObject *Sender);
-	void __fastcall mStartBtnClick(TObject *Sender);
 
-	void __fastcall mSaveSequenceBtnClick(TObject *Sender);
-	void __fastcall SequencesCBChange(TObject *Sender);
-	void __fastcall mMovesLBClick(TObject *Sender);
-	void __fastcall moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall stopAllAExecute(TObject *Sender);
-	void __fastcall MotorsCBChange(TObject *Sender);
-	void __fastcall mDeleteSequenceClick(TObject *Sender);
-	void __fastcall mAddSeqBtnClick(TObject *Sender);
-	void __fastcall deleteMove(TObject *Sender);
-	void __fastcall mSequenceTimerTimer(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
+
 
     private:	// User declarations
         TThreadMethod               logMsgMethod;
@@ -116,8 +86,8 @@ class TMain : public TRegistryForm
 
         IniFile						mIniFile;
         ProcessSequencer  			mMoveSequencer;
-
         XYZUnit						mXYZUnit;
+
 		void __fastcall		        OnException();
 		bool 						createMotorFrame(APTMotor* mtr);
 		void __fastcall				refreshSequencesCB();

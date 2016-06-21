@@ -46,12 +46,12 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>P:\dslib\VCL\Components\;..\..\source\VCL\;..\..\source\;..\..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\UI\frames\;P:\dslib\VCL\Components\;..\..\source\VCL\;..\..\source\;..\..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
-        <IncludePath>..\..\source\VCL\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(IncludePath)</IncludePath>
+        <IncludePath>..\..\UI\frames\;..\..\source\VCL\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(IncludePath)</IncludePath>
         <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
@@ -141,8 +141,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PCHCompile Include="move_sequencerPCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
+        <CppCompile Include="..\..\UI\frames\TMoveSequencerFrame.cpp">
+            <Form>MoveSequencerFrame</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\..\UI\frames\TMoveSequencerFrame.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
         <FormResources Include="..\..\source\VCL\abMotorFrame.dfm"/>
         <FormResources Include="MainForm.dfm"/>
+        <FormResources Include="..\..\UI\frames\TMoveSequencerFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

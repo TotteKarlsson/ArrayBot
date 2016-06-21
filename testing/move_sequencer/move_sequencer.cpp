@@ -11,8 +11,9 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
-USEFORM("MainForm.cpp", Main);
 USEFORM("..\..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("MainForm.cpp", Main);
+USEFORM("..\..\UI\frames\TMoveSequencerFrame.cpp", MoveSequencerFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "Sequencer.log";
