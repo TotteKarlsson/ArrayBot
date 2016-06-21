@@ -4,7 +4,8 @@
 #include "abXYZUnit.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-
+#include "abAPTMotor.h"
+#include "abLinearMove.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -16,11 +17,14 @@ TMoveSequencerFrame *MoveSequencerFrame;
 extern string gAppDataFolder;
 using namespace mtk;
 
+int TMoveSequencerFrame::mFrameNr = 0;
 __fastcall TMoveSequencerFrame::TMoveSequencerFrame(XYZUnit* u, TComponent* Owner)
 	: TFrame(Owner),
     mXYZUnit(u),
     mMoveSequencer()
 {
+    TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
+
 	if(!mXYZUnit)
     {
     	return;

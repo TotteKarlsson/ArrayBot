@@ -14,6 +14,7 @@
 #include "abExceptions.h"
 #include "TSplashForm.h"
 #include "TAboutArrayBotForm.h"
+#include "TMoveSequencerFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -93,6 +94,17 @@ __fastcall TMain::~TMain()
 void __fastcall TMain::FormCreate(TObject *Sender)
 {
     init();
+
+    //Create MoveSequencer frames
+    TMoveSequencerFrame* sfCS = new TMoveSequencerFrame(&(mAB->getCoverSlipUnit()), mMoveSequencesPage);
+    sfCS->Parent = mMoveSequencesPage;
+    sfCS->Align = alLeft;
+
+    //Create MoveSequencer frames
+    TMoveSequencerFrame* sfWH = new TMoveSequencerFrame(&(mAB->getWhiskerUnit()), mMoveSequencesPage);
+    sfWH->Parent = mMoveSequencesPage;
+    sfWH->Align = alClient;
+
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
 }
@@ -459,7 +471,6 @@ void __fastcall TMain::mLiftCBChange(TObject *Sender)
 void __fastcall TMain::init()
 {
 	setupWindowTitle();
-
 	gAppIsStartingUp = false;
 
 	//Tell the splash screen to go away

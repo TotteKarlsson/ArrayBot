@@ -12,7 +12,7 @@ object Main: TMain
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poDefault
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -118,7 +118,7 @@ object Main: TMain
       Top = 1
       Width = 1133
       Height = 695
-      ActivePage = TabSheet4
+      ActivePage = mMoveSequencesPage
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -137,10 +137,6 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object AnglesGB: TGroupBox
           Left = 491
           Top = 25
@@ -265,7 +261,7 @@ object Main: TMain
           Left = 491
           Top = 144
           Width = 446
-          Height = 425
+          Height = 321
           Caption = 'Lift'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -276,7 +272,7 @@ object Main: TMain
           TabOrder = 2
           object LiftBtn: TSpeedButton
             Left = 16
-            Top = 257
+            Top = 161
             Width = 409
             Height = 136
             Action = liftA
@@ -341,16 +337,17 @@ object Main: TMain
           Top = 0
           Width = 1125
           Height = 625
+          VertScrollBar.Position = 662
           Align = alClient
           TabOrder = 0
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
-            Top = 351
+            Top = -311
             Width = 1104
             Height = 348
             Align = alTop
             TabOrder = 0
-            ExplicitTop = 351
+            ExplicitTop = -311
             ExplicitWidth = 1104
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
@@ -372,11 +369,12 @@ object Main: TMain
           end
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
-            Top = 0
+            Top = -662
             Width = 1104
             Height = 351
             Align = alTop
             TabOrder = 1
+            ExplicitTop = -662
             ExplicitWidth = 1104
             inherited mainGB: TGroupBox
               Width = 1104
@@ -393,12 +391,12 @@ object Main: TMain
           end
           inline TMotorFrame1: TMotorFrame
             Left = 0
-            Top = 991
+            Top = 329
             Width = 1104
             Height = 292
             Align = alBottom
             TabOrder = 2
-            ExplicitTop = 991
+            ExplicitTop = 329
             ExplicitWidth = 1104
             inherited MotorGB: TGroupBox
               inherited mMotorPositionE: TFloatLabeledEdit
@@ -427,12 +425,12 @@ object Main: TMain
           end
           inline TMotorFrame2: TMotorFrame
             Left = 0
-            Top = 699
+            Top = 37
             Width = 1104
             Height = 292
             Align = alBottom
             TabOrder = 3
-            ExplicitTop = 699
+            ExplicitTop = 37
             ExplicitWidth = 1104
             inherited MotorGB: TGroupBox
               inherited mMotorPositionE: TFloatLabeledEdit
@@ -461,13 +459,13 @@ object Main: TMain
           end
         end
       end
+      object mMoveSequencesPage: TTabSheet
+        Caption = 'Move Sequences'
+        ImageIndex = 4
+      end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -632,10 +630,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

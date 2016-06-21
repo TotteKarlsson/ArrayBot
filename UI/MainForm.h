@@ -119,6 +119,7 @@ class TMain : public TRegistryForm
 	TComboBox *mLiftCB;
 	TComboBox *LogLevelCB;
 	TSpeedButton *mAboutBtn;
+	TTabSheet *mMoveSequencesPage;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);

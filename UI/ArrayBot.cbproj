@@ -166,6 +166,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <Form>AboutArrayBotFrame</Form>
             <BuildOrder>12</BuildOrder>
         </CppCompile>
+        <CppCompile Include="frames\TMoveSequencerFrame.cpp">
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
         <CppCompile Include="JoyStickRelated.cpp">
             <BuildOrder>4</BuildOrder>
         </CppCompile>
@@ -178,9 +181,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Misc.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="forms\TSplashForm.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
-        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="MainForm.dfm"/>
         <FormResources Include="..\source\VCL\abMotorFrame.dfm"/>
         <FormResources Include="..\source\VCL\abAddLiftForm.dfm"/>

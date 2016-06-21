@@ -54,7 +54,7 @@ private:	// User declarations
         XYZUnit*					mXYZUnit;
         string 						mMovesFileExtension;
 		void __fastcall 			refreshSequencesCB();
-
+		static int 					mFrameNr;
 public:		// User declarations
 	__fastcall TMoveSequencerFrame(XYZUnit* u, TComponent* Owner);
 };
