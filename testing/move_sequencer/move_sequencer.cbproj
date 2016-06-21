@@ -104,7 +104,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
-        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayB..\..\source\;P:\libs\dslib\Common\;P:\libs\dslib\VCL\Components\;P:\ArrayBot\source\;P:\libs\dslib\ThirdParty\Poco\Foundation\src\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayB..\..\source\;P:\libs\dslib\Common\;P:\libs\dslib\VCL\Components\;P:\ArrayBot\source\;P:\libs\dslib\ThirdParty\Poco\Foundation\src\;P:\libs\dslib\VCL\Forms\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi</LinkPackageImports>
         <IncludePath>$(DSL_ROOT)\Common;$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
@@ -119,18 +119,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="..\..\source\VCL\abEditPositionsForm.cpp">
-            <Form>Form2</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>..\..\source\VCL\abEditPositionsForm.h</DependentOn>
-            <BuildOrder>9</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\..\source\VCL\abLoggingForm.cpp">
-            <Form>Form1</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>..\..\source\VCL\abLoggingForm.h</DependentOn>
-            <BuildOrder>8</BuildOrder>
-        </CppCompile>
         <CppCompile Include="..\..\source\VCL\abMotorFrame.cpp">
             <Form>MotorFrame</Form>
             <FormType>dfm</FormType>
@@ -153,10 +141,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PCHCompile Include="move_sequencerPCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
-        <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="..\..\source\VCL\abEditPositionsForm.dfm"/>
-        <FormResources Include="..\..\source\VCL\abLoggingForm.dfm"/>
         <FormResources Include="..\..\source\VCL\abMotorFrame.dfm"/>
+        <FormResources Include="MainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

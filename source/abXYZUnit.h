@@ -40,6 +40,7 @@ class AB_CORE XYZUnit : public ABObject
 		APTMotor*			    getXMotor();
 		APTMotor*			    getYMotor();
 		APTMotor*			    getZMotor();
+        APTMotor*				getMotorWithName(const string& name);
 
         Property<int>		    mXMotorSerialNr;
         Property<int>		    mYMotorSerialNr;

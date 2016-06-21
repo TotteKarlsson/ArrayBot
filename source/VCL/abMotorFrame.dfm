@@ -133,6 +133,14 @@ object MotorFrame: TMotorFrame
         Width = 18
         Height = 13
         Caption = 'N/A'
+        Color = clBtnFace
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
       end
       object mIsHomingLabel: TLabel
         Left = 242

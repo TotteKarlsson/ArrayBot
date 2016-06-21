@@ -19,15 +19,17 @@ class AB_CORE Process : public ABObject
         							Process(const string& lbl, ABObject* o);
 							        ~Process(){}
 
-		void			            assignUnit(ABObject* o){mUnit = o;}
+		virtual void	            assignUnit(ABObject* o){mUnit = o;}
 		ABObject*					getUnit(){return mUnit;}
-        string						getLabel(){return mLabel;}
+        string						getProcessName(){return mProcessName;}
+        void						setProcessName(const string& l) {mProcessName = l;}
 
         double			            getDwellTime(){return mDwellTime;}
         bool			            setDwellTime(double dt){mDwellTime = dt; return true;}
 
         virtual bool	            isActive() 	= 0;
         virtual bool	            execute() 	= 0;
+        virtual bool	            stop() 		= 0;
         virtual	bool 			 	isDone()    = 0;
         virtual	bool	            undo() 		= 0;
 
@@ -48,7 +50,9 @@ class AB_CORE Process : public ABObject
                                     //to its own INI section in a INI file
         mtk::IniSection*	   		mIniSection;
 
-        string						mLabel;
+        							//!The Label identifies the process in a sequence
+                                    //and in a ini file
+        string						mProcessName;
         double			            mDwellTime;
 };
 

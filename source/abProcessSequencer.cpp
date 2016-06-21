@@ -10,6 +10,7 @@ using namespace mtk;
 
 ProcessSequencer::ProcessSequencer()
 :
+mSequence(),
 mSequenceTimer(100)
 {
 	inThreadCB = runThreaded;
@@ -27,9 +28,9 @@ bool ProcessSequencer::load(const string& seqFName)
 	return mSequence.read(seqFName);
 }
 
-bool ProcessSequencer::save()
+bool ProcessSequencer::save(const string& folder)
 {
-	return mSequence.write();
+	return mSequence.write(folder);
 }
 
 void ProcessSequencer::clear()
@@ -39,9 +40,9 @@ void ProcessSequencer::clear()
 
 void ProcessSequencer::runThreaded()
 {
-	if(!isRunning())
+	if(!isProcessActive())
     {
-    	//Check if are to move forward in the sequence
+    	//Check if we are to move forward in the sequence
         Process* p = mSequence.getCurrent();
         if(!p)
         {
@@ -62,8 +63,14 @@ void ProcessSequencer::start(bool cont)
 	Process* aMove = mSequence.getFirst();
     if(aMove)
     {
-    	Log(lError) << "Executing first move";
-    	aMove->execute();
+    	Log(lInfo) << "Executing first move";
+    	bool res = aMove->execute();
+        if(!res)
+        {
+        	Log(lError) << "Failed executing move: "<<aMove->getProcessName();
+            return;
+        }
+
         if(mRunContinous)
         {
         	sleep(300);
@@ -81,7 +88,12 @@ void ProcessSequencer::forward()
 	Process* aMove = mSequence.getNext();
     if(aMove)
     {
-    	aMove->execute();
+    	if(!aMove->execute())
+        {
+        	Log(lError) << "Failed executing a move: " << aMove->getProcessName();
+			Log(lError) << "Aborting execution of ProcessSequence: "<<mSequence.getName();
+            mSequenceTimer.stop();
+        }
     }
     else
     {
@@ -103,14 +115,42 @@ void ProcessSequencer::reverse()
 }
 
 void ProcessSequencer::stop()
-{}
+{
+	mSequenceTimer.stop();
+
+    if(mSequence.getCurrent())
+    {
+	   mSequence.getCurrent()->stop();
+    }
+}
 
 void ProcessSequencer::addProcess(Process* newMove)
 {
 	mSequence.add(newMove);
 }
 
+bool ProcessSequencer::removeProcess(Process* p)
+{
+	return mSequence.remove(p);
+}
+
+bool ProcessSequencer::removeProcess(const string& name)
+{
+	return mSequence.remove(name);
+}
+
 bool ProcessSequencer::isRunning()
+{
+	Process* m = mSequence.getCurrent();
+    if(m)
+    {
+	    return m->isActive();
+    }
+	return mSequenceTimer.isRunning();
+//    return false;
+}
+
+bool ProcessSequencer::isProcessActive()
 {
 	Process* m = mSequence.getCurrent();
     if(m)

@@ -8,10 +8,10 @@
 
 using namespace mtk;
 
-ProcessSequence::ProcessSequence()
+ProcessSequence::ProcessSequence(const string& name, const string& fileExt)
 :
-mName("MoveSequence"),
-mFileExtension("proc")
+mName(name),
+mFileExtension(fileExt)
 {}
 
 ProcessSequence::~ProcessSequence()
@@ -40,10 +40,11 @@ bool ProcessSequence::read(const string& fName)
 	IniSection* sec = f.getSection(count);
     IniKey* key;
 
+    clear();
     while(sec)
     {
     	key = sec->getKey("PROCESS_TYPE");
-        if(key && key->mValue == "SPATIAL_MOVE")
+        if(key && key->mValue == "ABSOLUTE_MOVE")
         {
 	    	LinearMove* p = new LinearMove(sec->mName, NULL);
 
@@ -63,16 +64,17 @@ bool ProcessSequence::read(const string& fName)
     return true;
 }
 
-bool ProcessSequence::write()
+bool ProcessSequence::write(const string& folder)
 {
 	//Save to file
-	IniFile f(mName + "." + mFileExtension);
+    string fullFName = joinPath(folder, mName + "." + mFileExtension);
+	IniFile f(fullFName);
 
     Process* process = getFirst();
     int count = 1;
     while(process)
     {
-        IniSection *sec = f.createSection("PROCESS " + mtk::toString(count));
+        IniSection *sec = f.createSection(process->getProcessName());
         if(sec)
         {
             process->write(sec);
@@ -90,6 +92,13 @@ bool ProcessSequence::add(Process* pos)
     mProcesses.push_back(pos);
     mProcessIter = mProcesses.begin();
     return true;
+}
+
+bool ProcessSequence::remove(Process* p)
+{
+	//Find item
+    mProcesses.remove(p);
+    return false;
 }
 
 bool ProcessSequence::remove(const string& lbl)

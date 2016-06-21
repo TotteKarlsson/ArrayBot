@@ -13,11 +13,10 @@ using namespace std;
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
 USEFORM("..\..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("..\..\source\VCL\abLoggingForm.cpp", Form1);
-USEFORM("..\..\source\VCL\abEditPositionsForm.cpp", Form2);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "Sequencer.log";
+extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 extern string 		gApplicationRegistryRoot  = "\\Software\\Dune Scientific\\Sequencer\\0.5.0";
 void setupLogging();
 
@@ -34,8 +33,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 
 		TStyleManager::TrySetStyle("Aqua Light Slate");
 		Application->CreateForm(__classid(TMain), &Main);
-		Application->CreateForm(__classid(TForm2), &Form2);
-		Application->CreateForm(__classid(TForm1), &Form1);
 		Application->Run();
 	}
 	catch (Exception &exception)

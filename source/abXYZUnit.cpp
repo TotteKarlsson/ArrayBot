@@ -287,6 +287,26 @@ void XYZUnit::detachJoyStick()
 	mJoyStick = NULL;
 }
 
+APTMotor* XYZUnit::getMotorWithName(const string& name)
+{
+	if(getXMotor() && getXMotor()->getName() == name)
+    {
+    	return getXMotor();
+    }
+
+	if(getYMotor() && getYMotor()->getName() == name)
+    {
+    	return getYMotor();
+    }
+
+	if(getZMotor() && getZMotor()->getName() == name)
+    {
+    	return getZMotor();
+    }
+
+    return NULL;
+}
+
 APTMotor* XYZUnit::getXMotor()
 {
 	return mXMotor;

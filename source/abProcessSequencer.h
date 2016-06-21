@@ -18,14 +18,18 @@ class AB_CORE ProcessSequencer : public ABObject
                   	        ~ProcessSequencer(){}
 		bool				assignUnit(ABObject* o);
 		bool				load(const string& seqFName);
-		bool				save();
+		bool				save(const string& folder);
 		void				clear();
 		void		        start(bool continous = true);
 		void		        forward();
         void		        reverse();
         void		        stop();
         bool				isRunning();
+        bool				isProcessActive();
         void		        addProcess(Process* p);
+        bool		        removeProcess(Process* p);
+        bool		        removeProcess(const string& name);
+
         ProcessSequence&   	getSequence(){return mSequence;}
 
 	private:

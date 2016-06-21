@@ -12,7 +12,7 @@ object Main: TMain
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poDefault
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -89,23 +89,30 @@ object Main: TMain
           Caption = 'Move Sequencer'
           TabOrder = 0
           object Label1: TLabel
-            Left = 264
-            Top = 15
+            Left = 16
+            Top = 26
             Width = 52
             Height = 13
             Caption = 'Sequences'
           end
           object GroupBox2: TGroupBox
-            Left = 16
-            Top = 17
+            Left = 207
+            Top = 26
             Width = 169
-            Height = 206
+            Height = 207
             Caption = 'Move'
             TabOrder = 0
+            object Label2: TLabel
+              Left = 16
+              Top = 20
+              Width = 28
+              Height = 13
+              Caption = 'Motor'
+            end
             object mMovePosE: TFloatLabeledEdit
               Left = 16
-              Top = 59
-              Width = 65
+              Top = 79
+              Width = 49
               Height = 21
               EditLabel.Width = 37
               EditLabel.Height = 13
@@ -116,7 +123,7 @@ object Main: TMain
             end
             object mMaxVelE: TFloatLabeledEdit
               Left = 16
-              Top = 107
+              Top = 127
               Width = 65
               Height = 21
               EditLabel.Width = 60
@@ -128,7 +135,7 @@ object Main: TMain
             end
             object mAccE: TFloatLabeledEdit
               Left = 87
-              Top = 107
+              Top = 127
               Width = 65
               Height = 21
               EditLabel.Width = 59
@@ -140,7 +147,7 @@ object Main: TMain
             end
             object mDwellTimeE: TFloatLabeledEdit
               Left = 15
-              Top = 147
+              Top = 167
               Width = 65
               Height = 21
               EditLabel.Width = 74
@@ -152,86 +159,102 @@ object Main: TMain
             end
             object MotorsCB: TComboBox
               Left = 16
-              Top = 17
+              Top = 39
               Width = 105
               Height = 21
               TabOrder = 4
               Text = 'Select Motor'
               OnChange = MotorsCBChange
             end
+            object mMovePositionLabel: TSTDStringLabeledEdit
+              Left = 71
+              Top = 79
+              Width = 90
+              Height = 21
+              EditLabel.Width = 67
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Position Name'
+              TabOrder = 5
+              Text = 'PositionName'
+              OnKeyDown = moveParEdit
+              Value = 'PositionName'
+            end
           end
           object mStartBtn: TButton
-            Left = 32
-            Top = 296
+            Left = 16
+            Top = 264
             Width = 75
             Height = 25
             Caption = 'Start'
             TabOrder = 1
             OnClick = mStartBtnClick
           end
-          object Button2: TButton
-            Left = 282
-            Top = 296
-            Width = 75
-            Height = 25
-            Caption = 'Stop'
-            TabOrder = 2
-          end
-          object Button3: TButton
-            Left = 201
-            Top = 296
-            Width = 75
-            Height = 25
-            Caption = 'Pause'
-            TabOrder = 3
-          end
           object mMovesLB: TListBox
-            Left = 264
-            Top = 68
+            Left = 16
+            Top = 105
             Width = 121
             Height = 97
             ItemHeight = 13
-            TabOrder = 4
+            TabOrder = 2
             OnClick = mMovesLBClick
           end
-          object mFwdBtn: TButton
-            Left = 113
-            Top = 296
-            Width = 75
-            Height = 25
-            Caption = 'Fwd'
-            TabOrder = 5
-            OnClick = mStartBtnClick
-          end
-          object SequencesCB: TComboBox
-            Left = 264
-            Top = 34
+          object mSequencesCB: TComboBox
+            Left = 16
+            Top = 78
             Width = 121
             Height = 21
+            Style = csDropDownList
             ItemIndex = 0
-            TabOrder = 6
+            TabOrder = 3
             Text = 'MoveSequence'
             OnChange = SequencesCBChange
             Items.Strings = (
               'MoveSequence')
           end
           object mSaveSequenceBtn: TButton
-            Left = 262
-            Top = 171
-            Width = 51
+            Left = 16
+            Top = 208
+            Width = 41
             Height = 25
             Caption = 'Save'
-            TabOrder = 7
+            TabOrder = 4
             OnClick = mSaveSequenceBtnClick
           end
           object mAddMoveBtn: TButton
-            Left = 194
-            Top = 79
+            Left = 143
+            Top = 111
             Width = 58
             Height = 25
             Caption = 'Add Move'
-            TabOrder = 8
+            TabOrder = 5
             OnClick = mAddMoveBtnClick
+          end
+          object mDeleteSequenceBtn: TButton
+            Left = 63
+            Top = 44
+            Width = 41
+            Height = 28
+            Caption = 'Delete'
+            TabOrder = 6
+            OnClick = mDeleteSequenceClick
+          end
+          object mAddSeqBtn: TButton
+            Left = 16
+            Top = 44
+            Width = 41
+            Height = 28
+            Caption = 'Add'
+            TabOrder = 7
+            OnClick = mAddSeqBtnClick
+          end
+          object mDeleteMoveBtn: TButton
+            Left = 143
+            Top = 142
+            Width = 58
+            Height = 25
+            Caption = 'Del Move'
+            TabOrder = 8
+            OnClick = deleteMove
           end
         end
         object ScrollBox1: TScrollBox
@@ -358,5 +381,12 @@ object Main: TMain
     Interval = 500
     Left = 120
     Top = 648
+  end
+  object mSequenceTimer: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = mSequenceTimerTimer
+    Left = 456
+    Top = 320
   end
 end

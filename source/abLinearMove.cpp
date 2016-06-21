@@ -3,6 +3,10 @@
 #include "abXYZUnit.h"
 #include "abAPTMotor.h"
 #include "abPosition.h"
+#include "mtkLogger.h"
+
+
+using namespace mtk;
 using namespace ab;
 //---------------------------------------------------------------------------
 LinearMove::LinearMove(const string& lbl, ABObject* unit, MoveType type, const ab::Position& p, double maxVel, double acc, double dwellTime)
@@ -21,14 +25,42 @@ mAcceleration(0)
     }
 }
 
+void LinearMove::assignUnit(ABObject* o)
+{
+	mUnit = NULL;
+	//Check out what ABObject is
+    if(dynamic_cast<XYZUnit*>(o))
+    {
+    	//Look for motor
+        XYZUnit* xyz = dynamic_cast<XYZUnit*>(o);
+        if(xyz->getMotorWithName(mMotorName))
+        {
+        	mUnit = xyz->getMotorWithName(mMotorName);
+        }
+    }
+    else if(dynamic_cast<APTMotor*>(o))
+    {
+    	APTMotor* m = dynamic_cast<APTMotor*>(o);
+
+        mMotorName = m->getName();
+    	mUnit = m;
+    }
+
+    if(mUnit == NULL)
+    {
+   		Log(lError) << "Motor Unit is NULL for LinearMove: "<<mProcessName;
+    }
+}
+
 bool LinearMove::write(IniSection* sec)
 {
-    IniKey* key = sec->createKey("LABEL", getLabel());
+//    IniKey* key = sec->createKey("PROCESS_NAME", getProcessName());
 
     double x = getPosition().x();
-    key = sec->createKey("TYPE", 			toString(getMoveType()));
+    IniKey* key = sec->createKey("PROCESS_TYPE", 	toString(getMoveType()));
     key = sec->createKey("MOTOR_NAME",   	toString(mMotorName));
     key = sec->createKey("POSITION", 		toString(x));
+    key = sec->createKey("POSITION_NAME",  	getPosition().getLabel());
     key = sec->createKey("MAX_VELOCITY", 	toString(getMaxVelocity()));
     key = sec->createKey("ACCELERATION", 	toString(getAcceleration()));
     key = sec->createKey("DWELL_TIME",   	toString(getDwellTime()));
@@ -56,17 +88,16 @@ bool LinearMove::read(IniSection* sec)
         mMotorName = key->mValue;
     }
 
+    key = sec->getKey("POSITION");
+    if(key)
+    {
+	    mPosition = Position(mPosition.getLabel(), key->asFloat(), 0.0 , 0.0);
+    }
 
     key = sec->getKey("POSITION_NAME");
     if(key)
     {
         mPosition.setLabel(key->mValue);
-    }
-
-    key = sec->getKey("POSITION");
-    if(key)
-    {
-	    mPosition = Position(mPosition.getLabel(), key->asFloat(), 0.0 , 0.0);
     }
 
     key = sec->getKey("MAX_VELOCITY", true);
@@ -101,10 +132,32 @@ bool LinearMove::execute()
 	APTMotor* m = dynamic_cast<APTMotor*>(mUnit);
     if(m)
     {
-
-    	m->setJogVelocity(mMaxVelocity);
-        m->setJogAcceleration(mAcceleration);
+		if(mMaxVelocity == 0 || mAcceleration == 0)
+        {
+        	Log(lError) << "Move cannot be executed with zero velocity or acceleration";
+            return false;
+        }
+    	m->setVelocity(mMaxVelocity);
+        m->setAcceleration(mAcceleration);
         return m->moveAbsolute(mPosition.x());
+    }
+
+    return false;
+}
+
+bool LinearMove::stop()
+{
+	XYZUnit* o = dynamic_cast<XYZUnit*>(mUnit);
+    if(o)
+    {
+		return o->stopAll();
+    }
+
+	APTMotor* m = dynamic_cast<APTMotor*>(mUnit);
+    if(m)
+    {
+    	m->stop(false);
+        return true;
     }
 
     return false;
@@ -149,12 +202,12 @@ bool LinearMove::isActive()
 
 MoveType toMoveType(const string& mt)
 {
-	if(mt == "ABSOLUTE")
+	if(mt == "ABSOLUTE_MOVE")
     {
     	return mtAbsolute;
     }
 
-	if(mt == "RELATIVE")
+	if(mt == "RELATIVE_MOVE")
     {
     	return mtRelative;
     }
@@ -166,13 +219,13 @@ string	toString(MoveType mt)
 {
 	if(mt == mtAbsolute)
     {
-    	return "ABSOLUTE";
+    	return "ABSOLUTE_MOVE";
     }
 
 	if(mt == mtRelative)
     {
-    	return "RELATIVE";
+    	return "RELATIVE_MOVE";
     }
 
-    return "UNKNOWN";
+    return "UNKNOWN_MOVE";
 }

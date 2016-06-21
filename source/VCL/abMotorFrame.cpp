@@ -72,6 +72,8 @@ void __fastcall TMotorFrame::mMotorStatusTimerTimer(TObject *Sender)
     mIsEnabledLbl->Caption  	= (mMotor->isEnabled()) 	? "True" : "False";
 
     EnableDisableBtn->Caption = (mMotor->isEnabled()) 		? "Disable" : "Enable";
+
+    mIsHomedLabel->Font->Color = (mIsHomedLabel->Caption == "False") ?  clRed : clGreen;
 }
 
 //---------------------------------------------------------------------------

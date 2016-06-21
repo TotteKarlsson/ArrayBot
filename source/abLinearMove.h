@@ -16,11 +16,12 @@ class AB_CORE LinearMove : public Process
     public:
         	   			            LinearMove(const string& lbl, ABObject* unit, MoveType type = mtAbsolute, const ab::Position& p = ab::Position("", 0,0,0), double maxVel = 0, double acc = 0, double dwellTime = 0);
     	virtual			            ~LinearMove(){}
-
+		virtual void	            assignUnit(ABObject* o);
         virtual bool				write(mtk::IniSection* sec);
         virtual bool				read(mtk::IniSection* sec);
 
         virtual bool	            execute();
+        virtual bool	            stop();
 		bool 						isDone();
         virtual	bool	            undo();
         virtual bool	            isActive();
@@ -38,6 +39,8 @@ class AB_CORE LinearMove : public Process
 
         string			            getPositionName(){return mPosition.getLabel();}
         void			            setPositionName(const string& l){mPosition.setLabel(l);}
+
+        string						getMotorName(){return mMotorName;}
 
     protected:
         				            //!The exact meaning of the position attribute is

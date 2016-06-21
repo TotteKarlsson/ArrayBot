@@ -15,7 +15,7 @@
 #include "TFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
 #include "Poco/Timestamp.h"
-#include "abJoyStick.h"
+
 #include "TSTDStringLabeledEdit.h"
 #include "abXYZUnitFrame.h"
 #include "abMotorFrame.h"
@@ -67,19 +67,22 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox2;
 	TFloatLabeledEdit *mMovePosE;
 	TButton *mStartBtn;
-	TButton *Button2;
-	TButton *Button3;
 	TListBox *mMovesLB;
 	TFloatLabeledEdit *mMaxVelE;
 	TFloatLabeledEdit *mAccE;
-	TButton *mFwdBtn;
-	TComboBox *SequencesCB;
+	TComboBox *mSequencesCB;
 	TLabel *Label1;
 	TButton *mSaveSequenceBtn;
 	TButton *mAddMoveBtn;
 	TFloatLabeledEdit *mDwellTimeE;
 	TScrollBox *ScrollBox1;
 	TComboBox *MotorsCB;
+	TLabel *Label2;
+	TButton *mDeleteSequenceBtn;
+	TButton *mAddSeqBtn;
+	TSTDStringLabeledEdit *mMovePositionLabel;
+	TButton *mDeleteMoveBtn;
+	TTimer *mSequenceTimer;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -100,6 +103,10 @@ class TMain : public TRegistryForm
 	void __fastcall moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall stopAllAExecute(TObject *Sender);
 	void __fastcall MotorsCBChange(TObject *Sender);
+	void __fastcall mDeleteSequenceClick(TObject *Sender);
+	void __fastcall mAddSeqBtnClick(TObject *Sender);
+	void __fastcall deleteMove(TObject *Sender);
+	void __fastcall mSequenceTimerTimer(TObject *Sender);
 
     private:	// User declarations
         TThreadMethod               logMsgMethod;
@@ -108,13 +115,12 @@ class TMain : public TRegistryForm
         IniFileProperties  			mProperties;
 
         IniFile						mIniFile;
-
         ProcessSequencer  			mMoveSequencer;
 
         XYZUnit						mXYZUnit;
 		void __fastcall		        OnException();
-
 		bool 						createMotorFrame(APTMotor* mtr);
+		void __fastcall				refreshSequencesCB();
 
 
 	public:		// User declarations
