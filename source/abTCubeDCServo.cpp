@@ -477,8 +477,6 @@ bool TCubeDCServo::moveAbsolute(double pos, bool inThread)
     }
     else
     {
-//    	setVelocity(getJogVelocity());
-//    	setAcceleration(getJogAcceleration());
         int err = CC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
         if(err != 0)
         {

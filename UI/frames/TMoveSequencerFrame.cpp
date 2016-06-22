@@ -153,7 +153,6 @@ void __fastcall TMoveSequencerFrame::mDeleteSequenceBtnClick(TObject *Sender)
 void __fastcall TMoveSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 {
 	//Create a new move file and sequence
-
 	stringstream fName;
     int i = 1;
     do
@@ -170,6 +169,7 @@ void __fastcall TMoveSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 
     refreshSequencesCB();
 	mSequencesCB->ItemIndex = mSequencesCB->Items->IndexOf(getFileNameNoExtension(fName.str()).c_str());
+	mSequencesCBChange(NULL);
 }
 
 //---------------------------------------------------------------------------
@@ -354,7 +354,7 @@ void __fastcall TMoveSequencerFrame::mSequenceTimerTimer(TObject *Sender)
     else
     {
     	mStartBtn->Caption = "Start";
-		if(mAB)
+		if(mAB && !mAB->getJoyStick().isEnabled())
         {
 	        mAB->enableJoyStick();
         }

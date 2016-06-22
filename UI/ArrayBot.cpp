@@ -13,13 +13,14 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
+USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("MainForm.cpp", Main);
-USEFORM("..\source\VCL\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("..\source\VCL\abAddLiftForm.cpp", AddLiftSettingForm);
-USEFORM("..\source\VCL\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
+USEFORM("frames\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
+USEFORM("frames\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
+USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
@@ -99,8 +100,9 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Title = "ArrayBot - Software for Robots";
 		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
-		Application->CreateForm(__classid(TAddLiftSettingForm), &AddLiftSettingForm);
 		Application->CreateForm(__classid(TShowFileContentForm), &ShowFileContentForm);
+		Application->CreateForm(__classid(TAddLiftSettingForm), &AddLiftSettingForm);
+		Application->CreateForm(__classid(TAddJoyStickSettingForm), &AddJoyStickSettingForm);
 		Application->Run();
 	}
 	catch (Exception &exception)
