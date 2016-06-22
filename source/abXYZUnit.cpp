@@ -11,19 +11,21 @@ XYZUnit::XYZUnit(const string& name, IniFile& iniFile)
 mXMotorSerialNr(-1),
 mYMotorSerialNr(-1),
 mZMotorSerialNr(-1),
+mAngleMotorSerialNr(-1),
 mName(name),
 mXMotor(NULL),
 mYMotor(NULL),
 mZMotor(NULL),
+mAngleMotor(NULL),
 mJoyStick(NULL),
-mIniFile(iniFile),
-mAngleController(name + " ANGLE CONTROLLER", mIniFile)
+mIniFile(iniFile)
 {
 	//Setup properties
     mProperties.setSection(name);
     mProperties.add((BaseProperty*) &mXMotorSerialNr.setup("XMotorSerial", -1, true));
     mProperties.add((BaseProperty*) &mYMotorSerialNr.setup("YMotorSerial", -1, true));
     mProperties.add((BaseProperty*) &mZMotorSerialNr.setup("ZMotorSerial", -1, true));
+    mProperties.add((BaseProperty*) &mAngleMotorSerialNr.setup("AngleMotorSerial", -1, true));
 
 	//assign inifile to use with the properties
     mProperties.setIniFile(&mIniFile);
@@ -31,11 +33,6 @@ mAngleController(name + " ANGLE CONTROLLER", mIniFile)
 
 XYZUnit::~XYZUnit()
 {}
-
-AngleController& XYZUnit::getAngleController()
-{
-	return mAngleController;
-}
 
 bool XYZUnit::isActive()
 {
@@ -56,7 +53,10 @@ bool XYZUnit::isActive()
         za = mZMotor->isActive();
     }
 
-    ca = mAngleController.isActive();
+    if(mAngleMotor)
+    {
+    	ca = mAngleMotor->isActive();
+    }
     return xa || ya || za || ca;
 }
 
@@ -108,19 +108,29 @@ bool XYZUnit::initialize()
 		Log(lError) << "Z motor is NOT connected";
     }
 
+    mAngleMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mAngleMotorSerialNr));
+    if(mAngleMotor)
+    {
+    	Log(lInfo) << "Angle motor is connected";
 
-    mAngleController.initialize();
+        //Load Motor Properties
+        mAngleMotor->loadProperties(mIniFile);
+        mAngleMotor->setName(mName + "_Angle");
+    }
+    else
+    {
+		Log(lError) << "Z motor is NOT connected";
+    }
 
 	return true;
 }
 
 void XYZUnit::shutDown()
 {
-    mAngleController.shutDown();
 	mDeviceManager.disConnectAll();
 
     //Now motors are NULL.. make them smart pointers
-    mXMotor = mYMotor = mZMotor = NULL;
+    mXMotor = mYMotor = mZMotor = mAngleMotor = NULL;
 
 	//Save Properties
 	mProperties.write();
@@ -206,7 +216,7 @@ void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
     }
 
     mJoyStick = js;
-    mAngleController.attachJoyStick(mJoyStick);
+//    mAngleController.attachJoyStick(mJoyStick);
 
     if(mName == "COVERSLIP UNIT")
     {
@@ -250,6 +260,24 @@ void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
             mJoyStick->getPOVButton(2).disable();
             mJoyStick->getPOVButton(4).disable();
         }
+
+        if(mAngleMotor)
+        {
+            mJoyStick->getPOVButton(1).assignMotor(mAngleMotor);
+            mJoyStick->getPOVButton(3).assignMotor(mAngleMotor);
+
+            mJoyStick->getPOVButton(1).setReverse();
+            mJoyStick->getPOVButton(3).setForward();
+
+            mJoyStick->getPOVButton(1).enable();
+            mJoyStick->getPOVButton(3).enable();
+        }
+        else
+        {
+            mJoyStick->getPOVButton(1).disable();
+            mJoyStick->getPOVButton(3).disable();
+        }
+
     }
     else if(mName == "WHISKER UNIT")
     {
@@ -293,6 +321,24 @@ void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
             mJoyStick->getButton(2).disable();
             mJoyStick->getButton(4).disable();
         }
+
+
+        if(mAngleMotor)
+        {
+            mJoyStick->getButton(1).assignMotor(mAngleMotor);
+            mJoyStick->getButton(3).assignMotor(mAngleMotor);
+
+            mJoyStick->getButton(1).setReverse();
+            mJoyStick->getButton(3).setForward();
+
+            mJoyStick->getButton(1).enable();
+            mJoyStick->getButton(3).enable();
+        }
+        else
+        {
+            mJoyStick->getButton(1).disable();
+            mJoyStick->getButton(3).disable();
+        }
     }
 }
 
@@ -318,6 +364,11 @@ APTMotor* XYZUnit::getMotorWithName(const string& name)
     	return getZMotor();
     }
 
+	if(getAngleMotor() && getAngleMotor()->getName() == name)
+    {
+    	return getAngleMotor();
+    }
+
     return NULL;
 }
 
@@ -334,6 +385,11 @@ APTMotor* XYZUnit::getYMotor()
 APTMotor* XYZUnit::getZMotor()
 {
 	return mZMotor;
+}
+
+APTMotor* XYZUnit::getAngleMotor()
+{
+	return mAngleMotor;
 }
 
 bool XYZUnit::stopAll()
@@ -353,6 +409,9 @@ bool XYZUnit::stopAll()
     	mZMotor->stop();
     }
 
-	mAngleController.stop();
+    if(mAngleMotor)
+    {
+		mAngleMotor->stop();
+    }
     return true;
 }

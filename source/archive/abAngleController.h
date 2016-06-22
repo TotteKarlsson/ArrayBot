@@ -37,7 +37,7 @@ class AB_CORE AngleController : public ABObject
 		void								detachJoyStick();
         Property<int>		                mMotorSerial;
         Property<double>  	                mAngle;
-        Property<int>						mAngleOffset;
+//        Property<int>						mAngleOffset;
         Property<string>   	                mName;
     	DeviceManager	                    mDeviceManager;
 

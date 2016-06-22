@@ -11,7 +11,7 @@ AngleController::AngleController(const string& name, IniFile& iniFile)
 mMotorSerial(-1),
 mName(name),
 mAngle(0),
-mAngleOffset(0),
+//mAngleOffset(0),
 mIniFile(iniFile),
 mMotor(NULL),
 mJoyStick(NULL)
@@ -19,7 +19,7 @@ mJoyStick(NULL)
     mProperties.setSection(name);
     mProperties.add((BaseProperty*) &mMotorSerial.setup("MOTOR_SERIAL", -1, true));
     mProperties.add((BaseProperty*) &mAngle.setup("ANGLE", 1, true));
-    mProperties.add((BaseProperty*) &mAngleOffset.setup("ANGLE_OFFSET", 1, true));
+//    mProperties.add((BaseProperty*) &mAngleOffset.setup("ANGLE_OFFSET", 1, true));
     mProperties.setIniFile(&mIniFile);
 }
 
@@ -87,7 +87,7 @@ double AngleController::getAngle()
     {
 		mAngle = mMotor->getPosition();
     }
-	return mAngle - mAngleOffset;
+	return mAngle;// - mAngleOffset;
 }
 
 void AngleController::setAngle(double a)
@@ -95,7 +95,7 @@ void AngleController::setAngle(double a)
     mAngle = a;
     if(mMotor)
     {
-        mMotor->moveAbsolute(a + mAngleOffset);
+        mMotor->moveAbsolute(a);// + mAngleOffset);
     }
 }
 
@@ -123,6 +123,7 @@ bool AngleController::initialize()
     mProperties.read();
 
     Log(lInfo) << "Initializing AngleController: "<< mName;
+
 	//Setup the motor
     mMotor = dynamic_cast<APTMotor*>(mDeviceManager.connectDevice(mMotorSerial));
     if(mMotor)

@@ -46,6 +46,7 @@ class AB_CORE LinearMove : public Process
         				            //!The exact meaning of the position attribute is
                                     //made clear in derived classes
         ab::Position                mPosition;
+        double						mPositionResolution;
 
         				            //!An absolute move, moves the unit to a defined position in space
                                     //!A 'relative' move, moves the unit relative to current

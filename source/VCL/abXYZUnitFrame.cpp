@@ -19,7 +19,8 @@ __fastcall TXYZUnitFrame::TXYZUnitFrame(TComponent* Owner)
     mUnit(NULL),
     mXMotorFrame(NULL),
     mYMotorFrame(NULL),
-    mZMotorFrame(NULL)
+    mZMotorFrame(NULL),
+    mAngleMotorFrame(NULL)
 {}
 
 //---------------------------------------------------------------------------
@@ -38,14 +39,22 @@ void TXYZUnitFrame::disable()
     {
     	mXMotorFrame->mMotorStatusTimer->Enabled = false;
     }
+
 	if(mYMotorFrame)
     {
     	mYMotorFrame->mMotorStatusTimer->Enabled = false;
     }
+
 	if(mZMotorFrame)
     {
     	mZMotorFrame->mMotorStatusTimer->Enabled = false;
     }
+
+	if(mAngleMotorFrame)
+    {
+    	mAngleMotorFrame->mMotorStatusTimer->Enabled = false;
+    }
+
 }
 //---------------------------------------------------------------------------
 void __fastcall TXYZUnitFrame::mMotorStatusTimerTimer(TObject *Sender)
@@ -88,6 +97,19 @@ void __fastcall TXYZUnitFrame::mMotorStatusTimerTimer(TObject *Sender)
                 mZMotorFrame->assignMotor(mUnit->getZMotor());
             }
         }
+
+    	if(mUnit->getAngleMotor())
+        {
+        	//Check if we have created a Frame for it
+            if(!mAngleMotorFrame)
+            {
+            	mAngleMotorFrame = new TMotorFrame(mUnit->getAngleMotor()->getSerial(), this);
+                mAngleMotorFrame->SetParentComponent(ScrollBox1);
+                mAngleMotorFrame->Align = alLeft;
+                mAngleMotorFrame->assignMotor(mUnit->getAngleMotor());
+            }
+        }
+
     }
 }
 

@@ -19,6 +19,19 @@ object MoveSequencerFrame: TMoveSequencerFrame
       Height = 13
       Caption = 'Sequences'
     end
+    object mStatusLbl: TLabel
+      Left = 256
+      Top = 239
+      Width = 52
+      Height = 23
+      Caption = 'Status'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
     object GroupBox2: TGroupBox
       Left = 207
       Top = 26
@@ -180,7 +193,7 @@ object MoveSequencerFrame: TMoveSequencerFrame
       OnClick = mDeleteMoveBtnClick
     end
   end
-  object mSequenceTimer: TTimer
+  object mSequenceStatusTimer: TTimer
     Enabled = False
     Interval = 100
     OnTimer = mSequenceTimerTimer

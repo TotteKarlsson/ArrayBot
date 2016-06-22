@@ -35,7 +35,8 @@ __published:	// IDE-managed Components
 	TButton *mDeleteSequenceBtn;
 	TButton *mAddSeqBtn;
 	TButton *mDeleteMoveBtn;
-	TTimer *mSequenceTimer;
+	TTimer *mSequenceStatusTimer;
+	TLabel *mStatusLbl;
 	void __fastcall mAddMoveBtnClick(TObject *Sender);
 	void __fastcall mDeleteMoveBtnClick(TObject *Sender);
 	void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
@@ -51,7 +52,7 @@ __published:	// IDE-managed Components
 private:	// User declarations
 	    ProcessSequencer  			mMoveSequencer;
         XYZUnit*					mXYZUnit;
-        ArrayBot*					mArrayBot;
+        ArrayBot*					mAB;
         string 						mMovesFileExtension;
 		void __fastcall 			refreshSequencesCB();
 		static int 					mFrameNr;

@@ -12,8 +12,6 @@ mIniFile(ini),
 mCoverSlip("COVERSLIP UNIT", mIniFile),
 mWhisker("WHISKER UNIT", mIniFile),
 mJoyStick(),
-//mCoverSlipAngleController("COVERSLIP ANGLE CONTROLLER", mIniFile),
-//mCameraAngleController("CAMERA ANGLE CONTROLLER", mIniFile),
 mIsShuttingDown(false),
 mJSSettings("JOYSTICK SETTINGS", mIniFile),
 mLifts("PAIRED_MOVES", mIniFile)
@@ -55,26 +53,22 @@ void ArrayBot::initialize()
 {
 	mCoverSlip.initialize();
 	mWhisker.initialize();
-//    mCoverSlipAngleController.initialize();
-//    mCameraAngleController.initialize();
 }
 
-AngleController& ArrayBot::getCoverSlipAngleController()
+APTMotor* ArrayBot::getCoverSlipAngleController()
 {
-	return mCoverSlip.getAngleController();
+	return mCoverSlip.getAngleMotor();
 }
 
-AngleController& ArrayBot::getCameraAngleController()
+APTMotor* ArrayBot::getCameraAngleController()
 {
-	return mWhisker.getAngleController();
+	return mWhisker.getAngleMotor();
 }
 
 //Todo: setup mechanism to check if the units were shutdown properly
 bool ArrayBot::shutDown()
 {
     getJoyStick().disable();
-//	mCoverSlipAngleController.shutDown();
-//	mCameraAngleController.shutDown();
 	mCoverSlip.shutDown();
 	mWhisker.shutDown();
 	mIsShuttingDown = true;
@@ -87,7 +81,6 @@ void ArrayBot::stopAll()
     mJoyStick.disable();
     mCoverSlip.stopAll();
     mWhisker.stopAll();
-//	mCoverSlipAngleController.stop();
 }
 
 bool ArrayBot::applyJoyStickSetting(const string& settingName)
@@ -148,9 +141,6 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
 bool ArrayBot::enableJoyStick()
 {
  	//enable angle motor controls
-//    mCoverSlipAngleController.attachJoyStick(&getJoyStick());
-//    mCameraAngleController.attachJoyStick(&getJoyStick());
-
     mCoverSlip.attachJoyStick(&getJoyStick());
     mJoyStick.getX1Axis().setSenseOfDirection(1);
 

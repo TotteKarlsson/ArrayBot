@@ -22,7 +22,7 @@ int TMoveSequencerFrame::mFrameNr = 0;
 __fastcall TMoveSequencerFrame::TMoveSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner)
 	: TFrame(Owner),
     mXYZUnit(u),
-    mArrayBot(ab),
+    mAB(ab),
     mMoveSequencer()
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
@@ -48,9 +48,9 @@ __fastcall TMoveSequencerFrame::TMoveSequencerFrame(XYZUnit* u, ArrayBot* ab, TC
     	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit->getZMotor()->getName().c_str(), (TObject*) mXYZUnit->getZMotor() );
     }
 
-//	if(mXYZUnit->getAngleController())
+	if(mXYZUnit->getAngleMotor())
     {
-    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit->getAngleController().getName().c_str(), (TObject*) &mXYZUnit->getAngleController() );
+    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit->getAngleMotor()->getName().c_str(), (TObject*) mXYZUnit->getAngleMotor() );
     }
 
     GroupBox1->Caption = GroupBox1->Caption + ": " + mXYZUnit->getName().c_str();
@@ -192,7 +192,7 @@ void __fastcall TMoveSequencerFrame::mStartBtnClick(TObject *Sender)
     if(btn->Caption == "Start")
     {
     	mMoveSequencer.start(true);
-		mSequenceTimer->Enabled = true;
+		mSequenceStatusTimer->Enabled = true;
     }
     else
     {
@@ -311,8 +311,7 @@ void __fastcall TMoveSequencerFrame::MotorsCBChange(TObject *Sender)
 	//Check if a motor is selected
     ABObject* obj = (ABObject*) MotorsCB->Items->Objects[MotorsCB->ItemIndex];
 
-    APTMotor* motor = dynamic_cast<APTMotor*>(obj);
-	AngleController* aMotor = dynamic_cast<AngleController*>(obj);
+    APTMotor* 			motor = dynamic_cast<APTMotor*>(obj);
     if(motor)
     {
     	mMovePosE->Enabled = true;
@@ -321,19 +320,10 @@ void __fastcall TMoveSequencerFrame::MotorsCBChange(TObject *Sender)
         LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
         move->assignUnit(motor);
     }
-    if(aMotor)
-    {
-    	mMovePosE->Enabled = true;
-        mAccE->Enabled = true;
-
-        LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
-        move->assignUnit(aMotor);
-    }
-
     else
     {
-    	mMovePosE->Enabled = false;
-        mAccE->Enabled = false;
+    	mMovePosE->Enabled 	= false;
+        mAccE->Enabled 		= false;
     }
 	saveSequence();
 }
@@ -354,10 +344,21 @@ void __fastcall TMoveSequencerFrame::mSequenceTimerTimer(TObject *Sender)
 	if(mMoveSequencer.isRunning())
     {
     	mStartBtn->Caption = "Stop";
+		if(mAB)
+        {
+	        mAB->disableJoyStick();
+        }
+
+        mStatusLbl->Caption = "Working on: " + vclstr(mMoveSequencer.getCurrentProcessName());
     }
     else
     {
     	mStartBtn->Caption = "Start";
+		if(mAB)
+        {
+	        mAB->enableJoyStick();
+        }
+        mStatusLbl->Caption = "Idle";
     }
 }
-//---------------------------------------------------------------------------
+

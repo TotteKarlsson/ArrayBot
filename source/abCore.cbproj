@@ -105,10 +105,6 @@
         <CppCompile Include="abABObject.cpp">
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abAngleController.cpp">
-            <DependentOn>abAngleController.h</DependentOn>
-            <BuildOrder>22</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abAPTDevice.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
