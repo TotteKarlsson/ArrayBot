@@ -41,11 +41,15 @@ void LinearMove::assignUnit(ABObject* o)
     else if(dynamic_cast<APTMotor*>(o))
     {
     	APTMotor* m = dynamic_cast<APTMotor*>(o);
-
         mMotorName = m->getName();
     	mUnit = m;
     }
-
+    else if(dynamic_cast<AngleController*>(o))
+    {
+    	AngleController* ac = dynamic_cast<AngleController*>(o);
+        mMotorName = ac->getName();
+    	mUnit = ac;
+    }
     if(mUnit == NULL)
     {
    		Log(lError) << "Motor Unit is NULL for LinearMove: "<<mProcessName;
@@ -140,6 +144,19 @@ bool LinearMove::execute()
     	m->setVelocity(mMaxVelocity);
         m->setAcceleration(mAcceleration);
         return m->moveAbsolute(mPosition.x());
+    }
+
+	AngleController* ac = dynamic_cast<AngleController*>(mUnit);
+    if(ac)
+    {
+		if(mMaxVelocity == 0 || mAcceleration == 0)
+        {
+        	Log(lError) << "Move cannot be executed with zero velocity or acceleration";
+            return false;
+        }
+       	ac->getMotor()->setVelocity(mMaxVelocity);
+        ac->getMotor()->setAcceleration(mAcceleration);
+        return ac->getMotor()->moveAbsolute(mPosition.x());
     }
 
     return false;

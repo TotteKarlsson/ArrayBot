@@ -9,6 +9,7 @@
 #include "mtkINIFile.h"
 #include "abPositions.h"
 #include "abProcessSequencer.h"
+#include "abAngleController.h"
 //---------------------------------------------------------------------------
 
 class APTMotor;
@@ -40,6 +41,7 @@ class AB_CORE XYZUnit : public ABObject
 		APTMotor*			    getXMotor();
 		APTMotor*			    getYMotor();
 		APTMotor*			    getZMotor();
+        AngleController&		getAngleController();
         APTMotor*				getMotorWithName(const string& name);
 
         Property<int>		    mXMotorSerialNr;
@@ -64,6 +66,7 @@ class AB_CORE XYZUnit : public ABObject
         APTMotor*			    mXMotor;
         APTMotor*			    mYMotor;
         APTMotor*			    mZMotor;
+        AngleController	 		mAngleController;
 
         ArrayBotJoyStick*       mJoyStick;
         Positions				mPositions;

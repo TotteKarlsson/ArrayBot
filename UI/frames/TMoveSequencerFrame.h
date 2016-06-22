@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------
-
 #ifndef TMoveSequencerFrameH
 #define TMoveSequencerFrameH
 //---------------------------------------------------------------------------
@@ -14,6 +12,7 @@
 //---------------------------------------------------------------------------
 
 class XYZUnit;
+class ArrayBot;
 
 class TMoveSequencerFrame : public TFrame
 {
@@ -52,11 +51,16 @@ __published:	// IDE-managed Components
 private:	// User declarations
 	    ProcessSequencer  			mMoveSequencer;
         XYZUnit*					mXYZUnit;
+        ArrayBot*					mArrayBot;
         string 						mMovesFileExtension;
 		void __fastcall 			refreshSequencesCB();
 		static int 					mFrameNr;
+		void						saveSequence();
+
+
 public:		// User declarations
-	__fastcall TMoveSequencerFrame(XYZUnit* u, TComponent* Owner);
+						 __fastcall TMoveSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner);
+        void						init();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TMoveSequencerFrame *MoveSequencerFrame;

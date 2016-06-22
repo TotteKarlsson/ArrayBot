@@ -6,6 +6,7 @@
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "abLinearMove.h"
+#include "abArrayBot.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -18,9 +19,10 @@ extern string gAppDataFolder;
 using namespace mtk;
 
 int TMoveSequencerFrame::mFrameNr = 0;
-__fastcall TMoveSequencerFrame::TMoveSequencerFrame(XYZUnit* u, TComponent* Owner)
+__fastcall TMoveSequencerFrame::TMoveSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner)
 	: TFrame(Owner),
     mXYZUnit(u),
+    mArrayBot(ab),
     mMoveSequencer()
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
@@ -46,9 +48,23 @@ __fastcall TMoveSequencerFrame::TMoveSequencerFrame(XYZUnit* u, TComponent* Owne
     	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit->getZMotor()->getName().c_str(), (TObject*) mXYZUnit->getZMotor() );
     }
 
+//	if(mXYZUnit->getAngleController())
+    {
+    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit->getAngleController().getName().c_str(), (TObject*) &mXYZUnit->getAngleController() );
+    }
+
     GroupBox1->Caption = GroupBox1->Caption + ": " + mXYZUnit->getName().c_str();
     mMovesFileExtension = mXYZUnit->getName();
     refreshSequencesCB();
+}
+
+void TMoveSequencerFrame::init()
+{
+    if(mSequencesCB->Items->Count)
+    {
+        mSequencesCB->ItemIndex = 0;
+		mSequencesCBChange(NULL);
+    }
 }
 
 void __fastcall TMoveSequencerFrame::mAddMoveBtnClick(TObject *Sender)
@@ -90,6 +106,7 @@ void __fastcall TMoveSequencerFrame::mAddMoveBtnClick(TObject *Sender)
     }
     mMovesLB->Items->AddObject(move->getPositionName().c_str(), (TObject*) move);
 }
+
 //---------------------------------------------------------------------------
 void __fastcall TMoveSequencerFrame::mDeleteMoveBtnClick(TObject *Sender)
 {
@@ -185,12 +202,7 @@ void __fastcall TMoveSequencerFrame::mStartBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMoveSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
 {
-	//Save Current Sequence
-    int indx = mSequencesCB->ItemIndex;
-    string seqName (stdstr(mSequencesCB->Items->Strings[indx]));
-    mMoveSequencer.getSequence().setName(seqName);
-	mMoveSequencer.getSequence().setFileExtension(mMovesFileExtension);
-    mMoveSequencer.save(gAppDataFolder);
+	saveSequence();
 }
 //---------------------------------------------------------------------------
 void __fastcall TMoveSequencerFrame::mSequencesCBChange(TObject *Sender)
@@ -215,6 +227,13 @@ void __fastcall TMoveSequencerFrame::mSequencesCBChange(TObject *Sender)
     		mMovesLB->Items->AddObject(move->getProcessName().c_str(), (TObject*) move);
             move = seq.getNext();
         }
+
+        //Select the first move in the sequence
+        if(mMovesLB->Count)
+        {
+	        mMovesLB->ItemIndex = 0;
+        }
+        mMovesLBClick(NULL);
     }
 
     mMoveSequencer.assignUnit(mXYZUnit);
@@ -271,30 +290,14 @@ void __fastcall TMoveSequencerFrame::moveParEdit(TObject *Sender, WORD &Key,
     LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
 	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
 
-//    if(e == mMovePosE)
-    {
-    	ab::Position p(move->getPositionName(), mMovePosE->getValue(),0,0);
-		move->setPosition(p);
-    }
+    ab::Position p(move->getPositionName(), mMovePosE->getValue(),0,0);
+    move->setPosition(p);
+    move->setMaxVelocity(mMaxVelE->getValue());
+    move->setAcceleration(mAccE->getValue());
+    move->setDwellTime(mDwellTimeE->getValue());
+  	move->setPositionName(mMovePositionLabel->getValue().c_str());
 
-//    if(e == mMaxVelE)
-    {
-		move->setMaxVelocity(mMaxVelE->getValue());
-    }
-
-//    if(e == mAccE)
-    {
-		move->setAcceleration(mAccE->getValue());
-    }
-
-//    if(e == mDwellTimeE)
-    {
-		move->setDwellTime(mDwellTimeE->getValue());
-    }
-
-	{
-    	move->setPositionName(mMovePositionLabel->getValue().c_str());
-    }
+    saveSequence();
 }
 //---------------------------------------------------------------------------
 void __fastcall TMoveSequencerFrame::MotorsCBChange(TObject *Sender)
@@ -306,9 +309,10 @@ void __fastcall TMoveSequencerFrame::MotorsCBChange(TObject *Sender)
     }
 
 	//Check if a motor is selected
+    ABObject* obj = (ABObject*) MotorsCB->Items->Objects[MotorsCB->ItemIndex];
 
-    APTMotor* motor = (APTMotor*) MotorsCB->Items->Objects[MotorsCB->ItemIndex];
-
+    APTMotor* motor = dynamic_cast<APTMotor*>(obj);
+	AngleController* aMotor = dynamic_cast<AngleController*>(obj);
     if(motor)
     {
     	mMovePosE->Enabled = true;
@@ -317,12 +321,33 @@ void __fastcall TMoveSequencerFrame::MotorsCBChange(TObject *Sender)
         LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
         move->assignUnit(motor);
     }
+    if(aMotor)
+    {
+    	mMovePosE->Enabled = true;
+        mAccE->Enabled = true;
+
+        LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
+        move->assignUnit(aMotor);
+    }
+
     else
     {
     	mMovePosE->Enabled = false;
         mAccE->Enabled = false;
     }
+	saveSequence();
 }
+
+void TMoveSequencerFrame::saveSequence()
+{
+	//Save Current Sequence
+    int indx = mSequencesCB->ItemIndex;
+    string seqName (stdstr(mSequencesCB->Items->Strings[indx]));
+    mMoveSequencer.getSequence().setName(seqName);
+	mMoveSequencer.getSequence().setFileExtension(mMovesFileExtension);
+    mMoveSequencer.save(gAppDataFolder);
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TMoveSequencerFrame::mSequenceTimerTimer(TObject *Sender)
 {

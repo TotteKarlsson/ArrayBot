@@ -16,7 +16,8 @@ mXMotor(NULL),
 mYMotor(NULL),
 mZMotor(NULL),
 mJoyStick(NULL),
-mIniFile(iniFile)
+mIniFile(iniFile),
+mAngleController(name + " ANGLE CONTROLLER", mIniFile)
 {
 	//Setup properties
     mProperties.setSection(name);
@@ -31,9 +32,14 @@ mIniFile(iniFile)
 XYZUnit::~XYZUnit()
 {}
 
+AngleController& XYZUnit::getAngleController()
+{
+	return mAngleController;
+}
+
 bool XYZUnit::isActive()
 {
-	bool xa(false), ya(false), za(false);
+	bool xa(false), ya(false), za(false), ca(false);
 
 	if(mXMotor)
     {
@@ -50,7 +56,8 @@ bool XYZUnit::isActive()
         za = mZMotor->isActive();
     }
 
-    return xa || ya || za;
+    ca = mAngleController.isActive();
+    return xa || ya || za || ca;
 }
 
 bool XYZUnit::initialize()
@@ -100,11 +107,16 @@ bool XYZUnit::initialize()
     {
 		Log(lError) << "Z motor is NOT connected";
     }
+
+
+    mAngleController.initialize();
+
 	return true;
 }
 
 void XYZUnit::shutDown()
 {
+    mAngleController.shutDown();
 	mDeviceManager.disConnectAll();
 
     //Now motors are NULL.. make them smart pointers
@@ -187,12 +199,14 @@ void XYZUnit::home()
 
 void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
 {
+
 	if(!js)
     {
     	return;
     }
 
     mJoyStick = js;
+    mAngleController.attachJoyStick(mJoyStick);
 
     if(mName == "COVERSLIP UNIT")
     {
@@ -338,5 +352,7 @@ bool XYZUnit::stopAll()
     {
     	mZMotor->stop();
     }
+
+	mAngleController.stop();
     return true;
 }

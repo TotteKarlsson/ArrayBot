@@ -96,14 +96,16 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     init();
 
     //Create MoveSequencer frames
-    TMoveSequencerFrame* sfCS = new TMoveSequencerFrame(&(mAB->getCoverSlipUnit()), mMoveSequencesPage);
+    TMoveSequencerFrame* sfCS = new TMoveSequencerFrame(&(mAB->getCoverSlipUnit()), mAB, mMoveSequencesPage);
     sfCS->Parent = mMoveSequencesPage;
     sfCS->Align = alLeft;
+    sfCS->init();
 
     //Create MoveSequencer frames
-    TMoveSequencerFrame* sfWH = new TMoveSequencerFrame(&(mAB->getWhiskerUnit()), mMoveSequencesPage);
+    TMoveSequencerFrame* sfWH = new TMoveSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
     sfWH->Parent = mMoveSequencesPage;
     sfWH->Align = alClient;
+    sfWH->init();
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;

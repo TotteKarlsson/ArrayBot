@@ -55,9 +55,8 @@ class AB_CORE ArrayBot : public ABObject
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
 
-        AngleController				mCoverSlipAngleController;
-
-        AngleController				mCameraAngleController;
+//        AngleController				mCoverSlipAngleController;
+//        AngleController				mCameraAngleController;
 
         							//!List of Lifts
         PairedMoves					mLifts;
