@@ -160,8 +160,6 @@ class TMain : public TRegistryForm
         void __fastcall                 logMsg();
 
 		void 						    setupWindowTitle();
-        void __fastcall					init();
-
         InitBotThread					mInitBotThread;
         void __fastcall					onFinishedInitBot();
 

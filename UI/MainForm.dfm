@@ -398,6 +398,10 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'

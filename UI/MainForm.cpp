@@ -96,14 +96,6 @@ __fastcall TMain::~TMain()
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
 {
-    init();
-
-	TMemoLogger::mMemoIsEnabled = true;
-    UIUpdateTimer->Enabled = true;
-}
-
-void __fastcall TMain::init()
-{
 	setupWindowTitle();
 	gAppIsStartingUp = false;
 
@@ -111,44 +103,6 @@ void __fastcall TMain::init()
 	Application->ProcessMessages();
 	TMemoLogger::mMemoIsEnabled = true;
 	gSplashForm->mMainAppIsRunning = true;
-
-    //Over ride joysticks button events
-    mAB->getJoyStick().setButtonEvents(5, NULL, onJSButton5Click);
-    mAB->getJoyStick().setButtonEvents(6, NULL, onJSButton6Click);
-    mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
-
-	//Initialize UI
-    if(mAB->getCoverSlipAngleController())
-    {
-    	mCSAngleE->setValue(mAB->getCoverSlipAngleController()->getPosition());
-    }
-
-    //JoyStick Settings CB
-    JoyStickSettings& js = mAB->getJoyStickSettings();
-    JoyStickSetting* jss = js.getFirst();
-    while(jss)
-    {
-    	JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
-        jss = js.getNext();
-    }
-
-	JoyStickSettingsCB->ItemIndex = 0;
-    JoyStickSettingsCB->OnChange(NULL);
-	mJSSpeedMediumBtn->Click();
-    mJSCSBtn->Click();
-
-    //Lift Settings CB
-    PairedMoves& pms = mAB->getLiftMoves();
-    PairedMove* pm = pms.getFirst();
-    while(pm)
-    {
-    	string key = pm->mLabel;
-    	mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
-        pm = pms.getNext();
-    }
-
-	mLiftCB->ItemIndex = 0;
-    mLiftCB->OnChange(NULL);
 
 	this->Visible = true;
 	while(gSplashForm->isOnShowTime() == true || mInitBotThread.isAlive())
@@ -172,7 +126,88 @@ void __fastcall TMain::init()
 	{
 		LogLevelCB->ItemIndex = 1;
 	}
+
+	TMemoLogger::mMemoIsEnabled = true;
+    UIUpdateTimer->Enabled = true;
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
+{
+	if(mInitBotThread.isRunning())
+    {
+    	Log(lInfo) << "Waiting for device initialization";
+    }
+    else
+    {
+		WaitForDeviceInitTimer->Enabled = false;
+        //Init UI stuff here
+
+        //Over ride joysticks button events
+        mAB->getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
+        mAB->getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
+        mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
+
+        //Initialize UI
+        if(mAB->getCoverSlipAngleController())
+        {
+            mCSAngleE->setValue(mAB->getCoverSlipAngleController()->getPosition());
+        }
+
+        //JoyStick Settings CB
+        JoyStickSettings& js = mAB->getJoyStickSettings();
+        JoyStickSetting* jss = js.getFirst();
+        while(jss)
+        {
+            JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
+            jss = js.getNext();
+        }
+
+        JoyStickSettingsCB->ItemIndex = 0;
+        JoyStickSettingsCB->OnChange(NULL);
+        mJSSpeedMediumBtn->Click();
+        mJSCSBtn->Click();
+
+        //Lift Settings CB
+        PairedMoves& pms = mAB->getLiftMoves();
+        PairedMove* pm = pms.getFirst();
+        while(pm)
+        {
+            string key = pm->mLabel;
+            mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
+            pm = pms.getNext();
+        }
+
+        mLiftCB->ItemIndex = 0;
+        mLiftCB->OnChange(NULL);
+
+    	TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
+    	TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
+
+        //ArrayBotJoyStick stuff.....
+        mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
+        mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
+
+        if(mAB->getCoverSlipUnit().getZMotor())
+        {
+            mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
+            mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
+        }
+
+        //    //Create MoveSequencer frames
+        TMoveSequencerFrame* sfCS = new TMoveSequencerFrame(&(mAB->getCoverSlipUnit()), mAB, mMoveSequencesPage);
+        sfCS->Parent = mMoveSequencesPage;
+        sfCS->Align = alLeft;
+        sfCS->init();
+
+        //Create MoveSequencer frames
+        TMoveSequencerFrame* sfWH = new TMoveSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
+        sfWH->Parent = mMoveSequencesPage;
+        sfWH->Align = alClient;
+        sfWH->init();
+    }
+}
+
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
 {
@@ -180,9 +215,6 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
 
 	TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
 	TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
-
-//	TMotorFrame1->assignMotor(mAB->getCoverSlipAngleController().getMotor());
-//	TMotorFrame2->assignMotor(mAB->getCameraAngleController().getMotor());
 
     //ArrayBotJoyStick stuff.....
     mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
@@ -589,44 +621,5 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 	}
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
-{
-	if(mInitBotThread.isRunning())
-    {
-    	Log(lInfo) << "Waiting for device initialization";
-    }
-    else
-    {
-		WaitForDeviceInitTimer->Enabled = false;
-        //Init UI stuff here
-
-    	TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
-    	TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
-
-        //ArrayBotJoyStick stuff.....
-        mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
-        mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
-
-        if(mAB->getCoverSlipUnit().getZMotor())
-        {
-            mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
-            mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
-        }
-
-        //    //Create MoveSequencer frames
-        TMoveSequencerFrame* sfCS = new TMoveSequencerFrame(&(mAB->getCoverSlipUnit()), mAB, mMoveSequencesPage);
-        sfCS->Parent = mMoveSequencesPage;
-        sfCS->Align = alLeft;
-        sfCS->init();
-
-        //Create MoveSequencer frames
-        TMoveSequencerFrame* sfWH = new TMoveSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
-        sfWH->Parent = mMoveSequencesPage;
-        sfWH->Align = alClient;
-        sfWH->init();
-
-    }
-}
 
 
