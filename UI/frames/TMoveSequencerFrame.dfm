@@ -195,7 +195,7 @@ object MoveSequencerFrame: TMoveSequencerFrame
   end
   object mSequenceStatusTimer: TTimer
     Enabled = False
-    Interval = 100
+    Interval = 200
     OnTimer = mSequenceTimerTimer
     Left = 160
     Top = 184

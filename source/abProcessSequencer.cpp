@@ -25,6 +25,7 @@ bool ProcessSequencer::assignUnit(ABObject* o)
 
 bool ProcessSequencer::load(const string& seqFName)
 {
+	mSequence.clear();
 	return mSequence.read(seqFName);
 }
 
