@@ -1,14 +1,14 @@
 object MoveSequencerFrame: TMoveSequencerFrame
   Left = 0
   Top = 0
-  Width = 393
+  Width = 500
   Height = 289
   AutoSize = True
   TabOrder = 0
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 393
+    Width = 500
     Height = 289
     Caption = 'Move Sequencer'
     TabOrder = 0
@@ -19,10 +19,23 @@ object MoveSequencerFrame: TMoveSequencerFrame
       Height = 13
       Caption = 'Sequences'
     end
+    object mStatusLbl: TLabel
+      Left = 256
+      Top = 239
+      Width = 52
+      Height = 23
+      Caption = 'Status'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
     object GroupBox2: TGroupBox
       Left = 207
       Top = 26
-      Width = 169
+      Width = 274
       Height = 207
       Caption = 'Move'
       TabOrder = 0
@@ -84,7 +97,7 @@ object MoveSequencerFrame: TMoveSequencerFrame
       object MotorsCB: TComboBox
         Left = 16
         Top = 39
-        Width = 105
+        Width = 217
         Height = 21
         TabOrder = 4
         Text = 'Select Motor'
@@ -127,7 +140,6 @@ object MoveSequencerFrame: TMoveSequencerFrame
       Top = 78
       Width = 121
       Height = 21
-      Style = csDropDownList
       ItemIndex = 0
       TabOrder = 3
       Text = 'MoveSequence'
@@ -181,7 +193,7 @@ object MoveSequencerFrame: TMoveSequencerFrame
       OnClick = mDeleteMoveBtnClick
     end
   end
-  object mSequenceTimer: TTimer
+  object mSequenceStatusTimer: TTimer
     Enabled = False
     Interval = 100
     OnTimer = mSequenceTimerTimer

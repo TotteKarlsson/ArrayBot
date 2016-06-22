@@ -29,6 +29,7 @@ class AB_CORE ProcessSequencer : public ABObject
         void		        addProcess(Process* p);
         bool		        removeProcess(Process* p);
         bool		        removeProcess(const string& name);
+        string				getCurrentProcessName();
 
         ProcessSequence&   	getSequence(){return mSequence;}
 

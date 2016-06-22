@@ -1,3 +1,8 @@
+Release 0.6.0 (Jun 21)
+=======================
+* Added MoveSequencers to Main arrayBot UI
+* Added *.txt files to install folder
+
 Release 0.5.9 (Jun 13)
 =======================
 * Fixed splash screen messages

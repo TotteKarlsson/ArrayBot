@@ -54,6 +54,11 @@ void ProcessSequencer::runThreaded()
         	sleep(p->getDwellTime());
         	forward();
         }
+        else if(p->isTimedOut())
+        {
+        	Log(lError) << "Process: "<<p->getProcessName()<<" timed out";
+        	stop();
+        }
     }
 }
 
@@ -124,6 +129,17 @@ void ProcessSequencer::stop()
     }
 }
 
+string ProcessSequencer::getCurrentProcessName()
+{
+	Process* p = mSequence.getCurrent();
+    if(p)
+    {
+    	return p->getProcessName();
+    }
+
+    return "<none>";
+}
+
 void ProcessSequencer::addProcess(Process* newMove)
 {
 	mSequence.add(newMove);
@@ -141,13 +157,7 @@ bool ProcessSequencer::removeProcess(const string& name)
 
 bool ProcessSequencer::isRunning()
 {
-	Process* m = mSequence.getCurrent();
-    if(m)
-    {
-	    return m->isActive();
-    }
 	return mSequenceTimer.isRunning();
-//    return false;
 }
 
 bool ProcessSequencer::isProcessActive()

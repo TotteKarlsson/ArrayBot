@@ -15,7 +15,8 @@ Process(lbl, unit),
 mMoveType(type),
 mPosition(p),
 mMaxVelocity(0),
-mAcceleration(0)
+mAcceleration(0),
+mPositionResolution(1.0e-1)
 {
 	mProcessType = ptLinearMove;
     APTMotor* mtr = dynamic_cast<APTMotor*>(unit);
@@ -41,7 +42,6 @@ void LinearMove::assignUnit(ABObject* o)
     else if(dynamic_cast<APTMotor*>(o))
     {
     	APTMotor* m = dynamic_cast<APTMotor*>(o);
-
         mMotorName = m->getName();
     	mUnit = m;
     }
@@ -54,8 +54,6 @@ void LinearMove::assignUnit(ABObject* o)
 
 bool LinearMove::write(IniSection* sec)
 {
-//    IniKey* key = sec->createKey("PROCESS_NAME", getProcessName());
-
     double x = getPosition().x();
     IniKey* key = sec->createKey("PROCESS_TYPE", 	toString(getMoveType()));
     key = sec->createKey("MOTOR_NAME",   	toString(mMotorName));
@@ -64,7 +62,6 @@ bool LinearMove::write(IniSection* sec)
     key = sec->createKey("MAX_VELOCITY", 	toString(getMaxVelocity()));
     key = sec->createKey("ACCELERATION", 	toString(getAcceleration()));
     key = sec->createKey("DWELL_TIME",   	toString(getDwellTime()));
-
     return true;
 }
 
@@ -142,6 +139,19 @@ bool LinearMove::execute()
         return m->moveAbsolute(mPosition.x());
     }
 
+//	AngleController* ac = dynamic_cast<AngleController*>(mUnit);
+//    if(ac)
+//    {
+//		if(mMaxVelocity == 0 || mAcceleration == 0)
+//        {
+//        	Log(lError) << "Move cannot be executed with zero velocity or acceleration";
+//            return false;
+//        }
+//       	ac->getMotor()->setVelocity(mMaxVelocity);
+//        ac->getMotor()->setAcceleration(mAcceleration);
+//        return ac->getMotor()->moveAbsolute(mPosition.x());
+//    }
+
     return false;
 }
 
@@ -182,8 +192,15 @@ bool LinearMove::isDone()
     if(o)
     {
     	double p = o->getPosition();
-    	return (isEqual(p,mPosition.x(), 5.0e-6)) ? true : false;
+    	return (isEqual(p, mPosition.x(), mPositionResolution)) ? true : false;
     }
+
+//	AngleController* ac = dynamic_cast<AngleController*>(mUnit);
+//    if(ac)
+//    {
+//    	double p = ac->getAngle();
+//    	return (isEqual(p, mPosition.x(), mPositionResolution)) ? true : false;
+//    }
 
     return false;
 }
@@ -195,6 +212,12 @@ bool LinearMove::isActive()
     {
     	return o->isActive();
     }
+
+//	AngleController* ac = dynamic_cast<AngleController*>(mUnit);
+//    if(ac)
+//    {
+//    	return ac->isActive();
+//    }
 
     return false;
 }

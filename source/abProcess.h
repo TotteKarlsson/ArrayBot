@@ -3,6 +3,10 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include <string>
+#include "Poco/TimeStamp.h"
+#include "Poco/Timespan.h"
+
+
 //---------------------------------------------------------------------------
 
 using std::string;
@@ -11,6 +15,9 @@ namespace mtk
 	class IniSection;
 }
 
+using Poco::Timestamp;
+
+using Poco::Timestamp::TimeDiff;
 enum ProcessType {ptLinearMove = 0};
 
 class AB_CORE Process : public ABObject
@@ -23,6 +30,7 @@ class AB_CORE Process : public ABObject
 		ABObject*					getUnit(){return mUnit;}
         string						getProcessName(){return mProcessName;}
         void						setProcessName(const string& l) {mProcessName = l;}
+        bool						isTimedOut();
 
         double			            getDwellTime(){return mDwellTime;}
         bool			            setDwellTime(double dt){mDwellTime = dt; return true;}
@@ -54,6 +62,9 @@ class AB_CORE Process : public ABObject
                                     //and in a ini file
         string						mProcessName;
         double			            mDwellTime;
+        Timestamp					mStartTime;
+        Timestamp					mEndTime;
+        Poco::Timespan 				mTimeOut;
 };
 
 

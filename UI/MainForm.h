@@ -79,7 +79,6 @@ class TMain : public TRegistryForm
 	TScrollBox *ScrollBox1;
 	TXYZUnitFrame *TXYZUnitFrame1;
 	TXYZUnitFrame *TXYZUnitFrame2;
-	TMotorFrame *TMotorFrame1;
 	TTabSheet *TabSheet2;
 	TGroupBox *JoyStickGB2;
 	TFloatLabeledEdit *mZJogAccelerationJoystick;
@@ -98,7 +97,6 @@ class TMain : public TRegistryForm
 	TBitBtn *BitBtn2;
 	TButton *AddJsSettingBtn;
 	TFloatLabeledEdit *mCameraAngleEdit;
-	TMotorFrame *TMotorFrame2;
 	TFloatLabeledEdit *mAngleControlVelE;
 	TFloatLabeledEdit *mAngleControllerAccE;
 	TButton *Button1;
@@ -120,6 +118,7 @@ class TMain : public TRegistryForm
 	TComboBox *LogLevelCB;
 	TSpeedButton *mAboutBtn;
 	TTabSheet *mMoveSequencesPage;
+	TTimer *WaitForDeviceInitTimer;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -153,6 +152,7 @@ class TMain : public TRegistryForm
 	void __fastcall mLiftCBChange(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
+	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
 
     private:
         TThreadMethod                   logMsgMethod;

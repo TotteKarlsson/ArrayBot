@@ -4,7 +4,7 @@
 #include "abABObject.h"
 #include "abXYZUnit.h"
 #include "abArrayBotJoyStick.h"
-#include "abAngleController.h"
+//#include "abAngleController.h"
 #include "abPairedMoves.h"
 #include "abJoyStickSettings.h"
 
@@ -36,8 +36,8 @@ class AB_CORE ArrayBot : public ABObject
         bool						isActive();
         bool						isShuttingDown();
 
-		AngleController&			getCoverSlipAngleController();
-		AngleController&			getCameraAngleController();
+		APTMotor*					getCoverSlipAngleController();
+		APTMotor*					getCameraAngleController();
 
     	PairedMoves&	 			getLiftMoves(){return mLifts;}
 
@@ -54,10 +54,6 @@ class AB_CORE ArrayBot : public ABObject
 
         XYZUnit						mCoverSlip;
         XYZUnit						mWhisker;
-
-        AngleController				mCoverSlipAngleController;
-
-        AngleController				mCameraAngleController;
 
         							//!List of Lifts
         PairedMoves					mLifts;

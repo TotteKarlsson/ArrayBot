@@ -9,6 +9,7 @@
 #include "mtkINIFile.h"
 #include "abPositions.h"
 #include "abProcessSequencer.h"
+//#include "abAngleController.h"
 //---------------------------------------------------------------------------
 
 class APTMotor;
@@ -40,11 +41,14 @@ class AB_CORE XYZUnit : public ABObject
 		APTMotor*			    getXMotor();
 		APTMotor*			    getYMotor();
 		APTMotor*			    getZMotor();
+//        AngleController&		getAngleController();
+        APTMotor*				getAngleMotor();
         APTMotor*				getMotorWithName(const string& name);
 
         Property<int>		    mXMotorSerialNr;
         Property<int>		    mYMotorSerialNr;
         Property<int>		    mZMotorSerialNr;
+	    Property<int>		    mAngleMotorSerialNr;
 
         						//TODO: move the devicemanager to ArrayBot and
                                 //use a reference for each class that needs to use it
@@ -64,6 +68,8 @@ class AB_CORE XYZUnit : public ABObject
         APTMotor*			    mXMotor;
         APTMotor*			    mYMotor;
         APTMotor*			    mZMotor;
+        APTMotor*			    mAngleMotor;
+
 
         ArrayBotJoyStick*       mJoyStick;
         Positions				mPositions;

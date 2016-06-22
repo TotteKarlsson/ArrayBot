@@ -25,6 +25,7 @@ class TXYZUnitFrame : public TFrame
         TMotorFrame*		mXMotorFrame;
         TMotorFrame*		mYMotorFrame;
         TMotorFrame*		mZMotorFrame;
+        TMotorFrame*		mAngleMotorFrame;
 
     public:		// User declarations
         __fastcall 			TXYZUnitFrame(TComponent* Owner);

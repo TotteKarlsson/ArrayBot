@@ -55,9 +55,6 @@ Coordinates=134,107,109,51
 [mXYJogAccelerationJoystick]
 Coordinates=554,1,158,51
 
-[TMotorFrame2]
-Coordinates=661,462,85,33
-
 [mLiftCB]
 Coordinates=0,0,84,87
 
@@ -81,9 +78,6 @@ Coordinates=234,195,58,51
 
 [mJSSpeedFastBtn]
 Coordinates=944,209,105,33
-
-[TMotorFrame1]
-Coordinates=345,462,85,33
 
 [BitBtn2]
 Coordinates=25,106,50,51

@@ -1,1 +1,9 @@
-﻿
+﻿[ScrollBox1]
+Coordinates=53,70,68,33
+
+[TopPanel]
+Coordinates=72,1,60,51
+
+[mainGB]
+Coordinates=0,0,53,51
+
