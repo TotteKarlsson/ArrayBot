@@ -28,9 +28,6 @@ Coordinates=13,232,46,51
 [GroupBox1]
 Coordinates=337,302,70,51
 
-[mMovePositionLabel]
-Coordinates=476,71,117,51
-
 [mStartBtn]
 Coordinates=151,232,64,51
 
@@ -46,12 +43,18 @@ Coordinates=211,71,65,51
 [MotorsCB]
 Coordinates=98,107,84,87
 
-[mDwellTimeE]
-Coordinates=211,1,81,51
-
 [mSaveSequenceBtn]
 Coordinates=476,1,113,51
 
 [mStatusLbl]
 Coordinates=288,321,70,51
+
+[]
+Coordinates=476,71,117,51
+
+[mPostDwellTimeE]
+Coordinates=211,1,103,51
+
+[mPreDwellTimeE]
+Coordinates=476,71,97,51
 

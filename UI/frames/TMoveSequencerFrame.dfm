@@ -82,14 +82,14 @@ object MoveSequencerFrame: TMoveSequencerFrame
         Text = '0.0'
         OnKeyDown = moveParEdit
       end
-      object mDwellTimeE: TFloatLabeledEdit
-        Left = 15
+      object mPostDwellTimeE: TFloatLabeledEdit
+        Left = 119
         Top = 167
         Width = 65
         Height = 21
-        EditLabel.Width = 74
+        EditLabel.Width = 98
         EditLabel.Height = 13
-        EditLabel.Caption = 'Dwell Time (ms)'
+        EditLabel.Caption = 'Post Dwell Time (ms)'
         TabOrder = 3
         Text = '0.0'
         OnKeyDown = moveParEdit
@@ -103,18 +103,17 @@ object MoveSequencerFrame: TMoveSequencerFrame
         Text = 'Select Motor'
         OnChange = MotorsCBChange
       end
-      object mMovePositionLabel: TSTDStringLabeledEdit
-        Left = 71
-        Top = 79
-        Width = 90
+      object mPreDwellTimeE: TFloatLabeledEdit
+        Left = 16
+        Top = 167
+        Width = 65
         Height = 21
-        EditLabel.Width = 67
+        EditLabel.Width = 93
         EditLabel.Height = 13
-        EditLabel.Caption = 'Position Name'
+        EditLabel.Caption = 'Pre Dwell Time (ms)'
         TabOrder = 5
-        Text = 'PositionName'
+        Text = '0.0'
         OnKeyDown = moveParEdit
-        Value = 'PositionName'
       end
     end
     object mStartBtn: TButton

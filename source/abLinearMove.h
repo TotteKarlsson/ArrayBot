@@ -30,12 +30,14 @@ class AB_CORE LinearMove : public Process
         ab::Position&	            getPosition(){return mPosition;}
         double			            getMaxVelocity(){return mMaxVelocity;}
         double			            getAcceleration(){return mAcceleration;}
-        double			            getDwellTime(){return mDwellTime;}
+        double			            getPostDwellTime(){return mPostDwellTime;}
+        double			            getPreDwellTime(){return mPreDwellTime;}
 
         bool 			            setPosition(const ab::Position& pos){mPosition = pos; return true;}
         bool			            setMaxVelocity(double v){mMaxVelocity = v; return true;}
         bool			            setAcceleration(double a){mAcceleration = a; return true;}
-        bool			            setDwellTime(double dt){mDwellTime = dt; return true;}
+        bool			            setPostDwellTime(double dt){mPostDwellTime = dt; return true;}
+        bool			            setPreDwellTime(double dt){mPreDwellTime = dt; return true;}
 
         string			            getPositionName(){return mPosition.getLabel();}
         void			            setPositionName(const string& l){mPosition.setLabel(l);}

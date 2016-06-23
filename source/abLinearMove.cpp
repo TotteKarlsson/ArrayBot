@@ -61,7 +61,8 @@ bool LinearMove::write(IniSection* sec)
     key = sec->createKey("POSITION_NAME",  	getPosition().getLabel());
     key = sec->createKey("MAX_VELOCITY", 	toString(getMaxVelocity()));
     key = sec->createKey("ACCELERATION", 	toString(getAcceleration()));
-    key = sec->createKey("DWELL_TIME",   	toString(getDwellTime()));
+    key = sec->createKey("PRE_DWELL_TIME",   	toString(getPreDwellTime()));
+    key = sec->createKey("POST_DWELL_TIME",   	toString(getPostDwellTime()));
     return true;
 }
 
@@ -109,10 +110,16 @@ bool LinearMove::read(IniSection* sec)
         mAcceleration = key->asFloat();
     }
 
-    key = sec->getKey("DWELL_TIME", true);
+    key = sec->getKey("PRE_DWELL_TIME", true);
     if (key)
     {
-		mDwellTime = key->asFloat();
+		mPreDwellTime = key->asFloat();
+    }
+
+    key = sec->getKey("POST_DWELL_TIME", true);
+    if (key)
+    {
+		mPostDwellTime = key->asFloat();
     }
 
     return true;

@@ -53,7 +53,7 @@ void ProcessSequencer::runThreaded()
         }
         else if(p->isDone() == true )
         {
-        	sleep(p->getDwellTime());
+        	sleep(p->getPostDwellTime());
         	forward();
         }
         else if(p->isTimedOut())

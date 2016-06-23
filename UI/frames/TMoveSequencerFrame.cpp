@@ -260,10 +260,9 @@ void __fastcall TMoveSequencerFrame::mMovesLBClick(TObject *Sender)
     if(move)
     {
     	mMovePosE->setValue(move->getPosition().x());
-    	mMovePositionLabel->setValue(move->getPositionName());
         mMaxVelE->setValue(move->getMaxVelocity());
         mAccE->setValue(move->getAcceleration());
-        mDwellTimeE->setValue(move->getDwellTime());
+        mPostDwellTimeE->setValue(move->getPostDwellTime());
 
         APTMotor* mtr = dynamic_cast<APTMotor*>(move->getUnit());
         if(!mtr)
@@ -301,8 +300,8 @@ void __fastcall TMoveSequencerFrame::moveParEdit(TObject *Sender, WORD &Key,
     move->setPosition(p);
     move->setMaxVelocity(mMaxVelE->getValue());
     move->setAcceleration(mAccE->getValue());
-    move->setDwellTime(mDwellTimeE->getValue());
-  	move->setPositionName(mMovePositionLabel->getValue().c_str());
+    move->setPostDwellTime(mPostDwellTimeE->getValue());
+    move->setPreDwellTime(mPreDwellTimeE->getValue());
 
     saveSequence();
 }

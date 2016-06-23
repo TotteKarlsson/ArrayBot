@@ -32,8 +32,11 @@ class AB_CORE Process : public ABObject
         void						setProcessName(const string& l) {mProcessName = l;}
         bool						isTimedOut();
 
-        double			            getDwellTime(){return mDwellTime;}
-        bool			            setDwellTime(double dt){mDwellTime = dt; return true;}
+        double			            getPostDwellTime(){return mPostDwellTime;}
+        bool			            setPostDwellTime(double dt){mPostDwellTime = dt; return true;}
+
+        double			            getPreDwellTime(){return mPreDwellTime;}
+        bool			            setPreDwellTime(double dt){mPreDwellTime = dt; return true;}
 
         virtual bool	            isActive() 	= 0;
         virtual bool	            execute() 	= 0;
@@ -61,7 +64,8 @@ class AB_CORE Process : public ABObject
         							//!The Label identifies the process in a sequence
                                     //and in a ini file
         string						mProcessName;
-        double			            mDwellTime;
+        double			            mPreDwellTime;
+        double			            mPostDwellTime;
         Timestamp					mStartTime;
         Timestamp					mEndTime;
         Poco::Timespan 				mTimeOut;

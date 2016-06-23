@@ -24,9 +24,8 @@ __published:	// IDE-managed Components
 	TFloatLabeledEdit *mMovePosE;
 	TFloatLabeledEdit *mMaxVelE;
 	TFloatLabeledEdit *mAccE;
-	TFloatLabeledEdit *mDwellTimeE;
+	TFloatLabeledEdit *mPostDwellTimeE;
 	TComboBox *MotorsCB;
-	TSTDStringLabeledEdit *mMovePositionLabel;
 	TButton *mStartBtn;
 	TListBox *mMovesLB;
 	TComboBox *mSequencesCB;
@@ -37,6 +36,7 @@ __published:	// IDE-managed Components
 	TButton *mDeleteMoveBtn;
 	TTimer *mSequenceStatusTimer;
 	TLabel *mStatusLbl;
+	TFloatLabeledEdit *mPreDwellTimeE;
 	void __fastcall mAddMoveBtnClick(TObject *Sender);
 	void __fastcall mDeleteMoveBtnClick(TObject *Sender);
 	void __fastcall mDeleteSequenceBtnClick(TObject *Sender);

@@ -6,7 +6,8 @@ Process::Process(const string& lbl, ABObject* o)
 :
 mUnit(o),
 mProcessName(lbl),
-mDwellTime(0),
+mPreDwellTime(0),
+mPostDwellTime(0),
 mTimeOut(60*Poco::Timespan::SECONDS)
 {}
 
