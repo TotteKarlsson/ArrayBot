@@ -71,6 +71,7 @@ class AB_CORE APTMotor : public APTDevice
         virtual void		                jogReverse(bool inThread = true) = 0;
         virtual bool	                    setJogVelocity(double v) = 0;
         virtual bool	                    setJogAcceleration(double a) = 0;
+        virtual bool						setJogMoveParameters(double v, double a);
 
         virtual void		                forward(bool inThread = true) = 0;
         virtual void		                reverse(bool inThread = true) = 0;

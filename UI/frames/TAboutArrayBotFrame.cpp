@@ -39,11 +39,6 @@ void TAboutArrayBotFrame::populate()
     versionLabel->Caption = String("Version: ") + versionMajorMinorPatch;
 }
 
-void TAboutArrayBotFrame::serialKeyEnteringObjectsVisible(bool setVisibility)
-{
-}
-
-
 //---------------------------------------------------------------------------
 void __fastcall TAboutArrayBotFrame::checkForUpdateAExecute(TObject *Sender)
 {

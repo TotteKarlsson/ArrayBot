@@ -25,6 +25,7 @@ class AB_CORE ArrayBotJoyStick : public ABObject
     	JoyStickAxis&		        getX2Axis();
     	JoyStickAxis&		        getY1Axis();
     	JoyStickAxis&		        getY2Axis();
+        bool						setAxesMaxVelocity(double maxV);
 
 		JoyStickButton&		        getButton(int nr);
 		JoyStickButton&		        getPOVButton(int nr);

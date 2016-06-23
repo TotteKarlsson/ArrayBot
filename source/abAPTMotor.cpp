@@ -47,6 +47,13 @@ bool APTMotor::applyProperties()
     return true;
 }
 
+bool APTMotor::setJogMoveParameters(double v, double a)
+{
+	bool res1 = setJogVelocity(v);
+	bool res2 = setJogAcceleration(a);
+    return res1 && res2;
+}
+
 bool APTMotor::switchDirection(bool inThread)
 {
 	//The forward/reverse bits don't work so this function is disabled until they do

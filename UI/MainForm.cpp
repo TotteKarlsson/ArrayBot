@@ -99,8 +99,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	setupWindowTitle();
 	gAppIsStartingUp = false;
 
-	//Tell the splash screen to go away
-	Application->ProcessMessages();
 	TMemoLogger::mMemoIsEnabled = true;
 	gSplashForm->mMainAppIsRunning = true;
 
@@ -207,7 +205,6 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
         sfWH->init();
     }
 }
-
 
 void __fastcall TMain::initBotAExecute(TObject *Sender)
 {
@@ -381,6 +378,7 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
 void __fastcall TMain::Button1Click(TObject *Sender)
 {
 	mAB->writeINIParameters();
+    mIniFile.save();
 }
 
 //---------------------------------------------------------------------------

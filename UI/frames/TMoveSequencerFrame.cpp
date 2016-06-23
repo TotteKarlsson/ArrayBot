@@ -191,9 +191,9 @@ void __fastcall TMoveSequencerFrame::mStartBtnClick(TObject *Sender)
 	TButton* btn = (TButton*)Sender;
     if(btn->Caption == "Start")
     {
-   		if(mAB)
+    	if(mAB)
         {
-	        mAB->disableJoyStick();
+        	mAB->disableJoyStick();
         }
 
     	mMoveSequencer.start(true);
@@ -353,12 +353,14 @@ void __fastcall TMoveSequencerFrame::mSequenceTimerTimer(TObject *Sender)
     }
     else
     {
-    	mStartBtn->Caption = "Start";
-		if(mAB && !mAB->getJoyStick().isEnabled())
+		mSequenceStatusTimer->Enabled = false;
+    	if(mAB)
         {
-	        mAB->enableJoyStick();
+        	mAB->enableJoyStick();
         }
-        mStatusLbl->Caption = "Idle";
+
+    	mStartBtn->Caption = "Start";
+	  	mStatusLbl->Caption = "Idle";
     }
 }
 

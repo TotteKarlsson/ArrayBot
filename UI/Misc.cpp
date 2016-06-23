@@ -145,18 +145,11 @@ void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift
     }
 }
 
-void __fastcall CSAngleButtonDownLeftClick(TObject *Sender)
-{}
-
-void __fastcall CSAngleButtonUpRightClick(TObject *Sender)
-{}
-
 void TMain::setupWindowTitle()
 {
 	string title = createWindowTitle("ArrayBot", Application);
 	this->Caption = vclstr(title);
 }
-
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 {
@@ -182,6 +175,3 @@ BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 
 	return TRUE;
 }
-
-
-
