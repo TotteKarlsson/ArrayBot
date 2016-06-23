@@ -11,14 +11,23 @@
 axes are named to reflect the ArrayBot setup. The mechanism for reacting to
 physical JoyStick events are mediated by the JoyStickMessageDispather classes.
 */
+typedef void (__closure *JoyStickEvent)();
 
 class AB_CORE ArrayBotJoyStick : public ABObject
 {
+	friend JoyStickMessageDispatcher;
     public:
 							        ArrayBotJoyStick();
 							        ~ArrayBotJoyStick();
+
 		bool				        enable();
         bool				        disable();
+
+        bool						disableCoverSlipAxes();
+        bool						enableCoverSlipAxes();
+
+        bool						disableWhiskerAxes();
+        bool						enableWhiskerAxes();
 
         bool				        isEnabled();
     	JoyStickAxis&		        getX1Axis();
@@ -33,6 +42,8 @@ class AB_CORE ArrayBotJoyStick : public ABObject
 
     protected:
         bool				        mEnabled;
+ 		bool						mCoverSlipAxesEnabled;
+ 		bool						mWhiskerAxesEnabled;
 
 		JoyStickMessageDispatcher 	mJSMessageDispatcher;
 

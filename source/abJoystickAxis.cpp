@@ -24,6 +24,13 @@ JoyStickAxis::JoyStickAxis()
 JoyStickAxis::~JoyStickAxis()
 {}
 
+void JoyStickAxis::setup(APTMotor* motor, double vel, double acc)
+{
+    assignMotor(motor);
+    setMaxVelocity(vel);
+    setAcceleration(acc);
+}
+
 void JoyStickAxis::setSenseOfDirection(int sign)
 {
 	mSenseOfDirection = sign;

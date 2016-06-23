@@ -36,6 +36,7 @@ using mtk::IniFileProperties;
 
 typedef void __fastcall (__closure *callback)(void);
 
+class TMoveSequencerFrame;
 class InitBotThread : public mtk::Thread
 {
 	public:
@@ -86,8 +87,6 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mMaxZJogVelocityJoystick;
 	TFloatLabeledEdit *mMaxXYJogVelocityJoystick;
 	TComboBox *JoyStickSettingsCB;
-	TButton *Button2;
-	TButton *Button3;
 	TBitBtn *BitBtn1;
 	TBitBtn *InitCloseBtn;
 	TTabSheet *TabSheet5;
@@ -119,6 +118,11 @@ class TMain : public TRegistryForm
 	TSpeedButton *mAboutBtn;
 	TTabSheet *mMoveSequencesPage;
 	TTimer *WaitForDeviceInitTimer;
+	TPanel *Panel1;
+	TButton *Button2;
+	TButton *Button3;
+	TButton *Button4;
+	TButton *Button6;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -145,7 +149,6 @@ class TMain : public TRegistryForm
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mXYCtrlRGClick(TObject *Sender);
-	void __fastcall Button4Click(TObject *Sender);
 	void __fastcall mLiftTimerTimer(TObject *Sender);
 	void __fastcall abortLiftAExecute(TObject *Sender);
 	void __fastcall liftAExecute(TObject *Sender);
@@ -153,6 +156,8 @@ class TMain : public TRegistryForm
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
+	void __fastcall Button4Click(TObject *Sender);
+	void __fastcall Button6Click(TObject *Sender);
 
     private:
         TThreadMethod                   logMsgMethod;
@@ -172,6 +177,9 @@ class TMain : public TRegistryForm
                                         //!constructor
         ArrayBot*					    mAB;
 		PairedMove* 				    getCurrentPairedMove();
+
+        TMoveSequencerFrame*			mCoverSlipProcessSequencerFrame;
+        TMoveSequencerFrame*			mWhiskerProcessSequencerFrame;
 
 		void __fastcall		            OnException();
         void						    onJSButton5Click();

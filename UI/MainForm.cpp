@@ -58,14 +58,16 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
     mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
     mLogLevel(lAny),
-    mInitBotThread()
+    mInitBotThread(),
+    mCoverSlipProcessSequencerFrame(NULL),
+    mWhiskerProcessSequencerFrame(NULL)
 {
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
 
     try
     {
-		mAB = new ArrayBot(mIniFile);
+		mAB = new ArrayBot(mIniFile, gAppDataFolder);
     }
     catch(const ABException& e)
     {
@@ -193,16 +195,16 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
         }
 
         //    //Create MoveSequencer frames
-        TMoveSequencerFrame* sfCS = new TMoveSequencerFrame(&(mAB->getCoverSlipUnit()), mAB, mMoveSequencesPage);
-        sfCS->Parent = mMoveSequencesPage;
-        sfCS->Align = alLeft;
-        sfCS->init();
+        mCoverSlipProcessSequencerFrame = new TMoveSequencerFrame(&(mAB->getCoverSlipUnit()), mAB, mMoveSequencesPage);
+        mCoverSlipProcessSequencerFrame->Parent = mMoveSequencesPage;
+        mCoverSlipProcessSequencerFrame->Align = alLeft;
+        mCoverSlipProcessSequencerFrame->init();
 
         //Create MoveSequencer frames
-        TMoveSequencerFrame* sfWH = new TMoveSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
-        sfWH->Parent = mMoveSequencesPage;
-        sfWH->Align = alClient;
-        sfWH->init();
+        mWhiskerProcessSequencerFrame = new TMoveSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
+        mWhiskerProcessSequencerFrame->Parent = mMoveSequencesPage;
+        mWhiskerProcessSequencerFrame->Align = alClient;
+        mWhiskerProcessSequencerFrame->init();
     }
 }
 
@@ -268,7 +270,27 @@ void __fastcall TMain::Button3Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::stowBtnClick(TObject *Sender)
 {
-	mAB->stow();
+	if(mWhiskerProcessSequencerFrame)
+    {
+    	int idx = mWhiskerProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 1");
+        if(idx != -1)
+        {
+			mWhiskerProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
+            mWhiskerProcessSequencerFrame->mSequencesCB->OnChange(NULL);
+            mWhiskerProcessSequencerFrame->mStartBtnClick(NULL);
+        }
+    }
+
+	if(mCoverSlipProcessSequencerFrame)
+    {
+    	int idx = mCoverSlipProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 1");
+        if(idx != -1)
+        {
+			mCoverSlipProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
+            mCoverSlipProcessSequencerFrame->mSequencesCB->OnChange(NULL);
+            mCoverSlipProcessSequencerFrame->mStartBtnClick(NULL);
+        }
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -479,12 +501,6 @@ void TMain::onJSButton14Click()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::Button4Click(TObject *Sender)
-{
-	onJSButton5Click();
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::mLiftTimerTimer(TObject *Sender)
 {
 	if(mAB->isActive())
@@ -619,5 +635,55 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 	}
 }
 
+void __fastcall TMain::Button4Click(TObject *Sender)
+{
+	if(mWhiskerProcessSequencerFrame)
+    {
+    	int idx = mWhiskerProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 2");
+        if(idx != -1)
+        {
+			mWhiskerProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
+            mWhiskerProcessSequencerFrame->mSequencesCB->OnChange(NULL);
+            mWhiskerProcessSequencerFrame->mStartBtnClick(NULL);
+        }
+    }
+
+	if(mCoverSlipProcessSequencerFrame)
+    {
+    	int idx = mCoverSlipProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 2");
+        if(idx != -1)
+        {
+			mCoverSlipProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
+            mCoverSlipProcessSequencerFrame->mSequencesCB->OnChange(NULL);
+            mCoverSlipProcessSequencerFrame->mStartBtnClick(NULL);
+        }
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::Button6Click(TObject *Sender)
+{
+	if(mWhiskerProcessSequencerFrame)
+    {
+    	int idx = mWhiskerProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 3");
+        if(idx != -1)
+        {
+			mWhiskerProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
+            mWhiskerProcessSequencerFrame->mSequencesCB->OnChange(NULL);
+            mWhiskerProcessSequencerFrame->mStartBtnClick(NULL);
+        }
+    }
+
+	if(mCoverSlipProcessSequencerFrame)
+    {
+    	int idx = mCoverSlipProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 3");
+        if(idx != -1)
+        {
+			mCoverSlipProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
+            mCoverSlipProcessSequencerFrame->mSequencesCB->OnChange(NULL);
+            mCoverSlipProcessSequencerFrame->mStartBtnClick(NULL);
+        }
+    }
+}
 
 

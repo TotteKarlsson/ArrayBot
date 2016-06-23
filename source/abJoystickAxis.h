@@ -15,6 +15,7 @@ class AB_CORE JoyStickAxis : public ABObject
     public:
 							            JoyStickAxis();
 							            ~JoyStickAxis();
+		void							setup(APTMotor* motor, double vel, double acc);
 		void				            enable();
    		void				            disable();
 		bool				            isEnabled();

@@ -10,12 +10,15 @@
 #include <utility>
 #include <deque>
 
+
 using mtk::Timer;
 using std::deque;
 typedef deque<JoyStickButtonStateEventDispatcher> ButtonDeque;
 typedef JoyStickAxisStateEventDispatcher JSAxis;
 typedef JoyStickPOVStateEventDispatcher JSPOV; //!Point of view dispatcher
 
+
+class ArrayBotJoyStick;
 
 /*!The JoyStickMessageDispatcher is tailor made for the ArrayBot. The dispatcher
 uses the right side of a PS3 joystick for the right side of the ArrayBot, and
@@ -25,7 +28,7 @@ used for x-y motions for the left (whisker) side of the Arraybot.
 class AB_CORE JoyStickMessageDispatcher : public ABObject
 {
 	public:
-                                        JoyStickMessageDispatcher(int nrOfButtons);
+                                        JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons);
 					                    ~JoyStickMessageDispatcher();
 			void				        setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
 			void				        setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
@@ -40,6 +43,7 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
             void				        disable();
 
 	private:
+		    ArrayBotJoyStick&			mJoyStick;
             int 				        mJoyStickID;
             bool				        mEnabled;
 
@@ -52,8 +56,10 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
 
 			ButtonDeque 		        mButtons;
 
+            							//
             JSAxis		        		mX1Axis;
             JSAxis		        		mY1Axis;
+
             JSAxis		        		mX2Axis;
             JSAxis		        		mY2Axis;
             JSPOV						mPOV;

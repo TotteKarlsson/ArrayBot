@@ -1,5 +1,6 @@
 #pragma hdrstop
 #include "abJoyStickMessageDispatcher.h"
+#include "abArrayBotJoyStick.h"
 #include <bitset>
 #include "mtkLogger.h"
 #include "abExceptions.h"
@@ -8,8 +9,9 @@
 using namespace std;
 using namespace mtk;
 
-JoyStickMessageDispatcher::JoyStickMessageDispatcher(int nrOfButtons)
+JoyStickMessageDispatcher::JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons)
 :
+mJoyStick(js),
 mEnabled(false),
 mCanEnable(false),
 mMoveResolution(100),
@@ -120,44 +122,30 @@ void JoyStickMessageDispatcher::refresh()
     }
 
     //Check X1 Axis
-//    if(abs((int) (mX1Axis.mPosition - mJoyInfo.dwXpos)) > mMoveResolution)
+    if(mJoyStick.mCoverSlipAxesEnabled && mX1Axis.mEvent)
     {
-    	if(mX1Axis.mEvent)
-        {
-            mX1Axis.mEvent(mJoyInfo.dwXpos);
-        }
-        mX1Axis.mPosition = mJoyInfo.dwXpos;
+        mX1Axis.mEvent(mJoyInfo.dwXpos);
     }
 
-    //Check Y1 Axis
-//    if(abs((int) (mY1Axis.mPosition - mJoyInfo.dwYpos)) > mMoveResolution)
-    {
-    	if(mY1Axis.mEvent)
-        {
-            mY1Axis.mEvent(mJoyInfo.dwYpos);
-        }
-        mY1Axis.mPosition = mJoyInfo.dwYpos;
-    }
+    mX1Axis.mPosition = mJoyInfo.dwXpos;
 
-    //Check X2 Axis  (Z - axis in API struc)
-//    if(abs((int) (mX2Axis.mPosition - mJoyInfo.dwZpos)) > mMoveResolution)
+    if(mJoyStick.mCoverSlipAxesEnabled && mY1Axis.mEvent)
     {
-    	if(mX2Axis.mEvent)
-        {
-            mX2Axis.mEvent(mJoyInfo.dwZpos);
-        }
-        mX2Axis.mPosition = mJoyInfo.dwZpos;
+        mY1Axis.mEvent(mJoyInfo.dwYpos);
     }
+    mY1Axis.mPosition = mJoyInfo.dwYpos;
 
-    //Check Y2 Axis
-//    if(abs((int) (mY2Axis.mPosition - mJoyInfo.dwRpos)) > mMoveResolution)
+    if(mJoyStick.mWhiskerAxesEnabled && mX2Axis.mEvent)
     {
-    	if(mY2Axis.mEvent)
-        {
-            mY2Axis.mEvent(mJoyInfo.dwRpos);
-        }
-        mY2Axis.mPosition = mJoyInfo.dwRpos;
+        mX2Axis.mEvent(mJoyInfo.dwZpos);
     }
+    mX2Axis.mPosition = mJoyInfo.dwZpos;
+
+    if(mJoyStick.mWhiskerAxesEnabled && mY2Axis.mEvent)
+    {
+        mY2Axis.mEvent(mJoyInfo.dwRpos);
+    }
+    mY2Axis.mPosition = mJoyInfo.dwRpos;
 
     //Process retrieved buttons states
     bitset<32> buttonStates(mJoyInfo.dwButtons);
@@ -188,7 +176,6 @@ void JoyStickMessageDispatcher::refresh()
     if(mJoyInfo.dwPOV != mPOV.mPOVState)
     {
         Log(lDebug5) << "POV State changed";
-
 
         //Get out of old state
     	switch(mPOV.mPOVState)

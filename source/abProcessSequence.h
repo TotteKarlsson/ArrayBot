@@ -4,10 +4,15 @@
 #include "abABObject.h"
 #include <list>
 #include <string>
+#include "mtkINISection.h"
+#include "mtkProperty.h"
+
 
 //---------------------------------------------------------------------------
 using std::list;
 using std::string;
+using mtk::IniSection;
+using mtk::Property;
 class Process;
 
 class AB_CORE ProcessSequence : public ABObject
@@ -34,9 +39,11 @@ class AB_CORE ProcessSequence : public ABObject
         void								setFileExtension(const string& e) {mFileExtension = e;}
         void								setFileFolder(const string& f) {mFileFolder = f;}
         string 								getFileFolder() {return mFileFolder;}
+        Property<string>					mName;
+
 
     protected:
-  		string					        	mName;
+        IniSection							mIniSection;
         string								mFileExtension;
         string								mFileFolder;
 

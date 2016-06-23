@@ -9,36 +9,40 @@
 using mtk::Timer;
 class LinearMove;
 //---------------------------------------------------------------------------
-typedef void (__closure *MyOnTimerCFPtr)(); //Need to research this and make it portable
+typedef void (__closure *MyOnTimerCFPtr)();
 
 class AB_CORE ProcessSequencer : public ABObject
 {
 	public:
-			      	        ProcessSequencer();
-                  	        ~ProcessSequencer(){}
-		bool				assignUnit(ABObject* o);
-		bool				load(const string& seqFName);
-		bool				save(const string& folder);
-		void				clear();
-		void		        start(bool continous = true);
-		void		        forward();
-        void		        reverse();
-        void		        stop();
-        bool				isRunning();
-        bool				isProcessActive();
-        void		        addProcess(Process* p);
-        bool		        removeProcess(Process* p);
-        bool		        removeProcess(const string& name);
-        string				getCurrentProcessName();
+			      	                ProcessSequencer();
+                  	                ~ProcessSequencer(){}
+		bool				        assignUnit(ABObject* o);
+		bool				        load(const string& seqFName);
+		bool				        save(const string& folder);
+		void				        clear();
+		void		                start(bool continous = true);
+		void		                forward();
+        void		                reverse();
+        void		                stop();
+        bool				        isRunning();
+        bool				        isProcessActive();
+        void		                addProcess(Process* p);
+        bool		                removeProcess(Process* p);
+        bool		                removeProcess(const string& name);
+        string				        getCurrentProcessName();
 
-        ProcessSequence&   	getSequence(){return mSequence;}
+        ProcessSequence&   	        getSequence(){return mSequence;}
 
 	private:
-    	ProcessSequence		mSequence;
-        bool				mRunContinous;
-        Timer				mSequenceTimer;
-		void			    runThreaded();
-		MyOnTimerCFPtr	    inThreadCB;
+    	ProcessSequence		        mSequence;
+
+        							//!ExecuteAutomatic executes individual processes
+                                    //!in sequence. If set false, each sequence need to be
+                                    //!manually executed using the forward() function
+        bool				        mExecuteAutomatic;
+        Timer				        mSequenceTimer;
+		void			            runThreaded();
+		MyOnTimerCFPtr	            inThreadCB;
 };
 
 #endif

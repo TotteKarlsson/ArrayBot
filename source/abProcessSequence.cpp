@@ -57,6 +57,11 @@ bool ProcessSequence::read(const string& fName)
             	Log(lError) <<"Failed reading process: "<<sec->mName;
             }
         }
+        else if ((key = sec->getKey("NAME") ), key != NULL)
+        {
+        	mName = key->mValue;
+        }
+
 
         //Get next section
         sec = f.getSection(++count);
@@ -69,6 +74,10 @@ bool ProcessSequence::write(const string& folder)
 	//Save to file
     string fullFName = joinPath(folder, mName + "." + mFileExtension);
 	IniFile f(fullFName);
+
+    //Save some info about the Process Sequence
+    IniSection* genSec = f.createSection("SEQUENCE_INFO");
+    genSec->createKey("NAME", mName);
 
     Process* process = getFirst();
     int count = 1;

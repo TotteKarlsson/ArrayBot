@@ -24,18 +24,18 @@ USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
-extern string 		gApplicationRegistryRoot  = "\\Software\\Allen Institute\\ArrayBot\\0.5.0";
-extern string 		gAppDataFolder = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
+extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArrayBot\\0.5.0";
+extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 static HWND         gOtherAppWindow             = NULL;
 extern string       gDefaultAppTheme            = "Iceberg Classico";
-extern string       gRestartMutexName           = "AmalyticoRestartMutex";
+extern string       gRestartMutexName           = "arrayBotRestartMutex";
 extern string       gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
 extern string       gDateFormat                 = "%Y-%m-%d";
 extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
-extern bool         gHideSplash                 = false;
+extern bool         gHideSplash                 = true;
 extern TSplashForm* gSplashForm                 = NULL;
 //extern SQLite       gDB                         ;
 
@@ -127,7 +127,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	return 0;
 }
 
-
 //---------------------------------------------------------------------------
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "mtkMath.lib")
@@ -135,5 +134,3 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "VCLCommon.bpi")
 #pragma comment(lib, "DuneForms.lib")
-
-

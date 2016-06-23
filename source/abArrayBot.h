@@ -4,16 +4,14 @@
 #include "abABObject.h"
 #include "abXYZUnit.h"
 #include "abArrayBotJoyStick.h"
-//#include "abAngleController.h"
 #include "abPairedMoves.h"
 #include "abJoyStickSettings.h"
-
 //---------------------------------------------------------------------------
 
 class AB_CORE ArrayBot : public ABObject
 {
     public:
-									ArrayBot(IniFile& ini);
+									ArrayBot(IniFile& ini, const string& appFolder);
 									~ArrayBot();
 
 		void 						initialize();
@@ -47,8 +45,8 @@ class AB_CORE ArrayBot : public ABObject
 
     private:
         bool						mIsShuttingDown;
+        string						mAppDataFolder;
         IniFile&					mIniFile;
-
         ArrayBotJoyStick			mJoyStick;
         JoyStickSettings			mJSSettings;
 
@@ -57,7 +55,6 @@ class AB_CORE ArrayBot : public ABObject
 
         							//!List of Lifts
         PairedMoves					mLifts;
-
 };
 
 #endif

@@ -6,8 +6,9 @@
 
 //---------------------------------------------------------------------------
 using namespace mtk;
-XYZUnit::XYZUnit(const string& name, IniFile& iniFile)
+XYZUnit::XYZUnit(const string& name, IniFile& iniFile, const string& appFolder)
 :
+mAppDataFolder(appFolder),
 mXMotorSerialNr(-1),
 mYMotorSerialNr(-1),
 mZMotorSerialNr(-1),
@@ -125,6 +126,36 @@ bool XYZUnit::initialize()
 	return true;
 }
 
+bool XYZUnit::enableJSAxes()
+{
+	if(mJoyStick)
+    {
+    	if(mName == "COVERSLIP UNIT")
+        {
+    		mJoyStick->enableCoverSlipAxes();
+        }
+        else if(mName == "WHISKER UNIT")
+        {
+    		mJoyStick->enableWhiskerAxes();
+        }
+    }
+}
+
+bool XYZUnit::disableJSAxes()
+{
+	if(mJoyStick)
+    {
+    	if(mName == "COVERSLIP UNIT")
+        {
+    		mJoyStick->disableCoverSlipAxes();
+        }
+        else if(mName == "WHISKER UNIT")
+        {
+    		mJoyStick->disableWhiskerAxes();
+        }
+    }
+}
+
 void XYZUnit::shutDown()
 {
 	mDeviceManager.disConnectAll();
@@ -137,7 +168,18 @@ void XYZUnit::shutDown()
 }
 
 void XYZUnit::stow()
-{}
+{
+	//The stow function rely on a Process Sequence named "stow"
+    string fName("Sequence 1." + getName());
+	if(mMoveSequencer.load(joinPath(mAppDataFolder, fName)))
+    {
+        mMoveSequencer.assignUnit(this);
+     	Log(lInfo) << "Loaded process sequence: "<<mMoveSequencer.getSequence().getName();
+        mMoveSequencer.start();
+       	Log(lInfo) << "Started sequence: "<<mMoveSequencer.getSequence().getName();
+    }
+
+}
 
 string XYZUnit::getName()
 {
@@ -196,35 +238,22 @@ void XYZUnit::home()
     	Log(lDebug)<<"Homing Z Motor..";
 		mZMotor->home();
     }
-
-    if(mZMotor && mYMotor)
-    {
-        while(mZMotor->isHoming() || mYMotor->isHoming())
-        {
-            sleep(100);
-            Log(lInfo) << "Homing...";
-        }
-    }
 }
 
 void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
 {
-
 	if(!js)
     {
     	return;
     }
 
     mJoyStick = js;
-//    mAngleController.attachJoyStick(mJoyStick);
 
     if(mName == "COVERSLIP UNIT")
     {
         if(mXMotor)
         {
-            mJoyStick->getX1Axis().assignMotor(mXMotor);
-            mJoyStick->getX1Axis().setMaxVelocity(mXMotor->getJogVelocity());
-            mJoyStick->getX1Axis().setAcceleration(mXMotor->getJogAcceleration());
+	        mJoyStick->getX1Axis().setup(mXMotor, mXMotor->getJogVelocity(), mXMotor->getJogAcceleration());
             mJoyStick->getX1Axis().enable();
         }
         else
@@ -234,9 +263,7 @@ void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
 
         if(mYMotor)
         {
-            mJoyStick->getY1Axis().assignMotor(mYMotor);
-            mJoyStick->getY1Axis().setMaxVelocity(mYMotor->getJogVelocity());
-            mJoyStick->getY1Axis().setAcceleration(mYMotor->getJogAcceleration());
+            mJoyStick->getY1Axis().setup(mYMotor, mYMotor->getJogVelocity(), mYMotor->getJogAcceleration());
             mJoyStick->getY1Axis().enable();
         }
         else
@@ -283,9 +310,7 @@ void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
     {
         if(mXMotor)
         {
-            mJoyStick->getX2Axis().assignMotor(mXMotor);
-            mJoyStick->getX2Axis().setMaxVelocity(mXMotor->getJogVelocity());
-            mJoyStick->getX2Axis().setAcceleration(mXMotor->getJogAcceleration());
+            mJoyStick->getX2Axis().setup(mXMotor, mXMotor->getJogVelocity(), mXMotor->getJogAcceleration());
             mJoyStick->getX2Axis().enable();
         }
         else
@@ -295,9 +320,7 @@ void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
 
         if(mYMotor)
         {
-            mJoyStick->getY2Axis().assignMotor(mYMotor);
-            mJoyStick->getY2Axis().setMaxVelocity(mYMotor->getJogVelocity());
-            mJoyStick->getY2Axis().setAcceleration(mYMotor->getJogAcceleration());
+            mJoyStick->getY2Axis().setup(mYMotor, mYMotor->getJogVelocity(), mYMotor->getJogAcceleration());
             mJoyStick->getY2Axis().enable();
         }
         else
@@ -321,7 +344,6 @@ void XYZUnit::attachJoyStick(ArrayBotJoyStick* js)
             mJoyStick->getButton(2).disable();
             mJoyStick->getButton(4).disable();
         }
-
 
         if(mAngleMotor)
         {

@@ -49,6 +49,7 @@ void ProcessSequencer::runThreaded()
         {
         	//We have finished
             mSequenceTimer.stop();
+            Log(lInfo) << "Finished processing sequence: " << mSequence.getName();
         }
         else if(p->isDone() == true )
         {
@@ -63,9 +64,9 @@ void ProcessSequencer::runThreaded()
     }
 }
 
-void ProcessSequencer::start(bool cont)
+void ProcessSequencer::start(bool autoExecute)
 {
-	mRunContinous = cont;
+	mExecuteAutomatic = autoExecute;
 	Process* aMove = mSequence.getFirst();
     if(aMove)
     {
@@ -77,15 +78,16 @@ void ProcessSequencer::start(bool cont)
             return;
         }
 
-        if(mRunContinous)
+        if(mExecuteAutomatic)
         {
-        	sleep(300);
+        	//Make sure the process started.. (really need a sleep?)
+        	//sleep(300);
 	        mSequenceTimer.start();
         }
     }
     else
     {
-    	Log(lError) << "No more moves..";
+    	Log(lError) << "There are no processes to sequence!";
     }
 }
 
@@ -97,13 +99,13 @@ void ProcessSequencer::forward()
     	if(!aMove->execute())
         {
         	Log(lError) << "Failed executing a move: " << aMove->getProcessName();
-			Log(lError) << "Aborting execution of ProcessSequence: "<<mSequence.getName();
+			Log(lError) << "Aborting execution of process sequence: "<<mSequence.getName();
             mSequenceTimer.stop();
         }
     }
     else
     {
-    	Log(lError) << "No more moves..";
+    	Log(lInfo) << "Reached the end of process pipeline";
     }
 }
 

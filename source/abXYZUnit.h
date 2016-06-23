@@ -21,9 +21,14 @@ using mtk::IniFile;
 class AB_CORE XYZUnit : public ABObject
 {
 	public:
-    					        XYZUnit(const string& name, IniFile& iniFile);
+    					        XYZUnit(const string& name, IniFile& iniFile, const string& appFolder);
     					        ~XYZUnit();
 		bool					isActive();
+
+		bool					enableJSAxes();
+		bool					disableJSAxes();
+        void					attachJoyStick(ArrayBotJoyStick* js);
+        void					detachJoyStick();
 
 		void					home();
 		void					stow();
@@ -31,8 +36,6 @@ class AB_CORE XYZUnit : public ABObject
 		void				    shutDown();
 		string					getName();
         Positions&				positions(){return mPositions;}
-        void					attachJoyStick(ArrayBotJoyStick* js);
-        void					detachJoyStick();
 
 		bool				    initialize();
         bool					stopAll();
@@ -40,7 +43,6 @@ class AB_CORE XYZUnit : public ABObject
 		APTMotor*			    getXMotor();
 		APTMotor*			    getYMotor();
 		APTMotor*			    getZMotor();
-//        AngleController&		getAngleController();
         APTMotor*				getAngleMotor();
         APTMotor*				getMotorWithName(const string& name);
 
@@ -60,6 +62,9 @@ class AB_CORE XYZUnit : public ABObject
 
 	protected:
 		string					mName;
+
+        						//!App datafolder is where sequence files are saved
+        string					mAppDataFolder;
         IniFile&				mIniFile;
         IniFileProperties	    mProperties;
 
@@ -67,8 +72,9 @@ class AB_CORE XYZUnit : public ABObject
         APTMotor*			    mXMotor;
         APTMotor*			    mYMotor;
         APTMotor*			    mZMotor;
-        APTMotor*			    mAngleMotor;
 
+        						//!Angle controller
+        APTMotor*			    mAngleMotor;
 
         ArrayBotJoyStick*       mJoyStick;
         Positions				mPositions;

@@ -25,6 +25,7 @@ extern "C" int _libmain(unsigned long reason)
 	return 1;
 }
 
+
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "mtkMath.lib")
 #pragma comment(lib, "poco_foundation-static.lib")

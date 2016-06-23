@@ -58,12 +58,10 @@ private:	// User declarations
 		static int 					mFrameNr;
 		void						saveSequence();
 
-
-public:		// User declarations
+public:
 						 __fastcall TMoveSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner);
         void						init();
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TMoveSequencerFrame *MoveSequencerFrame;
-//---------------------------------------------------------------------------
 #endif

@@ -6,11 +6,12 @@
 
 using namespace mtk;
 
-ArrayBot::ArrayBot(IniFile& ini)
+ArrayBot::ArrayBot(IniFile& ini, const string& appFolder)
 :
+mAppDataFolder(appFolder),
 mIniFile(ini),
-mCoverSlip("COVERSLIP UNIT", mIniFile),
-mWhisker("WHISKER UNIT", mIniFile),
+mCoverSlip("COVERSLIP UNIT", mIniFile, appFolder),
+mWhisker("WHISKER UNIT", mIniFile, appFolder),
 mJoyStick(),
 mIsShuttingDown(false),
 mJSSettings("JOYSTICK SETTINGS", mIniFile),
@@ -147,9 +148,13 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
 	return true;
 }
 
+ArrayBotJoyStick& ArrayBot::getJoyStick()
+{
+	return mJoyStick;
+}
+
 bool ArrayBot::enableJoyStick()
 {
- 	//enable angle motor controls
     mCoverSlip.attachJoyStick(&getJoyStick());
     mJoyStick.getX1Axis().setSenseOfDirection(1);
 
@@ -161,14 +166,7 @@ bool ArrayBot::enableJoyStick()
 
 void ArrayBot::disableJoyStick()
 {
-    //mCoverSlip.detachJoyStick();
-    //mWhisker.detachJoyStick();
     mJoyStick.disable();
-}
-
-ArrayBotJoyStick& ArrayBot::getJoyStick()
-{
-	return mJoyStick;
 }
 
 void ArrayBot::home()
@@ -185,8 +183,8 @@ void ArrayBot::initWorkingPosition()
 
 void ArrayBot::stow()
 {
-	mWhisker.stow();
     mCoverSlip.stow();
+	mWhisker.stow();
 }
 
 XYZUnit& ArrayBot::getCoverSlipUnit()

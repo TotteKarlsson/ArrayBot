@@ -8,7 +8,9 @@ using namespace mtk;
 ArrayBotJoyStick::ArrayBotJoyStick()
 :
 mEnabled(false),
-mJSMessageDispatcher(14)
+mCoverSlipAxesEnabled(false),
+mWhiskerAxesEnabled(false),
+mJSMessageDispatcher(*this, 14)
 {
     //Associate events with buttons
     mJSMessageDispatcher.setButtonEvents(1, mButton1.down,  mButton1.up);
@@ -54,15 +56,41 @@ void ArrayBotJoyStick::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEven
 	mJSMessageDispatcher.setButtonEvents(btnNr, up, down);
 }
 
+bool ArrayBotJoyStick::disableCoverSlipAxes()
+{
+	mCoverSlipAxesEnabled = false;
+}
+
+bool ArrayBotJoyStick::enableCoverSlipAxes()
+{
+	mCoverSlipAxesEnabled = true;
+}
+
+bool ArrayBotJoyStick::disableWhiskerAxes()
+{
+	mWhiskerAxesEnabled = false;
+}
+
+bool ArrayBotJoyStick::enableWhiskerAxes()
+{
+	mWhiskerAxesEnabled = true;
+}
+
 bool ArrayBotJoyStick::enable()
 {
     mEnabled = mJSMessageDispatcher.enable();
+	mCoverSlipAxesEnabled = true;
+	mWhiskerAxesEnabled = true;
+
     return mEnabled;
 }
 
 bool ArrayBotJoyStick::disable()
 {
     mJSMessageDispatcher.disable();
+	mCoverSlipAxesEnabled = false;
+	mWhiskerAxesEnabled = false;
+
 	mEnabled = false;
     return true;
 }

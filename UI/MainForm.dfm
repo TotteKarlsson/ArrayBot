@@ -3,7 +3,7 @@ object Main: TMain
   Top = 0
   Caption = 'ArrayBot Version 0.5.8'
   ClientHeight = 697
-  ClientWidth = 1262
+  ClientWidth = 1087
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,12 +21,13 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 13
   object Btnpanel: TPanel
-    Left = 1135
+    Left = 960
     Top = 0
     Width = 127
     Height = 697
     Align = alRight
     TabOrder = 0
+    ExplicitLeft = 1135
     object mJSCSBtn: TSpeedButton
       Left = 1
       Top = 126
@@ -87,7 +88,6 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      ExplicitTop = 552
       object Button5: TSpeedButton
         Left = 1
         Top = 1
@@ -107,16 +107,17 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 1135
+    Width = 960
     Height = 697
     Align = alClient
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
     TabOrder = 1
+    ExplicitWidth = 1135
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 1133
+      Width = 958
       Height = 695
       ActivePage = TabSheet4
       Align = alClient
@@ -129,6 +130,7 @@ object Main: TMain
       TabHeight = 60
       TabOrder = 0
       TabWidth = 100
+      ExplicitWidth = 1133
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
         Font.Charset = DEFAULT_CHARSET
@@ -137,6 +139,7 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitWidth = 1125
         object AnglesGB: TGroupBox
           Left = 491
           Top = 25
@@ -329,21 +332,68 @@ object Main: TMain
             OnChange = mLiftCBChange
           end
         end
+        object Button3: TButton
+          Left = 24
+          Top = 343
+          Width = 137
+          Height = 113
+          Caption = 'Stow'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+          OnClick = stowBtnClick
+        end
+        object Button4: TButton
+          Left = 167
+          Top = 343
+          Width = 158
+          Height = 113
+          Caption = 'Work Position 1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 4
+          OnClick = Button4Click
+        end
+        object Button6: TButton
+          Left = 331
+          Top = 343
+          Width = 158
+          Height = 113
+          Caption = 'Work Position 2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 5
+          OnClick = Button6Click
+        end
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
+        ExplicitWidth = 1125
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
-          Width = 1125
+          Width = 950
           Height = 625
           VertScrollBar.Position = 78
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 1125
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 273
-            Width = 1104
+            Width = 929
             Height = 348
             Align = alTop
             TabOrder = 0
@@ -351,16 +401,16 @@ object Main: TMain
             ExplicitWidth = 1104
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
-              Width = 1104
+              Width = 929
               Height = 348
               ExplicitWidth = 1104
               ExplicitHeight = 348
               inherited TopPanel: TPanel
-                Width = 1100
+                Width = 925
                 ExplicitWidth = 1100
               end
               inherited ScrollBox1: TScrollBox
-                Width = 1100
+                Width = 925
                 Height = 305
                 ExplicitWidth = 1100
                 ExplicitHeight = 305
@@ -370,21 +420,21 @@ object Main: TMain
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
             Top = -78
-            Width = 1104
+            Width = 929
             Height = 351
             Align = alTop
             TabOrder = 1
             ExplicitTop = -78
             ExplicitWidth = 1104
             inherited mainGB: TGroupBox
-              Width = 1104
+              Width = 929
               ExplicitWidth = 1104
               inherited TopPanel: TPanel
-                Width = 1100
+                Width = 925
                 ExplicitWidth = 1100
               end
               inherited ScrollBox1: TScrollBox
-                Width = 1100
+                Width = 925
                 ExplicitWidth = 1100
               end
             end
@@ -394,10 +444,34 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
+        ExplicitWidth = 1125
+        object Panel1: TPanel
+          Left = 0
+          Top = 0
+          Width = 950
+          Height = 89
+          Align = alTop
+          TabOrder = 0
+          ExplicitWidth = 1125
+          object Button2: TButton
+            Left = 1
+            Top = 1
+            Width = 177
+            Height = 87
+            Align = alLeft
+            Caption = 'Home All'
+            TabOrder = 0
+            OnClick = Button3Click
+            ExplicitLeft = 386
+            ExplicitTop = 0
+            ExplicitHeight = 116
+          end
+        end
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        ExplicitWidth = 1125
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -497,24 +571,6 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
         end
-        object Button2: TButton
-          Left = 194
-          Top = 421
-          Width = 177
-          Height = 116
-          Caption = 'Home All'
-          TabOrder = 1
-          OnClick = Button3Click
-        end
-        object Button3: TButton
-          Left = 11
-          Top = 421
-          Width = 177
-          Height = 116
-          Caption = 'Stow'
-          TabOrder = 2
-          OnClick = stowBtnClick
-        end
         object BitBtn1: TBitBtn
           Left = 304
           Top = 32
@@ -530,7 +586,7 @@ object Main: TMain
           Font.Style = []
           ParentBiDiMode = False
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 1
         end
         object InitCloseBtn: TBitBtn
           Left = 488
@@ -547,7 +603,7 @@ object Main: TMain
           Font.Style = []
           ParentBiDiMode = False
           ParentFont = False
-          TabOrder = 4
+          TabOrder = 2
         end
         object Button1: TButton
           Left = 11
@@ -555,24 +611,26 @@ object Main: TMain
           Width = 118
           Height = 83
           Caption = 'Save Parameters'
-          TabOrder = 5
+          TabOrder = 3
           OnClick = Button1Click
         end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
+        ExplicitWidth = 1125
         object BottomPanel: TPanel
           Left = 0
           Top = 0
-          Width = 1125
+          Width = 950
           Height = 625
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 1125
           object infoMemo: TMemo
             Left = 1
             Top = 31
-            Width = 1123
+            Width = 948
             Height = 593
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
@@ -584,16 +642,18 @@ object Main: TMain
             ScrollBars = ssVertical
             TabOrder = 0
             WordWrap = False
+            ExplicitWidth = 1123
           end
           object ToolBar1: TToolBar
             Left = 1
             Top = 1
-            Width = 1123
+            Width = 948
             Height = 30
             AutoSize = True
             ButtonHeight = 30
             Caption = 'ToolBar1'
             TabOrder = 1
+            ExplicitWidth = 1123
             object BitBtn2: TBitBtn
               Left = 0
               Top = 0

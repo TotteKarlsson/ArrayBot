@@ -22,9 +22,6 @@ Coordinates=750,141,58,33
 [mJSSpeedMediumBtn]
 Coordinates=425,284,123,33
 
-[Button3]
-Coordinates=23,284,53,51
-
 [InitCloseBtn]
 Coordinates=368,71,74,51
 
@@ -85,9 +82,6 @@ Coordinates=25,106,50,51
 [BottomPanel]
 Coordinates=554,351,77,51
 
-[Button2]
-Coordinates=141,284,53,51
-
 [TabSheet4]
 Coordinates=276,462,66,33
 
@@ -144,4 +138,22 @@ Coordinates=776,533,81,33
 
 [mMoveSequencesPage]
 Coordinates=159,373,128,33
+
+[Panel1]
+Coordinates=110,373,47,51
+
+[]
+Coordinates=750,193,53,51
+
+[Button2]
+Coordinates=141,284,53,51
+
+[Button3]
+Coordinates=23,284,53,51
+
+[Button4]
+Coordinates=750,193,53,51
+
+[Button6]
+Coordinates=750,263,53,51
 

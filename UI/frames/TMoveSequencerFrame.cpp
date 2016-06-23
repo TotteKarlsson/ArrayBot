@@ -188,12 +188,14 @@ void __fastcall TMoveSequencerFrame::refreshSequencesCB()
 
 void __fastcall TMoveSequencerFrame::mStartBtnClick(TObject *Sender)
 {
-	TButton* btn = (TButton*)Sender;
-    if(btn->Caption == "Start")
+    if(mStartBtn->Caption == "Start")
     {
     	if(mAB)
         {
-        	mAB->disableJoyStick();
+	        if(mXYZUnit)
+            {
+            	mXYZUnit->disableJSAxes();
+            }
         }
 
     	mMoveSequencer.start(true);
@@ -356,7 +358,10 @@ void __fastcall TMoveSequencerFrame::mSequenceTimerTimer(TObject *Sender)
 		mSequenceStatusTimer->Enabled = false;
     	if(mAB)
         {
-        	mAB->enableJoyStick();
+	        if(mXYZUnit)
+            {
+            	mXYZUnit->enableJSAxes();
+            }
         }
 
     	mStartBtn->Caption = "Start";
