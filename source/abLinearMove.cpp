@@ -139,19 +139,6 @@ bool LinearMove::execute()
         return m->moveAbsolute(mPosition.x());
     }
 
-//	AngleController* ac = dynamic_cast<AngleController*>(mUnit);
-//    if(ac)
-//    {
-//		if(mMaxVelocity == 0 || mAcceleration == 0)
-//        {
-//        	Log(lError) << "Move cannot be executed with zero velocity or acceleration";
-//            return false;
-//        }
-//       	ac->getMotor()->setVelocity(mMaxVelocity);
-//        ac->getMotor()->setAcceleration(mAcceleration);
-//        return ac->getMotor()->moveAbsolute(mPosition.x());
-//    }
-
     return false;
 }
 
