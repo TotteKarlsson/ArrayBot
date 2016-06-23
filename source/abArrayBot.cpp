@@ -152,8 +152,8 @@ bool ArrayBot::enableJoyStick()
 
 void ArrayBot::disableJoyStick()
 {
-    mCoverSlip.detachJoyStick();
-    mWhisker.detachJoyStick();
+    //mCoverSlip.detachJoyStick();
+    //mWhisker.detachJoyStick();
     mJoyStick.disable();
 }
 

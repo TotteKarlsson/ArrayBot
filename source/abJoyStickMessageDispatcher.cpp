@@ -104,7 +104,7 @@ void JoyStickMessageDispatcher::setAxisEvent(int axis, JoyStickAxisEvent event)
 //---------------------------------------------------------------------------
 void JoyStickMessageDispatcher::refresh()
 {
-    if (mJoyStickID == -1)
+    if (mJoyStickID == -1 || mEnabled == false)
     {
 	    return;
     }

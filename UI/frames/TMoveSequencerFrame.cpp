@@ -191,6 +191,11 @@ void __fastcall TMoveSequencerFrame::mStartBtnClick(TObject *Sender)
 	TButton* btn = (TButton*)Sender;
     if(btn->Caption == "Start")
     {
+   		if(mAB)
+        {
+	        mAB->disableJoyStick();
+        }
+
     	mMoveSequencer.start(true);
 		mSequenceStatusTimer->Enabled = true;
     }
@@ -344,11 +349,6 @@ void __fastcall TMoveSequencerFrame::mSequenceTimerTimer(TObject *Sender)
 	if(mMoveSequencer.isRunning())
     {
     	mStartBtn->Caption = "Stop";
-		if(mAB)
-        {
-	        mAB->disableJoyStick();
-        }
-
         mStatusLbl->Caption = "Working on: " + vclstr(mMoveSequencer.getCurrentProcessName());
     }
     else
