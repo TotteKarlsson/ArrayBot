@@ -43,7 +43,6 @@ void __fastcall TMain::JoyStickSettingsCBChange(TObject *Sender)
 			mZJogAccelerationJoystick->setValue(s[3]);
 			mAngleControlVelE->setValue(s[4]);
 			mAngleControllerAccE->setValue(s[5]);
-
         }
     }
 }

@@ -48,7 +48,6 @@ __published:	// IDE-managed Components
         Version                                         mRemoteVersion;
         GetRemoteTextFileDataThread                     mGetRemoteVersionThread;
         GetRemoteTextFileDataThread                     mGetNewestChangeLogThread;
-        void                                            serialKeyEnteringObjectsVisible(bool setVisibility);
 
         void                                __fastcall  NotifyAboutUpdate(const string& data);
         void                                __fastcall  NotifyAboutChangeLog(const string& data);

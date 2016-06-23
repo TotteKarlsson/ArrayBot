@@ -39,6 +39,15 @@ mJSMessageDispatcher(14)
 ArrayBotJoyStick::~ArrayBotJoyStick()
 {}
 
+bool ArrayBotJoyStick::setAxesMaxVelocity(double maxV)
+{
+    mX1Axis.setMaxVelocity(maxV);
+    mX2Axis.setMaxVelocity(maxV);
+
+    mY1Axis.setMaxVelocity(maxV);
+    mY2Axis.setMaxVelocity(maxV);
+    return true;
+}
 
 void ArrayBotJoyStick::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
 {

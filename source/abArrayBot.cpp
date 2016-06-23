@@ -41,7 +41,7 @@ bool ArrayBot::writeINIParameters()
 
 bool ArrayBot::isActive()
 {
-	return mCoverSlip.isActive() || mWhisker.isActive();// || mCoverSlipAngleController.isActive() || mCameraAngleController.isActive();
+	return mCoverSlip.isActive() || mWhisker.isActive();
 }
 
 bool ArrayBot::isShuttingDown()
@@ -96,15 +96,13 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
     Log(lDebug) << "New XY jog velocity (mm/s): " <<vals[0];
     Log(lDebug) << "New XY jog acceleration (mm/(s*s)): " <<vals[1];
 
-    getJoyStick().getX1Axis().setMaxVelocity(vals[0]);
-    getJoyStick().getY1Axis().setMaxVelocity(vals[0]);
-
-    getJoyStick().getX2Axis().setMaxVelocity(vals[0]);
-    getJoyStick().getY2Axis().setMaxVelocity(vals[0]);
+    //This is the max velocity that can be achieved using the JoyStick
+    mJoyStick.setAxesMaxVelocity(vals[0]);
 
     Log(lDebug) << "New Z jog velocity (mm/s): " <<vals[2];
     Log(lDebug) << "New Z jog acceleration (mm/(s*s)): " <<vals[3];
 
+    //TODO: Clean this up
     if(getCoverSlipUnit().getXMotor() && getCoverSlipUnit().getYMotor())
     {
         getCoverSlipUnit().getXMotor()->setPotentiometerVelocity(vals[0]);
@@ -125,14 +123,25 @@ bool ArrayBot::applyJoyStickSetting(const string& settingName)
 
     if(getCoverSlipUnit().getZMotor())
     {
-        getCoverSlipUnit().getZMotor()->setJogVelocity(vals[2]);
-        getCoverSlipUnit().getZMotor()->setJogAcceleration(vals[3]);
+        getCoverSlipUnit().getZMotor()->setJogMoveParameters(vals[2], vals[3]);
     }
 
     if(getWhiskerUnit().getZMotor())
     {
-        getWhiskerUnit().getZMotor()->setJogVelocity(vals[2]);
-        getWhiskerUnit().getZMotor()->setJogAcceleration(vals[3]);
+        getWhiskerUnit().getZMotor()->setJogMoveParameters(vals[2], vals[3]);
+    }
+
+    Log(lDebug) << "New Angle Jog Velocity (mm/s): " <<vals[4];
+    Log(lDebug) << "New Angle Jog Acceleration (mm/(s*s)): " <<vals[5];
+
+    if(getCoverSlipUnit().getAngleMotor())
+    {
+        getCoverSlipUnit().getAngleMotor()->setJogMoveParameters(vals[4], vals[5]);
+    }
+
+    if(getWhiskerUnit().getAngleMotor())
+    {
+        getWhiskerUnit().getAngleMotor()->setJogMoveParameters(vals[4], vals[5]);
     }
 
 	return true;

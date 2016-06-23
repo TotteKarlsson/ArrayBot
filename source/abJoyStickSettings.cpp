@@ -27,7 +27,7 @@ bool JoyStickSettings::readINIParameters()
         while(aKey)
         {
         	StringList vals(aKey->mValue,',');
-        	JoyStickSetting jss(aKey->mKey, toDouble(vals[0]), toDouble(vals[1]), toDouble(vals[2]), toDouble(vals[3]));
+        	JoyStickSetting jss(aKey->mKey, toDouble(vals[0]), toDouble(vals[1]), toDouble(vals[2]), toDouble(vals[3]), toDouble(vals[4]), toDouble(vals[5]));
 	        add(jss);
             aKey = sec->getNext();
         }

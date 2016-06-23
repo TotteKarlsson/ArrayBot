@@ -875,9 +875,8 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
   object logLabel: TLabel
     Left = 34
     Top = 192
-    Width = 79
+    Width = 4
     Height = 18
-    Caption = 'Initializing...'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
     Font.Height = -16
