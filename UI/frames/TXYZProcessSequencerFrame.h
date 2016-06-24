@@ -1,5 +1,5 @@
-#ifndef TMoveSequencerFrameH
-#define TMoveSequencerFrameH
+#ifndef TXYZProcessSequencerFrameH
+#define TXYZProcessSequencerFrameH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -14,7 +14,7 @@
 class XYZUnit;
 class ArrayBot;
 
-class TMoveSequencerFrame : public TFrame
+class TXYZProcessSequencerFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
@@ -59,9 +59,9 @@ private:	// User declarations
 		void						saveSequence();
 
 public:
-						 __fastcall TMoveSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner);
+						 __fastcall TXYZProcessSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner);
         void						init();
 };
 
-extern PACKAGE TMoveSequencerFrame *MoveSequencerFrame;
+extern PACKAGE TXYZProcessSequencerFrame *XYZProcessSequencerFrame;
 #endif

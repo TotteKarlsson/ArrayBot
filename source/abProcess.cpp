@@ -42,7 +42,8 @@ bool Process::stop()
 
 bool Process::isTimedOut()
 {
-	bool res;
+	return false;
+//	bool res;
 //    if(isBeingProcessed())
 //    {
 //     	Poco::Timestamp now;
@@ -53,6 +54,4 @@ bool Process::isTimedOut()
 //    {
 //		return (Timespan(mEndTime - mStartTime) > mTimeOut) ? true : false;
 //    }
-
-	return false;
 }

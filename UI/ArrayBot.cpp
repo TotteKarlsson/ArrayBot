@@ -14,13 +14,15 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
-USEFORM("forms\TSplashForm.cpp", SplashForm);
-USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("MainForm.cpp", Main);
 USEFORM("frames\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
 USEFORM("frames\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
+USEFORM("frames\TXYZProcessSequencerFrame.cpp", XYZProcessSequencerFrame);
+USEFORM("MainForm.cpp", Main);
+USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
+USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
+USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
+USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";

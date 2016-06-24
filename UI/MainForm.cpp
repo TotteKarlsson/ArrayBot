@@ -14,7 +14,8 @@
 #include "abExceptions.h"
 #include "TSplashForm.h"
 #include "TAboutArrayBotForm.h"
-#include "TMoveSequencerFrame.h"
+#include "TXYZProcessSequencerFrame.h"
+#include "TXYZPositionsFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -142,17 +143,18 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
     {
 		WaitForDeviceInitTimer->Enabled = false;
         //Init UI stuff here
+        TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
+        f1->Parent = this->mBottomPanel;
+        f1->Align = alLeft;
+
+        TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
+        f2->Parent = this->mBottomPanel;
+        f2->Align = alLeft;
 
         //Over ride joysticks button events
         mAB->getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
         mAB->getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
         mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
-
-        //Initialize UI
-        if(mAB->getCoverSlipAngleController())
-        {
-            mCSAngleE->setValue(mAB->getCoverSlipAngleController()->getPosition());
-        }
 
         //JoyStick Settings CB
         JoyStickSettings& js = mAB->getJoyStickSettings();
@@ -184,6 +186,7 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
     	TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
     	TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
 
+        //Setup JoyStick
         //ArrayBotJoyStick stuff.....
         mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
         mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
@@ -194,14 +197,14 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
             mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
         }
 
-        //    //Create MoveSequencer frames
-        mCoverSlipProcessSequencerFrame = new TMoveSequencerFrame(&(mAB->getCoverSlipUnit()), mAB, mMoveSequencesPage);
+        //Create MoveSequencer frames
+        mCoverSlipProcessSequencerFrame = new TXYZProcessSequencerFrame(&(mAB->getCoverSlipUnit()), mAB, mMoveSequencesPage);
         mCoverSlipProcessSequencerFrame->Parent = mMoveSequencesPage;
         mCoverSlipProcessSequencerFrame->Align = alLeft;
         mCoverSlipProcessSequencerFrame->init();
 
         //Create MoveSequencer frames
-        mWhiskerProcessSequencerFrame = new TMoveSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
+        mWhiskerProcessSequencerFrame = new TXYZProcessSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
         mWhiskerProcessSequencerFrame->Parent = mMoveSequencesPage;
         mWhiskerProcessSequencerFrame->Align = alClient;
         mWhiskerProcessSequencerFrame->init();
@@ -290,25 +293,6 @@ void __fastcall TMain::stowBtnClick(TObject *Sender)
             mCoverSlipProcessSequencerFrame->mSequencesCB->OnChange(NULL);
             mCoverSlipProcessSequencerFrame->mStartBtnClick(NULL);
         }
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
-	if(Key != vkReturn)
-    {
-    	return;
-    }
-
-    if(e == mCSAngleE)
-    {
-    	mAB->getCoverSlipAngleController()->moveAbsolute(mCSAngleE->getValue());
-    }
-    else if (e == mCameraAngleEdit)
-    {
-    	mAB->getCameraAngleController()->moveAbsolute(mCameraAngleEdit->getValue());
     }
 }
 
@@ -404,32 +388,6 @@ void __fastcall TMain::Button1Click(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
-{
-    //Read UI Values
-	if(mAB->getCoverSlipAngleController())
-    {
-    	double pos = mAB->getCoverSlipAngleController()->getPosition();
-        mCSAngleE->setValue(pos);
-    }
-    else
-    {
-    	mCSAngleE->Enabled = false;
-    }
-
-    //Read UI Values
-	if(mAB->getCameraAngleController())
-    {
-    	double pos = mAB->getCameraAngleController()->getPosition();
-        mCameraAngleEdit->setValue(pos);
-    }
-    else
-    {
-    	mCameraAngleEdit->Enabled = false;
-    }
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
 {
 	if(mXYCtrlRG->ItemIndex == 0)//Both X&Y
@@ -497,7 +455,8 @@ void TMain::onJSButton6Click()
 
 void TMain::onJSButton14Click()
 {
-	LiftBtn->Click();
+	//LiftBtn->Click();
+    stopAllAExecute(NULL);
 }
 
 //---------------------------------------------------------------------------
@@ -569,8 +528,6 @@ void __fastcall TMain::mLiftCBChange(TObject *Sender)
 	//Update edits
     //Assign editbox references to Lifting parameters
 	PairedMove* pm = getCurrentPairedMove();
-
-   	mVerticalMoveDistanceE->setReference(pm->mDistance);
 	mMoveVelocityVerticalE->setReference(pm->mVelocity);
 	mMoveAccelerationE->setReference(pm->mAcceleration);
 }
@@ -635,7 +592,7 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 	}
 }
 
-void __fastcall TMain::Button4Click(TObject *Sender)
+void __fastcall TMain::WorkPos1BtnClick(TObject *Sender)
 {
 	if(mWhiskerProcessSequencerFrame)
     {
@@ -661,7 +618,7 @@ void __fastcall TMain::Button4Click(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::Button6Click(TObject *Sender)
+void __fastcall TMain::WorkPos2BtnClick(TObject *Sender)
 {
 	if(mWhiskerProcessSequencerFrame)
     {
@@ -684,6 +641,7 @@ void __fastcall TMain::Button6Click(TObject *Sender)
             mCoverSlipProcessSequencerFrame->mStartBtnClick(NULL);
         }
     }
-}
 
+}
+//---------------------------------------------------------------------------
 

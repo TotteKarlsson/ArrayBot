@@ -1,4 +1,4 @@
-object MoveSequencerFrame: TMoveSequencerFrame
+object XYZProcessSequencerFrame: TXYZProcessSequencerFrame
   Left = 0
   Top = 0
   Width = 500

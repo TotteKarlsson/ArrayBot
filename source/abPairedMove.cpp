@@ -51,11 +51,23 @@ bool PairedMove::check()
     	Log(lError) << mCheckMessage;
         return false;
     }
+
+    //Calculate the longest distance we can move
+
+    if(mMotor1->getPosition() > mMotor2->getPosition())
+    {
+    	mDistance = mMotor2->getMaxPosition()  - mMotor2->getPosition();
+    }
+    else
+    {
+    	mDistance = mMotor1->getMaxPosition()  - mMotor1->getPosition();
+    }
+
     //get current positions and carry out some moveTo's
 	double newZ1Pos = mMotor1->getPosition() + mDistance;
 	double newZ2Pos = mMotor2->getPosition() + mDistance;
 
-    if(newZ1Pos > mMotor1->getMaxPosition())
+    if(newZ1Pos >  mMotor2->getMaxPosition())
     {
     	stringstream s;
         s << "New position ("<<newZ1Pos<<") to big for motor with label: \""<<mMotor1->getName()<<"\"\rMax position is "<<mMotor1->getMaxPosition()<<" mm";

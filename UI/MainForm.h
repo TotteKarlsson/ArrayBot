@@ -1,6 +1,5 @@
 #ifndef MainFormH
 #define MainFormH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -22,21 +21,20 @@
 #include "TRegistryForm.h"
 #include "abArrayBot.h"
 #include "mtkIniFileProperties.h"
-
 #include <mmsystem.h>
 #include <Vcl.StdActns.hpp>
 #include <Vcl.Menus.hpp>
 #include <Vcl.Mask.hpp>
 #include "mtkLogLevel.h"
 #include "abUIDataStructures.h"
-
 #include "abApplicationMessages.h"
+
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
 typedef void __fastcall (__closure *callback)(void);
 
-class TMoveSequencerFrame;
+class TXYZProcessSequencerFrame;
 class InitBotThread : public mtk::Thread
 {
 	public:
@@ -70,8 +68,6 @@ class TMain : public TRegistryForm
 	TPanel *TopPanel;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet4;
-	TGroupBox *AnglesGB;
-	TFloatLabeledEdit *mCSAngleE;
 	TGroupBox *JSGB;
 	TSpeedButton *mJSSpeedFastBtn;
 	TSpeedButton *mJSSpeedMediumBtn;
@@ -95,7 +91,6 @@ class TMain : public TRegistryForm
 	TToolBar *ToolBar1;
 	TBitBtn *BitBtn2;
 	TButton *AddJsSettingBtn;
-	TFloatLabeledEdit *mCameraAngleEdit;
 	TFloatLabeledEdit *mAngleControlVelE;
 	TFloatLabeledEdit *mAngleControllerAccE;
 	TButton *Button1;
@@ -104,7 +99,6 @@ class TMain : public TRegistryForm
 	TGroupBox *LiftGB;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
-	TFloatLabeledEdit *mVerticalMoveDistanceE;
 	TSpeedButton *mJSCSBtn;
 	TSpeedButton *Button7;
 	TSpeedButton *Button5;
@@ -120,9 +114,10 @@ class TMain : public TRegistryForm
 	TTimer *WaitForDeviceInitTimer;
 	TPanel *Panel1;
 	TButton *Button2;
-	TButton *Button3;
-	TButton *Button4;
-	TButton *Button6;
+	TButton *StowBtn1;
+	TButton *WorkPos1Btn;
+	TButton *WorkPos2Btn;
+	TPanel *mBottomPanel;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -139,7 +134,7 @@ class TMain : public TRegistryForm
 
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall stowBtnClick(TObject *Sender);
-	void __fastcall mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 	void __fastcall FormShow(TObject *Sender);
 
 	void __fastcall JSControlClick(TObject *Sender);
@@ -147,7 +142,6 @@ class TMain : public TRegistryForm
 	void __fastcall AddJsSettingBtnClick(TObject *Sender);
 	void __fastcall JoyStickSettingsCBChange(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mXYCtrlRGClick(TObject *Sender);
 	void __fastcall mLiftTimerTimer(TObject *Sender);
 	void __fastcall abortLiftAExecute(TObject *Sender);
@@ -156,8 +150,8 @@ class TMain : public TRegistryForm
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
-	void __fastcall Button4Click(TObject *Sender);
-	void __fastcall Button6Click(TObject *Sender);
+	void __fastcall WorkPos1BtnClick(TObject *Sender);
+	void __fastcall WorkPos2BtnClick(TObject *Sender);
 
     private:
         TThreadMethod                   logMsgMethod;
@@ -178,14 +172,14 @@ class TMain : public TRegistryForm
         ArrayBot*					    mAB;
 		PairedMove* 				    getCurrentPairedMove();
 
-        TMoveSequencerFrame*			mCoverSlipProcessSequencerFrame;
-        TMoveSequencerFrame*			mWhiskerProcessSequencerFrame;
+        TXYZProcessSequencerFrame*		mCoverSlipProcessSequencerFrame;
+        TXYZProcessSequencerFrame*		mWhiskerProcessSequencerFrame;
 
 		void __fastcall		            OnException();
         void						    onJSButton5Click();
         void						    onJSButton6Click();
 
-        							    //!Button 14 initiate/cancel a lift operation
+        							    //!Button stops everything
         void						    onJSButton14Click();
 
 	public:		// User declarations

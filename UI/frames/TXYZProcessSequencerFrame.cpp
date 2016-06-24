@@ -1,6 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TMoveSequencerFrame.h"
+#include "TXYZProcessSequencerFrame.h"
 #include "abXYZUnit.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
@@ -12,14 +12,14 @@
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
-TMoveSequencerFrame *MoveSequencerFrame;
+TXYZProcessSequencerFrame *XYZProcessSequencerFrame;
 //---------------------------------------------------------------------------
 
 extern string gAppDataFolder;
 using namespace mtk;
 
-int TMoveSequencerFrame::mFrameNr = 0;
-__fastcall TMoveSequencerFrame::TMoveSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner)
+int TXYZProcessSequencerFrame::mFrameNr = 0;
+__fastcall TXYZProcessSequencerFrame::TXYZProcessSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner)
 	: TFrame(Owner),
     mXYZUnit(u),
     mAB(ab),
@@ -58,7 +58,7 @@ __fastcall TMoveSequencerFrame::TMoveSequencerFrame(XYZUnit* u, ArrayBot* ab, TC
     refreshSequencesCB();
 }
 
-void TMoveSequencerFrame::init()
+void TXYZProcessSequencerFrame::init()
 {
     if(mSequencesCB->Items->Count)
     {
@@ -67,7 +67,7 @@ void TMoveSequencerFrame::init()
     }
 }
 
-void __fastcall TMoveSequencerFrame::mAddMoveBtnClick(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::mAddMoveBtnClick(TObject *Sender)
 {
 	//Create and add a move to the sequencer
     ab::Position pos("", 0.0, 0.0, 0.0);
@@ -108,7 +108,7 @@ void __fastcall TMoveSequencerFrame::mAddMoveBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::mDeleteMoveBtnClick(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::mDeleteMoveBtnClick(TObject *Sender)
 {
     int i = mMovesLB->ItemIndex;
     if(i == -1)
@@ -136,7 +136,7 @@ void __fastcall TMoveSequencerFrame::mDeleteMoveBtnClick(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::mDeleteSequenceBtnClick(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sender)
 
 {
 	//Check selected sequence and delete it
@@ -150,7 +150,7 @@ void __fastcall TMoveSequencerFrame::mDeleteSequenceBtnClick(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::mAddSeqBtnClick(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 {
 	//Create a new move file and sequence
 	stringstream fName;
@@ -173,7 +173,7 @@ void __fastcall TMoveSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::refreshSequencesCB()
+void __fastcall TXYZProcessSequencerFrame::refreshSequencesCB()
 {
     //Load moves
     //Get all move files in folder
@@ -186,7 +186,7 @@ void __fastcall TMoveSequencerFrame::refreshSequencesCB()
     mMovesLB->Clear();
 }
 
-void __fastcall TMoveSequencerFrame::mStartBtnClick(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::mStartBtnClick(TObject *Sender)
 {
     if(mStartBtn->Caption == "Start")
     {
@@ -207,12 +207,12 @@ void __fastcall TMoveSequencerFrame::mStartBtnClick(TObject *Sender)
 	}
 }
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
 {
 	saveSequence();
 }
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::mSequencesCBChange(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
 {
 	//Load the sequence
     int index = mSequencesCB->ItemIndex;
@@ -246,7 +246,7 @@ void __fastcall TMoveSequencerFrame::mSequencesCBChange(TObject *Sender)
     mMoveSequencer.assignUnit(mXYZUnit);
 }
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::mMovesLBClick(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::mMovesLBClick(TObject *Sender)
 {
 	//Retrieve current move and populate UI
     int i = mMovesLB->ItemIndex;
@@ -285,7 +285,7 @@ void __fastcall TMoveSequencerFrame::mMovesLBClick(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::moveParEdit(TObject *Sender, WORD &Key,
+void __fastcall TXYZProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
     int i = mMovesLB->ItemIndex;
@@ -307,7 +307,7 @@ void __fastcall TMoveSequencerFrame::moveParEdit(TObject *Sender, WORD &Key,
     saveSequence();
 }
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::MotorsCBChange(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::MotorsCBChange(TObject *Sender)
 {
     int i = mMovesLB->ItemIndex;
     if(i == -1)
@@ -335,7 +335,7 @@ void __fastcall TMoveSequencerFrame::MotorsCBChange(TObject *Sender)
 	saveSequence();
 }
 
-void TMoveSequencerFrame::saveSequence()
+void TXYZProcessSequencerFrame::saveSequence()
 {
 	//Save Current Sequence
     int indx = mSequencesCB->ItemIndex;
@@ -346,7 +346,7 @@ void TMoveSequencerFrame::saveSequence()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMoveSequencerFrame::mSequenceTimerTimer(TObject *Sender)
+void __fastcall TXYZProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
 {
 	if(mMoveSequencer.isRunning())
     {

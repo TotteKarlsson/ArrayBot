@@ -184,7 +184,7 @@ void XYZUnit::stow()
     }
 }
 
-string XYZUnit::getName()
+string XYZUnit::getName() const
 {
 	return mName;
 }
@@ -397,22 +397,22 @@ APTMotor* XYZUnit::getMotorWithName(const string& name)
     return NULL;
 }
 
-APTMotor* XYZUnit::getXMotor()
+APTMotor* XYZUnit::getXMotor() const
 {
 	return mXMotor;
 }
 
-APTMotor* XYZUnit::getYMotor()
+APTMotor* XYZUnit::getYMotor() const
 {
 	return mYMotor;
 }
 
-APTMotor* XYZUnit::getZMotor()
+APTMotor* XYZUnit::getZMotor() const
 {
 	return mZMotor;
 }
 
-APTMotor* XYZUnit::getAngleMotor()
+APTMotor* XYZUnit::getAngleMotor() const
 {
 	return mAngleMotor;
 }
