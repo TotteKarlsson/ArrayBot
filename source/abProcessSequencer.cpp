@@ -39,22 +39,39 @@ void ProcessSequencer::clear()
 	mSequence.clear();
 }
 
+bool ProcessSequencer::isCurrentProcessActive()
+{
+	Process* p = mSequence.getCurrent();
+    if(p)
+    {
+	    return p->isBeingProcessed();
+    }
+
+    return false;
+}
 void ProcessSequencer::runThreaded()
 {
-	if(!isProcessActive())
+    Process* p = mSequence.getCurrent();
+	if(p)
     {
     	//Check if we are to move forward in the sequence
-        Process* p = mSequence.getCurrent();
-        if(!p)
-        {
-        	//We have finished
-            mSequenceTimer.stop();
-            Log(lInfo) << "Finished processing sequence: " << mSequence.getName();
-        }
-        else if(p->isDone() == true )
+        if(p->isProcessed() == true)
         {
         	sleep(p->getPostDwellTime());
         	forward();
+        }
+        else if (mSequence.isFirst(p) && p->isStarted() == false)
+        {
+
+        	sleep(p->getPreDwellTime());
+            bool res = p->start();
+            if(!res)
+            {
+                Log(lError) << "Failed executing move: "<<p->getProcessName();
+				Log(lError) << "Aborting execution of process sequence: "<<mSequence.getName();
+	            mSequenceTimer.stop();
+                return;
+            }
         }
         else if(p->isTimedOut())
         {
@@ -62,26 +79,28 @@ void ProcessSequencer::runThreaded()
         	stop();
         }
     }
+    else
+    {
+        //We have finished
+        mSequenceTimer.stop();
+        Log(lInfo) << "Finished processing sequence: " << mSequence.getName();
+        return;
+    }
 }
 
 void ProcessSequencer::start(bool autoExecute)
 {
 	mExecuteAutomatic = autoExecute;
+
+    //ReInit sequence so it can be executed over and over
+    mSequence.init();
+
 	Process* aMove = mSequence.getFirst();
     if(aMove)
     {
-    	Log(lInfo) << "Executing first move";
-    	bool res = aMove->execute();
-        if(!res)
-        {
-        	Log(lError) << "Failed executing move: "<<aMove->getProcessName();
-            return;
-        }
-
         if(mExecuteAutomatic)
         {
-        	//Make sure the process started.. (really need a sleep?)
-        	//sleep(300);
+	    	Log(lInfo) << "Executing sequence";
 	        mSequenceTimer.start();
         }
     }
@@ -96,7 +115,7 @@ void ProcessSequencer::forward()
 	Process* aMove = mSequence.getNext();
     if(aMove)
     {
-    	if(!aMove->execute())
+    	if(!aMove->start())
         {
         	Log(lError) << "Failed executing a move: " << aMove->getProcessName();
 			Log(lError) << "Aborting execution of process sequence: "<<mSequence.getName();
@@ -161,16 +180,5 @@ bool ProcessSequencer::removeProcess(const string& name)
 bool ProcessSequencer::isRunning()
 {
 	return mSequenceTimer.isRunning();
-}
-
-bool ProcessSequencer::isProcessActive()
-{
-	Process* m = mSequence.getCurrent();
-    if(m)
-    {
-	    return m->isActive();
-    }
-
-    return false;
 }
 

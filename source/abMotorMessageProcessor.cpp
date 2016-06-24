@@ -123,10 +123,8 @@ void MotorMessageProcessor::worker()
 					break;
                     case mcStopProfiled:
                     	mMotor->stopProfiled(false);
-
                         while(mMotor->isActive())
                         { ; }
-
 					break;
 
                     case mcForward:
@@ -183,5 +181,3 @@ void MotorMessageProcessor::worker()
 	mIsFinished = true;
 	mIsRunning = false;
 }
-
-

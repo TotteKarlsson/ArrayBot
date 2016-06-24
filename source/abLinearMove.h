@@ -20,11 +20,17 @@ class AB_CORE LinearMove : public Process
         virtual bool				write(mtk::IniSection* sec);
         virtual bool				read(mtk::IniSection* sec);
 
-        virtual bool	            execute();
+        virtual bool	            start();
         virtual bool	            stop();
-		bool 						isDone();
+        virtual bool	            isBeingProcessed();
+        bool 						isProcessed();
+		bool						commandPending();
         virtual	bool	            undo();
-        virtual bool	            isActive();
+
+									//Check if we are at proper position
+        bool 						isDone();
+        virtual bool	            isMotorActive();
+
         virtual MoveType            getMoveType(){return mMoveType;}
 
         ab::Position&	            getPosition(){return mPosition;}

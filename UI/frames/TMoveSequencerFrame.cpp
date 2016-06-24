@@ -263,6 +263,7 @@ void __fastcall TMoveSequencerFrame::mMovesLBClick(TObject *Sender)
         mMaxVelE->setValue(move->getMaxVelocity());
         mAccE->setValue(move->getAcceleration());
         mPostDwellTimeE->setValue(move->getPostDwellTime());
+        mPreDwellTimeE->setValue(move->getPreDwellTime());
 
         APTMotor* mtr = dynamic_cast<APTMotor*>(move->getUnit());
         if(!mtr)

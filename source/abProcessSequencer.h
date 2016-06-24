@@ -25,7 +25,7 @@ class AB_CORE ProcessSequencer : public ABObject
         void		                reverse();
         void		                stop();
         bool				        isRunning();
-        bool				        isProcessActive();
+        bool				        isCurrentProcessActive();
         void		                addProcess(Process* p);
         bool		                removeProcess(Process* p);
         bool		                removeProcess(const string& name);

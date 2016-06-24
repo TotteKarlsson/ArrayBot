@@ -29,6 +29,7 @@ mPositionResolution(1.0e-1)
 void LinearMove::assignUnit(ABObject* o)
 {
 	mUnit = NULL;
+
 	//Check out what ABObject is
     if(dynamic_cast<XYZUnit*>(o))
     {
@@ -50,6 +51,80 @@ void LinearMove::assignUnit(ABObject* o)
     {
    		Log(lError) << "Motor Unit is NULL for LinearMove: "<<mProcessName;
     }
+}
+
+bool LinearMove::isBeingProcessed()
+{
+	if(isDone())
+    {
+		mIsBeingProcessed = false;
+        mIsProcessed = true;
+       	Timestamp now;
+        mEndTime = now;
+    }
+
+    return mIsBeingProcessed;
+}
+
+bool LinearMove::isProcessed()
+{
+    if(mIsProcessed == true)
+    {
+    	return true;
+    }
+
+    if(isDone())
+    {
+        //Consider this process to be "processed"
+        mIsProcessed 		= true;
+        mIsBeingProcessed 	= false;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+	return false;
+}
+
+bool LinearMove::commandPending()
+{
+	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
+    if(o)
+    {
+    	return o->commandsPending();
+    }
+	return false;
+}
+
+bool LinearMove::isDone()
+{
+	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
+    if(o)
+    {
+    	//If still moving we cannot be done(!)
+    	if(o->isActive())
+        {
+        	return false;
+        }
+
+    	double p = o->getPosition();
+    	return (isEqual(p, mPosition.x(), mPositionResolution)) ? true : false;
+    }
+
+    return false;
+}
+
+bool LinearMove::isMotorActive()
+{
+	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
+    if(o)
+    {
+    	return o->isActive();
+    }
+
+    return false;
 }
 
 bool LinearMove::write(IniSection* sec)
@@ -125,8 +200,9 @@ bool LinearMove::read(IniSection* sec)
     return true;
 }
 
-bool LinearMove::execute()
+bool LinearMove::start()
 {
+	Process::start();
 	XYZUnit* o = dynamic_cast<XYZUnit*>(mUnit);
     if(o)
     {
@@ -151,6 +227,7 @@ bool LinearMove::execute()
 
 bool LinearMove::stop()
 {
+	Process::stop();
 	XYZUnit* o = dynamic_cast<XYZUnit*>(mUnit);
     if(o)
     {
@@ -179,43 +256,6 @@ bool LinearMove::undo()
 
 	return false;
 }
-
-bool LinearMove::isDone()
-{
-	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
-    if(o)
-    {
-    	double p = o->getPosition();
-    	return (isEqual(p, mPosition.x(), mPositionResolution)) ? true : false;
-    }
-
-//	AngleController* ac = dynamic_cast<AngleController*>(mUnit);
-//    if(ac)
-//    {
-//    	double p = ac->getAngle();
-//    	return (isEqual(p, mPosition.x(), mPositionResolution)) ? true : false;
-//    }
-
-    return false;
-}
-
-bool LinearMove::isActive()
-{
-	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
-    if(o)
-    {
-    	return o->isActive();
-    }
-
-//	AngleController* ac = dynamic_cast<AngleController*>(mUnit);
-//    if(ac)
-//    {
-//    	return ac->isActive();
-//    }
-
-    return false;
-}
-
 
 MoveType toMoveType(const string& mt)
 {

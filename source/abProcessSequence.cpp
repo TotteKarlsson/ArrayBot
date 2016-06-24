@@ -33,6 +33,17 @@ void ProcessSequence::clear()
 	mProcesses.clear();
 }
 
+void ProcessSequence::init()
+{
+    Process* process = getFirst();
+    int count = 1;
+    while(process)
+    {
+    	process->init();
+        process = getNext();
+    }
+}
+
 bool ProcessSequence::read(const string& fName)
 {
 	IniFile f(fName, true);
@@ -67,6 +78,11 @@ bool ProcessSequence::read(const string& fName)
         sec = f.getSection(++count);
     }
     return true;
+}
+
+bool ProcessSequence::isFirst(Process* p)
+{
+	return p == *(mProcesses.begin());
 }
 
 bool ProcessSequence::write(const string& folder)

@@ -21,6 +21,9 @@ class AB_CORE ProcessSequence : public ABObject
 										    ProcessSequence(const string& name = "MyProcess", const string& fileExt = "proc");
 				        		            ~ProcessSequence();
 
+                                            //!Init the sequence brings all processes into their
+                                            //!initial state. Required if a sequence is to be rerun
+		void								init();
 		void					            clear();
         string								getName(){return mName;}
         virtual bool	 		            read(const string& fName);
@@ -31,6 +34,7 @@ class AB_CORE ProcessSequence : public ABObject
 		bool 					            remove(Process* p);
 		bool 					            remove(const string& lbl);
 
+		bool								isFirst(Process* p);
         Process*                 	        getFirst() const;
         Process*                          	getNext() const;
         Process*                          	getPrevious() const;

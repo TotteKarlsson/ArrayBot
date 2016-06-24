@@ -138,7 +138,9 @@ bool XYZUnit::enableJSAxes()
         {
     		mJoyStick->enableWhiskerAxes();
         }
+	    return true;
     }
+    return false;
 }
 
 bool XYZUnit::disableJSAxes()
@@ -153,7 +155,9 @@ bool XYZUnit::disableJSAxes()
         {
     		mJoyStick->disableWhiskerAxes();
         }
+	    return true;
     }
+    return false;
 }
 
 void XYZUnit::shutDown()
@@ -178,7 +182,6 @@ void XYZUnit::stow()
         mMoveSequencer.start();
        	Log(lInfo) << "Started sequence: "<<mMoveSequencer.getSequence().getName();
     }
-
 }
 
 string XYZUnit::getName()

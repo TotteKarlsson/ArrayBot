@@ -25,6 +25,7 @@ class AB_CORE Process : public ABObject
     public:
         							Process(const string& lbl, ABObject* o);
 							        ~Process(){}
+		void						init();
 
 		virtual void	            assignUnit(ABObject* o){mUnit = o;}
 		ABObject*					getUnit(){return mUnit;}
@@ -38,16 +39,23 @@ class AB_CORE Process : public ABObject
         double			            getPreDwellTime(){return mPreDwellTime;}
         bool			            setPreDwellTime(double dt){mPreDwellTime = dt; return true;}
 
-        virtual bool	            isActive() 	= 0;
-        virtual bool	            execute() 	= 0;
-        virtual bool	            stop() 		= 0;
-        virtual	bool 			 	isDone()    = 0;
-        virtual	bool	            undo() 		= 0;
+                            		//!isBeingProcess refer to if process is currently being processed
+        virtual bool	            isBeingProcessed() 	{return mIsBeingProcessed;}
+        virtual	bool 			 	isProcessed() 		{return mIsProcessed;}
+        virtual	bool 			 	isStarted() 		{return mIsStarted;}
+
+        virtual bool	            start() 			= 0;
+        virtual bool	            stop() 				= 0;
+        virtual	bool	            undo() 				= 0;
 
         virtual bool				read(mtk::IniSection* sec) = 0;
         virtual bool				write(mtk::IniSection* sec) = 0;
 
     protected:
+        							//!The Process Name identifies the process in a sequence
+                                    //and in a ini file
+        string						mProcessName;
+
         					        //!Making object for moving abstract allow us
                                     //to process 'any' object. Just specialize in the
                                     //execute function..
@@ -61,9 +69,11 @@ class AB_CORE Process : public ABObject
                                     //to its own INI section in a INI file
         mtk::IniSection*	   		mIniSection;
 
-        							//!The Label identifies the process in a sequence
-                                    //and in a ini file
-        string						mProcessName;
+		bool						mIsStarted;
+		bool						mIsBeingProcessed;
+		bool						mIsProcessed;
+
+
         double			            mPreDwellTime;
         double			            mPostDwellTime;
         Timestamp					mStartTime;
