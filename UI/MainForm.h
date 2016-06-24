@@ -34,7 +34,7 @@ using mtk::IniFileProperties;
 
 typedef void __fastcall (__closure *callback)(void);
 
-class TMoveSequencerFrame;
+class TXYZProcessSequencerFrame;
 class InitBotThread : public mtk::Thread
 {
 	public:
@@ -121,6 +121,7 @@ class TMain : public TRegistryForm
 	TButton *Button3;
 	TButton *Button4;
 	TButton *Button6;
+	TPanel *mBottomPanel;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -176,14 +177,14 @@ class TMain : public TRegistryForm
         ArrayBot*					    mAB;
 		PairedMove* 				    getCurrentPairedMove();
 
-        TMoveSequencerFrame*			mCoverSlipProcessSequencerFrame;
-        TMoveSequencerFrame*			mWhiskerProcessSequencerFrame;
+        TXYZProcessSequencerFrame*		mCoverSlipProcessSequencerFrame;
+        TXYZProcessSequencerFrame*		mWhiskerProcessSequencerFrame;
 
 		void __fastcall		            OnException();
         void						    onJSButton5Click();
         void						    onJSButton6Click();
 
-        							    //!Button 14 initiate/cancel a lift operation
+        							    //!Button stops everything
         void						    onJSButton14Click();
 
 	public:		// User declarations

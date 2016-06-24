@@ -34,16 +34,16 @@ class AB_CORE XYZUnit : public ABObject
 		void					stow();
 
 		void				    shutDown();
-		string					getName();
+		string					getName() const;
         Positions&				positions(){return mPositions;}
 
 		bool				    initialize();
         bool					stopAll();
 
-		APTMotor*			    getXMotor();
-		APTMotor*			    getYMotor();
-		APTMotor*			    getZMotor();
-        APTMotor*				getAngleMotor();
+		APTMotor*			    getXMotor() const;
+		APTMotor*			    getYMotor() const;
+		APTMotor*			    getZMotor() const;
+        APTMotor*				getAngleMotor() const;
         APTMotor*				getMotorWithName(const string& name);
 
         Property<int>		    mXMotorSerialNr;

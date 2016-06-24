@@ -143,7 +143,7 @@ Coordinates=159,373,128,33
 Coordinates=110,373,47,51
 
 []
-Coordinates=750,193,53,51
+Coordinates=786,333,70,51
 
 [Button2]
 Coordinates=141,284,53,51
@@ -156,4 +156,7 @@ Coordinates=750,193,53,51
 
 [Button6]
 Coordinates=750,263,53,51
+
+[mBottomPanel]
+Coordinates=750,333,87,51
 
