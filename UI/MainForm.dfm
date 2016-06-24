@@ -139,7 +139,10 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
         ExplicitWidth = 1125
+        ExplicitHeight = 0
         object AnglesGB: TGroupBox
           Left = 491
           Top = 25
@@ -380,7 +383,6 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitWidth = 1125
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -389,7 +391,6 @@ object Main: TMain
           VertScrollBar.Position = 78
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1125
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 273
@@ -398,7 +399,7 @@ object Main: TMain
             Align = alTop
             TabOrder = 0
             ExplicitTop = 273
-            ExplicitWidth = 1104
+            ExplicitWidth = 929
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
               Width = 929
@@ -425,7 +426,7 @@ object Main: TMain
             Align = alTop
             TabOrder = 1
             ExplicitTop = -78
-            ExplicitWidth = 1104
+            ExplicitWidth = 929
             inherited mainGB: TGroupBox
               Width = 929
               ExplicitWidth = 1104
@@ -444,7 +445,10 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
         ExplicitWidth = 1125
+        ExplicitHeight = 0
         object Panel1: TPanel
           Left = 0
           Top = 0
@@ -471,7 +475,10 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
         ExplicitWidth = 1125
+        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -618,7 +625,10 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
         ExplicitWidth = 1125
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

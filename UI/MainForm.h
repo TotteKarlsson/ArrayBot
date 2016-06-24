@@ -1,6 +1,5 @@
 #ifndef MainFormH
 #define MainFormH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -22,15 +21,14 @@
 #include "TRegistryForm.h"
 #include "abArrayBot.h"
 #include "mtkIniFileProperties.h"
-
 #include <mmsystem.h>
 #include <Vcl.StdActns.hpp>
 #include <Vcl.Menus.hpp>
 #include <Vcl.Mask.hpp>
 #include "mtkLogLevel.h"
 #include "abUIDataStructures.h"
-
 #include "abApplicationMessages.h"
+
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
