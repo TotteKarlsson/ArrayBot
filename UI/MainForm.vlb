@@ -46,9 +46,6 @@ Coordinates=253,71,70,51
 [TabSheet1]
 Coordinates=750,453,66,33
 
-[mCameraAngleEdit]
-Coordinates=134,107,109,51
-
 [mXYJogAccelerationJoystick]
 Coordinates=554,1,158,51
 
@@ -91,12 +88,6 @@ Coordinates=103,1,112,87
 [LiftBtn]
 Coordinates=227,462,47,33
 
-[AnglesGB]
-Coordinates=485,373,64,51
-
-[mVerticalMoveDistanceE]
-Coordinates=750,1,136,51
-
 [Button5]
 Coordinates=168,462,53,33
 
@@ -117,9 +108,6 @@ Coordinates=200,284,95,51
 
 [mAngleControlVelE]
 Coordinates=554,211,111,51
-
-[mCSAngleE]
-Coordinates=253,141,73,51
 
 [JSGB]
 Coordinates=84,106,42,51
@@ -143,20 +131,20 @@ Coordinates=159,373,128,33
 Coordinates=110,373,47,51
 
 []
-Coordinates=786,333,70,51
+Coordinates=750,1,136,51
 
 [Button2]
 Coordinates=141,284,53,51
 
-[Button3]
-Coordinates=23,284,53,51
-
-[Button4]
-Coordinates=750,193,53,51
-
-[Button6]
-Coordinates=750,263,53,51
-
 [mBottomPanel]
 Coordinates=750,333,87,51
+
+[WorkPos2Btn]
+Coordinates=750,263,81,51
+
+[WorkPos1Btn]
+Coordinates=750,193,81,51
+
+[StowBtn1]
+Coordinates=23,284,61,51
 

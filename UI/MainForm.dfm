@@ -141,68 +141,6 @@ object Main: TMain
         Font.Style = []
         ParentFont = False
         ExplicitTop = 69
-        object AnglesGB: TGroupBox
-          Left = 491
-          Top = 25
-          Width = 366
-          Height = 104
-          Caption = 'Angles'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-          object mCSAngleE: TFloatLabeledEdit
-            Left = 18
-            Top = 57
-            Width = 98
-            Height = 31
-            EditLabel.Width = 74
-            EditLabel.Height = 23
-            EditLabel.Caption = 'Coverslip'
-            EditLabel.Font.Charset = DEFAULT_CHARSET
-            EditLabel.Font.Color = clWindowText
-            EditLabel.Font.Height = -19
-            EditLabel.Font.Name = 'Tahoma'
-            EditLabel.Font.Style = []
-            EditLabel.ParentFont = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -19
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-            Text = '0.00'
-            OnKeyDown = mCSAngleEKeyDown
-          end
-          object mCameraAngleEdit: TFloatLabeledEdit
-            Left = 151
-            Top = 57
-            Width = 98
-            Height = 31
-            EditLabel.Width = 64
-            EditLabel.Height = 23
-            EditLabel.Caption = 'Camera'
-            EditLabel.Font.Charset = DEFAULT_CHARSET
-            EditLabel.Font.Color = clWindowText
-            EditLabel.Font.Height = -19
-            EditLabel.Font.Name = 'Tahoma'
-            EditLabel.Font.Style = []
-            EditLabel.ParentFont = False
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -19
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 1
-            Text = '0.00'
-            OnKeyDown = mCSAngleEKeyDown
-          end
-        end
         object JSGB: TGroupBox
           Left = 14
           Top = 25
@@ -215,7 +153,7 @@ object Main: TMain
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 1
+          TabOrder = 0
           object mJSSpeedFastBtn: TSpeedButton
             Left = 307
             Top = 44
@@ -262,10 +200,10 @@ object Main: TMain
           end
         end
         object LiftGB: TGroupBox
-          Left = 491
-          Top = 144
+          Left = 481
+          Top = 25
           Width = 446
-          Height = 321
+          Height = 288
           Caption = 'Lift'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -273,10 +211,10 @@ object Main: TMain
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 1
           object LiftBtn: TSpeedButton
             Left = 16
-            Top = 161
+            Top = 137
             Width = 409
             Height = 136
             Action = liftA
@@ -288,8 +226,8 @@ object Main: TMain
             ParentFont = False
           end
           object mMoveAccelerationE: TFloatLabeledEdit
-            Left = 305
-            Top = 100
+            Left = 105
+            Top = 92
             Width = 73
             Height = 31
             EditLabel.Width = 101
@@ -300,8 +238,8 @@ object Main: TMain
             OnKeyDown = moveEdit
           end
           object mMoveVelocityVerticalE: TFloatLabeledEdit
-            Left = 202
-            Top = 100
+            Left = 18
+            Top = 92
             Width = 73
             Height = 31
             EditLabel.Width = 63
@@ -311,29 +249,17 @@ object Main: TMain
             Text = '0.00'
             OnKeyDown = moveEdit
           end
-          object mVerticalMoveDistanceE: TFloatLabeledEdit
-            Left = 27
-            Top = 100
-            Width = 86
-            Height = 31
-            EditLabel.Width = 154
-            EditLabel.Height = 23
-            EditLabel.Caption = 'Lift Distance (mm)'
-            TabOrder = 2
-            Text = '0.00'
-            OnKeyDown = moveEdit
-          end
           object mLiftCB: TComboBox
             Left = 16
             Top = 32
             Width = 409
             Height = 31
-            TabOrder = 3
+            TabOrder = 2
             Text = '<none>'
             OnChange = mLiftCBChange
           end
         end
-        object Button3: TButton
+        object StowBtn1: TButton
           Left = 14
           Top = 328
           Width = 137
@@ -345,13 +271,13 @@ object Main: TMain
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 2
           OnClick = stowBtnClick
         end
-        object Button4: TButton
+        object WorkPos1Btn: TButton
           Left = 157
           Top = 328
-          Width = 158
+          Width = 196
           Height = 113
           Caption = 'Work Position 1'
           Font.Charset = DEFAULT_CHARSET
@@ -360,13 +286,13 @@ object Main: TMain
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 4
-          OnClick = Button4Click
+          TabOrder = 3
+          OnClick = WorkPos1BtnClick
         end
-        object Button6: TButton
-          Left = 321
+        object WorkPos2Btn: TButton
+          Left = 359
           Top = 328
-          Width = 158
+          Width = 186
           Height = 113
           Caption = 'Work Position 2'
           Font.Charset = DEFAULT_CHARSET
@@ -375,8 +301,8 @@ object Main: TMain
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 5
-          OnClick = Button6Click
+          TabOrder = 4
+          OnClick = WorkPos2BtnClick
         end
         object mBottomPanel: TPanel
           Left = 0
@@ -385,7 +311,7 @@ object Main: TMain
           Height = 237
           Align = alBottom
           AutoSize = True
-          TabOrder = 6
+          TabOrder = 5
         end
       end
       object TabSheet1: TTabSheet
@@ -764,7 +690,6 @@ object Main: TMain
   object UIUpdateTimer: TTimer
     Enabled = False
     Interval = 150
-    OnTimer = UIUpdateTimerTimer
     Left = 888
     Top = 616
   end

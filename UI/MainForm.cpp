@@ -128,8 +128,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 		LogLevelCB->ItemIndex = 1;
 	}
 
-    //
-
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
 }
@@ -157,12 +155,6 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
         mAB->getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
         mAB->getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
         mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
-
-        //Initialize UI
-        if(mAB->getCoverSlipAngleController())
-        {
-            mCSAngleE->setValue(mAB->getCoverSlipAngleController()->getPosition());
-        }
 
         //JoyStick Settings CB
         JoyStickSettings& js = mAB->getJoyStickSettings();
@@ -305,25 +297,6 @@ void __fastcall TMain::stowBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mCSAngleEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
-	if(Key != vkReturn)
-    {
-    	return;
-    }
-
-    if(e == mCSAngleE)
-    {
-    	mAB->getCoverSlipAngleController()->moveAbsolute(mCSAngleE->getValue());
-    }
-    else if (e == mCameraAngleEdit)
-    {
-    	mAB->getCameraAngleController()->moveAbsolute(mCameraAngleEdit->getValue());
-    }
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::JSControlClick(TObject *Sender)
 {
 	//Setup Joystick control
@@ -412,32 +385,6 @@ void __fastcall TMain::Button1Click(TObject *Sender)
 {
 	mAB->writeINIParameters();
     mIniFile.save();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
-{
-    //Read UI Values
-	if(mAB->getCoverSlipAngleController())
-    {
-    	double pos = mAB->getCoverSlipAngleController()->getPosition();
-        mCSAngleE->setValue(pos);
-    }
-    else
-    {
-    	mCSAngleE->Enabled = false;
-    }
-
-    //Read UI Values
-	if(mAB->getCameraAngleController())
-    {
-    	double pos = mAB->getCameraAngleController()->getPosition();
-        mCameraAngleEdit->setValue(pos);
-    }
-    else
-    {
-    	mCameraAngleEdit->Enabled = false;
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -581,8 +528,6 @@ void __fastcall TMain::mLiftCBChange(TObject *Sender)
 	//Update edits
     //Assign editbox references to Lifting parameters
 	PairedMove* pm = getCurrentPairedMove();
-
-   	mVerticalMoveDistanceE->setReference(pm->mDistance);
 	mMoveVelocityVerticalE->setReference(pm->mVelocity);
 	mMoveAccelerationE->setReference(pm->mAcceleration);
 }
@@ -647,8 +592,7 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 	}
 }
 
-//Move this to its own frame
-void __fastcall TMain::Button4Click(TObject *Sender)
+void __fastcall TMain::WorkPos1BtnClick(TObject *Sender)
 {
 	if(mWhiskerProcessSequencerFrame)
     {
@@ -674,7 +618,7 @@ void __fastcall TMain::Button4Click(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::Button6Click(TObject *Sender)
+void __fastcall TMain::WorkPos2BtnClick(TObject *Sender)
 {
 	if(mWhiskerProcessSequencerFrame)
     {
@@ -697,6 +641,7 @@ void __fastcall TMain::Button6Click(TObject *Sender)
             mCoverSlipProcessSequencerFrame->mStartBtnClick(NULL);
         }
     }
-}
 
+}
+//---------------------------------------------------------------------------
 
