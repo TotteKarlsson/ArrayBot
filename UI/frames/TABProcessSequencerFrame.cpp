@@ -1,6 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TXYZProcessSequencerFrame.h"
+#include "TABProcessSequencerFrame.h"
 #include "abXYZUnit.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
@@ -12,53 +12,56 @@
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
-TXYZProcessSequencerFrame *XYZProcessSequencerFrame;
+TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
 
 extern string gAppDataFolder;
 using namespace mtk;
 
-int TXYZProcessSequencerFrame::mFrameNr = 0;
-__fastcall TXYZProcessSequencerFrame::TXYZProcessSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner)
+int TABProcessSequencerFrame::mFrameNr = 0;
+__fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, TComponent* Owner)
 	: TFrame(Owner),
-    mXYZUnit(u),
     mAB(ab),
+	mCoverSlipUnit(mAB.getCoverSlipUnit()),
+	mWhiskerUnit(mAB.getWhiskerUnit()),
     mMoveSequencer()
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
 
-	if(!mXYZUnit)
-    {
-    	return;
-    }
+    retrieveMotorsFromUnit(mWhiskerUnit);
+	retrieveMotorsFromUnit(mCoverSlipUnit);
 
-    //Fill out sequencer frame
-	if(mXYZUnit->getXMotor())
-    {
-    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit->getXMotor()->getName().c_str(), (TObject*) mXYZUnit->getXMotor() );
-    }
+    GroupBox1->Caption = "ArrayBot Sequencer";
+    mMovesFileExtension = "abm";
 
-	if(mXYZUnit->getYMotor())
-    {
-    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit->getYMotor()->getName().c_str(), (TObject*) mXYZUnit->getYMotor() );
-    }
-
-	if(mXYZUnit->getZMotor())
-    {
-    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit->getZMotor()->getName().c_str(), (TObject*) mXYZUnit->getZMotor() );
-    }
-
-	if(mXYZUnit->getAngleMotor())
-    {
-    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, mXYZUnit->getAngleMotor()->getName().c_str(), (TObject*) mXYZUnit->getAngleMotor() );
-    }
-
-    GroupBox1->Caption = GroupBox1->Caption + ": " + mXYZUnit->getName().c_str();
-    mMovesFileExtension = mXYZUnit->getName();
     refreshSequencesCB();
 }
 
-void TXYZProcessSequencerFrame::init()
+void TABProcessSequencerFrame::retrieveMotorsFromUnit(XYZUnit& unit)
+{
+	//Fill out sequencer frame
+	if(unit.getXMotor())
+    {
+    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, unit.getXMotor()->getName().c_str(), (TObject*) unit.getXMotor() );
+    }
+
+	if(unit.getYMotor())
+    {
+    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, unit.getYMotor()->getName().c_str(), (TObject*) unit.getYMotor() );
+    }
+
+	if(unit.getZMotor())
+    {
+    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, unit.getZMotor()->getName().c_str(), (TObject*) unit.getZMotor() );
+    }
+
+	if(unit.getAngleMotor())
+    {
+    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, unit.getAngleMotor()->getName().c_str(), (TObject*) unit.getAngleMotor() );
+    }
+}
+
+void TABProcessSequencerFrame::init()
 {
     if(mSequencesCB->Items->Count)
     {
@@ -67,7 +70,7 @@ void TXYZProcessSequencerFrame::init()
     }
 }
 
-void __fastcall TXYZProcessSequencerFrame::mAddMoveBtnClick(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mAddMoveBtnClick(TObject *Sender)
 {
 	//Create and add a move to the sequencer
     ab::Position pos("", 0.0, 0.0, 0.0);
@@ -108,7 +111,7 @@ void __fastcall TXYZProcessSequencerFrame::mAddMoveBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::mDeleteMoveBtnClick(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mDeleteMoveBtnClick(TObject *Sender)
 {
     int i = mMovesLB->ItemIndex;
     if(i == -1)
@@ -136,7 +139,7 @@ void __fastcall TXYZProcessSequencerFrame::mDeleteMoveBtnClick(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sender)
 
 {
 	//Check selected sequence and delete it
@@ -150,7 +153,7 @@ void __fastcall TXYZProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Send
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 {
 	//Create a new move file and sequence
 	stringstream fName;
@@ -174,7 +177,7 @@ void __fastcall TXYZProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::refreshSequencesCB()
+void __fastcall TABProcessSequencerFrame::refreshSequencesCB()
 {
     //Load moves
     //Get all move files in folder
@@ -187,17 +190,12 @@ void __fastcall TXYZProcessSequencerFrame::refreshSequencesCB()
     mMovesLB->Clear();
 }
 
-void __fastcall TXYZProcessSequencerFrame::mStartBtnClick(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
 {
     if(mStartBtn->Caption == "Start")
     {
-    	if(mAB)
-        {
-	        if(mXYZUnit)
-            {
-            	mXYZUnit->disableJSAxes();
-            }
-        }
+        mWhiskerUnit.disableJSAxes();
+        mCoverSlipUnit.disableJSAxes();
 
     	mMoveSequencer.start(true);
 		mSequenceStatusTimer->Enabled = true;
@@ -208,12 +206,12 @@ void __fastcall TXYZProcessSequencerFrame::mStartBtnClick(TObject *Sender)
 	}
 }
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
 {
 	saveSequence();
 }
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
 {
 	//Load the sequence
     int index = mSequencesCB->ItemIndex;
@@ -244,10 +242,10 @@ void __fastcall TXYZProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
         mMovesLBClick(NULL);
     }
 
-    mMoveSequencer.assignUnit(mXYZUnit);
+    mMoveSequencer.assignUnit(&mAB);
 }
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::mMovesLBClick(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mMovesLBClick(TObject *Sender)
 {
 	//Retrieve current move and populate UI
     int i = mMovesLB->ItemIndex;
@@ -286,7 +284,7 @@ void __fastcall TXYZProcessSequencerFrame::mMovesLBClick(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Key,
+void __fastcall TABProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
     int i = mMovesLB->ItemIndex;
@@ -308,7 +306,7 @@ void __fastcall TXYZProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Ke
     saveSequence();
 }
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::MotorsCBChange(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::MotorsCBChange(TObject *Sender)
 {
     int i = mMovesLB->ItemIndex;
     if(i == -1)
@@ -336,7 +334,7 @@ void __fastcall TXYZProcessSequencerFrame::MotorsCBChange(TObject *Sender)
 	saveSequence();
 }
 
-void TXYZProcessSequencerFrame::saveSequence()
+void TABProcessSequencerFrame::saveSequence()
 {
 	//Save Current Sequence
     int indx = mSequencesCB->ItemIndex;
@@ -347,7 +345,7 @@ void TXYZProcessSequencerFrame::saveSequence()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TXYZProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
 {
 	if(mMoveSequencer.isRunning())
     {
@@ -357,13 +355,8 @@ void __fastcall TXYZProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
     else
     {
 		mSequenceStatusTimer->Enabled = false;
-    	if(mAB)
-        {
-	        if(mXYZUnit)
-            {
-            	mXYZUnit->enableJSAxes();
-            }
-        }
+        mWhiskerUnit.enableJSAxes();
+        mCoverSlipUnit.enableJSAxes();
 
     	mStartBtn->Caption = "Start";
 	  	mStatusLbl->Caption = "Idle";
