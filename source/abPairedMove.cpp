@@ -56,11 +56,11 @@ bool PairedMove::check()
 
     if(mMotor1->getPosition() > mMotor2->getPosition())
     {
-    	mDistance = mMotor2->getMaxPosition()  - mMotor2->getPosition();
+    	mDistance = mMotor1->getMaxPosition()  - mMotor1->getPosition();
     }
     else
     {
-    	mDistance = mMotor1->getMaxPosition()  - mMotor1->getPosition();
+    	mDistance = mMotor2->getMaxPosition()  - mMotor2->getPosition();
     }
 
     //get current positions and carry out some moveTo's
