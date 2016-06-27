@@ -1,8 +1,10 @@
 var searchData=
 [
+  ['manglemotor',['mAngleMotor',['../class_x_y_z_unit.html#a517ce44190f59e2cc7a65252fd1a9e65',1,'XYZUnit']]],
+  ['mappdatafolder',['mAppDataFolder',['../class_x_y_z_unit.html#ae147a5faef4faa4940bba3bbca301fb3',1,'XYZUnit']]],
   ['maxchannels',['maxChannels',['../struct_t_l_i___device_info.html#a1f52f050d40870aa0cf566ce42774853',1,'TLI_DeviceInfo']]],
   ['maxvelocity',['maxVelocity',['../struct_m_o_t___velocity_parameters.html#ade7ffd47f4ab85179a3155c989177da4',1,'MOT_VelocityParameters']]],
-  ['mbuttonstate',['mButtonState',['../class_joy_stick_button_state_event_dispatcher.html#aff7982aeb08eae031d1f061755a311fb',1,'JoyStickButtonStateEventDispatcher']]],
+  ['mbuttonstate',['mButtonState',['../class_joy_stick_button_state_event_dispatcher.html#ab4e2812b580d385791c3d2c41295162d',1,'JoyStickButtonStateEventDispatcher']]],
   ['minisection',['mIniSection',['../class_process.html#a55b0c2ad90aaa5f0b97fa1259d1a47b5',1,'Process']]],
   ['minvelocity',['minVelocity',['../struct_m_o_t___velocity_parameters.html#af74f2509960f744e7795bf052e50f783',1,'MOT_VelocityParameters']]],
   ['mmovetype',['mMoveType',['../class_linear_move.html#a1df27dcf1f68e5524c70e2dea4febd60',1,'LinearMove']]],
@@ -12,7 +14,12 @@ var searchData=
   ['motortype',['motorType',['../struct_t_l_i___device_info.html#aa6a3567c98f84b12884c75d69bcd21bf',1,'TLI_DeviceInfo']]],
   ['movepercentage',['movePercentage',['../struct_m_o_t___power_parameters.html#aca9f0ebd5a40f420cfe5ec7e8bd14cb2',1,'MOT_PowerParameters']]],
   ['mposition',['mPosition',['../class_linear_move.html#a2f95f4900e330e6de705aaf6b157d76f',1,'LinearMove']]],
+  ['mpovstate',['mPOVState',['../class_joy_stick_p_o_v_state_event_dispatcher.html#a47059025389a440d3b395607d2e5788b',1,'JoyStickPOVStateEventDispatcher']]],
   ['mprocesses',['mProcesses',['../class_process_sequence.html#a3430e102924a9728eff924b2cf41373b',1,'ProcessSequence']]],
+  ['mprocessname',['mProcessName',['../class_process.html#ae663f486d3b29d75e77538196683bf2a',1,'Process']]],
   ['mprocesstype',['mProcessType',['../class_process.html#a7d79793851b177467b126551fe7227b5',1,'Process']]],
-  ['munit',['mUnit',['../class_process.html#ab04362b482e36ad06ca95a761d1e2c7a',1,'Process']]]
+  ['munit',['mUnit',['../class_process.html#ab04362b482e36ad06ca95a761d1e2c7a',1,'Process']]],
+  ['mx1axis',['mX1Axis',['../class_array_bot_joy_stick.html#afd10ec7b5c9428298a4a2481b1e0afd5',1,'ArrayBotJoyStick']]],
+  ['mx2axis',['mX2Axis',['../class_array_bot_joy_stick.html#a5fbb7f3096c55dc8c99331debcf59f98',1,'ArrayBotJoyStick']]],
+  ['mxmotor',['mXMotor',['../class_x_y_z_unit.html#acfddd4ca2e1b13296f9772d7c4e3086e',1,'XYZUnit']]]
 ];

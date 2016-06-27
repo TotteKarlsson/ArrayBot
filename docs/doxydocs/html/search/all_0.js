@@ -9,5 +9,6 @@ var searchData=
   ['anticlockwiseposition',['anticlockwisePosition',['../struct_m_o_t___limit_switch_parameters.html#a05cfb7ace5292ec96c4647e9043c7057',1,'MOT_LimitSwitchParameters']]],
   ['aptdevice',['APTDevice',['../class_a_p_t_device.html',1,'']]],
   ['aptmotor',['APTMotor',['../class_a_p_t_motor.html',1,'']]],
-  ['arraybot',['ArrayBot',['../class_array_bot.html',1,'']]]
+  ['arraybot',['ArrayBot',['../class_array_bot.html',1,'']]],
+  ['arraybotjoystick',['ArrayBotJoyStick',['../class_array_bot_joy_stick.html',1,'ArrayBotJoyStick'],['../class_array_bot_joy_stick.html#a164a60131b660a0313c2c076da559f93',1,'ArrayBotJoyStick::ArrayBotJoyStick()']]]
 ];

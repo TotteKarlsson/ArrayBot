@@ -100,8 +100,9 @@ Inheritance diagram for Process:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_process__inherit__graph.png" border="0" usemap="#_process_inherit__map" alt="Inheritance graph"/></div>
 <map name="_process_inherit__map" id="_process_inherit__map">
-<area shape="rect" id="node5" href="class_linear_move.html" title="The move baseclass contain the general logic for a &#39;move&#39; of. " alt="" coords="5,155,91,181"/>
-<area shape="rect" id="node2" href="class_a_b_object.html" title="ABObject" alt="" coords="9,5,87,32"/>
+<area shape="rect" id="node5" href="class_combined_linear_move.html" title="The move baseclass contain the general logic for a &#39;move&#39; of. " alt="" coords="5,155,149,181"/>
+<area shape="rect" id="node7" href="class_linear_move.html" title="The move baseclass contain the general logic for a &#39;move&#39; of. " alt="" coords="174,155,260,181"/>
+<area shape="rect" id="node2" href="class_a_b_object.html" title="ABObject" alt="" coords="107,5,185,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -118,30 +119,52 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af3241196431a4a5019596e12b0bc229e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3241196431a4a5019596e12b0bc229e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Process</b> (const string &amp;lbl, <a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
 <tr class="separator:af3241196431a4a5019596e12b0bc229e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dc3b682682b916c0e15a81c57fc978f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8dc3b682682b916c0e15a81c57fc978f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>assignUnit</b> (<a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
-<tr class="separator:a8dc3b682682b916c0e15a81c57fc978f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d50790478fc7b0f3ad0508905ffed43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d50790478fc7b0f3ad0508905ffed43"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
+<tr class="separator:a4d50790478fc7b0f3ad0508905ffed43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a549ec62c0436d0f037c0c2052fe41e0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a549ec62c0436d0f037c0c2052fe41e0d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>assignUnit</b> (<a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
+<tr class="separator:a549ec62c0436d0f037c0c2052fe41e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7543fe56f795ee1bdacb25fe264b5bca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7543fe56f795ee1bdacb25fe264b5bca"></a>
 <a class="el" href="class_a_b_object.html">ABObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getUnit</b> ()</td></tr>
 <tr class="separator:a7543fe56f795ee1bdacb25fe264b5bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f1547257d358bc219de84e99914b2d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f1547257d358bc219de84e99914b2d0"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getLabel</b> ()</td></tr>
-<tr class="separator:a1f1547257d358bc219de84e99914b2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0d222ec411f891b4263c4230f00c883"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0d222ec411f891b4263c4230f00c883"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getDwellTime</b> ()</td></tr>
-<tr class="separator:ac0d222ec411f891b4263c4230f00c883"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c8f272ddf8aa560f967a95933d222a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c8f272ddf8aa560f967a95933d222a6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setDwellTime</b> (double dt)</td></tr>
-<tr class="separator:a6c8f272ddf8aa560f967a95933d222a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bd4eb8f9dcc1975d81da5b36c634fd8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2bd4eb8f9dcc1975d81da5b36c634fd8"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()=0</td></tr>
-<tr class="separator:a2bd4eb8f9dcc1975d81da5b36c634fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a495528c4c05c6482d4a5a4d1886de807"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a495528c4c05c6482d4a5a4d1886de807"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>execute</b> ()=0</td></tr>
-<tr class="separator:a495528c4c05c6482d4a5a4d1886de807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e0a3e0c0f5cc6f051bb8aa1f0f19a42"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e0a3e0c0f5cc6f051bb8aa1f0f19a42"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDone</b> ()=0</td></tr>
-<tr class="separator:a1e0a3e0c0f5cc6f051bb8aa1f0f19a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e23a9468cf283c1a47b3f23c47f3ffa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e23a9468cf283c1a47b3f23c47f3ffa"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getProcessName</b> ()</td></tr>
+<tr class="separator:a5e23a9468cf283c1a47b3f23c47f3ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86eb8f048619f266b696241f180fd157"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86eb8f048619f266b696241f180fd157"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setProcessName</b> (const string &amp;l)</td></tr>
+<tr class="separator:a86eb8f048619f266b696241f180fd157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a604dae031f9af04c35b30b42d5be49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a604dae031f9af04c35b30b42d5be49"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isTimedOut</b> ()</td></tr>
+<tr class="separator:a3a604dae031f9af04c35b30b42d5be49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2fd31f4c00501185fefcae6bfc89d8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2fd31f4c00501185fefcae6bfc89d8b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getPreDwellTime</b> ()</td></tr>
+<tr class="separator:aa2fd31f4c00501185fefcae6bfc89d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481cf9477b2a1ac75d986b219d7b32f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a481cf9477b2a1ac75d986b219d7b32f6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setPreDwellTime</b> (double dt)</td></tr>
+<tr class="separator:a481cf9477b2a1ac75d986b219d7b32f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0428d00fa34e3dbff2e0914f44c4f4fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0428d00fa34e3dbff2e0914f44c4f4fd"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getPostDwellTime</b> ()</td></tr>
+<tr class="separator:a0428d00fa34e3dbff2e0914f44c4f4fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88e2dd71ad2aa3eebe6b25199ec523de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88e2dd71ad2aa3eebe6b25199ec523de"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setPostDwellTime</b> (double dt)</td></tr>
+<tr class="separator:a88e2dd71ad2aa3eebe6b25199ec523de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af59ecf33590ac8424ef6b6d1b9beee09"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af59ecf33590ac8424ef6b6d1b9beee09"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#af59ecf33590ac8424ef6b6d1b9beee09">isBeingProcessed</a> ()</td></tr>
+<tr class="memdesc:af59ecf33590ac8424ef6b6d1b9beee09"><td class="mdescLeft">&#160;</td><td class="mdescRight">isBeingProcess refer to if process is currently being processed <br /></td></tr>
+<tr class="separator:af59ecf33590ac8424ef6b6d1b9beee09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a32bcb52e72e31275681b4899d0bcd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25a32bcb52e72e31275681b4899d0bcd"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isProcessed</b> ()</td></tr>
+<tr class="separator:a25a32bcb52e72e31275681b4899d0bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb3b5b8b79a80ab1efdc6cb31ccd9bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabb3b5b8b79a80ab1efdc6cb31ccd9bf"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isStarted</b> ()</td></tr>
+<tr class="separator:aabb3b5b8b79a80ab1efdc6cb31ccd9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc4d82a07b2f684556353c951ea13b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefc4d82a07b2f684556353c951ea13b3"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> ()=0</td></tr>
+<tr class="separator:aefc4d82a07b2f684556353c951ea13b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba887b022905fb710d15fdd3ee2fa663"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba887b022905fb710d15fdd3ee2fa663"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()=0</td></tr>
+<tr class="separator:aba887b022905fb710d15fdd3ee2fa663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18bcf6d212291ad97b4116db3ef3bcce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18bcf6d212291ad97b4116db3ef3bcce"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>undo</b> ()=0</td></tr>
 <tr class="separator:a18bcf6d212291ad97b4116db3ef3bcce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,6 +177,10 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (mt
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:ae663f486d3b29d75e77538196683bf2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae663f486d3b29d75e77538196683bf2a"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#ae663f486d3b29d75e77538196683bf2a">mProcessName</a></td></tr>
+<tr class="memdesc:ae663f486d3b29d75e77538196683bf2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_process.html">Process</a> Name identifies the process in a sequence. <br /></td></tr>
+<tr class="separator:ae663f486d3b29d75e77538196683bf2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab04362b482e36ad06ca95a761d1e2c7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab04362b482e36ad06ca95a761d1e2c7a"></a>
 <a class="el" href="class_a_b_object.html">ABObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#ab04362b482e36ad06ca95a761d1e2c7a">mUnit</a></td></tr>
 <tr class="memdesc:ab04362b482e36ad06ca95a761d1e2c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Making object for moving abstract allow us. <br /></td></tr>
@@ -166,16 +193,34 @@ ProcessType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 mtk::IniSection *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#a55b0c2ad90aaa5f0b97fa1259d1a47b5">mIniSection</a></td></tr>
 <tr class="memdesc:a55b0c2ad90aaa5f0b97fa1259d1a47b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A process parameters are saved. <br /></td></tr>
 <tr class="separator:a55b0c2ad90aaa5f0b97fa1259d1a47b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb13f7c29fa9ba837c2087fafec4f8a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb13f7c29fa9ba837c2087fafec4f8a5"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>mLabel</b></td></tr>
-<tr class="separator:aeb13f7c29fa9ba837c2087fafec4f8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee15d7c1fd6a980e1909e6fe7ddc7acb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee15d7c1fd6a980e1909e6fe7ddc7acb"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>mDwellTime</b></td></tr>
-<tr class="separator:aee15d7c1fd6a980e1909e6fe7ddc7acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fa3db2a0cc297f7f3353afde59c7470"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fa3db2a0cc297f7f3353afde59c7470"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsStarted</b></td></tr>
+<tr class="separator:a7fa3db2a0cc297f7f3353afde59c7470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75f1380567870d42d0bfc64293e4a808"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75f1380567870d42d0bfc64293e4a808"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsBeingProcessed</b></td></tr>
+<tr class="separator:a75f1380567870d42d0bfc64293e4a808"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a545fe067f48bca14ed23bb36c57a20ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a545fe067f48bca14ed23bb36c57a20ba"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsProcessed</b></td></tr>
+<tr class="separator:a545fe067f48bca14ed23bb36c57a20ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b630a87c97403c82319815920265a9c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b630a87c97403c82319815920265a9c"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mPreDwellTime</b></td></tr>
+<tr class="separator:a5b630a87c97403c82319815920265a9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3493d44c1edad6068302f2b03783222"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3493d44c1edad6068302f2b03783222"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mPostDwellTime</b></td></tr>
+<tr class="separator:af3493d44c1edad6068302f2b03783222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae19762e6f2e8bff8a6261e1355d9da37"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae19762e6f2e8bff8a6261e1355d9da37"></a>
+Timestamp&#160;</td><td class="memItemRight" valign="bottom"><b>mStartTime</b></td></tr>
+<tr class="separator:ae19762e6f2e8bff8a6261e1355d9da37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a268c0785e58257ff42681d345c71f430"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a268c0785e58257ff42681d345c71f430"></a>
+Timestamp&#160;</td><td class="memItemRight" valign="bottom"><b>mEndTime</b></td></tr>
+<tr class="separator:a268c0785e58257ff42681d345c71f430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb529757d189c7504b2146ee5907969b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb529757d189c7504b2146ee5907969b"></a>
+Poco::Timespan&#160;</td><td class="memItemRight" valign="bottom"><b>mTimeOut</b></td></tr>
+<tr class="separator:acb529757d189c7504b2146ee5907969b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ab_process_8h_source.html#l00016">16</a> of file <a class="el" href="ab_process_8h_source.html">abProcess.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_process_8h_source.html#l00023">23</a> of file <a class="el" href="ab_process_8h_source.html">abProcess.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_process_8h_source.html">abProcess.h</a></li>
 <li>source/<a class="el" href="ab_process_8cpp_source.html">abProcess.cpp</a></li>

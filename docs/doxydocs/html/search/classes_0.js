@@ -5,5 +5,6 @@ var searchData=
   ['anglecontroller',['AngleController',['../class_angle_controller.html',1,'']]],
   ['aptdevice',['APTDevice',['../class_a_p_t_device.html',1,'']]],
   ['aptmotor',['APTMotor',['../class_a_p_t_motor.html',1,'']]],
-  ['arraybot',['ArrayBot',['../class_array_bot.html',1,'']]]
+  ['arraybot',['ArrayBot',['../class_array_bot.html',1,'']]],
+  ['arraybotjoystick',['ArrayBotJoyStick',['../class_array_bot_joy_stick.html',1,'']]]
 ];

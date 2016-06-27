@@ -120,6 +120,9 @@
             <DependentOn>abArrayBotJoystick.h</DependentOn>
             <BuildOrder>16</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abCombinedLinearMove.cpp">
+            <BuildOrder>30</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abCore.cpp">
             <BuildOrder>1</BuildOrder>
         </CppCompile>
@@ -166,7 +169,7 @@
             <BuildOrder>25</BuildOrder>
         </CppCompile>
         <CppCompile Include="abLinearMove.cpp">
-            <BuildOrder>30</BuildOrder>
+            <BuildOrder>36</BuildOrder>
         </CppCompile>
         <CppCompile Include="abLongTravelStage.cpp">
             <BuildOrder>14</BuildOrder>

@@ -27,7 +27,6 @@ object Main: TMain
     Height = 791
     Align = alRight
     TabOrder = 0
-    ExplicitHeight = 697
     object mJSCSBtn: TSpeedButton
       Left = 1
       Top = 126
@@ -88,7 +87,6 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      ExplicitTop = 569
       object Button5: TSpeedButton
         Left = 1
         Top = 1
@@ -114,13 +112,12 @@ object Main: TMain
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
     TabOrder = 1
-    ExplicitHeight = 697
     object PageControl1: TPageControl
       Left = 1
       Top = 1
       Width = 958
       Height = 789
-      ActivePage = TabSheet4
+      ActivePage = mMoveSequencesPage
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -131,7 +128,6 @@ object Main: TMain
       TabHeight = 60
       TabOrder = 0
       TabWidth = 100
-      ExplicitHeight = 695
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
         Font.Charset = DEFAULT_CHARSET
@@ -140,7 +136,6 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ExplicitHeight = 625
         object JSGB: TGroupBox
           Left = 14
           Top = 25
@@ -312,12 +307,10 @@ object Main: TMain
           Align = alBottom
           AutoSize = True
           TabOrder = 5
-          ExplicitTop = 388
         end
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitHeight = 625
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -325,7 +318,6 @@ object Main: TMain
           Height = 719
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 625
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
@@ -334,21 +326,21 @@ object Main: TMain
             Align = alTop
             TabOrder = 0
             ExplicitTop = 351
-            ExplicitWidth = 929
+            ExplicitWidth = 946
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
               Width = 946
               Height = 348
-              ExplicitWidth = 929
+              ExplicitWidth = 946
               ExplicitHeight = 348
               inherited TopPanel: TPanel
                 Width = 942
-                ExplicitWidth = 925
+                ExplicitWidth = 942
               end
               inherited ScrollBox1: TScrollBox
                 Width = 942
                 Height = 305
-                ExplicitWidth = 925
+                ExplicitWidth = 942
                 ExplicitHeight = 305
               end
             end
@@ -360,17 +352,17 @@ object Main: TMain
             Height = 351
             Align = alTop
             TabOrder = 1
-            ExplicitWidth = 929
+            ExplicitWidth = 946
             inherited mainGB: TGroupBox
               Width = 946
-              ExplicitWidth = 929
+              ExplicitWidth = 946
               inherited TopPanel: TPanel
                 Width = 942
-                ExplicitWidth = 925
+                ExplicitWidth = 942
               end
               inherited ScrollBox1: TScrollBox
                 Width = 942
-                ExplicitWidth = 925
+                ExplicitWidth = 942
               end
             end
           end
@@ -379,30 +371,10 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
-        ExplicitHeight = 625
-        object Panel1: TPanel
-          Left = 0
-          Top = 0
-          Width = 950
-          Height = 89
-          Align = alTop
-          TabOrder = 0
-          object Button2: TButton
-            Left = 1
-            Top = 1
-            Width = 177
-            Height = 87
-            Align = alLeft
-            Caption = 'Home All'
-            TabOrder = 0
-            OnClick = Button3Click
-          end
-        end
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitHeight = 625
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -549,7 +521,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitHeight = 625
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -557,7 +528,6 @@ object Main: TMain
           Height = 719
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 625
           object infoMemo: TMemo
             Left = 1
             Top = 31
@@ -573,7 +543,6 @@ object Main: TMain
             ScrollBars = ssVertical
             TabOrder = 0
             WordWrap = False
-            ExplicitHeight = 593
           end
           object ToolBar1: TToolBar
             Left = 1

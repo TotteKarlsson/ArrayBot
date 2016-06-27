@@ -18,7 +18,7 @@ namespace mtk
 using Poco::Timestamp;
 
 using Poco::Timestamp::TimeDiff;
-enum ProcessType {ptLinearMove = 0};
+enum ProcessType {ptLinearMove = 0, ptCombinedLinearMove};
 
 class AB_CORE Process : public ABObject
 {
@@ -33,11 +33,10 @@ class AB_CORE Process : public ABObject
         void						setProcessName(const string& l) {mProcessName = l;}
         bool						isTimedOut();
 
-        double			            getPostDwellTime(){return mPostDwellTime;}
-        bool			            setPostDwellTime(double dt){mPostDwellTime = dt; return true;}
-
         double			            getPreDwellTime(){return mPreDwellTime;}
         bool			            setPreDwellTime(double dt){mPreDwellTime = dt; return true;}
+        double			            getPostDwellTime(){return mPostDwellTime;}
+        bool			            setPostDwellTime(double dt){mPostDwellTime = dt; return true;}
 
                             		//!isBeingProcess refer to if process is currently being processed
         virtual bool	            isBeingProcessed() 	{return mIsBeingProcessed;}
@@ -58,7 +57,7 @@ class AB_CORE Process : public ABObject
 
         					        //!Making object for moving abstract allow us
                                     //to process 'any' object. Just specialize in the
-                                    //execute function..
+                                    //run function..
     	ABObject* 		            mUnit;
 
         							//!The process type help us construct

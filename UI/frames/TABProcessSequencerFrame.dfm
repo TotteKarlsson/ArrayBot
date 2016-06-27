@@ -35,9 +35,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     object GroupBox2: TGroupBox
       Left = 207
       Top = 26
-      Width = 274
+      Width = 242
       Height = 207
-      Caption = 'Move'
+      Caption = 'Motor Move'
       TabOrder = 0
       object Label2: TLabel
         Left = 16
@@ -71,7 +71,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         OnKeyDown = moveParEdit
       end
       object mAccE: TFloatLabeledEdit
-        Left = 87
+        Left = 119
         Top = 127
         Width = 65
         Height = 21
@@ -97,7 +97,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       object MotorsCB: TComboBox
         Left = 16
         Top = 39
-        Width = 217
+        Width = 169
         Height = 21
         TabOrder = 4
         Text = 'Select Motor'
@@ -196,7 +196,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Enabled = False
     Interval = 100
     OnTimer = mSequenceTimerTimer
-    Left = 160
-    Top = 184
+    Left = 416
+    Top = 24
   end
 end

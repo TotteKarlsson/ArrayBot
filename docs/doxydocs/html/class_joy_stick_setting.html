@@ -95,6 +95,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">JoyStickSetting Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The JoystickSetting class holds motor settings for all motors.  
+ <a href="class_joy_stick_setting.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ab_joy_stick_setting_8h_source.html">abJoyStickSetting.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for JoyStickSetting:</div>
 <div class="dyncontent">
@@ -114,9 +119,9 @@ Collaboration diagram for JoyStickSetting:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ade69a2ecbf71b9d0d6f2abbe2bd18fef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade69a2ecbf71b9d0d6f2abbe2bd18fef"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>JoyStickSetting</b> (const string &amp;lbl, double maxXYVel=0, double xyAcc=0, double maxZVel=0, double zAcc=0)</td></tr>
-<tr class="separator:ade69a2ecbf71b9d0d6f2abbe2bd18fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae63d5e6d1b9d2ac923831282d5f98a4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae63d5e6d1b9d2ac923831282d5f98a4b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>JoyStickSetting</b> (const string &amp;lbl, double XYVel=0, double xyAcc=0, double ZVel=0, double zAcc=0, double angleVel=0, double angleAcc=0)</td></tr>
+<tr class="separator:ae63d5e6d1b9d2ac923831282d5f98a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a588c3674ac2b918c4a63c20244ca216a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a588c3674ac2b918c4a63c20244ca216a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setLabel</b> (const string &amp;lbl)</td></tr>
 <tr class="separator:a588c3674ac2b918c4a63c20244ca216a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,9 +131,9 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>getLabel</b> ()</td
 <tr class="memitem:af9f05eff8dfeb5193de6bc46c4a56608"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9f05eff8dfeb5193de6bc46c4a56608"></a>
 vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> ()</td></tr>
 <tr class="separator:af9f05eff8dfeb5193de6bc46c4a56608"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cf24b1f6fe109c51abe0b2d356f19fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cf24b1f6fe109c51abe0b2d356f19fc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (double maxXYVel, double xyAcc, double maxZVel, double zAcc)</td></tr>
-<tr class="separator:a8cf24b1f6fe109c51abe0b2d356f19fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7286b47f9128b07351b3322a0d5b74d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7286b47f9128b07351b3322a0d5b74d0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set</b> (double XYVel, double XYAcc, double ZVel, double ZAcc, double angleVelocity, double angleAcc)</td></tr>
+<tr class="separator:a7286b47f9128b07351b3322a0d5b74d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a424a582d3c99d9fd82e162ebbfe30a1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a424a582d3c99d9fd82e162ebbfe30a1f"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>asIniRecord</b> ()</td></tr>
 <tr class="separator:a424a582d3c99d9fd82e162ebbfe30a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,22 +143,30 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a9bfb1c4795a15fbbbbc5b658588d7285"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bfb1c4795a15fbbbbc5b658588d7285"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>mLabel</b></td></tr>
 <tr class="separator:a9bfb1c4795a15fbbbbc5b658588d7285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2578ad5f432219bfd711c886f93a03ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2578ad5f432219bfd711c886f93a03ab"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>mMaxXYVelocity</b></td></tr>
-<tr class="separator:a2578ad5f432219bfd711c886f93a03ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af325a721836851d9f3911e0dbab693da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af325a721836851d9f3911e0dbab693da"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mXYVelocity</b></td></tr>
+<tr class="separator:af325a721836851d9f3911e0dbab693da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9481c1fc51704b583a587c411d2f675"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9481c1fc51704b583a587c411d2f675"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>mXYAcceleration</b></td></tr>
 <tr class="separator:af9481c1fc51704b583a587c411d2f675"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae10211747d5d27a3189ed506095747da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae10211747d5d27a3189ed506095747da"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>mMaxZVelocity</b></td></tr>
-<tr class="separator:ae10211747d5d27a3189ed506095747da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ef0a1c183f42fa8c9b6b22b06f84000"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ef0a1c183f42fa8c9b6b22b06f84000"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mZVelocity</b></td></tr>
+<tr class="separator:a2ef0a1c183f42fa8c9b6b22b06f84000"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a419e16dabedc02cf947fecf72ac08ddb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a419e16dabedc02cf947fecf72ac08ddb"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>mZAcceleration</b></td></tr>
 <tr class="separator:a419e16dabedc02cf947fecf72ac08ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5db87f08b5b75806ca6e469806f34c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5db87f08b5b75806ca6e469806f34c0"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mAngleControllerVelocity</b></td></tr>
+<tr class="separator:aa5db87f08b5b75806ca6e469806f34c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d8a97c539539ed91201d68c2a183f7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d8a97c539539ed91201d68c2a183f7c"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mAngleControllerAccleration</b></td></tr>
+<tr class="separator:a8d8a97c539539ed91201d68c2a183f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="ab_joy_stick_setting_8h_source.html#l00011">11</a> of file <a class="el" href="ab_joy_stick_setting_8h_source.html">abJoyStickSetting.h</a>.</p>
+<div class="textblock"><p>The JoystickSetting class holds motor settings for all motors. </p>
+<p>The settings are saved/retrieved from a INI file. </p>
+
+<p>Definition at line <a class="el" href="ab_joy_stick_setting_8h_source.html#l00014">14</a> of file <a class="el" href="ab_joy_stick_setting_8h_source.html">abJoyStickSetting.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_joy_stick_setting_8h_source.html">abJoyStickSetting.h</a></li>
 <li>source/<a class="el" href="ab_joy_stick_setting_8cpp_source.html">abJoyStickSetting.cpp</a></li>

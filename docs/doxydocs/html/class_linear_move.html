@@ -114,9 +114,9 @@ Collaboration diagram for LinearMove:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_linear_move__coll__graph.png" border="0" usemap="#_linear_move_coll__map" alt="Collaboration graph"/></div>
 <map name="_linear_move_coll__map" id="_linear_move_coll__map">
-<area shape="rect" id="node2" href="class_process.html" title="Process" alt="" coords="30,96,100,123"/>
-<area shape="rect" id="node4" href="class_a_b_object.html" title="ABObject" alt="" coords="5,5,83,32"/>
-<area shape="rect" id="node10" href="classab_1_1_position.html" title="ab::Position" alt="" coords="295,96,385,123"/>
+<area shape="rect" id="node2" href="class_process.html" title="Process" alt="" coords="197,109,267,136"/>
+<area shape="rect" id="node4" href="class_a_b_object.html" title="ABObject" alt="" coords="115,5,193,32"/>
+<area shape="rect" id="node14" href="classab_1_1_position.html" title="ab::Position" alt="" coords="607,109,697,136"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -125,24 +125,40 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adf00a741d8bb01c8dc382c067eed2456"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf00a741d8bb01c8dc382c067eed2456"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>LinearMove</b> (const string &amp;lbl, <a class="el" href="class_a_b_object.html">ABObject</a> *unit, MoveType type=mtAbsolute, const <a class="el" href="classab_1_1_position.html">ab::Position</a> &amp;p=<a class="el" href="classab_1_1_position.html">ab::Position</a>(&quot;&quot;, 0, 0, 0), double maxVel=0, double acc=0, double dwellTime=0)</td></tr>
 <tr class="separator:adf00a741d8bb01c8dc382c067eed2456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65f2da4e1bdb1c7d8566f588c95724be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65f2da4e1bdb1c7d8566f588c95724be"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>assignUnit</b> (<a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
+<tr class="separator:a65f2da4e1bdb1c7d8566f588c95724be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a2a7490f82092ae3ab798f20d4715c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a2a7490f82092ae3ab798f20d4715c8"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (mtk::IniSection *sec)</td></tr>
 <tr class="separator:a1a2a7490f82092ae3ab798f20d4715c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2761e28c09c8e7e6aac8dd007b9141e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2761e28c09c8e7e6aac8dd007b9141e2"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (mtk::IniSection *sec)</td></tr>
 <tr class="separator:a2761e28c09c8e7e6aac8dd007b9141e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6662ea4f87f0b4c46333880211d6a249"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6662ea4f87f0b4c46333880211d6a249"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>execute</b> ()</td></tr>
-<tr class="separator:a6662ea4f87f0b4c46333880211d6a249"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e28b02fd816e71fd58cb10e75091ed9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e28b02fd816e71fd58cb10e75091ed9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDone</b> ()</td></tr>
-<tr class="separator:a1e28b02fd816e71fd58cb10e75091ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e3191f43219534842db812e5e731c73"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e3191f43219534842db812e5e731c73"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> ()</td></tr>
+<tr class="separator:a0e3191f43219534842db812e5e731c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fd5c1ad809076117acc01ba5f273723"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fd5c1ad809076117acc01ba5f273723"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
+<tr class="separator:a1fd5c1ad809076117acc01ba5f273723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7990058d500fc76ce800121c2c646cc9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7990058d500fc76ce800121c2c646cc9"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_linear_move.html#a7990058d500fc76ce800121c2c646cc9">isBeingProcessed</a> ()</td></tr>
+<tr class="memdesc:a7990058d500fc76ce800121c2c646cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">isBeingProcess refer to if process is currently being processed <br /></td></tr>
+<tr class="separator:a7990058d500fc76ce800121c2c646cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a473b6f2837fb3d7b8fd7b3071d1686f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a473b6f2837fb3d7b8fd7b3071d1686f7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isProcessed</b> ()</td></tr>
+<tr class="separator:a473b6f2837fb3d7b8fd7b3071d1686f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d2516420d8def0b5e9c5963deb48e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55d2516420d8def0b5e9c5963deb48e8"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>commandPending</b> ()</td></tr>
+<tr class="separator:a55d2516420d8def0b5e9c5963deb48e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc9b59202295cfd0ae63ec9a43dacdfb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc9b59202295cfd0ae63ec9a43dacdfb"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>undo</b> ()</td></tr>
 <tr class="separator:acc9b59202295cfd0ae63ec9a43dacdfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dce92eef1620c931bfdfa2dea0630b0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dce92eef1620c931bfdfa2dea0630b0"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td></tr>
-<tr class="separator:a2dce92eef1620c931bfdfa2dea0630b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e28b02fd816e71fd58cb10e75091ed9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e28b02fd816e71fd58cb10e75091ed9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDone</b> ()</td></tr>
+<tr class="separator:a1e28b02fd816e71fd58cb10e75091ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ad4f5a46367f18d046fc85cda3fa16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29ad4f5a46367f18d046fc85cda3fa16"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMotorActive</b> ()</td></tr>
+<tr class="separator:a29ad4f5a46367f18d046fc85cda3fa16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8f9b78f4c3c8bc5e1ad430ee1790e0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8f9b78f4c3c8bc5e1ad430ee1790e0d"></a>
 virtual MoveType&#160;</td><td class="memItemRight" valign="bottom"><b>getMoveType</b> ()</td></tr>
 <tr class="separator:af8f9b78f4c3c8bc5e1ad430ee1790e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,9 +171,6 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxVelocity</b> 
 <tr class="memitem:a3acae11b9e858ca55d72dff4c5dc3c08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3acae11b9e858ca55d72dff4c5dc3c08"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getAcceleration</b> ()</td></tr>
 <tr class="separator:a3acae11b9e858ca55d72dff4c5dc3c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1cb947e364387b307eaff64676b1b2e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1cb947e364387b307eaff64676b1b2e"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getDwellTime</b> ()</td></tr>
-<tr class="separator:af1cb947e364387b307eaff64676b1b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02a93b162f3fd49f5d5ccf65a828b3eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02a93b162f3fd49f5d5ccf65a828b3eb"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const <a class="el" href="classab_1_1_position.html">ab::Position</a> &amp;pos)</td></tr>
 <tr class="separator:a02a93b162f3fd49f5d5ccf65a828b3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,24 +180,45 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>setMaxVelocity</b> (d
 <tr class="memitem:a4468aad3e5faa034f37906421b1bf5e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4468aad3e5faa034f37906421b1bf5e7"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>setAcceleration</b> (double a)</td></tr>
 <tr class="separator:a4468aad3e5faa034f37906421b1bf5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dce9f6ace2852488bf7f66ab2bc96fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5dce9f6ace2852488bf7f66ab2bc96fe"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setDwellTime</b> (double dt)</td></tr>
-<tr class="separator:a5dce9f6ace2852488bf7f66ab2bc96fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c93078085d19fa7f84d91c0144e55c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c93078085d19fa7f84d91c0144e55c7"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>getPositionName</b> ()</td></tr>
 <tr class="separator:a3c93078085d19fa7f84d91c0144e55c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a806f162b39a34ac152b5ce649f7cb123"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a806f162b39a34ac152b5ce649f7cb123"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPositionName</b> (const string &amp;l)</td></tr>
 <tr class="separator:a806f162b39a34ac152b5ce649f7cb123"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dc3b682682b916c0e15a81c57fc978f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8dc3b682682b916c0e15a81c57fc978f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>assignUnit</b> (<a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
-<tr class="separator:a8dc3b682682b916c0e15a81c57fc978f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a827d0c354e7c642334c749c0b4ca9280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a827d0c354e7c642334c749c0b4ca9280"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getMotorName</b> ()</td></tr>
+<tr class="separator:a827d0c354e7c642334c749c0b4ca9280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d50790478fc7b0f3ad0508905ffed43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d50790478fc7b0f3ad0508905ffed43"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
+<tr class="separator:a4d50790478fc7b0f3ad0508905ffed43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7543fe56f795ee1bdacb25fe264b5bca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7543fe56f795ee1bdacb25fe264b5bca"></a>
 <a class="el" href="class_a_b_object.html">ABObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getUnit</b> ()</td></tr>
 <tr class="separator:a7543fe56f795ee1bdacb25fe264b5bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f1547257d358bc219de84e99914b2d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f1547257d358bc219de84e99914b2d0"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getLabel</b> ()</td></tr>
-<tr class="separator:a1f1547257d358bc219de84e99914b2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e23a9468cf283c1a47b3f23c47f3ffa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e23a9468cf283c1a47b3f23c47f3ffa"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getProcessName</b> ()</td></tr>
+<tr class="separator:a5e23a9468cf283c1a47b3f23c47f3ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86eb8f048619f266b696241f180fd157"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86eb8f048619f266b696241f180fd157"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setProcessName</b> (const string &amp;l)</td></tr>
+<tr class="separator:a86eb8f048619f266b696241f180fd157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a604dae031f9af04c35b30b42d5be49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a604dae031f9af04c35b30b42d5be49"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isTimedOut</b> ()</td></tr>
+<tr class="separator:a3a604dae031f9af04c35b30b42d5be49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2fd31f4c00501185fefcae6bfc89d8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2fd31f4c00501185fefcae6bfc89d8b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getPreDwellTime</b> ()</td></tr>
+<tr class="separator:aa2fd31f4c00501185fefcae6bfc89d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481cf9477b2a1ac75d986b219d7b32f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a481cf9477b2a1ac75d986b219d7b32f6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setPreDwellTime</b> (double dt)</td></tr>
+<tr class="separator:a481cf9477b2a1ac75d986b219d7b32f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0428d00fa34e3dbff2e0914f44c4f4fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0428d00fa34e3dbff2e0914f44c4f4fd"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getPostDwellTime</b> ()</td></tr>
+<tr class="separator:a0428d00fa34e3dbff2e0914f44c4f4fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88e2dd71ad2aa3eebe6b25199ec523de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88e2dd71ad2aa3eebe6b25199ec523de"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setPostDwellTime</b> (double dt)</td></tr>
+<tr class="separator:a88e2dd71ad2aa3eebe6b25199ec523de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb3b5b8b79a80ab1efdc6cb31ccd9bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabb3b5b8b79a80ab1efdc6cb31ccd9bf"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isStarted</b> ()</td></tr>
+<tr class="separator:aabb3b5b8b79a80ab1efdc6cb31ccd9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -192,6 +226,9 @@ Protected Attributes</h2></td></tr>
 <a class="el" href="classab_1_1_position.html">ab::Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_linear_move.html#a2f95f4900e330e6de705aaf6b157d76f">mPosition</a></td></tr>
 <tr class="memdesc:a2f95f4900e330e6de705aaf6b157d76f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The exact meaning of the position attribute is. <br /></td></tr>
 <tr class="separator:a2f95f4900e330e6de705aaf6b157d76f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed19e19bb2c1ffdd0ef2ae03054dbd0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afed19e19bb2c1ffdd0ef2ae03054dbd0"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mPositionResolution</b></td></tr>
+<tr class="separator:afed19e19bb2c1ffdd0ef2ae03054dbd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1df27dcf1f68e5524c70e2dea4febd60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1df27dcf1f68e5524c70e2dea4febd60"></a>
 MoveType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_linear_move.html#a1df27dcf1f68e5524c70e2dea4febd60">mMoveType</a></td></tr>
 <tr class="memdesc:a1df27dcf1f68e5524c70e2dea4febd60"><td class="mdescLeft">&#160;</td><td class="mdescRight">An absolute move, moves the unit to a defined position in space A 'relative' move, moves the unit relative to current. <br /></td></tr>
@@ -205,6 +242,10 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>mAcceleration</b></
 <tr class="memitem:aa28a203a61599cec2db43b6c344c94bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa28a203a61599cec2db43b6c344c94bc"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>mMotorName</b></td></tr>
 <tr class="separator:aa28a203a61599cec2db43b6c344c94bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae663f486d3b29d75e77538196683bf2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae663f486d3b29d75e77538196683bf2a"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#ae663f486d3b29d75e77538196683bf2a">mProcessName</a></td></tr>
+<tr class="memdesc:ae663f486d3b29d75e77538196683bf2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_process.html">Process</a> Name identifies the process in a sequence. <br /></td></tr>
+<tr class="separator:ae663f486d3b29d75e77538196683bf2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab04362b482e36ad06ca95a761d1e2c7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab04362b482e36ad06ca95a761d1e2c7a"></a>
 <a class="el" href="class_a_b_object.html">ABObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#ab04362b482e36ad06ca95a761d1e2c7a">mUnit</a></td></tr>
 <tr class="memdesc:ab04362b482e36ad06ca95a761d1e2c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Making object for moving abstract allow us. <br /></td></tr>
@@ -217,12 +258,30 @@ ProcessType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 mtk::IniSection *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#a55b0c2ad90aaa5f0b97fa1259d1a47b5">mIniSection</a></td></tr>
 <tr class="memdesc:a55b0c2ad90aaa5f0b97fa1259d1a47b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A process parameters are saved. <br /></td></tr>
 <tr class="separator:a55b0c2ad90aaa5f0b97fa1259d1a47b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb13f7c29fa9ba837c2087fafec4f8a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb13f7c29fa9ba837c2087fafec4f8a5"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>mLabel</b></td></tr>
-<tr class="separator:aeb13f7c29fa9ba837c2087fafec4f8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee15d7c1fd6a980e1909e6fe7ddc7acb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee15d7c1fd6a980e1909e6fe7ddc7acb"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>mDwellTime</b></td></tr>
-<tr class="separator:aee15d7c1fd6a980e1909e6fe7ddc7acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fa3db2a0cc297f7f3353afde59c7470"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fa3db2a0cc297f7f3353afde59c7470"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsStarted</b></td></tr>
+<tr class="separator:a7fa3db2a0cc297f7f3353afde59c7470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75f1380567870d42d0bfc64293e4a808"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75f1380567870d42d0bfc64293e4a808"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsBeingProcessed</b></td></tr>
+<tr class="separator:a75f1380567870d42d0bfc64293e4a808"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a545fe067f48bca14ed23bb36c57a20ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a545fe067f48bca14ed23bb36c57a20ba"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsProcessed</b></td></tr>
+<tr class="separator:a545fe067f48bca14ed23bb36c57a20ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b630a87c97403c82319815920265a9c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b630a87c97403c82319815920265a9c"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mPreDwellTime</b></td></tr>
+<tr class="separator:a5b630a87c97403c82319815920265a9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3493d44c1edad6068302f2b03783222"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3493d44c1edad6068302f2b03783222"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mPostDwellTime</b></td></tr>
+<tr class="separator:af3493d44c1edad6068302f2b03783222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae19762e6f2e8bff8a6261e1355d9da37"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae19762e6f2e8bff8a6261e1355d9da37"></a>
+Timestamp&#160;</td><td class="memItemRight" valign="bottom"><b>mStartTime</b></td></tr>
+<tr class="separator:ae19762e6f2e8bff8a6261e1355d9da37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a268c0785e58257ff42681d345c71f430"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a268c0785e58257ff42681d345c71f430"></a>
+Timestamp&#160;</td><td class="memItemRight" valign="bottom"><b>mEndTime</b></td></tr>
+<tr class="separator:a268c0785e58257ff42681d345c71f430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb529757d189c7504b2146ee5907969b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb529757d189c7504b2146ee5907969b"></a>
+Poco::Timespan&#160;</td><td class="memItemRight" valign="bottom"><b>mTimeOut</b></td></tr>
+<tr class="separator:acb529757d189c7504b2146ee5907969b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The move baseclass contain the general logic for a 'move' of. </p>

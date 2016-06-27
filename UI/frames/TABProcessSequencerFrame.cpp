@@ -31,7 +31,7 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, TCom
     retrieveMotorsFromUnit(mWhiskerUnit);
 	retrieveMotorsFromUnit(mCoverSlipUnit);
 
-    GroupBox1->Caption = "ArrayBot Sequencer";
+    GroupBox1->Caption = "ArrayBot Process Sequencer";
     mMovesFileExtension = "abm";
 
     refreshSequencesCB();
@@ -305,6 +305,7 @@ void __fastcall TABProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Key
 
     saveSequence();
 }
+
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::MotorsCBChange(TObject *Sender)
 {

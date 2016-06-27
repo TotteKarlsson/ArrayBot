@@ -28,23 +28,11 @@
 #include "mtkLogLevel.h"
 #include "abUIDataStructures.h"
 #include "abApplicationMessages.h"
-
+#include "abInitArrayBotThread.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
-typedef void __fastcall (__closure *callback)(void);
-
-class TXYZProcessSequencerFrame;
-class InitBotThread : public mtk::Thread
-{
-	public:
-    					InitBotThread();
-        void            assingBot(ArrayBot* bot){mTheBot = bot;}
-    	ArrayBot* 		mTheBot;
-        void			run();
-        callback		onFinishedInit;
-};
-
+class TABProcessSequencerFrame;
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
 {
@@ -112,8 +100,6 @@ class TMain : public TRegistryForm
 	TSpeedButton *mAboutBtn;
 	TTabSheet *mMoveSequencesPage;
 	TTimer *WaitForDeviceInitTimer;
-	TPanel *Panel1;
-	TButton *Button2;
 	TButton *StowBtn1;
 	TButton *WorkPos1Btn;
 	TButton *WorkPos2Btn;
@@ -172,9 +158,9 @@ class TMain : public TRegistryForm
         ArrayBot*					    mAB;
 		PairedMove* 				    getCurrentPairedMove();
 
-        TXYZProcessSequencerFrame*		mCoverSlipProcessSequencerFrame;
-        TXYZProcessSequencerFrame*		mWhiskerProcessSequencerFrame;
-
+//        TXYZProcessSequencerFrame*		mCoverSlipProcessSequencerFrame;
+//        TXYZProcessSequencerFrame*		mWhiskerProcessSequencerFrame;
+		TABProcessSequencerFrame*		mABProcessSequencerFrame;
 		void __fastcall		            OnException();
         void						    onJSButton5Click();
         void						    onJSButton6Click();

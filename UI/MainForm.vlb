@@ -127,14 +127,8 @@ Coordinates=776,533,81,33
 [mMoveSequencesPage]
 Coordinates=159,373,128,33
 
-[Panel1]
-Coordinates=110,373,47,51
-
 []
-Coordinates=750,1,136,51
-
-[Button2]
-Coordinates=141,284,53,51
+Coordinates=110,373,47,51
 
 [mBottomPanel]
 Coordinates=750,333,87,51

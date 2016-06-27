@@ -113,9 +113,9 @@ Collaboration diagram for ArrayBot:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6f6f46ab3119e74b4e3ef19179022604"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f6f46ab3119e74b4e3ef19179022604"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayBot</b> (IniFile &amp;ini)</td></tr>
-<tr class="separator:a6f6f46ab3119e74b4e3ef19179022604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37bcccf9f11a5afcc827f097354b0a22"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37bcccf9f11a5afcc827f097354b0a22"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ArrayBot</b> (IniFile &amp;ini, const string &amp;appFolder)</td></tr>
+<tr class="separator:a37bcccf9f11a5afcc827f097354b0a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10bbdb019613ec054e9dced29327fd17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10bbdb019613ec054e9dced29327fd17"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td></tr>
 <tr class="separator:a10bbdb019613ec054e9dced29327fd17"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,21 +128,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td
 <tr class="memitem:ad8f2f606653f2b172c9b2bf8b2ccd924"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8f2f606653f2b172c9b2bf8b2ccd924"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>shutDown</b> ()</td></tr>
 <tr class="separator:ad8f2f606653f2b172c9b2bf8b2ccd924"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afef42a0251040a22f7401b5ae19cc1a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afef42a0251040a22f7401b5ae19cc1a0"></a>
-<a class="el" href="class_joy_stick.html">JoyStick</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getJoyStick</b> ()</td></tr>
-<tr class="separator:afef42a0251040a22f7401b5ae19cc1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2016d3f428d8bf99da323aa47c24b6d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2016d3f428d8bf99da323aa47c24b6d4"></a>
+<tr class="memitem:adf44c7dc62ddc28282885364042eb208"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf44c7dc62ddc28282885364042eb208"></a>
+<a class="el" href="class_array_bot_joy_stick.html">ArrayBotJoyStick</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getJoyStick</b> ()</td></tr>
+<tr class="separator:adf44c7dc62ddc28282885364042eb208"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1475ac4e77983b58e159bd4f08819aa7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1475ac4e77983b58e159bd4f08819aa7"></a>
 <a class="el" href="class_joy_stick_settings.html">JoyStickSettings</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getJoyStickSettings</b> ()</td></tr>
-<tr class="separator:a2016d3f428d8bf99da323aa47c24b6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62a30985f9a24143472ec50e65113976"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62a30985f9a24143472ec50e65113976"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>assignWindowHandle</b> (int Handle)</td></tr>
-<tr class="separator:a62a30985f9a24143472ec50e65113976"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbf3df21c355bfe0c7b722dd54893af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbf3df21c355bfe0c7b722dd54893af3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>enableWhiskerJoyStick</b> ()</td></tr>
-<tr class="separator:abbf3df21c355bfe0c7b722dd54893af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a042bca39030510b4f4b1835ab1edb119"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a042bca39030510b4f4b1835ab1edb119"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>enableCoverSlipJoyStick</b> ()</td></tr>
-<tr class="separator:a042bca39030510b4f4b1835ab1edb119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a1475ac4e77983b58e159bd4f08819aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad75cce899d961584e443f79f7641631f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad75cce899d961584e443f79f7641631f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>enableJoyStick</b> ()</td></tr>
+<tr class="separator:ad75cce899d961584e443f79f7641631f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac53c4a82d3e2020651e2b572cf76df93"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac53c4a82d3e2020651e2b572cf76df93"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>disableJoyStick</b> ()</td></tr>
 <tr class="separator:ac53c4a82d3e2020651e2b572cf76df93"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,22 +158,28 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td><
 <tr class="memitem:ab47b9cbfe9ba71e9a8e4645f19d340ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab47b9cbfe9ba71e9a8e4645f19d340ab"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isShuttingDown</b> ()</td></tr>
 <tr class="separator:ab47b9cbfe9ba71e9a8e4645f19d340ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b29f5cf91424649b079360b3738f90f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b29f5cf91424649b079360b3738f90f"></a>
-<a class="el" href="class_angle_controller.html">AngleController</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCoverSlipAngleController</b> ()</td></tr>
-<tr class="separator:a3b29f5cf91424649b079360b3738f90f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada49fe6d6773803b3fcce36ab7bf22c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada49fe6d6773803b3fcce36ab7bf22c4"></a>
-<a class="el" href="class_angle_controller.html">AngleController</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCameraAngleController</b> ()</td></tr>
-<tr class="separator:ada49fe6d6773803b3fcce36ab7bf22c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8792d39b6eece99fe7e5afb963382fd5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8792d39b6eece99fe7e5afb963382fd5"></a>
-<a class="el" href="class_combined_move.html">CombinedMove</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCombinedMove</b> ()</td></tr>
-<tr class="separator:a8792d39b6eece99fe7e5afb963382fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a2e8112c3175ded63849f02ead62ca8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a2e8112c3175ded63849f02ead62ca8"></a>
+<a class="el" href="class_a_p_t_motor.html">APTMotor</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCoverSlipAngleController</b> ()</td></tr>
+<tr class="separator:a1a2e8112c3175ded63849f02ead62ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2b0ffc5f8a774a4726920bc683ef103"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2b0ffc5f8a774a4726920bc683ef103"></a>
+<a class="el" href="class_a_p_t_motor.html">APTMotor</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCameraAngleController</b> ()</td></tr>
+<tr class="separator:ab2b0ffc5f8a774a4726920bc683ef103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ce3af7ae329fadf32f4a6fa4ab97296"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ce3af7ae329fadf32f4a6fa4ab97296"></a>
+<a class="el" href="class_paired_moves.html">PairedMoves</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLiftMoves</b> ()</td></tr>
+<tr class="separator:a0ce3af7ae329fadf32f4a6fa4ab97296"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afaa4975c82ca04c687c5e4c3acb4f3b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afaa4975c82ca04c687c5e4c3acb4f3b3"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>applyJoyStickSetting</b> (const string &amp;settingName)</td></tr>
 <tr class="separator:afaa4975c82ca04c687c5e4c3acb4f3b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfe5e25a55e5f9510b2f2f2d9afd13a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfe5e25a55e5f9510b2f2f2d9afd13a1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>readINIParameters</b> ()</td></tr>
+<tr class="separator:abfe5e25a55e5f9510b2f2f2d9afd13a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab49341462a7999e4466e304b87588719"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab49341462a7999e4466e304b87588719"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>writeINIParameters</b> ()</td></tr>
+<tr class="separator:ab49341462a7999e4466e304b87588719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ab_array_bot_8h_source.html#l00012">12</a> of file <a class="el" href="ab_array_bot_8h_source.html">abArrayBot.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_array_bot_8h_source.html#l00011">11</a> of file <a class="el" href="ab_array_bot_8h_source.html">abArrayBot.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_array_bot_8h_source.html">abArrayBot.h</a></li>
 <li>source/<a class="el" href="ab_array_bot_8cpp_source.html">abArrayBot.cpp</a></li>

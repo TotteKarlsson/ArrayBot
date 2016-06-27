@@ -14,7 +14,7 @@
 #include "abExceptions.h"
 #include "TSplashForm.h"
 #include "TAboutArrayBotForm.h"
-#include "TXYZProcessSequencerFrame.h"
+#include "TABProcessSequencerFrame.h"
 #include "TXYZPositionsFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -33,24 +33,6 @@ extern TSplashForm*  gSplashForm;
 extern bool             gAppIsStartingUp;
 using namespace mtk;
 
-InitBotThread::InitBotThread()
-:
-mTheBot(NULL)
-{}
-
-void InitBotThread::run()
-{
-    if(mTheBot)
-    {
-        mTheBot->initialize();
-        Log(lInfo) << "Finished ArrayBot Init";
-
-        TThread::Synchronize(NULL, onFinishedInit);
-    }
-    mIsRunning = false;
-    mIsFinished = true;
-}
-
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
@@ -60,8 +42,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
     mLogLevel(lAny),
     mInitBotThread(),
-    mCoverSlipProcessSequencerFrame(NULL),
-    mWhiskerProcessSequencerFrame(NULL)
+	mABProcessSequencerFrame()
 {
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
@@ -198,16 +179,16 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
         }
 
         //Create MoveSequencer frames
-        mCoverSlipProcessSequencerFrame = new TXYZProcessSequencerFrame(&(mAB->getCoverSlipUnit()), mAB, mMoveSequencesPage);
-        mCoverSlipProcessSequencerFrame->Parent = mMoveSequencesPage;
-        mCoverSlipProcessSequencerFrame->Align = alLeft;
-        mCoverSlipProcessSequencerFrame->init();
+        mABProcessSequencerFrame = new TABProcessSequencerFrame(*(mAB), mMoveSequencesPage);
+        mABProcessSequencerFrame->Parent = mMoveSequencesPage;
+        mABProcessSequencerFrame->Align = alLeft;
+        mABProcessSequencerFrame->init();
 
-        //Create MoveSequencer frames
-        mWhiskerProcessSequencerFrame = new TXYZProcessSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
-        mWhiskerProcessSequencerFrame->Parent = mMoveSequencesPage;
-        mWhiskerProcessSequencerFrame->Align = alClient;
-        mWhiskerProcessSequencerFrame->init();
+//        //Create MoveSequencer frames
+//        mWhiskerProcessSequencerFrame = new TXYZProcessSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
+//        mWhiskerProcessSequencerFrame->Parent = mMoveSequencesPage;
+//        mWhiskerProcessSequencerFrame->Align = alClient;
+//        mWhiskerProcessSequencerFrame->init();
     }
 }
 
@@ -273,25 +254,14 @@ void __fastcall TMain::Button3Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::stowBtnClick(TObject *Sender)
 {
-	if(mWhiskerProcessSequencerFrame)
+	if(mABProcessSequencerFrame)
     {
-    	int idx = mWhiskerProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 1");
+    	int idx = mABProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 1");
         if(idx != -1)
         {
-			mWhiskerProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
-            mWhiskerProcessSequencerFrame->mSequencesCB->OnChange(NULL);
-            mWhiskerProcessSequencerFrame->mStartBtnClick(NULL);
-        }
-    }
-
-	if(mCoverSlipProcessSequencerFrame)
-    {
-    	int idx = mCoverSlipProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 1");
-        if(idx != -1)
-        {
-			mCoverSlipProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
-            mCoverSlipProcessSequencerFrame->mSequencesCB->OnChange(NULL);
-            mCoverSlipProcessSequencerFrame->mStartBtnClick(NULL);
+			mABProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
+            mABProcessSequencerFrame->mSequencesCB->OnChange(NULL);
+            mABProcessSequencerFrame->mStartBtnClick(NULL);
         }
     }
 }
@@ -455,7 +425,6 @@ void TMain::onJSButton6Click()
 
 void TMain::onJSButton14Click()
 {
-	//LiftBtn->Click();
     stopAllAExecute(NULL);
 }
 
@@ -594,25 +563,14 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 
 void __fastcall TMain::WorkPos1BtnClick(TObject *Sender)
 {
-	if(mWhiskerProcessSequencerFrame)
+	if(mABProcessSequencerFrame)
     {
-    	int idx = mWhiskerProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 2");
+    	int idx = mABProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 2");
         if(idx != -1)
         {
-			mWhiskerProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
-            mWhiskerProcessSequencerFrame->mSequencesCB->OnChange(NULL);
-            mWhiskerProcessSequencerFrame->mStartBtnClick(NULL);
-        }
-    }
-
-	if(mCoverSlipProcessSequencerFrame)
-    {
-    	int idx = mCoverSlipProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 2");
-        if(idx != -1)
-        {
-			mCoverSlipProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
-            mCoverSlipProcessSequencerFrame->mSequencesCB->OnChange(NULL);
-            mCoverSlipProcessSequencerFrame->mStartBtnClick(NULL);
+			mABProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
+            mABProcessSequencerFrame->mSequencesCB->OnChange(NULL);
+            mABProcessSequencerFrame->mStartBtnClick(NULL);
         }
     }
 }
@@ -620,25 +578,14 @@ void __fastcall TMain::WorkPos1BtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::WorkPos2BtnClick(TObject *Sender)
 {
-	if(mWhiskerProcessSequencerFrame)
+	if(mABProcessSequencerFrame)
     {
-    	int idx = mWhiskerProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 3");
+    	int idx = mABProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 3");
         if(idx != -1)
         {
-			mWhiskerProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
-            mWhiskerProcessSequencerFrame->mSequencesCB->OnChange(NULL);
-            mWhiskerProcessSequencerFrame->mStartBtnClick(NULL);
-        }
-    }
-
-	if(mCoverSlipProcessSequencerFrame)
-    {
-    	int idx = mCoverSlipProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 3");
-        if(idx != -1)
-        {
-			mCoverSlipProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
-            mCoverSlipProcessSequencerFrame->mSequencesCB->OnChange(NULL);
-            mCoverSlipProcessSequencerFrame->mStartBtnClick(NULL);
+			mABProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
+            mABProcessSequencerFrame->mSequencesCB->OnChange(NULL);
+            mABProcessSequencerFrame->mStartBtnClick(NULL);
         }
     }
 
