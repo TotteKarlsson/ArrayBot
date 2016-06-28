@@ -78,6 +78,6 @@ class AB_CORE XYZUnit : public ABObject
 
         ArrayBotJoyStick*       mJoyStick;
         Positions				mPositions;
-        ProcessSequencer 		mMoveSequencer;
+        ProcessSequencer 		mProcessSequencer;
 };
 #endif

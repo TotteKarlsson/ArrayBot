@@ -20,12 +20,12 @@ extern string gAppDataFolder;
 using namespace mtk;
 
 int TABProcessSequencerFrame::mFrameNr = 0;
-__fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, TComponent* Owner)
+__fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner)
 	: TFrame(Owner),
     mAB(ab),
 	mCoverSlipUnit(mAB.getCoverSlipUnit()),
 	mWhiskerUnit(mAB.getWhiskerUnit()),
-    mProcessSequencer()
+    mProcessSequencer(appFolder)
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
 
@@ -33,7 +33,7 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, TCom
 	retrieveMotorsFromUnit(mCoverSlipUnit);
 
     GroupBox1->Caption = "ArrayBot Process Sequencer";
-    mMovesFileExtension = "abm";
+    mProcessFileExtension = "abp";
     refreshSequencesCB();
 }
 
@@ -71,7 +71,6 @@ void TABProcessSequencerFrame::init()
 }
 
 void __fastcall TABProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sender)
-
 {
 	//Check selected sequence and delete it
     int idx = mSequencesCB->ItemIndex;
@@ -80,38 +79,28 @@ void __fastcall TABProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sende
     	string seqName = stdstr(mSequencesCB->Items->Strings[idx]);
 		mSequencesCB->DeleteSelected();
 		mProcessesLB->Clear();
-        removeFile(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", seqName + "." + mMovesFileExtension));
+        removeFile(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", seqName + "." + mProcessFileExtension));
     }
 }
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 {
-	//Create a new process sequence
-	stringstream fName;
-    int i = 1;
-    do
-    {
-        fName.str("");
-    	fName << "Sequence "<<i++<<"." << mMovesFileExtension;
-    }
-    while(fileExists(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", fName.str())));
-
-
-    string newSeqName = getFileNameNoExtension(fName.str());
-
     //Save current sequence, if any
-    mProcessSequencer.saveCurrent(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot"));
-    refreshSequencesCB();
-	mSequencesCB->ItemIndex = mSequencesCB->Items->IndexOf(getFileNameNoExtension(fName.str()).c_str());
+    mProcessSequencer.saveCurrent();
+
+	ProcessSequence* s = new ProcessSequence();
+    mProcessSequencer.addSequence(s);
+
+	mSequencesCB->Items->Add(vclstr(s->getName()));
+	mSequencesCB->ItemIndex = mSequencesCB->Items->IndexOf(vclstr(s->getName()));
 	mSequencesCBChange(NULL);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::refreshSequencesCB()
 {
-    //Load moves
     //Get all move files in folder
-    StringList files = getFilesInDir(gAppDataFolder, mMovesFileExtension);
+    StringList files = getFilesInDir(gAppDataFolder, mProcessFileExtension);
     mSequencesCB->Clear();
     for(int i = 0; i < files.count() ; i++)
     {
@@ -120,26 +109,6 @@ void __fastcall TABProcessSequencerFrame::refreshSequencesCB()
     mProcessesLB->Clear();
 }
 
-void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
-{
-    if(mStartBtn->Caption == "Start")
-    {
-        mWhiskerUnit.disableJSAxes();
-        mCoverSlipUnit.disableJSAxes();
-
-    	mProcessSequencer.start(true);
-		mSequenceStatusTimer->Enabled = true;
-    }
-    else
-    {
-    	mProcessSequencer.stop();
-	}
-}
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
-{
-	saveSequence();
-}
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
 {
@@ -151,14 +120,15 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
     }
 
     //Save current sequence
-    mProcessSequencer.saveCurrent(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot"));
-    mProcessesLB->Clear();
-    string fName(stdstr(mSequencesCB->Items->Strings[index]) + "." + mMovesFileExtension);
+    mProcessSequencer.saveCurrent();
 
-	if(mProcessSequencer.load(joinPath(gAppDataFolder,fName)))
+    mProcessesLB->Clear();
+    string sName(stdstr(mSequencesCB->Items->Strings[index]));
+
+	if(mProcessSequencer.load(sName))
     {
     	//Fill out listbox
-		ProcessSequence* seq = mProcessSequencer.getSequence();
+		ProcessSequence* seq = mProcessSequencer.getCurrentSequence();
         if(!seq)
         {
         	return;
@@ -185,6 +155,28 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
 
     mProcessSequencer.assignUnit(&mAB);
 }
+
+void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
+{
+    if(mStartBtn->Caption == "Start")
+    {
+        mWhiskerUnit.disableJSAxes();
+        mCoverSlipUnit.disableJSAxes();
+
+    	mProcessSequencer.start(true);
+		mSequenceStatusTimer->Enabled = true;
+    }
+    else
+    {
+    	mProcessSequencer.stop();
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TABProcessSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
+{
+	saveSequence();
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
 {
@@ -283,8 +275,8 @@ void TABProcessSequencerFrame::saveSequence()
     string seqName (stdstr(mSequencesCB->Items->Strings[indx]));
 
 //    mProcessSequencer.getSequence().setName(seqName);
-//	mProcessSequencer.getSequence().setFileExtension(mMovesFileExtension);
-    mProcessSequencer.saveCurrent(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot"));
+//	mProcessSequencer.getSequence().setFileExtension(mProcessFileExtension);
+    mProcessSequencer.saveCurrent();
 }
 
 //---------------------------------------------------------------------------
@@ -309,13 +301,19 @@ void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::addProcessAExecute(TObject *Sender)
 {
-    int nr  = mProcessSequencer.getNumberOfProcesses() + 1;
-	//Create and add a process to the sequencer
+	ProcessSequence* s = mProcessSequencer.getCurrentSequence();
+	if(!s)
+    {
+    	Log(lError) << "Tried to add process to NULL sequence";
+    	return;
+    }
 
+    int nr  = s->getNumberOfProcesses() + 1;
+
+	//Create and add a process to the sequence
 	Process *p = new CombinedLinearMove("Process " + mtk::toString(nr));
 
-   	mProcessSequencer.addProcess(p);
-    ab::Position pos("", 0.0, 0.0, 0.0);
+   	s->add(p);
 
     //Update LB
     mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
@@ -324,29 +322,26 @@ void __fastcall TABProcessSequencerFrame::addProcessAExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::removeProcessAExecute(TObject *Sender)
 {
-   int i = mProcessesLB->ItemIndex;
-    if(i == -1)
+	ProcessSequence* s = mProcessSequencer.getCurrentSequence();
+	if(!s)
     {
+    	Log(lError) << "Tried to remove process from NULL sequence";
     	return;
     }
 
+    int i = mProcessesLB->ItemIndex;
+
+
     Process* p = (Process*) mProcessesLB->Items->Objects[i];
-	mProcessesLB->DeleteSelected();
+
+
+    s->remove(p);
+    mProcessesLB->DeleteSelected();
 
     if(mProcessesLB->Count > -1)
     {
 		mProcessesLB->ItemIndex = 0;
 		mProcessesLBClick(NULL);
-    }
-
-    if(mProcessSequencer.removeProcess(p))
-    {
-    	Log(lInfo) << "Removed process: " << p->getProcessName();
-        delete p;
-    }
-    else
-    {
-    	Log(lError) << "Failed removing process: " << p->getProcessName();
     }
 }
 

@@ -59,13 +59,13 @@ private:	// User declarations
         ArrayBot&					mAB;
 		XYZUnit& 					mCoverSlipUnit;
 		XYZUnit& 					mWhiskerUnit;
-        string 						mMovesFileExtension;
+        string 						mProcessFileExtension;
 		void __fastcall 			refreshSequencesCB();
 		static int 					mFrameNr;
 		void						saveSequence();
 		void 						retrieveMotorsFromUnit(XYZUnit& unit);
 public:
-						 __fastcall TABProcessSequencerFrame(ArrayBot& ab, TComponent* Owner);
+						 __fastcall TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner);
         void						init();
 };
 

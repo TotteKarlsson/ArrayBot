@@ -50,7 +50,7 @@ __published:	// IDE-managed Components
 	void __fastcall mSequenceTimerTimer(TObject *Sender);
 
 private:	// User declarations
-	    ProcessSequencer  			mMoveSequencer;
+	    ProcessSequencer  			mProcessSequencer;
         XYZUnit*					mXYZUnit;
         ArrayBot*					mAB;
         string 						mMovesFileExtension;
@@ -59,7 +59,7 @@ private:	// User declarations
 		void						saveSequence();
 
 public:
-						 __fastcall TXYZProcessSequencerFrame(XYZUnit* u, ArrayBot* ab, TComponent* Owner);
+						 __fastcall TXYZProcessSequencerFrame(XYZUnit* u, ArrayBot* ab, const string& appFolder, TComponent* Owner);
         void						init();
 };
 

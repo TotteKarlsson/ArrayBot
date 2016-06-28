@@ -203,8 +203,7 @@
             <BuildOrder>19</BuildOrder>
         </CppCompile>
         <CppCompile Include="abPositions.cpp">
-            <DependentOn>abPositions.h</DependentOn>
-            <BuildOrder>18</BuildOrder>
+            <BuildOrder>38</BuildOrder>
         </CppCompile>
         <CppCompile Include="abProcess.cpp">
             <DependentOn>abProcess.h</DependentOn>
@@ -219,6 +218,10 @@
         <CppCompile Include="abProcessSequencer.cpp">
             <DependentOn>abProcessSequencer.h</DependentOn>
             <BuildOrder>21</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abProcessSequences.cpp">
+            <DependentOn>abProcessSequences.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
             <BuildOrder>23</BuildOrder>

@@ -8,75 +8,65 @@
 //---------------------------------------------------------------------------
 using namespace mtk;
 
-ProcessSequencer::ProcessSequencer()
+ProcessSequencer::ProcessSequencer(const string& fileFolder)
 :
-mSequence(NULL),
+mSequences(fileFolder),
 mSequenceTimer(100)
 {
 	inThreadCB = runThreaded;
 	mSequenceTimer.assignTimerFunction(inThreadCB);
 }
 
+ProcessSequence* ProcessSequencer::getCurrentSequence()
+{
+	return mSequences.getCurrent();
+}
+
 bool ProcessSequencer::assignUnit(ABObject* o)
 {
-	if(mSequence)
-    {
-		mSequence->assignUnit(o);
-    }
+// 	mSequences.assignUnit(o);
     return true;
 }
 
 string ProcessSequencer::getCurrentSequenceName()
 {
-	return mSequence ? mSequence->getName() : string("");
+	return mSequences.getCurrentSequenceName();
 }
 
-int	ProcessSequencer::getNumberOfProcesses()
+bool ProcessSequencer::addSequence(ProcessSequence* seq)
 {
-	return mSequence ? mSequence->getNumberOfProcesses() : -1;
-}
-
-void ProcessSequencer::assignSequence(ProcessSequence* seq)
-{
-	mSequence = seq;
-}
-
-bool ProcessSequencer::load(const string& seqFName)
-{
-	if(!mSequence)
-    {
-        mSequence = new ProcessSequence;
-    }
-
-	return mSequence->read(seqFName);
-}
-
-bool ProcessSequencer::saveCurrent(const string& folderName)
-{
-    if(mSequence)
-    {
-    	return mSequence->write(folderName);
-    }
-
-	return false;
-}
-
-void ProcessSequencer::clear()
-{
-	if(mSequence)
-    {
-		mSequence->clear();
-    }
-}
-
-bool ProcessSequencer::isCurrentProcessActive()
-{
-	if(!mSequence)
+	if(!seq)
     {
     	return false;
     }
 
-	Process* p = mSequence->getCurrent();
+	return mSequences.add(seq);
+}
+
+bool ProcessSequencer::load(const string& seqName)
+{
+	return mSequences.load(seqName);
+}
+
+bool ProcessSequencer::saveCurrent()
+{
+	return mSequences.saveCurrent();
+}
+
+void ProcessSequencer::clear()
+{
+	mSequences.clear();
+}
+
+bool ProcessSequencer::isCurrentProcessActive()
+{
+	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
+    {
+    	return false;
+    }
+
+	Process* p = s->getCurrent();
     if(p)
     {
 	    return p->isBeingProcessed();
@@ -87,12 +77,13 @@ bool ProcessSequencer::isCurrentProcessActive()
 
 void ProcessSequencer::runThreaded()
 {
-	if(!mSequence)
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
     {
     	return;
     }
 
-    Process* p = mSequence->getCurrent();
+    Process* p = s->getCurrent();
 	if(p)
     {
     	//Check if we are to move forward in the sequence
@@ -101,7 +92,7 @@ void ProcessSequencer::runThreaded()
         	sleep(p->getPostDwellTime());
         	forward();
         }
-        else if (mSequence->isFirst(p) && p->isStarted() == false)
+        else if (s->isFirst(p) && p->isStarted() == false)
         {
 
         	sleep(p->getPreDwellTime());
@@ -109,7 +100,7 @@ void ProcessSequencer::runThreaded()
             if(!res)
             {
                 Log(lError) << "Failed executing move: "<<p->getProcessName();
-				Log(lError) << "Aborting execution of process sequence: "<<mSequence->getName();
+				Log(lError) << "Aborting execution of process sequence: "<<s->getName();
 	            mSequenceTimer.stop();
                 return;
             }
@@ -124,14 +115,15 @@ void ProcessSequencer::runThreaded()
     {
         //We have finished
         mSequenceTimer.stop();
-        Log(lInfo) << "Finished processing sequence: " << mSequence->getName();
+        Log(lInfo) << "Finished processing sequence: " << s->getName();
         return;
     }
 }
 
 void ProcessSequencer::start(bool autoExecute)
 {
-	if(!mSequence)
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
     {
     	return;
     }
@@ -139,9 +131,9 @@ void ProcessSequencer::start(bool autoExecute)
 	mExecuteAutomatic = autoExecute;
 
     //ReInit sequence so it can be executed over and over
-    mSequence->init();
+    s->init();
 
-	Process* aMove = mSequence->getFirst();
+	Process* aMove = s->getFirst();
     if(aMove)
     {
         if(mExecuteAutomatic)
@@ -158,18 +150,19 @@ void ProcessSequencer::start(bool autoExecute)
 
 void ProcessSequencer::forward()
 {
-	if(!mSequence)
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
     {
     	return;
     }
 
-	Process* aMove = mSequence->getNext();
-    if(aMove)
+	Process* p = s->getNext();
+    if(p)
     {
-    	if(!aMove->start())
+    	if(!p->start())
         {
-        	Log(lError) << "Failed executing a move: " << aMove->getProcessName();
-			Log(lError) << "Aborting execution of process sequence: "<<mSequence->getName();
+        	Log(lError) << "Failed executing a move: " << p->getProcessName();
+			Log(lError) << "Aborting execution of process sequence: "<<s->getName();
             mSequenceTimer.stop();
         }
     }
@@ -181,15 +174,16 @@ void ProcessSequencer::forward()
 
 void ProcessSequencer::reverse()
 {
-	if(!mSequence)
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
     {
     	return;
     }
 
-	Process* aMove = mSequence->getCurrent();
-    if(aMove)
+	Process* p = s->getCurrent();
+    if(p)
     {
-    	aMove->undo();
+    	p->undo();
     }
     else
     {
@@ -201,62 +195,61 @@ void ProcessSequencer::stop()
 {
 	mSequenceTimer.stop();
 
-	if(!mSequence)
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
     {
     	return;
     }
 
-    if(mSequence->getCurrent())
+    if(s->getCurrent())
     {
-	   mSequence->getCurrent()->stop();
+	   s->getCurrent()->stop();
     }
 }
 
 string ProcessSequencer::getCurrentProcessName()
 {
-	if(!mSequence)
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
     {
-    	return "<none>";
+	    return "<none>";
     }
 
-	Process* p = mSequence->getCurrent();
-    if(p)
-    {
-    	return p->getProcessName();
-    }
-
-    return "<none>";
+	Process* p = s->getCurrent();
+   	return p ? p->getProcessName() : string("<none>");
 }
 
-void ProcessSequencer::addProcess(Process* newMove)
-{
-	if(!mSequence)
-    {
-    	return;
-    }
-
-	mSequence->add(newMove);
-}
-
-bool ProcessSequencer::removeProcess(Process* p)
-{
-	if(!mSequence)
-    {
-    	return false;
-    }
-
-	return mSequence->remove(p);
-}
-
-bool ProcessSequencer::removeProcess(const string& name)
-{
-	if(!mSequence)
-    {
-    	return false;
-    }
-
-	return mSequence->remove(name);
-}
+//void ProcessSequencer::addProcess(Process* newMove)
+//{
+// 	ProcessSequence* s = mSequences.getCurrent();
+//    if(!s)
+//    {
+//	    return;
+//    }
+//
+//
+//	mSequences->add(newMove);
+//}
+//
+//bool ProcessSequencer::removeProcess(Process* p)
+//{
+//	if(!mSequences)
+//    {
+//    	return false;
+//    }
+//
+//	return mSequences->remove(p);
+//}
+//
+//bool ProcessSequencer::removeProcess(const string& name)
+//{
+//	if(!mSequences)
+//    {
+//    	return false;
+//    }
+//
+//	return mSequences->remove(name);
+//}
 
 bool ProcessSequencer::isRunning()
 {

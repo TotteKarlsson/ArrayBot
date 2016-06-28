@@ -15,10 +15,10 @@ class AB_CORE Positions : public ABObject
 								        ~Positions();
 		bool					        add(const ab::Position& pos);
         bool					        remove(const string& lbl);
-        ab::Position*                       getFirst() const;
-        ab::Position*                       getNext() const;
-        ab::Position*                       getPrevious() const;
-        ab::Position*                       getCurrent() const;
+        ab::Position*                   getFirst() const;
+        ab::Position*                   getNext() const;
+        ab::Position*                   getPrevious() const;
+        ab::Position*                   getCurrent() const;
 
 
 	protected:

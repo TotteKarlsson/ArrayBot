@@ -179,7 +179,7 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
         }
 
         //Create MoveSequencer frames
-        mABProcessSequencerFrame = new TABProcessSequencerFrame(*(mAB), mMoveSequencesPage);
+        mABProcessSequencerFrame = new TABProcessSequencerFrame(*(mAB), gAppDataFolder, mMoveSequencesPage);
         mABProcessSequencerFrame->Parent = mMoveSequencesPage;
         mABProcessSequencerFrame->Align = alLeft;
         mABProcessSequencerFrame->init();

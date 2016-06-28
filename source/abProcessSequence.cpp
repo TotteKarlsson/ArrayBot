@@ -47,38 +47,7 @@ void ProcessSequence::init()
 
 bool ProcessSequence::read(const string& fName)
 {
-	IniFile f(fName, true);
-    int count = 0;
-	IniSection* sec = f.getSection(count);
-    IniKey* key;
-
-    clear();
-    while(sec)
-    {
-    	key = sec->getKey("PROCESS_TYPE");
-        if(key && key->mValue == "ABSOLUTE_MOVE")
-        {
-	    	LinearMove* p = new LinearMove(sec->mName, NULL);
-
-            if(p->read(sec))
-            {
-            	add(p);
-            }
-            else
-            {
-            	Log(lError) <<"Failed reading process: "<<sec->mName;
-            }
-        }
-        else if ((key = sec->getKey("NAME") ), key != NULL)
-        {
-        	mName = key->mValue;
-        }
-
-
-        //Get next section
-        sec = f.getSection(++count);
-    }
-    return true;
+	return mProject.loadFromFile(fName);
 }
 
 bool ProcessSequence::isFirst(Process* p)
@@ -88,10 +57,9 @@ bool ProcessSequence::isFirst(Process* p)
 
 bool ProcessSequence::write(const string& folder)
 {
-
 	//Create XML document
     mProject.setFileFolder(folder);
-
+	mProject.setModelFileName(mName + ".abp");
     mProject.save();
 //
 //	//Save to file
