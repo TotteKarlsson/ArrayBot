@@ -9,9 +9,6 @@
         <Projects Include="P:\libs\dslib\Common\Math\mtkMath.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dslib\IPC\mtkIPC.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
@@ -50,15 +47,6 @@
     <Target Name="mtkMath:Make">
         <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="mtkIPC">
-        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj"/>
-    </Target>
-    <Target Name="mtkIPC:Clean">
-        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="mtkIPC:Make">
-        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="VCLCommon">
         <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
     </Target>
@@ -96,13 +84,13 @@
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;VCLCommon;DuneComponents;abCore;ArrayBot"/>
+        <CallTarget Targets="mtkCommon;mtkMath;VCLCommon;DuneComponents;abCore;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
