@@ -1,3 +1,27 @@
+Release 0.6.1 (Jun 28)
+=======================
+* "Backlogged release" released from develop branch
+* Trimming up paired moves
+* Added frame for XYZ unit positions
+* Refactoring XYZProcessSeq frame
+* Time outs need to be fixed
+* Updated processing logic
+* Added command pending flag for motors
+* Added a PreDwellTime variable to process class
+* Added Stow and Working position buttons
+* Implemented experimental sequence processes moves
+* Implemented ability to just turn off JS axes per unit
+* Added some utility functions
+* Added joystick settings to be applied to angle motor
+* Fixed so that enabling/disabling of joystick only occur one time at a time
+* Getting speeds more consistently applied
+* Moved vcl frames and forms to UI code
+* Fixed bug regarding non initialized joystick on startup
+* Consolidated angle controller with the XYZUnit class
+* Many changes to process processing
+* Added a position resolution parameter when making a move
+* Moved angle controller into XYZ Unit
+
 Release 0.6.0 (Jun 21)
 =======================
 * Added MoveSequencers to Main arrayBot UI
