@@ -1,15 +1,15 @@
 object ABProcessSequencerFrame: TABProcessSequencerFrame
   Left = 0
   Top = 0
-  Width = 500
-  Height = 289
+  Width = 673
+  Height = 241
   AutoSize = True
   TabOrder = 0
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 500
-    Height = 289
+    Width = 673
+    Height = 241
     Caption = 'Move Sequencer'
     TabOrder = 0
     object Label1: TLabel
@@ -20,8 +20,8 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Caption = 'Sequences'
     end
     object mStatusLbl: TLabel
-      Left = 256
-      Top = 239
+      Left = 576
+      Top = 115
       Width = 52
       Height = 23
       Caption = 'Status'
@@ -32,137 +32,52 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Font.Style = []
       ParentFont = False
     end
-    object GroupBox2: TGroupBox
-      Left = 207
-      Top = 26
-      Width = 242
-      Height = 207
-      Caption = 'Motor Move'
-      TabOrder = 0
-      object Label2: TLabel
-        Left = 16
-        Top = 20
-        Width = 28
-        Height = 13
-        Caption = 'Motor'
-      end
-      object mMovePosE: TFloatLabeledEdit
-        Left = 16
-        Top = 79
-        Width = 49
-        Height = 21
-        EditLabel.Width = 37
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Position'
-        TabOrder = 0
-        Text = '0.0'
-        OnKeyDown = moveParEdit
-      end
-      object mMaxVelE: TFloatLabeledEdit
-        Left = 16
-        Top = 127
-        Width = 65
-        Height = 21
-        EditLabel.Width = 60
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Max Velocity'
-        TabOrder = 1
-        Text = '0.0'
-        OnKeyDown = moveParEdit
-      end
-      object mAccE: TFloatLabeledEdit
-        Left = 119
-        Top = 127
-        Width = 65
-        Height = 21
-        EditLabel.Width = 59
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Acceleration'
-        TabOrder = 2
-        Text = '0.0'
-        OnKeyDown = moveParEdit
-      end
-      object mPostDwellTimeE: TFloatLabeledEdit
-        Left = 119
-        Top = 167
-        Width = 65
-        Height = 21
-        EditLabel.Width = 98
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Post Dwell Time (ms)'
-        TabOrder = 3
-        Text = '0.0'
-        OnKeyDown = moveParEdit
-      end
-      object MotorsCB: TComboBox
-        Left = 16
-        Top = 39
-        Width = 169
-        Height = 21
-        TabOrder = 4
-        Text = 'Select Motor'
-        OnChange = MotorsCBChange
-      end
-      object mPreDwellTimeE: TFloatLabeledEdit
-        Left = 16
-        Top = 167
-        Width = 65
-        Height = 21
-        EditLabel.Width = 93
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Pre Dwell Time (ms)'
-        TabOrder = 5
-        Text = '0.0'
-        OnKeyDown = moveParEdit
-      end
-    end
     object mStartBtn: TButton
-      Left = 126
-      Top = 231
-      Width = 75
-      Height = 47
+      Left = 576
+      Top = 25
+      Width = 81
+      Height = 65
       Caption = 'Start'
-      TabOrder = 1
+      TabOrder = 0
       OnClick = mStartBtnClick
     end
-    object mMovesLB: TListBox
+    object mProcessesLB: TListBox
       Left = 16
       Top = 105
-      Width = 121
+      Width = 97
       Height = 97
       ItemHeight = 13
-      TabOrder = 2
-      OnClick = mMovesLBClick
+      TabOrder = 1
+      OnClick = mProcessesLBClick
     end
     object mSequencesCB: TComboBox
       Left = 16
       Top = 78
-      Width = 121
+      Width = 136
       Height = 21
       ItemIndex = 0
-      TabOrder = 3
+      TabOrder = 2
       Text = 'MoveSequence'
       OnChange = mSequencesCBChange
       Items.Strings = (
         'MoveSequence')
     end
     object mSaveSequenceBtn: TButton
-      Left = 16
-      Top = 208
+      Left = 110
+      Top = 44
       Width = 41
-      Height = 25
+      Height = 28
       Caption = 'Save'
-      TabOrder = 4
+      TabOrder = 3
       OnClick = mSaveSequenceBtnClick
     end
     object mAddMoveBtn: TButton
-      Left = 143
-      Top = 111
-      Width = 58
+      Left = 14
+      Top = 208
+      Width = 35
       Height = 25
-      Caption = 'Add Move'
-      TabOrder = 5
-      OnClick = mAddMoveBtnClick
+      Action = addProcessA
+      TabOrder = 4
     end
     object mDeleteSequenceBtn: TButton
       Left = 63
@@ -170,7 +85,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Width = 41
       Height = 28
       Caption = 'Delete'
-      TabOrder = 6
+      TabOrder = 5
       OnClick = mDeleteSequenceBtnClick
     end
     object mAddSeqBtn: TButton
@@ -179,24 +94,75 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Width = 41
       Height = 28
       Caption = 'Add'
-      TabOrder = 7
+      TabOrder = 6
       OnClick = mAddSeqBtnClick
     end
     object mDeleteMoveBtn: TButton
-      Left = 143
-      Top = 142
-      Width = 58
+      Left = 64
+      Top = 208
+      Width = 49
       Height = 25
-      Caption = 'Del Move'
+      Action = removeProcessA
+      TabOrder = 7
+    end
+    object Button1: TButton
+      Left = 132
+      Top = 208
+      Width = 33
+      Height = 25
+      Action = addMotorAction
       TabOrder = 8
-      OnClick = mDeleteMoveBtnClick
+    end
+    object mMoveMotorLB: TListBox
+      Left = 132
+      Top = 105
+      Width = 105
+      Height = 97
+      ItemHeight = 13
+      TabOrder = 9
+    end
+    inline TMotorMoveProcessFrame1: TMotorMoveProcessFrame
+      Left = 317
+      Top = 20
+      Width = 242
+      Height = 207
+      AutoSize = True
+      TabOrder = 10
+      ExplicitLeft = 317
+      ExplicitTop = 20
+    end
+    object Button2: TButton
+      Left = 171
+      Top = 208
+      Width = 54
+      Height = 25
+      Action = removeMotorA
+      TabOrder = 11
     end
   end
   object mSequenceStatusTimer: TTimer
     Enabled = False
     Interval = 100
     OnTimer = mSequenceTimerTimer
-    Left = 416
-    Top = 24
+    Left = 240
+    Top = 32
+  end
+  object Actions: TActionList
+    Left = 280
+    Top = 104
+    object addMotorAction: TAction
+      Caption = 'Add'
+    end
+    object removeMotorA: TAction
+      Caption = 'Remove'
+    end
+    object addProcessA: TAction
+      Caption = 'Add'
+      OnExecute = addProcessAExecute
+    end
+    object removeProcessA: TAction
+      Caption = 'Remove'
+      OnExecute = removeProcessAExecute
+    end
   end
 end

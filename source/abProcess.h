@@ -6,9 +6,7 @@
 #include "Poco/TimeStamp.h"
 #include "Poco/Timespan.h"
 
-
 //---------------------------------------------------------------------------
-
 using std::string;
 namespace mtk
 {

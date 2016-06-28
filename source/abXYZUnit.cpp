@@ -173,15 +173,15 @@ void XYZUnit::shutDown()
 
 void XYZUnit::stow()
 {
-	//The stow function rely on a Process Sequence named "stow"
-    string fName("Sequence 1." + getName());
-	if(mMoveSequencer.load(joinPath(mAppDataFolder, fName)))
-    {
-        mMoveSequencer.assignUnit(this);
-     	Log(lInfo) << "Loaded process sequence: "<<mMoveSequencer.getSequence().getName();
-        mMoveSequencer.start();
-       	Log(lInfo) << "Started sequence: "<<mMoveSequencer.getSequence().getName();
-    }
+//	//The stow function rely on a Process Sequence named "stow"
+//    string fName("Sequence 1." + getName());
+//	if(mMoveSequencer.load(joinPath(mAppDataFolder, fName)))
+//    {
+//        mMoveSequencer.assignUnit(this);
+//     	Log(lInfo) << "Loaded process sequence: "<<mMoveSequencer.getSequence().getName();
+//        mMoveSequencer.start();
+//       	Log(lInfo) << "Started sequence: "<<mMoveSequencer.getSequence().getName();
+//    }
 }
 
 string XYZUnit::getName() const

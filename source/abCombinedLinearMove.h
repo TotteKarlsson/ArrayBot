@@ -1,15 +1,12 @@
 #ifndef abCombinedLinearMoveH
 #define abCombinedLinearMoveH
-#include "abExporter.h"
 #include "abProcess.h"
-#include "abPosition.h"
 #include "abLinearMove.h"
 #include <vector>
 //---------------------------------------------------------------------------
 using namespace std;
 
-//!The move baseclass contain the general logic for a 'move' of
-//any type of object
+//TODO: Rename this one to MultiLinearMove
 class AB_CORE CombinedLinearMove : public Process
 {
     public:

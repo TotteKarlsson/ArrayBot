@@ -24,6 +24,7 @@ USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
 USEFORM("frames\TXYZProcessSequencerFrame.cpp", XYZProcessSequencerFrame); /* TFrame: File Type */
+USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
@@ -38,7 +39,7 @@ extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
-extern bool         gHideSplash                 = false;
+extern bool         gHideSplash                 = true;
 extern TSplashForm* gSplashForm                 = NULL;
 //extern SQLite       gDB                         ;
 
@@ -135,5 +136,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 #pragma comment(lib, "mtkMath.lib")
 #pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
+#pragma comment(lib, "tinyxml2-static.lib")
 #pragma comment(lib, "VCLCommon.bpi")
 #pragma comment(lib, "DuneForms.lib")

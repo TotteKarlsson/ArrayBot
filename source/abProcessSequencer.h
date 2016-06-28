@@ -5,7 +5,7 @@
 #include "abABObject.h"
 #include "abProcessSequence.h"
 #include "mtkTimer.h"
-
+#include "abProcessSequenceProject.h"
 using mtk::Timer;
 class LinearMove;
 //---------------------------------------------------------------------------
@@ -18,7 +18,8 @@ class AB_CORE ProcessSequencer : public ABObject
                   	                ~ProcessSequencer(){}
 		bool				        assignUnit(ABObject* o);
 		bool				        load(const string& seqFName);
-		bool				        save(const string& folder);
+		bool				        saveCurrent(const string& folder);
+
 		void				        clear();
 		void		                start(bool continous = true);
 		void		                forward();
@@ -30,11 +31,14 @@ class AB_CORE ProcessSequencer : public ABObject
         bool		                removeProcess(Process* p);
         bool		                removeProcess(const string& name);
         string				        getCurrentProcessName();
+        string				        getCurrentSequenceName();
+        int							getNumberOfProcesses();
 
-        ProcessSequence&   	        getSequence(){return mSequence;}
+        ProcessSequence*   	        getSequence(){return mSequence;}
+        void						assignSequence(ProcessSequence* seq);
 
 	private:
-    	ProcessSequence		        mSequence;
+    	ProcessSequence*	        mSequence;
 
         							//!ExecuteAutomatic executes individual processes
                                     //!in sequence. If set false, each sequence need to be

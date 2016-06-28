@@ -11,7 +11,8 @@ using namespace mtk;
 ProcessSequence::ProcessSequence(const string& name, const string& fileExt)
 :
 mName(name),
-mFileExtension(fileExt)
+mFileExtension(fileExt),
+mProject(*this)
 {}
 
 ProcessSequence::~ProcessSequence()
@@ -87,28 +88,34 @@ bool ProcessSequence::isFirst(Process* p)
 
 bool ProcessSequence::write(const string& folder)
 {
-	//Save to file
-    string fullFName = joinPath(folder, mName + "." + mFileExtension);
-	IniFile f(fullFName);
 
-    //Save some info about the Process Sequence
-    IniSection* genSec = f.createSection("SEQUENCE_INFO");
-    genSec->createKey("NAME", mName);
+	//Create XML document
+    mProject.setFileFolder(folder);
 
-    Process* process = getFirst();
-    int count = 1;
-    while(process)
-    {
-        IniSection *sec = f.createSection(process->getProcessName());
-        if(sec)
-        {
-            process->write(sec);
-        }
-        count++;
-        process = getNext();
-    }
-
-    return f.save();
+    mProject.save();
+//
+//	//Save to file
+//    string fullFName = joinPath(folder, mName + "." + mFileExtension);
+//	IniFile f(fullFName);
+//
+//    //Save some info about the Process Sequence
+//    IniSection* genSec = f.createSection("SEQUENCE_INFO");
+//    genSec->createKey("NAME", mName);
+//
+//    Process* process = getFirst();
+//    int count = 1;
+//    while(process)
+//    {
+//        IniSection *sec = f.createSection(process->getProcessName());
+//        if(sec)
+//        {
+//            process->write(sec);
+//        }
+//        count++;
+//        process = getNext();
+//    }
+//
+//    return f.save();
 }
 
 bool ProcessSequence::add(Process* pos)
@@ -123,12 +130,12 @@ bool ProcessSequence::remove(Process* p)
 {
 	//Find item
     mProcesses.remove(p);
-    return false;
+    return true;
 }
 
 bool ProcessSequence::remove(const string& lbl)
 {
-	//Find item
+	//Find item with label
     return false;
 }
 

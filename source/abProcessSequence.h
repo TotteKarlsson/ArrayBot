@@ -6,9 +6,9 @@
 #include <string>
 #include "mtkINISection.h"
 #include "mtkProperty.h"
-
-
+#include "abProcessSequenceProject.h"
 //---------------------------------------------------------------------------
+
 using std::list;
 using std::string;
 using mtk::IniSection;
@@ -18,8 +18,9 @@ class Process;
 class AB_CORE ProcessSequence : public ABObject
 {
     public:
-										    ProcessSequence(const string& name = "MyProcess", const string& fileExt = "proc");
+										    ProcessSequence(const string& name = "", const string& fileExt = "proc");
 				        		            ~ProcessSequence();
+					        		        ProcessSequence(const ProcessSequence& s);
 
                                             //!Init the sequence brings all processes into their
                                             //!initial state. Required if a sequence is to be rerun
@@ -44,9 +45,11 @@ class AB_CORE ProcessSequence : public ABObject
         void								setFileFolder(const string& f) {mFileFolder = f;}
         string 								getFileFolder() {return mFileFolder;}
         Property<string>					mName;
+        int									getNumberOfProcesses(){return mProcesses.size();}
 
 
     protected:
+	    ProcessSequenceProject	 			mProject;
         IniSection							mIniSection;
         string								mFileExtension;
         string								mFileFolder;

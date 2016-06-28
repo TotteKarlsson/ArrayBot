@@ -16,7 +16,6 @@ Process(lbl, NULL)
 	mProcessType = ptCombinedLinearMove;
 }
 
-
 void CombinedLinearMove::addMove(LinearMove& lm)
 {
 	mLinearMoves.push_back(lm);

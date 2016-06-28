@@ -213,6 +213,9 @@
         <CppCompile Include="abProcessSequence.cpp">
             <BuildOrder>30</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abProcessSequenceProject.cpp">
+            <BuildOrder>37</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abProcessSequencer.cpp">
             <DependentOn>abProcessSequencer.h</DependentOn>
             <BuildOrder>21</BuildOrder>

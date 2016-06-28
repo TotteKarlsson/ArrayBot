@@ -4,20 +4,8 @@ Coordinates=330,1,97,51
 [mAddSeqBtn]
 Coordinates=220,211,79,51
 
-[mAccE]
-Coordinates=30,70,49,51
-
 [mDeleteSequenceBtn]
 Coordinates=318,232,120,51
-
-[Label2]
-Coordinates=220,141,46,51
-
-[mMovesLB]
-Coordinates=89,1,84,87
-
-[GroupBox2]
-Coordinates=0,0,70,51
 
 [mAddMoveBtn]
 Coordinates=62,232,87,51
@@ -31,17 +19,8 @@ Coordinates=337,302,70,51
 [mStartBtn]
 Coordinates=151,232,64,51
 
-[mMovePosE]
-Coordinates=337,177,75,51
-
 [mSequencesCB]
 Coordinates=337,71,92,87
-
-[mMaxVelE]
-Coordinates=211,71,65,51
-
-[MotorsCB]
-Coordinates=98,107,84,87
 
 [mSaveSequenceBtn]
 Coordinates=476,1,113,51
@@ -50,11 +29,44 @@ Coordinates=476,1,113,51
 Coordinates=288,321,70,51
 
 []
-Coordinates=476,71,117,51
+Coordinates=0,0,70,51
 
-[mPostDwellTimeE]
-Coordinates=211,1,103,51
+[Button1]
+Coordinates=0,0,53,51
 
-[mPreDwellTimeE]
-Coordinates=476,71,97,51
+[TMotorMoveProcessFrame1.mAccE]
+Coordinates=467,177,190,51
+
+[TMotorMoveProcessFrame1.mMaxVelE]
+Coordinates=909,141,206,51
+
+[TMotorMoveProcessFrame1.mPreDwellTimeE]
+Coordinates=94,107,238,51
+
+[TMotorMoveProcessFrame1.MotorsCB]
+Coordinates=467,71,204,87
+
+[TMotorMoveProcessFrame1.Label1]
+Coordinates=909,1,187,51
+
+[TMotorMoveProcessFrame1.mMovePosE]
+Coordinates=709,196,216,51
+
+[TMotorMoveProcessFrame1.mPostDwellTimeE]
+Coordinates=627,1,244,51
+
+[TMotorMoveProcessFrame1]
+Coordinates=308,196,152,33
+
+[TMotorMoveProcessFrame1.GroupBox1]
+Coordinates=709,71,211,51
+
+[Button2]
+Coordinates=30,70,53,51
+
+[mMoveMotorLB]
+Coordinates=211,1,92,87
+
+[mProcessesLB]
+Coordinates=89,1,84,87
 

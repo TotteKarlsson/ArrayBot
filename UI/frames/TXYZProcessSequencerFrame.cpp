@@ -228,12 +228,17 @@ void __fastcall TXYZProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
 	if(mMoveSequencer.load(joinPath(gAppDataFolder,fName)))
     {
     	//Fill out listbox
-		ProcessSequence& seq = mMoveSequencer.getSequence();
-        Process* move = seq.getFirst();
+		ProcessSequence* seq = mMoveSequencer.getSequence();
+        if(!seq)
+        {
+        	return;
+        }
+
+        Process* move = seq->getFirst();
         while(move)
         {
     		mMovesLB->Items->AddObject(move->getProcessName().c_str(), (TObject*) move);
-            move = seq.getNext();
+            move = seq->getNext();
         }
 
         //Select the first move in the sequence
@@ -341,9 +346,9 @@ void TXYZProcessSequencerFrame::saveSequence()
 	//Save Current Sequence
     int indx = mSequencesCB->ItemIndex;
     string seqName (stdstr(mSequencesCB->Items->Strings[indx]));
-    mMoveSequencer.getSequence().setName(seqName);
-	mMoveSequencer.getSequence().setFileExtension(mMovesFileExtension);
-    mMoveSequencer.save(gAppDataFolder);
+//    mMoveSequencer.getSequence().setName(seqName);
+//	mMoveSequencer.getSequence().setFileExtension(mMovesFileExtension);
+    mMoveSequencer.saveCurrent(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot"));
 }
 
 //---------------------------------------------------------------------------

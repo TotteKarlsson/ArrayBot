@@ -9,6 +9,9 @@
 #include "TSTDStringLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "abProcessSequencer.h"
+#include <System.Actions.hpp>
+#include <Vcl.ActnList.hpp>
+#include "TMotorMoveProcessFrame.h"
 //---------------------------------------------------------------------------
 
 class XYZUnit;
@@ -19,15 +22,8 @@ class TABProcessSequencerFrame : public TFrame
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
 	TLabel *Label1;
-	TGroupBox *GroupBox2;
-	TLabel *Label2;
-	TFloatLabeledEdit *mMovePosE;
-	TFloatLabeledEdit *mMaxVelE;
-	TFloatLabeledEdit *mAccE;
-	TFloatLabeledEdit *mPostDwellTimeE;
-	TComboBox *MotorsCB;
 	TButton *mStartBtn;
-	TListBox *mMovesLB;
+	TListBox *mProcessesLB;
 	TComboBox *mSequencesCB;
 	TButton *mSaveSequenceBtn;
 	TButton *mAddMoveBtn;
@@ -36,21 +32,30 @@ __published:	// IDE-managed Components
 	TButton *mDeleteMoveBtn;
 	TTimer *mSequenceStatusTimer;
 	TLabel *mStatusLbl;
-	TFloatLabeledEdit *mPreDwellTimeE;
-	void __fastcall mAddMoveBtnClick(TObject *Sender);
-	void __fastcall mDeleteMoveBtnClick(TObject *Sender);
+	TButton *Button1;
+	TActionList *Actions;
+	TAction *addMotorAction;
+	TListBox *mMoveMotorLB;
+	TMotorMoveProcessFrame *TMotorMoveProcessFrame1;
+	TButton *Button2;
+	TAction *removeMotorA;
+	TAction *addProcessA;
+	TAction *removeProcessA;
 	void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
 	void __fastcall mAddSeqBtnClick(TObject *Sender);
 	void __fastcall mStartBtnClick(TObject *Sender);
 	void __fastcall mSaveSequenceBtnClick(TObject *Sender);
 	void __fastcall mSequencesCBChange(TObject *Sender);
-	void __fastcall mMovesLBClick(TObject *Sender);
+	void __fastcall mProcessesLBClick(TObject *Sender);
 	void __fastcall moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall MotorsCBChange(TObject *Sender);
 	void __fastcall mSequenceTimerTimer(TObject *Sender);
+	void __fastcall addProcessAExecute(TObject *Sender);
+	void __fastcall removeProcessAExecute(TObject *Sender);
+
 
 private:	// User declarations
-	    ProcessSequencer  			mMoveSequencer;
+	    ProcessSequencer  			mProcessSequencer;
         ArrayBot&					mAB;
 		XYZUnit& 					mCoverSlipUnit;
 		XYZUnit& 					mWhiskerUnit;

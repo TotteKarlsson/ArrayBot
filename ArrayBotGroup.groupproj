@@ -9,7 +9,7 @@
         <Projects Include="P:\libs\dslib\Common\Math\mtkMath.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dslib\IPC\mtkIPC.cbproj">
+        <Projects Include="P:\libs\dslib\Common\IPC\mtkIPC.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
@@ -51,13 +51,13 @@
         <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Make"/>
     </Target>
     <Target Name="mtkIPC">
-        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj"/>
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj"/>
     </Target>
     <Target Name="mtkIPC:Clean">
-        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="mtkIPC:Make">
-        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
     </Target>
     <Target Name="VCLCommon">
         <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
