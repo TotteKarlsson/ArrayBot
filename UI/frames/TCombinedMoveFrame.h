@@ -8,9 +8,12 @@
 #include "TMotorMoveProcessFrame.h"
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
+#include "abArrayBot.h"
 
 class Process;
 class CombinedLinearMove;
+
+class XYZUnit;
 //---------------------------------------------------------------------------
 class TCombinedMoveFrame : public TFrame
 {
@@ -26,14 +29,17 @@ __published:	// IDE-managed Components
 	void __fastcall addMoveAExecute(TObject *Sender);
 	void __fastcall mMoveLBClick(TObject *Sender);
 	void __fastcall removeMoveAExecute(TObject *Sender);
-private:	// User declarations
-	CombinedLinearMove*				mCombinedMove;
-	void					    	selectItem(LinearMove* mv);
 
-public:		// User declarations
-						__fastcall TCombinedMoveFrame(TComponent* Owner);
+    private:	// User declarations
+		ArrayBot*						mAB;
+		CombinedLinearMove*				mCombinedMove;
+		void					    	selectItem(LinearMove* mv);
 
-    void							populate(Process* p);
+	public:		// User declarations
+							__fastcall  TCombinedMoveFrame(TComponent* Owner);
+
+    	void							populate(ArrayBot& ab, Process* p);
+    	void							rePopulate(Process* p);
 };
 
 extern PACKAGE TCombinedMoveFrame *CombinedMoveFrame;

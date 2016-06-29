@@ -30,36 +30,9 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, cons
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
 
-    retrieveMotorsFromUnit(mWhiskerUnit);
-	retrieveMotorsFromUnit(mCoverSlipUnit);
-
     GroupBox1->Caption = "ArrayBot Process Sequencer";
     mProcessFileExtension = "abp";
     refreshSequencesCB();
-}
-
-void TABProcessSequencerFrame::retrieveMotorsFromUnit(XYZUnit& unit)
-{
-	//Fill out sequencer frame
-//	if(unit.getXMotor())
-//    {
-//    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, unit.getXMotor()->getName().c_str(), (TObject*) unit.getXMotor() );
-//    }
-//
-//	if(unit.getYMotor())
-//    {
-//    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, unit.getYMotor()->getName().c_str(), (TObject*) unit.getYMotor() );
-//    }
-//
-//	if(unit.getZMotor())
-//    {
-//    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, unit.getZMotor()->getName().c_str(), (TObject*) unit.getZMotor() );
-//    }
-//
-//	if(unit.getAngleMotor())
-//    {
-//    	MotorsCB->Items->InsertObject(MotorsCB->Items->Count, unit.getAngleMotor()->getName().c_str(), (TObject*) unit.getAngleMotor() );
-//    }
 }
 
 void TABProcessSequencerFrame::init()
@@ -191,7 +164,7 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
 
     if(p)
     {
-    	TCombinedMoveFrame1->populate(p);
+    	TCombinedMoveFrame1->populate(mAB, p);
     }
 }
 //---------------------------------------------------------------------------
@@ -226,23 +199,6 @@ void __fastcall TABProcessSequencerFrame::MotorsCBChange(TObject *Sender)
         return;
     }
 
-//	//Check if a motor is selected
-//    ABObject* obj = (ABObject*) MotorsCB->Items->Objects[MotorsCB->ItemIndex];
-//
-//    APTMotor* 			motor = dynamic_cast<APTMotor*>(obj);
-//    if(motor)
-//    {
-//    	mMovePosE->Enabled = true;
-//        mAccE->Enabled = true;
-//
-//        LinearMove* move = (LinearMove*) mProcessesLB->Items->Objects[i];
-//        move->assignUnit(motor);
-//    }
-//    else
-//    {
-//    	mMovePosE->Enabled 	= false;
-//        mAccE->Enabled 		= false;
-//    }
 	saveSequence();
 }
 

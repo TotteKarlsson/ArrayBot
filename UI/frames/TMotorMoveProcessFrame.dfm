@@ -27,6 +27,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       EditLabel.Width = 89
       EditLabel.Height = 13
       EditLabel.Caption = 'Final Position (mm)'
+      Enabled = False
       TabOrder = 0
       Text = '0.0'
     end
@@ -38,6 +39,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       EditLabel.Width = 60
       EditLabel.Height = 13
       EditLabel.Caption = 'Max Velocity'
+      Enabled = False
       TabOrder = 1
       Text = '0.0'
     end
@@ -49,6 +51,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       EditLabel.Width = 59
       EditLabel.Height = 13
       EditLabel.Caption = 'Acceleration'
+      Enabled = False
       TabOrder = 2
       Text = '0.0'
     end
@@ -60,6 +63,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       EditLabel.Width = 98
       EditLabel.Height = 13
       EditLabel.Caption = 'Post Dwell Time (ms)'
+      Enabled = False
       TabOrder = 3
       Text = '0.0'
     end
@@ -68,8 +72,10 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       Top = 39
       Width = 169
       Height = 21
+      Style = csDropDownList
       TabOrder = 4
-      Text = 'Select Motor'
+      OnChange = MotorsCBChange
+      OnClick = MotorsCBClick
     end
     object mPreDwellTimeE: TFloatLabeledEdit
       Left = 16
@@ -79,6 +85,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       EditLabel.Width = 93
       EditLabel.Height = 13
       EditLabel.Caption = 'Pre Dwell Time (ms)'
+      Enabled = False
       TabOrder = 5
       Text = '0.0'
     end

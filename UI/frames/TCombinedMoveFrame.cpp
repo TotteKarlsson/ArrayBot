@@ -6,6 +6,9 @@
 #include "abLinearMove.h"
 #include "abCombinedLinearMove.h"
 #include "mtkLogger.h"
+#include "abArrayBot.h"
+#include "abAPTMotor.h"
+
 #pragma package(smart_init)
 #pragma link "TMotorMoveProcessFrame"
 #pragma resource "*.dfm"
@@ -20,7 +23,13 @@ __fastcall TCombinedMoveFrame::TCombinedMoveFrame(TComponent* Owner)
 {
 }
 
-void TCombinedMoveFrame::populate(Process* p)
+void TCombinedMoveFrame::populate(ArrayBot& ab, Process* p)
+{
+	mAB = &ab;
+	rePopulate(p);
+}
+
+void TCombinedMoveFrame::rePopulate(Process* p)
 {
 	mMoveLB->Clear();
 
@@ -55,7 +64,7 @@ void __fastcall TCombinedMoveFrame::addMoveAExecute(TObject *Sender)
         return;
     }
 
-    LinearMove* lm = new LinearMove("", NULL);
+    LinearMove* lm = new LinearMove("");
 
     //Add the move to the container.. this will give the move a name
     mCombinedMove->addMove(*lm);
@@ -77,7 +86,7 @@ void __fastcall TCombinedMoveFrame::removeMoveAExecute(TObject *Sender)
     {
     	string moveName = stdstr(mMoveLB->Items->Strings[index]);
         mCombinedMove->removeMove(moveName);
-		populate(mCombinedMove);
+		rePopulate(mCombinedMove);
     }
 
 }
@@ -86,7 +95,7 @@ void TCombinedMoveFrame::selectItem(LinearMove* mv)
 {
 	if(mv)
     {
-		this->TMotorMoveProcessFrame1->populate(mv);
+		this->TMotorMoveProcessFrame1->populate(mAB, mv);
    		EnableDisableFrame(this->TMotorMoveProcessFrame1, true);
     }
 }

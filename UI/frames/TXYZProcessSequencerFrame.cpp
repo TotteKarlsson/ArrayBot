@@ -91,7 +91,7 @@ void __fastcall TXYZProcessSequencerFrame::mAddMoveBtnClick(TObject *Sender)
     	return;
     }
 
-	LinearMove *move = new LinearMove("", motor, mtAbsolute, pos);
+	LinearMove *move = new LinearMove("", mtAbsolute, pos);
 
     mProcessSequencer.getCurrentSequence()->add(move);
 

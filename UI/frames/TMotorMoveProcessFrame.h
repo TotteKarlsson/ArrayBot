@@ -10,6 +10,8 @@
 //---------------------------------------------------------------------------
 
 class LinearMove;
+class ArrayBot;
+class XYZUnit;
 
 class TMotorMoveProcessFrame : public TFrame
 {
@@ -22,12 +24,16 @@ __published:	// IDE-managed Components
 	TFloatLabeledEdit *mPostDwellTimeE;
 	TComboBox *MotorsCB;
 	TFloatLabeledEdit *mPreDwellTimeE;
-private:	// User declarations
-	LinearMove* 			mMove;
-
-public:		// User declarations
-					__fastcall TMotorMoveProcessFrame(TComponent* Owner);
-    void            			populate(LinearMove* m);
+	void __fastcall MotorsCBClick(TObject *Sender);
+	void __fastcall MotorsCBChange(TObject *Sender);
+    private:	// User declarations
+        LinearMove* 			mMove;
+        ArrayBot*				mAB;
+		void 					populateMotorCB();
+    public:		// User declarations
+                        __fastcall TMotorMoveProcessFrame(TComponent* Owner);
+        void            		   populate(ArrayBot* ab, LinearMove* m);
+        void            		   rePopulate(LinearMove* m);
 };
 
 extern PACKAGE TMotorMoveProcessFrame *MotorMoveProcessFrame;

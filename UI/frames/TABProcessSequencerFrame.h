@@ -49,7 +49,6 @@ __published:	// IDE-managed Components
 	void __fastcall addProcessAExecute(TObject *Sender);
 	void __fastcall removeProcessAExecute(TObject *Sender);
 
-
 private:	// User declarations
 	    ProcessSequencer  			mProcessSequencer;
         ArrayBot&					mAB;
@@ -59,7 +58,6 @@ private:	// User declarations
 		void __fastcall 			refreshSequencesCB();
 		static int 					mFrameNr;
 		void						saveSequence();
-		void 						retrieveMotorsFromUnit(XYZUnit& unit);
 public:
 						 __fastcall TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner);
         void						init();
