@@ -12,6 +12,7 @@
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TMotorMoveProcessFrame"
+#pragma link "TCombinedMoveFrame"
 #pragma resource "*.dfm"
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
@@ -119,9 +120,6 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
     	return;
     }
 
-    //Save current sequence
-    mProcessSequencer.saveCurrent();
-
     mProcessesLB->Clear();
     string sName(stdstr(mSequencesCB->Items->Strings[index]));
 
@@ -150,7 +148,9 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
     }
     else
     {
-        MessageDlg("Failed loading that sequence", mtError, TMsgDlgButtons() << mbOK, 0);
+    	stringstream ss;
+        ss << "Failed loading the sequence:" << sName <<". See logfile for more details";
+        MessageDlg(ss.str().c_str(), mtError, TMsgDlgButtons() << mbOK, 0);
     }
 
     mProcessSequencer.assignUnit(&mAB);
@@ -191,29 +191,7 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
 
     if(p)
     {
-//    	mMovePosE->setValue(move->getPosition().x());
-//        mMaxVelE->setValue(move->getMaxVelocity());
-//        mAccE->setValue(move->getAcceleration());
-//        mPostDwellTimeE->setValue(move->getPostDwellTime());
-//        mPreDwellTimeE->setValue(move->getPreDwellTime());
-//
-//        APTMotor* mtr = dynamic_cast<APTMotor*>(move->getUnit());
-//        if(!mtr)
-//        {
-//        	//Look for motor in the Checkbox
-//            string unitLbl = move->getMotorName();
-//			int idx = MotorsCB->Items->IndexOf(unitLbl.c_str());
-//            if(idx != -1)
-//            {
-//            	move->assignUnit( (APTMotor*) MotorsCB->Items->Objects[idx] );
-//				MotorsCB->ItemIndex = idx;
-//            }
-//        }
-//        else
-//        {
-//        	int idx = MotorsCB->Items->IndexOf(mtr->getName().c_str());
-//			MotorsCB->ItemIndex = idx;
-//        }
+    	TCombinedMoveFrame1->populate(p);
     }
 }
 //---------------------------------------------------------------------------
@@ -270,12 +248,6 @@ void __fastcall TABProcessSequencerFrame::MotorsCBChange(TObject *Sender)
 
 void TABProcessSequencerFrame::saveSequence()
 {
-	//Save Current Sequence
-    int indx = mSequencesCB->ItemIndex;
-    string seqName (stdstr(mSequencesCB->Items->Strings[indx]));
-
-//    mProcessSequencer.getSequence().setName(seqName);
-//	mProcessSequencer.getSequence().setFileExtension(mProcessFileExtension);
     mProcessSequencer.saveCurrent();
 }
 
@@ -312,7 +284,6 @@ void __fastcall TABProcessSequencerFrame::addProcessAExecute(TObject *Sender)
 
 	//Create and add a process to the sequence
 	Process *p = new CombinedLinearMove("Process " + mtk::toString(nr));
-
    	s->add(p);
 
     //Update LB
@@ -334,7 +305,6 @@ void __fastcall TABProcessSequencerFrame::removeProcessAExecute(TObject *Sender)
 
     Process* p = (Process*) mProcessesLB->Items->Objects[i];
 
-
     s->remove(p);
     mProcessesLB->DeleteSelected();
 
@@ -344,5 +314,8 @@ void __fastcall TABProcessSequencerFrame::removeProcessAExecute(TObject *Sender)
 		mProcessesLBClick(NULL);
     }
 }
+
+
+
 
 

@@ -1,8 +1,36 @@
 #pragma hdrstop
 #include "abProcess.h"
+#include "mtkXMLUtils.h"
 //---------------------------------------------------------------------------
 
 using Poco::Timespan;
+using namespace mtk;
+
+string toString(ProcessType pt)
+{
+	switch(pt)
+    {
+    	case ptLinearMove: return "linearMove";
+    	case ptCombinedLinearMove: return "combinedLinearMove";
+        default: return "unknown";
+    }
+}
+
+ProcessType toProcessType(const string& str)
+{
+	if(str == "linearMove")
+    {
+    	return ptLinearMove;
+    }
+
+	if(str == "combinedLinearMove")
+    {
+    	return ptCombinedLinearMove;
+    }
+
+	return ptUnknown;
+}
+
 Process::Process(const string& lbl, ABObject* o)
 :
 mUnit(o),
@@ -12,9 +40,14 @@ mPostDwellTime(0),
 mTimeOut(60*Poco::Timespan::SECONDS),
 mIsBeingProcessed(false),
 mIsProcessed(false),
-mIsStarted(false)
+mIsStarted(false),
+mProcessType(ptBaseType)
 {}
 
+string Process::getProcessType()
+{
+	return toString(mProcessType);
+}
 
 bool Process::start()
 {
@@ -38,6 +71,39 @@ bool Process::stop()
     mIsProcessed 		= false;
     return true;
 
+}
+
+XMLElement* Process::addToXMLDocument(XMLDocument& doc, XMLNode* docRoot)
+{
+    //Create XML for saving to file
+    XMLElement* processNode  	= doc.NewElement("process");
+    XMLNode*    rootNode 		= doc.InsertFirstChild(processNode);
+
+    //Attributes
+    //processNode->SetAttribute("id", getID().toString().c_str());
+
+    //Elements
+    XMLElement* elem = doc.NewElement("process_name");
+    processNode->InsertFirstChild(elem);
+        elem->SetText(mProcessName.c_str());
+    processNode->InsertEndChild(elem);
+
+    //Elements
+    elem = doc.NewElement("process_type");
+    processNode->InsertFirstChild(elem);
+        elem->SetText(getProcessType().c_str());
+    processNode->InsertEndChild(elem);
+
+    processNode->InsertEndChild(rootNode);
+    docRoot->InsertEndChild(processNode);
+
+    return processNode;
+}
+
+//Re implemented in derived processes
+XMLElement* Process::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
+{
+	return NULL;
 }
 
 bool Process::isTimedOut()

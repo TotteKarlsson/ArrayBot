@@ -5,26 +5,30 @@
 #include <string>
 #include "Poco/TimeStamp.h"
 #include "Poco/Timespan.h"
-
+#include "mtkXMLUtils.h"
 //---------------------------------------------------------------------------
 using std::string;
+
 namespace mtk
 {
 	class IniSection;
 }
 
 using Poco::Timestamp;
-
 using Poco::Timestamp::TimeDiff;
-enum ProcessType {ptLinearMove = 0, ptCombinedLinearMove};
+
+//!Instead of the enums, is type() info..
+enum ProcessType {ptBaseType = 0, ptLinearMove, ptCombinedLinearMove, ptUnknown};
+string AB_CORE	toString(ProcessType tp);
+ProcessType toProcessType(const string& str);
 
 class AB_CORE Process : public ABObject
 {
     public:
-        							Process(const string& lbl, ABObject* o);
+        							Process(const string& name, ABObject* o);
 							        ~Process(){}
 		void						init();
-
+		string 						getProcessType();
 		virtual void	            assignUnit(ABObject* o){mUnit = o;}
 		ABObject*					getUnit(){return mUnit;}
         string						getProcessName(){return mProcessName;}
@@ -47,6 +51,9 @@ class AB_CORE Process : public ABObject
 
         virtual bool				read(mtk::IniSection* sec) = 0;
         virtual bool				write(mtk::IniSection* sec) = 0;
+
+        virtual mtk::XMLElement*    addToXMLDocument(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
+		virtual mtk::XMLElement*    addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 
     protected:
         							//!The Process Name identifies the process in a sequence

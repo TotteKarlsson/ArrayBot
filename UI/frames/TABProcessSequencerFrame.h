@@ -12,6 +12,7 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include "TMotorMoveProcessFrame.h"
+#include "TCombinedMoveFrame.h"
 //---------------------------------------------------------------------------
 
 class XYZUnit;
@@ -21,7 +22,6 @@ class TABProcessSequencerFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
-	TLabel *Label1;
 	TButton *mStartBtn;
 	TListBox *mProcessesLB;
 	TComboBox *mSequencesCB;
@@ -32,15 +32,11 @@ __published:	// IDE-managed Components
 	TButton *mDeleteMoveBtn;
 	TTimer *mSequenceStatusTimer;
 	TLabel *mStatusLbl;
-	TButton *Button1;
 	TActionList *Actions;
-	TAction *addMotorAction;
-	TListBox *mMoveMotorLB;
-	TMotorMoveProcessFrame *TMotorMoveProcessFrame1;
-	TButton *Button2;
-	TAction *removeMotorA;
 	TAction *addProcessA;
 	TAction *removeProcessA;
+	TCombinedMoveFrame *TCombinedMoveFrame1;
+	TGroupBox *GroupBox2;
 	void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
 	void __fastcall mAddSeqBtnClick(TObject *Sender);
 	void __fastcall mStartBtnClick(TObject *Sender);

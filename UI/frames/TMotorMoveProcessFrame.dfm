@@ -1,14 +1,14 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 242
+  Width = 225
   Height = 207
   AutoSize = True
   TabOrder = 0
-  object GroupBox1: TGroupBox
+  object MainGB: TGroupBox
     Left = 0
     Top = 0
-    Width = 242
+    Width = 225
     Height = 207
     Caption = 'Motor Move Process'
     TabOrder = 0

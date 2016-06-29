@@ -9,7 +9,8 @@ using namespace std;
 
 ProcessSequences::ProcessSequences(const string& fileFolder)
 :
-mFileFolder(fileFolder)
+mFileFolder(fileFolder),
+mProcessSequencesIter(mProcessSequences.begin())
 {}
 
 ProcessSequences::~ProcessSequences()
@@ -39,9 +40,10 @@ bool ProcessSequences::load(const string& sName)
 	if(fileExists(joinPath(mFileFolder, sName + ".abp")))
     {
     	ProcessSequence* s = new ProcessSequence();
+
         if(s->read(joinPath(mFileFolder, sName + ".abp")))
         {
-        	s->setName(sName);
+            s->setName(sName);
         	return add(s);
         }
     }
@@ -50,6 +52,10 @@ bool ProcessSequences::load(const string& sName)
 
 bool ProcessSequences::saveCurrent()
 {
+	if(getCurrent())
+    {
+		return getCurrent()->write(mFileFolder);
+    }
 	return false;
 }
 

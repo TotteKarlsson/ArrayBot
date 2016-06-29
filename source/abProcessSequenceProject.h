@@ -21,13 +21,11 @@ class AB_CORE ProcessSequenceProject : public mtk::Project
         string                                  getPresentModelVersion();
 
     protected:
-        ProcessSequence&                        mParent;
+        ProcessSequence&                        mProcessSequence;
         string                                  mVersion;
         bool                                    resetXML();
-        bool                                    saveExplorerSettings();
-        bool                                    loadExplorerSettings();
-        int                                     loadObjects();
-        mtk::shared_ptr<Process>                createObject(tinyxml2::XMLElement* element);
+        int                                     loadProcesses();
+        Process*				                createProcess(tinyxml2::XMLElement* element);
 };
 
 #endif

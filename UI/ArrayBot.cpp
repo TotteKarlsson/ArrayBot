@@ -13,18 +13,19 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
+USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
+USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
+USEFORM("frames\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
 USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
-USEFORM("frames\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("frames\abXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
 USEFORM("MainForm.cpp", Main);
-USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
+USEFORM("frames\TXYZProcessSequencerFrame.cpp", XYZProcessSequencerFrame); /* TFrame: File Type */
+USEFORM("frames\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
-USEFORM("frames\TXYZProcessSequencerFrame.cpp", XYZProcessSequencerFrame); /* TFrame: File Type */
-USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
+USEFORM("frames\TCombinedMoveFrame.cpp", CombinedMoveFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";

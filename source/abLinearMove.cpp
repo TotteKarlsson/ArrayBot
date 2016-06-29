@@ -131,13 +131,13 @@ bool LinearMove::write(IniSection* sec)
 {
     double x = getPosition().x();
     IniKey* key = sec->createKey("PROCESS_TYPE", 	toString(getMoveType()));
-    key = sec->createKey("MOTOR_NAME",   	toString(mMotorName));
-    key = sec->createKey("POSITION", 		toString(x));
-    key = sec->createKey("POSITION_NAME",  	getPosition().getLabel());
-    key = sec->createKey("MAX_VELOCITY", 	toString(getMaxVelocity()));
-    key = sec->createKey("ACCELERATION", 	toString(getAcceleration()));
-    key = sec->createKey("PRE_DWELL_TIME",   	toString(getPreDwellTime()));
-    key = sec->createKey("POST_DWELL_TIME",   	toString(getPostDwellTime()));
+    key = sec->createKey("MOTOR_NAME",   			toString(mMotorName));
+    key = sec->createKey("POSITION", 				toString(x));
+    key = sec->createKey("POSITION_NAME",  			getPosition().getLabel());
+    key = sec->createKey("MAX_VELOCITY", 			toString(getMaxVelocity()));
+    key = sec->createKey("ACCELERATION", 			toString(getAcceleration()));
+    key = sec->createKey("PRE_DWELL_TIME",   		toString(getPreDwellTime()));
+    key = sec->createKey("POST_DWELL_TIME",   		toString(getPostDwellTime()));
     return true;
 }
 

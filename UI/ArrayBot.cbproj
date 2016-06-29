@@ -173,6 +173,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <Form>ABProcessSequencerFrame</Form>
             <BuildOrder>14</BuildOrder>
         </CppCompile>
+        <CppCompile Include="frames\TCombinedMoveFrame.cpp">
+            <Form>CombinedMoveFrame</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TCombinedMoveFrame.h</DependentOn>
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
         <CppCompile Include="frames\TMotorMoveProcessFrame.cpp">
             <Form>MotorMoveProcessFrame</Form>
             <FormType>dfm</FormType>
@@ -217,6 +224,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
         <FormResources Include="forms\TSplashForm.dfm"/>
         <FormResources Include="forms\abAddLiftForm.dfm"/>
+        <FormResources Include="frames\TCombinedMoveFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

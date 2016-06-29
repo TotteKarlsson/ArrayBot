@@ -17,6 +17,8 @@ class AB_CORE LinearMove : public Process
         	   			            LinearMove(const string& lbl, ABObject* unit, MoveType type = mtAbsolute, const ab::Position& p = ab::Position("", 0,0,0), double maxVel = 0, double acc = 0, double dwellTime = 0);
     	virtual			            ~LinearMove(){}
 		virtual void	            assignUnit(ABObject* o);
+
+
         virtual bool				write(mtk::IniSection* sec);
         virtual bool				read(mtk::IniSection* sec);
 
@@ -46,6 +48,7 @@ class AB_CORE LinearMove : public Process
         string						getMotorName(){return mMotorName;}
 
     protected:
+        string						mMotorName;
         				            //!The exact meaning of the position attribute is
                                     //made clear in derived classes
         ab::Position                mPosition;
@@ -57,7 +60,7 @@ class AB_CORE LinearMove : public Process
         MoveType 		            mMoveType;
         double			            mMaxVelocity;
         double			            mAcceleration;
-        string						mMotorName;
+
 };
 
 #endif

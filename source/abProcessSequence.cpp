@@ -10,7 +10,7 @@ using namespace mtk;
 
 ProcessSequence::ProcessSequence(const string& name, const string& fileExt)
 :
-mName(name),
+//mName(name),
 mFileExtension(fileExt),
 mProject(*this)
 {}
@@ -47,7 +47,11 @@ void ProcessSequence::init()
 
 bool ProcessSequence::read(const string& fName)
 {
-	return mProject.loadFromFile(fName);
+	if(mProject.loadFromFile(fName))
+    {
+    	return mProject.open();
+    }
+    return false;
 }
 
 bool ProcessSequence::isFirst(Process* p)
@@ -59,31 +63,8 @@ bool ProcessSequence::write(const string& folder)
 {
 	//Create XML document
     mProject.setFileFolder(folder);
-	mProject.setModelFileName(mName + ".abp");
-    mProject.save();
-//
-//	//Save to file
-//    string fullFName = joinPath(folder, mName + "." + mFileExtension);
-//	IniFile f(fullFName);
-//
-//    //Save some info about the Process Sequence
-//    IniSection* genSec = f.createSection("SEQUENCE_INFO");
-//    genSec->createKey("NAME", mName);
-//
-//    Process* process = getFirst();
-//    int count = 1;
-//    while(process)
-//    {
-//        IniSection *sec = f.createSection(process->getProcessName());
-//        if(sec)
-//        {
-//            process->write(sec);
-//        }
-//        count++;
-//        process = getNext();
-//    }
-//
-//    return f.save();
+	mProject.setModelFileName(getName() + ".abp");
+    return mProject.save();
 }
 
 bool ProcessSequence::add(Process* pos)
