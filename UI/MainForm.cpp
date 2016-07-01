@@ -8,7 +8,6 @@
 #include "abTCubeDCServo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
-
 #include <bitset>
 #include "mtkMathUtils.h"
 #include "abExceptions.h"
@@ -26,10 +25,10 @@
 #pragma resource "*.dfm"
 TMain *Main;
 
-extern string gLogFileLocation;
-extern string gLogFileName;
-extern string gAppDataFolder;
-extern TSplashForm*  gSplashForm;
+extern string           gLogFileLocation;
+extern string           gLogFileName;
+extern string           gAppDataFolder;
+extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
 using namespace mtk;
 
@@ -590,5 +589,5 @@ void __fastcall TMain::WorkPos2BtnClick(TObject *Sender)
     }
 
 }
-//---------------------------------------------------------------------------
+
 

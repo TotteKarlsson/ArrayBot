@@ -50,6 +50,8 @@ __published:	// IDE-managed Components
 	void __fastcall mSequenceTimerTimer(TObject *Sender);
 	void __fastcall addProcessAExecute(TObject *Sender);
 	void __fastcall removeProcessAExecute(TObject *Sender);
+	void __fastcall mSequenceNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
 private:	// User declarations
 	    ProcessSequencer  			mProcessSequencer;

@@ -37,20 +37,25 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     inline TCombinedMoveFrame1: TCombinedMoveFrame
       Left = 161
       Top = 15
-      Width = 137
+      Width = 362
       Height = 224
       Align = alLeft
       AutoSize = True
       TabOrder = 1
       ExplicitLeft = 161
       ExplicitTop = 15
-      ExplicitWidth = 137
       ExplicitHeight = 224
       inherited GroupBox1: TGroupBox [0]
         Height = 224
-        TabOrder = 0
+        ExplicitHeight = 224
       end
-      inherited ActionList1: TActionList [1]
+      inherited TMotorMoveProcessFrame1: TMotorMoveProcessFrame [1]
+        Height = 224
+        ExplicitHeight = 224
+        inherited MainGB: TGroupBox
+          Height = 224
+          ExplicitHeight = 224
+        end
       end
     end
     object GroupBox2: TGroupBox
@@ -136,6 +141,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         EditLabel.Caption = 'Sequence Name'
         TabOrder = 7
         Text = '<none>'
+        OnKeyDown = mSequenceNameEKeyDown
         Value = '<none>'
       end
     end

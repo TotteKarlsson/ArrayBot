@@ -264,7 +264,20 @@ void __fastcall TABProcessSequencerFrame::removeProcessAExecute(TObject *Sender)
     }
 }
 
-
-
+//---------------------------------------------------------------------------
+void __fastcall TABProcessSequencerFrame::mSequenceNameEKeyDown(TObject *Sender,
+          WORD &Key, TShiftState Shift)
+{
+	if(Key == vkReturn)
+    {
+    	//Change name of sequence in CB
+        int indx = mSequencesCB->ItemIndex;
+		mSequencesCB->Items->Strings[indx] = vclstr(mSequenceNameE->GetString());
+		mSequencesCB->ItemIndex = indx;
+		ProcessSequence* s = mProcessSequencer.getCurrentSequence();
+        s->setProjectName(mSequenceNameE->GetString());
+        saveSequence();
+    }
+}
 
 

@@ -29,3 +29,4 @@ void InitBotThread::assingBot(ArrayBot* bot)
 {
 	mTheBot = bot;
 }
+
