@@ -39,6 +39,7 @@ __published:	// IDE-managed Components
 	TCombinedMoveFrame *TCombinedMoveFrame1;
 	TGroupBox *GroupBox2;
 	mtkSTDStringEdit *mSequenceNameE;
+	TPanel *Panel1;
 	void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
 	void __fastcall mAddSeqBtnClick(TObject *Sender);
 	void __fastcall mStartBtnClick(TObject *Sender);

@@ -18,7 +18,7 @@ using Poco::Timestamp;
 using Poco::Timestamp::TimeDiff;
 
 //!Instead of the enums, is type() info..
-enum ProcessType {ptBaseType = 0, ptLinearMove, ptCombinedLinearMove, ptUnknown};
+enum ProcessType {ptBaseType = 0, ptMove, ptCombinedMove, ptUnknown};
 string AB_CORE	toString(ProcessType tp);
 ProcessType toProcessType(const string& str);
 

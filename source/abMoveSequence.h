@@ -5,7 +5,7 @@
 #include <list>
 #include <vector>
 #include <string>
-#include "abLinearMove.h"
+#include "abMove.h"
 #include "abProcessSequence.h"
 //---------------------------------------------------------------------------
 

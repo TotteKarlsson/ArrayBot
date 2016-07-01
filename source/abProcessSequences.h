@@ -6,15 +6,16 @@
 #include "abProcessSequence.h"
 #include "mtkConstants.h"
 
-
 //---------------------------------------------------------------------------
 using std::deque;
 using namespace mtk;
 
+class ProcessSequencer;
+
 class AB_CORE ProcessSequences : public ABObject
 {
 	public:
-								                    ProcessSequences(const string& fileFolder, const string& fileExtension);
+								                    ProcessSequences(const string& fileFolder, const string& fileExtension, ArrayBot& ab);
 								                    ~ProcessSequences();
 		bool										setFileFolder(const string& fileFolder);
         string										getFileFolder();
@@ -38,6 +39,8 @@ class AB_CORE ProcessSequences : public ABObject
         bool										clear();
 
 	protected:
+    												//!ArrayBot provide "unit"s that are used by the processes
+    	ArrayBot&									mAB;
     	mutable deque<ProcessSequence*> 			mProcessSequences;
     	mutable deque<ProcessSequence*>::iterator 	mProcessSequencesIter;
         string										mFileFolder;

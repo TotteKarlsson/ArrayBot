@@ -1,7 +1,7 @@
 #pragma hdrstop
 #include "abMoveSequence.h"
 #include "mtkIniFile.h"
-#include "abLinearMove.h"
+#include "abMove.h"
 
 using namespace mtk;
 

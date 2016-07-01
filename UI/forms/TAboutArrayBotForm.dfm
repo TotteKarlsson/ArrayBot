@@ -34,9 +34,9 @@ object AboutArrayBotForm: TAboutArrayBotForm
     object Label1: TLabel
       Left = 127
       Top = 6
-      Width = 311
+      Width = 312
       Height = 30
-      Caption = 'Smith Lab.  - Allen institute 2016'
+      Caption = 'Smith Lab.  - Allen Institute 2016'
       Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -75,6 +75,8 @@ object AboutArrayBotForm: TAboutArrayBotForm
     Height = 249
     Align = alClient
     TabOrder = 1
+    ExplicitLeft = -40
+    ExplicitTop = -6
     ExplicitWidth = 571
     ExplicitHeight = 249
     inherited Image1: TImage
@@ -84,6 +86,10 @@ object AboutArrayBotForm: TAboutArrayBotForm
     inherited logLabel: TLabel
       Top = 216
       ExplicitTop = 216
+    end
+    inherited Image2: TImage
+      Width = 571
+      Height = 249
     end
   end
   object ActionList1: TActionList

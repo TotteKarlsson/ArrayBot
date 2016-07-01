@@ -5,7 +5,7 @@
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
-#include "abLinearMove.h"
+#include "abMove.h"
 #include "abArrayBot.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -91,7 +91,7 @@ void __fastcall TXYZProcessSequencerFrame::mAddMoveBtnClick(TObject *Sender)
     	return;
     }
 
-	LinearMove *move = new LinearMove("", mtAbsolute, pos);
+	Move *move = new Move("", mtAbsolute, pos);
 
     mProcessSequencer.getCurrentSequence()->add(move);
 
@@ -122,7 +122,7 @@ void __fastcall TXYZProcessSequencerFrame::mDeleteMoveBtnClick(TObject *Sender)
 //    	return;
 //    }
 //
-//    LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
+//    Move* move = (Move*) mMovesLB->Items->Objects[i];
 //	mMovesLB->DeleteSelected();
 //
 //    if(mMovesLB->Count > -1)
@@ -267,7 +267,7 @@ void __fastcall TXYZProcessSequencerFrame::mMovesLBClick(TObject *Sender)
     	return;
     }
 
-    LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
+    Move* move = (Move*) mMovesLB->Items->Objects[i];
 
     if(move)
     {
@@ -306,7 +306,7 @@ void __fastcall TXYZProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Ke
     	return;
     }
 
-    LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
+    Move* move = (Move*) mMovesLB->Items->Objects[i];
 	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
 
     ab::Position p(move->getPositionName(), mMovePosE->getValue(),0,0);
@@ -336,7 +336,7 @@ void __fastcall TXYZProcessSequencerFrame::MotorsCBChange(TObject *Sender)
     	mMovePosE->Enabled = true;
         mAccE->Enabled = true;
 
-        LinearMove* move = (LinearMove*) mMovesLB->Items->Objects[i];
+        Move* move = (Move*) mMovesLB->Items->Objects[i];
         move->assignUnit(motor);
     }
     else

@@ -63,7 +63,6 @@ bool LongTravelStage::disconnect()
     return false;
 }
 
-
 bool LongTravelStage::enable()
 {
 	int err = ISC_EnableChannel(mSerial.c_str());
@@ -475,12 +474,12 @@ bool LongTravelStage::moveAbsolute(double pos, bool inThread)
     {
 		MotorCommand cmd(mcMoveToPosition, pos);
 		post(cmd);
+        mMotorCommandsPending++;
     }
     else
     {
-//    	setVelocity(getJogVelocity());
-//    	setAcceleration(getJogAcceleration());
         int err = ISC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
+		mMotorCommandsPending--;
         if(err != 0)
         {
             Log(lError) <<tlError(err);

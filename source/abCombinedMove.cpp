@@ -1,5 +1,5 @@
 #pragma hdrstop
-#include "abCombinedLinearMove.h"
+#include "abCombinedMove.h"
 #include "abXYZUnit.h"
 #include "abAPTMotor.h"
 #include "abPosition.h"
@@ -9,14 +9,14 @@ using namespace mtk;
 using namespace ab;
 
 //---------------------------------------------------------------------------
-CombinedLinearMove::CombinedLinearMove(const string& lbl)
+CombinedMove::CombinedMove(const string& lbl)
 :
 Process(lbl)
 {
-	mProcessType = ptCombinedLinearMove;
+	mProcessType = ptCombinedMove;
 }
 
-void CombinedLinearMove::addMove(LinearMove& lm)
+void CombinedMove::addMove(Move& lm)
 {
 	if(lm.getProcessName() =="")
     {
@@ -25,25 +25,25 @@ void CombinedLinearMove::addMove(LinearMove& lm)
 	mMoves.push_back(lm);
 }
 
-bool CombinedLinearMove::removeMove(const string& name)
+bool CombinedMove::removeMove(const string& name)
 {
 	for(int i = 0; i < mMoves.size(); i++)
     {
     	if(mMoves[i].getProcessName() == name)
         {
-        	LinearMove* lm = &(mMoves[i]);
+        	Move* lm = &(mMoves[i]);
             mMoves.erase(mMoves.begin() + i);
         }
     }
     return true;
 }
 
-bool CombinedLinearMove::removeMove(LinearMove* m)
+bool CombinedMove::removeMove(Move* m)
 {
 	return false;
 }
 
-LinearMove* CombinedLinearMove::getMove(int i)
+Move* CombinedMove::getMove(int i)
 {
 	if(i < mMoves.size())
     {
@@ -52,12 +52,12 @@ LinearMove* CombinedLinearMove::getMove(int i)
     return NULL;
 }
 
-LinearMove*	CombinedLinearMove::getMove(const string& lbl)
+Move*	CombinedMove::getMove(const string& lbl)
 {
 	// look for item
     for(int i = 0 ; i < mMoves.size(); i++)
     {
-    	LinearMove& mv = mMoves[i];
+    	Move& mv = mMoves[i];
         if(mv.getProcessName() == lbl)
         {
         	return &mv;
@@ -66,7 +66,7 @@ LinearMove*	CombinedLinearMove::getMove(const string& lbl)
     return NULL;
 }
 
-XMLElement* CombinedLinearMove::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
+XMLElement* CombinedMove::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file
     XMLElement* processNode  = doc.NewElement("processes");
@@ -77,8 +77,7 @@ XMLElement* CombinedLinearMove::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocu
 
 	for(int i = 0; i < mMoves.size(); i++)
     {
-    	LinearMove& lm = mMoves[i];
-        //lm.addToXMLDocument(doc, rootNode);
+    	Move& lm = mMoves[i];
         lm.addToXMLDocumentAsChild(doc, rootNode);
     }
 
@@ -88,7 +87,7 @@ XMLElement* CombinedLinearMove::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocu
     return processNode;
 }
 
-bool CombinedLinearMove::isBeingProcessed()
+bool CombinedMove::isBeingProcessed()
 {
 	if(isDone())
     {
@@ -101,7 +100,7 @@ bool CombinedLinearMove::isBeingProcessed()
     return mIsBeingProcessed;
 }
 
-bool CombinedLinearMove::isProcessed()
+bool CombinedMove::isProcessed()
 {
     if(mIsProcessed == true)
     {
@@ -115,54 +114,72 @@ bool CombinedLinearMove::isProcessed()
         mIsBeingProcessed 	= false;
         return true;
     }
-    else
+
+	return false;
+}
+
+bool CombinedMove::isCommandPending()
+{
+	for(int i = 0; i < mMoves.size(); i++)
     {
-        return false;
+    	if(mMoves[i].isMotorCommandPending())
+        {
+        	return true;
+        }
     }
 
-	return false;
+    return false;
 }
 
-bool CombinedLinearMove::isDone()
+bool CombinedMove::areMotorsActive()
+{
+	for(int i = 0; i < mMoves.size(); i++)
+    {
+    	if(mMoves[i].isMotorActive())
+        {
+        	return true;
+        }
+    }
+
+    return false;
+}
+
+bool CombinedMove::start()
+{
+	for(int i = 0; i < mMoves.size(); i++)
+    {
+    	mMoves[i].start();
+        Log(lInfo) << "Started MoveProcess \"" << mMoves[i].getProcessName()<<"\"";
+    }
+
+	return Process::start();
+}
+
+bool CombinedMove::stop()
+{
+	for(int i = 0; i < mMoves.size(); i++)
+    {
+    	mMoves[i].stop();
+    }
+
+	return Process::stop();
+}
+
+bool CombinedMove::isDone()
 {
 	//Check all subprocesses here
-    return false;
-}
+	for(int i = 0; i < mMoves.size(); i++)
+    {
+    	if(!mMoves[i].isDone())
+        {
+        	return false;
+        }
+    }
 
-bool CombinedLinearMove::isCommandPending()
-{
-	return false;
-}
-
-bool CombinedLinearMove::areMotorsActive()
-{
-    return false;
-}
-
-bool CombinedLinearMove::write(IniSection* sec)
-{
     return true;
 }
 
-bool CombinedLinearMove::read(IniSection* sec)
-{
-    return true;
-}
-
-bool CombinedLinearMove::start()
-{
-	Process::start();
-    return false;
-}
-
-bool CombinedLinearMove::stop()
-{
-	Process::stop();
-
-    return false;
-}
-
-bool CombinedLinearMove::undo()
+bool CombinedMove::undo()
 {
 	return false;
 }

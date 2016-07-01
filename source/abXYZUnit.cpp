@@ -20,8 +20,8 @@ mYMotor(NULL),
 mZMotor(NULL),
 mAngleMotor(NULL),
 mJoyStick(NULL),
-mIniFile(iniFile),
-mProcessSequencer(appFolder)
+mIniFile(iniFile)//,
+//mProcessSequencer(appFolder)
 {
 	//Setup properties
     mProperties.setSection(name);

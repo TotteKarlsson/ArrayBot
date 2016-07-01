@@ -13,7 +13,7 @@ APTMotor::APTMotor(int serialNo)
 	mManualJogAcceleration(0),
 	mPotentiometerVelocity(0),
 	mMotorMessageProcessor(mMotorMessageContainer),
-    mCommandsPending(0)
+    mMotorCommandsPending(0)
 {
     mProperties.add((BaseProperty*) &mManualJogVelocity.setup("MANUAL_JOG_VELOCITY"			, 			0.1, true));
     mProperties.add((BaseProperty*) &mManualJogAcceleration.setup("MANUAL_JOG_ACCELERATION"	, 			0.1, true));

@@ -885,6 +885,19 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
     ParentFont = False
     StyleElements = [seClient, seBorder]
   end
+  object Image2: TImage
+    Left = 0
+    Top = 0
+    Width = 625
+    Height = 301
+    Align = alClient
+    Stretch = True
+    Transparent = True
+    ExplicitLeft = 3
+    ExplicitTop = 9
+    ExplicitWidth = 622
+    ExplicitHeight = 292
+  end
   object ActionList1: TActionList
     Left = 304
     Top = 160

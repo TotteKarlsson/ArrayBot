@@ -3,7 +3,7 @@
 #include "mtkXMLUtils.h"
 #include "mtkLogger.h"
 #include "abProcessSequence.h"
-#include "abCombinedLinearMove.h"
+#include "abCombinedMove.h"
 #include "abPosition.h"
 using namespace mtk;
 using namespace tinyxml2;
@@ -63,9 +63,9 @@ bool ProcessSequenceProject::save(const string& fName)
     {
         Log(lDebug) << "Saving process: " << p->getProcessName();
         XMLElement* elem = p->addToXMLDocument(mTheXML, processes);
-        if(dynamic_cast<CombinedLinearMove*>(p))
+        if(dynamic_cast<CombinedMove*>(p))
 	    {
-        	CombinedLinearMove* clm = dynamic_cast<CombinedLinearMove*>(p);
+        	CombinedMove* clm = dynamic_cast<CombinedMove*>(p);
         	//Write subprocesses
 			clm->addToXMLDocumentAsChildProcess(mTheXML, elem);
         }
@@ -155,8 +155,8 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
   	//What process?
     switch(pt)
     {
-    	case ptCombinedLinearMove:
-        	CombinedLinearMove* p = new CombinedLinearMove("");
+    	case ptCombinedMove:
+        	CombinedMove* p = new CombinedMove("");
             string name = element->FirstChildElement("process_name")->GetText();
             p->setProcessName(name);
 
@@ -176,7 +176,14 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
 			            Log(lDebug) << "Loading element: "<<val;
 
                         //Check type before creating... add later
-    	                LinearMove* lm = new LinearMove(val);
+    	                ab::Move* lm = new ab::Move(val);
+
+                        val = processE->Attribute("type");
+                        if(val)
+                        {
+                        	lm->setMoveType(ab::toMoveType(val));
+                        }
+
                         //
                         val = processE->Attribute("motor_name");
                         if(val)
@@ -214,6 +221,9 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
                         	lm->setPostDwellTime(toDouble(val));
                         }
 
+                        //We need to associate the motor with 'name' with a
+                        //real motor object provided for by ArrayBot
+                        lm->assignUnit(mProcessSequence.getArrayBot());
 	                    p->addMove(*lm);
 	                }
 

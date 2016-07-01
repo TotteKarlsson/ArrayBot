@@ -5,7 +5,7 @@
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
-#include "abCombinedLinearMove.h"
+#include "abCombinedMove.h"
 #include "abArrayBot.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -27,7 +27,7 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, cons
     mAB(ab),
 	mCoverSlipUnit(mAB.getCoverSlipUnit()),
 	mWhiskerUnit(mAB.getWhiskerUnit()),
-    mProcessSequencer(appFolder)
+    mProcessSequencer(ab, appFolder)
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
 
@@ -57,13 +57,14 @@ void __fastcall TABProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sende
         removeFile(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", seqName + "." + mProcessFileExtension));
     }
 }
+
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 {
     //Save current sequence, if any
     mProcessSequencer.saveCurrent();
 
-	ProcessSequence* s = new ProcessSequence();
+	ProcessSequence* s = new ProcessSequence(mAB);
     mProcessSequencer.addSequence(s);
 
 	mSequencesCB->Items->Add(vclstr(s->getName()));
@@ -74,10 +75,7 @@ void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::refreshSequencesCB()
 {
-    //Get all move files in folder
-//    StringList files = getFilesInDir(gAppDataFolder, mProcessFileExtension);
     mSequencesCB->Clear();
-
     mProcessSequencer.loadAll(gAppDataFolder);
     ProcessSequences& seqs = mProcessSequencer.getSequences();
    	ProcessSequence* s = seqs.getFirst();
@@ -134,8 +132,6 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
         ss << "Failed loading the sequence:" << sName <<". See logfile for more details";
         MessageDlg(ss.str().c_str(), mtError, TMsgDlgButtons() << mbOK, 0);
     }
-
-//    mProcessSequencer.assignUnit(&mAB);
 }
 
 void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
@@ -153,6 +149,7 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
     	mProcessSequencer.stop();
 	}
 }
+
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
 {
@@ -166,6 +163,7 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
     int i = mProcessesLB->ItemIndex;
     if(i == -1)
     {
+	    TCombinedMoveFrame1->populate(mAB, NULL);
     	return;
     }
 
@@ -175,11 +173,10 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
     	TCombinedMoveFrame1->populate(mAB, p);
     }
 }
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Key,
-          TShiftState Shift)
-{
 
+//---------------------------------------------------------------------------
+void __fastcall TABProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift)
+{
     saveSequence();
 }
 
@@ -232,7 +229,7 @@ void __fastcall TABProcessSequencerFrame::addProcessAExecute(TObject *Sender)
     int nr  = s->getNumberOfProcesses() + 1;
 
 	//Create and add a process to the sequence
-	Process *p = new CombinedLinearMove("Process " + mtk::toString(nr));
+	Process *p = new CombinedMove("Process " + mtk::toString(nr));
    	s->add(p);
 
     //Update LB
@@ -279,5 +276,3 @@ void __fastcall TABProcessSequencerFrame::mSequenceNameEKeyDown(TObject *Sender,
         saveSequence();
     }
 }
-
-

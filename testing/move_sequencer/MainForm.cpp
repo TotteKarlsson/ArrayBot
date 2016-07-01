@@ -3,7 +3,7 @@
 #include "MainForm.h"
 #include "abAPTMotor.h"
 #include "abDeviceManager.h"
-#include "abLinearMove.h"
+#include "abMove.h"
 #include "abPosition.h"
 #include "abTCubeDCServo.h"
 #include "abUtilities.h"

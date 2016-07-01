@@ -7,17 +7,21 @@
 #include "mtkTimer.h"
 #include "abProcessSequenceProject.h"
 #include "abProcessSequences.h"
+#include "abArrayBot.h"
+#include "abProcessSequences.h"
 using mtk::Timer;
-class LinearMove;
+namespace ab
+{
+	class Move;
+}
 //---------------------------------------------------------------------------
 typedef void (__closure *MyOnTimerCFPtr)();
 
 class AB_CORE ProcessSequencer : public ABObject
 {
 	public:
-			      	                ProcessSequencer(const string& fileFolder);
+			      	                ProcessSequencer(ArrayBot& ab, const string& fileFolder);
                   	                ~ProcessSequencer(){}
-		bool				        assignUnit(ABObject* o);
 
 		bool						selectSequence(const string& sName);
 
@@ -42,7 +46,9 @@ class AB_CORE ProcessSequencer : public ABObject
         ProcessSequences&			getSequences();
 
 	private:
-
+    								//!The sequencer is executing each sequence using
+                                    //an arrayBot object
+    	ArrayBot&					mAB;
     	ProcessSequences	        mSequences;
 
         							//!ExecuteAutomatic executes individual processes

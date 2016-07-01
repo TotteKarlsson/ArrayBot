@@ -474,12 +474,12 @@ bool TCubeDCServo::moveAbsolute(double pos, bool inThread)
     {
 		MotorCommand cmd(mcMoveToPosition, pos);
 		post(cmd);
-        mCommandsPending++;
+        mMotorCommandsPending++;
     }
     else
     {
         int err = CC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
-		mCommandsPending--;
+		mMotorCommandsPending--;
         if(err != 0)
         {
             Log(lError) <<tlError(err);

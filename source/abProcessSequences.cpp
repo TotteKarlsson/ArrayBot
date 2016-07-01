@@ -9,11 +9,12 @@
 using namespace mtk;
 using namespace std;
 
-ProcessSequences::ProcessSequences(const string& fileFolder, const string& fileExtension)
+ProcessSequences::ProcessSequences(const string& fileFolder, const string& fileExtension, ArrayBot& ab)
 :
+mAB(ab),
+mProcessSequencesIter(mProcessSequences.begin()),
 mFileFolder(fileFolder),
-mFileExtension(fileExtension),
-mProcessSequencesIter(mProcessSequences.begin())
+mFileExtension(fileExtension)
 {}
 
 ProcessSequences::~ProcessSequences()
@@ -76,7 +77,7 @@ bool ProcessSequences::load(const string& fName)
 {
 	if(fileExists(joinPath(mFileFolder, fName + ".abp")))
     {
-    	ProcessSequence* s = new ProcessSequence();
+    	ProcessSequence* s = new ProcessSequence(mAB);
         if(s->read(joinPath(mFileFolder, fName + ".abp")))
         {
         	return add(s);

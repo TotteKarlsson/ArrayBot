@@ -33,6 +33,19 @@ vector<APTMotor*> ArrayBot::getAllMotors()
     return ms;
 }
 
+APTMotor* ArrayBot::getMotorWithName(const string& mn)
+{
+	vector<APTMotor*> ms = getAllMotors();
+    for(int i = 0; i < ms.size(); i++)
+    {
+    	if(ms[i]->getName() == mn)
+        {
+        	return ms[i];
+        }
+    }
+    return NULL;
+}
+
 JoyStickSettings& ArrayBot::getJoyStickSettings()
 {
 	return mJSSettings;

@@ -7,6 +7,7 @@
 #include "mtkINISection.h"
 #include "mtkProperty.h"
 #include "abProcessSequenceProject.h"
+#include "abArrayBot.h"
 //---------------------------------------------------------------------------
 
 using std::list;
@@ -18,7 +19,7 @@ class Process;
 class AB_CORE ProcessSequence : public ABObject
 {
     public:
-										    ProcessSequence(const string& name = "", const string& fileExt = "proc");
+										    ProcessSequence(ArrayBot& ab, const string& name = "", const string& fileExt = "proc");
 				        		            ~ProcessSequence();
 					        		        ProcessSequence(const ProcessSequence& s);
 
@@ -27,7 +28,6 @@ class AB_CORE ProcessSequence : public ABObject
 		void								init();
 		void					            clear();
         string								getName(){return mProject.getProjectName();}
-
 
         virtual bool	 		            read(const string& fName);
         virtual bool			            write(const string& folder);
@@ -42,22 +42,18 @@ class AB_CORE ProcessSequence : public ABObject
         Process*                          	getNext() const;
         Process*                          	getPrevious() const;
         Process*                          	getCurrent() const;
+
         void								setProjectName(const string& name);
-
-
         void								setFileFolder(const string& f);
 		void								setFileName(const string& f);
         void								setFileExtension(const string& e);
         string 								getFileFolder();
-
         int									getNumberOfProcesses(){return mProcesses.size();}
-
+        ArrayBot*							getArrayBot(){return &mAB;}
 
     protected:
+    	ArrayBot&							mAB;
 	    ProcessSequenceProject	 			mProject;
-//        IniSection							mIniSection;
-//        string								mFileExtension;
-//        string								mFileFolder;
 
         									//!List of abstract Processes
 		mutable list<Process*>  			mProcesses;

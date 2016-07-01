@@ -89,6 +89,7 @@
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <Debugger_HostApplication>P:\build\debug\bin\ArrayBot.exe</Debugger_HostApplication>
         <BCC_PCHInject>abCorePCH.h</BCC_PCHInject>
         <VerInfo_Release>1</VerInfo_Release>
         <LinkPackageImports>rtl.bpi;vcl.bpi</LinkPackageImports>
@@ -121,7 +122,7 @@
             <DependentOn>abArrayBotJoystick.h</DependentOn>
             <BuildOrder>16</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abCombinedLinearMove.cpp">
+        <CppCompile Include="abCombinedMove.cpp">
             <BuildOrder>30</BuildOrder>
         </CppCompile>
         <CppCompile Include="abCore.cpp">
@@ -166,9 +167,6 @@
             <DependentOn>abJoyStickSettings.h</DependentOn>
             <BuildOrder>25</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abLinearMove.cpp">
-            <BuildOrder>36</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abLongTravelStage.cpp">
             <BuildOrder>14</BuildOrder>
         </CppCompile>
@@ -185,9 +183,8 @@
             <DependentOn>abMotorMessageProcessor.h</DependentOn>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abMoveSequence.cpp">
-            <DependentOn>abMoveSequence.h</DependentOn>
-            <BuildOrder>27</BuildOrder>
+        <CppCompile Include="abMove.cpp">
+            <BuildOrder>36</BuildOrder>
         </CppCompile>
         <CppCompile Include="abPairedMove.cpp">
             <DependentOn>abPairedMove.h</DependentOn>
@@ -208,7 +205,7 @@
             <BuildOrder>30</BuildOrder>
         </CppCompile>
         <CppCompile Include="abProcessSequence.cpp">
-            <BuildOrder>30</BuildOrder>
+            <BuildOrder>36</BuildOrder>
         </CppCompile>
         <CppCompile Include="abProcessSequenceProject.cpp">
             <BuildOrder>37</BuildOrder>

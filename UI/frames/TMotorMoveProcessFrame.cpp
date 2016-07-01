@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMotorMoveProcessFrame.h"
-#include "abLinearMove.h"
+#include "abMove.h"
 #include "abAPTMotor.h"
 #include "mtkVCLUtils.h"
 #include "abXYZUnit.h"
@@ -19,7 +19,7 @@ __fastcall TMotorMoveProcessFrame::TMotorMoveProcessFrame(TComponent* Owner)
 {}
 
 
-void TMotorMoveProcessFrame::populate(ArrayBot* ab, LinearMove* m)
+void TMotorMoveProcessFrame::populate(ArrayBot* ab, ab::Move* m)
 {
 	mAB = ab;
     MotorsCB->Clear();
@@ -28,7 +28,7 @@ void TMotorMoveProcessFrame::populate(ArrayBot* ab, LinearMove* m)
     rePopulate(m);
 }
 
-void TMotorMoveProcessFrame::rePopulate(LinearMove* m)
+void TMotorMoveProcessFrame::rePopulate(ab::Move* m)
 {
 	if(!m)
     {

@@ -37,6 +37,7 @@ __published:	// IDE-managed Components
     TAction *CloseA;
     TImage *Image1;
 	TLabel *logLabel;
+	TImage *Image2;
     void __fastcall checkForUpdateAExecute(TObject *Sender);
     void __fastcall ThreadCheckTimerTimer(TObject *Sender);
     void __fastcall retrieveChangeLogAExecute(TObject *Sender);

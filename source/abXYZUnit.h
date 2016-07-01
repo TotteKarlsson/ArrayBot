@@ -8,7 +8,7 @@
 #include "mtkINIFileProperties.h"
 #include "mtkINIFile.h"
 #include "abPositions.h"
-#include "abProcessSequencer.h"
+//#include "abProcessSequencer.h"
 //---------------------------------------------------------------------------
 
 class APTMotor;
@@ -79,6 +79,6 @@ class AB_CORE XYZUnit : public ABObject
 
         ArrayBotJoyStick*               mJoyStick;
         Positions				        mPositions;
-        ProcessSequencer 		        mProcessSequencer;
+//        ProcessSequencer 		        mProcessSequencer;
 };
 #endif

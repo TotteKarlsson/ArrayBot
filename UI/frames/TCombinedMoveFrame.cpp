@@ -3,8 +3,8 @@
 #include "TCombinedMoveFrame.h"
 #include "mtkVCLUtils.h"
 #include "abProcess.h"
-#include "abLinearMove.h"
-#include "abCombinedLinearMove.h"
+#include "abMove.h"
+#include "abCombinedMove.h"
 #include "mtkLogger.h"
 #include "abArrayBot.h"
 #include "abAPTMotor.h"
@@ -34,7 +34,7 @@ void TCombinedMoveFrame::rePopulate(Process* p)
 	mMoveLB->Clear();
 
 	//Populate, update frame with data from process
-    mCombinedMove = dynamic_cast<CombinedLinearMove*>(p);
+    mCombinedMove = dynamic_cast<CombinedMove*>(p);
     if(!p)
     {
     	EnableDisableFrame(this, false);
@@ -44,7 +44,7 @@ void TCombinedMoveFrame::rePopulate(Process* p)
     //Fill out the listbox with moves
     for(int i = 0; i < mCombinedMove->getNumberOfMoves(); i++)
     {
-    	LinearMove* mv = mCombinedMove->getMove(i);
+    	ab::Move* mv = mCombinedMove->getMove(i);
         if(mv)
         {
         	mMoveLB->Items->Add(vclstr(mv->getProcessName()));
@@ -64,7 +64,7 @@ void __fastcall TCombinedMoveFrame::addMoveAExecute(TObject *Sender)
         return;
     }
 
-    LinearMove* lm = new LinearMove("");
+    ab::Move* lm = new ab::Move("");
 
     //Add the move to the container.. this will give the move a name
     mCombinedMove->addMove(*lm);
@@ -91,7 +91,7 @@ void __fastcall TCombinedMoveFrame::removeMoveAExecute(TObject *Sender)
 
 }
 
-void TCombinedMoveFrame::selectItem(LinearMove* mv)
+void TCombinedMoveFrame::selectItem(ab::Move* mv)
 {
 	if(mv)
     {
@@ -109,7 +109,7 @@ void __fastcall TCombinedMoveFrame::mMoveLBClick(TObject *Sender)
 
 	//Get Current itemIndex, retrieve the move and populate the move frame
 	string moveName = stdstr(mMoveLB->Items->Strings[mMoveLB->ItemIndex]);
-    LinearMove* mv = mCombinedMove->getMove(moveName);
+    ab::Move* mv = mCombinedMove->getMove(moveName);
 
     selectItem(mv);
 }

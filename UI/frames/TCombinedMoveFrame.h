@@ -11,7 +11,7 @@
 #include "abArrayBot.h"
 
 class Process;
-class CombinedLinearMove;
+class CombinedMove;
 
 class XYZUnit;
 //---------------------------------------------------------------------------
@@ -32,8 +32,8 @@ __published:	// IDE-managed Components
 
     private:	// User declarations
 		ArrayBot*						mAB;
-		CombinedLinearMove*				mCombinedMove;
-		void					    	selectItem(LinearMove* mv);
+		CombinedMove*				mCombinedMove;
+		void					    	selectItem(ab::Move* mv);
 
 	public:		// User declarations
 							__fastcall  TCombinedMoveFrame(TComponent* Owner);

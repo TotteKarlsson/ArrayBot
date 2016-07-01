@@ -1,32 +1,46 @@
 #pragma hdrstop
-#include "abLinearMove.h"
+#include "abMove.h"
 #include "abXYZUnit.h"
 #include "abAPTMotor.h"
 #include "abPosition.h"
 #include "mtkLogger.h"
+#include "abArrayBot.h"
+
+
+
+namespace ab
+{
 
 
 using namespace mtk;
 using namespace ab;
 //---------------------------------------------------------------------------
-LinearMove::LinearMove(const string& lbl, MoveType type, const ab::Position& p, double maxVel, double acc, double dwellTime)
+Move::Move(const string& lbl, MoveType type, const ab::Position& p, double maxVel, double acc, double dwellTime)
 :
 Process(lbl),
-mMoveType(type),
 mPosition(p),
+mPositionResolution(1.0e-3),
+mMoveType(type),
 mMaxVelocity(0),
-mAcceleration(0),
-mPositionResolution(1.0e-1)
+mAcceleration(0)
 {
-	mProcessType = ptLinearMove;
+	mProcessType = ptMove;
 }
 
-void LinearMove::assignUnit(ABObject* o)
+void Move::assignUnit(ABObject* o)
 {
 	mUnit = NULL;
 
 	//Check out what ABObject is
-    if(dynamic_cast<XYZUnit*>(o))
+    if(dynamic_cast<ArrayBot*>(o))
+    {
+		ArrayBot* ab = dynamic_cast<ArrayBot*>(o);
+        if(ab->getMotorWithName(mMotorName))
+        {
+        	mUnit = ab->getMotorWithName(mMotorName);
+        }
+    }
+    else if(dynamic_cast<XYZUnit*>(o))
     {
     	//Look for motor
         XYZUnit* xyz = dynamic_cast<XYZUnit*>(o);
@@ -44,11 +58,11 @@ void LinearMove::assignUnit(ABObject* o)
 
     if(mUnit == NULL)
     {
-   		Log(lError) << "Motor Unit is NULL for LinearMove: "<<mProcessName;
+   		Log(lError) << "Motor Unit is NULL for Move: "<<mProcessName;
     }
 }
 
-bool LinearMove::isBeingProcessed()
+bool Move::isBeingProcessed()
 {
 	if(isDone())
     {
@@ -61,7 +75,7 @@ bool LinearMove::isBeingProcessed()
     return mIsBeingProcessed;
 }
 
-bool LinearMove::isProcessed()
+bool Move::isProcessed()
 {
     if(mIsProcessed == true)
     {
@@ -83,17 +97,17 @@ bool LinearMove::isProcessed()
 	return false;
 }
 
-bool LinearMove::commandPending()
+bool Move::isMotorCommandPending()
 {
 	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
     if(o)
     {
-    	return o->commandsPending();
+    	return o->isMotorCommandPending();
     }
 	return false;
 }
 
-bool LinearMove::isDone()
+bool Move::isDone()
 {
 	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
     if(o)
@@ -111,7 +125,7 @@ bool LinearMove::isDone()
     return false;
 }
 
-bool LinearMove::isMotorActive()
+bool Move::isMotorActive()
 {
 	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
     if(o)
@@ -122,7 +136,7 @@ bool LinearMove::isMotorActive()
     return false;
 }
 
-XMLElement* LinearMove::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
+XMLElement* Move::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
 {
     //Create XML for saving to file
     XMLElement* processNode  	= doc.NewElement("process");
@@ -130,7 +144,7 @@ XMLElement* LinearMove::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLN
 
     //Attributes
     processNode->SetAttribute("name", mProcessName.c_str());
-    processNode->SetAttribute("type", getProcessType().c_str());
+    processNode->SetAttribute("type", toString(mMoveType).c_str());
 	processNode->SetAttribute("motor_name", mMotorName.c_str());
 	processNode->SetAttribute("final_position", toString(getPosition().x()).c_str());
 	processNode->SetAttribute("max_velocity", toString(getMaxVelocity()).c_str());
@@ -156,80 +170,7 @@ XMLElement* LinearMove::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLN
     return processNode;
 }
 
-//bool LinearMove::write(IniSection* sec)
-//{
-//    double x = getPosition().x();
-//    IniKey* key = sec->createKey("PROCESS_TYPE", 	toString(getMoveType()));
-//    key = sec->createKey("MOTOR_NAME",   			toString(mMotorName));
-//    key = sec->createKey("POSITION", 				toString(x));
-//    key = sec->createKey("POSITION_NAME",  			getPosition().getLabel());
-//    key = sec->createKey("MAX_VELOCITY", 			toString(getMaxVelocity()));
-//    key = sec->createKey("ACCELERATION", 			toString(getAcceleration()));
-//    key = sec->createKey("PRE_DWELL_TIME",   		toString(getPreDwellTime()));
-//    key = sec->createKey("POST_DWELL_TIME",   		toString(getPostDwellTime()));
-//    return true;
-//}
-//
-//bool LinearMove::read(IniSection* sec)
-//{
-//	if(!sec)
-//	{
-//    	return false;
-//    }
-//
-//	IniKey* key = sec->getKey("MOVE_TYPE");
-//
-//    if(key)
-//    {
-//        mMoveType = toMoveType(key->mValue);;
-//    }
-//
-//    key = sec->getKey("MOTOR_NAME");
-//    if(key)
-//    {
-//        mMotorName = key->mValue;
-//    }
-//
-//    key = sec->getKey("POSITION");
-//    if(key)
-//    {
-//	    mPosition = Position(mPosition.getLabel(), key->asFloat(), 0.0 , 0.0);
-//    }
-//
-//    key = sec->getKey("POSITION_NAME");
-//    if(key)
-//    {
-//        mPosition.setLabel(key->mValue);
-//    }
-//
-//    key = sec->getKey("MAX_VELOCITY", true);
-//    if(key)
-//    {
-//	    mMaxVelocity = key->asFloat();
-//    }
-//
-//    key = sec->getKey("ACCELERATION", true);
-//    if(key)
-//    {
-//        mAcceleration = key->asFloat();
-//    }
-//
-//    key = sec->getKey("PRE_DWELL_TIME", true);
-//    if (key)
-//    {
-//		mPreDwellTime = key->asFloat();
-//    }
-//
-//    key = sec->getKey("POST_DWELL_TIME", true);
-//    if (key)
-//    {
-//		mPostDwellTime = key->asFloat();
-//    }
-//
-//    return true;
-//}
-
-bool LinearMove::start()
+bool Move::start()
 {
 	Process::start();
 	XYZUnit* o = dynamic_cast<XYZUnit*>(mUnit);
@@ -254,7 +195,7 @@ bool LinearMove::start()
     return false;
 }
 
-bool LinearMove::stop()
+bool Move::stop()
 {
 	Process::stop();
 	XYZUnit* o = dynamic_cast<XYZUnit*>(mUnit);
@@ -273,7 +214,7 @@ bool LinearMove::stop()
     return false;
 }
 
-bool LinearMove::undo()
+bool Move::undo()
 {
 	Position p("undo pos", mPosition.x() * -1, mPosition.y() * -1, mPosition.z() * -1);
 
@@ -301,17 +242,14 @@ MoveType toMoveType(const string& mt)
     return mtUnknown;
 }
 
-string	toString(MoveType mt)
+string toString(MoveType mt)
 {
-	if(mt == mtAbsolute)
+	switch(mt)
     {
-    	return "ABSOLUTE_MOVE";
+    	case mtAbsolute: 	return "ABSOLUTE_MOVE";
+    	case mtRelative: 	return "RELATIVE_MOVE";
+        default:    		return "UNKNOWN_MOVE";
     }
+}
 
-	if(mt == mtRelative)
-    {
-    	return "RELATIVE_MOVE";
-    }
-
-    return "UNKNOWN_MOVE";
 }

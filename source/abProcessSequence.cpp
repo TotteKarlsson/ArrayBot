@@ -2,14 +2,15 @@
 #include "abProcessSequence.h"
 #include "abProcess.h"
 #include "mtkIniFile.h"
-#include "abLinearMove.h"
+#include "abMove.h"
 #include "mtkLogger.h"
 //---------------------------------------------------------------------------
 
 using namespace mtk;
 
-ProcessSequence::ProcessSequence(const string& name, const string& fileExt)
+ProcessSequence::ProcessSequence(ArrayBot& ab, const string& name, const string& fileExt)
 :
+mAB(ab),
 mProject(*this, fileExt)
 {}
 

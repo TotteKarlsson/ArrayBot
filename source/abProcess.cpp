@@ -10,8 +10,8 @@ string toString(ProcessType pt)
 {
 	switch(pt)
     {
-    	case ptLinearMove: return "linearMove";
-    	case ptCombinedLinearMove: return "combinedLinearMove";
+    	case ptMove: return "linearMove";
+    	case ptCombinedMove: return "combinedMove";
         default: return "unknown";
     }
 }
@@ -20,12 +20,12 @@ ProcessType toProcessType(const string& str)
 {
 	if(str == "linearMove")
     {
-    	return ptLinearMove;
+    	return ptMove;
     }
 
-	if(str == "combinedLinearMove")
+	if(str == "combinedMove")
     {
-    	return ptCombinedLinearMove;
+    	return ptCombinedMove;
     }
 
 	return ptUnknown;

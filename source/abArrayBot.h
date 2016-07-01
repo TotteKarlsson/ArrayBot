@@ -43,6 +43,7 @@ class AB_CORE ArrayBot : public ABObject
         bool						                    readINIParameters();
         bool						                    writeINIParameters();
         vector<APTMotor*>			                    getAllMotors();
+        APTMotor*										getMotorWithName(const string& mn);
 
     private:
         bool						                    mIsShuttingDown;

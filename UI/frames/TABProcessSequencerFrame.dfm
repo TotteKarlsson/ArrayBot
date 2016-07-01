@@ -2,7 +2,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
   Left = 0
   Top = 0
   Width = 673
-  Height = 241
+  Height = 285
   AutoSize = True
   TabOrder = 0
   object GroupBox1: TGroupBox
@@ -10,21 +10,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Top = 0
     Width = 673
     Height = 241
+    Align = alTop
     Caption = 'Move Sequencer'
     TabOrder = 0
-    object mStatusLbl: TLabel
-      Left = 576
-      Top = 115
-      Width = 52
-      Height = 23
-      Caption = 'Status'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
     object mStartBtn: TButton
       Left = 576
       Top = 25
@@ -144,6 +132,27 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         OnKeyDown = mSequenceNameEKeyDown
         Value = '<none>'
       end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 241
+    Width = 673
+    Height = 44
+    Align = alTop
+    TabOrder = 1
+    object mStatusLbl: TLabel
+      Left = 15
+      Top = 11
+      Width = 52
+      Height = 23
+      Caption = 'Status'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
   end
   object mSequenceStatusTimer: TTimer

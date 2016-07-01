@@ -1,32 +1,31 @@
-#ifndef abCombinedLinearMoveH
-#define abCombinedLinearMoveH
+#ifndef abCombinedMoveH
+#define abCombinedMoveH
 #include "abProcess.h"
-#include "abLinearMove.h"
+#include "abMove.h"
 #include <vector>
 #include "mtkXMLUtils.h"
 //---------------------------------------------------------------------------
 using namespace std;
 
-//TODO: Rename this one to MultiLinearMove
-class AB_CORE CombinedLinearMove : public Process
+
+//TODO: Rename this one to MultiMove
+class AB_CORE CombinedMove : public Process
 {
     public:
-        	   			            CombinedLinearMove(const string& lbl);
-    	virtual			            ~CombinedLinearMove(){}
+        	   			            CombinedMove(const string& lbl);
+    	virtual			            ~CombinedMove(){}
         virtual mtk::XMLElement*    addToXMLDocumentAsChildProcess(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 
         int							getNumberOfMoves(){return mMoves.size();}
 
-		virtual void	            addMove(LinearMove& lm);
-        LinearMove*					getMove(const string& lbl);
-        LinearMove*					getMove(int i);
+		virtual void	            addMove(ab::Move& lm);
+        ab::Move*					getMove(const string& lbl);
+        ab::Move*					getMove(int i);
 
-        bool 						removeMove(LinearMove* m);
+        bool 						removeMove(ab::Move* m);
         bool 						removeMove(const string& name);
 
-        virtual bool				write(mtk::IniSection* sec);
-        virtual bool				read(mtk::IniSection* sec);
-
+        							//!All moves starts at the same time
         virtual bool	            start();
         virtual bool	            stop();
         virtual bool	            isBeingProcessed();
@@ -38,8 +37,8 @@ class AB_CORE CombinedLinearMove : public Process
         bool 						isDone();
         virtual bool	            areMotorsActive();
 
-    protected:
-		vector<LinearMove>			mMoves;
+    protected:                      //!The Moves container contain all moves
+		vector<ab::Move>			mMoves;
 };
 
 #endif

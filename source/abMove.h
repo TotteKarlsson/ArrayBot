@@ -5,6 +5,9 @@
 #include "abPosition.h"
 //---------------------------------------------------------------------------
 
+namespace ab
+{
+
 enum MoveType {mtAbsolute = 0, mtRelative, mtUnknown};
 MoveType	toMoveType(const string& mt);
 string		toString(MoveType mt);
@@ -27,13 +30,14 @@ class AB_CORE Move : public Process
         virtual bool	            stop();
         virtual bool	            isBeingProcessed();
         bool 						isProcessed();
-		bool						commandPending();
+		bool						isMotorCommandPending();
         virtual	bool	            undo();
 
 									//Check if we are at proper position
         bool 						isDone();
         virtual bool	            isMotorActive();
 
+        virtual bool	            setMoveType(MoveType tp){mMoveType = tp; return true;}
         virtual MoveType            getMoveType(){return mMoveType;}
 
         ab::Position&	            getPosition(){return mPosition;}
@@ -46,8 +50,6 @@ class AB_CORE Move : public Process
 
         string			            getPositionName(){return mPosition.getLabel();}
         void			            setPositionName(const string& l){mPosition.setLabel(l);}
-
-
 
     protected:
         string						mMotorName;
@@ -63,7 +65,7 @@ class AB_CORE Move : public Process
         MoveType 		            mMoveType;
         double			            mMaxVelocity;
         double			            mAcceleration;
-
 };
 
+}
 #endif

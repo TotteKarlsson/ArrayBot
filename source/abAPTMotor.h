@@ -86,10 +86,12 @@ class AB_CORE APTMotor : public APTDevice
 
         virtual double	    				getPotentiometerVelocity();
         virtual void						setPotentiometerVelocity(double v) = 0;
-        bool								commandsPending(){return (mCommandsPending >= 1) ? true : false;}
+        bool								isMotorCommandPending(){return (mMotorCommandsPending >= 1) ? true : false;}
 
     protected:
-       	int									mCommandsPending;
+    										//!Motor commands are processed in a thread by the
+                                            //MotorMessage processer
+       	int									mMotorCommandsPending;
     	Timer				                mStatusTimer;
         unsigned long			            mStatusBits;
         MotorScalingFactors		            mScalingFactors;
