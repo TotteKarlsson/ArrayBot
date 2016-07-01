@@ -1,3 +1,15 @@
+Release 0.6.2 (Jul 1)
+=======================
+* Got combined move processing working ok
+* Implemented custom naming of ProcessSequences
+* More work on Process sequences
+* Functional XML reading/writing of nested processes
+* Speed up compilation times a lot
+* Populating frames code
+* Added more frames to deal with combined moves
+* Added XML reading/writing of combined moves
+* Added classes for dealing with Process sequences
+
 Release 0.6.1 (Jun 28)
 =======================
 * "Backlogged release" released from develop branch
