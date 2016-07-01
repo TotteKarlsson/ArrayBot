@@ -14,13 +14,14 @@ string		toString(MoveType mt);
 class AB_CORE LinearMove : public Process
 {
     public:
-        	   			            LinearMove(const string& lbl, ABObject* unit, MoveType type = mtAbsolute, const ab::Position& p = ab::Position("", 0,0,0), double maxVel = 0, double acc = 0, double dwellTime = 0);
+        	   			            LinearMove(const string& lbl, MoveType type = mtAbsolute, const ab::Position& p = ab::Position("", 0,0,0), double maxVel = 0, double acc = 0, double dwellTime = 0);
     	virtual			            ~LinearMove(){}
+
+        string						getMotorName(){return mMotorName;}
+        void						setMotorName(const string& n){mMotorName = n;}
+
+		virtual mtk::XMLElement*    addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 		virtual void	            assignUnit(ABObject* o);
-
-
-        virtual bool				write(mtk::IniSection* sec);
-        virtual bool				read(mtk::IniSection* sec);
 
         virtual bool	            start();
         virtual bool	            stop();
@@ -45,10 +46,12 @@ class AB_CORE LinearMove : public Process
 
         string			            getPositionName(){return mPosition.getLabel();}
         void			            setPositionName(const string& l){mPosition.setLabel(l);}
-        string						getMotorName(){return mMotorName;}
+
+
 
     protected:
         string						mMotorName;
+
         				            //!The exact meaning of the position attribute is
                                     //made clear in derived classes
         ab::Position                mPosition;

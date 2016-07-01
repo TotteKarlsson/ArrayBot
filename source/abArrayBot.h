@@ -11,50 +11,51 @@
 class AB_CORE ArrayBot : public ABObject
 {
     public:
-									ArrayBot(IniFile& ini, const string& appFolder);
-									~ArrayBot();
+									                    ArrayBot(IniFile& ini, const string& appFolder);
+									                    ~ArrayBot();
 
-		void 						initialize();
+		void 						                    initialize();
 
-        XYZUnit&					getCoverSlipUnit();
-        XYZUnit&					getWhiskerUnit();
-        bool						shutDown();
+        XYZUnit&					                    getCoverSlipUnit();
+        XYZUnit&					                    getWhiskerUnit();
+        bool						                    shutDown();
 
-        ArrayBotJoyStick&			getJoyStick();
-        JoyStickSettings&			getJoyStickSettings();
+        ArrayBotJoyStick&			                    getJoyStick();
+        JoyStickSettings&			                    getJoyStickSettings();
 
-		bool						enableJoyStick();
-		void						disableJoyStick();
-        void						stopAll();
+		bool						                    enableJoyStick();
+		void						                    disableJoyStick();
+        void						                    stopAll();
 
-        void						initWorkingPosition();
+        void						                    initWorkingPosition();
 
-        void						stow();
-        void						home();
-        bool						isActive();
-        bool						isShuttingDown();
+        void						                    stow();
+        void						                    home();
+        bool						                    isActive();
+        bool						                    isShuttingDown();
 
-		APTMotor*					getCoverSlipAngleController();
-		APTMotor*					getCameraAngleController();
+		APTMotor*					                    getCoverSlipAngleController();
+		APTMotor*					                    getCameraAngleController();
 
-    	PairedMoves&	 			getLiftMoves(){return mLifts;}
+    	PairedMoves&	 			                    getLiftMoves(){return mLifts;}
 
-        bool						applyJoyStickSetting(const string& settingName);
-        bool						readINIParameters();
-        bool						writeINIParameters();
+        bool						                    applyJoyStickSetting(const string& settingName);
+        bool						                    readINIParameters();
+        bool						                    writeINIParameters();
+        vector<APTMotor*>			                    getAllMotors();
 
     private:
-        bool						mIsShuttingDown;
-        string						mAppDataFolder;
-        IniFile&					mIniFile;
-        ArrayBotJoyStick			mJoyStick;
-        JoyStickSettings			mJSSettings;
+        bool						                    mIsShuttingDown;
+        string						                    mAppDataFolder;
+        IniFile&					                    mIniFile;
+        ArrayBotJoyStick			                    mJoyStick;
+        JoyStickSettings			                    mJSSettings;
 
-        XYZUnit						mCoverSlip;
-        XYZUnit						mWhisker;
+        XYZUnit						                    mCoverSlip;
+        XYZUnit						                    mWhisker;
 
-        							//!List of Lifts
-        PairedMoves					mLifts;
+        							                    //!List of Lifts
+        PairedMoves					                    mLifts;
 };
 
 #endif

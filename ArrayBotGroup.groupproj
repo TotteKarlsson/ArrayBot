@@ -19,7 +19,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
-            <Dependencies>source\abCore.cbproj</Dependencies>
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -74,13 +74,13 @@
     <Target Name="abCore:Make">
         <MSBuild Projects="source\abCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBot" DependsOnTargets="abCore">
+    <Target Name="ArrayBot">
         <MSBuild Projects="UI\ArrayBot.cbproj"/>
     </Target>
-    <Target Name="ArrayBot:Clean" DependsOnTargets="abCore:Clean">
+    <Target Name="ArrayBot:Clean">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make">
+    <Target Name="ArrayBot:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">

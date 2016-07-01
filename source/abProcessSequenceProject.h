@@ -13,7 +13,7 @@ class ProcessSequence;
 class AB_CORE ProcessSequenceProject : public mtk::Project
 {
     public:
-                                                ProcessSequenceProject(ProcessSequence& mlx, const string& fName = mtk::gEmptyString);
+                                                ProcessSequenceProject(ProcessSequence& ps, const string& fName = "Sequence 1.abp");
                                                 ~ProcessSequenceProject();
 
         bool                                    save(const string& fName = mtk::gEmptyString);
@@ -22,7 +22,6 @@ class AB_CORE ProcessSequenceProject : public mtk::Project
 
     protected:
         ProcessSequence&                        mProcessSequence;
-        string                                  mVersion;
         bool                                    resetXML();
         int                                     loadProcesses();
         Process*				                createProcess(tinyxml2::XMLElement* element);

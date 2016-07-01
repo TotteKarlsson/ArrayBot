@@ -4,13 +4,12 @@
 #include "abProcess.h"
 #include "mtkUtils.h"
 
-
 //---------------------------------------------------------------------------
 using namespace mtk;
 
 ProcessSequencer::ProcessSequencer(const string& fileFolder)
 :
-mSequences(fileFolder),
+mSequences(fileFolder, "abp"),
 mSequenceTimer(100)
 {
 	inThreadCB = runThreaded;
@@ -26,6 +25,21 @@ bool ProcessSequencer::assignUnit(ABObject* o)
 {
 // 	mSequences.assignUnit(o);
     return true;
+}
+
+bool ProcessSequencer::selectSequence(const string& sName)
+{
+	return mSequences.select(sName) != NULL ? true : false;
+}
+
+bool ProcessSequencer::loadAll(const string& fileFolder)
+{
+	return mSequences.loadAll(fileFolder);
+}
+
+ProcessSequences& ProcessSequencer::getSequences()
+{
+	return mSequences;
 }
 
 string ProcessSequencer::getCurrentSequenceName()

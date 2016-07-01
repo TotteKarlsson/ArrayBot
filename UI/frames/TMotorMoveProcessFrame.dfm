@@ -30,6 +30,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       Enabled = False
       TabOrder = 0
       Text = '0.0'
+      OnKeyDown = mMovePosEKeyDown
     end
     object mMaxVelE: TFloatLabeledEdit
       Left = 16
@@ -42,6 +43,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       Enabled = False
       TabOrder = 1
       Text = '0.0'
+      OnKeyDown = mMovePosEKeyDown
     end
     object mAccE: TFloatLabeledEdit
       Left = 119
@@ -54,6 +56,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       Enabled = False
       TabOrder = 2
       Text = '0.0'
+      OnKeyDown = mMovePosEKeyDown
     end
     object mPostDwellTimeE: TFloatLabeledEdit
       Left = 119
@@ -66,6 +69,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       Enabled = False
       TabOrder = 3
       Text = '0.0'
+      OnKeyDown = mMovePosEKeyDown
     end
     object MotorsCB: TComboBox
       Left = 16
@@ -88,6 +92,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       Enabled = False
       TabOrder = 5
       Text = '0.0'
+      OnKeyDown = mMovePosEKeyDown
     end
   end
 end

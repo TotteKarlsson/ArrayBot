@@ -13,6 +13,7 @@
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TMotorMoveProcessFrame"
 #pragma link "TCombinedMoveFrame"
+#pragma link "mtkSTDStringEdit"
 #pragma resource "*.dfm"
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
@@ -74,11 +75,16 @@ void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 void __fastcall TABProcessSequencerFrame::refreshSequencesCB()
 {
     //Get all move files in folder
-    StringList files = getFilesInDir(gAppDataFolder, mProcessFileExtension);
+//    StringList files = getFilesInDir(gAppDataFolder, mProcessFileExtension);
     mSequencesCB->Clear();
-    for(int i = 0; i < files.count() ; i++)
-    {
-    	mSequencesCB->Items->Add(getFileNameNoPathNoExtension(files[i]).c_str());
+
+    mProcessSequencer.loadAll(gAppDataFolder);
+    ProcessSequences& seqs = mProcessSequencer.getSequences();
+   	ProcessSequence* s = seqs.getFirst();
+    while(s)
+	{
+    	mSequencesCB->Items->Add(s->getName().c_str());
+        s = seqs.getNext();
     }
     mProcessesLB->Clear();
 }
@@ -96,7 +102,7 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
     mProcessesLB->Clear();
     string sName(stdstr(mSequencesCB->Items->Strings[index]));
 
-	if(mProcessSequencer.load(sName))
+	if(mProcessSequencer.selectSequence(sName))
     {
     	//Fill out listbox
 		ProcessSequence* seq = mProcessSequencer.getCurrentSequence();
@@ -104,6 +110,8 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
         {
         	return;
         }
+
+        mSequenceNameE->SetString(seq->getName());
 
         Process* p = seq->getFirst();
         while(p)
@@ -118,6 +126,7 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
 	        mProcessesLB->ItemIndex = 0;
         }
         mProcessesLBClick(NULL);
+
     }
     else
     {
@@ -126,7 +135,7 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
         MessageDlg(ss.str().c_str(), mtError, TMsgDlgButtons() << mbOK, 0);
     }
 
-    mProcessSequencer.assignUnit(&mAB);
+//    mProcessSequencer.assignUnit(&mAB);
 }
 
 void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
@@ -161,7 +170,6 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
     }
 
     Process* p = (Process*) mProcessesLB->Items->Objects[i];
-
     if(p)
     {
     	TCombinedMoveFrame1->populate(mAB, p);
@@ -171,22 +179,7 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
 void __fastcall TABProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
-    int i = mProcessesLB->ItemIndex;
-    if(i == -1 || Key != vkReturn)
-    {
-    	return;
-    }
 
-//    LinearMove* move = (LinearMove*) mProcessesLB->Items->Objects[i];
-//	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
-//
-//    ab::Position p(move->getPositionName(), mMovePosE->getValue(),0,0);
-//    move->setPosition(p);
-//    move->setMaxVelocity(mMaxVelE->getValue());
-//    move->setAcceleration(mAccE->getValue());
-//    move->setPostDwellTime(mPostDwellTimeE->getValue());
-//    move->setPreDwellTime(mPreDwellTimeE->getValue());
-//
     saveSequence();
 }
 

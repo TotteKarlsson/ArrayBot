@@ -10,9 +10,7 @@ using namespace mtk;
 
 ProcessSequence::ProcessSequence(const string& name, const string& fileExt)
 :
-//mName(name),
-mFileExtension(fileExt),
-mProject(*this)
+mProject(*this, fileExt)
 {}
 
 ProcessSequence::~ProcessSequence()
@@ -59,11 +57,40 @@ bool ProcessSequence::isFirst(Process* p)
 	return p == *(mProcesses.begin());
 }
 
+void ProcessSequence::setProjectName(const string& name)
+{
+	mProject.setProjectName(name);
+}
+
+void ProcessSequence::setFileFolder(const string& f)
+{
+	mProject.setFileFolder(f);
+}
+
+void ProcessSequence::setFileName(const string& f)
+{
+	mProject.setFileName(f);
+}
+
+void ProcessSequence::setFileExtension(const string& e)
+{
+	mProject.setFileExtension(e);
+}
+
+string ProcessSequence::getFileFolder()
+{
+	return mProject.getFileFolder();
+}
+
 bool ProcessSequence::write(const string& folder)
 {
 	//Create XML document
     mProject.setFileFolder(folder);
-	mProject.setModelFileName(getName() + ".abp");
+
+    if(mProject.getFileName() == "")
+    {
+        mProject.setFileName(joinPath(folder, mProject.getProjectName() + ".abp" ));
+    }
     return mProject.save();
 }
 

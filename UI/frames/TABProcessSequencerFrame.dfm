@@ -35,41 +35,35 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       OnClick = mStartBtnClick
     end
     inline TCombinedMoveFrame1: TCombinedMoveFrame
-      Left = 203
+      Left = 161
       Top = 15
-      Width = 362
+      Width = 137
       Height = 224
       Align = alLeft
       AutoSize = True
       TabOrder = 1
-      ExplicitLeft = 203
+      ExplicitLeft = 161
       ExplicitTop = 15
+      ExplicitWidth = 137
       ExplicitHeight = 224
-      inherited TMotorMoveProcessFrame1: TMotorMoveProcessFrame
-        inherited MainGB: TGroupBox
-          inherited mMovePosE: TFloatLabeledEdit
-            EditLabel.ExplicitLeft = 0
-            EditLabel.ExplicitTop = -16
-            EditLabel.ExplicitWidth = 57
-          end
-        end
-      end
-      inherited GroupBox1: TGroupBox
+      inherited GroupBox1: TGroupBox [0]
         Height = 224
-        ExplicitHeight = 224
+        TabOrder = 0
+      end
+      inherited ActionList1: TActionList [1]
       end
     end
     object GroupBox2: TGroupBox
       Left = 2
       Top = 15
-      Width = 201
+      Width = 159
       Height = 224
       Align = alLeft
       Caption = 'Sequences'
       TabOrder = 2
       object mAddMoveBtn: TButton
         Left = 8
-        Top = 179
+        Top = 191
         Width = 57
         Height = 25
         Action = addProcessA
@@ -86,7 +80,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       end
       object mDeleteMoveBtn: TButton
         Left = 88
-        Top = 179
+        Top = 191
         Width = 56
         Height = 25
         Action = removeProcessA
@@ -103,9 +97,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       end
       object mProcessesLB: TListBox
         Left = 8
-        Top = 78
+        Top = 127
         Width = 135
-        Height = 97
+        Height = 60
         ItemHeight = 13
         TabOrder = 4
         OnClick = mProcessesLBClick
@@ -131,6 +125,18 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         OnChange = mSequencesCBChange
         Items.Strings = (
           'MoveSequence')
+      end
+      object mSequenceNameE: mtkSTDStringEdit
+        Left = 8
+        Top = 100
+        Width = 121
+        Height = 21
+        EditLabel.Width = 77
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Sequence Name'
+        TabOrder = 7
+        Text = '<none>'
+        Value = '<none>'
       end
     end
   end

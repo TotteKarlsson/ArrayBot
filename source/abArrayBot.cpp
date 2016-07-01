@@ -21,6 +21,18 @@ mLifts("PAIRED_MOVES", mIniFile)
 ArrayBot::~ArrayBot()
 {}
 
+vector<APTMotor*> ArrayBot::getAllMotors()
+{
+	vector<APTMotor*> ms;
+	vector<APTMotor*> ms1 = mCoverSlip.getAllMotors();
+	vector<APTMotor*> ms2 = mWhisker.getAllMotors();
+
+	ms.insert(ms.begin(), ms1.begin(), ms1.end());
+	ms.insert(ms.end(), ms2.begin(), ms2.end());
+
+    return ms;
+}
+
 JoyStickSettings& ArrayBot::getJoyStickSettings()
 {
 	return mJSSettings;

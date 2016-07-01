@@ -18,7 +18,12 @@ class AB_CORE ProcessSequencer : public ABObject
 			      	                ProcessSequencer(const string& fileFolder);
                   	                ~ProcessSequencer(){}
 		bool				        assignUnit(ABObject* o);
+
+		bool						selectSequence(const string& sName);
+
 		bool				        load(const string& sName);
+		bool				        loadAll(const string& fileFolder);
+
 		bool				        saveCurrent();
 
 		void				        clear();
@@ -29,11 +34,12 @@ class AB_CORE ProcessSequencer : public ABObject
         bool				        isRunning();
         bool				        isCurrentProcessActive();
 
-        string				        getCurrentProcessName();
-        string				        getCurrentSequenceName();
-
         ProcessSequence*   	        getCurrentSequence();
+        string				        getCurrentSequenceName();
+        string				        getCurrentProcessName();
+
         bool						addSequence(ProcessSequence* seq);
+        ProcessSequences&			getSequences();
 
 	private:
 

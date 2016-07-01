@@ -8,7 +8,7 @@ using namespace mtk;
 
 MoveSequence::MoveSequence()
 {
-	mFileExtension = ".moves";
+
 }
 
 

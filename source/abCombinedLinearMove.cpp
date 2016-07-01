@@ -11,7 +11,7 @@ using namespace ab;
 //---------------------------------------------------------------------------
 CombinedLinearMove::CombinedLinearMove(const string& lbl)
 :
-Process(lbl, NULL)
+Process(lbl)
 {
 	mProcessType = ptCombinedLinearMove;
 }
@@ -35,11 +35,12 @@ bool CombinedLinearMove::removeMove(const string& name)
             mMoves.erase(mMoves.begin() + i);
         }
     }
+    return true;
 }
 
 bool CombinedLinearMove::removeMove(LinearMove* m)
 {
-
+	return false;
 }
 
 LinearMove* CombinedLinearMove::getMove(int i)
@@ -65,7 +66,7 @@ LinearMove*	CombinedLinearMove::getMove(const string& lbl)
     return NULL;
 }
 
-XMLElement* CombinedLinearMove::addToXMLDocumentAsChildProcess(XMLDocument& doc, XMLNode* docRoot)
+XMLElement* CombinedLinearMove::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file
     XMLElement* processNode  = doc.NewElement("processes");
@@ -77,9 +78,9 @@ XMLElement* CombinedLinearMove::addToXMLDocumentAsChildProcess(XMLDocument& doc,
 	for(int i = 0; i < mMoves.size(); i++)
     {
     	LinearMove& lm = mMoves[i];
-        lm.addToXMLDocument(doc, rootNode);
+        //lm.addToXMLDocument(doc, rootNode);
+        lm.addToXMLDocumentAsChild(doc, rootNode);
     }
-
 
     processNode->InsertEndChild(rootNode);
     docRoot->InsertEndChild(processNode);

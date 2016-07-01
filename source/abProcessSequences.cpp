@@ -2,19 +2,56 @@
 #include "abProcessSequences.h"
 #include "mtkFileUtils.h"
 #include <sstream>
+#include "mtkUtils.h"
+#include "mtkLogger.h"
+
 //---------------------------------------------------------------------------
 using namespace mtk;
 using namespace std;
 
-
-ProcessSequences::ProcessSequences(const string& fileFolder)
+ProcessSequences::ProcessSequences(const string& fileFolder, const string& fileExtension)
 :
 mFileFolder(fileFolder),
+mFileExtension(fileExtension),
 mProcessSequencesIter(mProcessSequences.begin())
 {}
 
 ProcessSequences::~ProcessSequences()
 {}
+
+ProcessSequence* ProcessSequences::select(const string& sName)
+{
+	ProcessSequence* s = getFirst();
+    while(s)
+    {
+    	if(s->getName() == sName)
+        {
+        	return s;
+        }
+        s = getNext();
+    }
+    return NULL;
+}
+
+int	ProcessSequences::loadAll(const string& fileFolder)
+{
+    if(fileFolder.size() > 0)
+    {
+    	mFileFolder = fileFolder;
+    }
+
+	// Load all seqeunces in the current fileFolder, first clear out old ones...
+    clear();
+    StringList files = getFilesInDir(mFileFolder, mFileExtension);
+    for(int i = 0; i < files.size(); i++)
+    {
+    	bool res = load(getFileNameNoPathNoExtension(files[i]));
+        if(!res)
+        {
+        	Log(lError) << "Failed loading process sequence: "<< files[i];
+        }
+    }
+}
 
 bool ProcessSequences::clear()
 {
@@ -35,15 +72,13 @@ string  ProcessSequences::getFileFolder()
 	return mFileFolder;
 }
 
-bool ProcessSequences::load(const string& sName)
+bool ProcessSequences::load(const string& fName)
 {
-	if(fileExists(joinPath(mFileFolder, sName + ".abp")))
+	if(fileExists(joinPath(mFileFolder, fName + ".abp")))
     {
     	ProcessSequence* s = new ProcessSequence();
-
-        if(s->read(joinPath(mFileFolder, sName + ".abp")))
+        if(s->read(joinPath(mFileFolder, fName + ".abp")))
         {
-            s->setName(sName);
         	return add(s);
         }
     }
@@ -71,7 +106,8 @@ bool ProcessSequences::add(ProcessSequence* s)
     {
     	stringstream ss;
         ss<<"Sequence "<<countFiles(mFileFolder, "*.abp") + 1;
-    	s->setName(ss.str());
+    	s->setProjectName(ss.str());
+		s->setFileName(ss.str() + ".abp");
         s->write(mFileFolder);
     }
 

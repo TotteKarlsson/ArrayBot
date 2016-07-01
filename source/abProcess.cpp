@@ -31,9 +31,9 @@ ProcessType toProcessType(const string& str)
 	return ptUnknown;
 }
 
-Process::Process(const string& lbl, ABObject* o)
+Process::Process(const string& lbl)
 :
-mUnit(o),
+mUnit(NULL),
 mProcessName(lbl),
 mPreDwellTime(0),
 mPostDwellTime(0),
@@ -73,7 +73,7 @@ bool Process::stop()
 
 }
 
-XMLElement* Process::addToXMLDocument(XMLDocument& doc, XMLNode* docRoot)
+XMLElement* Process::addToXMLDocument(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file
     XMLElement* processNode  	= doc.NewElement("process");

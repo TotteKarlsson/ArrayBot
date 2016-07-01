@@ -26,11 +26,10 @@ class AB_CORE ProcessSequence : public ABObject
                                             //!initial state. Required if a sequence is to be rerun
 		void								init();
 		void					            clear();
-        string								getName(){return mProject.getModelName();}
+        string								getName(){return mProject.getProjectName();}
 
 
         virtual bool	 		            read(const string& fName);
-
         virtual bool			            write(const string& folder);
 
 		virtual bool	   		            assignUnit(ABObject* o);
@@ -43,19 +42,22 @@ class AB_CORE ProcessSequence : public ABObject
         Process*                          	getNext() const;
         Process*                          	getPrevious() const;
         Process*                          	getCurrent() const;
-        void								setName(const string& name) {mProject.setModelName(name);}
-        void								setFileExtension(const string& e) {mFileExtension = e;}
-        void								setFileFolder(const string& f) {mFileFolder = f;}
-        string 								getFileFolder() {return mFileFolder;}
+        void								setProjectName(const string& name);
+
+
+        void								setFileFolder(const string& f);
+		void								setFileName(const string& f);
+        void								setFileExtension(const string& e);
+        string 								getFileFolder();
 
         int									getNumberOfProcesses(){return mProcesses.size();}
 
 
     protected:
 	    ProcessSequenceProject	 			mProject;
-        IniSection							mIniSection;
-        string								mFileExtension;
-        string								mFileFolder;
+//        IniSection							mIniSection;
+//        string								mFileExtension;
+//        string								mFileFolder;
 
         									//!List of abstract Processes
 		mutable list<Process*>  			mProcesses;

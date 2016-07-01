@@ -105,6 +105,24 @@ void __fastcall TMotorMoveProcessFrame::MotorsCBChange(TObject *Sender)
     	mMovePosE->Enabled 	= false;
         mAccE->Enabled 		= false;
     }
+}
+
+
+void __fastcall TMotorMoveProcessFrame::mMovePosEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+
+    if(Key != vkReturn || mMove == NULL)
+    {
+    	return;
+    }
+
+    ab::Position p(mMove->getPositionName(), mMovePosE->getValue(),0,0);
+    mMove->setPosition(p);
+    mMove->setMaxVelocity(mMaxVelE->getValue());
+    mMove->setAcceleration(mAccE->getValue());
+    mMove->setPostDwellTime(mPostDwellTimeE->getValue());
+    mMove->setPreDwellTime(mPreDwellTimeE->getValue());
 
 }
 

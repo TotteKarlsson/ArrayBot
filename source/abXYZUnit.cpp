@@ -36,6 +36,32 @@ mProcessSequencer(appFolder)
 XYZUnit::~XYZUnit()
 {}
 
+vector<APTMotor*> XYZUnit::getAllMotors()
+{
+	vector<APTMotor*> ms;
+
+	if(mXMotor)
+    {
+        ms.push_back(mXMotor);
+    }
+
+	if(mYMotor)
+    {
+        ms.push_back(mYMotor);
+    }
+
+	if(mZMotor)
+    {
+        ms.push_back(mZMotor);
+    }
+
+    if(mAngleMotor)
+    {
+        ms.push_back(mAngleMotor);
+    }
+	return ms;
+}
+
 bool XYZUnit::isActive()
 {
 	bool xa(false), ya(false), za(false), ca(false);

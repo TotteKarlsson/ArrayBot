@@ -13,6 +13,7 @@
 #include <Vcl.ActnList.hpp>
 #include "TMotorMoveProcessFrame.h"
 #include "TCombinedMoveFrame.h"
+#include "mtkSTDStringEdit.h"
 //---------------------------------------------------------------------------
 
 class XYZUnit;
@@ -37,6 +38,7 @@ __published:	// IDE-managed Components
 	TAction *removeProcessA;
 	TCombinedMoveFrame *TCombinedMoveFrame1;
 	TGroupBox *GroupBox2;
+	mtkSTDStringEdit *mSequenceNameE;
 	void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
 	void __fastcall mAddSeqBtnClick(TObject *Sender);
 	void __fastcall mStartBtnClick(TObject *Sender);

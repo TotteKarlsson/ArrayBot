@@ -10,6 +10,7 @@ object CombinedMoveFrame: TCombinedMoveFrame
     Top = 0
     Width = 225
     Height = 207
+    Align = alLeft
     AutoSize = True
     TabOrder = 0
     ExplicitLeft = 137

@@ -1,8 +1,8 @@
 #ifndef abProcessH
 #define abProcessH
+#include <string>
 #include "abExporter.h"
 #include "abABObject.h"
-#include <string>
 #include "Poco/TimeStamp.h"
 #include "Poco/Timespan.h"
 #include "mtkXMLUtils.h"
@@ -25,7 +25,7 @@ ProcessType toProcessType(const string& str);
 class AB_CORE Process : public ABObject
 {
     public:
-        							Process(const string& name, ABObject* o);
+        							Process(const string& name);
 							        ~Process(){}
 		void						init();
 		string 						getProcessType();
@@ -49,8 +49,8 @@ class AB_CORE Process : public ABObject
         virtual bool	            stop() 				= 0;
         virtual	bool	            undo() 				= 0;
 
-        virtual bool				read(mtk::IniSection* sec) = 0;
-        virtual bool				write(mtk::IniSection* sec) = 0;
+//        virtual bool				read(mtk::IniSection* sec) = 0;
+//        virtual bool				write(mtk::IniSection* sec) = 0;
 
         virtual mtk::XMLElement*    addToXMLDocument(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 		virtual mtk::XMLElement*    addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
@@ -60,9 +60,7 @@ class AB_CORE Process : public ABObject
                                     //and in a ini file
         string						mProcessName;
 
-        					        //!Making object for moving abstract allow us
-                                    //to process 'any' object. Just specialize in the
-                                    //run function..
+        					        //!The Unit abstract object can be casted in derived classes
     	ABObject* 		            mUnit;
 
         							//!The process type help us construct

@@ -21,63 +21,64 @@ using mtk::IniFile;
 class AB_CORE XYZUnit : public ABObject
 {
 	public:
-    					        XYZUnit(const string& name, IniFile& iniFile, const string& appFolder);
-    					        ~XYZUnit();
-		bool					isActive();
+    					                XYZUnit(const string& name, IniFile& iniFile, const string& appFolder);
+    					                ~XYZUnit();
+        vector<APTMotor*>		        getAllMotors();
+		bool					        isActive();
 
-		bool					enableJSAxes();
-		bool					disableJSAxes();
-        void					attachJoyStick(ArrayBotJoyStick* js);
-        void					detachJoyStick();
+		bool					        enableJSAxes();
+		bool					        disableJSAxes();
+        void					        attachJoyStick(ArrayBotJoyStick* js);
+        void					        detachJoyStick();
 
-		void					home();
-		void					stow();
+		void					        home();
+		void					        stow();
 
-		void				    shutDown();
-		string					getName() const;
-        Positions&				positions(){return mPositions;}
+		void				            shutDown();
+		string					        getName() const;
+        Positions&				        positions(){return mPositions;}
 
-		bool				    initialize();
-        bool					stopAll();
+		bool				            initialize();
+        bool					        stopAll();
 
-		APTMotor*			    getXMotor() const;
-		APTMotor*			    getYMotor() const;
-		APTMotor*			    getZMotor() const;
-        APTMotor*				getAngleMotor() const;
-        APTMotor*				getMotorWithName(const string& name);
+		APTMotor*			            getXMotor() const;
+		APTMotor*			            getYMotor() const;
+		APTMotor*			            getZMotor() const;
+        APTMotor*				        getAngleMotor() const;
+        APTMotor*				        getMotorWithName(const string& name);
 
-        Property<int>		    mXMotorSerialNr;
-        Property<int>		    mYMotorSerialNr;
-        Property<int>		    mZMotorSerialNr;
-	    Property<int>		    mAngleMotorSerialNr;
+        Property<int>		            mXMotorSerialNr;
+        Property<int>		            mYMotorSerialNr;
+        Property<int>		            mZMotorSerialNr;
+	    Property<int>		            mAngleMotorSerialNr;
 
-        						//TODO: move the devicemanager to ArrayBot and
-                                //use a reference for each class that needs to use it
-    	DeviceManager	        mDeviceManager;
+        						        //TODO: move the devicemanager to ArrayBot and
+                                        //use a reference for each class that needs to use it
+    	DeviceManager	                mDeviceManager;
 
-        						//!Move absolute moves to pos, regardless of
-                                //current position
-        bool					moveAbsolute(const ab::Position& pos);
-        bool					moveRelative(const ab::Position& pos);
+        						        //!Move absolute moves to pos, regardless of
+                                        //current position
+        bool					        moveAbsolute(const ab::Position& pos);
+        bool					        moveRelative(const ab::Position& pos);
 
 	protected:
-		string					mName;
+		string					        mName;
 
-        						//!App datafolder is where sequence files are saved
-        string					mAppDataFolder;
-        IniFile&				mIniFile;
-        IniFileProperties	    mProperties;
+        						        //!App datafolder is where sequence files are saved
+        string					        mAppDataFolder;
+        IniFile&				        mIniFile;
+        IniFileProperties	            mProperties;
 
-        						//!XYZ stages
-        APTMotor*			    mXMotor;
-        APTMotor*			    mYMotor;
-        APTMotor*			    mZMotor;
+        						        //!XYZ stages
+        APTMotor*			            mXMotor;
+        APTMotor*			            mYMotor;
+        APTMotor*			            mZMotor;
 
-        						//!Angle controller
-        APTMotor*			    mAngleMotor;
+        						        //!Angle controller
+        APTMotor*			            mAngleMotor;
 
-        ArrayBotJoyStick*       mJoyStick;
-        Positions				mPositions;
-        ProcessSequencer 		mProcessSequencer;
+        ArrayBotJoyStick*               mJoyStick;
+        Positions				        mPositions;
+        ProcessSequencer 		        mProcessSequencer;
 };
 #endif

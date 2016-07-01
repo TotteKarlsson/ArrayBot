@@ -4,6 +4,7 @@
 #include "mtkLogger.h"
 #include "abProcessSequence.h"
 #include "abCombinedLinearMove.h"
+#include "abPosition.h"
 using namespace mtk;
 using namespace tinyxml2;
 
@@ -16,7 +17,7 @@ const string gProcessSequenceProjectFileVersion    = "0.6";
 
 ProcessSequenceProject::ProcessSequenceProject(ProcessSequence& ps, const string& fName)
 :
-Project(fName),
+Project(fName, "abp"),
 mProcessSequence(ps)
 {
 	resetXML();
@@ -45,7 +46,6 @@ bool ProcessSequenceProject::resetXML()
     XMLElement* name 		= mTheXML.NewElement("name");
     XMLText* 	nameValue 	= mTheXML.NewText(mProcessSequence.getName().c_str());
 	name->InsertEndChild(nameValue);
-
     mProjectRoot->InsertEndChild(name);
     return true;
 }
@@ -74,15 +74,23 @@ bool ProcessSequenceProject::save(const string& fName)
     }
 
     this->addNode(processes);
-    return saveToFile(fName);
+    if(fName.size() != 0)
+    {
+    	return saveToFile(fName);
+    }
+    else
+    {
+    	return saveToFile(joinPath(mFileFolder, getFileNameNoPath(mFileName)));
+    }
 }
 
 bool ProcessSequenceProject::open()
 {
     try
     {
-        Log(lInfo) << "Attempting to load model: "<<this->getModelFileName();
+        Log(lInfo) << "Attempting to load model: "<<this->getFileName();
 
+        //Read the name node
         int nrOfObjs = loadProcesses();
         Log(lDebug) << "Loaded " << nrOfObjs << " process objects";
         return true;
@@ -157,12 +165,58 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
             if(processes)
             {
             	XMLElement* processE = processes->FirstChildElement();
+
+                //Loop over childs
                 while(processE)
                 {
-                    string label = processE->FirstChildElement("process_name")->GetText();
-		            Log(lDebug) << "Loading element: "<<label;
-                    LinearMove* lm = new LinearMove(label, NULL);
-                    p->addMove(*lm);
+
+                    const char* val = processE->Attribute("name");
+                    if(val)
+                    {
+			            Log(lDebug) << "Loading element: "<<val;
+
+                        //Check type before creating... add later
+    	                LinearMove* lm = new LinearMove(val);
+                        //
+                        val = processE->Attribute("motor_name");
+                        if(val)
+                        {
+                        	lm->setMotorName(val);
+                        }
+
+                        val = processE->Attribute("final_position");
+                        if(val)
+                        {
+                        	lm->setPosition( ab::Position("", toDouble(val), 0.0 , 0.0));
+                        }
+
+                        val = processE->Attribute("max_velocity");
+                        if(val)
+                        {
+                        	lm->setMaxVelocity(toDouble(val));
+                        }
+
+                        val = processE->Attribute("acc");
+                        if(val)
+                        {
+                        	lm->setAcceleration(toDouble(val));
+                        }
+
+                        val = processE->Attribute("pre_dwell_time");
+                        if(val)
+                        {
+                        	lm->setPreDwellTime(toDouble(val));
+                        }
+
+                        val = processE->Attribute("post_dwell_time");
+                        if(val)
+                        {
+                        	lm->setPostDwellTime(toDouble(val));
+                        }
+
+	                    p->addMove(*lm);
+	                }
+
                     processE = processE->NextSiblingElement();
                 }
             }

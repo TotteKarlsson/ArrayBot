@@ -26,6 +26,8 @@ __published:	// IDE-managed Components
 	TFloatLabeledEdit *mPreDwellTimeE;
 	void __fastcall MotorsCBClick(TObject *Sender);
 	void __fastcall MotorsCBChange(TObject *Sender);
+	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
     private:	// User declarations
         LinearMove* 			mMove;
         ArrayBot*				mAB;

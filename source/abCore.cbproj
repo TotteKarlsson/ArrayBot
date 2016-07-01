@@ -89,6 +89,7 @@
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <BCC_PCHInject>abCorePCH.h</BCC_PCHInject>
         <VerInfo_Release>1</VerInfo_Release>
         <LinkPackageImports>rtl.bpi;vcl.bpi</LinkPackageImports>
         <Defines>POCO_STATIC;$(Defines)</Defines>
@@ -126,9 +127,6 @@
         <CppCompile Include="abCore.cpp">
             <BuildOrder>1</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="abCorePCH.h">
-            <BuildOrder>0</BuildOrder>
-        </PCHCompile>
         <CppCompile Include="abDeviceManager.cpp">
             <BuildOrder>7</BuildOrder>
         </CppCompile>
