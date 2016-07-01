@@ -25,9 +25,7 @@ int TABProcessSequencerFrame::mFrameNr = 0;
 __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner)
 	: TFrame(Owner),
     mAB(ab),
-	mCoverSlipUnit(mAB.getCoverSlipUnit()),
-	mWhiskerUnit(mAB.getWhiskerUnit()),
-    mProcessSequencer(ab, appFolder)
+    mProcessSequencer(mAB.getProcessSequencer())
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
 
@@ -138,9 +136,7 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
 {
     if(mStartBtn->Caption == "Start")
     {
-        mWhiskerUnit.disableJSAxes();
-        mCoverSlipUnit.disableJSAxes();
-
+        mAB.disableJoyStickAxes();
     	mProcessSequencer.start(true);
 		mSequenceStatusTimer->Enabled = true;
     }
@@ -208,8 +204,7 @@ void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
     else
     {
 		mSequenceStatusTimer->Enabled = false;
-        mWhiskerUnit.enableJSAxes();
-        mCoverSlipUnit.enableJSAxes();
+        mAB.enableJoyStickAxes();
 
     	mStartBtn->Caption = "Start";
 	  	mStatusLbl->Caption = "Idle";

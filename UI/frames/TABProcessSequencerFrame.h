@@ -1,6 +1,5 @@
 #ifndef TABProcessSequencerFrameH
 #define TABProcessSequencerFrameH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -16,7 +15,6 @@
 #include "mtkSTDStringEdit.h"
 //---------------------------------------------------------------------------
 
-class XYZUnit;
 class ArrayBot;
 
 class TABProcessSequencerFrame : public TFrame
@@ -55,10 +53,8 @@ __published:	// IDE-managed Components
 
 
 private:	// User declarations
-	    ProcessSequencer  			mProcessSequencer;
         ArrayBot&					mAB;
-		XYZUnit& 					mCoverSlipUnit;
-		XYZUnit& 					mWhiskerUnit;
+	    ProcessSequencer&  			mProcessSequencer;
         string 						mProcessFileExtension;
 		void __fastcall 			refreshSequencesCB();
 		static int 					mFrameNr;

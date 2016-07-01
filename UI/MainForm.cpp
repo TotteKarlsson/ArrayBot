@@ -49,6 +49,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     try
     {
 		mAB = new ArrayBot(mIniFile, gAppDataFolder);
+        mProcessSequencer = &(mAB->getProcessSequencer());
     }
     catch(const ABException& e)
     {
@@ -115,20 +116,17 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
 {
-	if(mInitBotThread.isRunning())
-    {
-    	Log(lInfo) << "Waiting for device initialization";
-    }
-    else
+	if(!mInitBotThread.isRunning()) //Not waiting for devices any more
     {
 		WaitForDeviceInitTimer->Enabled = false;
+
         //Init UI stuff here
         TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
-        f1->Parent = this->mBottomPanel;
+        f1->Parent = this->mTopMainPanel;
         f1->Align = alLeft;
 
         TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
-        f2->Parent = this->mBottomPanel;
+        f2->Parent = this->mTopMainPanel;
         f2->Align = alLeft;
 
         //Over ride joysticks button events
@@ -183,11 +181,35 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
         mABProcessSequencerFrame->Align = alLeft;
         mABProcessSequencerFrame->init();
 
-//        //Create MoveSequencer frames
-//        mWhiskerProcessSequencerFrame = new TXYZProcessSequencerFrame(&(mAB->getWhiskerUnit()), mAB, mMoveSequencesPage);
-//        mWhiskerProcessSequencerFrame->Parent = mMoveSequencesPage;
-//        mWhiskerProcessSequencerFrame->Align = alClient;
-//        mWhiskerProcessSequencerFrame->init();
+        ProcessSequencer& psr = mAB->getProcessSequencer();
+        ProcessSequences& pss = psr.getSequences();
+		ProcessSequence*  ps = pss.getFirst();
+        while(ps)
+        {
+        	TSpeedButton* btn = new TSpeedButton(this);
+            btn->Parent = mBottomPanel;
+            btn->Caption = vclstr(ps->getName());
+            btn->Align = alLeft;
+            btn->Width = btn->Height;
+            btn->OnClick = runSequenceBtnClick;
+        	ps = pss.getNext();
+        }
+    }
+}
+
+void __fastcall TMain::runSequenceBtnClick(TObject *Sender)
+{
+	TSpeedButton* b = dynamic_cast<TSpeedButton*>(Sender);
+    if(b)
+    {
+        ProcessSequencer& psr = mAB->getProcessSequencer();
+
+        if(psr.selectSequence(stdstr(b->Caption)))
+        {
+      		mSequenceStatusTimer->Enabled = true;
+            mAB->disableJoyStickAxes();
+        	psr.start();
+        }
     }
 }
 
@@ -243,26 +265,6 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
     	return;
     }
 	//These are already referenced so no need for any updates
-}
-
-void __fastcall TMain::Button3Click(TObject *Sender)
-{
-	mAB->home();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::stowBtnClick(TObject *Sender)
-{
-	if(mABProcessSequencerFrame)
-    {
-    	int idx = mABProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 1");
-        if(idx != -1)
-        {
-			mABProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
-            mABProcessSequencerFrame->mSequencesCB->OnChange(NULL);
-            mABProcessSequencerFrame->mStartBtnClick(NULL);
-        }
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -560,34 +562,18 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 	}
 }
 
-void __fastcall TMain::WorkPos1BtnClick(TObject *Sender)
-{
-	if(mABProcessSequencerFrame)
-    {
-    	int idx = mABProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 2");
-        if(idx != -1)
-        {
-			mABProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
-            mABProcessSequencerFrame->mSequencesCB->OnChange(NULL);
-            mABProcessSequencerFrame->mStartBtnClick(NULL);
-        }
-    }
-}
-
 //---------------------------------------------------------------------------
-void __fastcall TMain::WorkPos2BtnClick(TObject *Sender)
+
+void __fastcall TMain::mSequenceStatusTimerTimer(TObject *Sender)
 {
-	if(mABProcessSequencerFrame)
+	if(mProcessSequencer && mProcessSequencer->isRunning())
     {
-    	int idx = mABProcessSequencerFrame->mSequencesCB->Items->IndexOf("Sequence 3");
-        if(idx != -1)
-        {
-			mABProcessSequencerFrame->mSequencesCB->ItemIndex = idx;
-            mABProcessSequencerFrame->mSequencesCB->OnChange(NULL);
-            mABProcessSequencerFrame->mStartBtnClick(NULL);
-        }
+
     }
-
+    else
+    {
+		mSequenceStatusTimer->Enabled = false;
+        mAB->enableJoyStickAxes();
+    }
 }
-
 

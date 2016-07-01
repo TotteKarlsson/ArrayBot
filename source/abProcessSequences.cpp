@@ -43,6 +43,7 @@ int	ProcessSequences::loadAll(const string& fileFolder)
 
 	// Load all seqeunces in the current fileFolder, first clear out old ones...
     clear();
+	int count(0);
     StringList files = getFilesInDir(mFileFolder, mFileExtension);
     for(int i = 0; i < files.size(); i++)
     {
@@ -51,7 +52,9 @@ int	ProcessSequences::loadAll(const string& fileFolder)
         {
         	Log(lError) << "Failed loading process sequence: "<< files[i];
         }
+        count++;
     }
+    return count;
 }
 
 bool ProcessSequences::clear()

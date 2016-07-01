@@ -117,7 +117,7 @@ object Main: TMain
       Top = 1
       Width = 958
       Height = 789
-      ActivePage = mMoveSequencesPage
+      ActivePage = TabSheet4
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -136,9 +136,11 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitLeft = 36
+        ExplicitTop = 26
         object JSGB: TGroupBox
-          Left = 14
-          Top = 25
+          Left = 3
+          Top = 193
           Width = 461
           Height = 288
           Caption = 'Joystick'
@@ -195,8 +197,8 @@ object Main: TMain
           end
         end
         object LiftGB: TGroupBox
-          Left = 481
-          Top = 25
+          Left = 501
+          Top = 193
           Width = 446
           Height = 288
           Caption = 'Lift'
@@ -254,59 +256,22 @@ object Main: TMain
             OnChange = mLiftCBChange
           end
         end
-        object StowBtn1: TButton
-          Left = 14
-          Top = 328
-          Width = 137
-          Height = 113
-          Caption = 'Stow'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -21
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 2
-          OnClick = stowBtnClick
-        end
-        object WorkPos1Btn: TButton
-          Left = 157
-          Top = 328
-          Width = 196
-          Height = 113
-          Caption = 'Work Position 1'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -21
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 3
-          OnClick = WorkPos1BtnClick
-        end
-        object WorkPos2Btn: TButton
-          Left = 359
-          Top = 328
-          Width = 186
-          Height = 113
-          Caption = 'Work Position 2'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -21
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 4
-          OnClick = WorkPos2BtnClick
-        end
         object mBottomPanel: TPanel
           Left = 0
-          Top = 482
+          Top = 552
           Width = 950
-          Height = 237
+          Height = 167
           Align = alBottom
+          TabOrder = 2
+        end
+        object mTopMainPanel: TPanel
+          Left = 0
+          Top = 0
+          Width = 950
+          Height = 187
+          Align = alTop
           AutoSize = True
-          TabOrder = 5
+          TabOrder = 3
         end
       end
       object TabSheet1: TTabSheet
@@ -375,10 +340,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 16
@@ -525,10 +486,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -657,13 +614,13 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 808
-    Top = 560
+    Left = 672
+    Top = 688
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 808
-    Top = 616
+    Left = 776
+    Top = 624
   end
   object UIUpdateTimer: TTimer
     Enabled = False
@@ -675,8 +632,8 @@ object Main: TMain
     Enabled = False
     Interval = 200
     OnTimer = mLiftTimerTimer
-    Left = 808
-    Top = 672
+    Left = 760
+    Top = 688
   end
   object WaitForDeviceInitTimer: TTimer
     Enabled = False
@@ -684,5 +641,12 @@ object Main: TMain
     OnTimer = WaitForDeviceInitTimerTimer
     Left = 888
     Top = 680
+  end
+  object mSequenceStatusTimer: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = mSequenceStatusTimerTimer
+    Left = 664
+    Top = 568
   end
 end

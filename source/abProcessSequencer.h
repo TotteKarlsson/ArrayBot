@@ -7,13 +7,14 @@
 #include "mtkTimer.h"
 #include "abProcessSequenceProject.h"
 #include "abProcessSequences.h"
-#include "abArrayBot.h"
-#include "abProcessSequences.h"
+
 using mtk::Timer;
 namespace ab
 {
 	class Move;
 }
+
+class ArrayBot;
 //---------------------------------------------------------------------------
 typedef void (__closure *MyOnTimerCFPtr)();
 

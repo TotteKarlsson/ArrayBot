@@ -7,7 +7,7 @@
 #include "mtkINISection.h"
 #include "mtkProperty.h"
 #include "abProcessSequenceProject.h"
-#include "abArrayBot.h"
+//#include "abArrayBot.h"
 //---------------------------------------------------------------------------
 
 using std::list;
@@ -15,7 +15,7 @@ using std::string;
 using mtk::IniSection;
 using mtk::Property;
 class Process;
-
+class ArrayBot;
 class AB_CORE ProcessSequence : public ABObject
 {
     public:

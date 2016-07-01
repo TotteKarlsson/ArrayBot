@@ -100,10 +100,9 @@ class TMain : public TRegistryForm
 	TSpeedButton *mAboutBtn;
 	TTabSheet *mMoveSequencesPage;
 	TTimer *WaitForDeviceInitTimer;
-	TButton *StowBtn1;
-	TButton *WorkPos1Btn;
-	TButton *WorkPos2Btn;
 	TPanel *mBottomPanel;
+	TPanel *mTopMainPanel;
+	TTimer *mSequenceStatusTimer;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -117,9 +116,6 @@ class TMain : public TRegistryForm
     void __fastcall initBotAExecute(TObject *Sender);
     void __fastcall ShutDownAExecute(TObject *Sender);
     void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-
-	void __fastcall Button3Click(TObject *Sender);
-	void __fastcall stowBtnClick(TObject *Sender);
 
 	void __fastcall FormShow(TObject *Sender);
 
@@ -136,8 +132,8 @@ class TMain : public TRegistryForm
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
-	void __fastcall WorkPos1BtnClick(TObject *Sender);
-	void __fastcall WorkPos2BtnClick(TObject *Sender);
+	void __fastcall runSequenceBtnClick(TObject *Sender);
+	void __fastcall mSequenceStatusTimerTimer(TObject *Sender);
 
     private:
         TThreadMethod                   logMsgMethod;
@@ -156,10 +152,9 @@ class TMain : public TRegistryForm
                                         //!So that we can catch exceptions in the
                                         //!constructor
         ArrayBot*					    mAB;
+	    ProcessSequencer*  				mProcessSequencer;
 		PairedMove* 				    getCurrentPairedMove();
 
-//        TXYZProcessSequencerFrame*		mCoverSlipProcessSequencerFrame;
-//        TXYZProcessSequencerFrame*		mWhiskerProcessSequencerFrame;
 		TABProcessSequencerFrame*		mABProcessSequencerFrame;
 		void __fastcall		            OnException();
         void						    onJSButton5Click();
@@ -174,10 +169,6 @@ class TMain : public TRegistryForm
 
 		void __fastcall                 AppInBox(mlxStructMessage &Msg);
         BEGIN_MESSAGE_MAP
-//          MESSAGE_HANDLER(MM_JOY1MOVE, TMessage, JMXYMove)
-//          MESSAGE_HANDLER(MM_JOY1ZMOVE, TMessage, JMZMove)
-//          MESSAGE_HANDLER(MM_JOY1BUTTONDOWN,TMessage,JMButtonDownUpdate)
-//          MESSAGE_HANDLER(MM_JOY1BUTTONUP,	TMessage,JMButtonUpUpdate)
             MESSAGE_HANDLER(UWM_MESSAGE,        mlxStructMessage,         AppInBox);
         END_MESSAGE_MAP(TForm)
 };

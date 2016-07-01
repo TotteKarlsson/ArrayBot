@@ -6,6 +6,7 @@
 #include "abArrayBotJoyStick.h"
 #include "abPairedMoves.h"
 #include "abJoyStickSettings.h"
+#include "abProcessSequencer.h"
 //---------------------------------------------------------------------------
 
 class AB_CORE ArrayBot : public ABObject
@@ -25,12 +26,14 @@ class AB_CORE ArrayBot : public ABObject
 
 		bool						                    enableJoyStick();
 		void						                    disableJoyStick();
+
+        void											enableJoyStickAxes();
+        void											disableJoyStickAxes();
+
         void						                    stopAll();
 
         void						                    initWorkingPosition();
 
-        void						                    stow();
-        void						                    home();
         bool						                    isActive();
         bool						                    isShuttingDown();
 
@@ -44,6 +47,7 @@ class AB_CORE ArrayBot : public ABObject
         bool						                    writeINIParameters();
         vector<APTMotor*>			                    getAllMotors();
         APTMotor*										getMotorWithName(const string& mn);
+        ProcessSequencer&								getProcessSequencer();
 
     private:
         bool						                    mIsShuttingDown;
@@ -57,6 +61,7 @@ class AB_CORE ArrayBot : public ABObject
 
         							                    //!List of Lifts
         PairedMoves					                    mLifts;
+   	    ProcessSequencer  								mProcessSequencer;
 };
 
 #endif

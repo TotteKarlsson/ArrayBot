@@ -128,17 +128,8 @@ Coordinates=776,533,81,33
 Coordinates=159,373,128,33
 
 []
-Coordinates=110,373,47,51
+Coordinates=750,263,81,51
 
 [mBottomPanel]
 Coordinates=750,333,87,51
-
-[WorkPos2Btn]
-Coordinates=750,263,81,51
-
-[WorkPos1Btn]
-Coordinates=750,193,81,51
-
-[StowBtn1]
-Coordinates=23,284,61,51
 

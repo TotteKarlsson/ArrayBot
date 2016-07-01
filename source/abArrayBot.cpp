@@ -15,11 +15,17 @@ mWhisker("WHISKER UNIT", mIniFile, appFolder),
 mJoyStick(),
 mIsShuttingDown(false),
 mJSSettings("JOYSTICK SETTINGS", mIniFile),
-mLifts("PAIRED_MOVES", mIniFile)
+mLifts("PAIRED_MOVES", mIniFile),
+mProcessSequencer(*this, appFolder)
 {}
 
 ArrayBot::~ArrayBot()
 {}
+
+ProcessSequencer& ArrayBot::getProcessSequencer()
+{
+	return mProcessSequencer;
+}
 
 vector<APTMotor*> ArrayBot::getAllMotors()
 {
@@ -103,7 +109,8 @@ bool ArrayBot::shutDown()
 
 void ArrayBot::stopAll()
 {
-	//In case the JoyStick is running amok, disable it
+	mProcessSequencer.stop();
+	//In case the JoyStick is running amok, disable it (has never happened actually..)
     mJoyStick.disable();
     mCoverSlip.stopAll();
     mWhisker.stopAll();
@@ -194,22 +201,16 @@ void ArrayBot::disableJoyStick()
     mJoyStick.disable();
 }
 
-void ArrayBot::home()
+void ArrayBot::enableJoyStickAxes()
 {
-	mWhisker.home();
-    mCoverSlip.home();
+	mWhisker.enableJSAxes();
+    mCoverSlip.enableJSAxes();
 }
 
-void ArrayBot::initWorkingPosition()
+void ArrayBot::disableJoyStickAxes()
 {
-	//Tell Whisker and Cover slip units to go to
-    //Working position
-}
-
-void ArrayBot::stow()
-{
-    mCoverSlip.stow();
-	mWhisker.stow();
+	mWhisker.disableJSAxes();
+    mCoverSlip.disableJSAxes();
 }
 
 XYZUnit& ArrayBot::getCoverSlipUnit()

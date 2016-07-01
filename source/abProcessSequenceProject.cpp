@@ -5,6 +5,7 @@
 #include "abProcessSequence.h"
 #include "abCombinedMove.h"
 #include "abPosition.h"
+#include "abArrayBot.h"
 using namespace mtk;
 using namespace tinyxml2;
 
