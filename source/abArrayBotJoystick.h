@@ -52,7 +52,7 @@ class AB_CORE ArrayBotJoyStick : public ABObject
         void						setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
         void						setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
         void				        setAxisEvent(int axis, JoyStickAxisEvent move);
-        void						switchJoyStick();
+        void						switchJoyStickDevice();
 
     protected:
         bool				        mEnabled;

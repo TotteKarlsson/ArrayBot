@@ -1,3 +1,10 @@
+Release 0.6.3 (Jul 5)
+=======================
+* Added switch joystick button on settings page
+* Added support for two joysticks and switching between them
+* Added code to remove a process sequence
+* Re-enabled the splash screen
+
 Release 0.6.2 (Jul 1)
 =======================
 * Got combined move processing working ok

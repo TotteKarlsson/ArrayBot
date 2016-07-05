@@ -577,3 +577,10 @@ void __fastcall TMain::mSequenceStatusTimerTimer(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::SpeedButton1Click(TObject *Sender)
+{
+	mAB->switchJoyStick();
+}
+
+

@@ -38,7 +38,7 @@ bool JoyStickMessageDispatcher::isEnabled()
 	return mUpdateStateTimer.isRunning();
 }
 
-bool JoyStickMessageDispatcher::switchJoyStick()
+bool JoyStickMessageDispatcher::switchJoyStickDevice()
 {
 	mJoyStickID = (mJoyStickID == JOYSTICKID1) ? JOYSTICKID2 : JOYSTICKID1;
     return true;

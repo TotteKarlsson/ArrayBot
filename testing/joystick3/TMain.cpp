@@ -333,7 +333,7 @@ void TMain::onPOVButton4Down()
 //---------------------------------------------------------------------------
 void __fastcall TMain::Button15Click(TObject *Sender)
 {
-	mJS.switchJoyStick();
+	mJS.switchJoyStickDevice();
 }
 
 

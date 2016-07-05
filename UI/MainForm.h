@@ -103,6 +103,7 @@ class TMain : public TRegistryForm
 	TPanel *mBottomPanel;
 	TPanel *mTopMainPanel;
 	TTimer *mSequenceStatusTimer;
+	TSpeedButton *SpeedButton1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -134,6 +135,7 @@ class TMain : public TRegistryForm
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
 	void __fastcall runSequenceBtnClick(TObject *Sender);
 	void __fastcall mSequenceStatusTimerTimer(TObject *Sender);
+	void __fastcall SpeedButton1Click(TObject *Sender);
 
     private:
         TThreadMethod                   logMsgMethod;

@@ -22,6 +22,12 @@ mProcessSequencer(*this, appFolder)
 ArrayBot::~ArrayBot()
 {}
 
+
+void ArrayBot::switchJoyStick()
+{
+	mJoyStick.switchJoyStickDevice();
+}
+
 ProcessSequencer& ArrayBot::getProcessSequencer()
 {
 	return mProcessSequencer;

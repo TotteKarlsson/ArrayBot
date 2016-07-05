@@ -16,6 +16,7 @@ class AB_CORE ArrayBot : public ABObject
 									                    ~ArrayBot();
 
 		void 						                    initialize();
+		void 						                    switchJoyStick();
 
         XYZUnit&					                    getCoverSlipUnit();
         XYZUnit&					                    getWhiskerUnit();

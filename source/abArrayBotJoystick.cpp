@@ -42,9 +42,9 @@ mJSMessageDispatcher(*this, 14)
 ArrayBotJoyStick::~ArrayBotJoyStick()
 {}
 
-void ArrayBotJoyStick::switchJoyStick()
+void ArrayBotJoyStick::switchJoyStickDevice()
 {
-	mJSMessageDispatcher.switchJoyStick();
+	mJSMessageDispatcher.switchJoyStickDevice();
 }
 
 bool ArrayBotJoyStick::setAxesMaxVelocity(double maxV)

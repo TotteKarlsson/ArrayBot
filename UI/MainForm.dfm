@@ -334,13 +334,32 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        object SpeedButton1: TSpeedButton
+          Left = 263
+          Top = 32
+          Width = 162
+          Height = 121
+          GroupIndex = 15
+          Caption = 'Switch JoyStick'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          OnClick = SpeedButton1Click
+        end
         object JoyStickGB2: TGroupBox
           Left = 11
-          Top = 16
+          Top = 24
           Width = 238
           Height = 241
           Caption = 'JoyStick Velocities'
@@ -438,16 +457,16 @@ object Main: TMain
           end
         end
         object BitBtn1: TBitBtn
-          Left = 304
+          Left = 431
           Top = 32
-          Width = 160
-          Height = 87
+          Width = 176
+          Height = 121
           Action = checkForDevices
           BiDiMode = bdLeftToRight
           Caption = 'Devices Check'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -16
+          Font.Height = -19
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentBiDiMode = False
@@ -455,16 +474,16 @@ object Main: TMain
           TabOrder = 1
         end
         object InitCloseBtn: TBitBtn
-          Left = 488
+          Left = 630
           Top = 32
-          Width = 160
-          Height = 88
+          Width = 177
+          Height = 121
           Action = initBotA
           BiDiMode = bdLeftToRight
           Caption = 'Initialize Devices'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -16
+          Font.Height = -19
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentBiDiMode = False
@@ -473,10 +492,16 @@ object Main: TMain
         end
         object Button1: TButton
           Left = 11
-          Top = 270
-          Width = 118
-          Height = 83
+          Top = 271
+          Width = 182
+          Height = 119
           Caption = 'Save Parameters'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 3
           OnClick = Button1Click
         end
@@ -484,6 +509,10 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
