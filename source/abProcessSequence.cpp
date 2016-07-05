@@ -83,6 +83,11 @@ string ProcessSequence::getFileFolder()
 	return mProject.getFileFolder();
 }
 
+string ProcessSequence::getFileName()
+{
+	return mProject.getFileName();
+}
+
 bool ProcessSequence::write(const string& folder)
 {
 	//Create XML document

@@ -50,9 +50,13 @@ void __fastcall TABProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sende
     if(idx > -1)
     {
     	string seqName = stdstr(mSequencesCB->Items->Strings[idx]);
+        mProcessSequencer.deleteSequence(seqName);
 		mSequencesCB->DeleteSelected();
 		mProcessesLB->Clear();
-        removeFile(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", seqName + "." + mProcessFileExtension));
+        if(mSequencesCB->Items->Count)
+        {
+  			mSequencesCB->ItemIndex = 0;
+        }
     }
 }
 

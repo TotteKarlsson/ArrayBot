@@ -2,7 +2,6 @@
 #pragma hdrstop
 #include "abAddLiftForm.h"
 //---------------------------------------------------------------------------
-
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"

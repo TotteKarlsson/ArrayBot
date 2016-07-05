@@ -28,6 +28,7 @@ class AB_CORE ProcessSequencer : public ABObject
 
 		bool				        load(const string& sName);
 		bool				        loadAll(const string& fileFolder);
+        bool						deleteSequence(const string& seq);
 
 		bool				        saveCurrent();
 

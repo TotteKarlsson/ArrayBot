@@ -28,8 +28,6 @@ class AB_CORE PairedMove : public ABObject
 		APTMotor*						mMotor1;
 		APTMotor*						mMotor2;
         string							mCheckMessage;
-
 };
 
 #endif
-

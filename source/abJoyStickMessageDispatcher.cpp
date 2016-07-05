@@ -250,3 +250,44 @@ void JoyStickMessageDispatcher::refresh()
     }
 }
 
+unsigned long JoyStickMessageDispatcher::getButtonBits()
+{
+	return mJoyInfo.dwButtons;
+}
+
+unsigned long JoyStickMessageDispatcher::getPOVBits()
+{
+	return mJoyInfo.dwPOV;
+}
+
+unsigned long JoyStickMessageDispatcher::getX1Pos()
+{
+	return mJoyInfo.dwXpos;
+}
+
+unsigned long JoyStickMessageDispatcher::getY1Pos()
+{
+	return mJoyInfo.dwYpos;
+}
+
+unsigned long JoyStickMessageDispatcher::getZ1Pos()
+{
+	return mJoyInfo.dwZpos;
+}
+
+unsigned long JoyStickMessageDispatcher::getX2Pos()
+{
+	return mJoyInfo.dwRpos;
+}
+
+unsigned long JoyStickMessageDispatcher::getY2Pos()
+{
+	return mJoyInfo.dwUpos;
+}
+
+unsigned long JoyStickMessageDispatcher::getZ2Pos()
+{
+	return mJoyInfo.dwVpos;
+}
+
+

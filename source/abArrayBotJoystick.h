@@ -36,9 +36,22 @@ class AB_CORE ArrayBotJoyStick : public ABObject
     	JoyStickAxis&		        getY2Axis();
         bool						setAxesMaxVelocity(double maxV);
 
+        unsigned long				getX1Pos();
+        unsigned long				getY1Pos();
+        unsigned long				getZ1Pos();
+
+        unsigned long				getX2Pos();
+        unsigned long				getY2Pos();
+        unsigned long				getZ2Pos();
+
+        unsigned long				getButtonBits();
+        unsigned long				getPOVBits();
+
 		JoyStickButton&		        getButton(int nr);
 		JoyStickButton&		        getPOVButton(int nr);
         void						setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
+        void						setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
+        void				        setAxisEvent(int axis, JoyStickAxisEvent move);
 
     protected:
         bool				        mEnabled;

@@ -136,8 +136,6 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ExplicitLeft = 36
-        ExplicitTop = 26
         object JSGB: TGroupBox
           Left = 3
           Top = 193

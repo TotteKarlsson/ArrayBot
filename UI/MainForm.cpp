@@ -485,7 +485,7 @@ void __fastcall TMain::liftAExecute(TObject *Sender)
         return;
     }
 
-    //Re-enable the joystick.
+    //Re-enable the joystick after finish.
 	mAB->disableJoyStick();
     pm->execute();
     mLiftTimer->Enabled = true;

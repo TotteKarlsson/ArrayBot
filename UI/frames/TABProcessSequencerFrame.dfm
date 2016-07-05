@@ -159,12 +159,12 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Enabled = False
     Interval = 100
     OnTimer = mSequenceTimerTimer
-    Left = 496
-    Top = 32
+    Left = 608
+    Top = 192
   end
   object Actions: TActionList
-    Left = 584
-    Top = 160
+    Left = 544
+    Top = 176
     object addProcessA: TAction
       Caption = 'Add'
       OnExecute = addProcessAExecute

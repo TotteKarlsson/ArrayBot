@@ -47,6 +47,7 @@ class AB_CORE ProcessSequence : public ABObject
         void								setFileFolder(const string& f);
 		void								setFileName(const string& f);
         void								setFileExtension(const string& e);
+		string								getFileName();
         string 								getFileFolder();
         int									getNumberOfProcesses(){return mProcesses.size();}
         ArrayBot*							getArrayBot(){return &mAB;}

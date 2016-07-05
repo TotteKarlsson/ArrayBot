@@ -19,7 +19,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 TForm(Owner),
 logMsgMethod(&logMsg),
 mLogFileReader(joinPath(".", gLogFileName), logMsgMethod),
-mJS(14)
+mJS()
 {
     //Associate functions with events
     mJS.setButtonEvents(1, onButton1Down,  onButton1Up    );
@@ -42,11 +42,11 @@ mJS(14)
     mJS.setPOVButtonEvents(3,onPOVButton3Down, onPOVButton3Up	  );
     mJS.setPOVButtonEvents(4,onPOVButton4Down, onPOVButton4Up	  );
 
-	mJS.setAxisEvent(1, onX1AxisMove);
-	mJS.setAxisEvent(2, onY1AxisMove);
-
-	mJS.setAxisEvent(3, onX2AxisMove);
-	mJS.setAxisEvent(4, onY2AxisMove);
+//	mJS.setAxisEvent(1, onX1AxisMove);
+//	mJS.setAxisEvent(2, onY1AxisMove);
+//
+//	mJS.setAxisEvent(3, onX2AxisMove);
+//	mJS.setAxisEvent(4, onY2AxisMove);
 
 	//Start JS poll
     mJS.enable();
@@ -67,14 +67,16 @@ void __fastcall TMain::Timer1Timer(TObject *Sender)
     int x= 10;
     int y= 10-dy;
     Canvas->FillRect(TRect(x-20,y,x+200,y+15*dy));
-    Canvas->TextOut(x,y+=dy,AnsiString().sprintf("x: %i",mJS.mJoyInfo.dwXpos));
-    Canvas->TextOut(x,y+=dy,AnsiString().sprintf("y: %i",mJS.mJoyInfo.dwYpos));
-    Canvas->TextOut(x,y+=dy,AnsiString().sprintf("z: %i",mJS.mJoyInfo.dwZpos));
-    Canvas->TextOut(x,y+=dy,AnsiString().sprintf("r: %i",mJS.mJoyInfo.dwRpos));
-    Canvas->TextOut(x,y+=dy,AnsiString().sprintf("u: %i",mJS.mJoyInfo.dwUpos));
-    Canvas->TextOut(x,y+=dy,AnsiString().sprintf("v: %i",mJS.mJoyInfo.dwVpos));
-    Canvas->TextOut(x,y+=dy,AnsiString().sprintf("b: %i",mJS.mJoyInfo.dwButtons));
-	Canvas->TextOut(x,y+=dy,AnsiString().sprintf("POV: %i",mJS.mJoyInfo.dwPOV));
+
+    Canvas->TextOut(x, y+=dy, AnsiString().sprintf("x: %i",		mJS.getX1Pos()));
+    Canvas->TextOut(x, y+=dy, AnsiString().sprintf("y: %i",		mJS.getY1Pos()));
+    Canvas->TextOut(x, y+=dy, AnsiString().sprintf("z: %i",		mJS.getZ1Pos()));
+
+    Canvas->TextOut(x, y+=dy, AnsiString().sprintf("r: %i",		mJS.getX2Pos()));
+    Canvas->TextOut(x, y+=dy, AnsiString().sprintf("u: %i",		mJS.getY2Pos()));
+    Canvas->TextOut(x, y+=dy, AnsiString().sprintf("v: %i",		mJS.getZ2Pos()));
+    Canvas->TextOut(x, y+=dy, AnsiString().sprintf("b: %i",		mJS.getButtonBits()));
+	Canvas->TextOut(x, y+=dy, AnsiString().sprintf("POV: %i",	mJS.getPOVBits()));
 }
 
 //---------------------------------------------------------------------------

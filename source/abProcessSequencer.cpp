@@ -22,6 +22,11 @@ ProcessSequence* ProcessSequencer::getCurrentSequence()
 	return mSequences.getCurrent();
 }
 
+bool ProcessSequencer::deleteSequence(const string& seq)
+{
+	mSequences.remove(seq);
+}
+
 bool ProcessSequencer::selectSequence(const string& sName)
 {
 	return mSequences.select(sName) != NULL ? true : false;

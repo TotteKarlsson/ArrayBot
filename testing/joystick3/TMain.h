@@ -5,7 +5,7 @@
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
 #include <Vcl.ExtCtrls.hpp>
-#include "abJoyStickMessageDispatcher.h"
+#include "abArrayBotJoyStick.h"
 #include "mtkLogFileReader.h"
 //---------------------------------------------------------------------------
 
@@ -40,50 +40,51 @@ __published:	// IDE-managed Components
 	void __fastcall ShutDownTimerTimer(TObject *Sender);
 
 	private:	// User declarations
-		JoyStickMessageDispatcher 			mJS;
-        void 				onButton1Down();
-        void 				onButton1Up();
-        void 				onButton2Down();
-        void 				onButton2Up();
-        void 				onButton3Down();
-        void 				onButton3Up();
-        void 				onButton4Down();
-        void 				onButton4Up();
-        void 				onButton5Down();
-        void 				onButton5Up();
-        void 				onButton6Down();
-        void 				onButton6Up();
-        void 				onButton7Down();
-        void 				onButton7Up();
-        void 				onButton8Down();
-        void 				onButton8Up();
-        void 				onButton9Down();
-        void 				onButton9Up();
-        void 				onButton10Down();
-        void 				onButton10Up();
-        void 				onButton11Down();
-        void 				onButton11Up();
-        void 				onButton12Down();
-        void 				onButton12Up();
-        void 				onButton13Down();
-        void 				onButton13Up();
-        void 				onButton14Down();
-        void 				onButton14Up();
+    	ArrayBotJoyStick 	        mJS;
 
-        void 				onX1AxisMove(int pos);
-        void 				onY1AxisMove(int pos);
+        void 				        onButton1Down();
+        void 				        onButton1Up();
+        void 				        onButton2Down();
+        void 				        onButton2Up();
+        void 				        onButton3Down();
+        void 				        onButton3Up();
+        void 				        onButton4Down();
+        void 				        onButton4Up();
+        void 				        onButton5Down();
+        void 				        onButton5Up();
+        void 				        onButton6Down();
+        void 				        onButton6Up();
+        void 				        onButton7Down();
+        void 				        onButton7Up();
+        void 				        onButton8Down();
+        void 				        onButton8Up();
+        void 				        onButton9Down();
+        void 				        onButton9Up();
+        void 				        onButton10Down();
+        void 				        onButton10Up();
+        void 				        onButton11Down();
+        void 				        onButton11Up();
+        void 				        onButton12Down();
+        void 				        onButton12Up();
+        void 				        onButton13Down();
+        void 				        onButton13Up();
+        void 				        onButton14Down();
+        void 				        onButton14Up();
 
-        void 				onX2AxisMove(int pos);
-        void 				onY2AxisMove(int pos);
+        void 				        onX1AxisMove(int pos);
+        void 				        onY1AxisMove(int pos);
 
-        void 				onPOVButton1Down();
-        void 				onPOVButton1Up();
-        void 				onPOVButton2Down();
-        void 				onPOVButton2Up();
-        void 				onPOVButton3Down();
-        void 				onPOVButton3Up();
-        void 				onPOVButton4Down();
-        void 				onPOVButton4Up();
+        void 				        onX2AxisMove(int pos);
+        void 				        onY2AxisMove(int pos);
+
+        void 				        onPOVButton1Down();
+        void 				        onPOVButton1Up();
+        void 				        onPOVButton2Down();
+        void 				        onPOVButton2Up();
+        void 				        onPOVButton3Down();
+        void 				        onPOVButton3Up();
+        void 				        onPOVButton4Down();
+        void 				        onPOVButton4Up();
 
         TThreadMethod               logMsgMethod;
         LogFileReader               mLogFileReader;

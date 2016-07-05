@@ -16,7 +16,9 @@ mJSMessageDispatcher(*this, 14)
     mJSMessageDispatcher.setButtonEvents(1, mButton1.down,  mButton1.up);
     														//!Z- down
     mJSMessageDispatcher.setButtonEvents(2, mButton2.down,  mButton2.up);
+
     mJSMessageDispatcher.setButtonEvents(3, mButton3.down,  mButton3.up);
+
     														//!Z-up
     mJSMessageDispatcher.setButtonEvents(4, mButton4.down,  mButton4.up);
 
@@ -54,6 +56,16 @@ bool ArrayBotJoyStick::setAxesMaxVelocity(double maxV)
 void ArrayBotJoyStick::setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
 {
 	mJSMessageDispatcher.setButtonEvents(btnNr, up, down);
+}
+
+void ArrayBotJoyStick::setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down)
+{
+	mJSMessageDispatcher.setPOVButtonEvents(btnNr, up, down);
+}
+
+void ArrayBotJoyStick::setAxisEvent(int axis, JoyStickAxisEvent move)
+{
+	mJSMessageDispatcher.setAxisEvent(axis, move);
 }
 
 bool ArrayBotJoyStick::disableCoverSlipAxes()
@@ -151,3 +163,44 @@ JoyStickButton& ArrayBotJoyStick::getPOVButton(int nr)
             throw("Bad stuff..");
     }
 }
+
+unsigned long ArrayBotJoyStick::getButtonBits()
+{
+	return mJSMessageDispatcher.getButtonBits();
+}
+
+unsigned long ArrayBotJoyStick::getPOVBits()
+{
+	return mJSMessageDispatcher.getPOVBits();
+}
+
+unsigned long ArrayBotJoyStick::getX1Pos()
+{
+	return mJSMessageDispatcher.getX1Pos();
+}
+
+unsigned long ArrayBotJoyStick::getY1Pos()
+{
+	return mJSMessageDispatcher.getY1Pos();
+}
+
+unsigned long ArrayBotJoyStick::getZ1Pos()
+{
+	return mJSMessageDispatcher.getZ1Pos();
+}
+
+unsigned long ArrayBotJoyStick::getX2Pos()
+{
+	return mJSMessageDispatcher.getX2Pos();
+}
+
+unsigned long ArrayBotJoyStick::getY2Pos()
+{
+	return mJSMessageDispatcher.getY2Pos();
+}
+
+unsigned long ArrayBotJoyStick::getZ2Pos()
+{
+	return mJSMessageDispatcher.getZ2Pos();
+}
+

@@ -124,6 +124,24 @@ bool ProcessSequences::add(ProcessSequence* s)
 bool ProcessSequences::remove(const string& lbl)
 {
 	//Find item
+
+    ProcessSequence* s = select(lbl);
+    if(s)
+    {
+    	string fullFName = joinPath(s->getFileFolder(), s->getFileName());
+        if(removeFile(fullFName))
+        {
+        	Log(lInfo) << "Removed process sequence file: "<<fullFName;
+        }
+        else
+        {
+			Log(lError) << "Failed removing process sequence file: "<<fullFName;
+        }
+
+        mProcessSequences.erase(mProcessSequencesIter);
+		mProcessSequencesIter = mProcessSequences.begin();
+        return true;
+    }
     return false;
 }
 
