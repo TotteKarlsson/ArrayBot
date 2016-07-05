@@ -172,6 +172,15 @@ object Main: TMain
     Caption = 'Up'
     TabOrder = 18
   end
+  object Button15: TButton
+    Left = 585
+    Top = 240
+    Width = 113
+    Height = 64
+    Caption = 'SwitchJoyStick'
+    TabOrder = 19
+    OnClick = Button15Click
+  end
   object Timer1: TTimer
     Interval = 50
     OnTimer = Timer1Timer

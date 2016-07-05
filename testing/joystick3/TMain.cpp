@@ -330,3 +330,10 @@ void TMain::onPOVButton4Down()
 	POVButton4->Caption ="DOWN";
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::Button15Click(TObject *Sender)
+{
+	mJS.switchJoyStick();
+}
+
+

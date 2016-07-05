@@ -18,7 +18,6 @@ mJSMessageDispatcher(*this, 14)
     mJSMessageDispatcher.setButtonEvents(2, mButton2.down,  mButton2.up);
 
     mJSMessageDispatcher.setButtonEvents(3, mButton3.down,  mButton3.up);
-
     														//!Z-up
     mJSMessageDispatcher.setButtonEvents(4, mButton4.down,  mButton4.up);
 
@@ -42,6 +41,11 @@ mJSMessageDispatcher(*this, 14)
 
 ArrayBotJoyStick::~ArrayBotJoyStick()
 {}
+
+void ArrayBotJoyStick::switchJoyStick()
+{
+	mJSMessageDispatcher.switchJoyStick();
+}
 
 bool ArrayBotJoyStick::setAxesMaxVelocity(double maxV)
 {

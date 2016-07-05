@@ -31,6 +31,8 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
                                                 JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons);
                                                 ~JoyStickMessageDispatcher();
 
+		bool									switchJoyStick();
+
         void				                    setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
         void				                    setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
         void				                    setAxisEvent(int axis, JoyStickAxisEvent move);

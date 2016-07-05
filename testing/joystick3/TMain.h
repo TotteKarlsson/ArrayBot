@@ -33,11 +33,13 @@ __published:	// IDE-managed Components
 	TButton *POVButton4;
 	TButton *POVButton3;
 	TButton *POVButton2;
+	TButton *Button15;
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall ShutDownTimerTimer(TObject *Sender);
+	void __fastcall Button15Click(TObject *Sender);
 
 	private:	// User declarations
     	ArrayBotJoyStick 	        mJS;

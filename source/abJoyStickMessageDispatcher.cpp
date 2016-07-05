@@ -17,7 +17,7 @@ mCanEnable(false),
 mMoveResolution(100),
 mNrOfButtons(nrOfButtons)
 {
-    mJoyStickID = JOYSTICKID1; //Support only one for now
+    mJoyStickID = JOYSTICKID1;
     mUpdateStateTimer.setInterval(30);
 	mUpdateStateTimer.OnTimerC = refresh;
 
@@ -37,6 +37,13 @@ bool JoyStickMessageDispatcher::isEnabled()
 {
 	return mUpdateStateTimer.isRunning();
 }
+
+bool JoyStickMessageDispatcher::switchJoyStick()
+{
+	mJoyStickID = (mJoyStickID == JOYSTICKID1) ? JOYSTICKID2 : JOYSTICKID1;
+    return true;
+}
+
 
 bool JoyStickMessageDispatcher::enable()
 {
@@ -111,9 +118,9 @@ void JoyStickMessageDispatcher::refresh()
 	    return;
     }
 
-    mJoyInfo.dwSize  =  sizeof(JOYINFOEX);
-    mJoyInfo.dwFlags = JOY_RETURNALL;
-    int res = joyGetPosEx(mJoyStickID, &mJoyInfo);
+    mJoyInfo.dwSize  	=  sizeof(JOYINFOEX);
+    mJoyInfo.dwFlags 	= JOY_RETURNALL;
+    int res 			= joyGetPosEx(mJoyStickID, &mJoyInfo);
     if(res != JOYERR_NOERROR)
     {
    	    mJoyStickID = -1;
@@ -126,7 +133,6 @@ void JoyStickMessageDispatcher::refresh()
     {
         mX1Axis.mEvent(mJoyInfo.dwXpos);
     }
-
     mX1Axis.mPosition = mJoyInfo.dwXpos;
 
     if(mJoyStick.mCoverSlipAxesEnabled && mY1Axis.mEvent)
@@ -237,13 +243,9 @@ void JoyStickMessageDispatcher::refresh()
             		mPOV.mLeftButtonEvents.first();
                 }
 			break;
-            case pvNotEngaged:
-	           	Log(lInfo) <<"POV not engaged anymore.";
-            break;
 
-            default:
-            	Log(lInfo) <<"User presssed two POV buttons at the same time.";
-			break;
+            case pvNotEngaged: 	Log(lInfo) <<"POV not engaged anymore."; break;
+            default:	       	Log(lInfo) <<"User presssed two POV buttons at the same time."; break;
         }
 
         mPOV.mPOVState = mJoyInfo.dwPOV;
