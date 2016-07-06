@@ -30,11 +30,4 @@ object XYZUnitFrame: TXYZUnitFrame
       TabOrder = 1
     end
   end
-  object mMotorStatusTimer: TTimer
-    Enabled = False
-    Interval = 300
-    OnTimer = mMotorStatusTimerTimer
-    Left = 112
-    Top = 80
-  end
 end

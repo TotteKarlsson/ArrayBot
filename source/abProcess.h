@@ -49,9 +49,6 @@ class AB_CORE Process : public ABObject
         virtual bool	            stop() 				= 0;
         virtual	bool	            undo() 				= 0;
 
-//        virtual bool				read(mtk::IniSection* sec) = 0;
-//        virtual bool				write(mtk::IniSection* sec) = 0;
-
         virtual mtk::XMLElement*    addToXMLDocument(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 		virtual mtk::XMLElement*    addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 
@@ -75,13 +72,11 @@ class AB_CORE Process : public ABObject
 		bool						mIsBeingProcessed;
 		bool						mIsProcessed;
 
-
         double			            mPreDwellTime;
         double			            mPostDwellTime;
         Timestamp					mStartTime;
         Timestamp					mEndTime;
         Poco::Timespan 				mTimeOut;
 };
-
 
 #endif

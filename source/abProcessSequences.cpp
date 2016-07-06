@@ -34,6 +34,21 @@ ProcessSequence* ProcessSequences::select(const string& sName)
     return NULL;
 }
 
+ProcessSequence* ProcessSequences::select(ProcessSequence* se)
+{
+	ProcessSequence* s = getFirst();
+    while(s)
+    {
+    	if(s == se)
+        {
+        	return s;
+        }
+
+        s = getNext();
+    }
+    return NULL;
+}
+
 int	ProcessSequences::loadAll(const string& fileFolder)
 {
     if(fileFolder.size() > 0)
@@ -41,7 +56,7 @@ int	ProcessSequences::loadAll(const string& fileFolder)
     	mFileFolder = fileFolder;
     }
 
-	// Load all seqeunces in the current fileFolder, first clear out old ones...
+	// Load all sequences in the current fileFolder, first clear out old ones...
     clear();
 	int count(0);
     StringList files = getFilesInDir(mFileFolder, mFileExtension);

@@ -30,9 +30,6 @@ void TXYZUnitFrame::assignUnit(XYZUnit* u)
     mainGB->Caption = vclstr(u->getName());
 
 	//Start motor status timer
-//    mMotorStatusTimer->Enabled = true;
-
-
     if(mUnit)
     {
     	if(mUnit->getAngleMotor())
@@ -109,10 +106,4 @@ void TXYZUnitFrame::disable()
     }
 
 }
-//---------------------------------------------------------------------------
-void __fastcall TXYZUnitFrame::mMotorStatusTimerTimer(TObject *Sender)
-{
-	//Check motor status
-}
-
 

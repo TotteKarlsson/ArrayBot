@@ -33,6 +33,7 @@ using Poco::Timestamp;
 using mtk::IniFileProperties;
 
 class TABProcessSequencerFrame;
+class TRibbonLifterFrame;
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
 {
@@ -104,6 +105,7 @@ class TMain : public TRegistryForm
 	TPanel *mTopMainPanel;
 	TTimer *mSequenceStatusTimer;
 	TSpeedButton *SpeedButton1;
+	TTabSheet *RibbonLifterTabSheet;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -145,6 +147,7 @@ class TMain : public TRegistryForm
 		void 						    setupWindowTitle();
         InitBotThread					mInitBotThread;
         void __fastcall					onFinishedInitBot();
+        void __fastcall					setupUIFrames();
 
         IniFile						    mIniFile;
         IniFileProperties  			    mProperties;
@@ -159,11 +162,19 @@ class TMain : public TRegistryForm
 
 		TABProcessSequencerFrame*		mABProcessSequencerFrame;
 		void __fastcall		            OnException();
+
+        TRibbonLifterFrame* 			mRibbonLifterFrame;
+
+
         void						    onJSButton5Click();
         void						    onJSButton6Click();
 
-        							    //!Button stops everything
+        							    //!Button 14 stops everything
         void						    onJSButton14Click();
+
+        void __fastcall 				FrameClosed(TObject *Sender);
+
+
 
 	public:		// User declarations
 		__fastcall 					    TMain(TComponent* Owner);

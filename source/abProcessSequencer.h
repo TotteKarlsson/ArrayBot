@@ -16,8 +16,6 @@ namespace ab
 
 class ArrayBot;
 //---------------------------------------------------------------------------
-typedef void (__closure *MyOnTimerCFPtr)();
-
 class AB_CORE ProcessSequencer : public ABObject
 {
 	public:
@@ -58,8 +56,7 @@ class AB_CORE ProcessSequencer : public ABObject
                                     //!manually executed using the forward() function
         bool				        mExecuteAutomatic;
         Timer				        mSequenceTimer;
-		void			            runThreaded();
-		MyOnTimerCFPtr	            inThreadCB;
+		void			            onTimerFunc();
 };
 
 #endif

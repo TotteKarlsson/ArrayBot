@@ -6,14 +6,12 @@
 #include "mtkLogger.h"
 #include "abArrayBot.h"
 
-
-
 namespace ab
 {
 
-
 using namespace mtk;
 using namespace ab;
+
 //---------------------------------------------------------------------------
 Move::Move(const string& lbl, MoveType type, const ab::Position& p, double maxVel, double acc, double dwellTime)
 :

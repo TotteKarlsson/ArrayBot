@@ -13,8 +13,7 @@ mAB(ab),
 mSequences(fileFolder, "abp", mAB),
 mSequenceTimer(100)
 {
-	inThreadCB = runThreaded;
-	mSequenceTimer.assignTimerFunction(inThreadCB);
+	mSequenceTimer.assignTimerFunction(onTimerFunc);
 }
 
 ProcessSequence* ProcessSequencer::getCurrentSequence()
@@ -24,7 +23,7 @@ ProcessSequence* ProcessSequencer::getCurrentSequence()
 
 bool ProcessSequencer::deleteSequence(const string& seq)
 {
-	mSequences.remove(seq);
+	return mSequences.remove(seq);
 }
 
 bool ProcessSequencer::selectSequence(const string& sName)
@@ -89,7 +88,7 @@ bool ProcessSequencer::isCurrentProcessActive()
     return false;
 }
 
-void ProcessSequencer::runThreaded()
+void ProcessSequencer::onTimerFunc()
 {
  	ProcessSequence* s = mSequences.getCurrent();
     if(!s)
@@ -103,14 +102,14 @@ void ProcessSequencer::runThreaded()
     	//Check if we are to move forward in the sequence
         if(p->isProcessed() == true)
         {
-        	sleep(p->getPostDwellTime());
+//        	sleep(p->getPostDwellTime());
 	        Log(lInfo) << "Process \"" << p->getProcessName() <<"\" finished";
         	forward();
         }
         else if (s->isFirst(p) && p->isStarted() == false)
         {
 
-        	sleep(p->getPreDwellTime());
+//        	sleep(p->getPreDwellTime());
 	        Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
 
             bool res = p->start();
@@ -121,10 +120,6 @@ void ProcessSequencer::runThreaded()
 				Log(lError) << "Aborting execution of process sequence: "<<s->getName();
 	            mSequenceTimer.stop();
                 return;
-            }
-            else
-            {
-
             }
         }
         else if(p->isTimedOut())
@@ -179,23 +174,18 @@ void ProcessSequencer::forward()
     }
 
 	Process* p = s->getNext();
-    if(p)
-    {
-        Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
-    	if(!p->start())
-        {
-        	Log(lError) << "Failed executing a move: " << p->getProcessName();
-			Log(lError) << "Aborting execution of process sequence: "<<s->getName();
-            mSequenceTimer.stop();
-        }
-        else
-        {
-
-        }
-    }
-    else
+    if(!p)
     {
     	Log(lInfo) << "Reached the end of process pipeline";
+        return;
+    }
+
+    Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
+    if(!p->start())
+    {
+        Log(lError) << "Failed executing a move: " << p->getProcessName();
+        Log(lError) << "Aborting execution of process sequence: "<<s->getName();
+        mSequenceTimer.stop();
     }
 }
 
@@ -245,38 +235,6 @@ string ProcessSequencer::getCurrentProcessName()
 	Process* p = s->getCurrent();
    	return p ? p->getProcessName() : string("");
 }
-
-//void ProcessSequencer::addProcess(Process* newMove)
-//{
-// 	ProcessSequence* s = mSequences.getCurrent();
-//    if(!s)
-//    {
-//	    return;
-//    }
-//
-//
-//	mSequences->add(newMove);
-//}
-//
-//bool ProcessSequencer::removeProcess(Process* p)
-//{
-//	if(!mSequences)
-//    {
-//    	return false;
-//    }
-//
-//	return mSequences->remove(p);
-//}
-//
-//bool ProcessSequencer::removeProcess(const string& name)
-//{
-//	if(!mSequences)
-//    {
-//    	return false;
-//    }
-//
-//	return mSequences->remove(name);
-//}
 
 bool ProcessSequencer::isRunning()
 {

@@ -20,8 +20,11 @@ class AB_CORE ProcessSequences : public ABObject
 		bool										setFileFolder(const string& fileFolder);
         string										getFileFolder();
         int											loadAll(const string& fileFolder = gEmptyString);
+
 		bool					                    add(ProcessSequence* s);
         bool					                    remove(const string& lbl);
+
+	   	ProcessSequence*							select(ProcessSequence* s);
 	   	ProcessSequence*							select(const string& sName);
 
         ProcessSequence*                            getFirst() const;
@@ -34,6 +37,7 @@ class AB_CORE ProcessSequences : public ABObject
                                                     //Files have the same name as the
                                                     //sequence itself
         bool										load(const string& fName);
+
         int											count(){return mProcessSequences.size();}
 		bool										saveCurrent();
         bool										clear();

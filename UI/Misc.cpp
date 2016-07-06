@@ -3,6 +3,7 @@
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "TSplashForm.h"
+#include "TRibbonLifterFrame.h"
 using namespace mtk;
 
 static HWND gOtherAppWindow = NULL;
@@ -26,10 +27,20 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
     }
 }
 
+void __fastcall TMain::FrameClosed(TObject *Sender)
+{
+	;
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 {
 	ShutDownTimer->Enabled = false;
+    if(TRibbonLifterFrame::gIsOpen)
+    {
+    	mRibbonLifterFrame->close();
+    }
+
 	if(mLogFileReader.isRunning())
 	{
 		Log(lDebug) << "Shutting down log file reader";
@@ -89,10 +100,16 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 	{
 		CanClose = false;
 	}
+	else if(TRibbonLifterFrame::gIsOpen)
+    {
+  		CanClose = false;
+    }
     else
     {
     	CanClose = true;
     }
+
+
 
 	if(CanClose == false)
 	{

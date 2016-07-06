@@ -15,6 +15,7 @@
 #include "TAboutArrayBotForm.h"
 #include "TABProcessSequencerFrame.h"
 #include "TXYZPositionsFrame.h"
+#include "TRibbonLifterFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -41,7 +42,8 @@ __fastcall TMain::TMain(TComponent* Owner)
     mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
     mLogLevel(lAny),
     mInitBotThread(),
-	mABProcessSequencerFrame()
+	mABProcessSequencerFrame(NULL),
+    mRibbonLifterFrame(NULL)
 {
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
@@ -65,6 +67,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 	//Load motors in a thread
     mInitBotThread.assingBot(mAB);
     mInitBotThread.onFinishedInit = this->onFinishedInitBot;
+
+    //We will setup UI frames after the bot is initialized
 	mInitBotThread.start();
 
 	WaitForDeviceInitTimer->Enabled = true;
@@ -119,82 +123,96 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
 	if(!mInitBotThread.isRunning()) //Not waiting for devices any more
     {
 		WaitForDeviceInitTimer->Enabled = false;
-
-        //Init UI stuff here
-        TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
-        f1->Parent = this->mTopMainPanel;
-        f1->Align = alLeft;
-
-        TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
-        f2->Parent = this->mTopMainPanel;
-        f2->Align = alLeft;
-
-        //Over ride joysticks button events
-        mAB->getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
-        mAB->getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
-        mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
-
-        //JoyStick Settings CB
-        JoyStickSettings& js = mAB->getJoyStickSettings();
-        JoyStickSetting* jss = js.getFirst();
-        while(jss)
-        {
-            JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
-            jss = js.getNext();
-        }
-
-        JoyStickSettingsCB->ItemIndex = 0;
-        JoyStickSettingsCB->OnChange(NULL);
-        mJSSpeedMediumBtn->Click();
-        mJSCSBtn->Click();
-
-        //Lift Settings CB
-        PairedMoves& pms = mAB->getLiftMoves();
-        PairedMove* pm = pms.getFirst();
-        while(pm)
-        {
-            string key = pm->mLabel;
-            mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
-            pm = pms.getNext();
-        }
-
-        mLiftCB->ItemIndex = 0;
-        mLiftCB->OnChange(NULL);
-
-    	TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
-    	TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
-
-        //Setup JoyStick
-        //ArrayBotJoyStick stuff.....
-        mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
-        mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
-
-        if(mAB->getCoverSlipUnit().getZMotor())
-        {
-            mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
-            mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
-        }
-
-        //Create MoveSequencer frames
-        mABProcessSequencerFrame = new TABProcessSequencerFrame(*(mAB), gAppDataFolder, mMoveSequencesPage);
-        mABProcessSequencerFrame->Parent = mMoveSequencesPage;
-        mABProcessSequencerFrame->Align = alLeft;
-        mABProcessSequencerFrame->init();
-
-        ProcessSequencer& psr = mAB->getProcessSequencer();
-        ProcessSequences& pss = psr.getSequences();
-		ProcessSequence*  ps = pss.getFirst();
-        while(ps)
-        {
-        	TSpeedButton* btn = new TSpeedButton(this);
-            btn->Parent = mBottomPanel;
-            btn->Caption = vclstr(ps->getName());
-            btn->Align = alLeft;
-            btn->Width = btn->Height;
-            btn->OnClick = runSequenceBtnClick;
-        	ps = pss.getNext();
-        }
+        setupUIFrames();
     }
+}
+
+void __fastcall	TMain::setupUIFrames()
+{
+    //Init UI stuff here
+
+    //Create frames showing motor positions
+    TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
+    f1->Parent = this->mTopMainPanel;
+    f1->Align = alLeft;
+
+    TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
+    f2->Parent = this->mTopMainPanel;
+    f2->Align = alLeft;
+
+    //Over ride joysticks button events  (cycle speeds and XY motions)
+    mAB->getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
+    mAB->getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
+    mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
+
+    //JoyStick Settings CB
+    JoyStickSettings& js = mAB->getJoyStickSettings();
+    JoyStickSetting* jss = js.getFirst();
+    while(jss)
+    {
+        JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
+        jss = js.getNext();
+    }
+
+    JoyStickSettingsCB->ItemIndex = 0;
+    JoyStickSettingsCB->OnChange(NULL);
+    mJSSpeedMediumBtn->Click();
+    mJSCSBtn->Click();
+
+    //Lift Settings CB
+    PairedMoves& pms = mAB->getLiftMoves();
+    PairedMove* pm = pms.getFirst();
+    while(pm)
+    {
+        string key = pm->mLabel;
+        mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
+        pm = pms.getNext();
+    }
+
+    mLiftCB->ItemIndex = 0;
+    mLiftCB->OnChange(NULL);
+
+    TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
+    TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
+
+    //Setup JoyStick
+    //ArrayBotJoyStick stuff.....
+    mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
+    mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
+
+    if(mAB->getCoverSlipUnit().getZMotor())
+    {
+        mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
+        mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
+    }
+
+    //Create MoveSequencer frame
+    mABProcessSequencerFrame = new TABProcessSequencerFrame(*(mAB), gAppDataFolder, mMoveSequencesPage);
+    mABProcessSequencerFrame->Parent = mMoveSequencesPage;
+    mABProcessSequencerFrame->Align = alLeft;
+    mABProcessSequencerFrame->init();
+
+    ProcessSequencer& psr = mAB->getProcessSequencer();
+    ProcessSequences& pss = psr.getSequences();
+    ProcessSequence*  ps = pss.getFirst();
+    while(ps)
+    {
+        TSpeedButton* btn = new TSpeedButton(this);
+        btn->Parent = mBottomPanel;
+        btn->Caption = vclstr(ps->getName());
+        btn->Align = alLeft;
+        btn->Width = btn->Height;
+        btn->OnClick = runSequenceBtnClick;
+        ps = pss.getNext();
+    }
+
+    //Create the ribbon lifter frame
+    mRibbonLifterFrame = new TRibbonLifterFrame((*mAB), mIniFile, this);
+    mRibbonLifterFrame->Parent = RibbonLifterTabSheet;
+    mRibbonLifterFrame->Align = alTop;
+    mRibbonLifterFrame->OnClose = &FrameClosed;
+
+    mRibbonLifterFrame->init();
 }
 
 void __fastcall TMain::runSequenceBtnClick(TObject *Sender)
@@ -582,5 +600,6 @@ void __fastcall TMain::SpeedButton1Click(TObject *Sender)
 {
 	mAB->switchJoyStick();
 }
+
 
 

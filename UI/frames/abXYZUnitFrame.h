@@ -17,8 +17,6 @@ class TXYZUnitFrame : public TFrame
         TGroupBox 		*mainGB;
 		TPanel 			*TopPanel;
         TScrollBox 		*ScrollBox1;
-		TTimer 			*mMotorStatusTimer;
-	void __fastcall mMotorStatusTimerTimer(TObject *Sender);
 
     private:	// User declarations
         XYZUnit*			mUnit;
