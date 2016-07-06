@@ -7,7 +7,7 @@
 #pragma resource "*.dfm"
 TRibbonLifterFrame *RibbonLifterFrame;
 
-bool TRibbonLifterFrame::gIsOpen = false;
+bool TRibbonLifterFrame::gIsFrameOpen = false;
 
 //---------------------------------------------------------------------------
 __fastcall TRibbonLifterFrame::TRibbonLifterFrame(ArrayBot& ab, IniFile& iniFile, TComponent* Owner)
@@ -31,12 +31,12 @@ __fastcall TRibbonLifterFrame::TRibbonLifterFrame(ArrayBot& ab, IniFile& iniFile
 
     mWhiskerXLiftStowPosW->assignExternalProperty(&(mRibbonLifter.mWhiskerLiftStowXPosition), true);
 
-    gIsOpen = true;
+    gIsFrameOpen = true;
 }
 
 __fastcall 	TRibbonLifterFrame::~TRibbonLifterFrame()
 {
-    gIsOpen = false;
+    gIsFrameOpen = false;
 }
 
 void __fastcall TRibbonLifterFrame::WndProc(TMessage &Message)
@@ -63,9 +63,37 @@ bool TRibbonLifterFrame::close()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TRibbonLifterFrame::Button2Click(TObject *Sender)
+void __fastcall TRibbonLifterFrame::mMove1BtnClick(TObject *Sender)
 {
-;
+	if(mRibbonLifter.isRunning())
+    {
+    	mRibbonLifter.stop();
+        return;
+    }
+	//Get Whisker X and Y distances
+    if(!mRibbonLifter.setupMove1())
+    {
+    	Log(lError) << "There was a problem setting up Move 1";
+    }
+
+	mMove1Timer->Enabled = true;
+    mRibbonLifter.executeMove1();
 }
+
 //---------------------------------------------------------------------------
+void __fastcall TRibbonLifterFrame::mMove1TimerTimer(TObject *Sender)
+{
+	if(mRibbonLifter.isRunning())
+    {
+		mRunningLbl->Caption = "Running..";
+        mMove1Btn->Caption = "Stop";
+    }
+    else
+    {
+        mMove1Btn->Caption = "Start";
+		mRunningLbl->Caption = "Not running..";
+        mMove1Timer->Enabled = false;
+    }
+}
+
 

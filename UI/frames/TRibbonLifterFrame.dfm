@@ -93,6 +93,13 @@ object RibbonLifterFrame: TRibbonLifterFrame
     Height = 137
     Caption = 'Move Ribbon to Pickup Location'
     TabOrder = 1
+    object mRunningLbl: TLabel
+      Left = 224
+      Top = 114
+      Width = 60
+      Height = 13
+      Caption = 'mRunningLbl'
+    end
     object mLiftLocationXE: TFloatLabeledEdit
       Left = 16
       Top = 48
@@ -137,14 +144,21 @@ object RibbonLifterFrame: TRibbonLifterFrame
       TabOrder = 3
       Text = '0.0'
     end
-    object Button2: TButton
+    object mMove1Btn: TButton
       Left = 224
-      Top = 91
+      Top = 83
       Width = 75
       Height = 25
       Caption = 'Test'
       TabOrder = 4
-      OnClick = Button2Click
+      OnClick = mMove1BtnClick
     end
+  end
+  object mMove1Timer: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = mMove1TimerTimer
+    Left = 264
+    Top = 56
   end
 end

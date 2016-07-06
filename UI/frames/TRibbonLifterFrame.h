@@ -27,11 +27,14 @@ class TRibbonLifterFrame : public TFrame
 
         TFloatLabeledEdit *mMoveToPickupLocationSpeedE;
         TFloatLabeledEdit *mMoveToPickupLocationAccE;
-        TButton *Button2;
+	TButton *mMove1Btn;
 
 	TFloatLabeledEdit *mInitialLiftSpeedYE;
 	TFloatLabeledEdit *mInitialLiftAccYE;
-	void __fastcall Button2Click(TObject *Sender);
+	TTimer *mMove1Timer;
+	TLabel *mRunningLbl;
+	void __fastcall mMove1BtnClick(TObject *Sender);
+	void __fastcall mMove1TimerTimer(TObject *Sender);
 
     private:	// User declarations
         RibbonLifter					mRibbonLifter;
@@ -45,7 +48,7 @@ class TRibbonLifterFrame : public TFrame
         bool							close();
 
         								//Check this flag to know when frame is destroyed
-        static bool						gIsOpen;
+        static bool						gIsFrameOpen;
 
 
 		 __property TNotifyEvent OnClose = {read=FOnClose, write=FOnClose};

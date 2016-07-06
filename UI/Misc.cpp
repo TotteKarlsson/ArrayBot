@@ -36,7 +36,7 @@ void __fastcall TMain::FrameClosed(TObject *Sender)
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 {
 	ShutDownTimer->Enabled = false;
-    if(TRibbonLifterFrame::gIsOpen)
+    if(TRibbonLifterFrame::gIsFrameOpen)
     {
     	mRibbonLifterFrame->close();
     }
@@ -100,7 +100,7 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 	{
 		CanClose = false;
 	}
-	else if(TRibbonLifterFrame::gIsOpen)
+	else if(TRibbonLifterFrame::gIsFrameOpen)
     {
   		CanClose = false;
     }
