@@ -17,7 +17,7 @@ namespace mtk
 using Poco::Timestamp;
 using Poco::Timestamp::TimeDiff;
 
-//!Instead of the enums, is type() info..
+//!Instead of the enums, use type() info..
 enum ProcessType {ptBaseType = 0, ptMove, ptCombinedMove, ptUnknown};
 string AB_CORE	toString(ProcessType tp);
 ProcessType toProcessType(const string& str);
@@ -25,7 +25,7 @@ ProcessType toProcessType(const string& str);
 class AB_CORE Process : public ABObject
 {
     public:
-        							Process(const string& name);
+        							Process(const string& name, ProcessType pt);
 							        ~Process(){}
 		void						init();
 		string 						getProcessType();
@@ -37,6 +37,7 @@ class AB_CORE Process : public ABObject
 
         double			            getPreDwellTime(){return mPreDwellTime;}
         bool			            setPreDwellTime(double dt){mPreDwellTime = dt; return true;}
+
         double			            getPostDwellTime(){return mPostDwellTime;}
         bool			            setPostDwellTime(double dt){mPostDwellTime = dt; return true;}
 

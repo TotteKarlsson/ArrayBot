@@ -11,9 +11,14 @@ using namespace ab;
 //---------------------------------------------------------------------------
 CombinedMove::CombinedMove(const string& lbl)
 :
-Process(lbl)
+Process(lbl, ptCombinedMove)
 {
 	mProcessType = ptCombinedMove;
+}
+
+void CombinedMove::clear()
+{
+	mMoves.clear();
 }
 
 void CombinedMove::addMove(Move& lm)
@@ -148,6 +153,7 @@ bool CombinedMove::start()
 {
 	for(int i = 0; i < mMoves.size(); i++)
     {
+
     	mMoves[i].start();
         Log(lInfo) << "Started MoveProcess \"" << mMoves[i].getProcessName()<<"\"";
     }

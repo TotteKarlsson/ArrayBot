@@ -13,16 +13,15 @@ using namespace mtk;
 using namespace ab;
 
 //---------------------------------------------------------------------------
-Move::Move(const string& lbl, MoveType type, const ab::Position& p, double maxVel, double acc, double dwellTime)
+Move::Move(const string& lbl, MoveType type, const ab::Position& p, double maxVel, double acc)
 :
-Process(lbl),
+Process(lbl, ptMove),
 mPosition(p),
 mPositionResolution(1.0e-3),
 mMoveType(type),
-mMaxVelocity(0),
-mAcceleration(0)
+mMaxVelocity(maxVel),
+mAcceleration(acc)
 {
-	mProcessType = ptMove;
 }
 
 void Move::assignUnit(ABObject* o)

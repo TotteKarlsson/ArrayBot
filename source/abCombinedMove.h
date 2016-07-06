@@ -14,8 +14,9 @@ class AB_CORE CombinedMove : public Process
     public:
         	   			            CombinedMove(const string& lbl);
     	virtual			            ~CombinedMove(){}
-        virtual mtk::XMLElement*    addToXMLDocumentAsChildProcess(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
+        void						clear();
 
+        virtual mtk::XMLElement*    addToXMLDocumentAsChildProcess(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
         int							getNumberOfMoves(){return mMoves.size();}
 
 		virtual void	            addMove(ab::Move& lm);

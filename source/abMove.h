@@ -17,7 +17,9 @@ string		toString(MoveType mt);
 class AB_CORE Move : public Process
 {
     public:
-        	   			            Move(const string& lbl, MoveType type = mtAbsolute, const ab::Position& p = ab::Position("", 0,0,0), double maxVel = 0, double acc = 0, double dwellTime = 0);
+        	   			            Move(const string& lbl, MoveType type = mtAbsolute,
+                                    		const ab::Position& p = ab::Position("", 0,0,0),
+                                            	double maxVel = 0, double acc = 0);
     	virtual			            ~Move(){}
 
         string						getMotorName(){return mMotorName;}
@@ -40,13 +42,14 @@ class AB_CORE Move : public Process
         virtual bool	            setMoveType(MoveType tp){mMoveType = tp; return true;}
         virtual MoveType            getMoveType(){return mMoveType;}
 
-        ab::Position&	            getPosition(){return mPosition;}
-        double			            getMaxVelocity(){return mMaxVelocity;}
-        double			            getAcceleration(){return mAcceleration;}
-
         bool 			            setPosition(const ab::Position& pos){mPosition = pos; return true;}
+        ab::Position&	            getPosition(){return mPosition;}
+
         bool			            setMaxVelocity(double v){mMaxVelocity = v; return true;}
+        double			            getMaxVelocity(){return mMaxVelocity;}
+
         bool			            setAcceleration(double a){mAcceleration = a; return true;}
+        double			            getAcceleration(){return mAcceleration;}
 
         string			            getPositionName(){return mPosition.getLabel();}
         void			            setPositionName(const string& l){mPosition.setLabel(l);}

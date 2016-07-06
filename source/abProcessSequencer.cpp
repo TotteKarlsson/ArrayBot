@@ -102,14 +102,14 @@ void ProcessSequencer::onTimerFunc()
     	//Check if we are to move forward in the sequence
         if(p->isProcessed() == true)
         {
-//        	sleep(p->getPostDwellTime());
+			//        	sleep(p->getPostDwellTime());
 	        Log(lInfo) << "Process \"" << p->getProcessName() <<"\" finished";
         	forward();
         }
         else if (s->isFirst(p) && p->isStarted() == false)
         {
 
-//        	sleep(p->getPreDwellTime());
+			//        	sleep(p->getPreDwellTime());
 	        Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
 
             bool res = p->start();

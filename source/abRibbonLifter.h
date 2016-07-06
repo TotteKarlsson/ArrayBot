@@ -6,8 +6,7 @@
 #include "mtkIniFile.h"
 #include "abArrayBot.h"
 #include "mtkINIFileProperties.h"
-
-
+#include "abCombinedMove.h"
 
 //---------------------------------------------------------------------------
 //!The ribbon lifter class encapsulates data and logic for
@@ -30,8 +29,12 @@ class AB_CORE RibbonLifter : public ABObject
 							        RibbonLifter(ArrayBot& ab, IniFile& ini);
 				       		 		~RibbonLifter();
 
+		bool						setupMove1();
+		bool						executeMove1();
+
         bool						start();
         bool						stop();
+        bool						isRunning();
 
 									//!Lifting of a ribbon requires many
                                     //parameters
@@ -57,6 +60,8 @@ class AB_CORE RibbonLifter : public ABObject
         							//!Container for all properties
         IniFileProperties 			mProperties;
         ArrayBot&					mArrayBot;
+        ProcessSequence				mLiftSequence;
+		ProcessSequencer			mSequencer;
 
 		void						onTimer();
 
@@ -64,6 +69,7 @@ class AB_CORE RibbonLifter : public ABObject
                                     //!motor position etc, as the
                                     //!lifter is working
         Timer						mProcessTimer;
+		CombinedMove				mMove1;
 
 };
 #endif

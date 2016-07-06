@@ -31,7 +31,7 @@ ProcessType toProcessType(const string& str)
 	return ptUnknown;
 }
 
-Process::Process(const string& lbl)
+Process::Process(const string& lbl, ProcessType pt)
 :
 mUnit(NULL),
 mProcessName(lbl),
@@ -41,7 +41,7 @@ mTimeOut(60*Poco::Timespan::SECONDS),
 mIsBeingProcessed(false),
 mIsProcessed(false),
 mIsStarted(false),
-mProcessType(ptBaseType)
+mProcessType(pt)
 {}
 
 string Process::getProcessType()

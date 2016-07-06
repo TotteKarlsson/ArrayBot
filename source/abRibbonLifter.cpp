@@ -1,7 +1,8 @@
 #pragma hdrstop
 #include "abRibbonLifter.h"
+#include "abAPTMotor.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
+
 
 RibbonLifter::RibbonLifter(ArrayBot& ab, IniFile& ini)
 :
@@ -17,7 +18,11 @@ mLiftAccZ(0),
 mLiftVelocityY(0),
 mLiftAccY(0),
 mWhiskerLiftOffZPosition(0),
-mWhiskerLiftStowXPosition(0)
+mWhiskerLiftStowXPosition(0),
+mMove1("RibbonLifterMove1"),
+mSequencer(ab, ""),
+mLiftSequence(ab),
+mProcessTimer(Poco::Timespan(100*Poco::Timespan::MILLISECONDS))
 {
 	//Read parameters from the ini file
     mProperties.add((BaseProperty*) &mLiftLocationX.setup(		    "LIFT_LOCATION_X", 					    0));
@@ -46,16 +51,53 @@ RibbonLifter::~RibbonLifter()
     mProperties.write();
 }
 
+bool RibbonLifter::isRunning()
+{
+	return mSequencer.isRunning();
+}
+
+bool RibbonLifter::setupMove1()
+{
+	mMove1.clear();
+    mLiftSequence.clear();
+	//Scale these velocities
+	ab::Move xMove("xMove1", ab::mtAbsolute, ab::Position("middle_x", mLiftLocationX, 0, 0),  	mMoveToLLVelocity, mMoveToLLAcc);
+//	ab::Move yMove("yMove1", ab::mtAbsolute, ab::Position("middle_y", mLiftLocationY/2., 0, 0), mMoveToLLVelocity, mMoveToLLAcc);
+
+    xMove.assignUnit(mArrayBot.getWhiskerUnit().getXMotor());
+//    yMove.assignUnit(mArrayBot.getWhiskerUnit().getYMotor());
+
+	mMove1.addMove(xMove);
+//	mMove1.addMove(yMove);
+    mLiftSequence.add(&mMove1);
+    mSequencer.addSequence(&mLiftSequence);
+    return true;
+}
+
+bool RibbonLifter::executeMove1()
+{
+	mProcessTimer.start();
+	mArrayBot.disableJoyStickAxes();
+	mSequencer.start();
+    return true;
+}
+
 bool RibbonLifter::start()
 {
+	return true;
 }
 
 bool RibbonLifter::stop()
 {
-
+	mSequencer.stop();
+    return true;
 }
 
 void RibbonLifter::onTimer()
 {
-
+	if(!isRunning())
+    {
+	    mProcessTimer.stop();
+		mArrayBot.enableJoyStickAxes();
+    }
 }

@@ -8,7 +8,6 @@
 #include "mtkINIFileProperties.h"
 #include "mtkINIFile.h"
 #include "abPositions.h"
-//#include "abProcessSequencer.h"
 //---------------------------------------------------------------------------
 
 class APTMotor;
