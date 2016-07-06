@@ -203,6 +203,7 @@ void __fastcall	TMain::setupUIFrames()
         btn->Align = alLeft;
         btn->Width = btn->Height;
         btn->OnClick = runSequenceBtnClick;
+        btn->Font->Size = 14;
         ps = pss.getNext();
     }
 
@@ -542,7 +543,6 @@ void __fastcall TMain::mAboutBtnClick(TObject *Sender)
     TAboutArrayBotForm* af = new TAboutArrayBotForm(this);
     af->ShowModal();
     delete af;
-
 }
 
 void __fastcall	TMain::onFinishedInitBot()

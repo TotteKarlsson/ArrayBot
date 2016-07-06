@@ -53,8 +53,7 @@ bool PairedMove::check()
     }
 
     //Calculate the longest distance we can move
-
-    if(mMotor1->getPosition() > mMotor2->getPosition())
+    if(mMotor1->getPosition() > mMotor1->getPosition())
     {
     	mDistance = mMotor1->getMaxPosition()  - mMotor1->getPosition();
     }
