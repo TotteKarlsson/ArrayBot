@@ -390,8 +390,9 @@ bool TCubeStepperMotor::setJogVelocity(double newVel)
 {
     int a, v;
     SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
+
+	Log(lDebug) << "Setting Jog Velocity: "<<newVel;
     int err = SCC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
-	Log(lDebug) << "Setting Jog Velocity parameters: "<<a<<" : "<<newVel * mScalingFactors.velocity;
     if(err != 0)
     {
     	Log(lError) <<tlError(err);

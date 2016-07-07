@@ -138,7 +138,7 @@ class TMain : public TRegistryForm
 	void __fastcall SpeedButton1Click(TObject *Sender);
 
     private:
-        TThreadMethod                   logMsgMethod;
+//        TThreadMethod                   logMsgMethod;
         LogFileReader                   mLogFileReader;
         void __fastcall                 logMsg();
 

@@ -26,53 +26,61 @@ typedef void (__closure *RibbonLifterOnTimer)();
 class AB_CORE RibbonLifter : public ABObject
 {
     public:
-							        RibbonLifter(ArrayBot& ab, IniFile& ini);
-				       		 		~RibbonLifter();
+							            RibbonLifter(ArrayBot& ab, IniFile& ini);
+				       		 		    ~RibbonLifter();
 
-		bool						setupMove1();
-		bool						executeMove1();
+		bool						    setupMove1();
+		bool						    executeMove1();
 
-		bool						setupMove2();
-		bool						executeMove2();
+		bool						    setupMove2();
+		bool						    executeMove2();
 
-        bool						start();
-        bool						stop();
-        bool						isRunning();
+        bool						    start();
+        bool						    stop();
+        bool						    isRunning();
 
-									//!Lifting of a ribbon requires many
-                                    //parameters
-    	Property<double>			mLiftLocationX;
-    	Property<double>			mLiftLocationY;
+									    //!Lifting of a ribbon requires many
+                                        //parameters
+       	Property<double>			    mLiftDistanceCS;
 
-       	Property<double>			mLiftVelocityY;
-       	Property<double>			mLiftAccY;
+        								//!The lift location is where the whisker will
+                                        //!move the ribbon to at move 1
+    	Property<double>			    mLiftLocationX;
+    	Property<double>			    mLiftLocationY;
 
-       	Property<double>			mMoveToLLVelocity;
-       	Property<double>			mMoveToLLAcc;
+        								//!The velocity used for which the move to the lift location is carried out
+       	Property<double>			    mMoveToLLVelocity;
 
-       	Property<double>			mLiftVelocityZ;
-       	Property<double>			mLiftAccZ;
+        								//!The acceleration used for which the move to the lift location is carried out
+       	Property<double>			    mMoveToLLAcc;
 
-		Property<double>			mWhiskerLiftOffZPosition;
-        Property<double>			mWhiskerLiftStowXPosition;
+       	Property<double>			    mLiftVelocityZ;
+       	Property<double>			    mLiftAccZ;
+
+       	Property<double>			    mLiftVelocityY;
+       	Property<double>			    mLiftAccY;
+
+		Property<double>			    mWhiskerLiftOffZPosition;
+        Property<double>			    mWhiskerLiftStowXPosition;
 
 
     protected:
-		IniFile&					mIniFile;
+		IniFile&					    mIniFile;
 
-        							//!Container for all properties
-        IniFileProperties 			mProperties;
-        ArrayBot&					mArrayBot;
-        ProcessSequence				mLiftSequence;
-		ProcessSequencer			mSequencer;
+        							    //!Container for all properties
+        IniFileProperties 			    mProperties;
+        ArrayBot&					    mArrayBot;
+        ProcessSequence				    mLiftSequence;
+		ProcessSequencer			    mSequencer;
 
-		void						onTimer();
+		void						    onTimer();
 
-        							//!The process timer will check for
-                                    //!motor position etc, as the
-                                    //!lifter is working
-        Timer						mProcessTimer;
-		CombinedMove				mMove1;
+        							    //!The process timer will check for
+                                        //!motor position etc, as the
+                                        //!lifter is working
+        Timer						    mProcessTimer;
+		CombinedMove				    mMove1;
+		CombinedMove				    mMove2;
 
 };
 #endif

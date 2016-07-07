@@ -280,7 +280,7 @@ bool LongTravelStage::setVelocity(double vel)
     ISC_GetVelParamsBlock(mSerial.c_str(), &p);
 
     p.maxVelocity = vel * mScalingFactors.velocity;
-    Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
+    Log(lDebug) << getName() << ": velocity -> "<<vel;
 
     int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
 
@@ -298,7 +298,7 @@ bool LongTravelStage::setAcceleration(double a)
     ISC_GetVelParamsBlock(mSerial.c_str(), &p);
 
     p.acceleration = a * mScalingFactors.acceleration;
-	Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
+	Log(lDebug) << getName()<<": acceleration -> "<<a;
 
     int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
 
@@ -377,8 +377,9 @@ bool LongTravelStage::setJogVelocity(double newVel)
     int a, v;
     ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
 
+	Log(lDebug) << "Setting Jog Velocity: "<<newVel;
     int err = ISC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
-	Log(lDebug) << "Setting Jog Velocity parameters: "<<a<<" : "<<newVel * mScalingFactors.velocity;
+
     if(err != 0)
     {
     	Log(lError) <<tlError(err);

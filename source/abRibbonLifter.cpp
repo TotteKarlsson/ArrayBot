@@ -62,15 +62,45 @@ bool RibbonLifter::setupMove1()
 {
 	mMove1.clear();
     mLiftSequence.clear();
+
 	//Scale these velocities
 	ab::Move xMove("xMove1", ab::mtAbsolute, ab::Position("middle_x", mLiftLocationX, 0, 0),  	mMoveToLLVelocity, mMoveToLLAcc);
-	ab::Move yMove("yMove1", ab::mtAbsolute, ab::Position("middle_y", mLiftLocationY, 0, 0), mMoveToLLVelocity, mMoveToLLAcc);
+//	ab::Move yMove("yMove1", ab::mtAbsolute, ab::Position("middle_y", mLiftLocationY/2., 0, 0), mMoveToLLVelocity, mMoveToLLAcc);
 
     xMove.assignUnit(mArrayBot.getWhiskerUnit().getXMotor());
     yMove.assignUnit(mArrayBot.getWhiskerUnit().getYMotor());
 
 	mMove1.addMove(xMove);
 	mMove1.addMove(yMove);
+
+    mLiftSequence.add(&mMove1);
+    mSequencer.addSequence(&mLiftSequence);
+    return true;
+}
+
+bool RibbonLifter::executeMove1()
+{
+	mProcessTimer.start();
+	mArrayBot.disableJoyStickAxes();
+	mSequencer.start();
+    return true;
+}
+
+bool RibbonLifter::setupMove2()
+{
+	mMove2.clear();
+    mLiftSequence.clear();
+
+	//Scale these velocities
+	ab::Move xMove("xMove1", ab::mtAbsolute, ab::Position("middle_x", mLiftLocationX, 0, 0),  	mMoveToLLVelocity, mMoveToLLAcc);
+	ab::Move yMove("yMove1", ab::mtAbsolute, ab::Position("middle_y", mLiftLocationY/2., 0, 0), mMoveToLLVelocity, mMoveToLLAcc);
+
+    xMove.assignUnit(mArrayBot.getWhiskerUnit().getXMotor());
+    yMove.assignUnit(mArrayBot.getWhiskerUnit().getYMotor());
+
+	mMove1.addMove(xMove);
+	mMove1.addMove(yMove);
+
     mLiftSequence.add(&mMove1);
     mSequencer.addSequence(&mLiftSequence);
     return true;

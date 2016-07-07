@@ -10,10 +10,10 @@ using namespace mtk;
 
 PairedMove::PairedMove(const string& name, double d, double v, double a)
 :
+mLabel(name),
 mDistance(d),
 mVelocity(v),
-mAcceleration(a),
-mLabel(name)
+mAcceleration(a)
 {
 }
 

@@ -281,13 +281,13 @@ double TCubeDCServo::getAcceleration()
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool TCubeDCServo::setVelocity(double vel)
+bool TCubeDCServo::setVelocity(double v)
 {
  	MOT_VelocityParameters p;
     CC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-    p.maxVelocity = vel * mScalingFactors.velocity;
-    Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
+    p.maxVelocity = v * mScalingFactors.velocity;
+    Log(lDebug) << getName() << ": velocity -> "<<v;
 
     int e = CC_SetVelParamsBlock(mSerial.c_str(), &p);
 
@@ -305,8 +305,9 @@ bool TCubeDCServo::setAcceleration(double a)
     CC_GetVelParamsBlock(mSerial.c_str(), &parameters);
 
     parameters.acceleration = a * mScalingFactors.acceleration;
+	Log(lDebug) << getName()<< ": acceleration -> "<<a;
     CC_SetVelParamsBlock(mSerial.c_str(), &parameters);
-	Log(lDebug) << "Setting velocity parameters: "<<parameters.acceleration<<" : "<<parameters.maxVelocity;
+
 	return false;
 }
 
@@ -377,8 +378,9 @@ bool TCubeDCServo::setJogVelocity(double newVel)
     int a, v;
     CC_GetJogVelParams(mSerial.c_str(), &a, &v);
 
+	Log(lDebug) << "Setting Jog Velocity: "<<newVel;
     int err = CC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
-	Log(lDebug) << "Setting Jog Velocity parameters: "<<a<<" : "<<newVel * mScalingFactors.velocity;
+
     if(err != 0)
     {
     	Log(lError) <<tlError(err);

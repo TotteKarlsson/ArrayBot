@@ -120,31 +120,8 @@ void setupLogging()
 	clearFile(fullLogFileName);
 	mtk::gLogger.logToFile(fullLogFileName);
 	LogOutput::mShowLogLevel = true;
-	LogOutput::mShowLogTime = false;
-	LogOutput::mUseLogTabs = false;
+	LogOutput::mShowLogTime = true;
+	LogOutput::mUseLogTabs 	= true;
 	Log(lInfo) << "Logger was setup";
 }
-
-//void setupLogging()
-//{
-//	//Get Application folder
-//	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
-//	if(!folderExists(fldr))
-//	{
-//		createFolder(fldr);
-//	}
-//
-//	gLogFileLocation = fldr;
-//
-//	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
-//	clearFile(fullLogFileName);
-//	mtk::gLogger.logToFile(fullLogFileName);
-//	LogOutput::mShowLogLevel = true;
-//	LogOutput::mShowLogTime = false;
-//	LogOutput::mUseLogTabs = false;
-////	mtk::gLogger.setLogLevel(lInfo);
-//	mtk::gLogger.setLogLevel(lDebug5);
-//	Log(lInfo) << "Logger was setup";
-//}
-
 

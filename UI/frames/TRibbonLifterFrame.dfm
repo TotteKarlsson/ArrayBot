@@ -44,14 +44,14 @@ object RibbonLifterFrame: TRibbonLifterFrame
       TabOrder = 2
       Text = '0.0'
     end
-    object mMoveBtn2Btn: TButton
+    object mMove2Btn: TButton
       Left = 224
-      Top = 83
+      Top = 155
       Width = 75
-      Height = 25
+      Height = 38
       Caption = 'Test'
       TabOrder = 3
-      OnClick = mMoveBtn2BtnClick
+      OnClick = mMove2BtnClick
     end
     object mWhiskerXLiftStowPosW: TFloatLabeledEdit
       Left = 16
@@ -86,6 +86,17 @@ object RibbonLifterFrame: TRibbonLifterFrame
       TabOrder = 6
       Text = '0.0'
     end
+    object mLiftDistanceCSE: TFloatLabeledEdit
+      Left = 242
+      Top = 88
+      Width = 57
+      Height = 21
+      EditLabel.Width = 75
+      EditLabel.Height = 13
+      EditLabel.Caption = 'CS Lift Distance'
+      TabOrder = 7
+      Text = '0.0'
+    end
   end
   object GroupBox1: TGroupBox
     Left = 16
@@ -97,9 +108,8 @@ object RibbonLifterFrame: TRibbonLifterFrame
     object mRunningLbl: TLabel
       Left = 224
       Top = 114
-      Width = 60
+      Width = 3
       Height = 13
-      Caption = 'mRunningLbl'
     end
     object mLiftLocationXE: TFloatLabeledEdit
       Left = 16
@@ -147,18 +157,18 @@ object RibbonLifterFrame: TRibbonLifterFrame
     end
     object mMove1Btn: TButton
       Left = 224
-      Top = 83
+      Top = 88
       Width = 75
-      Height = 25
+      Height = 38
       Caption = 'Test'
       TabOrder = 4
       OnClick = mMove1BtnClick
     end
   end
-  object mMove1Timer: TTimer
+  object mMoveTimer: TTimer
     Enabled = False
     Interval = 100
-    OnTimer = mMove1TimerTimer
+    OnTimer = mMoveTimerTimer
     Left = 264
     Top = 56
   end

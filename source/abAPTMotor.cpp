@@ -15,10 +15,10 @@ APTMotor::APTMotor(int serialNo)
 	mMotorMessageProcessor(mMotorMessageContainer),
     mMotorCommandsPending(0)
 {
-    mProperties.add((BaseProperty*) &mManualJogVelocity.setup("MANUAL_JOG_VELOCITY"			, 			0.1, true));
-    mProperties.add((BaseProperty*) &mManualJogAcceleration.setup("MANUAL_JOG_ACCELERATION"	, 			0.1, true));
-    mProperties.add((BaseProperty*) &mPotentiometerVelocity.setup("POTENTIOMETER_VELOCITY"	, 			1, true));
-    mProperties.add((BaseProperty*) &mPositionRange.setup("POSITION_RANGE"					, 			Range<double>(0,0), true));
+    mProperties.add((BaseProperty*) &mManualJogVelocity.setup(		"MANUAL_JOG_VELOCITY"		, 			0.1,                true));
+    mProperties.add((BaseProperty*) &mManualJogAcceleration.setup(	"MANUAL_JOG_ACCELERATION"	, 			0.1,                true));
+    mProperties.add((BaseProperty*) &mPotentiometerVelocity.setup(	"POTENTIOMETER_VELOCITY"	, 			1, 					true));
+    mProperties.add((BaseProperty*) &mPositionRange.setup(			"POSITION_RANGE"			, 			Range<double>(0,0), true));
 
 	mMotorMessageProcessor.assignMotor(this);
 	mMotorMessageProcessor.start(true);
@@ -31,7 +31,7 @@ APTMotor::~APTMotor()
     {
 		Log(lDebug) << "...";
     }
-	Log(lDebug) <<"Destructing Motor with serial: "<<mSerial;
+	Log(lDebug) <<"Destructing motor with serial: "<<mSerial;
     mProperties.write();
 }
 
@@ -123,7 +123,7 @@ bool APTMotor::disconnect()
 
 void APTMotor::post(const MotorCommand& cmd)
 {
-	Log(lDebug) << "Command: "<<cmd<<" was posted";
+	Log(lDebug) << "Motor Command: \""<<cmd<<"\" was posted";
 	mMotorMessageContainer.post(cmd);
 }
 

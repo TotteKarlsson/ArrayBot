@@ -18,6 +18,9 @@ __fastcall TRibbonLifterFrame::TRibbonLifterFrame(ArrayBot& ab, IniFile& iniFile
     mLiftLocationXE->assignExternalProperty(&(mRibbonLifter.mLiftLocationX), true);
 	mLiftLocationYE->assignExternalProperty(&(mRibbonLifter.mLiftLocationY), true);
 
+
+	mLiftDistanceCSE->assignExternalProperty(&(mRibbonLifter.mLiftDistanceCS), true);
+
     mMoveToPickupLocationSpeedE->assignExternalProperty(&(mRibbonLifter.mMoveToLLVelocity), true);
     mMoveToPickupLocationAccE->assignExternalProperty(&(mRibbonLifter.mMoveToLLAcc), true);
 
@@ -76,24 +79,46 @@ void __fastcall TRibbonLifterFrame::mMove1BtnClick(TObject *Sender)
     	Log(lError) << "There was a problem setting up Move 1";
     }
 
-	mMove1Timer->Enabled = true;
+	mMoveTimer->Enabled = true;
     mRibbonLifter.executeMove1();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TRibbonLifterFrame::mMove1TimerTimer(TObject *Sender)
+void __fastcall TRibbonLifterFrame::mMoveTimerTimer(TObject *Sender)
 {
 	if(mRibbonLifter.isRunning())
     {
 		mRunningLbl->Caption = "Running..";
         mMove1Btn->Caption = "Stop";
+	    mMove2Btn->Caption = "Stop";
     }
     else
     {
         mMove1Btn->Caption = "Start";
+        mMove2Btn->Caption = "Start";
 		mRunningLbl->Caption = "Not running..";
-        mMove1Timer->Enabled = false;
+        mMoveTimer->Enabled = false;
     }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TRibbonLifterFrame::mMove2BtnClick(TObject *Sender)
+{
+	if(mRibbonLifter.isRunning())
+    {
+    	mRibbonLifter.stop();
+        return;
+    }
+
+	//Get Whisker X and Y distances
+    if(!mRibbonLifter.setupMove2())
+    {
+    	Log(lError) << "There was a problem setting up Move 1";
+    }
+
+	mMoveTimer->Enabled = true;
+    mRibbonLifter.executeMove2();
+
 }
 
 void __fastcall TRibbonLifterFrame::mMoveBtn2BtnClick(TObject *Sender)

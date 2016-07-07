@@ -181,7 +181,7 @@ void JoyStickMessageDispatcher::refresh()
     //Process POV event
     if(mJoyInfo.dwPOV != mPOV.mPOVState)
     {
-        Log(lDebug5) << "POV State changed";
+        Log(lInfo) << "POV State changed";
 
         //Get out of old state
     	switch(mPOV.mPOVState)
@@ -244,8 +244,8 @@ void JoyStickMessageDispatcher::refresh()
                 }
 			break;
 
-            case pvNotEngaged: 	Log(lInfo) <<"POV not engaged anymore."; break;
-            default:	       	Log(lInfo) <<"User presssed two POV buttons at the same time."; break;
+            case pvNotEngaged: 	Log(lDebug5) <<"POV not engaged anymore."; break;
+            default:	       	Log(lDebug5) <<"User presssed two POV buttons at the same time."; break;
         }
 
         mPOV.mPOVState = mJoyInfo.dwPOV;

@@ -1,6 +1,5 @@
 #ifndef abPairedMovesH
 #define abPairedMovesH
-#include "abExporter.h"
 #include "abABObject.h"
 #include "abPairedMove.h"
 #include <list>
@@ -16,7 +15,6 @@ typedef list<PairedMove> PMList;
 	Paired moves are saved in a INI file. Assign motors before 
     using.
 */
-
 class AB_CORE PairedMoves : public ABObject
 {
     public:
