@@ -44,13 +44,14 @@ object RibbonLifterFrame: TRibbonLifterFrame
       TabOrder = 2
       Text = '0.0'
     end
-    object Button1: TButton
+    object mMoveBtn2Btn: TButton
       Left = 224
       Top = 83
       Width = 75
       Height = 25
       Caption = 'Test'
       TabOrder = 3
+      OnClick = mMoveBtn2BtnClick
     end
     object mWhiskerXLiftStowPosW: TFloatLabeledEdit
       Left = 16

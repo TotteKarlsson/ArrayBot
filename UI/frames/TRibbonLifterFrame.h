@@ -14,27 +14,28 @@ class TRibbonLifterFrame : public TFrame
 {
     __published:	// IDE-managed Components
         TGroupBox *GroupBox2;
-        TButton *Button1;
+	TButton *mMoveBtn2Btn;
         TGroupBox *GroupBox1;
 
 		TFloatLabeledEdit *mLiftLocationXE;
 		TFloatLabeledEdit *mLiftLocationYE;
-	TFloatLabeledEdit *mInitialLiftSpeedZE;
-	TFloatLabeledEdit *mInitialLiftAccZE;
+		TFloatLabeledEdit *mInitialLiftSpeedZE;
+		TFloatLabeledEdit *mInitialLiftAccZE;
 		TFloatLabeledEdit *mWhiskerLiftOffZPositionE;
 
         TFloatLabeledEdit *mWhiskerXLiftStowPosW;
 
         TFloatLabeledEdit *mMoveToPickupLocationSpeedE;
         TFloatLabeledEdit *mMoveToPickupLocationAccE;
-	TButton *mMove1Btn;
+        TButton *mMove1Btn;
 
-	TFloatLabeledEdit *mInitialLiftSpeedYE;
-	TFloatLabeledEdit *mInitialLiftAccYE;
-	TTimer *mMove1Timer;
-	TLabel *mRunningLbl;
-	void __fastcall mMove1BtnClick(TObject *Sender);
-	void __fastcall mMove1TimerTimer(TObject *Sender);
+        TFloatLabeledEdit *mInitialLiftSpeedYE;
+        TFloatLabeledEdit *mInitialLiftAccYE;
+        TTimer *mMove1Timer;
+        TLabel *mRunningLbl;
+        void __fastcall mMove1BtnClick(TObject *Sender);
+        void __fastcall mMove1TimerTimer(TObject *Sender);
+	void __fastcall mMoveBtn2BtnClick(TObject *Sender);
 
     private:	// User declarations
         RibbonLifter					mRibbonLifter;

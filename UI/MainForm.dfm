@@ -2,7 +2,7 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot Version 0.5.8'
-  ClientHeight = 791
+  ClientHeight = 697
   ClientWidth = 1087
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,7 +24,7 @@ object Main: TMain
     Left = 960
     Top = 0
     Width = 127
-    Height = 791
+    Height = 697
     Align = alRight
     TabOrder = 0
     object mJSCSBtn: TSpeedButton
@@ -81,7 +81,7 @@ object Main: TMain
     end
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 663
+      Top = 569
       Width = 125
       Height = 127
       Align = alBottom
@@ -107,7 +107,7 @@ object Main: TMain
     Left = 0
     Top = 0
     Width = 960
-    Height = 791
+    Height = 697
     Align = alClient
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
@@ -116,7 +116,7 @@ object Main: TMain
       Left = 1
       Top = 1
       Width = 958
-      Height = 789
+      Height = 695
       ActivePage = TabSheet4
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
@@ -256,9 +256,9 @@ object Main: TMain
         end
         object mBottomPanel: TPanel
           Left = 0
-          Top = 552
+          Top = 544
           Width = 950
-          Height = 167
+          Height = 81
           Align = alBottom
           TabOrder = 2
         end
@@ -282,32 +282,32 @@ object Main: TMain
           Left = 0
           Top = 0
           Width = 950
-          Height = 719
+          Height = 625
           Align = alClient
           TabOrder = 0
           inline TXYZUnitFrame1: TXYZUnitFrame
             Left = 0
             Top = 351
-            Width = 946
+            Width = 929
             Height = 348
             Align = alTop
             TabOrder = 0
             ExplicitTop = 351
-            ExplicitWidth = 946
+            ExplicitWidth = 929
             ExplicitHeight = 348
             inherited mainGB: TGroupBox
-              Width = 946
+              Width = 929
               Height = 348
-              ExplicitWidth = 946
+              ExplicitWidth = 929
               ExplicitHeight = 348
               inherited TopPanel: TPanel
-                Width = 942
-                ExplicitWidth = 942
+                Width = 925
+                ExplicitWidth = 925
               end
               inherited ScrollBox1: TScrollBox
-                Width = 942
+                Width = 925
                 Height = 305
-                ExplicitWidth = 942
+                ExplicitWidth = 925
                 ExplicitHeight = 305
               end
             end
@@ -315,21 +315,21 @@ object Main: TMain
           inline TXYZUnitFrame2: TXYZUnitFrame
             Left = 0
             Top = 0
-            Width = 946
+            Width = 929
             Height = 351
             Align = alTop
             TabOrder = 1
-            ExplicitWidth = 946
+            ExplicitWidth = 929
             inherited mainGB: TGroupBox
-              Width = 946
-              ExplicitWidth = 946
+              Width = 929
+              ExplicitWidth = 929
               inherited TopPanel: TPanel
-                Width = 942
-                ExplicitWidth = 942
+                Width = 925
+                ExplicitWidth = 925
               end
               inherited ScrollBox1: TScrollBox
-                Width = 942
-                ExplicitWidth = 942
+                Width = 925
+                ExplicitWidth = 925
               end
             end
           end
@@ -513,14 +513,14 @@ object Main: TMain
           Left = 0
           Top = 0
           Width = 950
-          Height = 719
+          Height = 625
           Align = alClient
           TabOrder = 0
           object infoMemo: TMemo
             Left = 1
             Top = 31
             Width = 948
-            Height = 687
+            Height = 593
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
