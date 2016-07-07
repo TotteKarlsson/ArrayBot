@@ -208,18 +208,18 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Misc.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <FormResources Include="frames\TABProcessSequencerFrame.dfm"/>
         <FormResources Include="frames\TCombinedMoveFrame.dfm"/>
-        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="frames\TABProcessSequencerFrame.dfm"/>
+        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="MainForm.dfm"/>
+        <FormResources Include="frames\TRibbonLifterFrame.dfm"/>
         <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
         <FormResources Include="forms\abAddJoyStickSettingForm.dfm"/>
-        <FormResources Include="forms\abAddLiftForm.dfm"/>
         <FormResources Include="forms\TSplashForm.dfm"/>
         <FormResources Include="frames\abMotorFrame.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
-        <FormResources Include="frames\TRibbonLifterFrame.dfm"/>
+        <FormResources Include="forms\abAddLiftForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

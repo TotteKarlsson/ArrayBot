@@ -32,6 +32,9 @@ class AB_CORE RibbonLifter : public ABObject
 		bool						setupMove1();
 		bool						executeMove1();
 
+		bool						setupMove2();
+		bool						executeMove2();
+
         bool						start();
         bool						stop();
         bool						isRunning();
@@ -40,17 +43,15 @@ class AB_CORE RibbonLifter : public ABObject
                                     //parameters
     	Property<double>			mLiftLocationX;
     	Property<double>			mLiftLocationY;
-       	Property<double>			mLiftDistanceCS;
+
+       	Property<double>			mLiftVelocityY;
+       	Property<double>			mLiftAccY;
 
        	Property<double>			mMoveToLLVelocity;
        	Property<double>			mMoveToLLAcc;
 
        	Property<double>			mLiftVelocityZ;
        	Property<double>			mLiftAccZ;
-
-
-       	Property<double>			mLiftVelocityY;
-       	Property<double>			mLiftAccY;
 
 		Property<double>			mWhiskerLiftOffZPosition;
         Property<double>			mWhiskerLiftStowXPosition;

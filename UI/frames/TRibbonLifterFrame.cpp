@@ -96,4 +96,22 @@ void __fastcall TRibbonLifterFrame::mMove1TimerTimer(TObject *Sender)
     }
 }
 
+void __fastcall TRibbonLifterFrame::mMoveBtn2BtnClick(TObject *Sender)
+{
+	if(mRibbonLifter.isRunning())
+    {
+    	mRibbonLifter.stop();
+        return;
+    }
+	//Get Whisker X and Y distances
+    if(!mRibbonLifter.setupMove2())
+    {
+    	Log(lError) << "There was a problem setting up Move 2";
+    }
+
+	mMove1Timer->Enabled = true;
+    mRibbonLifter.executeMove2();
+
+}
+//---------------------------------------------------------------------------
 
