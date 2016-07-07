@@ -4,6 +4,7 @@
 #include "abAPTMotor.h"
 #include "TSplashForm.h"
 #include "TRibbonLifterFrame.h"
+#include "abXYZUnitFrame.h"
 using namespace mtk;
 
 static HWND gOtherAppWindow = NULL;
@@ -61,8 +62,8 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
     {
     	if(!mAB->isShuttingDown())
         {
-	        TXYZUnitFrame1->disable();
-    	    TXYZUnitFrame2->disable();
+	        mXYZUnitFrame1->disable();
+    	    mXYZUnitFrame2->disable();
 	    	mAB->shutDown();
         }
         else

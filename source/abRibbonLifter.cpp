@@ -17,6 +17,7 @@ mLiftVelocityZ(0),
 mLiftAccZ(0),
 mLiftVelocityY(0),
 mLiftAccY(0),
+mLiftDistanceCS(0),
 mWhiskerLiftOffZPosition(0),
 mWhiskerLiftStowXPosition(0),
 mMove1("RibbonLifterMove1"),
@@ -33,6 +34,7 @@ mProcessTimer(Poco::Timespan(100*Poco::Timespan::MILLISECONDS))
 
     mProperties.add((BaseProperty*) &mLiftVelocityZ.setup(		    "LIFT_VELOCITY_Z", 					    0));
     mProperties.add((BaseProperty*) &mLiftAccZ.setup(			    "LIFT_ACCELERATION_Z", 				    0));
+    mProperties.add((BaseProperty*) &mLiftDistanceCS.setup(		    "LIFT_DISTANCE_COVERSLIP",			    0));
 
     mProperties.add((BaseProperty*) &mLiftVelocityY.setup(			"LIFT_VELOCITY_Y", 					    0));
     mProperties.add((BaseProperty*) &mLiftAccY.setup(				"LIFT_ACCELERATION_Y", 				    0));

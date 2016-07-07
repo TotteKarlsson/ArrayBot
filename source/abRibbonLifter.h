@@ -40,12 +40,14 @@ class AB_CORE RibbonLifter : public ABObject
                                     //parameters
     	Property<double>			mLiftLocationX;
     	Property<double>			mLiftLocationY;
+       	Property<double>			mLiftDistanceCS;
 
        	Property<double>			mMoveToLLVelocity;
        	Property<double>			mMoveToLLAcc;
 
        	Property<double>			mLiftVelocityZ;
        	Property<double>			mLiftAccZ;
+
 
        	Property<double>			mLiftVelocityY;
        	Property<double>			mLiftAccY;

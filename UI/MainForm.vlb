@@ -22,14 +22,8 @@ Coordinates=750,141,58,33
 [mJSSpeedMediumBtn]
 Coordinates=425,284,123,33
 
-[InitCloseBtn]
-Coordinates=368,71,74,51
-
 [mAngleControllerAccE]
 Coordinates=554,281,127,51
-
-[TXYZUnitFrame2]
-Coordinates=651,373,97,33
 
 [mMaxXYJogVelocityJoystick]
 Coordinates=750,71,156,51
@@ -91,9 +85,6 @@ Coordinates=227,462,47,33
 [Button5]
 Coordinates=168,462,53,33
 
-[TXYZUnitFrame1]
-Coordinates=944,365,97,33
-
 [mAboutBtn]
 Coordinates=89,462,70,33
 
@@ -132,4 +123,7 @@ Coordinates=750,263,81,51
 
 [mBottomPanel]
 Coordinates=750,333,87,51
+
+[ReInitBotBtn]
+Coordinates=368,71,74,51
 

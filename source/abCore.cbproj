@@ -218,6 +218,10 @@
             <DependentOn>abProcessSequences.h</DependentOn>
             <BuildOrder>18</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abRibbonLifter.cpp">
+            <DependentOn>abRibbonLifter.h</DependentOn>
+            <BuildOrder>37</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
             <BuildOrder>23</BuildOrder>
         </CppCompile>

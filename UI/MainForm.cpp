@@ -16,13 +16,12 @@
 #include "TABProcessSequencerFrame.h"
 #include "TXYZPositionsFrame.h"
 #include "TRibbonLifterFrame.h"
+#include "abXYZUnitFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
-#pragma link "abXYZUnitFrame"
-#pragma link "abMotorFrame"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -172,8 +171,17 @@ void __fastcall	TMain::setupUIFrames()
     mLiftCB->ItemIndex = 0;
     mLiftCB->OnChange(NULL);
 
-    TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
-    TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
+	//Create and setup XYZ unit frames
+    mXYZUnitFrame1 = new TXYZUnitFrame(this);
+    mXYZUnitFrame1->Parent = ScrollBox1;
+    mXYZUnitFrame1->Align = alTop;
+
+    mXYZUnitFrame2 = new TXYZUnitFrame(this);
+    mXYZUnitFrame2->Parent = ScrollBox1;
+    mXYZUnitFrame2->Align = alTop;
+
+    mXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
+    mXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
 
     //Setup JoyStick
     //ArrayBotJoyStick stuff.....
@@ -201,10 +209,10 @@ void __fastcall	TMain::setupUIFrames()
         btn->Parent = mBottomPanel;
         btn->Caption = vclstr(ps->getName());
         btn->Align = alLeft;
-        btn->Width = btn->Height;
         btn->OnClick = runSequenceBtnClick;
         btn->Font->Size = 14;
         ps = pss.getNext();
+        btn->Width = mBottomPanel->Height;
     }
 
     //Create the ribbon lifter frame
@@ -232,12 +240,12 @@ void __fastcall TMain::runSequenceBtnClick(TObject *Sender)
     }
 }
 
-void __fastcall TMain::initBotAExecute(TObject *Sender)
+void __fastcall TMain::reInitBotAExecute(TObject *Sender)
 {
 	mAB->initialize();
 
-	TXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
-	TXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
+	mXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
+	mXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
 
     //ArrayBotJoyStick stuff.....
     mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
@@ -249,15 +257,15 @@ void __fastcall TMain::initBotAExecute(TObject *Sender)
     	mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
     }
 
-    InitCloseBtn->Action = ShutDownA;
+    ReInitBotBtn->Action = ShutDownA;
 }
 
 void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 {
     mAB->getJoyStick().disable();
 
-    TXYZUnitFrame1->disable();
-    TXYZUnitFrame2->disable();
+    mXYZUnitFrame1->disable();
+    mXYZUnitFrame2->disable();
 
     //The shutdown disconnects all devices
     mAB->shutDown();
@@ -267,7 +275,7 @@ void __fastcall TMain::ShutDownAExecute(TObject *Sender)
     	sleep(100);
     }
 
-    InitCloseBtn->Action = initBotA;
+    ReInitBotBtn->Action = reInitBotA;
 }
 
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
@@ -548,7 +556,7 @@ void __fastcall TMain::mAboutBtnClick(TObject *Sender)
 void __fastcall	TMain::onFinishedInitBot()
 {
 	Log(lInfo) << "Synching arraybot with UI";
-    InitCloseBtn->Action = ShutDownA;
+    ReInitBotBtn->Action = ShutDownA;
 }
 
 //---------------------------------------------------------------------------

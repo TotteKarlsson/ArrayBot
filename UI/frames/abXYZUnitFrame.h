@@ -6,29 +6,30 @@
 #include <Vcl.Forms.hpp>
 #include "TSTDStringLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "abMotorFrame.h"
 //---------------------------------------------------------------------------
 
 class XYZUnit;
+class TMotorFrame;
 
 class TXYZUnitFrame : public TFrame
 {
-    __published:	// IDE-managed Components
+    __published:
         TGroupBox 		*mainGB;
 		TPanel 			*TopPanel;
         TScrollBox 		*ScrollBox1;
 
-    private:	// User declarations
-        XYZUnit*			mUnit;
-        TMotorFrame*		mXMotorFrame;
-        TMotorFrame*		mYMotorFrame;
-        TMotorFrame*		mZMotorFrame;
-        TMotorFrame*		mAngleMotorFrame;
+    private:
+        XYZUnit*			    mUnit;
+        TMotorFrame*		    mXMotorFrame;
+        TMotorFrame*		    mYMotorFrame;
+        TMotorFrame*		    mZMotorFrame;
+        TMotorFrame*		    mAngleMotorFrame;
+		static int				mFrameNr;
 
-    public:		// User declarations
-        __fastcall 			TXYZUnitFrame(TComponent* Owner);
-        void				assignUnit(XYZUnit* u);
-        void				disable();
+    public:
+        __fastcall 			    TXYZUnitFrame(TComponent* Owner);
+        void				    assignUnit(XYZUnit* u);
+        void				    disable();
 };
 extern PACKAGE TXYZUnitFrame *XYZUnitFrame;
 

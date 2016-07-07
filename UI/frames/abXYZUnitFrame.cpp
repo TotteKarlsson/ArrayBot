@@ -4,6 +4,7 @@
 #include "abXYZUnit.h"
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
+#include "abMotorFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"
@@ -13,6 +14,7 @@
 TXYZUnitFrame *XYZUnitFrame;
 
 using namespace mtk;
+int TXYZUnitFrame::mFrameNr = 0;
 //---------------------------------------------------------------------------
 __fastcall TXYZUnitFrame::TXYZUnitFrame(TComponent* Owner)
 	: TFrame(Owner),
@@ -21,7 +23,9 @@ __fastcall TXYZUnitFrame::TXYZUnitFrame(TComponent* Owner)
     mYMotorFrame(NULL),
     mZMotorFrame(NULL),
     mAngleMotorFrame(NULL)
-{}
+{
+    TFrame::Name = vclstr("XYZUnitFrame_" + mtk::toString(++mFrameNr));
+}
 
 //---------------------------------------------------------------------------
 void TXYZUnitFrame::assignUnit(XYZUnit* u)
@@ -29,7 +33,6 @@ void TXYZUnitFrame::assignUnit(XYZUnit* u)
 	mUnit = u;
     mainGB->Caption = vclstr(u->getName());
 
-	//Start motor status timer
     if(mUnit)
     {
     	if(mUnit->getAngleMotor())
@@ -79,7 +82,6 @@ void TXYZUnitFrame::assignUnit(XYZUnit* u)
                 mXMotorFrame->assignMotor(mUnit->getXMotor());
             }
         }
-
     }
 }
 
@@ -104,6 +106,5 @@ void TXYZUnitFrame::disable()
     {
     	mAngleMotorFrame->mMotorStatusTimer->Enabled = false;
     }
-
 }
 

@@ -16,8 +16,6 @@
 #include <Vcl.AppEvnts.hpp>
 #include "Poco/Timestamp.h"
 #include "TSTDStringLabeledEdit.h"
-#include "abXYZUnitFrame.h"
-#include "abMotorFrame.h"
 #include "TRegistryForm.h"
 #include "abArrayBot.h"
 #include "mtkIniFileProperties.h"
@@ -34,6 +32,8 @@ using mtk::IniFileProperties;
 
 class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
+class TXYZUnitFrame;
+
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
 {
@@ -50,7 +50,7 @@ class TMain : public TRegistryForm
         TAction *moveBackward;
         TAction *stopAllA;
         TApplicationEvents *ApplicationEvents1;
-	TAction *initBotA;
+	TAction *reInitBotA;
         TAction *ShutDownA;
 	TPanel *Btnpanel;
 	TFileExit *FileExit1;
@@ -63,8 +63,6 @@ class TMain : public TRegistryForm
 	TSpeedButton *mJSSpeedSlowBtn;
 	TTabSheet *TabSheet1;
 	TScrollBox *ScrollBox1;
-	TXYZUnitFrame *TXYZUnitFrame1;
-	TXYZUnitFrame *TXYZUnitFrame2;
 	TTabSheet *TabSheet2;
 	TGroupBox *JoyStickGB2;
 	TFloatLabeledEdit *mZJogAccelerationJoystick;
@@ -73,7 +71,7 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mMaxXYJogVelocityJoystick;
 	TComboBox *JoyStickSettingsCB;
 	TBitBtn *BitBtn1;
-	TBitBtn *InitCloseBtn;
+	TBitBtn *ReInitBotBtn;
 	TTabSheet *TabSheet5;
 	TPanel *BottomPanel;
 	TMemo *infoMemo;
@@ -116,7 +114,7 @@ class TMain : public TRegistryForm
     void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
     void __fastcall BitBtn3Click(TObject *Sender);
     void __fastcall JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-    void __fastcall initBotAExecute(TObject *Sender);
+    void __fastcall reInitBotAExecute(TObject *Sender);
     void __fastcall ShutDownAExecute(TObject *Sender);
     void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 
@@ -159,6 +157,9 @@ class TMain : public TRegistryForm
         ArrayBot*					    mAB;
 	    ProcessSequencer*  				mProcessSequencer;
 		PairedMove* 				    getCurrentPairedMove();
+
+		TXYZUnitFrame*					mXYZUnitFrame1;
+		TXYZUnitFrame*					mXYZUnitFrame2;
 
 		TABProcessSequencerFrame*		mABProcessSequencerFrame;
 		void __fastcall		            OnException();

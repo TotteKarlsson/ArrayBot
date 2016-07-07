@@ -136,11 +136,11 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcJogForward:
-	                    	mMotor->jogForward(false);
+                    	mMotor->jogForward(false);
 					break;
 
                     case mcJogReverse:
-	                    	mMotor->jogReverse(false);
+                    	mMotor->jogReverse(false);
 					break;
 
 //                    case mcMoveDistance:
@@ -171,7 +171,7 @@ void MotorMessageProcessor::worker()
 					break;
                 }
                 mLastProcessedCommand = cmd.getCore();
-                sleep(100);
+                sleep(10);
             }
 
 		}//mutex

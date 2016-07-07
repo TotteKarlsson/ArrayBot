@@ -52,24 +52,22 @@ bool PairedMove::check()
         return false;
     }
 
-    //Calculate the longest distance we can move
-    if(mMotor1->getPosition() > mMotor1->getPosition())
-    {
-    	mDistance = mMotor1->getMaxPosition()  - mMotor1->getPosition();
-    }
-    else
-    {
-    	mDistance = mMotor2->getMaxPosition()  - mMotor2->getPosition();
-    }
+    //Find out which motor can move least
+    double dist1 =  mMotor1->getMaxPosition()  - mMotor1->getPosition();
+    double dist2  = mMotor2->getMaxPosition()  - mMotor2->getPosition();
+
+    //Choose the shortest "longest" distance that we can move
+    mDistance = dist1 < dist2 ? dist1 : dist2;
+    mDistance = mDistance - 2.0;
 
     //get current positions and carry out some moveTo's
 	double newZ1Pos = mMotor1->getPosition() + mDistance;
 	double newZ2Pos = mMotor2->getPosition() + mDistance;
 
-    if(newZ1Pos >  mMotor2->getMaxPosition())
+    if(newZ1Pos >  mMotor1->getMaxPosition())
     {
     	stringstream s;
-        s << "New position ("<<newZ1Pos<<") to big for motor with label: \""<<mMotor1->getName()<<"\"\rMax position is "<<mMotor1->getMaxPosition()<<" mm";
+        s << "New position ("<<newZ1Pos<<") too big for motor with label: \""<<mMotor1->getName()<<"\"\rMax position is "<<mMotor1->getMaxPosition()<<" mm";
     	Log(lError) << s.str();
         mCheckMessage = s.str();
         return false;
@@ -78,7 +76,7 @@ bool PairedMove::check()
     if(newZ2Pos > mMotor2->getMaxPosition())
     {
     	stringstream s;
-        s << "New position ("<<newZ2Pos<<") to big for motor with label: \""<<mMotor2->getName()<<"\"\rMax position is "<<mMotor2->getMaxPosition()<<" mm";
+        s << "New position ("<<newZ2Pos<<") too big for motor with label: \""<<mMotor2->getName()<<"\"\rMax position is "<<mMotor2->getMaxPosition()<<" mm";
     	Log(lError) << s.str();
         mCheckMessage = s.str();
         return false;

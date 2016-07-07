@@ -9,6 +9,7 @@
 #include "abExceptions.h"
 #include "TSplashForm.h"
 #include "mtkRestartApplicationUtils.h"
+
 using namespace mtk;
 using namespace std;
 
@@ -39,7 +40,7 @@ extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
-extern bool         gHideSplash                 = false;
+extern bool         gHideSplash                 = true;//false;
 extern TSplashForm* gSplashForm                 = NULL;
 //extern SQLite       gDB                         ;
 

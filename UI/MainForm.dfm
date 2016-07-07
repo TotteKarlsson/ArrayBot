@@ -117,7 +117,7 @@ object Main: TMain
       Top = 1
       Width = 958
       Height = 789
-      ActivePage = TabSheet4
+      ActivePage = RibbonLifterTabSheet
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -285,54 +285,6 @@ object Main: TMain
           Height = 719
           Align = alClient
           TabOrder = 0
-          inline TXYZUnitFrame1: TXYZUnitFrame
-            Left = 0
-            Top = 351
-            Width = 946
-            Height = 348
-            Align = alTop
-            TabOrder = 0
-            ExplicitTop = 351
-            ExplicitWidth = 946
-            ExplicitHeight = 348
-            inherited mainGB: TGroupBox
-              Width = 946
-              Height = 348
-              ExplicitWidth = 946
-              ExplicitHeight = 348
-              inherited TopPanel: TPanel
-                Width = 942
-                ExplicitWidth = 942
-              end
-              inherited ScrollBox1: TScrollBox
-                Width = 942
-                Height = 305
-                ExplicitWidth = 942
-                ExplicitHeight = 305
-              end
-            end
-          end
-          inline TXYZUnitFrame2: TXYZUnitFrame
-            Left = 0
-            Top = 0
-            Width = 946
-            Height = 351
-            Align = alTop
-            TabOrder = 1
-            ExplicitWidth = 946
-            inherited mainGB: TGroupBox
-              Width = 946
-              ExplicitWidth = 946
-              inherited TopPanel: TPanel
-                Width = 942
-                ExplicitWidth = 942
-              end
-              inherited ScrollBox1: TScrollBox
-                Width = 942
-                ExplicitWidth = 942
-              end
-            end
-          end
         end
       end
       object mMoveSequencesPage: TTabSheet
@@ -473,14 +425,14 @@ object Main: TMain
           ParentFont = False
           TabOrder = 1
         end
-        object InitCloseBtn: TBitBtn
+        object ReInitBotBtn: TBitBtn
           Left = 630
           Top = 32
           Width = 177
           Height = 121
-          Action = initBotA
+          Action = reInitBotA
           BiDiMode = bdLeftToRight
-          Caption = 'Initialize Devices'
+          Caption = 'Reinitialize Devices'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -19
@@ -611,9 +563,9 @@ object Main: TMain
       Caption = 'Stop All'
       OnExecute = stopAllAExecute
     end
-    object initBotA: TAction
-      Caption = 'Initialize Devices'
-      OnExecute = initBotAExecute
+    object reInitBotA: TAction
+      Caption = 'Reinitialize Devices'
+      OnExecute = reInitBotAExecute
     end
     object ShutDownA: TAction
       Caption = 'Disconnect Devices'

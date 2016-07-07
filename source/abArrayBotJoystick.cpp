@@ -75,21 +75,25 @@ void ArrayBotJoyStick::setAxisEvent(int axis, JoyStickAxisEvent move)
 bool ArrayBotJoyStick::disableCoverSlipAxes()
 {
 	mCoverSlipAxesEnabled = false;
+    return true;
 }
 
 bool ArrayBotJoyStick::enableCoverSlipAxes()
 {
 	mCoverSlipAxesEnabled = true;
+    return true;
 }
 
 bool ArrayBotJoyStick::disableWhiskerAxes()
 {
 	mWhiskerAxesEnabled = false;
+    return true;
 }
 
 bool ArrayBotJoyStick::enableWhiskerAxes()
 {
 	mWhiskerAxesEnabled = true;
+    return true;
 }
 
 bool ArrayBotJoyStick::enable()

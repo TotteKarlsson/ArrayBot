@@ -1,3 +1,9 @@
+Release 0.6.4 (Jul 6)
+=======================
+* Fixed lifting bug
+* Updating RibbonLifter
+* Implementing the Ribbon lifter
+
 Release 0.6.3 (Jul 5)
 =======================
 * Added switch joystick button on settings page
