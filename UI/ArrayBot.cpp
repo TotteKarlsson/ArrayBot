@@ -14,10 +14,11 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
-USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
 USEFORM("frames\TCombinedMoveFrame.cpp", CombinedMoveFrame); /* TFrame: File Type */
-USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
+USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
+USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
+USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
 USEFORM("MainForm.cpp", Main);
 USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
 USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
@@ -25,7 +26,6 @@ USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("frames\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
@@ -103,7 +103,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         }
 
 		Application->Title = "ArrayBot - Software for Robots";
-		TStyleManager::TrySetStyle("Smokey Quartz Kamri");
+		TStyleManager::TrySetStyle("Amakrits");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->CreateForm(__classid(TShowFileContentForm), &ShowFileContentForm);
 		Application->CreateForm(__classid(TAddLiftSettingForm), &AddLiftSettingForm);

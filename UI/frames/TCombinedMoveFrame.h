@@ -32,7 +32,7 @@ __published:	// IDE-managed Components
 
     private:	// User declarations
 		ArrayBot*						mAB;
-		CombinedMove*				mCombinedMove;
+		CombinedMove*					mCombinedMove;
 		void					    	selectItem(ab::Move* mv);
 
 	public:		// User declarations

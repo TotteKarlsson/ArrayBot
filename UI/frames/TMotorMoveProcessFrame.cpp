@@ -6,6 +6,7 @@
 #include "mtkVCLUtils.h"
 #include "abXYZUnit.h"
 #include "abArrayBot.h"
+#include "abAbsoluteMove.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -19,7 +20,7 @@ __fastcall TMotorMoveProcessFrame::TMotorMoveProcessFrame(TComponent* Owner)
 {}
 
 
-void TMotorMoveProcessFrame::populate(ArrayBot* ab, ab::Move* m)
+void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
 {
 	mAB = ab;
     MotorsCB->Clear();
@@ -28,7 +29,7 @@ void TMotorMoveProcessFrame::populate(ArrayBot* ab, ab::Move* m)
     rePopulate(m);
 }
 
-void TMotorMoveProcessFrame::rePopulate(ab::Move* m)
+void TMotorMoveProcessFrame::rePopulate(AbsoluteMove* m)
 {
 	if(!m)
     {

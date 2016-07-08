@@ -107,6 +107,9 @@
         <CppCompile Include="abABObject.cpp">
             <BuildOrder>2</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abAbsoluteMove.cpp">
+            <BuildOrder>38</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abAPTDevice.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>

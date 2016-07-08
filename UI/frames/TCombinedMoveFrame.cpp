@@ -8,6 +8,7 @@
 #include "mtkLogger.h"
 #include "abArrayBot.h"
 #include "abAPTMotor.h"
+#include "abAbsoluteMove.h"
 
 #pragma package(smart_init)
 #pragma link "TMotorMoveProcessFrame"
@@ -64,10 +65,10 @@ void __fastcall TCombinedMoveFrame::addMoveAExecute(TObject *Sender)
         return;
     }
 
-    ab::Move* lm = new ab::Move("");
+    ab::Move* lm = new AbsoluteMove("");
 
     //Add the move to the container.. this will give the move a name
-    mCombinedMove->addMove(*lm);
+    mCombinedMove->addMove(lm);
 
     //Add move to Listbox
     int indx = mMoveLB->Items->Add(lm->getProcessName().c_str());
@@ -88,14 +89,13 @@ void __fastcall TCombinedMoveFrame::removeMoveAExecute(TObject *Sender)
         mCombinedMove->removeMove(moveName);
 		rePopulate(mCombinedMove);
     }
-
 }
 
 void TCombinedMoveFrame::selectItem(ab::Move* mv)
 {
-	if(mv)
+	if(dynamic_cast<AbsoluteMove*>(mv))
     {
-		this->TMotorMoveProcessFrame1->populate(mAB, mv);
+		this->TMotorMoveProcessFrame1->populate(mAB, dynamic_cast<AbsoluteMove*>(mv));
    		EnableDisableFrame(this->TMotorMoveProcessFrame1, true);
     }
 }

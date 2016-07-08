@@ -6,6 +6,7 @@
 #include "abCombinedMove.h"
 #include "abPosition.h"
 #include "abArrayBot.h"
+#include "abAbsoluteMove.h"
 using namespace mtk;
 using namespace tinyxml2;
 
@@ -150,7 +151,6 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
     }
 
     XMLElement* elem = element->FirstChildElement("process_type");
-
 	ProcessType pt = toProcessType(elem->GetText());
 
   	//What process?
@@ -170,23 +170,20 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
                 //Loop over childs
                 while(processE)
                 {
+	                AbsoluteMove* lm(NULL);
 
-                    const char* val = processE->Attribute("name");
-                    if(val)
+                    const char* name = processE->Attribute("name");
+                    if(name)
                     {
-			            Log(lDebug) << "Loading element: "<<val;
+			            Log(lDebug) << "Loading element: "<<name;
 
-                        //Check type before creating... add later
-    	                ab::Move* lm = new ab::Move(val);
-
-                        val = processE->Attribute("type");
-                        if(val)
+                        const char* type = processE->Attribute("type");
+                        if(compareNoCase(type, "ABSOLUTE_MOVE"))
                         {
-                        	lm->setMoveType(ab::toMoveType(val));
+    	  	                lm = new AbsoluteMove(name);
                         }
 
-                        //
-                        val = processE->Attribute("motor_name");
+                        const char* val = processE->Attribute("motor_name");
                         if(val)
                         {
                         	lm->setMotorName(val);
@@ -225,7 +222,7 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
                         //We need to associate the motor with 'name' with a
                         //real motor object provided for by ArrayBot
                         lm->assignUnit(mProcessSequence.getArrayBot());
-	                    p->addMove(*lm);
+	                    p->addMove(lm);
 	                }
 
                     processE = processE->NextSiblingElement();

@@ -6,8 +6,9 @@
 class AB_CORE ABObject
 {
 	public:
-    					ABObject();
-		virtual			~ABObject();
+    							ABObject();
+		virtual					~ABObject();
+        virtual const char*	 	getTypeName() const;
 
 	protected:
 

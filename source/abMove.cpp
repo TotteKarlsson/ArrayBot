@@ -1,10 +1,10 @@
 #pragma hdrstop
 #include "abMove.h"
 #include "abXYZUnit.h"
-#include "abAPTMotor.h"
-#include "abPosition.h"
 #include "mtkLogger.h"
 #include "abArrayBot.h"
+#include "abAPTMotor.h"
+#include "abPosition.h"
 
 namespace ab
 {
@@ -13,16 +13,12 @@ using namespace mtk;
 using namespace ab;
 
 //---------------------------------------------------------------------------
-Move::Move(const string& lbl, MoveType type, const ab::Position& p, double maxVel, double acc)
+Move::Move(const string& lbl, double maxVel, double acc)
 :
 Process(lbl, ptMove),
-mPosition(p),
-mPositionResolution(1.0e-3),
-mMoveType(type),
 mMaxVelocity(maxVel),
 mAcceleration(acc)
-{
-}
+{}
 
 void Move::assignUnit(ABObject* o)
 {
@@ -86,10 +82,6 @@ bool Move::isProcessed()
         mIsBeingProcessed 	= false;
         return true;
     }
-    else
-    {
-        return false;
-    }
 
 	return false;
 }
@@ -104,89 +96,12 @@ bool Move::isMotorCommandPending()
 	return false;
 }
 
-bool Move::isDone()
-{
-	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
-    if(o)
-    {
-    	//If still moving we cannot be done(!)
-    	if(o->isActive())
-        {
-        	return false;
-        }
-
-    	double p = o->getPosition();
-    	return (isEqual(p, mPosition.x(), mPositionResolution)) ? true : false;
-    }
-
-    return false;
-}
-
 bool Move::isMotorActive()
 {
 	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
     if(o)
     {
     	return o->isActive();
-    }
-
-    return false;
-}
-
-XMLElement* Move::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
-{
-    //Create XML for saving to file
-    XMLElement* processNode  	= doc.NewElement("process");
-    XMLNode*    rootNode 		= doc.InsertFirstChild(processNode);
-
-    //Attributes
-    processNode->SetAttribute("name", mProcessName.c_str());
-    processNode->SetAttribute("type", toString(mMoveType).c_str());
-	processNode->SetAttribute("motor_name", mMotorName.c_str());
-	processNode->SetAttribute("final_position", toString(getPosition().x()).c_str());
-	processNode->SetAttribute("max_velocity", toString(getMaxVelocity()).c_str());
-	processNode->SetAttribute("acc", toString(getAcceleration()).c_str());
-	processNode->SetAttribute("pre_dwell_time", toString(getPreDwellTime()).c_str());
-	processNode->SetAttribute("post_dwell_time", toString(getPostDwellTime()).c_str());
-
-    //Elements
-//    XMLElement* elem = doc.NewElement("process_name");
-//    processNode->InsertFirstChild(elem);
-//        elem->SetText(mProcessName.c_str());
-//    processNode->InsertEndChild(elem);
-//
-//    //Elements
-//    elem = doc.NewElement("process_type");
-//    processNode->InsertFirstChild(elem);
-//        elem->SetText(getProcessType().c_str());
-//    processNode->InsertEndChild(elem);
-
-    processNode->InsertEndChild(rootNode);
-    docRoot->InsertEndChild(processNode);
-
-    return processNode;
-}
-
-bool Move::start()
-{
-	Process::start();
-	XYZUnit* o = dynamic_cast<XYZUnit*>(mUnit);
-    if(o)
-    {
-		return o->moveAbsolute(mPosition);
-    }
-
-	APTMotor* m = dynamic_cast<APTMotor*>(mUnit);
-    if(m)
-    {
-		if(mMaxVelocity == 0 || mAcceleration == 0)
-        {
-        	Log(lError) << "Move cannot be executed with zero velocity or acceleration";
-            return false;
-        }
-    	m->setVelocity(mMaxVelocity);
-        m->setAcceleration(mAcceleration);
-        return m->moveAbsolute(mPosition.x());
     }
 
     return false;
@@ -213,40 +128,37 @@ bool Move::stop()
 
 bool Move::undo()
 {
-	Position p("undo pos", mPosition.x() * -1, mPosition.y() * -1, mPosition.z() * -1);
-
-	XYZUnit* unit = dynamic_cast<XYZUnit*>(mUnit);
-    if(unit)
-    {
-		return unit->moveAbsolute(p);
-    }
-
 	return false;
 }
 
-MoveType toMoveType(const string& mt)
-{
-	if(mt == "ABSOLUTE_MOVE")
-    {
-    	return mtAbsolute;
-    }
-
-	if(mt == "RELATIVE_MOVE")
-    {
-    	return mtRelative;
-    }
-
-    return mtUnknown;
-}
-
-string toString(MoveType mt)
-{
-	switch(mt)
-    {
-    	case mtAbsolute: 	return "ABSOLUTE_MOVE";
-    	case mtRelative: 	return "RELATIVE_MOVE";
-        default:    		return "UNKNOWN_MOVE";
-    }
-}
+//MoveType toMoveType(const string& mt)
+//{
+//	if(mt == "ABSOLUTE_MOVE")
+//    {
+//    	return mtAbsolute;
+//    }
+//
+//	if(mt == "RELATIVE_MOVE")
+//    {
+//    	return mtRelative;
+//    }
+//
+//	if(mt == "CONTINOUS_MOVE")
+//    {
+//    	return mtContinous;
+//    }
+//    return mtUnknown;
+//}
+//
+//string toString(MoveType mt)
+//{
+//	switch(mt)
+//    {
+//    	case mtAbsolute: 	return "ABSOLUTE_MOVE";
+//    	case mtRelative: 	return "RELATIVE_MOVE";
+//    	case mtContinous: 	return "CONTINOUS_MOVE";
+//        default:    		return "UNKNOWN_MOVE";
+//    }
+//}
 
 }

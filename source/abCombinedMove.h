@@ -1,12 +1,16 @@
 #ifndef abCombinedMoveH
 #define abCombinedMoveH
 #include "abProcess.h"
-#include "abMove.h"
+//#include "abMove.h"
 #include <vector>
 #include "mtkXMLUtils.h"
 //---------------------------------------------------------------------------
 using namespace std;
 
+namespace ab
+{
+class Move;
+}
 
 //TODO: Rename this one to MultiMove
 class AB_CORE CombinedMove : public Process
@@ -19,7 +23,7 @@ class AB_CORE CombinedMove : public Process
         virtual mtk::XMLElement*    addToXMLDocumentAsChildProcess(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
         int							getNumberOfMoves(){return mMoves.size();}
 
-		virtual void	            addMove(ab::Move& lm);
+		virtual void	            addMove(ab::Move* lm);
         ab::Move*					getMove(const string& lbl);
         ab::Move*					getMove(int i);
 
@@ -39,7 +43,7 @@ class AB_CORE CombinedMove : public Process
         virtual bool	            areMotorsActive();
 
     protected:                      //!The Moves container contain all moves
-		vector<ab::Move>			mMoves;
+		vector<ab::Move*>			mMoves;
 };
 
 #endif

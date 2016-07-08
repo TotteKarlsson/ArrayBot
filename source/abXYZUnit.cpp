@@ -217,39 +217,6 @@ string XYZUnit::getName() const
 	return mName;
 }
 
-bool XYZUnit::moveAbsolute(const ab::Position& pos)
-{
-	if(mXMotor && mYMotor && mZMotor)
-    {
-        //Check pos validity..
-        mXMotor->moveAbsolute(pos.x());
-        mYMotor->moveAbsolute(pos.y());
-        mZMotor->moveAbsolute(pos.z());
-        return true;
-    }
-
-    return false;
-}
-
-bool XYZUnit::moveRelative(const ab::Position& pos)
-{
-	if(mXMotor)
-    {
-    	mXMotor->moveRelative(pos.x());
-    }
-
-	if(mYMotor)
-    {
-    	mYMotor->moveRelative(pos.y());
-    }
-
-   	if(mZMotor)
-    {
-    	mZMotor->moveRelative(pos.z());
-    }
-    return true;
-}
-
 void XYZUnit::home()
 {
     if(mXMotor)

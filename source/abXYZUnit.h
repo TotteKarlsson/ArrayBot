@@ -55,10 +55,6 @@ class AB_CORE XYZUnit : public ABObject
                                         //use a reference for each class that needs to use it
     	DeviceManager	                mDeviceManager;
 
-        						        //!Move absolute moves to pos, regardless of
-                                        //current position
-        bool					        moveAbsolute(const ab::Position& pos);
-        bool					        moveRelative(const ab::Position& pos);
 
 	protected:
 		string					        mName;

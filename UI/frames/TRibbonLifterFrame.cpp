@@ -18,7 +18,6 @@ __fastcall TRibbonLifterFrame::TRibbonLifterFrame(ArrayBot& ab, IniFile& iniFile
     mLiftLocationXE->assignExternalProperty(&(mRibbonLifter.mLiftLocationX), true);
 	mLiftLocationYE->assignExternalProperty(&(mRibbonLifter.mLiftLocationY), true);
 
-
 	mLiftDistanceCSE->assignExternalProperty(&(mRibbonLifter.mLiftDistanceCS), true);
 
     mMoveToPickupLocationSpeedE->assignExternalProperty(&(mRibbonLifter.mMoveToLLVelocity), true);
@@ -118,25 +117,5 @@ void __fastcall TRibbonLifterFrame::mMove2BtnClick(TObject *Sender)
 
 	mMoveTimer->Enabled = true;
     mRibbonLifter.executeMove2();
-
 }
-
-void __fastcall TRibbonLifterFrame::mMoveBtn2BtnClick(TObject *Sender)
-{
-	if(mRibbonLifter.isRunning())
-    {
-    	mRibbonLifter.stop();
-        return;
-    }
-	//Get Whisker X and Y distances
-    if(!mRibbonLifter.setupMove2())
-    {
-    	Log(lError) << "There was a problem setting up Move 2";
-    }
-
-	mMove1Timer->Enabled = true;
-    mRibbonLifter.executeMove2();
-
-}
-//---------------------------------------------------------------------------
 

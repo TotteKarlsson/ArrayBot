@@ -9,10 +9,8 @@
 #include <Vcl.ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 
-namespace ab
-{
-	class Move;
-}
+class AbsoluteMove;
+
 
 class ArrayBot;
 class XYZUnit;
@@ -33,14 +31,14 @@ __published:	// IDE-managed Components
 	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
     private:	// User declarations
-        ab::Move* 		 			mMove;
+        AbsoluteMove* 		 			mMove;
         ArrayBot*					mAB;
 		void 						populateMotorCB();
 
     public:		// User declarations
                         __fastcall TMotorMoveProcessFrame(TComponent* Owner);
-        void            		   populate(ArrayBot* ab, ab::Move* m);
-        void            		   rePopulate(ab::Move* m);
+        void            		   populate(ArrayBot* ab, AbsoluteMove* m);
+        void            		   rePopulate(AbsoluteMove* m);
 };
 
 extern PACKAGE TMotorMoveProcessFrame *MotorMoveProcessFrame;
