@@ -29,10 +29,20 @@ APTMotor::~APTMotor()
 	mMotorMessageProcessor.stop();
     while(mMotorMessageProcessor.isRunning())
     {
-		Log(lDebug) << "...";
+		sleep(5);
     }
 	Log(lDebug) <<"Destructing motor with serial: "<<mSerial;
     mProperties.write();
+}
+
+bool APTMotor::isMotorCommandPending()
+{
+	return (mMotorCommandsPending >= 1) ? true : false;
+}
+
+bool APTMotor::isAtDesiredPosition()
+{
+	return isEqual(mDesiredPosition, getPosition(), 1.e-3);
 }
 
 double APTMotor::getMaxPosition()
@@ -123,7 +133,6 @@ bool APTMotor::disconnect()
 
 void APTMotor::post(const MotorCommand& cmd)
 {
-	Log(lDebug) << "Motor Command: \""<<cmd<<"\" was posted";
 	mMotorMessageContainer.post(cmd);
 }
 

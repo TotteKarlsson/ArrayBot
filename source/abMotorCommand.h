@@ -37,7 +37,7 @@ class AB_CORE MotorCommand : public ABObject
 
 		string				asString() const;
         MotorCommandEnum	getCore();
-        double				getFirstVariable();
+        double				getFirstVariable() const;
 
 	AB_CORE
  	friend ostream&         operator<<(ostream& stream, const MotorCommand& cmd);

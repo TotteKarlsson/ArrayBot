@@ -20,7 +20,7 @@ void MotorMessageContainer::post(const MotorCommand& msg)
         Poco::ScopedLock<Poco::Mutex> lock(mListMutex);
         mCommands.push_back(msg);
         mNewCommandCondition.signal();
-        Log(lDebug) << "A new motorCMD was posted to internal list";
+        Log(lDebug) << "Command posted to message list: "<<msg.asString();
     }
 }
 

@@ -101,7 +101,7 @@ void MotorMessageProcessor::worker()
             {
 	           	MotorCommand cmd = mMotorMessageContainer.pop();
 
-    	        Log(lDebug) << "Processing command: "<<cmd;
+    	        Log(lDebug) << "Processing command: "<<cmd.asString();
                 if(mMotor == NULL)
                 {
                 	break;
@@ -171,7 +171,7 @@ void MotorMessageProcessor::worker()
 					break;
                 }
                 mLastProcessedCommand = cmd.getCore();
-                sleep(10);
+                sleep(150);
             }
 
 		}//mutex

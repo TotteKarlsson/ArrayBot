@@ -6,8 +6,14 @@
 class AB_CORE ContinousMove : public ab::Move
 {
     public:
-        				ContinousMove(){}
-				        ~ContinousMove(){}
+        							ContinousMove::ContinousMove(const string& lbl, double v, double acc);
+							        ~ContinousMove(){}
+        virtual const char* 		getTypeName() const {return "continousMove";}
+
+        bool						isDone();
+		bool 						start();
+		virtual mtk::XMLElement*    addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
+
 
     protected:
 

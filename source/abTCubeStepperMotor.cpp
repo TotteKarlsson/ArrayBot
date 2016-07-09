@@ -294,13 +294,13 @@ double TCubeStepperMotor::getAcceleration()
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool TCubeStepperMotor::setVelocity(double vel)
+bool TCubeStepperMotor::setVelocity(double v)
 {
  	MOT_VelocityParameters p;
     SCC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-    p.maxVelocity = vel * mScalingFactors.velocity;
-    Log(lDebug) << "Setting velocity parameters: "<<p.acceleration<<" : "<<p.maxVelocity;
+    p.maxVelocity = v * mScalingFactors.velocity;
+    Log(lDebug) << getName() << ": velocity -> "<<v;
 
     int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
 
@@ -318,8 +318,9 @@ bool TCubeStepperMotor::setAcceleration(double a)
     SCC_GetVelParamsBlock(mSerial.c_str(), &parameters);
 
     parameters.acceleration = a * mScalingFactors.acceleration;
+	Log(lDebug) << getName()<< ": acceleration -> "<<a;
     SCC_SetVelParamsBlock(mSerial.c_str(), &parameters);
-	Log(lDebug) << "Setting velocity parameters: "<<parameters.acceleration<<" : "<<parameters.maxVelocity;
+
 	return false;
 }
 
@@ -486,12 +487,16 @@ bool TCubeStepperMotor::moveAbsolute(double pos, bool inThread)
 {
 	if(inThread)
     {
+        //Set desired position here so it does not get changed in the thread
+		mDesiredPosition = pos;
 		MotorCommand cmd(mcMoveToPosition, pos);
 		post(cmd);
+        mMotorCommandsPending++;
     }
     else
     {
         int err = SCC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
+		mMotorCommandsPending--;
         if(err != 0)
         {
             Log(lError) <<tlError(err);

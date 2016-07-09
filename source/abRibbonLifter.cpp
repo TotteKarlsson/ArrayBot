@@ -2,6 +2,7 @@
 #include "abRibbonLifter.h"
 #include "abAPTMotor.h"
 #include "abAbsoluteMove.h"
+#include "abContinousMove.h"
 //---------------------------------------------------------------------------
 
 
@@ -94,18 +95,12 @@ bool RibbonLifter::setupMove2()
 	mMove2.clear();
     mLiftSequence.clear();
 
-//	//Scale these velocities
-//	ab::Move whiskerZMove("xMove1", ab::mtAbsolute, ab::Position("middle_x", mLiftLocationX, 0, 0),  	mMoveToLLVelocity, mMoveToLLAcc);
-//	ab::Move yMove("yMove1", ab::mtAbsolute, ab::Position("middle_y", mLiftLocationY/2., 0, 0), mMoveToLLVelocity, mMoveToLLAcc);
-//
-//    xMove.assignUnit(mArrayBot.getWhiskerUnit().getXMotor());
-//    yMove.assignUnit(mArrayBot.getWhiskerUnit().getYMotor());
-//
-//	mMove1.addMove(xMove);
-//	mMove1.addMove(yMove);
-//
-//    mLiftSequence.add(&mMove1);
-//    mSequencer.addSequence(&mLiftSequence);
+	ContinousMove *whiskerZMove = new ContinousMove("whiskerZMove", mLiftVelocityZ, mLiftAccZ);
+
+	mMove2.addMove(whiskerZMove);
+    mLiftSequence.add(&mMove2);
+    mSequencer.addSequence(&mLiftSequence);
+
     return true;
 }
 

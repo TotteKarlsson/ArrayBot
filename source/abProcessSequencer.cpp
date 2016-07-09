@@ -111,7 +111,6 @@ void ProcessSequencer::onTimerFunc()
 
 			//        	sleep(p->getPreDwellTime());
 	        Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
-
             bool res = p->start();
 
             if(!res)

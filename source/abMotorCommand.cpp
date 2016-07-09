@@ -25,7 +25,7 @@ MotorCommandEnum MotorCommand::getCore()
 	return mCommand;
 }
 
-double MotorCommand::getFirstVariable()
+double MotorCommand::getFirstVariable() const
 {
 	return mVariable;
 }
@@ -33,7 +33,7 @@ double MotorCommand::getFirstVariable()
 string MotorCommand::asString() const
 {
 	stringstream s;
-    s<<toString(mCommand);
+    s<<toString(mCommand)<<":"<<getFirstVariable();
 	return s.str();
 }
 

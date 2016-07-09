@@ -8,10 +8,6 @@
 namespace ab
 {
 
-//enum MoveType {mtAbsolute = 0, mtRelative, mtContinous, mtUnknown};
-//MoveType	toMoveType(const string& mt);
-//string		toString(MoveType mt);
-
 //!The move baseclass contain the general logic for a 'move' of
 //any type of object
 class AB_CORE Move : public Process
@@ -26,7 +22,6 @@ class AB_CORE Move : public Process
 		virtual mtk::XMLElement*    addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot) = 0;
 		virtual void	            assignUnit(ABObject* o);
 
-
         virtual bool	            stop();
         virtual bool	            isBeingProcessed();
         bool 						isProcessed();
@@ -34,8 +29,8 @@ class AB_CORE Move : public Process
         virtual	bool	            undo();
 
 									//!Any subclass need to implement these
-        virtual bool 				isDone() = 0;
-        virtual bool	            start() = 0;
+        virtual bool 				isDone() 	= 0;
+        virtual bool	            start() 	= 0;
 
         bool	            		isMotorActive();
 

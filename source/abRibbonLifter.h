@@ -15,13 +15,12 @@
 //!lifting position, the process continues with a coordinated lift
 //!At one point, the whisker unit is accelerated 'away' and stowed out of
 //!position, allowing the coverslip to be fully lifted out of the boat
-
 using mtk::Property;
 using mtk::IniFile;
 using mtk::IniSection;
 using mtk::IniFileProperties;
 
-typedef void (__closure *RibbonLifterOnTimer)();
+//typedef void (__closure *RibbonLifterOnTimer)();
 
 class AB_CORE RibbonLifter : public ABObject
 {
@@ -62,7 +61,6 @@ class AB_CORE RibbonLifter : public ABObject
 
 		Property<double>			    mWhiskerLiftOffZPosition;
         Property<double>			    mWhiskerLiftStowXPosition;
-
 
     protected:
 		IniFile&					    mIniFile;

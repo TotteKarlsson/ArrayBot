@@ -131,34 +131,4 @@ bool Move::undo()
 	return false;
 }
 
-//MoveType toMoveType(const string& mt)
-//{
-//	if(mt == "ABSOLUTE_MOVE")
-//    {
-//    	return mtAbsolute;
-//    }
-//
-//	if(mt == "RELATIVE_MOVE")
-//    {
-//    	return mtRelative;
-//    }
-//
-//	if(mt == "CONTINOUS_MOVE")
-//    {
-//    	return mtContinous;
-//    }
-//    return mtUnknown;
-//}
-//
-//string toString(MoveType mt)
-//{
-//	switch(mt)
-//    {
-//    	case mtAbsolute: 	return "ABSOLUTE_MOVE";
-//    	case mtRelative: 	return "RELATIVE_MOVE";
-//    	case mtContinous: 	return "CONTINOUS_MOVE";
-//        default:    		return "UNKNOWN_MOVE";
-//    }
-//}
-
 }

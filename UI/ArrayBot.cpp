@@ -16,16 +16,16 @@ using namespace std;
 //---------------------------------------------------------------------------
 USEFORM("frames\TCombinedMoveFrame.cpp", CombinedMoveFrame); /* TFrame: File Type */
 USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
-USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
-USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
+USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("MainForm.cpp", Main);
+USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
 USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
 USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
-USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("frames\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
+USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";

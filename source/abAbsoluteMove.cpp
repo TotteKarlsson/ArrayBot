@@ -9,9 +9,7 @@ AbsoluteMove::AbsoluteMove(const string& lbl, const ab::Position& p, double maxV
 ab::Move(lbl, maxVel, acc),
 mPosition(p),
 mPositionResolution(1.0e-3)
-{
-
-}
+{}
 
 bool AbsoluteMove::isDone()
 {
@@ -47,8 +45,9 @@ bool AbsoluteMove::start()
         m->setAcceleration(mAcceleration);
         return m->moveAbsolute(mPosition.x());
     }
-
+    return true;
 }
+
 XMLElement* AbsoluteMove::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
 {
     //Create XML for saving to file
@@ -64,18 +63,6 @@ XMLElement* AbsoluteMove::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XM
 	processNode->SetAttribute("acc", toString(getAcceleration()).c_str());
 	processNode->SetAttribute("pre_dwell_time", toString(getPreDwellTime()).c_str());
 	processNode->SetAttribute("post_dwell_time", toString(getPostDwellTime()).c_str());
-
-    //Elements
-//    XMLElement* elem = doc.NewElement("process_name");
-//    processNode->InsertFirstChild(elem);
-//        elem->SetText(mProcessName.c_str());
-//    processNode->InsertEndChild(elem);
-//
-//    //Elements
-//    elem = doc.NewElement("process_type");
-//    processNode->InsertFirstChild(elem);
-//        elem->SetText(getProcessType().c_str());
-//    processNode->InsertEndChild(elem);
 
     processNode->InsertEndChild(rootNode);
     docRoot->InsertEndChild(processNode);

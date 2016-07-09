@@ -135,6 +135,24 @@ double TCubeDCServo::getEncoderCounts()
     return 0;
 }
 
+//double TCubeStepperMotor::getEncoderCounts()
+//{
+//	long stepsPerRev, gearBoxRatio;
+//    float pitch;
+//	int err = SCC_GetMotorParams(mSerial.c_str(), &stepsPerRev, &gearBoxRatio, &pitch);
+//	if(err)
+//    {
+//    	Log(lError) << "Failed getting Motor Parameters";
+//    }
+//    else
+//    {
+//    	Log(lInfo) << "StepsPerRev: "<<stepsPerRev;
+//    	Log(lInfo) << "GearBoxRatio: "<<gearBoxRatio;
+//    	Log(lInfo) << "Pitch: "<<pitch;
+//    }
+//    return 0;
+//}
+
 HardwareInformation TCubeDCServo::getHWInfo()
 {
 	TLI_HardwareInformation hwi;
@@ -252,7 +270,7 @@ void TCubeDCServo::stopProfiled(bool inThread)
 
 double TCubeDCServo::getPosition()
 {
-    return CC_GetPosition(mSerial.c_str()) / mScalingFactors.position;
+	return CC_GetPosition(mSerial.c_str()) / mScalingFactors.position;
 }
 
 double TCubeDCServo::getVelocity()
@@ -474,13 +492,16 @@ bool TCubeDCServo::moveAbsolute(double pos, bool inThread)
 {
 	if(inThread)
     {
+        //Set desired position here so it does not get changed in the thread
+		mDesiredPosition = pos;
 		MotorCommand cmd(mcMoveToPosition, pos);
 		post(cmd);
         mMotorCommandsPending++;
     }
     else
     {
-        int err = CC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
+        int err = CC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position);
+
 		mMotorCommandsPending--;
         if(err != 0)
         {
@@ -491,6 +512,3 @@ bool TCubeDCServo::moveAbsolute(double pos, bool inThread)
     }
     return true;
 }
-
-
-

@@ -91,6 +91,7 @@ void ArrayBot::initialize()
 {
 	mCoverSlip.initialize();
 	mWhisker.initialize();
+    sleep(500);
 }
 
 APTMotor* ArrayBot::getCoverSlipAngleController()

@@ -67,10 +67,10 @@ class AB_CORE APTMotor : public APTDevice
         virtual double	                	getJogVelocity() = 0;
         virtual double	          			getJogAcceleration() = 0;
 
-        virtual void		                jogForward(bool inThread = true) = 0;
-        virtual void		                jogReverse(bool inThread = true) = 0;
-        virtual bool	                    setJogVelocity(double v) = 0;
-        virtual bool	                    setJogAcceleration(double a) = 0;
+        virtual void		                jogForward(bool inThread = true) 	= 0;
+        virtual void		                jogReverse(bool inThread = true) 	= 0;
+        virtual bool	                    setJogVelocity(double v) 			= 0;
+        virtual bool	                    setJogAcceleration(double a) 		= 0;
         virtual bool						setJogMoveParameters(double v, double a);
 
         virtual void		                forward(bool inThread = true) = 0;
@@ -86,11 +86,14 @@ class AB_CORE APTMotor : public APTDevice
 
         virtual double	    				getPotentiometerVelocity();
         virtual void						setPotentiometerVelocity(double v) = 0;
-        bool								isMotorCommandPending(){return (mMotorCommandsPending >= 1) ? true : false;}
+        bool								isMotorCommandPending();
+        bool								isAtDesiredPosition();
+        double								getDesiredPosition(){return mDesiredPosition;}
 
     protected:
     										//!Motor commands are processed in a thread by the
                                             //MotorMessage processer
+		double								mDesiredPosition;
        	int									mMotorCommandsPending;
     	Timer				                mStatusTimer;
         unsigned long			            mStatusBits;

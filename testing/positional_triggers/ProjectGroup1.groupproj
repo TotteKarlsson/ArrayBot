@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{AE410CF3-1288-48C7-90CF-CB8106221E35}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Project1.cbproj">
+            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="abCore">
+        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project1" DependsOnTargets="abCore">
+        <MSBuild Projects="Project1.cbproj"/>
+    </Target>
+    <Target Name="Project1:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="Project1.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="Project1.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="abCore;Project1"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="abCore:Clean;Project1:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="abCore:Make;Project1:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

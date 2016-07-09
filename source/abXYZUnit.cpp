@@ -148,7 +148,7 @@ bool XYZUnit::initialize()
     }
     else
     {
-		Log(lError) << "Z motor is NOT connected";
+		Log(lError) << "Angle motor is NOT connected";
     }
 
 	return true;
