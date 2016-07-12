@@ -65,6 +65,18 @@ bool APTMotor::setJogMoveParameters(double v, double a)
     return res1 && res2;
 }
 
+bool APTMotor::moveAbsolute2(double position, double v)
+{
+	setVelocity(v);
+    return moveAbsolute(position, true);
+}
+
+bool APTMotor::moveAbsolute3(double position, double v, double a)
+{
+	setVelocity(v, a);
+    return moveAbsolute(position, true);
+}
+
 bool APTMotor::switchDirection(bool inThread)
 {
 	//The forward/reverse bits don't work so this function is disabled until they do

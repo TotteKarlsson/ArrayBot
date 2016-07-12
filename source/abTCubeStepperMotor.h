@@ -29,9 +29,11 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 		bool 							isEnabled();
 
 				                        //!General commands
+
+
         double	                        getPosition();
         double	        		        getVelocity();
-		bool	                    	setVelocity(double v);
+		bool	                    	setVelocity(double v, double a = 0, bool inThread = true);
 	    double          		        getAcceleration();
     	bool	                    	setAcceleration(double a);
 

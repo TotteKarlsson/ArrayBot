@@ -20,7 +20,8 @@ mMotorMessageContainer(messageContainer),
 mProcessedCount(0),
 mNotifyUI(NULL),
 mMotor(NULL),
-mLastProcessedCommand(mcNone)
+mLastProcessedCommand(mcNone),
+mProcessTimeDelay(150)
 {}
 
 //----------------------------------------------------------------
@@ -143,18 +144,13 @@ void MotorMessageProcessor::worker()
                     	mMotor->jogReverse(false);
 					break;
 
-//                    case mcMoveDistance:
-//                    	mMotor->moveDistance(cmd.getFirstVariable(), false);
-//					break;
-
                     case mcMoveToPosition:
                     	mMotor->moveAbsolute(cmd.getFirstVariable(), false);
 					break;
 
-//                    case mcSetVelocity:
-//                    	mMotor->setJogVelocity(cmd.getFirstVariable());
-//                    	mMotor->jogForward();
-//					break;
+                    case mcSetVelocityParameters:
+                    	mMotor->setVelocity(cmd.getFirstVariable(), cmd.getSecondVariable(), false);
+					break;
 
                     case mcSetVelocityForward:
                     	mMotor->setJogVelocity(cmd.getFirstVariable());
@@ -169,9 +165,11 @@ void MotorMessageProcessor::worker()
                     case mcSwitchDirection:
                     	mMotor->switchDirection(false);
 					break;
+                    default: Log(lError) << "Motor Command: "<<toString(cmd.getCore())<<" was not reckognized!";
+
                 }
                 mLastProcessedCommand = cmd.getCore();
-                sleep(150);
+                sleep(mProcessTimeDelay);
             }
 
 		}//mutex

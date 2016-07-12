@@ -7,27 +7,24 @@
 //---------------------------------------------------------------------------
 
 class APTMotor;
+//!A positional trigger triggers when a motors position passes over a set threshold value.
+//!To properly fire a trigger, a triggerFunction need to be given, e.g. mtr->getPosition()
+//!Functions to be executed when the trigger fires are stored in the fireFunctions array from
+//!the base class
+
 class AB_CORE PositionalTrigger : public Trigger
 {
     public:
-                                PositionalTrigger(const string& name, TriggerCondition c,
-                                					double position,  TriggerAction ta, APTMotor* motor);
+                                PositionalTrigger(const string& name, TriggerCondition c, double position, triggerTestFunctionFPtr f);
                                 ~PositionalTrigger(){}
-
-        void					setNewVelocity(double nv) 		{mNewVelocity = nv;}
-        void					setNewAcceleration(double na)	{mNewAcceleration = na;}
 
         virtual bool  			test(double);
         virtual bool  			test(int){return false;}
 		virtual void	 		execute();
+        virtual void  			triggerTest();
 
     protected:
-    							//!The motor is the motor that will be manipulated
-                                //!when the trigger fires.
-		APTMotor*				mMotor;
         double					mMotorPositionalTriggerPoint;
-        double					mNewVelocity;
-        double					mNewAcceleration;
 
 };
 #endif

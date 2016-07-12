@@ -44,7 +44,7 @@ bool TCubeStepperMotor::connect()
 	    // start the device polling at 200ms intervals
     	if(!SCC_StartPolling(mSerial.c_str(), 200))
         {
-        	Log(lError) <<"Failure in StartPolling function";
+        	Log(lError) <<"Failure in Start Polling function";
         }
         return true;
     }
@@ -66,10 +66,10 @@ bool TCubeStepperMotor::disconnect()
 
 bool TCubeStepperMotor::enable()
 {
-	int err = SCC_EnableChannel(mSerial.c_str());
-    if(err != 0)
+	int e = SCC_EnableChannel(mSerial.c_str());
+    if(e != 0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
         return false;
     }
     return true;
@@ -77,10 +77,10 @@ bool TCubeStepperMotor::enable()
 
 bool TCubeStepperMotor::disable()
 {
-	int err = SCC_DisableChannel(mSerial.c_str());
-    if(err != 0)
+	int e = SCC_DisableChannel(mSerial.c_str());
+    if(e != 0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
         return false;
     }
     return true;
@@ -103,18 +103,18 @@ void TCubeStepperMotor::setPotentiometerVelocity(double v)
 
     int currRange = 1;
 
-    short err = SCC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
+    short e = SCC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
     velocity += (velStep);
-    err = SCC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
+    e = SCC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
     velocity += velStep;
-    err = SCC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
+    e = SCC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
     velocity += velStep;
-    err = SCC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
+    e = SCC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
 
 //	DWORD	vel;
 //    for(int i = 0; i < 127; i++)
 //    {
-//    	short err = ISC_GetPotentiometerParams(mSerial.c_str(), i, &thDef, &vel);
+//    	short e = ISC_GetPotentiometerParams(mSerial.c_str(), i, &thDef, &vel);
 //        Log(lInfo) <<"Pos: "<<i<<"\t"<<"Def: "<<thDef<<"\tValue: "<<vel / mScalingFactors.velocity;
 //    }
 }
@@ -134,8 +134,8 @@ double TCubeStepperMotor::getEncoderCounts()
 //{
 //	long stepsPerRev, gearBoxRatio;
 //    float pitch;
-//	int err = SCC_GetMotorParams(mSerial.c_str(), &stepsPerRev, &gearBoxRatio, &pitch);
-//	if(err)
+//	int e = SCC_GetMotorParams(mSerial.c_str(), &stepsPerRev, &gearBoxRatio, &pitch);
+//	if(e)
 //    {
 //    	Log(lError) << "Failed getting Motor Parameters";
 //    }
@@ -151,7 +151,7 @@ double TCubeStepperMotor::getEncoderCounts()
 HardwareInformation TCubeStepperMotor::getHWInfo()
 {
 	TLI_HardwareInformation hwi;
-	int err  = SCC_GetHardwareInfoBlock(mSerial.c_str(), &hwi);
+	int e  = SCC_GetHardwareInfoBlock(mSerial.c_str(), &hwi);
     mHWInfo.serialNumber = hwi.serialNumber;
     mHWInfo.modelNumber = hwi.modelNumber;
     mHWInfo.type = hwi.type;
@@ -246,20 +246,20 @@ void TCubeStepperMotor::stop(bool inThread)
     }
     else
     {
-		int err = SCC_StopImmediate(mSerial.c_str());
-        if(err != 0)
+		int e = SCC_StopImmediate(mSerial.c_str());
+        if(e != 0)
         {
-            Log(lError) <<tlError(err);
+            Log(lError) <<tlError(e);
         }
     }
 }
 
 void TCubeStepperMotor::stopProfiled(bool inThread)
 {
-    int err = SCC_StopProfiled(mSerial.c_str());
-    if(err != 0)
+    int e = SCC_StopProfiled(mSerial.c_str());
+    if(e != 0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
     }
 }
 
@@ -272,11 +272,11 @@ double TCubeStepperMotor::getVelocity()
 {
 	int a(0), v(0);
 
-	int err = SCC_GetVelParams(mSerial.c_str(), &a, &v);
+	int e = SCC_GetVelParams(mSerial.c_str(), &a, &v);
 
-    if(err != 0)
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
     }
   	return (double) v / mScalingFactors.velocity;
 }
@@ -285,31 +285,46 @@ double TCubeStepperMotor::getAcceleration()
 {
 	int a(0), v(0);
 
-	int err = SCC_GetVelParams(mSerial.c_str(), &a, &v);
+	int e = SCC_GetVelParams(mSerial.c_str(), &a, &v);
 
-    if(err != 0)
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
     }
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool TCubeStepperMotor::setVelocity(double v)
+bool TCubeStepperMotor::setVelocity(double v, double a, bool inThread)
 {
- 	MOT_VelocityParameters p;
-    SCC_GetVelParamsBlock(mSerial.c_str(), &p);
-
-    p.maxVelocity = v * mScalingFactors.velocity;
-    Log(lDebug) << getName() << ": velocity -> "<<v;
-
-    int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
-
-    if(e)
+	if(inThread)
     {
-        Log(lError) <<tlError(e);
+		MotorCommand cmd(mcSetVelocityParameters, v, a);
+		post(cmd);
+        mMotorCommandsPending++;
     }
+    else
+    {
+     	MOT_VelocityParameters p;
+        SCC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-	return true;
+        p.maxVelocity = v * mScalingFactors.velocity;
+        if(a != 0.0)
+        {
+        	p.acceleration = a * mScalingFactors.acceleration;
+        }
+
+        Log(lDebug) << getName() << ": velocity -> "<<v;
+
+        int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
+        mMotorCommandsPending--;
+
+        if(e)
+        {
+            Log(lError) <<tlError(e);
+           	return false;
+        }
+    }
+   	return true;
 }
 
 bool TCubeStepperMotor::setAcceleration(double a)
@@ -319,18 +334,23 @@ bool TCubeStepperMotor::setAcceleration(double a)
 
     parameters.acceleration = a * mScalingFactors.acceleration;
 	Log(lDebug) << getName()<< ": acceleration -> "<<a;
-    SCC_SetVelParamsBlock(mSerial.c_str(), &parameters);
 
-	return false;
+    int e = SCC_SetVelParamsBlock(mSerial.c_str(), &parameters);
+    if(e)
+    {
+        Log(lError) <<tlError(e);
+		return false;
+    }
+	return true;
 }
 
 bool TCubeStepperMotor::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();
-	int err = SCC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
-    if(err != 0)
+	int e = SCC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
         return false;
     }
   	return true;
@@ -339,10 +359,10 @@ bool TCubeStepperMotor::setJogMoveMode(JogMoveMode jm)
 bool TCubeStepperMotor::setJogStopMode(StopMode sm)
 {
 	JogMoveMode jm = getJogMoveMode();
-	int err = SCC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
-    if(err != 0)
+	int e = SCC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
         return false;
     }
   	return true;
@@ -352,10 +372,10 @@ JogMoveMode	TCubeStepperMotor::getJogMoveMode()
 {
     MOT_JogModes jm;
 	MOT_StopModes sm;
-	int err = SCC_GetJogMode(mSerial.c_str(), &jm, &sm);
-    if(err != 0)
+	int e = SCC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
         return (JogMoveMode) MOT_JogModeUndefined;
     }
   	return (JogMoveMode) jm;
@@ -365,10 +385,10 @@ StopMode TCubeStepperMotor::getJogStopMode()
 {
 	MOT_StopModes sm;
     MOT_JogModes jm;
-	int err = SCC_GetJogMode(mSerial.c_str(), &jm, &sm);
-    if(err != 0)
+	int e = SCC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
         return (StopMode) MOT_StopModeUndefined;
     }
   	return (StopMode) sm;
@@ -378,10 +398,10 @@ StopMode TCubeStepperMotor::getJogStopMode()
 double TCubeStepperMotor::getJogVelocity()
 {
     int a, v;
-    int err = SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
-    if(err != 0)
+    int e = SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
     }
 
     return v / mScalingFactors.velocity;
@@ -393,10 +413,12 @@ bool TCubeStepperMotor::setJogVelocity(double newVel)
     SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
 
 	Log(lDebug) << "Setting Jog Velocity: "<<newVel;
-    int err = SCC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
-    if(err != 0)
+    int e = SCC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
+
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
+        return false;
     }
 	return true;
 }
@@ -405,11 +427,12 @@ bool TCubeStepperMotor::setJogAcceleration(double newAcc)
 {
     int a, v;
     SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
-    int err = SCC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v);
+    int e = SCC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v);
 
-    if(err != 0)
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
+        return false;
     }
 
 	return true;
@@ -418,11 +441,11 @@ bool TCubeStepperMotor::setJogAcceleration(double newAcc)
 double TCubeStepperMotor::getJogAcceleration()
 {
     int a, v;
-    int err = SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    int e = SCC_GetJogVelParams(mSerial.c_str(), &a, &v);
 
-    if(err != 0)
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
     }
 
     return a  / mScalingFactors.acceleration;
@@ -437,10 +460,10 @@ void TCubeStepperMotor::jogForward(bool inThread)
     }
     else
     {
-        int err = SCC_MoveJog(mSerial.c_str(), MOT_Forwards);
-        if(err != 0)
+        int e = SCC_MoveJog(mSerial.c_str(), MOT_Forwards);
+        if(e != 0)
         {
-            Log(lError) <<tlError(err);
+            Log(lError) <<tlError(e);
         }
     }
 }
@@ -455,10 +478,10 @@ void TCubeStepperMotor::jogReverse(bool inThread)
     else
     {
         //Todo: tell thorlabs about the MOT_Reverse flag name
-        int err = SCC_MoveJog(mSerial.c_str(), MOT_Backwards);
-        if(err != 0)
+        int e = SCC_MoveJog(mSerial.c_str(), MOT_Backwards);
+        if(e != 0)
         {
-            Log(lError) <<tlError(err);
+            Log(lError) <<tlError(e);
         }
     }
 }
@@ -466,20 +489,20 @@ void TCubeStepperMotor::jogReverse(bool inThread)
 void TCubeStepperMotor::forward(bool inThread)
 {
 	//TODO: use inThread logic
-    int err = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
-    if(err != 0)
+    int e = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+    if(e != 0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
     }
 }
 
 void TCubeStepperMotor::reverse(bool inThread)
 {
 	//TODO: use inThread logic
-    int err = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Backwards);
-    if(err !=0)
+    int e = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Backwards);
+    if(e !=0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
     }
 }
 
@@ -495,11 +518,11 @@ bool TCubeStepperMotor::moveAbsolute(double pos, bool inThread)
     }
     else
     {
-        int err = SCC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
+        int e = SCC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
 		mMotorCommandsPending--;
-        if(err != 0)
+        if(e != 0)
         {
-            Log(lError) <<tlError(err);
+            Log(lError) <<tlError(e);
             Log(lError) <<"Tried to move to position: "<<pos<<" using the "<<getName()<<" device.";
             return false;
         }

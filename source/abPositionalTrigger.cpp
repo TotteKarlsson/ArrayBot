@@ -7,12 +7,13 @@ using namespace mtk;
 
 //---------------------------------------------------------------------------
 
-PositionalTrigger::PositionalTrigger(const string& name, TriggerCondition c, double position, TriggerAction ta, APTMotor* mtr)
+PositionalTrigger::PositionalTrigger(const string& name, TriggerCondition c, double tVal, triggerTestFunctionFPtr f)
 :
-Trigger(name, c, ta),
-mMotor(mtr),
-mMotorPositionalTriggerPoint(position)
-{}
+Trigger(name, c, f),
+mMotorPositionalTriggerPoint(tVal)
+{
+	mTriggerTimer.assignTimerFunction(triggerTest);
+}
 
 bool PositionalTrigger::test(double val)
 {
@@ -24,25 +25,29 @@ bool PositionalTrigger::test(double val)
     }
 }
 
-void PositionalTrigger::execute()
+void PositionalTrigger::triggerTest()
 {
-	Log(lInfo) << "Executing trigger: "<<mName;
-    mIsTriggered = true;
-
-    if(!mMotor)
-    {
-    	return;
-    }
-
-    switch(mTriggerAction)
-    {
-    	case taStopImmediate: 	mMotor->stop(); break;
-    	case taStopProfiled: 	mMotor->stop(); break;
-    	case taSetVelocity:
-        	mMotor->setVelocity(mNewVelocity);
-            mMotor->moveAbsolute(mMotor->getDesiredPosition());
-        break;
+	if(mTestFunction)
+	{
+    	double testVal = mTestFunction();
+    	if(test(testVal))
+    	{
+	        mTriggerTimer.stop();
+			execute();
+		   	Log(lInfo) << "Positional trigger: \""<<getName()<<" executed at trigger value: "<<testVal;
+        }
     }
 }
 
+void PositionalTrigger::execute()
+{
+    mIsTriggered = true;
+
+    //Execute any functions in the fireFunction container
+    if(mFireFunction)
+    {
+        mFireFunction(.1);
+    }
+
+}
 

@@ -4,10 +4,11 @@
 //---------------------------------------------------------------------------
 
 using namespace std;
-MotorCommand::MotorCommand(MotorCommandEnum mce, double var)
+MotorCommand::MotorCommand(MotorCommandEnum mce, double v1, double v2)
 :
 mCommand(mce),
-mVariable(var)
+mVariable1(v1),
+mVariable2(v2)
 {
 }
 
@@ -27,7 +28,12 @@ MotorCommandEnum MotorCommand::getCore()
 
 double MotorCommand::getFirstVariable() const
 {
-	return mVariable;
+	return mVariable1;
+}
+
+double MotorCommand::getSecondVariable() const
+{
+	return mVariable2;
 }
 
 string MotorCommand::asString() const
@@ -41,41 +47,19 @@ string toString(MotorCommandEnum e)
 {
 	switch (e)
     {
-        case mcNone:
-        return "none";
-
-        case mcStopHard:
-        return "stop hard";
-
-        case mcStopProfiled:
-        return "stop profiled";
-
-        case mcForward:
-        return "forward";
-
-        case mcReverse:
-        return "reverse";
-
-        case mcJogForward:
-        return "jog forward";
-
-        case mcJogReverse:
-        return "jog reverse";
-
-        case mcMoveDistance:
-        return "move distance";
-
-        case mcMoveToPosition:
-        return "move to position";
-
-        case mcSetVelocity:
-        return "set velocity";
-
-        case mcSetVelocityForward:
-        return "set velocity forward";
-
-        case mcSetVelocityReverse:
-        return "set velocity reverse";
+        case mcNone:                    return "none";
+        case mcStopHard:                return "stop hard";
+        case mcStopProfiled:            return "stop profiled";
+        case mcForward:                 return "forward";
+        case mcReverse:                 return "reverse";
+        case mcJogForward:              return "jog forward";
+        case mcJogReverse:              return "jog reverse";
+        case mcMoveDistance:            return "move distance";
+        case mcMoveToPosition:        	return "move to position";
+        case mcSetVelocity:         	return "set velocity";
+        case mcSetVelocityParameters:   return "set velocity parameters";
+        case mcSetVelocityForward:      return "set velocity forward";
+        case mcSetVelocityReverse:      return "set velocity reverse";
     default:
     	return "Unknown command!";
     }

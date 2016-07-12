@@ -9,66 +9,63 @@
 
 using namespace mtk;
 using namespace std;
+using namespace std::tr1;
 
 int main()
 {
-	LogOutput::mLogToConsole = true;
-
     string appFolder("C:\\Users\\matsk\\AppData\\Local\\ArrayBot");
     IniFile ini(joinPath(appFolder, "ArrayBot.ini"));
     ini.load();
 
     ArrayBot ab(ini, appFolder);
-
     ab.initialize();
 
-//    sleep(500);
-	APTMotor* blackMotor 	= ab.getMotorWithName("WHISKER UNIT_Z");
-	APTMotor* redMotor 		= ab.getMotorWithName("COVERSLIP UNIT_Z");
+	//TCubeDSServoMotor
+	APTMotor* blackMotor = ab.getMotorWithName("WHISKER UNIT_Z");
 
+    //TCubeStepperMotor
+	APTMotor* redMotor 	 = ab.getMotorWithName("COVERSLIP UNIT_Z");
+
+	LogOutput::mLogToConsole = true;
+ 	gLogger.setLogLevel(lInfo);
+
+    //Looping around
     lbl1:
-    redMotor->setAcceleration(3);
-    redMotor->setVelocity(1.5);
 
-    blackMotor->moveAbsolute(1);
-	redMotor->moveAbsolute(1);
+    //Both motors starts at zero
+    blackMotor->moveAbsolute3(	0, 	1.5, 3);
+	redMotor->moveAbsolute3(	0, 	1.5, 3);
+
     while(!blackMotor->isAtDesiredPosition() || !redMotor->isAtDesiredPosition())
     {
-
+    	sleep(10);
     }
 
-    blackMotor->moveAbsolute(8);
+	//Move black motor to 2
+    blackMotor->moveAbsolute3(2, 	2.5, 2);
 
-    redMotor->setAcceleration(3);
-    redMotor->setVelocity(.3);
-	redMotor->moveAbsolute(8);
+    //When black motor is at position '2', trigger movement of the red motor
+    PositionalTrigger trigger1("test1", tcLargerThanOrEqual, 2, blackMotor->getPosition);
+	trigger1.addFireFunction(bind(&APTMotor::moveAbsolute2, redMotor,   2, 		1.1));
 
-    PositionalTrigger trigger("test", tcLargerThanOrEqual, 4.5, taSetVelocity, redMotor);
-	trigger.setNewVelocity(1.1);
-	trigger.setNewAcceleration(3);
+	//When red motor is at 2, trigger black motor to continue
+    PositionalTrigger trigger2("test2", tcLargerThanOrEqual, 1.95, redMotor->getPosition);
+	trigger2.addFireFunction(bind(&APTMotor::moveAbsolute2, blackMotor,   4,   	1.1));
+    trigger1.load();
+    trigger2.load();
 
-    while(true)
+    //The triggers should trigger
+    while(!trigger1.isTriggered() || !trigger2.isTriggered())
     {
-    	if(trigger.test(blackMotor->getPosition()))
-        {
-        	trigger.execute();
-            break;
-        }
+    	sleep(50);
     }
 
-    while(!blackMotor->isAtDesiredPosition()  || !redMotor->isAtDesiredPosition())
+    while(!blackMotor->isAtDesiredPosition())
     {
-
+       	sleep(50);
     }
 
     goto lbl1;
-
-
-	while(true)
-    {
-		sleep(100);
-    }
-
 	return 0;
 }
 

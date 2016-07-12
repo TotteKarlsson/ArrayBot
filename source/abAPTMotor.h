@@ -14,40 +14,66 @@ class AB_CORE APTMotor : public APTDevice
 						                    APTMotor(int serial);
 		virtual			                    ~APTMotor();
 
+
         double								getMaxPosition();
-        virtual bool	                    connect() 		= 0;
-        virtual bool	                    disconnect() 	= 0;
+		bool 	   							switchDirection(bool inThread = true);
+		bool	                    		setVelocityForward(double v);
+		bool	                    		setVelocityReverse(double v);
 
-        virtual bool	                    enable() 		= 0;
-        virtual bool	                    disable() 		= 0;
-		virtual bool 	   					switchDirection(bool inThread = true);
-		virtual bool	                    setVelocityForward(double v);
-		virtual bool	                    setVelocityReverse(double v);
 
-        virtual HardwareInformation 	    getHWInfo() = 0;
-        virtual double						getEncoderCounts() = 0;
-
-		virtual bool   		                isActive() 		= 0;
-        virtual bool		                isHomed() 		= 0;
-        virtual bool		                isHoming() 		= 0;
-        virtual bool		                isForwarding() 	= 0;
-        virtual bool		                isReversing() 	= 0;
-        virtual bool		                isEnabled() 	= 0;
-
-        virtual bool	                    startPolling() 	= 0;
-        virtual bool	                    stopPolling() 	= 0;
-
+        									//!MoveAbsolute2 takes a position and a velocity
+                                            //!These functions have 2, and 3 postfix cause of
+                                            //internal compuiler errors when trying to bind
+        bool		                		moveAbsolute2(double position, double v);
+        bool		                		moveAbsolute3(double position, double v, double a = 0);
 
 											//!Motor ranges
         virtual Range<double>               getVelocityRange();
 		virtual bool	                    setVelocityRange(DoubleRange vr);
 
+        virtual bool		                moveRelative(double position, bool inThread = true);
+        virtual bool						setJogMoveParameters(double v, double a);
+        MotorCommandEnum					getLastCommand();
+
+        double								getManualJogVelocity();
+        double								getManualJogAcceleration();
+        void								setManualJogVelocity(double v);
+        void								setManualJogAcceleration(double a);
+
+        virtual double	    				getPotentiometerVelocity();
+
+        bool								isMotorCommandPending();
+        bool								isAtDesiredPosition();
+        double								getDesiredPosition(){return mDesiredPosition;}
+
+        virtual bool	                    connect() = 0;
+        virtual bool	                    disconnect() = 0;
+
+        virtual bool	                    enable() = 0;
+        virtual bool	                    disable() = 0;
+
+        virtual HardwareInformation 	    getHWInfo() = 0;
+        virtual double						getEncoderCounts() = 0;
+
+		virtual bool   		                isActive() = 0;
+        virtual bool		                isHomed() = 0;
+        virtual bool		                isHoming() = 0;
+        virtual bool		                isForwarding() = 0;
+        virtual bool		                isReversing() = 0;
+        virtual bool		                isEnabled() = 0;
+
+        virtual bool	                    startPolling() = 0;
+        virtual bool	                    stopPolling() = 0;
+
+
+
 						                    //!General commands
         virtual bool		                identify() = 0;
         virtual double	                    getPosition() = 0;
 
+
         virtual double	                    getVelocity() = 0;
-        virtual bool	                    setVelocity(double vel) = 0;
+        virtual bool	                    setVelocity(double vel, double a = 0, bool inThread = true) = 0;
 
         virtual double                      getAcceleration() = 0;
         virtual bool                        setAcceleration(double val) = 0;
@@ -67,28 +93,16 @@ class AB_CORE APTMotor : public APTDevice
         virtual double	                	getJogVelocity() = 0;
         virtual double	          			getJogAcceleration() = 0;
 
-        virtual void		                jogForward(bool inThread = true) 	= 0;
-        virtual void		                jogReverse(bool inThread = true) 	= 0;
-        virtual bool	                    setJogVelocity(double v) 			= 0;
-        virtual bool	                    setJogAcceleration(double a) 		= 0;
-        virtual bool						setJogMoveParameters(double v, double a);
+        virtual void		                jogForward(bool inThread = true) = 0;
+        virtual void		                jogReverse(bool inThread = true) = 0;
+        virtual bool	                    setJogVelocity(double v) = 0;
+        virtual bool	                    setJogAcceleration(double a) = 0;
+
 
         virtual void		                forward(bool inThread = true) = 0;
         virtual void		                reverse(bool inThread = true) = 0;
         virtual bool		                moveAbsolute(double position, bool inThread = true) = 0;
-        virtual bool		                moveRelative(double position, bool inThread = true);
-        MotorCommandEnum					getLastCommand();
-
-        double								getManualJogVelocity();
-        double								getManualJogAcceleration();
-        void								setManualJogVelocity(double v);
-        void								setManualJogAcceleration(double a);
-
-        virtual double	    				getPotentiometerVelocity();
         virtual void						setPotentiometerVelocity(double v) = 0;
-        bool								isMotorCommandPending();
-        bool								isAtDesiredPosition();
-        double								getDesiredPosition(){return mDesiredPosition;}
 
     protected:
     										//!Motor commands are processed in a thread by the

@@ -60,15 +60,15 @@ bool LongTravelStage::disconnect()
     APTMotor::disconnect();
 	ISC_Close(mSerial.c_str());
     mIsConnected = false;
-    return false;
+    return true;
 }
 
 bool LongTravelStage::enable()
 {
-	int err = ISC_EnableChannel(mSerial.c_str());
-    if(err != 0)
+	int e = ISC_EnableChannel(mSerial.c_str());
+    if(e != 0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
         return false;
     }
     return true;
@@ -76,10 +76,10 @@ bool LongTravelStage::enable()
 
 bool LongTravelStage::disable()
 {
-	int err = ISC_DisableChannel(mSerial.c_str());
-    if(err != 0)
+	int e = ISC_DisableChannel(mSerial.c_str());
+    if(e != 0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
         return false;
     }
     return true;
@@ -101,18 +101,18 @@ void LongTravelStage::setPotentiometerVelocity(double v)
 
     int currRange = 1;
 
-    short err = ISC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
+    short e = ISC_SetPotentiometerParams(mSerial.c_str(), 0, 0, velocity * mScalingFactors.velocity);
     velocity += (velStep);
-    err = ISC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
+    e = ISC_SetPotentiometerParams(mSerial.c_str(), 1, 32, velocity * mScalingFactors.velocity);
     velocity += velStep;
-    err = ISC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
+    e = ISC_SetPotentiometerParams(mSerial.c_str(), 2, 64, velocity * mScalingFactors.velocity);
     velocity += velStep;
-    err = ISC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
+    e = ISC_SetPotentiometerParams(mSerial.c_str(), 3, 120, velocity * mScalingFactors.velocity);
 
 //	DWORD	vel;
 //    for(int i = 0; i < 127; i++)
 //    {
-//    	short err = ISC_GetPotentiometerParams(mSerial.c_str(), i, &thDef, &vel);
+//    	short e = ISC_GetPotentiometerParams(mSerial.c_str(), i, &thDef, &vel);
 //        Log(lInfo) <<"Pos: "<<i<<"\t"<<"Def: "<<thDef<<"\tValue: "<<vel / mScalingFactors.velocity;
 //    }
 }
@@ -131,7 +131,7 @@ double LongTravelStage::getEncoderCounts()
 HardwareInformation LongTravelStage::getHWInfo()
 {
 	TLI_HardwareInformation hwi;
-	int err  = ISC_GetHardwareInfoBlock(mSerial.c_str(), &hwi);
+	int e  = ISC_GetHardwareInfoBlock(mSerial.c_str(), &hwi);
     mHWInfo.serialNumber = hwi.serialNumber;
     mHWInfo.modelNumber = hwi.modelNumber;
     mHWInfo.type = hwi.type;
@@ -226,20 +226,20 @@ void LongTravelStage::stop(bool inThread)
     }
     else
     {
-		int err = ISC_StopImmediate(mSerial.c_str());
-        if(err != 0)
+		int e = ISC_StopImmediate(mSerial.c_str());
+        if(e != 0)
         {
-            Log(lError) <<tlError(err);
+            Log(lError) <<tlError(e);
         }
     }
 }
 
 void LongTravelStage::stopProfiled(bool inThread)
 {
-    int err = ISC_StopProfiled(mSerial.c_str());
-    if(err != 0)
+    int e = ISC_StopProfiled(mSerial.c_str());
+    if(e != 0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
     }
 }
 
@@ -252,44 +252,59 @@ double LongTravelStage::getVelocity()
 {
 	int a(0), v(0);
 
-	int err = ISC_GetVelParams(mSerial.c_str(), &a, &v);
+	int e = ISC_GetVelParams(mSerial.c_str(), &a, &v);
 
-    if(err != 0)
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
     }
-  	return v / mScalingFactors.velocity;
+  	return (double) v / mScalingFactors.velocity;
 }
 
 double LongTravelStage::getAcceleration()
 {
 	int a(0), v(0);
 
-	int err = ISC_GetVelParams(mSerial.c_str(), &a, &v);
+	int e = ISC_GetVelParams(mSerial.c_str(), &a, &v);
 
-    if(err != 0)
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
     }
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool LongTravelStage::setVelocity(double vel)
+bool LongTravelStage::setVelocity(double v, double a, bool inThread)
 {
- 	MOT_VelocityParameters p;
-    ISC_GetVelParamsBlock(mSerial.c_str(), &p);
-
-    p.maxVelocity = vel * mScalingFactors.velocity;
-    Log(lDebug) << getName() << ": velocity -> "<<vel;
-
-    int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
-
-    if(e)
+	if(inThread)
     {
-        Log(lError) <<tlError(e);
+		MotorCommand cmd(mcSetVelocityParameters, v, a);
+		post(cmd);
+        mMotorCommandsPending++;
     }
+    else
+    {
+     	MOT_VelocityParameters p;
+        ISC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-	return true;
+        p.maxVelocity = v * mScalingFactors.velocity;
+        if(a != 0.0)
+        {
+        	p.acceleration = a * mScalingFactors.acceleration;
+        }
+
+        Log(lDebug) << getName() << ": velocity -> "<<v;
+
+        int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
+        mMotorCommandsPending--;
+
+        if(e)
+        {
+            Log(lError) <<tlError(e);
+           	return false;
+        }
+    }
+   	return true;
 }
 
 bool LongTravelStage::setAcceleration(double a)
@@ -305,6 +320,7 @@ bool LongTravelStage::setAcceleration(double a)
     if(e)
     {
         Log(lError) <<tlError(e);
+       	return false;
     }
 
 	return false;
@@ -313,10 +329,10 @@ bool LongTravelStage::setAcceleration(double a)
 bool LongTravelStage::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();
-	int err = ISC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
-    if(err != 0)
+	int e = ISC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
         return false;
     }
   	return true;
@@ -325,10 +341,10 @@ bool LongTravelStage::setJogMoveMode(JogMoveMode jm)
 bool LongTravelStage::setJogStopMode(StopMode sm)
 {
 	JogMoveMode jm = getJogMoveMode();
-	int err = ISC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
-    if(err != 0)
+	int e = ISC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
         return false;
     }
   	return true;
@@ -338,10 +354,10 @@ JogMoveMode	LongTravelStage::getJogMoveMode()
 {
     MOT_JogModes jm;
 	MOT_StopModes sm;
-	int err = ISC_GetJogMode(mSerial.c_str(), &jm, &sm);
-    if(err != 0)
+	int e = ISC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
         return (JogMoveMode) MOT_JogModeUndefined;
     }
   	return (JogMoveMode) jm;
@@ -351,10 +367,10 @@ StopMode LongTravelStage::getJogStopMode()
 {
 	MOT_StopModes sm;
     MOT_JogModes jm;
-	int err = ISC_GetJogMode(mSerial.c_str(), &jm, &sm);
-    if(err != 0)
+	int e = ISC_GetJogMode(mSerial.c_str(), &jm, &sm);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
         return (StopMode) MOT_StopModeUndefined;
     }
   	return (StopMode) sm;
@@ -363,10 +379,10 @@ StopMode LongTravelStage::getJogStopMode()
 double LongTravelStage::getJogVelocity()
 {
     int a, v;
-    int err = ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
-    if(err != 0)
+    int e = ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
     }
 
     return v /  mScalingFactors.velocity;
@@ -378,11 +394,12 @@ bool LongTravelStage::setJogVelocity(double newVel)
     ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
 
 	Log(lDebug) << "Setting Jog Velocity: "<<newVel;
-    int err = ISC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
+    int e = ISC_SetJogVelParams(mSerial.c_str(), a, newVel * mScalingFactors.velocity);
 
-    if(err != 0)
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
+        return false;
     }
 	return true;
 }
@@ -391,11 +408,12 @@ bool LongTravelStage::setJogAcceleration(double newAcc)
 {
     int a, v;
     ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
-    int err = ISC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v);
+    int e = ISC_SetJogVelParams(mSerial.c_str(), newAcc * mScalingFactors.acceleration, v);
 
-    if(err != 0)
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
+        return false;
     }
 
 	return true;
@@ -404,11 +422,11 @@ bool LongTravelStage::setJogAcceleration(double newAcc)
 double LongTravelStage::getJogAcceleration()
 {
     int a, v;
-    int err = ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
+    int e = ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
 
-    if(err != 0)
+    if(e != 0)
     {
-    	Log(lError) <<tlError(err);
+    	Log(lError) <<tlError(e);
     }
 
     return a  / mScalingFactors.acceleration;
@@ -423,10 +441,10 @@ void LongTravelStage::jogForward(bool inThread)
     }
     else
     {
-        int err = ISC_MoveJog(mSerial.c_str(), MOT_Forwards);
-        if(err != 0)
+        int e = ISC_MoveJog(mSerial.c_str(), MOT_Forwards);
+        if(e != 0)
         {
-            Log(lError) <<tlError(err);
+            Log(lError) <<tlError(e);
         }
     }
 }
@@ -441,10 +459,10 @@ void LongTravelStage::jogReverse(bool inThread)
     else
     {
         //Todo: tell thorlabs about the MOT_Reverse flag name
-        int err = ISC_MoveJog(mSerial.c_str(), MOT_Reverse);
-        if(err != 0)
+        int e = ISC_MoveJog(mSerial.c_str(), MOT_Reverse);
+        if(e != 0)
         {
-            Log(lError) <<tlError(err);
+            Log(lError) <<tlError(e);
         }
     }
 }
@@ -452,20 +470,20 @@ void LongTravelStage::jogReverse(bool inThread)
 void LongTravelStage::forward(bool inThread)
 {
 	//TODO: use inThread logic
-    int err = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
-    if(err != 0)
+    int e = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+    if(e != 0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
     }
 }
 
 void LongTravelStage::reverse(bool inThread)
 {
 	//TODO: use inThread logic
-    int err = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Reverse);
-    if(err !=0)
+    int e = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Reverse);
+    if(e !=0)
     {
-        Log(lError) <<tlError(err);
+        Log(lError) <<tlError(e);
     }
 }
 
@@ -479,17 +497,14 @@ bool LongTravelStage::moveAbsolute(double pos, bool inThread)
     }
     else
     {
-        int err = ISC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
+        int e = ISC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position );
 		mMotorCommandsPending--;
-        if(err != 0)
+        if(e != 0)
         {
-            Log(lError) <<tlError(err);
+            Log(lError) <<tlError(e);
             Log(lError) <<"Tried to move to position: "<<pos<<" using the "<<getName()<<" device.";
             return false;
         }
     }
-	return true;
+    return true;
 }
-
-
-
