@@ -11,6 +11,11 @@ mPosition(p),
 mPositionResolution(1.0e-3)
 {}
 
+const char* AbsoluteMove::getTypeName() const
+{
+	return "absoluteMove";
+}
+
 bool AbsoluteMove::isDone()
 {
 	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);

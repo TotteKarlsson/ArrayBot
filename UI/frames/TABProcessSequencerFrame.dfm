@@ -2,14 +2,14 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
   Left = 0
   Top = 0
   Width = 673
-  Height = 285
+  Height = 408
   AutoSize = True
   TabOrder = 0
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
     Width = 673
-    Height = 241
+    Height = 364
     Align = alTop
     Caption = 'Move Sequencer'
     TabOrder = 0
@@ -26,23 +26,24 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Left = 161
       Top = 15
       Width = 362
-      Height = 224
+      Height = 347
       Align = alLeft
       AutoSize = True
       TabOrder = 1
       ExplicitLeft = 161
       ExplicitTop = 15
-      ExplicitHeight = 224
+      ExplicitHeight = 347
       inherited GroupBox1: TGroupBox [0]
-        Height = 224
-        ExplicitHeight = 224
+        Height = 347
+        Caption = 'Combined Moves'
+        ExplicitHeight = 347
       end
       inherited TMotorMoveProcessFrame1: TMotorMoveProcessFrame [1]
-        Height = 224
-        ExplicitHeight = 224
+        Height = 347
+        ExplicitHeight = 347
         inherited MainGB: TGroupBox
-          Height = 224
-          ExplicitHeight = 224
+          Height = 347
+          ExplicitHeight = 347
         end
       end
     end
@@ -50,16 +51,16 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Left = 2
       Top = 15
       Width = 159
-      Height = 224
+      Height = 347
       Align = alLeft
       Caption = 'Sequences'
       TabOrder = 2
       object mAddMoveBtn: TButton
         Left = 8
-        Top = 191
-        Width = 57
+        Top = 193
+        Width = 135
         Height = 25
-        Action = addProcessA
+        Action = addCombinedMovesProcessA
         TabOrder = 0
       end
       object mAddSeqBtn: TButton
@@ -72,9 +73,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         OnClick = mAddSeqBtnClick
       end
       object mDeleteMoveBtn: TButton
-        Left = 88
-        Top = 191
-        Width = 56
+        Left = 8
+        Top = 255
+        Width = 135
         Height = 25
         Action = removeProcessA
         TabOrder = 2
@@ -100,7 +101,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       object mSaveSequenceBtn: TButton
         Left = 98
         Top = 18
-        Width = 41
+        Width = 45
         Height = 28
         Caption = 'Save'
         TabOrder = 5
@@ -122,7 +123,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       object mSequenceNameE: mtkSTDStringEdit
         Left = 8
         Top = 100
-        Width = 121
+        Width = 135
         Height = 21
         EditLabel.Width = 77
         EditLabel.Height = 13
@@ -132,11 +133,34 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         OnKeyDown = mSequenceNameEKeyDown
         Value = '<none>'
       end
+      object Button1: TButton
+        Left = 8
+        Top = 224
+        Width = 135
+        Height = 25
+        Action = addTimeDelayProcess
+        TabOrder = 8
+      end
+    end
+    inline TTimeDelayFrame1: TTimeDelayFrame
+      Left = 523
+      Top = 15
+      Width = 137
+      Height = 347
+      Align = alLeft
+      AutoSize = True
+      TabOrder = 3
+      ExplicitLeft = 350
+      ExplicitTop = 279
+      inherited GroupBox1: TGroupBox
+        Height = 347
+        ExplicitHeight = 207
+      end
     end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 241
+    Top = 364
     Width = 673
     Height = 44
     Align = alTop
@@ -165,13 +189,17 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
   object Actions: TActionList
     Left = 544
     Top = 176
-    object addProcessA: TAction
-      Caption = 'Add'
-      OnExecute = addProcessAExecute
+    object addCombinedMovesProcessA: TAction
+      Caption = 'Add Combined Moves'
+      OnExecute = addCombinedMovesProcessAExecute
     end
     object removeProcessA: TAction
-      Caption = 'Remove'
+      Caption = 'Remove Current'
       OnExecute = removeProcessAExecute
+    end
+    object addTimeDelayProcess: TAction
+      Caption = 'Add TimeDelay'
+      OnExecute = addTimeDelayProcessExecute
     end
   end
 end

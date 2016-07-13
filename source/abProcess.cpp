@@ -12,6 +12,7 @@ string toString(ProcessType pt)
     {
     	case ptMove: return "linearMove";
     	case ptCombinedMove: return "combinedMove";
+    	case ptTimeDelay: return "timeDelay";
         default: return "unknown";
     }
 }
@@ -26,6 +27,11 @@ ProcessType toProcessType(const string& str)
 	if(str == "combinedMove")
     {
     	return ptCombinedMove;
+    }
+
+	if(str == "timeDelay")
+    {
+    	return ptTimeDelay;
     }
 
 	return ptUnknown;

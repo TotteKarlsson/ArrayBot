@@ -40,7 +40,7 @@ class AB_CORE MotorMessageProcessor : public ABObject, public mtk::Thread
 		bool                                        mAllowProcessing;
 		MotorCommandEnum							mLastProcessedCommand;
         APTMotor*									mMotor;
-
+        double										mProcessTimeDelay;
 		MotorMessageContainer&                      mMotorMessageContainer;
 };
 

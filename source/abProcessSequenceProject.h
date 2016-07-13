@@ -25,6 +25,8 @@ class AB_CORE ProcessSequenceProject : public mtk::Project
         bool                                    resetXML();
         int                                     loadProcesses();
         Process*				                createProcess(tinyxml2::XMLElement* element);
+		Process*								createCombinedMoveProcess(tinyxml2::XMLElement* element);
+		Process*								createTimeDelayProcess(tinyxml2::XMLElement* element);
 };
 
 #endif

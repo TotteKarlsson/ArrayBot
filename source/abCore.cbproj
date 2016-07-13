@@ -126,7 +126,7 @@
             <BuildOrder>16</BuildOrder>
         </CppCompile>
         <CppCompile Include="abCombinedMove.cpp">
-            <BuildOrder>30</BuildOrder>
+            <BuildOrder>41</BuildOrder>
         </CppCompile>
         <CppCompile Include="abContinousMove.cpp">
             <BuildOrder>39</BuildOrder>
@@ -233,6 +233,9 @@
         </CppCompile>
         <CppCompile Include="abTCubeStepperMotor.cpp">
             <BuildOrder>8</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abTimeDelay.cpp">
+            <BuildOrder>30</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTrigger.cpp">
             <BuildOrder>40</BuildOrder>

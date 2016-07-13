@@ -7,6 +7,7 @@
 #include "abPosition.h"
 #include "abArrayBot.h"
 #include "abAbsoluteMove.h"
+#include "abTimedelay.h"
 using namespace mtk;
 using namespace tinyxml2;
 
@@ -124,7 +125,7 @@ int ProcessSequenceProject::loadProcesses()
         if(aProc)
         {
             mProcessSequence.add(aProc);
-            Log(lDebug) <<"Imported a "<<p->Name()<<" process.";
+            Log(lDebug) <<"Imported process: "<<aProc->getProcessName()<<" of type: "<<aProc->getTypeName();
             nrOfObjects++;
         }
         else
@@ -156,82 +157,105 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
   	//What process?
     switch(pt)
     {
-    	case ptCombinedMove:
-        	CombinedMove* p = new CombinedMove("");
-            string name = element->FirstChildElement("process_name")->GetText();
-            p->setProcessName(name);
+    	case ptCombinedMove: 	return createCombinedMoveProcess(element);
+        case ptTimeDelay:       return createTimeDelayProcess(element);
 
-            //Read and create sub moves
-            XMLElement* processes = element->FirstChildElement("processes");
-            if(processes)
-            {
-            	XMLElement* processE = processes->FirstChildElement();
-
-                //Loop over childs
-                while(processE)
-                {
-	                AbsoluteMove* lm(NULL);
-
-                    const char* name = processE->Attribute("name");
-                    if(name)
-                    {
-			            Log(lDebug) << "Loading element: "<<name;
-
-                        const char* type = processE->Attribute("type");
-                        if(compareNoCase(type, "ABSOLUTE_MOVE"))
-                        {
-    	  	                lm = new AbsoluteMove(name);
-                        }
-
-                        const char* val = processE->Attribute("motor_name");
-                        if(val)
-                        {
-                        	lm->setMotorName(val);
-                        }
-
-                        val = processE->Attribute("final_position");
-                        if(val)
-                        {
-                        	lm->setPosition( ab::Position("", toDouble(val), 0.0 , 0.0));
-                        }
-
-                        val = processE->Attribute("max_velocity");
-                        if(val)
-                        {
-                        	lm->setMaxVelocity(toDouble(val));
-                        }
-
-                        val = processE->Attribute("acc");
-                        if(val)
-                        {
-                        	lm->setAcceleration(toDouble(val));
-                        }
-
-                        val = processE->Attribute("pre_dwell_time");
-                        if(val)
-                        {
-                        	lm->setPreDwellTime(toDouble(val));
-                        }
-
-                        val = processE->Attribute("post_dwell_time");
-                        if(val)
-                        {
-                        	lm->setPostDwellTime(toDouble(val));
-                        }
-
-                        //We need to associate the motor with 'name' with a
-                        //real motor object provided for by ArrayBot
-                        lm->assignUnit(mProcessSequence.getArrayBot());
-	                    p->addMove(lm);
-	                }
-
-                    processE = processE->NextSiblingElement();
-                }
-            }
-
-        return p;
     }
 
     return NULL;
+}
+
+Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
+{
+    CombinedMove* p = new CombinedMove("");
+
+    string name = element->FirstChildElement("process_name")->GetText();
+    p->setProcessName(name);
+
+    //Read and create sub moves
+    XMLElement* processes = element->FirstChildElement("processes");
+    if(processes)
+    {
+        XMLElement* processE = processes->FirstChildElement();
+
+        //Loop over childs
+        while(processE)
+        {
+            AbsoluteMove* lm(NULL);
+
+            const char* name = processE->Attribute("name");
+            if(name)
+            {
+                Log(lDebug) << "Loading element: "<<name;
+
+                const char* type = processE->Attribute("type");
+                if(compareNoCase(type, "absoluteMove"))
+                {
+                    lm = new AbsoluteMove(name);
+                }
+
+                const char* val = processE->Attribute("motor_name");
+                if(val)
+                {
+                    lm->setMotorName(val);
+                }
+
+                val = processE->Attribute("final_position");
+                if(val)
+                {
+                    lm->setPosition( ab::Position("", toDouble(val), 0.0 , 0.0));
+                }
+
+                val = processE->Attribute("max_velocity");
+                if(val)
+                {
+                    lm->setMaxVelocity(toDouble(val));
+                }
+
+                val = processE->Attribute("acc");
+                if(val)
+                {
+                    lm->setAcceleration(toDouble(val));
+                }
+
+                val = processE->Attribute("pre_dwell_time");
+                if(val)
+                {
+                    lm->setPreDwellTime(toDouble(val));
+                }
+
+                val = processE->Attribute("post_dwell_time");
+                if(val)
+                {
+                    lm->setPostDwellTime(toDouble(val));
+                }
+
+                //We need to associate the motor with 'name' with a
+                //real motor object provided for by ArrayBot
+                lm->assignUnit(mProcessSequence.getArrayBot());
+                p->addMove(lm);
+            }
+
+            processE = processE->NextSiblingElement();
+        }
+    }
+
+    return p;
+}
+
+Process* ProcessSequenceProject::createTimeDelayProcess(XMLElement* element)
+{
+    TimeDelay* p = new TimeDelay("");
+
+    string name = element->FirstChildElement("process_name")->GetText();
+    p->setProcessName(name);
+
+    //Read and create sub moves
+    XMLElement* processes = element->FirstChildElement("processes");
+    if(processes)
+    {
+    }
+
+    return p;
 }
 

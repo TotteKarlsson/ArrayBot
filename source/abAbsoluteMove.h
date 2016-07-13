@@ -8,6 +8,7 @@ class AB_CORE AbsoluteMove : public ab::Move
     public:
 			        				AbsoluteMove(const string& lbl, const ab::Position& p = ab::Position("", -1,-1,-1), double maxVel = 0, double acc = 0);
 				        			~AbsoluteMove(){}
+		const char* 				getTypeName() const;
 
 
         bool 			            setPosition(const ab::Position& pos){mPosition = pos; return true;}

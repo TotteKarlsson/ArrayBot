@@ -7,6 +7,7 @@
 #include "abAPTMotor.h"
 #include "abCombinedMove.h"
 #include "abArrayBot.h"
+#include "abTimeDelay.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -14,6 +15,7 @@
 #pragma link "TMotorMoveProcessFrame"
 #pragma link "TCombinedMoveFrame"
 #pragma link "mtkSTDStringEdit"
+#pragma link "TTimeDelayFrame"
 #pragma resource "*.dfm"
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
@@ -29,7 +31,7 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, cons
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
 
-    GroupBox1->Caption = "ArrayBot Process Sequencer";
+    GroupBox1->Caption = "Process Sequencer";
     mProcessFileExtension = "abp";
     refreshSequencesCB();
 }
@@ -160,6 +162,8 @@ void __fastcall TABProcessSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
 void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
 {
 	//Retrieve current process and populate UI
+    //Check what kind of process we have, Pause, or CombinedMove
+
     int i = mProcessesLB->ItemIndex;
     if(i == -1)
     {
@@ -170,7 +174,20 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
     Process* p = (Process*) mProcessesLB->Items->Objects[i];
     if(p)
     {
-    	TCombinedMoveFrame1->populate(mAB, p);
+    	CombinedMove* cm = dynamic_cast<CombinedMove*>(p);
+    	TimeDelay* td= dynamic_cast<TimeDelay*>(p);
+        if(cm)
+        {
+            TTimeDelayFrame1->Visible = false;
+    		TCombinedMoveFrame1->populate(mAB, cm);
+			TCombinedMoveFrame1->Visible = true;
+        }
+        else if(td)
+        {
+			TCombinedMoveFrame1->Visible = false;
+            TTimeDelayFrame1->populate(mAB, td);
+            TTimeDelayFrame1->Visible = true;
+        }
     }
 }
 
@@ -216,7 +233,7 @@ void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::addProcessAExecute(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::addCombinedMovesProcessAExecute(TObject *Sender)
 {
 	ProcessSequence* s = mProcessSequencer.getCurrentSequence();
 	if(!s)
@@ -275,3 +292,26 @@ void __fastcall TABProcessSequencerFrame::mSequenceNameEKeyDown(TObject *Sender,
         saveSequence();
     }
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TABProcessSequencerFrame::addTimeDelayProcessExecute(TObject *Sender)
+{
+	ProcessSequence* s = mProcessSequencer.getCurrentSequence();
+	if(!s)
+    {
+    	Log(lError) << "Tried to add process to NULL sequence";
+    	return;
+    }
+
+    int nr  = s->getNumberOfProcesses() + 1;
+
+	//Create and add a process to the sequence
+	Process *p = new TimeDelay("Process " + mtk::toString(nr), Poco::Timespan(1000*Poco::Timespan::MILLISECONDS));
+   	s->add(p);
+
+    //Update LB
+    mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
+
+}
+
+

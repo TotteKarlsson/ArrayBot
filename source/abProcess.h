@@ -17,8 +17,8 @@ namespace mtk
 using Poco::Timestamp;
 using Poco::Timestamp::TimeDiff;
 
-//!Instead of the enums, use type() info..
-enum ProcessType {ptBaseType = 0, ptMove, ptCombinedMove, ptUnknown};
+//!We are using an enum for process type in order to save/retrieve different processes from XML
+enum ProcessType {ptBaseType = 0, ptMove, ptCombinedMove, ptTimeDelay, ptUnknown};
 string AB_CORE	toString(ProcessType tp);
 ProcessType toProcessType(const string& str);
 
@@ -65,9 +65,6 @@ class AB_CORE Process : public ABObject
                                     //a new process object from a file
         ProcessType					mProcessType;
 
-        							//!A process parameters are saved
-                                    //to its own INI section in a INI file
-        mtk::IniSection*	   		mIniSection;
 
 		bool						mIsStarted;
 		bool						mIsBeingProcessed;

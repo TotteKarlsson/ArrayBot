@@ -1,7 +1,6 @@
 #ifndef abCombinedMoveH
 #define abCombinedMoveH
 #include "abProcess.h"
-//#include "abMove.h"
 #include <vector>
 #include "mtkXMLUtils.h"
 //---------------------------------------------------------------------------
@@ -12,12 +11,12 @@ namespace ab
 class Move;
 }
 
-//TODO: Rename this one to MultiMove
 class AB_CORE CombinedMove : public Process
 {
     public:
         	   			            CombinedMove(const string& lbl);
     	virtual			            ~CombinedMove(){}
+		const char* 				getTypeName() const;
         void						clear();
 
         virtual mtk::XMLElement*    addToXMLDocumentAsChildProcess(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);

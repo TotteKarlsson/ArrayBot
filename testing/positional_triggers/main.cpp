@@ -38,31 +38,31 @@ int main()
 
     while(!blackMotor->isAtDesiredPosition() || !redMotor->isAtDesiredPosition())
     {
-    	sleep(10);
+    	sleep(1);
     }
 
 	//Move black motor to 2
-    blackMotor->moveAbsolute3(2, 	2.5, 2);
+    blackMotor->moveAbsolute3(2, 	4.5, 2);
 
     //When black motor is at position '2', trigger movement of the red motor
     PositionalTrigger trigger1("test1", tcLargerThanOrEqual, 2, blackMotor->getPosition);
-	trigger1.addFireFunction(bind(&APTMotor::moveAbsolute2, redMotor,   2, 		1.1));
+	trigger1.addFireFunction(bind(&APTMotor::moveAbsolute2, redMotor,   3, 		5));
 
 	//When red motor is at 2, trigger black motor to continue
     PositionalTrigger trigger2("test2", tcLargerThanOrEqual, 1.95, redMotor->getPosition);
-	trigger2.addFireFunction(bind(&APTMotor::moveAbsolute2, blackMotor,   4,   	1.1));
+	trigger2.addFireFunction(bind(&APTMotor::moveAbsolute2, blackMotor,   4,   	5));
     trigger1.load();
     trigger2.load();
 
     //The triggers should trigger
     while(!trigger1.isTriggered() || !trigger2.isTriggered())
     {
-    	sleep(50);
+    	sleep(1);
     }
 
     while(!blackMotor->isAtDesiredPosition())
     {
-       	sleep(50);
+       	sleep(1);
     }
 
     goto lbl1;

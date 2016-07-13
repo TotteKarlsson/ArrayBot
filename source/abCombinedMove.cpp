@@ -16,6 +16,11 @@ Process(lbl, ptCombinedMove)
 	mProcessType = ptCombinedMove;
 }
 
+const char* CombinedMove::getTypeName() const
+{
+	return "combinedMove";
+}
+
 void CombinedMove::clear()
 {
 	mMoves.clear();

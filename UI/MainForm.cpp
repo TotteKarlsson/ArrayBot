@@ -36,7 +36,6 @@ using namespace mtk;
 __fastcall TMain::TMain(TComponent* Owner)
 :
 	TRegistryForm("Test", "MainForm", Owner),
-//	logMsgMethod(&logMsg),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
     mLogLevel(lAny),
@@ -214,6 +213,9 @@ void __fastcall	TMain::setupUIFrames()
         ps = pss.getNext();
         btn->Width = mBottomPanel->Height;
     }
+
+    //Restore back to first sequence
+    ps = pss.getFirst();
 
     //Create the ribbon lifter frame
     mRibbonLifterFrame = new TRibbonLifterFrame((*mAB), mIniFile, this);
