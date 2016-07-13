@@ -89,7 +89,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_joy_stick_message_dispatcher-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">JoyStickMessageDispatcher Class Reference</div>  </div>
@@ -122,6 +121,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a86a30a614cb62b859fa2988f6f10389d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86a30a614cb62b859fa2988f6f10389d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>JoyStickMessageDispatcher</b> (<a class="el" href="class_array_bot_joy_stick.html">ArrayBotJoyStick</a> &amp;js, int nrOfButtons)</td></tr>
 <tr class="separator:a86a30a614cb62b859fa2988f6f10389d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f8891980b5e34bdbfda197a44b2dc01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f8891980b5e34bdbfda197a44b2dc01"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>switchJoyStickDevice</b> ()</td></tr>
+<tr class="separator:a3f8891980b5e34bdbfda197a44b2dc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17107898acb22a400f495c9da703fd52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17107898acb22a400f495c9da703fd52"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setButtonEvents</b> (int btnNr, JoyStickEvent up, JoyStickEvent down)</td></tr>
 <tr class="separator:a17107898acb22a400f495c9da703fd52"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,15 +145,33 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>enable</b> ()</td></t
 <tr class="memitem:add6ad575e0edfe34116e5414b52010c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add6ad575e0edfe34116e5414b52010c5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>disable</b> ()</td></tr>
 <tr class="separator:add6ad575e0edfe34116e5414b52010c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:acddf56c8e29a9eb592e1ac9459444e86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acddf56c8e29a9eb592e1ac9459444e86"></a>
-JOYINFOEX&#160;</td><td class="memItemRight" valign="bottom"><b>mJoyInfo</b></td></tr>
-<tr class="separator:acddf56c8e29a9eb592e1ac9459444e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79e97285f9cfcb8b3ead4849cb67c046"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79e97285f9cfcb8b3ead4849cb67c046"></a>
-JOYCAPS&#160;</td><td class="memItemRight" valign="bottom"><b>mCapabilities</b></td></tr>
-<tr class="separator:a79e97285f9cfcb8b3ead4849cb67c046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf5079ef1f30c1e3fa74e00675ca4a0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf5079ef1f30c1e3fa74e00675ca4a0d"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getX1Pos</b> ()</td></tr>
+<tr class="separator:acf5079ef1f30c1e3fa74e00675ca4a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f01365692eed867f6c72454b25fd60c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f01365692eed867f6c72454b25fd60c"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getY1Pos</b> ()</td></tr>
+<tr class="separator:a1f01365692eed867f6c72454b25fd60c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39aedf60e5db0bf7aa704e2922c18fb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39aedf60e5db0bf7aa704e2922c18fb7"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getZ1Pos</b> ()</td></tr>
+<tr class="separator:a39aedf60e5db0bf7aa704e2922c18fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f8aa178d034256b6a7f1ebf1e026450"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f8aa178d034256b6a7f1ebf1e026450"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getX2Pos</b> ()</td></tr>
+<tr class="separator:a2f8aa178d034256b6a7f1ebf1e026450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc0a89debe0da29ef86a899f1cb30b75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc0a89debe0da29ef86a899f1cb30b75"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getY2Pos</b> ()</td></tr>
+<tr class="separator:adc0a89debe0da29ef86a899f1cb30b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c1e281c5a5cef3852f4ac8ca9a4cbf5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c1e281c5a5cef3852f4ac8ca9a4cbf5"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getZ2Pos</b> ()</td></tr>
+<tr class="separator:a8c1e281c5a5cef3852f4ac8ca9a4cbf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a962e1d862be42882a084c8d6da89514e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a962e1d862be42882a084c8d6da89514e"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getButtonBits</b> ()</td></tr>
+<tr class="separator:a962e1d862be42882a084c8d6da89514e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accc8fe2555b8cb0794c077b635e9462e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="accc8fe2555b8cb0794c077b635e9462e"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>getPOVBits</b> ()</td></tr>
+<tr class="separator:accc8fe2555b8cb0794c077b635e9462e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc1a39418d12709fcc9b4c9832f0862"></a>
+virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>getTypeName</b> () const </td></tr>
+<tr class="separator:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_joy_stick_message_dispatcher.html" title="The JoyStickMessageDispatcher is tailor made for the ArrayBot. ">JoyStickMessageDispatcher</a> is tailor made for the <a class="el" href="class_array_bot.html">ArrayBot</a>. </p>

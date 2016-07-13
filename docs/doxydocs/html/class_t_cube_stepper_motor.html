@@ -176,9 +176,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="memitem:a6faf13ab5f2dcd52c3742be7797a60f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6faf13ab5f2dcd52c3742be7797a60f5"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getVelocity</b> ()</td></tr>
 <tr class="separator:a6faf13ab5f2dcd52c3742be7797a60f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0eb3dac7109d261928ce718ab794322"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0eb3dac7109d261928ce718ab794322"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocity</b> (double v)</td></tr>
-<tr class="separator:ad0eb3dac7109d261928ce718ab794322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e58037645dc31611da5f91c5aec7164"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e58037645dc31611da5f91c5aec7164"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocity</b> (double v, double a=0, bool inThread=true)</td></tr>
+<tr class="separator:a0e58037645dc31611da5f91c5aec7164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a563ea20f9d4727970e9754e2c4919051"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a563ea20f9d4727970e9754e2c4919051"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getAcceleration</b> ()</td></tr>
 <tr class="separator:a563ea20f9d4727970e9754e2c4919051"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,14 +250,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setPotentiometerVeloc
 double&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxPosition</b> ()</td></tr>
 <tr class="separator:ad6b90dc9acb5052d9a3a22576db863aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7792d5cf785cf0e77a0be63248efb3b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7792d5cf785cf0e77a0be63248efb3b8"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>switchDirection</b> (bool inThread=true)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>switchDirection</b> (bool inThread=true)</td></tr>
 <tr class="separator:a7792d5cf785cf0e77a0be63248efb3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a96d14d331b6b3afe6885fc8c4b0e11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a96d14d331b6b3afe6885fc8c4b0e11"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityForward</b> (double v)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityForward</b> (double v)</td></tr>
 <tr class="separator:a1a96d14d331b6b3afe6885fc8c4b0e11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a944a015130c100dbff2f036fd754efa3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a944a015130c100dbff2f036fd754efa3"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityReverse</b> (double v)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityReverse</b> (double v)</td></tr>
 <tr class="separator:a944a015130c100dbff2f036fd754efa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62659cf32097e206f48466d546a15516"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62659cf32097e206f48466d546a15516"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_p_t_motor.html#a62659cf32097e206f48466d546a15516">moveAbsolute2</a> (double position, double v)</td></tr>
+<tr class="memdesc:a62659cf32097e206f48466d546a15516"><td class="mdescLeft">&#160;</td><td class="mdescRight">MoveAbsolute2 takes a position and a velocity These functions have 2, and 3 postfix cause of. <br /></td></tr>
+<tr class="separator:a62659cf32097e206f48466d546a15516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1abc16ebb57c94f477639cdcf46b23d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1abc16ebb57c94f477639cdcf46b23d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>moveAbsolute3</b> (double position, double v, double a=0)</td></tr>
+<tr class="separator:ad1abc16ebb57c94f477639cdcf46b23d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26fa3cf9ad0ef38a30d1f8d58dc5d306"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26fa3cf9ad0ef38a30d1f8d58dc5d306"></a>
 virtual Range&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_p_t_motor.html#a26fa3cf9ad0ef38a30d1f8d58dc5d306">getVelocityRange</a> ()</td></tr>
 <tr class="memdesc:a26fa3cf9ad0ef38a30d1f8d58dc5d306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor ranges. <br /></td></tr>
@@ -265,12 +272,12 @@ virtual Range&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <tr class="memitem:acb301fab65bc40b60ed41ec5667efc57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb301fab65bc40b60ed41ec5667efc57"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityRange</b> (DoubleRange vr)</td></tr>
 <tr class="separator:acb301fab65bc40b60ed41ec5667efc57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf61ad01671f452a1f924b8213d30d3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf61ad01671f452a1f924b8213d30d3f"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setJogMoveParameters</b> (double v, double a)</td></tr>
-<tr class="separator:abf61ad01671f452a1f924b8213d30d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13c7329447f7d0a90de9337c6f60b0ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13c7329447f7d0a90de9337c6f60b0ec"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>moveRelative</b> (double position, bool inThread=true)</td></tr>
 <tr class="separator:a13c7329447f7d0a90de9337c6f60b0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf61ad01671f452a1f924b8213d30d3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf61ad01671f452a1f924b8213d30d3f"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setJogMoveParameters</b> (double v, double a)</td></tr>
+<tr class="separator:abf61ad01671f452a1f924b8213d30d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d45bca3613e6eed817d2ef5d4baab8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d45bca3613e6eed817d2ef5d4baab8b"></a>
 MotorCommandEnum&#160;</td><td class="memItemRight" valign="bottom"><b>getLastCommand</b> ()</td></tr>
 <tr class="separator:a5d45bca3613e6eed817d2ef5d4baab8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -289,9 +296,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setManualJogAccelerat
 <tr class="memitem:acafe3537bb2071eb19e6778d25a052f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acafe3537bb2071eb19e6778d25a052f4"></a>
 virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>getPotentiometerVelocity</b> ()</td></tr>
 <tr class="separator:acafe3537bb2071eb19e6778d25a052f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7df0de20da464d8e4fee58c658d5dfa9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7df0de20da464d8e4fee58c658d5dfa9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>commandsPending</b> ()</td></tr>
-<tr class="separator:a7df0de20da464d8e4fee58c658d5dfa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f96268b54aa5e827f4e796d94394499"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f96268b54aa5e827f4e796d94394499"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMotorCommandPending</b> ()</td></tr>
+<tr class="separator:a1f96268b54aa5e827f4e796d94394499"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b998053348f0a3dbd31bfe3d3bd3b41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b998053348f0a3dbd31bfe3d3bd3b41"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAtDesiredPosition</b> ()</td></tr>
+<tr class="separator:a9b998053348f0a3dbd31bfe3d3bd3b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bcdee3112685479540cde6615409334"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bcdee3112685479540cde6615409334"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getDesiredPosition</b> ()</td></tr>
+<tr class="separator:a5bcdee3112685479540cde6615409334"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af79731bcc9de5e8c6cb4554c9c5ab728"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af79731bcc9de5e8c6cb4554c9c5ab728"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isConnected</b> ()</td></tr>
 <tr class="separator:af79731bcc9de5e8c6cb4554c9c5ab728"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -310,6 +323,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadProperties</b> (I
 <tr class="memitem:a038c982effb428e75c5baf88fd039b03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a038c982effb428e75c5baf88fd039b03"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>writeProperties</b> (IniFile &amp;iniFile)</td></tr>
 <tr class="separator:a038c982effb428e75c5baf88fd039b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc1a39418d12709fcc9b4c9832f0862"></a>
+virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>getTypeName</b> () const </td></tr>
+<tr class="separator:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -322,9 +338,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>post</b> (const <a cl
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:aaac06d354923f37ff7982ce35efc52de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaac06d354923f37ff7982ce35efc52de"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>mCommandsPending</b></td></tr>
-<tr class="separator:aaac06d354923f37ff7982ce35efc52de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3b724c86c73d519ec6a13d840ed19fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3b724c86c73d519ec6a13d840ed19fa"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_p_t_motor.html#ae3b724c86c73d519ec6a13d840ed19fa">mDesiredPosition</a></td></tr>
+<tr class="memdesc:ae3b724c86c73d519ec6a13d840ed19fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor commands are processed in a thread by the. <br /></td></tr>
+<tr class="separator:ae3b724c86c73d519ec6a13d840ed19fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad76b73802536c3e0794144d199cdf28e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad76b73802536c3e0794144d199cdf28e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>mMotorCommandsPending</b></td></tr>
+<tr class="separator:ad76b73802536c3e0794144d199cdf28e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab58a6e523dc74f486fd1c45869dad33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab58a6e523dc74f486fd1c45869dad33"></a>
 Timer&#160;</td><td class="memItemRight" valign="bottom"><b>mStatusTimer</b></td></tr>
 <tr class="separator:aab58a6e523dc74f486fd1c45869dad33"><td class="memSeparator" colspan="2">&#160;</td></tr>

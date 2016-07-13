@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['home',['home',['../class_a_p_t_motor.html#a6b9fd63180ace89c56f4fcd56d4ddfa9',1,'APTMotor::home()'],['../class_long_travel_stage.html#a56f814752ac382e0454759cc42d3d9fc',1,'LongTravelStage::home()'],['../class_t_cube_d_c_servo.html#a6921245c24f8f0c2c9416ec31a5ed79b',1,'TCubeDCServo::home()'],['../class_t_cube_stepper_motor.html#af8c0c576905cdeffbf3c8ba3f0f79276',1,'TCubeStepperMotor::home()']]]
+  ['getjogvelocity',['getJogVelocity',['../class_t_cube_stepper_motor.html#a5597dbab6088849a915243f92fdbeefd',1,'TCubeStepperMotor']]],
+  ['getposition',['getPosition',['../class_t_cube_stepper_motor.html#a7b9577589377cff6de17ba528920fca4',1,'TCubeStepperMotor']]],
+  ['getvelocityrange',['getVelocityRange',['../class_a_p_t_motor.html#a26fa3cf9ad0ef38a30d1f8d58dc5d306',1,'APTMotor']]]
 ];

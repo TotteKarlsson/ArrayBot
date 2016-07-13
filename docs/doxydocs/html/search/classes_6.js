@@ -13,5 +13,7 @@ var searchData=
   ['motormessagecreator',['MotorMessageCreator',['../class_motor_message_creator.html',1,'']]],
   ['motormessageprocessor',['MotorMessageProcessor',['../class_motor_message_processor.html',1,'']]],
   ['motorscalingfactors',['MotorScalingFactors',['../struct_motor_scaling_factors.html',1,'']]],
+  ['move',['Move',['../class_move.html',1,'']]],
+  ['move',['Move',['../classab_1_1_move.html',1,'ab']]],
   ['movesequence',['MoveSequence',['../class_move_sequence.html',1,'']]]
 ];

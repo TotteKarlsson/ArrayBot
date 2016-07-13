@@ -89,7 +89,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_move_sequence-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -110,8 +109,10 @@ Collaboration diagram for MoveSequence:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_move_sequence__coll__graph.png" border="0" usemap="#_move_sequence_coll__map" alt="Collaboration graph"/></div>
 <map name="_move_sequence_coll__map" id="_move_sequence_coll__map">
-<area shape="rect" id="node2" href="class_process_sequence.html" title="ProcessSequence" alt="" coords="255,109,383,136"/>
-<area shape="rect" id="node4" href="class_a_b_object.html" title="ABObject" alt="" coords="5,5,83,32"/>
+<area shape="rect" id="node2" href="class_process_sequence.html" title="ProcessSequence" alt="" coords="184,187,312,213"/>
+<area shape="rect" id="node8" href="class_process_sequence_project.html" title="ProcessSequenceProject" alt="" coords="11,277,180,304"/>
+<area shape="rect" id="node4" href="class_a_b_object.html" title="ABObject" alt="" coords="161,5,239,32"/>
+<area shape="rect" id="node13" href="class_array_bot.html" title="ArrayBot" alt="" coords="211,83,284,109"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -159,36 +160,42 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFirst</b> (<a class
 <tr class="memitem:a238f745cf4b202702cd6e13dc1dc0c0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a238f745cf4b202702cd6e13dc1dc0c0b"></a>
 <a class="el" href="class_process.html">Process</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrent</b> () const </td></tr>
 <tr class="separator:a238f745cf4b202702cd6e13dc1dc0c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace43356bef067311d83f6ad8b53b563f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace43356bef067311d83f6ad8b53b563f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const string &amp;name)</td></tr>
-<tr class="separator:ace43356bef067311d83f6ad8b53b563f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62d56240f825edb8b1b01d5e4278479b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62d56240f825edb8b1b01d5e4278479b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setFileExtension</b> (const string &amp;e)</td></tr>
-<tr class="separator:a62d56240f825edb8b1b01d5e4278479b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74174dbfa913c4be52de830743416371"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74174dbfa913c4be52de830743416371"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setProjectName</b> (const string &amp;name)</td></tr>
+<tr class="separator:a74174dbfa913c4be52de830743416371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab58937414c3fc5df248b1ff93cc1a750"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab58937414c3fc5df248b1ff93cc1a750"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setFileFolder</b> (const string &amp;f)</td></tr>
 <tr class="separator:ab58937414c3fc5df248b1ff93cc1a750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7be599df094681d24d29c17f9e0bed8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7be599df094681d24d29c17f9e0bed8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setFileName</b> (const string &amp;f)</td></tr>
+<tr class="separator:ad7be599df094681d24d29c17f9e0bed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62d56240f825edb8b1b01d5e4278479b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62d56240f825edb8b1b01d5e4278479b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setFileExtension</b> (const string &amp;e)</td></tr>
+<tr class="separator:a62d56240f825edb8b1b01d5e4278479b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a751e3a135346227d801c007ce1a7c577"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a751e3a135346227d801c007ce1a7c577"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getFileName</b> ()</td></tr>
+<tr class="separator:a751e3a135346227d801c007ce1a7c577"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02e96ce019cf0bd971388ac4de8e62e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02e96ce019cf0bd971388ac4de8e62e3"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>getFileFolder</b> ()</td></tr>
 <tr class="separator:a02e96ce019cf0bd971388ac4de8e62e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a15f17836f00dd77bc27d9a6a405275b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15f17836f00dd77bc27d9a6a405275b2"></a>
-Property&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mName</b></td></tr>
-<tr class="separator:a15f17836f00dd77bc27d9a6a405275b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dd819e4ba6084a1dae7f831e8c6d17c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8dd819e4ba6084a1dae7f831e8c6d17c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumberOfProcesses</b> ()</td></tr>
+<tr class="separator:a8dd819e4ba6084a1dae7f831e8c6d17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac60278afc8d7aebca8dfcb6ee28ce3fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac60278afc8d7aebca8dfcb6ee28ce3fb"></a>
+<a class="el" href="class_array_bot.html">ArrayBot</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getArrayBot</b> ()</td></tr>
+<tr class="separator:ac60278afc8d7aebca8dfcb6ee28ce3fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc1a39418d12709fcc9b4c9832f0862"></a>
+virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>getTypeName</b> () const </td></tr>
+<tr class="separator:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:adf47f62a69fa555d6af8a20627e5813d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf47f62a69fa555d6af8a20627e5813d"></a>
-IniSection&#160;</td><td class="memItemRight" valign="bottom"><b>mIniSection</b></td></tr>
-<tr class="separator:adf47f62a69fa555d6af8a20627e5813d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3c2a4bed974e111c985f1ae4229d3f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3c2a4bed974e111c985f1ae4229d3f7"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>mFileExtension</b></td></tr>
-<tr class="separator:aa3c2a4bed974e111c985f1ae4229d3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8419251a50ff0c5e007aec3c8c03e8df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8419251a50ff0c5e007aec3c8c03e8df"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>mFileFolder</b></td></tr>
-<tr class="separator:a8419251a50ff0c5e007aec3c8c03e8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae656153a319d780a807ab1847c4827d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae656153a319d780a807ab1847c4827d9"></a>
+<a class="el" href="class_array_bot.html">ArrayBot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mAB</b></td></tr>
+<tr class="separator:ae656153a319d780a807ab1847c4827d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a129f72079603c8cbc49bbb8a03a569e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a129f72079603c8cbc49bbb8a03a569e5"></a>
+<a class="el" href="class_process_sequence_project.html">ProcessSequenceProject</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mProject</b></td></tr>
+<tr class="separator:a129f72079603c8cbc49bbb8a03a569e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3430e102924a9728eff924b2cf41373b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3430e102924a9728eff924b2cf41373b"></a>
 list&lt; <a class="el" href="class_process.html">Process</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process_sequence.html#a3430e102924a9728eff924b2cf41373b">mProcesses</a></td></tr>
 <tr class="memdesc:a3430e102924a9728eff924b2cf41373b"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of abstract Processes. <br /></td></tr>

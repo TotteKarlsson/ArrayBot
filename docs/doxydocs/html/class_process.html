@@ -100,9 +100,14 @@ Inheritance diagram for Process:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_process__inherit__graph.png" border="0" usemap="#_process_inherit__map" alt="Inheritance graph"/></div>
 <map name="_process_inherit__map" id="_process_inherit__map">
-<area shape="rect" id="node5" href="class_combined_linear_move.html" title="The move baseclass contain the general logic for a &#39;move&#39; of. " alt="" coords="5,155,149,181"/>
-<area shape="rect" id="node7" href="class_linear_move.html" title="The move baseclass contain the general logic for a &#39;move&#39; of. " alt="" coords="174,155,260,181"/>
-<area shape="rect" id="node2" href="class_a_b_object.html" title="ABObject" alt="" coords="107,5,185,32"/>
+<area shape="rect" id="node5" href="classab_1_1_move.html" title="The move baseclass contain the general logic for a &#39;move&#39; of. " alt="" coords="101,155,176,181"/>
+<area shape="rect" id="node11" href="class_combined_move.html" title="CombinedMove" alt="" coords="201,155,311,181"/>
+<area shape="rect" id="node13" href="class_move.html" title="The move baseclass contain the general logic for a &#39;move&#39; of. " alt="" coords="335,155,387,181"/>
+<area shape="rect" id="node17" href="class_time_delay.html" title="TimeDelay" alt="" coords="412,155,495,181"/>
+<area shape="rect" id="node2" href="class_a_b_object.html" title="ABObject" alt="" coords="269,5,347,32"/>
+<area shape="rect" id="node7" href="class_absolute_move.html" title="AbsoluteMove" alt="" coords="5,229,107,256"/>
+<area shape="rect" id="node9" href="class_continous_move.html" title="ContinousMove" alt="" coords="131,229,241,256"/>
+<area shape="rect" id="node15" href="class_relative_move.html" title="RelativeMove" alt="" coords="313,229,409,256"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -116,12 +121,15 @@ Collaboration diagram for Process:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af3241196431a4a5019596e12b0bc229e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3241196431a4a5019596e12b0bc229e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Process</b> (const string &amp;lbl, <a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
-<tr class="separator:af3241196431a4a5019596e12b0bc229e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab140797f2d64d5d722720ea50c519369"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab140797f2d64d5d722720ea50c519369"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Process</b> (const string &amp;name, ProcessType pt)</td></tr>
+<tr class="separator:ab140797f2d64d5d722720ea50c519369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d50790478fc7b0f3ad0508905ffed43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d50790478fc7b0f3ad0508905ffed43"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
 <tr class="separator:a4d50790478fc7b0f3ad0508905ffed43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b22e896880da5e112f4f879bdd311f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17b22e896880da5e112f4f879bdd311f"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getProcessType</b> ()</td></tr>
+<tr class="separator:a17b22e896880da5e112f4f879bdd311f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a549ec62c0436d0f037c0c2052fe41e0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a549ec62c0436d0f037c0c2052fe41e0d"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>assignUnit</b> (<a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
 <tr class="separator:a549ec62c0436d0f037c0c2052fe41e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,12 +176,15 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()=0
 <tr class="memitem:a18bcf6d212291ad97b4116db3ef3bcce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18bcf6d212291ad97b4116db3ef3bcce"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>undo</b> ()=0</td></tr>
 <tr class="separator:a18bcf6d212291ad97b4116db3ef3bcce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1195344732a24c7aac8afd63b15d5836"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1195344732a24c7aac8afd63b15d5836"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (mtk::IniSection *sec)=0</td></tr>
-<tr class="separator:a1195344732a24c7aac8afd63b15d5836"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a621349dff76a8a2e6480f0fa2ac44d5a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a621349dff76a8a2e6480f0fa2ac44d5a"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (mtk::IniSection *sec)=0</td></tr>
-<tr class="separator:a621349dff76a8a2e6480f0fa2ac44d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cf3dc030f69dd5deeec821918ad4efb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cf3dc030f69dd5deeec821918ad4efb"></a>
+virtual mtk::XMLElement *&#160;</td><td class="memItemRight" valign="bottom"><b>addToXMLDocument</b> (mtk::XMLDocument &amp;doc, mtk::XMLNode *docRoot)</td></tr>
+<tr class="separator:a8cf3dc030f69dd5deeec821918ad4efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec1681ecfb81974a9bf9f1491914ce55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec1681ecfb81974a9bf9f1491914ce55"></a>
+virtual mtk::XMLElement *&#160;</td><td class="memItemRight" valign="bottom"><b>addToXMLDocumentAsChild</b> (mtk::XMLDocument &amp;doc, mtk::XMLNode *docRoot)</td></tr>
+<tr class="separator:aec1681ecfb81974a9bf9f1491914ce55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc1a39418d12709fcc9b4c9832f0862"></a>
+virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>getTypeName</b> () const </td></tr>
+<tr class="separator:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -183,16 +194,12 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:ae663f486d3b29d75e77538196683bf2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab04362b482e36ad06ca95a761d1e2c7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab04362b482e36ad06ca95a761d1e2c7a"></a>
 <a class="el" href="class_a_b_object.html">ABObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#ab04362b482e36ad06ca95a761d1e2c7a">mUnit</a></td></tr>
-<tr class="memdesc:ab04362b482e36ad06ca95a761d1e2c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Making object for moving abstract allow us. <br /></td></tr>
+<tr class="memdesc:ab04362b482e36ad06ca95a761d1e2c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Unit abstract object can be casted in derived classes. <br /></td></tr>
 <tr class="separator:ab04362b482e36ad06ca95a761d1e2c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d79793851b177467b126551fe7227b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d79793851b177467b126551fe7227b5"></a>
 ProcessType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#a7d79793851b177467b126551fe7227b5">mProcessType</a></td></tr>
 <tr class="memdesc:a7d79793851b177467b126551fe7227b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The process type help us construct. <br /></td></tr>
 <tr class="separator:a7d79793851b177467b126551fe7227b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55b0c2ad90aaa5f0b97fa1259d1a47b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55b0c2ad90aaa5f0b97fa1259d1a47b5"></a>
-mtk::IniSection *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_process.html#a55b0c2ad90aaa5f0b97fa1259d1a47b5">mIniSection</a></td></tr>
-<tr class="memdesc:a55b0c2ad90aaa5f0b97fa1259d1a47b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A process parameters are saved. <br /></td></tr>
-<tr class="separator:a55b0c2ad90aaa5f0b97fa1259d1a47b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fa3db2a0cc297f7f3353afde59c7470"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fa3db2a0cc297f7f3353afde59c7470"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsStarted</b></td></tr>
 <tr class="separator:a7fa3db2a0cc297f7f3353afde59c7470"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,7 +227,7 @@ Poco::Timespan&#160;</td><td class="memItemRight" valign="bottom"><b>mTimeOut</b
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ab_process_8h_source.html#l00023">23</a> of file <a class="el" href="ab_process_8h_source.html">abProcess.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_process_8h_source.html#l00025">25</a> of file <a class="el" href="ab_process_8h_source.html">abProcess.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_process_8h_source.html">abProcess.h</a></li>
 <li>source/<a class="el" href="ab_process_8cpp_source.html">abProcess.cpp</a></li>

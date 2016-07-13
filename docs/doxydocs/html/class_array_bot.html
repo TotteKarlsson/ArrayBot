@@ -119,6 +119,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a10bbdb019613ec054e9dced29327fd17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10bbdb019613ec054e9dced29327fd17"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td></tr>
 <tr class="separator:a10bbdb019613ec054e9dced29327fd17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a357255f0d507d967120f92f174661021"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a357255f0d507d967120f92f174661021"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>switchJoyStick</b> ()</td></tr>
+<tr class="separator:a357255f0d507d967120f92f174661021"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a711e2a13276c29487bc529b1bd70d016"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a711e2a13276c29487bc529b1bd70d016"></a>
 <a class="el" href="class_x_y_z_unit.html">XYZUnit</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCoverSlipUnit</b> ()</td></tr>
 <tr class="separator:a711e2a13276c29487bc529b1bd70d016"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,18 +143,18 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>enableJoyStick</b> ()
 <tr class="memitem:ac53c4a82d3e2020651e2b572cf76df93"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac53c4a82d3e2020651e2b572cf76df93"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>disableJoyStick</b> ()</td></tr>
 <tr class="separator:ac53c4a82d3e2020651e2b572cf76df93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4eb79537cd7b93b333ec791b982a2d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4eb79537cd7b93b333ec791b982a2d5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>enableJoyStickAxes</b> ()</td></tr>
+<tr class="separator:ac4eb79537cd7b93b333ec791b982a2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e5f15630853d5c5eb27fae6241d5fe1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e5f15630853d5c5eb27fae6241d5fe1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>disableJoyStickAxes</b> ()</td></tr>
+<tr class="separator:a9e5f15630853d5c5eb27fae6241d5fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43acce941075aadc376cbd5e346b7425"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43acce941075aadc376cbd5e346b7425"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>stopAll</b> ()</td></tr>
 <tr class="separator:a43acce941075aadc376cbd5e346b7425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42e08ce37618c5b033cd539b38c62af2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42e08ce37618c5b033cd539b38c62af2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>initWorkingPosition</b> ()</td></tr>
 <tr class="separator:a42e08ce37618c5b033cd539b38c62af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a123151633ed54cb720dd2981629dd235"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a123151633ed54cb720dd2981629dd235"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>stow</b> ()</td></tr>
-<tr class="separator:a123151633ed54cb720dd2981629dd235"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7df4dae23d584607bdc653bc80734f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7df4dae23d584607bdc653bc80734f4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>home</b> ()</td></tr>
-<tr class="separator:ad7df4dae23d584607bdc653bc80734f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8a3f5812a408507cb97ca6ae693a708"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8a3f5812a408507cb97ca6ae693a708"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> ()</td></tr>
 <tr class="separator:af8a3f5812a408507cb97ca6ae693a708"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,10 +179,22 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>readINIParameters</b>
 <tr class="memitem:ab49341462a7999e4466e304b87588719"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab49341462a7999e4466e304b87588719"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>writeINIParameters</b> ()</td></tr>
 <tr class="separator:ab49341462a7999e4466e304b87588719"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5923fd09695c01199c35b355cb8a588e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5923fd09695c01199c35b355cb8a588e"></a>
+vector&lt; <a class="el" href="class_a_p_t_motor.html">APTMotor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAllMotors</b> ()</td></tr>
+<tr class="separator:a5923fd09695c01199c35b355cb8a588e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76d027e0090bf374d9e7f64eab9bdb49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76d027e0090bf374d9e7f64eab9bdb49"></a>
+<a class="el" href="class_a_p_t_motor.html">APTMotor</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getMotorWithName</b> (const string &amp;mn)</td></tr>
+<tr class="separator:a76d027e0090bf374d9e7f64eab9bdb49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03cc21b44b21640a285a20a9509c81b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03cc21b44b21640a285a20a9509c81b6"></a>
+<a class="el" href="class_process_sequencer.html">ProcessSequencer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getProcessSequencer</b> ()</td></tr>
+<tr class="separator:a03cc21b44b21640a285a20a9509c81b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc1a39418d12709fcc9b4c9832f0862"></a>
+virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>getTypeName</b> () const </td></tr>
+<tr class="separator:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ab_array_bot_8h_source.html#l00011">11</a> of file <a class="el" href="ab_array_bot_8h_source.html">abArrayBot.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_array_bot_8h_source.html#l00012">12</a> of file <a class="el" href="ab_array_bot_8h_source.html">abArrayBot.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_array_bot_8h_source.html">abArrayBot.h</a></li>
 <li>source/<a class="el" href="ab_array_bot_8cpp_source.html">abArrayBot.cpp</a></li>

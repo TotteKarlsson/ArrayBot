@@ -113,15 +113,24 @@ Collaboration diagram for ProcessSequencer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a72fe329612c29fc24f74ba59559c8ca5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72fe329612c29fc24f74ba59559c8ca5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>assignUnit</b> (<a class="el" href="class_a_b_object.html">ABObject</a> *o)</td></tr>
-<tr class="separator:a72fe329612c29fc24f74ba59559c8ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4e69a9633aa42436f065c98f86186d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4e69a9633aa42436f065c98f86186d5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> (const string &amp;seqFName)</td></tr>
-<tr class="separator:ab4e69a9633aa42436f065c98f86186d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c2a166979b9433db74912864e174768"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c2a166979b9433db74912864e174768"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>save</b> (const string &amp;folder)</td></tr>
-<tr class="separator:a4c2a166979b9433db74912864e174768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65a055a0db0bac9a334be0288c60b0db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65a055a0db0bac9a334be0288c60b0db"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProcessSequencer</b> (<a class="el" href="class_array_bot.html">ArrayBot</a> &amp;ab, const string &amp;fileFolder)</td></tr>
+<tr class="separator:a65a055a0db0bac9a334be0288c60b0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af25a28c9f311d7e11dd567a93b67cfe4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af25a28c9f311d7e11dd567a93b67cfe4"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>selectSequence</b> (const string &amp;sName)</td></tr>
+<tr class="separator:af25a28c9f311d7e11dd567a93b67cfe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cedf54fc83ce724c2abc5062f1865c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cedf54fc83ce724c2abc5062f1865c7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> (const string &amp;sName)</td></tr>
+<tr class="separator:a8cedf54fc83ce724c2abc5062f1865c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4807c0b56bd58a1c969e2c245eda4d1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4807c0b56bd58a1c969e2c245eda4d1a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>loadAll</b> (const string &amp;fileFolder)</td></tr>
+<tr class="separator:a4807c0b56bd58a1c969e2c245eda4d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a363f47c4b37a4882b418c647227f2d8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a363f47c4b37a4882b418c647227f2d8a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>deleteSequence</b> (const string &amp;seq)</td></tr>
+<tr class="separator:a363f47c4b37a4882b418c647227f2d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91ed1f305c025188afc5c6d1019cb9ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91ed1f305c025188afc5c6d1019cb9ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>saveCurrent</b> ()</td></tr>
+<tr class="separator:a91ed1f305c025188afc5c6d1019cb9ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a113b6d955ebb598fac8c5b3653d52362"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a113b6d955ebb598fac8c5b3653d52362"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
 <tr class="separator:a113b6d955ebb598fac8c5b3653d52362"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,25 +152,28 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isRunning</b> ()</td>
 <tr class="memitem:a6ad0d2bf4a71243d4ffc077d15d42d36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ad0d2bf4a71243d4ffc077d15d42d36"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isCurrentProcessActive</b> ()</td></tr>
 <tr class="separator:a6ad0d2bf4a71243d4ffc077d15d42d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadf2b22f4056a76eb3dc582863d1d0bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aadf2b22f4056a76eb3dc582863d1d0bf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addProcess</b> (<a class="el" href="class_process.html">Process</a> *p)</td></tr>
-<tr class="separator:aadf2b22f4056a76eb3dc582863d1d0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb82855fc3129e20ba3fcc803b3d39b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb82855fc3129e20ba3fcc803b3d39b1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeProcess</b> (<a class="el" href="class_process.html">Process</a> *p)</td></tr>
-<tr class="separator:abb82855fc3129e20ba3fcc803b3d39b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a53801ef22d7d69d20c6adb0c8fcf8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a53801ef22d7d69d20c6adb0c8fcf8c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeProcess</b> (const string &amp;name)</td></tr>
-<tr class="separator:a3a53801ef22d7d69d20c6adb0c8fcf8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad95d4049cac31be728535faffb5a3eee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad95d4049cac31be728535faffb5a3eee"></a>
+<a class="el" href="class_process_sequence.html">ProcessSequence</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentSequence</b> ()</td></tr>
+<tr class="separator:ad95d4049cac31be728535faffb5a3eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03e06e29db80f3c0f1614af365f28fd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03e06e29db80f3c0f1614af365f28fd1"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentSequenceName</b> ()</td></tr>
+<tr class="separator:a03e06e29db80f3c0f1614af365f28fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a071189e95931adcbeb4b866c0d0d442d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a071189e95931adcbeb4b866c0d0d442d"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentProcessName</b> ()</td></tr>
 <tr class="separator:a071189e95931adcbeb4b866c0d0d442d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42df72eee71012b1518207f361a348b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42df72eee71012b1518207f361a348b3"></a>
-<a class="el" href="class_process_sequence.html">ProcessSequence</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getSequence</b> ()</td></tr>
-<tr class="separator:a42df72eee71012b1518207f361a348b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f3708c6b234337cfea113a2ce8e2e44"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f3708c6b234337cfea113a2ce8e2e44"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>addSequence</b> (<a class="el" href="class_process_sequence.html">ProcessSequence</a> *seq)</td></tr>
+<tr class="separator:a6f3708c6b234337cfea113a2ce8e2e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78dcb69fb5a9da597882093ee9cb7646"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78dcb69fb5a9da597882093ee9cb7646"></a>
+<a class="el" href="class_process_sequences.html">ProcessSequences</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getSequences</b> ()</td></tr>
+<tr class="separator:a78dcb69fb5a9da597882093ee9cb7646"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dc1a39418d12709fcc9b4c9832f0862"></a>
+virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>getTypeName</b> () const </td></tr>
+<tr class="separator:a1dc1a39418d12709fcc9b4c9832f0862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="ab_process_sequencer_8h_source.html#l00014">14</a> of file <a class="el" href="ab_process_sequencer_8h_source.html">abProcessSequencer.h</a>.</p>
+<p>Definition at line <a class="el" href="ab_process_sequencer_8h_source.html#l00019">19</a> of file <a class="el" href="ab_process_sequencer_8h_source.html">abProcessSequencer.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>source/<a class="el" href="ab_process_sequencer_8h_source.html">abProcessSequencer.h</a></li>
 <li>source/<a class="el" href="ab_process_sequencer_8cpp_source.html">abProcessSequencer.cpp</a></li>
