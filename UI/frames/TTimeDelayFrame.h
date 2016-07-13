@@ -23,6 +23,8 @@ class TTimeDelayFrame : public TFrame
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mTimeDelayE;
+	void __fastcall mTimeDelayEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
     private:	// User declarations
 		ArrayBot*						mAB;

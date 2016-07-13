@@ -5,8 +5,12 @@
 #include "abPosition.h"
 #include "mtkLogger.h"
 #include "abMove.h"
+#include "mtkXMLUtils.h"
+
+
 using namespace mtk;
 using namespace ab;
+using namespace tinyxml2;
 
 //---------------------------------------------------------------------------
 TimeDelay::TimeDelay(const string& lbl, Poco::Timespan ts)
@@ -28,22 +32,11 @@ const char* TimeDelay::getTypeName() const
 XMLElement* TimeDelay::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file
-    XMLElement* processNode  = doc.NewElement("processes");
-//    XMLNode*    rootNode = doc.InsertFirstChild(processNode);
-//
-//    //Attributes
-//    //processNode->SetAttribute("id", getID().toString().c_str());
-//
-//	for(int i = 0; i < mMoves.size(); i++)
-//    {
-//    	Move* lm = mMoves[i];
-//        lm->addToXMLDocumentAsChild(doc, rootNode);
-//    }
-//
-//    processNode->InsertEndChild(rootNode);
-//    docRoot->InsertEndChild(processNode);
+	XMLElement* delay = doc.NewElement("delay");
+	delay->SetText(mtk::toString( (long) mTimeDelay.totalMicroseconds()).c_str() );
 
-    return processNode;
+    docRoot->InsertEndChild(delay);
+    return delay;
 }
 
 bool TimeDelay::isBeingProcessed()
@@ -89,5 +82,14 @@ bool TimeDelay::stop()
 
 bool TimeDelay::isDone()
 {
-    return true;
+	if(!mIsStarted)
+    {
+    	return false;
+    }
+
+	Poco::Timestamp now;
+    Poco::Timespan timeElapsed(now - mStartTime);
+//    Log(lDebug5) << "Time Elapsed: "<<timeElapsed.totalMilliseconds()<<" TimeDelay: "<<mTimeDelay.totalMilliseconds();
+
+    return timeElapsed > mTimeDelay ? true : false;
 }

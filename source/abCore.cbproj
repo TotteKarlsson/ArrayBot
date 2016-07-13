@@ -89,6 +89,8 @@
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <Debugger_DebugSourcePath>P:\libs\dslib\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <BCC_wcsu>false</BCC_wcsu>
         <Debugger_HostApplication>P:\build\debug\bin\ArrayBot.exe</Debugger_HostApplication>
         <BCC_PCHInject>abCorePCH.h</BCC_PCHInject>
         <VerInfo_Release>1</VerInfo_Release>

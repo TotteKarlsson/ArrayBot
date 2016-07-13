@@ -48,3 +48,14 @@ void TTimeDelayFrame::rePopulate(Process* p)
   	EnableDisableFrame(this, true);
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TTimeDelayFrame::mTimeDelayEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+	if(Key == vkReturn && mTimeDelay != NULL)
+    {
+        mTimeDelay->setTimeDelay(mTimeDelayE->getValue()*Poco::Timespan::MILLISECONDS);
+    }
+}
+
+

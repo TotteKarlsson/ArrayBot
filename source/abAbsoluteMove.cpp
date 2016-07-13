@@ -56,22 +56,40 @@ bool AbsoluteMove::start()
 XMLElement* AbsoluteMove::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
 {
     //Create XML for saving to file
-    XMLElement* processNode  	= doc.NewElement("process");
-    XMLNode*    rootNode 		= doc.InsertFirstChild(processNode);
+    XMLElement* pn	  			= doc.NewElement("process");
+    XMLNode*    rootNode 		= doc.InsertFirstChild(pn);
 
     //Attributes
-    processNode->SetAttribute("name", mProcessName.c_str());
-    processNode->SetAttribute("type", getTypeName());
-	processNode->SetAttribute("motor_name", mMotorName.c_str());
-	processNode->SetAttribute("final_position", toString(getPosition().x()).c_str());
-	processNode->SetAttribute("max_velocity", toString(getMaxVelocity()).c_str());
-	processNode->SetAttribute("acc", toString(getAcceleration()).c_str());
-	processNode->SetAttribute("pre_dwell_time", toString(getPreDwellTime()).c_str());
-	processNode->SetAttribute("post_dwell_time", toString(getPostDwellTime()).c_str());
+    pn->SetAttribute("type", getTypeName());
+    pn->SetAttribute("name", mProcessName.c_str());
 
-    processNode->InsertEndChild(rootNode);
-    docRoot->InsertEndChild(processNode);
+	XMLElement* dataval1 = doc.NewElement("motor_name");
+    dataval1->SetText(mMotorName.c_str());
+	pn->InsertEndChild(dataval1);
 
-    return processNode;
+	dataval1 = doc.NewElement("final_position");
+    dataval1->SetText(toString(getPosition().x()).c_str());
+	pn->InsertEndChild(dataval1);
+
+ 	dataval1 = doc.NewElement("max_velocity");
+    dataval1->SetText(toString(getMaxVelocity()).c_str());
+	pn->InsertEndChild(dataval1);
+
+  	dataval1 = doc.NewElement("acc");
+    dataval1->SetText(toString(getAcceleration()).c_str());
+	pn->InsertEndChild(dataval1);
+
+	dataval1 = doc.NewElement("pre_dwell_time");
+    dataval1->SetText(toString(getPreDwellTime()).c_str());
+	pn->InsertEndChild(dataval1);
+
+	dataval1 = doc.NewElement("post_dwell_time");
+    dataval1->SetText(toString(getPostDwellTime()).c_str());
+	pn->InsertEndChild(dataval1);
+
+    pn->InsertEndChild(rootNode);
+    docRoot->InsertEndChild(pn);
+
+    return pn;
 }
 

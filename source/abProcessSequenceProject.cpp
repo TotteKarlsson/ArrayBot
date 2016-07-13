@@ -37,7 +37,7 @@ string ProcessSequenceProject::getPresentModelVersion()
 bool ProcessSequenceProject::resetXML()
 {
 	mTheXML.Clear();
-    mProjectRoot = mTheXML.NewElement("ProcessSequenceProject");
+    mProjectRoot = mTheXML.NewElement("sequence_project");
     mRootNode = mTheXML.InsertFirstChild(mProjectRoot);
 
     //Insert as a minimum project file version
@@ -58,25 +58,35 @@ bool ProcessSequenceProject::save(const string& fName)
     resetXML();
 
     //For now, do a brute force save of Moleculix Objects
-    XMLElement* processes = newElement("ProcessSequence");
+    XMLElement* sequence = newElement("sequence");
 
     //First save Processes
     Process* p = mProcessSequence.getFirst();
     while(p)
     {
         Log(lDebug) << "Saving process: " << p->getProcessName();
-        XMLElement* elem = p->addToXMLDocument(mTheXML, processes);
+        XMLElement* xmlProc = p->addToXMLDocument(mTheXML, sequence);
         if(dynamic_cast<CombinedMove*>(p))
 	    {
         	CombinedMove* clm = dynamic_cast<CombinedMove*>(p);
+
         	//Write subprocesses
-			clm->addToXMLDocumentAsChildProcess(mTheXML, elem);
+			clm->addToXMLDocumentAsChildProcess(mTheXML, xmlProc);
         }
 
+        if(dynamic_cast<TimeDelay*>(p))
+	    {
+        	TimeDelay* td = dynamic_cast<TimeDelay*>(p);
+
+        	//Write subprocesses
+			td->addToXMLDocumentAsChildProcess(mTheXML, xmlProc);
+        }
         p = mProcessSequence.getNext();
     }
 
-    this->addNode(processes);
+    this->addNode(sequence);
+
+    //Convoluted code
     if(fName.size() != 0)
     {
     	return saveToFile(fName);
@@ -107,9 +117,9 @@ bool ProcessSequenceProject::open()
 int ProcessSequenceProject::loadProcesses()
 {
     //This function creates proceses XML
-    XMLElement* processes = this->getXML("ProcessSequence");
+    XMLElement* sequence = this->getXML("sequence");
 
-    if(processes == NULL)
+    if(sequence == NULL)
     {
         return 0;
     }
@@ -117,7 +127,7 @@ int ProcessSequenceProject::loadProcesses()
     int nrOfObjects = 0;
 
      //Load process by process
-    XMLElement* p = processes->FirstChildElement();
+    XMLElement* p = sequence->FirstChildElement();
     while(p)
     {
         //Find out what kind of element p is
@@ -151,15 +161,13 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
     	return NULL;
     }
 
-    XMLElement* elem = element->FirstChildElement("process_type");
-	ProcessType pt = toProcessType(elem->GetText());
+	ProcessType pt = toProcessType(element->Attribute("type"));
 
   	//What process?
     switch(pt)
     {
     	case ptCombinedMove: 	return createCombinedMoveProcess(element);
         case ptTimeDelay:       return createTimeDelayProcess(element);
-
     }
 
     return NULL;
@@ -169,65 +177,63 @@ Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
 {
     CombinedMove* p = new CombinedMove("");
 
-    string name = element->FirstChildElement("process_name")->GetText();
-    p->setProcessName(name);
+   	p->setProcessName(element->Attribute("name"));
 
-    //Read and create sub moves
-    XMLElement* processes = element->FirstChildElement("processes");
-    if(processes)
+    //Read data
+    XMLElement* proc = element->FirstChildElement("process");
+    if(proc)
     {
-        XMLElement* processE = processes->FirstChildElement();
-
         //Loop over childs
-        while(processE)
+        while(proc)
         {
             AbsoluteMove* lm(NULL);
 
-            const char* name = processE->Attribute("name");
+            const char* type = proc->Attribute("type");
+            const char* name = proc->Attribute("name");
+
             if(name)
             {
                 Log(lDebug) << "Loading element: "<<name;
 
-                const char* type = processE->Attribute("type");
                 if(compareNoCase(type, "absoluteMove"))
                 {
                     lm = new AbsoluteMove(name);
                 }
 
-                const char* val = processE->Attribute("motor_name");
-                if(val)
+                XMLElement* data = proc->FirstChildElement("motor_name");
+                if(data && data->GetText())
                 {
-                    lm->setMotorName(val);
+                    lm->setMotorName(data->GetText());
                 }
 
-                val = processE->Attribute("final_position");
-                if(val)
+                data = proc->FirstChildElement("final_position");
+                if(data && data->GetText())
                 {
-                    lm->setPosition( ab::Position("", toDouble(val), 0.0 , 0.0));
+                    lm->setPosition( ab::Position("", toDouble(data->GetText()), 0.0 , 0.0));
                 }
 
-                val = processE->Attribute("max_velocity");
-                if(val)
+                data = proc->FirstChildElement("max_velocity");
+                if(data && data->GetText())
                 {
-                    lm->setMaxVelocity(toDouble(val));
+                    lm->setMaxVelocity(toDouble(data->GetText()));
                 }
 
-                val = processE->Attribute("acc");
-                if(val)
+                data = proc->FirstChildElement("acc");
+                if(data && data->GetText())
                 {
-                    lm->setAcceleration(toDouble(val));
+                    lm->setAcceleration(toDouble(data->GetText()));
                 }
 
-                val = processE->Attribute("pre_dwell_time");
-                if(val)
+                data = proc->FirstChildElement("pre_dwell_time");
+                if(data && data->GetText())
                 {
-                    lm->setPreDwellTime(toDouble(val));
+                    lm->setPreDwellTime(toDouble(data->GetText()));
                 }
 
-                val = processE->Attribute("post_dwell_time");
-                if(val)
+                data = proc->FirstChildElement("post_dwell_time");
+                if(data && data->GetText())
                 {
-                    lm->setPostDwellTime(toDouble(val));
+                    lm->setPostDwellTime(toDouble(data->GetText()));
                 }
 
                 //We need to associate the motor with 'name' with a
@@ -236,7 +242,7 @@ Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
                 p->addMove(lm);
             }
 
-            processE = processE->NextSiblingElement();
+            proc = proc->NextSiblingElement();
         }
     }
 
@@ -247,13 +253,15 @@ Process* ProcessSequenceProject::createTimeDelayProcess(XMLElement* element)
 {
     TimeDelay* p = new TimeDelay("");
 
-    string name = element->FirstChildElement("process_name")->GetText();
-    p->setProcessName(name);
-
-    //Read and create sub moves
-    XMLElement* processes = element->FirstChildElement("processes");
-    if(processes)
+   	p->setProcessName(element->Attribute("name"));
+    XMLElement* delay = element->FirstChildElement("delay");
+    if(delay)
     {
+    	p->setTimeDelay(toInt(delay->GetText()));
+    }
+   	else
+    {
+    	p->setTimeDelay(-1);
     }
 
     return p;

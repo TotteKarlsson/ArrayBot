@@ -10,10 +10,10 @@ string toString(ProcessType pt)
 {
 	switch(pt)
     {
-    	case ptMove: return "linearMove";
-    	case ptCombinedMove: return "combinedMove";
-    	case ptTimeDelay: return "timeDelay";
-        default: return "unknown";
+    	case ptMove: 			return "linearMove";
+    	case ptCombinedMove: 	return "combinedMove";
+    	case ptTimeDelay: 		return "timeDelay";
+        default: 				return "unknownProcessType";
     }
 }
 
@@ -57,6 +57,8 @@ string Process::getProcessType()
 
 bool Process::start()
 {
+	Poco::Timestamp now;
+	mStartTime = now;
 	mIsStarted = true;
 	mIsBeingProcessed = true;
     mIsProcessed = false;
@@ -76,7 +78,6 @@ bool Process::stop()
 	mIsBeingProcessed 	= false;
     mIsProcessed 		= false;
     return true;
-
 }
 
 XMLElement* Process::addToXMLDocument(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
@@ -86,19 +87,8 @@ XMLElement* Process::addToXMLDocument(tinyxml2::XMLDocument& doc, XMLNode* docRo
     XMLNode*    rootNode 		= doc.InsertFirstChild(processNode);
 
     //Attributes
-    //processNode->SetAttribute("id", getID().toString().c_str());
-
-    //Elements
-    XMLElement* elem = doc.NewElement("process_name");
-    processNode->InsertFirstChild(elem);
-        elem->SetText(mProcessName.c_str());
-    processNode->InsertEndChild(elem);
-
-    //Elements
-    elem = doc.NewElement("process_type");
-    processNode->InsertFirstChild(elem);
-        elem->SetText(getProcessType().c_str());
-    processNode->InsertEndChild(elem);
+    processNode->SetAttribute("type", getProcessType().c_str());
+    processNode->SetAttribute("name", mProcessName.c_str());
 
     processNode->InsertEndChild(rootNode);
     docRoot->InsertEndChild(processNode);
@@ -114,8 +104,6 @@ XMLElement* Process::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode
 
 bool Process::isTimedOut()
 {
-	return false;
-//	bool res;
 //    if(isBeingProcessed())
 //    {
 //     	Poco::Timestamp now;
@@ -126,4 +114,5 @@ bool Process::isTimedOut()
 //    {
 //		return (Timespan(mEndTime - mStartTime) > mTimeOut) ? true : false;
 //    }
+	return false;
 }

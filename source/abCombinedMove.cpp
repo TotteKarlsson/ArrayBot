@@ -83,23 +83,13 @@ Move*	CombinedMove::getMove(const string& lbl)
 
 XMLElement* CombinedMove::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
 {
-    //Create XML for saving to file
-    XMLElement* processNode  = doc.NewElement("processes");
-    XMLNode*    rootNode = doc.InsertFirstChild(processNode);
-
-    //Attributes
-    //processNode->SetAttribute("id", getID().toString().c_str());
-
 	for(int i = 0; i < mMoves.size(); i++)
     {
     	Move* lm = mMoves[i];
-        lm->addToXMLDocumentAsChild(doc, rootNode);
+        lm->addToXMLDocumentAsChild(doc, docRoot);
     }
 
-    processNode->InsertEndChild(rootNode);
-    docRoot->InsertEndChild(processNode);
-
-    return processNode;
+    return dynamic_cast<XMLElement*>(docRoot);
 }
 
 bool CombinedMove::isBeingProcessed()

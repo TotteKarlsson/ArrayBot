@@ -13,7 +13,6 @@ object TimeDelayFrame: TTimeDelayFrame
     Align = alLeft
     Caption = 'TimeDelay Process'
     TabOrder = 0
-    ExplicitHeight = 100
     object mTimeDelayE: TIntegerLabeledEdit
       Left = 13
       Top = 48
@@ -24,6 +23,7 @@ object TimeDelayFrame: TTimeDelayFrame
       EditLabel.Caption = 'Time Delay (ms)'
       TabOrder = 0
       Text = '0'
+      OnKeyDown = mTimeDelayEKeyDown
     end
   end
 end
