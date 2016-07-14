@@ -1,5 +1,5 @@
-#ifndef abInitArrayBotThreadH
-#define abInitArrayBotThreadH
+#ifndef InitArrayBotThreadH
+#define InitArrayBotThreadH
 #include "mtkThread.h"
 
 using mtk::Thread;

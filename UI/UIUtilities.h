@@ -1,5 +1,5 @@
-#ifndef abUIUtilitiesH
-#define abUIUtilitiesH
+#ifndef UIUtilitiesH
+#define UIUtilitiesH
 #include "abUIDataStructures.h"
 #include "mtkSQLite.h"
 #include "mtkStringList.h"

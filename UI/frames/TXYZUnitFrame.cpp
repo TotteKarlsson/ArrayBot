@@ -4,11 +4,11 @@
 #include "abXYZUnit.h"
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
-#include "abMotorFrame.h"
+#include "TMotorFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"
-#pragma link "abMotorFrame"
+#pragma link "TMotorFrame"
 #pragma resource "*.dfm"
 
 TXYZUnitFrame *XYZUnitFrame;

@@ -15,7 +15,7 @@
 #include "TABProcessSequencerFrame.h"
 #include "TXYZPositionsFrame.h"
 #include "TRibbonLifterFrame.h"
-#include "abXYZUnitFrame.h"
+#include "TXYZUnitFrame.h"
 #include "TSequencerButtonsFrame.h"
 
 //---------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 #pragma hdrstop
 #include <System.Classes.hpp>
-#include "abInitArrayBotThread.h"
+#include "InitArrayBotThread.h"
 #include "abArrayBot.h"
 #include "mtkLogger.h"
 
