@@ -18,14 +18,15 @@ USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: 
 USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
 USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
-USEFORM("frames\TTimeDelayFrame.cpp", CombinedMoveFrame); /* TFrame: File Type */
 USEFORM("MainForm.cpp", Main);
+USEFORM("frames\TTimeDelayFrame.cpp", CombinedMoveFrame); /* TFrame: File Type */
 USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
 USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
-USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("frames\abMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
+USEFORM("frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";

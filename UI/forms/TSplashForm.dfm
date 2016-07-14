@@ -50,6 +50,9 @@ object SplashForm: TSplashForm
       Width = 164
       ExplicitWidth = 164
     end
+    inherited Image2: TImage
+      Width = 615
+    end
     inherited ThreadCheckTimer: TTimer
       Left = 128
       Top = 144

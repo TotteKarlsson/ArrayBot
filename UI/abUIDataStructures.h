@@ -7,6 +7,7 @@
 enum ApplicationMessageEnum
 {
     abSplashWasClosed,
+    abSequencerUpdate
 };
 
 using Poco::DateTime;

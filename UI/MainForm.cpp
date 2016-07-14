@@ -17,6 +17,8 @@
 #include "TXYZPositionsFrame.h"
 #include "TRibbonLifterFrame.h"
 #include "abXYZUnitFrame.h"
+#include "TSequencerButtonsFrame.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -132,12 +134,13 @@ void __fastcall	TMain::setupUIFrames()
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
     f1->Parent = this->mTopMainPanel;
-    f1->ParentFont = true;
     f1->Align = alLeft;
 
     TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
     f2->Parent = this->mTopMainPanel;
     f2->Align = alLeft;
+    this->mTopMainPanel->Top = 0;
+
 
     //Over ride joysticks button events  (cycle speeds and XY motions)
     mAB->getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
@@ -200,23 +203,29 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->Align = alClient;
     mABProcessSequencerFrame->init();
 
-    ProcessSequencer& psr = mAB->getProcessSequencer();
-    ProcessSequences& pss = psr.getSequences();
-    ProcessSequence*  ps = pss.getFirst();
-    while(ps)
-    {
-        TSpeedButton* btn = new TSpeedButton(this);
-        btn->Parent = mBottomPanel;
-        btn->Caption = vclstr(ps->getName());
-        btn->Align = alLeft;
-        btn->OnClick = runSequenceBtnClick;
-        btn->Font->Size = 14;
-        ps = pss.getNext();
-        btn->Width = mBottomPanel->Height;
-    }
+	mSequencerButtons = new TSequencerButtonsFrame(*(mAB), mBottomPanel);
+	mSequencerButtons->Parent = mBottomPanel;
+    mSequencerButtons->Align = alClient;
+	mSequencerButtons->update();
+
+
+//    ProcessSequencer& psr = mAB->getProcessSequencer();
+//    ProcessSequences& pss = psr.getSequences();
+//    ProcessSequence*  ps = pss.getFirst();
+//    while(ps)
+//    {
+//        TSpeedButton* btn = new TSpeedButton(this);
+//        btn->Parent = mBottomPanel;
+//        btn->Caption = vclstr(ps->getName());
+//        btn->Align = alLeft;
+//        btn->OnClick = runSequenceBtnClick;
+//        btn->Font->Size = 14;
+//        ps = pss.getNext();
+//        btn->Width = mBottomPanel->Height;
+//    }
 
     //Restore back to first sequence
-    ps = pss.getFirst();
+//    ps = pss.getFirst();
 
     //Create the ribbon lifter frame
     mRibbonLifterFrame = new TRibbonLifterFrame((*mAB), mIniFile, this);
@@ -584,6 +593,10 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
                 gSplashForm = NULL;
             break;
 
+            case abSequencerUpdate:
+                Log(lDebug2) << "Update sequencer shortcuts";
+                mSequencerButtons->update();
+            break;
             default:
             break ;
         }

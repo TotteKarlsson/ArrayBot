@@ -33,6 +33,7 @@ using mtk::IniFileProperties;
 class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
 class TXYZUnitFrame;
+class TSequencerButtonsFrame;
 
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
@@ -104,7 +105,7 @@ class TMain : public TRegistryForm
 	TBitBtn *ReInitBotBtn;
 	TSpeedButton *mJSCSBtn;
 	TSpeedButton *SwitchJSBtn;
-	TPanel *Panel2;
+	TPanel *mMiddlePanel;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -163,6 +164,7 @@ class TMain : public TRegistryForm
 		TXYZUnitFrame*					mXYZUnitFrame2;
 
 		TABProcessSequencerFrame*		mABProcessSequencerFrame;
+        TSequencerButtonsFrame*			mSequencerButtons;
 		void __fastcall		            OnException();
 
         TRibbonLifterFrame* 			mRibbonLifterFrame;

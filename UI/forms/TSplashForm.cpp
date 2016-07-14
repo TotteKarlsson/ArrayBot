@@ -54,12 +54,10 @@ void __fastcall TSplashForm::logMsg()
     Application->ProcessMessages();
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
     //Send message to application that the splash form is closing
-    HWND hWnd = Application->MainForm->Handle;
     if(sendAppMessage(abSplashWasClosed) != true)
     {
         Log(lDebug)<<"Sending UWM_SPLASH_IS_CLOSING was unsuccesful";

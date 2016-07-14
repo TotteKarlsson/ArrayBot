@@ -80,7 +80,7 @@ object Main: TMain
       Top = 1
       Width = 958
       Height = 789
-      ActivePage = TabSheet4
+      ActivePage = TabSheet1
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -103,20 +103,23 @@ object Main: TMain
           Align = alTop
           AutoSize = True
           TabOrder = 1
+          ExplicitLeft = -16
+          ExplicitTop = 544
         end
-        object Panel2: TPanel
+        object mMiddlePanel: TPanel
           Left = 0
           Top = 187
           Width = 950
-          Height = 482
-          Align = alTop
+          Height = 397
+          Align = alClient
           AutoSize = True
           TabOrder = 2
+          ExplicitHeight = 482
           object JSGB: TGroupBox
             Left = 1
             Top = 1
             Width = 461
-            Height = 480
+            Height = 395
             Align = alLeft
             Caption = 'Joystick'
             Font.Charset = DEFAULT_CHARSET
@@ -126,8 +129,7 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitLeft = 3
-            ExplicitHeight = 392
+            ExplicitHeight = 480
             object mJSSpeedFastBtn: TSpeedButton
               Left = 307
               Top = 44
@@ -195,7 +197,7 @@ object Main: TMain
             Left = 462
             Top = 1
             Width = 487
-            Height = 480
+            Height = 395
             Align = alClient
             Caption = 'Lift'
             Font.Charset = DEFAULT_CHARSET
@@ -205,10 +207,7 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            ExplicitLeft = 501
-            ExplicitTop = 193
-            ExplicitWidth = 446
-            ExplicitHeight = 288
+            ExplicitHeight = 480
             object LiftBtn: TSpeedButton
               Left = 16
               Top = 129
@@ -267,19 +266,21 @@ object Main: TMain
         Caption = 'Motors'
         object ScrollBox1: TScrollBox
           Left = 0
-          Top = 105
+          Top = 0
           Width = 950
           Height = 614
           Align = alClient
           TabOrder = 0
+          ExplicitTop = 105
         end
         object Panel1: TPanel
           Left = 0
-          Top = 0
+          Top = 614
           Width = 950
           Height = 105
-          Align = alTop
+          Align = alBottom
           TabOrder = 1
+          ExplicitTop = 0
           object BitBtn1: TBitBtn
             Left = 178
             Top = 1

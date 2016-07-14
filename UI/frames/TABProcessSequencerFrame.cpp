@@ -8,6 +8,9 @@
 #include "abCombinedMove.h"
 #include "abArrayBot.h"
 #include "abTimeDelay.h"
+#include "abApplicationMessages.h"
+#include "abUIUtilities.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -59,6 +62,12 @@ void __fastcall TABProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sende
   			mSequencesCB->ItemIndex = 0;
         }
     }
+
+    //Send a message to main ui to update sequence shortcuts
+    if(sendAppMessage(abSequencerUpdate) != true)
+    {
+        Log(lDebug)<<"Sending sequencer update was unsuccesful";
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -73,6 +82,12 @@ void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 	mSequencesCB->Items->Add(vclstr(s->getName()));
 	mSequencesCB->ItemIndex = mSequencesCB->Items->IndexOf(vclstr(s->getName()));
 	mSequencesCBChange(NULL);
+
+    //Send a message to main ui to update sequence shortcuts
+    if(sendAppMessage(abSequencerUpdate) != true)
+    {
+        Log(lDebug)<<"Sending sequencer update was unsuccesful";
+    }
 }
 
 //---------------------------------------------------------------------------
