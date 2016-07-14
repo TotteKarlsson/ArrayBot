@@ -70,8 +70,6 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mMaxZJogVelocityJoystick;
 	TFloatLabeledEdit *mMaxXYJogVelocityJoystick;
 	TComboBox *JoyStickSettingsCB;
-	TBitBtn *BitBtn1;
-	TBitBtn *ReInitBotBtn;
 	TTabSheet *TabSheet5;
 	TPanel *BottomPanel;
 	TMemo *infoMemo;
@@ -80,7 +78,6 @@ class TMain : public TRegistryForm
 	TButton *AddJsSettingBtn;
 	TFloatLabeledEdit *mAngleControlVelE;
 	TFloatLabeledEdit *mAngleControllerAccE;
-	TButton *Button1;
 	TTimer *UIUpdateTimer;
 	TRadioGroup *mXYCtrlRG;
 	TGroupBox *LiftGB;
@@ -102,8 +99,11 @@ class TMain : public TRegistryForm
 	TPanel *mBottomPanel;
 	TPanel *mTopMainPanel;
 	TTimer *mSequenceStatusTimer;
-	TSpeedButton *SpeedButton1;
 	TTabSheet *RibbonLifterTabSheet;
+	TSpeedButton *SwitchJSBtn;
+	TPanel *Panel1;
+	TBitBtn *BitBtn1;
+	TBitBtn *ReInitBotBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -135,7 +135,7 @@ class TMain : public TRegistryForm
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
 	void __fastcall runSequenceBtnClick(TObject *Sender);
 	void __fastcall mSequenceStatusTimerTimer(TObject *Sender);
-	void __fastcall SpeedButton1Click(TObject *Sender);
+	void __fastcall SwitchJSBtnClick(TObject *Sender);
 
     private:
 //        TThreadMethod                   logMsgMethod;

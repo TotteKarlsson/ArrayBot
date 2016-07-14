@@ -1,31 +1,30 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 225
-  Height = 207
+  Width = 385
+  Height = 313
   AutoSize = True
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -19
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  ParentFont = False
   TabOrder = 0
   object MainGB: TGroupBox
     Left = 0
     Top = 0
-    Width = 225
-    Height = 207
-    Caption = 'Motor Move Process'
+    Width = 385
+    Height = 313
+    Caption = 'Motor'
     TabOrder = 0
-    object Label1: TLabel
-      Left = 16
-      Top = 20
-      Width = 28
-      Height = 13
-      Caption = 'Motor'
-    end
     object mMovePosE: TFloatLabeledEdit
       Left = 16
-      Top = 79
+      Top = 127
       Width = 49
-      Height = 21
-      EditLabel.Width = 89
-      EditLabel.Height = 13
+      Height = 31
+      EditLabel.Width = 160
+      EditLabel.Height = 23
       EditLabel.Caption = 'Final Position (mm)'
       Enabled = False
       TabOrder = 0
@@ -34,11 +33,11 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     end
     object mMaxVelE: TFloatLabeledEdit
       Left = 16
-      Top = 127
+      Top = 195
       Width = 65
-      Height = 21
-      EditLabel.Width = 60
-      EditLabel.Height = 13
+      Height = 31
+      EditLabel.Width = 103
+      EditLabel.Height = 23
       EditLabel.Caption = 'Max Velocity'
       Enabled = False
       TabOrder = 1
@@ -46,12 +45,12 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       OnKeyDown = mMovePosEKeyDown
     end
     object mAccE: TFloatLabeledEdit
-      Left = 119
-      Top = 127
+      Left = 191
+      Top = 195
       Width = 65
-      Height = 21
-      EditLabel.Width = 59
-      EditLabel.Height = 13
+      Height = 31
+      EditLabel.Width = 101
+      EditLabel.Height = 23
       EditLabel.Caption = 'Acceleration'
       Enabled = False
       TabOrder = 2
@@ -59,12 +58,12 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       OnKeyDown = mMovePosEKeyDown
     end
     object mPostDwellTimeE: TFloatLabeledEdit
-      Left = 119
-      Top = 167
+      Left = 191
+      Top = 264
       Width = 65
-      Height = 21
-      EditLabel.Width = 98
-      EditLabel.Height = 13
+      Height = 31
+      EditLabel.Width = 176
+      EditLabel.Height = 23
       EditLabel.Caption = 'Post Dwell Time (ms)'
       Enabled = False
       TabOrder = 3
@@ -73,9 +72,9 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     end
     object MotorsCB: TComboBox
       Left = 16
-      Top = 39
-      Width = 169
-      Height = 21
+      Top = 49
+      Width = 240
+      Height = 31
       Style = csDropDownList
       TabOrder = 4
       OnChange = MotorsCBChange
@@ -83,11 +82,11 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     end
     object mPreDwellTimeE: TFloatLabeledEdit
       Left = 16
-      Top = 167
+      Top = 264
       Width = 65
-      Height = 21
-      EditLabel.Width = 93
-      EditLabel.Height = 13
+      Height = 31
+      EditLabel.Width = 169
+      EditLabel.Height = 23
       EditLabel.Caption = 'Pre Dwell Time (ms)'
       Enabled = False
       TabOrder = 5

@@ -16,9 +16,9 @@ Coordinates=116,1,84,87
 [mAccE]
 Coordinates=179,159,49,51
 
-[Label1]
-Coordinates=238,71,46,51
-
 [MainGB]
 Coordinates=238,141,70,51
+
+[]
+Coordinates=238,71,46,51
 

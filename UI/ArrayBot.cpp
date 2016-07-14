@@ -103,7 +103,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         }
 
 		Application->Title = "ArrayBot - Software for Robots";
-		TStyleManager::TrySetStyle("Amakrits");
+		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->CreateForm(__classid(TShowFileContentForm), &ShowFileContentForm);
 		Application->CreateForm(__classid(TAddLiftSettingForm), &AddLiftSettingForm);

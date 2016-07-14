@@ -7,9 +7,6 @@ Coordinates=297,373,66,33
 [mJSCSBtn]
 Coordinates=228,373,67,33
 
-[BitBtn1]
-Coordinates=82,284,50,51
-
 [JoyStickGB2]
 Coordinates=253,1,77,51
 
@@ -45,9 +42,6 @@ Coordinates=554,1,158,51
 
 [mLiftCB]
 Coordinates=0,0,84,87
-
-[Button1]
-Coordinates=368,247,53,51
 
 [LogLevelCB]
 Coordinates=368,141,84,87
@@ -119,11 +113,8 @@ Coordinates=776,533,81,33
 Coordinates=159,373,128,33
 
 []
-Coordinates=750,263,81,51
+Coordinates=368,71,74,51
 
 [mBottomPanel]
 Coordinates=750,333,87,51
-
-[ReInitBotBtn]
-Coordinates=368,71,74,51
 

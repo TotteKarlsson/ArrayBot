@@ -1,8 +1,15 @@
 object MotorFrame: TMotorFrame
   Left = 0
   Top = 0
-  Width = 293
-  Height = 292
+  Width = 288
+  Height = 272
+  AutoSize = True
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  ParentFont = False
   TabOrder = 0
   OnMouseUp = BtnUp
   object MotorGB: TGroupBox

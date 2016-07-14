@@ -31,7 +31,7 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, cons
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
 
-    GroupBox1->Caption = "Process Sequencer";
+    GroupBox1->Caption = "";
     mProcessFileExtension = "abp";
     refreshSequencesCB();
 }
@@ -181,12 +181,14 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
             TTimeDelayFrame1->Visible = false;
     		TCombinedMoveFrame1->populate(mAB, cm);
 			TCombinedMoveFrame1->Visible = true;
+            TCombinedMoveFrame1->Align = alLeft;
         }
         else if(td)
         {
 			TCombinedMoveFrame1->Visible = false;
             TTimeDelayFrame1->populate(mAB, td);
             TTimeDelayFrame1->Visible = true;
+            TTimeDelayFrame1->Align = alLeft;
         }
     }
 }

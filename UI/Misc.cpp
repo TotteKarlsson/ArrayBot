@@ -110,8 +110,6 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
     	CanClose = true;
     }
 
-
-
 	if(CanClose == false)
 	{
 		ShutDownTimer->Enabled = true;

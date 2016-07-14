@@ -89,7 +89,5 @@ bool TimeDelay::isDone()
 
 	Poco::Timestamp now;
     Poco::Timespan timeElapsed(now - mStartTime);
-//    Log(lDebug5) << "Time Elapsed: "<<timeElapsed.totalMilliseconds()<<" TimeDelay: "<<mTimeDelay.totalMilliseconds();
-
     return timeElapsed > mTimeDelay ? true : false;
 }

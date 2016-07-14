@@ -1,21 +1,21 @@
 object TimeDelayFrame: TTimeDelayFrame
   Left = 0
   Top = 0
-  Width = 137
+  Width = 313
   Height = 207
   AutoSize = True
   TabOrder = 0
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 137
+    Width = 313
     Height = 207
     Align = alLeft
     Caption = 'TimeDelay Process'
     TabOrder = 0
     object mTimeDelayE: TIntegerLabeledEdit
-      Left = 13
-      Top = 48
+      Left = 37
+      Top = 56
       Width = 60
       Height = 21
       EditLabel.Width = 76

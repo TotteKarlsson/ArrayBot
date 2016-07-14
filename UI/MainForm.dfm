@@ -7,7 +7,7 @@ object Main: TMain
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -19
   Font.Name = 'Tahoma'
   Font.Style = []
   KeyPreview = True
@@ -19,7 +19,7 @@ object Main: TMain
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 23
   object Btnpanel: TPanel
     Left = 960
     Top = 0
@@ -29,77 +29,65 @@ object Main: TMain
     TabOrder = 0
     object mJSCSBtn: TSpeedButton
       Left = 1
-      Top = 126
+      Top = 135
       Width = 125
       Height = 134
       Align = alTop
       AllowAllUp = True
-      Caption = 'Enable JoyStick'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
+      Caption = 'Enable JS'
       OnClick = JSControlClick
       ExplicitTop = 251
     end
-    object Button7: TSpeedButton
-      Left = 1
-      Top = 1
-      Width = 125
-      Height = 125
-      Action = stopAllA
-      Align = alTop
-      BiDiMode = bdLeftToRight
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      ParentBiDiMode = False
-      ExplicitTop = 126
-    end
     object mAboutBtn: TSpeedButton
       Left = 1
-      Top = 260
+      Top = 1
       Width = 125
       Height = 134
       Align = alTop
       AllowAllUp = True
       Caption = 'About'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
       OnClick = mAboutBtnClick
-      ExplicitLeft = 25
-      ExplicitTop = 382
+      ExplicitTop = -57
+    end
+    object SwitchJSBtn: TSpeedButton
+      Left = 1
+      Top = 269
+      Width = 125
+      Height = 121
+      Align = alTop
+      GroupIndex = 15
+      Caption = 'Switch JS'
+      OnClick = SwitchJSBtnClick
+      ExplicitLeft = -11
+      ExplicitTop = 488
+      ExplicitWidth = 162
     end
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 663
+      Top = 538
       Width = 125
-      Height = 127
+      Height = 252
       Align = alBottom
       AutoSize = True
       TabOrder = 0
+      ExplicitTop = 480
       object Button5: TSpeedButton
         Left = 1
-        Top = 1
+        Top = 126
         Width = 123
         Height = 125
         Action = FileExit1
         Align = alBottom
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
+      end
+      object Button7: TSpeedButton
+        Left = 1
+        Top = 1
+        Width = 123
+        Height = 125
+        Action = stopAllA
+        Align = alBottom
+        BiDiMode = bdLeftToRight
+        ParentBiDiMode = False
       end
     end
   end
@@ -119,23 +107,11 @@ object Main: TMain
       Height = 789
       ActivePage = TabSheet4
       Align = alClient
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
       TabHeight = 60
       TabOrder = 0
-      TabWidth = 100
+      TabWidth = 150
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
         object JSGB: TGroupBox
           Left = 3
           Top = 193
@@ -275,24 +251,68 @@ object Main: TMain
       object RibbonLifterTabSheet: TTabSheet
         Caption = 'The Pickup'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
+        TabVisible = False
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ScrollBox1: TScrollBox
+          Left = 0
+          Top = 105
+          Width = 950
+          Height = 614
+          Align = alClient
+          TabOrder = 0
+          ExplicitTop = 0
+          ExplicitHeight = 719
+        end
+        object Panel1: TPanel
           Left = 0
           Top = 0
           Width = 950
-          Height = 719
-          Align = alClient
-          TabOrder = 0
+          Height = 105
+          Align = alTop
+          TabOrder = 1
+          object BitBtn1: TBitBtn
+            Left = 178
+            Top = 1
+            Width = 176
+            Height = 103
+            Action = checkForDevices
+            Align = alLeft
+            BiDiMode = bdLeftToRight
+            Caption = 'Devices Check'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentBiDiMode = False
+            ParentFont = False
+            TabOrder = 0
+            ExplicitLeft = 206
+            ExplicitTop = 16
+            ExplicitHeight = 121
+          end
+          object ReInitBotBtn: TBitBtn
+            Left = 1
+            Top = 1
+            Width = 177
+            Height = 103
+            Action = reInitBotA
+            Align = alLeft
+            BiDiMode = bdLeftToRight
+            Caption = 'Reinitialize Devices'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentBiDiMode = False
+            ParentFont = False
+            TabOrder = 1
+            ExplicitLeft = -5
+            ExplicitTop = -4
+          end
         end
       end
       object mMoveSequencesPage: TTabSheet
@@ -302,47 +322,32 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        object SpeedButton1: TSpeedButton
-          Left = 263
-          Top = 32
-          Width = 162
-          Height = 121
-          GroupIndex = 15
-          Caption = 'Switch JoyStick'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          OnClick = SpeedButton1Click
-        end
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 24
-          Width = 238
-          Height = 241
+          Width = 422
+          Height = 417
           Caption = 'JoyStick Velocities'
           TabOrder = 0
           object mZJogAccelerationJoystick: TFloatLabeledEdit
-            Left = 119
-            Top = 130
+            Left = 247
+            Top = 198
             Width = 66
-            Height = 21
-            EditLabel.Width = 68
-            EditLabel.Height = 13
+            Height = 31
+            EditLabel.Width = 118
+            EditLabel.Height = 23
             EditLabel.Caption = 'Z Acceleration'
             TabOrder = 3
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
           object mXYJogAccelerationJoystick: TFloatLabeledEdit
-            Left = 119
-            Top = 82
+            Left = 247
+            Top = 108
             Width = 66
-            Height = 21
-            EditLabel.Width = 74
-            EditLabel.Height = 13
+            Height = 31
+            EditLabel.Width = 129
+            EditLabel.Height = 23
             EditLabel.Caption = 'XY Acceleration'
             TabOrder = 1
             Text = '0.00'
@@ -350,11 +355,11 @@ object Main: TMain
           end
           object mMaxZJogVelocityJoystick: TFloatLabeledEdit
             Left = 16
-            Top = 130
+            Top = 198
             Width = 66
-            Height = 21
-            EditLabel.Width = 69
-            EditLabel.Height = 13
+            Height = 31
+            EditLabel.Width = 120
+            EditLabel.Height = 23
             EditLabel.Caption = 'Max Z Velocity'
             TabOrder = 2
             Text = '0.00'
@@ -362,11 +367,11 @@ object Main: TMain
           end
           object mMaxXYJogVelocityJoystick: TFloatLabeledEdit
             Left = 16
-            Top = 82
+            Top = 108
             Width = 66
-            Height = 21
-            EditLabel.Width = 75
-            EditLabel.Height = 13
+            Height = 31
+            EditLabel.Width = 131
+            EditLabel.Height = 23
             EditLabel.Caption = 'Max XY Velocity'
             TabOrder = 0
             Text = '0.00'
@@ -375,17 +380,23 @@ object Main: TMain
           object JoyStickSettingsCB: TComboBox
             Left = 16
             Top = 24
-            Width = 109
-            Height = 21
+            Width = 291
+            Height = 31
             Style = csDropDownList
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
             TabOrder = 6
             OnChange = JoyStickSettingsCBChange
           end
           object AddJsSettingBtn: TButton
-            Left = 137
-            Top = 22
-            Width = 21
-            Height = 21
+            Left = 313
+            Top = 23
+            Width = 32
+            Height = 33
             Caption = '+'
             TabOrder = 7
             Visible = False
@@ -393,86 +404,33 @@ object Main: TMain
           end
           object mAngleControlVelE: TFloatLabeledEdit
             Left = 16
-            Top = 178
+            Top = 286
             Width = 66
-            Height = 21
-            EditLabel.Width = 91
-            EditLabel.Height = 13
+            Height = 31
+            EditLabel.Width = 156
+            EditLabel.Height = 23
             EditLabel.Caption = 'Angle Ctrl. Velocity'
             TabOrder = 4
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
           object mAngleControllerAccE: TFloatLabeledEdit
-            Left = 119
-            Top = 178
+            Left = 247
+            Top = 286
             Width = 66
-            Height = 21
-            EditLabel.Width = 71
-            EditLabel.Height = 13
+            Height = 31
+            EditLabel.Width = 122
+            EditLabel.Height = 23
             EditLabel.Caption = 'Angle Ctrl Acc.'
             TabOrder = 5
             Text = '0.00'
             OnKeyDown = JoyStickValueEdit
           end
         end
-        object BitBtn1: TBitBtn
-          Left = 431
-          Top = 32
-          Width = 176
-          Height = 121
-          Action = checkForDevices
-          BiDiMode = bdLeftToRight
-          Caption = 'Devices Check'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentBiDiMode = False
-          ParentFont = False
-          TabOrder = 1
-        end
-        object ReInitBotBtn: TBitBtn
-          Left = 630
-          Top = 32
-          Width = 177
-          Height = 121
-          Action = reInitBotA
-          BiDiMode = bdLeftToRight
-          Caption = 'Reinitialize Devices'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentBiDiMode = False
-          ParentFont = False
-          TabOrder = 2
-        end
-        object Button1: TButton
-          Left = 11
-          Top = 271
-          Width = 182
-          Height = 119
-          Caption = 'Save Parameters'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 3
-          OnClick = Button1Click
-        end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -545,8 +503,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    Left = 880
-    Top = 560
+    Left = 436
+    Top = 680
     object checkForDevices: TAction
       Caption = 'Devices Check'
       OnExecute = checkForDevicesExecute
@@ -602,39 +560,39 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 672
-    Top = 688
+    Left = 652
+    Top = 680
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 776
-    Top = 624
+    Left = 328
+    Top = 680
   end
   object UIUpdateTimer: TTimer
     Enabled = False
     Interval = 150
-    Left = 888
-    Top = 616
+    Left = 220
+    Top = 680
   end
   object mLiftTimer: TTimer
     Enabled = False
     Interval = 200
     OnTimer = mLiftTimerTimer
     Left = 760
-    Top = 688
+    Top = 680
   end
   object WaitForDeviceInitTimer: TTimer
     Enabled = False
     Interval = 100
     OnTimer = WaitForDeviceInitTimerTimer
-    Left = 888
+    Left = 112
     Top = 680
   end
   object mSequenceStatusTimer: TTimer
     Enabled = False
     Interval = 100
     OnTimer = mSequenceStatusTimerTimer
-    Left = 664
-    Top = 568
+    Left = 544
+    Top = 680
   end
 end

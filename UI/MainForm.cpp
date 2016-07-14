@@ -132,6 +132,7 @@ void __fastcall	TMain::setupUIFrames()
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
     f1->Parent = this->mTopMainPanel;
+    f1->ParentFont = true;
     f1->Align = alLeft;
 
     TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
@@ -301,7 +302,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
 {
 	//Setup Joystick control
     TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
-    if(btn->Caption == "Enable JoyStick")
+    if(btn->Caption == "Enable JS")
     {
 		if(!mAB->enableJoyStick())
         {
@@ -314,7 +315,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
     {
 	 	mAB->disableJoyStick();
     }
-    btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JoyStick" : "Enable JoyStick";
+    btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
 
     //There is a 'bug' regarding speed settings
     //Programatically apply currently selected setting
@@ -378,6 +379,9 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
 			 mMaxZJogVelocityJoystick->getValue(), mZJogAccelerationJoystick->getValue(),
              mAngleControlVelE->getValue(), mAngleControllerAccE->getValue()
              );
+
+	mAB->writeINIParameters();
+    mIniFile.save();
 }
 
 //Save parameters
@@ -606,10 +610,11 @@ void __fastcall TMain::mSequenceStatusTimerTimer(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::SpeedButton1Click(TObject *Sender)
+void __fastcall TMain::SwitchJSBtnClick(TObject *Sender)
 {
 	mAB->switchJoyStick();
 }
+
 
 
 

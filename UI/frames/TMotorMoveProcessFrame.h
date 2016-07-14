@@ -19,7 +19,6 @@ class TMotorMoveProcessFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *MainGB;
-	TLabel *Label1;
 	TFloatLabeledEdit *mMovePosE;
 	TFloatLabeledEdit *mMaxVelE;
 	TFloatLabeledEdit *mAccE;
