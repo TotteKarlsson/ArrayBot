@@ -5,6 +5,7 @@
 #include "TSplashForm.h"
 #include "TRibbonLifterFrame.h"
 #include "abXYZUnitFrame.h"
+#include "TAboutArrayBotForm.h"
 using namespace mtk;
 
 static HWND gOtherAppWindow = NULL;
@@ -165,6 +166,15 @@ void TMain::setupWindowTitle()
 {
 	string title = createWindowTitle("ArrayBot", Application);
 	this->Caption = vclstr(title);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mAboutBtnClick(TObject *Sender)
+{
+	//Show about frame
+    TAboutArrayBotForm* af = new TAboutArrayBotForm(this);
+    af->ShowModal();
+    delete af;
 }
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)

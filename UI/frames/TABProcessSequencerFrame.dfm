@@ -49,11 +49,12 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Height = 530
     Align = alTop
     TabOrder = 1
-    inline TCombinedMoveFrame1: TCombinedMoveFrame
-      Left = 270
-      Top = 21
-      Width = 593
-      Height = 481
+    inline TTimeDelayFrame1: TTimeDelayFrame
+      Left = 641
+      Top = 1
+      Width = 313
+      Height = 528
+      Align = alLeft
       AutoSize = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -63,75 +64,11 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       ParentFont = False
       TabOrder = 0
       Visible = False
-      ExplicitLeft = 270
-      ExplicitTop = 21
-      ExplicitWidth = 593
-      ExplicitHeight = 481
-      inherited GroupBox2: TGroupBox
-        Width = 593
-        Height = 481
-        ExplicitWidth = 593
-        ExplicitHeight = 481
-        inherited GroupBox1: TGroupBox
-          Height = 370
-          ExplicitHeight = 370
-        end
-        inherited Panel1: TPanel
-          Width = 589
-          ExplicitWidth = 589
-          inherited mProcessNameE: TSTDStringLabeledEdit
-            OnKeyDown = TCombinedMoveFrame1mProcessNameEKeyDown
-          end
-        end
-        inherited TMotorMoveProcessFrame1: TMotorMoveProcessFrame
-          Height = 370
-          ExplicitHeight = 370
-          inherited MainGB: TGroupBox
-            Height = 370
-            ExplicitHeight = 370
-            inherited mMovePosE: TFloatLabeledEdit
-              EditLabel.ExplicitTop = -26
-              OnKeyDown = nil
-            end
-            inherited mMaxVelE: TFloatLabeledEdit
-              OnKeyDown = nil
-            end
-            inherited mAccE: TFloatLabeledEdit
-              OnKeyDown = nil
-            end
-            inherited mPostDwellTimeE: TFloatLabeledEdit
-              OnKeyDown = nil
-            end
-            inherited MotorsCB: TComboBox
-              OnChange = nil
-              OnClick = nil
-            end
-            inherited mPreDwellTimeE: TFloatLabeledEdit
-              OnKeyDown = nil
-            end
-          end
-        end
-      end
-    end
-    inline TTimeDelayFrame1: TTimeDelayFrame
-      Left = 674
-      Top = 63
-      Width = 313
-      Height = 463
-      AutoSize = True
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 1
-      Visible = False
       ExplicitLeft = 674
       ExplicitTop = 63
       ExplicitHeight = 463
       inherited GroupBox1: TGroupBox
-        Height = 463
+        Height = 528
         ExplicitHeight = 463
         inherited mNameEdit: TSTDStringLabeledEdit
           Top = 59
@@ -149,7 +86,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Width = 232
       Height = 528
       Align = alLeft
-      TabOrder = 2
+      TabOrder = 1
       object GroupBox1: TGroupBox
         Left = 1
         Top = 129
@@ -253,6 +190,41 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           OnChange = mSequencesCBChange
           Items.Strings = (
             'MoveSequence')
+        end
+      end
+    end
+    inline TCombinedMoveFrame1: TCombinedMoveFrame
+      Left = 233
+      Top = 1
+      Width = 408
+      Height = 528
+      Align = alLeft
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      ExplicitLeft = 233
+      ExplicitTop = 1
+      ExplicitWidth = 408
+      ExplicitHeight = 528
+      inherited GroupBox2: TGroupBox
+        Width = 408
+        Height = 486
+        inherited GroupBox1: TGroupBox
+          Height = 375
+        end
+        inherited Panel1: TPanel
+          Width = 404
+          ExplicitWidth = 719
+          inherited mProcessNameE: TSTDStringLabeledEdit
+            OnKeyDown = TCombinedMoveFrame1mProcessNameEKeyDown
+          end
+        end
+        inherited TMotorMoveProcessFrame1: TMotorMoveProcessFrame
+          Height = 375
         end
       end
     end

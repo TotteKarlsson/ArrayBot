@@ -29,6 +29,7 @@ void TSequencerButtonsFrame::update()
     ProcessSequencer& psr = mAB.getProcessSequencer();
     ProcessSequences& pss = psr.getSequences();
     ProcessSequence*  ps = pss.getFirst();
+
     while(ps)
     {
         TSpeedButton* btn = new TSpeedButton(this);
@@ -49,11 +50,31 @@ void TSequencerButtonsFrame::update()
 
 void __fastcall TSequencerButtonsFrame::runSequenceBtnClick(TObject *Sender)
 {
-	;
+	TSpeedButton* b = dynamic_cast<TSpeedButton*>(Sender);
+    if(b)
+    {
+        ProcessSequencer& psr = mAB.getProcessSequencer();
+        if(psr.selectSequence(stdstr(b->Caption)))
+        {
+      		mSequenceStatusTimer->Enabled = true;
+            mAB.disableJoyStickAxes();
+        	psr.start();
+        }
+    }
 }
 
 void __fastcall TSequencerButtonsFrame::FrameEnter(TObject *Sender)
 {
 	update();
+}
+
+void __fastcall TSequencerButtonsFrame::mSequenceStatusTimerTimer(TObject *Sender)
+{
+    ProcessSequencer& psr = mAB.getProcessSequencer();
+	if(!psr.isRunning())
+    {
+		mSequenceStatusTimer->Enabled = false;
+        mAB.enableJoyStickAxes();
+    }
 }
 

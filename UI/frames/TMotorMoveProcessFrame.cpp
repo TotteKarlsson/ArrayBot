@@ -24,7 +24,7 @@ void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
 {
 	mAB = ab;
     MotorsCB->Clear();
-	MotorsCB->Items->Add("<none>");
+//	MotorsCB->Items->Add("<none>");
 	populateMotorCB();
     rePopulate(m);
 }
@@ -124,7 +124,6 @@ void __fastcall TMotorMoveProcessFrame::mMovePosEKeyDown(TObject *Sender, WORD &
     mMove->setAcceleration(mAccE->getValue());
     mMove->setPostDwellTime(mPostDwellTimeE->getValue());
     mMove->setPreDwellTime(mPreDwellTimeE->getValue());
-
 }
 
 

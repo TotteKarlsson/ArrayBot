@@ -98,7 +98,6 @@ class TMain : public TRegistryForm
 	TTimer *WaitForDeviceInitTimer;
 	TPanel *mBottomPanel;
 	TPanel *mTopMainPanel;
-	TTimer *mSequenceStatusTimer;
 	TTabSheet *RibbonLifterTabSheet;
 	TPanel *Panel1;
 	TBitBtn *BitBtn1;
@@ -119,14 +118,11 @@ class TMain : public TRegistryForm
     void __fastcall reInitBotAExecute(TObject *Sender);
     void __fastcall ShutDownAExecute(TObject *Sender);
     void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
-
 	void __fastcall FormShow(TObject *Sender);
-
 	void __fastcall JSControlClick(TObject *Sender);
 	void __fastcall JSSpeedBtnClick(TObject *Sender);
 	void __fastcall AddJsSettingBtnClick(TObject *Sender);
 	void __fastcall JoyStickSettingsCBChange(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall mXYCtrlRGClick(TObject *Sender);
 	void __fastcall mLiftTimerTimer(TObject *Sender);
 	void __fastcall abortLiftAExecute(TObject *Sender);
@@ -135,8 +131,6 @@ class TMain : public TRegistryForm
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
-	void __fastcall runSequenceBtnClick(TObject *Sender);
-	void __fastcall mSequenceStatusTimerTimer(TObject *Sender);
 	void __fastcall SwitchJSBtnClick(TObject *Sender);
 
     private:

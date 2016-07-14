@@ -80,7 +80,7 @@ object Main: TMain
       Top = 1
       Width = 958
       Height = 789
-      ActivePage = TabSheet1
+      ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -590,13 +590,6 @@ object Main: TMain
     Interval = 100
     OnTimer = WaitForDeviceInitTimerTimer
     Left = 112
-    Top = 680
-  end
-  object mSequenceStatusTimer: TTimer
-    Enabled = False
-    Interval = 100
-    OnTimer = mSequenceStatusTimerTimer
-    Left = 544
     Top = 680
   end
 end

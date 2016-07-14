@@ -90,19 +90,8 @@ object CombinedMoveFrame: TCombinedMoveFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 147
-      ExplicitTop = 109
-      ExplicitHeight = 338
-      inherited MainGB: TGroupBox
-        Height = 415
-        Align = alLeft
-        ExplicitHeight = 338
-        inherited mMovePosE: TFloatLabeledEdit
-          Top = 115
-          EditLabel.ExplicitTop = 89
-          ExplicitTop = 115
-        end
-      end
+      ExplicitLeft = 256
+      ExplicitTop = 200
     end
   end
   object ActionList1: TActionList

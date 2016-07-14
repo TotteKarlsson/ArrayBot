@@ -12,7 +12,6 @@
 #include "mtkMathUtils.h"
 #include "abExceptions.h"
 #include "TSplashForm.h"
-#include "TAboutArrayBotForm.h"
 #include "TABProcessSequencerFrame.h"
 #include "TXYZPositionsFrame.h"
 #include "TRibbonLifterFrame.h"
@@ -208,25 +207,6 @@ void __fastcall	TMain::setupUIFrames()
     mSequencerButtons->Align = alClient;
 	mSequencerButtons->update();
 
-
-//    ProcessSequencer& psr = mAB->getProcessSequencer();
-//    ProcessSequences& pss = psr.getSequences();
-//    ProcessSequence*  ps = pss.getFirst();
-//    while(ps)
-//    {
-//        TSpeedButton* btn = new TSpeedButton(this);
-//        btn->Parent = mBottomPanel;
-//        btn->Caption = vclstr(ps->getName());
-//        btn->Align = alLeft;
-//        btn->OnClick = runSequenceBtnClick;
-//        btn->Font->Size = 14;
-//        ps = pss.getNext();
-//        btn->Width = mBottomPanel->Height;
-//    }
-
-    //Restore back to first sequence
-//    ps = pss.getFirst();
-
     //Create the ribbon lifter frame
     mRibbonLifterFrame = new TRibbonLifterFrame((*mAB), mIniFile, this);
     mRibbonLifterFrame->Parent = RibbonLifterTabSheet;
@@ -235,23 +215,6 @@ void __fastcall	TMain::setupUIFrames()
 
     mRibbonLifterFrame->init();
 }
-
-void __fastcall TMain::runSequenceBtnClick(TObject *Sender)
-{
-	TSpeedButton* b = dynamic_cast<TSpeedButton*>(Sender);
-    if(b)
-    {
-        ProcessSequencer& psr = mAB->getProcessSequencer();
-
-        if(psr.selectSequence(stdstr(b->Caption)))
-        {
-      		mSequenceStatusTimer->Enabled = true;
-            mAB->disableJoyStickAxes();
-        	psr.start();
-        }
-    }
-}
-
 void __fastcall TMain::reInitBotAExecute(TObject *Sender)
 {
 	mAB->initialize();
@@ -324,6 +287,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
     {
 	 	mAB->disableJoyStick();
     }
+
     btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
 
     //There is a 'bug' regarding speed settings
@@ -393,12 +357,13 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
     mIniFile.save();
 }
 
-//Save parameters
-void __fastcall TMain::Button1Click(TObject *Sender)
-{
-	mAB->writeINIParameters();
-    mIniFile.save();
-}
+////Save parameters
+//void __fastcall TMain::Button1Click(TObject *Sender)
+//{
+//	mAB->writeINIParameters();
+//    mIniFile.save();
+//}
+//
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
@@ -436,14 +401,7 @@ void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
 void TMain::onJSButton5Click()
 {
 	//Cycle xy setting
-    if(mXYCtrlRG->ItemIndex < 3)
-    {
-    	mXYCtrlRG->ItemIndex++;
-    }
-    else
-    {
-	    mXYCtrlRG->ItemIndex = 0;
-    }
+    mXYCtrlRG->ItemIndex = (mXYCtrlRG->ItemIndex < 3) ? mXYCtrlRG->ItemIndex++ : 0;
 }
 
 void TMain::onJSButton6Click()
@@ -559,15 +517,6 @@ void __fastcall TMain::LogLevelCBChange(TObject *Sender)
     gLogger.setLogLevel(mLogLevel);
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::mAboutBtnClick(TObject *Sender)
-{
-	//Show about frame
-    TAboutArrayBotForm* af = new TAboutArrayBotForm(this);
-    af->ShowModal();
-    delete af;
-}
-
 void __fastcall	TMain::onFinishedInitBot()
 {
 	Log(lInfo) << "Synching arraybot with UI";
@@ -609,20 +558,6 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 
 //---------------------------------------------------------------------------
 
-void __fastcall TMain::mSequenceStatusTimerTimer(TObject *Sender)
-{
-	if(mProcessSequencer && mProcessSequencer->isRunning())
-    {
-
-    }
-    else
-    {
-		mSequenceStatusTimer->Enabled = false;
-        mAB->enableJoyStickAxes();
-    }
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::SwitchJSBtnClick(TObject *Sender)
 {
 	mAB->switchJoyStick();

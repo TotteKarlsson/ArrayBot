@@ -34,7 +34,6 @@ class TABProcessSequencerFrame : public TFrame
         TActionList *Actions;
 	TAction *addCombinedMovesProcessA;
         TAction *removeProcessA;
-        TCombinedMoveFrame *TCombinedMoveFrame1;
         TGroupBox *GroupBox2;
         mtkSTDStringEdit *mSequenceNameE;
         TPanel *Panel1;
@@ -44,6 +43,7 @@ class TABProcessSequencerFrame : public TFrame
 	TPanel *mMainPanel;
 	TPanel *mLeftPanel;
 	TGroupBox *GroupBox1;
+	TCombinedMoveFrame *TCombinedMoveFrame1;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
         void __fastcall mStartBtnClick(TObject *Sender);
