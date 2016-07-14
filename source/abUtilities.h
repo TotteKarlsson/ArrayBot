@@ -15,6 +15,12 @@ using mtk::Property;
 using mtk::IniFile;
 struct TLI_DeviceInfo;
 
+//!We are using an enum for process type in order to save/retrieve different processes from XML
+enum ProcessType {ptBaseType = 0, ptMove, ptCombinedMove, ptTimeDelay, ptUnknown};
+
+AB_CORE string toString(ProcessType tp);
+AB_CORE ProcessType toProcessType(const string& str);
+
 
 ///Enum holding Thorlab Device IDS
 enum DeviceTypeID

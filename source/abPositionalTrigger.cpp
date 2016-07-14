@@ -7,7 +7,7 @@ using namespace mtk;
 
 //---------------------------------------------------------------------------
 
-PositionalTrigger::PositionalTrigger(const string& name, TriggerCondition c, double tVal, triggerTestFunctionFPtr f)
+PositionalTrigger::PositionalTrigger(const string& name, TriggerConditionOperator c, double tVal, triggerTestFunctionFPtr f)
 :
 Trigger(name, c, f),
 mMotorPositionalTriggerPoint(tVal)
@@ -17,7 +17,7 @@ mMotorPositionalTriggerPoint(tVal)
 
 bool PositionalTrigger::test(double val)
 {
-	switch(mTriggerCondition)
+	switch(mTriggerConditionOperator)
     {
     	case tcLargerThan: 			return val > mMotorPositionalTriggerPoint;
     	case tcLargerThanOrEqual: 	return val >= mMotorPositionalTriggerPoint;

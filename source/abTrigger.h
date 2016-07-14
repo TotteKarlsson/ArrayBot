@@ -12,31 +12,32 @@ using std::string;
 using std::vector;
 using std::tr1::function;
 
-//typedef bool   (__closure *fireFunctionFPtrBoolDouble)(double);
-typedef double (__closure *triggerTestFunctionFPtr)();
 
+typedef double (__closure *triggerTestFunctionFPtr)();
 typedef function<void (const double& nr) > 	FireFunction;
 
-
-enum TriggerCondition {tcLargerThan = 0, tcSmallerThan, tcEqualTo, tcLargerThanOrEqual, tcSmallerThanOrEqual};
+enum TriggerConditionOperator {tcLargerThan = 0, tcSmallerThan, tcEqualTo, tcLargerThanOrEqual, tcSmallerThanOrEqual};
 
 
 class AB_CORE Trigger : public ABObject
 {
     public:
-                                            Trigger(const string& name, TriggerCondition c, triggerTestFunctionFPtr f);
+                                            Trigger(const string& name, TriggerConditionOperator c, triggerTestFunctionFPtr f);
 		virtual                             ~Trigger(){}
 		string					            getName(){return mName;}
 
-        						            //!Load 'loads' the trigger.
-        virtual bool			            load();
+        						            //!Enable 'loads' the trigger.
+        virtual bool			            enable();
+
+        						            //!Disable disables the trigger.
+        virtual bool			            disable();
+
         virtual bool  			            test(double){return false;}
         virtual bool  			            test(int)   {return false;}
         virtual void  			            triggerTest() {;}
         virtual void			            setTestFunction(triggerTestFunctionFPtr f);
 
 		virtual void						addFireFunction(FireFunction f);
-
 		bool                                isTriggered(){return mIsTriggered;}
 
         						            //!Any subclass need to implement
@@ -45,14 +46,18 @@ class AB_CORE Trigger : public ABObject
         virtual void	 		            reset();
 
     protected:
+    										//!The mIsTriggered is set to true in case the trigger been fired
         bool					            mIsTriggered;
+
+    										//!The Trigger timer checks for a satisified trigger condition.
+                                            //!Todo: Add timeout logic..
         mtk::Timer				            mTriggerTimer;
 
         						            //!The test function is a function called
-                                            //!to check in order to trigger the trigger.
+                                            //!to test for the trigger condition
         triggerTestFunctionFPtr	            mTestFunction;
 
-        TriggerCondition                    mTriggerCondition;
+        TriggerConditionOperator            mTriggerConditionOperator;
         string					            mName;
 
 		FireFunction						mFireFunction;

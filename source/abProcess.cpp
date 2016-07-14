@@ -6,37 +6,6 @@
 using Poco::Timespan;
 using namespace mtk;
 
-string toString(ProcessType pt)
-{
-	switch(pt)
-    {
-    	case ptMove: 			return "linearMove";
-    	case ptCombinedMove: 	return "combinedMove";
-    	case ptTimeDelay: 		return "timeDelay";
-        default: 				return "unknownProcessType";
-    }
-}
-
-ProcessType toProcessType(const string& str)
-{
-	if(str == "linearMove")
-    {
-    	return ptMove;
-    }
-
-	if(str == "combinedMove")
-    {
-    	return ptCombinedMove;
-    }
-
-	if(str == "timeDelay")
-    {
-    	return ptTimeDelay;
-    }
-
-	return ptUnknown;
-}
-
 Process::Process(const string& lbl, ProcessType pt)
 :
 mUnit(NULL),
@@ -47,7 +16,8 @@ mTimeOut(60*Poco::Timespan::SECONDS),
 mIsBeingProcessed(false),
 mIsProcessed(false),
 mIsStarted(false),
-mProcessType(pt)
+mProcessType(pt),
+mTrigger(NULL)
 {}
 
 string Process::getProcessType()

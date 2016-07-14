@@ -126,5 +126,3 @@ void __fastcall TCombinedMoveFrame::mProcessNameEKeyDown(TObject *Sender, WORD &
    		mCombinedMove->setProcessName(mProcessNameE->getValue());
     }
 }
-
-

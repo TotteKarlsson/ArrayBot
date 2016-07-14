@@ -18,8 +18,6 @@ object CombinedMoveFrame: TCombinedMoveFrame
     Align = alClient
     Caption = 'Combined Processes'
     TabOrder = 0
-    ExplicitWidth = 545
-    ExplicitHeight = 449
     object GroupBox1: TGroupBox
       Left = 2
       Top = 109
@@ -28,7 +26,6 @@ object CombinedMoveFrame: TCombinedMoveFrame
       Align = alLeft
       Caption = 'Moves'
       TabOrder = 0
-      ExplicitHeight = 338
       object Button1: TButton
         Left = 13
         Top = 182
@@ -90,8 +87,9 @@ object CombinedMoveFrame: TCombinedMoveFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 256
-      ExplicitTop = 200
+      ExplicitLeft = 147
+      ExplicitTop = 109
+      ExplicitHeight = 415
     end
   end
   object ActionList1: TActionList

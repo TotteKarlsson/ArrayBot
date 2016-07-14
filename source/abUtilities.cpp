@@ -20,6 +20,38 @@ string toString(const TLI_DeviceInfo& val)
     return str.str();
 }
 
+
+string toString(ProcessType pt)
+{
+	switch(pt)
+    {
+    	case ptMove: 			return "linearMove";
+    	case ptCombinedMove: 	return "combinedMove";
+    	case ptTimeDelay: 		return "timeDelay";
+        default: 				return "unknownProcessType";
+    }
+}
+
+ProcessType toProcessType(const string& str)
+{
+	if(str == "linearMove")
+    {
+    	return ptMove;
+    }
+
+	if(str == "combinedMove")
+    {
+    	return ptCombinedMove;
+    }
+
+	if(str == "timeDelay")
+    {
+    	return ptTimeDelay;
+    }
+
+	return ptUnknown;
+}
+
 bool buildDeviceList()
 {
     // Build list of connected device
