@@ -152,15 +152,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>forms\TSplashForm.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
-        <CppCompile Include="frames\abMotorFrame.cpp">
-            <Form>MotorFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>frames\abMotorFrame.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="frames\abXYZUnitFrame.cpp">
-            <BuildOrder>18</BuildOrder>
-        </CppCompile>
         <CppCompile Include="frames\TAboutArrayBotFrame.cpp">
             <Form>AboutArrayBotFrame</Form>
             <BuildOrder>12</BuildOrder>
@@ -172,12 +163,25 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="frames\TCombinedMoveFrame.cpp">
             <BuildOrder>19</BuildOrder>
         </CppCompile>
+        <CppCompile Include="frames\TMotorFrame.cpp">
+            <Form>MotorFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TMotorFrame.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
         <CppCompile Include="frames\TMotorMoveProcessFrame.cpp">
             <Form>MotorMoveProcessFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>frames\TMotorMoveProcessFrame.h</DependentOn>
             <BuildOrder>18</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TPositionalTriggerFrame.cpp">
+            <Form>PositionalTriggerFrame</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TPositionalTriggerFrame.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
         </CppCompile>
         <CppCompile Include="frames\TRibbonLifterFrame.cpp">
             <Form>RibbonLifterFrame</Form>
@@ -207,6 +211,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>frames\TXYZPositionsFrame.h</DependentOn>
             <BuildOrder>15</BuildOrder>
         </CppCompile>
+        <CppCompile Include="frames\TXYZUnitFrame.cpp">
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
         <CppCompile Include="JoyStickRelated.cpp">
             <BuildOrder>4</BuildOrder>
         </CppCompile>
@@ -229,9 +236,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="forms\abAddJoyStickSettingForm.dfm"/>
         <FormResources Include="forms\abAddLiftForm.dfm"/>
-        <FormResources Include="frames\abMotorFrame.dfm"/>
+        <FormResources Include="frames\TMotorFrame.dfm"/>
         <FormResources Include="forms\TSplashForm.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

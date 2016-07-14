@@ -1,5 +1,5 @@
-#ifndef abXYZUnitFrameH
-#define abXYZUnitFrameH
+#ifndef TXYZUnitFrameH
+#define TXYZUnitFrameH
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>

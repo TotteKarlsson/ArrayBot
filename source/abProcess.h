@@ -73,6 +73,7 @@ class AB_CORE Process : public ABObject
         Timestamp					            mStartTime;
         Timestamp					            mEndTime;
         Poco::Timespan 				            mTimeOut;
+
         										//!Each process can have one trigger
                                                 //!Todo: Make this a container and enable multiple trigger
                                                 //!functionality

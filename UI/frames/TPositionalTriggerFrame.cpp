@@ -6,10 +6,11 @@
 #include "TPositionalTriggerFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+#pragma link "TFloatLabeledEdit"
 #pragma resource "*.dfm"
-TFrame1 *Frame1;
+TPositionalTriggerFrame *PositionalTriggerFrame;
 //---------------------------------------------------------------------------
-__fastcall TFrame1::TFrame1(TComponent* Owner)
+__fastcall TPositionalTriggerFrame::TPositionalTriggerFrame(TComponent* Owner)
 	: TFrame(Owner)
 {
 }

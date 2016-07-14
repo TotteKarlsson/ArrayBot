@@ -60,7 +60,6 @@ object CombinedMoveFrame: TCombinedMoveFrame
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitWidth = 541
       object mProcessNameE: TSTDStringLabeledEdit
         Left = 13
         Top = 35
@@ -90,6 +89,12 @@ object CombinedMoveFrame: TCombinedMoveFrame
       ExplicitLeft = 147
       ExplicitTop = 109
       ExplicitHeight = 415
+      inherited MainGB: TGroupBox
+        inherited mMovePosE: TFloatLabeledEdit
+          Width = 65
+          ExplicitWidth = 65
+        end
+      end
     end
   end
   object ActionList1: TActionList

@@ -1,6 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "abXYZUnitFrame.h"
+#include "TXYZUnitFrame.h"
 #include "abXYZUnit.h"
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
