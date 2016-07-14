@@ -12,6 +12,7 @@
 #include "TFloatLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "TIntegerLabeledEdit.h"
+#include "TSTDStringLabeledEdit.h"
 
 class Process;
 class TimeDelay;
@@ -23,7 +24,8 @@ class TTimeDelayFrame : public TFrame
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mTimeDelayE;
-	void __fastcall mTimeDelayEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	TSTDStringLabeledEdit *mNameEdit;
+	void __fastcall mEditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
 
     private:	// User declarations

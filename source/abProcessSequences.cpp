@@ -123,10 +123,20 @@ bool ProcessSequences::add(ProcessSequence* s)
 	//Check name
     if(s->getName() == "")
     {
-    	stringstream ss;
-        ss<<"Sequence "<<countFiles(mFileFolder, "*.abp") + 1;
-    	s->setProjectName(ss.str());
-		s->setFileName(ss.str() + ".abp");
+        //Create a file name that does not exist
+	   	stringstream ss;
+        int fileNo(0);
+        do
+        {
+        	ss.str("");
+	        fileNo++;
+
+            ss<<"Sequence "<<fileNo;
+
+        }while(fileExists(joinPath(mFileFolder, ss.str() + ".abp")));
+
+        s->setProjectName(ss.str());
+        s->setFileName(ss.str() + ".abp");
         s->write(mFileFolder);
     }
 

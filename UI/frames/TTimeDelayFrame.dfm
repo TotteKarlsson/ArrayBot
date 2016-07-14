@@ -4,6 +4,12 @@ object TimeDelayFrame: TTimeDelayFrame
   Width = 313
   Height = 207
   AutoSize = True
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -19
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  ParentFont = False
   TabOrder = 0
   object GroupBox1: TGroupBox
     Left = 0
@@ -14,16 +20,27 @@ object TimeDelayFrame: TTimeDelayFrame
     Caption = 'TimeDelay Process'
     TabOrder = 0
     object mTimeDelayE: TIntegerLabeledEdit
-      Left = 37
-      Top = 56
-      Width = 60
-      Height = 21
-      EditLabel.Width = 76
-      EditLabel.Height = 13
-      EditLabel.Caption = 'Time Delay (ms)'
+      Left = 21
+      Top = 128
+      Width = 121
+      Height = 31
+      EditLabel.Width = 90
+      EditLabel.Height = 23
+      EditLabel.Caption = 'Delay (ms)'
       TabOrder = 0
       Text = '0'
-      OnKeyDown = mTimeDelayEKeyDown
+      OnKeyDown = mEditKeyDown
+    end
+    object mNameEdit: TSTDStringLabeledEdit
+      Left = 21
+      Top = 64
+      Width = 121
+      Height = 31
+      EditLabel.Width = 49
+      EditLabel.Height = 23
+      EditLabel.Caption = 'Name'
+      TabOrder = 1
+      OnKeyDown = mEditKeyDown
     end
   end
 end

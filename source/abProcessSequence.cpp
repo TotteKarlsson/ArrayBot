@@ -95,7 +95,7 @@ bool ProcessSequence::write(const string& folder)
 
     if(mProject.getFileName() == "")
     {
-        mProject.setFileName(joinPath(folder, mProject.getProjectName() + ".abp" ));
+        mProject.setFileName(mProject.getProjectName() + ".abp");
     }
     return mProject.save();
 }

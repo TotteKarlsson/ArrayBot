@@ -83,7 +83,6 @@ class TMain : public TRegistryForm
 	TGroupBox *LiftGB;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
-	TSpeedButton *mJSCSBtn;
 	TSpeedButton *Button7;
 	TSpeedButton *Button5;
 	TPanel *BottomBtnPanel;
@@ -100,10 +99,12 @@ class TMain : public TRegistryForm
 	TPanel *mTopMainPanel;
 	TTimer *mSequenceStatusTimer;
 	TTabSheet *RibbonLifterTabSheet;
-	TSpeedButton *SwitchJSBtn;
 	TPanel *Panel1;
 	TBitBtn *BitBtn1;
 	TBitBtn *ReInitBotBtn;
+	TSpeedButton *mJSCSBtn;
+	TSpeedButton *SwitchJSBtn;
+	TPanel *Panel2;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);

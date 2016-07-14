@@ -27,17 +27,6 @@ object Main: TMain
     Height = 791
     Align = alRight
     TabOrder = 0
-    object mJSCSBtn: TSpeedButton
-      Left = 1
-      Top = 135
-      Width = 125
-      Height = 134
-      Align = alTop
-      AllowAllUp = True
-      Caption = 'Enable JS'
-      OnClick = JSControlClick
-      ExplicitTop = 251
-    end
     object mAboutBtn: TSpeedButton
       Left = 1
       Top = 1
@@ -49,19 +38,6 @@ object Main: TMain
       OnClick = mAboutBtnClick
       ExplicitTop = -57
     end
-    object SwitchJSBtn: TSpeedButton
-      Left = 1
-      Top = 269
-      Width = 125
-      Height = 121
-      Align = alTop
-      GroupIndex = 15
-      Caption = 'Switch JS'
-      OnClick = SwitchJSBtnClick
-      ExplicitLeft = -11
-      ExplicitTop = 488
-      ExplicitWidth = 162
-    end
     object BottomBtnPanel: TPanel
       Left = 1
       Top = 538
@@ -70,7 +46,6 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      ExplicitTop = 480
       object Button5: TSpeedButton
         Left = 1
         Top = 126
@@ -112,131 +87,13 @@ object Main: TMain
       TabWidth = 150
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        object JSGB: TGroupBox
-          Left = 3
-          Top = 193
-          Width = 461
-          Height = 288
-          Caption = 'Joystick'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -21
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-          object mJSSpeedFastBtn: TSpeedButton
-            Left = 307
-            Top = 44
-            Width = 140
-            Height = 100
-            GroupIndex = 15
-            Caption = 'Fast'
-            OnClick = JSSpeedBtnClick
-          end
-          object mJSSpeedMediumBtn: TSpeedButton
-            Left = 161
-            Top = 44
-            Width = 140
-            Height = 100
-            GroupIndex = 15
-            Down = True
-            Caption = 'Medium'
-            OnClick = JSSpeedBtnClick
-          end
-          object mJSSpeedSlowBtn: TSpeedButton
-            Left = 15
-            Top = 44
-            Width = 140
-            Height = 100
-            GroupIndex = 15
-            Caption = 'Slow'
-            OnClick = JSSpeedBtnClick
-          end
-          object mXYCtrlRG: TRadioGroup
-            Left = 15
-            Top = 168
-            Width = 426
-            Height = 105
-            Caption = 'XY Control'
-            Columns = 4
-            ItemIndex = 0
-            Items.Strings = (
-              'X && Y'
-              'X'
-              'Y'
-              'None')
-            TabOrder = 0
-            OnClick = mXYCtrlRGClick
-          end
-        end
-        object LiftGB: TGroupBox
-          Left = 501
-          Top = 193
-          Width = 446
-          Height = 288
-          Caption = 'Lift'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 1
-          object LiftBtn: TSpeedButton
-            Left = 16
-            Top = 129
-            Width = 409
-            Height = 136
-            Action = liftA
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -16
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-          end
-          object mMoveAccelerationE: TFloatLabeledEdit
-            Left = 105
-            Top = 92
-            Width = 73
-            Height = 31
-            EditLabel.Width = 101
-            EditLabel.Height = 23
-            EditLabel.Caption = 'Acceleration'
-            TabOrder = 1
-            Text = '0.00'
-            OnKeyDown = moveEdit
-          end
-          object mMoveVelocityVerticalE: TFloatLabeledEdit
-            Left = 18
-            Top = 92
-            Width = 73
-            Height = 31
-            EditLabel.Width = 63
-            EditLabel.Height = 23
-            EditLabel.Caption = 'Velocity'
-            TabOrder = 0
-            Text = '0.00'
-            OnKeyDown = moveEdit
-          end
-          object mLiftCB: TComboBox
-            Left = 16
-            Top = 32
-            Width = 409
-            Height = 31
-            TabOrder = 2
-            Text = '<none>'
-            OnChange = mLiftCBChange
-          end
-        end
         object mBottomPanel: TPanel
           Left = 0
-          Top = 552
+          Top = 584
           Width = 950
-          Height = 167
+          Height = 135
           Align = alBottom
-          TabOrder = 2
+          TabOrder = 0
         end
         object mTopMainPanel: TPanel
           Left = 0
@@ -245,7 +102,160 @@ object Main: TMain
           Height = 187
           Align = alTop
           AutoSize = True
-          TabOrder = 3
+          TabOrder = 1
+        end
+        object Panel2: TPanel
+          Left = 0
+          Top = 187
+          Width = 950
+          Height = 482
+          Align = alTop
+          AutoSize = True
+          TabOrder = 2
+          object JSGB: TGroupBox
+            Left = 1
+            Top = 1
+            Width = 461
+            Height = 480
+            Align = alLeft
+            Caption = 'Joystick'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            ExplicitLeft = 3
+            ExplicitHeight = 392
+            object mJSSpeedFastBtn: TSpeedButton
+              Left = 307
+              Top = 44
+              Width = 140
+              Height = 100
+              GroupIndex = 15
+              Caption = 'Fast'
+              OnClick = JSSpeedBtnClick
+            end
+            object mJSSpeedMediumBtn: TSpeedButton
+              Left = 161
+              Top = 44
+              Width = 140
+              Height = 100
+              GroupIndex = 15
+              Down = True
+              Caption = 'Medium'
+              OnClick = JSSpeedBtnClick
+            end
+            object mJSSpeedSlowBtn: TSpeedButton
+              Left = 15
+              Top = 44
+              Width = 140
+              Height = 100
+              GroupIndex = 15
+              Caption = 'Slow'
+              OnClick = JSSpeedBtnClick
+            end
+            object mJSCSBtn: TSpeedButton
+              Left = 129
+              Top = 272
+              Width = 120
+              Height = 105
+              AllowAllUp = True
+              Caption = 'Enable JS'
+              OnClick = JSControlClick
+            end
+            object SwitchJSBtn: TSpeedButton
+              Left = 15
+              Top = 272
+              Width = 108
+              Height = 105
+              GroupIndex = 15
+              Caption = 'Switch JS'
+              OnClick = SwitchJSBtnClick
+            end
+            object mXYCtrlRG: TRadioGroup
+              Left = 15
+              Top = 161
+              Width = 426
+              Height = 105
+              Caption = 'XY Control'
+              Columns = 4
+              ItemIndex = 0
+              Items.Strings = (
+                'X && Y'
+                'X'
+                'Y'
+                'None')
+              TabOrder = 0
+              OnClick = mXYCtrlRGClick
+            end
+          end
+          object LiftGB: TGroupBox
+            Left = 462
+            Top = 1
+            Width = 487
+            Height = 480
+            Align = alClient
+            Caption = 'Lift'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
+            ExplicitLeft = 501
+            ExplicitTop = 193
+            ExplicitWidth = 446
+            ExplicitHeight = 288
+            object LiftBtn: TSpeedButton
+              Left = 16
+              Top = 129
+              Width = 409
+              Height = 136
+              Action = liftA
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -16
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+            end
+            object mMoveAccelerationE: TFloatLabeledEdit
+              Left = 105
+              Top = 92
+              Width = 73
+              Height = 31
+              EditLabel.Width = 101
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Acceleration'
+              TabOrder = 1
+              Text = '0.00'
+              OnKeyDown = moveEdit
+            end
+            object mMoveVelocityVerticalE: TFloatLabeledEdit
+              Left = 18
+              Top = 92
+              Width = 73
+              Height = 31
+              EditLabel.Width = 63
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Velocity'
+              TabOrder = 0
+              Text = '0.00'
+              OnKeyDown = moveEdit
+            end
+            object mLiftCB: TComboBox
+              Left = 16
+              Top = 32
+              Width = 409
+              Height = 31
+              TabOrder = 2
+              Text = '<none>'
+              OnChange = mLiftCBChange
+            end
+          end
         end
       end
       object RibbonLifterTabSheet: TTabSheet
@@ -262,8 +272,6 @@ object Main: TMain
           Height = 614
           Align = alClient
           TabOrder = 0
-          ExplicitTop = 0
-          ExplicitHeight = 719
         end
         object Panel1: TPanel
           Left = 0
@@ -289,9 +297,6 @@ object Main: TMain
             ParentBiDiMode = False
             ParentFont = False
             TabOrder = 0
-            ExplicitLeft = 206
-            ExplicitTop = 16
-            ExplicitHeight = 121
           end
           object ReInitBotBtn: TBitBtn
             Left = 1
@@ -310,8 +315,6 @@ object Main: TMain
             ParentBiDiMode = False
             ParentFont = False
             TabOrder = 1
-            ExplicitLeft = -5
-            ExplicitTop = -4
           end
         end
       end

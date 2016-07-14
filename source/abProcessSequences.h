@@ -39,8 +39,8 @@ class AB_CORE ProcessSequences : public ABObject
         bool										load(const string& fName);
 
         int											count(){return mProcessSequences.size();}
-		bool										saveCurrent();
         bool										clear();
+		bool										saveCurrent();
 
 	protected:
     												//!ArrayBot provide "unit"s that are used by the processes

@@ -31,7 +31,6 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, cons
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
 
-    GroupBox1->Caption = "";
     mProcessFileExtension = "abp";
     refreshSequencesCB();
 }
@@ -163,11 +162,11 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
 {
 	//Retrieve current process and populate UI
     //Check what kind of process we have, Pause, or CombinedMove
-
     int i = mProcessesLB->ItemIndex;
     if(i == -1)
     {
-	    TCombinedMoveFrame1->populate(mAB, NULL);
+	    TCombinedMoveFrame1->Visible = false;//(mAB, NULL);
+	    TTimeDelayFrame1->Visible = false;//(mAB, NULL);
     	return;
     }
 
@@ -181,14 +180,14 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
             TTimeDelayFrame1->Visible = false;
     		TCombinedMoveFrame1->populate(mAB, cm);
 			TCombinedMoveFrame1->Visible = true;
-            TCombinedMoveFrame1->Align = alLeft;
+            TCombinedMoveFrame1->Align = alClient;
         }
         else if(td)
         {
 			TCombinedMoveFrame1->Visible = false;
             TTimeDelayFrame1->populate(mAB, td);
             TTimeDelayFrame1->Visible = true;
-            TTimeDelayFrame1->Align = alLeft;
+            TTimeDelayFrame1->Align = alClient;
         }
     }
 }
@@ -312,7 +311,35 @@ void __fastcall TABProcessSequencerFrame::addTimeDelayProcessExecute(TObject *Se
    	s->add(p);
 
     //Update LB
-    mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
+    int indx = mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
+    mProcessesLB->ItemIndex = indx;
+	mProcessesLBClick(NULL);
+}
+
+
+void __fastcall TABProcessSequencerFrame::TTimeDelayFrame1mNameEditKeyDown(TObject *Sender,
+          WORD &Key, TShiftState Shift)
+{
+	TTimeDelayFrame1->mEditKeyDown(Sender, Key, Shift);
+    if(Key == vkReturn)
+    {
+	    //Change name of process in CB
+	    int indx = mProcessesLB->ItemIndex;
+ 	   	mProcessesLB->Items->Strings[indx] = vclstr(TTimeDelayFrame1->mNameEdit->getValue());
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TABProcessSequencerFrame::TCombinedMoveFrame1mProcessNameEKeyDown(TObject *Sender,
+          WORD &Key, TShiftState Shift)
+{
+	TCombinedMoveFrame1->mProcessNameEKeyDown(Sender, Key, Shift);
+    if(Key == vkReturn)
+    {
+	    //Change name of process in CB
+	    int indx = mProcessesLB->ItemIndex;
+ 	   	mProcessesLB->Items->Strings[indx] = vclstr(TCombinedMoveFrame1->mProcessNameE->getValue());
+    }
 
 }
 

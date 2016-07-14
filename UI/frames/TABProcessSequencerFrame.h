@@ -21,7 +21,6 @@ class ArrayBot;
 class TABProcessSequencerFrame : public TFrame
 {
     __published:	// IDE-managed Components
-        TGroupBox *GroupBox1;
         TButton *mStartBtn;
         TListBox *mProcessesLB;
         TComboBox *mSequencesCB;
@@ -42,6 +41,9 @@ class TABProcessSequencerFrame : public TFrame
 	TAction *addTimeDelayProcess;
 	TButton *Button1;
 	TTimeDelayFrame *TTimeDelayFrame1;
+	TPanel *mMainPanel;
+	TPanel *mLeftPanel;
+	TGroupBox *GroupBox1;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
         void __fastcall mStartBtnClick(TObject *Sender);
@@ -55,6 +57,10 @@ class TABProcessSequencerFrame : public TFrame
         void __fastcall removeProcessAExecute(TObject *Sender);
         void __fastcall mSequenceNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall addTimeDelayProcessExecute(TObject *Sender);
+	void __fastcall TTimeDelayFrame1mNameEditKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift);
+	void __fastcall TCombinedMoveFrame1mProcessNameEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift);
 
 	private:	// User declarations
         ArrayBot&					mAB;
@@ -63,6 +69,7 @@ class TABProcessSequencerFrame : public TFrame
 		void __fastcall 			refreshSequencesCB();
 		static int 					mFrameNr;
 		void						saveSequence();
+//        void						selectProcessItem(Process* p);
 
 	public:
 						 __fastcall TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner);

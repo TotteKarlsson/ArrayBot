@@ -10,9 +10,6 @@ Coordinates=318,232,120,51
 [mAddMoveBtn]
 Coordinates=62,232,87,51
 
-[GroupBox1]
-Coordinates=337,302,70,51
-
 [mStartBtn]
 Coordinates=151,232,64,51
 
@@ -26,7 +23,7 @@ Coordinates=476,1,113,51
 Coordinates=288,321,70,51
 
 []
-Coordinates=13,232,46,51
+Coordinates=337,302,70,51
 
 [TMotorMoveProcessFrame1.mAccE]
 Coordinates=467,177,190,51

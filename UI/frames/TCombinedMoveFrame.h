@@ -9,6 +9,8 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include "abArrayBot.h"
+#include "TSTDStringLabeledEdit.h"
+#include <Vcl.ExtCtrls.hpp>
 
 class Process;
 class CombinedMove;
@@ -26,9 +28,14 @@ __published:	// IDE-managed Components
 	TActionList *ActionList1;
 	TAction *addMoveA;
 	TAction *removeMoveA;
+	TPanel *Panel1;
+	TSTDStringLabeledEdit *mProcessNameE;
+	TGroupBox *GroupBox2;
 	void __fastcall addMoveAExecute(TObject *Sender);
 	void __fastcall mMoveLBClick(TObject *Sender);
 	void __fastcall removeMoveAExecute(TObject *Sender);
+	void __fastcall mProcessNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
     private:	// User declarations
 		ArrayBot*						mAB;

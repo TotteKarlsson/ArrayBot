@@ -12,6 +12,7 @@
 
 #pragma package(smart_init)
 #pragma link "TMotorMoveProcessFrame"
+#pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 
 using namespace mtk;
@@ -42,6 +43,7 @@ void TCombinedMoveFrame::rePopulate(Process* p)
         return;
     }
 
+	mProcessNameE->setValue(mCombinedMove->getProcessName());
     //Fill out the listbox with moves
     for(int i = 0; i < mCombinedMove->getNumberOfMoves(); i++)
     {
@@ -112,6 +114,17 @@ void __fastcall TCombinedMoveFrame::mMoveLBClick(TObject *Sender)
     ab::Move* mv = mCombinedMove->getMove(moveName);
 
     selectItem(mv);
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TCombinedMoveFrame::mProcessNameEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+	if(Key == vkReturn && mCombinedMove != NULL)
+    {
+   		mCombinedMove->setProcessName(mProcessNameE->getValue());
+    }
 }
 
 

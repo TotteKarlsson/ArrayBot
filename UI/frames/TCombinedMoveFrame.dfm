@@ -1,9 +1,8 @@
 object CombinedMoveFrame: TCombinedMoveFrame
   Left = 0
   Top = 0
-  Width = 530
-  Height = 520
-  AutoSize = True
+  Width = 723
+  Height = 526
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -11,70 +10,104 @@ object CombinedMoveFrame: TCombinedMoveFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  inline TMotorMoveProcessFrame1: TMotorMoveProcessFrame
-    Left = 145
+  object GroupBox2: TGroupBox
+    Left = 0
     Top = 0
-    Width = 385
-    Height = 520
-    Align = alLeft
-    AutoSize = True
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -19
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
+    Width = 723
+    Height = 526
+    Align = alClient
+    Caption = 'Combined Processes'
     TabOrder = 0
-    ExplicitLeft = 137
-    ExplicitHeight = 207
-    inherited MainGB: TGroupBox
-      Height = 520
+    ExplicitWidth = 545
+    ExplicitHeight = 449
+    object GroupBox1: TGroupBox
+      Left = 2
+      Top = 109
+      Width = 145
+      Height = 415
       Align = alLeft
-      ExplicitHeight = 207
-      inherited mMovePosE: TFloatLabeledEdit
-        Top = 115
-        EditLabel.ExplicitTop = 89
-        ExplicitTop = 115
+      Caption = 'Moves'
+      TabOrder = 0
+      ExplicitHeight = 338
+      object Button1: TButton
+        Left = 13
+        Top = 182
+        Width = 118
+        Height = 60
+        Action = addMoveA
+        TabOrder = 0
+      end
+      object Button2: TButton
+        Left = 13
+        Top = 259
+        Width = 118
+        Height = 60
+        Action = removeMoveA
+        TabOrder = 1
+      end
+      object mMoveLB: TListBox
+        Left = 13
+        Top = 32
+        Width = 118
+        Height = 139
+        ItemHeight = 23
+        TabOrder = 2
+        OnClick = mMoveLBClick
+      end
+    end
+    object Panel1: TPanel
+      Left = 2
+      Top = 25
+      Width = 719
+      Height = 84
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 1
+      ExplicitWidth = 541
+      object mProcessNameE: TSTDStringLabeledEdit
+        Left = 13
+        Top = 35
+        Width = 197
+        Height = 31
+        EditLabel.Width = 49
+        EditLabel.Height = 23
+        EditLabel.Caption = 'Name'
+        TabOrder = 0
+        OnKeyDown = mProcessNameEKeyDown
+      end
+    end
+    inline TMotorMoveProcessFrame1: TMotorMoveProcessFrame
+      Left = 147
+      Top = 109
+      Width = 385
+      Height = 415
+      Align = alLeft
+      AutoSize = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      ExplicitLeft = 147
+      ExplicitTop = 109
+      ExplicitHeight = 338
+      inherited MainGB: TGroupBox
+        Height = 415
+        Align = alLeft
+        ExplicitHeight = 338
+        inherited mMovePosE: TFloatLabeledEdit
+          Top = 115
+          EditLabel.ExplicitTop = 89
+          ExplicitTop = 115
+        end
       end
     end
   end
-  object GroupBox1: TGroupBox
-    Left = 0
-    Top = 0
-    Width = 145
-    Height = 520
-    Align = alLeft
-    Caption = 'Moves'
-    TabOrder = 1
-    object Button1: TButton
-      Left = 13
-      Top = 177
-      Width = 118
-      Height = 60
-      Action = addMoveA
-      TabOrder = 0
-    end
-    object Button2: TButton
-      Left = 13
-      Top = 243
-      Width = 118
-      Height = 60
-      Action = removeMoveA
-      TabOrder = 1
-    end
-    object mMoveLB: TListBox
-      Left = 13
-      Top = 32
-      Width = 118
-      Height = 139
-      ItemHeight = 23
-      TabOrder = 2
-      OnClick = mMoveLBClick
-    end
-  end
   object ActionList1: TActionList
-    Left = 32
-    Top = 64
+    Left = 240
+    Top = 40
     object addMoveA: TAction
       Caption = 'Add'
       OnExecute = addMoveAExecute

@@ -4,9 +4,6 @@ Coordinates=66,195,62,51
 [TabSheet5]
 Coordinates=297,373,66,33
 
-[mJSCSBtn]
-Coordinates=228,373,67,33
-
 [JoyStickGB2]
 Coordinates=253,1,77,51
 
@@ -113,7 +110,7 @@ Coordinates=776,533,81,33
 Coordinates=159,373,128,33
 
 []
-Coordinates=368,71,74,51
+Coordinates=228,373,67,33
 
 [mBottomPanel]
 Coordinates=750,333,87,51

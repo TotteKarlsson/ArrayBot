@@ -19,44 +19,44 @@ class ArrayBot;
 class AB_CORE ProcessSequencer : public ABObject
 {
 	public:
-			      	                ProcessSequencer(ArrayBot& ab, const string& fileFolder);
-                  	                ~ProcessSequencer(){}
+			      	                        ProcessSequencer(ArrayBot& ab, const string& fileFolder);
+                  	                        ~ProcessSequencer(){}
 
-		bool						selectSequence(const string& sName);
+		bool						        selectSequence(const string& sName);
 
-		bool				        load(const string& sName);
-		bool				        loadAll(const string& fileFolder);
-        bool						deleteSequence(const string& seq);
+		bool				                load(const string& sName);
+		bool				                loadAll(const string& fileFolder);
+        bool						        deleteSequence(const string& seq);
 
-		bool				        saveCurrent();
+		bool				                saveCurrent();
 
-		void				        clear();
-		void		                start(bool continous = true);
-		void		                forward();
-        void		                reverse();
-        void		                stop();
-        bool				        isRunning();
-        bool				        isCurrentProcessActive();
+		void				                clear();
+		void		                        start(bool continous = true);
+		void		                        forward();
+        void		                        reverse();
+        void		                        stop();
+        bool				                isRunning();
+        bool				                isCurrentProcessActive();
 
-        ProcessSequence*   	        getCurrentSequence();
-        string				        getCurrentSequenceName();
-        string				        getCurrentProcessName();
+        ProcessSequence*   	                getCurrentSequence();
+        string				                getCurrentSequenceName();
+        string				                getCurrentProcessName();
 
-        bool						addSequence(ProcessSequence* seq);
-        ProcessSequences&			getSequences();
+        bool						        addSequence(ProcessSequence* seq);
+        ProcessSequences&			        getSequences();
 
 	private:
-    								//!The sequencer is executing each sequence using
-                                    //an arrayBot object
-    	ArrayBot&					mAB;
-    	ProcessSequences	        mSequences;
+    								        //!The sequencer is executing each sequence using
+                                            //an arrayBot object
+    	ArrayBot&					        mAB;
+    	ProcessSequences	                mSequences;
 
-        							//!ExecuteAutomatic executes individual processes
-                                    //!in sequence. If set false, each sequence need to be
-                                    //!manually executed using the forward() function
-        bool				        mExecuteAutomatic;
-        Timer				        mSequenceTimer;
-		void			            onTimerFunc();
+        							        //!ExecuteAutomatic executes individual processes
+                                            //!in sequence. If set false, each sequence need to be
+                                            //!manually executed using the forward() function
+        bool				                mExecuteAutomatic;
+        Timer				                mSequenceTimer;
+		void			                    onTimerFunc();
 };
 
 #endif

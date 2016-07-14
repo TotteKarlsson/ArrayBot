@@ -14,6 +14,7 @@
 #pragma link "TMotorMoveProcessFrame"
 #pragma link "TFloatLabeledEdit"
 #pragma link "TIntegerLabeledEdit"
+#pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 
 using namespace mtk;
@@ -44,17 +45,19 @@ void TTimeDelayFrame::rePopulate(Process* p)
 
     long val = mTimeDelay->getTimeDelay().totalMilliseconds();
    	mTimeDelayE->setValue(val);
+    mNameEdit->setValue(mTimeDelay->getProcessName());
 
   	EnableDisableFrame(this, true);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TTimeDelayFrame::mTimeDelayEKeyDown(TObject *Sender, WORD &Key,
+void __fastcall TTimeDelayFrame::mEditKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
 	if(Key == vkReturn && mTimeDelay != NULL)
     {
         mTimeDelay->setTimeDelay(mTimeDelayE->getValue()*Poco::Timespan::MILLISECONDS);
+    	mTimeDelay->setProcessName(mNameEdit->getValue());
     }
 }
 
