@@ -6,10 +6,9 @@
 using namespace mtk;
 
 //---------------------------------------------------------------------------
-
-PositionalTrigger::PositionalTrigger(const string& name, TriggerConditionOperator c, double tVal, triggerTestFunctionFPtr f)
+PositionalTrigger::PositionalTrigger(const string& name, triggerTestFunctionFPtr f, TriggerConditionOperator c, double tVal)
 :
-Trigger(name, c, f),
+Trigger(name, f,  c),
 mMotorPositionalTriggerPoint(tVal)
 {
 	mTriggerTimer.assignTimerFunction(triggerTest);
@@ -46,7 +45,7 @@ void PositionalTrigger::execute()
     //Execute any functions in the fireFunction container
     if(mFireFunction)
     {
-        mFireFunction(.1);
+        mFireFunction(0,0,0);
     }
 
 }

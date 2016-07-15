@@ -301,8 +301,8 @@ object MotorFrame: TMotorFrame
     Enabled = False
     Interval = 250
     OnTimer = mMotorStatusTimerTimer
-    Left = 240
-    Top = 248
+    Left = 120
+    Top = 216
   end
   object ActionList1: TActionList
     Left = 24

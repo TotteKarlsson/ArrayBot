@@ -145,7 +145,7 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcMoveToPosition:
-                    	mMotor->moveAbsolute(cmd.getFirstVariable(), false);
+                    	mMotor->moveToPosition(cmd.getFirstVariable(), false);
 					break;
 
                     case mcSetVelocityParameters:

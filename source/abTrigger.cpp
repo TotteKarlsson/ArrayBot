@@ -5,12 +5,12 @@
 using namespace mtk;
 using Poco::Timespan;
 
-Trigger::Trigger(const string& name, TriggerConditionOperator c, triggerTestFunctionFPtr ttf)
+Trigger::Trigger(const string& name, triggerTestFunctionFPtr ttf, TriggerConditionOperator c)
 :
 mName(name),
 mIsTriggered(false),
 mTriggerConditionOperator(c),
-mTriggerTimer(Poco::Timespan(10*Poco::Timespan::MILLISECONDS)),
+mTriggerTimer(Poco::Timespan(100*Poco::Timespan::MILLISECONDS)),
 mTestFunction(ttf)
 {
 	mTriggerTimer.assignTimerFunction(triggerTest);

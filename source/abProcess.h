@@ -76,8 +76,8 @@ class AB_CORE Process : public ABObject
 
         										//!Each process can have one trigger
                                                 //!Todo: Make this a container and enable multiple trigger
-                                                //!functionality
-        Trigger*								mTrigger;
+                                                //!functionality. Also triggers of various subtypes
+//        Trigger*								mTrigger;
 };
 
 #endif

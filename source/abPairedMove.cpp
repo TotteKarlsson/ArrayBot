@@ -106,8 +106,8 @@ bool PairedMove::execute()
     Log(lInfo) << "Moving Motor 2 to: "	<<newZ2Pos;
 
 	//Initiate the move
-    mMotor1->moveAbsolute(newZ1Pos);
-    mMotor2->moveAbsolute(newZ2Pos);
+    mMotor1->moveToPosition(newZ1Pos);
+    mMotor2->moveToPosition(newZ2Pos);
 	return true;
 }
 

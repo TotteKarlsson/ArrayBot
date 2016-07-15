@@ -63,7 +63,7 @@ class AB_CORE LongTravelStage : public APTMotor
 
         void		                    forward(bool inThread = true);
         void		                    reverse(bool inThread = true);
-        bool		                	moveAbsolute(double position, bool inThread = true);
+        bool		                	moveToPosition(double position, bool inThread = true);
         void							setPotentiometerVelocity(double v);
     protected:
 

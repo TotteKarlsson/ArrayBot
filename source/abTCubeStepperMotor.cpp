@@ -179,7 +179,7 @@ bool TCubeStepperMotor::isForwarding()
 	//Query for status bits
     unsigned long b = SCC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
-    return bits.test(5);
+    return bits.test(4);
 }
 
 bool TCubeStepperMotor::isReversing()
@@ -187,7 +187,7 @@ bool TCubeStepperMotor::isReversing()
 	//Query for status bits
     unsigned long b = SCC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
-    return bits.test(4);
+    return bits.test(5);
 }
 
 bool TCubeStepperMotor::isActive()
@@ -298,6 +298,7 @@ bool TCubeStepperMotor::setVelocity(double v, double a, bool inThread)
 {
 	if(inThread)
     {
+    	//Check if motor is moving to absolute position
 		MotorCommand cmd(mcSetVelocityParameters, v, a);
 		post(cmd);
         mMotorCommandsPending++;
@@ -307,7 +308,11 @@ bool TCubeStepperMotor::setVelocity(double v, double a, bool inThread)
      	MOT_VelocityParameters p;
         SCC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-        p.maxVelocity = v * mScalingFactors.velocity;
+        if(v != 0)
+        {
+	        p.maxVelocity = v * mScalingFactors.velocity;
+        }
+
         if(a != 0.0)
         {
         	p.acceleration = a * mScalingFactors.acceleration;
@@ -348,7 +353,7 @@ bool TCubeStepperMotor::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();
 	int e = SCC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
-    if(e != 0)
+    if(e)
     {
     	Log(lError) <<tlError(e);
         return false;
@@ -489,10 +494,17 @@ void TCubeStepperMotor::jogReverse(bool inThread)
 void TCubeStepperMotor::forward(bool inThread)
 {
 	//TODO: use inThread logic
-    int e = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
-    if(e != 0)
+    if(mDesiredPosition != -1)
     {
-        Log(lError) <<tlError(e);
+        moveToPosition(mDesiredPosition);
+    }
+    else
+    {
+        int e = SCC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+        if(e != 0)
+        {
+            Log(lError) <<tlError(e);
+        }
     }
 }
 
@@ -506,7 +518,7 @@ void TCubeStepperMotor::reverse(bool inThread)
     }
 }
 
-bool TCubeStepperMotor::moveAbsolute(double pos, bool inThread)
+bool TCubeStepperMotor::moveToPosition(double pos, bool inThread)
 {
 	if(inThread)
     {

@@ -16,18 +16,18 @@ using namespace std;
 //---------------------------------------------------------------------------
 USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
 USEFORM("frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
+USEFORM("frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
+USEFORM("frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
-USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
-USEFORM("MainForm.cpp", Main);
 USEFORM("frames\TTimeDelayFrame.cpp", CombinedMoveFrame); /* TFrame: File Type */
+USEFORM("MainForm.cpp", Main);
 USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
-USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
-USEFORM("frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("forms\TSplashForm.cpp", SplashForm);
+USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
+USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
+USEFORM("forms\TSplashForm.cpp", SplashForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";

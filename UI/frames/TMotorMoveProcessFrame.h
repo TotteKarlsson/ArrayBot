@@ -7,6 +7,8 @@
 #include <Vcl.Forms.hpp>
 #include "TFloatLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
+#include "TPositionalTriggerFrame.h"
+#include <Vcl.ComCtrls.hpp>
 //---------------------------------------------------------------------------
 
 class AbsoluteMove;
@@ -22,15 +24,21 @@ __published:	// IDE-managed Components
 	TFloatLabeledEdit *mMovePosE;
 	TFloatLabeledEdit *mMaxVelE;
 	TFloatLabeledEdit *mAccE;
-	TFloatLabeledEdit *mPostDwellTimeE;
 	TComboBox *MotorsCB;
+	TPageControl *PageControl1;
+	TTabSheet *TabSheet1;
+	TTabSheet *TabSheet2;
+	TPositionalTriggerFrame *TPositionalTriggerFrame1;
+	TTabSheet *TabSheet3;
+	TGroupBox *GroupBox1;
+	TFloatLabeledEdit *mPostDwellTimeE;
 	TFloatLabeledEdit *mPreDwellTimeE;
 	void __fastcall MotorsCBClick(TObject *Sender);
 	void __fastcall MotorsCBChange(TObject *Sender);
 	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
     private:	// User declarations
-        AbsoluteMove* 		 			mMove;
+        AbsoluteMove* 	   			mMove;
         ArrayBot*					mAB;
 		void 						populateMotorCB();
 

@@ -184,7 +184,7 @@ bool TCubeDCServo::isForwarding()
 	//Query for status bits
     unsigned long b = CC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
-    return bits.test(5);
+    return bits.test(4);
 }
 
 bool TCubeDCServo::isReversing()
@@ -192,7 +192,7 @@ bool TCubeDCServo::isReversing()
 	//Query for status bits
     unsigned long b = CC_GetStatusBits(mSerial.c_str());
     bitset<32> bits(b);
-    return bits.test(4);
+    return bits.test(5);
 }
 
 bool TCubeDCServo::isActive()
@@ -300,28 +300,6 @@ double TCubeDCServo::getAcceleration()
     }
   	return (double) a / mScalingFactors.acceleration;
 }
-
-//	if(inThread)
-//    {
-//        //Set desired position here so it does not get changed in the thread
-//		mDesiredPosition = pos;
-//		MotorCommand cmd(mcMoveToPosition, pos);
-//		post(cmd);
-//        mMotorCommandsPending++;
-//    }
-//    else
-//    {
-//        int e = CC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position);
-//
-//		mMotorCommandsPending--;
-//        if(e != 0)
-//        {
-//            Log(lError) <<tlError(e);
-//            Log(lError) <<"Tried to move to position: "<<pos<<" using the "<<getName()<<" device.";
-//            return false;
-//        }
-//    }
-//    return true;
 
 bool TCubeDCServo::setVelocity(double v, double a, bool inThread)
 {
@@ -519,10 +497,17 @@ void TCubeDCServo::jogReverse(bool inThread)
 void TCubeDCServo::forward(bool inThread)
 {
 	//TODO: use inThread logic
-    int e = CC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
-    if(e != 0)
+    if(mDesiredPosition != -1)
     {
-        Log(lError) <<tlError(e);
+        moveToPosition(mDesiredPosition);
+    }
+    else
+    {
+    	int e = CC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+        if(e != 0)
+        {
+            Log(lError) <<tlError(e);
+        }
     }
 }
 
@@ -536,7 +521,7 @@ void TCubeDCServo::reverse(bool inThread)
     }
 }
 
-bool TCubeDCServo::moveAbsolute(double pos, bool inThread)
+bool TCubeDCServo::moveToPosition(double pos, bool inThread)
 {
 	if(inThread)
     {
@@ -549,7 +534,6 @@ bool TCubeDCServo::moveAbsolute(double pos, bool inThread)
     else
     {
         int e = CC_MoveToPosition(mSerial.c_str(), pos * mScalingFactors.position);
-
 		mMotorCommandsPending--;
         if(e != 0)
         {

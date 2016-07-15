@@ -14,7 +14,9 @@ using std::tr1::function;
 
 
 typedef double (__closure *triggerTestFunctionFPtr)();
-typedef function<void (const double& nr) > 	FireFunction;
+
+typedef function<void (double, double, double) > 	 FireFunction;
+
 
 enum TriggerConditionOperator {tcLargerThan = 0, tcSmallerThan, tcEqualTo, tcLargerThanOrEqual, tcSmallerThanOrEqual};
 
@@ -22,7 +24,7 @@ enum TriggerConditionOperator {tcLargerThan = 0, tcSmallerThan, tcEqualTo, tcLar
 class AB_CORE Trigger : public ABObject
 {
     public:
-                                            Trigger(const string& name, TriggerConditionOperator c, triggerTestFunctionFPtr f);
+                                            Trigger(const string& name, triggerTestFunctionFPtr f, TriggerConditionOperator c);
 		virtual                             ~Trigger(){}
 		string					            getName(){return mName;}
 
@@ -37,6 +39,7 @@ class AB_CORE Trigger : public ABObject
         virtual void  			            triggerTest() {;}
         virtual void			            setTestFunction(triggerTestFunctionFPtr f);
 
+//		virtual void						addFireFunction(FireFunction f);
 		virtual void						addFireFunction(FireFunction f);
 		bool                                isTriggered(){return mIsTriggered;}
 

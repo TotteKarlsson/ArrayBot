@@ -9,7 +9,7 @@
 #include "abArrayBot.h"
 #include "abTimeDelay.h"
 #include "abApplicationMessages.h"
-#include "abUIUtilities.h"
+#include "UIUtilities.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -142,7 +142,6 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
 	        mProcessesLB->ItemIndex = 0;
         }
         mProcessesLBClick(NULL);
-
     }
     else
     {

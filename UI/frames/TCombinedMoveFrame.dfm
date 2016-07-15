@@ -75,9 +75,9 @@ object CombinedMoveFrame: TCombinedMoveFrame
     inline TMotorMoveProcessFrame1: TMotorMoveProcessFrame
       Left = 147
       Top = 109
-      Width = 385
+      Width = 574
       Height = 415
-      Align = alLeft
+      Align = alClient
       AutoSize = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -88,11 +88,22 @@ object CombinedMoveFrame: TCombinedMoveFrame
       TabOrder = 2
       ExplicitLeft = 147
       ExplicitTop = 109
+      ExplicitWidth = 574
       ExplicitHeight = 415
-      inherited MainGB: TGroupBox
-        inherited mMovePosE: TFloatLabeledEdit
-          Width = 65
-          ExplicitWidth = 65
+      inherited PageControl1: TPageControl
+        Width = 574
+        Height = 415
+        ExplicitWidth = 574
+        ExplicitHeight = 415
+        inherited TabSheet1: TTabSheet
+          ExplicitWidth = 566
+          ExplicitHeight = 377
+          inherited MainGB: TGroupBox
+            inherited mMovePosE: TFloatLabeledEdit
+              Width = 65
+              ExplicitWidth = 65
+            end
+          end
         end
       end
     end

@@ -33,36 +33,34 @@ int main()
     lbl1:
 
     //Both motors starts at zero
-    blackMotor->moveAbsolute3(	0, 	1.5, 3);
-	redMotor->moveAbsolute3(	0, 	1.5, 3);
+    blackMotor->moveAbsolute(	0, 	1.5, .5);
+	redMotor->moveAbsolute(		0, 	1.0, 3);
 
     while(!blackMotor->isAtDesiredPosition() || !redMotor->isAtDesiredPosition())
     {
     	sleep(1);
     }
 
-	//Move black motor to 2
-    blackMotor->moveAbsolute3(2, 	4.5, 2);
-
     //When black motor is at position '2', trigger movement of the red motor
-    PositionalTrigger trigger1("test1", tcLargerThanOrEqual, 2, blackMotor->getPosition);
-	trigger1.addFireFunction(bind(&APTMotor::moveAbsolute2, redMotor,   3, 		5));
+    PositionalTrigger trigger1("Trigger 1", blackMotor->getPosition, tcLargerThanOrEqual, 2);
 
-	//When red motor is at 2, trigger black motor to continue
-    PositionalTrigger trigger2("test2", tcLargerThanOrEqual, 1.95, redMotor->getPosition);
-	trigger2.addFireFunction(bind(&APTMotor::moveAbsolute2, blackMotor,   4,   	5));
-    trigger1.load();
-    trigger2.load();
+    FireFunction f = bind(&APTMotor::moveAbsolute, redMotor,   6 , 1, 1);
+	trigger1.addFireFunction(f);
+    trigger1.enable();
+
+	//Move black motor to 2
+    blackMotor->moveAbsolute(	10, 6.5);
+//    redMotor->moveAbsolute(		6,  0.1);
 
     //The triggers should trigger
-    while(!trigger1.isTriggered() || !trigger2.isTriggered())
+    while(!trigger1.isTriggered() )
     {
-    	sleep(1);
+    	sleep(10);
     }
 
-    while(!blackMotor->isAtDesiredPosition())
+    while(!blackMotor->isAtDesiredPosition() || !redMotor->isAtDesiredPosition())
     {
-       	sleep(1);
+       	sleep(10);
     }
 
     goto lbl1;

@@ -26,7 +26,7 @@
 #include "mtkLogLevel.h"
 #include "abUIDataStructures.h"
 #include "abApplicationMessages.h"
-#include "abInitArrayBotThread.h"
+#include "InitArrayBotThread.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 

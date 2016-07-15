@@ -15,7 +15,7 @@ class APTMotor;
 class AB_CORE PositionalTrigger : public Trigger
 {
     public:
-                                PositionalTrigger(const string& name, TriggerConditionOperator c, double position, triggerTestFunctionFPtr f);
+                                PositionalTrigger(const string& name, triggerTestFunctionFPtr f = NULL, TriggerConditionOperator c = tcLargerThan, double position = -1);
                                 ~PositionalTrigger(){}
 
         virtual bool  			test(double);

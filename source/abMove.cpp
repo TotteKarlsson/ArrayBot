@@ -17,7 +17,8 @@ Move::Move(const string& lbl, double maxVel, double acc)
 :
 Process(lbl, ptMove),
 mMaxVelocity(maxVel),
-mAcceleration(acc)
+mAcceleration(acc),
+mTrigger("Move Trigger")
 {}
 
 void Move::assignUnit(ABObject* o)

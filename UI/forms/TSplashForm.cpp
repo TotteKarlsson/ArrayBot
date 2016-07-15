@@ -4,7 +4,7 @@
 #include "mtkVCLUtils.h"
 #include "abApplicationMessages.h"
 #include "mtkLogger.h"
-#include "abUIUtilities.h"
+#include "UIUtilities.h"
 #include "mtkApplicationLicenseController.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

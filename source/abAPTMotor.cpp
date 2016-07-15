@@ -13,7 +13,8 @@ APTMotor::APTMotor(int serialNo)
 	mManualJogAcceleration(0),
 	mPotentiometerVelocity(0),
 	mMotorMessageProcessor(mMotorMessageContainer),
-    mMotorCommandsPending(0)
+    mMotorCommandsPending(0),
+    mDesiredPosition(-1)
 {
     mProperties.add((BaseProperty*) &mManualJogVelocity.setup(		"MANUAL_JOG_VELOCITY"		, 			0.1,                true));
     mProperties.add((BaseProperty*) &mManualJogAcceleration.setup(	"MANUAL_JOG_ACCELERATION"	, 			0.1,                true));
@@ -65,16 +66,10 @@ bool APTMotor::setJogMoveParameters(double v, double a)
     return res1 && res2;
 }
 
-bool APTMotor::moveAbsolute2(double position, double v)
-{
-	setVelocity(v);
-    return moveAbsolute(position, true);
-}
-
-bool APTMotor::moveAbsolute3(double position, double v, double a)
+bool APTMotor::moveAbsolute(double position, double v, double a)
 {
 	setVelocity(v, a);
-    return moveAbsolute(position, true);
+    return moveToPosition(position, true);
 }
 
 bool APTMotor::switchDirection(bool inThread)
@@ -95,7 +90,7 @@ bool APTMotor::switchDirection(bool inThread)
 bool APTMotor::moveRelative(double position, bool inThread)
 {
 	double curr_pos = getPosition();
-    return moveAbsolute(curr_pos + position);
+    return moveToPosition(curr_pos + position);
 }
 
 double APTMotor::getManualJogVelocity()

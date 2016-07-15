@@ -1,14 +1,8 @@
 ﻿[mMovePosE]
 Coordinates=100,159,75,51
 
-[mPostDwellTimeE]
-Coordinates=238,1,103,51
-
 [mMaxVelE]
 Coordinates=47,70,65,51
-
-[mPreDwellTimeE]
-Coordinates=0,0,97,51
 
 [MotorsCB]
 Coordinates=116,1,84,87
@@ -20,5 +14,5 @@ Coordinates=179,159,49,51
 Coordinates=238,141,70,51
 
 []
-Coordinates=238,71,46,51
+Coordinates=238,1,103,51
 

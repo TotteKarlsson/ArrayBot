@@ -10,6 +10,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
+#pragma link "TPositionalTriggerFrame"
 #pragma resource "*.dfm"
 TMotorMoveProcessFrame *MotorMoveProcessFrame;
 
@@ -19,14 +20,15 @@ __fastcall TMotorMoveProcessFrame::TMotorMoveProcessFrame(TComponent* Owner)
     mAB(NULL)
 {}
 
-
 void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
 {
 	mAB = ab;
     MotorsCB->Clear();
-//	MotorsCB->Items->Add("<none>");
 	populateMotorCB();
     rePopulate(m);
+
+    //Populate subframes
+    TPositionalTriggerFrame1->populate(*(mAB), mMove);
 }
 
 void TMotorMoveProcessFrame::rePopulate(AbsoluteMove* m)
@@ -56,11 +58,6 @@ void TMotorMoveProcessFrame::rePopulate(AbsoluteMove* m)
         	mMove->assignUnit( (APTMotor*) MotorsCB->Items->Objects[idx] );
 			MotorsCB->ItemIndex = idx;
         }
-        else
-        {
-			//Select the 'select motor' item
-
-        }
     }
     else
     {
@@ -81,7 +78,6 @@ void TMotorMoveProcessFrame::populateMotorCB()
     }
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TMotorMoveProcessFrame::MotorsCBClick(TObject *Sender)
 {
@@ -93,8 +89,8 @@ void __fastcall TMotorMoveProcessFrame::MotorsCBChange(TObject *Sender)
 {
 	//Check if a motor is selected
     ABObject* obj = (ABObject*) MotorsCB->Items->Objects[MotorsCB->ItemIndex];
-
     APTMotor* motor = dynamic_cast<APTMotor*>(obj);
+
     if(motor && mMove)
     {
     	mMovePosE->Enabled = true;
@@ -106,13 +102,12 @@ void __fastcall TMotorMoveProcessFrame::MotorsCBChange(TObject *Sender)
     	mMovePosE->Enabled 	= false;
         mAccE->Enabled 		= false;
     }
+
+	TPositionalTriggerFrame1->rePopulate(mMove);
 }
 
-
-void __fastcall TMotorMoveProcessFrame::mMovePosEKeyDown(TObject *Sender, WORD &Key,
-          TShiftState Shift)
+void __fastcall TMotorMoveProcessFrame::mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-
     if(Key != vkReturn || mMove == NULL)
     {
     	return;
@@ -125,6 +120,3 @@ void __fastcall TMotorMoveProcessFrame::mMovePosEKeyDown(TObject *Sender, WORD &
     mMove->setPostDwellTime(mPostDwellTimeE->getValue());
     mMove->setPreDwellTime(mPreDwellTimeE->getValue());
 }
-
-
-

@@ -119,13 +119,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="abInitArrayBotThread.cpp">
-            <DependentOn>abInitArrayBotThread.h</DependentOn>
-            <BuildOrder>17</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abUIUtilities.cpp">
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
         <CppCompile Include="ArrayBot.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
@@ -214,6 +207,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="frames\TXYZUnitFrame.cpp">
             <BuildOrder>18</BuildOrder>
         </CppCompile>
+        <CppCompile Include="InitArrayBotThread.cpp">
+            <DependentOn>InitArrayBotThread.h</DependentOn>
+            <BuildOrder>17</BuildOrder>
+        </CppCompile>
         <CppCompile Include="JoyStickRelated.cpp">
             <BuildOrder>4</BuildOrder>
         </CppCompile>
@@ -226,20 +223,23 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Misc.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <FormResources Include="frames\TRibbonLifterFrame.dfm"/>
-        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
-        <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
-        <FormResources Include="frames\TABProcessSequencerFrame.dfm"/>
-        <FormResources Include="MainForm.dfm"/>
+        <CppCompile Include="UIUtilities.cpp">
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
         <FormResources Include="frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
-        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
-        <FormResources Include="forms\abAddJoyStickSettingForm.dfm"/>
-        <FormResources Include="forms\abAddLiftForm.dfm"/>
-        <FormResources Include="frames\TMotorFrame.dfm"/>
-        <FormResources Include="forms\TSplashForm.dfm"/>
-        <FormResources Include="forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
+        <FormResources Include="frames\TRibbonLifterFrame.dfm"/>
+        <FormResources Include="MainForm.dfm"/>
+        <FormResources Include="forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="forms\abAddLiftForm.dfm"/>
+        <FormResources Include="forms\abAddJoyStickSettingForm.dfm"/>
+        <FormResources Include="forms\TSplashForm.dfm"/>
+        <FormResources Include="frames\TMotorFrame.dfm"/>
+        <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
+        <FormResources Include="frames\TABProcessSequencerFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

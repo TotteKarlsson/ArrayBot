@@ -16,8 +16,7 @@ mTimeOut(60*Poco::Timespan::SECONDS),
 mIsBeingProcessed(false),
 mIsProcessed(false),
 mIsStarted(false),
-mProcessType(pt),
-mTrigger(NULL)
+mProcessType(pt)
 {}
 
 string Process::getProcessType()

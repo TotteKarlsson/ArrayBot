@@ -48,7 +48,7 @@ bool AbsoluteMove::start()
         }
     	m->setVelocity(mMaxVelocity);
         m->setAcceleration(mAcceleration);
-        return m->moveAbsolute(mPosition.x());
+        return m->moveToPosition(mPosition.x());
     }
     return true;
 }

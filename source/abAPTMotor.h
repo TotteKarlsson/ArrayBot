@@ -21,11 +21,8 @@ class AB_CORE APTMotor : public APTDevice
 		bool	                    		setVelocityReverse(double v);
 
 
-        									//!MoveAbsolute2 takes a position and a velocity
-                                            //!These functions have 2, and 3 postfix cause of
-                                            //internal compuiler errors when trying to bind
-        bool		                		moveAbsolute2(double position, double v);
-        bool		                		moveAbsolute3(double position, double v, double a = 0);
+        									//!MoveAbsolute takes a position and a velocity parameters
+        bool		                		moveAbsolute(double position, double v, double a = 0);
 
 											//!Motor ranges
         virtual Range<double>               getVelocityRange();
@@ -101,7 +98,7 @@ class AB_CORE APTMotor : public APTDevice
 
         virtual void		                forward(bool inThread = true) = 0;
         virtual void		                reverse(bool inThread = true) = 0;
-        virtual bool		                moveAbsolute(double position, bool inThread = true) = 0;
+        virtual bool		                moveToPosition(double position, bool inThread = true) = 0;
         virtual void						setPotentiometerVelocity(double v) = 0;
 
     protected:

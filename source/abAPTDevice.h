@@ -50,6 +50,6 @@ class AB_CORE APTDevice : public ABObject
         bool					                mIsConnected;
 
         						                //Allow the device to be enabled/disabled (in software)
-        bool					                mIsActive;
+//        bool					                mIsActive;
 };
 #endif

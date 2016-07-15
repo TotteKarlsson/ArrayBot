@@ -50,11 +50,11 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Align = alTop
     TabOrder = 1
     inline TTimeDelayFrame1: TTimeDelayFrame
-      Left = 641
+      Left = 233
       Top = 1
-      Width = 313
+      Width = 767
       Height = 528
-      Align = alLeft
+      Align = alClient
       AutoSize = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -64,12 +64,13 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       ParentFont = False
       TabOrder = 0
       Visible = False
-      ExplicitLeft = 674
-      ExplicitTop = 63
-      ExplicitHeight = 463
+      ExplicitLeft = 233
+      ExplicitTop = 1
+      ExplicitWidth = 767
+      ExplicitHeight = 528
       inherited GroupBox1: TGroupBox
         Height = 528
-        ExplicitHeight = 463
+        ExplicitHeight = 528
         inherited mNameEdit: TSTDStringLabeledEdit
           Top = 59
           Width = 164
@@ -196,9 +197,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     inline TCombinedMoveFrame1: TCombinedMoveFrame
       Left = 233
       Top = 1
-      Width = 408
+      Width = 767
       Height = 528
-      Align = alLeft
+      Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -19
@@ -208,23 +209,62 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       TabOrder = 2
       ExplicitLeft = 233
       ExplicitTop = 1
-      ExplicitWidth = 408
+      ExplicitWidth = 767
       ExplicitHeight = 528
       inherited GroupBox2: TGroupBox
-        Width = 408
-        Height = 486
+        Width = 767
+        Height = 528
+        ExplicitWidth = 767
+        ExplicitHeight = 528
         inherited GroupBox1: TGroupBox
-          Height = 375
+          Height = 417
+          ExplicitHeight = 417
         end
         inherited Panel1: TPanel
-          Width = 404
-          ExplicitWidth = 719
+          Width = 763
+          ExplicitWidth = 763
           inherited mProcessNameE: TSTDStringLabeledEdit
             OnKeyDown = TCombinedMoveFrame1mProcessNameEKeyDown
           end
         end
         inherited TMotorMoveProcessFrame1: TMotorMoveProcessFrame
-          Height = 375
+          Width = 618
+          Height = 417
+          ExplicitWidth = 618
+          ExplicitHeight = 417
+          inherited PageControl1: TPageControl
+            Width = 618
+            Height = 417
+            ExplicitWidth = 618
+            ExplicitHeight = 417
+            inherited TabSheet1: TTabSheet
+              ExplicitWidth = 610
+              ExplicitHeight = 379
+            end
+            inherited TabSheet2: TTabSheet
+              inherited TPositionalTriggerFrame1: TPositionalTriggerFrame
+                Width = 610
+                Height = 379
+                inherited MainGB: TGroupBox
+                  Width = 610
+                  Height = 379
+                  inherited GroupBox3: TGroupBox
+                    Width = 606
+                    Height = 230
+                  end
+                  inherited GroupBox4: TGroupBox
+                    Width = 606
+                  end
+                end
+              end
+            end
+            inherited TabSheet3: TTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 34
+              ExplicitWidth = 443
+              ExplicitHeight = 266
+            end
+          end
         end
       end
     end
