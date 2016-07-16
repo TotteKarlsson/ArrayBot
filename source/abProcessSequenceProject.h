@@ -2,7 +2,6 @@
 #define abProcessSequenceProjectH
 #include "abExporter.h"
 #include "mtkProject.h"
-#include "mtkSharedPointer.h"
 #include "mtkConstants.h"
 #include "abProcess.h"
 

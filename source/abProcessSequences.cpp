@@ -98,6 +98,8 @@ bool ProcessSequences::load(const string& fName)
     	ProcessSequence* s = new ProcessSequence(mAB);
         if(s->read(joinPath(mFileFolder, fName + ".abp")))
         {
+        	//Setup function objects here
+
         	return add(s);
         }
     }

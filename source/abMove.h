@@ -17,6 +17,7 @@ class AB_CORE Move : public Process
         	   			                    Move(const string& lbl, double maxVel = 0, double acc = 0);
     	virtual			                    ~Move(){}
 
+		virtual void		   		        init(ArrayBot& ab);
         string						        getMotorName(){return mMotorName;}
         void						        setMotorName(const string& n){mMotorName = n;}
 
@@ -42,6 +43,9 @@ class AB_CORE Move : public Process
         							        //!Motor acceleration
         bool			                    setAcceleration(double a){mAcceleration = a; return true;}
         double			                    getAcceleration(){return mAcceleration;}
+
+        PositionalTrigger&					getTrigger(){return mTrigger;}
+
 
     protected:
         string						        mMotorName;

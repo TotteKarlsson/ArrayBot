@@ -34,7 +34,7 @@ bool Process::start()
     return true;
 }
 
-void Process::init()
+void Process::init(ArrayBot& ab)
 {
 	mIsBeingProcessed =  false;
     mIsProcessed = false;
@@ -66,7 +66,7 @@ XMLElement* Process::addToXMLDocument(tinyxml2::XMLDocument& doc, XMLNode* docRo
 }
 
 //Re implemented in derived processes
-XMLElement* Process::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
+XMLElement* Process::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* docRoot)
 {
 	return NULL;
 }

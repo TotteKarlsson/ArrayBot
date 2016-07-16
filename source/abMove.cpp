@@ -5,10 +5,14 @@
 #include "abArrayBot.h"
 #include "abAPTMotor.h"
 #include "abPosition.h"
+#include <functional>
+
+
 
 namespace ab
 {
 
+using namespace std::tr1;
 using namespace mtk;
 using namespace ab;
 
@@ -18,8 +22,24 @@ Move::Move(const string& lbl, double maxVel, double acc)
 Process(lbl, ptMove),
 mMaxVelocity(maxVel),
 mAcceleration(acc),
-mTrigger("Move Trigger")
+mTrigger("Move Trigger", "")
 {}
+
+void Move::init(ArrayBot& ab)
+{
+	Process::init(ab);
+    mTrigger.getSubjectName();
+
+   	APTMotor* mtr = ab.getMotorWithName(mTrigger.getObjectToTriggerName());
+    if(mtr)
+    {
+//        if(mTrigger.getFireFunctionType() == fftMoveAbsolute)
+        {
+//            FireFunction f = bind(&APTMotor::moveAbsolute, mtr,  25, 5, 5);
+//            mTrigger.addFireFunction(f);
+        }
+    }
+}
 
 void Move::assignUnit(ABObject* o)
 {
@@ -53,6 +73,12 @@ void Move::assignUnit(ABObject* o)
     if(mUnit == NULL)
     {
    		Log(lError) << "Motor Unit is NULL for Move: "<<mProcessName;
+    }
+    else
+    {
+     	APTMotor* m = dynamic_cast<APTMotor*>(mUnit);
+    	mTrigger.setSubjectName(getMotorName());
+		mTrigger.setTestFunction(m->getPosition);
     }
 }
 

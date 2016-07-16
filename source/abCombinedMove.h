@@ -16,6 +16,7 @@ class AB_CORE CombinedMove : public Process
     public:
         	   			            CombinedMove(const string& lbl);
     	virtual			            ~CombinedMove(){}
+		virtual void		   		init(ArrayBot& ab);
 		const char* 				getTypeName() const;
         void						clear();
 

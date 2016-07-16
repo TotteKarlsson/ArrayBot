@@ -21,6 +21,20 @@ const char* CombinedMove::getTypeName() const
 	return "combinedMove";
 }
 
+void CombinedMove::init(ArrayBot& ab)
+{
+	Process::init(ab);
+
+    //Call init for each sub move
+    for(int i = 0; i < mMoves.size(); i++)
+    {
+    	if(mMoves[i])
+        {
+        	mMoves[i]->init(ab);
+        }
+    }
+}
+
 void CombinedMove::clear()
 {
 	mMoves.clear();

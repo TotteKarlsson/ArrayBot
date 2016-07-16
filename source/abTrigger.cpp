@@ -5,13 +5,14 @@
 using namespace mtk;
 using Poco::Timespan;
 
-Trigger::Trigger(const string& name, triggerTestFunctionFPtr ttf, TriggerConditionOperator c)
+Trigger::Trigger(const string& s, const string& objDevice)
 :
-mName(name),
+mSubjectName(s),
+mObjectToTriggerName(objDevice),
 mIsTriggered(false),
-mTriggerConditionOperator(c),
+mTriggerConditionOperator(loLargerThan),
 mTriggerTimer(Poco::Timespan(100*Poco::Timespan::MILLISECONDS)),
-mTestFunction(ttf)
+mTestFunction(NULL)
 {
 	mTriggerTimer.assignTimerFunction(triggerTest);
 }
@@ -40,7 +41,7 @@ void Trigger::reset()
 	mIsTriggered = false;
 }
 
-void Trigger::addFireFunction(FireFunction f)
+void Trigger::setupFireFunction(FireFunction f)
 {
 	mFireFunction = f;
 }

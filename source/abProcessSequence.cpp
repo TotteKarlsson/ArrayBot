@@ -39,7 +39,7 @@ void ProcessSequence::init()
     int count = 1;
     while(process)
     {
-    	process->init();
+    	process->init(mAB);
         process = getNext();
     }
 }
@@ -48,7 +48,8 @@ bool ProcessSequence::read(const string& fName)
 {
 	if(mProject.loadFromFile(fName))
     {
-    	return mProject.open();
+    	bool res = mProject.open();
+    	return res;
     }
     return false;
 }

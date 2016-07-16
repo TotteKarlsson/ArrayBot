@@ -36,7 +36,7 @@ bool ContinousMove::start()
     return false;
 }
 
-XMLElement* ContinousMove::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
+XMLElement* ContinousMove::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file
     XMLElement* processNode  	= doc.NewElement("process");

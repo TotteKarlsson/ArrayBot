@@ -8,6 +8,7 @@
 #include "abArrayBot.h"
 #include "abAbsoluteMove.h"
 #include "abTimedelay.h"
+#include "abAPTMotor.h"
 using namespace mtk;
 using namespace tinyxml2;
 
@@ -175,9 +176,7 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
 
 Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
 {
-    CombinedMove* p = new CombinedMove("");
-
-   	p->setProcessName(element->Attribute("name"));
+    CombinedMove* p = new CombinedMove(element->Attribute("name"));
 
     //Read data
     XMLElement* proc = element->FirstChildElement("process");
@@ -186,7 +185,7 @@ Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
         //Loop over childs
         while(proc)
         {
-            AbsoluteMove* lm(NULL);
+            AbsoluteMove* absMove(NULL);
 
             const char* type = proc->Attribute("type");
             const char* name = proc->Attribute("name");
@@ -197,49 +196,73 @@ Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
 
                 if(compareNoCase(type, "absoluteMove"))
                 {
-                    lm = new AbsoluteMove(name);
+                    absMove = new AbsoluteMove(name);
                 }
 
                 XMLElement* data = proc->FirstChildElement("motor_name");
                 if(data && data->GetText())
                 {
-                    lm->setMotorName(data->GetText());
+                    absMove->setMotorName(data->GetText());
                 }
 
                 data = proc->FirstChildElement("final_position");
                 if(data && data->GetText())
                 {
-                    lm->setPosition( ab::Position("", toDouble(data->GetText()), 0.0 , 0.0));
+                    absMove->setPosition( ab::Position("", toDouble(data->GetText()), 0.0 , 0.0));
                 }
 
                 data = proc->FirstChildElement("max_velocity");
                 if(data && data->GetText())
                 {
-                    lm->setMaxVelocity(toDouble(data->GetText()));
+                    absMove->setMaxVelocity(toDouble(data->GetText()));
                 }
 
                 data = proc->FirstChildElement("acc");
                 if(data && data->GetText())
                 {
-                    lm->setAcceleration(toDouble(data->GetText()));
+                    absMove->setAcceleration(toDouble(data->GetText()));
                 }
 
                 data = proc->FirstChildElement("pre_dwell_time");
                 if(data && data->GetText())
                 {
-                    lm->setPreDwellTime(toDouble(data->GetText()));
+                    absMove->setPreDwellTime(toDouble(data->GetText()));
                 }
 
                 data = proc->FirstChildElement("post_dwell_time");
                 if(data && data->GetText())
                 {
-                    lm->setPostDwellTime(toDouble(data->GetText()));
+                    absMove->setPostDwellTime(toDouble(data->GetText()));
+                }
+
+                //Load the trigger
+                data = proc->FirstChildElement("trigger");
+
+                if(data)
+                {
+                	XMLElement* e = data->FirstChildElement("position");
+                    if(e)
+                    {
+	                	absMove->getTrigger().setPosition(toDouble(e->GetText()));
+                    }
+
+                	e = data->FirstChildElement("operator");
+                    if(e)
+                    {
+	                	absMove->getTrigger().setTestOperator(toLogicOperator(e->GetText()));
+                    }
+
+                	e = data->FirstChildElement("object_to_trigger");
+                    if(e)
+                    {
+	                	absMove->getTrigger().setObjectToTriggerName(stdstr(e->GetText()));
+                    }
                 }
 
                 //We need to associate the motor with 'name' with a
                 //real motor object provided for by ArrayBot
-                lm->assignUnit(mProcessSequence.getArrayBot());
-                p->addMove(lm);
+                absMove->assignUnit(mProcessSequence.getArrayBot());
+                p->addMove(absMove);
             }
 
             proc = proc->NextSiblingElement();

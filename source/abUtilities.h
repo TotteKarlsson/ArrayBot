@@ -22,6 +22,12 @@ AB_CORE string toString(ProcessType tp);
 AB_CORE ProcessType toProcessType(const string& str);
 
 
+//!Logic operators, used in triggers
+enum LogicOperator {loLargerThan = 0, loSmallerThan, loLargerThanOrEqual, loSmallerThanOrEqual, loEqualTo, loUndefined};
+
+AB_CORE string 			toString(LogicOperator o);
+AB_CORE LogicOperator 	toLogicOperator(const string& p);
+
 ///Enum holding Thorlab Device IDS
 enum DeviceTypeID
 {
@@ -44,8 +50,6 @@ AB_CORE string 		toString(DeviceTypeID val);
 AB_CORE string 		toString(const TLI_DeviceInfo& val);
 AB_CORE string 		tlError(int errCode);
 
-
-//AB_CORE std::string toString(const DeviceTypeID& lvl);
 
 template<> inline
 std::string Property< DeviceTypeID >::getValueAsString() const

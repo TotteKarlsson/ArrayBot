@@ -19,13 +19,14 @@ namespace mtk
 }
 
 class Trigger;
+class ArrayBot;
 
 class AB_CORE Process : public ABObject
 {
     public:
         							            Process(const string& name, ProcessType pt);
 							                    ~Process(){}
-		void						            init();
+		virtual void		   		            init(ArrayBot& ab);
 		string 						            getProcessType();
 		virtual void	                        assignUnit(ABObject* o){mUnit = o;}
 		ABObject*					            getUnit(){return mUnit;}
@@ -48,7 +49,7 @@ class AB_CORE Process : public ABObject
         virtual bool	                        stop() 				= 0;
         virtual	bool	                        undo() 				= 0;
 
-        virtual mtk::XMLElement*                addToXMLDocument(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
+        virtual mtk::XMLElement*           		addToXMLDocument(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 		virtual mtk::XMLElement*                addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 
     protected:

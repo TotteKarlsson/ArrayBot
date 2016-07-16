@@ -8,6 +8,32 @@
 using namespace std;
 using namespace mtk;
 
+
+string toString(LogicOperator o)
+{
+	switch(o)
+    {
+
+		case loLargerThan: 			return ">";
+        case loSmallerThan:    		return "<";
+        case loEqualTo:             return "=";
+        case loLargerThanOrEqual:   return ">=";
+        case loSmallerThanOrEqual:	return "<=";
+        default: 					return "unknown";
+    }
+}
+
+LogicOperator toLogicOperator(const string& o)
+{
+	if(o == ">")	return loLargerThan;
+	if(o == "<")	return loSmallerThan;
+	if(o == "=")	return loEqualTo;
+   	if(o == ">=")	return loLargerThanOrEqual;
+   	if(o == "<=")	return loSmallerThanOrEqual;
+
+    return loUndefined;
+}
+
 string toString(const TLI_DeviceInfo& val)
 {
 	stringstream str;
@@ -19,7 +45,6 @@ string toString(const TLI_DeviceInfo& val)
 
     return str.str();
 }
-
 
 string toString(ProcessType pt)
 {

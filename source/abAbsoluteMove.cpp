@@ -46,6 +46,20 @@ bool AbsoluteMove::start()
         	Log(lError) << "Move cannot be executed with zero velocity or acceleration";
             return false;
         }
+
+        if(mTrigger.getObjectToTriggerName() != "")
+        {
+
+        	APTMotor* motor = dynamic_cast<APTMotor*>(this->getUnit());
+            if(motor)
+            {
+                //The trigger is now observing the motor..
+                getTrigger().setTestFunction(motor->getPosition);
+            }
+
+
+        	mTrigger.enable();
+        }
     	m->setVelocity(mMaxVelocity);
         m->setAcceleration(mAcceleration);
         return m->moveToPosition(mPosition.x());
@@ -53,7 +67,7 @@ bool AbsoluteMove::start()
     return true;
 }
 
-XMLElement* AbsoluteMove::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
+XMLElement* AbsoluteMove::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file
     XMLElement* pn	  			= doc.NewElement("process");
@@ -86,6 +100,9 @@ XMLElement* AbsoluteMove::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XM
 	dataval1 = doc.NewElement("post_dwell_time");
     dataval1->SetText(toString(getPostDwellTime()).c_str());
 	pn->InsertEndChild(dataval1);
+
+	//Add trigger
+    mTrigger.addToXMLDocumentAsChild(doc, pn);
 
     pn->InsertEndChild(rootNode);
     docRoot->InsertEndChild(pn);
