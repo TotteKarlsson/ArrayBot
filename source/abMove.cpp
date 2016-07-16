@@ -7,8 +7,6 @@
 #include "abPosition.h"
 #include <functional>
 
-
-
 namespace ab
 {
 
@@ -17,33 +15,33 @@ using namespace mtk;
 using namespace ab;
 
 //---------------------------------------------------------------------------
-Move::Move(const string& lbl, double maxVel, double acc)
+Move::Move(const string& lbl, APTMotor* mtr, double maxVel, double acc)
 :
-Process(lbl, ptMove),
+Process(lbl, mtr),
 mMaxVelocity(maxVel),
 mAcceleration(acc),
-mTrigger("Move Trigger", "")
+mTrigger(mtr)
 {}
 
 void Move::init(ArrayBot& ab)
 {
 	Process::init(ab);
-    mTrigger.getSubjectName();
+//    mTrigger.getSubjectName();
 
-   	APTMotor* mtr = ab.getMotorWithName(mTrigger.getObjectToTriggerName());
-    if(mtr)
-    {
-//        if(mTrigger.getFireFunctionType() == fftMoveAbsolute)
-        {
-//            FireFunction f = bind(&APTMotor::moveAbsolute, mtr,  25, 5, 5);
-//            mTrigger.addFireFunction(f);
-        }
-    }
+//   	APTMotor* mtr = ab.getMotorWithName(mTrigger.getObjectToTriggerName());
+//    if(mtr)
+//    {
+////        if(mTrigger.getFireFunctionType() == fftMoveAbsolute)
+//        {
+////            FireFunction f = bind(&APTMotor::moveAbsolute, mtr,  25, 5, 5);
+////            mTrigger.addFireFunction(f);
+//        }
+//    }
 }
 
 void Move::assignUnit(ABObject* o)
 {
-	mUnit = NULL;
+	mSubject = NULL;
 
 	//Check out what ABObject is
     if(dynamic_cast<ArrayBot*>(o))
@@ -51,7 +49,7 @@ void Move::assignUnit(ABObject* o)
 		ArrayBot* ab = dynamic_cast<ArrayBot*>(o);
         if(ab->getMotorWithName(mMotorName))
         {
-        	mUnit = ab->getMotorWithName(mMotorName);
+        	mSubject = ab->getMotorWithName(mMotorName);
         }
     }
     else if(dynamic_cast<XYZUnit*>(o))
@@ -60,24 +58,23 @@ void Move::assignUnit(ABObject* o)
         XYZUnit* xyz = dynamic_cast<XYZUnit*>(o);
         if(xyz->getMotorWithName(mMotorName))
         {
-        	mUnit = xyz->getMotorWithName(mMotorName);
+        	mSubject = xyz->getMotorWithName(mMotorName);
         }
     }
     else if(dynamic_cast<APTMotor*>(o))
     {
     	APTMotor* m = dynamic_cast<APTMotor*>(o);
         mMotorName = m->getName();
-    	mUnit = m;
+    	mSubject = m;
     }
 
-    if(mUnit == NULL)
+    if(mSubject == NULL)
     {
    		Log(lError) << "Motor Unit is NULL for Move: "<<mProcessName;
     }
     else
     {
-     	APTMotor* m = dynamic_cast<APTMotor*>(mUnit);
-    	mTrigger.setSubjectName(getMotorName());
+     	APTMotor* m = dynamic_cast<APTMotor*>(mSubject);
 		mTrigger.setTestFunction(m->getPosition);
     }
 }
@@ -115,7 +112,7 @@ bool Move::isProcessed()
 
 bool Move::isMotorCommandPending()
 {
-	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
+	APTMotor* o = dynamic_cast<APTMotor*>(mSubject);
     if(o)
     {
     	return o->isMotorCommandPending();
@@ -125,7 +122,7 @@ bool Move::isMotorCommandPending()
 
 bool Move::isMotorActive()
 {
-	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
+	APTMotor* o = dynamic_cast<APTMotor*>(mSubject);
     if(o)
     {
     	return o->isActive();
@@ -137,13 +134,13 @@ bool Move::isMotorActive()
 bool Move::stop()
 {
 	Process::stop();
-	XYZUnit* o = dynamic_cast<XYZUnit*>(mUnit);
+	XYZUnit* o = dynamic_cast<XYZUnit*>(mSubject);
     if(o)
     {
 		return o->stopAll();
     }
 
-	APTMotor* m = dynamic_cast<APTMotor*>(mUnit);
+	APTMotor* m = dynamic_cast<APTMotor*>(mSubject);
     if(m)
     {
     	m->stop(false);

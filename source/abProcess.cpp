@@ -6,17 +6,17 @@
 using Poco::Timespan;
 using namespace mtk;
 
-Process::Process(const string& lbl, ProcessType pt)
+Process::Process(const string& lbl, ABObject* ao)
 :
-mUnit(NULL),
+mSubject(ao),
 mProcessName(lbl),
 mPreDwellTime(0),
 mPostDwellTime(0),
 mTimeOut(60*Poco::Timespan::SECONDS),
 mIsBeingProcessed(false),
 mIsProcessed(false),
-mIsStarted(false),
-mProcessType(pt)
+mIsStarted(false)//,
+//mProcessType(pt)
 {}
 
 string Process::getProcessType()

@@ -21,8 +21,8 @@ class TPositionalTriggerFrame : public TFrame
 {
     __published:	// IDE-managed Components
 	TGroupBox *MainGB;
-        TFloatLabeledEdit *FloatLabeledEdit1;
-        TRadioGroup *RadioGroup1;
+	TFloatLabeledEdit *mPositionE;
+	TRadioGroup *mOpRG;
 	TComboBox *mDevicesCB;
         TComboBox *ComboBox3;
         TGroupBox *GroupBox2;
@@ -32,10 +32,14 @@ class TPositionalTriggerFrame : public TFrame
         TLabel *Label3;
         TGroupBox *GroupBox3;
         TGroupBox *GroupBox4;
+	void __fastcall mPositionEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mOpRGClick(TObject *Sender);
+	void __fastcall mDevicesCBChange(TObject *Sender);
+
 
     private:
-		PositionalTrigger*			mTrigger;
-        ab::Move* 	   					mMove;
+//		PositionalTrigger*			mTrigger;
+        ab::Move* 	   				mMove;
         ArrayBot*					mAB;
 		void 						populateDevicesCB();
 

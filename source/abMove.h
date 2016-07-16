@@ -9,17 +9,14 @@
 namespace ab
 {
 
-//!The move baseclass contain the general logic for a 'move' of
-//any type of object
+//!The move baseclass contain the general logic for a 'move' of an APTMotor
 class AB_CORE Move : public Process
 {
     public:
-        	   			                    Move(const string& lbl, double maxVel = 0, double acc = 0);
+        	   			                    Move(const string& lbl, APTMotor* mtr, double maxVel = 0, double acc = 0);
     	virtual			                    ~Move(){}
 
 		virtual void		   		        init(ArrayBot& ab);
-        string						        getMotorName(){return mMotorName;}
-        void						        setMotorName(const string& n){mMotorName = n;}
 
 		virtual mtk::XMLElement*            addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot) = 0;
 		virtual void	                    assignUnit(ABObject* o);
@@ -46,11 +43,14 @@ class AB_CORE Move : public Process
 
         PositionalTrigger&					getTrigger(){return mTrigger;}
 
-
     protected:
-        string						        mMotorName;
+        string								mMotorName;
         double			                    mMaxVelocity;
         double			                    mAcceleration;
+
+        									//!The trigger observes the location of the motor moving
+                                            //!and can be setup to trigger another motor when a
+                                            //!certain position is achieved
         PositionalTrigger					mTrigger;
 };
 

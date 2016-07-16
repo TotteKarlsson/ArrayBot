@@ -15,7 +15,7 @@ using namespace tinyxml2;
 //---------------------------------------------------------------------------
 TimeDelay::TimeDelay(const string& lbl, Poco::Timespan ts)
 :
-Process(lbl, ptTimeDelay),
+Process(lbl, NULL),
 mTimeDelay(ts)
 {
 	mProcessType = ptTimeDelay;

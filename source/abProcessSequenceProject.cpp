@@ -202,13 +202,13 @@ Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
                 XMLElement* data = proc->FirstChildElement("motor_name");
                 if(data && data->GetText())
                 {
-                    absMove->setMotorName(data->GetText());
+//                    absMove->setMotorName(data->GetText());
                 }
 
                 data = proc->FirstChildElement("final_position");
                 if(data && data->GetText())
                 {
-                    absMove->setPosition( ab::Position("", toDouble(data->GetText()), 0.0 , 0.0));
+                    absMove->setPosition(toDouble(data->GetText()));
                 }
 
                 data = proc->FirstChildElement("max_velocity");
@@ -255,7 +255,7 @@ Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
                 	e = data->FirstChildElement("object_to_trigger");
                     if(e)
                     {
-	                	absMove->getTrigger().setObjectToTriggerName(stdstr(e->GetText()));
+//	                	absMove->getTrigger().setObjectToTriggerName(stdstr(e->GetText()));
                     }
                 }
 

@@ -8,7 +8,7 @@ using namespace mtk;
 
 ContinousMove::ContinousMove(const string& lbl, double v, double acc)
 :
-ab::Move(lbl, v, acc)
+ab::Move(lbl, NULL, v, acc)
 {}
 
 bool ContinousMove::isDone()
@@ -20,7 +20,7 @@ bool ContinousMove::start()
 {
 	Process::start();
 
-	APTMotor* m = dynamic_cast<APTMotor*>(mUnit);
+	APTMotor* m = dynamic_cast<APTMotor*>(mSubject);
     if(m)
     {
 		if(mMaxVelocity == 0 || mAcceleration == 0)

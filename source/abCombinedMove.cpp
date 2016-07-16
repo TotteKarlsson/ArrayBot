@@ -11,7 +11,7 @@ using namespace ab;
 //---------------------------------------------------------------------------
 CombinedMove::CombinedMove(const string& lbl)
 :
-Process(lbl, ptCombinedMove)
+Process(lbl, NULL)
 {
 	mProcessType = ptCombinedMove;
 }

@@ -6,7 +6,7 @@
 #include "abArrayBot.h"
 #include "mtkIniFile.h"
 #include "abAPTMotor.h"
-
+#include "abTriggerFunction.h"
 using namespace mtk;
 using namespace std;
 using namespace std::tr1;
@@ -41,19 +41,20 @@ int main()
     	sleep(1);
     }
 
-    //When black motor is at position '2', trigger movement of the red motor
-    PositionalTrigger trigger1("Trigger 1", blackMotor->getPosition, tcLargerThanOrEqual, 2);
+    //When the black motor is at position '2', trigger movement of the red motor
+    PositionalTrigger tr1(blackMotor);
+    TriggerFunction* tf;
+    tf = new MoveAbsolute(redMotor, 6, 1, 1);
+    tr1.assignTriggerFunction(tf);
 
-    FireFunction f = bind(&APTMotor::moveAbsolute, redMotor,   6 , 1, 1);
-	trigger1.addFireFunction(f);
-    trigger1.enable();
+   	tr1.enable();
 
 	//Move black motor to 2
     blackMotor->moveAbsolute(	10, 6.5);
 //    redMotor->moveAbsolute(		6,  0.1);
 
     //The triggers should trigger
-    while(!trigger1.isTriggered() )
+    while(!tr1.isTriggered() )
     {
     	sleep(10);
     }

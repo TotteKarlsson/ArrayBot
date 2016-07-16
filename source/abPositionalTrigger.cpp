@@ -2,16 +2,20 @@
 #include "abPositionalTrigger.h"
 #include "mtkLogger.h"
 #include "abAPTMotor.h"
-
+#include "abTriggerFunction.h"
 using namespace mtk;
 
 //---------------------------------------------------------------------------
-PositionalTrigger::PositionalTrigger(const string& s, const string& o)
+PositionalTrigger::PositionalTrigger(APTMotor* m)
 :
-Trigger(s, o),
+Trigger(m),
 mPosition(-1)
 {
-	mTriggerTimer.assignTimerFunction(triggerTest);
+	if(m)
+    {
+    	assignSubject(m);
+        setTestFunction(m->getPosition);
+    }
 }
 
 void PositionalTrigger::triggerTest()
@@ -24,9 +28,14 @@ void PositionalTrigger::triggerTest()
     double testVal = mTestFunction();
     if(test(testVal))
     {
-        mTriggerTimer.stop();
+	    mTriggerTimer.stop();
         execute();
-        Log(lInfo) << "Positional trigger: \""<<getSubjectName()<<" was executed at trigger value: "<<testVal;
+       	string name("");
+        if(mMotor)
+	    {
+        	name = mMotor->getName();
+        }
+        Log(lInfo) << "Positional trigger: \""<<name<<" was executed at trigger value: "<<testVal;
     }
 }
 
@@ -46,11 +55,10 @@ bool PositionalTrigger::test(double val)
 void PositionalTrigger::execute()
 {
     mIsTriggered = true;
-
     //Execute any functions in the fireFunction container
-    if(mFireFunction)
+    if(mTriggerFunction)
     {
-        mFireFunction.execute();
+        mTriggerFunction->execute();
     }
 }
 
@@ -75,14 +83,14 @@ XMLElement* PositionalTrigger::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode
 	pn->InsertEndChild(val);
 
 	val = doc.NewElement("object_to_trigger");
-    test = mObjectToTriggerName;
-    val->SetText(test.c_str());
+//    test = mObjectToTriggerName;
+//    val->SetText(test.c_str());
 	pn->InsertEndChild(val);
 
-	val = doc.NewElement("fire_function");
-    test = toString(mFireFunctionType);
-    val->SetText(test.c_str());
-	pn->InsertEndChild(val);
+//	val = doc.NewElement("fire_function");
+//    test = toString(mFireFunctionType);
+//    val->SetText(test.c_str());
+//	pn->InsertEndChild(val);
 
     pn->InsertEndChild(rootNode);
     docRoot->InsertEndChild(pn);

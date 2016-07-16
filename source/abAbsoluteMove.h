@@ -6,16 +6,13 @@
 class AB_CORE AbsoluteMove : public ab::Move
 {
     public:
-			        				AbsoluteMove(const string& lbl, const ab::Position& p = ab::Position("", -1,-1,-1), double maxVel = 0, double acc = 0);
+			        				AbsoluteMove( const string& lbl, APTMotor* mtr = NULL, double pos = -1, double maxVel = 0, double acc = 0);
 				        			~AbsoluteMove(){}
 		const char* 				getTypeName() const;
 
 
-        bool 			            setPosition(const ab::Position& pos){mPosition = pos; return true;}
-        ab::Position&	            getPosition(){return mPosition;}
-
-        string			            getPositionName(){return mPosition.getLabel();}
-        void			            setPositionName(const string& l){mPosition.setLabel(l);}
+        bool 			            setPosition(double pos){mPosition = pos; return true;}
+        double			            getPosition(){return mPosition;}
 
         bool						isDone();
 		bool 						start();
@@ -23,7 +20,7 @@ class AB_CORE AbsoluteMove : public ab::Move
 
     protected:
            				            //!The position is the location which to achieve by the move
-        ab::Position                mPosition;
+        double		                mPosition;
         double						mPositionResolution;
 
     private:

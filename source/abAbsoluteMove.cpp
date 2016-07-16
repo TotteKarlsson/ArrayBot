@@ -4,10 +4,10 @@
 #include "abPosition.h"
 //---------------------------------------------------------------------------
 
-AbsoluteMove::AbsoluteMove(const string& lbl, const ab::Position& p, double maxVel, double acc)
+AbsoluteMove::AbsoluteMove(const string& lbl, APTMotor* mtr, double pos, double maxVel, double acc)
 :
-ab::Move(lbl, maxVel, acc),
-mPosition(p),
+ab::Move(lbl, mtr, maxVel, acc),
+mPosition(pos),
 mPositionResolution(1.0e-3)
 {}
 
@@ -18,7 +18,7 @@ const char* AbsoluteMove::getTypeName() const
 
 bool AbsoluteMove::isDone()
 {
-	APTMotor* o = dynamic_cast<APTMotor*>(mUnit);
+	APTMotor* o = dynamic_cast<APTMotor*>(mSubject);
     if(o)
     {
     	//If still moving we cannot be done(!)
@@ -28,7 +28,7 @@ bool AbsoluteMove::isDone()
         }
 
     	double p = o->getPosition();
-    	return (isEqual(p, mPosition.x(), mPositionResolution)) ? true : false;
+    	return (isEqual(p, mPosition, mPositionResolution)) ? true : false;
     }
 
     return false;
@@ -38,7 +38,7 @@ bool AbsoluteMove::start()
 {
 	Process::start();
 
-	APTMotor* m = dynamic_cast<APTMotor*>(mUnit);
+	APTMotor* m = dynamic_cast<APTMotor*>(mSubject);
     if(m)
     {
 		if(mMaxVelocity == 0 || mAcceleration == 0)
@@ -47,22 +47,22 @@ bool AbsoluteMove::start()
             return false;
         }
 
-        if(mTrigger.getObjectToTriggerName() != "")
-        {
-
-        	APTMotor* motor = dynamic_cast<APTMotor*>(this->getUnit());
-            if(motor)
-            {
-                //The trigger is now observing the motor..
-                getTrigger().setTestFunction(motor->getPosition);
-            }
-
-
-        	mTrigger.enable();
-        }
+//        if(mTrigger.getObjectToTriggerName() != "")
+//        {
+//
+//        	APTMotor* motor = dynamic_cast<APTMotor*>(this->getUnit());
+//            if(motor)
+//            {
+//                //The trigger is now observing the motor..
+//                getTrigger().setTestFunction(motor->getPosition);
+//            }
+//
+//
+//        	mTrigger.enable();
+//        }
     	m->setVelocity(mMaxVelocity);
         m->setAcceleration(mAcceleration);
-        return m->moveToPosition(mPosition.x());
+        return m->moveToPosition(mPosition);
     }
     return true;
 }
@@ -82,7 +82,7 @@ XMLElement* AbsoluteMove::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* doc
 	pn->InsertEndChild(dataval1);
 
 	dataval1 = doc.NewElement("final_position");
-    dataval1->SetText(toString(getPosition().x()).c_str());
+    dataval1->SetText(toString(getPosition()).c_str());
 	pn->InsertEndChild(dataval1);
 
  	dataval1 = doc.NewElement("max_velocity");

@@ -8,17 +8,18 @@
 
 class APTMotor;
 
-//!A positional trigger triggers when a motors position passes over a set threshold value.
-//!To properly fire a trigger, a triggerFunction need to be given, e.g. mtr->getPosition() that
-//!is used to check for the triggercondition.
-//!Functions to be executed when the trigger fires are assigned and stored to the fireFunctions array from
+//!A motor trigger typically triggers when a motors position passes over a set threshold value.
+//!To properly fire a trigger, a trigger TestFunction need to be given, e.g. mtr->getPosition() that
+//!is used to check for the trigger condition.
+
+//!Functions to be executed when the trigger fires are assigned and stored to the TriggerFunctions array from
 //!the base class (no array yet)
-//!Triggers are members of Process classes and are activated, deactivated in a process start/stop functions
+//!Triggers are members of the Process classes and are enabled, disabled in a process's start/stop functions
 
 class AB_CORE PositionalTrigger : public Trigger
 {
     public:
-                                			PositionalTrigger(const string& s, const string& o);
+                                			PositionalTrigger(APTMotor* m = NULL);
                                 			~PositionalTrigger(){}
 
 		virtual void	 					execute();
@@ -31,8 +32,9 @@ class AB_CORE PositionalTrigger : public Trigger
 
     protected:
         double					            mPosition;
+        APTMotor*							mMotor;
         virtual void  			            triggerTest();
-        virtual bool  			            test(double);
+        virtual bool  			            test(double position);
         virtual bool  			            test(int){return false;}
 };
 #endif

@@ -68,8 +68,8 @@ bool RibbonLifter::setupMove1()
     mLiftSequence.clear();
 
 	//Scale these velocities
-	AbsoluteMove* xMove = new AbsoluteMove("xMove1", ab::Position("middle_x", mLiftLocationX, 0, 0),  	mMoveToLLVelocity, mMoveToLLAcc);
-	AbsoluteMove* yMove = new AbsoluteMove("yMove1", ab::Position("middle_y", mLiftLocationY, 0, 0), mMoveToLLVelocity, mMoveToLLAcc);
+	AbsoluteMove* xMove = new AbsoluteMove("xMove1", NULL, mLiftLocationX,  	mMoveToLLVelocity, mMoveToLLAcc);
+	AbsoluteMove* yMove = new AbsoluteMove("yMove1", NULL, mLiftLocationY, 	mMoveToLLVelocity, mMoveToLLAcc);
 
     xMove->assignUnit(mArrayBot.getWhiskerUnit().getXMotor());
     yMove->assignUnit(mArrayBot.getWhiskerUnit().getYMotor());

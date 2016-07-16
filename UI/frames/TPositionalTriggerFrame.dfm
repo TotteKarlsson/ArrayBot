@@ -20,7 +20,6 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
     Caption = 'Positional Trigger'
     ParentBiDiMode = False
     TabOrder = 0
-    ExplicitWidth = 419
     object GroupBox3: TGroupBox
       Left = 2
       Top = 147
@@ -29,7 +28,6 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
       Align = alClient
       Caption = 'Device to Trigger'
       TabOrder = 0
-      ExplicitWidth = 415
       object Label2: TLabel
         Left = 24
         Top = 46
@@ -81,17 +79,19 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
         Height = 31
         TabOrder = 1
         Text = 'ComboBox1'
+        OnChange = mDevicesCBChange
       end
       object ComboBox3: TComboBox
         Left = 22
         Top = 163
         Width = 259
         Height = 31
+        ItemIndex = 0
         TabOrder = 2
-        Text = 'ComboBox3'
+        Text = 'Move Absolute'
         Items.Strings = (
-          'Stop'
-          'Change Velocity')
+          'Move Absolute'
+          'Stop')
       end
     end
     object GroupBox4: TGroupBox
@@ -104,8 +104,7 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
       Caption = 'Condition'
       ParentBiDiMode = False
       TabOrder = 1
-      ExplicitWidth = 415
-      object FloatLabeledEdit1: TFloatLabeledEdit
+      object mPositionE: TFloatLabeledEdit
         Left = 22
         Top = 59
         Width = 99
@@ -115,18 +114,23 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
         EditLabel.Caption = 'Position'
         TabOrder = 0
         Text = '0.0'
+        OnKeyDown = mPositionEKeyDown
       end
-      object RadioGroup1: TRadioGroup
-        Left = 216
-        Top = 38
-        Width = 129
-        Height = 60
+      object mOpRG: TRadioGroup
+        Left = 168
+        Top = 16
+        Width = 161
+        Height = 100
         Caption = 'Operator'
+        Columns = 2
         ItemIndex = 0
         Items.Strings = (
           '>'
+          '<'
+          '>='
           '<=')
         TabOrder = 1
+        OnClick = mOpRGClick
       end
     end
   end

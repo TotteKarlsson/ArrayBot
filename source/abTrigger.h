@@ -4,7 +4,6 @@
 #include "abABObject.h"
 #include <string>
 #include "mtkTimer.h"
-#include <functional>
 #include <vector>
 #include "mtkXMLUtils.h"
 #include "abUtilities.h"
@@ -12,45 +11,23 @@
 
 using std::string;
 using std::vector;
-using std::tr1::function;
 
 typedef double (__closure *triggerTestFunctionFPtr)();
-typedef function<void (double, double, double) > 	FireFunctionP;
-
-enum FireFunctionType {fftStop, fftMoveAbsolute};
-string toString(FireFunctionType t);
-
-class FireFunction : public ABObject
-{
-	public:
-    	FireFunctionP 				f;
-        virtual const char* 		getType();
-};
-
-class AbsoluteMoveFunctor : public  FireFunction
-{
-	public:
-    	double			mVelocity;
-        double			mAcceleration;
-        double 			mPosition;
-        APTMotor*		mMotor;
-        const char*    	getType(){return "absoluteMove";}
-};
-
+class TriggerFunction;
 
 class AB_CORE Trigger : public ABObject
 {
     public:
-                                            Trigger(const string& subject, const string& observer);
+                                            Trigger(ABObject* s);
 		virtual                             ~Trigger(){}
 
-        void								setSubjectName(const string& n){mSubjectName = n;}
-		string					            getSubjectName(){return mSubjectName;}
+        void								assignSubject(ABObject* s){mSubject = s;}
+        ABObject*							getSubject(){return mSubject;}
 
-        void								setObjectToTriggerName(const string& n){mObjectToTriggerName = n;}
-		string					            getObjectToTriggerName(){return mObjectToTriggerName;}
+//        void								setSubjectName(const string& n){mSubjectName = n;}
+		string					            getSubjectName();
 
-        bool								setTestOperator(LogicOperator lo){mTriggerConditionOperator = lo; return true;}
+         bool								setTestOperator(LogicOperator lo){mTriggerConditionOperator = lo; return true;}
         LogicOperator						getTestOperator(){return mTriggerConditionOperator;}
 
         						            //!Enable 'loads' the trigger.
@@ -65,23 +42,28 @@ class AB_CORE Trigger : public ABObject
 
         									//!Assign function that will be executed when
                                             //!the trigger triggers
-		virtual void						addFireFunction(FireFunction f);
-//		const char* 						getFireFunctionType(){ifreturn mFireFunction.getType();}
+		virtual void						assignTriggerFunction(TriggerFunction* f);
+
         									//!Check if the trigger been triggered
 		bool                                isTriggered(){return mIsTriggered;}
 
         						            //!Any subclass need to implement
                                             //an execute method
 		virtual void	 		            execute() = 0;
+
         virtual void	 		            reset();
+
+        									//!Ability to read/write trigger objects occurs using xml
 		virtual mtk::XMLElement* 			addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot) = 0;
+
+
 
     protected:
         									//!The subject name is the name of the device being monitored
         string					            mSubjectName;
 
-        									//!The DeviceToTrigger name is the name of the device being acted on
-        string					            mObjectToTriggerName;
+        									//!The subject being 'observed' is typically APTDevices, motors etc
+        ABObject*							mSubject;
 
     										//!The mIsTriggered is set to true in case the trigger been fired
         bool					            mIsTriggered;
@@ -96,23 +78,18 @@ class AB_CORE Trigger : public ABObject
 
         virtual bool  			            test(double){return false;}
         virtual bool  			            test(int)   {return false;}
-        virtual void  			            triggerTest() {;}
+
+        									//!The triggerTest function is called by the timer
+                                            //!and is the point at where the trigger condition is checked                                            /
+        virtual void  			            triggerTest() = 0;
 
         									//!The triggering is tested using an Logic operator
         LogicOperator            			mTriggerConditionOperator;
 
         									//!The Fire function is executed when the trigger is
                                             //triggered
-		FireFunction*						mFireFunction;
+		TriggerFunction*				 	mTriggerFunction;
 };
 
-string toString(FireFunctionType t)
-{
-	switch(t)
-    {
-    	case fftMoveAbsolute: 	return "moveAbsolute";
-    	case fftStop: 			return "stop";
-        default: 				return "undefined";
-    }
-}
 #endif
+

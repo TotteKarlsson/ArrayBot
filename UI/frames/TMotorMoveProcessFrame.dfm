@@ -1,9 +1,10 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 451
-  Height = 304
+  Width = 543
+  Height = 493
   Align = alClient
+  AutoSize = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -11,16 +12,19 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
+  ExplicitWidth = 451
+  ExplicitHeight = 304
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 451
-    Height = 304
-    ActivePage = TabSheet2
+    Width = 543
+    Height = 493
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Move Parameters'
+      ExplicitHeight = 455
       object MainGB: TGroupBox
         Left = 0
         Top = 0
@@ -79,11 +83,13 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     object TabSheet2: TTabSheet
       Caption = 'Trigger'
       ImageIndex = 1
+      ExplicitWidth = 443
+      ExplicitHeight = 266
       inline TPositionalTriggerFrame1: TPositionalTriggerFrame
         Left = 0
         Top = 0
-        Width = 443
-        Height = 266
+        Width = 535
+        Height = 403
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -95,18 +101,18 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         ExplicitWidth = 443
         ExplicitHeight = 266
         inherited MainGB: TGroupBox
-          Width = 443
-          Height = 266
+          Width = 535
+          Height = 403
           ExplicitWidth = 443
           ExplicitHeight = 266
           inherited GroupBox3: TGroupBox
-            Width = 439
-            Height = 117
+            Width = 531
+            Height = 254
             ExplicitWidth = 439
             ExplicitHeight = 117
           end
           inherited GroupBox4: TGroupBox
-            Width = 439
+            Width = 531
             ExplicitWidth = 439
           end
         end
@@ -115,6 +121,10 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     object TabSheet3: TTabSheet
       Caption = 'Misc'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBox1: TGroupBox
         Left = 24
         Top = 38

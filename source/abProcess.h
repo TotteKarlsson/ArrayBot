@@ -24,12 +24,12 @@ class ArrayBot;
 class AB_CORE Process : public ABObject
 {
     public:
-        							            Process(const string& name, ProcessType pt);
+        							            Process(const string& name, ABObject* ao = NULL);
 							                    ~Process(){}
 		virtual void		   		            init(ArrayBot& ab);
 		string 						            getProcessType();
-		virtual void	                        assignUnit(ABObject* o){mUnit = o;}
-		ABObject*					            getUnit(){return mUnit;}
+		virtual void	                        assignUnit(ABObject* o){mSubject = o;}
+		ABObject*					            getUnit(){return mSubject;}
         string						            getProcessName(){return mProcessName;}
         void						            setProcessName(const string& l) {mProcessName = l;}
         bool						            isTimedOut();
@@ -57,8 +57,8 @@ class AB_CORE Process : public ABObject
                                                 //and in a ini file
         string						            mProcessName;
 
-        					                    //!The Unit abstract object can be casted in derived classes
-    	ABObject* 		                        mUnit;
+        					                    //!The subject object can be casted in derived classes
+    	ABObject* 		                        mSubject;
 
         							            //!The process type help us construct
                                                 //a new process object from a file

@@ -1,21 +1,21 @@
 #pragma hdrstop
 #include "abTrigger.h"
+#include "abAPTMotor.h"
+#include "abXYZUnit.h"
 //---------------------------------------------------------------------------
 
 using namespace mtk;
 using Poco::Timespan;
 
-Trigger::Trigger(const string& s, const string& objDevice)
+Trigger::Trigger(ABObject* s)
 :
-mSubjectName(s),
-mObjectToTriggerName(objDevice),
+mSubject(s),
 mIsTriggered(false),
+mTriggerTimer(Poco::Timespan(100*Poco::Timespan::MILLISECONDS), triggerTest),
+mTestFunction(NULL),
 mTriggerConditionOperator(loLargerThan),
-mTriggerTimer(Poco::Timespan(100*Poco::Timespan::MILLISECONDS)),
-mTestFunction(NULL)
-{
-	mTriggerTimer.assignTimerFunction(triggerTest);
-}
+mTriggerFunction(NULL)
+{}
 
 bool Trigger::enable()
 {
@@ -31,6 +31,23 @@ bool Trigger::disable()
     return true;
 }
 
+string Trigger::getSubjectName()
+{
+	if(mSubject)
+    {
+    	if(dynamic_cast<APTMotor*>(mSubject))
+        {
+	        dynamic_cast<APTMotor*>(mSubject)->getName();
+        }
+
+    	if(dynamic_cast<XYZUnit*>(mSubject))
+        {
+	        dynamic_cast<XYZUnit*>(mSubject)->getName();
+        }
+    }
+    return "<none>";
+}
+
 void Trigger::setTestFunction(triggerTestFunctionFPtr func)
 {
     mTestFunction = func;
@@ -41,7 +58,7 @@ void Trigger::reset()
 	mIsTriggered = false;
 }
 
-void Trigger::setupFireFunction(FireFunction f)
+void Trigger::assignTriggerFunction(TriggerFunction* f)
 {
-	mFireFunction = f;
+	mTriggerFunction = f;
 }
