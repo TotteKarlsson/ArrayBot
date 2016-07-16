@@ -7,13 +7,13 @@
 using namespace mtk;
 using Poco::Timespan;
 
-Trigger::Trigger(ABObject* s)
+Trigger::Trigger(ABObject* s, LogicOperator lt)
 :
 mSubject(s),
 mIsTriggered(false),
 mTriggerTimer(Poco::Timespan(100*Poco::Timespan::MILLISECONDS), triggerTest),
 mTestFunction(NULL),
-mTriggerConditionOperator(loLargerThan),
+mTriggerConditionOperator(lt),
 mTriggerFunction(NULL)
 {}
 

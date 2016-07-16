@@ -13,7 +13,7 @@ class AB_CORE TimeDelay : public Process
         	   			            TimeDelay(const string& lbl, Poco::Timespan ts = Poco::Timespan(1000*Poco::Timespan::MILLISECONDS));
     	virtual			            ~TimeDelay(){}
         bool						setTimeDelay(long delay){mTimeDelay = delay; return true;}
-		const char* 				getTypeName() const;
+		const string 				getTypeName() const;
 
 	    void						clear();
 

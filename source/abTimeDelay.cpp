@@ -24,7 +24,7 @@ mTimeDelay(ts)
 void TimeDelay::clear()
 {}
 
-const char* TimeDelay::getTypeName() const
+const string TimeDelay::getTypeName() const
 {
 	return "timeDelay";
 }

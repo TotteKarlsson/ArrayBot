@@ -29,6 +29,7 @@ class AB_CORE Process : public ABObject
 		virtual void		   		            init(ArrayBot& ab);
 		string 						            getProcessType();
 		virtual void	                        assignUnit(ABObject* o){mSubject = o;}
+        void									setSubjectName(const string& n){mSubjectName = n;}
 		ABObject*					            getUnit(){return mSubject;}
         string						            getProcessName(){return mProcessName;}
         void						            setProcessName(const string& l) {mProcessName = l;}
@@ -59,6 +60,10 @@ class AB_CORE Process : public ABObject
 
         					                    //!The subject object can be casted in derived classes
     	ABObject* 		                        mSubject;
+
+        										//!When reconstructing a process from XML use strings
+                                                //!to identify objects
+        string									mSubjectName;
 
         							            //!The process type help us construct
                                                 //a new process object from a file

@@ -16,7 +16,7 @@ Process(lbl, NULL)
 	mProcessType = ptCombinedMove;
 }
 
-const char* CombinedMove::getTypeName() const
+const string CombinedMove::getTypeName() const
 {
 	return "combinedMove";
 }

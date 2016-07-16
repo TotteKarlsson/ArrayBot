@@ -6,16 +6,18 @@
 using namespace mtk;
 
 //---------------------------------------------------------------------------
-PositionalTrigger::PositionalTrigger(APTMotor* m)
+PositionalTrigger::PositionalTrigger(APTMotor* m, double position, LogicOperator lt)
 :
 Trigger(m),
-mPosition(-1)
+mPosition(position),
+mMotor(m)
 {
 	if(m)
     {
     	assignSubject(m);
         setTestFunction(m->getPosition);
     }
+	mTriggerTimer.assignTimerFunction(triggerTest);
 }
 
 void PositionalTrigger::triggerTest()
@@ -67,13 +69,14 @@ XMLElement* PositionalTrigger::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode
     //Create XML for saving to file
     XMLElement* pn	  			= doc.NewElement("trigger");
     XMLNode*    rootNode 		= doc.InsertFirstChild(pn);
+    string 		test;
 
     //Attributes
-    pn->SetAttribute("type", getTypeName());
+    pn->SetAttribute("type", getTypeName().c_str());
     pn->SetAttribute("subject", mSubjectName.c_str());
 
 	XMLElement* val = doc.NewElement("position");
-    string test = toString(mPosition);
+    test = toString(mPosition);
     val->SetText(test.c_str());
 	pn->InsertEndChild(val);
 
@@ -83,14 +86,14 @@ XMLElement* PositionalTrigger::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode
 	pn->InsertEndChild(val);
 
 	val = doc.NewElement("object_to_trigger");
-//    test = mObjectToTriggerName;
-//    val->SetText(test.c_str());
+    test = (dynamic_cast<APTMotor*>(mSubject)) ? dynamic_cast<APTMotor*>(mSubject)->getName() : string("<none>");
+    val->SetText(test.c_str());
 	pn->InsertEndChild(val);
 
-//	val = doc.NewElement("fire_function");
-//    test = toString(mFireFunctionType);
-//    val->SetText(test.c_str());
-//	pn->InsertEndChild(val);
+	val = doc.NewElement("trigger_function");
+	test = (mTriggerFunction) ? mTriggerFunction->getTypeName() : string("<none>");
+    val->SetText(test.c_str());
+	pn->InsertEndChild(val);
 
     pn->InsertEndChild(rootNode);
     docRoot->InsertEndChild(pn);

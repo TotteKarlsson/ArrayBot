@@ -16,6 +16,7 @@ class AB_CORE Move : public Process
         	   			                    Move(const string& lbl, APTMotor* mtr, double maxVel = 0, double acc = 0);
     	virtual			                    ~Move(){}
 
+        string								getMotorName();
 		virtual void		   		        init(ArrayBot& ab);
 
 		virtual mtk::XMLElement*            addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot) = 0;
@@ -44,7 +45,7 @@ class AB_CORE Move : public Process
         PositionalTrigger&					getTrigger(){return mTrigger;}
 
     protected:
-        string								mMotorName;
+//        string								mMotorName;
         double			                    mMaxVelocity;
         double			                    mAcceleration;
 

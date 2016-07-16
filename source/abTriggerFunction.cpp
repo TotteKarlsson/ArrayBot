@@ -1,5 +1,6 @@
 #pragma hdrstop
 #include "abTriggerFunction.h"
+#include "abAPTMotor.h"
 //---------------------------------------------------------------------------
 
 
@@ -14,6 +15,16 @@ mAcceleration(a)
 
 bool MoveAbsolute::execute()
 {
+	if(mMotor)
+    {
+    	mMotor->moveAbsolute(mPosition, mVelocity, mAcceleration);
+        Log(lInfo) << "Move absolute trigger executed";
+    }
+    else
+    {
+        Log(lError) << "Move absolute trigger executed with NULL motor";
+    }
+
 	return true;
 }
 

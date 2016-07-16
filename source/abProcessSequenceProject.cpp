@@ -202,7 +202,7 @@ Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
                 XMLElement* data = proc->FirstChildElement("motor_name");
                 if(data && data->GetText())
                 {
-//                    absMove->setMotorName(data->GetText());
+                    absMove->setSubjectName(data->GetText());
                 }
 
                 data = proc->FirstChildElement("final_position");

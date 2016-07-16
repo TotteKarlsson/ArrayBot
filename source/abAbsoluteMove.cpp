@@ -11,7 +11,7 @@ mPosition(pos),
 mPositionResolution(1.0e-3)
 {}
 
-const char* AbsoluteMove::getTypeName() const
+const string AbsoluteMove::getTypeName() const
 {
 	return "absoluteMove";
 }
@@ -74,11 +74,11 @@ XMLElement* AbsoluteMove::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* doc
     XMLNode*    rootNode 		= doc.InsertFirstChild(pn);
 
     //Attributes
-    pn->SetAttribute("type", getTypeName());
+    pn->SetAttribute("type", getTypeName().c_str());
     pn->SetAttribute("name", mProcessName.c_str());
 
 	XMLElement* dataval1 = doc.NewElement("motor_name");
-    dataval1->SetText(mMotorName.c_str());
+    dataval1->SetText(mSubjectName.c_str());
 	pn->InsertEndChild(dataval1);
 
 	dataval1 = doc.NewElement("final_position");

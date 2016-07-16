@@ -44,8 +44,8 @@ XMLElement* ContinousMove::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* do
 
     //Attributes
     processNode->SetAttribute("name", mProcessName.c_str());
-    processNode->SetAttribute("type", getTypeName());
-	processNode->SetAttribute("motor_name", mMotorName.c_str());
+    processNode->SetAttribute("type", getTypeName().c_str());
+	processNode->SetAttribute("motor_name", mSubjectName.c_str());
 	processNode->SetAttribute("max_velocity", mtk::toString(getMaxVelocity()).c_str());
 	processNode->SetAttribute("acc", mtk::toString(getAcceleration()).c_str());
 	processNode->SetAttribute("pre_dwell_time", mtk::toString(getPreDwellTime()).c_str());

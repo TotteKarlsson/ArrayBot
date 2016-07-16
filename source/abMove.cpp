@@ -39,6 +39,16 @@ void Move::init(ArrayBot& ab)
 //    }
 }
 
+string Move::getMotorName()
+{
+	if(dynamic_cast<APTMotor*>(mSubject))
+    {
+    	return dynamic_cast<APTMotor*>(mSubject)->getName();
+    }
+
+	return "<none>";
+}
+
 void Move::assignUnit(ABObject* o)
 {
 	mSubject = NULL;
@@ -47,24 +57,24 @@ void Move::assignUnit(ABObject* o)
     if(dynamic_cast<ArrayBot*>(o))
     {
 		ArrayBot* ab = dynamic_cast<ArrayBot*>(o);
-        if(ab->getMotorWithName(mMotorName))
+        if(ab->getMotorWithName(mSubjectName))
         {
-        	mSubject = ab->getMotorWithName(mMotorName);
+        	mSubject = ab->getMotorWithName(mSubjectName);
         }
     }
     else if(dynamic_cast<XYZUnit*>(o))
     {
     	//Look for motor
         XYZUnit* xyz = dynamic_cast<XYZUnit*>(o);
-        if(xyz->getMotorWithName(mMotorName))
+        if(xyz->getMotorWithName(mSubjectName))
         {
-        	mSubject = xyz->getMotorWithName(mMotorName);
+        	mSubject = xyz->getMotorWithName(mSubjectName);
         }
     }
     else if(dynamic_cast<APTMotor*>(o))
     {
     	APTMotor* m = dynamic_cast<APTMotor*>(o);
-        mMotorName = m->getName();
+        mSubjectName = m->getName();
     	mSubject = m;
     }
 

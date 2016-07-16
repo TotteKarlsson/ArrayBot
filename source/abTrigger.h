@@ -18,7 +18,7 @@ class TriggerFunction;
 class AB_CORE Trigger : public ABObject
 {
     public:
-                                            Trigger(ABObject* s);
+                                            Trigger(ABObject* s, LogicOperator lt = loLargerThan);
 		virtual                             ~Trigger(){}
 
         void								assignSubject(ABObject* s){mSubject = s;}

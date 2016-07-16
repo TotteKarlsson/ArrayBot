@@ -12,7 +12,7 @@ ABObject::~ABObject()
 
 }
 
-const char* ABObject::getTypeName() const
+const string ABObject::getTypeName() const
 {
 	return "NOT IMPLEMENTED";
 }

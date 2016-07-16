@@ -19,11 +19,11 @@ class APTMotor;
 class AB_CORE PositionalTrigger : public Trigger
 {
     public:
-                                			PositionalTrigger(APTMotor* m = NULL);
+                                			PositionalTrigger(APTMotor* m = NULL, double position = -1, LogicOperator lt = loLargerThan);
                                 			~PositionalTrigger(){}
 
 		virtual void	 					execute();
-        virtual const char*	 				getTypeName() const{return "positionalTrigger";}
+        virtual const string 				getTypeName() const{return "positionalTrigger";}
 
         double								getPosition(){return mPosition;}
         void								setPosition(double p){mPosition = p;}

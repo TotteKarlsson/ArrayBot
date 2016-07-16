@@ -17,7 +17,7 @@ class AB_CORE CombinedMove : public Process
         	   			            CombinedMove(const string& lbl);
     	virtual			            ~CombinedMove(){}
 		virtual void		   		init(ArrayBot& ab);
-		const char* 				getTypeName() const;
+		const string 				getTypeName() const;
         void						clear();
 
         virtual mtk::XMLElement*    addToXMLDocumentAsChildProcess(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);

@@ -117,7 +117,6 @@ class AB_CORE APTMotor : public APTDevice
         Range<double> 						mAccelerationRange;
         Property<double>					mManualJogVelocity;
         Property<double>					mManualJogAcceleration;
-
         Property<double>					mPotentiometerVelocity;
 
 		void                                post(const MotorCommand& cmd);
