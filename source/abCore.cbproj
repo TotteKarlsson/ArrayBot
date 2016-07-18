@@ -243,6 +243,7 @@
             <BuildOrder>40</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTriggerFunction.cpp">
+            <DependentOn>abTriggerFunction.h</DependentOn>
             <BuildOrder>42</BuildOrder>
         </CppCompile>
         <CppCompile Include="abUtilities.cpp">

@@ -9,12 +9,7 @@
 //---------------------------------------------------------------------------
 
 class PositionalTrigger;
-class Process;
-class AbsoluteMove;
-namespace ab
-{
-	class Move;
-}
+class Trigger;
 class ArrayBot;
 
 class TPositionalTriggerFrame : public TFrame
@@ -24,31 +19,28 @@ class TPositionalTriggerFrame : public TFrame
 	TFloatLabeledEdit *mPositionE;
 	TRadioGroup *mOpRG;
 	TComboBox *mDevicesCB;
-        TComboBox *ComboBox3;
         TGroupBox *GroupBox2;
         TFloatLabeledEdit *mNewVelE;
         TFloatLabeledEdit *mNewAccE;
-        TLabel *Label2;
-        TLabel *Label3;
         TGroupBox *GroupBox3;
         TGroupBox *GroupBox4;
+	TFloatLabeledEdit *mFinalPositionE;
 	void __fastcall mPositionEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mOpRGClick(TObject *Sender);
 	void __fastcall mDevicesCBChange(TObject *Sender);
+	void __fastcall mNewVelEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
 
     private:
-//		PositionalTrigger*			mTrigger;
-        ab::Move* 	   				mMove;
+        Trigger* 	 				mTrigger;
         ArrayBot*					mAB;
 		void 						populateDevicesCB();
 
 
     public:
     					__fastcall 	TPositionalTriggerFrame(TComponent* Owner);
-    	void						populate(ArrayBot& ab, ab::Move* p);
-    	void						rePopulate(ab::Move* p);
-
+    	void						populate(ArrayBot& ab, Trigger* pt);
+    	void						rePopulate(Trigger* p);
 };
 
 //---------------------------------------------------------------------------

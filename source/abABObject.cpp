@@ -1,18 +1,14 @@
 #pragma hdrstop
-
 #include "abABObject.h"
 //---------------------------------------------------------------------------
-ABObject::ABObject()
-{
 
-}
+ABObject::ABObject()
+{}
 
 ABObject::~ABObject()
-{
-
-}
+{}
 
 const string ABObject::getTypeName() const
 {
-	return "NOT IMPLEMENTED";
+	return "TYPENAME NOT IMPLEMENTED";
 }

@@ -33,31 +33,40 @@ int main()
     lbl1:
 
     //Both motors starts at zero
-    blackMotor->moveAbsolute(	0, 	1.5, .5);
-	redMotor->moveAbsolute(		0, 	1.0, 3);
+    blackMotor->moveAbsolute(	0, 	5, 3);
+	redMotor->moveAbsolute(		0, 	4, 5);
 
     while(!blackMotor->isAtDesiredPosition() || !redMotor->isAtDesiredPosition())
     {
-    	sleep(1);
+    	sleep(10);
     }
 
-    //When the black motor is at position '2', trigger movement of the red motor
-    PositionalTrigger tr1(blackMotor);
-    TriggerFunction* tf;
-    tf = new MoveAbsolute(redMotor, 6, 1, 1);
+  	//When the black motor is at position '2', trigger movement of the red motor
+    PositionalTrigger tr1(blackMotor, 5, loLargerThan);
+
+    TriggerFunction* tf = new MoveAbsolute(redMotor, 6, 3, 3);
     tr1.assignTriggerFunction(tf);
 
    	tr1.enable();
 
 	//Move black motor to 2
-    blackMotor->moveAbsolute(	10, 6.5);
-//    redMotor->moveAbsolute(		6,  0.1);
+    while(blackMotor->isActive())
+    {
+       //We can't reverse velocity while running
+       //So wait
+    }
+
+    blackMotor->moveAbsolute(10, 6.5);
+
+
+    redMotor->moveAbsolute(6,  1.1);
 
     //The triggers should trigger
-    while(!tr1.isTriggered() )
+    while(!tr1.isTriggered())
     {
     	sleep(10);
     }
+    delete tf;
 
     while(!blackMotor->isAtDesiredPosition() || !redMotor->isAtDesiredPosition())
     {

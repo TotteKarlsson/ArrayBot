@@ -47,19 +47,13 @@ bool AbsoluteMove::start()
             return false;
         }
 
-//        if(mTrigger.getObjectToTriggerName() != "")
-//        {
-//
-//        	APTMotor* motor = dynamic_cast<APTMotor*>(this->getUnit());
-//            if(motor)
-//            {
-//                //The trigger is now observing the motor..
-//                getTrigger().setTestFunction(motor->getPosition);
-//            }
-//
-//
-//        	mTrigger.enable();
-//        }
+		//Reset and enable trigger(s)
+        if(mTrigger)
+        {
+        	mTrigger->reset();
+	        mTrigger->enable();
+        }
+
     	m->setVelocity(mMaxVelocity);
         m->setAcceleration(mAcceleration);
         return m->moveToPosition(mPosition);
@@ -102,7 +96,10 @@ XMLElement* AbsoluteMove::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* doc
 	pn->InsertEndChild(dataval1);
 
 	//Add trigger
-    mTrigger.addToXMLDocumentAsChild(doc, pn);
+    if(mTrigger)
+    {
+    	mTrigger->addToXMLDocumentAsChild(doc, pn);
+    }
 
     pn->InsertEndChild(rootNode);
     docRoot->InsertEndChild(pn);

@@ -4,11 +4,12 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include <functional>
+#include "mtkXMLUtils.h"
 //---------------------------------------------------------------------------
 
 //!A trigger function can be called and saved together with a Trigger.
 //Any derived trigger functions implement their own data and functions.
-//A triggerFunction is 'kind of' a a functor. Instead of an implemented operator()
+//A triggerFunction is 'kind of' a a functor, but instead of an implemented operator()
 //a triggerfunction executes by executing 'execute()'
 
 
@@ -22,37 +23,53 @@ class APTMotor;
 class AB_CORE TriggerFunction : public ABObject
 {
     public:
-                                    TriggerFunction(){}
-                                    ~TriggerFunction(){}
-        virtual const char* 		getType() = 0;
-        virtual bool				execute() = 0;
+                                            TriggerFunction(){}
+                                            ~TriggerFunction(){}
+        const string   	                    getTypeName() const {return "triggerFunction";}
+        virtual bool				        execute() = 0;
+
+        									//!Ability to read/write trigger objects occurs using xml
+		virtual mtk::XMLElement* 			addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot) = 0;
 
     protected:
 
 };
 
+//!Move absolute is a subclass of TriggerFunction.
+//TODO: These triggerfunctions may be replaced later
+//on by using pure process objects instead, like the MoveAbsoluteProcess
 class AB_CORE MoveAbsolute : public  TriggerFunction
 {
 	public:
-								    MoveAbsolute(APTMotor* mtr, double pos, double v, double a);
-        APTMotor*		            mMotor;
+								            MoveAbsolute(APTMotor* mtr, double pos, double v, double a);
 
-    	double			            mVelocity;
-        double			            mAcceleration;
-        double 			            mPosition;
+        virtual bool	                    execute();
+        const string   	                    getTypeName() const {return "absoluteMove";}
 
-        virtual bool	            execute();
-        const char*    	            getType(){return "absoluteMove";}
+        void								setMotor(APTMotor* mtr){mMotor = mtr;}
+        APTMotor*							getMotor(){return mMotor;}
+
+        void								setMotorName(const string& name){mMotorName = name;}
+        string 								getMotorName(){return mMotorName;}
+
+        double								getVelocity(){return mVelocity;}
+        void								setVelocity(double v){mVelocity = v;}
+
+        double								getAcceleration(){return mAcceleration;}
+        void								setAcceleration(double a){mAcceleration = a;}
+
+        double								getPosition(){return mPosition;}
+        void								setPosition(double a){mPosition = a;}
+
+		virtual mtk::XMLElement* 			addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
+
+	protected:
+        APTMotor*		                    mMotor;
+        string			                    mMotorName;
+    	double			                    mVelocity;
+        double			                    mAcceleration;
+        double 			                    mPosition;
 };
 
-//string toString(FireFunctionType t)
-//{
-//	switch(t)
-//    {
-//    	case fftMoveAbsolute: 	return "moveAbsolute";
-//    	case fftStop: 			return "stop";
-//        default: 				return "undefined";
-//    }
-//}
 
 #endif

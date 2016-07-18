@@ -237,30 +237,31 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
             Height = 417
             ExplicitWidth = 618
             ExplicitHeight = 417
-            inherited TabSheet1: TTabSheet
+            inherited mTriggersSheet: TTabSheet
               ExplicitWidth = 610
               ExplicitHeight = 379
-            end
-            inherited TabSheet2: TTabSheet
-              inherited TPositionalTriggerFrame1: TPositionalTriggerFrame
-                Width = 610
+              inherited Panel2: TPanel
                 Height = 379
-                inherited MainGB: TGroupBox
-                  Width = 610
-                  Height = 379
-                  inherited GroupBox3: TGroupBox
-                    Width = 606
-                    Height = 230
+                ExplicitHeight = 379
+                inherited Panel1: TPanel
+                  Top = 318
+                  ExplicitTop = 318
+                  ExplicitWidth = 183
+                  inherited mDeleteTriggerB: TButton
+                    ExplicitLeft = 91
                   end
-                  inherited GroupBox4: TGroupBox
-                    Width = 606
+                  inherited mAddTriggerB: TButton
+                    ExplicitLeft = 1
+                    ExplicitTop = 1
                   end
+                end
+                inherited mTriggersLB: TListBox
+                  Height = 317
+                  ExplicitHeight = 317
                 end
               end
             end
             inherited TabSheet3: TTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 34
               ExplicitWidth = 443
               ExplicitHeight = 266
             end

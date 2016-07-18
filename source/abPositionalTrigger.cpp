@@ -17,6 +17,9 @@ mMotor(m)
     	assignSubject(m);
         setTestFunction(m->getPosition);
     }
+
+    //Todo: Clean this up later
+//    mTriggerFunction = new MoveAbsolute(m, 0,0,0);
 	mTriggerTimer.assignTimerFunction(triggerTest);
 }
 
@@ -85,15 +88,12 @@ XMLElement* PositionalTrigger::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode
     val->SetText(test.c_str());
 	pn->InsertEndChild(val);
 
-	val = doc.NewElement("object_to_trigger");
-    test = (dynamic_cast<APTMotor*>(mSubject)) ? dynamic_cast<APTMotor*>(mSubject)->getName() : string("<none>");
-    val->SetText(test.c_str());
-	pn->InsertEndChild(val);
 
-	val = doc.NewElement("trigger_function");
-	test = (mTriggerFunction) ? mTriggerFunction->getTypeName() : string("<none>");
-    val->SetText(test.c_str());
-	pn->InsertEndChild(val);
+    //Add trigger function(s)
+    if(mTriggerFunction)
+    {
+		mTriggerFunction->addToXMLDocumentAsChild(doc, pn);
+    }
 
     pn->InsertEndChild(rootNode);
     docRoot->InsertEndChild(pn);

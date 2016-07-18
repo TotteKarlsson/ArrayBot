@@ -5,8 +5,7 @@
 #include "abArrayBot.h"
 #include "abAPTMotor.h"
 #include "abPosition.h"
-#include <functional>
-
+#include "abTriggerFunction.h"
 namespace ab
 {
 
@@ -20,23 +19,34 @@ Move::Move(const string& lbl, APTMotor* mtr, double maxVel, double acc)
 Process(lbl, mtr),
 mMaxVelocity(maxVel),
 mAcceleration(acc),
-mTrigger(mtr)
+mTrigger(NULL)
 {}
 
 void Move::init(ArrayBot& ab)
 {
 	Process::init(ab);
-//    mTrigger.getSubjectName();
 
-//   	APTMotor* mtr = ab.getMotorWithName(mTrigger.getObjectToTriggerName());
-//    if(mtr)
-//    {
-////        if(mTrigger.getFireFunctionType() == fftMoveAbsolute)
-//        {
-////            FireFunction f = bind(&APTMotor::moveAbsolute, mtr,  25, 5, 5);
-////            mTrigger.addFireFunction(f);
-//        }
-//    }
+    //Setup any triggers
+    if(mTrigger && mTrigger->getTriggerFunction())
+    {
+        TriggerFunction* tf = mTrigger->getTriggerFunction();
+        if(dynamic_cast<MoveAbsolute*>(tf))
+        {
+        	MoveAbsolute* ma = dynamic_cast<MoveAbsolute*>(tf);
+            ma->setMotor(ab.getMotorWithName(ma->getMotorName()));
+        }
+    }
+}
+
+void Move::addTrigger(Trigger* t)
+{
+	mTrigger = t;
+}
+
+void Move::deleteTrigger(Trigger* t)
+{
+	delete mTrigger;
+    mTrigger = NULL;
 }
 
 string Move::getMotorName()
@@ -85,7 +95,10 @@ void Move::assignUnit(ABObject* o)
     else
     {
      	APTMotor* m = dynamic_cast<APTMotor*>(mSubject);
-		mTrigger.setTestFunction(m->getPosition);
+        if(mTrigger)
+        {
+			mTrigger->setTestFunction(m->getPosition);
+        }
     }
 }
 

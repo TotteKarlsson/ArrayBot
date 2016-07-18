@@ -9,6 +9,7 @@
 #include "abAbsoluteMove.h"
 #include "abTimedelay.h"
 #include "abAPTMotor.h"
+#include "abTriggerFunction.h"
 using namespace mtk;
 using namespace tinyxml2;
 
@@ -240,22 +241,57 @@ Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
 
                 if(data)
                 {
-                	XMLElement* e = data->FirstChildElement("position");
-                    if(e)
+                    const char* ttype = data->Attribute("type");
+                    if(ttype && compareNoCase(ttype, "positionalTrigger"))
                     {
-	                	absMove->getTrigger().setPosition(toDouble(e->GetText()));
-                    }
+                    	PositionalTrigger* pt = new PositionalTrigger(NULL);
+						absMove->addTrigger(pt);
 
-                	e = data->FirstChildElement("operator");
-                    if(e)
-                    {
-	                	absMove->getTrigger().setTestOperator(toLogicOperator(e->GetText()));
-                    }
+                        XMLElement* e = data->FirstChildElement("position");
+                        if(e)
+                        {
+                            pt->setPosition(toDouble(e->GetText()));
+                        }
 
-                	e = data->FirstChildElement("object_to_trigger");
-                    if(e)
-                    {
-//	                	absMove->getTrigger().setObjectToTriggerName(stdstr(e->GetText()));
+                        e = data->FirstChildElement("operator");
+                        if(e)
+                        {
+                            pt->setTestOperator(toLogicOperator(e->GetText()));
+                        }
+
+                        //Load trigger function(s)
+                        //Load the trigger
+                        XMLElement* tfData = data->FirstChildElement("trigger_function");
+                        if(tfData)
+                        {
+                            const char* type = tfData->Attribute("type");
+                            if(type && compareNoCase(type, "absoluteMove"))
+                            {
+                                MoveAbsolute* tf = new MoveAbsolute(NULL, 0,0,0);
+
+                                const char* mtrName = tfData->Attribute("motor_name");
+                                tf->setMotorName(mtrName);
+                                pt->assignTriggerFunction(tf);
+
+                                XMLElement* e = tfData->FirstChildElement("final_position");
+                                if(e && e->GetText())
+                                {
+                                    tf->setPosition(toDouble(e->GetText()));
+                                }
+
+                                e = tfData->FirstChildElement("max_velocity");
+                                if(e && e->GetText())
+                                {
+                                    tf->setVelocity(toDouble(e->GetText()));
+                                }
+
+                                e = tfData->FirstChildElement("acceleration");
+                                if(e && e->GetText())
+                                {
+                                    tf->setAcceleration(toDouble(e->GetText()));
+                                }
+                            }
+                        }
                     }
                 }
 

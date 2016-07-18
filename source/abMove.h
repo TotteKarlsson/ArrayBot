@@ -42,17 +42,17 @@ class AB_CORE Move : public Process
         bool			                    setAcceleration(double a){mAcceleration = a; return true;}
         double			                    getAcceleration(){return mAcceleration;}
 
-        PositionalTrigger&					getTrigger(){return mTrigger;}
-
+        Trigger*							getTrigger(){return mTrigger;}
+        virtual void						addTrigger(Trigger* t);
+        virtual void						deleteTrigger(Trigger* t = NULL);
     protected:
-//        string								mMotorName;
         double			                    mMaxVelocity;
         double			                    mAcceleration;
 
         									//!The trigger observes the location of the motor moving
                                             //!and can be setup to trigger another motor when a
                                             //!certain position is achieved
-        PositionalTrigger					mTrigger;
+        Trigger*							mTrigger;
 };
 
 }

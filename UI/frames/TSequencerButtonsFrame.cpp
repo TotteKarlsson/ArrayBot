@@ -28,6 +28,8 @@ void TSequencerButtonsFrame::update()
 
     ProcessSequencer& psr = mAB.getProcessSequencer();
     ProcessSequences& pss = psr.getSequences();
+
+	ProcessSequence*  current = pss.getCurrent();
     ProcessSequence*  ps = pss.getFirst();
 
     while(ps)
@@ -44,8 +46,8 @@ void TSequencerButtonsFrame::update()
         btn->Width = this->Height;
     }
 
-    //Restore back to first sequence
-    ps = pss.getFirst();
+    //Restore back to the sequence wich was selected
+    pss.select(current);
 }
 
 void __fastcall TSequencerButtonsFrame::runSequenceBtnClick(TObject *Sender)

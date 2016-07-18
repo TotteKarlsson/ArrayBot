@@ -105,6 +105,11 @@ object CombinedMoveFrame: TCombinedMoveFrame
             end
           end
         end
+        inherited mTriggersSheet: TTabSheet
+          inherited Panel1: TPanel
+            ExplicitWidth = 566
+          end
+        end
       end
     end
   end

@@ -24,7 +24,6 @@ class AB_CORE Trigger : public ABObject
         void								assignSubject(ABObject* s){mSubject = s;}
         ABObject*							getSubject(){return mSubject;}
 
-//        void								setSubjectName(const string& n){mSubjectName = n;}
 		string					            getSubjectName();
 
          bool								setTestOperator(LogicOperator lo){mTriggerConditionOperator = lo; return true;}
@@ -50,13 +49,12 @@ class AB_CORE Trigger : public ABObject
         						            //!Any subclass need to implement
                                             //an execute method
 		virtual void	 		            execute() = 0;
-
         virtual void	 		            reset();
+
+        TriggerFunction* 					getTriggerFunction(){return mTriggerFunction;}
 
         									//!Ability to read/write trigger objects occurs using xml
 		virtual mtk::XMLElement* 			addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot) = 0;
-
-
 
     protected:
         									//!The subject name is the name of the device being monitored

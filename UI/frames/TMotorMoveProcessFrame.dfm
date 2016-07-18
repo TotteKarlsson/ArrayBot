@@ -1,8 +1,8 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 543
-  Height = 493
+  Width = 623
+  Height = 338
   Align = alClient
   AutoSize = True
   Font.Charset = DEFAULT_CHARSET
@@ -17,14 +17,15 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 543
-    Height = 493
-    ActivePage = TabSheet1
+    Width = 623
+    Height = 338
+    ActivePage = mTriggersSheet
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 451
+    ExplicitHeight = 304
     object TabSheet1: TTabSheet
       Caption = 'Move Parameters'
-      ExplicitHeight = 455
       object MainGB: TGroupBox
         Left = 0
         Top = 0
@@ -80,51 +81,68 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         end
       end
     end
-    object TabSheet2: TTabSheet
-      Caption = 'Trigger'
+    object mTriggersSheet: TTabSheet
+      Caption = 'Triggers'
       ImageIndex = 1
       ExplicitWidth = 443
       ExplicitHeight = 266
-      inline TPositionalTriggerFrame1: TPositionalTriggerFrame
+      object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 535
-        Height = 403
-        Align = alClient
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
+        Width = 185
+        Height = 300
+        Align = alLeft
+        Caption = 'Panel2'
         TabOrder = 0
-        ExplicitWidth = 443
         ExplicitHeight = 266
-        inherited MainGB: TGroupBox
-          Width = 535
-          Height = 403
-          ExplicitWidth = 443
-          ExplicitHeight = 266
-          inherited GroupBox3: TGroupBox
-            Width = 531
-            Height = 254
-            ExplicitWidth = 439
-            ExplicitHeight = 117
+        object Panel1: TPanel
+          Left = 1
+          Top = 239
+          Width = 183
+          Height = 60
+          Align = alBottom
+          TabOrder = 0
+          ExplicitTop = 205
+          object mDeleteTriggerB: TButton
+            Left = 91
+            Top = 1
+            Width = 90
+            Height = 58
+            Align = alLeft
+            Caption = 'Delete'
+            TabOrder = 0
+            OnClick = mDeleteTriggerBClick
+            ExplicitLeft = 1
           end
-          inherited GroupBox4: TGroupBox
-            Width = 531
-            ExplicitWidth = 439
+          object mAddTriggerB: TButton
+            Left = 1
+            Top = 1
+            Width = 90
+            Height = 58
+            Align = alLeft
+            Caption = 'Add'
+            TabOrder = 1
+            OnClick = mAddTriggerBClick
+            ExplicitLeft = -5
+            ExplicitTop = 6
           end
+        end
+        object mTriggersLB: TListBox
+          Left = 1
+          Top = 1
+          Width = 183
+          Height = 238
+          Align = alClient
+          ItemHeight = 23
+          TabOrder = 1
+          OnClick = TriggersLBClick
+          ExplicitHeight = 204
         end
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Misc'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GroupBox1: TGroupBox
         Left = 24
         Top = 38

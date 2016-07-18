@@ -1,6 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMotorMoveProcessFrame.h"
+#include "TPositionalTriggerFrame.h"
 #include "abMove.h"
 #include "abAPTMotor.h"
 #include "mtkVCLUtils.h"
@@ -10,15 +11,21 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
-#pragma link "TPositionalTriggerFrame"
 #pragma resource "*.dfm"
 TMotorMoveProcessFrame *MotorMoveProcessFrame;
 
 //---------------------------------------------------------------------------
 __fastcall TMotorMoveProcessFrame::TMotorMoveProcessFrame(TComponent* Owner)
 	: TFrame(Owner),
-    mAB(NULL)
-{}
+    mAB(NULL),
+    mPosTriggerFrame(NULL)
+{
+	mPosTriggerFrame = new TPositionalTriggerFrame(this);
+    mPosTriggerFrame->Parent = mTriggersSheet;
+    mPosTriggerFrame->Align = alClient;
+    mPosTriggerFrame->Visible = false;
+
+}
 
 void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
 {
@@ -28,7 +35,18 @@ void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
     rePopulate(m);
 
     //Populate subframes
-    TPositionalTriggerFrame1->populate(*(mAB), mMove);
+    mTriggersLB->Clear();
+    if(mMove && mMove->getTrigger())
+    {
+	    mMove->getTrigger()->assignSubject(mMove->getUnit());
+		mTriggersLB->Items->AddObject(mMove->getTrigger()->getTypeName().c_str(), (TObject*) mMove->getTrigger());
+        mTriggersLB->ItemIndex = 0;
+		TriggersLBClick(NULL);
+    }
+    else
+    {
+	    mPosTriggerFrame->Visible = false;
+    }
 }
 
 void TMotorMoveProcessFrame::rePopulate(AbsoluteMove* m)
@@ -40,7 +58,7 @@ void TMotorMoveProcessFrame::rePopulate(AbsoluteMove* m)
 
     mMove = m;
     MainGB->Caption = vclstr(mMove->getProcessName());
-	mMovePosE->setValue(mMove->getPosition().x());
+	mMovePosE->setValue(mMove->getPosition());
     mMaxVelE->setValue(mMove->getMaxVelocity());
     mAccE->setValue(mMove->getAcceleration());
     mPostDwellTimeE->setValue(mMove->getPostDwellTime());
@@ -81,7 +99,7 @@ void TMotorMoveProcessFrame::populateMotorCB()
 //---------------------------------------------------------------------------
 void __fastcall TMotorMoveProcessFrame::MotorsCBClick(TObject *Sender)
 {
-;
+	;
 }
 
 //---------------------------------------------------------------------------
@@ -103,7 +121,11 @@ void __fastcall TMotorMoveProcessFrame::MotorsCBChange(TObject *Sender)
         mAccE->Enabled 		= false;
     }
 
-	TPositionalTriggerFrame1->rePopulate(mMove);
+
+    if(mMove && mMove->getTrigger())
+    {
+		mPosTriggerFrame->rePopulate(mMove->getTrigger());
+    }
 }
 
 void __fastcall TMotorMoveProcessFrame::mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
@@ -113,10 +135,59 @@ void __fastcall TMotorMoveProcessFrame::mMovePosEKeyDown(TObject *Sender, WORD &
     	return;
     }
 
-    ab::Position p(mMove->getPositionName(), mMovePosE->getValue(),0,0);
-    mMove->setPosition(p);
+    mMove->setPosition(mMovePosE->getValue());
     mMove->setMaxVelocity(mMaxVelE->getValue());
     mMove->setAcceleration(mAccE->getValue());
     mMove->setPostDwellTime(mPostDwellTimeE->getValue());
     mMove->setPreDwellTime(mPreDwellTimeE->getValue());
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMotorMoveProcessFrame::TriggersLBClick(TObject *Sender)
+{
+	//Retrive selected trigger
+    int indx = mTriggersLB->ItemIndex;
+    if(indx == -1)
+    {
+       	mAddTriggerB->Enabled = false;
+        mDeleteTriggerB->Enabled = false;
+    	return;
+    }
+
+   	mAddTriggerB->Enabled = true;
+    mDeleteTriggerB->Enabled = true;
+    Trigger* t = (Trigger*) mTriggersLB->Items->Objects[indx];
+    if(t)
+    {
+		//Check what kind of trigger
+       	mPosTriggerFrame->populate(*mAB, t);
+	    mPosTriggerFrame->Visible = true;
+    }
+    else
+    {
+	    mPosTriggerFrame->Visible = false;
+    }
+}
+
+void __fastcall TMotorMoveProcessFrame::mDeleteTriggerBClick(TObject *Sender)
+{
+	//delete currently selected trigger
+    int indx = mTriggersLB->ItemIndex;
+    if(indx != -1)
+    {
+    	mMove->deleteTrigger();
+	    mTriggersLB->Clear();
+
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMotorMoveProcessFrame::mAddTriggerBClick(TObject *Sender)
+{
+	//Create a new Trigger
+    Trigger* t = new PositionalTrigger(NULL);
+    mMove->addTrigger(t);
+	rePopulate(mMove);
+}
+
+
