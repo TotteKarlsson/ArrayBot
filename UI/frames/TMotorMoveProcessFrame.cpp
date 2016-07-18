@@ -8,6 +8,7 @@
 #include "abXYZUnit.h"
 #include "abArrayBot.h"
 #include "abAbsoluteMove.h"
+#include "abTriggerFunction.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -186,6 +187,10 @@ void __fastcall TMotorMoveProcessFrame::mAddTriggerBClick(TObject *Sender)
 {
 	//Create a new Trigger
     Trigger* t = new PositionalTrigger(NULL);
+    //Also add a trigger function
+    MoveAbsolute *tf = new MoveAbsolute(NULL);
+    t->assignTriggerFunction(tf);
+
     mMove->addTrigger(t);
 	rePopulate(mMove);
 }
