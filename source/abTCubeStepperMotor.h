@@ -33,7 +33,7 @@ class AB_CORE TCubeStepperMotor : public APTMotor
 
         double	                        getPosition();
         double	        		        getVelocity();
-		bool	                    	setVelocity(double v, double a = 0, bool inThread = true);
+		bool	                    	setVelocityParameters(double v, double a = 0, bool inThread = true);
 	    double          		        getAcceleration();
     	bool	                    	setAcceleration(double a);
 

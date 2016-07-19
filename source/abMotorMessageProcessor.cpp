@@ -149,7 +149,7 @@ void MotorMessageProcessor::worker()
 					break;
 
                     case mcSetVelocityParameters:
-                    	mMotor->setVelocity(cmd.getFirstVariable(), cmd.getSecondVariable(), false);
+                    	mMotor->setVelocityParameters(cmd.getFirstVariable(), cmd.getSecondVariable(), false);
 					break;
 
                     case mcSetVelocityForward:

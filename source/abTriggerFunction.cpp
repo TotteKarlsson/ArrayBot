@@ -58,5 +58,6 @@ mtk::XMLElement* MoveAbsolute::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mt
 
     e->InsertEndChild(rootNode);
     docRoot->InsertEndChild(e);
+    return e;
 }
 

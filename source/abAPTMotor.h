@@ -13,13 +13,10 @@ class AB_CORE APTMotor : public APTDevice
     public:
 						                    APTMotor(int serial);
 		virtual			                    ~APTMotor();
-
-
         double								getMaxPosition();
 		bool 	   							switchDirection(bool inThread = true);
 		bool	                    		setVelocityForward(double v);
 		bool	                    		setVelocityReverse(double v);
-
 
         									//!MoveAbsolute takes a position and a velocity parameters
         bool		                		moveAbsolute(double position, double v, double a = 0);
@@ -63,14 +60,12 @@ class AB_CORE APTMotor : public APTDevice
         virtual bool	                    stopPolling() = 0;
 
 
-
 						                    //!General commands
         virtual bool		                identify() = 0;
         virtual double	                    getPosition() = 0;
 
-
         virtual double	                    getVelocity() = 0;
-        virtual bool	                    setVelocity(double vel, double a = 0, bool inThread = true) = 0;
+        virtual bool	                    setVelocityParameters(double vel, double a = 0, bool inThread = true) = 0;
 
         virtual double                      getAcceleration() = 0;
         virtual bool                        setAcceleration(double val) = 0;

@@ -96,11 +96,9 @@ bool PairedMove::execute()
 	double newZ2Pos = mMotor2->getPosition() + mDistance;
 
 	//Update motors with current parameters and start the move
-    mMotor1->setVelocity(mVelocity);
-    mMotor1->setAcceleration(mAcceleration);
+    mMotor1->setVelocityParameters(mVelocity, mAcceleration);
 
-    mMotor2->setVelocity(mVelocity);
-    mMotor2->setAcceleration(mAcceleration);
+    mMotor2->setVelocityParameters(mVelocity, mAcceleration);
 
     Log(lInfo) << "Moving Motor 1 to: "	<<newZ1Pos;
     Log(lInfo) << "Moving Motor 2 to: "	<<newZ2Pos;

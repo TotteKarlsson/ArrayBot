@@ -130,24 +130,6 @@ double TCubeStepperMotor::getEncoderCounts()
     return 0;
 }
 
-//double TCubeStepperMotor::getEncoderCounts()
-//{
-//	long stepsPerRev, gearBoxRatio;
-//    float pitch;
-//	int e = SCC_GetMotorParams(mSerial.c_str(), &stepsPerRev, &gearBoxRatio, &pitch);
-//	if(e)
-//    {
-//    	Log(lError) << "Failed getting Motor Parameters";
-//    }
-//    else
-//    {
-//    	Log(lInfo) << "StepsPerRev: "<<stepsPerRev;
-//    	Log(lInfo) << "GearBoxRatio: "<<gearBoxRatio;
-//    	Log(lInfo) << "Pitch: "<<pitch;
-//    }
-//    return 0;
-//}
-
 HardwareInformation TCubeStepperMotor::getHWInfo()
 {
 	TLI_HardwareInformation hwi;
@@ -294,7 +276,7 @@ double TCubeStepperMotor::getAcceleration()
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool TCubeStepperMotor::setVelocity(double v, double a, bool inThread)
+bool TCubeStepperMotor::setVelocityParameters(double v, double a, bool inThread)
 {
 	if(inThread)
     {
@@ -311,14 +293,14 @@ bool TCubeStepperMotor::setVelocity(double v, double a, bool inThread)
         if(v != 0)
         {
 	        p.maxVelocity = v * mScalingFactors.velocity;
+	        Log(lDebug3) << getName() << ": velocity -> "<<v;
         }
 
         if(a != 0.0)
         {
         	p.acceleration = a * mScalingFactors.acceleration;
+	        Log(lDebug3) << getName() << ": acceleration -> "<<a;
         }
-
-        Log(lDebug) << getName() << ": velocity -> "<<v;
 
         int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
         mMotorCommandsPending--;
@@ -334,18 +316,19 @@ bool TCubeStepperMotor::setVelocity(double v, double a, bool inThread)
 
 bool TCubeStepperMotor::setAcceleration(double a)
 {
- 	MOT_VelocityParameters parameters;
-    SCC_GetVelParamsBlock(mSerial.c_str(), &parameters);
+ 	MOT_VelocityParameters p;
+    SCC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-    parameters.acceleration = a * mScalingFactors.acceleration;
+    p.acceleration = a * mScalingFactors.acceleration;
 	Log(lDebug) << getName()<< ": acceleration -> "<<a;
 
-    int e = SCC_SetVelParamsBlock(mSerial.c_str(), &parameters);
+    int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
     if(e)
     {
         Log(lError) <<tlError(e);
 		return false;
     }
+
 	return true;
 }
 
@@ -398,7 +381,6 @@ StopMode TCubeStepperMotor::getJogStopMode()
     }
   	return (StopMode) sm;
 }
-
 
 double TCubeStepperMotor::getJogVelocity()
 {

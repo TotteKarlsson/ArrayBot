@@ -54,8 +54,7 @@ bool AbsoluteMove::start()
 	        mTrigger->enable();
         }
 
-    	m->setVelocity(mMaxVelocity);
-        m->setAcceleration(mAcceleration);
+    	m->setVelocityParameters(mMaxVelocity, mAcceleration);
         return m->moveToPosition(mPosition);
     }
     return true;

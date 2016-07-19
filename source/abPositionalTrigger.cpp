@@ -18,8 +18,6 @@ mMotor(m)
         setTestFunction(m->getPosition);
     }
 
-    //Todo: Clean this up later
-//    mTriggerFunction = new MoveAbsolute(m, 0,0,0);
 	mTriggerTimer.assignTimerFunction(triggerTest);
 }
 

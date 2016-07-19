@@ -135,24 +135,6 @@ double TCubeDCServo::getEncoderCounts()
     return 0;
 }
 
-//double TCubeStepperMotor::getEncoderCounts()
-//{
-//	long stepsPerRev, gearBoxRatio;
-//    float pitch;
-//	int e = SCC_GetMotorParams(mSerial.c_str(), &stepsPerRev, &gearBoxRatio, &pitch);
-//	if(e)
-//    {
-//    	Log(lError) << "Failed getting Motor Parameters";
-//    }
-//    else
-//    {
-//    	Log(lInfo) << "StepsPerRev: "<<stepsPerRev;
-//    	Log(lInfo) << "GearBoxRatio: "<<gearBoxRatio;
-//    	Log(lInfo) << "Pitch: "<<pitch;
-//    }
-//    return 0;
-//}
-
 HardwareInformation TCubeDCServo::getHWInfo()
 {
 	TLI_HardwareInformation hwi;
@@ -270,9 +252,7 @@ void TCubeDCServo::stopProfiled(bool inThread)
 
 double TCubeDCServo::getPosition()
 {
-	double val = CC_GetPosition(mSerial.c_str()) / mScalingFactors.position;
-    sleep(10);
-	return val;
+    return CC_GetPosition(mSerial.c_str()) / mScalingFactors.position;
 }
 
 double TCubeDCServo::getVelocity()
@@ -280,7 +260,7 @@ double TCubeDCServo::getVelocity()
 	int a(0), v(0);
 
 	int e = CC_GetVelParams(mSerial.c_str(), &a, &v);
-    sleep(10);
+
     if(e != 0)
     {
     	Log(lError) <<tlError(e);
@@ -293,7 +273,7 @@ double TCubeDCServo::getAcceleration()
 	int a(0), v(0);
 
 	int e = CC_GetVelParams(mSerial.c_str(), &a, &v);
-    sleep(10);
+
     if(e != 0)
     {
     	Log(lError) <<tlError(e);
@@ -301,10 +281,11 @@ double TCubeDCServo::getAcceleration()
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool TCubeDCServo::setVelocity(double v, double a, bool inThread)
+bool TCubeDCServo::setVelocityParameters(double v, double a, bool inThread)
 {
 	if(inThread)
     {
+    	//Check if motor is moving to absolute position
 		MotorCommand cmd(mcSetVelocityParameters, v, a);
 		post(cmd);
         mMotorCommandsPending++;
@@ -314,13 +295,17 @@ bool TCubeDCServo::setVelocity(double v, double a, bool inThread)
      	MOT_VelocityParameters p;
         CC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-        p.maxVelocity = v * mScalingFactors.velocity;
+        if(v != 0)
+        {
+	        p.maxVelocity = v * mScalingFactors.velocity;
+	        Log(lDebug3) << getName() << ": velocity -> "<<v;
+        }
+
         if(a != 0.0)
         {
         	p.acceleration = a * mScalingFactors.acceleration;
+	        Log(lDebug3) << getName() << ": acceleration -> "<<a;
         }
-
-        Log(lDebug) << getName() << ": velocity -> "<<v;
 
         int e = CC_SetVelParamsBlock(mSerial.c_str(), &p);
         mMotorCommandsPending--;
@@ -412,7 +397,7 @@ double TCubeDCServo::getJogVelocity()
     	Log(lError) <<tlError(e);
     }
 
-    return v /  mScalingFactors.velocity;
+    return v / mScalingFactors.velocity;
 }
 
 bool TCubeDCServo::setJogVelocity(double newVel)
@@ -542,5 +527,5 @@ bool TCubeDCServo::moveToPosition(double pos, bool inThread)
             return false;
         }
     }
-    return true;
+	return true;
 }

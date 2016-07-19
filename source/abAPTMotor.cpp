@@ -68,7 +68,7 @@ bool APTMotor::setJogMoveParameters(double v, double a)
 
 bool APTMotor::moveAbsolute(double position, double v, double a)
 {
-	setVelocity(v, a);
+	setVelocityParameters(v, a);
     return moveToPosition(position, true);
 }
 
@@ -120,14 +120,14 @@ double APTMotor::getPotentiometerVelocity()
 
 bool APTMotor::setVelocityForward(double vel)
 {
-	setVelocity(vel);
+	setVelocityParameters(vel);
     forward();
     return true;
 }
 
 bool APTMotor::setVelocityReverse(double vel)
 {
-	setVelocity(vel);
+	setVelocityParameters(vel);
     reverse();
     return true;
 }

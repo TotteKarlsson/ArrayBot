@@ -39,7 +39,24 @@ double MotorCommand::getSecondVariable() const
 string MotorCommand::asString() const
 {
 	stringstream s;
-    s<<toString(mCommand)<<":"<<getFirstVariable();
+    s<<toString(mCommand);
+    switch(mCommand)
+    {
+        case mcNone:                    break;
+        case mcStopHard:                break;
+        case mcStopProfiled:            break;
+        case mcForward:                 break;
+        case mcReverse:                 break;
+        case mcJogForward:              break;
+        case mcJogReverse:              break;
+        case mcMoveDistance:			s <<" : ("<<getFirstVariable()<<")"; break;
+        case mcMoveToPosition:          s <<" : ("<<getFirstVariable()<<")"; break;
+        case mcSetVelocity:         	s <<" : ("<<getFirstVariable()<<", "<<getSecondVariable()<<")"; break;
+        case mcSetVelocityParameters:   s <<" : ("<<getFirstVariable()<<", "<<getSecondVariable()<<")"; break;
+        case mcSetVelocityForward:      s <<" : ("<<getFirstVariable()<<")"; break;
+        case mcSetVelocityReverse:      s <<" : ("<<getFirstVariable()<<")"; break;
+    }
+
 	return s.str();
 }
 

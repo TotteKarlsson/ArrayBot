@@ -274,10 +274,11 @@ double LongTravelStage::getAcceleration()
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool LongTravelStage::setVelocity(double v, double a, bool inThread)
+bool LongTravelStage::setVelocityParameters(double v, double a, bool inThread)
 {
 	if(inThread)
     {
+    	//Check if motor is moving to absolute position
 		MotorCommand cmd(mcSetVelocityParameters, v, a);
 		post(cmd);
         mMotorCommandsPending++;
@@ -287,13 +288,17 @@ bool LongTravelStage::setVelocity(double v, double a, bool inThread)
      	MOT_VelocityParameters p;
         ISC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-        p.maxVelocity = v * mScalingFactors.velocity;
+        if(v != 0)
+        {
+	        p.maxVelocity = v * mScalingFactors.velocity;
+	        Log(lDebug3) << getName() << ": velocity -> "<<v;
+        }
+
         if(a != 0.0)
         {
         	p.acceleration = a * mScalingFactors.acceleration;
+	        Log(lDebug3) << getName() << ": acceleration -> "<<a;
         }
-
-        Log(lDebug) << getName() << ": velocity -> "<<v;
 
         int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
         mMotorCommandsPending--;
@@ -323,14 +328,14 @@ bool LongTravelStage::setAcceleration(double a)
        	return false;
     }
 
-	return false;
+	return true;
 }
 
 bool LongTravelStage::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();
 	int e = ISC_SetJogMode(mSerial.c_str(), (MOT_JogModes) jm, (MOT_StopModes) sm);
-    if(e != 0)
+    if(e)
     {
     	Log(lError) <<tlError(e);
         return false;
@@ -385,7 +390,7 @@ double LongTravelStage::getJogVelocity()
     	Log(lError) <<tlError(e);
     }
 
-    return v /  mScalingFactors.velocity;
+    return v / mScalingFactors.velocity;
 }
 
 bool LongTravelStage::setJogVelocity(double newVel)
@@ -470,11 +475,18 @@ void LongTravelStage::jogReverse(bool inThread)
 void LongTravelStage::forward(bool inThread)
 {
 	//TODO: use inThread logic
-    int e = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
-    if(e != 0)
+    if(mDesiredPosition != -1)
     {
-        Log(lError) <<tlError(e);
+        moveToPosition(mDesiredPosition);
     }
+    else
+    {
+    	int e = ISC_MoveAtVelocity(mSerial.c_str(), MOT_Forwards);
+    	if(e != 0)
+    	{
+        	Log(lError) <<tlError(e);
+		}
+	}
 }
 
 void LongTravelStage::reverse(bool inThread)
@@ -491,6 +503,8 @@ bool LongTravelStage::moveToPosition(double pos, bool inThread)
 {
 	if(inThread)
     {
+        //Set desired position here so it does not get changed in the thread
+		mDesiredPosition = pos;
 		MotorCommand cmd(mcMoveToPosition, pos);
 		post(cmd);
         mMotorCommandsPending++;
