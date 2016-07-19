@@ -49,11 +49,6 @@ private:
 	//Cleanup
 	void ClearStream();
 	void ClearinBuffer();
-
-
-
-	
-	
 };
 
 

@@ -17,7 +17,6 @@ ARDUINO::~ARDUINO()
 	delete SerialPort;
 	delete [] Buffer;
 	delete [] inBuffer;
-
 }
 
 bool ARDUINO::IsConnected()
@@ -38,7 +37,6 @@ bool ARDUINO::IsConnected()
 }
 
 ////////////////////////Echo Handling///////////////////////////////////////
-
 A_ECHO ARDUINO::CatchEcho()
 {
 		ClearinBuffer();
