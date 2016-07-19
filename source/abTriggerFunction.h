@@ -17,6 +17,9 @@
 
 //enum FireFunctionType {fftStop, fftMoveAbsolute};
 //string toString(FireFunctionType t);
+//TODO: These triggerfunctions may be replaced later
+//on by using pure process objects instead, like the MoveAbsoluteProcess
+
 using std::tr1::function;
 
 class APTMotor;
@@ -27,17 +30,13 @@ class AB_CORE TriggerFunction : public ABObject
                                             ~TriggerFunction(){}
         const string   	                    getTypeName() const {return "triggerFunction";}
         virtual bool				        execute() = 0;
+        virtual bool		   				isActive() = 0;
 
         									//!Ability to read/write trigger objects occurs using xml
 		virtual mtk::XMLElement* 			addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot) = 0;
-
-    protected:
-
 };
 
 //!Move absolute is a subclass of TriggerFunction.
-//TODO: These triggerfunctions may be replaced later
-//on by using pure process objects instead, like the MoveAbsoluteProcess
 class AB_CORE MoveAbsolute : public  TriggerFunction
 {
 	public:
@@ -46,6 +45,7 @@ class AB_CORE MoveAbsolute : public  TriggerFunction
         virtual bool	                    execute();
         const string   	                    getTypeName() const {return "absoluteMove";}
 
+        bool								isActive();
         void								setMotor(APTMotor* mtr){mMotor = mtr;}
         APTMotor*							getMotor(){return mMotor;}
 
