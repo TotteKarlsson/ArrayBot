@@ -312,25 +312,6 @@ bool LongTravelStage::setVelocityParameters(double v, double a, bool inThread)
    	return true;
 }
 
-bool LongTravelStage::setAcceleration(double a)
-{
- 	MOT_VelocityParameters p;
-    ISC_GetVelParamsBlock(mSerial.c_str(), &p);
-
-    p.acceleration = a * mScalingFactors.acceleration;
-	Log(lDebug) << getName()<<": acceleration -> "<<a;
-
-    int e = ISC_SetVelParamsBlock(mSerial.c_str(), &p);
-
-    if(e)
-    {
-        Log(lError) <<tlError(e);
-       	return false;
-    }
-
-	return true;
-}
-
 bool LongTravelStage::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();

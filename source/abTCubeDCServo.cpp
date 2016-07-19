@@ -319,24 +319,6 @@ bool TCubeDCServo::setVelocityParameters(double v, double a, bool inThread)
    	return true;
 }
 
-bool TCubeDCServo::setAcceleration(double a)
-{
- 	MOT_VelocityParameters parameters;
-    CC_GetVelParamsBlock(mSerial.c_str(), &parameters);
-
-    parameters.acceleration = a * mScalingFactors.acceleration;
-	Log(lDebug) << getName()<< ": acceleration -> "<<a;
-    int e = CC_SetVelParamsBlock(mSerial.c_str(), &parameters);
-
-    if(e)
-    {
-        Log(lError) <<tlError(e);
-       	return false;
-    }
-
-	return true;
-}
-
 bool TCubeDCServo::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();

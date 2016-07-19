@@ -68,7 +68,6 @@ class AB_CORE APTMotor : public APTDevice
         virtual bool	                    setVelocityParameters(double vel, double a = 0, bool inThread = true) = 0;
 
         virtual double                      getAcceleration() = 0;
-        virtual bool                        setAcceleration(double val) = 0;
 		virtual unsigned long 	            getStatusBits() = 0;
 
 						                    ///Control commands
