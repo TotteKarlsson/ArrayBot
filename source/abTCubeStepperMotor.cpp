@@ -314,24 +314,6 @@ bool TCubeStepperMotor::setVelocityParameters(double v, double a, bool inThread)
    	return true;
 }
 
-bool TCubeStepperMotor::setAcceleration(double a)
-{
- 	MOT_VelocityParameters p;
-    SCC_GetVelParamsBlock(mSerial.c_str(), &p);
-
-    p.acceleration = a * mScalingFactors.acceleration;
-	Log(lDebug) << getName()<< ": acceleration -> "<<a;
-
-    int e = SCC_SetVelParamsBlock(mSerial.c_str(), &p);
-    if(e)
-    {
-        Log(lError) <<tlError(e);
-		return false;
-    }
-
-	return true;
-}
-
 bool TCubeStepperMotor::setJogMoveMode(JogMoveMode jm)
 {
 	StopMode sm = getJogStopMode();
