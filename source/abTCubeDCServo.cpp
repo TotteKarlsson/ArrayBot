@@ -29,13 +29,13 @@ bool TCubeDCServo::connect()
 
 	//we need to find out what actuator is connected
     //USE THESE for ArrayBot
-//    mScalingFactors.position = 1919.64;
-//    mScalingFactors.velocity = 42941.66;
-//	mScalingFactors.acceleration = 14.66;
+    mScalingFactors.position = 1919.64;
+    mScalingFactors.velocity = 42941.66;
+	mScalingFactors.acceleration = 14.66;
 
-    mScalingFactors.position = 34304.0;
-    mScalingFactors.velocity = 767367.49;
-	mScalingFactors.acceleration = 261.93;
+//    mScalingFactors.position = 34304.0;
+//    mScalingFactors.velocity = 767367.49;
+//	mScalingFactors.acceleration = 261.93;
 
     if(res == 0)
     {
@@ -281,11 +281,10 @@ double TCubeDCServo::getAcceleration()
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool TCubeDCServo::setVelocityParameters(double v, double a, bool inThread)
+bool TCubeDCServo::setVelocity(double v, double a, bool inThread)
 {
 	if(inThread)
     {
-    	//Check if motor is moving to absolute position
 		MotorCommand cmd(mcSetVelocityParameters, v, a);
 		post(cmd);
         mMotorCommandsPending++;
@@ -321,12 +320,12 @@ bool TCubeDCServo::setVelocityParameters(double v, double a, bool inThread)
 
 bool TCubeDCServo::setAcceleration(double a)
 {
- 	MOT_VelocityParameters parameters;
-    CC_GetVelParamsBlock(mSerial.c_str(), &parameters);
+ 	MOT_VelocityParameters p;
+    CC_GetVelParamsBlock(mSerial.c_str(), &p);
 
-    parameters.acceleration = a * mScalingFactors.acceleration;
+    p.acceleration = a * mScalingFactors.acceleration;
 	Log(lDebug) << getName()<< ": acceleration -> "<<a;
-    int e = CC_SetVelParamsBlock(mSerial.c_str(), &parameters);
+    int e = CC_SetVelParamsBlock(mSerial.c_str(), &p);
 
     if(e)
     {

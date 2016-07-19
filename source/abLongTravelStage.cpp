@@ -429,7 +429,7 @@ double LongTravelStage::getJogAcceleration()
     int a, v;
     int e = ISC_GetJogVelParams(mSerial.c_str(), &a, &v);
 
-    if(e != 0)
+    if(e)
     {
     	Log(lError) <<tlError(e);
     }
@@ -485,8 +485,8 @@ void LongTravelStage::forward(bool inThread)
     	if(e != 0)
     	{
         	Log(lError) <<tlError(e);
-		}
-	}
+        }
+    }
 }
 
 void LongTravelStage::reverse(bool inThread)
