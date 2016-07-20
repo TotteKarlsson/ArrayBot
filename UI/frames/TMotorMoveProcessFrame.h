@@ -35,13 +35,14 @@ __published:	// IDE-managed Components
 	TButton *mDeleteTriggerB;
 	TListBox *mTriggersLB;
 	TPanel *Panel2;
+	TLabel *mHaveTriggerLabel;
 	TButton *mAddTriggerB;
 	void __fastcall MotorsCBClick(TObject *Sender);
 	void __fastcall MotorsCBChange(TObject *Sender);
 	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall TriggersLBClick(TObject *Sender);
 	void __fastcall mDeleteTriggerBClick(TObject *Sender);
-	void __fastcall mAddTriggerBClick(TObject *Sender);
+	void __fastcall AddTriggerBClick(TObject *Sender);
 
     private:	// User declarations
         AbsoluteMove* 	   			mMove;

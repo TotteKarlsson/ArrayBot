@@ -87,10 +87,6 @@ object Main: TMain
       TabWidth = 150
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mBottomPanel: TPanel
           Left = 0
           Top = 584
@@ -107,8 +103,6 @@ object Main: TMain
           Align = alTop
           AutoSize = True
           TabOrder = 1
-          ExplicitLeft = -16
-          ExplicitTop = 544
         end
         object mMiddlePanel: TPanel
           Left = 0
@@ -118,7 +112,6 @@ object Main: TMain
           Align = alClient
           AutoSize = True
           TabOrder = 2
-          ExplicitHeight = 482
           object JSGB: TGroupBox
             Left = 1
             Top = 1
@@ -133,7 +126,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitHeight = 480
             object mJSSpeedFastBtn: TSpeedButton
               Left = 307
               Top = 44
@@ -211,7 +203,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            ExplicitHeight = 480
             object LiftBtn: TSpeedButton
               Left = 16
               Top = 129
@@ -272,10 +263,6 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -283,7 +270,6 @@ object Main: TMain
           Height = 614
           Align = alClient
           TabOrder = 0
-          ExplicitTop = 105
         end
         object Panel1: TPanel
           Left = 0
@@ -292,7 +278,6 @@ object Main: TMain
           Height = 105
           Align = alBottom
           TabOrder = 1
-          ExplicitTop = 0
           object BitBtn1: TBitBtn
             Left = 178
             Top = 1
@@ -334,10 +319,6 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'

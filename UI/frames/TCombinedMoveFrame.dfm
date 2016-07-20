@@ -16,7 +16,7 @@ object CombinedMoveFrame: TCombinedMoveFrame
     Width = 723
     Height = 526
     Align = alClient
-    Caption = 'Combined Processes'
+    Caption = 'Parallell Processes'
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 2
@@ -106,8 +106,14 @@ object CombinedMoveFrame: TCombinedMoveFrame
           end
         end
         inherited mTriggersSheet: TTabSheet
-          inherited Panel1: TPanel
-            ExplicitWidth = 566
+          inherited Panel2: TPanel
+            Height = 377
+            inherited Panel1: TPanel
+              Top = 316
+            end
+            inherited mTriggersLB: TListBox
+              Height = 315
+            end
           end
         end
       end

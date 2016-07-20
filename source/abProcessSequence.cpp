@@ -54,6 +54,38 @@ bool ProcessSequence::read(const string& fName)
     return false;
 }
 
+bool ProcessSequence::moveForward(Process* ps)
+{
+	//Check first if it is possible
+    list<Process*>::iterator it1 = find(mProcesses.begin(), mProcesses.end(), ps);
+    list<Process*>::iterator it2 = it1;
+    it2++;
+
+    if(it1 != mProcesses.end() || it2 != mProcesses.end())
+    {
+        swap(*it1, *it2);
+        return true;
+    }
+    return false;
+}
+
+bool ProcessSequence::moveBack(Process* ps)
+{
+	//Check first if it is possible
+    list<Process*>::iterator it1 = find(mProcesses.begin(), mProcesses.end(), ps);
+    list<Process*>::iterator it2 = it1;
+    it2--;
+
+    if(it1 != mProcesses.begin() || it2 != mProcesses.begin())
+    {
+        swap(*it1, *it2);
+        return true;
+    }
+    return false;
+}
+
+
+
 bool ProcessSequence::isFirst(Process* p)
 {
 	return p == *(mProcesses.begin());

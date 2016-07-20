@@ -3,6 +3,7 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include <list>
+#include <deque>
 #include <string>
 #include "mtkINISection.h"
 #include "mtkProperty.h"
@@ -10,6 +11,7 @@
 //---------------------------------------------------------------------------
 
 using std::list;
+using std::deque;
 using std::string;
 using mtk::IniSection;
 using mtk::Property;
@@ -51,6 +53,10 @@ class AB_CORE ProcessSequence : public ABObject
         string 								getFileFolder();
         int									getNumberOfProcesses(){return mProcesses.size();}
         ArrayBot*							getArrayBot(){return &mAB;}
+
+        bool								moveForward(Process* ps);
+        bool								moveBack(Process* ps);
+
 
     protected:
     	ArrayBot&							mAB;

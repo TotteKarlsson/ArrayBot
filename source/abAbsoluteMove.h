@@ -9,6 +9,7 @@ class AB_CORE AbsoluteMove : public ab::Move
 			        				AbsoluteMove( const string& lbl, APTMotor* mtr = NULL, double pos = -1, double maxVel = 0, double acc = 0);
 				        			~AbsoluteMove(){}
 		const string 				getTypeName() const;
+        virtual void				addTrigger(Trigger* t);
 
 
         bool 			            setPosition(double pos){mPosition = pos; return true;}

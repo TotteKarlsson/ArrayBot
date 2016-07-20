@@ -26,6 +26,8 @@ TABProcessSequencerFrame *ABProcessSequencerFrame;
 extern string gAppDataFolder;
 using namespace mtk;
 
+int selectItem(TObject* p, TListBox* lb);
+
 int TABProcessSequencerFrame::mFrameNr = 0;
 __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner)
 	: TFrame(Owner),
@@ -118,6 +120,7 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
     mProcessesLB->Clear();
     string sName(stdstr(mSequencesCB->Items->Strings[index]));
 
+    //Repopulate the listbox
 	if(mProcessSequencer.selectSequence(sName))
     {
     	//Fill out listbox
@@ -181,6 +184,7 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
     {
 	    TCombinedMoveFrame1->Visible = false;//(mAB, NULL);
 	    TTimeDelayFrame1->Visible = false;//(mAB, NULL);
+        updateSequenceArrows();
     	return;
     }
 
@@ -203,6 +207,38 @@ void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
             TTimeDelayFrame1->Visible = true;
             TTimeDelayFrame1->Align = alClient;
         }
+    }
+
+	updateSequenceArrows();
+}
+
+void TABProcessSequencerFrame::updateSequenceArrows()
+{
+	if(mProcessesLB->SelCount < 1 || mProcessesLB->Count <= 1)
+    {
+		mMoveSequenceUpBtn->Enabled = false;
+		mMoveSequenceDownBtn->Enabled = false;
+    	return;
+    }
+
+	//Depending which item is selected, enable/disable items
+
+	//Last item
+    if(mProcessesLB->ItemIndex > 0 && (mProcessesLB->ItemIndex + 1) == mProcessesLB->Count)
+    {
+		mMoveSequenceUpBtn->Enabled 	= true;
+		mMoveSequenceDownBtn->Enabled 	= false;
+    }
+    //First item
+    else if(mProcessesLB->ItemIndex == 0)
+    {
+		mMoveSequenceUpBtn->Enabled 	= false;
+		mMoveSequenceDownBtn->Enabled 	= true;
+    }
+    else
+    {
+		mMoveSequenceUpBtn->Enabled 	= true;
+		mMoveSequenceDownBtn->Enabled 	= true;
     }
 }
 
@@ -278,8 +314,6 @@ void __fastcall TABProcessSequencerFrame::removeProcessAExecute(TObject *Sender)
     }
 
     int i = mProcessesLB->ItemIndex;
-
-
     Process* p = (Process*) mProcessesLB->Items->Objects[i];
 
     s->remove(p);
@@ -354,7 +388,57 @@ void __fastcall TABProcessSequencerFrame::TCombinedMoveFrame1mProcessNameEKeyDow
 	    int indx = mProcessesLB->ItemIndex;
  	   	mProcessesLB->Items->Strings[indx] = vclstr(TCombinedMoveFrame1->mProcessNameE->getValue());
     }
-
 }
 
 
+void __fastcall TABProcessSequencerFrame::mMoveSequenceDownBtnClick(TObject *Sender)
+{
+	//Get selected sequence
+    int i = mProcessesLB->ItemIndex;
+    Process* p = (Process*) mProcessesLB->Items->Objects[i];
+    if(p)
+    {
+    	mProcessSequencer.getCurrentSequence()->moveForward(p);
+
+        //Rebuild the Listbox
+        mSequencesCBChange(Sender);
+
+        //Select process
+        int index = selectItem((TObject*) p, mProcessesLB);
+    }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TABProcessSequencerFrame::mMoveSequenceUpBtnClick(TObject *Sender)
+{
+	//Get selected sequence
+    int i = mProcessesLB->ItemIndex;
+    Process* p = (Process*) mProcessesLB->Items->Objects[i];
+    if(p)
+    {
+    	mProcessSequencer.getCurrentSequence()->moveBack(p);
+
+        //Rebuild the Listbox
+        mSequencesCBChange(Sender);
+
+        //Select process
+        int index = selectItem((TObject*) p, mProcessesLB);
+    }
+}
+
+//---------------------------------------------------------------------------
+int selectItem(TObject* p, TListBox* lb)
+{
+	//find the item in the list box;
+	for(int i = 0; i < lb->Count; i++)
+    {
+    	if(lb->Items->Objects[i] == p)
+        {
+        	lb->Selected[i] = true;
+            lb->OnClick(NULL);
+            return i;
+        }
+    }
+    return -1;
+}

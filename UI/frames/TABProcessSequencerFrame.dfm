@@ -50,9 +50,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Align = alTop
     TabOrder = 1
     inline TTimeDelayFrame1: TTimeDelayFrame
-      Left = 233
+      Left = 281
       Top = 1
-      Width = 767
+      Width = 719
       Height = 528
       Align = alClient
       AutoSize = True
@@ -84,18 +84,19 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     object mLeftPanel: TPanel
       Left = 1
       Top = 1
-      Width = 232
+      Width = 280
       Height = 528
       Align = alLeft
       TabOrder = 1
       object GroupBox1: TGroupBox
         Left = 1
         Top = 129
-        Width = 230
+        Width = 278
         Height = 398
         Align = alClient
         Caption = 'Sequence'
         TabOrder = 0
+        ExplicitWidth = 230
         object mDeleteMoveBtn: TButton
           Left = 13
           Top = 199
@@ -110,6 +111,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Width = 200
           Height = 102
           ItemHeight = 23
+          MultiSelect = True
           TabOrder = 1
           OnClick = mProcessesLBClick
         end
@@ -142,16 +144,37 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Action = addCombinedMovesProcessA
           TabOrder = 4
         end
+        object mMoveSequenceUpBtn: TButton
+          Left = 227
+          Top = 107
+          Width = 33
+          Height = 25
+          Caption = #9650
+          TabOrder = 5
+          OnClick = mMoveSequenceUpBtnClick
+        end
+        object mMoveSequenceDownBtn: TButton
+          Left = 227
+          Top = 138
+          Width = 33
+          Height = 25
+          Caption = #9660
+          TabOrder = 6
+          OnClick = mMoveSequenceDownBtnClick
+        end
       end
       object GroupBox2: TGroupBox
         Left = 1
         Top = 1
-        Width = 230
+        Width = 278
         Height = 128
         Align = alTop
         Caption = 'Sequences'
         Padding.Top = 10
         TabOrder = 1
+        ExplicitLeft = -2
+        ExplicitTop = -5
+        ExplicitWidth = 230
         object mAddSeqBtn: TButton
           Left = 13
           Top = 78
@@ -195,9 +218,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       end
     end
     inline TCombinedMoveFrame1: TCombinedMoveFrame
-      Left = 233
+      Left = 281
       Top = 1
-      Width = 767
+      Width = 719
       Height = 528
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
@@ -212,28 +235,31 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       ExplicitWidth = 767
       ExplicitHeight = 528
       inherited GroupBox2: TGroupBox
-        Width = 767
+        Width = 719
         Height = 528
         ExplicitWidth = 767
         ExplicitHeight = 528
         inherited GroupBox1: TGroupBox
+          Width = 175
           Height = 417
+          ExplicitWidth = 175
           ExplicitHeight = 417
         end
         inherited Panel1: TPanel
-          Width = 763
+          Width = 715
           ExplicitWidth = 763
           inherited mProcessNameE: TSTDStringLabeledEdit
             OnKeyDown = TCombinedMoveFrame1mProcessNameEKeyDown
           end
         end
         inherited TMotorMoveProcessFrame1: TMotorMoveProcessFrame
-          Width = 618
+          Left = 177
+          Width = 540
           Height = 417
           ExplicitWidth = 618
           ExplicitHeight = 417
           inherited PageControl1: TPageControl
-            Width = 618
+            Width = 540
             Height = 417
             ExplicitWidth = 618
             ExplicitHeight = 417
@@ -262,6 +288,8 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
               end
             end
             inherited TabSheet3: TTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 34
               ExplicitWidth = 443
               ExplicitHeight = 266
             end
