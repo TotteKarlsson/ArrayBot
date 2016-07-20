@@ -281,7 +281,7 @@ double TCubeDCServo::getAcceleration()
   	return (double) a / mScalingFactors.acceleration;
 }
 
-bool TCubeDCServo::setVelocity(double v, double a, bool inThread)
+bool TCubeDCServo::setVelocityParameters(double v, double a, bool inThread)
 {
 	if(inThread)
     {
