@@ -28,6 +28,11 @@ bool MoveAbsolute::execute()
 	return true;
 }
 
+bool MoveAbsolute::isActive()
+{
+	return mMotor ? mMotor->isActive() : false;
+}
+
 mtk::XMLElement* MoveAbsolute::addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot)
 {
     //Create XML for saving to file

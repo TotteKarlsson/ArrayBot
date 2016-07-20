@@ -2,6 +2,7 @@
 #include "abAbsoluteMove.h"
 #include "abAPTMotor.h"
 #include "abPosition.h"
+#include "abTriggerFunction.h"
 //---------------------------------------------------------------------------
 
 AbsoluteMove::AbsoluteMove(const string& lbl, APTMotor* mtr, double pos, double maxVel, double acc)
@@ -26,7 +27,18 @@ bool AbsoluteMove::isDone()
         {
         	return false;
         }
-
+        //Also, if we did setoff a trigger, check on that and add that to the lifetime of
+        //the process
+		if(mTrigger)
+        {
+        	if(mTrigger->isTriggered())
+            {
+            	if(mTrigger->getTriggerFunction()->isActive())
+                {
+                	return false;
+                }
+            }
+        }
     	double p = o->getPosition();
     	return (isEqual(p, mPosition, mPositionResolution)) ? true : false;
     }

@@ -15,6 +15,7 @@ namespace ab
 }
 
 class ArrayBot;
+
 //---------------------------------------------------------------------------
 class AB_CORE ProcessSequencer : public ABObject
 {
