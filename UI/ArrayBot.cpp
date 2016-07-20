@@ -88,7 +88,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         }
 
         setupLogging();
-        Log(lInfo) << "The Logfile was opened..";
+
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 

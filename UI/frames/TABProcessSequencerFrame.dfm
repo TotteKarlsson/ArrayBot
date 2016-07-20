@@ -240,6 +240,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Height = 417
           ExplicitWidth = 175
           ExplicitHeight = 417
+          inherited Button1: TButton
+            OnClick = TCombinedMoveFrame1Button1Click
+          end
         end
         inherited Panel1: TPanel
           Width = 715
@@ -271,18 +274,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
               end
             end
             inherited mTriggersSheet: TTabSheet
-              ExplicitWidth = 532
-              ExplicitHeight = 379
               inherited Panel2: TPanel
-                Height = 379
-                ExplicitHeight = 379
                 inherited Panel1: TPanel
-                  Top = 318
-                  ExplicitTop = 318
-                end
-                inherited mTriggersLB: TListBox
-                  Height = 317
-                  ExplicitHeight = 317
+                  ExplicitTop = 205
                 end
               end
             end

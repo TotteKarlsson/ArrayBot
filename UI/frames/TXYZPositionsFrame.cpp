@@ -24,10 +24,10 @@ __fastcall TXYZPositionsFrame::TXYZPositionsFrame(TComponent* Owner, const XYZUn
 
 void __fastcall TXYZPositionsFrame::PullPosTimerTimer(TObject *Sender)
 {
-	string dblFormat("%.4f");
+	string dblFormat("%.3f");
     if(mUnit.getXMotor())
     {
-        mXPosL->Caption = vclstr(mtk::toString(mUnit.getXMotor()->getPosition(), dblFormat) + " mm");
+        mXPosL->Caption = vclstr(mtk::toString(mUnit.getXMotor()->getPosition(), dblFormat));
     }
     else
     {

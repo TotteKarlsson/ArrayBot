@@ -874,12 +874,12 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
   end
   object logLabel: TLabel
     Left = 34
-    Top = 192
-    Width = 4
-    Height = 18
+    Top = 261
+    Width = 6
+    Height = 24
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clRed
-    Font.Height = -16
+    Font.Color = clWhite
+    Font.Height = -21
     Font.Name = 'Myriad Pro'
     Font.Style = []
     ParentFont = False
@@ -893,10 +893,8 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
     Align = alClient
     Stretch = True
     Transparent = True
-    ExplicitLeft = 3
-    ExplicitTop = 9
-    ExplicitWidth = 622
-    ExplicitHeight = 292
+    ExplicitLeft = -3
+    ExplicitTop = 48
   end
   object ActionList1: TActionList
     Left = 304

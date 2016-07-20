@@ -52,9 +52,6 @@ Coordinates=368,1,148,51
 [LiftGB]
 Coordinates=17,195,45,51
 
-[Btnpanel]
-Coordinates=234,195,58,51
-
 [mJSSpeedFastBtn]
 Coordinates=944,209,105,33
 
@@ -114,4 +111,7 @@ Coordinates=228,373,67,33
 
 [mBottomPanel]
 Coordinates=750,333,87,51
+
+[mButtonPanel]
+Coordinates=234,195,58,51
 

@@ -13,21 +13,21 @@ object XYZPositionsFrame: TXYZPositionsFrame
     Caption = 'XYZUnit Positions'
     TabOrder = 0
     object Label1: TLabel
-      Left = 47
+      Left = 36
       Top = 33
       Width = 6
       Height = 13
       Caption = 'X'
     end
     object Label2: TLabel
-      Left = 47
+      Left = 36
       Top = 62
       Width = 6
       Height = 13
       Caption = 'Y'
     end
     object Label3: TLabel
-      Left = 48
+      Left = 36
       Top = 91
       Width = 6
       Height = 13

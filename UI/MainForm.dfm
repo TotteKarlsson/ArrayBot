@@ -20,113 +20,125 @@ object Main: TMain
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 23
-  object Btnpanel: TPanel
-    Left = 960
+  object mButtonPanel: TPanel
+    Left = 904
     Top = 0
-    Width = 127
+    Width = 183
     Height = 791
     Align = alRight
     TabOrder = 0
     object mAboutBtn: TSpeedButton
       Left = 1
       Top = 1
-      Width = 125
+      Width = 181
       Height = 134
       Align = alTop
       AllowAllUp = True
       Caption = 'About'
       OnClick = mAboutBtnClick
       ExplicitTop = -57
+      ExplicitWidth = 125
     end
     object mJSCSBtn: TSpeedButton
       Left = 1
       Top = 135
-      Width = 125
+      Width = 181
       Height = 138
       Align = alTop
       AllowAllUp = True
       Caption = 'Enable JS'
       OnClick = JSControlClick
+      ExplicitWidth = 125
     end
     object BottomBtnPanel: TPanel
       Left = 1
       Top = 538
-      Width = 125
+      Width = 181
       Height = 252
       Align = alBottom
       AutoSize = True
       TabOrder = 0
+      ExplicitWidth = 125
       object Button5: TSpeedButton
         Left = 1
         Top = 126
-        Width = 123
+        Width = 179
         Height = 125
         Action = FileExit1
         Align = alBottom
+        ExplicitWidth = 123
       end
       object Button7: TSpeedButton
         Left = 1
         Top = 1
-        Width = 123
+        Width = 179
         Height = 125
         Action = stopAllA
         Align = alBottom
         BiDiMode = bdLeftToRight
         ParentBiDiMode = False
+        ExplicitWidth = 123
       end
     end
   end
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 960
+    Width = 904
     Height = 791
     Align = alClient
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
     TabOrder = 1
+    ExplicitWidth = 960
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 958
+      Width = 902
       Height = 789
       ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
       TabWidth = 150
+      ExplicitWidth = 958
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitWidth = 950
         object mBottomPanel: TPanel
           Left = 0
-          Top = 584
-          Width = 950
-          Height = 135
+          Top = 552
+          Width = 894
+          Height = 167
           Align = alBottom
           TabOrder = 0
+          ExplicitWidth = 950
         end
         object mTopPanel: TPanel
           Left = 0
           Top = 0
-          Width = 950
+          Width = 894
           Height = 187
           Align = alTop
           AutoSize = True
           TabOrder = 1
+          ExplicitWidth = 950
         end
         object mMiddlePanel: TPanel
           Left = 0
           Top = 187
-          Width = 950
-          Height = 397
+          Width = 894
+          Height = 365
           Align = alClient
           AutoSize = True
           TabOrder = 2
+          ExplicitWidth = 950
+          ExplicitHeight = 397
           object JSGB: TGroupBox
             Left = 1
             Top = 1
             Width = 461
-            Height = 395
+            Height = 363
             Align = alLeft
             Caption = 'Joystick'
             Font.Charset = DEFAULT_CHARSET
@@ -136,6 +148,7 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 0
+            ExplicitHeight = 395
             object mJSSpeedFastBtn: TSpeedButton
               Left = 307
               Top = 44
@@ -184,8 +197,8 @@ object Main: TMain
           object LiftGB: TGroupBox
             Left = 462
             Top = 1
-            Width = 487
-            Height = 395
+            Width = 431
+            Height = 363
             Align = alClient
             Caption = 'Lift'
             Font.Charset = DEFAULT_CHARSET
@@ -195,6 +208,8 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 1
+            ExplicitWidth = 487
+            ExplicitHeight = 395
             object LiftBtn: TSpeedButton
               Left = 16
               Top = 129
@@ -248,24 +263,28 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
+        ExplicitWidth = 950
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
+        ExplicitWidth = 950
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
-          Width = 950
+          Width = 894
           Height = 614
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 950
         end
         object Panel1: TPanel
           Left = 0
           Top = 614
-          Width = 950
+          Width = 894
           Height = 105
           Align = alBottom
           TabOrder = 1
+          ExplicitWidth = 950
           object BitBtn1: TBitBtn
             Left = 178
             Top = 1
@@ -307,12 +326,12 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
+        ExplicitWidth = 950
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = -1
-        ExplicitTop = 70
+        ExplicitWidth = 950
         object SwitchJSBtn: TSpeedButton
           Left = 599
           Top = 176
@@ -444,17 +463,19 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
+        ExplicitWidth = 950
         object BottomPanel: TPanel
           Left = 0
           Top = 0
-          Width = 950
+          Width = 894
           Height = 719
           Align = alClient
           TabOrder = 0
+          ExplicitWidth = 950
           object infoMemo: TMemo
             Left = 1
             Top = 31
-            Width = 948
+            Width = 892
             Height = 687
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
@@ -467,16 +488,18 @@ object Main: TMain
             ScrollBars = ssBoth
             TabOrder = 0
             WordWrap = False
+            ExplicitWidth = 948
           end
           object ToolBar1: TToolBar
             Left = 1
             Top = 1
-            Width = 948
+            Width = 892
             Height = 30
             AutoSize = True
             ButtonHeight = 30
             Caption = 'ToolBar1'
             TabOrder = 1
+            ExplicitWidth = 948
             object BitBtn2: TBitBtn
               Left = 0
               Top = 0

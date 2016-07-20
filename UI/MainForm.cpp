@@ -132,12 +132,14 @@ void __fastcall	TMain::setupUIFrames()
 
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
-    f1->Parent = this->mTopPanel;
-    f1->Align = alLeft;
+    f1->Parent = this->mButtonPanel;
+    f1->Align = alBottom;
 
     TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
-    f2->Parent = this->mTopPanel;
-    f2->Align = alLeft;
+    f2->Parent = this->mButtonPanel;
+    f2->Align = alBottom;
+
+
     this->mTopPanel->Top = 0;
     this->mTopPanel->Refresh();
 

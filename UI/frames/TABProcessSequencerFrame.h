@@ -65,6 +65,7 @@ class TABProcessSequencerFrame : public TFrame
           TShiftState Shift);
 	void __fastcall mMoveSequenceDownBtnClick(TObject *Sender);
 	void __fastcall mMoveSequenceUpBtnClick(TObject *Sender);
+	void __fastcall TCombinedMoveFrame1Button1Click(TObject *Sender);
 
 	private:	// User declarations
         ArrayBot&					mAB;

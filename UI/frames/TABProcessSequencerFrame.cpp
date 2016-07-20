@@ -158,6 +158,9 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
 {
     if(mStartBtn->Caption == "Start")
     {
+    	//Save current sequence
+       	saveSequence();
+
         mAB.disableJoyStickAxes();
     	mProcessSequencer.start(true);
 		mSequenceStatusTimer->Enabled = true;
@@ -324,6 +327,7 @@ void __fastcall TABProcessSequencerFrame::removeProcessAExecute(TObject *Sender)
 		mProcessesLB->ItemIndex = 0;
 		mProcessesLBClick(NULL);
     }
+    saveSequence();
 }
 
 //---------------------------------------------------------------------------
@@ -362,6 +366,9 @@ void __fastcall TABProcessSequencerFrame::addTimeDelayProcessExecute(TObject *Se
     int indx = mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
     mProcessesLB->ItemIndex = indx;
 	mProcessesLBClick(NULL);
+
+
+    saveSequence();
 }
 
 
@@ -442,3 +449,12 @@ int selectItem(TObject* p, TListBox* lb)
     }
     return -1;
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TABProcessSequencerFrame::TCombinedMoveFrame1Button1Click(TObject *Sender)
+{
+	TCombinedMoveFrame1->addMoveAExecute(Sender);
+    saveSequence();
+}
+
+

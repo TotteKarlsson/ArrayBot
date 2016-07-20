@@ -53,7 +53,7 @@ class TMain : public TRegistryForm
         TApplicationEvents *ApplicationEvents1;
 	TAction *reInitBotA;
         TAction *ShutDownA;
-	TPanel *Btnpanel;
+	TPanel *mButtonPanel;
 	TFileExit *FileExit1;
 	TPanel *TopPanel;
 	TPageControl *PageControl1;
