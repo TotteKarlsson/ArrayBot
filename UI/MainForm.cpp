@@ -132,14 +132,14 @@ void __fastcall	TMain::setupUIFrames()
 
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
-    f1->Parent = this->mTopMainPanel;
+    f1->Parent = this->mTopPanel;
     f1->Align = alLeft;
 
     TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
-    f2->Parent = this->mTopMainPanel;
+    f2->Parent = this->mTopPanel;
     f2->Align = alLeft;
-    this->mTopMainPanel->Top = 0;
-
+    this->mTopPanel->Top = 0;
+    this->mTopPanel->Refresh();
 
     //Over ride joysticks button events  (cycle speeds and XY motions)
     mAB->getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
@@ -203,7 +203,7 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->init();
 
 	mSequencerButtons = new TSequencerButtonsFrame(*(mAB), mBottomPanel);
-	mSequencerButtons->Parent = mBottomPanel;
+	mSequencerButtons->Parent = mTopPanel;
     mSequencerButtons->Align = alClient;
 	mSequencerButtons->update();
 
@@ -401,7 +401,14 @@ void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
 void TMain::onJSButton5Click()
 {
 	//Cycle xy setting
-    mXYCtrlRG->ItemIndex = (mXYCtrlRG->ItemIndex < 3) ? mXYCtrlRG->ItemIndex++ : 0;
+	if(mXYCtrlRG->ItemIndex < 3)
+    {
+    	mXYCtrlRG->ItemIndex++;
+    }
+    else
+    {
+    	mXYCtrlRG->ItemIndex = 0;
+    }
 }
 
 void TMain::onJSButton6Click()

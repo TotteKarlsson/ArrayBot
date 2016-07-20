@@ -97,14 +97,15 @@ class TMain : public TRegistryForm
 	TTabSheet *mMoveSequencesPage;
 	TTimer *WaitForDeviceInitTimer;
 	TPanel *mBottomPanel;
-	TPanel *mTopMainPanel;
+	TPanel *mTopPanel;
 	TTabSheet *RibbonLifterTabSheet;
 	TPanel *Panel1;
 	TBitBtn *BitBtn1;
 	TBitBtn *ReInitBotBtn;
+	TPanel *mMiddlePanel;
 	TSpeedButton *mJSCSBtn;
 	TSpeedButton *SwitchJSBtn;
-	TPanel *mMiddlePanel;
+	TRadioGroup *RadioGroup1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -134,7 +135,6 @@ class TMain : public TRegistryForm
 	void __fastcall SwitchJSBtnClick(TObject *Sender);
 
     private:
-//        TThreadMethod                   logMsgMethod;
         LogFileReader                   mLogFileReader;
         void __fastcall                 logMsg();
 

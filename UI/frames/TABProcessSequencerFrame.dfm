@@ -16,7 +16,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Top = 530
     Width = 1001
     Height = 95
-    Align = alTop
+    Align = alBottom
     TabOrder = 0
     object mStatusLbl: TLabel
       Left = 154
@@ -47,7 +47,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Top = 0
     Width = 1001
     Height = 530
-    Align = alTop
+    Align = alClient
     TabOrder = 1
     inline TTimeDelayFrame1: TTimeDelayFrame
       Left = 281
@@ -64,9 +64,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       ParentFont = False
       TabOrder = 0
       Visible = False
-      ExplicitLeft = 233
+      ExplicitLeft = 281
       ExplicitTop = 1
-      ExplicitWidth = 767
+      ExplicitWidth = 719
       ExplicitHeight = 528
       inherited GroupBox1: TGroupBox
         Height = 528
@@ -96,12 +96,11 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         Align = alClient
         Caption = 'Sequence'
         TabOrder = 0
-        ExplicitWidth = 230
         object mDeleteMoveBtn: TButton
-          Left = 13
-          Top = 199
-          Width = 200
-          Height = 50
+          Left = 219
+          Top = 162
+          Width = 54
+          Height = 34
           Action = removeProcessA
           TabOrder = 0
         end
@@ -109,7 +108,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Left = 13
           Top = 91
           Width = 200
-          Height = 102
+          Height = 105
           ItemHeight = 23
           MultiSelect = True
           TabOrder = 1
@@ -130,7 +129,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object Button1: TButton
           Left = 13
-          Top = 255
+          Top = 231
           Width = 200
           Height = 50
           Action = addTimeDelayProcess
@@ -138,7 +137,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object mAddMoveBtn: TButton
           Left = 13
-          Top = 317
+          Top = 293
           Width = 200
           Height = 50
           Action = addCombinedMovesProcessA
@@ -146,7 +145,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object mMoveSequenceUpBtn: TButton
           Left = 227
-          Top = 107
+          Top = 91
           Width = 33
           Height = 25
           Caption = #9650
@@ -155,7 +154,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object mMoveSequenceDownBtn: TButton
           Left = 227
-          Top = 138
+          Top = 122
           Width = 33
           Height = 25
           Caption = #9660
@@ -172,9 +171,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         Caption = 'Sequences'
         Padding.Top = 10
         TabOrder = 1
-        ExplicitLeft = -2
-        ExplicitTop = -5
-        ExplicitWidth = 230
         object mAddSeqBtn: TButton
           Left = 13
           Top = 78
@@ -230,14 +226,14 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 233
+      ExplicitLeft = 281
       ExplicitTop = 1
-      ExplicitWidth = 767
+      ExplicitWidth = 719
       ExplicitHeight = 528
       inherited GroupBox2: TGroupBox
         Width = 719
         Height = 528
-        ExplicitWidth = 767
+        ExplicitWidth = 719
         ExplicitHeight = 528
         inherited GroupBox1: TGroupBox
           Width = 175
@@ -247,7 +243,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         inherited Panel1: TPanel
           Width = 715
-          ExplicitWidth = 763
+          ExplicitWidth = 715
           inherited mProcessNameE: TSTDStringLabeledEdit
             OnKeyDown = TCombinedMoveFrame1mProcessNameEKeyDown
           end
@@ -256,15 +252,26 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Left = 177
           Width = 540
           Height = 417
-          ExplicitWidth = 618
+          ExplicitLeft = 177
+          ExplicitWidth = 540
           ExplicitHeight = 417
           inherited PageControl1: TPageControl
             Width = 540
             Height = 417
-            ExplicitWidth = 618
+            ExplicitWidth = 540
             ExplicitHeight = 417
+            inherited TabSheet1: TTabSheet
+              ExplicitWidth = 532
+              ExplicitHeight = 379
+              inherited MainGB: TGroupBox
+                Width = 532
+                Height = 379
+                ExplicitWidth = 532
+                ExplicitHeight = 379
+              end
+            end
             inherited mTriggersSheet: TTabSheet
-              ExplicitWidth = 610
+              ExplicitWidth = 532
               ExplicitHeight = 379
               inherited Panel2: TPanel
                 Height = 379
@@ -272,26 +279,12 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
                 inherited Panel1: TPanel
                   Top = 318
                   ExplicitTop = 318
-                  ExplicitWidth = 183
-                  inherited mDeleteTriggerB: TButton
-                    ExplicitLeft = 91
-                  end
-                  inherited mAddTriggerB: TButton
-                    ExplicitLeft = 1
-                    ExplicitTop = 1
-                  end
                 end
                 inherited mTriggersLB: TListBox
                   Height = 317
                   ExplicitHeight = 317
                 end
               end
-            end
-            inherited TabSheet3: TTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 34
-              ExplicitWidth = 443
-              ExplicitHeight = 266
             end
           end
         end
@@ -302,8 +295,8 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Enabled = False
     Interval = 100
     OnTimer = mSequenceTimerTimer
-    Left = 608
-    Top = 192
+    Left = 360
+    Top = 552
   end
   object Actions: TActionList
     Left = 544
@@ -313,7 +306,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       OnExecute = addCombinedMovesProcessAExecute
     end
     object removeProcessA: TAction
-      Caption = 'Remove Current'
+      Caption = #10005
       OnExecute = removeProcessAExecute
     end
     object addTimeDelayProcess: TAction

@@ -38,6 +38,16 @@ object Main: TMain
       OnClick = mAboutBtnClick
       ExplicitTop = -57
     end
+    object mJSCSBtn: TSpeedButton
+      Left = 1
+      Top = 135
+      Width = 125
+      Height = 138
+      Align = alTop
+      AllowAllUp = True
+      Caption = 'Enable JS'
+      OnClick = JSControlClick
+    end
     object BottomBtnPanel: TPanel
       Left = 1
       Top = 538
@@ -95,7 +105,7 @@ object Main: TMain
           Align = alBottom
           TabOrder = 0
         end
-        object mTopMainPanel: TPanel
+        object mTopPanel: TPanel
           Left = 0
           Top = 0
           Width = 950
@@ -153,24 +163,6 @@ object Main: TMain
               GroupIndex = 15
               Caption = 'Slow'
               OnClick = JSSpeedBtnClick
-            end
-            object mJSCSBtn: TSpeedButton
-              Left = 129
-              Top = 272
-              Width = 120
-              Height = 105
-              AllowAllUp = True
-              Caption = 'Enable JS'
-              OnClick = JSControlClick
-            end
-            object SwitchJSBtn: TSpeedButton
-              Left = 15
-              Top = 272
-              Width = 108
-              Height = 105
-              GroupIndex = 15
-              Caption = 'Switch JS'
-              OnClick = SwitchJSBtnClick
             end
             object mXYCtrlRG: TRadioGroup
               Left = 15
@@ -256,10 +248,6 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
@@ -323,10 +311,17 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
+        ExplicitLeft = -1
+        ExplicitTop = 70
+        object SwitchJSBtn: TSpeedButton
+          Left = 599
+          Top = 176
+          Width = 108
+          Height = 121
+          GroupIndex = 15
+          Caption = 'Switch'
+          OnClick = SwitchJSBtnClick
+        end
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 24
@@ -432,14 +427,23 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
         end
+        object RadioGroup1: TRadioGroup
+          Left = 463
+          Top = 160
+          Width = 130
+          Height = 145
+          Caption = 'JoyStick'
+          Enabled = False
+          ItemIndex = 0
+          Items.Strings = (
+            'White'
+            'Blue')
+          TabOrder = 1
+        end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

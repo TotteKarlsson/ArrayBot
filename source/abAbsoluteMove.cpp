@@ -84,7 +84,6 @@ void AbsoluteMove::addTrigger(Trigger* t)
     }
 }
 
-
 XMLElement* AbsoluteMove::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file
