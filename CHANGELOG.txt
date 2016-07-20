@@ -1,3 +1,45 @@
+Release 0.6.5 (Jul 20)
+=======================
+* Moved sequence shortcut bottoms to top of page
+* Changed precision of motor position on front page to 4 decimals
+* Fixed bug when adding a trigger from the UI
+* Added logic to handle life time of a triggered process
+* Added some arduino stuff
+* Removed setAcceleration function -> use setVelocityParameters instead
+* Simplifying setting of velocity + acceleration
+* Added creation of a TriggerFunction
+* Worked on Trigger functionality, adding/deleting triggers
+* More triggering code
+* Adding trigger functions
+* Got XML reading of triggers partly implemented
+* Changing so that processes need to call virtual init function to be initialized before executing a sequence
+* Added logic operator logic
+* Getting triggers out to the UI
+* Changes to "Move To" position logic
+* Renamed some frames
+* Adding a positional trigger frame
+* More UI fixes
+* Added update mechanism of sequencer buttons
+* Fixed many UI inconsistencies
+* Improving UI features, fonts etc..
+* Updated the XML format for saving a sequence
+* Got the TimeDelay process implemented
+* Got Timedelay UI frame implemented
+* Updated Doxygen docs
+* Creating frame for entering a TimeDelay Process
+* Simplifying triggering functionality
+* Using tr1 function, bind logic for trigger functions
+* Changed set velocity to use the motorcommand processor
+* More code for positional triggering of motors
+* Creating specialized move classes: Absolute, Relative and Continuous
+* Move is now an abstract class
+* Added lift distance for the Ribbon lifter
+* Fixed lifting bug
+* Updating RibbonLifter
+* Implementing the Ribbon lifter
+* Adding code for lifting the ribbon in one action (will not be used -> use
+  sequencer instead
+
 Release 0.6.4 (Jul 6)
 =======================
 * Fixed lifting bug
