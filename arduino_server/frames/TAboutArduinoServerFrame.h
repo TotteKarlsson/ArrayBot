@@ -1,5 +1,5 @@
-#ifndef TAboutArrayBotFrameH
-#define TAboutArrayBotFrameH
+#ifndef TAboutArduinoServerFrameH
+#define TAboutArduinoServerFrameH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -21,7 +21,7 @@
 using std::string;
 using namespace mtk;
 //---------------------------------------------------------------------------
-class PACKAGE TAboutArrayBotFrame : public TFrame
+class PACKAGE TAboutArduinoServerFrame : public TFrame
 {
 __published:	// IDE-managed Components
     TLabel *Label1;
@@ -59,10 +59,10 @@ __published:	// IDE-managed Components
 
 
     public:		// User declarations
-                                            __fastcall  TAboutArrayBotFrame(TComponent* Owner);
+                                            __fastcall  TAboutArduinoServerFrame(TComponent* Owner);
         void                                            populate();
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TAboutArrayBotFrame *AboutArrayBotFrame;
+extern PACKAGE TAboutArduinoServerFrame *AboutArduinoServerFrame;
 //---------------------------------------------------------------------------
 #endif

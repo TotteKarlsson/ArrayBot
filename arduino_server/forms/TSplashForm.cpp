@@ -22,7 +22,7 @@ __fastcall TSplashForm::TSplashForm(TComponent* Owner)
 	mCanClose(true),
 	mMinimumTimeShowing(5*Poco::Timespan::SECONDS),
 	mMainAppIsRunning(false),
-	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsg)
+	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer", gLogFileName), logMsg)
 {
    	mLogFileReader.start(true);
 }
@@ -56,7 +56,7 @@ void __fastcall TSplashForm::logMsg()
 
     if(::contains("INFO", lmsg))
     {
-   		TAboutArrayBotFrame1->logLabel->Caption = lmsg.c_str();
+   		TAboutArduinoServerFrame1->logLabel->Caption = lmsg.c_str();
     }
 	mLogFileReader.purge();
     Application->ProcessMessages();
@@ -135,7 +135,7 @@ void __fastcall TSplashForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState
 void __fastcall TSplashForm::FormShow(TObject *Sender)
 {
     mShowTimer.start();
-    TAboutArrayBotFrame1->populate();
+    TAboutArduinoServerFrame1->populate();
 }
 
 bool TSplashForm::isOnShowTime()

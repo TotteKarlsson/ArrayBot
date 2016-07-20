@@ -1,8 +1,8 @@
-object AboutArrayBotForm: TAboutArrayBotForm
+object AboutArduinoServerForm: TAboutArduinoServerForm
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'About ArrayBot'
+  Caption = 'About ArduinoServer'
   ClientHeight = 296
   ClientWidth = 571
   Color = clBtnFace
@@ -68,7 +68,7 @@ object AboutArrayBotForm: TAboutArrayBotForm
       OnClick = Button4Click
     end
   end
-  inline TAboutArrayBotFrame1: TAboutArrayBotFrame
+  inline TAboutArduinoServerFrame1: TAboutArduinoServerFrame
     Left = 0
     Top = 0
     Width = 571

@@ -108,7 +108,7 @@ void loadStyles()
 void setupLogging()
 {
 	//Get Application folder
-	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
+	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer");
 	if(!folderExists(fldr))
 	{
 		createFolder(fldr);

@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include <sstream>
-#include "TAboutArrayBotFrame.h"
+#include "TAboutArduinoServerFrame.h"
 #include "mtkStringList.h"
 #include "mtkVCLUtils.h"
 #include "mtkApplicationInfo.h"
@@ -14,12 +14,12 @@
 #pragma link "mtkURLLabel"
 #pragma link "mtkURLLabel"
 #pragma resource "*.dfm"
-TAboutArrayBotFrame *AboutArrayBotFrame;
+TAboutArduinoServerFrame *AboutArduinoServerFrame;
 
 using namespace std;
 using namespace mtk;
 //---------------------------------------------------------------------------
-__fastcall TAboutArrayBotFrame::TAboutArrayBotFrame(TComponent* Owner)
+__fastcall TAboutArduinoServerFrame::TAboutArduinoServerFrame(TComponent* Owner)
 :
 TFrame(Owner),
 mRemoteDownloadURL(""),
@@ -27,7 +27,7 @@ mRemoteVersion("")
 {}
 
 //---------------------------------------------------------------------------
-void TAboutArrayBotFrame::populate()
+void TAboutArduinoServerFrame::populate()
 {
     stringstream ss;
     mtkApplicationInfo appInfo(Application);
@@ -40,7 +40,7 @@ void TAboutArrayBotFrame::populate()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArrayBotFrame::checkForUpdateAExecute(TObject *Sender)
+void __fastcall TAboutArduinoServerFrame::checkForUpdateAExecute(TObject *Sender)
 {
     if(startsWith(stdstr(checkForUpdateA->Caption), "Check"))
     {
@@ -56,7 +56,7 @@ void __fastcall TAboutArrayBotFrame::checkForUpdateAExecute(TObject *Sender)
     }
 }
 
-void __fastcall TAboutArrayBotFrame::retrieveChangeLogAExecute(TObject *Sender)
+void __fastcall TAboutArduinoServerFrame::retrieveChangeLogAExecute(TObject *Sender)
 {
     mGetNewestChangeLogThread.setURL(joinPath(joinPath(mRemoteDownloadURL, mRemoteVersion.asString("major.minor.patch"),'/'), "CHANGELOG.txt", '/'));
     mGetNewestChangeLogThread.assignCallBack(NotifyAboutChangeLog);
@@ -65,7 +65,7 @@ void __fastcall TAboutArrayBotFrame::retrieveChangeLogAExecute(TObject *Sender)
 
 //---------------------------------------------------------------------------
 //Executed in a thread
-void __fastcall TAboutArrayBotFrame::NotifyAboutUpdate(const string& data)
+void __fastcall TAboutArduinoServerFrame::NotifyAboutUpdate(const string& data)
 {
     if(data.size())
     {
@@ -108,7 +108,7 @@ void __fastcall TAboutArrayBotFrame::NotifyAboutUpdate(const string& data)
 }
 
 //Executed in a thread
-void __fastcall TAboutArrayBotFrame::NotifyAboutChangeLog(const string& data)
+void __fastcall TAboutArduinoServerFrame::NotifyAboutChangeLog(const string& data)
 {
     if(data.size())
     {
@@ -132,7 +132,7 @@ void __fastcall TAboutArrayBotFrame::NotifyAboutChangeLog(const string& data)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArrayBotFrame::ThreadCheckTimerTimer(TObject *Sender)
+void __fastcall TAboutArduinoServerFrame::ThreadCheckTimerTimer(TObject *Sender)
 {
     if(mStartCheckForChangeLogThread)
     {
@@ -142,7 +142,7 @@ void __fastcall TAboutArrayBotFrame::ThreadCheckTimerTimer(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArrayBotFrame::showChangeLogExecute(TObject *Sender)
+void __fastcall TAboutArduinoServerFrame::showChangeLogExecute(TObject *Sender)
 {
     try
     {
@@ -158,7 +158,7 @@ void __fastcall TAboutArrayBotFrame::showChangeLogExecute(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArrayBotFrame::CloseAExecute(TObject *Sender)
+void __fastcall TAboutArduinoServerFrame::CloseAExecute(TObject *Sender)
 {
 //    //Tell the application to go to the home tab
 //  	HWND hWnd = Application->MainForm->Handle;

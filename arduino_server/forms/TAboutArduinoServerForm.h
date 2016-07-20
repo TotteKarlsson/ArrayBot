@@ -1,16 +1,16 @@
-#ifndef TAboutArrayBotFormH
-#define TAboutArrayBotFormH
+#ifndef TAboutArduinoServerFormH
+#define TAboutArduinoServerFormH
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "TAboutArrayBotFrame.h"
+#include "TAboutArduinoServerFrame.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 //---------------------------------------------------------------------------
 
-class PACKAGE TAboutArrayBotForm : public TForm
+class PACKAGE TAboutArduinoServerForm : public TForm
 {
 __published:	// IDE-managed Components
     TPanel *Panel1;
@@ -19,7 +19,7 @@ __published:	// IDE-managed Components
     TActionList *ActionList1;
     TAction *checkForUpdateA;
     TAction *retrieveChangeLogA;
-	TAboutArrayBotFrame *TAboutArrayBotFrame1;
+	TAboutArduinoServerFrame *TAboutArduinoServerFrame1;
 	TLabel *Label1;
     void __fastcall FormShow(TObject *Sender);
     void __fastcall Button4Click(TObject *Sender);
@@ -30,11 +30,11 @@ __published:	// IDE-managed Components
 
 private:	// User declarations
         bool                                            mStartCheckForChangeLogThread;
-        TAboutArrayBotFrame*                           	mAboutFrame;
+        TAboutArduinoServerFrame*                           	mAboutFrame;
 
 public:		// User declarations
-    __fastcall TAboutArrayBotForm(TComponent* Owner);
+    __fastcall TAboutArduinoServerForm(TComponent* Owner);
 };
 
-extern PACKAGE TAboutArrayBotForm *AboutArrayBotForm;
+extern PACKAGE TAboutArduinoServerForm *AboutArduinoServerForm;
 #endif

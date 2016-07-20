@@ -11,7 +11,7 @@
 #include <Vcl.Imaging.jpeg.hpp>
 #include "mtkTimer.h"
 #include "mtkMessageContainer.h"
-#include "TAboutArrayBotFrame.h"
+#include "TAboutArduinoServerFrame.h"
 #include "mtkLogFileReader.h"
 
 using Poco::Timespan;
@@ -22,7 +22,7 @@ class PACKAGE TSplashForm : public TForm
 	__published:	// IDE-managed Components
     TTimer *closeTimer;
     TLabel *Label1;
-	TAboutArrayBotFrame *TAboutArrayBotFrame1;
+	TAboutArduinoServerFrame *TAboutArduinoServerFrame1;
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall closeTimerTimer(TObject *Sender);
@@ -48,7 +48,7 @@ class PACKAGE TSplashForm : public TForm
         mtk::Timer                                          mShowTimer;
         bool                                                isOnShowTime();
         void                                                setShowTime(int ms);
-        TAboutArrayBotFrame*                               	mAFrame;
+        TAboutArduinoServerFrame*                               	mAFrame;
 	__published:
 
 };

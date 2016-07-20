@@ -131,8 +131,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="arduino_server.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <CppCompile Include="forms\TAboutArrayBotForm.cpp">
-            <BuildOrder>13</BuildOrder>
+        <CppCompile Include="forms\TAboutArduinoServerForm.cpp">
+            <DependentOn>forms\TAboutArduinoServerForm.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
         </CppCompile>
         <CppCompile Include="forms\TShowFileContentForm.cpp">
             <Form>ShowFileContentForm</Form>
@@ -144,9 +145,11 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>forms\TSplashForm.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
-        <CppCompile Include="frames\TAboutArrayBotFrame.cpp">
-            <Form>AboutArrayBotFrame</Form>
-            <BuildOrder>12</BuildOrder>
+        <CppCompile Include="frames\TAboutArduinoServerFrame.cpp">
+            <Form>AboutArduinoServerFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TAboutArduinoServerFrame.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
         </CppCompile>
         <CppCompile Include="MainForm.cpp">
             <Form>Main</Form>
@@ -161,9 +164,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
         <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="forms\TShowFileContentForm.dfm"/>
         <FormResources Include="forms\TSplashForm.dfm"/>
-        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
+        <FormResources Include="forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="frames\TAboutArduinoServerFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

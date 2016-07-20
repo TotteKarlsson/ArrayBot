@@ -1,4 +1,4 @@
-object AboutArrayBotFrame: TAboutArrayBotFrame
+object AboutArduinoServerFrame: TAboutArduinoServerFrame
   Left = 0
   Top = 0
   Width = 625
@@ -849,9 +849,9 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
   object Label1: TLabel
     Left = 34
     Top = 16
-    Width = 193
+    Width = 299
     Height = 52
-    Caption = 'ArrayBot -'
+    Caption = 'ArduinoServer -'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -43
@@ -860,8 +860,8 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
     ParentFont = False
   end
   object versionLabel: TLabel
-    Left = 242
-    Top = 27
+    Left = 250
+    Top = 71
     Width = 104
     Height = 39
     Caption = 'Version'

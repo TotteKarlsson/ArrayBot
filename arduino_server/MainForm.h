@@ -17,7 +17,6 @@
 #include "Poco/Timestamp.h"
 #include "TSTDStringLabeledEdit.h"
 #include "TRegistryForm.h"
-#include "abArrayBot.h"
 #include "mtkIniFileProperties.h"
 #include <mmsystem.h>
 #include <Vcl.StdActns.hpp>
@@ -26,7 +25,9 @@
 #include "mtkLogLevel.h"
 #include "abUIDataStructures.h"
 #include "abApplicationMessages.h"
-#include "InitArrayBotThread.h"
+#include "mtkIniFile.h"
+
+
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 
@@ -34,7 +35,7 @@ class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
 class TXYZUnitFrame;
 class TSequencerButtonsFrame;
-
+using mtk::IniFile;
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
 {
@@ -63,7 +64,7 @@ class TMain : public TRegistryForm
 	TPanel *BottomPanel;
 	TMemo *infoMemo;
 	TToolBar *ToolBar1;
-	TBitBtn *BitBtn2;
+	TBitBtn *mClearLogMemoBtn;
 	TTimer *UIUpdateTimer;
 	TSpeedButton *Button5;
 	TPanel *BottomBtnPanel;
@@ -82,6 +83,7 @@ class TMain : public TRegistryForm
 
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
+	void __fastcall mClearLogMemoBtnClick(TObject *Sender);
 
 
     private:

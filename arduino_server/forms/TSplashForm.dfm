@@ -38,7 +38,7 @@ object SplashForm: TSplashForm
     ParentFont = False
     StyleElements = [seClient, seBorder]
   end
-  inline TAboutArrayBotFrame1: TAboutArrayBotFrame
+  inline TAboutArduinoServerFrame1: TAboutArduinoServerFrame
     Left = 0
     Top = 0
     Width = 615

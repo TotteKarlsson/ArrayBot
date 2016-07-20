@@ -15,14 +15,14 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
-USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
-USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
+USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
+USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
-extern string       gLogFileName                = "ArrayBot.log";
-extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArrayBot\\0.5.0";
-extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
+extern string       gLogFileName                = "ArduinoServer.log";
+extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArduinoServer\\0.5.0";
+extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer");
 static HWND         gOtherAppWindow             = NULL;
 extern string       gDefaultAppTheme            = "Iceberg Classico";
 extern string       gRestartMutexName           = "arrayBotRestartMutex";
@@ -93,7 +93,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
             gSplashForm->Close();
         }
 
-		Application->Title = "ArrayBot - Software for Robots";
+		Application->Title = "ArduinoServer - Software for Robots";
 		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->CreateForm(__classid(TShowFileContentForm), &ShowFileContentForm);

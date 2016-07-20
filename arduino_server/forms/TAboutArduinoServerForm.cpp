@@ -1,28 +1,28 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TAboutArrayBotForm.h"
+#include "TAboutArduinoServerForm.h"
 #include "TShowFileContentForm.h"
 #include "mtkApplicationInfo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TAboutArrayBotFrame"
+#pragma link "TAboutArduinoServerFrame"
 #pragma resource "*.dfm"
-TAboutArrayBotForm *AboutArrayBotForm;
+TAboutArduinoServerForm *AboutArduinoServerForm;
 
 using namespace mtk;
 //---------------------------------------------------------------------------
-__fastcall TAboutArrayBotForm::TAboutArrayBotForm(TComponent* Owner)
+__fastcall TAboutArduinoServerForm::TAboutArduinoServerForm(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TAboutArrayBotForm::FormShow(TObject *Sender)
+void __fastcall TAboutArduinoServerForm::FormShow(TObject *Sender)
 {
     if(!mAboutFrame)
     {
-        mAboutFrame = new TAboutArrayBotFrame(this);
+        mAboutFrame = new TAboutArduinoServerFrame(this);
         mAboutFrame->Visible = false;
         mAboutFrame->populate();
         mAboutFrame->Parent =  this;
@@ -33,18 +33,18 @@ void __fastcall TAboutArrayBotForm::FormShow(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArrayBotForm::Button4Click(TObject *Sender)
+void __fastcall TAboutArduinoServerForm::Button4Click(TObject *Sender)
 {
     CloseModal();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArrayBotForm::Button3Click(TObject *Sender)
+void __fastcall TAboutArduinoServerForm::Button3Click(TObject *Sender)
 {
     try
     {
         TShowFileContentForm* e = new TShowFileContentForm(Application);
-        e->Caption = "ArrayBot ChangeLog";
+        e->Caption = "ArduinoServer ChangeLog";
         e->Memo1->Lines->LoadFromFile("CHANGELOG.txt");
         e->ShowModal();
         delete e;
@@ -56,7 +56,7 @@ void __fastcall TAboutArrayBotForm::Button3Click(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArrayBotForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+void __fastcall TAboutArduinoServerForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     if(Key == VK_ESCAPE)
     {
@@ -64,13 +64,13 @@ void __fastcall TAboutArrayBotForm::FormKeyDown(TObject *Sender, WORD &Key, TShi
     }
 }
 
-void __fastcall TAboutArrayBotForm::FormClose(TObject *Sender, TCloseAction &Action)
+void __fastcall TAboutArduinoServerForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
 //    Action = caFree;
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArrayBotForm::FormCloseQuery(TObject *Sender, bool &CanClose)
+void __fastcall TAboutArduinoServerForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
     //Check threads...
 }

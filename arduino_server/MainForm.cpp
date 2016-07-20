@@ -13,7 +13,6 @@
 #include "abExceptions.h"
 #include "TSplashForm.h"
 
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -33,7 +32,7 @@ using namespace mtk;
 __fastcall TMain::TMain(TComponent* Owner)
 :
 	TRegistryForm("Test", "MainForm", Owner),
-	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
+	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, "ArduinoServer.ini"), true, true),
     mLogLevel(lAny)
 {
@@ -139,6 +138,9 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 		Log(lError) << "Received an unhandled windows message!";
 	}
 }
+
+
+
 
 
 

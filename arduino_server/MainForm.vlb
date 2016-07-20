@@ -13,9 +13,6 @@ Coordinates=368,141,84,87
 [TopPanel]
 Coordinates=299,284,60,51
 
-[BitBtn2]
-Coordinates=25,106,50,51
-
 [BottomPanel]
 Coordinates=554,351,77,51
 
@@ -42,4 +39,7 @@ Coordinates=51,373,53,33
 
 [mButtonPanel]
 Coordinates=234,195,58,51
+
+[mClearLogMemoBtn]
+Coordinates=25,106,50,51
 

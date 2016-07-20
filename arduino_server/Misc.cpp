@@ -3,7 +3,7 @@
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "TSplashForm.h"
-#include "TAboutArrayBotForm.h"
+#include "TAboutArduinoServerForm.h"
 using namespace mtk;
 
 static HWND gOtherAppWindow = NULL;
@@ -93,7 +93,7 @@ void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift
 
 void TMain::setupWindowTitle()
 {
-	string title = createWindowTitle("ArrayBot", Application);
+	string title = createWindowTitle("ArduinoServer", Application);
 	this->Caption = vclstr(title);
 }
 
@@ -101,7 +101,7 @@ void TMain::setupWindowTitle()
 void __fastcall TMain::mAboutBtnClick(TObject *Sender)
 {
 	//Show about frame
-    TAboutArrayBotForm* af = new TAboutArrayBotForm(this);
+    TAboutArduinoServerForm* af = new TAboutArduinoServerForm(this);
     af->ShowModal();
     delete af;
 }
@@ -117,7 +117,7 @@ BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 	GetWindowText(hwnd, buffer, length + 1);
 
     string s(stdstr(buffer));
-	if(startsWith(s, "ArrayBot"))
+	if(startsWith(s, "ArduinoServer"))
 	{
 		// do something with hwnd here
 		gOtherAppWindow = hwnd;
@@ -130,3 +130,9 @@ BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 
 	return TRUE;
 }
+
+void __fastcall TMain::mClearLogMemoBtnClick(TObject *Sender)
+{
+	infoMemo->Clear();
+}
+

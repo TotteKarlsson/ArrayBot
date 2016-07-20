@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
-  Caption = 'ArrayBot Version 0.5.8'
+  Caption = 'ArduinoServer Version 0.5.8'
   ClientHeight = 791
   ClientWidth = 1087
   Color = clBtnFace
@@ -35,6 +35,7 @@ object Main: TMain
       Align = alTop
       AllowAllUp = True
       Caption = 'About'
+      OnClick = mAboutBtnClick
       ExplicitTop = -57
       ExplicitWidth = 125
     end
@@ -46,7 +47,6 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      ExplicitTop = 538
       object Button5: TSpeedButton
         Left = 1
         Top = 1
@@ -71,7 +71,7 @@ object Main: TMain
       Top = 1
       Width = 902
       Height = 789
-      ActivePage = TabSheet4
+      ActivePage = TabSheet5
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -119,7 +119,7 @@ object Main: TMain
             ButtonHeight = 30
             Caption = 'ToolBar1'
             TabOrder = 1
-            object BitBtn2: TBitBtn
+            object mClearLogMemoBtn: TBitBtn
               Left = 0
               Top = 0
               Width = 75
@@ -132,6 +132,7 @@ object Main: TMain
               Font.Style = []
               ParentFont = False
               TabOrder = 0
+              OnClick = mClearLogMemoBtnClick
             end
             object LogLevelCB: TComboBox
               Left = 75
