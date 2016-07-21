@@ -21,7 +21,7 @@ int main()
             Log(lDebug) <<"Server HeartBeat";
             IPCMessage msg(-1, "Server HeartBeat");
             s.broadcast(msg);
-            sleep(10000);
+            sleep(5000);
 
         }
     }
@@ -37,3 +37,4 @@ int main()
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "mtkIPC.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
+#pragma comment(lib, "abCore.lib")

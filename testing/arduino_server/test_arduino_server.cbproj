@@ -89,18 +89,6 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="..\..\source\abArduinoIPCServerReceiver.cpp">
-            <DependentOn>..\..\source\abArduinoIPCServerReceiver.h</DependentOn>
-            <BuildOrder>3</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\..\source\abArduinoServer.cpp">
-            <DependentOn>..\..\source\abArduinoServer.h</DependentOn>
-            <BuildOrder>2</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\..\source\abArduinoUtils.cpp">
-            <DependentOn>..\..\source\abArduinoUtils.h</DependentOn>
-            <BuildOrder>3</BuildOrder>
-        </CppCompile>
         <CppCompile Include="main.cpp">
             <BuildOrder>1</BuildOrder>
         </CppCompile>

@@ -12,8 +12,11 @@
         <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="test_arduino_server.cbproj">
-            <Dependencies>P:\libs\dslib\Common\IPC\mtkIPC.cbproj;P:\libs\dslib\Common\mtkCommon.cbproj</Dependencies>
+            <Dependencies>P:\libs\dslib\Common\mtkCommon.cbproj;P:\libs\dslib\Common\IPC\mtkIPC.cbproj;..\..\source\abCore.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -50,23 +53,32 @@
     <Target Name="VCLCommon:Make">
         <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="test_arduino_server" DependsOnTargets="mtkIPC;mtkCommon">
+    <Target Name="abCore">
+        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="test_arduino_server" DependsOnTargets="mtkCommon;mtkIPC;abCore">
         <MSBuild Projects="test_arduino_server.cbproj"/>
     </Target>
-    <Target Name="test_arduino_server:Clean" DependsOnTargets="mtkIPC:Clean;mtkCommon:Clean">
+    <Target Name="test_arduino_server:Clean" DependsOnTargets="mtkCommon:Clean;mtkIPC:Clean;abCore:Clean">
         <MSBuild Projects="test_arduino_server.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="test_arduino_server:Make" DependsOnTargets="mtkIPC:Make;mtkCommon:Make">
+    <Target Name="test_arduino_server:Make" DependsOnTargets="mtkCommon:Make;mtkIPC:Make;abCore:Make">
         <MSBuild Projects="test_arduino_server.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkIPC;VCLCommon;test_arduino_server"/>
+        <CallTarget Targets="mtkCommon;mtkIPC;VCLCommon;abCore;test_arduino_server"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;VCLCommon:Clean;test_arduino_server:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;VCLCommon:Clean;abCore:Clean;test_arduino_server:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;VCLCommon:Make;test_arduino_server:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;VCLCommon:Make;abCore:Make;test_arduino_server:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

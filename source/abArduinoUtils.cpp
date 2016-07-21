@@ -6,7 +6,7 @@
 using namespace mtk;
 
 //---------------------------------------------------------------------------
-int getArduinoIPCMessageID(string cs)
+int getArduinoIPCMessageID(const string& cs)
 {
     if(compareStrings(cs, "MakeAPuff",   			csCaseInsensitive))    return cMakeAPuff;
     if(compareStrings(cs, "SetPufferPuffDuration",  csCaseInsensitive))    return cSetPufferPuffDuration;

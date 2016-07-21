@@ -9,9 +9,13 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include "mtkIPCServer.h"
+#include "mtkSocketWorker.h"
+
 
 using mtk::IPCServer;
 using mtk::IPCMessage;
+
+mtk::SocketWorker* AB_CORE createArduinoIPCReceiver(int portNr, int socketHandle, void* parent);
 //---------------------------------------------------------------------------
 class AB_CORE ArduinoServer : public IPCServer
 {

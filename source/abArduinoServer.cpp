@@ -9,7 +9,6 @@
 using namespace mtk;
 
 
-SocketWorker* MTK_IPC createArduinoIPCReceiver(int portNr, int socketHandle, void* parent);
 ArduinoServer::ArduinoServer(int portNumber)
 :
 IPCServer(portNumber, "ARDUINO_SERVER", createArduinoIPCReceiver)
