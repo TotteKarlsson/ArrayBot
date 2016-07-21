@@ -71,13 +71,13 @@ object Main: TMain
       Top = 1
       Width = 902
       Height = 789
-      ActivePage = TabSheet5
+      ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
       TabWidth = 150
       object TabSheet4: TTabSheet
-        Caption = 'The Bot'
+        Caption = 'Server'
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
