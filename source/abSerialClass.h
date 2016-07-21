@@ -1,5 +1,5 @@
-#ifndef SerialClassH
-#define SerialClassH
+#ifndef abSerialClassH
+#define abSerialClassH
 
 #define ARDUINO_WAIT_TIME 2000
 

@@ -119,6 +119,9 @@
             <DependentOn>abAPTMotor.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abArduinoDevice.cpp">
+            <BuildOrder>46</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abArduinoIPCServerReceiver.cpp">
             <BuildOrder>45</BuildOrder>
         </CppCompile>
@@ -239,6 +242,9 @@
         <CppCompile Include="abRibbonLifter.cpp">
             <DependentOn>abRibbonLifter.h</DependentOn>
             <BuildOrder>37</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abSerial.cpp">
+            <BuildOrder>47</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
             <BuildOrder>23</BuildOrder>

@@ -3,26 +3,28 @@
 #include "abArduinoServer.h"
 #include "mtkLogger.h"
 #include "mtkUtils.h"
-
+#include "abArduinoDevice.h"
 using namespace mtk;
 
 
 int main()
 {
 	mtk::gLogger.setLogLevel(lDebug5);
-    mtk::LogOutput::mShowLogTime  = true;
-    mtk::LogOutput::mLogToConsole  = true;
+    mtk::LogOutput::mShowLogTime  		= true;
+    mtk::LogOutput::mLogToConsole  		= true;
 
 	ArduinoServer s(50000);
+    ArduinoDevice a1("COM4");
+
+
 	try
     {
         while(s.isRunning())
         {
             Log(lDebug) <<"Server HeartBeat";
             IPCMessage msg(-1, "Server HeartBeat");
-            s.broadcast(msg);
+//            s.broadcast(msg);
             sleep(5000);
-
         }
     }
     catch(...)
