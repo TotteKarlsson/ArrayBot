@@ -25,8 +25,8 @@ int main()
 	signal (SIGINT,my_handler);
 
 //	ArduinoServer s(50000);
-//    ArduinoDevice a1("COM4");
-    Serial serial(4, 115200);
+    ArduinoDevice a1(4,  115200);
+//    Serial serial(4, 115200);
 
 
 	try
@@ -34,15 +34,14 @@ int main()
     	int count(0);
         while(serial.isConnected() && keepGoing == true)
         {
-            if(serial.hasMessage())
+            while(serial.hasMessage())
             {
             	string msg = serial.popMessage();
             	Log(lInfo) << msg;
-                //Log(lInfo) <<"Got message";
             }
 
             count++;
-//            if(count == 100)
+	        sleep(100);
         }
 
         serial.disConnect();

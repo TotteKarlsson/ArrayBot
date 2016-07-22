@@ -43,9 +43,8 @@ void loop(void)
       Serial.print(myDHT22.getTemperatureC());      
       Serial.print(",");
       Serial.print(myDHT22.getHumidity());
-      Serial.print("]\n");
-      
-      break;
+      Serial.print("]");
+    break;
       
     case DHT_ERROR_CHECKSUM:
       Serial.print("[check sum error ");
@@ -76,7 +75,7 @@ void loop(void)
       break;
       
     case DHT_ERROR_TOOQUICK:
-      //Serial.println("[Polled to quick]");
+      Serial.println("[Polled to quick]");
       break;
     default:
       Serial.println("[DHT22 Code not defined]");
