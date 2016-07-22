@@ -5,6 +5,13 @@
 #include <sstream>
 #include <iostream>
 
+/*
+    The classes ArduinoDevide and Serial are based on classes
+    found at: http://playground.arduino.cc/Interfacing/CPPWindows
+    The original classes are extended to allow for a more robust serial communication
+    mechanism, involving serial port reading/writing in a seperate thread.
+*/
+
 #define PIN_MODE_INPUT 	1
 #define PIN_MODE_OUTPUT 0
 
@@ -17,7 +24,7 @@ struct A_ECHO
 class AB_CORE ArduinoDevice
 {
     public:
-        							ArduinoDevice(char* comPort);
+        							ArduinoDevice(int pNr);
     								~ArduinoDevice();
         bool 						isConnected();
 

@@ -4,8 +4,16 @@
 #include "mtkLogger.h"
 #include "mtkUtils.h"
 #include "abArduinoDevice.h"
+#include <signal.h>
+
 using namespace mtk;
 
+bool keepGoing(true);
+void my_handler(int s)
+{
+	Log(lInfo) << "Caught signal: "<< s;
+	keepGoing = false;
+}
 
 int main()
 {
@@ -13,25 +21,46 @@ int main()
     mtk::LogOutput::mShowLogTime  		= true;
     mtk::LogOutput::mLogToConsole  		= true;
 
-	ArduinoServer s(50000);
-    ArduinoDevice a1("COM4");
+
+	signal (SIGINT,my_handler);
+
+//	ArduinoServer s(50000);
+//    ArduinoDevice a1("COM4");
+    Serial serial(4, 115200);
 
 
 	try
     {
-        while(s.isRunning())
+    	int count(0);
+        while(serial.isConnected() && keepGoing == true)
         {
-            Log(lDebug) <<"Server HeartBeat";
-            IPCMessage msg(-1, "Server HeartBeat");
-//            s.broadcast(msg);
-            sleep(5000);
+            if(serial.hasMessage())
+            {
+            	string msg = serial.popMessage();
+            	Log(lInfo) << msg;
+                //Log(lInfo) <<"Got message";
+            }
+
+            count++;
+//            if(count == 100)
         }
+
+        serial.disConnect();
     }
+//        while(s.isRunning())
+//        {
+//            Log(lDebug) <<"Server HeartBeat";
+//            IPCMessage msg(-1, "Server HeartBeat");
+////            s.broadcast(msg);
+//            sleep(5000);
+//        }
+//    }
     catch(...)
     {
     	Log(lError) << "Something bad happened";
     }
-	return 0;
+
+    return 0;
 }
 
 

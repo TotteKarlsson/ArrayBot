@@ -1,9 +1,9 @@
 #include "abArduinoDevice.h"
 
 
-ArduinoDevice::ArduinoDevice(char *comPort)
+ArduinoDevice::ArduinoDevice(int pNr)
 {
-	mSerialPort = new Serial(comPort);
+	mSerialPort = new Serial(pNr);
 	mBuffer = new char[32];
 	memset(mBuffer, 0, sizeof(mBuffer));
 
@@ -21,13 +21,13 @@ ArduinoDevice::~ArduinoDevice()
 
 bool ArduinoDevice::isConnected()
 {
-	if(mSerialPort->IsConnected())
+	if(mSerialPort->isConnected())
 	{
 		clearStream();
 		mStream << "[!z]";
 		std::string strng = mStream.str();
 		mBuffer = (char*)(strng.c_str());
-		mSerialPort->WriteData(mBuffer, mStream.str().length());
+		mSerialPort->writeData(mBuffer, mStream.str().length());
 		if(catchEcho().val != 0)
 		{
 			return 1;
@@ -39,33 +39,33 @@ bool ArduinoDevice::isConnected()
 ////////////////////////Echo Handling///////////////////////////////////////
 A_ECHO ArduinoDevice::catchEcho()
 {
-		clearInBuffer();
-		tempVal[0] = 0;
-		tempVal[2] = 0;
+    clearInBuffer();
+    tempVal[0] = 0;
+    tempVal[2] = 0;
 
-		while(tempVal[0] < 1) // wait for available data
-		{
-		tempVal[0] = mSerialPort->ReadData(mInBuffer, tempVal[0]); //keep grabbing data availability
-		}
+    while(tempVal[0] < 1) // wait for available data
+    {
+        tempVal[0] = mSerialPort->readData(mInBuffer, tempVal[0]); //keep grabbing data availability
+    }
 
-		for(tempVal[1] = 0; tempVal[1] < tempVal[0]; tempVal[1]++) //Using tempVal[1] as an iterator from 0 to available bytes.
-		{
-			if(mInBuffer[tempVal[1]] == '!') //if action found on current byte...
-			{
-				mInBuffer[0] = mInBuffer[tempVal[1] + 1]; //grab next byte and stick it in front.
-			}
-			if(mInBuffer[tempVal[1]] == '(') //if opening bracked found on current byte...
-			{
-				tempVal[1]++;
-				for(;( mInBuffer[tempVal[1]] != ')' ) && tempVal[1] < tempVal[0]; tempVal[1]++ ) //...do this until closing bracket or end of data:
-				{
-					tempVal[2] = (mInBuffer[tempVal[1]] - '0') + (tempVal[2] * 10); //Multiply the previous bytes by 10, and add current byte.
-				}
-			}
-		}
-		A_ECHO aEcho = {mInBuffer[0], tempVal[2]};
-		return aEcho;
+    for(tempVal[1] = 0; tempVal[1] < tempVal[0]; tempVal[1]++) //Using tempVal[1] as an iterator from 0 to available bytes.
+    {
+        if(mInBuffer[tempVal[1]] == '!') //if action found on current byte...
+        {
+            mInBuffer[0] = mInBuffer[tempVal[1] + 1]; //grab next byte and stick it in front.
+        }
 
+        if(mInBuffer[tempVal[1]] == '(') //if opening bracked found on current byte...
+        {
+        	tempVal[1]++;
+            for(;( mInBuffer[tempVal[1]] != ')' ) && tempVal[1] < tempVal[0]; tempVal[1]++ ) //...do this until closing bracket or end of data:
+            {
+                tempVal[2] = (mInBuffer[tempVal[1]] - '0') + (tempVal[2] * 10); //Multiply the previous bytes by 10, and add current byte.
+            }
+        }
+    }
+    A_ECHO aEcho = {mInBuffer[0], tempVal[2]};
+	return aEcho;
 }
 
 void ArduinoDevice::printEcho(A_ECHO aEcho)
@@ -82,7 +82,7 @@ bool ArduinoDevice::pinMode(int pin, bool mode) //[!c(pin,value)]
 	mStream << "[!a(" << pin << ",0" << mode << ")]";
 	std::string strng = mStream.str();
 	mBuffer = (char*)(strng.c_str());
-	mSerialPort->WriteData(mBuffer, mStream.str().length());
+	mSerialPort->writeData(mBuffer, mStream.str().length());
 
 	if(mEchoMode && catchEcho().val)
 		return 1;
@@ -95,7 +95,7 @@ bool ArduinoDevice::digitalWrite(int pin, bool value)
 	mStream << "[!b(" << pin << "," << value << ")]";
 	std::string strng = mStream.str();
 	mBuffer = (char*)(strng.c_str());
-	mSerialPort->WriteData(mBuffer, mStream.str().length());
+	mSerialPort->writeData(mBuffer, mStream.str().length());
 
 	if(mEchoMode && catchEcho().val)
 		return 1;
@@ -108,7 +108,7 @@ bool ArduinoDevice::analogWrite(int pin, int value)
 	mStream << "[!c(" << pin << "," << value << ")]";
 	std::string strng = mStream.str();
 	mBuffer = (char*)(strng.c_str());
-	mSerialPort->WriteData(mBuffer, mStream.str().length());
+	mSerialPort->writeData(mBuffer, mStream.str().length());
 
 	if(mEchoMode && catchEcho().val)
 		return 1;
@@ -121,7 +121,7 @@ void ArduinoDevice::setEcho(bool mode)
 	mStream << "[!y(" << mode << ")]";
 	std::string strng = mStream.str();
 	mBuffer = (char*)(strng.c_str());
-	mSerialPort->WriteData(mBuffer, mStream.str().length());
+	mSerialPort->writeData(mBuffer, mStream.str().length());
 	mEchoMode = mode;
 }
 
@@ -131,7 +131,7 @@ bool ArduinoDevice::digitalRead(int pin)
 	mStream << "[!d(" << pin  << ")]";
 	std::string strng = mStream.str();
 	mBuffer = (char*)(strng.c_str());
-	mSerialPort->WriteData(mBuffer, mStream.str().length());
+	mSerialPort->writeData(mBuffer, mStream.str().length());
 	A_ECHO echo = catchEcho();
 	if(echo.msg == 'D')
 	{
@@ -147,16 +147,12 @@ int ArduinoDevice::analogRead(int pin)
 	mStream << "[!e(" << pin  << ")]";
 	std::string strng = mStream.str();
 	mBuffer = (char*)(strng.c_str());
-	mSerialPort->WriteData(mBuffer, mStream.str().length());
+	mSerialPort->writeData(mBuffer, mStream.str().length());
 	A_ECHO echo = catchEcho();
 	if(echo.msg == 'E')
 		return echo.val;
 	return 0;
 }
-
-
-///////////////////////////////////Read///////////////////
-
 
 
 void ArduinoDevice::clearStream()
@@ -165,10 +161,9 @@ void ArduinoDevice::clearStream()
 	mStream.str("");
 	memset(mBuffer, 0, sizeof(mBuffer));
 	memset(mInBuffer, NULL, sizeof(mInBuffer));
-
 }
 
 void ArduinoDevice::clearInBuffer()
 {
-  memset(mInBuffer, NULL, sizeof(mInBuffer));
+	memset(mInBuffer, NULL, sizeof(mInBuffer));
 }

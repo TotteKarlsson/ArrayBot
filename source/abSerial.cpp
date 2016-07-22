@@ -1,12 +1,59 @@
 #include "abSerial.h"
+#include "mtkUtils.h"
 
-Serial::Serial(char *portName)
+using namespace mtk;
+
+#define ARDUINO_WAIT_TIME 2000
+
+
+Serial::Serial(int portNr, int baudRate)
+:
+mMessageBuilder('[', ']'),
+//mMessageBuilder('\n'),
+mSerialWorker(*this)
+{
+	if(connect(portNr, baudRate))
+    {
+    	//Start serving...
+        mSerialWorker.start(true);
+    }
+}
+
+Serial::~Serial()
+{
+    //Check if we are mIsConnected before trying to disconnect
+    if(mIsConnected)
+    {
+        //Close the serial handler
+        disConnect();
+    }
+}
+
+void SerialWorker::run()
+{
+	Log(lInfo) << "Starting reading serial port..";
+ 	if(!mTheHost.isConnected())
+    {
+		Log(lInfo) << "Serial port is not connected.";
+    }
+	while(!mIsTimeToDie)
+    {
+    	mTheHost.read();
+    }
+
+    mIsRunning  = false;
+    mIsFinished = true;
+}
+
+bool Serial::connect(int portNr, int baudRate)
 {
     //We're not yet connected
-    this->connected = false;
+    mIsConnected = false;
+
+    string port("COM" + toString(portNr));
 
     //Try to connect to the given port throuh CreateFile
-    this->hSerial = CreateFileA(portName,
+    mSerialHandle = CreateFileA(port.c_str(),
             GENERIC_READ | GENERIC_WRITE,
             0,
             NULL,
@@ -15,97 +62,121 @@ Serial::Serial(char *portName)
             NULL);
 
     //Check if the connection was successfull
-    if(this->hSerial==INVALID_HANDLE_VALUE)
+    if(mSerialHandle == INVALID_HANDLE_VALUE)
     {
         //If not success full display an Error
-        if(GetLastError()==ERROR_FILE_NOT_FOUND)
+        long e = GetLastError();
+        if(e == ERROR_FILE_NOT_FOUND)
         {
             //Print Error if neccessary
-            printf("ERROR: Handle was not attached. Reason: %s not available.\n", portName);
+            Log(lError) << "Handle was not attached. Reason: Port COM" <<portNr<<" not available.";
 
+        }
+        else if( e == ERROR_BAD_PATHNAME)
+        {
+            printf("ERROR: Bad path: %s\n", port);
         }
         else
         {
             printf("ERROR!!!");
         }
+        return false;
     }
     else
     {
-        //If connected we try to set the comm parameters
+        //If mIsConnected we try to set the comm parameters
         DCB dcbSerialParams = {0};
 
         //Try to get the current
-        if (!GetCommState(this->hSerial, &dcbSerialParams))
+        if (!GetCommState(mSerialHandle, &dcbSerialParams))
         {
             //If impossible, show an error
             printf("failed to get current serial parameters!");
+            return false;
         }
         else
         {
             //Define serial connection parameters for the arduino board
-            dcbSerialParams.BaudRate=CBR_115200;
-            dcbSerialParams.ByteSize=8;
-            dcbSerialParams.StopBits=ONESTOPBIT;
-            dcbSerialParams.Parity=NOPARITY;
+            dcbSerialParams.BaudRate = baudRate;
+            dcbSerialParams.ByteSize = 8;
+            dcbSerialParams.StopBits = ONESTOPBIT;
+            dcbSerialParams.Parity = NOPARITY;
 
              //Set the parameters and check for their proper application
-             if(!SetCommState(hSerial, &dcbSerialParams))
+             if(!SetCommState(mSerialHandle, &dcbSerialParams))
              {
                 printf("ALERT: Could not set Serial Port parameters");
              }
              else
              {
-                 //If everything went fine we're connected
-                 this->connected = true;
+                 //If everything went fine we're mIsConnected
+                 mIsConnected = true;
+
                  //We wait 2s as the arduino board will be reseting
-                 Sleep(ARDUINO_WAIT_TIME);
+                 //Sleep(ARDUINO_WAIT_TIME);
+                 return true;
              }
         }
     }
+    return false;
 }
 
-Serial::~Serial()
+bool Serial::disConnect()
 {
-    //Check if we are connected before trying to disconnect
-    if(this->connected)
+	if(CloseHandle(mSerialHandle) == true)
     {
-        //We're no longer connected
-        this->connected = false;
-        //Close the serial handler
-        CloseHandle(this->hSerial);
+    	mIsConnected = false;
+		return true;
     }
+
+    //There was an error closing the handle...
+    //Check last error
+    return false;
 }
 
-int Serial::ReadData(char *buffer, unsigned int nbChar)
+
+int Serial::read()
+{
+	//Read the whole buffer and create messages from it
+    const int readBytes(1);
+    char buf[readBytes];
+    int bytesRead = readData(buf, readBytes);
+
+    if(bytesRead != readBytes)
+    {
+    	Log(lError) << "bad...";
+        return -1;
+    }
+    for(int i = 0; i < bytesRead; i++)
+    {
+        mMessageBuilder.Build(buf[i]);
+        if(mMessageBuilder.IsComplete())
+        {
+            {
+                Poco::ScopedLock<Poco::Mutex> lock(mMessageMutex);
+                mMessages.append(mMessageBuilder.GetMessage());
+            }
+
+            mMessageBuilder.Reset();
+        }
+
+    }
+    return bytesRead;
+}
+
+int Serial::readData(char *buffer, unsigned int n)
 {
     //Number of bytes we'll have read
     DWORD bytesRead;
-    //Number of bytes we'll really ask to read
-    unsigned int toRead;
 
     //Use the ClearCommError function to get status info on the Serial port
-    ClearCommError(this->hSerial, &this->errors, &this->status);
+    ClearCommError(mSerialHandle, &mErrors, &mStatus);
 
-    //Check if there is something to read
-    if(this->status.cbInQue>0)
+    //Read chars, and return the number of read bytes on success
+    //This one is blocking
+    if(ReadFile(mSerialHandle, buffer, n, &bytesRead, NULL) && bytesRead != 0)
     {
-        //If there is we check if there is enough data to read the required number
-        //of characters, if not we'll read only the available characters to prevent
-        //locking of the application.
-        if(this->status.cbInQue>nbChar)
-        {
-            toRead = nbChar;
-        }
-        else
-        {
-            toRead = this->status.cbInQue;
-        }
-
-        //Try to read the require number of chars, and return the number of read bytes on success
-        if(ReadFile(this->hSerial, buffer, toRead, &bytesRead, NULL) && bytesRead != 0)
-        {
-            return bytesRead;
-        }
+        return bytesRead;
     }
 
     //If nothing has been read, or that an error was detected return -1
@@ -113,23 +184,36 @@ int Serial::ReadData(char *buffer, unsigned int nbChar)
 }
 
 
-bool Serial::WriteData(char *buffer, unsigned int nbChar)
+bool Serial::hasMessage()
+{
+	return mMessages.size() ? true : false;
+}
+
+string Serial::popMessage()
+{
+    {
+        Poco::ScopedLock<Poco::Mutex> lock(mMessageMutex);
+		return mMessages.size() ? mMessages.popFront() : string("");
+    }
+}
+
+bool Serial::writeData(char *buffer, unsigned int nbChar)
 {
     DWORD bytesSend;
 
     //Try to write the buffer on the Serial port
-    if(!WriteFile(this->hSerial, (void *)buffer, nbChar, &bytesSend, 0))
+    if(!WriteFile(mSerialHandle, (void *)buffer, nbChar, &bytesSend, 0))
     {
         //In case it don't work get comm error and return false
-        ClearCommError(this->hSerial, &this->errors, &this->status);
+        ClearCommError(mSerialHandle, &mErrors, &mStatus);
         return false;
     }
 
     return true;
 }
 
-bool Serial::IsConnected()
+bool Serial::isConnected()
 {
-    //Simply return the connection status
-    return this->connected;
+    //Simply return the connection mStatus
+    return mIsConnected;
 }
