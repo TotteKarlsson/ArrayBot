@@ -244,7 +244,7 @@
             <BuildOrder>37</BuildOrder>
         </CppCompile>
         <CppCompile Include="abSerial.cpp">
-            <BuildOrder>47</BuildOrder>
+            <BuildOrder>48</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
             <BuildOrder>23</BuildOrder>
@@ -269,6 +269,9 @@
         <CppCompile Include="abXYZUnit.cpp">
             <DependentOn>abXYZUnit.h</DependentOn>
             <BuildOrder>17</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Serial.cpp">
+            <BuildOrder>47</BuildOrder>
         </CppCompile>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

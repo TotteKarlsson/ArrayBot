@@ -14,17 +14,17 @@ void setup(void)
 {
     // start serial port
     Serial.begin(115200);
-    Serial.println("[ArrayBot SensorSketch 1]");
+    Serial.println("[ArrayBot SensorSketch_1]");
 }
 
 void loop(void)
 { 
-    if(Serial.available() > 0)
+    while(Serial.available() > 0)
     { 
         char ch = Serial.read();
-        Serial.print("Char: "); 
-        Serial.print(ch); 
-        Serial.print('\n'); 
+        Serial.print("[ACK]"); 
+        //Serial.print(ch); 
+        //Serial.print("]"); 
     }
 
     // The sensor is read every ~2s.

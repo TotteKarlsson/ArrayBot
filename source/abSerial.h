@@ -5,6 +5,7 @@
 #include "mtkIPCMessageBuilder.h"
 #include "Poco/Mutex.h"
 #include "Poco/Condition.h"
+#include "Serial.h"
 
 using Poco::Mutex;
 using Poco::Condition;
@@ -17,68 +18,59 @@ class Serial;
 class SerialWorker : public mtk::Thread
 {
 	public:
-					SerialWorker(Serial& h) : mTheHost(h){}
-	void			run();
-	Serial&			mTheHost;
+                                        SerialWorker(Serial& h, CSerial& s) : mTheHost(h), mSP(s), mMessageBuilder('[', ']'){}
+        void			                run();
+        Serial&			                mTheHost;
+        CSerial&	 	                mSP;
+	private:
+    	IPCMessageBuilder				mMessageBuilder;
 };
 
 class AB_CORE Serial
 {
-
+	friend SerialWorker;
     public:
                                             //Initialize Serial communication with the given COM port
                                             Serial(int portNr, int rate = 9600);
-
-                                            //Close the connection
-                                            //NOTA: for some reason you can't connect again before exiting
-                                            //the program and running it again
                                             ~Serial();
-
-		bool					            hasMessage();
-        string					            popMessage();
-
-
-        						            //The read function reads whats in the current buffer
-                                            //and builds messages
-        int						            read();
-
-                                            //Read data in a buffer, if nbChar is greater than the
-                                            //maximum number of bytes available, it will return only the
-                                            //bytes available. The function return -1 when nothing could
-                                            //be read, the number of bytes actually read.
-        int 				                readData(char *buffer, unsigned int nbChar);
-
-                                            //Writes data from a buffer through the Serial connection
-                                            //return true on success.
-        bool 				                writeData(char *buffer, unsigned int nbChar);
+        bool					            connect(int portNr, int baudRate);
 
         					                //Check if we are actually connected
         bool 				                isConnected();
-        bool					            connect(int portNr, int baudRate);
+
+                                            //Close the connection
         bool					            disConnect();
 
+        									//!Client checks for messages
+		bool					            hasMessage();
+
+        									//!Retrieve message from internal queue
+        string					            popMessage();
+
+        									//!Post message to internal output queue
+		bool								send(const string& msg);
+
     private:
-        						            //Serial comm handler
-        HANDLE 				   	            mSerialHandle;
+        									//CSerial is doint the work
+		CSerial								mSP;
 
-        						            //Connection status
-        bool 					            mIsConnected;
-
-								            //Get various information about the connection
-        COMSTAT 				            mStatus;
-
-        						            //Keep track of last error
-        DWORD 					            mErrors;
-
-        						            //The message builder builds incoming messages using delimiters
-		IPCMessageBuilder		            mMessageBuilder;
-
+        									//The serial worker reads/write data on the serial port
+                                            //in a thread. Incoming messages are placed in the mMessages
+                                            //list
         SerialWorker						mSerialWorker;
 
+        bool								setupSerialPort(int pNr, int baudRate);
+
+
         						            //Messages from an arduino
-		Mutex					            mMessageMutex;
-        StringList				            mMessages;
+		Mutex					            mReceivedMessagesMutex;
+        StringList				            mReceivedMessages;
+
+		Mutex					            mPostMessagesMutex;
+        StringList				            mPostMessages;
         Poco::Condition                     mGotMessage;
+
+
 
 };
 

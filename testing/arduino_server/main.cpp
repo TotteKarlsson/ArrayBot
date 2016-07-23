@@ -24,47 +24,59 @@ int main()
 
 	signal (SIGINT,my_handler);
 
-//	ArduinoServer s(50000);
-    ArduinoDevice a1(4,  115200);
-//    Serial serial(4, 115200);
+    Serial	mSerial(4, 115200);
 
 
-	try
+    while(mSerial.isConnected())
     {
-    	int count(0);
-        while(serial.isConnected() && keepGoing == true)
+    	sleep(10);
+        if(!mSerial.send("[HELLO]"))
         {
-            while(serial.hasMessage())
-            {
-            	string msg = serial.popMessage();
-            	Log(lInfo) << msg;
-            }
-
-            count++;
-	        sleep(100);
+        	Log(lError) << "Failed to send data...";
         }
-
-        serial.disConnect();
     }
-//        while(s.isRunning())
+////	ArduinoServer s(50000);
+//    ArduinoDevice a1(4,  115200);
+//	try
+//    {
+//    	int count(0);
+//        while(a1.isConnected() && keepGoing == true)
 //        {
-//            Log(lDebug) <<"Server HeartBeat";
-//            IPCMessage msg(-1, "Server HeartBeat");
-////            s.broadcast(msg);
-//            sleep(5000);
+//            while(a1.hasMessage())
+//            {
+//            	string msg = a1.getMessage();
+//            	Log(lInfo) << "RCVD: "<<msg;
+//            }
+//
+//            if(count%10 == 1)
+//            {
+//            	a1.postMessage("[HELLO]");
+//            }
+//
+//            count++;
+////	        sleep(10);
 //        }
+//
+//        a1.disConnect();
 //    }
-    catch(...)
-    {
-    	Log(lError) << "Something bad happened";
-    }
-
+////        while(s.isRunning())
+////        {
+////            Log(lDebug) <<"Server HeartBeat";
+////            IPCMessage msg(-1, "Server HeartBeat");
+//////            s.broadcast(msg);
+////            sleep(5000);
+////        }
+////    }
+//    catch(...)
+//    {
+//    	Log(lError) << "Something bad happened";
+//    }
+//
     return 0;
 }
-
-
 
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "mtkIPC.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "abCore.lib")
+
