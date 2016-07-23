@@ -1,44 +1,44 @@
 object XYZPositionsFrame: TXYZPositionsFrame
   Left = 0
   Top = 0
-  Width = 273
+  Width = 177
   Height = 161
   AutoSize = True
   TabOrder = 0
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 273
+    Width = 177
     Height = 161
     Caption = 'XYZUnit Positions'
     TabOrder = 0
     object Label1: TLabel
-      Left = 47
+      Left = 36
       Top = 33
-      Width = 10
+      Width = 6
       Height = 13
-      Caption = 'X:'
+      Caption = 'X'
     end
     object Label2: TLabel
-      Left = 47
+      Left = 36
       Top = 62
-      Width = 10
+      Width = 6
       Height = 13
-      Caption = 'Y:'
+      Caption = 'Y'
     end
     object Label3: TLabel
-      Left = 48
+      Left = 36
       Top = 91
-      Width = 10
+      Width = 6
       Height = 13
-      Caption = 'Z:'
+      Caption = 'Z'
     end
     object Label4: TLabel
-      Left = 9
+      Left = 26
       Top = 120
-      Width = 31
+      Width = 27
       Height = 13
-      Caption = 'Angle:'
+      Caption = 'Angle'
     end
     object mXPosL: TLabel
       Left = 88
@@ -73,7 +73,7 @@ object XYZPositionsFrame: TXYZPositionsFrame
     Enabled = False
     Interval = 300
     OnTimer = PullPosTimerTimer
-    Left = 216
-    Top = 64
+    Left = 8
+    Top = 72
   end
 end

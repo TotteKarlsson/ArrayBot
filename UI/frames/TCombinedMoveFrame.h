@@ -36,6 +36,7 @@ __published:	// IDE-managed Components
 	void __fastcall mProcessNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
 
+
     private:	// User declarations
 		ArrayBot*						mAB;
 		CombinedMove*					mCombinedMove;

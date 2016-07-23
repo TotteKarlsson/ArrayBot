@@ -27,21 +27,21 @@ __published:	// IDE-managed Components
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet1;
 	TTabSheet *mTriggersSheet;
-	TTabSheet *TabSheet3;
-	TGroupBox *GroupBox1;
-	TFloatLabeledEdit *mPostDwellTimeE;
-	TFloatLabeledEdit *mPreDwellTimeE;
 	TPanel *Panel1;
 	TButton *mDeleteTriggerB;
 	TListBox *mTriggersLB;
 	TPanel *Panel2;
+	TLabel *mHaveTriggerLabel;
 	TButton *mAddTriggerB;
+	TGroupBox *GroupBox1;
+	TFloatLabeledEdit *mPostDwellTimeE;
+	TFloatLabeledEdit *mPreDwellTimeE;
 	void __fastcall MotorsCBClick(TObject *Sender);
 	void __fastcall MotorsCBChange(TObject *Sender);
 	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall TriggersLBClick(TObject *Sender);
 	void __fastcall mDeleteTriggerBClick(TObject *Sender);
-	void __fastcall mAddTriggerBClick(TObject *Sender);
+	void __fastcall AddTriggerBClick(TObject *Sender);
 
     private:	// User declarations
         AbsoluteMove* 	   			mMove;

@@ -119,6 +119,19 @@
             <DependentOn>abAPTMotor.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abArduinoDevice.cpp">
+            <BuildOrder>46</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abArduinoIPCServerReceiver.cpp">
+            <BuildOrder>45</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abArduinoServer.cpp">
+            <DependentOn>abArduinoServer.h</DependentOn>
+            <BuildOrder>43</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abArduinoUtils.cpp">
+            <BuildOrder>44</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abArrayBot.cpp">
             <DependentOn>abArrayBot.h</DependentOn>
             <BuildOrder>20</BuildOrder>
@@ -230,6 +243,9 @@
             <DependentOn>abRibbonLifter.h</DependentOn>
             <BuildOrder>37</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abSerial.cpp">
+            <BuildOrder>48</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
             <BuildOrder>23</BuildOrder>
         </CppCompile>
@@ -253,6 +269,9 @@
         <CppCompile Include="abXYZUnit.cpp">
             <DependentOn>abXYZUnit.h</DependentOn>
             <BuildOrder>17</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Serial.cpp">
+            <BuildOrder>47</BuildOrder>
         </CppCompile>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

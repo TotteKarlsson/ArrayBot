@@ -43,10 +43,14 @@ void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
 		mTriggersLB->Items->AddObject(mMove->getTrigger()->getTypeName().c_str(), (TObject*) mMove->getTrigger());
         mTriggersLB->ItemIndex = 0;
 		TriggersLBClick(NULL);
+        mAddTriggerB->Visible = false;
+		mTriggersSheet->TabVisible = true;
     }
     else
     {
 	    mPosTriggerFrame->Visible = false;
+        mAddTriggerB->Visible = true;
+		mTriggersSheet->TabVisible = false;
     }
 }
 
@@ -178,21 +182,24 @@ void __fastcall TMotorMoveProcessFrame::mDeleteTriggerBClick(TObject *Sender)
     {
     	mMove->deleteTrigger();
 	    mTriggersLB->Clear();
-
     }
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMotorMoveProcessFrame::mAddTriggerBClick(TObject *Sender)
+void __fastcall TMotorMoveProcessFrame::AddTriggerBClick(TObject *Sender)
 {
 	//Create a new Trigger
     Trigger* t = new PositionalTrigger(NULL);
+
+    mMove->addTrigger(t);
+
     //Also add a trigger function
     MoveAbsolute *tf = new MoveAbsolute(NULL);
     t->assignTriggerFunction(tf);
 
-    mMove->addTrigger(t);
-	rePopulate(mMove);
+
+	populate(mAB, mMove);
 }
+
 
 

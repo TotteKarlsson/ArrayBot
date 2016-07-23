@@ -72,6 +72,18 @@ bool AbsoluteMove::start()
     return true;
 }
 
+void AbsoluteMove::addTrigger(Trigger* t)
+{
+	mTrigger = t;
+    mTrigger->assignSubject(this);
+    PositionalTrigger* pt = dynamic_cast<PositionalTrigger*>(mTrigger);
+    if(pt)
+    {
+    	if(dynamic_cast<APTMotor*>(getUnit()))
+			pt->setTestFunction(dynamic_cast<APTMotor*>(getUnit())->getPosition);
+    }
+}
+
 XMLElement* AbsoluteMove::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file

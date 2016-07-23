@@ -129,6 +129,8 @@ void ProcessSequencer::onTimerFunc()
         //We have finished
         mSequenceTimer.stop();
         Log(lInfo) << "Finished processing sequence: " << s->getName();
+        //Enable the JoyStick
+
         return;
     }
 }

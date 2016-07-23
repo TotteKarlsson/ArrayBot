@@ -24,9 +24,10 @@ __fastcall TXYZPositionsFrame::TXYZPositionsFrame(TComponent* Owner, const XYZUn
 
 void __fastcall TXYZPositionsFrame::PullPosTimerTimer(TObject *Sender)
 {
+	string dblFormat("%.3f");
     if(mUnit.getXMotor())
     {
-        mXPosL->Caption = vclstr(mtk::toString(mUnit.getXMotor()->getPosition(), "%.4g") + " mm");
+        mXPosL->Caption = vclstr(mtk::toString(mUnit.getXMotor()->getPosition(), dblFormat));
     }
     else
     {
@@ -35,7 +36,7 @@ void __fastcall TXYZPositionsFrame::PullPosTimerTimer(TObject *Sender)
 
     if(mUnit.getYMotor())
     {
-        mYPosL->Caption = vclstr(mtk::toString(mUnit.getYMotor()->getPosition()));
+        mYPosL->Caption = vclstr(mtk::toString(mUnit.getYMotor()->getPosition(), dblFormat));
     }
     else
     {
@@ -44,7 +45,7 @@ void __fastcall TXYZPositionsFrame::PullPosTimerTimer(TObject *Sender)
 
     if(mUnit.getZMotor())
     {
-        mZPosL->Caption = vclstr(mtk::toString(mUnit.getZMotor()->getPosition()));
+        mZPosL->Caption = vclstr(mtk::toString(mUnit.getZMotor()->getPosition(), dblFormat));
     }
     else
     {
@@ -53,7 +54,7 @@ void __fastcall TXYZPositionsFrame::PullPosTimerTimer(TObject *Sender)
 
     if(mUnit.getAngleMotor())
     {
-        mAnglePosL->Caption = vclstr(mtk::toString(mUnit.getAngleMotor()->getPosition()));
+        mAnglePosL->Caption = vclstr(mtk::toString(mUnit.getAngleMotor()->getPosition(), dblFormat));
     }
     else
     {

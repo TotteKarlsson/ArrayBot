@@ -17,6 +17,7 @@ object MotorFrame: TMotorFrame
     Top = 0
     Width = 288
     Height = 272
+    Align = alClient
     Caption = 'Motor'
     Constraints.MaxHeight = 272
     Constraints.MaxWidth = 288

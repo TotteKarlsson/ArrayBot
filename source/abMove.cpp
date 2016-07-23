@@ -41,6 +41,7 @@ void Move::init(ArrayBot& ab)
 void Move::addTrigger(Trigger* t)
 {
 	mTrigger = t;
+    mTrigger->assignSubject(this);
 }
 
 void Move::deleteTrigger(Trigger* t)

@@ -37,7 +37,6 @@ class PACKAGE TSplashForm : public TForm
 		bool                                                mCanClose;
 		bool												mShownForAMinimumTime;
 
-        TThreadMethod                   					logMsgMethod;
         LogFileReader                   					mLogFileReader;
         void __fastcall                 					logMsg();
 

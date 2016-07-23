@@ -16,7 +16,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Top = 530
     Width = 1001
     Height = 95
-    Align = alTop
+    Align = alBottom
     TabOrder = 0
     object mStatusLbl: TLabel
       Left = 154
@@ -47,12 +47,12 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Top = 0
     Width = 1001
     Height = 530
-    Align = alTop
+    Align = alClient
     TabOrder = 1
     inline TTimeDelayFrame1: TTimeDelayFrame
-      Left = 233
+      Left = 281
       Top = 1
-      Width = 767
+      Width = 719
       Height = 528
       Align = alClient
       AutoSize = True
@@ -64,9 +64,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       ParentFont = False
       TabOrder = 0
       Visible = False
-      ExplicitLeft = 233
+      ExplicitLeft = 281
       ExplicitTop = 1
-      ExplicitWidth = 767
+      ExplicitWidth = 719
       ExplicitHeight = 528
       inherited GroupBox1: TGroupBox
         Height = 528
@@ -84,23 +84,23 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     object mLeftPanel: TPanel
       Left = 1
       Top = 1
-      Width = 232
+      Width = 280
       Height = 528
       Align = alLeft
       TabOrder = 1
       object GroupBox1: TGroupBox
         Left = 1
         Top = 129
-        Width = 230
+        Width = 278
         Height = 398
         Align = alClient
         Caption = 'Sequence'
         TabOrder = 0
         object mDeleteMoveBtn: TButton
-          Left = 13
-          Top = 199
-          Width = 200
-          Height = 50
+          Left = 219
+          Top = 162
+          Width = 54
+          Height = 34
           Action = removeProcessA
           TabOrder = 0
         end
@@ -108,8 +108,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Left = 13
           Top = 91
           Width = 200
-          Height = 102
+          Height = 105
           ItemHeight = 23
+          MultiSelect = True
           TabOrder = 1
           OnClick = mProcessesLBClick
         end
@@ -128,7 +129,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object Button1: TButton
           Left = 13
-          Top = 255
+          Top = 231
           Width = 200
           Height = 50
           Action = addTimeDelayProcess
@@ -136,17 +137,35 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object mAddMoveBtn: TButton
           Left = 13
-          Top = 317
+          Top = 293
           Width = 200
           Height = 50
           Action = addCombinedMovesProcessA
           TabOrder = 4
         end
+        object mMoveSequenceUpBtn: TButton
+          Left = 227
+          Top = 91
+          Width = 33
+          Height = 25
+          Caption = #9650
+          TabOrder = 5
+          OnClick = mMoveSequenceUpBtnClick
+        end
+        object mMoveSequenceDownBtn: TButton
+          Left = 227
+          Top = 122
+          Width = 33
+          Height = 25
+          Caption = #9660
+          TabOrder = 6
+          OnClick = mMoveSequenceDownBtnClick
+        end
       end
       object GroupBox2: TGroupBox
         Left = 1
         Top = 1
-        Width = 230
+        Width = 278
         Height = 128
         Align = alTop
         Caption = 'Sequences'
@@ -195,9 +214,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       end
     end
     inline TCombinedMoveFrame1: TCombinedMoveFrame
-      Left = 233
+      Left = 281
       Top = 1
-      Width = 767
+      Width = 719
       Height = 528
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
@@ -207,63 +226,59 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 233
+      ExplicitLeft = 281
       ExplicitTop = 1
-      ExplicitWidth = 767
+      ExplicitWidth = 719
       ExplicitHeight = 528
       inherited GroupBox2: TGroupBox
-        Width = 767
+        Width = 719
         Height = 528
-        ExplicitWidth = 767
+        ExplicitWidth = 719
         ExplicitHeight = 528
         inherited GroupBox1: TGroupBox
+          Width = 175
           Height = 417
+          ExplicitWidth = 175
           ExplicitHeight = 417
+          inherited Button1: TButton
+            OnClick = TCombinedMoveFrame1Button1Click
+          end
         end
         inherited Panel1: TPanel
-          Width = 763
-          ExplicitWidth = 763
+          Width = 715
+          ExplicitWidth = 715
           inherited mProcessNameE: TSTDStringLabeledEdit
             OnKeyDown = TCombinedMoveFrame1mProcessNameEKeyDown
           end
         end
         inherited TMotorMoveProcessFrame1: TMotorMoveProcessFrame
-          Width = 618
+          Left = 177
+          Width = 540
           Height = 417
-          ExplicitWidth = 618
+          ExplicitLeft = 177
+          ExplicitWidth = 540
           ExplicitHeight = 417
           inherited PageControl1: TPageControl
-            Width = 618
+            Width = 540
             Height = 417
-            ExplicitWidth = 618
+            ExplicitWidth = 540
             ExplicitHeight = 417
-            inherited mTriggersSheet: TTabSheet
-              ExplicitWidth = 610
+            inherited TabSheet1: TTabSheet
+              ExplicitWidth = 532
               ExplicitHeight = 379
-              inherited Panel2: TPanel
+              inherited MainGB: TGroupBox
+                Width = 532
                 Height = 379
+                ExplicitWidth = 532
                 ExplicitHeight = 379
-                inherited Panel1: TPanel
-                  Top = 318
-                  ExplicitTop = 318
-                  ExplicitWidth = 183
-                  inherited mDeleteTriggerB: TButton
-                    ExplicitLeft = 91
-                  end
-                  inherited mAddTriggerB: TButton
-                    ExplicitLeft = 1
-                    ExplicitTop = 1
-                  end
-                end
-                inherited mTriggersLB: TListBox
-                  Height = 317
-                  ExplicitHeight = 317
-                end
               end
             end
-            inherited TabSheet3: TTabSheet
-              ExplicitWidth = 443
-              ExplicitHeight = 266
+            inherited mTriggersSheet: TTabSheet
+              inherited Panel2: TPanel
+                inherited Panel1: TPanel
+                  ExplicitTop = 205
+                end
+              end
             end
           end
         end
@@ -274,8 +289,8 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Enabled = False
     Interval = 100
     OnTimer = mSequenceTimerTimer
-    Left = 608
-    Top = 192
+    Left = 360
+    Top = 552
   end
   object Actions: TActionList
     Left = 544
@@ -285,7 +300,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       OnExecute = addCombinedMovesProcessAExecute
     end
     object removeProcessA: TAction
-      Caption = 'Remove Current'
+      Caption = #10005
       OnExecute = removeProcessAExecute
     end
     object addTimeDelayProcess: TAction

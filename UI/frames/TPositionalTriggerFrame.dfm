@@ -1,8 +1,8 @@
 object PositionalTriggerFrame: TPositionalTriggerFrame
   Left = 0
   Top = 0
-  Width = 539
-  Height = 396
+  Width = 509
+  Height = 329
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -13,29 +13,30 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
   object MainGB: TGroupBox
     Left = 0
     Top = 0
-    Width = 539
-    Height = 396
+    Width = 509
+    Height = 329
     Align = alClient
     BiDiMode = bdLeftToRight
     Caption = 'Positional Trigger'
     ParentBiDiMode = False
     TabOrder = 0
-    ExplicitHeight = 372
+    ExplicitWidth = 539
+    ExplicitHeight = 396
     object GroupBox3: TGroupBox
       Left = 2
       Top = 123
-      Width = 535
-      Height = 271
+      Width = 505
+      Height = 204
       Align = alClient
       Caption = 'Device to Trigger'
       TabOrder = 0
-      ExplicitTop = 147
-      ExplicitHeight = 223
+      ExplicitWidth = 535
+      ExplicitHeight = 271
       object GroupBox2: TGroupBox
         Left = 15
         Top = 64
-        Width = 313
-        Height = 177
+        Width = 482
+        Height = 129
         Caption = 'Trigger Parameters'
         TabOrder = 0
         object mNewVelE: TFloatLabeledEdit
@@ -51,8 +52,8 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
           OnKeyDown = mNewVelEKeyDown
         end
         object mNewAccE: TFloatLabeledEdit
-          Left = 153
-          Top = 128
+          Left = 305
+          Top = 56
           Width = 121
           Height = 31
           EditLabel.Width = 144
@@ -88,13 +89,14 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
     object GroupBox4: TGroupBox
       Left = 2
       Top = 25
-      Width = 535
+      Width = 505
       Height = 98
       Align = alTop
       BiDiMode = bdLeftToRight
       Caption = 'Condition'
       ParentBiDiMode = False
       TabOrder = 1
+      ExplicitWidth = 535
       object mPositionE: TFloatLabeledEdit
         Left = 22
         Top = 59
@@ -108,8 +110,8 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
         OnKeyDown = mPositionEKeyDown
       end
       object mOpRG: TRadioGroup
-        Left = 168
-        Top = 33
+        Left = 144
+        Top = 27
         Width = 342
         Height = 65
         Caption = 'Operator'

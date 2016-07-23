@@ -1,8 +1,8 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 623
-  Height = 338
+  Width = 451
+  Height = 304
   Align = alClient
   AutoSize = True
   Font.Charset = DEFAULT_CHARSET
@@ -12,27 +12,30 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  ExplicitWidth = 451
-  ExplicitHeight = 304
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 623
-    Height = 338
-    ActivePage = mTriggersSheet
+    Width = 451
+    Height = 304
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 451
-    ExplicitHeight = 304
     object TabSheet1: TTabSheet
       Caption = 'Move Parameters'
       object MainGB: TGroupBox
         Left = 0
         Top = 0
-        Width = 801
-        Height = 417
+        Width = 443
+        Height = 266
+        Align = alClient
         Caption = 'MotorMove Process'
         TabOrder = 0
+        object mHaveTriggerLabel: TLabel
+          Left = 272
+          Top = 176
+          Width = 6
+          Height = 23
+        end
         object mMovePosE: TFloatLabeledEdit
           Left = 16
           Top = 126
@@ -46,8 +49,8 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
           OnKeyDown = mMovePosEKeyDown
         end
         object mMaxVelE: TFloatLabeledEdit
-          Left = 16
-          Top = 199
+          Left = 144
+          Top = 126
           Width = 89
           Height = 31
           EditLabel.Width = 103
@@ -58,8 +61,8 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
           OnKeyDown = mMovePosEKeyDown
         end
         object mAccE: TFloatLabeledEdit
-          Left = 216
-          Top = 199
+          Left = 272
+          Top = 126
           Width = 81
           Height = 31
           EditLabel.Width = 101
@@ -79,32 +82,72 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
           OnChange = MotorsCBChange
           OnClick = MotorsCBClick
         end
+        object mAddTriggerB: TButton
+          Left = 16
+          Top = 176
+          Width = 137
+          Height = 58
+          Caption = 'Add Trigger'
+          TabOrder = 4
+          OnClick = AddTriggerBClick
+        end
+        object GroupBox1: TGroupBox
+          Left = 16
+          Top = 262
+          Width = 185
+          Height = 100
+          Caption = 'Dwell Times (ms)'
+          TabOrder = 5
+          object mPostDwellTimeE: TFloatLabeledEdit
+            Left = 96
+            Top = 52
+            Width = 65
+            Height = 31
+            EditLabel.Width = 34
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Post'
+            Enabled = False
+            TabOrder = 0
+            Text = '0.0'
+            OnKeyDown = mMovePosEKeyDown
+          end
+          object mPreDwellTimeE: TFloatLabeledEdit
+            Left = 16
+            Top = 52
+            Width = 65
+            Height = 31
+            EditLabel.Width = 27
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Pre'
+            Enabled = False
+            TabOrder = 1
+            Text = '0.0'
+            OnKeyDown = mMovePosEKeyDown
+          end
+        end
       end
     end
     object mTriggersSheet: TTabSheet
       Caption = 'Triggers'
       ImageIndex = 1
-      ExplicitWidth = 443
-      ExplicitHeight = 266
+      TabVisible = False
       object Panel2: TPanel
         Left = 0
         Top = 0
         Width = 185
-        Height = 300
+        Height = 266
         Align = alLeft
         Caption = 'Panel2'
         TabOrder = 0
-        ExplicitHeight = 266
         object Panel1: TPanel
           Left = 1
-          Top = 239
+          Top = 205
           Width = 183
           Height = 60
           Align = alBottom
           TabOrder = 0
-          ExplicitTop = 205
           object mDeleteTriggerB: TButton
-            Left = 91
+            Left = 1
             Top = 1
             Width = 90
             Height = 58
@@ -112,69 +155,17 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
             Caption = 'Delete'
             TabOrder = 0
             OnClick = mDeleteTriggerBClick
-            ExplicitLeft = 1
-          end
-          object mAddTriggerB: TButton
-            Left = 1
-            Top = 1
-            Width = 90
-            Height = 58
-            Align = alLeft
-            Caption = 'Add'
-            TabOrder = 1
-            OnClick = mAddTriggerBClick
-            ExplicitLeft = -5
-            ExplicitTop = 6
           end
         end
         object mTriggersLB: TListBox
           Left = 1
           Top = 1
           Width = 183
-          Height = 238
+          Height = 204
           Align = alClient
           ItemHeight = 23
           TabOrder = 1
           OnClick = TriggersLBClick
-          ExplicitHeight = 204
-        end
-      end
-    end
-    object TabSheet3: TTabSheet
-      Caption = 'Misc'
-      ImageIndex = 2
-      object GroupBox1: TGroupBox
-        Left = 24
-        Top = 38
-        Width = 185
-        Height = 100
-        Caption = 'Dwell Times (ms)'
-        TabOrder = 0
-        object mPostDwellTimeE: TFloatLabeledEdit
-          Left = 96
-          Top = 52
-          Width = 65
-          Height = 31
-          EditLabel.Width = 34
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Post'
-          Enabled = False
-          TabOrder = 0
-          Text = '0.0'
-          OnKeyDown = mMovePosEKeyDown
-        end
-        object mPreDwellTimeE: TFloatLabeledEdit
-          Left = 16
-          Top = 52
-          Width = 65
-          Height = 31
-          EditLabel.Width = 27
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Pre'
-          Enabled = False
-          TabOrder = 1
-          Text = '0.0'
-          OnKeyDown = mMovePosEKeyDown
         end
       end
     end

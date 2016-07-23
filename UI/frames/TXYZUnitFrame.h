@@ -15,7 +15,6 @@ class TXYZUnitFrame : public TFrame
 {
     __published:
         TGroupBox 		*mainGB;
-		TPanel 			*TopPanel;
         TScrollBox 		*ScrollBox1;
 
     private:

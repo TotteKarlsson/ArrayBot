@@ -44,6 +44,8 @@ class TABProcessSequencerFrame : public TFrame
 	TPanel *mLeftPanel;
 	TGroupBox *GroupBox1;
 	TCombinedMoveFrame *TCombinedMoveFrame1;
+	TButton *mMoveSequenceUpBtn;
+	TButton *mMoveSequenceDownBtn;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
         void __fastcall mStartBtnClick(TObject *Sender);
@@ -61,6 +63,9 @@ class TABProcessSequencerFrame : public TFrame
           TShiftState Shift);
 	void __fastcall TCombinedMoveFrame1mProcessNameEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
+	void __fastcall mMoveSequenceDownBtnClick(TObject *Sender);
+	void __fastcall mMoveSequenceUpBtnClick(TObject *Sender);
+	void __fastcall TCombinedMoveFrame1Button1Click(TObject *Sender);
 
 	private:	// User declarations
         ArrayBot&					mAB;
@@ -69,7 +74,7 @@ class TABProcessSequencerFrame : public TFrame
 		void __fastcall 			refreshSequencesCB();
 		static int 					mFrameNr;
 		void						saveSequence();
-//        void						selectProcessItem(Process* p);
+		void        				updateSequenceArrows();
 
 	public:
 						 __fastcall TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner);

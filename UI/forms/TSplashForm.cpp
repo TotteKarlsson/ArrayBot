@@ -22,8 +22,7 @@ __fastcall TSplashForm::TSplashForm(TComponent* Owner)
 	mCanClose(true),
 	mMinimumTimeShowing(5*Poco::Timespan::SECONDS),
 	mMainAppIsRunning(false),
-	logMsgMethod(&logMsg),
-	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod)
+	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsg)
 {
    	mLogFileReader.start(true);
 }
@@ -42,11 +41,20 @@ bool startsWith(const string& prefix, const string& theStr)
 	return false;
 }
 
+bool contains(const string& prefix, const string& theStr)
+{
+	if (theStr.find(prefix) != std::string::npos)
+	{
+		return true;
+	}
+	return false;
+}
+
 void __fastcall TSplashForm::logMsg()
 {
 	string lmsg = mLogFileReader.getData();
 
-    if(::startsWith("INFO", lmsg))
+    if(::contains("INFO", lmsg))
     {
    		TAboutArrayBotFrame1->logLabel->Caption = lmsg.c_str();
     }
