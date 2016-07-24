@@ -56,7 +56,7 @@ static const char THIS_FILE[] = __FILE__;
 //////////////////////////////////////////////////////////////////////
 // Helper methods
 
-inline void CSerial::CheckRequirements (LPOVERLAPPED lpOverlapped, DWORD dwTimeout) const
+inline void SerialPort::CheckRequirements (LPOVERLAPPED lpOverlapped, DWORD dwTimeout) const
 {
 #ifdef SERIAL_NO_OVERLAPPED
 
@@ -90,7 +90,7 @@ inline void CSerial::CheckRequirements (LPOVERLAPPED lpOverlapped, DWORD dwTimeo
 	(void) lpOverlapped;
 }
 
-inline BOOL CSerial::CancelCommIo (void)
+inline BOOL SerialPort::CancelCommIo (void)
 {
 #ifdef SERIAL_NO_CANCELIO
 	// CancelIo shouldn't have been called at this point
@@ -108,7 +108,7 @@ inline BOOL CSerial::CancelCommIo (void)
 //////////////////////////////////////////////////////////////////////
 // Code
 
-CSerial::CSerial ()
+SerialPort::SerialPort ()
 	: m_lLastError(ERROR_SUCCESS)
 	, m_hFile(0)
 	, m_eEvent(EEventNone)
@@ -119,21 +119,21 @@ CSerial::CSerial ()
 {
 }
 
-CSerial::~CSerial ()
+SerialPort::~SerialPort ()
 {
 	// If the device is already closed,
 	// then we don't need to do anything.
 	if (m_hFile)
 	{
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::~CSerial - Serial port not closed\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::~SerialPort - Serial port not closed\n");
 
 		// Close implicitly
 		Close();
 	}
 }
 
-CSerial::EPort CSerial::CheckPort (LPCTSTR lpszDevice)
+SerialPort::EPort SerialPort::CheckPort (LPCTSTR lpszDevice)
 {
 	// Try to open the device
 	HANDLE hFile = CreateFileA(lpszDevice,
@@ -171,7 +171,7 @@ CSerial::EPort CSerial::CheckPort (LPCTSTR lpszDevice)
 	return EPortAvailable;
 }
 
-LONG CSerial::Open (LPCTSTR lpszDevice, DWORD dwInQueue, DWORD dwOutQueue, bool fOverlapped)
+LONG SerialPort::Open (LPCTSTR lpszDevice, DWORD dwInQueue, DWORD dwOutQueue, bool fOverlapped)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -180,7 +180,7 @@ LONG CSerial::Open (LPCTSTR lpszDevice, DWORD dwInQueue, DWORD dwOutQueue, bool 
 	if (m_hFile)
 	{
 		m_lLastError = ERROR_ALREADY_INITIALIZED;
-		//_RPTF0(_CRT_WARN,"CSerial::Open - Port already opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Open - Port already opened\n");
 		return m_lLastError;
 	}
 
@@ -199,7 +199,7 @@ LONG CSerial::Open (LPCTSTR lpszDevice, DWORD dwInQueue, DWORD dwOutQueue, bool 
 
 		// Display error
 		m_lLastError = ::GetLastError();
-		//_RPTF0(_CRT_WARN, "CSerial::Open - Unable to open port\n");
+		//_RPTF0(_CRT_WARN, "SerialPort::Open - Unable to open port\n");
 		return m_lLastError;
 	}
 
@@ -215,7 +215,7 @@ LONG CSerial::Open (LPCTSTR lpszDevice, DWORD dwInQueue, DWORD dwOutQueue, bool 
 		{
 			// Obtain the error information
 			m_lLastError = ::GetLastError();
-			//_RPTF0(_CRT_WARN,"CSerial::Open - Unable to create event\n");
+			//_RPTF0(_CRT_WARN,"SerialPort::Open - Unable to create event\n");
 
 			// Close the port
 			::CloseHandle(m_hFile);
@@ -245,7 +245,7 @@ LONG CSerial::Open (LPCTSTR lpszDevice, DWORD dwInQueue, DWORD dwOutQueue, bool 
 		{
 			// Display a warning
 			long lLastError = ::GetLastError();
-			//_RPTF0(_CRT_WARN,"CSerial::Open - Unable to setup the COM-port\n");
+			//_RPTF0(_CRT_WARN,"SerialPort::Open - Unable to setup the COM-port\n");
 
 			// Close the port
 			Close();
@@ -272,20 +272,20 @@ LONG CSerial::Open (LPCTSTR lpszDevice, DWORD dwInQueue, DWORD dwOutQueue, bool 
 		if (!::SetCommConfig(m_hFile,&commConfig,dwSize))
 		{
 			// Display a warning
-			//_RPTF0(_CRT_WARN,"CSerial::Open - Unable to set default communication configuration.\n");
+			//_RPTF0(_CRT_WARN,"SerialPort::Open - Unable to set default communication configuration.\n");
 		}
 	}
 	else
 	{
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::Open - Unable to obtain default communication configuration.\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Open - Unable to obtain default communication configuration.\n");
 	}
 
 	// Return successful
 	return m_lLastError;
 }
 
-LONG CSerial::Close (void)
+LONG SerialPort::Close (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -295,7 +295,7 @@ LONG CSerial::Close (void)
 	if (m_hFile == 0)
 	{
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::Close - Method called when device is not open\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Close - Method called when device is not open\n");
 		return m_lLastError;
 	}
 
@@ -316,7 +316,7 @@ LONG CSerial::Close (void)
 	return m_lLastError;
 }
 
-LONG CSerial::Setup (EBaudrate eBaudrate, EDataBits eDataBits, EParity eParity, EStopBits eStopBits)
+LONG SerialPort::Setup (EBaudrate eBaudrate, EDataBits eDataBits, EParity eParity, EStopBits eStopBits)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -328,7 +328,7 @@ LONG CSerial::Setup (EBaudrate eBaudrate, EDataBits eDataBits, EParity eParity, 
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::Setup - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Setup - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -340,7 +340,7 @@ LONG CSerial::Setup (EBaudrate eBaudrate, EDataBits eDataBits, EParity eParity, 
 		m_lLastError = ::	GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::Setup - Unable to obtain DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Setup - Unable to obtain DCB information\n");
 		return m_lLastError;
 	}
 
@@ -360,7 +360,7 @@ LONG CSerial::Setup (EBaudrate eBaudrate, EDataBits eDataBits, EParity eParity, 
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::Setup - Unable to set DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Setup - Unable to set DCB information\n");
 		return m_lLastError;
 	}
 
@@ -368,7 +368,7 @@ LONG CSerial::Setup (EBaudrate eBaudrate, EDataBits eDataBits, EParity eParity, 
 	return m_lLastError;
 }
 
-LONG CSerial::SetEventChar (BYTE bEventChar, bool fAdjustMask)
+LONG SerialPort::SetEventChar (BYTE bEventChar, bool fAdjustMask)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -380,7 +380,7 @@ LONG CSerial::SetEventChar (BYTE bEventChar, bool fAdjustMask)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::SetEventChar - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetEventChar - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -392,7 +392,7 @@ LONG CSerial::SetEventChar (BYTE bEventChar, bool fAdjustMask)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::SetEventChar - Unable to obtain DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetEventChar - Unable to obtain DCB information\n");
 		return m_lLastError;
 	}
 
@@ -415,7 +415,7 @@ LONG CSerial::SetEventChar (BYTE bEventChar, bool fAdjustMask)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::SetEventChar - Unable to set DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetEventChar - Unable to set DCB information\n");
 		return m_lLastError;
 	}
 
@@ -423,7 +423,7 @@ LONG CSerial::SetEventChar (BYTE bEventChar, bool fAdjustMask)
 	return m_lLastError;
 }
 
-LONG CSerial::SetMask (DWORD dwEventMask)
+LONG SerialPort::SetMask (DWORD dwEventMask)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -435,7 +435,7 @@ LONG CSerial::SetMask (DWORD dwEventMask)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::SetMask - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetMask - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -447,7 +447,7 @@ LONG CSerial::SetMask (DWORD dwEventMask)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::SetMask - Unable to set event mask\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetMask - Unable to set event mask\n");
 		return m_lLastError;
 	}
 
@@ -456,7 +456,7 @@ LONG CSerial::SetMask (DWORD dwEventMask)
 	return m_lLastError;
 }
 
-LONG CSerial::WaitEvent (LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
+LONG SerialPort::WaitEvent (LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 {
 	// Check if time-outs are supported
 	CheckRequirements(lpOverlapped,dwTimeout);
@@ -471,7 +471,7 @@ LONG CSerial::WaitEvent (LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::WaitEvent - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::WaitEvent - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -484,7 +484,7 @@ LONG CSerial::WaitEvent (LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 		m_lLastError = ERROR_INVALID_FUNCTION;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::WaitEvent - Overlapped I/O is disabled, specified parameters are illegal.\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::WaitEvent - Overlapped I/O is disabled, specified parameters are illegal.\n");
 		return m_lLastError;
 	}
 
@@ -516,7 +516,7 @@ LONG CSerial::WaitEvent (LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 			m_lLastError = lLastError;
 
 			// Issue an error and quit
-			//_RPTF0(_CRT_WARN,"CSerial::WaitEvent - Unable to wait for COM event\n");
+			//_RPTF0(_CRT_WARN,"SerialPort::WaitEvent - Unable to wait for COM event\n");
 			return m_lLastError;
 		}
 
@@ -543,7 +543,7 @@ LONG CSerial::WaitEvent (LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 				m_lLastError = ::GetLastError();
 
 				// Issue an error and quit
-				//_RPTF0(_CRT_WARN,"CSerial::WaitEvent - Unable to wait until COM event has arrived\n");
+				//_RPTF0(_CRT_WARN,"SerialPort::WaitEvent - Unable to wait until COM event has arrived\n");
 				return m_lLastError;
 			}
 		}
@@ -564,7 +564,7 @@ LONG CSerial::WaitEvent (LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 		m_lLastError = ::GetLastError();
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::WaitEvent - Unable to wait for COM event\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::WaitEvent - Unable to wait for COM event\n");
 		return m_lLastError;
 	}
 
@@ -575,7 +575,7 @@ LONG CSerial::WaitEvent (LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 }
 
 
-LONG CSerial::SetupHandshaking (EHandshake eHandshake)
+LONG SerialPort::SetupHandshaking (EHandshake eHandshake)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -587,7 +587,7 @@ LONG CSerial::SetupHandshaking (EHandshake eHandshake)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::SetupHandshaking - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetupHandshaking - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -599,7 +599,7 @@ LONG CSerial::SetupHandshaking (EHandshake eHandshake)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::SetupHandshaking - Unable to obtain DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetupHandshaking - Unable to obtain DCB information\n");
 		return m_lLastError;
 	}
 
@@ -647,7 +647,7 @@ LONG CSerial::SetupHandshaking (EHandshake eHandshake)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::SetupHandshaking - Unable to set DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetupHandshaking - Unable to set DCB information\n");
 		return m_lLastError;
 	}
 
@@ -655,7 +655,7 @@ LONG CSerial::SetupHandshaking (EHandshake eHandshake)
 	return m_lLastError;
 }
 
-LONG CSerial::SetupReadTimeouts (EReadTimeout eReadTimeout)
+LONG SerialPort::SetupReadTimeouts (EReadTimeout eReadTimeout)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -667,7 +667,7 @@ LONG CSerial::SetupReadTimeouts (EReadTimeout eReadTimeout)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::SetupReadTimeouts - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetupReadTimeouts - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -679,7 +679,7 @@ LONG CSerial::SetupReadTimeouts (EReadTimeout eReadTimeout)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::SetupReadTimeouts - Unable to obtain timeout information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetupReadTimeouts - Unable to obtain timeout information\n");
 		return m_lLastError;
 	}
 
@@ -710,7 +710,7 @@ LONG CSerial::SetupReadTimeouts (EReadTimeout eReadTimeout)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::SetupReadTimeouts - Unable to set timeout information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::SetupReadTimeouts - Unable to set timeout information\n");
 		return m_lLastError;
 	}
 
@@ -718,7 +718,7 @@ LONG CSerial::SetupReadTimeouts (EReadTimeout eReadTimeout)
 	return m_lLastError;
 }
 
-CSerial::EBaudrate CSerial::GetBaudrate (void)
+SerialPort::EBaudrate SerialPort::GetBaudrate (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -730,7 +730,7 @@ CSerial::EBaudrate CSerial::GetBaudrate (void)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::GetBaudrate - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetBaudrate - Device is not opened\n");
 		return EBaudUnknown;
 	}
 
@@ -742,7 +742,7 @@ CSerial::EBaudrate CSerial::GetBaudrate (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetBaudrate - Unable to obtain DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetBaudrate - Unable to obtain DCB information\n");
 		return EBaudUnknown;
 	}
 
@@ -750,7 +750,7 @@ CSerial::EBaudrate CSerial::GetBaudrate (void)
 	return EBaudrate(dcb.BaudRate);
 }
 
-CSerial::EDataBits CSerial::GetDataBits (void)
+SerialPort::EDataBits SerialPort::GetDataBits (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -762,7 +762,7 @@ CSerial::EDataBits CSerial::GetDataBits (void)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::GetDataBits - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetDataBits - Device is not opened\n");
 		return EDataUnknown;
 	}
 
@@ -774,7 +774,7 @@ CSerial::EDataBits CSerial::GetDataBits (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetDataBits - Unable to obtain DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetDataBits - Unable to obtain DCB information\n");
 		return EDataUnknown;
 	}
 
@@ -782,7 +782,7 @@ CSerial::EDataBits CSerial::GetDataBits (void)
 	return EDataBits(dcb.ByteSize);
 }
 
-CSerial::EParity CSerial::GetParity (void)
+SerialPort::EParity SerialPort::GetParity (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -794,7 +794,7 @@ CSerial::EParity CSerial::GetParity (void)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::GetParity - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetParity - Device is not opened\n");
 		return EParUnknown;
 	}
 
@@ -806,7 +806,7 @@ CSerial::EParity CSerial::GetParity (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetParity - Unable to obtain DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetParity - Unable to obtain DCB information\n");
 		return EParUnknown;
 	}
 
@@ -821,7 +821,7 @@ CSerial::EParity CSerial::GetParity (void)
 	return EParity(dcb.Parity);
 }
 
-CSerial::EStopBits CSerial::GetStopBits (void)
+SerialPort::EStopBits SerialPort::GetStopBits (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -833,7 +833,7 @@ CSerial::EStopBits CSerial::GetStopBits (void)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::GetStopBits - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetStopBits - Device is not opened\n");
 		return EStopUnknown;
 	}
 
@@ -845,7 +845,7 @@ CSerial::EStopBits CSerial::GetStopBits (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetStopBits - Unable to obtain DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetStopBits - Unable to obtain DCB information\n");
 		return EStopUnknown;
 	}
 
@@ -853,7 +853,7 @@ CSerial::EStopBits CSerial::GetStopBits (void)
 	return EStopBits(dcb.StopBits);
 }
 
-DWORD CSerial::GetEventMask (void)
+DWORD SerialPort::GetEventMask (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -865,7 +865,7 @@ DWORD CSerial::GetEventMask (void)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::GetEventMask - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetEventMask - Device is not opened\n");
 		return 0;
 	}
 
@@ -873,7 +873,7 @@ DWORD CSerial::GetEventMask (void)
 	return m_dwEventMask;
 }
 
-BYTE CSerial::GetEventChar (void)
+BYTE SerialPort::GetEventChar (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -885,7 +885,7 @@ BYTE CSerial::GetEventChar (void)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::GetEventChar - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetEventChar - Device is not opened\n");
 		return 0;
 	}
 
@@ -897,7 +897,7 @@ BYTE CSerial::GetEventChar (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetEventChar - Unable to obtain DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetEventChar - Unable to obtain DCB information\n");
 		return 0;
 	}
 
@@ -905,7 +905,7 @@ BYTE CSerial::GetEventChar (void)
 	return BYTE(dcb.EvtChar);
 }
 
-CSerial::EHandshake CSerial::GetHandshaking (void)
+SerialPort::EHandshake SerialPort::GetHandshaking (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -917,7 +917,7 @@ CSerial::EHandshake CSerial::GetHandshaking (void)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::GetHandshaking - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetHandshaking - Device is not opened\n");
 		return EHandshakeUnknown;
 	}
 
@@ -929,7 +929,7 @@ CSerial::EHandshake CSerial::GetHandshaking (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetHandshaking - Unable to obtain DCB information\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetHandshaking - Unable to obtain DCB information\n");
 		return EHandshakeUnknown;
 	}
 
@@ -945,7 +945,7 @@ CSerial::EHandshake CSerial::GetHandshaking (void)
 	return EHandshakeOff;
 }
 
-LONG CSerial::Write (const void* pData, size_t iLen, DWORD* pdwWritten, LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
+LONG SerialPort::Write (const void* pData, size_t iLen, DWORD* pdwWritten, LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 {
 	// Check if time-outs are supported
 	CheckRequirements(lpOverlapped,dwTimeout);
@@ -973,7 +973,7 @@ LONG CSerial::Write (const void* pData, size_t iLen, DWORD* pdwWritten, LPOVERLA
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::Write - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Write - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -986,7 +986,7 @@ LONG CSerial::Write (const void* pData, size_t iLen, DWORD* pdwWritten, LPOVERLA
 		m_lLastError = ERROR_INVALID_FUNCTION;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::Write - Overlapped I/O is disabled, specified parameters are illegal.\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Write - Overlapped I/O is disabled, specified parameters are illegal.\n");
 		return m_lLastError;
 	}
 
@@ -1018,7 +1018,7 @@ LONG CSerial::Write (const void* pData, size_t iLen, DWORD* pdwWritten, LPOVERLA
 			m_lLastError = lLastError;
 
 			// Issue an error and quit
-			//_RPTF0(_CRT_WARN,"CSerial::Write - Unable to write the data\n");
+			//_RPTF0(_CRT_WARN,"SerialPort::Write - Unable to write the data\n");
 			return m_lLastError;
 		}
 
@@ -1035,7 +1035,7 @@ LONG CSerial::Write (const void* pData, size_t iLen, DWORD* pdwWritten, LPOVERLA
 					// Set the internal error code
 					m_lLastError = ::GetLastError();
 
-					//_RPTF0(_CRT_WARN,"CSerial::Write - Overlapped completed without result\n");
+					//_RPTF0(_CRT_WARN,"SerialPort::Write - Overlapped completed without result\n");
 					return m_lLastError;
 				}
 				break;
@@ -1053,7 +1053,7 @@ LONG CSerial::Write (const void* pData, size_t iLen, DWORD* pdwWritten, LPOVERLA
 				m_lLastError = ::GetLastError();
 
 				// Issue an error and quit
-				//_RPTF0(_CRT_WARN,"CSerial::Write - Unable to wait until data has been sent\n");
+				//_RPTF0(_CRT_WARN,"SerialPort::Write - Unable to wait until data has been sent\n");
 				return m_lLastError;
 			}
 		}
@@ -1075,7 +1075,7 @@ LONG CSerial::Write (const void* pData, size_t iLen, DWORD* pdwWritten, LPOVERLA
 		m_lLastError = ::GetLastError();
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::Write - Unable to write the data\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Write - Unable to write the data\n");
 		return m_lLastError;
 	}
 
@@ -1085,7 +1085,7 @@ LONG CSerial::Write (const void* pData, size_t iLen, DWORD* pdwWritten, LPOVERLA
 	return m_lLastError;
 }
 
-LONG CSerial::Write (LPCSTR pString, DWORD* pdwWritten, LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
+LONG SerialPort::Write (LPCSTR pString, DWORD* pdwWritten, LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 {
 	// Check if time-outs are supported
 	CheckRequirements(lpOverlapped,dwTimeout);
@@ -1094,7 +1094,7 @@ LONG CSerial::Write (LPCSTR pString, DWORD* pdwWritten, LPOVERLAPPED lpOverlappe
 	return Write(pString,strlen(pString),pdwWritten,lpOverlapped,dwTimeout);
 }
 
-LONG CSerial::Read (void* pData, size_t iLen, DWORD* pdwRead, LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
+LONG SerialPort::Read (void* pData, size_t iLen, DWORD* pdwRead, LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 {
 	// Check if time-outs are supported
 	CheckRequirements(lpOverlapped,dwTimeout);
@@ -1122,7 +1122,7 @@ LONG CSerial::Read (void* pData, size_t iLen, DWORD* pdwRead, LPOVERLAPPED lpOve
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::Read - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Read - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -1141,7 +1141,7 @@ LONG CSerial::Read (void* pData, size_t iLen, DWORD* pdwRead, LPOVERLAPPED lpOve
 		m_lLastError = ERROR_INVALID_FUNCTION;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::Read - Overlapped I/O is disabled, specified parameters are illegal.\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Read - Overlapped I/O is disabled, specified parameters are illegal.\n");
 		return m_lLastError;
 	}
 
@@ -1173,7 +1173,7 @@ LONG CSerial::Read (void* pData, size_t iLen, DWORD* pdwRead, LPOVERLAPPED lpOve
 			m_lLastError = lLastError;
 
 			// Issue an error and quit
-			//_RPTF0(_CRT_WARN,"CSerial::Read - Unable to read the data\n");
+			//_RPTF0(_CRT_WARN,"SerialPort::Read - Unable to read the data\n");
 			return m_lLastError;
 		}
 
@@ -1190,7 +1190,7 @@ LONG CSerial::Read (void* pData, size_t iLen, DWORD* pdwRead, LPOVERLAPPED lpOve
 					// Set the internal error code
 					m_lLastError = ::GetLastError();
 
-					//_RPTF0(_CRT_WARN,"CSerial::Read - Overlapped completed without result\n");
+					//_RPTF0(_CRT_WARN,"SerialPort::Read - Overlapped completed without result\n");
 					return m_lLastError;
 				}
 				break;
@@ -1208,7 +1208,7 @@ LONG CSerial::Read (void* pData, size_t iLen, DWORD* pdwRead, LPOVERLAPPED lpOve
 				m_lLastError = ::GetLastError();
 
 				// Issue an error and quit
-				//_RPTF0(_CRT_WARN,"CSerial::Read - Unable to wait until data has been read\n");
+				//_RPTF0(_CRT_WARN,"SerialPort::Read - Unable to wait until data has been read\n");
 				return m_lLastError;
 			}
 		}
@@ -1230,7 +1230,7 @@ LONG CSerial::Read (void* pData, size_t iLen, DWORD* pdwRead, LPOVERLAPPED lpOve
 		m_lLastError = ::GetLastError();
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::Read - Unable to read the data\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Read - Unable to read the data\n");
 		return m_lLastError;
 	}
 
@@ -1240,7 +1240,7 @@ LONG CSerial::Read (void* pData, size_t iLen, DWORD* pdwRead, LPOVERLAPPED lpOve
 	return m_lLastError;
 }
 
-LONG CSerial::Purge()
+LONG SerialPort::Purge()
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -1252,7 +1252,7 @@ LONG CSerial::Purge()
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::Purge - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Purge - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -1260,14 +1260,14 @@ LONG CSerial::Purge()
 	{
 		// Set the internal error code
 		m_lLastError = ::GetLastError();
-		//_RPTF0(_CRT_WARN,"CSerial::Purge - Overlapped completed without result\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Purge - Overlapped completed without result\n");
 	}
 	
 	// Return successfully
 	return m_lLastError;
 }
 
-LONG CSerial::Break (void)
+LONG SerialPort::Break (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -1279,7 +1279,7 @@ LONG CSerial::Break (void)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::Break - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::Break - Device is not opened\n");
 		return m_lLastError;
 	}
 
@@ -1292,13 +1292,13 @@ LONG CSerial::Break (void)
 	return m_lLastError;
 }
 
-CSerial::EEvent CSerial::GetEventType (void)
+SerialPort::EEvent SerialPort::GetEventType (void)
 {
 #ifdef _DEBUG
 	// Check if the event is within the mask
 	if ((m_eEvent & m_dwEventMask) == 0)
     {
-		//_RPTF2(_CRT_WARN,"CSerial::GetEventType - Event %08Xh not within mask %08Xh.\n", m_eEvent, m_dwEventMask);
+		//_RPTF2(_CRT_WARN,"SerialPort::GetEventType - Event %08Xh not within mask %08Xh.\n", m_eEvent, m_dwEventMask);
     }
 #endif
 
@@ -1312,7 +1312,7 @@ CSerial::EEvent CSerial::GetEventType (void)
 	return eEvent;
 }
 
-CSerial::EError CSerial::GetError (void)
+SerialPort::EError SerialPort::GetError (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -1324,7 +1324,7 @@ CSerial::EError CSerial::GetError (void)
 		m_lLastError = ERROR_INVALID_HANDLE;
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::GetError - Device is not opened\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetError - Device is not opened\n");
 		return EErrorUnknown;
 	}
 
@@ -1336,7 +1336,7 @@ CSerial::EError CSerial::GetError (void)
 		m_lLastError = ::GetLastError();
 
 		// Issue an error and quit
-		//_RPTF0(_CRT_WARN,"CSerial::GetError - Unable to obtain COM status\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetError - Unable to obtain COM status\n");
 		return EErrorUnknown;
 	}
 
@@ -1344,7 +1344,7 @@ CSerial::EError CSerial::GetError (void)
 	return EError(dwErrors);
 }
 
-bool CSerial::GetCTS (void)
+bool SerialPort::GetCTS (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -1357,7 +1357,7 @@ bool CSerial::GetCTS (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetCTS - Unable to obtain the modem status\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetCTS - Unable to obtain the modem status\n");
 		return false;
 	}
 
@@ -1365,7 +1365,7 @@ bool CSerial::GetCTS (void)
 	return (dwModemStat & MS_CTS_ON) != 0;
 }
 
-bool CSerial::GetDSR (void)
+bool SerialPort::GetDSR (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -1378,7 +1378,7 @@ bool CSerial::GetDSR (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetDSR - Unable to obtain the modem status\n");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetDSR - Unable to obtain the modem status\n");
 		return false;
 	}
 
@@ -1386,7 +1386,7 @@ bool CSerial::GetDSR (void)
 	return (dwModemStat & MS_DSR_ON) != 0;
 }
 
-bool CSerial::GetRing (void)
+bool SerialPort::GetRing (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -1399,7 +1399,7 @@ bool CSerial::GetRing (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetRing - Unable to obtain the modem status");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetRing - Unable to obtain the modem status");
 		return false;
 	}
 
@@ -1407,7 +1407,7 @@ bool CSerial::GetRing (void)
 	return (dwModemStat & MS_RING_ON) != 0;
 }
 
-bool CSerial::GetRLSD (void)
+bool SerialPort::GetRLSD (void)
 {
 	// Reset error state
 	m_lLastError = ERROR_SUCCESS;
@@ -1420,7 +1420,7 @@ bool CSerial::GetRLSD (void)
 		m_lLastError = ::GetLastError();
 
 		// Display a warning
-		//_RPTF0(_CRT_WARN,"CSerial::GetRLSD - Unable to obtain the modem status");
+		//_RPTF0(_CRT_WARN,"SerialPort::GetRLSD - Unable to obtain the modem status");
 		return false;
 	}
 

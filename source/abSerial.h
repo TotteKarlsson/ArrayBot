@@ -1,11 +1,12 @@
 #ifndef abSerialH
 #define abSerialH
 #include "abExporter.h"
+#include "abABObject.h"
 #include "mtkStringList.h"
-#include "mtkIPCMessageBuilder.h"
 #include "Poco/Mutex.h"
 #include "Poco/Condition.h"
-#include "Serial.h"
+#include "abSerialPort.h"
+#include "abSerialWorker.h"
 
 using Poco::Mutex;
 using Poco::Condition;
@@ -13,20 +14,9 @@ using Poco::Condition;
 using mtk::StringList;
 using mtk::IPCMessageBuilder;
 
-class Serial;
+typedef void (*MesageReceivedCallback)(const string& msg);
 
-class SerialWorker : public mtk::Thread
-{
-	public:
-                                        SerialWorker(Serial& h, CSerial& s) : mTheHost(h), mSP(s), mMessageBuilder('[', ']'){}
-        void			                run();
-        Serial&			                mTheHost;
-        CSerial&	 	                mSP;
-	private:
-    	IPCMessageBuilder				mMessageBuilder;
-};
-
-class AB_CORE Serial
+class AB_CORE Serial : public ABObject
 {
 	friend SerialWorker;
     public:
@@ -50,22 +40,24 @@ class AB_CORE Serial
         									//!Post message to internal output queue
 		bool								send(const string& msg);
 
+        void								assignMessageReceivedCallBack(MesageReceivedCallback cb);
+
     private:
         									//CSerial is doint the work
-		CSerial								mSP;
+		SerialPort							mSP;
 
-        									//The serial worker reads/write data on the serial port
+        									//The serial worker reads data on the serial port
                                             //in a thread. Incoming messages are placed in the mMessages
                                             //list
         SerialWorker						mSerialWorker;
-
-        bool								setupSerialPort(int pNr, int baudRate);
-
+        bool								setupAndOpenSerialPort(int pNr, int baudRate);
 
         						            //Messages from an arduino
 		Mutex					            mReceivedMessagesMutex;
         StringList				            mReceivedMessages;
 
+        MesageReceivedCallback				mReceivedCB;
+        Poco::Condition                     mGotMessage;
 };
 
 #endif

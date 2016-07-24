@@ -79,7 +79,10 @@
 // Copyright (C) 1999-2003 Ramon de Klein
 //                         (Ramon.de.Klein@ict.nl)
 
-class AB_CORE CSerial
+//TK Changes: renamed unit files to abSerial
+//TK Changes: Renamed CSerial to SerialPort
+
+class AB_CORE SerialPort
 {
 // Class enumerations
 public:
@@ -206,8 +209,8 @@ public:
 
 // Construction
 public:
-	CSerial();
-	virtual ~CSerial();
+	SerialPort();
+	virtual ~SerialPort();
 
 // Operations
 public:
