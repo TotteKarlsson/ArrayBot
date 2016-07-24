@@ -8,33 +8,39 @@
 
 using namespace mtk;
 
-bool keepGoing(true);
+bool gKeepGoing(true);
 void my_handler(int s)
 {
 	Log(lInfo) << "Caught signal: "<< s;
-	keepGoing = false;
+	gKeepGoing = false;
 }
 
 int main()
 {
-	mtk::gLogger.setLogLevel(lDebug5);
+	mtk::gLogger.setLogLevel(lDebug4);
     mtk::LogOutput::mShowLogTime  		= true;
     mtk::LogOutput::mLogToConsole  		= true;
-
 
 	signal (SIGINT,my_handler);
 
     Serial	mSerial(3, 115200);
 
 
-    while(mSerial.isConnected())
+    while(mSerial.isConnected() && gKeepGoing)
     {
     	sleep(3000);
+        while(mSerial.hasMessage())
+        {
+        	Log(lInfo) << "Message: "<< mSerial.popMessage();
+        }
+
         if(!mSerial.send("[HELLO]"))
         {
         	Log(lError) << "Failed to send data...";
         }
     }
+
+    mSerial.disConnect();
 ////	ArduinoServer s(50000);
 //    ArduinoDevice a1(4,  115200);
 //	try
