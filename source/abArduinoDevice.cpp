@@ -23,12 +23,7 @@ bool ArduinoDevice::isConnected()
 
 bool ArduinoDevice::disConnect()
 {
-
-}
-
-bool ArduinoDevice::postMessage(const string& msg)
-{
-//	return mSP.postMessage(msg);
+	return false;
 }
 
 bool ArduinoDevice::hasMessage()

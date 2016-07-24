@@ -46,7 +46,6 @@ class AB_CORE ArduinoDevice
     private:
         Serial						mSerial;
 
-
         							//A stream makes it easy to compose messages
         std::stringstream		  	mSS;
         int					        readSerialPort();

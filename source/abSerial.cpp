@@ -61,6 +61,7 @@ bool Serial::setupSerialPort(int pNr, int baudRate)
 								CSerial::EEventRing  |
 								CSerial::EEventRLSD  |
 								CSerial::EEventRecv);
+
 	if (lLastError != ERROR_SUCCESS)
     {
         string errorMsg = getLastWin32Error();
@@ -80,12 +81,13 @@ bool Serial::setupSerialPort(int pNr, int baudRate)
         Log(lError) <<"Error was: "<<errorMsg;
         return false;
     }
+
+    return true;
 }
 
 bool Serial::connect(int portNr, int baudRate)
 {
-
-
+	return false;
 }
 
 bool Serial::disConnect()
@@ -113,8 +115,6 @@ bool Serial::send(const string& msg)
 {
 	OVERLAPPED osWrite = {0};
    	DWORD dwWritten;
-   	DWORD dwRes;
-   	BOOL fRes;
 
    	// Create this write operation's OVERLAPPED structure's hEvent.
    	osWrite.hEvent = CreateEventA(NULL, TRUE, FALSE, NULL);

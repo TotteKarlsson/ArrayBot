@@ -24,12 +24,12 @@ int main()
 
 	signal (SIGINT,my_handler);
 
-    Serial	mSerial(4, 115200);
+    Serial	mSerial(3, 115200);
 
 
     while(mSerial.isConnected())
     {
-    	sleep(10);
+    	sleep(3000);
         if(!mSerial.send("[HELLO]"))
         {
         	Log(lError) << "Failed to send data...";

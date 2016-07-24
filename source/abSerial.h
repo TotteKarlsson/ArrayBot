@@ -66,12 +66,6 @@ class AB_CORE Serial
 		Mutex					            mReceivedMessagesMutex;
         StringList				            mReceivedMessages;
 
-		Mutex					            mPostMessagesMutex;
-        StringList				            mPostMessages;
-        Poco::Condition                     mGotMessage;
-
-
-
 };
 
 #endif
