@@ -24,11 +24,11 @@ int main()
     mtk::LogOutput::mLogToConsole  		= true;
 
 	signal (SIGINT,my_handler);
-    Serial	mSerial(3, 115200);
+    Serial	mSerial(4, 115200);
 
     while(mSerial.isConnected() && gKeepGoing)
     {
-    	sleep(300);
+    	sleep(30);
         mSerial.assignMessageReceivedCallBack(messageCallBack);
 
 //        while(mSerial.hasMessage())

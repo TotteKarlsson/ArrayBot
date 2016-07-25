@@ -10,23 +10,35 @@ DHT22 gDHT22(DHT22_PIN);
 
 void readEnvironmentalSensors(DHT22& gDHT22);
 
+template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg); return obj; }
+long loopNr(0);
 void setup(void)
 {
     // start serial port
-    Serial.begin(115200);
-    Serial.println("[ArrayBot SensorSketch_1]");
+    Serial.begin(250000);
+    Serial.print("[ArrayBot SensorSketch_1]");
 }
 
 void loop(void)
 { 
+    static int aDelay (1000);
     while(Serial.available() > 0)
     { 
-        char ch = Serial.read();
-        Serial.print("[ACK]"); 
-        //Serial.print(ch); 
-        //Serial.print("]"); 
-    }
-
+        char ch = Serial.read();        
+        switch(ch)
+        {
+            case 's': //Set delay - send format [s:1234]
+                //Next byte is delay length
+                aDelay = Serial.parseInt(); 
+            break;
+            
+            case ']': Serial <<"[ACK]"; break;
+        }
+    }              
+    
+    Serial<<"[LOOP:" << loopNr++ << "]"; 
+    delay(aDelay);
+  
     // The sensor is read every ~2s.
     readEnvironmentalSensors(gDHT22);
 }
@@ -36,7 +48,7 @@ void readEnvironmentalSensors(DHT22& s)
     switch(s.readData())
     {
         case DHT_ERROR_NONE:
-            Serial.print("[DHT22_DATA,");
+            Serial.print("[DHT22,");
             Serial.print(s.getTemperatureC());      
             Serial.print(",");
             Serial.print(s.getHumidity());

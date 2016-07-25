@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{14DD28EE-43BF-42B3-B467-1F3602F37384}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dslib\Common\IPC\mtkIPC.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="arduino_server.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mtkIPC">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj"/>
+    </Target>
+    <Target Name="mtkIPC:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkIPC:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abCore">
+        <MSBuild Projects="..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLCommon">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
+    </Target>
+    <Target Name="VCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="arduino_server">
+        <MSBuild Projects="arduino_server.cbproj"/>
+    </Target>
+    <Target Name="arduino_server:Clean">
+        <MSBuild Projects="arduino_server.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="arduino_server:Make">
+        <MSBuild Projects="arduino_server.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mtkIPC;abCore;VCLCommon;arduino_server"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mtkIPC:Clean;abCore:Clean;VCLCommon:Clean;arduino_server:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mtkIPC:Make;abCore:Make;VCLCommon:Make;arduino_server:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -42,21 +42,21 @@ void ArduinoServerIPCReceiver::Worker()
                 char ch = mMessageBuffer.front();
                 mMessageBuffer.pop_front();
 
-                if(!aMessage.Build(ch))
+                if(!aMessage.build(ch))
                 {
                     Log(lDebug)<<"Character was discarded in IPCReceiver: \'"<<ch<<"\'"<<endl;
                 }
 
-                if(aMessage.IsComplete() )
+                if(aMessage.isComplete() )
                 {
-                    int msgID          = getArduinoIPCMessageID(aMessage.GetMessage());
-                    IPCMessage msg     = IPCMessage(msgID, aMessage.GetMessage(), this->getSocketHandle());
+                    int msgID          = getArduinoIPCMessageID(aMessage.getMessage());
+                    IPCMessage msg     = IPCMessage(msgID, aMessage.getMessage(), this->getSocketHandle());
                     if(mServer)
                     {
                         mServer->postIPCMessage(msg);
                     }
                     send("ACK");
-                    aMessage.Reset();
+                    aMessage.reset();
                 }
             }
         }

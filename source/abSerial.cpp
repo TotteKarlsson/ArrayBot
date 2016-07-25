@@ -9,19 +9,35 @@ Serial::Serial(int portNr, int baudRate)
 :
 mSP(),
 mSerialWorker(*this, mSP),
-mReceivedCB(NULL)
+mReceivedCB(NULL),
+mReceivedCB_C(NULL)
 {
-    if(setupAndOpenSerialPort(portNr, baudRate))
+    if(portNr != -1)
     {
-  		//Start serving serial port...
-    	mSerialWorker.start(true);
+    	connect(portNr, baudRate);
     }
 }
 
 Serial::~Serial()
 {}
 
-void Serial::assignMessageReceivedCallBack(MesageReceivedCallback cb)
+bool Serial::connect(int pNr, int baudRate)
+{
+    if(setupAndOpenSerialPort(pNr, baudRate))
+    {
+        //Start serving serial port...
+        mSerialWorker.start(true);
+    }
+    else
+    {
+        Log(lError) <<"Failed opening serial port: "<<pNr<<" using baudrate: "<<baudRate;
+        return false;
+    }
+
+	return true;
+}
+
+void Serial::assignMessageReceivedCallBack(MessageReceivedCallBack cb)
 {
 	mReceivedCB = cb;
 }
@@ -91,11 +107,6 @@ bool Serial::setupAndOpenSerialPort(int pNr, int baudRate)
     return true;
 }
 
-bool Serial::connect(int portNr, int baudRate)
-{
-	return false;
-}
-
 bool Serial::disConnect()
 {
 	//First stop the worker
@@ -139,7 +150,7 @@ bool Serial::send(const string& msg)
 	int error = mSP.Write(msg.c_str(), msg.size(), &dwWritten, &osWrite);
     if(error)
     {
-    	Log(lError) << "Failed to send..";
+    	Log(lError) << "Failed to send over Serial Port..";
         return false;
     }
 	return true;

@@ -34,7 +34,9 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TRegistryForm("Test", "MainForm", Owner),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, "ArduinoServer.ini"), true, true),
-    mLogLevel(lAny)
+    mLogLevel(lAny),
+    mAS(-1),
+    mAD1(mAS.getArduinoDevice(1))
 {
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
@@ -42,8 +44,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 	//Setup UI properties
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
-    mProperties.read();
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
+    mProperties.read();
 }
 
 __fastcall TMain::~TMain()
@@ -86,6 +88,11 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
+
+    //Setup the server
+    mAS.start(50000);
+    ArduinoDevice& a1 = mAS.getArduinoDevice(1);
+	a1.connect(4, 250000);
 }
 
 //---------------------------------------------------------------------------
@@ -126,9 +133,6 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
                 gSplashForm = NULL;
             break;
 
-            case abSequencerUpdate:
-
-            break;
             default:
             break ;
         }
@@ -139,8 +143,42 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 	}
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
+{
+   	mASStartBtn->Caption 			= mAS.isRunning() 		? "Stop" : "Start";
+	mArduinoServerPort->Enabled = !mAS.isRunning();
 
 
+    mArduinoBoard1Connect->Caption 	= mAD1.isConnected()	? "Disconnect" : "Connect";
+    mCommPortE->Enabled = !mAD1.isConnected();
+    mBaudRateE->Enabled = !mAD1.isConnected();
+}
 
+
+void __fastcall TMain::mASStartBtnClick(TObject *Sender)
+{
+	if(mASStartBtn->Caption == "Stop")
+    {
+    	mAS.stop();
+    }
+    else
+    {
+    	mAS.start(mArduinoServerPort->getValue());
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mArduinoBoard1ConnectClick(TObject *Sender)
+{
+	if(mArduinoBoard1Connect->Caption == "Disconnect")
+    {
+    	mAD1.disConnect();
+    }
+    else
+    {
+    	mAD1.connect(mCommPortE->getValue(), mBaudRateE->getValue());
+    }
+}
 
 

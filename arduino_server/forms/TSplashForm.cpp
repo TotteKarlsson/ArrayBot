@@ -20,7 +20,7 @@ __fastcall TSplashForm::TSplashForm(TComponent* Owner)
 :
 	TForm(Owner),
 	mCanClose(true),
-	mMinimumTimeShowing(5*Poco::Timespan::SECONDS),
+	mMinimumTimeShowing(3*Poco::Timespan::SECONDS),
 	mMainAppIsRunning(false),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer", gLogFileName), logMsg)
 {

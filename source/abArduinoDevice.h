@@ -26,6 +26,9 @@ class AB_CORE ArduinoDevice
         							ArduinoDevice(int portNr, int baudRate = 9600);
     								~ArduinoDevice();
 
+        void		 				assignMessageReceivedCallBack(MessageReceivedCallBack cb);
+
+		bool						connect(int portNr, int baudRate = 9600);
         bool 						isConnected();
         bool						disConnect();
 
@@ -41,6 +44,7 @@ class AB_CORE ArduinoDevice
         							//Write
         bool                        analogWrite(int pin, int value);
         bool                        digitalWrite(int pin, bool value);
+        bool						send(const string& msg);
 
     private:
         Serial						mSerial;

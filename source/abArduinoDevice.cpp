@@ -15,6 +15,21 @@ mSerial(pNr, baudRate)
 ArduinoDevice::~ArduinoDevice()
 {}
 
+bool ArduinoDevice::connect(int portNr, int baudRate)
+{
+	return mSerial.connect(portNr, baudRate);
+}
+
+bool ArduinoDevice::send(const string& msg)
+{
+	return mSerial.send(msg);
+}
+
+void ArduinoDevice::assignMessageReceivedCallBack(MessageReceivedCallBack cb)
+{
+	mSerial.assignMessageReceivedCallBack(cb);
+}
+
 bool ArduinoDevice::postMessage(const string& msg)
 {
 	mSerial.send(msg);

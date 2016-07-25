@@ -32,7 +32,7 @@ extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
-extern bool         gHideSplash                 = false;
+extern bool         gHideSplash                 = true;
 extern TSplashForm* gSplashForm                 = NULL;
 
 void setupLogging();
@@ -124,6 +124,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 //---------------------------------------------------------------------------
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "mtkMath.lib")
+#pragma comment(lib, "mtkIPC.lib")
 #pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "tinyxml2-static.lib")

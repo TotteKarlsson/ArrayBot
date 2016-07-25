@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F99C514B-7A78-4022-B246-AE64CAD88A6F}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="abArduinoServer.cbproj">
+            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="abCore">
+        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abArduinoServer" DependsOnTargets="abCore">
+        <MSBuild Projects="abArduinoServer.cbproj"/>
+    </Target>
+    <Target Name="abArduinoServer:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="abArduinoServer.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abArduinoServer:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="abArduinoServer.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="abCore;abArduinoServer"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="abCore:Clean;abArduinoServer:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="abCore:Make;abArduinoServer:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -26,7 +26,7 @@
 #include "abUIDataStructures.h"
 #include "abApplicationMessages.h"
 #include "mtkIniFile.h"
-
+#include "abArduinoServer.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -57,41 +57,45 @@ class TMain : public TRegistryForm
 	TPanel *mButtonPanel;
 	TFileExit *FileExit1;
 	TPanel *TopPanel;
-	TPageControl *PageControl1;
-	TTabSheet *TabSheet4;
-	TTabSheet *TabSheet2;
-	TTabSheet *TabSheet5;
-	TPanel *BottomPanel;
-	TMemo *infoMemo;
-	TToolBar *ToolBar1;
-	TBitBtn *mClearLogMemoBtn;
 	TTimer *UIUpdateTimer;
 	TSpeedButton *Button5;
 	TPanel *BottomBtnPanel;
 	TAction *abortLiftA;
 	TAction *liftA;
-	TComboBox *LogLevelCB;
 	TSpeedButton *mAboutBtn;
+	TPanel *BottomPanel;
+	TMemo *infoMemo;
+	TToolBar *ToolBar1;
+	TBitBtn *mClearLogMemoBtn;
+	TComboBox *LogLevelCB;
+	TPanel *MainPanel;
+	TSplitter *Splitter1;
+	TGroupBox *GroupBox1;
+	TIntegerLabeledEdit *mArduinoServerPort;
+	TGroupBox *GroupBox2;
+	TIntegerLabeledEdit *mCommPortE;
+	TIntegerLabeledEdit *mBaudRateE;
+	TButton *mASStartBtn;
+	TButton *mArduinoBoard1Connect;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
     void __fastcall ShutDownTimerTimer(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
-
 	void __fastcall FormShow(TObject *Sender);
-
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall mClearLogMemoBtnClick(TObject *Sender);
-
+	void __fastcall UIUpdateTimerTimer(TObject *Sender);
+	void __fastcall mASStartBtnClick(TObject *Sender);
+	void __fastcall mArduinoBoard1ConnectClick(TObject *Sender);
 
     private:
         LogFileReader                   mLogFileReader;
         void __fastcall                 logMsg();
 
 		void 						    setupWindowTitle();
-
         void __fastcall					setupUIFrames();
 
         IniFile						    mIniFile;
@@ -99,6 +103,8 @@ class TMain : public TRegistryForm
 		mtk::Property<mtk::LogLevel>    mLogLevel;
 
 		void __fastcall		            OnException();
+        ArduinoServer					mAS;
+        ArduinoDevice&					mAD1;
 
 	public:		// User declarations
 		__fastcall 					    TMain(TComponent* Owner);

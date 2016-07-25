@@ -83,20 +83,18 @@ void SerialWorker::run()
                 // Handle error event
                 if (eEvent & SerialPort::EEventError)
                 {
-                    printf("\n### ERROR: ");
                     switch (mSP.GetError())
                     {
-                        case SerialPort::EErrorBreak:		printf("Break condition");			break;
-                        case SerialPort::EErrorFrame:		printf("Framing error");			break;
-                        case SerialPort::EErrorIOE:			printf("IO device error");			break;
-                        case SerialPort::EErrorMode:		printf("Unsupported mode");			break;
-                        case SerialPort::EErrorOverrun:		printf("Buffer overrun");			break;
-                        case SerialPort::EErrorRxOver:		printf("Input buffer overflow");	break;
-                        case SerialPort::EErrorParity:		printf("Input parity error");		break;
-                        case SerialPort::EErrorTxFull:		printf("Output buffer full");		break;
-                        default:							printf("Unknown");					break;
+                        case SerialPort::EErrorBreak:		Log(lError) <<("Break condition");			break;
+                        case SerialPort::EErrorFrame:		Log(lError) <<("Framing error");			break;
+                        case SerialPort::EErrorIOE:			Log(lError) <<("IO device error");			break;
+                        case SerialPort::EErrorMode:		Log(lError) <<("Unsupported mode");			break;
+                        case SerialPort::EErrorOverrun:		Log(lError) <<("Buffer overrun");			break;
+                        case SerialPort::EErrorRxOver:		Log(lError) <<("Input buffer overflow");	break;
+                        case SerialPort::EErrorParity:		Log(lError) <<("Input parity error");		break;
+                        case SerialPort::EErrorTxFull:		Log(lError) <<("Output buffer full");		break;
+                        default:							Log(lError) <<("Unknown Error");					break;
                     }
-                    printf(" ###\n");
                 }
 
                 // Handle ring event
@@ -163,26 +161,35 @@ void SerialWorker::run()
     mIsFinished = true;
 }
 
+//This is the heart of the serial worker class.. it posts incoming messages
+//to the hosts message list.
+//Also, if incoming message callbacks are assigned, they are executed
 int SerialWorker::processReceiveBuffer(char* buffer, int bufSize)
 {
 	int nrOfMessages(0);
 
 	for(int i = 0; i < bufSize; i++)
     {
-        mMessageBuilder.Build(buffer[i]);
-        if(mMessageBuilder.IsComplete())
+        mMessageBuilder.build(buffer[i]);
+        if(mMessageBuilder.isComplete())
         {
             {
                 Poco::ScopedLock<Poco::Mutex> lock(mTheHost.mReceivedMessagesMutex);
-                mTheHost.mReceivedMessages.append(mMessageBuilder.GetMessage());
-                Log(lDebug5) << "Received: " << mMessageBuilder.GetMessage();
+                //mTheHost.mReceivedMessages.append(mMessageBuilder.getMessage());
+                Log(lDebug5) << "Received: " << mMessageBuilder.getMessage();
+
                 if(mTheHost.mReceivedCB)
                 {
-                	mTheHost.mReceivedCB(mMessageBuilder.GetMessage());
+                	mTheHost.mReceivedCB(mMessageBuilder.getMessage());
+                }
+
+                if(mTheHost.mReceivedCB_C)
+                {
+                	mTheHost.mReceivedCB_C(mMessageBuilder.getMessage());
                 }
             }
             nrOfMessages++;
-            mMessageBuilder.Reset();
+            mMessageBuilder.reset();
         }
 	}
 

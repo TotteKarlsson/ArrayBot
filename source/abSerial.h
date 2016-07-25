@@ -14,7 +14,8 @@ using Poco::Condition;
 using mtk::StringList;
 using mtk::IPCMessageBuilder;
 
-typedef void (*MesageReceivedCallback)(const string& msg);
+typedef void (*MessageReceivedCallBackC)(const string& msg);
+typedef void (__closure *MessageReceivedCallBack)(const string& msg);
 
 class AB_CORE Serial : public ABObject
 {
@@ -40,7 +41,8 @@ class AB_CORE Serial : public ABObject
         									//!Post message to internal output queue
 		bool								send(const string& msg);
 
-        void								assignMessageReceivedCallBack(MesageReceivedCallback cb);
+        void								assignMessageReceivedCallBackC(MessageReceivedCallBackC cb);
+        void								assignMessageReceivedCallBack(MessageReceivedCallBack cb);
 
     private:
         									//CSerial is doint the work
@@ -56,7 +58,8 @@ class AB_CORE Serial : public ABObject
 		Mutex					            mReceivedMessagesMutex;
         StringList				            mReceivedMessages;
 
-        MesageReceivedCallback				mReceivedCB;
+        MessageReceivedCallBackC			mReceivedCB_C;
+        MessageReceivedCallBack				mReceivedCB;
         Poco::Condition                     mGotMessage;
 };
 

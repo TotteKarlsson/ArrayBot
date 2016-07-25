@@ -526,26 +526,26 @@ LONG SerialPort::WaitEvent (LPOVERLAPPED lpOverlapped, DWORD dwTimeout)
 			// Wait for the overlapped operation to complete
 			switch (::WaitForSingleObject(lpOverlapped->hEvent,dwTimeout))
 			{
-			case WAIT_OBJECT_0:
-				// The overlapped operation has completed
-				break;
+                case WAIT_OBJECT_0:
+                    // The overlapped operation has completed
+                    break;
 
-			case WAIT_TIMEOUT:
-				// Cancel the I/O operation
-				CancelCommIo();
+                case WAIT_TIMEOUT:
+                    // Cancel the I/O operation
+                    CancelCommIo();
 
-				// The operation timed out. Set the internal error code and quit
-				m_lLastError = ERROR_TIMEOUT;
-				return m_lLastError;
+                    // The operation timed out. Set the internal error code and quit
+                    m_lLastError = ERROR_TIMEOUT;
+                    return m_lLastError;
 
-			default:
-				// Set the internal error code
-				m_lLastError = ::GetLastError();
+                default:
+                    // Set the internal error code
+                    m_lLastError = ::GetLastError();
 
-				// Issue an error and quit
-				//_RPTF0(_CRT_WARN,"SerialPort::WaitEvent - Unable to wait until COM event has arrived\n");
-				return m_lLastError;
-			}
+                    // Issue an error and quit
+                    //_RPTF0(_CRT_WARN,"SerialPort::WaitEvent - Unable to wait until COM event has arrived\n");
+                    return m_lLastError;
+            }
 		}
 	}
 	else
