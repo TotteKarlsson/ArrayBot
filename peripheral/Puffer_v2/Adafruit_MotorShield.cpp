@@ -22,7 +22,7 @@
 #endif
 #include <Wire.h>
 #include "Adafruit_MotorShield.h"
-#include <Adafruit_MS_PWMServoDriver.h>
+#include "utility/Adafruit_MS_PWMServoDriver.h"
 
 #if defined(ARDUINO_SAM_DUE)
  #define WIRE Wire1
