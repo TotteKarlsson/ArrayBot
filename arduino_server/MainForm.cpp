@@ -18,6 +18,7 @@
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
+#pragma link "mtkSTDStringEdit"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -41,11 +42,19 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
 
-	//Setup UI properties
+	//Setup UI/INI properties
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
-	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
+	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    	"LOG_LEVEL",    	 lAny));
+	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup("SERVER_PORT",    	 50000));
+	mProperties.add((BaseProperty*)  &mCommPortE->getProperty()->setup(       	"COMM_PORT",    	 0));
+	mProperties.add((BaseProperty*)  &mBaudRateE->getProperty()->setup(       	"BAUD_RATE",    	 9600));
     mProperties.read();
+
+	mArduinoServerPortE->update();
+    mCommPortE->update();
+	mBaudRateE->update();
+
 }
 
 __fastcall TMain::~TMain()
@@ -90,9 +99,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     UIUpdateTimer->Enabled = true;
 
     //Setup the server
-    mAS.start(50000);
+    mAS.start(mArduinoServerPortE->getValue());
     ArduinoDevice& a1 = mAS.getArduinoDevice(1);
-	a1.connect(4, 250000);
+	a1.connect(mCommPortE->getValue(), mBaudRateE->getValue());
 }
 
 //---------------------------------------------------------------------------
@@ -147,12 +156,12 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
 {
    	mASStartBtn->Caption 			= mAS.isRunning() 		? "Stop" : "Start";
-	mArduinoServerPort->Enabled = !mAS.isRunning();
-
+	mArduinoServerPortE->Enabled = !mAS.isRunning();
 
     mArduinoBoard1Connect->Caption 	= mAD1.isConnected()	? "Disconnect" : "Connect";
     mCommPortE->Enabled = !mAD1.isConnected();
     mBaudRateE->Enabled = !mAD1.isConnected();
+    mSendMSGE->Enabled = mAD1.isConnected();
 }
 
 
@@ -164,7 +173,7 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
     }
     else
     {
-    	mAS.start(mArduinoServerPort->getValue());
+    	mAS.start(mArduinoServerPortE->getValue());
     }
 }
 
@@ -179,6 +188,21 @@ void __fastcall TMain::mArduinoBoard1ConnectClick(TObject *Sender)
     {
     	mAD1.connect(mCommPortE->getValue(), mBaudRateE->getValue());
     }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	if(Key == vkReturn)
+    {
+  		mAD1.send(mSendMSGE->GetString());
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::Button1Click(TObject *Sender)
+{
+	mAD1.send(mSendMSGE->GetString());
 }
 
 

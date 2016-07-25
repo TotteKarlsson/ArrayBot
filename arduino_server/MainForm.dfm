@@ -91,7 +91,7 @@ object Main: TMain
         Height = 268
         Caption = 'Arduino Server'
         TabOrder = 0
-        object mArduinoServerPort: TIntegerLabeledEdit
+        object mArduinoServerPortE: TIntegerLabeledEdit
           Left = 16
           Top = 56
           Width = 121
@@ -146,12 +146,34 @@ object Main: TMain
         end
         object mArduinoBoard1Connect: TButton
           Left = 16
-          Top = 160
+          Top = 184
           Width = 200
           Height = 65
           Caption = 'Connect/Disconnect'
           TabOrder = 2
           OnClick = mArduinoBoard1ConnectClick
+        end
+        object mSendMSGE: mtkSTDStringEdit
+          Left = 16
+          Top = 120
+          Width = 121
+          Height = 31
+          EditLabel.Width = 43
+          EditLabel.Height = 23
+          EditLabel.Caption = 'Send'
+          TabOrder = 3
+          Text = 'Test'
+          OnKeyDown = mSendMSGEKeyDown
+          Value = '<none>'
+        end
+        object Button1: TButton
+          Left = 143
+          Top = 122
+          Width = 34
+          Height = 28
+          Caption = '->'
+          TabOrder = 4
+          OnClick = Button1Click
         end
       end
     end

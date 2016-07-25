@@ -25,6 +25,7 @@ bool Serial::connect(int pNr, int baudRate)
 {
     if(setupAndOpenSerialPort(pNr, baudRate))
     {
+        Log(lInfo) <<"Connected to COM port: " <<pNr<<" using BaudRate: "<<baudRate;
         //Start serving serial port...
         mSerialWorker.start(true);
     }

@@ -27,6 +27,7 @@
 #include "abApplicationMessages.h"
 #include "mtkIniFile.h"
 #include "abArduinoServer.h"
+#include "mtkSTDStringEdit.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -71,12 +72,14 @@ class TMain : public TRegistryForm
 	TPanel *MainPanel;
 	TSplitter *Splitter1;
 	TGroupBox *GroupBox1;
-	TIntegerLabeledEdit *mArduinoServerPort;
+	TIntegerLabeledEdit *mArduinoServerPortE;
 	TGroupBox *GroupBox2;
 	TIntegerLabeledEdit *mCommPortE;
 	TIntegerLabeledEdit *mBaudRateE;
 	TButton *mASStartBtn;
 	TButton *mArduinoBoard1Connect;
+	mtkSTDStringEdit *mSendMSGE;
+	TButton *Button1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -90,6 +93,9 @@ class TMain : public TRegistryForm
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall mArduinoBoard1ConnectClick(TObject *Sender);
+	void __fastcall mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall Button1Click(TObject *Sender);
+
 
     private:
         LogFileReader                   mLogFileReader;

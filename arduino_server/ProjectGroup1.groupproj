@@ -12,6 +12,9 @@
         <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Components\DuneComponents.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="arduino_server.cbproj">
             <Dependencies/>
         </Projects>
@@ -50,6 +53,15 @@
     <Target Name="VCLCommon:Make">
         <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="DuneComponents">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj"/>
+    </Target>
+    <Target Name="DuneComponents:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneComponents:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="arduino_server">
         <MSBuild Projects="arduino_server.cbproj"/>
     </Target>
@@ -60,13 +72,13 @@
         <MSBuild Projects="arduino_server.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkIPC;abCore;VCLCommon;arduino_server"/>
+        <CallTarget Targets="mtkIPC;abCore;VCLCommon;DuneComponents;arduino_server"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkIPC:Clean;abCore:Clean;VCLCommon:Clean;arduino_server:Clean"/>
+        <CallTarget Targets="mtkIPC:Clean;abCore:Clean;VCLCommon:Clean;DuneComponents:Clean;arduino_server:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkIPC:Make;abCore:Make;VCLCommon:Make;arduino_server:Make"/>
+        <CallTarget Targets="mtkIPC:Make;abCore:Make;VCLCommon:Make;DuneComponents:Make;arduino_server:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
