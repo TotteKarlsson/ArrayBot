@@ -23,14 +23,13 @@ class ArduinoDevice;
 class AB_CORE ArduinoDevice
 {
     public:
-        							ArduinoDevice(int pNr, int baudRate = 9600);
+        							ArduinoDevice(int portNr, int baudRate = 9600);
     								~ArduinoDevice();
 
         bool 						isConnected();
         bool						disConnect();
 
 		bool						postMessage(const string& msg);
-
         bool                        setPinMode(int pin, bool mode);
         bool						hasMessage();
 		string						getMessage();
@@ -48,6 +47,7 @@ class AB_CORE ArduinoDevice
 
         							//A stream makes it easy to compose messages
         std::stringstream		  	mSS;
+
         int					        readSerialPort();
 
 };

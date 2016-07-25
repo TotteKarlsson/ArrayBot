@@ -8,33 +8,36 @@ using namespace mtk;
 
 ArduinoDevice::ArduinoDevice(int pNr, int baudRate)
 :
-mSerial(4,9600)
+mSerial(pNr, baudRate)
 {
 }
 
 ArduinoDevice::~ArduinoDevice()
 {}
 
+bool ArduinoDevice::postMessage(const string& msg)
+{
+	mSerial.send(msg);
+}
 
 bool ArduinoDevice::isConnected()
 {
-	return false;
+	return mSerial.isConnected();
 }
 
 bool ArduinoDevice::disConnect()
 {
-	return false;
+	return mSerial.disConnect();
 }
 
 bool ArduinoDevice::hasMessage()
 {
-//	return mSP.hasMessage();
-	return false;
+	return mSerial.hasMessage();
 }
 
 string ArduinoDevice::getMessage()
 {
-//	return mSP.popMessage();
+	return mSerial.popMessage();
 }
 
 bool ArduinoDevice::setPinMode(int pin, bool mode)

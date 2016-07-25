@@ -23,61 +23,42 @@ int main()
 
 	signal (SIGINT,my_handler);
 
-    Serial	mSerial(3, 115200);
-
-
-    while(mSerial.isConnected() && gKeepGoing)
+    ArduinoDevice a1(3,  115200);
+	try
     {
-    	sleep(3000);
-        while(mSerial.hasMessage())
+    	int count(0);
+        while(a1.isConnected() && gKeepGoing == true)
         {
-        	Log(lInfo) << "Message: "<< mSerial.popMessage();
+            while(a1.hasMessage())
+            {
+            	string msg = a1.getMessage();
+            	Log(lInfo) << "RCVD: "<<msg;
+            }
+
+            if(count%10 == 1)
+            {
+            	a1.postMessage("[HELLO]");
+            }
+
+            count++;
+//	        sleep(10);
         }
 
-        if(!mSerial.send("[HELLO]"))
-        {
-        	Log(lError) << "Failed to send data...";
-        }
+        a1.disConnect();
+    }
+//        while(s.isRunning())
+//        {
+//            Log(lDebug) <<"Server HeartBeat";
+//            IPCMessage msg(-1, "Server HeartBeat");
+////            s.broadcast(msg);
+//            sleep(5000);
+//        }
+//    }
+    catch(...)
+    {
+    	Log(lError) << "Something bad happened";
     }
 
-    mSerial.disConnect();
-////	ArduinoServer s(50000);
-//    ArduinoDevice a1(4,  115200);
-//	try
-//    {
-//    	int count(0);
-//        while(a1.isConnected() && keepGoing == true)
-//        {
-//            while(a1.hasMessage())
-//            {
-//            	string msg = a1.getMessage();
-//            	Log(lInfo) << "RCVD: "<<msg;
-//            }
-//
-//            if(count%10 == 1)
-//            {
-//            	a1.postMessage("[HELLO]");
-//            }
-//
-//            count++;
-////	        sleep(10);
-//        }
-//
-//        a1.disConnect();
-//    }
-////        while(s.isRunning())
-////        {
-////            Log(lDebug) <<"Server HeartBeat";
-////            IPCMessage msg(-1, "Server HeartBeat");
-//////            s.broadcast(msg);
-////            sleep(5000);
-////        }
-////    }
-//    catch(...)
-//    {
-//    	Log(lError) << "Something bad happened";
-//    }
-//
     return 0;
 }
 
