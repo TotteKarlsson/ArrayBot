@@ -1,9 +1,9 @@
 object Main: TMain
   Left = 0
   Top = 0
-  Caption = 'ArduinoServer Version 0.5.8'
-  ClientHeight = 791
-  ClientWidth = 1087
+  Caption = 'Arduino Client'
+  ClientHeight = 585
+  ClientWidth = 855
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,32 +21,23 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 23
   object mButtonPanel: TPanel
-    Left = 904
+    Left = 672
     Top = 0
     Width = 183
-    Height = 791
+    Height = 585
     Align = alRight
     TabOrder = 0
-    object mAboutBtn: TSpeedButton
-      Left = 1
-      Top = 1
-      Width = 181
-      Height = 134
-      Align = alTop
-      AllowAllUp = True
-      Caption = 'About'
-      OnClick = mAboutBtnClick
-      ExplicitTop = -57
-      ExplicitWidth = 125
-    end
+    ExplicitLeft = 904
+    ExplicitHeight = 791
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 663
+      Top = 457
       Width = 181
       Height = 127
       Align = alBottom
       AutoSize = True
       TabOrder = 0
+      ExplicitTop = 663
       object Button5: TSpeedButton
         Left = 1
         Top = 1
@@ -60,29 +51,33 @@ object Main: TMain
   object MainPanel: TPanel
     Left = 0
     Top = 0
-    Width = 904
-    Height = 791
+    Width = 672
+    Height = 585
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 904
+    ExplicitHeight = 791
     object Splitter1: TSplitter
       Left = 1
       Top = 361
-      Width = 902
+      Width = 670
       Height = 3
       Cursor = crVSplit
       Align = alTop
       ExplicitLeft = 25
       ExplicitTop = 586
+      ExplicitWidth = 902
     end
     object TopPanel: TPanel
       Left = 1
       Top = 1
-      Width = 902
+      Width = 670
       Height = 360
       Align = alTop
       Constraints.MinHeight = 348
       Constraints.MinWidth = 670
       TabOrder = 0
+      ExplicitWidth = 902
       object GroupBox1: TGroupBox
         Left = 16
         Top = 13
@@ -112,26 +107,21 @@ object Main: TMain
           OnClick = mASStartBtnClick
         end
       end
-      object mArduinoSB: TScrollBox
-        Left = 384
-        Top = 13
-        Width = 489
-        Height = 341
-        TabOrder = 1
-      end
     end
     object BottomPanel: TPanel
       Left = 1
       Top = 364
-      Width = 902
-      Height = 426
+      Width = 670
+      Height = 220
       Align = alClient
       TabOrder = 1
+      ExplicitWidth = 902
+      ExplicitHeight = 426
       object infoMemo: TMemo
         Left = 1
         Top = 31
-        Width = 900
-        Height = 394
+        Width = 668
+        Height = 188
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -143,16 +133,19 @@ object Main: TMain
         ScrollBars = ssBoth
         TabOrder = 0
         WordWrap = False
+        ExplicitWidth = 900
+        ExplicitHeight = 394
       end
       object ToolBar1: TToolBar
         Left = 1
         Top = 1
-        Width = 900
+        Width = 668
         Height = 30
         AutoSize = True
         ButtonHeight = 30
         Caption = 'ToolBar1'
         TabOrder = 1
+        ExplicitWidth = 900
         object mClearLogMemoBtn: TBitBtn
           Left = 0
           Top = 0

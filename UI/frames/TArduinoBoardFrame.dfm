@@ -43,14 +43,14 @@ object ArduinoBoardFrame: TArduinoBoardFrame
       Text = '9600'
       Value = 9600
     end
-    object mArduinoBoard1Connect: TButton
+    object mConnectBtn: TButton
       Left = 24
       Top = 184
       Width = 216
       Height = 65
       Caption = 'Connect/Disconnect'
       TabOrder = 2
-      OnClick = mArduinoBoard1ConnectClick
+      OnClick = ConnectBtnClick
     end
     object mSendMSGE: mtkSTDStringEdit
       Left = 24

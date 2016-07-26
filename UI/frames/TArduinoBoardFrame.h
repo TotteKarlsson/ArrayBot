@@ -23,11 +23,11 @@ __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mCommPortE;
 	TIntegerLabeledEdit *mBaudRateE;
-	TButton *mArduinoBoard1Connect;
+	TButton *mConnectBtn;
 	mtkSTDStringEdit *mSendMSGE;
 	TButton *Button1;
 	TTimer *Timer1;
-	void __fastcall mArduinoBoard1ConnectClick(TObject *Sender);
+	void __fastcall ConnectBtnClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall Timer1Timer(TObject *Sender);

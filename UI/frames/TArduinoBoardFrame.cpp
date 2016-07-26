@@ -34,9 +34,9 @@ __fastcall  TArduinoBoardFrame::~TArduinoBoardFrame()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TArduinoBoardFrame::mArduinoBoard1ConnectClick(TObject *Sender)
+void __fastcall TArduinoBoardFrame::ConnectBtnClick(TObject *Sender)
 {
-	if(mArduinoBoard1Connect->Caption == "Disconnect")
+	if(mConnectBtn->Caption == "Disconnect")
     {
     	mAD.disConnect();
     }
@@ -65,9 +65,9 @@ void __fastcall TArduinoBoardFrame::mSendMSGEKeyDown(TObject *Sender, WORD &Key,
 //---------------------------------------------------------------------------
 void __fastcall TArduinoBoardFrame::Timer1Timer(TObject *Sender)
 {
-    mArduinoBoard1Connect->Caption 	= mAD.isConnected()	? "Disconnect" : "Connect";
-    mCommPortE->Enabled = !mAD.isConnected();
-    mBaudRateE->Enabled = !mAD.isConnected();
-    mSendMSGE->Enabled 	= mAD.isConnected();
+    mConnectBtn->Caption 	=  mAD.isConnected()  ? "Disconnect" : "Connect";
+    mCommPortE->Enabled 	= !mAD.isConnected();
+    mBaudRateE->Enabled 	= !mAD.isConnected();
+    mSendMSGE->Enabled 		=  mAD.isConnected();
 }
 

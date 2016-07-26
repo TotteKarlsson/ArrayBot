@@ -11,8 +11,7 @@
 #include <bitset>
 #include "mtkMathUtils.h"
 #include "abExceptions.h"
-#include "TSplashForm.h"
-#include "TArduinoBoardFrame.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -25,7 +24,7 @@ TMain *Main;
 extern string           gLogFileLocation;
 extern string           gLogFileName;
 extern string           gAppDataFolder;
-extern TSplashForm*  	gSplashForm;
+
 extern bool             gAppIsStartingUp;
 using namespace mtk;
 
@@ -35,9 +34,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TRegistryForm("Test", "MainForm", Owner),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, "ArduinoServer.ini"), true, true),
-    mLogLevel(lAny),
-    mAS(-1),
-    mAD1(mAS.getArduinoDevice(1))
+    mLogLevel(lAny)
 {
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
@@ -65,21 +62,11 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	gAppIsStartingUp = false;
 
 	TMemoLogger::mMemoIsEnabled = true;
-	gSplashForm->mMainAppIsRunning = true;
+
 
 	this->Visible = true;
-	while(gSplashForm->isOnShowTime() == true)
-	{
-       	Application->ProcessMessages();
 
-		//In order to show whats going on on the splash screen
-		if(gSplashForm->Visible == false)
-		{
-			break;
-		}
-	}
 
-	gSplashForm->Close();
 	gLogger.setLogLevel(mLogLevel);
 
 	if(mLogLevel == lInfo)
@@ -95,24 +82,16 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     UIUpdateTimer->Enabled = true;
 
     //Setup the server
-    mAS.start(mArduinoServerPortE->getValue());
+    //mAS.start(mArduinoServerPortE->getValue());
 
 	setupUIFrames();
-    ArduinoDevice& a1 = mAS.getArduinoDevice(1);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall	TMain::setupUIFrames()
 {
-     ArduinoDevice& a1 = mAS.getArduinoDevice(1);
-     a1.setName("PUFFER_ARDUINO");
 
-    //Create an ArduinoFrame
-    TArduinoBoardFrame* af = new TArduinoBoardFrame(a1, mIniFile, this);
-    af->Parent =  mArduinoSB;
-    af->Align = alTop;
-    af->ConnectBtnClick(NULL);
-    mFrames.push_back(af);
+//    mFrames.push_back(af);
 
 }
 
@@ -146,7 +125,6 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
         {
             case abSplashWasClosed:
                 Log(lDebug2) << "Splash form sent message that it was closed";
-                gSplashForm = NULL;
             break;
 
             default:
@@ -162,8 +140,8 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 //---------------------------------------------------------------------------
 void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
 {
-   	mASStartBtn->Caption 			= mAS.isRunning() 		? "Stop" : "Start";
-	mArduinoServerPortE->Enabled = !mAS.isRunning();
+//   	mASStartBtn->Caption 			= mAS.isRunning() 		? "Stop" : "Start";
+//	mArduinoServerPortE->Enabled = !mAS.isRunning();
 }
 
 //---------------------------------------------------------------------------
@@ -171,11 +149,11 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 {
 	if(mASStartBtn->Caption == "Stop")
     {
-    	mAS.stop();
+//    	mAS.stop();
     }
     else
     {
-    	mAS.start(mArduinoServerPortE->getValue());
+//    	mAS.start(mArduinoServerPortE->getValue());
     }
 }
 

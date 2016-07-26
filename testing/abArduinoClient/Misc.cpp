@@ -3,11 +3,11 @@
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "TSplashForm.h"
-#include "TAboutArduinoServerForm.h"
+
 using namespace mtk;
 
 static HWND gOtherAppWindow = NULL;
-extern TSplashForm*  gSplashForm;
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 {
@@ -23,15 +23,15 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         UIUpdateTimer->Enabled = false;
     }
 
-    if(mAS.isRunning())
-    {
-    	mAS.stop();
-    }
-
-    if(mAD1.isConnected())
-    {
-    	mAD1.disConnect();
-    }
+//    if(mAS.isRunning())
+//    {
+//    	mAS.stop();
+//    }
+//
+//    if(mAD1.isConnected())
+//    {
+//    	mAD1.disConnect();
+//    }
 
     //This will save any ini parameters in the frame
     for(int i = 0; i < mFrames.size(); i++)
@@ -54,10 +54,8 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 
 	//Check if active stuff is going on.. if so call the ShutDown in the
     //Timer fire    if(
-   	CanClose = (gSplashForm && gSplashForm->isOnShowTime()
-    			|| mFrames.size()
-            	|| mAS.isRunning()
-            	|| mAD1.isConnected()) ? false : true;
+   	CanClose = ( mFrames.size()
+            	 ) ? false : true;
 
 
 	if(CanClose == false)
@@ -116,9 +114,6 @@ void TMain::setupWindowTitle()
 void __fastcall TMain::mAboutBtnClick(TObject *Sender)
 {
 	//Show about frame
-    TAboutArduinoServerForm* af = new TAboutArduinoServerForm(this);
-    af->ShowModal();
-    delete af;
 }
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
