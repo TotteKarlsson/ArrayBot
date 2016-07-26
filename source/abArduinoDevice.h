@@ -26,6 +26,9 @@ class AB_CORE ArduinoDevice
         							ArduinoDevice(int portNr, int baudRate = 9600);
     								~ArduinoDevice();
 
+		void						setName(const string& name){mName = name;}
+        string						getName(){return mName;}
+
         void		 				assignMessageReceivedCallBack(MessageReceivedCallBack cb);
 
 		bool						connect(int portNr, int baudRate = 9600);
@@ -48,6 +51,7 @@ class AB_CORE ArduinoDevice
 
     private:
         Serial						mSerial;
+        string						mName;
 
         							//A stream makes it easy to compose messages
         std::stringstream		  	mSS;

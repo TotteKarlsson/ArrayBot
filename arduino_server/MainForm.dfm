@@ -1,7 +1,6 @@
 object Main: TMain
   Left = 0
   Top = 0
-  ActiveControl = mCommPortE
   Caption = 'ArduinoServer Version 0.5.8'
   ClientHeight = 791
   ClientWidth = 1087
@@ -113,68 +112,12 @@ object Main: TMain
           OnClick = mASStartBtnClick
         end
       end
-      object GroupBox2: TGroupBox
-        Left = 288
+      object mArduinoSB: TScrollBox
+        Left = 384
         Top = 13
-        Width = 481
-        Height = 268
-        Caption = 'Arduino Board 1'
+        Width = 393
+        Height = 341
         TabOrder = 1
-        object mCommPortE: TIntegerLabeledEdit
-          Left = 16
-          Top = 56
-          Width = 121
-          Height = 31
-          EditLabel.Width = 78
-          EditLabel.Height = 23
-          EditLabel.Caption = 'COM Port'
-          TabOrder = 0
-          Text = '4'
-          Value = 4
-        end
-        object mBaudRateE: TIntegerLabeledEdit
-          Left = 168
-          Top = 56
-          Width = 121
-          Height = 31
-          EditLabel.Width = 87
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Baud Rate'
-          TabOrder = 1
-          Text = '4'
-          Value = 4
-        end
-        object mArduinoBoard1Connect: TButton
-          Left = 16
-          Top = 184
-          Width = 200
-          Height = 65
-          Caption = 'Connect/Disconnect'
-          TabOrder = 2
-          OnClick = mArduinoBoard1ConnectClick
-        end
-        object mSendMSGE: mtkSTDStringEdit
-          Left = 16
-          Top = 120
-          Width = 121
-          Height = 31
-          EditLabel.Width = 43
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Send'
-          TabOrder = 3
-          Text = 'Test'
-          OnKeyDown = mSendMSGEKeyDown
-          Value = '<none>'
-        end
-        object Button1: TButton
-          Left = 143
-          Top = 122
-          Width = 34
-          Height = 28
-          Caption = '->'
-          TabOrder = 4
-          OnClick = Button1Click
-        end
       end
     end
     object BottomPanel: TPanel

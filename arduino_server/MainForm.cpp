@@ -12,7 +12,7 @@
 #include "mtkMathUtils.h"
 #include "abExceptions.h"
 #include "TSplashForm.h"
-
+#include "TArduinoBoardFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -47,13 +47,10 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mProperties.setIniFile(&mIniFile);
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    	"LOG_LEVEL",    	 lAny));
 	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup("SERVER_PORT",    	 50000));
-	mProperties.add((BaseProperty*)  &mCommPortE->getProperty()->setup(       	"COMM_PORT",    	 0));
-	mProperties.add((BaseProperty*)  &mBaudRateE->getProperty()->setup(       	"BAUD_RATE",    	 9600));
     mProperties.read();
 
 	mArduinoServerPortE->update();
-    mCommPortE->update();
-	mBaudRateE->update();
+
 
 }
 
@@ -100,8 +97,15 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
     //Setup the server
     mAS.start(mArduinoServerPortE->getValue());
+
+
     ArduinoDevice& a1 = mAS.getArduinoDevice(1);
-	a1.connect(mCommPortE->getValue(), mBaudRateE->getValue());
+    a1.setName("PUFFER_ARDUINO");
+
+    //Create an ArduinoFrame
+    TArduinoBoardFrame* af = new TArduinoBoardFrame(a1, mIniFile, this);
+    af->Parent =  mArduinoSB;
+    af->Align = alTop;
 }
 
 //---------------------------------------------------------------------------
@@ -158,13 +162,9 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
    	mASStartBtn->Caption 			= mAS.isRunning() 		? "Stop" : "Start";
 	mArduinoServerPortE->Enabled = !mAS.isRunning();
 
-    mArduinoBoard1Connect->Caption 	= mAD1.isConnected()	? "Disconnect" : "Connect";
-    mCommPortE->Enabled = !mAD1.isConnected();
-    mBaudRateE->Enabled = !mAD1.isConnected();
-    mSendMSGE->Enabled = mAD1.isConnected();
 }
 
-
+//---------------------------------------------------------------------------
 void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 {
 	if(mASStartBtn->Caption == "Stop")
@@ -175,34 +175,6 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
     {
     	mAS.start(mArduinoServerPortE->getValue());
     }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::mArduinoBoard1ConnectClick(TObject *Sender)
-{
-	if(mArduinoBoard1Connect->Caption == "Disconnect")
-    {
-    	mAD1.disConnect();
-    }
-    else
-    {
-    	mAD1.connect(mCommPortE->getValue(), mBaudRateE->getValue());
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-	if(Key == vkReturn)
-    {
-  		mAD1.send(mSendMSGE->GetString());
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::Button1Click(TObject *Sender)
-{
-	mAD1.send(mSendMSGE->GetString());
 }
 
 

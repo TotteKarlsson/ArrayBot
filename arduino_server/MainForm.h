@@ -73,13 +73,8 @@ class TMain : public TRegistryForm
 	TSplitter *Splitter1;
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mArduinoServerPortE;
-	TGroupBox *GroupBox2;
-	TIntegerLabeledEdit *mCommPortE;
-	TIntegerLabeledEdit *mBaudRateE;
 	TButton *mASStartBtn;
-	TButton *mArduinoBoard1Connect;
-	mtkSTDStringEdit *mSendMSGE;
-	TButton *Button1;
+	TScrollBox *mArduinoSB;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -92,9 +87,6 @@ class TMain : public TRegistryForm
 	void __fastcall mClearLogMemoBtnClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mASStartBtnClick(TObject *Sender);
-	void __fastcall mArduinoBoard1ConnectClick(TObject *Sender);
-	void __fastcall mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall Button1Click(TObject *Sender);
 
 
     private:
