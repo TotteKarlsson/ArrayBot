@@ -50,8 +50,6 @@ __fastcall TMain::TMain(TComponent* Owner)
     mProperties.read();
 
 	mArduinoServerPortE->update();
-
-
 }
 
 __fastcall TMain::~TMain()
@@ -106,12 +104,12 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     TArduinoBoardFrame* af = new TArduinoBoardFrame(a1, mIniFile, this);
     af->Parent =  mArduinoSB;
     af->Align = alTop;
+    mFrames.push_back(af);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall	TMain::setupUIFrames()
-{
-}
+{}
 
 void __fastcall TMain::LogLevelCBChange(TObject *Sender)
 {
@@ -161,7 +159,6 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
 {
    	mASStartBtn->Caption 			= mAS.isRunning() 		? "Stop" : "Start";
 	mArduinoServerPortE->Enabled = !mAS.isRunning();
-
 }
 
 //---------------------------------------------------------------------------

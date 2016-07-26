@@ -1,9 +1,12 @@
-// Ribbon Separator control code.  
+
+//Ribbon Separator control code.  
 //Uses a Hall effect sensor digital out to pin2, pin 13 output ot an LED, 
 //and solenoid connected to Motor 1 terminals on Adafruit motor shield
 
 #include <Wire.h>
 #include "Adafruit_MotorShield.h"
+
+//Allow nice syntax for serial printing
 template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg); return obj; }
 
 // Create the motor shield object with the default I2C address
@@ -36,7 +39,7 @@ void setup()
 
     // setup serial port
     Serial.begin(250000);
-    Serial.print("[ArrayBot Puffer Sketch 2.5]");
+    Serial << "[ArrayBot Puffer Sketch 2.5]";
 }
 
 void puff(int duration_in_ms);
@@ -52,18 +55,18 @@ void loop()
             break;
 
             case 'd': //Set puffer duration
-                //Next byte(s) is the value
+                //Next byte is the value
                 puffDuration = Serial.parseInt(); 
             break;                
 
             case 'v': //Set puffer valve speed
-                //Next byte(s) is the value
+                //Next byte is the value
                 pufferValveSpeed = Serial.parseInt(); 
                 pufferValve->setSpeed(pufferValveSpeed);                
             break;                
 
-            case 'i': //send some info about current state
-                Serial << "[PFR,PUFFER_DURATION="<<puffDuration<<",PUFFER_VALVE_SPEED="<<pufferValveSpeed<<"]";
+            case 'i': //Return some info about current state
+                Serial << "[PFR,PUFFER_DURATION=" << puffDuration << ",PUFFER_VALVE_SPEED=" << pufferValveSpeed << "]";
             break;
             
             default: //Do nothing
@@ -76,7 +79,7 @@ void loop()
         digitalWrite(ledPin, HIGH);     // turn the LED on
         Serial << "[PFR,HALL=HIGH]";
 
-        //Set off puffer (only if enabled by push button or host pc)
+        //Set off puffer, if enabled by push button or host pc
         if (digitalRead(pufferPin) || enablePuffer)
         {
             puff(puffDuration);

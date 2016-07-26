@@ -38,6 +38,7 @@ __published:	// IDE-managed Components
 
 	public:		// User declarations
     						__fastcall  TArduinoBoardFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner);
+    	virtual				__fastcall  ~TArduinoBoardFrame();
         IniFileProperties  			    mProperties;
 };
 

@@ -103,6 +103,7 @@ class TMain : public TRegistryForm
 		void __fastcall		            OnException();
         ArduinoServer					mAS;
         ArduinoDevice&					mAD1;
+        vector<TFrame*>					mFrames;
 
 	public:		// User declarations
 		__fastcall 					    TMain(TComponent* Owner);

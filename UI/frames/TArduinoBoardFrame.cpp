@@ -28,6 +28,11 @@ __fastcall TArduinoBoardFrame::TArduinoBoardFrame(ArduinoDevice& dev, IniFile& i
     GroupBox1->Caption = dev.getName().c_str();
 }
 
+__fastcall  TArduinoBoardFrame::~TArduinoBoardFrame()
+{
+	mProperties.write();
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TArduinoBoardFrame::mArduinoBoard1ConnectClick(TObject *Sender)
 {

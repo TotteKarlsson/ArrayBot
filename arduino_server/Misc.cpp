@@ -23,6 +23,24 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         UIUpdateTimer->Enabled = false;
     }
 
+    if(mAS.isRunning())
+    {
+    	mAS.stop();
+    }
+
+    if(mAD1.isConnected())
+    {
+    	mAD1.disConnect();
+    }
+
+    //This will save any ini parameters in the frame
+    for(int i = 0; i < mFrames.size(); i++)
+    {
+    	delete mFrames[i];
+    }
+
+    mFrames.clear();
+
 	Close();
 }
 
@@ -36,14 +54,11 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 
 	//Check if active stuff is going on.. if so call the ShutDown in the
     //Timer fire    if(
-   	if(gSplashForm && gSplashForm->isOnShowTime())
-	{
-		CanClose = false;
-	}
-    else
-    {
-    	CanClose = true;
-    }
+   	CanClose = (gSplashForm && gSplashForm->isOnShowTime()
+    			|| mFrames.size()
+            	|| mAS.isRunning()
+            	|| mAD1.isConnected()) ? false : true;
+
 
 	if(CanClose == false)
 	{
