@@ -6,8 +6,6 @@
 #include "abABObject.h"
 //---------------------------------------------------------------------------
 
-//!Function to used to create a worker. We need to hand this to the server so that
-//!proper workers are created
 class AB_CORE ArduinoServerIPCReceiver : public mtk::IPCReceiver
 {
     public:

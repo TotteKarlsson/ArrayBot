@@ -26,8 +26,9 @@ class AB_CORE ArduinoServer : public IPCServer
                                 ArduinoServer(int portNumber = 50000);
 	                            ~ArduinoServer();
 
-                                //!The process message is an overirde from the base class.
-                                //Process message implements arduino server specific processing
+                                //!The process message is an overide from the base class.
+                                //!Process message implements arduino server specific processing.
+                                //!Messages sent to the server from a client are processed.
     	bool 					processMessage(IPCMessage& msg);
 
     	ArduinoDevice& 			getArduinoDevice(int dev);

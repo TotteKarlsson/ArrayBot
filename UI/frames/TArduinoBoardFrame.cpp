@@ -5,8 +5,8 @@
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "mtkSTDStringEdit"
 #pragma link "TIntegerLabeledEdit"
+#pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 TArduinoBoardFrame *ArduinoBoardFrame;
 //---------------------------------------------------------------------------
@@ -26,11 +26,18 @@ __fastcall TArduinoBoardFrame::TArduinoBoardFrame(ArduinoDevice& dev, IniFile& i
     mCommPortE->update();
 	mBaudRateE->update();
     GroupBox1->Caption = dev.getName().c_str();
+
+    mAD.assignInitFunction(init);
 }
 
 __fastcall  TArduinoBoardFrame::~TArduinoBoardFrame()
 {
 	mProperties.write();
+}
+
+void TArduinoBoardFrame::init()
+{
+	Log(lWarning) << "Implement in decendant";
 }
 
 //---------------------------------------------------------------------------
@@ -49,7 +56,7 @@ void __fastcall TArduinoBoardFrame::ConnectBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TArduinoBoardFrame::Button1Click(TObject *Sender)
 {
-	mAD.send(mSendMSGE->GetString());
+	mAD.send(mSendMSGE->getValue());
 }
 
 //---------------------------------------------------------------------------
@@ -58,7 +65,7 @@ void __fastcall TArduinoBoardFrame::mSendMSGEKeyDown(TObject *Sender, WORD &Key,
 {
 	if(Key == vkReturn)
     {
-  		mAD.send(mSendMSGE->GetString());
+  		mAD.send(mSendMSGE->getValue());
     }
 }
 

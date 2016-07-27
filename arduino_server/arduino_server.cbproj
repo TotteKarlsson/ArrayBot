@@ -170,11 +170,19 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\UI\frames\TArduinoBoardFrame.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\UI\frames\TPufferArduinoBoardFrame.cpp">
+            <Form>PufferArduinoBoardFrame</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\UI\frames\TPufferArduinoBoardFrame.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
         <FormResources Include="MainForm.dfm"/>
+        <FormResources Include="..\UI\frames\TArduinoBoardFrame.dfm"/>
         <FormResources Include="frames\TAboutArduinoServerFrame.dfm"/>
         <FormResources Include="forms\TSplashForm.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
-        <FormResources Include="..\UI\frames\TArduinoBoardFrame.dfm"/>
+        <FormResources Include="..\UI\frames\TPufferArduinoBoardFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

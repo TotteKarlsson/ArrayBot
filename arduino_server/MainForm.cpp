@@ -12,13 +12,15 @@
 #include "mtkMathUtils.h"
 #include "abExceptions.h"
 #include "TSplashForm.h"
-#include "TArduinoBoardFrame.h"
+#include "TPufferArduinoBoardFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
-#pragma link "mtkSTDStringEdit"
+#pragma link "mtkFloatLabel"
+#pragma link "TIntLabel"
+#pragma link "TPropertyCheckBox"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -45,11 +47,13 @@ __fastcall TMain::TMain(TComponent* Owner)
 	//Setup UI/INI properties
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
-	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    	"LOG_LEVEL",    	 lAny));
-	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup("SERVER_PORT",    	 50000));
-    mProperties.read();
+	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	 lAny));
+	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup(	"SERVER_PORT",    	 50000));
+	mProperties.add((BaseProperty*)  &mPuffAfterSectionCountE->getProperty()->setup("PUFF_AFTER_SECTION_COUNT",    	 25));
 
+    mProperties.read();
 	mArduinoServerPortE->update();
+    mPuffAfterSectionCountE->update();
 }
 
 __fastcall TMain::~TMain()
@@ -99,21 +103,63 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	setupUIFrames();
     ArduinoDevice& a1 = mAS.getArduinoDevice(1);
+    a1.assignMessageReceivedCallBack(onPufferArduinoMessage);
 }
+
 
 //---------------------------------------------------------------------------
 void __fastcall	TMain::setupUIFrames()
 {
-     ArduinoDevice& a1 = mAS.getArduinoDevice(1);
-     a1.setName("PUFFER_ARDUINO");
+    ArduinoDevice& a1 = mAS.getArduinoDevice(1);
+    a1.setName("PUFFER_ARDUINO");
 
     //Create an ArduinoFrame
-    TArduinoBoardFrame* af = new TArduinoBoardFrame(a1, mIniFile, this);
+    TPufferArduinoBoardFrame* af = new TPufferArduinoBoardFrame(a1, mIniFile, this);
     af->Parent =  mArduinoSB;
     af->Align = alTop;
     af->ConnectBtnClick(NULL);
     mFrames.push_back(af);
+}
 
+void TMain::onPufferArduinoMessage(const string& msg)
+{
+	//Handle the message..
+  	//Check what message we got from arduino device
+	if(msg == "ArrayBot Puffer Init")
+    {
+    	//Setup variables
+    	//Puffer duration
+        if(mAD1.init)
+        {
+			mAD1.init();
+        }
+    }
+    else if (msg == "HALL_SENSOR=HIGH")
+    {
+    	mSectionCount->SetValue(mSectionCount->GetValue() + 1);
+        if(mAutoPuffCB->Checked)
+        {
+        	if(mSectionCount->GetValue() > mPuffAfterSectionCountE->getValue())
+            {
+            	//puff
+                mAD1.send("p");
+                //If succesful, reset the counter
+                mSectionCount->SetValue(0);
+            }
+        }
+    }
+    else if (startsWith(msg, "DHT22DATA"))
+    {
+    	//Parse the message
+        StringList l(msg,',');
+        if(l.size() == 3)
+        {
+        	mTemperatureLbl->SetValue(toDouble(l[1]));
+	        mHumidityE->SetValue(toDouble(l[2]));
+        }
+    }
+
+    mAS.broadcast(msg);
 }
 
 void __fastcall TMain::LogLevelCBChange(TObject *Sender)
@@ -179,4 +225,18 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
     }
 }
 
+
+
+void __fastcall TMain::Button1Click(TObject *Sender)
+{
+	mSectionCount->SetValue(0);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TMain::PuffNowBtnClick(TObject *Sender)
+{
+	mAD1.send("p");
+}
+//---------------------------------------------------------------------------
 

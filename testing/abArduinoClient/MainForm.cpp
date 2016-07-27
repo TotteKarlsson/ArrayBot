@@ -63,10 +63,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	TMemoLogger::mMemoIsEnabled = true;
 
-
 	this->Visible = true;
-
-
 	gLogger.setLogLevel(mLogLevel);
 
 	if(mLogLevel == lInfo)
@@ -90,9 +87,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall	TMain::setupUIFrames()
 {
-
 //    mFrames.push_back(af);
-
 }
 
 void __fastcall TMain::LogLevelCBChange(TObject *Sender)
@@ -156,5 +151,3 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 //    	mAS.start(mArduinoServerPortE->getValue());
     }
 }
-
-

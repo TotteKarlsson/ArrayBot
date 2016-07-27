@@ -14,9 +14,10 @@ template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg);
 long loopNr(0);
 void setup(void)
 {
-    // start serial port
+    // setup serial port
     Serial.begin(250000);
     Serial.print("[ArrayBot SensorSketch_1]");
+    
 }
 
 void loop(void)

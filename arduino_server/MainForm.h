@@ -27,7 +27,9 @@
 #include "abApplicationMessages.h"
 #include "mtkIniFile.h"
 #include "abArduinoServer.h"
-#include "mtkSTDStringEdit.h"
+#include "mtkFloatLabel.h"
+#include "TIntLabel.h"
+#include "TPropertyCheckBox.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -75,6 +77,22 @@ class TMain : public TRegistryForm
 	TIntegerLabeledEdit *mArduinoServerPortE;
 	TButton *mASStartBtn;
 	TScrollBox *mArduinoSB;
+	TPageControl *PageControl1;
+	TTabSheet *TabSheet1;
+	TTabSheet *TabSheet2;
+	TGroupBox *GroupBox2;
+	TButton *Button1;
+	TIntLabel *mSectionCount;
+	TGroupBox *GroupBox3;
+	TIntegerLabeledEdit *mPuffAfterSectionCountE;
+	TPropertyCheckBox *mAutoPuffCB;
+	TButton *PuffNowBtn;
+	mtkFloatLabel *mTemperatureLbl;
+	mtkFloatLabel *mHumidityE;
+	TPanel *Panel1;
+	TGroupBox *GroupBox4;
+	TGroupBox *GroupBox5;
+	TGroupBox *GroupBox6;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -87,31 +105,34 @@ class TMain : public TRegistryForm
 	void __fastcall mClearLogMemoBtnClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mASStartBtnClick(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall PuffNowBtnClick(TObject *Sender);
 
 
     private:
-        LogFileReader                   mLogFileReader;
-        void __fastcall                 logMsg();
+        LogFileReader                       mLogFileReader;
+        void __fastcall                     logMsg();
 
-		void 						    setupWindowTitle();
-        void __fastcall					setupUIFrames();
+		void 						        setupWindowTitle();
+        void __fastcall					    setupUIFrames();
 
-        IniFile						    mIniFile;
-        IniFileProperties  			    mProperties;
-		mtk::Property<mtk::LogLevel>    mLogLevel;
+        IniFile						        mIniFile;
+        IniFileProperties  			        mProperties;
+		mtk::Property<mtk::LogLevel>        mLogLevel;
 
-		void __fastcall		            OnException();
-        ArduinoServer					mAS;
-        ArduinoDevice&					mAD1;
-        vector<TFrame*>					mFrames;
+		void __fastcall		                OnException();
+        ArduinoServer					    mAS;
+        ArduinoDevice&					    mAD1;
+        vector<TFrame*>					    mFrames;
+        void								onPufferArduinoMessage(const string& msg);
 
 	public:		// User declarations
-		__fastcall 					    TMain(TComponent* Owner);
-		__fastcall 					    ~TMain();
+		__fastcall 					        TMain(TComponent* Owner);
+		__fastcall 					        ~TMain();
 
-		void __fastcall                 AppInBox(mlxStructMessage &Msg);
+		void __fastcall                 	AppInBox(mlxStructMessage &Msg);
         BEGIN_MESSAGE_MAP
-            MESSAGE_HANDLER(UWM_MESSAGE,        mlxStructMessage,         AppInBox);
+            MESSAGE_HANDLER(UWM_MESSAGE,    mlxStructMessage,         AppInBox);
         END_MESSAGE_MAP(TForm)
 };
 

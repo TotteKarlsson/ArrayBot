@@ -15,10 +15,11 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
+USEFORM("..\UI\frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame); /* TFrame: File Type */
 USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame); /* TFrame: File Type */
 USEFORM("forms\TSplashForm.cpp", SplashForm);
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("..\UI\frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame); /* TFrame: File Type */
+USEFORM("..\UI\frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArduinoServer.log";

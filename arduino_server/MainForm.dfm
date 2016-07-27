@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArduinoServer Version 0.5.8'
-  ClientHeight = 791
-  ClientWidth = 1087
+  ClientHeight = 621
+  ClientWidth = 856
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,10 +21,10 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 23
   object mButtonPanel: TPanel
-    Left = 904
-    Top = 0
+    Left = 673
+    Top = 71
     Width = 183
-    Height = 791
+    Height = 550
     Align = alRight
     TabOrder = 0
     object mAboutBtn: TSpeedButton
@@ -41,7 +41,7 @@ object Main: TMain
     end
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 663
+      Top = 422
       Width = 181
       Height = 127
       Align = alBottom
@@ -59,79 +59,147 @@ object Main: TMain
   end
   object MainPanel: TPanel
     Left = 0
-    Top = 0
-    Width = 904
-    Height = 791
+    Top = 71
+    Width = 673
+    Height = 550
     Align = alClient
     TabOrder = 1
     object Splitter1: TSplitter
       Left = 1
       Top = 361
-      Width = 902
+      Width = 671
       Height = 3
       Cursor = crVSplit
       Align = alTop
       ExplicitLeft = 25
       ExplicitTop = 586
+      ExplicitWidth = 902
     end
     object TopPanel: TPanel
       Left = 1
       Top = 1
-      Width = 902
+      Width = 671
       Height = 360
       Align = alTop
       Constraints.MinHeight = 348
       Constraints.MinWidth = 670
       TabOrder = 0
-      object GroupBox1: TGroupBox
-        Left = 16
-        Top = 13
-        Width = 257
-        Height = 268
-        Caption = 'Arduino Server'
+      object PageControl1: TPageControl
+        Left = 1
+        Top = 1
+        Width = 669
+        Height = 358
+        ActivePage = TabSheet1
+        Align = alClient
         TabOrder = 0
-        object mArduinoServerPortE: TIntegerLabeledEdit
-          Left = 16
-          Top = 56
-          Width = 121
-          Height = 31
-          EditLabel.Width = 108
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Network Port'
-          TabOrder = 0
-          Text = '50000'
-          Value = 50000
+        object TabSheet1: TTabSheet
+          Caption = 'Ribbon Controller'
+          object GroupBox3: TGroupBox
+            Left = 18
+            Top = 20
+            Width = 303
+            Height = 181
+            Caption = 'Auto Puff Control'
+            TabOrder = 0
+            object mPuffAfterSectionCountE: TIntegerLabeledEdit
+              Left = 152
+              Top = 50
+              Width = 129
+              Height = 31
+              EditLabel.Width = 131
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Puff after count'
+              TabOrder = 0
+              Text = '-1'
+              Value = -1
+            end
+            object mAutoPuffCB: TPropertyCheckBox
+              Left = 16
+              Top = 57
+              Width = 97
+              Height = 17
+              Caption = 'Enabled'
+              TabOrder = 1
+            end
+          end
+          object GroupBox6: TGroupBox
+            Left = 327
+            Top = 20
+            Width = 258
+            Height = 181
+            Caption = 'Manual Puff'
+            TabOrder = 1
+            object PuffNowBtn: TButton
+              Left = 33
+              Top = 73
+              Width = 184
+              Height = 86
+              Caption = 'Puff'
+              TabOrder = 0
+              OnClick = PuffNowBtnClick
+            end
+          end
         end
-        object mASStartBtn: TButton
-          Left = 16
-          Top = 160
-          Width = 200
-          Height = 65
-          Caption = 'Start/Stop'
-          TabOrder = 1
-          OnClick = mASStartBtnClick
+        object TabSheet2: TTabSheet
+          Caption = 'Settings'
+          ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object GroupBox1: TGroupBox
+            Left = 0
+            Top = 0
+            Width = 257
+            Height = 320
+            Align = alLeft
+            Caption = 'Arduino Server'
+            TabOrder = 0
+            object mArduinoServerPortE: TIntegerLabeledEdit
+              Left = 16
+              Top = 56
+              Width = 121
+              Height = 31
+              EditLabel.Width = 108
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Network Port'
+              TabOrder = 0
+              Text = '50000'
+              Value = 50000
+            end
+            object mASStartBtn: TButton
+              Left = 16
+              Top = 160
+              Width = 200
+              Height = 65
+              Caption = 'Start/Stop'
+              TabOrder = 1
+              OnClick = mASStartBtnClick
+            end
+          end
+          object mArduinoSB: TScrollBox
+            Left = 257
+            Top = 0
+            Width = 404
+            Height = 320
+            Align = alClient
+            TabOrder = 1
+          end
         end
-      end
-      object mArduinoSB: TScrollBox
-        Left = 384
-        Top = 13
-        Width = 489
-        Height = 341
-        TabOrder = 1
       end
     end
     object BottomPanel: TPanel
       Left = 1
       Top = 364
-      Width = 902
-      Height = 426
+      Width = 671
+      Height = 185
       Align = alClient
       TabOrder = 1
       object infoMemo: TMemo
         Left = 1
         Top = 31
-        Width = 900
-        Height = 394
+        Width = 669
+        Height = 153
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -147,7 +215,7 @@ object Main: TMain
       object ToolBar1: TToolBar
         Left = 1
         Top = 1
-        Width = 900
+        Width = 669
         Height = 30
         AutoSize = True
         ButtonHeight = 30
@@ -187,6 +255,93 @@ object Main: TMain
             'Everything')
         end
       end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 856
+    Height = 71
+    Align = alTop
+    TabOrder = 2
+    object GroupBox4: TGroupBox
+      Left = 599
+      Top = 1
+      Width = 139
+      Height = 69
+      Align = alRight
+      Caption = 'Temperature'
+      TabOrder = 0
+      object mTemperatureLbl: mtkFloatLabel
+        Left = 40
+        Top = 31
+        Width = 43
+        Height = 23
+        Caption = '-1.00'
+        ValueString = '-1.00'
+        Value = -1.000000000000000000
+        TheFont.Charset = DEFAULT_CHARSET
+        TheFont.Color = clWindowText
+        TheFont.Height = -19
+        TheFont.Name = 'Tahoma'
+        TheFont.Style = []
+      end
+    end
+    object GroupBox5: TGroupBox
+      Left = 738
+      Top = 1
+      Width = 117
+      Height = 69
+      Align = alRight
+      Caption = 'Humidity'
+      TabOrder = 1
+      object mHumidityE: mtkFloatLabel
+        Left = 30
+        Top = 31
+        Width = 43
+        Height = 23
+        Caption = '-1.00'
+        ValueString = '-1.00'
+        Value = -1.000000000000000000
+        TheFont.Charset = DEFAULT_CHARSET
+        TheFont.Color = clWindowText
+        TheFont.Height = -19
+        TheFont.Name = 'Tahoma'
+        TheFont.Style = []
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 152
+      Height = 69
+      Align = alLeft
+      Caption = 'Section Count'
+      TabOrder = 2
+      object mSectionCount: TIntLabel
+        Left = 40
+        Top = 31
+        Width = 17
+        Height = 23
+        Caption = '-1'
+        ValueString = '-1'
+        Value = -1
+        TheFont.Charset = DEFAULT_CHARSET
+        TheFont.Color = clWindowText
+        TheFont.Height = -19
+        TheFont.Name = 'Tahoma'
+        TheFont.Style = []
+      end
+    end
+    object Button1: TButton
+      Left = 153
+      Top = 1
+      Width = 160
+      Height = 69
+      Align = alLeft
+      Caption = 'Reset Counter'
+      TabOrder = 3
+      OnClick = Button1Click
     end
   end
   object ActionList1: TActionList

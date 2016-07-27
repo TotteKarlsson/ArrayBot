@@ -119,11 +119,17 @@
             <DependentOn>abAPTMotor.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abArduinoClient.cpp">
+            <BuildOrder>50</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abArduinoDevice.cpp">
             <BuildOrder>46</BuildOrder>
         </CppCompile>
         <CppCompile Include="abArduinoIPCServerReceiver.cpp">
             <BuildOrder>45</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abArduinoMessageProcessor.cpp">
+            <BuildOrder>51</BuildOrder>
         </CppCompile>
         <CppCompile Include="abArduinoServer.cpp">
             <DependentOn>abArduinoServer.h</DependentOn>

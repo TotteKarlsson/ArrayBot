@@ -16,7 +16,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="arduino_server.cbproj">
-            <Dependencies/>
+            <Dependencies>..\source\abCore.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -62,13 +62,13 @@
     <Target Name="DuneComponents:Make">
         <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="arduino_server">
+    <Target Name="arduino_server" DependsOnTargets="abCore">
         <MSBuild Projects="arduino_server.cbproj"/>
     </Target>
-    <Target Name="arduino_server:Clean">
+    <Target Name="arduino_server:Clean" DependsOnTargets="abCore:Clean">
         <MSBuild Projects="arduino_server.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="arduino_server:Make">
+    <Target Name="arduino_server:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="arduino_server.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">

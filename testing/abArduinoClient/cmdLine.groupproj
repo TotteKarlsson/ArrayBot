@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F42D8C3D-EEB2-4980-8A3A-0320C5FB34F6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dslib\Common\mtkCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\Common\IPC\mtkIPC.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\Common\Math\mtkMath.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="arduinoClientCMD.cbproj">
+            <Dependencies>P:\libs\dslib\Common\mtkCommon.cbproj;P:\libs\dslib\Common\IPC\mtkIPC.cbproj;..\..\source\abCore.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mtkCommon">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj"/>
+    </Target>
+    <Target Name="mtkCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="mtkIPC">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj"/>
+    </Target>
+    <Target Name="mtkIPC:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkIPC:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="mtkMath">
+        <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj"/>
+    </Target>
+    <Target Name="mtkMath:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkMath:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abCore">
+        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="arduinoClientCMD" DependsOnTargets="mtkCommon;mtkIPC;abCore">
+        <MSBuild Projects="arduinoClientCMD.cbproj"/>
+    </Target>
+    <Target Name="arduinoClientCMD:Clean" DependsOnTargets="mtkCommon:Clean;mtkIPC:Clean;abCore:Clean">
+        <MSBuild Projects="arduinoClientCMD.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="arduinoClientCMD:Make" DependsOnTargets="mtkCommon:Make;mtkIPC:Make;abCore:Make">
+        <MSBuild Projects="arduinoClientCMD.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;abCore;arduinoClientCMD"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;abCore:Clean;arduinoClientCMD:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;abCore:Make;arduinoClientCMD:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

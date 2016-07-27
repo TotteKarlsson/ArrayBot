@@ -22,7 +22,8 @@ bool ArduinoDevice::connect(int portNr, int baudRate)
 
 bool ArduinoDevice::send(const string& msg)
 {
-	return mSerial.send(msg);
+	mSerial.send(msg);
+	return true;
 }
 
 void ArduinoDevice::assignMessageReceivedCallBack(MessageReceivedCallBack cb)

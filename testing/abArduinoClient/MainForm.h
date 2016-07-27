@@ -89,25 +89,25 @@ class TMain : public TRegistryForm
 
 
     private:
-        LogFileReader                   mLogFileReader;
-        void __fastcall                 logMsg();
+        LogFileReader                           mLogFileReader;
+        void __fastcall                         logMsg();
 
-		void 						    setupWindowTitle();
-        void __fastcall					setupUIFrames();
+		void 						            setupWindowTitle();
+        void __fastcall					        setupUIFrames();
 
-        IniFile						    mIniFile;
-        IniFileProperties  			    mProperties;
-		mtk::Property<mtk::LogLevel>    mLogLevel;
+        IniFile						            mIniFile;
+        IniFileProperties  			            mProperties;
+		mtk::Property<mtk::LogLevel>            mLogLevel;
 
-		void __fastcall		            OnException();
+		void __fastcall		                    OnException();
 
-        vector<TFrame*>					mFrames;
+        vector<TFrame*>					        mFrames;
 
 	public:		// User declarations
-		__fastcall 					    TMain(TComponent* Owner);
-		__fastcall 					    ~TMain();
+		__fastcall 					            TMain(TComponent* Owner);
+		__fastcall 					            ~TMain();
 
-		void __fastcall                 AppInBox(mlxStructMessage &Msg);
+		void __fastcall                         AppInBox(mlxStructMessage &Msg);
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,        mlxStructMessage,         AppInBox);
         END_MESSAGE_MAP(TForm)

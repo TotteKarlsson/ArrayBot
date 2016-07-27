@@ -2,7 +2,7 @@
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
-#include "TSplashForm.h"
+
 
 using namespace mtk;
 

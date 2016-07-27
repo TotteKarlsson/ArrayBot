@@ -18,9 +18,9 @@ using mtk::StringList;
     mechanism, involving reading/writing on the serial port in a seperate thread.
 */
 
-class ArduinoDevice;
+typedef void (__closure *InitCallBack)();
 
-class AB_CORE ArduinoDevice
+class AB_CORE ArduinoDevice : public ABObject
 {
     public:
         							ArduinoDevice(int portNr, int baudRate = 9600);
@@ -29,6 +29,7 @@ class AB_CORE ArduinoDevice
 		void						setName(const string& name){mName = name;}
         string						getName(){return mName;}
 
+        void		 				assignInitFunction(InitCallBack cb){init = cb;}
         void		 				assignMessageReceivedCallBack(MessageReceivedCallBack cb);
 
 		bool						connect(int portNr, int baudRate = 9600);
@@ -48,10 +49,12 @@ class AB_CORE ArduinoDevice
         bool                        analogWrite(int pin, int value);
         bool                        digitalWrite(int pin, bool value);
         bool						send(const string& msg);
+		InitCallBack				init;
 
     private:
         Serial						mSerial;
         string						mName;
+
 
         							//A stream makes it easy to compose messages
         std::stringstream		  	mSS;

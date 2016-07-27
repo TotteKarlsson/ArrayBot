@@ -52,19 +52,6 @@ object ArduinoBoardFrame: TArduinoBoardFrame
       TabOrder = 2
       OnClick = ConnectBtnClick
     end
-    object mSendMSGE: mtkSTDStringEdit
-      Left = 24
-      Top = 136
-      Width = 81
-      Height = 31
-      EditLabel.Width = 43
-      EditLabel.Height = 23
-      EditLabel.Caption = 'Send'
-      TabOrder = 3
-      Text = '<none>'
-      OnKeyDown = mSendMSGEKeyDown
-      Value = '<none>'
-    end
     object Button1: TButton
       Left = 151
       Top = 133
@@ -73,6 +60,19 @@ object ArduinoBoardFrame: TArduinoBoardFrame
       Caption = '->'
       TabOrder = 4
       OnClick = Button1Click
+    end
+    object mSendMSGE: TSTDStringLabeledEdit
+      Left = 24
+      Top = 136
+      Width = 81
+      Height = 31
+      EditLabel.Width = 43
+      EditLabel.Height = 23
+      EditLabel.Caption = 'Send'
+      TabOrder = 3
+      Text = 'i'
+      OnKeyDown = mSendMSGEKeyDown
+      Value = 'i'
     end
   end
   object Timer1: TTimer

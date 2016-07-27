@@ -5,13 +5,13 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "mtkSTDStringEdit.h"
 #include "TIntegerLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "mtkIniFile.h"
 #include "mtkIniFileProperties.h"
 #include "abArduinoDevice.h"
 #include "mtkIniFileProperties.h"
+#include "TSTDStringLabeledEdit.h"
 //---------------------------------------------------------------------------
 
 using mtk::IniFileProperties;
@@ -24,17 +24,20 @@ __published:	// IDE-managed Components
 	TIntegerLabeledEdit *mCommPortE;
 	TIntegerLabeledEdit *mBaudRateE;
 	TButton *mConnectBtn;
-	mtkSTDStringEdit *mSendMSGE;
 	TButton *Button1;
 	TTimer *Timer1;
+	TSTDStringLabeledEdit *mSendMSGE;
 	void __fastcall ConnectBtnClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall Timer1Timer(TObject *Sender);
 
-	private:
+	protected:
 
         ArduinoDevice&					mAD;
+        								//The init function will initialize the device
+                                        //using parameters from ini file
+        virtual void	 				init();
 
 	public:		// User declarations
     						__fastcall  TArduinoBoardFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner);
