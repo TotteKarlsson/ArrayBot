@@ -57,7 +57,7 @@ bool Serial::setupAndOpenSerialPort(int pNr, int baudRate)
     }
 
     // Setup the mSP port (9600,8N1, which is the default setting)
-    lLastError = mSP.Setup(baudRate, SerialPort::EData8, SerialPort::EParNone, SerialPort::EStop1);
+    lLastError = mSP.Setup((SerialPort::EBaudrate) baudRate, SerialPort::EData8, SerialPort::EParNone, SerialPort::EStop1);
 	if (lLastError != ERROR_SUCCESS)
     {
         string errorMsg = getLastWin32Error();

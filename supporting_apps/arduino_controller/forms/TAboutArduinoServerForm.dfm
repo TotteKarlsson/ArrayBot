@@ -80,8 +80,10 @@ object AboutArduinoServerForm: TAboutArduinoServerForm
       ExplicitTop = 216
     end
     inherited mChangeLogMemo: TMemo
-      Top = 219
+      Top = 195
       Width = 674
+      ExplicitTop = 219
+      ExplicitWidth = 674
     end
   end
   object ActionList1: TActionList

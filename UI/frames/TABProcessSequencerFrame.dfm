@@ -114,7 +114,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           TabOrder = 1
           OnClick = mProcessesLBClick
         end
-        object mSequenceNameE: mtkSTDStringEdit
+        object mSequenceNameE: TSTDStringLabeledEdit
           Left = 13
           Top = 54
           Width = 200

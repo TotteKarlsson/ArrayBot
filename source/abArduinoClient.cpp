@@ -64,8 +64,9 @@ bool ArduinoClient::connect(int serverPort, const string& host)
     bool res = init(serverPort, host, true);
     if(isConnected())
     {
-    	mReceiver.start(true);
+    	return mReceiver.start(true);
     }
+    return false;
 }
 
 bool ArduinoClient::disConnect()

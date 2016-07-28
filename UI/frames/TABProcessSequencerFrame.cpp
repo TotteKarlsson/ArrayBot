@@ -17,7 +17,7 @@
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TMotorMoveProcessFrame"
 #pragma link "TCombinedMoveFrame"
-#pragma link "mtkSTDStringEdit"
+#pragma link "TSTDStringLabeledEdit"
 #pragma link "TTimeDelayFrame"
 #pragma resource "*.dfm"
 TABProcessSequencerFrame *ABProcessSequencerFrame;
@@ -130,7 +130,7 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
         	return;
         }
 
-        mSequenceNameE->SetString(seq->getName());
+        mSequenceNameE->setValue(seq->getName());
 
         Process* p = seq->getFirst();
         while(p)
@@ -338,10 +338,10 @@ void __fastcall TABProcessSequencerFrame::mSequenceNameEKeyDown(TObject *Sender,
     {
     	//Change name of sequence in CB
         int indx = mSequencesCB->ItemIndex;
-		mSequencesCB->Items->Strings[indx] = vclstr(mSequenceNameE->GetString());
+		mSequencesCB->Items->Strings[indx] = vclstr(mSequenceNameE->getValue());
 		mSequencesCB->ItemIndex = indx;
 		ProcessSequence* s = mProcessSequencer.getCurrentSequence();
-        s->setProjectName(mSequenceNameE->GetString());
+        s->setProjectName(mSequenceNameE->getValue());
         saveSequence();
     }
 }

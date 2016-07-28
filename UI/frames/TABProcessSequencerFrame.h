@@ -12,7 +12,7 @@
 #include <Vcl.ActnList.hpp>
 #include "TMotorMoveProcessFrame.h"
 #include "TCombinedMoveFrame.h"
-#include "mtkSTDStringEdit.h"
+#include "TSTDStringLabeledEdit.h"
 #include "TTimeDelayFrame.h"
 //---------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ class TABProcessSequencerFrame : public TFrame
 	TAction *addCombinedMovesProcessA;
         TAction *removeProcessA;
         TGroupBox *GroupBox2;
-        mtkSTDStringEdit *mSequenceNameE;
+        TSTDStringLabeledEdit *mSequenceNameE;
         TPanel *Panel1;
 	TAction *addTimeDelayProcess;
 	TButton *Button1;

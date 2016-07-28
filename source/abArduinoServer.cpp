@@ -37,6 +37,7 @@ bool ArduinoServer::shutDown()
     {
 		mArduinos[i]->disConnect();
     }
+    return true;
 }
 
 ArduinoDevice& ArduinoServer::getArduinoDevice(int dev)
@@ -45,7 +46,7 @@ ArduinoDevice& ArduinoServer::getArduinoDevice(int dev)
     {
     	case 1: return mA1;
     	case 2: return mA2;
-        defaasasult: return mA1;
+        default: return mA1;
     }
 }
 

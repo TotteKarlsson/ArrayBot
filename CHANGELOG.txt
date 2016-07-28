@@ -1,3 +1,24 @@
+Release 0.7.0 (Jul 28)
+=======================
+* Major release containing new ArduinoController application used
+  to control peripheral Arduinos
+* Renamed the arduino_server to Arduino_controller
+* Adding lights arduino code
+* Creating an Arduino Client test application
+* Added shutdown code
+* Fixed so Motor shield code can be compiled "anywhere"
+* Added AdaFruit motor shield code for the arduino
+* Getting the Arduino socket server up and running
+* More serial stuff
+* Added testing program for abSerial
+* Added callback functionality to serial
+* Created separate unit for the SerialWorker
+* Worked on serial code... not trivial unfortunately
+* Got serial communication setup with arduino
+* Adding classes for talking to the arduino over the serial port
+* Creating an arduino server
+* Fixed several glitches: Splash, wrong parameters for DCServo (need to setup actuator selection), and more
+
 Release 0.6.5 (Jul 20)
 =======================
 * Moved sequence shortcut bottoms to top of page

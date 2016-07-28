@@ -14,7 +14,6 @@
 #include "TSplashForm.h"
 #include "TPufferArduinoBoardFrame.h"
 #include "TSensorAndLightArduinoFrame.h"
-//#include <TThread.hpp>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -115,7 +114,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall	TMain::setupUIFrames()
 {
-
     mAD1.setName("PUFFER_ARDUINO");
 
     //Create ArduinoFrames
