@@ -9,6 +9,9 @@
         <Projects Include="P:\libs\dslib\Common\Math\mtkMath.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\libs\dslib\Common\IPC\mtkIPC.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
@@ -49,6 +52,15 @@
     </Target>
     <Target Name="mtkMath:Make">
         <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="mtkIPC">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj"/>
+    </Target>
+    <Target Name="mtkIPC:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkIPC:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
     </Target>
     <Target Name="VCLCommon">
         <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
@@ -96,13 +108,13 @@
         <MSBuild Projects="supporting_apps\arduino_controller\arduino_controller.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkMath;VCLCommon;DuneComponents;abCore;ArrayBot;arduino_controller"/>
+        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;VCLCommon;DuneComponents;abCore;ArrayBot;arduino_controller"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean;arduino_controller:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean;arduino_controller:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make;arduino_controller:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make;arduino_controller:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

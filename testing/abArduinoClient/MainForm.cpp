@@ -17,7 +17,7 @@
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
-#pragma link "mtkSTDStringEdit"
+#pragma link "TIntLabel"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -32,8 +32,8 @@ using namespace mtk;
 __fastcall TMain::TMain(TComponent* Owner)
 :
 	TRegistryForm("Test", "MainForm", Owner),
-	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer", gLogFileName), &logMsg),
-    mIniFile(joinPath(gAppDataFolder, "ArduinoServer.ini"), true, true),
+	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
+    mIniFile(joinPath(gAppDataFolder, "ArduinoClient.ini"), true, true),
     mLogLevel(lAny)
 {
 	TMemoLogger::mMemoIsEnabled = false;
@@ -45,8 +45,9 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    	"LOG_LEVEL",    	 lAny));
 	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup("SERVER_PORT",    	 50000));
     mProperties.read();
-
 	mArduinoServerPortE->update();
+
+	mAC.assignOnMessageReceivedCallBack(onMessageReceived);
 }
 
 __fastcall TMain::~TMain()
@@ -77,9 +78,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
-
-    //Setup the server
-    //mAS.start(mArduinoServerPortE->getValue());
 
 	setupUIFrames();
 }
@@ -135,19 +133,86 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 //---------------------------------------------------------------------------
 void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
 {
-//   	mASStartBtn->Caption 			= mAS.isRunning() 		? "Stop" : "Start";
-//	mArduinoServerPortE->Enabled = !mAS.isRunning();
+   	mASStartBtn->Caption 			= mAC.isConnected()	? "Stop" : "Start";
+	mArduinoServerPortE->Enabled 	= !mAC.isConnected();
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 {
-	if(mASStartBtn->Caption == "Stop")
+	if(mASStartBtn->Caption == "Start")
     {
-//    	mAS.stop();
+    	mAC.connect(mArduinoServerPortE->getValue());
+        mASStartBtn->Caption == "Connecting";
     }
     else
     {
-//    	mAS.start(mArduinoServerPortE->getValue());
+    	mAC.disConnect();
     }
 }
+
+void TMain::onMessageReceived(const string& msg)
+{
+	struct TLocalArgs
+    {
+        string msg;
+        void __fastcall onMsg()
+        {
+            //Handle the message..
+            //Check what message we got from arduino device
+            if(startsWith(msg, "DHT22DATA"))
+            {
+                //Parse the message
+                StringList l(msg,',');
+                if(l.size() == 3)
+                {
+//                    Main->mTemperatureLbl->SetValue(toDouble(l[1]));
+//                    Main->mHumidityE->SetValue(toDouble(l[2]));
+                }
+            }
+            else if(startsWith(msg, "PIN_8"))
+            {
+                StringList l(msg,'=');
+                if(l.size() == 2)
+                {
+//                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
+                }
+            }
+
+            else if(startsWith(msg, "PIN_3"))
+            {
+                StringList l(msg,'=');
+                if(l.size() == 2)
+                {
+//                    Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
+                }
+            }
+            else if (startsWith(msg, "SECTION_COUNT"))
+            {
+                StringList l(msg,'=');
+                if(l.size() == 2)
+
+                Main->mSectionCountLbl->SetValue(toInt(l[1]));
+//                if(Main->mAutoPuffCB->Checked)
+//                {
+//                    if(Main->mSectionCount->GetValue() > Main->mPuffAfterSectionCountE->getValue())
+//                    {
+//                        //puff
+//                        Main->mAD1.send("p");
+//
+//                        //If succesful, reset the counter
+//                        Main->mSectionCount->SetValue(0);
+//                    }
+//                }
+            }
+
+        }
+    };
+
+    TLocalArgs args;
+    args.msg = msg;
+
+    //This causes this fucntion to be called in the main UI thread
+	TThread::Synchronize(NULL, &args.onMsg);
+}
+

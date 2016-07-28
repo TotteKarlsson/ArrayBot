@@ -55,9 +55,6 @@ int main()
 		sleep(400);
     }
 
-
-
-
 	return 0;
 }
 

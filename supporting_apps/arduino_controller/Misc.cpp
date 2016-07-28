@@ -151,7 +151,7 @@ void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift
 
 void TMain::setupWindowTitle()
 {
-	string title = createWindowTitle("ArduinoServer", Application);
+	string title = createWindowTitle("ArduinoController", Application);
 	this->Caption = vclstr(title);
 }
 

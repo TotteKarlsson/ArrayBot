@@ -9,8 +9,8 @@ Serial::Serial(int portNr, int baudRate)
 :
 mSP(),
 mSerialWorker(*this, mSP),
-mReceivedCB(NULL),
-mReceivedCB_C(NULL)
+mReceivedCB(NULL)//,
+//mReceivedCB_C(NULL)
 {
     if(portNr != -1)
     {

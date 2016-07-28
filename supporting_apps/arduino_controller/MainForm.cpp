@@ -36,8 +36,8 @@ using namespace mtk;
 __fastcall TMain::TMain(TComponent* Owner)
 :
 	TRegistryForm("Test", "MainForm", Owner),
-	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer", gLogFileName), &logMsg),
-    mIniFile(joinPath(gAppDataFolder, "ArduinoServer.ini"), true, true),
+	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
+    mIniFile(joinPath(gAppDataFolder, "ArduinoController.ini"), true, true),
     mLogLevel(lAny),
     mAS(-1),
     mAD1(mAS.getArduinoDevice(1)),
@@ -165,8 +165,11 @@ void TMain::onPufferArduinoMessage(const string& msg)
                         Main->mSectionCount->SetValue(0);
                     }
                 }
+
+                stringstream msg;
+                msg <<"SECTION_COUNT="<<Main->mSectionCount->GetValue();
+                Main->mAS.broadcast(msg.str());
             }
-		    Main->mAS.broadcast(msg);
         }
 //    };
 //
@@ -222,7 +225,6 @@ void TMain::onSensorArduinoMessage(const string& msg)
                     Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
                 }
             }
-
             Main->mAS.broadcast(msg);
         }
     };

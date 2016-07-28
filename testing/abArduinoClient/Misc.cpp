@@ -23,15 +23,10 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         UIUpdateTimer->Enabled = false;
     }
 
-//    if(mAS.isRunning())
-//    {
-//    	mAS.stop();
-//    }
-//
-//    if(mAD1.isConnected())
-//    {
-//    	mAD1.disConnect();
-//    }
+    if(mAC.isConnected())
+    {
+    	mAC.disConnect();
+    }
 
     //This will save any ini parameters in the frame
     for(int i = 0; i < mFrames.size(); i++)
@@ -40,7 +35,6 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
     }
 
     mFrames.clear();
-
 	Close();
 }
 
@@ -50,12 +44,7 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 	Log(lInfo) << "Closing down....";
 
 	//Check if we can close.. abort all threads..
-	CanClose = (mLogFileReader.isRunning()) ? false : true;
-
-	//Check if active stuff is going on.. if so call the ShutDown in the
-    //Timer fire    if(
-   	CanClose = ( mFrames.size()
-            	 ) ? false : true;
+	CanClose = (mLogFileReader.isRunning() || mAC.isConnected() || mFrames.size()) ? false : true;
 
 
 	if(CanClose == false)
@@ -106,16 +95,11 @@ void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift
 
 void TMain::setupWindowTitle()
 {
-	string title = createWindowTitle("ArduinoServer", Application);
+	string title = createWindowTitle("ArduinoClient - Test Application", Application);
 	this->Caption = vclstr(title);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mAboutBtnClick(TObject *Sender)
-{
-	//Show about frame
-}
-
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 {
 	int length = ::GetWindowTextLength( hwnd );
@@ -127,7 +111,7 @@ BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 	GetWindowText(hwnd, buffer, length + 1);
 
     string s(stdstr(buffer));
-	if(startsWith(s, "ArduinoServer"))
+	if(startsWith(s, "ArduinoClient"))
 	{
 		// do something with hwnd here
 		gOtherAppWindow = hwnd;

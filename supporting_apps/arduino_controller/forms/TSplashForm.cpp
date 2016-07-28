@@ -15,14 +15,16 @@ using namespace mtk;
 extern string gApplicationRegistryRoot;
 extern string gLogFileLocation;
 extern string gLogFileName;
+extern string gAppDataFolder;
 //---------------------------------------------------------------------------
+
 __fastcall TSplashForm::TSplashForm(TComponent* Owner)
 :
 	TForm(Owner),
 	mCanClose(true),
 	mMinimumTimeShowing(3*Poco::Timespan::SECONDS),
 	mMainAppIsRunning(false),
-	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer", gLogFileName), logMsg)
+	mLogFileReader(joinPath(gAppDataFolder, gLogFileName), logMsg)
 {
    	mLogFileReader.start(true);
 }

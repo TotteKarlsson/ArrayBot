@@ -58,7 +58,7 @@ class AB_CORE Serial : public ABObject
 		Mutex					            mReceivedMessagesMutex;
         StringList				            mReceivedMessages;
 
-        MessageReceivedCallBackC			mReceivedCB_C;
+//        MessageReceivedCallBackC			mReceivedCB_C;
         MessageReceivedCallBack				mReceivedCB;
         Poco::Condition                     mGotMessage;
 };

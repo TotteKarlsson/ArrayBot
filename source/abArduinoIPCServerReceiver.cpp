@@ -14,7 +14,7 @@ SocketWorker* createArduinoIPCReceiver(int portNr, int socketHandle, void* serve
     if(sWkr)
     {
         Log(lInfo)<<"Created an IPCReceiver. Socket Handle ID is : "<<socketHandle<<"\n";
-        sWkr->send("Connection was created!\n");
+        sWkr->send("[Connection was created!]");
     }
     return sWkr;
 }
@@ -55,7 +55,7 @@ void ArduinoServerIPCReceiver::Worker()
                     {
                         mServer->postIPCMessage(msg);
                     }
-                    send("ACK");
+                    send("[ACK]");
                     aMessage.reset();
                 }
             }

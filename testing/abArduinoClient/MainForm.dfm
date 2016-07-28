@@ -27,8 +27,6 @@ object Main: TMain
     Height = 585
     Align = alRight
     TabOrder = 0
-    ExplicitLeft = 904
-    ExplicitHeight = 791
     object BottomBtnPanel: TPanel
       Left = 1
       Top = 457
@@ -37,7 +35,6 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      ExplicitTop = 663
       object Button5: TSpeedButton
         Left = 1
         Top = 1
@@ -55,8 +52,6 @@ object Main: TMain
     Height = 585
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 904
-    ExplicitHeight = 791
     object Splitter1: TSplitter
       Left = 1
       Top = 361
@@ -77,13 +72,12 @@ object Main: TMain
       Constraints.MinHeight = 348
       Constraints.MinWidth = 670
       TabOrder = 0
-      ExplicitWidth = 902
       object GroupBox1: TGroupBox
         Left = 16
         Top = 13
         Width = 257
-        Height = 268
-        Caption = 'Arduino Server'
+        Height = 204
+        Caption = 'Arduino Client'
         TabOrder = 0
         object mArduinoServerPortE: TIntegerLabeledEdit
           Left = 16
@@ -99,12 +93,34 @@ object Main: TMain
         end
         object mASStartBtn: TButton
           Left = 16
-          Top = 160
+          Top = 112
           Width = 200
           Height = 65
-          Caption = 'Start/Stop'
+          Caption = 'Start'
           TabOrder = 1
           OnClick = mASStartBtnClick
+        end
+      end
+      object GroupBox2: TGroupBox
+        Left = 312
+        Top = 13
+        Width = 185
+        Height = 105
+        Caption = 'Section Count'
+        TabOrder = 1
+        object mSectionCountLbl: TIntLabel
+          Left = 32
+          Top = 40
+          Width = 17
+          Height = 23
+          Caption = '-1'
+          ValueString = '-1'
+          Value = -1
+          TheFont.Charset = DEFAULT_CHARSET
+          TheFont.Color = clWindowText
+          TheFont.Height = -19
+          TheFont.Name = 'Tahoma'
+          TheFont.Style = []
         end
       end
     end
@@ -115,8 +131,6 @@ object Main: TMain
       Height = 220
       Align = alClient
       TabOrder = 1
-      ExplicitWidth = 902
-      ExplicitHeight = 426
       object infoMemo: TMemo
         Left = 1
         Top = 31
@@ -133,8 +147,6 @@ object Main: TMain
         ScrollBars = ssBoth
         TabOrder = 0
         WordWrap = False
-        ExplicitWidth = 900
-        ExplicitHeight = 394
       end
       object ToolBar1: TToolBar
         Left = 1
@@ -145,7 +157,6 @@ object Main: TMain
         ButtonHeight = 30
         Caption = 'ToolBar1'
         TabOrder = 1
-        ExplicitWidth = 900
         object mClearLogMemoBtn: TBitBtn
           Left = 0
           Top = 0
@@ -239,14 +250,14 @@ object Main: TMain
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 152
-    Top = 360
+    Left = 272
+    Top = 288
   end
   object UIUpdateTimer: TTimer
     Enabled = False
     Interval = 300
     OnTimer = UIUpdateTimerTimer
-    Left = 180
-    Top = 416
+    Left = 404
+    Top = 264
   end
 end

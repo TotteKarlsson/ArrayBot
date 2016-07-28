@@ -120,7 +120,8 @@
             <BuildOrder>4</BuildOrder>
         </CppCompile>
         <CppCompile Include="abArduinoClient.cpp">
-            <BuildOrder>50</BuildOrder>
+            <DependentOn>abArduinoClient.h</DependentOn>
+            <BuildOrder>51</BuildOrder>
         </CppCompile>
         <CppCompile Include="abArduinoDevice.cpp">
             <BuildOrder>46</BuildOrder>
