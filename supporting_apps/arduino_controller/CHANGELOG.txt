@@ -1,0 +1,8 @@
+Release 0.5.0 (Jul 28)
+=======================
+* Initial release
+
+------ 2016 ------
+
+This changelog contain messasges for changes related both to the ARRAYBOT API, as
+well as the Arraybot UI.
