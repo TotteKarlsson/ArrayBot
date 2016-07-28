@@ -28,6 +28,7 @@ void __fastcall TAboutArduinoServerForm::FormShow(TObject *Sender)
         mAboutFrame->Parent =  this;
         mAboutFrame->AutoSize = true;
         mAboutFrame->Align = alClient;
+		Button3Click(Sender);
         mAboutFrame->Visible = true;
     }
 }
@@ -43,11 +44,7 @@ void __fastcall TAboutArduinoServerForm::Button3Click(TObject *Sender)
 {
     try
     {
-        TShowFileContentForm* e = new TShowFileContentForm(Application);
-        e->Caption = "ArduinoServer ChangeLog";
-        e->Memo1->Lines->LoadFromFile("CHANGELOG.txt");
-        e->ShowModal();
-        delete e;
+        mAboutFrame->mChangeLogMemo->Lines->LoadFromFile("CHANGELOG.txt");
     }
     catch(...)
     {

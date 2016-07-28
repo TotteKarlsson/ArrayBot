@@ -27,7 +27,7 @@ template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg);
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 
 // Name the "motor" ports by solenoid function:
-Adafruit_DCMotor *coaxLEDs  = AFMS.getMotor(1);
+Adafruit_DCMotor *coaxLEDs  = AFMS.getMotor(8);
 Adafruit_DCMotor *frontLEDs = AFMS.getMotor(3);
 Adafruit_DCMotor *backLEDs  = AFMS.getMotor(4);
 
@@ -51,6 +51,10 @@ Adafruit_DCMotor *backLEDs  = AFMS.getMotor(4);
   int flashToggle = true;
   int flashInterval = 500;
   unsigned long flashMillis = millis();
+  unsigned long lastReadTime = millis();
+    
+  void checkPINStates();
+  void processByte(char ch); 
   
 void setup() 
 {
@@ -77,8 +81,6 @@ void setup()
     Serial.begin(250000);
     Serial << "[ArrayBot Lights]";
 }
-
-void processByte(char ch); 
 
 void loop() 
 { 
@@ -139,6 +141,16 @@ void loop()
         }
         flashMillis = millis() + flashInterval;
     }
+
+    //Read digital lines and send status over serial port so the host
+    //can update its UI
+    unsigned long currentReadTime = millis();
+    if(currentReadTime - lastReadTime > 1000)
+    {
+        checkPINStates();
+        lastReadTime = currentReadTime;
+    }
+    
     //Read temp/humidity sensor, about every 2s.
     readEnvironmentalSensors(gDHT22);    
 }
@@ -149,27 +161,27 @@ void processByte(char ch)
     {
         case '1':
             btn1 = true ;
-            Serial << "[BUTTON_1_ENABLED]";
+            Serial << "[BUTTON_1_MSG]";
         break;
         
         case '2':
             btn2 = true ;
-            Serial << "[BUTTON_2_ENABLED]";
+            Serial << "[BUTTON_2_MSG]";
         break;
 
         case '3':
             btn3 = true ;
-            Serial << "[BUTTON_3_ENABLED]";
+            Serial << "[BUTTON_3_MSG]";
         break;
 
         case '4':
             btn4 = true ;
-            Serial << "[BUTTON_4_ENABLED]";
+            Serial << "[BUTTON_4_MSG]";
         break;
 
         case '5':
             btn5 = true ;
-            Serial << "[BUTTON_5_ENABLED]";
+            Serial << "[BUTTON_5_MSG]";
         break;
         
         case 'i': //Return some info about current state
@@ -182,9 +194,17 @@ void processByte(char ch)
     }    
 }
 
+void checkPINStates()
+{
+    //Read and report states of "light pins"            
+    Serial << ((digitalRead(8)) ? "[PIN_8=HIGH]" : "[PIN_8=LOW]");
+    Serial << ((digitalRead(3)) ? "[PIN_3=HIGH]" : "[PIN_3=LOW]");    
+    Serial << ((digitalRead(4)) ? "[PIN_4=HIGH]" : "[PIN_4=LOW]");        
+}
+
 void sendInfo()
 {
-    Serial << "[VERSION=5.5]";    
+    Serial << "[VERSION=5.6]";    
 }
 
 void readEnvironmentalSensors(DHT22& s)
@@ -192,22 +212,18 @@ void readEnvironmentalSensors(DHT22& s)
     switch(s.readData())
     {
         case DHT_ERROR_NONE:
-            Serial.print("[DHT22DATA,");
-            Serial.print(s.getTemperatureC());      
-            Serial.print(",");
-            Serial.print(s.getHumidity());
-            Serial.print("]");
+            Serial << "[DHT22DATA," << s.getTemperatureC() << "," << s.getHumidity() << "]";
         break;
 
         //The following are error conditions. Pulling to quick happens easily, no need to report
-        case DHT_ERROR_CHECKSUM:        Serial.print(   "[DHT22_ERROR, Check Sum Error ");        break;
-        case DHT_BUS_HUNG:              Serial.println( "[DHT22_ERROR, BUS Hung]");               break;
-        case DHT_ERROR_NOT_PRESENT:     Serial.println( "[DHT22_ERROR, Not Present]");            break;
-        case DHT_ERROR_ACK_TOO_LONG:    Serial.println( "[DHT22_ERROR, ACK Time out]");           break;
-        case DHT_ERROR_SYNC_TIMEOUT:    Serial.println( "[DHT22_ERROR, Sync Timeout]");           break;
-        case DHT_ERROR_DATA_TIMEOUT:    Serial.println( "[DHT22_ERROR, Data Timeout]");           break;
-        case DHT_ERROR_TOOQUICK:        /*Serial.println("[DHT22_ERROR, Polled to Quick]");*/     break;
-        default:                        Serial.println( "[DHT22_ERROR, Error Code not Defined]"); break;      
+        case DHT_ERROR_CHECKSUM:        Serial << "[DHT22_ERROR, Check Sum Error ";        break;
+        case DHT_BUS_HUNG:              Serial << "[DHT22_ERROR, BUS Hung]";               break;
+        case DHT_ERROR_NOT_PRESENT:     Serial << "[DHT22_ERROR, Not Present]";            break;
+        case DHT_ERROR_ACK_TOO_LONG:    Serial << "[DHT22_ERROR, ACK Time out]";           break;
+        case DHT_ERROR_SYNC_TIMEOUT:    Serial << "[DHT22_ERROR, Sync Timeout]";           break;
+        case DHT_ERROR_DATA_TIMEOUT:    Serial << "[DHT22_ERROR, Data Timeout]";           break;
+        case DHT_ERROR_TOOQUICK:        /*Serial << "[DHT22_ERROR, Polled to Quick]";*/    break;
+        default:                        Serial << "[DHT22_ERROR, ERROR CODE NOT DEFINED]"; break;      
     }    
 }
   

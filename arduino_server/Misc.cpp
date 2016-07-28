@@ -84,6 +84,49 @@ void __fastcall TMain::ApplicationEvents1Exception(TObject *Sender, Exception *E
 }
 
 //---------------------------------------------------------------------------
+void __fastcall TMain::AppInBox(mlxStructMessage &msg)
+{
+    if(msg.lparam == NULL)
+    {
+        return;
+    }
+
+    try
+    {
+        ApplicationMessageEnum aMsg = msg.lparam->mMessageEnum;
+
+        switch(aMsg)
+        {
+            case abSplashWasClosed:
+                Log(lDebug2) << "Splash form sent message that it was closed";
+                gSplashForm = NULL;
+            break;
+
+            default:
+            break ;
+        }
+	}
+	catch(...)
+	{
+		Log(lError) << "Received an unhandled windows message!";
+	}
+}
+
+void __fastcall TMain::LogLevelCBChange(TObject *Sender)
+{
+    if(LogLevelCB->ItemIndex == 0)
+    {
+        mLogLevel = lInfo;
+    }
+    else if(LogLevelCB->ItemIndex == 1)
+    {
+        mLogLevel = lAny;
+    }
+
+    gLogger.setLogLevel(mLogLevel);
+}
+
+//---------------------------------------------------------------------------
 void __fastcall TMain::FormShow(TObject *Sender)
 {
 	this->Height = this->Height - 1;

@@ -15,7 +15,7 @@
         <Projects Include="P:\libs\dslib\VCL\Components\DuneComponents.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="arduino_server.cbproj">
+        <Projects Include="arduino_controller.cbproj">
             <Dependencies>..\source\abCore.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
@@ -62,23 +62,23 @@
     <Target Name="DuneComponents:Make">
         <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="arduino_server" DependsOnTargets="abCore">
-        <MSBuild Projects="arduino_server.cbproj"/>
+    <Target Name="arduino_controller" DependsOnTargets="abCore">
+        <MSBuild Projects="arduino_controller.cbproj"/>
     </Target>
-    <Target Name="arduino_server:Clean" DependsOnTargets="abCore:Clean">
-        <MSBuild Projects="arduino_server.cbproj" Targets="Clean"/>
+    <Target Name="arduino_controller:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="arduino_controller.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="arduino_server:Make" DependsOnTargets="abCore:Make">
-        <MSBuild Projects="arduino_server.cbproj" Targets="Make"/>
+    <Target Name="arduino_controller:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="arduino_controller.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkIPC;abCore;VCLCommon;DuneComponents;arduino_server"/>
+        <CallTarget Targets="mtkIPC;abCore;VCLCommon;DuneComponents;arduino_controller"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkIPC:Clean;abCore:Clean;VCLCommon:Clean;DuneComponents:Clean;arduino_server:Clean"/>
+        <CallTarget Targets="mtkIPC:Clean;abCore:Clean;VCLCommon:Clean;DuneComponents:Clean;arduino_controller:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkIPC:Make;abCore:Make;VCLCommon:Make;DuneComponents:Make;arduino_server:Make"/>
+        <CallTarget Targets="mtkIPC:Make;abCore:Make;VCLCommon:Make;DuneComponents:Make;arduino_controller:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

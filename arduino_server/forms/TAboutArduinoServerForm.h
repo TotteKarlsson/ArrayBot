@@ -14,7 +14,6 @@ class PACKAGE TAboutArduinoServerForm : public TForm
 {
 __published:	// IDE-managed Components
     TPanel *Panel1;
-    TButton *Button3;
     TButton *Button4;
     TActionList *ActionList1;
     TAction *checkForUpdateA;
@@ -30,7 +29,7 @@ __published:	// IDE-managed Components
 
 private:	// User declarations
         bool                                            mStartCheckForChangeLogThread;
-        TAboutArduinoServerFrame*                           	mAboutFrame;
+        TAboutArduinoServerFrame*                       mAboutFrame;
 
 public:		// User declarations
     __fastcall TAboutArduinoServerForm(TComponent* Owner);

@@ -175,11 +175,11 @@ int SerialWorker::processReceiveBuffer(char* buffer, int bufSize)
         {
             {
                 Poco::ScopedLock<Poco::Mutex> lock(mTheHost.mReceivedMessagesMutex);
-                //mTheHost.mReceivedMessages.append(mMessageBuilder.getMessage());
                 Log(lDebug5) << "Received: " << mMessageBuilder.getMessage();
 
                 if(mTheHost.mReceivedCB)
                 {
+                	//We need to synchronize this with the main UI thread
                 	mTheHost.mReceivedCB(mMessageBuilder.getMessage());
                 }
 

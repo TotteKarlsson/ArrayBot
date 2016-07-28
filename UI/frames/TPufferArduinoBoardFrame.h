@@ -11,7 +11,7 @@
 #include "TSTDStringLabeledEdit.h"
 //---------------------------------------------------------------------------
 
-class TPufferArduinoBoardFrame : public TArduinoBoardFrame
+class PACKAGE TPufferArduinoBoardFrame : public TArduinoBoardFrame
 {
 __published:
 	TIntegerLabeledEdit *mPufferDurationE;
@@ -21,10 +21,9 @@ __published:
 	private:
 
 	public:
-							__fastcall TPufferArduinoBoardFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner);
-							__fastcall ~TPufferArduinoBoardFrame();
-
-                            void TPufferArduinoBoardFrame::init();
+							__fastcall 	TPufferArduinoBoardFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner);
+							__fastcall 	~TPufferArduinoBoardFrame();
+    	void 							init();
 };
 
 extern PACKAGE TPufferArduinoBoardFrame *PufferArduinoBoardFrame;

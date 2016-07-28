@@ -53,10 +53,10 @@ object ArduinoBoardFrame: TArduinoBoardFrame
       OnClick = ConnectBtnClick
     end
     object Button1: TButton
-      Left = 151
-      Top = 133
+      Left = 111
+      Top = 132
       Width = 34
-      Height = 28
+      Height = 40
       Caption = '->'
       TabOrder = 4
       OnClick = Button1Click

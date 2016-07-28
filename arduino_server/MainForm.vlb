@@ -4,14 +4,11 @@ Coordinates=299,284,60,51
 [Button5]
 Coordinates=168,462,53,33
 
-[mAboutBtn]
-Coordinates=89,462,70,33
-
 [BottomBtnPanel]
 Coordinates=200,284,95,51
 
 []
-Coordinates=776,533,81,33
+Coordinates=89,462,70,33
 
 [mButtonPanel]
 Coordinates=234,195,58,51

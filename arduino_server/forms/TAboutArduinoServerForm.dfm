@@ -3,8 +3,8 @@ object AboutArduinoServerForm: TAboutArduinoServerForm
   Top = 0
   BorderStyle = bsDialog
   Caption = 'About ArduinoServer'
-  ClientHeight = 296
-  ClientWidth = 571
+  ClientHeight = 552
+  ClientWidth = 674
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,14 +22,16 @@ object AboutArduinoServerForm: TAboutArduinoServerForm
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
-    Top = 249
-    Width = 571
+    Top = 505
+    Width = 674
     Height = 47
     Align = alBottom
     BevelOuter = bvLowered
     TabOrder = 0
+    ExplicitTop = 249
+    ExplicitWidth = 571
     DesignSize = (
-      571
+      674
       47)
     object Label1: TLabel
       Left = 127
@@ -47,49 +49,39 @@ object AboutArduinoServerForm: TAboutArduinoServerForm
       ParentFont = False
       StyleElements = [seClient, seBorder]
     end
-    object Button3: TButton
-      Left = 20
-      Top = 5
-      Width = 101
-      Height = 40
-      Caption = 'Change Log'
-      TabOrder = 0
-      OnClick = Button3Click
-    end
     object Button4: TButton
-      Left = 464
+      Left = 567
       Top = 5
       Width = 90
       Height = 40
       Anchors = [akTop, akRight]
       Caption = 'Close'
       ModalResult = 1
-      TabOrder = 1
+      TabOrder = 0
       OnClick = Button4Click
+      ExplicitLeft = 464
     end
   end
   inline TAboutArduinoServerFrame1: TAboutArduinoServerFrame
     Left = 0
     Top = 0
-    Width = 571
-    Height = 249
+    Width = 674
+    Height = 505
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = -40
-    ExplicitTop = -6
     ExplicitWidth = 571
     ExplicitHeight = 249
     inherited Image1: TImage
-      Width = 120
-      ExplicitWidth = 120
+      Width = 223
+      ExplicitWidth = 223
     end
     inherited logLabel: TLabel
       Top = 216
       ExplicitTop = 216
     end
-    inherited Image2: TImage
-      Width = 571
-      Height = 249
+    inherited mChangeLogMemo: TMemo
+      Top = 219
+      Width = 674
     end
   end
   object ActionList1: TActionList

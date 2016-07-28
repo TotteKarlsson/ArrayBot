@@ -7,11 +7,9 @@
 #include "mtkApplicationInfo.h"
 #include "abApplicationMessages.h"
 #include "mtkLogger.h"
-#include "TShowFileContentForm.h"
 #include "Poco/DateTimeFormatter.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "mtkURLLabel"
 #pragma link "mtkURLLabel"
 #pragma resource "*.dfm"
 TAboutArduinoServerFrame *AboutArduinoServerFrame;
@@ -138,22 +136,6 @@ void __fastcall TAboutArduinoServerFrame::ThreadCheckTimerTimer(TObject *Sender)
     {
         mStartCheckForChangeLogThread = false;
         retrieveChangeLogA->Execute();
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TAboutArduinoServerFrame::showChangeLogExecute(TObject *Sender)
-{
-    try
-    {
-        TShowFileContentForm* e = new TShowFileContentForm(Application);
-        e->Memo1->Lines->LoadFromFile("CHANGELOG.txt");
-        e->ShowModal();
-        delete e;
-    }
-    catch(...)
-    {
-        MessageDlg("There was a problem opening the file!", mtInformation, TMsgDlgButtons() << mbOK, 0);
     }
 }
 

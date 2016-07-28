@@ -65,7 +65,6 @@ class TMain : public TRegistryForm
 	TPanel *BottomBtnPanel;
 	TAction *abortLiftA;
 	TAction *liftA;
-	TSpeedButton *mAboutBtn;
 	TPanel *BottomPanel;
 	TMemo *infoMemo;
 	TToolBar *ToolBar1;
@@ -81,7 +80,7 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet1;
 	TTabSheet *TabSheet2;
 	TGroupBox *GroupBox2;
-	TButton *Button1;
+	TButton *mResetCounterBtn;
 	TIntLabel *mSectionCount;
 	TGroupBox *GroupBox3;
 	TIntegerLabeledEdit *mPuffAfterSectionCountE;
@@ -93,6 +92,9 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox4;
 	TGroupBox *GroupBox5;
 	TGroupBox *GroupBox6;
+	TButton *mFrontBackLEDBtn;
+	TButton *mCoaxLEDBtn;
+	TButton *Button1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -105,8 +107,9 @@ class TMain : public TRegistryForm
 	void __fastcall mClearLogMemoBtnClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mASStartBtnClick(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall mResetCounterBtnClick(TObject *Sender);
 	void __fastcall PuffNowBtnClick(TObject *Sender);
+	void __fastcall LEDBtnClick(TObject *Sender);
 
 
     private:
@@ -121,16 +124,21 @@ class TMain : public TRegistryForm
 		mtk::Property<mtk::LogLevel>        mLogLevel;
 
 		void __fastcall		                OnException();
-        ArduinoServer					    mAS;
-        ArduinoDevice&					    mAD1;
+
         vector<TFrame*>					    mFrames;
         void								onPufferArduinoMessage(const string& msg);
+        void								onSensorArduinoMessage(const string& msg);
 
 	public:		// User declarations
 		__fastcall 					        TMain(TComponent* Owner);
 		__fastcall 					        ~TMain();
 
 		void __fastcall                 	AppInBox(mlxStructMessage &Msg);
+
+        ArduinoServer					    mAS;
+        ArduinoDevice&					    mAD1;
+        ArduinoDevice&					    mAD2;
+
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,    mlxStructMessage,         AppInBox);
         END_MESSAGE_MAP(TForm)

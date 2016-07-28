@@ -2,16 +2,16 @@ object AboutArduinoServerFrame: TAboutArduinoServerFrame
   Left = 0
   Top = 0
   Width = 625
-  Height = 301
+  Height = 422
   TabOrder = 0
   DesignSize = (
     625
-    301)
+    422)
   object Image1: TImage
-    Left = 448
+    Left = 528
     Top = 9
-    Width = 174
-    Height = 168
+    Width = 94
+    Height = 97
     Anchors = [akLeft, akTop, akRight]
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000001000000
@@ -885,16 +885,18 @@ object AboutArduinoServerFrame: TAboutArduinoServerFrame
     ParentFont = False
     StyleElements = [seClient, seBorder]
   end
-  object Image2: TImage
+  object mChangeLogMemo: TMemo
     Left = 0
-    Top = 0
+    Top = 112
     Width = 625
-    Height = 301
-    Align = alClient
-    Stretch = True
-    Transparent = True
-    ExplicitLeft = -3
-    ExplicitTop = 48
+    Height = 310
+    Align = alBottom
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Lines.Strings = (
+      'mChangeLogMemo')
+    ScrollBars = ssVertical
+    TabOrder = 0
+    WantReturns = False
   end
   object ActionList1: TActionList
     Left = 304
@@ -919,7 +921,6 @@ object AboutArduinoServerFrame: TAboutArduinoServerFrame
     end
     object showChangeLog: TAction
       Caption = 'Change Log'
-      OnExecute = showChangeLogExecute
     end
     object CloseA: TAction
       Caption = 'Close'

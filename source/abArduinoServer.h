@@ -39,6 +39,7 @@ class AB_CORE ArduinoServer : public IPCServer
     							//!Arduino Devices
 		vector<ArduinoDevice*> 	mArduinos;
     	ArduinoDevice 			mA1;
+    	ArduinoDevice 			mA2;
 		void					messageReceived(const string& msg);
 
 

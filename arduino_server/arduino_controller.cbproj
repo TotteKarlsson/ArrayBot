@@ -4,7 +4,7 @@
         <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
-        <MainSource>arduino_server.cpp</MainSource>
+        <MainSource>arduino_controller.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -95,11 +95,10 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <BCC_wcsu>false</BCC_wcsu>
         <BCC_PCHInject>ArrayBotPCH1.h</BCC_PCHInject>
-        <VerInfo_Release>5</VerInfo_Release>
         <Icon_MainIcon>ArrayBot_Icon1.ico</Icon_MainIcon>
         <VerInfo_Debug>true</VerInfo_Debug>
-        <VerInfo_MinorVer>6</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileDescription=;FileVersion=0.6.5.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=</VerInfo_Keys>
+        <VerInfo_MinorVer>5</VerInfo_MinorVer>
+        <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileDescription=;FileVersion=0.5.0.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArduinoServer;ProductVersion=0.5;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
         <PostBuildEvent><![CDATA[xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y
 xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y
@@ -128,7 +127,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="arduino_server.cpp">
+        <CppCompile Include="arduino_controller.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
         <CppCompile Include="forms\TAboutArduinoServerForm.cpp">
@@ -203,7 +202,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <BorlandProject>
             <CPlusPlusBuilder.Personality>
                 <Source>
-                    <Source Name="MainSource">arduino_server.cpp</Source>
+                    <Source Name="MainSource">arduino_controller.cpp</Source>
                 </Source>
                 <VersionInfo>
                     <VersionInfo Name="IncludeVerInfo">False</VersionInfo>

@@ -46,12 +46,15 @@ object SplashForm: TSplashForm
     Align = alTop
     TabOrder = 0
     ExplicitWidth = 615
+    ExplicitHeight = 301
     inherited Image1: TImage
       Width = 164
       ExplicitWidth = 164
     end
-    inherited Image2: TImage
+    inherited mChangeLogMemo: TMemo
+      Top = 15
       Width = 615
+      ExplicitTop = 15
       ExplicitWidth = 615
     end
     inherited ThreadCheckTimer: TTimer

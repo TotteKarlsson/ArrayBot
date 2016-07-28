@@ -55,7 +55,7 @@ void loop()
 
     //Simulate Hall Sensor
     unsigned long currentTime = millis();
-    if(currentTime - lastReadTime > 1500)
+    if(currentTime - lastReadTime > 1000)
     {
         lastReadTime = currentTime;        
         Serial << "[HALL_SENSOR=HIGH]";                
@@ -76,7 +76,8 @@ void loop()
                             
         //Wait for HALL sensor to go LOW
         while(digitalRead(sensorPin) == HIGH) 
-        { }     
+        { }
+        
         Serial << "[HALL_SENSOR=LOW]";
         digitalWrite(ledPin, LOW);      // turn the LED off        
     }

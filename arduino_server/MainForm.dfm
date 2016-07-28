@@ -1,9 +1,9 @@
 object Main: TMain
   Left = 0
   Top = 0
-  Caption = 'ArduinoServer Version 0.5.8'
-  ClientHeight = 621
-  ClientWidth = 856
+  Caption = 'Arduino Controller'
+  ClientHeight = 646
+  ClientWidth = 983
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,32 +21,23 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 23
   object mButtonPanel: TPanel
-    Left = 673
+    Left = 800
     Top = 71
     Width = 183
-    Height = 550
+    Height = 575
     Align = alRight
     TabOrder = 0
-    object mAboutBtn: TSpeedButton
-      Left = 1
-      Top = 1
-      Width = 181
-      Height = 134
-      Align = alTop
-      AllowAllUp = True
-      Caption = 'About'
-      OnClick = mAboutBtnClick
-      ExplicitTop = -57
-      ExplicitWidth = 125
-    end
+    ExplicitLeft = 673
+    ExplicitHeight = 550
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 422
+      Top = 447
       Width = 181
       Height = 127
       Align = alBottom
       AutoSize = True
       TabOrder = 0
+      ExplicitTop = 422
       object Button5: TSpeedButton
         Left = 1
         Top = 1
@@ -56,18 +47,53 @@ object Main: TMain
         Align = alBottom
       end
     end
+    object mFrontBackLEDBtn: TButton
+      Left = 1
+      Top = 101
+      Width = 181
+      Height = 100
+      Align = alTop
+      Caption = 'FrontBack LEDs ON'
+      TabOrder = 1
+      OnClick = LEDBtnClick
+      ExplicitTop = 135
+    end
+    object mCoaxLEDBtn: TButton
+      Left = 1
+      Top = 1
+      Width = 181
+      Height = 100
+      Align = alTop
+      Caption = 'COAX LEDs ON'
+      TabOrder = 2
+      OnClick = LEDBtnClick
+      ExplicitLeft = 4
+      ExplicitTop = -5
+    end
+    object Button1: TButton
+      Left = 1
+      Top = 336
+      Width = 181
+      Height = 111
+      Align = alBottom
+      Caption = 'About'
+      TabOrder = 3
+      OnClick = mAboutBtnClick
+    end
   end
   object MainPanel: TPanel
     Left = 0
     Top = 71
-    Width = 673
-    Height = 550
+    Width = 800
+    Height = 575
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 673
+    ExplicitHeight = 550
     object Splitter1: TSplitter
       Left = 1
       Top = 361
-      Width = 671
+      Width = 798
       Height = 3
       Cursor = crVSplit
       Align = alTop
@@ -78,27 +104,31 @@ object Main: TMain
     object TopPanel: TPanel
       Left = 1
       Top = 1
-      Width = 671
+      Width = 798
       Height = 360
       Align = alTop
       Constraints.MinHeight = 348
       Constraints.MinWidth = 670
       TabOrder = 0
+      ExplicitWidth = 671
       object PageControl1: TPageControl
         Left = 1
         Top = 1
-        Width = 669
+        Width = 796
         Height = 358
         ActivePage = TabSheet1
         Align = alClient
         TabOrder = 0
+        ExplicitWidth = 669
         object TabSheet1: TTabSheet
           Caption = 'Ribbon Controller'
+          ExplicitLeft = 5
+          ExplicitTop = 33
           object GroupBox3: TGroupBox
             Left = 18
             Top = 20
             Width = 303
-            Height = 181
+            Height = 157
             Caption = 'Auto Puff Control'
             TabOrder = 0
             object mPuffAfterSectionCountE: TIntegerLabeledEdit
@@ -126,14 +156,14 @@ object Main: TMain
             Left = 327
             Top = 20
             Width = 258
-            Height = 181
+            Height = 157
             Caption = 'Manual Puff'
             TabOrder = 1
             object PuffNowBtn: TButton
-              Left = 33
-              Top = 73
-              Width = 184
-              Height = 86
+              Left = 19
+              Top = 32
+              Width = 214
+              Height = 104
               Caption = 'Puff'
               TabOrder = 0
               OnClick = PuffNowBtnClick
@@ -143,10 +173,7 @@ object Main: TMain
         object TabSheet2: TTabSheet
           Caption = 'Settings'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
+          ExplicitWidth = 661
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0
@@ -180,10 +207,11 @@ object Main: TMain
           object mArduinoSB: TScrollBox
             Left = 257
             Top = 0
-            Width = 404
+            Width = 531
             Height = 320
             Align = alClient
             TabOrder = 1
+            ExplicitWidth = 404
           end
         end
       end
@@ -191,15 +219,17 @@ object Main: TMain
     object BottomPanel: TPanel
       Left = 1
       Top = 364
-      Width = 671
-      Height = 185
+      Width = 798
+      Height = 210
       Align = alClient
       TabOrder = 1
+      ExplicitWidth = 671
+      ExplicitHeight = 185
       object infoMemo: TMemo
         Left = 1
         Top = 31
-        Width = 669
-        Height = 153
+        Width = 796
+        Height = 178
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -211,16 +241,19 @@ object Main: TMain
         ScrollBars = ssBoth
         TabOrder = 0
         WordWrap = False
+        ExplicitWidth = 669
+        ExplicitHeight = 153
       end
       object ToolBar1: TToolBar
         Left = 1
         Top = 1
-        Width = 669
+        Width = 796
         Height = 30
         AutoSize = True
         ButtonHeight = 30
         Caption = 'ToolBar1'
         TabOrder = 1
+        ExplicitWidth = 669
         object mClearLogMemoBtn: TBitBtn
           Left = 0
           Top = 0
@@ -260,18 +293,20 @@ object Main: TMain
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 856
+    Width = 983
     Height = 71
     Align = alTop
     TabOrder = 2
+    ExplicitWidth = 856
     object GroupBox4: TGroupBox
-      Left = 599
+      Left = 726
       Top = 1
       Width = 139
       Height = 69
       Align = alRight
       Caption = 'Temperature'
       TabOrder = 0
+      ExplicitLeft = 599
       object mTemperatureLbl: mtkFloatLabel
         Left = 40
         Top = 31
@@ -288,13 +323,14 @@ object Main: TMain
       end
     end
     object GroupBox5: TGroupBox
-      Left = 738
+      Left = 865
       Top = 1
       Width = 117
       Height = 69
       Align = alRight
       Caption = 'Humidity'
       TabOrder = 1
+      ExplicitLeft = 738
       object mHumidityE: mtkFloatLabel
         Left = 30
         Top = 31
@@ -333,7 +369,7 @@ object Main: TMain
         TheFont.Style = []
       end
     end
-    object Button1: TButton
+    object mResetCounterBtn: TButton
       Left = 153
       Top = 1
       Width = 160
@@ -341,7 +377,7 @@ object Main: TMain
       Align = alLeft
       Caption = 'Reset Counter'
       TabOrder = 3
-      OnClick = Button1Click
+      OnClick = mResetCounterBtnClick
     end
   end
   object ActionList1: TActionList

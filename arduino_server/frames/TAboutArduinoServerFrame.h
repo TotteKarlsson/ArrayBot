@@ -37,11 +37,10 @@ __published:	// IDE-managed Components
     TAction *CloseA;
     TImage *Image1;
 	TLabel *logLabel;
-	TImage *Image2;
+	TMemo *mChangeLogMemo;
     void __fastcall checkForUpdateAExecute(TObject *Sender);
     void __fastcall ThreadCheckTimerTimer(TObject *Sender);
     void __fastcall retrieveChangeLogAExecute(TObject *Sender);
-    void __fastcall showChangeLogExecute(TObject *Sender);
     void __fastcall CloseAExecute(TObject *Sender);
 
     private:	// User declarations
