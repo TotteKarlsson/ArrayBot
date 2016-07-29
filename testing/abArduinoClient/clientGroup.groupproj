@@ -15,7 +15,7 @@
         <Projects Include="..\..\source\abCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\..\supporting_apps\arduino_controller\arduino_controller.cbproj">
+        <Projects Include="..\..\supporting_apps\arduino_controller\arduinoController.cbproj">
             <Dependencies>..\..\source\abCore.cbproj</Dependencies>
         </Projects>
         <Projects Include="arduinoClient.cbproj">
@@ -68,14 +68,14 @@
     <Target Name="abCore:Make">
         <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="arduino_controller" DependsOnTargets="abCore">
-        <MSBuild Projects="..\..\supporting_apps\arduino_controller\arduino_controller.cbproj"/>
+    <Target Name="arduinoController" DependsOnTargets="abCore">
+        <MSBuild Projects="..\..\supporting_apps\arduino_controller\arduinoController.cbproj"/>
     </Target>
-    <Target Name="arduino_controller:Clean" DependsOnTargets="abCore:Clean">
-        <MSBuild Projects="..\..\supporting_apps\arduino_controller\arduino_controller.cbproj" Targets="Clean"/>
+    <Target Name="arduinoController:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="..\..\supporting_apps\arduino_controller\arduinoController.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="arduino_controller:Make" DependsOnTargets="abCore:Make">
-        <MSBuild Projects="..\..\supporting_apps\arduino_controller\arduino_controller.cbproj" Targets="Make"/>
+    <Target Name="arduinoController:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="..\..\supporting_apps\arduino_controller\arduinoController.cbproj" Targets="Make"/>
     </Target>
     <Target Name="arduinoClient" DependsOnTargets="abCore">
         <MSBuild Projects="arduinoClient.cbproj"/>
@@ -96,13 +96,13 @@
         <MSBuild Projects="arduinoClientCMD.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkIPC;VCLCommon;abCore;arduino_controller;arduinoClient;arduinoClientCMD"/>
+        <CallTarget Targets="mtkCommon;mtkIPC;VCLCommon;abCore;arduinoController;arduinoClient;arduinoClientCMD"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;VCLCommon:Clean;abCore:Clean;arduino_controller:Clean;arduinoClient:Clean;arduinoClientCMD:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;VCLCommon:Clean;abCore:Clean;arduinoController:Clean;arduinoClient:Clean;arduinoClientCMD:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;VCLCommon:Make;abCore:Make;arduino_controller:Make;arduinoClient:Make;arduinoClientCMD:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;VCLCommon:Make;abCore:Make;arduinoController:Make;arduinoClient:Make;arduinoClientCMD:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

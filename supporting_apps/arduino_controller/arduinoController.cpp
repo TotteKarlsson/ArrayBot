@@ -14,12 +14,12 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
-USEFORM("forms\TSplashForm.cpp", SplashForm);
-USEFORM("MainForm.cpp", Main);
-USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame); /* TFrame: File Type */
-USEFORM("frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame); /* TFrame: File Type */
-USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame); /* TFrame: File Type */
 USEFORM("frames\TSensorAndLightArduinoFrame.cpp", SensorAndLightArduinoFrame); /* TFrame: File Type */
+USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame); /* TFrame: File Type */
+USEFORM("MainForm.cpp", Main);
+USEFORM("forms\TSplashForm.cpp", SplashForm);
+USEFORM("frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame); /* TFrame: File Type */
+USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArduinoController.log";
