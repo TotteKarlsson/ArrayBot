@@ -52,7 +52,7 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
    	CanClose = (gSplashForm && gSplashForm->isOnShowTime()
     			|| mFrames.size()
             	|| mArduinoServer.isRunning()
-                );
+                ) ? false : true;
 
 
 	if(CanClose == false)

@@ -58,6 +58,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     mPuffAfterSectionCountE->update();
 
     mArduinoServer.assignOnUpdateCallBack(onUpdatesFromArduinoServer);
+    mArduinoServer.setPuffAfterSectionCount(mPuffAfterSectionCountE->getValue());
 }
 
 __fastcall TMain::~TMain()
@@ -172,22 +173,22 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
                     Main->mHumidityE->SetValue(toDouble(l[2]));
                 }
             }
-            else if(startsWith(msg, "PIN_8"))
-            {
-                StringList l(msg,'=');
-                if(l.size() == 2)
-                {
-                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
-                }
-            }
-            else if(startsWith(msg, "PIN_3"))
-            {
-                StringList l(msg,'=');
-                if(l.size() == 2)
-                {
-                    Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
-                }
-            }
+//            else if(startsWith(msg, "PIN_8"))
+//            {
+//                StringList l(msg,'=');
+//                if(l.size() == 2)
+//                {
+//                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
+//                }
+//            }
+//            else if(startsWith(msg, "PIN_3"))
+//            {
+//                StringList l(msg,'=');
+//                if(l.size() == 2)
+//                {
+//                    Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
+//                }
+//            }
         }
     };
 
@@ -195,7 +196,7 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
     args.msg = msg;
 
     //This causes this fucntion to be called in the UI thread
-	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
+ 	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
 }
 
 //---------------------------------------------------------------------------
@@ -234,27 +235,20 @@ void __fastcall TMain::PuffNowBtnClick(TObject *Sender)
 void __fastcall TMain::LEDBtnClick(TObject *Sender)
 {
 	TButton* b = dynamic_cast<TButton*>(Sender);
-    if(b == mCoaxLEDBtn)
+    if(b == mFrontBackLEDBtn )
     {
-		//Check Caption
-	   	if(contains("ON", stdstr(mCoaxLEDBtn->Caption)))
+    	static string cap = "ON";//=  stdstr(mFrontBackLEDBtn->Caption);
+	   	if(contains("OFF", cap))
         {
-        	mSensorArduino.send("1");
-        }
-        else
-        {
-        	mSensorArduino.send("2");
-        }
-    }
-    else if(b == mFrontBackLEDBtn)
-    {
-	   	if(contains("ON", stdstr(mFrontBackLEDBtn->Caption)))
-        {
+        	mFrontBackLEDBtn->Caption = "Switch LEDs ON";
         	mSensorArduino.send("3");
+            cap = "ON";
         }
         else
         {
+        	mFrontBackLEDBtn->Caption = "Switch LEDs OFF";
          	mSensorArduino.send("4");
+            cap = "OFF";
         }
     }
 }

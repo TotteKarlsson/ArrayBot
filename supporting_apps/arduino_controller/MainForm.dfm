@@ -46,23 +46,15 @@ object Main: TMain
     end
     object mFrontBackLEDBtn: TButton
       Left = 1
-      Top = 101
+      Top = 1
       Width = 181
       Height = 100
       Align = alTop
       Caption = 'FrontBack LEDs ON'
       TabOrder = 1
       OnClick = LEDBtnClick
-    end
-    object mCoaxLEDBtn: TButton
-      Left = 1
-      Top = 1
-      Width = 181
-      Height = 100
-      Align = alTop
-      Caption = 'COAX LEDs ON'
-      TabOrder = 2
-      OnClick = LEDBtnClick
+      ExplicitLeft = 4
+      ExplicitTop = 5
     end
     object Button1: TButton
       Left = 1
@@ -71,7 +63,7 @@ object Main: TMain
       Height = 111
       Align = alBottom
       Caption = 'About'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = mAboutBtnClick
     end
   end

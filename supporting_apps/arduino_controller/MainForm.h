@@ -93,7 +93,6 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox5;
 	TGroupBox *GroupBox6;
 	TButton *mFrontBackLEDBtn;
-	TButton *mCoaxLEDBtn;
 	TButton *Button1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);

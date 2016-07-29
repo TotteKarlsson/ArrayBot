@@ -53,15 +53,15 @@ void loop()
         processByte(Serial.read());
     }    
 
-    //Simulate Hall Sensor
-    unsigned long currentTime = millis();
-    if(currentTime - lastReadTime > 50)
-    {
-        lastReadTime = currentTime;        
-        Serial << "[HALL_SENSOR=HIGH]";                
-        Serial << "[HALL_SENSOR=LOW]";                        
-    }
-        
+//    //Simulate Hall Sensor
+//    unsigned long currentTime = millis();
+//    if(currentTime - lastReadTime > 50)
+//    {
+//        lastReadTime = currentTime;        
+//        Serial << "[HALL_SENSOR=HIGH]";                
+//        Serial << "[HALL_SENSOR=LOW]";                        
+//    }
+                       
     if(digitalRead(sensorPin) == HIGH)  // if Hall sensor is high    
     {
         Serial << "[HALL_SENSOR=HIGH]";        
@@ -103,6 +103,10 @@ void processByte(char ch)
 {
     switch(ch)
     {
+        case 'm': //manual puff
+          puff(puffDuration);
+        break;
+          
         case 'p': //Enable puffing
             enablePuffer = true;
             Serial << "[PUFFER_ENABLED]";
