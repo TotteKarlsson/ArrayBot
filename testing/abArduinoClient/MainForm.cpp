@@ -199,22 +199,22 @@ void TMain::onMessageReceived(const string& msg)
                     Main->mHumidityE->SetValue(toDouble(l[2]));
                 }
             }
-            else if(startsWith(msg, "PIN_8"))
-            {
-                StringList l(msg,'=');
-                if(l.size() == 2)
-                {
-//                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
-                }
-            }
-            else if(startsWith(msg, "PIN_3"))
-            {
-                StringList l(msg,'=');
-                if(l.size() == 2)
-                {
-  //                  Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
-                }
-            }
+//            else if(startsWith(msg, "PIN_8"))
+//            {
+//                StringList l(msg,'=');
+//                if(l.size() == 2)
+//                {
+////                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
+//                }
+//            }
+//            else if(startsWith(msg, "PIN_3"))
+//            {
+//                StringList l(msg,'=');
+//                if(l.size() == 2)
+//                {
+//  //                  Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
+//                }
+//            }
         }
     };
 
