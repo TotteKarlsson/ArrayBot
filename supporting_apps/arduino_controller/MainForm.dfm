@@ -112,10 +112,6 @@ object Main: TMain
         TabOrder = 0
         object TabSheet1: TTabSheet
           Caption = 'Ribbon Controller'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GroupBox3: TGroupBox
             Left = 18
             Top = 20
@@ -133,6 +129,7 @@ object Main: TMain
               EditLabel.Caption = 'Puff after count'
               TabOrder = 0
               Text = '-1'
+              OnKeyDown = mPuffAfterSectionCountEKeyDown
               Value = -1
             end
             object mAutoPuffCB: TPropertyCheckBox
@@ -142,6 +139,7 @@ object Main: TMain
               Height = 17
               Caption = 'Enabled'
               TabOrder = 1
+              OnClick = mAutoPuffCBClick
             end
           end
           object GroupBox6: TGroupBox
@@ -165,10 +163,6 @@ object Main: TMain
         object TabSheet2: TTabSheet
           Caption = 'Settings'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 661
-          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0
@@ -189,14 +183,14 @@ object Main: TMain
               Text = '50000'
               Value = 50000
             end
-            object mASStartBtn: TButton
+            object mArduinoServerStartBtn: TButton
               Left = 16
               Top = 160
               Width = 200
               Height = 65
               Caption = 'Start/Stop'
               TabOrder = 1
-              OnClick = mASStartBtnClick
+              OnClick = mArduinoServerStartBtnClick
             end
           end
           object mArduinoSB: TScrollBox
@@ -206,7 +200,6 @@ object Main: TMain
             Height = 320
             Align = alClient
             TabOrder = 1
-            ExplicitWidth = 404
           end
         end
       end

@@ -34,6 +34,6 @@ __fastcall TSensorAndLightArduinoFrame::~TSensorAndLightArduinoFrame()
 void TSensorAndLightArduinoFrame::init()
 {
     stringstream msg;
-    mAD.send(msg.str());
+    mArduinoDevice.send(msg.str());
 }
 

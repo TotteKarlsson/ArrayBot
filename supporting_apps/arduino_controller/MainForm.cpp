@@ -39,9 +39,9 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, "ArduinoController.ini"), true, true),
     mLogLevel(lAny),
-    mAS(-1),
-    mAD1(mAS.getArduinoDevice(1)),
-    mAD2(mAS.getArduinoDevice(2))
+    mArduinoServer(-1),
+    mPufferArduino(mArduinoServer.getPufferArduino()),
+    mSensorArduino(mArduinoServer.getSensorArduino())
 {
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
@@ -56,6 +56,8 @@ __fastcall TMain::TMain(TComponent* Owner)
     mProperties.read();
 	mArduinoServerPortE->update();
     mPuffAfterSectionCountE->update();
+
+    mArduinoServer.assignOnUpdateCallBack(onUpdatesFromArduinoServer);
 }
 
 __fastcall TMain::~TMain()
@@ -101,30 +103,27 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     UIUpdateTimer->Enabled = true;
 
     //Setup the server
-    mAS.start(mArduinoServerPortE->getValue());
+    mArduinoServer.start(mArduinoServerPortE->getValue());
 
 	//Setup frames for the Arduinos
 	setupUIFrames();
-
-    mAD1.assignMessageReceivedCallBack(onPufferArduinoMessage);
-    mAD2.assignMessageReceivedCallBack(onSensorArduinoMessage);
+	mArduinoServer.broadcastStatus();
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall	TMain::setupUIFrames()
 {
-    mAD1.setName("PUFFER_ARDUINO");
+    mPufferArduino.setName("PUFFER_ARDUINO");
 
     //Create ArduinoFrames
-    TPufferArduinoBoardFrame* af1 = new TPufferArduinoBoardFrame(mAD1, mIniFile, this);
+    TPufferArduinoBoardFrame* af1 = new TPufferArduinoBoardFrame(mPufferArduino, mIniFile, this);
     af1->Parent =  mArduinoSB;
     af1->Align = alTop;
     af1->ConnectBtnClick(NULL);
     mFrames.push_back(af1);
 
-    mAD2.setName("SENSOR_ARDUINO");
-    TSensorAndLightArduinoFrame* af2 = new TSensorAndLightArduinoFrame(mAD2, mIniFile, this);
+    mSensorArduino.setName("SENSOR_ARDUINO");
+    TSensorAndLightArduinoFrame* af2 = new TSensorAndLightArduinoFrame(mSensorArduino, mIniFile, this);
     af2->Parent =  mArduinoSB;
     af2->Align = alTop;
     af2->ConnectBtnClick(NULL);
@@ -133,69 +132,34 @@ void __fastcall	TMain::setupUIFrames()
 }
 
 //This callback is called from the
-void TMain::onPufferArduinoMessage(const string& msg)
-{
-//	struct TLocalArgs
-//    {
-//        string msg;
-//        void __fastcall onPufferArduinoMessage()
-        {
-            //Handle the message..
-            //Check what message we got from arduino device
-            if(msg == "ArrayBot Puffer Init")
-            {
-                //Setup variables
-                //Puffer duration etc..
-                if(Main->mAD1.init)
-                {
-                    Main->mAD1.init();
-                }
-            }
-            else if (msg == "HALL_SENSOR=HIGH")
-            {
-                Main->mSectionCount->SetValue(Main->mSectionCount->GetValue() + 1);
-                if(Main->mAutoPuffCB->Checked)
-                {
-                    if(Main->mSectionCount->GetValue() > Main->mPuffAfterSectionCountE->getValue())
-                    {
-                        //puff
-                        Main->mAD1.send("p");
-
-                        //If succesful, reset the counter
-                        Main->mSectionCount->SetValue(0);
-                    }
-                }
-
-                stringstream msg;
-                msg <<"SECTION_COUNT="<<Main->mSectionCount->GetValue();
-                Main->mAS.broadcast(msg.str());
-            }
-        }
-//    };
-//
-//    TLocalArgs args;
-//    args.msg = msg;
-//
-//    //This causes this fucntion to be called in the UI thread
-//	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
-}
-
-void TMain::onSensorArduinoMessage(const string& msg)
+void TMain::onUpdatesFromArduinoServer(const string& msg)
 {
 	struct TLocalArgs
     {
         string msg;
-        void __fastcall onSensorArduinoMessage()
+        void __fastcall onPufferArduinoMessage()
         {
-            //Handle the message..
-            //Check what message we got from arduino device
-            if(msg == "ArrayBot Lights")
+            if(startsWith(msg, "SECTION_COUNT"))
             {
-                //Setup variables
-                //Puffer duration
-                if(Main->mAD2.init)
+				Main->mSectionCount->SetNumber(Main->mArduinoServer.getSectionCount());
+            }
+            else if(startsWith(msg, "AUTO_PUFF="))
+            {
+                //Parse the message
+                StringList l(msg, '=');
+                if(l.size() == 2)
                 {
-                    Main->mAD2.init();
+                    Main->mAutoPuffCB->Checked = (toBool(l[1])) ? true : false;
+                }
+            }
+
+            else if(startsWith(msg, "PUFF_AFTER_SECTION_COUNT"))
+            {
+                //Parse the message
+                StringList l(msg, '=');
+                if(l.size() == 2)
+                {
+                    Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
                 }
             }
             else if(startsWith(msg, "DHT22DATA"))
@@ -216,7 +180,6 @@ void TMain::onSensorArduinoMessage(const string& msg)
                     Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
                 }
             }
-
             else if(startsWith(msg, "PIN_3"))
             {
                 StringList l(msg,'=');
@@ -225,46 +188,45 @@ void TMain::onSensorArduinoMessage(const string& msg)
                     Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
                 }
             }
-            Main->mAS.broadcast(msg);
         }
     };
 
     TLocalArgs args;
     args.msg = msg;
 
-    //This causes this fucntion to be called in the main UI thread
-	TThread::Synchronize(NULL, &args.onSensorArduinoMessage);
+    //This causes this fucntion to be called in the UI thread
+	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
 {
-   	mASStartBtn->Caption 			= mAS.isRunning() 		? "Stop" : "Start";
-	mArduinoServerPortE->Enabled 	= !mAS.isRunning();
+   	mArduinoServerStartBtn->Caption = mArduinoServer.isRunning() 		? "Stop" : "Start";
+	mArduinoServerPortE->Enabled 	= !mArduinoServer.isRunning();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mASStartBtnClick(TObject *Sender)
+void __fastcall TMain::mArduinoServerStartBtnClick(TObject *Sender)
 {
-	if(mASStartBtn->Caption == "Stop")
+	if(mArduinoServerStartBtn->Caption == "Stop")
     {
-    	mAS.stop();
+    	mArduinoServer.stop();
     }
     else
     {
-    	mAS.start(mArduinoServerPortE->getValue());
+    	mArduinoServer.start(mArduinoServerPortE->getValue());
     }
 }
 
 void __fastcall TMain::mResetCounterBtnClick(TObject *Sender)
 {
-	mSectionCount->SetValue(0);
+	mArduinoServer.resetSectionCount();
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::PuffNowBtnClick(TObject *Sender)
 {
-	mAD1.send("p");
+	mPufferArduino.send("p");
     mSectionCount->SetValue(0);
 }
 
@@ -277,25 +239,47 @@ void __fastcall TMain::LEDBtnClick(TObject *Sender)
 		//Check Caption
 	   	if(contains("ON", stdstr(mCoaxLEDBtn->Caption)))
         {
-        	mAD2.send("1");
+        	mSensorArduino.send("1");
         }
         else
         {
-        	mAD2.send("2");
+        	mSensorArduino.send("2");
         }
     }
     else if(b == mFrontBackLEDBtn)
     {
 	   	if(contains("ON", stdstr(mFrontBackLEDBtn->Caption)))
         {
-        	mAD2.send("3");
+        	mSensorArduino.send("3");
         }
         else
         {
-         	mAD2.send("4");
+         	mSensorArduino.send("4");
         }
     }
+}
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
+{
+	if(mAutoPuffCB->Checked)
+    {
+		mArduinoServer.enableAutoPuff();
+    }
+    else
+    {
+		mArduinoServer.disableAutoPuff();
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+    if(Key == vkReturn)
+    {
+    	mArduinoServer.setPuffAfterSectionCount(mPuffAfterSectionCountE->getValue());
+    }
 }
 
 

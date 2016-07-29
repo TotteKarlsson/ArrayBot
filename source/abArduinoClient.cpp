@@ -17,6 +17,37 @@ ArduinoClient::~ArduinoClient()
     Log(lDebug3)<<"Arduino client is shutting down..";
 }
 
+void ArduinoClient::getStatus()
+{
+	request("GET_STATUS");
+}
+
+void ArduinoClient::resetSectionCounter()
+{
+	request("RESET_SECTION_COUNT");
+}
+
+void ArduinoClient::setPuffAfterSectionCount(int count)
+{
+	stringstream msg;
+    msg <<"PUFF_AFTER_SECTION_COUNT="<<count;
+	request(msg.str());
+}
+
+void ArduinoClient::enableAutoPuff()
+{
+	stringstream msg;
+    msg <<"ENABLE_AUTO_PUFF";
+	request(msg.str());
+}
+
+void ArduinoClient::disableAutoPuff()
+{
+	stringstream msg;
+    msg <<"DISABLE_AUTO_PUFF";
+	request(msg.str());
+}
+
 bool ArduinoClient::init(int serverPort, const string& hostname, bool connectOnInit)
 {
     Log(lDebug3)<<"Setting up client";
@@ -68,7 +99,6 @@ bool ArduinoClient::connect(int serverPort, const string& host)
     {
         mMessageProcessor.start(true);
     }
-
 
     if(isConnected())
     {

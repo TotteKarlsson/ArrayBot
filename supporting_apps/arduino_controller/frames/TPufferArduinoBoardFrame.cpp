@@ -36,7 +36,7 @@ void TPufferArduinoBoardFrame::init()
     stringstream msg;
     msg<<"d"<<mPufferDurationE->getValue()<<'\n';
     msg<<"v"<<mPufferValveSpeedE->getValue()<<'\n';
-    mAD.send(msg.str());
+    mArduinoDevice.send(msg.str());
 }
 
 //---------------------------------------------------------------------------
@@ -57,7 +57,7 @@ void __fastcall TPufferArduinoBoardFrame::updateParameter(TObject *Sender,
 			msg<<"v"<<mPufferValveSpeedE->getValue()<<'\n';
         }
 
-       	mAD.send(msg.str());
+       	mArduinoDevice.send(msg.str());
     }
 }
 

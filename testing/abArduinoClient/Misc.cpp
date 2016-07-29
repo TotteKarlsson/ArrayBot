@@ -23,9 +23,9 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         UIUpdateTimer->Enabled = false;
     }
 
-    if(mAC.isConnected())
+    if(mArduinoClient.isConnected())
     {
-    	mAC.disConnect();
+    	mArduinoClient.disConnect();
     }
 
     //This will save any ini parameters in the frame
@@ -44,7 +44,7 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 	Log(lInfo) << "Closing down....";
 
 	//Check if we can close.. abort all threads..
-	CanClose = (mLogFileReader.isRunning() || mAC.isConnected() || mFrames.size()) ? false : true;
+	CanClose = (mLogFileReader.isRunning() || mArduinoClient.isConnected() || mFrames.size()) ? false : true;
 
 
 	if(CanClose == false)

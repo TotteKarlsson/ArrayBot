@@ -34,6 +34,13 @@ class AB_CORE ArduinoClient : public SocketClient
         virtual bool                        init(int pNumber = 50010, const string& hostname = mtk::gEmptyString, bool connectOnInit = true);
         virtual bool                        shutDown();
 
+        									//Requests to the server
+        void								resetSectionCounter();
+        void								setPuffAfterSectionCount(int c);
+        void								enableAutoPuff();
+        void								disableAutoPuff();
+		void								getStatus();
+
         virtual void                        postMessage(const string& msg);                        //Post a message to the message list
         string                              getClientInfo();
 

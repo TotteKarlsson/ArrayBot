@@ -18,6 +18,8 @@
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TIntLabel"
+#pragma link "mtkFloatLabel"
+#pragma link "TPropertyCheckBox"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -31,7 +33,7 @@ using namespace mtk;
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
-	TRegistryForm("Test", "MainForm", Owner),
+	TRegistryForm("ArduinoClient", "MainForm", Owner),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, "ArduinoClient.ini"), true, true),
     mLogLevel(lAny)
@@ -47,7 +49,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     mProperties.read();
 	mArduinoServerPortE->update();
 
-	mAC.assignOnMessageReceivedCallBack(onMessageReceived);
+	mArduinoClient.assignOnMessageReceivedCallBack(onMessageReceived);
 }
 
 __fastcall TMain::~TMain()
@@ -133,8 +135,8 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 //---------------------------------------------------------------------------
 void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
 {
-   	mASStartBtn->Caption 			= mAC.isConnected()	? "Stop" : "Start";
-	mArduinoServerPortE->Enabled 	= !mAC.isConnected();
+   	mASStartBtn->Caption 			= mArduinoClient.isConnected()	? "Stop" : "Start";
+	mArduinoServerPortE->Enabled 	= !mArduinoClient.isConnected();
 }
 
 //---------------------------------------------------------------------------
@@ -142,12 +144,13 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 {
 	if(mASStartBtn->Caption == "Start")
     {
-    	mAC.connect(mArduinoServerPortE->getValue());
+    	mArduinoClient.connect(mArduinoServerPortE->getValue());
         mASStartBtn->Caption == "Connecting";
+        mArduinoClient.getStatus();
     }
     else
     {
-    	mAC.disConnect();
+    	mArduinoClient.disConnect();
     }
 }
 
@@ -156,18 +159,44 @@ void TMain::onMessageReceived(const string& msg)
 	struct TLocalArgs
     {
         string msg;
-        void __fastcall onMsg()
+        void __fastcall onPufferArduinoMessage()
         {
-            //Handle the message..
-            //Check what message we got from arduino device
-            if(startsWith(msg, "DHT22DATA"))
+            if(startsWith(msg, "SECTION_COUNT"))
+            {
+                //Parse the message
+                StringList l(msg, '=');
+                if(l.size() == 2)
+                {
+                    Main->mSectionCountLbl->SetValue(toInt(l[1]));
+                }
+            }
+            else if(startsWith(msg, "AUTO_PUFF="))
+            {
+                //Parse the message
+                StringList l(msg, '=');
+                if(l.size() == 2)
+                {
+                    Main->mAutoPuffCB->Checked = (toBool(l[1])) ? true : false;
+                }
+            }
+
+            else if(startsWith(msg, "PUFF_AFTER_SECTION_COUNT"))
+            {
+                //Parse the message
+                StringList l(msg, '=');
+                if(l.size() == 2)
+                {
+                    Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
+                }
+            }
+            else if(startsWith(msg, "DHT22DATA"))
             {
                 //Parse the message
                 StringList l(msg,',');
                 if(l.size() == 3)
                 {
-//                    Main->mTemperatureLbl->SetValue(toDouble(l[1]));
-//                    Main->mHumidityE->SetValue(toDouble(l[2]));
+                    Main->mTemperatureLbl->SetValue(toDouble(l[1]));
+                    Main->mHumidityE->SetValue(toDouble(l[2]));
                 }
             }
             else if(startsWith(msg, "PIN_8"))
@@ -178,41 +207,52 @@ void TMain::onMessageReceived(const string& msg)
 //                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
                 }
             }
-
             else if(startsWith(msg, "PIN_3"))
             {
                 StringList l(msg,'=');
                 if(l.size() == 2)
                 {
-//                    Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
+  //                  Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
                 }
             }
-            else if (startsWith(msg, "SECTION_COUNT"))
-            {
-                StringList l(msg,'=');
-                if(l.size() == 2)
-
-                Main->mSectionCountLbl->SetValue(toInt(l[1]));
-//                if(Main->mAutoPuffCB->Checked)
-//                {
-//                    if(Main->mSectionCount->GetValue() > Main->mPuffAfterSectionCountE->getValue())
-//                    {
-//                        //puff
-//                        Main->mAD1.send("p");
-//
-//                        //If succesful, reset the counter
-//                        Main->mSectionCount->SetValue(0);
-//                    }
-//                }
-            }
-
         }
     };
 
     TLocalArgs args;
     args.msg = msg;
 
-    //This causes this fucntion to be called in the main UI thread
-	TThread::Synchronize(NULL, &args.onMsg);
+    //This causes this fucntion to be called in the UI thread
+	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mResetCountBtnClick(TObject *Sender)
+{
+	//Send a request to reset the counter
+	mArduinoClient.resetSectionCounter();
+}
+
+
+void __fastcall TMain::mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+    if(Key == vkReturn)
+    {
+    	mArduinoClient.setPuffAfterSectionCount(mPuffAfterSectionCountE->getValue());
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
+{
+	if(mAutoPuffCB->Checked)
+    {
+		mArduinoClient.enableAutoPuff();
+    }
+    else
+    {
+		mArduinoClient.disableAutoPuff();
+    }
+}
+
 

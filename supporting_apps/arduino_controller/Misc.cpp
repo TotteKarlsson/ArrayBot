@@ -23,14 +23,9 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         UIUpdateTimer->Enabled = false;
     }
 
-    if(mAS.isRunning())
+    if(mArduinoServer.isRunning())
     {
-    	mAS.stop();
-    }
-
-    if(mAD1.isConnected())
-    {
-    	mAD1.disConnect();
+    	mArduinoServer.stop();
     }
 
     //This will save any ini parameters in the frame
@@ -56,8 +51,8 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
     //Timer fire    if(
    	CanClose = (gSplashForm && gSplashForm->isOnShowTime()
     			|| mFrames.size()
-            	|| mAS.isRunning()
-            	|| mAD1.isConnected()) ? false : true;
+            	|| mArduinoServer.isRunning()
+                );
 
 
 	if(CanClose == false)

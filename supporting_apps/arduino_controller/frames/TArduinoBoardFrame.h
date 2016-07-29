@@ -34,7 +34,7 @@ __published:	// IDE-managed Components
 
 	protected:
 
-        ArduinoDevice&					mAD;
+        ArduinoDevice&					mArduinoDevice;
         								//The init function will initialize the device
                                         //using parameters from ini file
         virtual void	 				init();

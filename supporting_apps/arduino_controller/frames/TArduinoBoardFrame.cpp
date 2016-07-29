@@ -14,7 +14,7 @@ TArduinoBoardFrame *ArduinoBoardFrame;
 using namespace mtk;
 __fastcall TArduinoBoardFrame::TArduinoBoardFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner)
 	: TFrame(Owner),
-    mAD(dev)
+    mArduinoDevice(dev)
 {
     mProperties.setSection(dev.getName());
 	mProperties.setIniFile(&ini);
@@ -27,7 +27,7 @@ __fastcall TArduinoBoardFrame::TArduinoBoardFrame(ArduinoDevice& dev, IniFile& i
 	mBaudRateE->update();
     GroupBox1->Caption = dev.getName().c_str();
 
-    mAD.assignInitFunction(init);
+    mArduinoDevice.assignInitFunction(init);
 }
 
 __fastcall  TArduinoBoardFrame::~TArduinoBoardFrame()
@@ -45,18 +45,18 @@ void __fastcall TArduinoBoardFrame::ConnectBtnClick(TObject *Sender)
 {
 	if(mConnectBtn->Caption == "Disconnect")
     {
-    	mAD.disConnect();
+    	mArduinoDevice.disConnect();
     }
     else
     {
-    	mAD.connect(mCommPortE->getValue(), mBaudRateE->getValue());
+    	mArduinoDevice.connect(mCommPortE->getValue(), mBaudRateE->getValue());
     }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TArduinoBoardFrame::Button1Click(TObject *Sender)
 {
-	mAD.send(mSendMSGE->getValue());
+	mArduinoDevice.send(mSendMSGE->getValue());
 }
 
 //---------------------------------------------------------------------------
@@ -65,16 +65,16 @@ void __fastcall TArduinoBoardFrame::mSendMSGEKeyDown(TObject *Sender, WORD &Key,
 {
 	if(Key == vkReturn)
     {
-  		mAD.send(mSendMSGE->getValue());
+  		mArduinoDevice.send(mSendMSGE->getValue());
     }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TArduinoBoardFrame::Timer1Timer(TObject *Sender)
 {
-    mConnectBtn->Caption 	=  mAD.isConnected()  ? "Disconnect" : "Connect";
-    mCommPortE->Enabled 	= !mAD.isConnected();
-    mBaudRateE->Enabled 	= !mAD.isConnected();
-    mSendMSGE->Enabled 		=  mAD.isConnected();
+    mConnectBtn->Caption 	=  mArduinoDevice.isConnected()  ? "Disconnect" : "Connect";
+    mCommPortE->Enabled 	= !mArduinoDevice.isConnected();
+    mBaudRateE->Enabled 	= !mArduinoDevice.isConnected();
+    mSendMSGE->Enabled 		=  mArduinoDevice.isConnected();
 }
 
