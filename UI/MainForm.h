@@ -163,7 +163,6 @@ class TMain : public TRegistryForm
 
         TRibbonLifterFrame* 			mRibbonLifterFrame;
 
-
         void						    onJSButton5Click();
         void						    onJSButton6Click();
 
@@ -171,8 +170,6 @@ class TMain : public TRegistryForm
         void						    onJSButton14Click();
 
         void __fastcall 				FrameClosed(TObject *Sender);
-
-
 
 	public:		// User declarations
 		__fastcall 					    TMain(TComponent* Owner);
