@@ -98,9 +98,6 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="Dynamic_uc480.cpp">
-            <BuildOrder>4</BuildOrder>
-        </CppCompile>
         <CppCompile Include="MainFrame.cpp">
             <Form>MainForm</Form>
             <FormType>dfm</FormType>
@@ -113,9 +110,6 @@
         <PCHCompile Include="ThorCamPCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
-        <CppCompile Include="uc480class.cpp">
-            <BuildOrder>3</BuildOrder>
-        </CppCompile>
         <FormResources Include="MainFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

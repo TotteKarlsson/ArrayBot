@@ -8,7 +8,6 @@
 #include "mtkWin32Utils.h"
 #include "mtkLogger.h"
 
-
 using std::string;
 using namespace mtk;
 //---------------------------------------------------------------------------
@@ -25,7 +24,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 		setupLogging();
-
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->Run();
 	}
@@ -70,5 +68,6 @@ void setupLogging()
 
 //---------------------------------------------------------------------------
 #pragma comment(lib, "mtkCommon.lib")
+#pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
-#pragma comment(lib, "P:\ArrayBot\testing\thor_cam\lib\uc480_B.lib")
+#pragma comment(lib, "uc480_B.lib")

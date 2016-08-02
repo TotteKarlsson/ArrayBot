@@ -1,6 +1,9 @@
+#pragma hdrstop
 //#include "stdafx.h"
-
 #include "uc480class.h"
+#include "mtkLogger.h"
+
+using namespace mtk;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -9,14 +12,159 @@
 Cuc480::Cuc480 () : Cuc480Dll()
 {
   m_hu = NULL;
-
   Connect(DRIVER_DLL_NAME);
+    mImageMemory  	= NULL;
+    mMemoryId 		= 0;
+    mDispModeSel 	= e_disp_mode_bitmap;
+
 }
 
 
 Cuc480::~Cuc480 ()
 {
   Disconnect();
+}
+
+
+bool Cuc480::openCamera(HWND hwnd)
+{
+	m_hwnd = hwnd;
+
+    exitCamera();
+
+    // init camera
+    int returnValue = InitCamera(0, m_hwnd );        // init cam
+
+    // continue when camera is sucessfully initialized
+    if( returnValue == IS_SUCCESS )
+    {
+        // retrieve original image size
+        GetSensorInfo(&mSensorInfo );
+
+        GetMaxImageSize(&mSizeX, &mSizeY);
+        returnValue = InitDisplayMode();
+
+        // enable the dialog based error report
+        //returnValue = SetErrorReport(IS_DISABLE_ERR_REP);
+        if( returnValue != IS_SUCCESS )
+        {
+			Log(lError) << "Failed to initialize Camera Display Mode";
+            return false;
+        }
+
+        // Enable Messages
+        EnableMessage(IS_DEVICE_REMOVED,		m_hwnd);
+        EnableMessage(IS_DEVICE_RECONNECTED , 	m_hwnd);
+        EnableMessage(IS_FRAME , 				m_hwnd);
+
+        // start live video
+        CaptureVideo(IS_WAIT);
+
+        // do the whitebalance once on the first acquisitioned image only on color cameras
+        if( mSensorInfo.nColorMode == IS_COLORMODE_BAYER)
+        {
+            SetWhiteBalance(IS_SET_WB_AUTO_ENABLE);
+        }
+
+        return true;
+    }
+    else
+    {
+		Log(lError) << "No Camera could be opened";
+        return false;
+    }
+}
+
+bool Cuc480::exitCamera()
+{
+    if( IsInit() )
+    {
+        EnableMessage( IS_FRAME, NULL );
+        StopLiveVideo( IS_WAIT );
+
+        if( mImageMemory != NULL )
+            FreeImageMem( mImageMemory, mMemoryId );
+
+        mImageMemory = NULL;
+        ExitCamera();
+    }
+}
+
+int Cuc480::InitDisplayMode()
+{
+    if (!IsInit())
+    {
+        return IS_NO_SUCCESS;
+    }
+
+    if (mImageMemory != NULL)
+    {
+        FreeImageMem(mImageMemory, mMemoryId);
+    }
+
+    mImageMemory = NULL;
+	int returnValue;
+    switch (mDispModeSel)
+    {
+        case e_disp_mode_direct3D:
+            // if initializiing the direct draw mode succeeded then
+            // leave the switch tree else run through to bitmap mode
+            returnValue = SetDisplayMode(IS_SET_DM_DIRECT3D);
+            returnValue = DirectRenderer(DR_ENABLE_SCALING, NULL, NULL);
+
+            if(returnValue == IS_SUCCESS )
+            {
+                // setup the color depth to the current VGA setting
+                GetColorDepth( &mBitsPerPixel, &mColorMode );
+                break;
+            }
+            else
+            {
+                mDispModeSel = e_disp_mode_bitmap;
+                //UpdateData(FALSE);
+            }
+
+        case e_disp_mode_bitmap:
+            returnValue = SetDisplayMode(IS_SET_DM_DIB);
+            if ((mSensorInfo.nColorMode == IS_COLORMODE_BAYER) ||
+                (mSensorInfo.nColorMode == IS_COLORMODE_CBYCRY))
+            {
+                // for color camera models use RGB24 mode
+                mColorMode = IS_SET_CM_RGB24;
+                mBitsPerPixel = 24;
+            }
+            else
+            {
+                // for monochrome camera models use Y8 mode
+                mColorMode = IS_SET_CM_Y8;
+                mBitsPerPixel = 8;
+            }
+            // allocate an image memory.
+            if (AllocImageMem( mSizeX,
+                                        mSizeY,
+                                        mBitsPerPixel,
+                                        &mImageMemory,
+                                        &mMemoryId ) != IS_SUCCESS )
+            {
+            	Log(lError) << "Failed to allocate camera memory";
+            }
+            else
+            {
+                SetImageMem( mImageMemory, mMemoryId );
+            }
+            break;
+    }
+
+    if(returnValue == IS_SUCCESS )
+    {
+        // set the desired color mode
+        SetColorMode( mColorMode );
+
+        // set the image size to capture
+        SetImageSize( mSizeX, mSizeY );
+    }
+
+    return returnValue;
 }
 
 
@@ -62,7 +210,6 @@ int Cuc480::SetErrorReport (int lMode)
   return is_SetErrorReport (m_hu, lMode);
 }
 
-
 int Cuc480::GetNumberOfCameras (int* plNumCameras)
 {
   return is_GetNumberOfCameras (plNumCameras);
@@ -75,18 +222,15 @@ int Cuc480::GetDllVersion (int* plDllVers)
   return IS_SUCCESS;
 }
 
-
 int Cuc480::GetColorDepth (int* plBpp, int* plColFormat)
 {
   return is_GetColorDepth (m_hu, plBpp, plColFormat);
 }
 
-
 int Cuc480::CameraStatus (int lInfo, long lValue)
 {
   return is_CameraStatus (m_hu, lInfo, (ULONG)lValue);
 }
-
 
 int Cuc480::GetCameraType ()
 {

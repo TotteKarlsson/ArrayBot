@@ -18,11 +18,16 @@ object MainForm: TMainForm
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
-    Left = 104
-    Top = 32
-    Width = 457
-    Height = 329
+    Left = 0
+    Top = 0
+    Width = 967
+    Height = 488
+    Align = alClient
     TabOrder = 0
+    ExplicitLeft = 104
+    ExplicitTop = 32
+    ExplicitWidth = 457
+    ExplicitHeight = 329
   end
   object Button1: TButton
     Left = 600

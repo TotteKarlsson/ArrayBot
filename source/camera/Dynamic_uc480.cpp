@@ -1,8 +1,9 @@
+#pragma hdrstop
 // ############################################################################
 //
 //  Project:  Cuc480Dll Dynymic loading of camera dll
 //
-//  Module:    Dynamic_uc480.cpp  
+//  Module:    Dynamic_uc480.cpp
 //
 //  Target:    Win32    Win NT
 //
@@ -15,9 +16,7 @@
 // ############################################################################
 
 //////////////////////////////////////////////////////////////////////
-//#include "stdafx.h"
 #include "dynamic_uc480.h"
-#include <tchar.h>
 
 // -------------------------------------------------------------------
 // function:      Cuc480Dll()
@@ -99,7 +98,7 @@ long Cuc480Dll::Connect(const IS_CHAR* dllname)
   {
     if(strlen(dllname) != 0)
     {
-      m_hMod = LoadLibrary(dllname);
+      m_hMod = LoadLibraryA(dllname);
 
       if(m_hMod != NULL)
       {                       
