@@ -18,18 +18,18 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
-    Left = 24
-    Top = 56
-    Width = 585
-    Height = 393
+    Left = 104
+    Top = 32
+    Width = 457
+    Height = 329
     TabOrder = 0
   end
   object Button1: TButton
-    Left = 720
-    Top = 80
+    Left = 600
+    Top = 40
     Width = 105
     Height = 65
-    Caption = 'Button1'
+    Caption = 'Start'
     TabOrder = 1
     OnClick = Button1Click
   end
@@ -43,6 +43,23 @@ object Form1: TForm1
       'infoMemo')
     ScrollBars = ssVertical
     TabOrder = 2
+  end
+  object TrackBar1: TTrackBar
+    Left = 536
+    Top = 400
+    Width = 150
+    Height = 45
+    TabOrder = 3
+    OnChange = TrackBar1Change
+  end
+  object Button2: TButton
+    Left = 603
+    Top = 184
+    Width = 102
+    Height = 73
+    Caption = 'Info'
+    TabOrder = 4
+    OnClick = Button2Click
   end
   object Timer1: TTimer
     Enabled = False

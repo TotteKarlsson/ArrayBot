@@ -293,3 +293,19 @@ void __fastcall TForm1::mShutDownTimerTimer(TObject *Sender)
 }
 
 
+void __fastcall TForm1::TrackBar1Change(TObject *Sender)
+{
+	//Set brightness
+
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+	double fps(0);
+	is_GetFramesPerSecond(m_camera.GetCameraHandle(), &fps);
+
+    Log(lInfo) << "Frames per second: " << fps;
+}
+
+

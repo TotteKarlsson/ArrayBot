@@ -1,5 +1,4 @@
 //---------------------------------------------------------------------------
-
 #include <vcl.h>
 #pragma hdrstop
 #include <tchar.h>
@@ -10,13 +9,11 @@
 #include "mtkLogger.h"
 
 
-
 using std::string;
 using namespace mtk;
 //---------------------------------------------------------------------------
-USEFORM("Unit1.cpp", Form1);
+USEFORM("MainFrame.cpp", MainForm);
 //---------------------------------------------------------------------------
-
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "imaging.log";
 
@@ -29,7 +26,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->MainFormOnTaskBar = true;
 		setupLogging();
 
-		Application->CreateForm(__classid(TForm1), &Form1);
+		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->Run();
 	}
 	catch (Exception &exception)
@@ -66,7 +63,7 @@ void setupLogging()
 	mtk::gLogger.logToFile(fullLogFileName);
     mtk::gLogger.setLogLevel(lDebug5);
 	LogOutput::mShowLogLevel = true;
-//	LogOutput::mShowLogTime = true;
+	LogOutput::mShowLogTime = true;
 	LogOutput::mUseLogTabs 	= true;
 	Log(lInfo) << "Logger was setup";
 }
@@ -74,3 +71,4 @@ void setupLogging()
 //---------------------------------------------------------------------------
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
+#pragma comment(lib, "P:\ArrayBot\testing\thor_cam\lib\uc480_B.lib")
