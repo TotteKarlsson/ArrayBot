@@ -73,7 +73,7 @@ object MainForm: TMainForm
   end
   object Timer1: TTimer
     Enabled = False
-    Interval = 10
+    Interval = 1
     OnTimer = Timer1Timer
     Left = 736
     Top = 232
