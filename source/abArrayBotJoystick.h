@@ -24,11 +24,15 @@ class AB_CORE ArrayBotJoyStick : public ABObject
 		bool										enableJoyStickWithID(int id);
         bool				                        disable();
 
-        bool						                disableCoverSlipAxes();
         bool						                enableCoverSlipAxes();
-
-        bool						                disableWhiskerAxes();
         bool						                enableWhiskerAxes();
+        bool						                disableCoverSlipAxes();
+        bool						                disableWhiskerAxes();
+
+        bool						                enableCoverSlipZButtons();
+        bool						                enableWhiskerZButtons();
+        bool						                disableCoverSlipZButtons();
+        bool						                disableWhiskerZButtons();
 
         bool				                        isEnabled();
     	JoyStickAxis&		                        getX1Axis();
@@ -61,6 +65,9 @@ class AB_CORE ArrayBotJoyStick : public ABObject
         bool				                        mEnabled;
  		bool						                mCoverSlipAxesEnabled;
  		bool						                mWhiskerAxesEnabled;
+
+ 		bool						                mCoverSlipZButtonsEnabled;
+ 		bool						                mWhiskerZButtonsEnabled;
 
                     								//!The JoyStick ID is referenced
                                                     //from ArrayBot

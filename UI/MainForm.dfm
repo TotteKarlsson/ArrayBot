@@ -94,7 +94,7 @@ object Main: TMain
       Top = 1
       Width = 902
       Height = 789
-      ActivePage = TabSheet2
+      ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -140,39 +140,12 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            object mJSSpeedFastBtn: TSpeedButton
-              Left = 307
-              Top = 44
-              Width = 140
-              Height = 100
-              GroupIndex = 15
-              Caption = 'Fast'
-              OnClick = JSSpeedBtnClick
-            end
-            object mJSSpeedMediumBtn: TSpeedButton
-              Left = 161
-              Top = 44
-              Width = 140
-              Height = 100
-              GroupIndex = 15
-              Down = True
-              Caption = 'Medium'
-              OnClick = JSSpeedBtnClick
-            end
-            object mJSSpeedSlowBtn: TSpeedButton
-              Left = 15
-              Top = 44
-              Width = 140
-              Height = 100
-              GroupIndex = 15
-              Caption = 'Slow'
-              OnClick = JSSpeedBtnClick
-            end
             object mXYCtrlRG: TRadioGroup
-              Left = 15
-              Top = 161
-              Width = 426
-              Height = 105
+              Left = 2
+              Top = 169
+              Width = 457
+              Height = 112
+              Align = alTop
               Caption = 'XY Control'
               Columns = 4
               ItemIndex = 0
@@ -183,6 +156,70 @@ object Main: TMain
                 'None')
               TabOrder = 0
               OnClick = mXYCtrlRGClick
+            end
+            object mUnitControlRG: TRadioGroup
+              Left = 2
+              Top = 27
+              Width = 457
+              Height = 142
+              Align = alTop
+              Caption = 'Unit Control'
+              Columns = 4
+              DoubleBuffered = False
+              ItemIndex = 0
+              Items.Strings = (
+                'Both'
+                'Coverslip'
+                'Whisker'
+                'None')
+              ParentDoubleBuffered = False
+              TabOrder = 1
+              OnClick = mUnitControlRGClick
+            end
+            object Panel2: TPanel
+              Left = 2
+              Top = 281
+              Width = 457
+              Height = 100
+              Align = alTop
+              TabOrder = 2
+              ExplicitTop = 237
+              object mJSSpeedFastBtn: TSpeedButton
+                Left = 301
+                Top = 1
+                Width = 150
+                Height = 98
+                Align = alLeft
+                GroupIndex = 15
+                Caption = 'Fast'
+                OnClick = JSSpeedBtnClick
+                ExplicitTop = 6
+              end
+              object mJSSpeedMediumBtn: TSpeedButton
+                Left = 151
+                Top = 1
+                Width = 150
+                Height = 98
+                Align = alLeft
+                GroupIndex = 15
+                Down = True
+                Caption = 'Medium'
+                OnClick = JSSpeedBtnClick
+                ExplicitLeft = 1
+                ExplicitTop = 6
+              end
+              object mJSSpeedSlowBtn: TSpeedButton
+                Left = 1
+                Top = 1
+                Width = 150
+                Height = 98
+                Align = alLeft
+                GroupIndex = 15
+                Caption = 'Slow'
+                OnClick = JSSpeedBtnClick
+                ExplicitLeft = -65
+                ExplicitTop = 6
+              end
             end
           end
           object LiftGB: TGroupBox

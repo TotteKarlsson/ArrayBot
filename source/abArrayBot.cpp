@@ -36,6 +36,29 @@ ArrayBot::~ArrayBot()
     mProperties.write();
 }
 
+
+bool ArrayBot::enableCoverSlipUnit()
+{
+	mCoverSlip.enableJSAxes();
+    mCoverSlip.enableZButtons();
+}
+
+bool ArrayBot::disableCoverSlipUnit()
+{
+	mCoverSlip.disableJSAxes();
+    mCoverSlip.disableZButtons();
+}
+
+bool ArrayBot::enableWhiskerUnit()
+{
+	mWhisker.enableJSAxes();
+}
+
+bool ArrayBot::disableWhiskerUnit()
+{
+	mWhisker.disableJSAxes();
+}
+
 ProcessSequencer& ArrayBot::getProcessSequencer()
 {
 	return mProcessSequencer;

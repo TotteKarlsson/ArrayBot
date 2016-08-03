@@ -106,6 +106,8 @@ class TMain : public TRegistryForm
 	TSpeedButton *mJSCSBtn;
 	TRadioGroup *mJoyStickRG;
 	TLabel *mJSStatusL;
+	TRadioGroup *mUnitControlRG;
+	TPanel *Panel2;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -133,6 +135,7 @@ class TMain : public TRegistryForm
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
 	void __fastcall mJoyStickRGClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
+	void __fastcall mUnitControlRGClick(TObject *Sender);
 
     private:
         LogFileReader                   mLogFileReader;

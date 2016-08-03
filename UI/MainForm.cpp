@@ -423,4 +423,29 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::mUnitControlRGClick(TObject *Sender)
+{
+	if(mUnitControlRG->ItemIndex == 0)//Both W and CS
+    {
+        mAB->enableCoverSlipUnit();
+        mAB->enableWhiskerUnit();
+    }
+    else if(mUnitControlRG->ItemIndex == 1)//Only CS
+    {
+        mAB->enableCoverSlipUnit();
+        mAB->disableWhiskerUnit();
+    }
+    else if(mUnitControlRG->ItemIndex == 2)//Only Z
+    {
+        mAB->disableCoverSlipUnit();
+        mAB->enableWhiskerUnit();
+    }
+    else
+    {
+        mAB->disableCoverSlipUnit();
+        mAB->disableWhiskerUnit();
+    }
+}
+
 

@@ -10,6 +10,8 @@ ArrayBotJoyStick::ArrayBotJoyStick(int& joyStickID)
 mEnabled(false),
 mCoverSlipAxesEnabled(false),
 mWhiskerAxesEnabled(false),
+mCoverSlipZButtonsEnabled(false),
+mWhiskerZButtonsEnabled(false),
 mJoyStickID(joyStickID),
 mJSMessageDispatcher(*this, 14, mJoyStickID)
 {
@@ -105,6 +107,30 @@ bool ArrayBotJoyStick::enableWhiskerAxes()
     return true;
 }
 
+bool ArrayBotJoyStick::enableCoverSlipZButtons()
+{
+	mCoverSlipZButtonsEnabled = true;
+    return true;
+}
+
+bool ArrayBotJoyStick::enableWhiskerZButtons()
+{
+	mWhiskerZButtonsEnabled = true;
+    return true;
+}
+
+bool ArrayBotJoyStick::disableCoverSlipZButtons()
+{
+	mCoverSlipZButtonsEnabled = false;
+    return true;
+}
+
+bool ArrayBotJoyStick::disableWhiskerZButtons()
+{
+	mWhiskerZButtonsEnabled = false;
+    return true;
+}
+
 bool ArrayBotJoyStick::enable()
 {
     mEnabled = mJSMessageDispatcher.enable(mJoyStickID);
@@ -112,11 +138,15 @@ bool ArrayBotJoyStick::enable()
     {
 		mCoverSlipAxesEnabled = true;
 		mWhiskerAxesEnabled = true;
+        mCoverSlipZButtonsEnabled = true;
+        mWhiskerZButtonsEnabled = true;
     }
     else
     {
 		mCoverSlipAxesEnabled = false;
 		mWhiskerAxesEnabled = false;
+        mCoverSlipZButtonsEnabled = false;
+        mWhiskerZButtonsEnabled = false;
     }
 
     return mEnabled;
@@ -127,6 +157,8 @@ bool ArrayBotJoyStick::disable()
     mJSMessageDispatcher.disable();
 	mCoverSlipAxesEnabled = false;
 	mWhiskerAxesEnabled = false;
+    mCoverSlipZButtonsEnabled = false;
+    mWhiskerZButtonsEnabled = false;
 
 	mEnabled = false;
     return true;

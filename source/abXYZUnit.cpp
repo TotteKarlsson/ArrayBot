@@ -154,6 +154,40 @@ bool XYZUnit::initialize()
 	return true;
 }
 
+bool XYZUnit::enableZButtons()
+{
+	if(mJoyStick)
+    {
+    	if(mName == "COVERSLIP UNIT")
+        {
+        	mJoyStick->enableCoverSlipZButtons();
+        }
+        else if(mName == "WHISKER UNIT")
+        {
+        	mJoyStick->enableWhiskerZButtons();
+        }
+	    return true;
+    }
+    return false;
+}
+
+bool XYZUnit::disableZButtons()
+{
+	if(mJoyStick)
+    {
+    	if(mName == "COVERSLIP UNIT")
+        {
+        	mJoyStick->disableCoverSlipZButtons();
+        }
+        else if(mName == "WHISKER UNIT")
+        {
+        	mJoyStick->disableWhiskerZButtons();
+        }
+	    return true;
+    }
+    return false;
+}
+
 bool XYZUnit::enableJSAxes()
 {
 	if(mJoyStick)

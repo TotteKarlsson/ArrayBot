@@ -169,6 +169,7 @@ void JoyStickMessageDispatcher::refresh()
     {
         mX1Axis.mEvent(mJoyInfo.dwXpos);
     }
+
     mX1Axis.mPosition = mJoyInfo.dwXpos;
 
     if(mJoyStick.mCoverSlipAxesEnabled && mY1Axis.mEvent)
@@ -191,7 +192,35 @@ void JoyStickMessageDispatcher::refresh()
 
     //Process retrieved buttons states
     bitset<32> buttonStates(mJoyInfo.dwButtons);
-    for(int i = 0; i < mNrOfButtons; i++)
+
+    //First process buttons 1-4 (Z and angle control)
+    if(mJoyStick.mWhiskerZButtonsEnabled)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            if(buttonStates.at(i) && mButtons[i].mButtonState == bsUp)
+            {
+                if(mButtons[i].mEvents.first)
+                {
+                    Log(lDebug5) << "Calling OnButton"<<i + 1<<"Down";
+                    mButtons[i].mEvents.first();
+                }
+                mButtons[i].mButtonState = bsDown;
+            }
+
+            else if(!buttonStates.at(i) && mButtons[i].mButtonState == bsDown)
+            {
+                if(mButtons[i].mEvents.second)
+                {
+                    Log(lDebug5) << "Calling OnButton"<<i + 1<<"Up";
+                    mButtons[i].mEvents.second();
+                }
+                mButtons[i].mButtonState = bsUp;
+            }
+        }
+    }
+
+    for(int i = 4; i < mNrOfButtons; i++)
     {
         if(buttonStates.at(i) && mButtons[i].mButtonState == bsUp)
         {
@@ -215,9 +244,9 @@ void JoyStickMessageDispatcher::refresh()
     }
 
     //Process POV event
-    if(mJoyInfo.dwPOV != mPOV.mPOVState)
+    if(mJoyInfo.dwPOV != mPOV.mPOVState && mJoyStick.mCoverSlipZButtonsEnabled)
     {
-        Log(lInfo) << "POV State changed";
+        Log(lDebug3) << "POV State changed";
 
         //Get out of old state
     	switch(mPOV.mPOVState)
