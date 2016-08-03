@@ -63,6 +63,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
     mProperties.read();
+
 	//Load motors in a thread
     mInitBotThread.assingBot(mAB);
     mInitBotThread.onFinishedInit = this->onFinishedInitBot;
@@ -103,9 +104,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	gSplashForm->Close();
 	gLogger.setLogLevel(mLogLevel);
 
-    //Assign last used Joystick
-    mJoyStickRG->ItemIndex = mAB->getJoyStick().getID() - 1;
-
 	if(mLogLevel == lInfo)
 	{
 		LogLevelCB->ItemIndex = 0;
@@ -131,8 +129,6 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
 
 void __fastcall	TMain::setupUIFrames()
 {
-    //Init UI stuff here
-
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
     f1->Parent = this->mButtonPanel;
@@ -145,9 +141,13 @@ void __fastcall	TMain::setupUIFrames()
     this->mTopPanel->Top = 0;
     this->mTopPanel->Refresh();
 
+	//Setup JoyStick;
+
     //Over ride joysticks button events  (cycle speeds and XY motions)
     mAB->getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
     mAB->getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
+
+    //!Button 14 emergency stop
     mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
 
     //JoyStick Settings CB
@@ -162,7 +162,18 @@ void __fastcall	TMain::setupUIFrames()
     JoyStickSettingsCB->ItemIndex = 0;
     JoyStickSettingsCB->OnChange(NULL);
     mJSSpeedMediumBtn->Click();
-    mJSCSBtn->Click();
+    //mJSCSBtn->Click();
+	mAB->enableJoyStick();
+
+    //XY velocity parameters
+    mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
+    mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
+
+    if(mAB->getCoverSlipUnit().getZMotor())
+    {
+        mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
+        mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
+    }
 
     //Lift Settings CB
     PairedMoves& pms = mAB->getLiftMoves();
@@ -189,17 +200,6 @@ void __fastcall	TMain::setupUIFrames()
     mXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
     mXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
 
-    //Setup JoyStick
-    //ArrayBotJoyStick stuff.....
-    mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
-    mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
-
-    if(mAB->getCoverSlipUnit().getZMotor())
-    {
-        mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
-        mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
-    }
-
     //Create MoveSequencer frame
     mABProcessSequencerFrame = new TABProcessSequencerFrame(*(mAB), gAppDataFolder, mMoveSequencesPage);
     mABProcessSequencerFrame->Parent = mMoveSequencesPage;
@@ -219,6 +219,7 @@ void __fastcall	TMain::setupUIFrames()
 
     mRibbonLifterFrame->init();
 }
+
 void __fastcall TMain::reInitBotAExecute(TObject *Sender)
 {
 	mAB->initialize();
@@ -260,177 +261,6 @@ void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
 	mAB->stopAll();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-	//Depending on which edit was edited, update the other ones
-	if(Key != vkReturn)
-    {
-    	return;
-    }
-
-	//These are already referenced so no need for any updates
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::JSControlClick(TObject *Sender)
-{
-	//Setup Joystick control
-    TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
-    if(btn->Caption == "Enable JS")
-    {
-		if(!mAB->enableJoyStick())
-        {
-        	MessageDlg("Failed enabling current JoyStick. \r ", mtWarning, TMsgDlgButtons() << mbOK, 0);
-            //mJSCSBtn->Enabled = false;
-        }
-        mXYCtrlRG->ItemIndex = 0;
-    }
-    else
-    {
-	 	mAB->disableJoyStick();
-    }
-
-    btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
-
-    //There is a 'bug' regarding speed settings
-    //Programatically apply currently selected setting
-	if(mJSSpeedFastBtn->Down)
-    {
-		mJSSpeedFastBtn->Click();
-    }
-
-	if(mJSSpeedMediumBtn->Down)
-    {
-		mJSSpeedMediumBtn->Click();
-    }
-
-	if(mJSSpeedSlowBtn->Down)
-    {
-		mJSSpeedSlowBtn->Click();
-    }
-}
-
-void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
-{
-    TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
-	if(btn == mJSSpeedFastBtn) //Fast
-    {
-    	//Apply "FAST" JS setting
-        mAB->applyJoyStickSetting("Fast");
-    }
-    else if (btn == mJSSpeedMediumBtn) //Medium
-    {
-        mAB->applyJoyStickSetting("Medium");
-    }
-    else if (btn == mJSSpeedSlowBtn) //Slow
-    {
-        mAB->applyJoyStickSetting("Slow");
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-	if(Key != vkReturn)
-    {
-    	return;
-    }
-
-	//Get current setting
-    int index = JoyStickSettingsCB->ItemIndex;
-    if(index == -1)
-    {
-    	return;
-    }
-
-    JoyStickSetting* jss = (JoyStickSetting*) JoyStickSettingsCB->Items->Objects[index];
-    if(!jss)
-    {
-    	return;
-    }
-
-    // Update setting from edits
-    jss->set(mMaxXYJogVelocityJoystick->getValue(), mXYJogAccelerationJoystick->getValue(),
-			 mMaxZJogVelocityJoystick->getValue(), mZJogAccelerationJoystick->getValue(),
-             mAngleControlVelE->getValue(), mAngleControllerAccE->getValue()
-             );
-
-	mAB->writeINIParameters();
-    mIniFile.save();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
-{
-	if(mXYCtrlRG->ItemIndex == 0)//Both X&Y
-    {
-        mAB->getJoyStick().getY1Axis().enable();
-        mAB->getJoyStick().getY2Axis().enable();
-        mAB->getJoyStick().getX1Axis().enable();
-        mAB->getJoyStick().getX2Axis().enable();
-    }
-    else if(mXYCtrlRG->ItemIndex == 1)//Only X
-    {
-        mAB->getJoyStick().getX1Axis().enable();
-        mAB->getJoyStick().getX2Axis().enable();
-        mAB->getJoyStick().getY1Axis().disable();
-        mAB->getJoyStick().getY2Axis().disable();
-    }
-    else if(mXYCtrlRG->ItemIndex == 2)//Only Z
-    {
-        mAB->getJoyStick().getY1Axis().enable();
-        mAB->getJoyStick().getY2Axis().enable();
-        mAB->getJoyStick().getX1Axis().disable();
-        mAB->getJoyStick().getX2Axis().disable();
-    }
-    else
-    {
-        mAB->getJoyStick().getY1Axis().disable();
-        mAB->getJoyStick().getY2Axis().disable();
-        mAB->getJoyStick().getX1Axis().disable();
-        mAB->getJoyStick().getX2Axis().disable();
-    }
-}
-
-void TMain::onJSButton5Click()
-{
-	//Cycle xy setting
-	if(mXYCtrlRG->ItemIndex < 3)
-    {
-    	mXYCtrlRG->ItemIndex++;
-    }
-    else
-    {
-    	mXYCtrlRG->ItemIndex = 0;
-    }
-}
-
-void TMain::onJSButton6Click()
-{
-	//Check speed setting, go from slower to faster
-	if(mJSSpeedSlowBtn->Down)
-    {
-	    mJSSpeedMediumBtn->Down = true;
-		mJSSpeedMediumBtn->Click();
-    }
-	else if(mJSSpeedFastBtn->Down)
-    {
-	    mJSSpeedSlowBtn->Down = true;
-		mJSSpeedSlowBtn->Click();
-    }
-	else if(mJSSpeedMediumBtn->Down)
-    {
-	    mJSSpeedFastBtn->Down = true;
-		mJSSpeedFastBtn->Click();
-    }
-}
-
-void TMain::onJSButton14Click()
-{
-    stopAllAExecute(NULL);
 }
 
 //---------------------------------------------------------------------------
@@ -561,16 +391,36 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mJoyStickRGClick(TObject *Sender)
+void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
 {
-	if(mAB->getJoyStick().enableJoyStickWithID(mJoyStickRG->ItemIndex + 1))
+  	//TODO: Clean up joystick mess..
+
+	//Check if Joystick is working and update radiogroup if not
+	if(mJoyStickRG->ItemIndex != mAB->getJoyStick().getID())
     {
-    	Log(lInfo) << "Joystick was succesfully switched..";
+    	int indx = mAB->getJoyStick().getID();
+        if(indx != -1)
+        {
+			mJoyStickRG->ItemIndex = indx;
+        }
+    }
+
+	int indx = mJoyStickRG->ItemIndex;
+
+    //Check validity
+    if(!mAB->getJoyStick().isValid())
+    {
+//        mJoyStickRG->Controls[indx]->Enabled = false;
+        mJSStatusL->Caption = "Current joystick could not be found";
+        mJSCSBtn->Enabled = false;
     }
     else
     {
-    	MessageDlg("ArrayBot failed to switch the Joystick.\nCheck that the Joystick has power and that its front light is lit.", mtWarning, TMsgDlgButtons() << mbOK, 0);
+//        mJoyStickRG->Controls[indx]->Enabled = true;
+        mJSStatusL->Caption = "";
+        mJSCSBtn->Enabled = true;
+       	mJSCSBtn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
     }
-
 }
+
 

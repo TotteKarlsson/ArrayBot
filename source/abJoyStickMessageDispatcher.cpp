@@ -9,17 +9,19 @@
 using namespace std;
 using namespace mtk;
 
-JoyStickMessageDispatcher::JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons)
+JoyStickMessageDispatcher::JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons, int& id)
 :
 mJoyStick(js),
 mEnabled(false),
 mMoveResolution(100),
-mNrOfButtons(nrOfButtons)
+mNrOfButtons(nrOfButtons),
+mJoyStickID(id)
 {
     mUpdateStateTimer.setInterval(30);
 	mUpdateStateTimer.OnTimerC = refresh;
 
    	mEnabled = readCapabilities();
+
     //Setup buttons
     for(int i = 0; i < mNrOfButtons; i++)
     {
@@ -40,46 +42,23 @@ bool JoyStickMessageDispatcher::isValid()
 	return checkCapabilities(mJoyStickID);
 }
 
-//bool JoyStickMessageDispatcher::switchJoyStickDevice()
-//{
-//	//First check if we can switch joystick
-//
-//	switch(mJoyStickID)
-//    {
-//    	case JOYSTICKID1:
-//        	if(checkCapabilities(JOYSTICKID2))
-//            {
-//				mJoyStickID = JOYSTICKID2;
-//                return true;
-//            }
-//		break;
-//        case JOYSTICKID2:
-//        	if(checkCapabilities(JOYSTICKID1))
-//            {
-//				mJoyStickID = JOYSTICKID1;
-//                return true;
-//            }
-//		break;
-//        default:
-//        	if(checkCapabilities(JOYSTICKID1))
-//            {
-//				mJoyStickID = JOYSTICKID1;
-//                return true;
-//            }
-//    }
-//}
-
 bool JoyStickMessageDispatcher::enable(int id)
 {
 	mJoyStickID = id;
 
 	if(checkCapabilities(mJoyStickID))
     {
-    	readCapabilities();
-    	mUpdateStateTimer.start();
-    	return true;
+    	mEnabled = readCapabilities();
+        if(mEnabled)
+        {
+    		mUpdateStateTimer.start();
+        }
     }
-    return false;
+    else
+    {
+    	mEnabled = false;
+    }
+    return mEnabled;
 }
 
 void JoyStickMessageDispatcher::disable()
@@ -90,7 +69,7 @@ void JoyStickMessageDispatcher::disable()
 bool JoyStickMessageDispatcher::checkCapabilities(int ID)
 {
     JOYCAPS capabilities;
-    if(ID == -1)
+    if(ID < 0 || ID > 1)
     {
 		Log(lError) << "Invalid JoyStickID: "<<-1;
     	return false;
@@ -108,7 +87,6 @@ bool JoyStickMessageDispatcher::checkCapabilities(int ID)
 			Log(lError) << "Invalid joystick parameter.";
         }
 
-        Log(lError) <<"Failed getting joystick capablities";
         return false;
     }
 	return true;
@@ -134,7 +112,7 @@ bool JoyStickMessageDispatcher::readCapabilities()
 			Log(lError) << "Invalid joystick parameter.";
         }
 
-        Log(lError) <<"Failed getting joystick capablities";
+        Log(lError) <<"Failed getting joystick capabilities";
         return false;
     }
 	return true;
@@ -182,7 +160,8 @@ void JoyStickMessageDispatcher::refresh()
     {
    	    mJoyStickID = -1;
     	mEnabled = false;
-		throw("Failed getting joystick status");
+        Log(lError) << "Failed getting joystick information";
+        return;
     }
 
     //Check X1 Axis

@@ -56,8 +56,9 @@ class AB_CORE ArrayBot : public ABObject
         string						                    mAppDataFolder;
         IniFile&					                    mIniFile;
         IniFileProperties  			    				mProperties;
-        ArrayBotJoyStick			                    mJoyStick;
+
         Property<int>									mJoyStickID;
+        ArrayBotJoyStick			                    mJoyStick;
 
         JoyStickSettings			                    mJSSettings;
 

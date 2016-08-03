@@ -18,8 +18,7 @@ JoyStickAxis::JoyStickAxis()
 	mAlpha(1),
     mSenseOfDirection(1),
     mMotor(NULL)
-{
-}
+{}
 
 JoyStickAxis::~JoyStickAxis()
 {}

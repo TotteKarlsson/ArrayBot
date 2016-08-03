@@ -28,10 +28,8 @@ used for x-y motions for the left (whisker) side of the Arraybot.
 class AB_CORE JoyStickMessageDispatcher : public ABObject
 {
 	public:
-                                                JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons);
+                                                JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons, int& ID);
                                                 ~JoyStickMessageDispatcher();
-
-//		bool									switchJoyStickDevice();
 
         void				                    setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
         void				                    setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
@@ -41,7 +39,6 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
         bool				                    isEnabled();
         bool				                    enable(int id);
         void				                    disable();
-
 
         unsigned long						    getX1Pos();
         unsigned long						    getY1Pos();
@@ -56,7 +53,7 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
 
 	private:
     											//!The dispatcher is part of the ArrayBotJoystick
-            int 				                mJoyStickID;
+            int& 				                mJoyStickID;
 		    ArrayBotJoyStick&			        mJoyStick;
             bool				                mEnabled;
 

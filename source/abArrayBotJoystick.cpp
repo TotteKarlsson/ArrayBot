@@ -5,13 +5,13 @@
 
 using namespace mtk;
 
-ArrayBotJoyStick::ArrayBotJoyStick(int joyStickID)
+ArrayBotJoyStick::ArrayBotJoyStick(int& joyStickID)
 :
 mEnabled(false),
 mCoverSlipAxesEnabled(false),
 mWhiskerAxesEnabled(false),
-mJSMessageDispatcher(*this, 14),
-mJoyStickID(-1)
+mJoyStickID(joyStickID),
+mJSMessageDispatcher(*this, 14, mJoyStickID)
 {
     //Associate events with buttons
     mJSMessageDispatcher.setButtonEvents(1, mButton1.down,  mButton1.up);
@@ -44,11 +44,6 @@ mJoyStickID(-1)
 ArrayBotJoyStick::~ArrayBotJoyStick()
 {}
 
-//bool ArrayBotJoyStick::switchJoyStickDevice()
-//{
-//	return mJSMessageDispatcher.switchJoyStickDevice();
-//}
-
 bool ArrayBotJoyStick::isValid()
 {
 	return mJSMessageDispatcher.isValid();
@@ -56,7 +51,9 @@ bool ArrayBotJoyStick::isValid()
 
 bool ArrayBotJoyStick::enableJoyStickWithID(int id)
 {
-	return mJSMessageDispatcher.enable(id);
+	mJoyStickID = id;
+	mEnabled = mJSMessageDispatcher.enable(id);
+    return mEnabled;
 }
 
 bool ArrayBotJoyStick::setAxesMaxVelocity(double maxV)

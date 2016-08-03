@@ -17,7 +17,7 @@ class AB_CORE ArrayBotJoyStick : public ABObject
 {
 	friend JoyStickMessageDispatcher;
     public:
-							                        ArrayBotJoyStick(int id);
+							                        ArrayBotJoyStick(int& id);
 							                        ~ArrayBotJoyStick();
 
 		bool				                        enable();
@@ -53,7 +53,7 @@ class AB_CORE ArrayBotJoyStick : public ABObject
         void						                setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
         void						                setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
         void				                        setAxisEvent(int axis, JoyStickAxisEvent move);
-//        bool						                switchJoyStickDevice();
+
         bool										isValid();
         int											getID(){return mJoyStickID;}
 
@@ -61,7 +61,10 @@ class AB_CORE ArrayBotJoyStick : public ABObject
         bool				                        mEnabled;
  		bool						                mCoverSlipAxesEnabled;
  		bool						                mWhiskerAxesEnabled;
-        int											mJoyStickID;
+
+                    								//!The JoyStick ID is referenced
+                                                    //from ArrayBot
+        int&	   									mJoyStickID;
 
 		JoyStickMessageDispatcher 	                mJSMessageDispatcher;
 

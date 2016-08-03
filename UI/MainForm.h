@@ -105,6 +105,7 @@ class TMain : public TRegistryForm
 	TPanel *mMiddlePanel;
 	TSpeedButton *mJSCSBtn;
 	TRadioGroup *mJoyStickRG;
+	TLabel *mJSStatusL;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -117,7 +118,6 @@ class TMain : public TRegistryForm
     void __fastcall JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall reInitBotAExecute(TObject *Sender);
     void __fastcall ShutDownAExecute(TObject *Sender);
-    void __fastcall moveEdit(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall JSControlClick(TObject *Sender);
 	void __fastcall JSSpeedBtnClick(TObject *Sender);
@@ -132,6 +132,7 @@ class TMain : public TRegistryForm
 	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
 	void __fastcall mJoyStickRGClick(TObject *Sender);
+	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 
     private:
         LogFileReader                   mLogFileReader;
@@ -162,7 +163,10 @@ class TMain : public TRegistryForm
 
         TRibbonLifterFrame* 			mRibbonLifterFrame;
 
+        								//JS button 5 cycles XY control
         void						    onJSButton5Click();
+
+        								//JS button 6 cycles joystick speeds
         void						    onJSButton6Click();
 
         							    //!Button 14 stops everything

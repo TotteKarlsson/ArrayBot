@@ -20,14 +20,14 @@ USEFORM("frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: 
 USEFORM("frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
 USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
 USEFORM("MainForm.cpp", Main);
-USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
+USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
 USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
-USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
+USEFORM("frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame);
+USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
@@ -48,7 +48,7 @@ extern TSplashForm* gSplashForm                 = NULL;
 
 void setupLogging();
 
-BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam) ;
+BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam);
 
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)

@@ -220,6 +220,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
         <CppCompile Include="Misc.cpp">
+            <BuildOrder>22</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ShuttingDownLogic.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
         <CppCompile Include="UIUtilities.cpp">

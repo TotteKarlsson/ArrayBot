@@ -222,7 +222,6 @@ object Main: TMain
               EditLabel.Caption = 'Acceleration'
               TabOrder = 1
               Text = '0.00'
-              OnKeyDown = moveEdit
             end
             object mMoveVelocityVerticalE: TFloatLabeledEdit
               Left = 18
@@ -234,7 +233,6 @@ object Main: TMain
               EditLabel.Caption = 'Velocity'
               TabOrder = 0
               Text = '0.00'
-              OnKeyDown = moveEdit
             end
             object mLiftCB: TComboBox
               Left = 16
@@ -315,6 +313,13 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        object mJSStatusL: TLabel
+          Left = 455
+          Top = 192
+          Width = 96
+          Height = 23
+          Caption = 'mJSStatusL'
+        end
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 24
@@ -422,9 +427,9 @@ object Main: TMain
         end
         object mJoyStickRG: TRadioGroup
           Left = 455
-          Top = 32
-          Width = 146
-          Height = 145
+          Top = 24
+          Width = 186
+          Height = 153
           Caption = 'JoyStick'
           ItemIndex = 0
           Items.Strings = (
@@ -566,8 +571,8 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 652
-    Top = 680
+    Left = 660
+    Top = 632
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
@@ -576,22 +581,23 @@ object Main: TMain
   end
   object UIUpdateTimer: TTimer
     Enabled = False
-    Interval = 150
-    Left = 220
-    Top = 680
+    Interval = 250
+    OnTimer = UIUpdateTimerTimer
+    Left = 532
+    Top = 632
   end
   object mLiftTimer: TTimer
     Enabled = False
     Interval = 200
     OnTimer = mLiftTimerTimer
-    Left = 760
-    Top = 680
+    Left = 752
+    Top = 632
   end
   object WaitForDeviceInitTimer: TTimer
     Enabled = False
     Interval = 100
     OnTimer = WaitForDeviceInitTimerTimer
-    Left = 112
-    Top = 680
+    Left = 440
+    Top = 632
   end
 end
