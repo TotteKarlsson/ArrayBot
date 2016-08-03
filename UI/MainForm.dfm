@@ -58,7 +58,6 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      ExplicitWidth = 125
       object Button5: TSpeedButton
         Left = 1
         Top = 126
@@ -90,24 +89,18 @@ object Main: TMain
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
     TabOrder = 1
-    ExplicitWidth = 960
     object PageControl1: TPageControl
       Left = 1
       Top = 1
       Width = 902
       Height = 789
-      ActivePage = TabSheet4
+      ActivePage = TabSheet2
       Align = alClient
       TabHeight = 60
       TabOrder = 0
       TabWidth = 150
-      ExplicitWidth = 958
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 950
-        ExplicitHeight = 0
         object mBottomPanel: TPanel
           Left = 0
           Top = 552
@@ -115,7 +108,6 @@ object Main: TMain
           Height = 167
           Align = alBottom
           TabOrder = 0
-          ExplicitWidth = 950
         end
         object mTopPanel: TPanel
           Left = 0
@@ -125,7 +117,6 @@ object Main: TMain
           Align = alTop
           AutoSize = True
           TabOrder = 1
-          ExplicitWidth = 950
         end
         object mMiddlePanel: TPanel
           Left = 0
@@ -135,8 +126,6 @@ object Main: TMain
           Align = alClient
           AutoSize = True
           TabOrder = 2
-          ExplicitWidth = 950
-          ExplicitHeight = 397
           object JSGB: TGroupBox
             Left = 1
             Top = 1
@@ -151,7 +140,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitHeight = 395
             object mJSSpeedFastBtn: TSpeedButton
               Left = 307
               Top = 44
@@ -211,8 +199,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            ExplicitWidth = 487
-            ExplicitHeight = 395
             object LiftBtn: TSpeedButton
               Left = 16
               Top = 129
@@ -266,17 +252,9 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 950
-        ExplicitHeight = 0
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 950
-        ExplicitHeight = 0
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -284,7 +262,6 @@ object Main: TMain
           Height = 614
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 950
         end
         object Panel1: TPanel
           Left = 0
@@ -293,7 +270,6 @@ object Main: TMain
           Height = 105
           Align = alBottom
           TabOrder = 1
-          ExplicitWidth = 950
           object BitBtn1: TBitBtn
             Left = 178
             Top = 1
@@ -335,27 +311,10 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 950
-        ExplicitHeight = 0
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 950
-        ExplicitHeight = 0
-        object SwitchJSBtn: TSpeedButton
-          Left = 599
-          Top = 176
-          Width = 108
-          Height = 121
-          GroupIndex = 15
-          Caption = 'Switch'
-          OnClick = SwitchJSBtnClick
-        end
         object JoyStickGB2: TGroupBox
           Left = 11
           Top = 24
@@ -461,27 +420,23 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
         end
-        object RadioGroup1: TRadioGroup
-          Left = 463
-          Top = 160
-          Width = 130
+        object mJoyStickRG: TRadioGroup
+          Left = 455
+          Top = 32
+          Width = 146
           Height = 145
           Caption = 'JoyStick'
-          Enabled = False
           ItemIndex = 0
           Items.Strings = (
             'White'
             'Blue')
           TabOrder = 1
+          OnClick = mJoyStickRGClick
         end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 950
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -489,7 +444,6 @@ object Main: TMain
           Height = 719
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 950
           object infoMemo: TMemo
             Left = 1
             Top = 31
@@ -506,7 +460,6 @@ object Main: TMain
             ScrollBars = ssBoth
             TabOrder = 0
             WordWrap = False
-            ExplicitWidth = 948
           end
           object ToolBar1: TToolBar
             Left = 1
@@ -517,7 +470,6 @@ object Main: TMain
             ButtonHeight = 30
             Caption = 'ToolBar1'
             TabOrder = 1
-            ExplicitWidth = 948
             object BitBtn2: TBitBtn
               Left = 0
               Top = 0

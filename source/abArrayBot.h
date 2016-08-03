@@ -16,7 +16,7 @@ class AB_CORE ArrayBot : public ABObject
 									                    ~ArrayBot();
 
 		void 						                    initialize();
-		void 						                    switchJoyStick();
+		bool 						                    switchJoyStick();
 
         XYZUnit&					                    getCoverSlipUnit();
         XYZUnit&					                    getWhiskerUnit();
@@ -50,11 +50,15 @@ class AB_CORE ArrayBot : public ABObject
         APTMotor*										getMotorWithName(const string& mn);
         ProcessSequencer&								getProcessSequencer();
 
+
     private:
         bool						                    mIsShuttingDown;
         string						                    mAppDataFolder;
         IniFile&					                    mIniFile;
+        IniFileProperties  			    				mProperties;
         ArrayBotJoyStick			                    mJoyStick;
+        Property<int>									mJoyStickID;
+
         JoyStickSettings			                    mJSSettings;
 
         XYZUnit						                    mCoverSlip;

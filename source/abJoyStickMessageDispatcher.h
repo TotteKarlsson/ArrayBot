@@ -31,7 +31,7 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
                                                 JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons);
                                                 ~JoyStickMessageDispatcher();
 
-		bool									switchJoyStickDevice();
+//		bool									switchJoyStickDevice();
 
         void				                    setButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
         void				                    setPOVButtonEvents(int btnNr, JoyStickEvent up, JoyStickEvent down);
@@ -39,7 +39,7 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
 
         void 				                    refresh();
         bool				                    isEnabled();
-        bool				                    enable();
+        bool				                    enable(int id);
         void				                    disable();
 
 
@@ -52,6 +52,7 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
 
         unsigned long						    getButtonBits();
         unsigned long						    getPOVBits();
+        bool									isValid();
 
 	private:
     											//!The dispatcher is part of the ArrayBotJoystick
@@ -59,13 +60,11 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
 		    ArrayBotJoyStick&			        mJoyStick;
             bool				                mEnabled;
 
-            							        //!If no joystick is found
-                                                //!mCanEnable is false
-            bool						        mCanEnable;
             int					                mMoveResolution;
             const int			                mNrOfButtons;
             bool 				                readCapabilities();
 
+			bool								checkCapabilities(int ID);
 			ButtonDeque 		                mButtons;
 
             							        //!Joystick axes X1,Y1 to the left and X2,Y2 to the right.

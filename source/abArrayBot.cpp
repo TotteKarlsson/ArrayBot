@@ -10,23 +10,34 @@ ArrayBot::ArrayBot(IniFile& ini, const string& appFolder)
 :
 mAppDataFolder(appFolder),
 mIniFile(ini),
-mCoverSlip("COVERSLIP UNIT", mIniFile, appFolder),
-mWhisker("WHISKER UNIT", mIniFile, appFolder),
-mJoyStick(),
+mCoverSlip("COVERSLIP UNIT", 		mIniFile, appFolder),
+mWhisker("WHISKER UNIT", 			mIniFile, appFolder),
+mJoyStick(-1),
 mIsShuttingDown(false),
-mJSSettings("JOYSTICK SETTINGS", mIniFile),
-mLifts("PAIRED_MOVES", mIniFile),
-mProcessSequencer(*this, appFolder)
-{}
+mJSSettings("JOYSTICK SETTINGS",	mIniFile),
+mLifts("PAIRED_MOVES", 				mIniFile),
+mProcessSequencer(*this, appFolder),
+mJoyStickID(-1)
+{
+	//Setup UI properties
+    mProperties.setSection("ARRAYBOT_GENERAL");
+	mProperties.setIniFile(&mIniFile);
+
+	mProperties.add((BaseProperty*)  &mJoyStickID.setup( 	                "JOYSTICK_ID",    	                1));
+    mProperties.read();
+    mJoyStick.enableJoyStickWithID(mJoyStickID);
+}
 
 ArrayBot::~ArrayBot()
-{}
-
-
-void ArrayBot::switchJoyStick()
 {
-	mJoyStick.switchJoyStickDevice();
+    mProperties.write();
 }
+
+
+//bool ArrayBot::switchJoyStick()
+//{
+////	return mJoyStick.switchJoyStickDevice();
+//}
 
 ProcessSequencer& ArrayBot::getProcessSequencer()
 {
@@ -194,6 +205,12 @@ ArrayBotJoyStick& ArrayBot::getJoyStick()
 
 bool ArrayBot::enableJoyStick()
 {
+	if(!mJoyStick.isValid())
+    {
+		return false;
+    }
+
+
     mCoverSlip.attachJoyStick(&getJoyStick());
     mJoyStick.getX1Axis().setSenseOfDirection(1);
 

@@ -60,9 +60,9 @@ __fastcall TMain::TMain(TComponent* Owner)
 	//Setup UI properties
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
-    mProperties.read();
-	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
 
+	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
+    mProperties.read();
 	//Load motors in a thread
     mInitBotThread.assingBot(mAB);
     mInitBotThread.onFinishedInit = this->onFinishedInitBot;
@@ -103,6 +103,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	gSplashForm->Close();
 	gLogger.setLogLevel(mLogLevel);
 
+    //Assign last used Joystick
+    mJoyStickRG->ItemIndex = mAB->getJoyStick().getID() - 1;
+
 	if(mLogLevel == lInfo)
 	{
 		LogLevelCB->ItemIndex = 0;
@@ -138,7 +141,6 @@ void __fastcall	TMain::setupUIFrames()
     TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
     f2->Parent = this->mButtonPanel;
     f2->Align = alBottom;
-
 
     this->mTopPanel->Top = 0;
     this->mTopPanel->Refresh();
@@ -268,6 +270,7 @@ void __fastcall TMain::moveEdit(TObject *Sender, WORD &Key, TShiftState Shift)
     {
     	return;
     }
+
 	//These are already referenced so no need for any updates
 }
 
@@ -280,8 +283,8 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
     {
 		if(!mAB->enableJoyStick())
         {
-        	MessageDlg("Failed enabling the JoyStick. \r Please see the LogFile for Errors. \r JoyStick support is disabled for the rest of this session.", mtWarning, TMsgDlgButtons() << mbOK, 0);
-            mJSCSBtn->Enabled = false;
+        	MessageDlg("Failed enabling current JoyStick. \r ", mtWarning, TMsgDlgButtons() << mbOK, 0);
+            //mJSCSBtn->Enabled = false;
         }
         mXYCtrlRG->ItemIndex = 0;
     }
@@ -358,14 +361,6 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
 	mAB->writeINIParameters();
     mIniFile.save();
 }
-
-////Save parameters
-//void __fastcall TMain::Button1Click(TObject *Sender)
-//{
-//	mAB->writeINIParameters();
-//    mIniFile.save();
-//}
-//
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
@@ -566,12 +561,16 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 }
 
 //---------------------------------------------------------------------------
-
-void __fastcall TMain::SwitchJSBtnClick(TObject *Sender)
+void __fastcall TMain::mJoyStickRGClick(TObject *Sender)
 {
-	mAB->switchJoyStick();
+	if(mAB->getJoyStick().enableJoyStickWithID(mJoyStickRG->ItemIndex + 1))
+    {
+    	Log(lInfo) << "Joystick was succesfully switched..";
+    }
+    else
+    {
+    	MessageDlg("ArrayBot failed to switch the Joystick.\nCheck that the Joystick has power and that its front light is lit.", mtWarning, TMsgDlgButtons() << mbOK, 0);
+    }
+
 }
-
-
-
 

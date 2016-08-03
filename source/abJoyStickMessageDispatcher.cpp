@@ -13,16 +13,13 @@ JoyStickMessageDispatcher::JoyStickMessageDispatcher(ArrayBotJoyStick& js, int n
 :
 mJoyStick(js),
 mEnabled(false),
-mCanEnable(false),
 mMoveResolution(100),
 mNrOfButtons(nrOfButtons)
 {
-    mJoyStickID = JOYSTICKID1;
     mUpdateStateTimer.setInterval(30);
 	mUpdateStateTimer.OnTimerC = refresh;
 
    	mEnabled = readCapabilities();
-	mCanEnable = mEnabled;
     //Setup buttons
     for(int i = 0; i < mNrOfButtons; i++)
     {
@@ -38,22 +35,83 @@ bool JoyStickMessageDispatcher::isEnabled()
 	return mUpdateStateTimer.isRunning();
 }
 
-bool JoyStickMessageDispatcher::switchJoyStickDevice()
+bool JoyStickMessageDispatcher::isValid()
 {
-	mJoyStickID = (mJoyStickID == JOYSTICKID1) ? JOYSTICKID2 : JOYSTICKID1;
-    return true;
+	return checkCapabilities(mJoyStickID);
 }
 
+//bool JoyStickMessageDispatcher::switchJoyStickDevice()
+//{
+//	//First check if we can switch joystick
+//
+//	switch(mJoyStickID)
+//    {
+//    	case JOYSTICKID1:
+//        	if(checkCapabilities(JOYSTICKID2))
+//            {
+//				mJoyStickID = JOYSTICKID2;
+//                return true;
+//            }
+//		break;
+//        case JOYSTICKID2:
+//        	if(checkCapabilities(JOYSTICKID1))
+//            {
+//				mJoyStickID = JOYSTICKID1;
+//                return true;
+//            }
+//		break;
+//        default:
+//        	if(checkCapabilities(JOYSTICKID1))
+//            {
+//				mJoyStickID = JOYSTICKID1;
+//                return true;
+//            }
+//    }
+//}
 
-bool JoyStickMessageDispatcher::enable()
+bool JoyStickMessageDispatcher::enable(int id)
 {
-    mUpdateStateTimer.start();
-    return mCanEnable ?  true : false;
+	mJoyStickID = id;
+
+	if(checkCapabilities(mJoyStickID))
+    {
+    	readCapabilities();
+    	mUpdateStateTimer.start();
+    	return true;
+    }
+    return false;
 }
 
 void JoyStickMessageDispatcher::disable()
 {
 	mUpdateStateTimer.stop();
+}
+
+bool JoyStickMessageDispatcher::checkCapabilities(int ID)
+{
+    JOYCAPS capabilities;
+    if(ID == -1)
+    {
+		Log(lError) << "Invalid JoyStickID: "<<-1;
+    	return false;
+    }
+
+    int res = joyGetDevCaps(ID, &capabilities, sizeof(JOYCAPS));
+    if(res != JOYERR_NOERROR)
+    {
+    	if(res == MMSYSERR_NODRIVER)
+        {
+			Log(lError) << "There is no valid driver for the joystick.";
+        }
+        else if(res == MMSYSERR_INVALPARAM)
+        {
+			Log(lError) << "Invalid joystick parameter.";
+        }
+
+        Log(lError) <<"Failed getting joystick capablities";
+        return false;
+    }
+	return true;
 }
 
 bool JoyStickMessageDispatcher::readCapabilities()
@@ -76,7 +134,6 @@ bool JoyStickMessageDispatcher::readCapabilities()
 			Log(lError) << "Invalid joystick parameter.";
         }
 
-		//throw(ABException("Failed getting joystick capablities"));
         Log(lError) <<"Failed getting joystick capablities";
         return false;
     }

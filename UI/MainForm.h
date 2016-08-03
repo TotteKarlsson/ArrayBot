@@ -104,8 +104,7 @@ class TMain : public TRegistryForm
 	TBitBtn *ReInitBotBtn;
 	TPanel *mMiddlePanel;
 	TSpeedButton *mJSCSBtn;
-	TSpeedButton *SwitchJSBtn;
-	TRadioGroup *RadioGroup1;
+	TRadioGroup *mJoyStickRG;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -132,7 +131,7 @@ class TMain : public TRegistryForm
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
-	void __fastcall SwitchJSBtnClick(TObject *Sender);
+	void __fastcall mJoyStickRGClick(TObject *Sender);
 
     private:
         LogFileReader                   mLogFileReader;

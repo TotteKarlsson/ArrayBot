@@ -5,12 +5,13 @@
 
 using namespace mtk;
 
-ArrayBotJoyStick::ArrayBotJoyStick()
+ArrayBotJoyStick::ArrayBotJoyStick(int joyStickID)
 :
 mEnabled(false),
 mCoverSlipAxesEnabled(false),
 mWhiskerAxesEnabled(false),
-mJSMessageDispatcher(*this, 14)
+mJSMessageDispatcher(*this, 14),
+mJoyStickID(-1)
 {
     //Associate events with buttons
     mJSMessageDispatcher.setButtonEvents(1, mButton1.down,  mButton1.up);
@@ -37,15 +38,25 @@ mJSMessageDispatcher(*this, 14)
 	mJSMessageDispatcher.setAxisEvent(4,  mY2Axis.Move);
 
 	//Start JS poll
-    mJSMessageDispatcher.enable();
+    mJSMessageDispatcher.enable(joyStickID);
 }
 
 ArrayBotJoyStick::~ArrayBotJoyStick()
 {}
 
-void ArrayBotJoyStick::switchJoyStickDevice()
+//bool ArrayBotJoyStick::switchJoyStickDevice()
+//{
+//	return mJSMessageDispatcher.switchJoyStickDevice();
+//}
+
+bool ArrayBotJoyStick::isValid()
 {
-	mJSMessageDispatcher.switchJoyStickDevice();
+	return mJSMessageDispatcher.isValid();
+}
+
+bool ArrayBotJoyStick::enableJoyStickWithID(int id)
+{
+	return mJSMessageDispatcher.enable(id);
 }
 
 bool ArrayBotJoyStick::setAxesMaxVelocity(double maxV)
@@ -99,9 +110,17 @@ bool ArrayBotJoyStick::enableWhiskerAxes()
 
 bool ArrayBotJoyStick::enable()
 {
-    mEnabled = mJSMessageDispatcher.enable();
-	mCoverSlipAxesEnabled = true;
-	mWhiskerAxesEnabled = true;
+    mEnabled = mJSMessageDispatcher.enable(mJoyStickID);
+    if(mEnabled)
+    {
+		mCoverSlipAxesEnabled = true;
+		mWhiskerAxesEnabled = true;
+    }
+    else
+    {
+		mCoverSlipAxesEnabled = false;
+		mWhiskerAxesEnabled = false;
+    }
 
     return mEnabled;
 }
