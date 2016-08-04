@@ -1,3 +1,25 @@
+Release 0.7.1 (Aug 4)
+=======================
+* Added icon to ArrayCam
+* Tracking down POV bug
+* Reorganising apps into apps
+* ArduinoController -> Arrayduino
+* Adding ArrayCam application
+* Added ability to turn off the control of a XYZ-Angle unit, Whisker or CoverSlip side.
+* Cleaned up JoyStick selection bugs
+* Fixing JoyStick flakiness when switching between the two
+* Fixed code to accept low level Camera messages in the VCL forms loop
+* Preparing to incorporate camera code
+* Cleaning up camera code
+* Imported library for camera driver
+* More initial Camera code
+* Added initial Camera Capture code
+* Getting puffer setup
+* Renamed arduino_controller to arduinoController
+* Implemented necessary messages between the arduino server and client.
+* Fixed so that UI messages (from threads) are synchronized.
+* More Arduino stuff
+
 Release 0.7.0 (Jul 28)
 =======================
 * Major release containing new ArduinoController application used
