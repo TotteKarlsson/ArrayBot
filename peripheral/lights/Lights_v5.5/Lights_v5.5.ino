@@ -11,7 +11,7 @@ This sketch expects an Adafruit Motor Shield for Arduino v2
 #include "utility/Adafruit_MS_PWMServoDriver.h"
 
 //The DHT22 is a combined temp/humidity sensor
-#include <DHT22.h>
+#include "DHT22.h"
 // Data wire is plugged into port 7 on the Arduino
 // Connect a 4.7K resistor between VCC and the data pin (strong pullup)
 #define DHT22_PIN 7
@@ -145,14 +145,14 @@ void loop()
     //Read digital lines and send status over serial port so the host
     //can update its UI
     unsigned long currentReadTime = millis();
-    if(currentReadTime - lastReadTime > 1000)
+    if(currentReadTime - lastReadTime > 3000)
     {
         checkPINStates();
         lastReadTime = currentReadTime;
     }
     
     //Read temp/humidity sensor, about every 2s.
-    readEnvironmentalSensors(gDHT22);    
+      readEnvironmentalSensors(gDHT22);    
 }
   
 void processByte(char ch)
@@ -197,10 +197,15 @@ void processByte(char ch)
 void checkPINStates()
 {
     //Read and report states of "light pins"            
-    Serial << ((digitalRead(8)) ? "[PIN_8=HIGH]" : "[PIN_8=LOW]");
+    Serial << ((digitalRead(1)) ? "[PIN_1=HIGH]" : "[PIN_1=LOW]");
+    Serial << ((digitalRead(2)) ? "[PIN_2=HIGH]" : "[PIN_2=LOW]");    
     Serial << ((digitalRead(3)) ? "[PIN_3=HIGH]" : "[PIN_3=LOW]");    
-    Serial << ((digitalRead(4)) ? "[PIN_4=HIGH]" : "[PIN_4=LOW]");        
-}
+    Serial << ((digitalRead(4)) ? "[PIN_4=HIGH]" : "[PIN_4=LOW]");
+    Serial << ((digitalRead(5)) ? "[PIN_5=HIGH]" : "[PIN_5=LOW]");    
+    Serial << ((digitalRead(6)) ? "[PIN_6=HIGH]" : "[PIN_6=LOW]"); 
+    Serial << ((digitalRead(7)) ? "[PIN_7=HIGH]" : "[PIN_7=LOW]");    
+    Serial << ((digitalRead(8)) ? "[PIN_8=HIGH]" : "[PIN_8=LOW]");        
+}        
 
 void sendInfo()
 {

@@ -46,23 +46,15 @@ object Main: TMain
     end
     object mFrontBackLEDBtn: TButton
       Left = 1
-      Top = 101
+      Top = 1
       Width = 181
       Height = 100
       Align = alTop
       Caption = 'FrontBack LEDs ON'
       TabOrder = 1
       OnClick = LEDBtnClick
-    end
-    object mCoaxLEDBtn: TButton
-      Left = 1
-      Top = 1
-      Width = 181
-      Height = 100
-      Align = alTop
-      Caption = 'COAX LEDs ON'
-      TabOrder = 2
-      OnClick = LEDBtnClick
+      ExplicitLeft = 4
+      ExplicitTop = 5
     end
     object Button1: TButton
       Left = 1
@@ -71,7 +63,7 @@ object Main: TMain
       Height = 111
       Align = alBottom
       Caption = 'About'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = mAboutBtnClick
     end
   end
@@ -129,6 +121,7 @@ object Main: TMain
               EditLabel.Caption = 'Puff after count'
               TabOrder = 0
               Text = '-1'
+              OnKeyDown = mPuffAfterSectionCountEKeyDown
               Value = -1
             end
             object mAutoPuffCB: TPropertyCheckBox
@@ -138,6 +131,7 @@ object Main: TMain
               Height = 17
               Caption = 'Enabled'
               TabOrder = 1
+              OnClick = mAutoPuffCBClick
             end
           end
           object GroupBox6: TGroupBox
@@ -161,10 +155,6 @@ object Main: TMain
         object TabSheet2: TTabSheet
           Caption = 'Settings'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 661
-          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0
@@ -185,14 +175,14 @@ object Main: TMain
               Text = '50000'
               Value = 50000
             end
-            object mASStartBtn: TButton
+            object mArduinoServerStartBtn: TButton
               Left = 16
               Top = 160
               Width = 200
               Height = 65
               Caption = 'Start/Stop'
               TabOrder = 1
-              OnClick = mASStartBtnClick
+              OnClick = mArduinoServerStartBtnClick
             end
           end
           object mArduinoSB: TScrollBox
@@ -202,7 +192,6 @@ object Main: TMain
             Height = 320
             Align = alClient
             TabOrder = 1
-            ExplicitWidth = 404
           end
         end
       end

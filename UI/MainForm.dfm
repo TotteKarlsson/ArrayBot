@@ -58,7 +58,6 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      ExplicitWidth = 125
       object Button5: TSpeedButton
         Left = 1
         Top = 126
@@ -90,7 +89,6 @@ object Main: TMain
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
     TabOrder = 1
-    ExplicitWidth = 960
     object PageControl1: TPageControl
       Left = 1
       Top = 1
@@ -101,10 +99,8 @@ object Main: TMain
       TabHeight = 60
       TabOrder = 0
       TabWidth = 150
-      ExplicitWidth = 958
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitWidth = 950
         object mBottomPanel: TPanel
           Left = 0
           Top = 552
@@ -112,7 +108,6 @@ object Main: TMain
           Height = 167
           Align = alBottom
           TabOrder = 0
-          ExplicitWidth = 950
         end
         object mTopPanel: TPanel
           Left = 0
@@ -122,7 +117,6 @@ object Main: TMain
           Align = alTop
           AutoSize = True
           TabOrder = 1
-          ExplicitWidth = 950
         end
         object mMiddlePanel: TPanel
           Left = 0
@@ -132,8 +126,6 @@ object Main: TMain
           Align = alClient
           AutoSize = True
           TabOrder = 2
-          ExplicitWidth = 950
-          ExplicitHeight = 397
           object JSGB: TGroupBox
             Left = 1
             Top = 1
@@ -148,40 +140,12 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitHeight = 395
-            object mJSSpeedFastBtn: TSpeedButton
-              Left = 307
-              Top = 44
-              Width = 140
-              Height = 100
-              GroupIndex = 15
-              Caption = 'Fast'
-              OnClick = JSSpeedBtnClick
-            end
-            object mJSSpeedMediumBtn: TSpeedButton
-              Left = 161
-              Top = 44
-              Width = 140
-              Height = 100
-              GroupIndex = 15
-              Down = True
-              Caption = 'Medium'
-              OnClick = JSSpeedBtnClick
-            end
-            object mJSSpeedSlowBtn: TSpeedButton
-              Left = 15
-              Top = 44
-              Width = 140
-              Height = 100
-              GroupIndex = 15
-              Caption = 'Slow'
-              OnClick = JSSpeedBtnClick
-            end
             object mXYCtrlRG: TRadioGroup
-              Left = 15
-              Top = 161
-              Width = 426
-              Height = 105
+              Left = 2
+              Top = 169
+              Width = 457
+              Height = 112
+              Align = alTop
               Caption = 'XY Control'
               Columns = 4
               ItemIndex = 0
@@ -192,6 +156,70 @@ object Main: TMain
                 'None')
               TabOrder = 0
               OnClick = mXYCtrlRGClick
+            end
+            object mUnitControlRG: TRadioGroup
+              Left = 2
+              Top = 27
+              Width = 457
+              Height = 142
+              Align = alTop
+              Caption = 'Unit Control'
+              Columns = 4
+              DoubleBuffered = False
+              ItemIndex = 0
+              Items.Strings = (
+                'Both'
+                'Coverslip'
+                'Whisker'
+                'None')
+              ParentDoubleBuffered = False
+              TabOrder = 1
+              OnClick = mUnitControlRGClick
+            end
+            object Panel2: TPanel
+              Left = 2
+              Top = 281
+              Width = 457
+              Height = 100
+              Align = alTop
+              TabOrder = 2
+              ExplicitTop = 237
+              object mJSSpeedFastBtn: TSpeedButton
+                Left = 301
+                Top = 1
+                Width = 150
+                Height = 98
+                Align = alLeft
+                GroupIndex = 15
+                Caption = 'Fast'
+                OnClick = JSSpeedBtnClick
+                ExplicitTop = 6
+              end
+              object mJSSpeedMediumBtn: TSpeedButton
+                Left = 151
+                Top = 1
+                Width = 150
+                Height = 98
+                Align = alLeft
+                GroupIndex = 15
+                Down = True
+                Caption = 'Medium'
+                OnClick = JSSpeedBtnClick
+                ExplicitLeft = 1
+                ExplicitTop = 6
+              end
+              object mJSSpeedSlowBtn: TSpeedButton
+                Left = 1
+                Top = 1
+                Width = 150
+                Height = 98
+                Align = alLeft
+                GroupIndex = 15
+                Caption = 'Slow'
+                OnClick = JSSpeedBtnClick
+                ExplicitLeft = -65
+                ExplicitTop = 6
+              end
             end
           end
           object LiftGB: TGroupBox
@@ -208,8 +236,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            ExplicitWidth = 487
-            ExplicitHeight = 395
             object LiftBtn: TSpeedButton
               Left = 16
               Top = 129
@@ -233,7 +259,6 @@ object Main: TMain
               EditLabel.Caption = 'Acceleration'
               TabOrder = 1
               Text = '0.00'
-              OnKeyDown = moveEdit
             end
             object mMoveVelocityVerticalE: TFloatLabeledEdit
               Left = 18
@@ -245,7 +270,6 @@ object Main: TMain
               EditLabel.Caption = 'Velocity'
               TabOrder = 0
               Text = '0.00'
-              OnKeyDown = moveEdit
             end
             object mLiftCB: TComboBox
               Left = 16
@@ -263,11 +287,9 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
-        ExplicitWidth = 950
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitWidth = 950
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -275,7 +297,6 @@ object Main: TMain
           Height = 614
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 950
         end
         object Panel1: TPanel
           Left = 0
@@ -284,7 +305,6 @@ object Main: TMain
           Height = 105
           Align = alBottom
           TabOrder = 1
-          ExplicitWidth = 950
           object BitBtn1: TBitBtn
             Left = 178
             Top = 1
@@ -326,20 +346,16 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
-        ExplicitWidth = 950
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitWidth = 950
-        object SwitchJSBtn: TSpeedButton
-          Left = 599
-          Top = 176
-          Width = 108
-          Height = 121
-          GroupIndex = 15
-          Caption = 'Switch'
-          OnClick = SwitchJSBtnClick
+        object mJSStatusL: TLabel
+          Left = 455
+          Top = 192
+          Width = 96
+          Height = 23
+          Caption = 'mJSStatusL'
         end
         object JoyStickGB2: TGroupBox
           Left = 11
@@ -446,24 +462,23 @@ object Main: TMain
             OnKeyDown = JoyStickValueEdit
           end
         end
-        object RadioGroup1: TRadioGroup
-          Left = 463
-          Top = 160
-          Width = 130
-          Height = 145
+        object mJoyStickRG: TRadioGroup
+          Left = 455
+          Top = 24
+          Width = 186
+          Height = 153
           Caption = 'JoyStick'
-          Enabled = False
           ItemIndex = 0
           Items.Strings = (
             'White'
             'Blue')
           TabOrder = 1
+          OnClick = mJoyStickRGClick
         end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitWidth = 950
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -471,7 +486,6 @@ object Main: TMain
           Height = 719
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 950
           object infoMemo: TMemo
             Left = 1
             Top = 31
@@ -488,7 +502,6 @@ object Main: TMain
             ScrollBars = ssBoth
             TabOrder = 0
             WordWrap = False
-            ExplicitWidth = 948
           end
           object ToolBar1: TToolBar
             Left = 1
@@ -499,7 +512,6 @@ object Main: TMain
             ButtonHeight = 30
             Caption = 'ToolBar1'
             TabOrder = 1
-            ExplicitWidth = 948
             object BitBtn2: TBitBtn
               Left = 0
               Top = 0
@@ -596,8 +608,8 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 652
-    Top = 680
+    Left = 660
+    Top = 632
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
@@ -606,22 +618,23 @@ object Main: TMain
   end
   object UIUpdateTimer: TTimer
     Enabled = False
-    Interval = 150
-    Left = 220
-    Top = 680
+    Interval = 250
+    OnTimer = UIUpdateTimerTimer
+    Left = 532
+    Top = 632
   end
   object mLiftTimer: TTimer
     Enabled = False
     Interval = 200
     OnTimer = mLiftTimerTimer
-    Left = 760
-    Top = 680
+    Left = 752
+    Top = 632
   end
   object WaitForDeviceInitTimer: TTimer
     Enabled = False
     Interval = 100
     OnTimer = WaitForDeviceInitTimerTimer
-    Left = 112
-    Top = 680
+    Left = 440
+    Top = 632
   end
 end

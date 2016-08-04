@@ -9,6 +9,9 @@
         <Projects Include="P:\libs\dslib\Common\Math\mtkMath.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\libs\dslib\Common\IPC\mtkIPC.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
@@ -21,7 +24,10 @@
         <Projects Include="UI\ArrayBot.cbproj">
             <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
-        <Projects Include="supporting_apps\arduino_controller\arduino_controller.cbproj">
+        <Projects Include="supporting_apps\arduino_controller\arduinoController.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="testing\abArduinoClient\arduinoClient.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -49,6 +55,15 @@
     </Target>
     <Target Name="mtkMath:Make">
         <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="mtkIPC">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj"/>
+    </Target>
+    <Target Name="mtkIPC:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkIPC:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
     </Target>
     <Target Name="VCLCommon">
         <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
@@ -86,23 +101,32 @@
     <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="arduino_controller">
-        <MSBuild Projects="supporting_apps\arduino_controller\arduino_controller.cbproj"/>
+    <Target Name="arduinoController">
+        <MSBuild Projects="supporting_apps\arduino_controller\arduinoController.cbproj"/>
     </Target>
-    <Target Name="arduino_controller:Clean">
-        <MSBuild Projects="supporting_apps\arduino_controller\arduino_controller.cbproj" Targets="Clean"/>
+    <Target Name="arduinoController:Clean">
+        <MSBuild Projects="supporting_apps\arduino_controller\arduinoController.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="arduino_controller:Make">
-        <MSBuild Projects="supporting_apps\arduino_controller\arduino_controller.cbproj" Targets="Make"/>
+    <Target Name="arduinoController:Make">
+        <MSBuild Projects="supporting_apps\arduino_controller\arduinoController.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="arduinoClient">
+        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj"/>
+    </Target>
+    <Target Name="arduinoClient:Clean">
+        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="arduinoClient:Make">
+        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkMath;VCLCommon;DuneComponents;abCore;ArrayBot;arduino_controller"/>
+        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;VCLCommon;DuneComponents;abCore;ArrayBot;arduinoController;arduinoClient"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean;arduino_controller:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean;arduinoController:Clean;arduinoClient:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make;arduino_controller:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make;arduinoController:Make;arduinoClient:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

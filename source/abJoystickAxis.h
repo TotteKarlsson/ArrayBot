@@ -44,7 +44,7 @@ class AB_CORE JoyStickAxis : public ABObject
         double 				            mMaxVelocity;
         double 				            mAcceleration;
         double 				            mLastSetVelocity;
-        double 				            mRunningAverage;
+        double 				            mMotorVelocity;
         double 				            mAlpha;
 };
 

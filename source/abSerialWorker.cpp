@@ -183,10 +183,10 @@ int SerialWorker::processReceiveBuffer(char* buffer, int bufSize)
                 	mTheHost.mReceivedCB(mMessageBuilder.getMessage());
                 }
 
-                if(mTheHost.mReceivedCB_C)
-                {
-                	mTheHost.mReceivedCB_C(mMessageBuilder.getMessage());
-                }
+//                if(mTheHost.mReceivedCB_C)
+//                {
+//                	mTheHost.mReceivedCB_C(mMessageBuilder.getMessage());
+//                }
             }
             nrOfMessages++;
             mMessageBuilder.reset();

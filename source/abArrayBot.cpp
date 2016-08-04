@@ -10,22 +10,53 @@ ArrayBot::ArrayBot(IniFile& ini, const string& appFolder)
 :
 mAppDataFolder(appFolder),
 mIniFile(ini),
-mCoverSlip("COVERSLIP UNIT", mIniFile, appFolder),
-mWhisker("WHISKER UNIT", mIniFile, appFolder),
-mJoyStick(),
-mIsShuttingDown(false),
-mJSSettings("JOYSTICK SETTINGS", mIniFile),
-mLifts("PAIRED_MOVES", mIniFile),
-mProcessSequencer(*this, appFolder)
-{}
+mJoyStickID(-1),
+mJoyStick(mJoyStickID.getReference()),
+mJSSettings("JOYSTICK SETTINGS",	mIniFile),
+mCoverSlip("COVERSLIP UNIT", 		mIniFile, appFolder),
+mWhisker("WHISKER UNIT", 			mIniFile, appFolder),
+mLifts("PAIRED_MOVES", 				mIniFile),
+mProcessSequencer(*this, appFolder),
+mIsShuttingDown(false)
+{
+	//Setup UI properties
+    mProperties.setSection("ARRAYBOT_GENERAL");
+	mProperties.setIniFile(&mIniFile);
+	mProperties.add((BaseProperty*)  &mJoyStickID.setup( 	                "JOYSTICK_ID",    	                1));
+
+    mProperties.read();
+    if(!mJoyStick.enableJoyStickWithID(mJoyStickID))
+    {
+    	Log(lWarning) << "Joystick with ID: " << mJoyStickID << " was not enabled.";
+    }
+}
 
 ArrayBot::~ArrayBot()
-{}
-
-
-void ArrayBot::switchJoyStick()
 {
-	mJoyStick.switchJoyStickDevice();
+    mProperties.write();
+}
+
+
+bool ArrayBot::enableCoverSlipUnit()
+{
+	mCoverSlip.enableJSAxes();
+    mCoverSlip.enableZButtons();
+}
+
+bool ArrayBot::disableCoverSlipUnit()
+{
+	mCoverSlip.disableJSAxes();
+    mCoverSlip.disableZButtons();
+}
+
+bool ArrayBot::enableWhiskerUnit()
+{
+	mWhisker.enableJSAxes();
+}
+
+bool ArrayBot::disableWhiskerUnit()
+{
+	mWhisker.disableJSAxes();
 }
 
 ProcessSequencer& ArrayBot::getProcessSequencer()
@@ -65,6 +96,7 @@ JoyStickSettings& ArrayBot::getJoyStickSettings()
 
 bool ArrayBot::readINIParameters()
 {
+    mProperties.read();
 	mLifts.readINIParameters();
 	mJSSettings.readINIParameters();
     return true;
@@ -72,6 +104,7 @@ bool ArrayBot::readINIParameters()
 
 bool ArrayBot::writeINIParameters()
 {
+    mProperties.write();
 	mJSSettings.writeINIParameters();
     mLifts.writeINIParameters();
     return true;
@@ -194,6 +227,11 @@ ArrayBotJoyStick& ArrayBot::getJoyStick()
 
 bool ArrayBot::enableJoyStick()
 {
+	if(!mJoyStick.isValid())
+    {
+		return false;
+    }
+
     mCoverSlip.attachJoyStick(&getJoyStick());
     mJoyStick.getX1Axis().setSenseOfDirection(1);
 

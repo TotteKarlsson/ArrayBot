@@ -87,12 +87,13 @@
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <VerInfo_Release>1</VerInfo_Release>
         <BCC_wcsu>false</BCC_wcsu>
         <BCC_PCHInject>ArrayBotPCH1.h</BCC_PCHInject>
         <Icon_MainIcon>ArrayBot_Icon1.ico</Icon_MainIcon>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_MinorVer>7</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileDescription=;FileVersion=0.7.0.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileDescription=;FileVersion=0.7.1.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
         <PostBuildEvent><![CDATA[xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y
 xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y
@@ -102,6 +103,7 @@ xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y
 xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y
 xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y
 xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y
+xcopy $(OUTPUTDIR)*.exe $(APP_RELEASES)\ArrayBot /y
 $(PostBuildEvent)]]></PostBuildEvent>
         <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
@@ -220,17 +222,20 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
         <CppCompile Include="Misc.cpp">
+            <BuildOrder>22</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ShuttingDownLogic.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
         <CppCompile Include="UIUtilities.cpp">
             <BuildOrder>11</BuildOrder>
         </CppCompile>
-        <FormResources Include="frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
-        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
-        <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
+        <FormResources Include="frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="frames\TRibbonLifterFrame.dfm"/>
+        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="MainForm.dfm"/>
+        <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
         <FormResources Include="forms\abAddLiftForm.dfm"/>
         <FormResources Include="forms\abAddJoyStickSettingForm.dfm"/>
@@ -318,7 +323,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y</PostBuildEvent>
+        <PostBuildEvent>xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.exe $(APP_RELEASES)\ArrayBot /y</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

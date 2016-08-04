@@ -74,7 +74,7 @@ class TMain : public TRegistryForm
 	TSplitter *Splitter1;
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mArduinoServerPortE;
-	TButton *mASStartBtn;
+	TButton *mArduinoServerStartBtn;
 	TScrollBox *mArduinoSB;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet1;
@@ -93,7 +93,6 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox5;
 	TGroupBox *GroupBox6;
 	TButton *mFrontBackLEDBtn;
-	TButton *mCoaxLEDBtn;
 	TButton *Button1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
@@ -106,11 +105,13 @@ class TMain : public TRegistryForm
 	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall mClearLogMemoBtnClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
-	void __fastcall mASStartBtnClick(TObject *Sender);
+	void __fastcall mArduinoServerStartBtnClick(TObject *Sender);
 	void __fastcall mResetCounterBtnClick(TObject *Sender);
 	void __fastcall PuffNowBtnClick(TObject *Sender);
 	void __fastcall LEDBtnClick(TObject *Sender);
-
+	void __fastcall mAutoPuffCBClick(TObject *Sender);
+	void __fastcall mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift);
 
     private:
         LogFileReader                       mLogFileReader;
@@ -126,8 +127,7 @@ class TMain : public TRegistryForm
 		void __fastcall		                OnException();
 
         vector<TFrame*>					    mFrames;
-        void								onPufferArduinoMessage(const string& msg);
-        void								onSensorArduinoMessage(const string& msg);
+	  	void								onUpdatesFromArduinoServer(const string& msg);
 
 	public:		// User declarations
 		__fastcall 					        TMain(TComponent* Owner);
@@ -135,9 +135,9 @@ class TMain : public TRegistryForm
 
 		void __fastcall                 	AppInBox(mlxStructMessage &Msg);
 
-        ArduinoServer					    mAS;
-        ArduinoDevice&					    mAD1;
-        ArduinoDevice&					    mAD2;
+        ArduinoServer					    mArduinoServer;
+        ArduinoDevice&					    mPufferArduino;
+        ArduinoDevice&					    mSensorArduino;
 
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,    mlxStructMessage,         AppInBox);

@@ -14,6 +14,7 @@ extern string 	gLogFileLocation;
 extern string 	gLogFileName;
 extern string 	gDefaultAppTheme;
 extern string 	gApplicationRegistryRoot;
+extern string 	gAppDataFolder;
 
 bool sendAppMessage(ApplicationMessageEnum msgID, void* s)
 {
@@ -108,13 +109,12 @@ void loadStyles()
 void setupLogging()
 {
 	//Get Application folder
-	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer");
-	if(!folderExists(fldr))
+	if(!folderExists(gAppDataFolder))
 	{
-		createFolder(fldr);
+		createFolder(gAppDataFolder);
 	}
 
-	gLogFileLocation = fldr;
+	gLogFileLocation = gAppDataFolder;
 
 	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
 	clearFile(fullLogFileName);

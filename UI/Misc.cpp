@@ -1,3 +1,4 @@
+#pragma hdrstop
 #include "MainForm.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
@@ -34,95 +35,6 @@ void __fastcall TMain::FrameClosed(TObject *Sender)
 	;
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
-{
-	ShutDownTimer->Enabled = false;
-    if(TRibbonLifterFrame::gIsFrameOpen)
-    {
-    	mRibbonLifterFrame->close();
-    }
-
-	if(mLogFileReader.isRunning())
-	{
-		Log(lDebug) << "Shutting down log file reader";
-		mLogFileReader.stop();
-	}
-
-    if(UIUpdateTimer->Enabled)
-    {
-        UIUpdateTimer->Enabled = false;
-    }
-
-	if(mAB->getJoyStick().isEnabled())
-    {
-		mAB->getJoyStick().disable();
-    }
-
-	if(mAB->isActive())
-    {
-    	if(!mAB->isShuttingDown())
-        {
-	        mXYZUnitFrame1->disable();
-    	    mXYZUnitFrame2->disable();
-	    	mAB->shutDown();
-        }
-        else
-        {
-        	//Weird..
-            mAB->shutDown();
-        }
-    }
-	Close();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
-{
-	Log(lInfo) << "Closing down....";
-
-	//Check if we can close.. abort all threads..
-	CanClose = (mLogFileReader.isRunning()) ? false : true;
-
-	//Check if active stuff is going on.. if so call the ShutDown in the
-    //Timer fire    if(
-	if(mAB->getJoyStick().isEnabled())
-    {
-    	CanClose = false;
-    }
-	else if(mAB->isActive())
-    {
-    	CanClose = false;
-    }
-    else if(UIUpdateTimer->Enabled)
-    {
-    	CanClose = false;
-    }
-   	else if(gSplashForm && gSplashForm->isOnShowTime())
-	{
-		CanClose = false;
-	}
-	else if(TRibbonLifterFrame::gIsFrameOpen)
-    {
-  		CanClose = false;
-    }
-    else
-    {
-    	CanClose = true;
-    }
-
-	if(CanClose == false)
-	{
-		ShutDownTimer->Enabled = true;
-	}
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormClose(TObject *Sender, TCloseAction &Action)
-{
-	Log(lInfo) << "In FormClose";
-}
-
 void __fastcall	TMain::OnException()
 {
 	Log(lInfo) << "Exception TMain::OnException()";
@@ -151,6 +63,7 @@ void __fastcall TMain::logMsg()
 {
     infoMemo->Lines->Insert(0, (vclstr(mLogFileReader.getData())));
     mLogFileReader.purge();
+
 }
 
 //---------------------------------------------------------------------------
@@ -179,12 +92,13 @@ void __fastcall TMain::mAboutBtnClick(TObject *Sender)
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 {
-	int length = ::GetWindowTextLength( hwnd );
-	if(!length )
+	int length = ::GetWindowTextLength(hwnd);
+	if(!length)
+    {
 	    return TRUE;
+    }
 
-	TCHAR* buffer;
-    buffer = new TCHAR[length + 1];
+	TCHAR* buffer = new TCHAR[length + 1];
 	GetWindowText(hwnd, buffer, length + 1);
 
     string s(stdstr(buffer));
@@ -199,5 +113,7 @@ BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 		return FALSE;
 	}
 
+    delete buffer;
 	return TRUE;
 }
+

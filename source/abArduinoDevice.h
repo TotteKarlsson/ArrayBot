@@ -30,24 +30,23 @@ class AB_CORE ArduinoDevice : public ABObject
         string						getName(){return mName;}
 
         void		 				assignInitFunction(InitCallBack cb){init = cb;}
-        void		 				assignMessageReceivedCallBack(MessageReceivedCallBack cb);
+        void		 				assignSerialMessageReceivedCallBack(SerialMessageReceivedCallBack cb);
 
 		bool						connect(int portNr, int baudRate = 9600);
         bool 						isConnected();
         bool						disConnect();
 
-		bool						postMessage(const string& msg);
-        bool                        setPinMode(int pin, bool mode);
         bool						hasMessage();
 		string						getMessage();
 
-        							//Read
-        int                         analogRead(int pin);
-        bool                        digitalRead(int pin);
-
-        							//Write
-        bool                        analogWrite(int pin, int value);
-        bool                        digitalWrite(int pin, bool value);
+//        bool                        setPinMode(int pin, bool mode);
+//        							//Read
+//        int                         analogRead(int pin);
+//        bool                        digitalRead(int pin);
+//
+//        							//Write
+//        bool                        analogWrite(int pin, int value);
+//        bool                        digitalWrite(int pin, bool value);
         bool						send(const string& msg);
 		InitCallBack				init;
 
@@ -58,7 +57,6 @@ class AB_CORE ArduinoDevice : public ABObject
 
         							//A stream makes it easy to compose messages
         std::stringstream		  	mSS;
-
         int					        readSerialPort();
 
 };

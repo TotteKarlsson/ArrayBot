@@ -1,0 +1,144 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D205F2C9-997F-479F-8C2E-0DC7AF7C3730}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dslib\Common\mtkCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\Common\Math\mtkMath.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\Common\IPC\mtkIPC.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Components\DuneComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="UI\ArrayBot.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="apps\arraycam\ArrayCam.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="testing\abArduinoClient\arduinoClient.cbproj">
+            <Dependencies>source\abCore.cbproj</Dependencies>
+        </Projects>
+        <Projects Include="apps\arrayduino\arduinoController.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mtkCommon">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj"/>
+    </Target>
+    <Target Name="mtkCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="mtkMath">
+        <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj"/>
+    </Target>
+    <Target Name="mtkMath:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkMath:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\Math\mtkMath.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="mtkIPC">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj"/>
+    </Target>
+    <Target Name="mtkIPC:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkIPC:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLCommon">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
+    </Target>
+    <Target Name="VCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DuneComponents">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj"/>
+    </Target>
+    <Target Name="DuneComponents:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneComponents:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abCore">
+        <MSBuild Projects="source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayBot">
+        <MSBuild Projects="UI\ArrayBot.cbproj"/>
+    </Target>
+    <Target Name="ArrayBot:Clean">
+        <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayBot:Make">
+        <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayCam">
+        <MSBuild Projects="apps\arraycam\ArrayCam.cbproj"/>
+    </Target>
+    <Target Name="ArrayCam:Clean">
+        <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayCam:Make">
+        <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="arduinoClient" DependsOnTargets="abCore">
+        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj"/>
+    </Target>
+    <Target Name="arduinoClient:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="arduinoClient:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="arduinoController">
+        <MSBuild Projects="apps\arrayduino\arduinoController.cbproj"/>
+    </Target>
+    <Target Name="arduinoController:Clean">
+        <MSBuild Projects="apps\arrayduino\arduinoController.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="arduinoController:Make">
+        <MSBuild Projects="apps\arrayduino\arduinoController.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;VCLCommon;DuneComponents;abCore;ArrayBot;ArrayCam;arduinoClient;arduinoController"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean;ArrayCam:Clean;arduinoClient:Clean;arduinoController:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make;ArrayCam:Make;arduinoClient:Make;arduinoController:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

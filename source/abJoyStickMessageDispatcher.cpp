@@ -9,20 +9,19 @@
 using namespace std;
 using namespace mtk;
 
-JoyStickMessageDispatcher::JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons)
+JoyStickMessageDispatcher::JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons, int& id)
 :
+mJoyStickID(id),
 mJoyStick(js),
 mEnabled(false),
-mCanEnable(false),
 mMoveResolution(100),
 mNrOfButtons(nrOfButtons)
 {
-    mJoyStickID = JOYSTICKID1;
     mUpdateStateTimer.setInterval(30);
 	mUpdateStateTimer.OnTimerC = refresh;
 
    	mEnabled = readCapabilities();
-	mCanEnable = mEnabled;
+
     //Setup buttons
     for(int i = 0; i < mNrOfButtons; i++)
     {
@@ -38,22 +37,59 @@ bool JoyStickMessageDispatcher::isEnabled()
 	return mUpdateStateTimer.isRunning();
 }
 
-bool JoyStickMessageDispatcher::switchJoyStickDevice()
+bool JoyStickMessageDispatcher::isValid()
 {
-	mJoyStickID = (mJoyStickID == JOYSTICKID1) ? JOYSTICKID2 : JOYSTICKID1;
-    return true;
+	return checkCapabilities(mJoyStickID);
 }
 
-
-bool JoyStickMessageDispatcher::enable()
+bool JoyStickMessageDispatcher::enable(int id)
 {
-    mUpdateStateTimer.start();
-    return mCanEnable ?  true : false;
+	mJoyStickID = id;
+
+	if(checkCapabilities(mJoyStickID))
+    {
+    	mEnabled = readCapabilities();
+        if(mEnabled)
+        {
+    		mUpdateStateTimer.start();
+        }
+    }
+    else
+    {
+    	mEnabled = false;
+    }
+    return mEnabled;
 }
 
 void JoyStickMessageDispatcher::disable()
 {
 	mUpdateStateTimer.stop();
+}
+
+bool JoyStickMessageDispatcher::checkCapabilities(int ID)
+{
+    JOYCAPS capabilities;
+    if(ID < 0 || ID > 1)
+    {
+		Log(lError) << "Invalid JoyStickID: "<<-1;
+    	return false;
+    }
+
+    int res = joyGetDevCaps(ID, &capabilities, sizeof(JOYCAPS));
+    if(res != JOYERR_NOERROR)
+    {
+    	if(res == MMSYSERR_NODRIVER)
+        {
+			Log(lError) << "There is no valid driver for the joystick.";
+        }
+        else if(res == MMSYSERR_INVALPARAM)
+        {
+			Log(lError) << "Invalid joystick parameter.";
+        }
+
+        return false;
+    }
+	return true;
 }
 
 bool JoyStickMessageDispatcher::readCapabilities()
@@ -76,8 +112,7 @@ bool JoyStickMessageDispatcher::readCapabilities()
 			Log(lError) << "Invalid joystick parameter.";
         }
 
-		//throw(ABException("Failed getting joystick capablities"));
-        Log(lError) <<"Failed getting joystick capablities";
+        Log(lError) <<"Failed getting joystick capabilities";
         return false;
     }
 	return true;
@@ -125,7 +160,8 @@ void JoyStickMessageDispatcher::refresh()
     {
    	    mJoyStickID = -1;
     	mEnabled = false;
-		throw("Failed getting joystick status");
+        Log(lError) << "Failed getting joystick information";
+        return;
     }
 
     //Check X1 Axis
@@ -133,6 +169,7 @@ void JoyStickMessageDispatcher::refresh()
     {
         mX1Axis.mEvent(mJoyInfo.dwXpos);
     }
+
     mX1Axis.mPosition = mJoyInfo.dwXpos;
 
     if(mJoyStick.mCoverSlipAxesEnabled && mY1Axis.mEvent)
@@ -155,7 +192,35 @@ void JoyStickMessageDispatcher::refresh()
 
     //Process retrieved buttons states
     bitset<32> buttonStates(mJoyInfo.dwButtons);
-    for(int i = 0; i < mNrOfButtons; i++)
+
+    //First process buttons 1-4 (Z and angle control)
+    if(mJoyStick.mWhiskerZButtonsEnabled)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            if(buttonStates.at(i) && mButtons[i].mButtonState == bsUp)
+            {
+                if(mButtons[i].mEvents.first)
+                {
+                    Log(lDebug5) << "Calling OnButton"<<i + 1<<"Down";
+                    mButtons[i].mEvents.first();
+                }
+                mButtons[i].mButtonState = bsDown;
+            }
+
+            else if(!buttonStates.at(i) && mButtons[i].mButtonState == bsDown)
+            {
+                if(mButtons[i].mEvents.second)
+                {
+                    Log(lDebug5) << "Calling OnButton"<<i + 1<<"Up";
+                    mButtons[i].mEvents.second();
+                }
+                mButtons[i].mButtonState = bsUp;
+            }
+        }
+    }
+
+    for(int i = 4; i < mNrOfButtons; i++)
     {
         if(buttonStates.at(i) && mButtons[i].mButtonState == bsUp)
         {
@@ -179,9 +244,9 @@ void JoyStickMessageDispatcher::refresh()
     }
 
     //Process POV event
-    if(mJoyInfo.dwPOV != mPOV.mPOVState)
+    if((mJoyInfo.dwPOV != mPOV.mPOVState) && mJoyStick.mCoverSlipZButtonsEnabled)
     {
-        Log(lInfo) << "POV State changed";
+        Log(lDebug3) << "POV State changed";
 
         //Get out of old state
     	switch(mPOV.mPOVState)

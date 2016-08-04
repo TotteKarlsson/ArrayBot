@@ -13,36 +13,57 @@
 #include "mtkSocketWorker.h"
 #include "abArduinoDevice.h"
 #include <vector>
+#include "mtkTimer.h"
+
 
 using mtk::IPCServer;
 using mtk::IPCMessage;
 using std::vector;
 
 mtk::SocketWorker* AB_CORE createArduinoIPCReceiver(int portNr, int socketHandle, void* parent);
+
+typedef void (__closure *OnMessageUpdateCB)(const string& msg);
 //---------------------------------------------------------------------------
 class AB_CORE ArduinoServer : public IPCServer
 {
     public:
-                                ArduinoServer(int portNumber = 50000);
-	                            ~ArduinoServer();
+                                            ArduinoServer(int portNumber = 50000);
+	                                        ~ArduinoServer();
 
-                                //!The process message is an overide from the base class.
-                                //!Process message implements arduino server specific processing.
-                                //!Messages sent to the server from a client are processed.
-    	bool 					processMessage(IPCMessage& msg);
+                                            //!The process message is an overide from the base class.
+                                            //!Process message implements arduino server specific processing.
+                                            //!Messages sent to the server from a client are processed.
+    	bool 					            processMessage(IPCMessage& msg);
 
-    	ArduinoDevice& 			getArduinoDevice(int dev);
-        bool            		shutDown();
+    	ArduinoDevice& 			            getPufferArduino(){return mPufferArduino;}
+    	ArduinoDevice& 			            getSensorArduino(){return mSensorArduino;}
+        bool            		            shutDown();
 
+		void        						enableAutoPuff();
+		void        						disableAutoPuff();
+        bool					            puff();
+
+        void					            incrementSectionCount(){mSectionCount++;}
+        int						            getSectionCount(){return mSectionCount;}
+        void					            resetSectionCount();
+		void								setPuffAfterSectionCount(int val);
+        void								assignOnUpdateCallBack(OnMessageUpdateCB cb){onMessageUpdateCB = cb;}
+		void								onUpdateClientsTimer();
+        void								broadcastStatus();
 
     protected:
-    							//!Arduino Devices
-		vector<ArduinoDevice*> 	mArduinos;
-    	ArduinoDevice 			mA1;
-    	ArduinoDevice 			mA2;
-		void					messageReceived(const string& msg);
+    							            //!Arduino Devices
+		vector<ArduinoDevice*> 	            mArduinos;
+    	ArduinoDevice 			            mPufferArduino;
+    	ArduinoDevice 			            mSensorArduino;
+        OnMessageUpdateCB					onMessageUpdateCB;
 
-
+        int						            mSectionCount;
+        int									mPuffAfterSectionCount;
+        bool								mAutoPuff;
+		void					            pufferMessageReceived(const string& msg);
+		void					            sensorMessageReceived(const string& msg);
+        void								updateClients(const string msg);
 };
 
 #endif

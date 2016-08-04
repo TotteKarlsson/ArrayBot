@@ -7,14 +7,16 @@
 #include "abArduinoMessageProcessor.h"
 #include "mtkMessageContainer.h"
 #include "Poco/Mutex.h"
+#include "abArduinoClient.h"
 //----------------------------------------------------------------
 using namespace mtk;
 
-ArduinoMessageProcessor::ArduinoMessageProcessor(MessageContainer& _mMessageContainer)
+ArduinoMessageProcessor::ArduinoMessageProcessor(ArduinoClient& client)
 :
 Thread("MessageProcessor"),
 mAllowProcessing(true),
-mMessageContainer(_mMessageContainer)
+mClient(client),
+mMessageContainer(client.mIncomingMessages)
 {
 	//Run will start the worker thread
 	Thread::run();
@@ -23,6 +25,11 @@ mMessageContainer(_mMessageContainer)
 //----------------------------------------------------------------
 ArduinoMessageProcessor::~ArduinoMessageProcessor()
 {}
+
+void ArduinoMessageProcessor::assignOnMessageReceivedCallBack(OnMessageReceivedCB cb)
+{
+	onMessageReceivedCB = cb;
+}
 
 bool ArduinoMessageProcessor::start(bool inThread)
 {
@@ -72,16 +79,12 @@ void ArduinoMessageProcessor::worker()
     mIsFinished = true;
 }
 
-
 void ArduinoMessageProcessor::processMessage(const string& msg)
 {
-//    if(mParent && mParent->IsConnecting() || mAllowProcessing == false)
-//        return;
-//
-//    if(!mSocketClient)
-//        return;
-//
-    //Process each message in the message list
-      Log(lInfo) << "Processed message: "<<msg;
+	if(onMessageReceivedCB)
+    {
+    	onMessageReceivedCB(msg);
+	    Log(lDebug) << "Processed message: "<<msg;
+    }
 }
 

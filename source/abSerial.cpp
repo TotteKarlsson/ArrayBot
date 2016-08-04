@@ -9,8 +9,8 @@ Serial::Serial(int portNr, int baudRate)
 :
 mSP(),
 mSerialWorker(*this, mSP),
-mReceivedCB(NULL),
-mReceivedCB_C(NULL)
+mReceivedCB(NULL)//,
+//mReceivedCB_C(NULL)
 {
     if(portNr != -1)
     {
@@ -26,6 +26,7 @@ bool Serial::connect(int pNr, int baudRate)
     if(setupAndOpenSerialPort(pNr, baudRate))
     {
         Log(lInfo) <<"Connected to COM port: " <<pNr<<" using BaudRate: "<<baudRate;
+
         //Start serving serial port...
         mSerialWorker.start(true);
     }
@@ -38,7 +39,7 @@ bool Serial::connect(int pNr, int baudRate)
 	return true;
 }
 
-void Serial::assignMessageReceivedCallBack(MessageReceivedCallBack cb)
+void Serial::assignMessageReceivedCallBack(SerialMessageReceivedCallBack cb)
 {
 	mReceivedCB = cb;
 }

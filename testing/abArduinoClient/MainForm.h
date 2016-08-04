@@ -26,7 +26,10 @@
 #include "abUIDataStructures.h"
 #include "abApplicationMessages.h"
 #include "mtkIniFile.h"
-#include "mtkSTDStringEdit.h"
+#include "abArduinoClient.h"
+#include "TIntLabel.h"
+#include "mtkFloatLabel.h"
+#include "TPropertyCheckBox.h"
 
 #include <vector>
 using Poco::Timestamp;
@@ -74,6 +77,18 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mArduinoServerPortE;
 	TButton *mASStartBtn;
+	TGroupBox *GroupBox2;
+	TIntLabel *mSectionCountLbl;
+	TButton *mResetCountBtn;
+	TGroupBox *GroupBox3;
+	mtkFloatLabel *mHumidityE;
+	TGroupBox *GroupBox4;
+	mtkFloatLabel *mTemperatureLbl;
+	TGroupBox *GroupBox6;
+	TButton *PuffNowBtn;
+	TGroupBox *GroupBox5;
+	TIntegerLabeledEdit *mPuffAfterSectionCountE;
+	TPropertyCheckBox *mAutoPuffCB;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -82,11 +97,13 @@ class TMain : public TRegistryForm
     void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
-	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall mClearLogMemoBtnClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mASStartBtnClick(TObject *Sender);
-
+	void __fastcall mResetCountBtnClick(TObject *Sender);
+	void __fastcall mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift);
+	void __fastcall mAutoPuffCBClick(TObject *Sender);
 
     private:
         LogFileReader                           mLogFileReader;
@@ -100,8 +117,11 @@ class TMain : public TRegistryForm
 		mtk::Property<mtk::LogLevel>            mLogLevel;
 
 		void __fastcall		                    OnException();
-
         vector<TFrame*>					        mFrames;
+		ArduinoClient 							mArduinoClient;
+
+        										//Callback
+		void 									onMessageReceived(const string& msg);
 
 	public:		// User declarations
 		__fastcall 					            TMain(TComponent* Owner);

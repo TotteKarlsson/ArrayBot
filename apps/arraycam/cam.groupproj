@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{17786869-76D5-488B-8D65-AA6E38A4E217}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ThorCam.cbproj">
+            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="abCore">
+        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ThorCam" DependsOnTargets="abCore">
+        <MSBuild Projects="ThorCam.cbproj"/>
+    </Target>
+    <Target Name="ThorCam:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="ThorCam.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ThorCam:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="ThorCam.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="abCore;ThorCam"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="abCore:Clean;ThorCam:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="abCore:Make;ThorCam:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

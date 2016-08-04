@@ -5,12 +5,15 @@
 
 using namespace mtk;
 
-ArrayBotJoyStick::ArrayBotJoyStick()
+ArrayBotJoyStick::ArrayBotJoyStick(int& joyStickID)
 :
 mEnabled(false),
 mCoverSlipAxesEnabled(false),
 mWhiskerAxesEnabled(false),
-mJSMessageDispatcher(*this, 14)
+mCoverSlipZButtonsEnabled(false),
+mWhiskerZButtonsEnabled(false),
+mJoyStickID(joyStickID),
+mJSMessageDispatcher(*this, 14, mJoyStickID)
 {
     //Associate events with buttons
     mJSMessageDispatcher.setButtonEvents(1, mButton1.down,  mButton1.up);
@@ -37,15 +40,22 @@ mJSMessageDispatcher(*this, 14)
 	mJSMessageDispatcher.setAxisEvent(4,  mY2Axis.Move);
 
 	//Start JS poll
-    mJSMessageDispatcher.enable();
+    mJSMessageDispatcher.enable(joyStickID);
 }
 
 ArrayBotJoyStick::~ArrayBotJoyStick()
 {}
 
-void ArrayBotJoyStick::switchJoyStickDevice()
+bool ArrayBotJoyStick::isValid()
 {
-	mJSMessageDispatcher.switchJoyStickDevice();
+	return mJSMessageDispatcher.isValid();
+}
+
+bool ArrayBotJoyStick::enableJoyStickWithID(int id)
+{
+	mJoyStickID = id;
+	mEnabled = mJSMessageDispatcher.enable(id);
+    return mEnabled;
 }
 
 bool ArrayBotJoyStick::setAxesMaxVelocity(double maxV)
@@ -97,11 +107,47 @@ bool ArrayBotJoyStick::enableWhiskerAxes()
     return true;
 }
 
+bool ArrayBotJoyStick::enableCoverSlipZButtons()
+{
+	mCoverSlipZButtonsEnabled = true;
+    return true;
+}
+
+bool ArrayBotJoyStick::enableWhiskerZButtons()
+{
+	mWhiskerZButtonsEnabled = true;
+    return true;
+}
+
+bool ArrayBotJoyStick::disableCoverSlipZButtons()
+{
+	mCoverSlipZButtonsEnabled = false;
+    return true;
+}
+
+bool ArrayBotJoyStick::disableWhiskerZButtons()
+{
+	mWhiskerZButtonsEnabled = false;
+    return true;
+}
+
 bool ArrayBotJoyStick::enable()
 {
-    mEnabled = mJSMessageDispatcher.enable();
-	mCoverSlipAxesEnabled = true;
-	mWhiskerAxesEnabled = true;
+    mEnabled = mJSMessageDispatcher.enable(mJoyStickID);
+    if(mEnabled)
+    {
+		mCoverSlipAxesEnabled = true;
+		mWhiskerAxesEnabled = true;
+        mCoverSlipZButtonsEnabled = true;
+        mWhiskerZButtonsEnabled = true;
+    }
+    else
+    {
+		mCoverSlipAxesEnabled = false;
+		mWhiskerAxesEnabled = false;
+        mCoverSlipZButtonsEnabled = false;
+        mWhiskerZButtonsEnabled = false;
+    }
 
     return mEnabled;
 }
@@ -111,6 +157,8 @@ bool ArrayBotJoyStick::disable()
     mJSMessageDispatcher.disable();
 	mCoverSlipAxesEnabled = false;
 	mWhiskerAxesEnabled = false;
+    mCoverSlipZButtonsEnabled = false;
+    mWhiskerZButtonsEnabled = false;
 
 	mEnabled = false;
     return true;

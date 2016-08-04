@@ -27,6 +27,10 @@ class AB_CORE XYZUnit : public ABObject
 
 		bool					        enableJSAxes();
 		bool					        disableJSAxes();
+
+		bool					        enableZButtons();
+		bool					        disableZButtons();
+
         void					        attachJoyStick(ArrayBotJoyStick* js);
         void					        detachJoyStick();
 

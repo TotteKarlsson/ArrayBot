@@ -14,20 +14,20 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
-USEFORM("forms\TSplashForm.cpp", SplashForm);
-USEFORM("MainForm.cpp", Main);
-USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame); /* TFrame: File Type */
-USEFORM("frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame); /* TFrame: File Type */
-USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame); /* TFrame: File Type */
 USEFORM("frames\TSensorAndLightArduinoFrame.cpp", SensorAndLightArduinoFrame); /* TFrame: File Type */
+USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame); /* TFrame: File Type */
+USEFORM("MainForm.cpp", Main);
+USEFORM("forms\TSplashForm.cpp", SplashForm);
+USEFORM("frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame); /* TFrame: File Type */
+USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
-extern string       gLogFileName                = "ArduinoServer.log";
-extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArduinoServer\\0.5.0";
-extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArduinoServer");
+extern string       gLogFileName                = "ArduinoController.log";
+extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArduinoController\\0.5.0";
+extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 static HWND         gOtherAppWindow             = NULL;
 extern string       gDefaultAppTheme            = "Iceberg Classico";
-extern string       gRestartMutexName           = "arrayBotRestartMutex";
+extern string       gRestartMutexName           = "arduinoControllerRestartMutex";
 extern string       gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
 extern string       gDateFormat                 = "%Y-%m-%d";
 extern string       gTimeFormat                 = "%H:%M:%S";
@@ -61,18 +61,18 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		}
 
         //Look at this later... does not work yet
-        const char appMutexName [] = "arrayBotAppMutex";
+        const char appMutexName [] = "arduinoControllerAppMutex";
         appMutex = ::CreateMutexA(NULL, FALSE, appMutexName);
         if( ERROR_ALREADY_EXISTS == GetLastError() )
         {
-             Log(lInfo) << "Arraybot is already running!";
+             Log(lInfo) << "ArduinoController is already running!";
             // Program already running somewhere
             ::EnumWindows(FindOtherWindow, NULL);
 
             if(gOtherAppWindow != NULL)
             {
                 //Send a custom message to restore window here..
-                Log(lInfo) << "Arraybot is already running!";
+                Log(lInfo) << "ArduinoController is already running!";
             }
 
             return(1); // Exit program
@@ -95,7 +95,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
             gSplashForm->Close();
         }
 
-		Application->Title = "ArduinoServer - Software for Robots";
+		Application->Title = "ArduinoController - Software for Robots";
 		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->Run();

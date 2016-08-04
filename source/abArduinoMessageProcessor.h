@@ -7,18 +7,22 @@
 
 using mtk::Thread;
 
-
 namespace mtk
 {
 	class MessageContainer;
 }
+
 using mtk::MessageContainer;
+class ArduinoClient;
+typedef void (__closure *OnMessageReceivedCB)(const string& msg);
 
-
+//!The Arduino Message processor processes messages sent from a
+//!Arduino Server.
 class AB_CORE ArduinoMessageProcessor : public Thread
 {
+
     public:
-                                        ArduinoMessageProcessor(MessageContainer& mMessageContainer);
+                                        ArduinoMessageProcessor(ArduinoClient& client);
                                         ~ArduinoMessageProcessor();
 
                                         // overridden from Thread
@@ -30,13 +34,14 @@ class AB_CORE ArduinoMessageProcessor : public Thread
         virtual void                    processMessage(const string& msg);
         void                            suspendProcessing() {mAllowProcessing = false;}
         void                            resumeProcessing()  {mAllowProcessing = true;}
+		void							assignOnMessageReceivedCallBack(OnMessageReceivedCB cb);
 
 	private:
         string                          mServerName;
         bool                            mAllowProcessing;
         MessageContainer&            	mMessageContainer;
-
-//        LogClient*                      mParent;
+        OnMessageReceivedCB		  		onMessageReceivedCB;
+		ArduinoClient&					mClient;
 };
 
 #endif

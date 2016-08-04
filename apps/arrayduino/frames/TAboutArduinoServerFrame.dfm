@@ -849,9 +849,9 @@ object AboutArduinoServerFrame: TAboutArduinoServerFrame
   object Label1: TLabel
     Left = 34
     Top = 16
-    Width = 299
+    Width = 374
     Height = 52
-    Caption = 'ArduinoServer -'
+    Caption = 'Arduino Controller -'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -43

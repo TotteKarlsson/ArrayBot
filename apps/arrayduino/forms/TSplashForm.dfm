@@ -52,7 +52,7 @@ object SplashForm: TSplashForm
       ExplicitWidth = 164
     end
     inherited mChangeLogMemo: TMemo
-      Top = 15
+      Top = -9
       Width = 615
       ExplicitTop = 15
       ExplicitWidth = 615

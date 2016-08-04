@@ -3,7 +3,7 @@
 #include "abABObject.h"
 //---------------------------------------------------------------------------
 
-typedef void (__closure *JoyStickAxisEvent)(int pos); //Need to research this and make it portable
+typedef void (__closure *JoyStickAxisEvent)(int pos);
 
 class JoyStickAxisStateEventDispatcher  : public ABObject
 {

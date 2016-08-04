@@ -1,0 +1,108 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D205F2C9-997F-479F-8C2E-0DC7AF7C3730}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dslib\Common\mtkCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\Common\IPC\mtkIPC.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\supporting_apps\arduino_controller\arduinoController.cbproj">
+            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
+        </Projects>
+        <Projects Include="arduinoClient.cbproj">
+            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
+        </Projects>
+        <Projects Include="arduinoClientCMD.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mtkCommon">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj"/>
+    </Target>
+    <Target Name="mtkCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="mtkIPC">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj"/>
+    </Target>
+    <Target Name="mtkIPC:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkIPC:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLCommon">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
+    </Target>
+    <Target Name="VCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abCore">
+        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="arduinoController" DependsOnTargets="abCore">
+        <MSBuild Projects="..\..\supporting_apps\arduino_controller\arduinoController.cbproj"/>
+    </Target>
+    <Target Name="arduinoController:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="..\..\supporting_apps\arduino_controller\arduinoController.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="arduinoController:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="..\..\supporting_apps\arduino_controller\arduinoController.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="arduinoClient" DependsOnTargets="abCore">
+        <MSBuild Projects="arduinoClient.cbproj"/>
+    </Target>
+    <Target Name="arduinoClient:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="arduinoClient.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="arduinoClient:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="arduinoClient.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="arduinoClientCMD">
+        <MSBuild Projects="arduinoClientCMD.cbproj"/>
+    </Target>
+    <Target Name="arduinoClientCMD:Clean">
+        <MSBuild Projects="arduinoClientCMD.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="arduinoClientCMD:Make">
+        <MSBuild Projects="arduinoClientCMD.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mtkCommon;mtkIPC;VCLCommon;abCore;arduinoController;arduinoClient;arduinoClientCMD"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;VCLCommon:Clean;abCore:Clean;arduinoController:Clean;arduinoClient:Clean;arduinoClientCMD:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;VCLCommon:Make;abCore:Make;arduinoController:Make;arduinoClient:Make;arduinoClientCMD:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
