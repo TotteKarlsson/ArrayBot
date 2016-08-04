@@ -17,7 +17,7 @@ class TMainForm : public TForm
 {
 	__published:	// IDE-managed Components
 		TPanel *Panel1;
-	TButton *Button1;
+	TButton *mCameraStartLiveBtn;
 	TTimer *Timer1;
 	TMemo *infoMemo;
 	TTimer *mShutDownTimer;
@@ -25,7 +25,9 @@ class TMainForm : public TForm
 	TButton *Button2;
 	TCheckBox *CheckBox1;
 	TPanel *Panel2;
-	void __fastcall Button1Click(TObject *Sender);
+	TSplitter *Splitter1;
+	TSplitter *Splitter2;
+	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Timer1Timer(TObject *Sender);
@@ -50,7 +52,6 @@ class TMainForm : public TForm
         HWND 					GetSafeHwnd();
 
 		bool					openCamera();
-		void					exitCamera();
 
     public:		// User declarations
  			       __fastcall TMainForm(TComponent* Owner);

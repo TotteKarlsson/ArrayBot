@@ -21,14 +21,14 @@
         <Projects Include="source\abCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="testing\abArduinoClient\arduinoClient.cbproj">
-            <Dependencies>source\abCore.cbproj</Dependencies>
-        </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="apps\arraycam\ArrayCam.cbproj">
             <Dependencies/>
+        </Projects>
+        <Projects Include="testing\abArduinoClient\arduinoClient.cbproj">
+            <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
         <Projects Include="apps\arrayduino\arduinoController.cbproj">
             <Dependencies/>
@@ -95,15 +95,6 @@
     <Target Name="abCore:Make">
         <MSBuild Projects="source\abCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="arduinoClient" DependsOnTargets="abCore">
-        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj"/>
-    </Target>
-    <Target Name="arduinoClient:Clean" DependsOnTargets="abCore:Clean">
-        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="arduinoClient:Make" DependsOnTargets="abCore:Make">
-        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="ArrayBot">
         <MSBuild Projects="UI\ArrayBot.cbproj"/>
     </Target>
@@ -122,6 +113,15 @@
     <Target Name="ArrayCam:Make">
         <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="arduinoClient" DependsOnTargets="abCore">
+        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj"/>
+    </Target>
+    <Target Name="arduinoClient:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="arduinoClient:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="arduinoController">
         <MSBuild Projects="apps\arrayduino\arduinoController.cbproj"/>
     </Target>
@@ -132,13 +132,13 @@
         <MSBuild Projects="apps\arrayduino\arduinoController.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;VCLCommon;DuneComponents;abCore;arduinoClient;ArrayBot;ArrayCam;arduinoController"/>
+        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;VCLCommon;DuneComponents;abCore;ArrayBot;ArrayCam;arduinoClient;arduinoController"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;arduinoClient:Clean;ArrayBot:Clean;ArrayCam:Clean;arduinoController:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;ArrayBot:Clean;ArrayCam:Clean;arduinoClient:Clean;arduinoController:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;arduinoClient:Make;ArrayBot:Make;ArrayCam:Make;arduinoController:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;ArrayBot:Make;ArrayCam:Make;arduinoClient:Make;arduinoController:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

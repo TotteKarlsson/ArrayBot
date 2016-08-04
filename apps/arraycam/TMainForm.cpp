@@ -29,18 +29,28 @@ void __fastcall TMainForm::logMsg()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::Button1Click(TObject *Sender)
+void __fastcall TMainForm::mCameraStartLiveBtnClick(TObject *Sender)
 {
-	Log(lDebug) << "Init camera..";
-
-	//Live
-	if( !mCamera.IsInit() )
-        openCamera();
-
-    if( mCamera.IsInit() )
+	if(mCameraStartLiveBtn->Caption == "Start")
     {
-        mCamera.CaptureVideo( IS_WAIT );
-//		Timer1->Enabled = true;
+        Log(lDebug) << "Init camera..";
+
+        //Live
+        if( !mCamera.IsInit() )
+        {
+            openCamera();
+        }
+
+        if( mCamera.IsInit() )
+        {
+            mCamera.CaptureVideo( IS_WAIT );
+		    mCameraStartLiveBtn->Caption = "Stop";
+        }
+    }
+    else
+    {
+		mCamera.exitCamera();
+	    mCameraStartLiveBtn->Caption = "Start";
     }
 }
 
@@ -79,17 +89,12 @@ bool TMainForm::openCamera()
 	mCamera.openCamera(this->Handle);
 }
 
-void TMainForm::exitCamera()
-{
-	mCamera.exitCamera() ;
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
 	if(Key == vkEscape)
     {
-	    exitCamera();
+		mCamera.exitCamera();
     	Close();
     }
 }
@@ -132,7 +137,7 @@ void __fastcall TMainForm::mShutDownTimerTimer(TObject *Sender)
 
     if( mCamera.IsInit())
     {
-    	exitCamera();
+    	mCamera.exitCamera();
     }
 
     Close();
