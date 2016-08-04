@@ -238,10 +238,21 @@ void TCubeStepperMotor::stop(bool inThread)
 
 void TCubeStepperMotor::stopProfiled(bool inThread)
 {
-    int e = SCC_StopProfiled(mSerial.c_str());
-    if(e != 0)
+	if(inThread)
     {
-        Log(lError) <<tlError(e);
+    	//Check if motor is moving to absolute position
+		MotorCommand cmd(mcStopProfiled);
+		post(cmd);
+        mMotorCommandsPending++;
+    }
+    else
+    {
+		mMotorCommandsPending--;
+        int e = SCC_StopProfiled(mSerial.c_str());
+        if(e)
+        {
+            Log(lError) <<tlError(e);
+        }
     }
 }
 

@@ -1,5 +1,5 @@
-#ifndef MainFrameH
-#define MainFrameH
+#ifndef TMainFormH
+#define TMainFormH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -24,6 +24,7 @@ class TMainForm : public TForm
 	TTrackBar *TrackBar1;
 	TButton *Button2;
 	TCheckBox *CheckBox1;
+	TPanel *Panel2;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);

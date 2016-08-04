@@ -244,7 +244,7 @@ void JoyStickMessageDispatcher::refresh()
     }
 
     //Process POV event
-    if(mJoyInfo.dwPOV != mPOV.mPOVState && mJoyStick.mCoverSlipZButtonsEnabled)
+    if((mJoyInfo.dwPOV != mPOV.mPOVState) && mJoyStick.mCoverSlipZButtonsEnabled)
     {
         Log(lDebug3) << "POV State changed";
 

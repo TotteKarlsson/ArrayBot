@@ -4,7 +4,7 @@
         <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
-        <MainSource>ThorCam.cpp</MainSource>
+        <MainSource>ArrayCam.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -99,10 +99,10 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="ThorCam.cpp">
+        <CppCompile Include="ArrayCam.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="ThorCamPCH1.h">
+        <PCHCompile Include="ArrayCamPCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
         <CppCompile Include="TMainForm.cpp">
@@ -130,7 +130,7 @@
         <BorlandProject>
             <CPlusPlusBuilder.Personality>
                 <Source>
-                    <Source Name="MainSource">ThorCam.cpp</Source>
+                    <Source Name="MainSource">ArrayCam.cpp</Source>
                 </Source>
                 <VersionInfo>
                     <VersionInfo Name="IncludeVerInfo">False</VersionInfo>

@@ -9,12 +9,12 @@ using namespace mtk;
 JoyStickAxis::JoyStickAxis()
 :
 	mMaxPosition(65535),
-    mNumberOfGears(10),
+    mNumberOfGears(10000),
     mMaxVelocity(0),
 	mAcceleration(0),
     mIsEnabled(false),
     mZeroInMiddle(true),
-	mRunningAverage(0),
+	mMotorVelocity(0),
 	mAlpha(1),
     mSenseOfDirection(1),
     mMotor(NULL)
@@ -90,6 +90,7 @@ double JoyStickAxis::getCurrentVelocity()
 	return mLastSetVelocity;
 }
 
+
 void JoyStickAxis::Move(int newPosition)
 {
 	if(!mMotor || !isEnabled())
@@ -97,42 +98,60 @@ void JoyStickAxis::Move(int newPosition)
     	return;
     }
 
-	double fullVelRange = getMaxVelocity();
-    int    nrOfSteps  	= getNumberOfGears();
-	double stepSize 	= fullVelRange  / nrOfSteps;
+    //Scale the incoming position to be in the motors velocity range,
+    double scaledPosition 	= ((newPosition)  - mMaxPosition/2.0 ); //-32767.5 -> +32767.5
+    scaledPosition 			= (scaledPosition/mMaxPosition) * 2.0; //-1 -> +1
 
-	double scalingFactor = (fullVelRange * 2.0)/ mMaxPosition;
-	double newVelocity  = (newPosition - mMaxPosition/2.0) * scalingFactor;
 
-    mRunningAverage = newVelocity * mSenseOfDirection;//  * mAlpha  + (1.0 - mAlpha) * mRunningAverage;
+    int    nrOfSteps = getNumberOfGears();
+	double stepSize  = mMaxVelocity  / nrOfSteps;
 
-    if( fabs(mRunningAverage) <= stepSize)
+    mMotorVelocity = pow(scaledPosition, 3.0) * mSenseOfDirection;
+   	mMotorVelocity *= mMaxVelocity;
+    if( fabs(mMotorVelocity) <= stepSize)
     {
     	MotorCommandEnum c = mMotor->getLastCommand();
     	if(mMotor->isActive() &&  c != mcStopHard)
         {
-        	mMotor->stop();
+        	//Bring down velocity manually to zero
+            double v = mMotor->getJogVelocity();
+            mMotor->setJogMoveParameters(fabs(v*.6), 3.0);
+
+            if(v < 0.001)
+            {
+          		mMotor->stopProfiled();
+            }
+            else if (mMotorVelocity > 0)
+            {
+                mMotor->jogForward();
+            }
+            else
+            {
+                mMotor->jogReverse();
+            }
+
+
         }
-        return;
     }
     else 	//Check if joystick value have changed more than the step
     {
-    	//TODO::Write a function for this
-		if(fabs((mRunningAverage - mLastSetVelocity)) < stepSize/3.)
-        {
-        	//Do nothing
-            //Log (lDebug) << "Doing nothing..";
-	        return;
-        }
+                //TODO::Write a function for this
+        //		if(fabs((mMotorVelocity - mLastSetVelocity)) < stepSize/3.)
+        //        {
+        //        	//Do nothing
+        //            //Log (lDebug) << "Doing nothing..";
+        //	        return;
+        //        }
 
-	    Log(lDebug3) << "Axis numbers: ("<<newPosition<<","<<newVelocity<<","<<stepSize<<")";
-        Log(lDebug3) << "Setting jog velocity: "<<fabs(mRunningAverage);
+	    Log(lDebug3) << "Axis numbers: ("<<newPosition<<","<<scaledPosition<<","<<stepSize<<")";
+        Log(lDebug3) << "Setting jog velocity: "<<fabs(mMotorVelocity);
 
-		mMotor->setJogVelocity(fabs(mRunningAverage));
-   		mLastSetVelocity = mRunningAverage;
+
+		mMotor->setJogVelocity(fabs(mMotorVelocity));
+   		mLastSetVelocity = mMotorVelocity;
 
         //Forward or reverse?
-        if (mRunningAverage > stepSize)
+        if (mMotorVelocity > 0)
         {
 			mMotor->jogForward();
         }

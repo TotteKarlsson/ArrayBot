@@ -1,6 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "MainFrame.h"
+#include "TMainForm.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "mtkWin32Utils.h"
