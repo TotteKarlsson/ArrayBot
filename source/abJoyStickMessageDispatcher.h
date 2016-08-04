@@ -13,9 +13,9 @@
 
 using mtk::Timer;
 using std::deque;
-typedef deque<JoyStickButtonStateEventDispatcher> ButtonDeque;
-typedef JoyStickAxisStateEventDispatcher JSAxis;
-typedef JoyStickPOVStateEventDispatcher JSPOV; //!Point of view dispatcher
+typedef deque<JoyStickButtonStateEventDispatcher> 	ButtonDeque;
+typedef JoyStickAxisStateEventDispatcher 			JSAxis;
+typedef JoyStickPOVStateEventDispatcher 			JSPOV; //!Point of view dispatcher
 
 
 class ArrayBotJoyStick;

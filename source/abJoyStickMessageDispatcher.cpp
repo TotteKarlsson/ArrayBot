@@ -11,11 +11,11 @@ using namespace mtk;
 
 JoyStickMessageDispatcher::JoyStickMessageDispatcher(ArrayBotJoyStick& js, int nrOfButtons, int& id)
 :
+mJoyStickID(id),
 mJoyStick(js),
 mEnabled(false),
 mMoveResolution(100),
-mNrOfButtons(nrOfButtons),
-mJoyStickID(id)
+mNrOfButtons(nrOfButtons)
 {
     mUpdateStateTimer.setInterval(30);
 	mUpdateStateTimer.OnTimerC = refresh;

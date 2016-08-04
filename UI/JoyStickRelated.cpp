@@ -99,8 +99,8 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
 
     // Update setting from edits
     jss->set(mMaxXYJogVelocityJoystick->getValue(), mXYJogAccelerationJoystick->getValue(),
-			 mMaxZJogVelocityJoystick->getValue(), mZJogAccelerationJoystick->getValue(),
-             mAngleControlVelE->getValue(), mAngleControllerAccE->getValue()
+			 mMaxZJogVelocityJoystick->getValue(),  mZJogAccelerationJoystick->getValue(),
+             mAngleControlVelE->getValue(),         mAngleControllerAccE->getValue()
              );
 
 	mAB->writeINIParameters();
