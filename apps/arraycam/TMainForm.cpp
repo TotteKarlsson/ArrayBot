@@ -34,15 +34,17 @@ void __fastcall TMainForm::mCameraStartLiveBtnClick(TObject *Sender)
 	if(mCameraStartLiveBtn->Caption == "Start")
     {
         Log(lDebug) << "Init camera..";
-
         //Live
-        if( !mCamera.IsInit() )
+        if(!mCamera.IsInit())
         {
             openCamera();
         }
 
-        if( mCamera.IsInit() )
+        if(mCamera.IsInit())
         {
+        	int x, y;
+       		mCamera.GetMaxImageSize(&x,&y);
+            Log(lInfo) << "Max image size (x,y): ("<<x<<", "<<y<<")";
             mCamera.CaptureVideo( IS_WAIT );
 		    mCameraStartLiveBtn->Caption = "Stop";
         }
@@ -57,13 +59,13 @@ void __fastcall TMainForm::mCameraStartLiveBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormCreate(TObject *Sender)
 {
-	mDisplayHandle 	= this->Panel1->Handle;
+	mDisplayHandle 	= this->mCameraStreamPanel->Handle;
+	mCameraStartLiveBtnClick(Sender);
+    mAutoGainCB->Checked = true;
 }
 
-//LRESULT TMainForm::OnUSBCameraMessage( WPARAM wParam)//, LPARAM lParam )
 LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
 {
-
     switch ( msg.WParam )
     {
         case IS_DEVICE_REMOVED:
@@ -76,7 +78,9 @@ LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
 
         case IS_FRAME:
             if(mCamera.mImageMemory != NULL)
+            {
                 mCamera.RenderBitmap(mCamera.mMemoryId, mDisplayHandle, IS_RENDER_FIT_TO_WINDOW);
+            }
         break;
     }
 
@@ -157,16 +161,18 @@ void __fastcall TMainForm::Button2Click(TObject *Sender)
 {
 	double fps(0);
 	is_GetFramesPerSecond(mCamera.GetCameraHandle(), &fps);
-
     Log(lInfo) << "Frames per second: " << fps;
 }
 
-
-void __fastcall TMainForm::CheckBox1Click(TObject *Sender)
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mAutoGainCBClick(TObject *Sender)
 {
+//	if(mAutoGainCB->Checked)
+//    {
     HCAM hCam = mCamera.GetCameraHandle();
+
     //Enable auto gain control:
-    double dEnable = CheckBox1->Checked ? 1 : 0;
+    double dEnable = mAutoGainCB->Checked ? 1 : 0;
     int ret = is_SetAutoParameter (hCam, IS_SET_ENABLE_AUTO_GAIN, &dEnable, 0);
 
     //Set brightness setpoint to 128:
@@ -176,6 +182,23 @@ void __fastcall TMainForm::CheckBox1Click(TObject *Sender)
     //Return shutter control limit:
     double maxShutter;
     ret = is_SetAutoParameter (hCam, IS_GET_AUTO_SHUTTER_MAX, &maxShutter, 0);
+}
+
+
+void __fastcall TMainForm::RadioGroup1Click(TObject *Sender)
+{
+//	//if proportional
+//    if(RadioGroup1->ItemIndex == 0)
+//    {
+//    	mCameraStreamPanel->Align = alNone;
+//       	int x, y;
+//  		mCamera.GetMaxImageSize(&x,&y);
+//		mCameraStreamPanel->Width = x;
+//		mCameraStreamPanel->Height = y;
+//
+//        //Fit stream panel on the backpanel
+//        double wRatio = mCameraBackPanel->Width /
+//    }
 }
 //---------------------------------------------------------------------------
 

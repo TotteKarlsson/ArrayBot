@@ -115,21 +115,20 @@ void JoyStickAxis::Move(int newPosition)
         {
         	//Bring down velocity manually to zero
             double v = mMotor->getJogVelocity();
-            mMotor->setJogMoveParameters(fabs(v*.6), 3.0);
+//            mMotor->setJogMoveParameters(fabs(v*.6), 3.0);
 
-            if(v < 0.001)
+//            if(v < 0.001)
             {
           		mMotor->stopProfiled();
             }
-            else if (mMotorVelocity > 0)
-            {
-                mMotor->jogForward();
-            }
-            else
-            {
-                mMotor->jogReverse();
-            }
-
+//            else if (mMotorVelocity > 0)
+//            {
+//                mMotor->jogForward();
+//            }
+//            else
+//            {
+//                mMotor->jogReverse();
+//            }
 
         }
     }

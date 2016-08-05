@@ -36,14 +36,6 @@ object MainForm: TMainForm
     ExplicitTop = 184
     ExplicitHeight = 100
   end
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 822
-    Height = 485
-    Align = alClient
-    TabOrder = 0
-  end
   object infoMemo: TMemo
     Left = 0
     Top = 488
@@ -51,7 +43,7 @@ object MainForm: TMainForm
     Height = 175
     Align = alBottom
     ScrollBars = ssVertical
-    TabOrder = 1
+    TabOrder = 0
   end
   object Panel2: TPanel
     Left = 825
@@ -59,7 +51,7 @@ object MainForm: TMainForm
     Width = 142
     Height = 485
     Align = alRight
-    TabOrder = 2
+    TabOrder = 1
     object mCameraStartLiveBtn: TButton
       Left = 1
       Top = 1
@@ -80,25 +72,86 @@ object MainForm: TMainForm
       TabOrder = 1
       OnClick = Button2Click
     end
-    object CheckBox1: TCheckBox
+    object GroupBox1: TGroupBox
       Left = 1
       Top = 139
       Width = 140
-      Height = 17
+      Height = 150
       Align = alTop
-      Caption = 'CheckBox1'
+      Caption = 'Settings'
       TabOrder = 2
-      OnClick = CheckBox1Click
+      object mAutoGainCB: TCheckBox
+        Left = 2
+        Top = 15
+        Width = 136
+        Height = 17
+        Align = alTop
+        Caption = 'Auto Gain'
+        TabOrder = 0
+        OnClick = mAutoGainCBClick
+        ExplicitLeft = 1
+        ExplicitTop = 139
+        ExplicitWidth = 140
+      end
+      object TrackBar1: TTrackBar
+        Left = 2
+        Top = 32
+        Width = 136
+        Height = 69
+        Align = alTop
+        Max = 1000
+        Min = 1
+        Position = 1
+        ShowSelRange = False
+        TabOrder = 1
+        ThumbLength = 50
+        TickMarks = tmBoth
+        TickStyle = tsNone
+        OnChange = TrackBar1Change
+        ExplicitLeft = 1
+        ExplicitTop = 139
+        ExplicitWidth = 140
+      end
     end
-    object TrackBar1: TTrackBar
+    object RadioGroup1: TRadioGroup
       Left = 1
-      Top = 156
+      Top = 289
       Width = 140
-      Height = 45
+      Height = 105
       Align = alTop
-      Max = 1000
+      Caption = 'Sizing'
+      Enabled = False
+      ItemIndex = 1
+      Items.Strings = (
+        'Proportional'
+        'Stretched')
       TabOrder = 3
-      OnChange = TrackBar1Change
+      OnClick = RadioGroup1Click
+      ExplicitLeft = 6
+      ExplicitTop = 328
+      ExplicitWidth = 185
+    end
+  end
+  object mCameraBackPanel: TPanel
+    Left = 0
+    Top = 0
+    Width = 822
+    Height = 485
+    Align = alClient
+    TabOrder = 2
+    ExplicitLeft = 280
+    ExplicitTop = 128
+    ExplicitWidth = 393
+    ExplicitHeight = 249
+    object mCameraStreamPanel: TPanel
+      Left = 1
+      Top = 1
+      Width = 820
+      Height = 483
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = 0
+      ExplicitTop = -1
     end
   end
   object Timer1: TTimer
@@ -112,7 +165,7 @@ object MainForm: TMainForm
     Enabled = False
     Interval = 10
     OnTimer = mShutDownTimerTimer
-    Left = 808
-    Top = 232
+    Left = 672
+    Top = 152
   end
 end

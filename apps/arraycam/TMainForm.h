@@ -16,17 +16,20 @@
 class TMainForm : public TForm
 {
 	__published:	// IDE-managed Components
-		TPanel *Panel1;
+	TPanel *mCameraStreamPanel;
 	TButton *mCameraStartLiveBtn;
 	TTimer *Timer1;
 	TMemo *infoMemo;
 	TTimer *mShutDownTimer;
 	TTrackBar *TrackBar1;
 	TButton *Button2;
-	TCheckBox *CheckBox1;
+	TCheckBox *mAutoGainCB;
 	TPanel *Panel2;
 	TSplitter *Splitter1;
 	TSplitter *Splitter2;
+	TPanel *mCameraBackPanel;
+	TGroupBox *GroupBox1;
+	TRadioGroup *RadioGroup1;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -35,7 +38,8 @@ class TMainForm : public TForm
 	void __fastcall mShutDownTimerTimer(TObject *Sender);
 	void __fastcall TrackBar1Change(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
-	void __fastcall CheckBox1Click(TObject *Sender);
+	void __fastcall mAutoGainCBClick(TObject *Sender);
+	void __fastcall RadioGroup1Click(TObject *Sender);
 
 
     private:	// User declarations

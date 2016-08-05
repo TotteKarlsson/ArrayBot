@@ -1,4 +1,4 @@
-/*****************************************************************************/
+﻿/*****************************************************************************/
 /*! \file    uc480.h
 
 *   \date    Date: 2014/03/10
@@ -768,7 +768,7 @@ extern "C" {
 // ----------------------------------------------------------------------------
 // Auto Control Parameter
 // ----------------------------------------------------------------------------
-#define IS_SET_ENABLE_AUTO_GAIN                                        0x8800    
+#define IS_SET_ENABLE_AUTO_GAIN                                        0x8800
 #define IS_GET_ENABLE_AUTO_GAIN                                        0x8801    
 #define IS_SET_ENABLE_AUTO_SHUTTER                                     0x8802    
 #define IS_GET_ENABLE_AUTO_SHUTTER                                     0x8803    
@@ -785,11 +785,11 @@ extern "C" {
 #define IS_SET_ENABLE_AUTO_SENSOR_FRAMERATE                            0x8814    
 #define IS_GET_ENABLE_AUTO_SENSOR_FRAMERATE                            0x8815    
 #define IS_SET_ENABLE_AUTO_SENSOR_WHITEBALANCE                         0x8816    
-#define IS_GET_ENABLE_AUTO_SENSOR_WHITEBALANCE                         0x8817    
+#define IS_GET_ENABLE_AUTO_SENSOR_WHITEBALANCE                         0x8817
 
 #define IS_SET_AUTO_REFERENCE                                          0x8000    
 #define IS_GET_AUTO_REFERENCE                                          0x8001    
-#define IS_SET_AUTO_GAIN_MAX                                           0x8002    
+#define IS_SET_AUTO_GAIN_MAX                                           0x8002
 #define IS_GET_AUTO_GAIN_MAX                                           0x8003    
 #define IS_SET_AUTO_SHUTTER_MAX                                        0x8004    
 #define IS_GET_AUTO_SHUTTER_MAX                                        0x8005    
