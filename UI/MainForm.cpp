@@ -26,6 +26,8 @@
 #pragma link "TIntLabel"
 #pragma link "TPropertyCheckBox"
 #pragma link "mtkFloatLabel"
+#pragma link "TAboutArrayBotFrame"
+#pragma link "TAboutArrayBot_2Frame"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -466,6 +468,11 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     {
     	//Reload the currently selected sequence
 		mABProcessSequencerFrame->mSequencesCBChange(Sender);
+    }
+
+	else if(PageControl1->TabIndex == pcAbout)
+    {
+		TAboutArrayBotFrame_21->populate();
     }
 }
 

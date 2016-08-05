@@ -1,3 +1,9 @@
+Release 0.7.2 (Aug 4)
+=======================
+* Added Arduino client code to main UI
+* Added code to automatically init sequence on sequence tab
+* Added page with About info in order to save space on right UI panel
+
 Release 0.7.1 (Aug 4)
 =======================
 * Added icon to ArrayCam

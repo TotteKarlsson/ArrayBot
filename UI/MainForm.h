@@ -31,6 +31,8 @@
 #include "TIntLabel.h"
 #include "TPropertyCheckBox.h"
 #include "mtkFloatLabel.h"
+#include "TAboutArrayBotFrame.h"
+#include "TAboutArrayBot_2Frame.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -98,7 +100,6 @@ class TMain : public TRegistryForm
 	TSpeedButton *LiftBtn;
 	TComboBox *mLiftCB;
 	TComboBox *LogLevelCB;
-	TSpeedButton *mAboutBtn;
 	TTabSheet *mMoveSequencesPage;
 	TTimer *WaitForDeviceInitTimer;
 	TPanel *mBottomPanel;
@@ -128,6 +129,8 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mArduinoServerPortE;
 	TButton *mASStartBtn;
+	TTabSheet *TabSheet3;
+	TAboutArrayBotFrame_2 *TAboutArrayBotFrame_21;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -162,7 +165,10 @@ class TMain : public TRegistryForm
 	void __fastcall mAutoPuffCBClick(TObject *Sender);
 
     private:
-		enum PageControlTabs {pcMain = 0,  pcMotors = 1, pcMoveSequences = 2, pcSettings = 3, pcLogs = 4};
+		enum PageControlTabs 					{pcMain = 0,  pcMotors = 1,
+        										pcMoveSequences = 2, pcSettings = 3,
+                                                pcLogs = 4, pcAbout = 5};
+
         LogFileReader                           mLogFileReader;
         void __fastcall                         logMsg();
 

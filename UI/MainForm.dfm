@@ -27,28 +27,17 @@ object Main: TMain
     Height = 881
     Align = alRight
     TabOrder = 0
-    object mAboutBtn: TSpeedButton
-      Left = 1
-      Top = 1
-      Width = 181
-      Height = 134
-      Align = alTop
-      AllowAllUp = True
-      Caption = 'About'
-      OnClick = mAboutBtnClick
-      ExplicitTop = -57
-      ExplicitWidth = 125
-    end
     object mJSCSBtn: TSpeedButton
       Left = 1
-      Top = 135
+      Top = 138
       Width = 181
       Height = 138
       Align = alTop
       AllowAllUp = True
       Caption = 'Enable JS'
       OnClick = JSControlClick
-      ExplicitWidth = 125
+      ExplicitLeft = 6
+      ExplicitTop = 347
     end
     object BottomBtnPanel: TPanel
       Left = 1
@@ -81,12 +70,13 @@ object Main: TMain
     end
     object GroupBox5: TGroupBox
       Left = 1
-      Top = 337
+      Top = 1
       Width = 181
       Height = 73
       Align = alTop
       Caption = 'Temperature'
       TabOrder = 1
+      ExplicitTop = -18
       object mTemperatureLbl: mtkFloatLabel
         Left = 40
         Top = 31
@@ -104,12 +94,13 @@ object Main: TMain
     end
     object GroupBox6: TGroupBox
       Left = 1
-      Top = 273
+      Top = 74
       Width = 181
       Height = 64
       Align = alTop
       Caption = 'Humidity'
       TabOrder = 2
+      ExplicitTop = 139
       object mHumidityE: mtkFloatLabel
         Left = 30
         Top = 31
@@ -195,7 +186,6 @@ object Main: TMain
             Align = alLeft
             Caption = 'Auto Puff Control'
             TabOrder = 1
-            ExplicitLeft = 532
             object mPuffAfterSectionCountE: TIntegerLabeledEdit
               Left = 152
               Top = 50
@@ -698,6 +688,35 @@ object Main: TMain
               Items.Strings = (
                 'INFO'
                 'Everything')
+            end
+          end
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = 'About'
+        ImageIndex = 6
+        inline TAboutArrayBotFrame_21: TAboutArrayBotFrame_2
+          Left = 0
+          Top = 0
+          Width = 894
+          Height = 809
+          Align = alClient
+          TabOrder = 0
+          ExplicitLeft = 304
+          ExplicitTop = 144
+          inherited GroupBox1: TGroupBox
+            Width = 894
+            Height = 623
+            inherited Memo1: TMemo
+              Top = 25
+              Width = 890
+              Height = 596
+            end
+          end
+          inherited Panel1: TPanel
+            Width = 894
+            inherited Image1: TImage
+              Left = 708
             end
           end
         end

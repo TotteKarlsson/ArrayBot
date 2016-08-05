@@ -73,9 +73,6 @@ Coordinates=227,462,47,33
 [Button5]
 Coordinates=168,462,53,33
 
-[mAboutBtn]
-Coordinates=89,462,70,33
-
 [ScrollBox1]
 Coordinates=20,462,68,33
 
@@ -107,7 +104,7 @@ Coordinates=776,533,81,33
 Coordinates=159,373,128,33
 
 []
-Coordinates=228,373,67,33
+Coordinates=89,462,70,33
 
 [mBottomPanel]
 Coordinates=750,333,87,51
