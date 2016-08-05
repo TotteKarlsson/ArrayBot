@@ -26,7 +26,6 @@ TMain *Main;
 extern string           gLogFileLocation;
 extern string           gLogFileName;
 extern string           gAppDataFolder;
-
 extern bool             gAppIsStartingUp;
 using namespace mtk;
 
@@ -254,5 +253,6 @@ void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
 		mArduinoClient.disableAutoPuff();
     }
 }
+
 
 

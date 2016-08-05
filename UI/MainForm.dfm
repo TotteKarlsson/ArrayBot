@@ -27,7 +27,6 @@ object Main: TMain
     Height = 881
     Align = alRight
     TabOrder = 0
-    ExplicitHeight = 791
     object mAboutBtn: TSpeedButton
       Left = 1
       Top = 1
@@ -59,7 +58,6 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      ExplicitTop = 538
       object Button5: TSpeedButton
         Left = 1
         Top = 126
@@ -81,6 +79,52 @@ object Main: TMain
         ExplicitWidth = 123
       end
     end
+    object GroupBox5: TGroupBox
+      Left = 1
+      Top = 337
+      Width = 181
+      Height = 73
+      Align = alTop
+      Caption = 'Temperature'
+      TabOrder = 1
+      object mTemperatureLbl: mtkFloatLabel
+        Left = 40
+        Top = 31
+        Width = 43
+        Height = 23
+        Caption = '-1.00'
+        ValueString = '-1.00'
+        Value = -1.000000000000000000
+        TheFont.Charset = DEFAULT_CHARSET
+        TheFont.Color = clWindowText
+        TheFont.Height = -19
+        TheFont.Name = 'Tahoma'
+        TheFont.Style = []
+      end
+    end
+    object GroupBox6: TGroupBox
+      Left = 1
+      Top = 273
+      Width = 181
+      Height = 64
+      Align = alTop
+      Caption = 'Humidity'
+      TabOrder = 2
+      object mHumidityE: mtkFloatLabel
+        Left = 30
+        Top = 31
+        Width = 43
+        Height = 23
+        Caption = '-1.00'
+        ValueString = '-1.00'
+        Value = -1.000000000000000000
+        TheFont.Charset = DEFAULT_CHARSET
+        TheFont.Color = clWindowText
+        TheFont.Height = -19
+        TheFont.Name = 'Tahoma'
+        TheFont.Style = []
+      end
+    end
   end
   object TopPanel: TPanel
     Left = 0
@@ -91,7 +135,6 @@ object Main: TMain
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
     TabOrder = 1
-    ExplicitHeight = 791
     object PageControl1: TPageControl
       Left = 1
       Top = 1
@@ -103,10 +146,8 @@ object Main: TMain
       TabOrder = 0
       TabWidth = 150
       OnChange = PageControl1Change
-      ExplicitHeight = 789
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitHeight = 719
         object mBottomPanel: TPanel
           Left = 0
           Top = 642
@@ -114,7 +155,69 @@ object Main: TMain
           Height = 167
           Align = alBottom
           TabOrder = 0
-          ExplicitTop = 552
+          object GroupBox2: TGroupBox
+            Left = 1
+            Top = 1
+            Width = 269
+            Height = 165
+            Align = alLeft
+            Caption = 'Section Count'
+            TabOrder = 0
+            object mSectionCountLbl: TIntLabel
+              Left = 32
+              Top = 40
+              Width = 17
+              Height = 23
+              Caption = '-1'
+              ValueString = '-1'
+              Value = -1
+              TheFont.Charset = DEFAULT_CHARSET
+              TheFont.Color = clWindowText
+              TheFont.Height = -19
+              TheFont.Name = 'Tahoma'
+              TheFont.Style = []
+            end
+            object mResetCountBtn: TButton
+              Left = 104
+              Top = 35
+              Width = 153
+              Height = 100
+              Caption = 'Reset'
+              TabOrder = 0
+              OnClick = mResetCountBtnClick
+            end
+          end
+          object GroupBox4: TGroupBox
+            Left = 270
+            Top = 1
+            Width = 303
+            Height = 165
+            Align = alLeft
+            Caption = 'Auto Puff Control'
+            TabOrder = 1
+            ExplicitLeft = 532
+            object mPuffAfterSectionCountE: TIntegerLabeledEdit
+              Left = 152
+              Top = 50
+              Width = 129
+              Height = 31
+              EditLabel.Width = 131
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Puff after count'
+              TabOrder = 0
+              Text = '-1'
+              Value = -1
+            end
+            object mAutoPuffCB: TPropertyCheckBox
+              Left = 16
+              Top = 57
+              Width = 97
+              Height = 17
+              Caption = 'Enabled'
+              TabOrder = 1
+              OnClick = mAutoPuffCBClick
+            end
+          end
         end
         object mTopPanel: TPanel
           Left = 0
@@ -133,7 +236,6 @@ object Main: TMain
           Align = alClient
           AutoSize = True
           TabOrder = 2
-          ExplicitHeight = 365
           object JSGB: TGroupBox
             Left = 1
             Top = 1
@@ -148,7 +250,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitHeight = 363
             object mXYCtrlRG: TRadioGroup
               Left = 2
               Top = 137
@@ -165,7 +266,6 @@ object Main: TMain
                 'None')
               TabOrder = 0
               OnClick = mXYCtrlRGClick
-              ExplicitTop = 169
             end
             object mUnitControlRG: TRadioGroup
               Left = 2
@@ -193,7 +293,6 @@ object Main: TMain
               Height = 100
               Align = alTop
               TabOrder = 2
-              ExplicitTop = 281
               object mJSSpeedFastBtn: TSpeedButton
                 Left = 301
                 Top = 1
@@ -231,14 +330,6 @@ object Main: TMain
                 ExplicitTop = 6
               end
             end
-            object Button1: TButton
-              Left = 8
-              Top = 355
-              Width = 145
-              Height = 78
-              Caption = 'Button1'
-              TabOrder = 3
-            end
           end
           object LiftGB: TGroupBox
             Left = 462
@@ -254,7 +345,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            ExplicitHeight = 363
             object LiftBtn: TSpeedButton
               Left = 16
               Top = 129
@@ -306,11 +396,9 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
-        ExplicitHeight = 719
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitHeight = 719
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -318,7 +406,6 @@ object Main: TMain
           Height = 704
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 614
         end
         object Panel1: TPanel
           Left = 0
@@ -327,7 +414,6 @@ object Main: TMain
           Height = 105
           Align = alBottom
           TabOrder = 1
-          ExplicitTop = 614
           object BitBtn1: TBitBtn
             Left = 178
             Top = 1
@@ -369,12 +455,10 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
-        ExplicitHeight = 719
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitHeight = 719
         object mJSStatusL: TLabel
           Left = 455
           Top = 192
@@ -386,7 +470,7 @@ object Main: TMain
           Left = 11
           Top = 24
           Width = 422
-          Height = 417
+          Height = 345
           Caption = 'JoyStick Velocities'
           TabOrder = 0
           object mZJogAccelerationJoystick: TFloatLabeledEdit
@@ -500,11 +584,55 @@ object Main: TMain
           TabOrder = 1
           OnClick = mJoyStickRGClick
         end
+        object GroupBox3: TGroupBox
+          Left = 11
+          Top = 390
+          Width = 258
+          Height = 155
+          Caption = 'Manual Puff'
+          TabOrder = 2
+          object PuffNowBtn: TButton
+            Left = 19
+            Top = 32
+            Width = 214
+            Height = 100
+            Caption = 'Puff'
+            TabOrder = 0
+          end
+        end
+        object GroupBox1: TGroupBox
+          Left = 275
+          Top = 390
+          Width = 257
+          Height = 155
+          Caption = 'Arduino Client'
+          TabOrder = 3
+          object mArduinoServerPortE: TIntegerLabeledEdit
+            Left = 16
+            Top = 56
+            Width = 121
+            Height = 31
+            EditLabel.Width = 108
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Network Port'
+            TabOrder = 0
+            Text = '50000'
+            Value = 50000
+          end
+          object mASStartBtn: TButton
+            Left = 143
+            Top = 40
+            Width = 104
+            Height = 97
+            Caption = 'Start'
+            TabOrder = 1
+            OnClick = mASStartBtnClick
+          end
+        end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitHeight = 719
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -512,7 +640,6 @@ object Main: TMain
           Height = 809
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 719
           object infoMemo: TMemo
             Left = 1
             Top = 31
@@ -529,7 +656,6 @@ object Main: TMain
             ScrollBars = ssBoth
             TabOrder = 0
             WordWrap = False
-            ExplicitHeight = 687
           end
           object ToolBar1: TToolBar
             Left = 1
@@ -641,15 +767,15 @@ object Main: TMain
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 328
+    Left = 336
     Top = 680
   end
   object UIUpdateTimer: TTimer
     Enabled = False
     Interval = 250
     OnTimer = UIUpdateTimerTimer
-    Left = 532
-    Top = 632
+    Left = 524
+    Top = 568
   end
   object mLiftTimer: TTimer
     Enabled = False

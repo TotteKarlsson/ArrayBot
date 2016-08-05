@@ -27,7 +27,6 @@ object Main: TMain
     Height = 697
     Align = alRight
     TabOrder = 0
-    ExplicitHeight = 585
     object BottomBtnPanel: TPanel
       Left = 1
       Top = 569
@@ -36,7 +35,6 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      ExplicitTop = 457
       object Button5: TSpeedButton
         Left = 1
         Top = 1
@@ -77,7 +75,6 @@ object Main: TMain
       Align = alTop
       Caption = 'Temperature'
       TabOrder = 2
-      ExplicitTop = 118
       object mTemperatureLbl: mtkFloatLabel
         Left = 40
         Top = 31
@@ -101,7 +98,6 @@ object Main: TMain
     Height = 697
     Align = alClient
     TabOrder = 1
-    ExplicitHeight = 585
     object Splitter1: TSplitter
       Left = 1
       Top = 563
@@ -236,8 +232,6 @@ object Main: TMain
       Height = 130
       Align = alClient
       TabOrder = 1
-      ExplicitTop = 364
-      ExplicitHeight = 332
       object infoMemo: TMemo
         Left = 1
         Top = 31
@@ -254,9 +248,6 @@ object Main: TMain
         ScrollBars = ssBoth
         TabOrder = 0
         WordWrap = False
-        ExplicitLeft = -1
-        ExplicitTop = 37
-        ExplicitHeight = 300
       end
       object ToolBar1: TToolBar
         Left = 1

@@ -55,7 +55,7 @@ void loop()
 
     //Simulate Hall Sensor
     unsigned long currentTime = millis();
-    if(currentTime - lastReadTime > 5)
+    if(currentTime - lastReadTime > 500)
     {
         lastReadTime = currentTime;        
         Serial << "[HALL_SENSOR=HIGH]";                
