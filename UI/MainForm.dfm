@@ -76,7 +76,6 @@ object Main: TMain
       Align = alTop
       Caption = 'Temperature'
       TabOrder = 1
-      ExplicitTop = -18
       object mTemperatureLbl: mtkFloatLabel
         Left = 40
         Top = 31
@@ -100,7 +99,6 @@ object Main: TMain
       Align = alTop
       Caption = 'Humidity'
       TabOrder = 2
-      ExplicitTop = 139
       object mHumidityE: mtkFloatLabel
         Left = 30
         Top = 31
@@ -207,6 +205,28 @@ object Main: TMain
               TabOrder = 1
               OnClick = mAutoPuffCBClick
             end
+          end
+          object mFrontBackLEDBtn: TButton
+            Left = 744
+            Top = 1
+            Width = 149
+            Height = 165
+            Align = alRight
+            Caption = 'Toggle LED Light'
+            TabOrder = 2
+            WordWrap = True
+            OnClick = mFrontBackLEDBtnClick
+          end
+          object mToggleCoaxBtn: TButton
+            Left = 595
+            Top = 1
+            Width = 149
+            Height = 165
+            Align = alRight
+            Caption = 'Toggle Coax Light'
+            TabOrder = 3
+            WordWrap = True
+            OnClick = mFrontBackLEDBtnClick
           end
         end
         object mTopPanel: TPanel
@@ -702,21 +722,28 @@ object Main: TMain
           Height = 809
           Align = alClient
           TabOrder = 0
-          ExplicitLeft = 304
-          ExplicitTop = 144
+          ExplicitWidth = 894
+          ExplicitHeight = 809
           inherited GroupBox1: TGroupBox
             Width = 894
             Height = 623
+            ExplicitWidth = 894
+            ExplicitHeight = 623
             inherited Memo1: TMemo
               Top = 25
               Width = 890
               Height = 596
+              ExplicitTop = 25
+              ExplicitWidth = 890
+              ExplicitHeight = 596
             end
           end
           inherited Panel1: TPanel
             Width = 894
+            ExplicitWidth = 894
             inherited Image1: TImage
               Left = 708
+              ExplicitLeft = 708
             end
           end
         end

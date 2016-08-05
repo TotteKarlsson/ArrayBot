@@ -53,8 +53,6 @@ object Main: TMain
       Caption = 'FrontBack LEDs ON'
       TabOrder = 1
       OnClick = LEDBtnClick
-      ExplicitLeft = 4
-      ExplicitTop = 5
     end
     object Button1: TButton
       Left = 1

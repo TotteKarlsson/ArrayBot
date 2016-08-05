@@ -17,6 +17,19 @@ ArduinoClient::~ArduinoClient()
     Log(lDebug3)<<"Arduino client is shutting down..";
 }
 
+bool ArduinoClient::init(int serverPort, const string& hostname, bool connectOnInit)
+{
+    Log(lDebug3)<<"Setting up client";
+	this->assignParent(this);
+
+    if(connectOnInit)
+    {
+    	SocketClient::connect(serverPort, hostname);
+    }
+
+    return true;
+}
+
 void ArduinoClient::getStatus()
 {
 	request("GET_STATUS");
@@ -48,17 +61,18 @@ void ArduinoClient::disableAutoPuff()
 	request(msg.str());
 }
 
-bool ArduinoClient::init(int serverPort, const string& hostname, bool connectOnInit)
+void ArduinoClient::toggleLED()
 {
-    Log(lDebug3)<<"Setting up client";
-	this->assignParent(this);
+	stringstream msg;
+    msg <<"TOGGLE_LED_LIGHT";
+	request(msg.str());
+}
 
-    if(connectOnInit)
-    {
-    	SocketClient::connect(serverPort, hostname);
-    }
-
-    return true;
+void ArduinoClient::toggleCoax()
+{
+	stringstream msg;
+    msg <<"TOGGLE_COAX_LIGHT";
+	request(msg.str());
 }
 
 void ArduinoClient::assignOnMessageReceivedCallBack(OnMessageReceivedCB cb)

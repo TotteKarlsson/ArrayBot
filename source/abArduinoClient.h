@@ -39,6 +39,10 @@ class AB_CORE ArduinoClient : public SocketClient
         void								setPuffAfterSectionCount(int c);
         void								enableAutoPuff();
         void								disableAutoPuff();
+		void								toggleLED();
+		void								toggleCoax();
+
+
 		void								getStatus();
 
         virtual void                        postMessage(const string& msg);                        //Post a message to the message list

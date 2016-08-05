@@ -581,4 +581,19 @@ void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::mFrontBackLEDBtnClick(TObject *Sender)
+{
+	TButton* b = dynamic_cast<TButton*>(Sender);
+    if(b == mFrontBackLEDBtn)
+    {
+    	mArduinoClient.toggleLED();
+    }
+
+    if(b == mToggleCoaxBtn)
+    {
+    	mArduinoClient.toggleCoax();
+    }
+}
+
 

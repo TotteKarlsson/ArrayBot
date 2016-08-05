@@ -12,9 +12,6 @@ object AboutArrayBotFrame_2: TAboutArrayBotFrame_2
     Align = alClient
     Caption = 'ChangeLog'
     TabOrder = 0
-    ExplicitTop = 192
-    ExplicitWidth = 625
-    ExplicitHeight = 515
     object Memo1: TMemo
       Left = 2
       Top = 15
@@ -27,8 +24,6 @@ object AboutArrayBotFrame_2: TAboutArrayBotFrame_2
       ScrollBars = ssBoth
       TabOrder = 0
       WordWrap = False
-      ExplicitWidth = 621
-      ExplicitHeight = 498
     end
   end
   object Panel1: TPanel

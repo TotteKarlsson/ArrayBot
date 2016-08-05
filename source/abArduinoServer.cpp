@@ -141,6 +141,36 @@ bool ArduinoServer::puff()
 	return mPufferArduino.send("p");
 }
 
+bool ArduinoServer::toggleLED()
+{
+	static bool switcher(false);
+
+    switcher = !switcher;
+    if(switcher)
+    {
+		return mSensorArduino.send("3");
+    }
+    else
+    {
+		return mSensorArduino.send("4");
+    }
+}
+
+bool ArduinoServer::toggleCoax()
+{
+	static bool switcher(false);
+
+    switcher = !switcher;
+    if(switcher)
+    {
+		return mSensorArduino.send("1");
+    }
+    else
+    {
+		return mSensorArduino.send("2");
+    }
+}
+
 //Handle simple text messages over the socket
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
@@ -154,26 +184,25 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Resetting section counter";
         resetSectionCount();
     }
-
-    if(compareStrings(msg, "GET_STATUS"))
+    else if(compareStrings(msg, "GET_STATUS"))
     {
     	Log(lInfo) << "Resetting section counter";
         broadcastStatus();
     }
 
-    if(compareStrings(msg, "ENABLE_AUTO_PUFF"))
+    else if(compareStrings(msg, "ENABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Enabling auto puffing";
         enableAutoPuff();
     }
 
-    if(compareStrings(msg, "DISABLE_AUTO_PUFF"))
+    else if(compareStrings(msg, "DISABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Disabling auto puffing";
         disableAutoPuff();
     }
 
-    if(startsWith(msg, "PUFF_AFTER_SECTION_COUNT"))
+    else if(startsWith(msg, "PUFF_AFTER_SECTION_COUNT"))
     {
     	Log(lInfo) << "Setting puff after section count";
 		StringList l(msg,'=');
@@ -181,7 +210,16 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         {
         	setPuffAfterSectionCount(toInt(l[1]));
         }
-
+    }
+    else if(startsWith(msg, "TOGGLE_LED_LIGHT"))
+    {
+    	Log(lInfo) << "Toggling LED on/off";
+        toggleLED();
+    }
+    else if(startsWith(msg, "TOGGLE_COAX_LIGHT"))
+    {
+    	Log(lInfo) << "Toggling Coax on/off";
+        toggleCoax();
     }
     return msg.IsProcessed();
 }

@@ -131,6 +131,8 @@ class TMain : public TRegistryForm
 	TButton *mASStartBtn;
 	TTabSheet *TabSheet3;
 	TAboutArrayBotFrame_2 *TAboutArrayBotFrame_21;
+	TButton *mFrontBackLEDBtn;
+	TButton *mToggleCoaxBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -163,6 +165,7 @@ class TMain : public TRegistryForm
 	void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall mResetCountBtnClick(TObject *Sender);
 	void __fastcall mAutoPuffCBClick(TObject *Sender);
+	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMotors = 1,

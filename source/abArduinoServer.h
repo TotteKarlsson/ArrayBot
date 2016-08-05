@@ -43,6 +43,10 @@ class AB_CORE ArduinoServer : public IPCServer
 		void        						disableAutoPuff();
         bool					            puff();
 
+		bool								toggleLED();
+		bool								toggleCoax();
+
+
         void					            incrementSectionCount(){mSectionCount++;}
         int						            getSectionCount(){return mSectionCount;}
         void					            resetSectionCount();
