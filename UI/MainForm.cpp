@@ -448,4 +448,15 @@ void __fastcall TMain::mUnitControlRGClick(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::PageControl1Change(TObject *Sender)
+{
+	//Check what tab got selected
+	if(PageControl1->TabIndex == pcMoveSequences)
+    {
+    	//Reload the currently selected sequence
+		mABProcessSequencerFrame->mSequencesCBChange(Sender);
+    }
+}
+
 

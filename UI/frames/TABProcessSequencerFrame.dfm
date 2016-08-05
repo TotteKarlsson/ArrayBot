@@ -240,9 +240,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Height = 417
           ExplicitWidth = 175
           ExplicitHeight = 417
-          inherited Button1: TButton
-            OnClick = TCombinedMoveFrame1Button1Click
-          end
         end
         inherited Panel1: TPanel
           Width = 715
@@ -293,8 +290,8 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Top = 552
   end
   object Actions: TActionList
-    Left = 544
-    Top = 176
+    Left = 616
+    Top = 40
     object addCombinedMovesProcessA: TAction
       Caption = 'Add Combined Move'
       OnExecute = addCombinedMovesProcessAExecute

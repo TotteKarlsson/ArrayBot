@@ -43,9 +43,6 @@ object MainForm: TMainForm
     Height = 485
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 175
-    ExplicitWidth = 967
-    ExplicitHeight = 488
   end
   object infoMemo: TMemo
     Left = 0
@@ -63,9 +60,6 @@ object MainForm: TMainForm
     Height = 485
     Align = alRight
     TabOrder = 2
-    ExplicitLeft = 824
-    ExplicitTop = 1
-    ExplicitHeight = 483
     object mCameraStartLiveBtn: TButton
       Left = 1
       Top = 1

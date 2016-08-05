@@ -2,7 +2,7 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot Version 0.5.8'
-  ClientHeight = 791
+  ClientHeight = 881
   ClientWidth = 1087
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,9 +24,10 @@ object Main: TMain
     Left = 904
     Top = 0
     Width = 183
-    Height = 791
+    Height = 881
     Align = alRight
     TabOrder = 0
+    ExplicitHeight = 791
     object mAboutBtn: TSpeedButton
       Left = 1
       Top = 1
@@ -52,12 +53,13 @@ object Main: TMain
     end
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 538
+      Top = 628
       Width = 181
       Height = 252
       Align = alBottom
       AutoSize = True
       TabOrder = 0
+      ExplicitTop = 538
       object Button5: TSpeedButton
         Left = 1
         Top = 126
@@ -84,30 +86,35 @@ object Main: TMain
     Left = 0
     Top = 0
     Width = 904
-    Height = 791
+    Height = 881
     Align = alClient
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
     TabOrder = 1
+    ExplicitHeight = 791
     object PageControl1: TPageControl
       Left = 1
       Top = 1
       Width = 902
-      Height = 789
+      Height = 879
       ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
       TabWidth = 150
+      OnChange = PageControl1Change
+      ExplicitHeight = 789
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitHeight = 719
         object mBottomPanel: TPanel
           Left = 0
-          Top = 552
+          Top = 642
           Width = 894
           Height = 167
           Align = alBottom
           TabOrder = 0
+          ExplicitTop = 552
         end
         object mTopPanel: TPanel
           Left = 0
@@ -122,15 +129,16 @@ object Main: TMain
           Left = 0
           Top = 187
           Width = 894
-          Height = 365
+          Height = 455
           Align = alClient
           AutoSize = True
           TabOrder = 2
+          ExplicitHeight = 365
           object JSGB: TGroupBox
             Left = 1
             Top = 1
             Width = 461
-            Height = 363
+            Height = 453
             Align = alLeft
             Caption = 'Joystick'
             Font.Charset = DEFAULT_CHARSET
@@ -140,9 +148,10 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 0
+            ExplicitHeight = 363
             object mXYCtrlRG: TRadioGroup
               Left = 2
-              Top = 169
+              Top = 137
               Width = 457
               Height = 112
               Align = alTop
@@ -156,12 +165,13 @@ object Main: TMain
                 'None')
               TabOrder = 0
               OnClick = mXYCtrlRGClick
+              ExplicitTop = 169
             end
             object mUnitControlRG: TRadioGroup
               Left = 2
               Top = 27
               Width = 457
-              Height = 142
+              Height = 110
               Align = alTop
               Caption = 'Unit Control'
               Columns = 4
@@ -178,12 +188,12 @@ object Main: TMain
             end
             object Panel2: TPanel
               Left = 2
-              Top = 281
+              Top = 249
               Width = 457
               Height = 100
               Align = alTop
               TabOrder = 2
-              ExplicitTop = 237
+              ExplicitTop = 281
               object mJSSpeedFastBtn: TSpeedButton
                 Left = 301
                 Top = 1
@@ -221,12 +231,20 @@ object Main: TMain
                 ExplicitTop = 6
               end
             end
+            object Button1: TButton
+              Left = 8
+              Top = 355
+              Width = 145
+              Height = 78
+              Caption = 'Button1'
+              TabOrder = 3
+            end
           end
           object LiftGB: TGroupBox
             Left = 462
             Top = 1
             Width = 431
-            Height = 363
+            Height = 453
             Align = alClient
             Caption = 'Lift'
             Font.Charset = DEFAULT_CHARSET
@@ -236,6 +254,7 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 1
+            ExplicitHeight = 363
             object LiftBtn: TSpeedButton
               Left = 16
               Top = 129
@@ -287,24 +306,28 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
+        ExplicitHeight = 719
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
+        ExplicitHeight = 719
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
           Width = 894
-          Height = 614
+          Height = 704
           Align = alClient
           TabOrder = 0
+          ExplicitHeight = 614
         end
         object Panel1: TPanel
           Left = 0
-          Top = 614
+          Top = 704
           Width = 894
           Height = 105
           Align = alBottom
           TabOrder = 1
+          ExplicitTop = 614
           object BitBtn1: TBitBtn
             Left = 178
             Top = 1
@@ -346,10 +369,12 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
+        ExplicitHeight = 719
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        ExplicitHeight = 719
         object mJSStatusL: TLabel
           Left = 455
           Top = 192
@@ -479,18 +504,20 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
+        ExplicitHeight = 719
         object BottomPanel: TPanel
           Left = 0
           Top = 0
           Width = 894
-          Height = 719
+          Height = 809
           Align = alClient
           TabOrder = 0
+          ExplicitHeight = 719
           object infoMemo: TMemo
             Left = 1
             Top = 31
             Width = 892
-            Height = 687
+            Height = 777
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -502,6 +529,7 @@ object Main: TMain
             ScrollBars = ssBoth
             TabOrder = 0
             WordWrap = False
+            ExplicitHeight = 687
           end
           object ToolBar1: TToolBar
             Left = 1

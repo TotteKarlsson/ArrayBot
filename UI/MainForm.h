@@ -108,6 +108,7 @@ class TMain : public TRegistryForm
 	TLabel *mJSStatusL;
 	TRadioGroup *mUnitControlRG;
 	TPanel *Panel2;
+	TButton *Button1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -136,8 +137,10 @@ class TMain : public TRegistryForm
 	void __fastcall mJoyStickRGClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mUnitControlRGClick(TObject *Sender);
+	void __fastcall PageControl1Change(TObject *Sender);
 
     private:
+		enum PageControlTabs {pcMain = 0,  pcMotors = 1, pcMoveSequences = 2, pcSettings = 3, pcLogs = 4};
         LogFileReader                   mLogFileReader;
         void __fastcall                 logMsg();
 
