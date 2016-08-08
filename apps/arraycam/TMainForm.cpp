@@ -20,6 +20,7 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg)
 {
    	mLogFileReader.start(true);
+    mRenderMode = IS_RENDER_FIT_TO_WINDOW;
 }
 
 //This one is called from the reader thread
@@ -63,6 +64,11 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	mDisplayHandle 	= this->mCameraStreamPanel->Handle;
 	mCameraStartLiveBtnClick(Sender);
     mAutoGainCB->Checked = true;
+	mCameraStreamPanel->Width = 1280;
+	mCameraStreamPanel->Height = 1024;
+	mCameraStreamPanel->Top = 0;
+	mCameraStreamPanel->Left = 0;
+	mFitToScreenButtonClick(Sender);
 }
 
 LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
@@ -80,13 +86,7 @@ LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
         case IS_FRAME:
             if(mCamera.mImageMemory != NULL)
             {
-				long mode = IS_RENDER_FIT_TO_WINDOW;
-                if(mVerticalMirrorCB->Checked)
-                {
-                	mode = mode ;//| IS_MSET_ROP_MIRROR_LEFTRIGHT;
-                }
-
-                mCamera.RenderBitmap(mCamera.mMemoryId, mDisplayHandle, mode);
+                mCamera.RenderBitmap(mCamera.mMemoryId, mDisplayHandle, mRenderMode);
             }
         break;
     }
@@ -165,8 +165,6 @@ void __fastcall TMainForm::Button2Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mAutoGainCBClick(TObject *Sender)
 {
-//	if(mAutoGainCB->Checked)
-//    {
     HCAM hCam = mCamera.GetCameraHandle();
 
     //Enable auto gain control:
@@ -182,24 +180,7 @@ void __fastcall TMainForm::mAutoGainCBClick(TObject *Sender)
     ret = is_SetAutoParameter (hCam, IS_GET_AUTO_SHUTTER_MAX, &maxShutter, 0);
 }
 
-
-void __fastcall TMainForm::RadioGroup1Click(TObject *Sender)
-{
-//	//if proportional
-//    if(RadioGroup1->ItemIndex == 0)
-//    {
-//    	mCameraStreamPanel->Align = alNone;
-//       	int x, y;
-//  		mCamera.GetMaxImageSize(&x,&y);
-//		mCameraStreamPanel->Width = x;
-//		mCameraStreamPanel->Height = y;
-//
-//        //Fit stream panel on the backpanel
-//        double wRatio = mCameraBackPanel->Width /
-//    }
-}
 //---------------------------------------------------------------------------
-
 void __fastcall TMainForm::mVerticalMirrorCBClick(TObject *Sender)
 {
     HCAM hCam = mCamera.GetCameraHandle();
@@ -212,8 +193,8 @@ void __fastcall TMainForm::mVerticalMirrorCBClick(TObject *Sender)
 		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_LEFTRIGHT, 0, 0);
     }
 }
-//---------------------------------------------------------------------------
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::mHorizontalMirrorCBClick(TObject *Sender)
 {
     HCAM hCam = mCamera.GetCameraHandle();
@@ -225,7 +206,66 @@ void __fastcall TMainForm::mHorizontalMirrorCBClick(TObject *Sender)
     {
 		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_UPDOWN, 0, 0);
     }
-
 }
+
 //---------------------------------------------------------------------------
+void __fastcall TMainForm::mOneToTwoBtnClick(TObject *Sender)
+{
+	mRenderMode = IS_RENDER_DOWNSCALE_1_2;
+
+   	int x, y;
+	mCamera.GetMaxImageSize(&x,&y);
+	mCameraBackPanel->Width = x/2.;
+	mCameraBackPanel->Height = y/2.;
+}
+
+void __fastcall TMainForm::mOneToOneBtnClick(TObject *Sender)
+{
+    mRenderMode = IS_RENDER_FIT_TO_WINDOW;
+    mCameraStreamPanel->Invalidate();
+
+   	int x, y;
+	mCamera.GetMaxImageSize(&x,&y);
+	mCameraBackPanel->Width  = x;
+	mCameraBackPanel->Height = y;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mFitToScreenButtonClick(TObject *Sender)
+{
+	//Check widths and heights
+    double wRatio = (double) mMainPanel->Width / mCameraBackPanel->Width;
+    double hRatio = (double) mMainPanel->Height / mCameraBackPanel->Height;
+
+    if(hRatio < wRatio)
+    {
+	    mCameraBackPanel->Height = mMainPanel->Height;
+        mCameraBackPanel->Width *= hRatio;
+    }
+    else
+    {
+	    mCameraBackPanel->Width = mMainPanel->Width;
+        mCameraBackPanel->Height *= wRatio;
+    }
+
+    mCameraBackPanel->Invalidate();
+    mCameraStreamPanel->Invalidate();
+	Log(lInfo) << "W x H = " <<mCameraBackPanel->Width<<","<<mCameraBackPanel->Height<<" Ratio = "<<(double) mCameraBackPanel->Width / mCameraBackPanel->Height;
+}
+
+
+void __fastcall TMainForm::mMainPanelResize(TObject *Sender)
+{
+//	mFitToScreenButtonClick(Sender);
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mToggleLogPanelClick(TObject *Sender)
+{
+	infoMemo->Visible = !infoMemo->Visible;
+	mToggleLogPanel->Caption =  (infoMemo->Visible) ? "Hide Logs" : "Show Logs";
+	mFitToScreenButtonClick(Sender);
+}
+
 

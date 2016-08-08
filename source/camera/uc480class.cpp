@@ -117,7 +117,6 @@ int Cuc480::InitDisplayMode()
             else
             {
                 mDispModeSel = e_disp_mode_bitmap;
-                //UpdateData(FALSE);
             }
 
         case e_disp_mode_bitmap:

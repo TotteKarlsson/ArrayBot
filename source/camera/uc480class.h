@@ -130,16 +130,16 @@ class AB_CORE Cuc480 : public Cuc480Dll
         int   	                            DirectRenderer(UINT nMode, void* pParam, UINT nSizeOfParam);
         void  	                            GetMaxImageSize(INT *pnSizeX, INT *pnSizeY);
 
-        INT		                mColorMode;		// Y8/RGB16/RGB24/RGB32
-        INT		                mBitsPerPixel;	// number of bits needed store one pixel
-        INT		                mSizeX;			// width of video
-        INT		                mSizeY;			// height of video
-        char*                   mImageMemory;	// image memory - pointer to buffer
-        INT                     mMemoryId;    	// image memory - buffer ID
+        INT		                            mColorMode;		// Y8/RGB16/RGB24/RGB32
+        INT		                            mBitsPerPixel;	// number of bits needed store one pixel
+        INT		                            mSizeX;			// width of video
+        INT		                            mSizeY;			// height of video
+        char*                               mImageMemory;	// image memory - pointer to buffer
+        INT                                 mMemoryId;    	// image memory - buffer ID
 
-        _disp_mode 				mDispModeSel;
+        _disp_mode 				            mDispModeSel;
 
-		int 					InitDisplayMode();
+		int 					            InitDisplayMode();
 
 	private:
         HCAM                              	m_hu;

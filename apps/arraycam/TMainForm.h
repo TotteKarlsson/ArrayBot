@@ -17,7 +17,6 @@
 class TMainForm : public TForm
 {
 	__published:	// IDE-managed Components
-	TPanel *mCameraStreamPanel;
 	TButton *mCameraStartLiveBtn;
 	TMemo *infoMemo;
 	TTimer *mShutDownTimer;
@@ -27,12 +26,17 @@ class TMainForm : public TForm
 	TPanel *Panel2;
 	TSplitter *Splitter1;
 	TSplitter *Splitter2;
-	TPanel *mCameraBackPanel;
 	TGroupBox *GroupBox1;
-	TRadioGroup *RadioGroup1;
 	TGroupBox *GroupBox2;
 	TPropertyCheckBox *mVerticalMirrorCB;
 	TPropertyCheckBox *mHorizontalMirrorCB;
+	TButton *mOneToTwoBtn;
+	TButton *mOneToOneBtn;
+	TButton *mFitToScreenButton;
+	TPanel *mMainPanel;
+	TPanel *mCameraBackPanel;
+	TPanel *mCameraStreamPanel;
+	TButton *mToggleLogPanel;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -42,30 +46,32 @@ class TMainForm : public TForm
 	void __fastcall TrackBar1Change(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall mAutoGainCBClick(TObject *Sender);
-	void __fastcall RadioGroup1Click(TObject *Sender);
+
 	void __fastcall mVerticalMirrorCBClick(TObject *Sender);
 	void __fastcall mHorizontalMirrorCBClick(TObject *Sender);
+	void __fastcall mOneToTwoBtnClick(TObject *Sender);
+	void __fastcall mOneToOneBtnClick(TObject *Sender);
+	void __fastcall mFitToScreenButtonClick(TObject *Sender);
+	void __fastcall mMainPanelResize(TObject *Sender);
+	void __fastcall mToggleLogPanelClick(TObject *Sender);
 
 
     private:	// User declarations
         LogFileReader                   mLogFileReader;
         void __fastcall                 logMsg();
 
-		Cuc480   				mCamera;
-
+		Cuc480   						mCamera;
+        long							mRenderMode;
 
         // Camera variables
-        HWND	                mDisplayHandle;	// handle to diplay window
-
-
-        HWND 					GetSafeHwnd();
-
-		bool					openCamera();
+        HWND	                		mDisplayHandle;	// handle to diplay window
+        HWND 							GetSafeHwnd();
+		bool							openCamera();
 
     public:		// User declarations
- 			       __fastcall TMainForm(TComponent* Owner);
+ 			       __fastcall 			TMainForm(TComponent* Owner);
 
-	LRESULT 				OnUSBCameraMessage(TMessage msg);
+	LRESULT 							OnUSBCameraMessage(TMessage msg);
 
     BEGIN_MESSAGE_MAP
           MESSAGE_HANDLER(IS_UC480_MESSAGE, TMessage, OnUSBCameraMessage);

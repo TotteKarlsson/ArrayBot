@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Array Cam 0.5'
-  ClientHeight = 663
-  ClientWidth = 967
+  ClientHeight = 735
+  ClientWidth = 963
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,18 +19,19 @@ object MainForm: TMainForm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 485
-    Width = 967
+    Top = 557
+    Width = 963
     Height = 3
     Cursor = crVSplit
     Align = alBottom
     ExplicitLeft = 8
     ExplicitTop = 528
+    ExplicitWidth = 967
   end
   object Splitter2: TSplitter
-    Left = 822
+    Left = 818
     Top = 0
-    Height = 485
+    Height = 557
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
@@ -38,20 +39,24 @@ object MainForm: TMainForm
   end
   object infoMemo: TMemo
     Left = 0
-    Top = 488
-    Width = 967
+    Top = 560
+    Width = 963
     Height = 175
     Align = alBottom
     ScrollBars = ssVertical
     TabOrder = 0
+    ExplicitTop = 488
+    ExplicitWidth = 967
   end
   object Panel2: TPanel
-    Left = 825
+    Left = 821
     Top = 0
     Width = 142
-    Height = 485
+    Height = 557
     Align = alRight
     TabOrder = 1
+    ExplicitLeft = 825
+    ExplicitHeight = 485
     object mCameraStartLiveBtn: TButton
       Left = 1
       Top = 1
@@ -76,7 +81,7 @@ object MainForm: TMainForm
       Left = 1
       Top = 139
       Width = 140
-      Height = 150
+      Height = 102
       Align = alTop
       Caption = 'Settings'
       TabOrder = 2
@@ -101,35 +106,21 @@ object MainForm: TMainForm
         Position = 1
         ShowSelRange = False
         TabOrder = 1
-        ThumbLength = 50
         TickMarks = tmBoth
         TickStyle = tsNone
+        Visible = False
         OnChange = TrackBar1Change
       end
     end
-    object RadioGroup1: TRadioGroup
-      Left = 1
-      Top = 289
-      Width = 140
-      Height = 72
-      Align = alTop
-      Caption = 'Sizing'
-      Enabled = False
-      ItemIndex = 1
-      Items.Strings = (
-        'Proportional'
-        'Stretched')
-      TabOrder = 3
-      OnClick = RadioGroup1Click
-    end
     object GroupBox2: TGroupBox
       Left = 1
-      Top = 361
+      Top = 241
       Width = 140
       Height = 80
       Align = alTop
       Caption = 'Mirror planes'
-      TabOrder = 4
+      TabOrder = 3
+      ExplicitTop = 361
       object mVerticalMirrorCB: TPropertyCheckBox
         Left = 16
         Top = 24
@@ -149,21 +140,82 @@ object MainForm: TMainForm
         OnClick = mHorizontalMirrorCBClick
       end
     end
+    object mOneToTwoBtn: TButton
+      Left = 1
+      Top = 433
+      Width = 140
+      Height = 56
+      Align = alTop
+      Caption = '1:2'
+      TabOrder = 4
+      OnClick = mOneToTwoBtnClick
+      ExplicitTop = 321
+    end
+    object mOneToOneBtn: TButton
+      Left = 1
+      Top = 377
+      Width = 140
+      Height = 56
+      Align = alTop
+      Caption = '1:1'
+      TabOrder = 5
+      OnClick = mOneToOneBtnClick
+      ExplicitTop = 321
+    end
+    object mFitToScreenButton: TButton
+      Left = 1
+      Top = 321
+      Width = 140
+      Height = 56
+      Align = alTop
+      Caption = 'Fit to screen'
+      TabOrder = 6
+      OnClick = mFitToScreenButtonClick
+    end
+    object mToggleLogPanel: TButton
+      Left = 1
+      Top = 489
+      Width = 140
+      Height = 62
+      Align = alTop
+      Caption = 'Hide Logs'
+      TabOrder = 7
+      OnClick = mToggleLogPanelClick
+    end
   end
-  object mCameraBackPanel: TPanel
+  object mMainPanel: TPanel
     Left = 0
     Top = 0
-    Width = 822
-    Height = 485
+    Width = 818
+    Height = 557
     Align = alClient
     TabOrder = 2
-    object mCameraStreamPanel: TPanel
-      Left = 1
-      Top = 1
-      Width = 820
-      Height = 483
-      Align = alClient
+    OnResize = mMainPanelResize
+    ExplicitLeft = 120
+    ExplicitTop = 96
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object mCameraBackPanel: TPanel
+      Left = 0
+      Top = 0
+      Width = 320
+      Height = 256
+      BorderStyle = bsSingle
+      Caption = 'mCameraBackPanel'
       TabOrder = 0
+      object mCameraStreamPanel: TPanel
+        Left = 1
+        Top = 1
+        Width = 314
+        Height = 250
+        Align = alClient
+        AutoSize = True
+        Color = clTeal
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitWidth = 742
+        ExplicitHeight = 441
+      end
     end
   end
   object mShutDownTimer: TTimer
