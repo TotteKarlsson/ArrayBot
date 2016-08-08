@@ -27,7 +27,7 @@ template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg);
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 
 // Name the "motor" ports by solenoid function:
-Adafruit_DCMotor *coaxLEDs  = AFMS.getMotor(8);
+Adafruit_DCMotor *coaxLEDs  = AFMS.getMotor(1);
 Adafruit_DCMotor *frontLEDs = AFMS.getMotor(3);
 Adafruit_DCMotor *backLEDs  = AFMS.getMotor(4);
 
@@ -45,6 +45,11 @@ Adafruit_DCMotor *backLEDs  = AFMS.getMotor(4);
   bool btn3(false);
   bool btn4(false);  
   bool btn5(false);    
+
+  //To control light intensity
+  int coaxDrive(128);
+  int frontLEDDrive(128);
+  int backLEDDrive(128);
 
   // create variables
   int flashFlag = false;
@@ -66,9 +71,9 @@ void setup()
     backLEDs->run(RELEASE);
        
     // set solenoid "on" duty cycles:
-    coaxLEDs->setSpeed(32);
-    frontLEDs->setSpeed(32);
-    backLEDs->setSpeed(32);
+    coaxLEDs->setSpeed(coaxDrive);
+    frontLEDs->setSpeed(frontLEDDrive);
+    backLEDs->setSpeed(backLEDDrive);
      
     // set the pushbutton pins as inputs:
     pinMode(pushButton_1, INPUT); // Coax LEDs OFF
@@ -184,6 +189,22 @@ void processByte(char ch)
             Serial << "[BUTTON_5_MSG]";
         break;
         
+        case 'c':
+            //Read next integer and use as the drive
+            coaxDrive = Serial.parseInt();
+            Serial << "[COAX_DRIVE_UPDATED]";            
+        break;
+
+        case 'f':
+            frontLEDDrive = Serial.parseInt();
+            Serial << "[FRONT_LED_DRIVE_UPDATED]";                        
+        break;
+
+        case 'b':
+            backLEDDrive = Serial.parseInt();
+            Serial << "[BACK_LED_DRIVE_UPDATED]";                                    
+        break;
+        
         case 'i': //Return some info about current state
             sendInfo();
         break;
@@ -220,14 +241,14 @@ void readEnvironmentalSensors(DHT22& s)
             Serial << "[DHT22DATA," << s.getTemperatureC() << "," << s.getHumidity() << "]";
         break;
 
-        //The following are error conditions. Pulling to quick happens easily, no need to report
+        //The following are error conditions. Polling to quick happens easily, no need to report
+        case DHT_ERROR_TOOQUICK:        /*Serial << "[DHT22_ERROR, Polled to Quick]";*/    break;
         case DHT_ERROR_CHECKSUM:        Serial << "[DHT22_ERROR, Check Sum Error ";        break;
         case DHT_BUS_HUNG:              Serial << "[DHT22_ERROR, BUS Hung]";               break;
         case DHT_ERROR_NOT_PRESENT:     Serial << "[DHT22_ERROR, Not Present]";            break;
         case DHT_ERROR_ACK_TOO_LONG:    Serial << "[DHT22_ERROR, ACK Time out]";           break;
         case DHT_ERROR_SYNC_TIMEOUT:    Serial << "[DHT22_ERROR, Sync Timeout]";           break;
-        case DHT_ERROR_DATA_TIMEOUT:    Serial << "[DHT22_ERROR, Data Timeout]";           break;
-        case DHT_ERROR_TOOQUICK:        /*Serial << "[DHT22_ERROR, Polled to Quick]";*/    break;
+        case DHT_ERROR_DATA_TIMEOUT:    Serial << "[DHT22_ERROR, Data Timeout]";           break;        
         default:                        Serial << "[DHT22_ERROR, ERROR CODE NOT DEFINED]"; break;      
     }    
 }
