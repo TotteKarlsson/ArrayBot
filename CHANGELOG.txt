@@ -1,10 +1,15 @@
+Release 0.7.4 (Aug 8)
+=======================
+* Added take snapshot feature to ArrayCam
+* Added button to toggle log window in ArrayCam
+* Fixed camera panel to scale properly (no stretching)
+
 Release 0.7.3 (Aug 8)
 =======================
 * Added ability to flip image vertical and horizontal in ArrayCam
 * Updated Lights Arduino Sketch with settings for LED's
 * Organizing arduino folder
 * Removed naive motor stopping logic
-
 
 Release 0.7.2 (Aug 4)
 =======================
