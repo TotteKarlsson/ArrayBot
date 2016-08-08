@@ -7,6 +7,7 @@
 #include <Vcl.Forms.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.ComCtrls.hpp>
+#include "TPropertyCheckBox.h"
 
 #define __AFXWIN_H__
 #include "camera/uc480Class.h"
@@ -18,7 +19,6 @@ class TMainForm : public TForm
 	__published:	// IDE-managed Components
 	TPanel *mCameraStreamPanel;
 	TButton *mCameraStartLiveBtn;
-	TTimer *Timer1;
 	TMemo *infoMemo;
 	TTimer *mShutDownTimer;
 	TTrackBar *TrackBar1;
@@ -30,16 +30,21 @@ class TMainForm : public TForm
 	TPanel *mCameraBackPanel;
 	TGroupBox *GroupBox1;
 	TRadioGroup *RadioGroup1;
+	TGroupBox *GroupBox2;
+	TPropertyCheckBox *mVerticalMirrorCB;
+	TPropertyCheckBox *mHorizontalMirrorCB;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
-	void __fastcall Timer1Timer(TObject *Sender);
+
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall mShutDownTimerTimer(TObject *Sender);
 	void __fastcall TrackBar1Change(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall mAutoGainCBClick(TObject *Sender);
 	void __fastcall RadioGroup1Click(TObject *Sender);
+	void __fastcall mVerticalMirrorCBClick(TObject *Sender);
+	void __fastcall mHorizontalMirrorCBClick(TObject *Sender);
 
 
     private:	// User declarations

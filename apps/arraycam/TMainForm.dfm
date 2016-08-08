@@ -89,9 +89,6 @@ object MainForm: TMainForm
         Caption = 'Auto Gain'
         TabOrder = 0
         OnClick = mAutoGainCBClick
-        ExplicitLeft = 1
-        ExplicitTop = 139
-        ExplicitWidth = 140
       end
       object TrackBar1: TTrackBar
         Left = 2
@@ -108,16 +105,13 @@ object MainForm: TMainForm
         TickMarks = tmBoth
         TickStyle = tsNone
         OnChange = TrackBar1Change
-        ExplicitLeft = 1
-        ExplicitTop = 139
-        ExplicitWidth = 140
       end
     end
     object RadioGroup1: TRadioGroup
       Left = 1
       Top = 289
       Width = 140
-      Height = 105
+      Height = 72
       Align = alTop
       Caption = 'Sizing'
       Enabled = False
@@ -127,9 +121,33 @@ object MainForm: TMainForm
         'Stretched')
       TabOrder = 3
       OnClick = RadioGroup1Click
-      ExplicitLeft = 6
-      ExplicitTop = 328
-      ExplicitWidth = 185
+    end
+    object GroupBox2: TGroupBox
+      Left = 1
+      Top = 361
+      Width = 140
+      Height = 80
+      Align = alTop
+      Caption = 'Mirror planes'
+      TabOrder = 4
+      object mVerticalMirrorCB: TPropertyCheckBox
+        Left = 16
+        Top = 24
+        Width = 65
+        Height = 17
+        Caption = 'Vertical'
+        TabOrder = 0
+        OnClick = mVerticalMirrorCBClick
+      end
+      object mHorizontalMirrorCB: TPropertyCheckBox
+        Left = 16
+        Top = 47
+        Width = 65
+        Height = 17
+        Caption = 'Horizontal'
+        TabOrder = 1
+        OnClick = mHorizontalMirrorCBClick
+      end
     end
   end
   object mCameraBackPanel: TPanel
@@ -139,10 +157,6 @@ object MainForm: TMainForm
     Height = 485
     Align = alClient
     TabOrder = 2
-    ExplicitLeft = 280
-    ExplicitTop = 128
-    ExplicitWidth = 393
-    ExplicitHeight = 249
     object mCameraStreamPanel: TPanel
       Left = 1
       Top = 1
@@ -150,16 +164,7 @@ object MainForm: TMainForm
       Height = 483
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = -1
     end
-  end
-  object Timer1: TTimer
-    Enabled = False
-    Interval = 1
-    OnTimer = Timer1Timer
-    Left = 736
-    Top = 232
   end
   object mShutDownTimer: TTimer
     Enabled = False

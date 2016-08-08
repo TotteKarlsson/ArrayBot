@@ -1,3 +1,11 @@
+Release 0.7.3 (Aug 8)
+=======================
+* Added ability to flip image vertical and horizontal in ArrayCam
+* Updated Lights Arduino Sketch with settings for LED's
+* Organizing arduino folder
+* Removed naive motor stopping logic
+
+
 Release 0.7.2 (Aug 4)
 =======================
 * Added Arduino client code to main UI

@@ -9,6 +9,7 @@ using namespace mtk;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+#pragma link "TPropertyCheckBox"
 #pragma resource "*.dfm"
 TMainForm *MainForm;
 
@@ -79,7 +80,13 @@ LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
         case IS_FRAME:
             if(mCamera.mImageMemory != NULL)
             {
-                mCamera.RenderBitmap(mCamera.mMemoryId, mDisplayHandle, IS_RENDER_FIT_TO_WINDOW);
+				long mode = IS_RENDER_FIT_TO_WINDOW;
+                if(mVerticalMirrorCB->Checked)
+                {
+                	mode = mode ;//| IS_MSET_ROP_MIRROR_LEFTRIGHT;
+                }
+
+                mCamera.RenderBitmap(mCamera.mMemoryId, mDisplayHandle, mode);
             }
         break;
     }
@@ -106,15 +113,6 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState S
 HWND TMainForm::GetSafeHwnd()
 {
 	return this->Handle;
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::Timer1Timer(TObject *Sender)
-{
-    if(mCamera.mImageMemory != NULL)
-    {
-        mCamera.RenderBitmap(mCamera.mMemoryId, mDisplayHandle, IS_RENDER_FIT_TO_WINDOW);
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -199,6 +197,35 @@ void __fastcall TMainForm::RadioGroup1Click(TObject *Sender)
 //        //Fit stream panel on the backpanel
 //        double wRatio = mCameraBackPanel->Width /
 //    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::mVerticalMirrorCBClick(TObject *Sender)
+{
+    HCAM hCam = mCamera.GetCameraHandle();
+	if(mVerticalMirrorCB->Checked)
+    {
+		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_LEFTRIGHT, 1, 0);
+    }
+    else
+    {
+		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_LEFTRIGHT, 0, 0);
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::mHorizontalMirrorCBClick(TObject *Sender)
+{
+    HCAM hCam = mCamera.GetCameraHandle();
+	if(mHorizontalMirrorCB->Checked)
+    {
+		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_UPDOWN, 1, 0);
+    }
+    else
+    {
+		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_UPDOWN, 0, 0);
+    }
+
 }
 //---------------------------------------------------------------------------
 

@@ -486,7 +486,7 @@ extern "C" {
 #define IS_RENDER_NORMAL                                               0x0001    
 #define IS_RENDER_FIT_TO_WINDOW                                        0x0002    
 #define IS_RENDER_DOWNSCALE_1_2                                        0x0004    
-#define IS_RENDER_MIRROR_UPDOWN                                        0x0010    
+#define IS_RENDER_MIRROR_UPDOWN                                        0x0010
 
 #define IS_RENDER_PLANAR_COLOR_RED                                     0x0080    
 #define IS_RENDER_PLANAR_COLOR_GREEN                                   0x0100    
@@ -1241,7 +1241,7 @@ extern "C" {
 #define IS_STORE_FILE_PATH                                                  7    
 #define IS_LUMA_BANDWIDTH_FILTER                                            8    
 #define IS_BOARD_REVISION                                                   9    
-#define IS_MIRROR_BITMAP_UPDOWN                                            10    
+#define IS_MIRROR_BITMAP_UPDOWN                                            10
 #define IS_BUS_OVR_CNT                                                     11    
 #define IS_STEAL_ERROR_CNT                                                 12    
 #define IS_LOW_COLOR_REMOVAL                                               13    
