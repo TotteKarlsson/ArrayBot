@@ -19,7 +19,7 @@ object MainForm: TMainForm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 557
+    Top = 621
     Width = 963
     Height = 3
     Cursor = crVSplit
@@ -29,9 +29,9 @@ object MainForm: TMainForm
     ExplicitWidth = 967
   end
   object Splitter2: TSplitter
-    Left = 818
+    Left = 845
     Top = 0
-    Height = 557
+    Height = 621
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
@@ -39,28 +39,24 @@ object MainForm: TMainForm
   end
   object infoMemo: TMemo
     Left = 0
-    Top = 560
+    Top = 624
     Width = 963
-    Height = 175
+    Height = 111
     Align = alBottom
     ScrollBars = ssVertical
     TabOrder = 0
-    ExplicitTop = 488
-    ExplicitWidth = 967
   end
   object Panel2: TPanel
-    Left = 821
+    Left = 848
     Top = 0
-    Width = 142
-    Height = 557
+    Width = 115
+    Height = 621
     Align = alRight
     TabOrder = 1
-    ExplicitLeft = 825
-    ExplicitHeight = 485
     object mCameraStartLiveBtn: TButton
       Left = 1
       Top = 1
-      Width = 140
+      Width = 113
       Height = 65
       Align = alTop
       Caption = 'Start'
@@ -70,7 +66,7 @@ object MainForm: TMainForm
     object Button2: TButton
       Left = 1
       Top = 66
-      Width = 140
+      Width = 113
       Height = 73
       Align = alTop
       Caption = 'Info'
@@ -80,15 +76,15 @@ object MainForm: TMainForm
     object GroupBox1: TGroupBox
       Left = 1
       Top = 139
-      Width = 140
-      Height = 102
+      Width = 113
+      Height = 70
       Align = alTop
       Caption = 'Settings'
       TabOrder = 2
       object mAutoGainCB: TCheckBox
         Left = 2
         Top = 15
-        Width = 136
+        Width = 109
         Height = 17
         Align = alTop
         Caption = 'Auto Gain'
@@ -98,8 +94,8 @@ object MainForm: TMainForm
       object TrackBar1: TTrackBar
         Left = 2
         Top = 32
-        Width = 136
-        Height = 69
+        Width = 109
+        Height = 33
         Align = alTop
         Max = 1000
         Min = 1
@@ -114,13 +110,12 @@ object MainForm: TMainForm
     end
     object GroupBox2: TGroupBox
       Left = 1
-      Top = 241
-      Width = 140
+      Top = 209
+      Width = 113
       Height = 80
       Align = alTop
       Caption = 'Mirror planes'
       TabOrder = 3
-      ExplicitTop = 361
       object mVerticalMirrorCB: TPropertyCheckBox
         Left = 16
         Top = 24
@@ -142,59 +137,78 @@ object MainForm: TMainForm
     end
     object mOneToTwoBtn: TButton
       Left = 1
-      Top = 433
-      Width = 140
-      Height = 56
+      Top = 409
+      Width = 113
+      Height = 60
       Align = alTop
       Caption = '1:2'
       TabOrder = 4
       OnClick = mOneToTwoBtnClick
-      ExplicitTop = 321
     end
     object mOneToOneBtn: TButton
       Left = 1
-      Top = 377
-      Width = 140
-      Height = 56
+      Top = 349
+      Width = 113
+      Height = 60
       Align = alTop
       Caption = '1:1'
       TabOrder = 5
       OnClick = mOneToOneBtnClick
-      ExplicitTop = 321
     end
     object mFitToScreenButton: TButton
       Left = 1
-      Top = 321
-      Width = 140
-      Height = 56
+      Top = 289
+      Width = 113
+      Height = 60
       Align = alTop
       Caption = 'Fit to screen'
       TabOrder = 6
       OnClick = mFitToScreenButtonClick
     end
-    object mToggleLogPanel: TButton
+    object mToggleLogPanelBtn: TButton
       Left = 1
-      Top = 489
-      Width = 140
-      Height = 62
+      Top = 529
+      Width = 113
+      Height = 60
       Align = alTop
       Caption = 'Hide Logs'
       TabOrder = 7
       OnClick = mToggleLogPanelClick
+      ExplicitTop = 469
+    end
+    object mRecordMovieBtn: TButton
+      Left = 1
+      Top = 589
+      Width = 113
+      Height = 60
+      Align = alTop
+      Caption = 'Record Movie'
+      Enabled = False
+      TabOrder = 8
+      OnClick = mRecordMovieBtnClick
+      ExplicitTop = 529
+    end
+    object mSnapShotBtn: TButton
+      Left = 1
+      Top = 469
+      Width = 113
+      Height = 60
+      Align = alTop
+      Caption = 'Snap Shot'
+      TabOrder = 9
+      OnClick = mSnapShotBtnClick
+      ExplicitLeft = -15
+      ExplicitTop = 453
     end
   end
   object mMainPanel: TPanel
     Left = 0
     Top = 0
-    Width = 818
-    Height = 557
+    Width = 845
+    Height = 621
     Align = alClient
     TabOrder = 2
     OnResize = mMainPanelResize
-    ExplicitLeft = 120
-    ExplicitTop = 96
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -213,8 +227,6 @@ object MainForm: TMainForm
         Color = clTeal
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 742
-        ExplicitHeight = 441
       end
     end
   end

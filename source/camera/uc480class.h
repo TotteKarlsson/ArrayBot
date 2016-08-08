@@ -111,7 +111,7 @@ class AB_CORE Cuc480 : public Cuc480Dll
         int   	                            WriteEEPROM(int lAdr, char* pcBuf, int lCount);
 
                                             // bitmap load and save functions
-        int   	                            SaveImage(char* pcFile);
+        int   	                            SaveImage(const char* pcFile);
         int   	                            LoadImage(char* pcFile);
         int   	                            SaveImageMem(char* pcFile, char* pcMem, int lID);
 

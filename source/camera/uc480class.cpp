@@ -433,7 +433,7 @@ int Cuc480::WriteEEPROM(int lAdr, char* pcBuf, int lCount)
   return nRet;
 }
 
-int Cuc480::SaveImage(char* pcFile)
+int Cuc480::SaveImage(const char* pcFile)
 {
   return is_SaveImage(m_hu, pcFile);
 }

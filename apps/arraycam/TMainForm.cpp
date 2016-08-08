@@ -4,6 +4,8 @@
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "mtkWin32Utils.h"
+#include "mtkUtils.h"
+
 
 using namespace mtk;
 
@@ -264,8 +266,52 @@ void __fastcall TMainForm::mMainPanelResize(TObject *Sender)
 void __fastcall TMainForm::mToggleLogPanelClick(TObject *Sender)
 {
 	infoMemo->Visible = !infoMemo->Visible;
-	mToggleLogPanel->Caption =  (infoMemo->Visible) ? "Hide Logs" : "Show Logs";
+	mToggleLogPanelBtn->Caption =  (infoMemo->Visible) ? "Hide Logs" : "Show Logs";
 	mFitToScreenButtonClick(Sender);
 }
 
+void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
+{
+	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
+
+    if(!folderExists(fldr))
+    {
+    	createFolder(fldr);
+    }
+
+    //Count files in folder
+    int nrShots = countFiles(fldr, "*.jpg") + 1;
+
+    string fName = joinPath(fldr, mtk::toString(nrShots) + ".jpg");
+
+	if(mCamera.SaveImage(fName.c_str()))
+    {
+    	Log(lError) << "Failed saving snapshot..";
+    }
+    else
+    {
+    	Log(lInfo) << "Saved snap shot to: "<< fName;
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::mRecordMovieBtnClick(TObject *Sender)
+{
+//	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
+//
+//    //Count files in folder
+//    int nrShots = countFiles(fldr, "*.avi") + 1;
+//
+//    string fName = joinPath(fldr, mtk::toString(nrShots) + ".avi");
+//
+//	if(mCamera.CaptureVideo()
+//    {
+//    	Log(lError) << "Failed saving snapshot..";
+//    }
+//    else
+//    {
+//    	Log(lInfo) << "Saved snap shot to: "<< fName;
+//    }
+}
+//---------------------------------------------------------------------------
 

@@ -36,7 +36,9 @@ class TMainForm : public TForm
 	TPanel *mMainPanel;
 	TPanel *mCameraBackPanel;
 	TPanel *mCameraStreamPanel;
-	TButton *mToggleLogPanel;
+	TButton *mToggleLogPanelBtn;
+	TButton *mRecordMovieBtn;
+	TButton *mSnapShotBtn;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -54,6 +56,8 @@ class TMainForm : public TForm
 	void __fastcall mFitToScreenButtonClick(TObject *Sender);
 	void __fastcall mMainPanelResize(TObject *Sender);
 	void __fastcall mToggleLogPanelClick(TObject *Sender);
+	void __fastcall mSnapShotBtnClick(TObject *Sender);
+	void __fastcall mRecordMovieBtnClick(TObject *Sender);
 
 
     private:	// User declarations
