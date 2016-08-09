@@ -174,7 +174,6 @@ object MainForm: TMainForm
       Caption = 'Hide Logs'
       TabOrder = 7
       OnClick = mToggleLogPanelClick
-      ExplicitTop = 469
     end
     object mRecordMovieBtn: TButton
       Left = 1
@@ -186,7 +185,6 @@ object MainForm: TMainForm
       Enabled = False
       TabOrder = 8
       OnClick = mRecordMovieBtnClick
-      ExplicitTop = 529
     end
     object mSnapShotBtn: TButton
       Left = 1
@@ -197,8 +195,6 @@ object MainForm: TMainForm
       Caption = 'Snap Shot'
       TabOrder = 9
       OnClick = mSnapShotBtnClick
-      ExplicitLeft = -15
-      ExplicitTop = 453
     end
   end
   object mMainPanel: TPanel

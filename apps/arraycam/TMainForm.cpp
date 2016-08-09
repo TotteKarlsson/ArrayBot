@@ -297,6 +297,7 @@ void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
 
 void __fastcall TMainForm::mRecordMovieBtnClick(TObject *Sender)
 {
+//	mCamera.is_i
 //	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
 //
 //    //Count files in folder
