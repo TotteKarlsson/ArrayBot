@@ -8,6 +8,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.ComCtrls.hpp>
 #include "TPropertyCheckBox.h"
+#include <Vcl.Menus.hpp>
 
 #define __AFXWIN_H__
 #include "camera/uc480Class.h"
@@ -17,11 +18,8 @@
 class TMainForm : public TForm
 {
 	__published:	// IDE-managed Components
-	TButton *mCameraStartLiveBtn;
 	TMemo *infoMemo;
 	TTimer *mShutDownTimer;
-	TTrackBar *TrackBar1;
-	TButton *Button2;
 	TCheckBox *mAutoGainCB;
 	TPanel *Panel2;
 	TSplitter *Splitter1;
@@ -39,6 +37,18 @@ class TMainForm : public TForm
 	TButton *mToggleLogPanelBtn;
 	TButton *mRecordMovieBtn;
 	TButton *mSnapShotBtn;
+	TTimer *Timer1;
+	TButton *Button1;
+	TPanel *mBottomPanel;
+	TPanel *Panel1;
+	TListBox *mMoviesLB;
+	TPopupMenu *mMediaPopup;
+	TMenuItem *Delete1;
+	TMenuItem *DeleteAll1;
+	TListBox *mShotsLB;
+	TGroupBox *GroupBox3;
+	TGroupBox *GroupBox4;
+	TCheckBox *mAutoExposureCB;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -46,9 +56,7 @@ class TMainForm : public TForm
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall mShutDownTimerTimer(TObject *Sender);
 	void __fastcall TrackBar1Change(TObject *Sender);
-	void __fastcall Button2Click(TObject *Sender);
-	void __fastcall mAutoGainCBClick(TObject *Sender);
-
+	void __fastcall AutoParaCBClick(TObject *Sender);
 	void __fastcall mVerticalMirrorCBClick(TObject *Sender);
 	void __fastcall mHorizontalMirrorCBClick(TObject *Sender);
 	void __fastcall mOneToTwoBtnClick(TObject *Sender);
@@ -58,30 +66,46 @@ class TMainForm : public TForm
 	void __fastcall mToggleLogPanelClick(TObject *Sender);
 	void __fastcall mSnapShotBtnClick(TObject *Sender);
 	void __fastcall mRecordMovieBtnClick(TObject *Sender);
+	void __fastcall Timer1Timer(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall mMoviesLBDblClick(TObject *Sender);
+	void __fastcall Delete1Click(TObject *Sender);
+	void __fastcall DeleteAll1Click(TObject *Sender);
 
-
-    private:	// User declarations
+    private:
         LogFileReader                   mLogFileReader;
         void __fastcall                 logMsg();
 
+								        // Camera variables
+
+        								//!The camera class
 		Cuc480   						mCamera;
         long							mRenderMode;
-
-        // Camera variables
         HWND	                		mDisplayHandle;	// handle to diplay window
         HWND 							GetSafeHwnd();
 		bool							openCamera();
 
-    public:		// User declarations
+        								//!Boolean to check if we are
+                                        //capturing video to file
+        bool							mCaptureVideo;
+
+        								//!AVI ID is a handle for a
+                                        //underlying avi object
+		int 							mAVIID;
+
+        void							updateVideoFileLB();
+		void  							updateShotsLB();
+
+    public:
  			       __fastcall 			TMainForm(TComponent* Owner);
 
+										//!Camera stuff is processed in the message loop
 	LRESULT 							OnUSBCameraMessage(TMessage msg);
 
     BEGIN_MESSAGE_MAP
           MESSAGE_HANDLER(IS_UC480_MESSAGE, TMessage, OnUSBCameraMessage);
     END_MESSAGE_MAP(TForm)
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TMainForm *MainForm;
-//---------------------------------------------------------------------------
 #endif

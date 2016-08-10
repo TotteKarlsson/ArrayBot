@@ -16,7 +16,7 @@
  extern "C" {
 #endif
 
-typedef HANDLE HCAM;
+//typedef HANDLE HCAM;
 
  // Color modes ------------------------------------------------
 #define IS_AVI_CM_RGB32     0	// RGB32

@@ -29,7 +29,7 @@ bool Cuc480::openCamera(HWND hwnd)
     exitCamera();
 
     // init camera
-    int returnValue = InitCamera(0, m_hwnd );        // init cam
+    int returnValue = InitCamera(0, m_hwnd);        // init cam
 
     // continue when camera is sucessfully initialized
     if( returnValue == IS_SUCCESS )
