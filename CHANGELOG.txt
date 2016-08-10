@@ -1,3 +1,9 @@
+Release 0.7.5 (Aug 10)
+=======================
+* New camera features
+* Added code to create avi movies with the camera
+* Added ability to enable auto exposure in arrayCam
+
 Release 0.7.4 (Aug 8)
 =======================
 * Added take snapshot feature to ArrayCam
