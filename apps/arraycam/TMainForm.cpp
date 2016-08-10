@@ -389,20 +389,20 @@ void __fastcall TMainForm::mRecordMovieBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::Timer1Timer(TObject *Sender)
 {
+	//Todo: this should be executed in its own thread and not in a timer..
     mCaptureVideo = true;
     static int frames(0);
-    {
-        int retVal = isavi_AddFrame(mAVIID, mCamera.mImageMemory);
 
-        if(retVal != IS_AVI_NO_ERR)
-        {
-            //Log(lError) << "There was an AddFrame AVI error: "<<retVal;
-        }
-        else
-        {
-	        frames++;
-			Log(lInfo) << "Added frame: "<<frames;
-        }
+    int retVal = isavi_AddFrame(mAVIID, mCamera.mImageMemory);
+
+    if(retVal != IS_AVI_NO_ERR)
+    {
+        //Log(lError) << "There was an AddFrame AVI error: "<<retVal;
+    }
+    else
+    {
+        frames++;
+        Log(lInfo) << "Added frame: "<<frames;
     }
 }
 
