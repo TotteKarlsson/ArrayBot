@@ -15,7 +15,6 @@
 #include <vector>
 #include "mtkTimer.h"
 
-
 using mtk::IPCServer;
 using mtk::IPCMessage;
 using std::vector;
@@ -45,7 +44,6 @@ class AB_CORE ArduinoServer : public IPCServer
 
 		bool								toggleLED();
 		bool								toggleCoax();
-
 
         void					            incrementSectionCount(){mSectionCount++;}
         int						            getSectionCount(){return mSectionCount;}

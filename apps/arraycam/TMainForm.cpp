@@ -277,7 +277,7 @@ void __fastcall TMainForm::mMainPanelResize(TObject *Sender)
 void __fastcall TMainForm::mToggleLogPanelClick(TObject *Sender)
 {
 	mBottomPanel->Visible = !mBottomPanel->Visible;
-	mToggleLogPanelBtn->Caption =  (infoMemo->Visible) ? "Hide Bottom Panel" : "Show Bottom Panel";
+	mToggleLogPanelBtn->Caption =  (mBottomPanel->Visible) ? "Hide Bottom Panel" : "Show Bottom Panel";
 	mFitToScreenButtonClick(Sender);
 }
 
@@ -492,6 +492,9 @@ void __fastcall TMainForm::mMoviesLBDblClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::Delete1Click(TObject *Sender)
 {
+
+	ShowMessage(Sender->ClassName());
+
 	if(mMoviesLB->ItemIndex == -1)
     {
 		return;
@@ -512,7 +515,9 @@ void __fastcall TMainForm::Delete1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
 {
-	TListBox* lb = dynamic_cast<TListBox*>(Sender);
+	TMenuItem* mi = dynamic_cast<TMenuItem*>(Sender);
+
+    TListBox* lb = dynamic_cast<TListBox*>(mi->Owner->Owner);
 
     if(lb == mMoviesLB)
     {
@@ -622,4 +627,33 @@ void __fastcall TMainForm::mFrontBackLEDBtnClick(TObject *Sender)
     	mArduinoClient.toggleCoax();
     }
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::LightTBChange(TObject *Sender)
+{
+	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
+    if(tb == mFrontLEDTB)
+    {
+    	int nr = tb->Position;
+        stringstream s;
+        s<<"SET_FRONTLED_INTENSITY="<<nr;
+        mArduinoClient.request(s.str());
+    }
+    else if(tb == mBackLEDTB)
+    {
+    	int nr = tb->Position;
+        stringstream s;
+        s<<"SET_BACKLED_INTENSITY="<<nr;
+        mArduinoClient.request(s.str());
+    }
+    else if(tb == mCoaxTB)
+    {
+    	int nr = tb->Position;
+        stringstream s;
+        s<<"SET_COAX_INTENSITY="<<nr;
+        mArduinoClient.request(s.str());
+    }
+
+}
+
 

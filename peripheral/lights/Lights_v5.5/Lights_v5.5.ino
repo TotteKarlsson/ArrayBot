@@ -149,12 +149,12 @@ void loop()
 
     //Read digital lines and send status over serial port so the host
     //can update its UI
-    unsigned long currentReadTime = millis();
-    if(currentReadTime - lastReadTime > 3000)
-    {
-        checkPINStates();
-        lastReadTime = currentReadTime;
-    }
+//    unsigned long currentReadTime = millis();
+//    if(currentReadTime - lastReadTime > 3000)
+//    {
+//        checkPINStates();
+//        lastReadTime = currentReadTime;
+//    }
     
     //Read temp/humidity sensor, about every 2s.
       readEnvironmentalSensors(gDHT22);    
@@ -237,6 +237,7 @@ void checkPINStates()
 void sendInfo()
 {
     Serial << "[VERSION=5.6]";    
+    checkPINStates();
 }
 
 void readEnvironmentalSensors(DHT22& s)

@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Top = 0
   BorderStyle = bsNone
   Caption = 'Array Cam 0.5'
-  ClientHeight = 773
+  ClientHeight = 1280
   ClientWidth = 979
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object MainForm: TMainForm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 611
+    Top = 1118
     Width = 979
     Height = 3
     Cursor = crVSplit
@@ -33,7 +33,7 @@ object MainForm: TMainForm
   object Splitter2: TSplitter
     Left = 861
     Top = 0
-    Height = 611
+    Height = 1118
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
@@ -43,7 +43,7 @@ object MainForm: TMainForm
     Left = 864
     Top = 0
     Width = 115
-    Height = 611
+    Height = 1118
     Align = alRight
     TabOrder = 0
     object GroupBox1: TGroupBox
@@ -164,15 +164,13 @@ object MainForm: TMainForm
     end
     object Button2: TButton
       Left = 1
-      Top = 570
+      Top = 1077
       Width = 113
       Height = 40
       Align = alBottom
       Caption = 'Exit'
       TabOrder = 8
       OnClick = Button2Click
-      ExplicitLeft = 6
-      ExplicitTop = 586
     end
     object mSettingsBtn: TButton
       Left = 1
@@ -183,18 +181,15 @@ object MainForm: TMainForm
       Caption = 'Settings'
       TabOrder = 9
       OnClick = mSettingsBtnClick
-      ExplicitTop = 409
     end
     object GroupBox5: TGroupBox
       Left = 1
-      Top = 350
+      Top = 857
       Width = 113
       Height = 60
       Align = alBottom
       Caption = 'Temperature'
       TabOrder = 10
-      ExplicitLeft = 3
-      ExplicitTop = 295
       object mTemperatureLbl: mtkFloatLabel
         Left = 32
         Top = 26
@@ -218,13 +213,12 @@ object MainForm: TMainForm
     end
     object GroupBox6: TGroupBox
       Left = 1
-      Top = 410
+      Top = 917
       Width = 113
       Height = 60
       Align = alBottom
       Caption = 'Humidity'
       TabOrder = 11
-      ExplicitTop = 490
       object mHumidityE: mtkFloatLabel
         Left = 32
         Top = 23
@@ -248,7 +242,7 @@ object MainForm: TMainForm
     end
     object mFrontBackLEDBtn: TButton
       Left = 1
-      Top = 470
+      Top = 977
       Width = 113
       Height = 50
       Align = alBottom
@@ -256,11 +250,10 @@ object MainForm: TMainForm
       TabOrder = 12
       WordWrap = True
       OnClick = mFrontBackLEDBtnClick
-      ExplicitTop = 430
     end
     object mToggleCoaxBtn: TButton
       Left = 1
-      Top = 520
+      Top = 1027
       Width = 113
       Height = 50
       Align = alBottom
@@ -268,14 +261,54 @@ object MainForm: TMainForm
       TabOrder = 13
       WordWrap = True
       OnClick = mFrontBackLEDBtnClick
-      ExplicitTop = 490
+    end
+    object GroupBox7: TGroupBox
+      Left = 1
+      Top = 664
+      Width = 113
+      Height = 193
+      Align = alBottom
+      Caption = 'Light Intensities'
+      TabOrder = 14
+      object mCoaxTB: TTrackBar
+        Left = 2
+        Top = 105
+        Width = 109
+        Height = 45
+        Align = alTop
+        Max = 255
+        TabOrder = 0
+        OnChange = LightTBChange
+      end
+      object mBackLEDTB: TTrackBar
+        Left = 2
+        Top = 60
+        Width = 109
+        Height = 45
+        Align = alTop
+        Max = 255
+        TabOrder = 1
+        OnChange = LightTBChange
+      end
+      object mFrontLEDTB: TTrackBar
+        Left = 2
+        Top = 15
+        Width = 109
+        Height = 45
+        Align = alTop
+        Max = 255
+        TabOrder = 2
+        OnChange = LightTBChange
+        ExplicitLeft = 1
+        ExplicitTop = 9
+      end
     end
   end
   object mMainPanel: TPanel
     Left = 0
     Top = 0
     Width = 861
-    Height = 611
+    Height = 1118
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
@@ -303,7 +336,7 @@ object MainForm: TMainForm
   end
   object mBottomPanel: TPanel
     Left = 0
-    Top = 614
+    Top = 1121
     Width = 979
     Height = 159
     Align = alBottom
@@ -353,7 +386,6 @@ object MainForm: TMainForm
         PopupMenu = mMediaPopup
         TabOrder = 0
         OnDblClick = mMoviesLBDblClick
-        ExplicitLeft = 4
       end
     end
     object GroupBox4: TGroupBox

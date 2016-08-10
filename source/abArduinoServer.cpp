@@ -189,19 +189,16 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Resetting section counter";
         broadcastStatus();
     }
-
     else if(compareStrings(msg, "ENABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Enabling auto puffing";
         enableAutoPuff();
     }
-
     else if(compareStrings(msg, "DISABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Disabling auto puffing";
         disableAutoPuff();
     }
-
     else if(startsWith(msg, "PUFF_AFTER_SECTION_COUNT"))
     {
     	Log(lInfo) << "Setting puff after section count";
@@ -221,5 +218,39 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Toggling Coax on/off";
         toggleCoax();
     }
+    else if(startsWith(msg, "SET_FRONTLED"))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+            stringstream s;
+            s << 'f' <<sl[1];
+			Log(lInfo) << "Set Front LED Intensity ("<<sl[1]<<")";
+        	mSensorArduino.send(s.str());
+        }
+    }
+    else if(startsWith(msg, "SET_BACKLED"))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+            stringstream s;
+            s << 'b' <<sl[1];
+			Log(lInfo) << "Set Back LED Intensity ("<<sl[1]<<")";
+        	mSensorArduino.send(s.str());
+        }
+    }
+    else if(startsWith(msg, "SET_COAX"))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+            stringstream s;
+            s << 'c' <<sl[1];
+			Log(lInfo) << "Set COAX Light Intensity ("<<sl[1]<<")";
+        	mSensorArduino.send(s.str());
+        }
+    }
+
     return msg.IsProcessed();
 }

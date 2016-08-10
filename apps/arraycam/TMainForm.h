@@ -64,6 +64,10 @@ class TMainForm  : public TRegistryForm
 	mtkFloatLabel *mTemperatureLbl;
 	TButton *mFrontBackLEDBtn;
 	TButton *mToggleCoaxBtn;
+	TGroupBox *GroupBox7;
+	TTrackBar *mCoaxTB;
+	TTrackBar *mBackLEDTB;
+	TTrackBar *mFrontLEDTB;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -90,6 +94,7 @@ class TMainForm  : public TRegistryForm
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall mSettingsBtnClick(TObject *Sender);
 	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
+	void __fastcall LightTBChange(TObject *Sender);
 
     private:
         LogFileReader                           mLogFileReader;
