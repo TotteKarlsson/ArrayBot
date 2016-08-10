@@ -520,8 +520,8 @@ void TMain::onArduinoMessageReceived(const string& msg)
                 StringList l(msg,',');
                 if(l.size() == 3)
                 {
-                    Main->mTemperatureLbl->SetValue(toDouble(l[1]));
-                    Main->mHumidityE->SetValue(toDouble(l[2]));
+//                    Main->mTemperatureLbl->SetValue(toDouble(l[1]));
+//                    Main->mHumidityE->SetValue(toDouble(l[2]));
                 }
             }
 //            else if(startsWith(msg, "PIN_8"))
