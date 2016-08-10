@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Top = 0
   BorderStyle = bsNone
   Caption = 'Array Cam 0.5'
-  ClientHeight = 1280
+  ClientHeight = 1024
   ClientWidth = 979
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object MainForm: TMainForm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 1118
+    Top = 862
     Width = 979
     Height = 3
     Cursor = crVSplit
@@ -33,7 +33,7 @@ object MainForm: TMainForm
   object Splitter2: TSplitter
     Left = 861
     Top = 0
-    Height = 1118
+    Height = 862
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
@@ -43,9 +43,10 @@ object MainForm: TMainForm
     Left = 864
     Top = 0
     Width = 115
-    Height = 1118
+    Height = 862
     Align = alRight
     TabOrder = 0
+    ExplicitHeight = 1118
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
@@ -164,13 +165,14 @@ object MainForm: TMainForm
     end
     object Button2: TButton
       Left = 1
-      Top = 1077
+      Top = 821
       Width = 113
       Height = 40
       Align = alBottom
       Caption = 'Exit'
       TabOrder = 8
       OnClick = Button2Click
+      ExplicitTop = 1077
     end
     object mSettingsBtn: TButton
       Left = 1
@@ -184,12 +186,13 @@ object MainForm: TMainForm
     end
     object GroupBox5: TGroupBox
       Left = 1
-      Top = 857
+      Top = 601
       Width = 113
       Height = 60
       Align = alBottom
       Caption = 'Temperature'
       TabOrder = 10
+      ExplicitTop = 857
       object mTemperatureLbl: mtkFloatLabel
         Left = 32
         Top = 26
@@ -213,12 +216,13 @@ object MainForm: TMainForm
     end
     object GroupBox6: TGroupBox
       Left = 1
-      Top = 917
+      Top = 661
       Width = 113
       Height = 60
       Align = alBottom
       Caption = 'Humidity'
       TabOrder = 11
+      ExplicitTop = 917
       object mHumidityE: mtkFloatLabel
         Left = 32
         Top = 23
@@ -242,7 +246,7 @@ object MainForm: TMainForm
     end
     object mFrontBackLEDBtn: TButton
       Left = 1
-      Top = 977
+      Top = 721
       Width = 113
       Height = 50
       Align = alBottom
@@ -250,10 +254,11 @@ object MainForm: TMainForm
       TabOrder = 12
       WordWrap = True
       OnClick = mFrontBackLEDBtnClick
+      ExplicitTop = 977
     end
     object mToggleCoaxBtn: TButton
       Left = 1
-      Top = 1027
+      Top = 771
       Width = 113
       Height = 50
       Align = alBottom
@@ -261,15 +266,17 @@ object MainForm: TMainForm
       TabOrder = 13
       WordWrap = True
       OnClick = mFrontBackLEDBtnClick
+      ExplicitTop = 1027
     end
     object GroupBox7: TGroupBox
       Left = 1
-      Top = 664
+      Top = 456
       Width = 113
-      Height = 193
+      Height = 145
       Align = alBottom
       Caption = 'Light Intensities'
       TabOrder = 14
+      ExplicitTop = 696
       object mCoaxTB: TTrackBar
         Left = 2
         Top = 105
@@ -299,8 +306,6 @@ object MainForm: TMainForm
         Max = 255
         TabOrder = 2
         OnChange = LightTBChange
-        ExplicitLeft = 1
-        ExplicitTop = 9
       end
     end
   end
@@ -308,10 +313,12 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 861
-    Height = 1118
+    Height = 862
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
+    ExplicitTop = -2
+    ExplicitHeight = 1118
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -336,11 +343,12 @@ object MainForm: TMainForm
   end
   object mBottomPanel: TPanel
     Left = 0
-    Top = 1121
+    Top = 865
     Width = 979
     Height = 159
     Align = alBottom
     TabOrder = 2
+    ExplicitTop = 1121
     object infoMemo: TMemo
       Left = 225
       Top = 42
