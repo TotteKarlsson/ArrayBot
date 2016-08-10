@@ -10,13 +10,20 @@
 #include "TPropertyCheckBox.h"
 #include <Vcl.Menus.hpp>
 
-#define __AFXWIN_H__
+//#define __AFXWIN_H__
 #include "camera/uc480Class.h"
 #include "mtkLogFileReader.h"
+#include "TRegistryForm.h"
 
+#include "abArduinoClient.h"
+#include "mtkFloatLabel.h"
+
+class TSettingsForm;
 //---------------------------------------------------------------------------
-class TMainForm : public TForm
+class TMainForm  : public TRegistryForm
 {
+	friend TSettingsForm;
+
 	__published:	// IDE-managed Components
 	TMemo *infoMemo;
 	TTimer *mShutDownTimer;
@@ -49,6 +56,14 @@ class TMainForm : public TForm
 	TGroupBox *GroupBox3;
 	TGroupBox *GroupBox4;
 	TCheckBox *mAutoExposureCB;
+	TButton *Button2;
+	TButton *mSettingsBtn;
+	TGroupBox *GroupBox6;
+	mtkFloatLabel *mHumidityE;
+	TGroupBox *GroupBox5;
+	mtkFloatLabel *mTemperatureLbl;
+	TButton *mFrontBackLEDBtn;
+	TButton *mToggleCoaxBtn;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -71,36 +86,49 @@ class TMainForm : public TForm
 	void __fastcall mMoviesLBDblClick(TObject *Sender);
 	void __fastcall Delete1Click(TObject *Sender);
 	void __fastcall DeleteAll1Click(TObject *Sender);
+	void __fastcall mCameraStreamPanelDblClick(TObject *Sender);
+	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall mSettingsBtnClick(TObject *Sender);
+	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
 
     private:
-        LogFileReader                   mLogFileReader;
-        void __fastcall                 logMsg();
+        LogFileReader                           mLogFileReader;
+        void __fastcall                         logMsg();
 
-								        // Camera variables
+								                // Camera variables
 
-        								//!The camera class
-		Cuc480   						mCamera;
-        long							mRenderMode;
-        HWND	                		mDisplayHandle;	// handle to diplay window
-        HWND 							GetSafeHwnd();
-		bool							openCamera();
+        								        //!The camera class
+		Cuc480   						        mCamera;
+        long							        mRenderMode;
+        HWND	                		        mDisplayHandle;	// handle to diplay window
+        HWND 							        GetSafeHwnd();
+		bool							        openCamera();
 
-        								//!Boolean to check if we are
-                                        //capturing video to file
-        bool							mCaptureVideo;
+        								        //!Boolean to check if we are
+                                                //capturing video to file
+        bool							        mCaptureVideo;
 
-        								//!AVI ID is a handle for a
-                                        //underlying avi object
-		int 							mAVIID;
+        								        //!AVI ID is a handle for a
+                                                //underlying avi object
+		int 							        mAVIID;
 
-        void							updateVideoFileLB();
-		void  							updateShotsLB();
+        void							        updateVideoFileLB();
+		void  							        updateShotsLB();
+
+        										//!The arduino client connects to
+                                                //an arduino server. The client processes
+                                                //incoming messages over a socket, in
+                                                //onArduinoMessageReceived
+		ArduinoClient 					        mArduinoClient;
+
+        										//Callback
+		void 									onArduinoMessageReceived(const string& msg);
 
     public:
- 			       __fastcall 			TMainForm(TComponent* Owner);
+ 			       __fastcall 					TMainForm(TComponent* Owner);
 
-										//!Camera stuff is processed in the message loop
-	LRESULT 							OnUSBCameraMessage(TMessage msg);
+												//!Camera stuff is processed in the message loop
+	LRESULT 									OnUSBCameraMessage(TMessage msg);
 
     BEGIN_MESSAGE_MAP
           MESSAGE_HANDLER(IS_UC480_MESSAGE, TMessage, OnUSBCameraMessage);

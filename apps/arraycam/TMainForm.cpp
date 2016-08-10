@@ -6,25 +6,32 @@
 #include "mtkWin32Utils.h"
 #include "mtkUtils.h"
 #include "camera/uc480_tools.h"
+#include "TSettingsForm.h"
 
 using namespace mtk;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TPropertyCheckBox"
+#pragma link "mtkFloatLabel"
 #pragma resource "*.dfm"
 TMainForm *MainForm;
 
 extern string gLogFileName;
+extern string gApplicationRegistryRoot;
 //---------------------------------------------------------------------------
 __fastcall TMainForm::TMainForm(TComponent* Owner)
-	: TForm(Owner),
+	: TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
     	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
         mCaptureVideo(false),
         mAVIID(0)
 {
    	mLogFileReader.start(true);
+
+	//Camera rendering mode
     mRenderMode = IS_RENDER_FIT_TO_WINDOW;
+
+	mArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
 }
 
 //This one is called from the reader thread
@@ -58,7 +65,10 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 {
 	mDisplayHandle 	= this->mCameraStreamPanel->Handle;
 	mCameraStartLiveBtnClick(Sender);
-//    mAutoGainCB->Checked = true;
+
+    mAutoGainCB->Checked = true;
+    mAutoExposureCB->Checked = true;
+
 	mCameraStreamPanel->Width = 1280;
 	mCameraStreamPanel->Height = 1024;
 	mCameraStreamPanel->Top = 0;
@@ -66,19 +76,16 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	mFitToScreenButtonClick(Sender);
 	updateVideoFileLB();
 	updateShotsLB();
+
+	mArduinoClient.connect(50000);
 }
 
 LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
 {
     switch ( msg.WParam )
     {
-        case IS_DEVICE_REMOVED:
-            Beep( 400, 50 );
-        break;
-
-        case IS_DEVICE_RECONNECTED:
-            Beep( 400, 50 );
-        break;
+        case IS_DEVICE_REMOVED:            Beep( 400, 50 );        break;
+        case IS_DEVICE_RECONNECTED:        Beep( 400, 50 );        break;
 
         case IS_FRAME:
             if(mCamera.mImageMemory != NULL)
@@ -511,7 +518,7 @@ void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
     {
         while(mMoviesLB->Count)
         {
-            string fName = stdstr(mMoviesLB->Items->Strings[0]);
+            string fName = stdstr(lb->Items->Strings[0]);
             string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
             fName = joinPath(fldr, fName);
             if(fileExists(fName))
@@ -521,6 +528,98 @@ void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
             }
         }
     }
+    else if (lb == mShotsLB)
+    {
+        while(mMoviesLB->Count)
+        {
+            string fName = stdstr(lb->Items->Strings[0]);
+            string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
+            fName = joinPath(fldr, fName);
+            if(fileExists(fName))
+            {
+                removeFile(fName);
+                updateShotsLB();
+            }
+        }
+    }
 }
 
+void __fastcall TMainForm::mCameraStreamPanelDblClick(TObject *Sender)
+{
+	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSingle : bsNone;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::Button2Click(TObject *Sender)
+{
+	Close();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mSettingsBtnClick(TObject *Sender)
+{
+	//Open settings form
+	TSettingsForm* sf = new TSettingsForm(*this);
+    sf->ShowModal();
+    delete sf;
+}
+
+void TMainForm::onArduinoMessageReceived(const string& msg)
+{
+	struct TLocalArgs
+    {
+        string msg;
+        void __fastcall onPufferArduinoMessage()
+        {
+            if(startsWith(msg, "DHT22DATA"))
+            {
+                //Parse the message
+                StringList l(msg,',');
+                if(l.size() == 3)
+                {
+                    MainForm->mTemperatureLbl->SetValue(toDouble(l[1]));
+                    MainForm->mHumidityE->SetValue(toDouble(l[2]));
+                }
+            }
+//            else if(startsWith(msg, "PIN_8"))
+//            {
+//                StringList l(msg,'=');
+//                if(l.size() == 2)
+//                {
+////                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
+//                }
+//            }
+//            else if(startsWith(msg, "PIN_3"))
+//            {
+//                StringList l(msg,'=');
+//                if(l.size() == 2)
+//                {
+//  //                  Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
+//                }
+//            }
+        }
+    };
+
+    TLocalArgs args;
+    args.msg = msg;
+
+    //This causes this fucntion to be called in the UI thread
+	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mFrontBackLEDBtnClick(TObject *Sender)
+{
+	TButton* b = dynamic_cast<TButton*>(Sender);
+    if(b == mFrontBackLEDBtn)
+    {
+    	mArduinoClient.toggleLED();
+    }
+
+    if(b == mToggleCoaxBtn)
+    {
+    	mArduinoClient.toggleCoax();
+    }
+}
 

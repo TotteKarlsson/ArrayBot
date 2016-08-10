@@ -1,4 +1,3 @@
-//---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
 #include <tchar.h>
@@ -10,13 +9,15 @@
 
 using std::string;
 using namespace mtk;
-//---------------------------------------------------------------------------
+
 USEFORM("TMainForm.cpp", MainForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "imaging.log";
+extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArrayCam\\0.5.0";
 
 void setupLogging();
+
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
 	try
@@ -68,6 +69,9 @@ void setupLogging()
 
 //---------------------------------------------------------------------------
 #pragma comment(lib, "mtkCommon.lib")
+#pragma comment(lib, "mtkIPC.lib")
 #pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "uc480_B.lib")
+#pragma comment(lib, "VCLCommon.bpi")
+#pragma comment(lib, "DuneForms.bpi")

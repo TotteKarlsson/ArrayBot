@@ -8,8 +8,8 @@
 *            definition of exported API functions and constants
 *//***************************************************************************/
 
-#ifndef __UC480_HEADER__
-#define __UC480_HEADER__
+#ifndef uc480H
+#define uc480H
 
 #pragma pack(push, 8)
 
@@ -23,7 +23,6 @@ extern "C" {
 #       define __LINUX__
 #   endif /* !defined __LINUX__ */
 #endif /* defined __linux__ */
-
 
 // ----------------------------------------------------------------------------
 // Version definition
@@ -53,7 +52,7 @@ extern "C" {
 // Color modes
 // ----------------------------------------------------------------------------
 #define IS_COLORMODE_INVALID                                                0    
-#define IS_COLORMODE_MONOCHROME                                             1    
+#define IS_COLORMODE_MONOCHROME                                             1
 #define IS_COLORMODE_BAYER                                                  2    
 #define IS_COLORMODE_CBYCRY                                                 4    
 #define IS_COLORMODE_JPEG                                                   8    
@@ -97,7 +96,7 @@ extern "C" {
 
 #define IS_SENSOR_C1284R13C                                            0x0025    
 #define IS_SENSOR_C1604R13C                                            0x0027    
-#define IS_SENSOR_C1285R12M                                            0x0028    
+#define IS_SENSOR_C1285R12M                                            0x0028
 #define IS_SENSOR_C1285R12C                                            0x0029    
 #define IS_SENSOR_C1605R12C                                            0x002B    
 #define IS_SENSOR_C2055R12C                                            0x002D    
@@ -141,7 +140,7 @@ extern "C" {
 #define IS_SENSOR_C1283R12M_WO                                         0x003C    
 #define IS_SENSOR_C1283R12C_WO                                         0x003D    
 #define IS_SENSOR_C1603R12C                                            0x0035    
-#define IS_SENSOR_C2053R12C                                            0x0037    
+#define IS_SENSOR_C2053R12C                                            0x0037
 #define IS_SENSOR_C2593R12M                                            0x0038    
 #define IS_SENSOR_C2593R12C                                            0x0039    
 
@@ -4882,4 +4881,4 @@ USBCAMEXP is_Memory(HCAM hf, UINT nCommand, void* pParam, UINT cbSizeOfParam);
 
 #pragma pack(pop)
 
-#endif  // #ifndef __UC480_HEADER__
+#endif  // uc480H

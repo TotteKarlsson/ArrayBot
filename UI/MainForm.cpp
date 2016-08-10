@@ -37,11 +37,11 @@ extern string           gAppDataFolder;
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
 using namespace mtk;
-
+extern string 		gApplicationRegistryRoot;
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
-	TRegistryForm("Test", "MainForm", Owner),
+	TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
     mLogLevel(lAny),
@@ -95,6 +95,12 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 {
 	setupWindowTitle();
 	gAppIsStartingUp = false;
+
+
+    if(this->BorderStyle == bsNone)
+    {
+    	this->WindowState = wsMaximized;
+    }
 
 	TMemoLogger::mMemoIsEnabled = true;
 	gSplashForm->mMainAppIsRunning = true;
@@ -419,13 +425,11 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
     //Check validity
     if(!mAB->getJoyStick().isValid())
     {
-//        mJoyStickRG->Controls[indx]->Enabled = false;
         mJSStatusL->Caption = "Current joystick could not be found";
         mJSCSBtn->Enabled = false;
     }
     else
     {
-//        mJoyStickRG->Controls[indx]->Enabled = true;
         mJSStatusL->Caption = "";
         mJSCSBtn->Enabled = true;
        	mJSCSBtn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
@@ -594,6 +598,12 @@ void __fastcall TMain::mFrontBackLEDBtnClick(TObject *Sender)
     {
     	mArduinoClient.toggleCoax();
     }
+}
+
+
+void __fastcall TMain::mButtonPanelDblClick(TObject *Sender)
+{
+	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSingle : bsNone;
 }
 
 

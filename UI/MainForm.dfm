@@ -1,9 +1,10 @@
 object Main: TMain
   Left = 0
   Top = 0
+  BorderStyle = bsNone
   Caption = 'ArrayBot Version 0.5.8'
-  ClientHeight = 881
-  ClientWidth = 1087
+  ClientHeight = 919
+  ClientWidth = 1103
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,15 +22,16 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 23
   object mButtonPanel: TPanel
-    Left = 904
+    Left = 920
     Top = 0
     Width = 183
-    Height = 881
+    Height = 919
     Align = alRight
     TabOrder = 0
+    OnDblClick = mButtonPanelDblClick
     object mJSCSBtn: TSpeedButton
       Left = 1
-      Top = 138
+      Top = 1
       Width = 181
       Height = 138
       Align = alTop
@@ -41,7 +43,7 @@ object Main: TMain
     end
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 628
+      Top = 666
       Width = 181
       Height = 252
       Align = alBottom
@@ -68,58 +70,12 @@ object Main: TMain
         ExplicitWidth = 123
       end
     end
-    object GroupBox5: TGroupBox
-      Left = 1
-      Top = 1
-      Width = 181
-      Height = 73
-      Align = alTop
-      Caption = 'Temperature'
-      TabOrder = 1
-      object mTemperatureLbl: mtkFloatLabel
-        Left = 40
-        Top = 31
-        Width = 43
-        Height = 23
-        Caption = '-1.00'
-        ValueString = '-1.00'
-        Value = -1.000000000000000000
-        TheFont.Charset = DEFAULT_CHARSET
-        TheFont.Color = clWindowText
-        TheFont.Height = -19
-        TheFont.Name = 'Tahoma'
-        TheFont.Style = []
-      end
-    end
-    object GroupBox6: TGroupBox
-      Left = 1
-      Top = 74
-      Width = 181
-      Height = 64
-      Align = alTop
-      Caption = 'Humidity'
-      TabOrder = 2
-      object mHumidityE: mtkFloatLabel
-        Left = 30
-        Top = 31
-        Width = 43
-        Height = 23
-        Caption = '-1.00'
-        ValueString = '-1.00'
-        Value = -1.000000000000000000
-        TheFont.Charset = DEFAULT_CHARSET
-        TheFont.Color = clWindowText
-        TheFont.Height = -19
-        TheFont.Name = 'Tahoma'
-        TheFont.Style = []
-      end
-    end
   end
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 904
-    Height = 881
+    Width = 920
+    Height = 919
     Align = alClient
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
@@ -127,8 +83,8 @@ object Main: TMain
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 902
-      Height = 879
+      Width = 918
+      Height = 917
       ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
@@ -139,8 +95,8 @@ object Main: TMain
         Caption = 'The Bot'
         object mBottomPanel: TPanel
           Left = 0
-          Top = 642
-          Width = 894
+          Top = 680
+          Width = 910
           Height = 167
           Align = alBottom
           TabOrder = 0
@@ -207,7 +163,7 @@ object Main: TMain
             end
           end
           object mFrontBackLEDBtn: TButton
-            Left = 744
+            Left = 760
             Top = 1
             Width = 149
             Height = 165
@@ -218,7 +174,7 @@ object Main: TMain
             OnClick = mFrontBackLEDBtnClick
           end
           object mToggleCoaxBtn: TButton
-            Left = 595
+            Left = 611
             Top = 1
             Width = 149
             Height = 165
@@ -232,7 +188,7 @@ object Main: TMain
         object mTopPanel: TPanel
           Left = 0
           Top = 0
-          Width = 894
+          Width = 910
           Height = 187
           Align = alTop
           AutoSize = True
@@ -241,8 +197,8 @@ object Main: TMain
         object mMiddlePanel: TPanel
           Left = 0
           Top = 187
-          Width = 894
-          Height = 455
+          Width = 910
+          Height = 493
           Align = alClient
           AutoSize = True
           TabOrder = 2
@@ -250,7 +206,7 @@ object Main: TMain
             Left = 1
             Top = 1
             Width = 461
-            Height = 453
+            Height = 491
             Align = alLeft
             Caption = 'Joystick'
             Font.Charset = DEFAULT_CHARSET
@@ -344,8 +300,8 @@ object Main: TMain
           object LiftGB: TGroupBox
             Left = 462
             Top = 1
-            Width = 431
-            Height = 453
+            Width = 447
+            Height = 491
             Align = alClient
             Caption = 'Lift'
             Font.Charset = DEFAULT_CHARSET
@@ -412,15 +368,15 @@ object Main: TMain
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
-          Width = 894
-          Height = 704
+          Width = 910
+          Height = 742
           Align = alClient
           TabOrder = 0
         end
         object Panel1: TPanel
           Left = 0
-          Top = 704
-          Width = 894
+          Top = 742
+          Width = 910
           Height = 105
           Align = alBottom
           TabOrder = 1
@@ -646,15 +602,15 @@ object Main: TMain
         object BottomPanel: TPanel
           Left = 0
           Top = 0
-          Width = 894
-          Height = 809
+          Width = 910
+          Height = 847
           Align = alClient
           TabOrder = 0
           object infoMemo: TMemo
             Left = 1
             Top = 31
-            Width = 892
-            Height = 777
+            Width = 908
+            Height = 815
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -670,7 +626,7 @@ object Main: TMain
           object ToolBar1: TToolBar
             Left = 1
             Top = 1
-            Width = 892
+            Width = 908
             Height = 30
             AutoSize = True
             ButtonHeight = 30
@@ -718,31 +674,31 @@ object Main: TMain
         inline TAboutArrayBotFrame_21: TAboutArrayBotFrame_2
           Left = 0
           Top = 0
-          Width = 894
-          Height = 809
+          Width = 910
+          Height = 847
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 894
-          ExplicitHeight = 809
+          ExplicitWidth = 910
+          ExplicitHeight = 847
           inherited GroupBox1: TGroupBox
-            Width = 894
-            Height = 623
-            ExplicitWidth = 894
-            ExplicitHeight = 623
+            Width = 910
+            Height = 661
+            ExplicitWidth = 910
+            ExplicitHeight = 661
             inherited Memo1: TMemo
               Top = 25
-              Width = 890
-              Height = 596
+              Width = 906
+              Height = 634
               ExplicitTop = 25
-              ExplicitWidth = 890
-              ExplicitHeight = 596
+              ExplicitWidth = 906
+              ExplicitHeight = 634
             end
           end
           inherited Panel1: TPanel
-            Width = 894
-            ExplicitWidth = 894
+            Width = 910
+            ExplicitWidth = 910
             inherited Image1: TImage
-              Left = 708
+              Left = 724
               ExplicitLeft = 708
             end
           end

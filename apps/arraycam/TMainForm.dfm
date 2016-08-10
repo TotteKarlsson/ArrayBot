@@ -1,9 +1,10 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
+  BorderStyle = bsNone
   Caption = 'Array Cam 0.5'
-  ClientHeight = 735
-  ClientWidth = 963
+  ClientHeight = 773
+  ClientWidth = 979
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +13,7 @@ object MainForm: TMainForm
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
+  Position = poDefault
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
@@ -19,8 +21,8 @@ object MainForm: TMainForm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 573
-    Width = 963
+    Top = 611
+    Width = 979
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -29,26 +31,26 @@ object MainForm: TMainForm
     ExplicitWidth = 967
   end
   object Splitter2: TSplitter
-    Left = 845
+    Left = 861
     Top = 0
-    Height = 573
+    Height = 611
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
     ExplicitHeight = 100
   end
   object Panel2: TPanel
-    Left = 848
+    Left = 864
     Top = 0
     Width = 115
-    Height = 573
+    Height = 611
     Align = alRight
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 113
-      Height = 128
+      Height = 64
       Align = alTop
       Caption = 'Settings'
       TabOrder = 0
@@ -61,8 +63,6 @@ object MainForm: TMainForm
         Caption = 'Auto Gain'
         TabOrder = 0
         OnClick = AutoParaCBClick
-        ExplicitLeft = 18
-        ExplicitTop = 79
       end
       object mAutoExposureCB: TCheckBox
         Left = 2
@@ -73,19 +73,16 @@ object MainForm: TMainForm
         Caption = 'Auto Exposure'
         TabOrder = 1
         OnClick = AutoParaCBClick
-        ExplicitLeft = 5
-        ExplicitTop = 95
       end
     end
     object GroupBox2: TGroupBox
       Left = 1
-      Top = 129
+      Top = 65
       Width = 113
       Height = 64
       Align = alTop
       Caption = 'Mirror planes'
       TabOrder = 1
-      ExplicitTop = 71
       object mVerticalMirrorCB: TPropertyCheckBox
         Left = 16
         Top = 19
@@ -107,76 +104,178 @@ object MainForm: TMainForm
     end
     object mOneToTwoBtn: TButton
       Left = 1
-      Top = 273
+      Top = 209
       Width = 113
       Height = 40
       Align = alTop
       Caption = '1:2'
       TabOrder = 2
       OnClick = mOneToTwoBtnClick
-      ExplicitTop = 215
     end
     object mOneToOneBtn: TButton
       Left = 1
-      Top = 233
+      Top = 169
       Width = 113
       Height = 40
       Align = alTop
       Caption = '1:1'
       TabOrder = 3
       OnClick = mOneToOneBtnClick
-      ExplicitTop = 175
     end
     object mFitToScreenButton: TButton
       Left = 1
-      Top = 193
+      Top = 129
       Width = 113
       Height = 40
       Align = alTop
       Caption = 'Fit to screen'
       TabOrder = 4
       OnClick = mFitToScreenButtonClick
-      ExplicitTop = 135
     end
     object mToggleLogPanelBtn: TButton
       Left = 1
-      Top = 353
+      Top = 289
       Width = 113
       Height = 40
       Align = alTop
       Caption = 'Hide Bottom Panel'
       TabOrder = 5
       OnClick = mToggleLogPanelClick
-      ExplicitTop = 295
     end
     object mRecordMovieBtn: TButton
       Left = 1
-      Top = 393
+      Top = 329
       Width = 113
       Height = 40
       Align = alTop
       Caption = 'Record Movie'
       TabOrder = 6
       OnClick = mRecordMovieBtnClick
-      ExplicitTop = 335
     end
     object mSnapShotBtn: TButton
       Left = 1
-      Top = 313
+      Top = 249
       Width = 113
       Height = 40
       Align = alTop
       Caption = 'Snap Shot'
       TabOrder = 7
       OnClick = mSnapShotBtnClick
-      ExplicitTop = 255
+    end
+    object Button2: TButton
+      Left = 1
+      Top = 570
+      Width = 113
+      Height = 40
+      Align = alBottom
+      Caption = 'Exit'
+      TabOrder = 8
+      OnClick = Button2Click
+      ExplicitLeft = 6
+      ExplicitTop = 586
+    end
+    object mSettingsBtn: TButton
+      Left = 1
+      Top = 369
+      Width = 113
+      Height = 48
+      Align = alTop
+      Caption = 'Settings'
+      TabOrder = 9
+      OnClick = mSettingsBtnClick
+      ExplicitTop = 409
+    end
+    object GroupBox5: TGroupBox
+      Left = 1
+      Top = 350
+      Width = 113
+      Height = 60
+      Align = alBottom
+      Caption = 'Temperature'
+      TabOrder = 10
+      ExplicitLeft = 3
+      ExplicitTop = 295
+      object mTemperatureLbl: mtkFloatLabel
+        Left = 32
+        Top = 26
+        Width = 43
+        Height = 23
+        Caption = '-1.00'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        ValueString = '-1.00'
+        Value = -1.000000000000000000
+        TheFont.Charset = DEFAULT_CHARSET
+        TheFont.Color = clWindowText
+        TheFont.Height = -19
+        TheFont.Name = 'Tahoma'
+        TheFont.Style = []
+      end
+    end
+    object GroupBox6: TGroupBox
+      Left = 1
+      Top = 410
+      Width = 113
+      Height = 60
+      Align = alBottom
+      Caption = 'Humidity'
+      TabOrder = 11
+      ExplicitTop = 490
+      object mHumidityE: mtkFloatLabel
+        Left = 32
+        Top = 23
+        Width = 43
+        Height = 23
+        Caption = '-1.00'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        ValueString = '-1.00'
+        Value = -1.000000000000000000
+        TheFont.Charset = DEFAULT_CHARSET
+        TheFont.Color = clWindowText
+        TheFont.Height = -19
+        TheFont.Name = 'Tahoma'
+        TheFont.Style = []
+      end
+    end
+    object mFrontBackLEDBtn: TButton
+      Left = 1
+      Top = 470
+      Width = 113
+      Height = 50
+      Align = alBottom
+      Caption = 'Toggle LED Light'
+      TabOrder = 12
+      WordWrap = True
+      OnClick = mFrontBackLEDBtnClick
+      ExplicitTop = 430
+    end
+    object mToggleCoaxBtn: TButton
+      Left = 1
+      Top = 520
+      Width = 113
+      Height = 50
+      Align = alBottom
+      Caption = 'Toggle Coax Light'
+      TabOrder = 13
+      WordWrap = True
+      OnClick = mFrontBackLEDBtnClick
+      ExplicitTop = 490
     end
   end
   object mMainPanel: TPanel
     Left = 0
     Top = 0
-    Width = 845
-    Height = 573
+    Width = 861
+    Height = 611
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
@@ -198,38 +297,35 @@ object MainForm: TMainForm
         Color = clTeal
         ParentBackground = False
         TabOrder = 0
+        OnDblClick = mCameraStreamPanelDblClick
       end
     end
   end
   object mBottomPanel: TPanel
     Left = 0
-    Top = 576
-    Width = 963
+    Top = 614
+    Width = 979
     Height = 159
     Align = alBottom
     TabOrder = 2
     object infoMemo: TMemo
       Left = 225
       Top = 42
-      Width = 737
+      Width = 753
       Height = 116
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitLeft = 137
-      ExplicitWidth = 825
     end
     object Panel1: TPanel
       Left = 1
       Top = 1
-      Width = 961
+      Width = 977
       Height = 41
       Align = alTop
       TabOrder = 1
-      ExplicitLeft = 2
-      ExplicitTop = 3
       object Button1: TButton
-        Left = 895
+        Left = 911
         Top = 1
         Width = 65
         Height = 39
@@ -257,10 +353,7 @@ object MainForm: TMainForm
         PopupMenu = mMediaPopup
         TabOrder = 0
         OnDblClick = mMoviesLBDblClick
-        ExplicitLeft = 1
-        ExplicitTop = 42
-        ExplicitWidth = 88
-        ExplicitHeight = 116
+        ExplicitLeft = 4
       end
     end
     object GroupBox4: TGroupBox
@@ -281,10 +374,6 @@ object MainForm: TMainForm
         PopupMenu = mMediaPopup
         TabOrder = 0
         OnDblClick = mMoviesLBDblClick
-        ExplicitLeft = 89
-        ExplicitTop = 42
-        ExplicitWidth = 88
-        ExplicitHeight = 116
       end
     end
   end

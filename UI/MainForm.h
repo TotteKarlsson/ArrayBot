@@ -120,10 +120,6 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox4;
 	TIntegerLabeledEdit *mPuffAfterSectionCountE;
 	TPropertyCheckBox *mAutoPuffCB;
-	TGroupBox *GroupBox5;
-	mtkFloatLabel *mTemperatureLbl;
-	TGroupBox *GroupBox6;
-	mtkFloatLabel *mHumidityE;
 	TGroupBox *GroupBox3;
 	TButton *PuffNowBtn;
 	TGroupBox *GroupBox1;
@@ -166,6 +162,7 @@ class TMain : public TRegistryForm
 	void __fastcall mResetCountBtnClick(TObject *Sender);
 	void __fastcall mAutoPuffCBClick(TObject *Sender);
 	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
+	void __fastcall mButtonPanelDblClick(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMotors = 1,

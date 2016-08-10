@@ -1,12 +1,10 @@
 // usb2cameraclass.h: interface for the Cuc480 class.
-//
-// August - 2016 TK modified this file, and associated files in order to incorporate camera vision to the
+// August-2016 TK modified this file, and associated files in order to incorporate camera vision to the
 // ArrayBot project
-//
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UC480CLASS_H__INCLUDED_)
-#define AFX_UC480CLASS_H__INCLUDED_
+#ifndef uc480classH
+#define uc480classH
 
 #if _MSC_VER > 1000
  #pragma once
