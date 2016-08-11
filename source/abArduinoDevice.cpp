@@ -12,7 +12,10 @@ mSerial(pNr, baudRate)
 {}
 
 ArduinoDevice::~ArduinoDevice()
-{}
+{
+	mSerial.assignMessageReceivedCallBack(NULL);
+    mSerial.disConnect();
+}
 
 bool ArduinoDevice::connect(int portNr, int baudRate)
 {

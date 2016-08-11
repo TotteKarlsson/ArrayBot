@@ -9,8 +9,7 @@ Serial::Serial(int portNr, int baudRate)
 :
 mSP(),
 mSerialWorker(*this, mSP),
-mReceivedCB(NULL)//,
-//mReceivedCB_C(NULL)
+mReceivedCB(NULL)
 {
     if(portNr != -1)
     {
@@ -19,7 +18,9 @@ mReceivedCB(NULL)//,
 }
 
 Serial::~Serial()
-{}
+{
+	mSerialWorker.stop();
+}
 
 bool Serial::connect(int pNr, int baudRate)
 {
@@ -111,12 +112,13 @@ bool Serial::setupAndOpenSerialPort(int pNr, int baudRate)
 
 bool Serial::disConnect()
 {
+    //Then the serial port itself
+	mSP.Close();
+
 	//First stop the worker
 	mSerialWorker.stop();
 
-    //Then the serial port itself
-	mSP.Close();
-    return false;
+    return true;
 }
 
 bool Serial::hasMessage()

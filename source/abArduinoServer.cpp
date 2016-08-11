@@ -28,7 +28,10 @@ mAutoPuff(true)
 }
 
 ArduinoServer::~ArduinoServer()
-{}
+{
+    mPufferArduino.assignSerialMessageReceivedCallBack(NULL);
+    mSensorArduino.assignSerialMessageReceivedCallBack(NULL);
+}
 
 void ArduinoServer::enableAutoPuff()
 {
@@ -129,7 +132,7 @@ void ArduinoServer::sensorMessageReceived(const string& msg)
 bool ArduinoServer::shutDown()
 {
     IPCServer::shutDown();
-	for(int i = 0; i < 1; i++)
+	for(int i = 0; i < mArduinos.size(); i++)
     {
 		mArduinos[i]->disConnect();
     }
