@@ -11,14 +11,13 @@
 #include "mtkRestartApplicationUtils.h"
 
 //---------------------------------------------------------------------------
-USEFORM("frames\TSensorAndLightArduinoFrame.cpp", SensorAndLightArduinoFrame);
-USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame);
 USEFORM("MainForm.cpp", Main);
+USEFORM("frames\TSensorAndLightArduinoFrame.cpp", SensorAndLightArduinoFrame); /* TFrame: File Type */
+USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame); /* TFrame: File Type */
 USEFORM("forms\TSplashForm.cpp", SplashForm);
-USEFORM("frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame);
-USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame);
+USEFORM("frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame); /* TFrame: File Type */
+USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
-
 using namespace mtk;
 using namespace std;
 

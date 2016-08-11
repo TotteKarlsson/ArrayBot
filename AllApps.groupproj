@@ -33,8 +33,8 @@
         <Projects Include="testing\abArduinoClient\arduinoClient.cbproj">
             <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
-        <Projects Include="apps\arrayduino\arduinoController.cbproj">
-            <Dependencies>source\abCore.cbproj</Dependencies>
+        <Projects Include="apps\arduino_controller\arduino_controller.cbproj">
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -134,23 +134,23 @@
     <Target Name="arduinoClient:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="arduinoController" DependsOnTargets="abCore">
-        <MSBuild Projects="apps\arrayduino\arduinoController.cbproj"/>
+    <Target Name="arduino_controller">
+        <MSBuild Projects="apps\arduino_controller\arduino_controller.cbproj"/>
     </Target>
-    <Target Name="arduinoController:Clean" DependsOnTargets="abCore:Clean">
-        <MSBuild Projects="apps\arrayduino\arduinoController.cbproj" Targets="Clean"/>
+    <Target Name="arduino_controller:Clean">
+        <MSBuild Projects="apps\arduino_controller\arduino_controller.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="arduinoController:Make" DependsOnTargets="abCore:Make">
-        <MSBuild Projects="apps\arrayduino\arduinoController.cbproj" Targets="Make"/>
+    <Target Name="arduino_controller:Make">
+        <MSBuild Projects="apps\arduino_controller\arduino_controller.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;VCLCommon;DuneComponents;DuneForms;abCore;ArrayBot;ArrayCam;arduinoClient;arduinoController"/>
+        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;VCLCommon;DuneComponents;DuneForms;abCore;ArrayBot;ArrayCam;arduinoClient;arduino_controller"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;ArrayBot:Clean;ArrayCam:Clean;arduinoClient:Clean;arduinoController:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;ArrayBot:Clean;ArrayCam:Clean;arduinoClient:Clean;arduino_controller:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;ArrayBot:Make;ArrayCam:Make;arduinoClient:Make;arduinoController:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;ArrayBot:Make;ArrayCam:Make;arduinoClient:Make;arduino_controller:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
