@@ -46,13 +46,14 @@ object Main: TMain
     end
     object mFrontBackLEDBtn: TButton
       Left = 1
-      Top = 1
+      Top = 101
       Width = 181
       Height = 100
       Align = alTop
-      Caption = 'FrontBack LEDs ON'
+      Caption = 'Flip LED Light ON'
       TabOrder = 1
-      OnClick = LEDBtnClick
+      OnClick = LigthsBtnsClick
+      ExplicitTop = 1
     end
     object Button1: TButton
       Left = 1
@@ -63,6 +64,18 @@ object Main: TMain
       Caption = 'About'
       TabOrder = 2
       OnClick = mAboutBtnClick
+    end
+    object mCoaxLightBtn: TButton
+      Left = 1
+      Top = 1
+      Width = 181
+      Height = 100
+      Align = alTop
+      Caption = 'Flip Coax Light ON'
+      TabOrder = 3
+      OnClick = LigthsBtnsClick
+      ExplicitLeft = 2
+      ExplicitTop = 9
     end
   end
   object MainPanel: TPanel
@@ -263,7 +276,7 @@ object Main: TMain
             'DEBUG2'
             'DEBUG3'
             'DEBUG4'
-            'Everything')
+            'DEBUG5')
         end
       end
     end

@@ -94,6 +94,7 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox6;
 	TButton *mFrontBackLEDBtn;
 	TButton *Button1;
+	TButton *mCoaxLightBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -108,7 +109,7 @@ class TMain : public TRegistryForm
 	void __fastcall mArduinoServerStartBtnClick(TObject *Sender);
 	void __fastcall mResetCounterBtnClick(TObject *Sender);
 	void __fastcall PuffNowBtnClick(TObject *Sender);
-	void __fastcall LEDBtnClick(TObject *Sender);
+	void __fastcall LigthsBtnsClick(TObject *Sender);
 	void __fastcall mAutoPuffCBClick(TObject *Sender);
 	void __fastcall mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);

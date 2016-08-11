@@ -33,7 +33,6 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
     }
 
     mFrames.clear();
-
 	Close();
 }
 

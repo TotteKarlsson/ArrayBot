@@ -34,7 +34,7 @@
             <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
         <Projects Include="apps\arrayduino\arduinoController.cbproj">
-            <Dependencies/>
+            <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -134,13 +134,13 @@
     <Target Name="arduinoClient:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="testing\abArduinoClient\arduinoClient.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="arduinoController">
+    <Target Name="arduinoController" DependsOnTargets="abCore">
         <MSBuild Projects="apps\arrayduino\arduinoController.cbproj"/>
     </Target>
-    <Target Name="arduinoController:Clean">
+    <Target Name="arduinoController:Clean" DependsOnTargets="abCore:Clean">
         <MSBuild Projects="apps\arrayduino\arduinoController.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="arduinoController:Make">
+    <Target Name="arduinoController:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="apps\arrayduino\arduinoController.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">

@@ -91,14 +91,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	gSplashForm->Close();
 	gLogger.setLogLevel(mLogLevel);
 
-	if(mLogLevel == lInfo)
-	{
-		LogLevelCB->ItemIndex = 0;
-	}
-	else if(mLogLevel == lAny)
-	{
-		LogLevelCB->ItemIndex = 1;
-	}
+	LogLevelCB->ItemIndex = mLogLevel.getValue() - 2;
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
@@ -215,23 +208,41 @@ void __fastcall TMain::PuffNowBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::LEDBtnClick(TObject *Sender)
+void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
 {
 	TButton* b = dynamic_cast<TButton*>(Sender);
     if(b == mFrontBackLEDBtn )
     {
-    	static string cap = "ON";//=  stdstr(mFrontBackLEDBtn->Caption);
+    	static string cap = "ON";
 	   	if(contains("OFF", cap))
         {
-        	mFrontBackLEDBtn->Caption = "Switch LEDs ON";
-        	mSensorArduino.send("3");
+
+        	mFrontBackLEDBtn->Caption = "Flip LEDs ON";
+        	mArduinoServer.turnLEDLightOn();
             cap = "ON";
         }
         else
         {
-        	mFrontBackLEDBtn->Caption = "Switch LEDs OFF";
-         	mSensorArduino.send("4");
+        	mFrontBackLEDBtn->Caption = "Flip LEDs OFF";
+        	mArduinoServer.turnLEDLightOff();
             cap = "OFF";
+        }
+    }
+    else if(b == mCoaxLightBtn)
+    {
+    	static string ccap = "ON";
+	   	if(contains("OFF", ccap))
+        {
+
+        	mCoaxLightBtn->Caption = "Flip CoaxLight ON";
+        	mArduinoServer.turnCoaxLightOn();
+            ccap = "ON";
+        }
+        else
+        {
+        	mCoaxLightBtn->Caption = "Flip CoaxLight OFF";
+        	mArduinoServer.turnCoaxLightOff();
+            ccap = "OFF";
         }
     }
 }

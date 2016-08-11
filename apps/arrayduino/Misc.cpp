@@ -113,7 +113,7 @@ BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 	GetWindowText(hwnd, buffer, length + 1);
 
     string s(stdstr(buffer));
-	if(startsWith(s, "ArduinoServer"))
+	if(startsWith(s, "ArduinoController"))
 	{
 		// do something with hwnd here
 		gOtherAppWindow = hwnd;

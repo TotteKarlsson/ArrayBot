@@ -40,6 +40,7 @@ class AB_CORE ArduinoDevice : public ABObject
 		string						getMessage();
 
         bool						send(const string& msg);
+        bool						send(int val);
 		InitCallBack				init;
 
     private:

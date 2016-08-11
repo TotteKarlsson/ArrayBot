@@ -16,8 +16,11 @@ mPufferArduino(-1),
 mSensorArduino(-1),
 mSectionCount(0),
 mPuffAfterSectionCount(10),
-mAutoPuff(true)
-
+mAutoPuff(true),
+mLEDLightONLine(3),
+mLEDLightOFFLine(4),
+mCoaxLightONLine(1),
+mCoaxLightOFFLine(2)
 {
 	mArduinos.push_back(&mPufferArduino);
 	mArduinos.push_back(&mSensorArduino);
@@ -93,7 +96,7 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
         mSectionCount++;
     	if(mAutoPuff)
     	{
-        	if(mSectionCount > mPuffAfterSectionCount)
+        	if(mSectionCount >= mPuffAfterSectionCount)
         	{
         		puff();
 				mSectionCount = 0;
@@ -144,6 +147,26 @@ bool ArduinoServer::puff()
 	return mPufferArduino.send("p");
 }
 
+bool ArduinoServer::turnLEDLightOn()
+{
+	return mSensorArduino.send(mLEDLightONLine);
+}
+
+bool ArduinoServer::turnLEDLightOff()
+{
+	return mSensorArduino.send(mLEDLightOFFLine);
+}
+
+bool ArduinoServer::turnCoaxLightOn()
+{
+	return mSensorArduino.send(mCoaxLightONLine);
+}
+
+bool ArduinoServer::turnCoaxLightOff()
+{
+	return mSensorArduino.send(mCoaxLightOFFLine);
+}
+
 bool ArduinoServer::toggleLED()
 {
 	static bool switcher(false);
@@ -151,11 +174,11 @@ bool ArduinoServer::toggleLED()
     switcher = !switcher;
     if(switcher)
     {
-		return mSensorArduino.send("3");
+		return mSensorArduino.send(mLEDLightONLine);
     }
     else
     {
-		return mSensorArduino.send("4");
+		return mSensorArduino.send(mLEDLightOFFLine);
     }
 }
 
@@ -166,13 +189,15 @@ bool ArduinoServer::toggleCoax()
     switcher = !switcher;
     if(switcher)
     {
-		return mSensorArduino.send("1");
+		return mSensorArduino.send(mCoaxLightONLine);
     }
     else
     {
-		return mSensorArduino.send("2");
+		return mSensorArduino.send(mCoaxLightOFFLine);
     }
 }
+
+
 
 //Handle simple text messages over the socket
 bool ArduinoServer::processMessage(IPCMessage& msg)

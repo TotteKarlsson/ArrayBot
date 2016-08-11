@@ -22,6 +22,11 @@ bool ArduinoDevice::connect(int portNr, int baudRate)
 	return mSerial.connect(portNr, baudRate);
 }
 
+bool ArduinoDevice::send(int val)
+{
+	return send(toString(val));
+}
+
 bool ArduinoDevice::send(const string& msg)
 {
 	return mSerial.send(msg);

@@ -10,17 +10,18 @@
 #include "TSplashForm.h"
 #include "mtkRestartApplicationUtils.h"
 
+//---------------------------------------------------------------------------
+USEFORM("frames\TSensorAndLightArduinoFrame.cpp", SensorAndLightArduinoFrame);
+USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame);
+USEFORM("MainForm.cpp", Main);
+USEFORM("forms\TSplashForm.cpp", SplashForm);
+USEFORM("frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame);
+USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame);
+//---------------------------------------------------------------------------
+
 using namespace mtk;
 using namespace std;
 
-//---------------------------------------------------------------------------
-USEFORM("frames\TSensorAndLightArduinoFrame.cpp", SensorAndLightArduinoFrame); /* TFrame: File Type */
-USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame); /* TFrame: File Type */
-USEFORM("MainForm.cpp", Main);
-USEFORM("forms\TSplashForm.cpp", SplashForm);
-USEFORM("frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame); /* TFrame: File Type */
-USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame); /* TFrame: File Type */
-//---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArduinoController.log";
 extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArduinoController\\0.5.0";
