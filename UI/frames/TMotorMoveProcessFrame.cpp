@@ -66,8 +66,6 @@ void TMotorMoveProcessFrame::rePopulate(AbsoluteMove* m)
 	mMovePosE->setValue(mMove->getPosition());
     mMaxVelE->setValue(mMove->getMaxVelocity());
     mAccE->setValue(mMove->getAcceleration());
-    mPostDwellTimeE->setValue(mMove->getPostDwellTime());
-    mPreDwellTimeE->setValue(mMove->getPreDwellTime());
 
     APTMotor* mtr = dynamic_cast<APTMotor*>(mMove->getUnit());
     if(!mtr)
@@ -143,8 +141,6 @@ void __fastcall TMotorMoveProcessFrame::mMovePosEKeyDown(TObject *Sender, WORD &
     mMove->setPosition(mMovePosE->getValue());
     mMove->setMaxVelocity(mMaxVelE->getValue());
     mMove->setAcceleration(mAccE->getValue());
-    mMove->setPostDwellTime(mPostDwellTimeE->getValue());
-    mMove->setPreDwellTime(mPreDwellTimeE->getValue());
 }
 
 //---------------------------------------------------------------------------
@@ -196,7 +192,6 @@ void __fastcall TMotorMoveProcessFrame::AddTriggerBClick(TObject *Sender)
     //Also add a trigger function
     MoveAbsolute *tf = new MoveAbsolute(NULL);
     t->assignTriggerFunction(tf);
-
 
 	populate(mAB, mMove);
 }

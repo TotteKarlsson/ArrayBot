@@ -162,28 +162,6 @@ object Main: TMain
               OnClick = mAutoPuffCBClick
             end
           end
-          object mFrontBackLEDBtn: TButton
-            Left = 760
-            Top = 1
-            Width = 149
-            Height = 165
-            Align = alRight
-            Caption = 'Toggle LED Light'
-            TabOrder = 2
-            WordWrap = True
-            OnClick = mFrontBackLEDBtnClick
-          end
-          object mToggleCoaxBtn: TButton
-            Left = 611
-            Top = 1
-            Width = 149
-            Height = 165
-            Align = alRight
-            Caption = 'Toggle Coax Light'
-            TabOrder = 3
-            WordWrap = True
-            OnClick = mFrontBackLEDBtnClick
-          end
         end
         object mTopPanel: TPanel
           Left = 0
@@ -362,17 +340,9 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -429,18 +399,10 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Move Sequences'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mJSStatusL: TLabel
           Left = 455
           Top = 192
@@ -615,10 +577,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -727,8 +685,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    Left = 436
-    Top = 680
+    Left = 140
+    Top = 664
     object checkForDevices: TAction
       Caption = 'Devices Check'
       OnExecute = checkForDevicesExecute
@@ -789,15 +747,15 @@ object Main: TMain
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 336
-    Top = 680
+    Left = 32
+    Top = 664
   end
   object UIUpdateTimer: TTimer
     Enabled = False
     Interval = 250
     OnTimer = UIUpdateTimerTimer
-    Left = 524
-    Top = 568
+    Left = 364
+    Top = 664
   end
   object mLiftTimer: TTimer
     Enabled = False
@@ -810,7 +768,7 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = WaitForDeviceInitTimerTimer
-    Left = 440
-    Top = 632
+    Left = 248
+    Top = 664
   end
 end

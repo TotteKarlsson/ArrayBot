@@ -28,6 +28,11 @@
 #pragma link "mtkFloatLabel"
 #pragma link "TAboutArrayBotFrame"
 #pragma link "TAboutArrayBot_2Frame"
+#pragma link "TAboutArrayBot_2Frame"
+#pragma link "TFloatLabeledEdit"
+#pragma link "TIntegerLabeledEdit"
+#pragma link "TIntLabel"
+#pragma link "TPropertyCheckBox"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -514,32 +519,6 @@ void TMain::onArduinoMessageReceived(const string& msg)
                     Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
                 }
             }
-            else if(startsWith(msg, "DHT22DATA"))
-            {
-                //Parse the message
-                StringList l(msg,',');
-                if(l.size() == 3)
-                {
-//                    Main->mTemperatureLbl->SetValue(toDouble(l[1]));
-//                    Main->mHumidityE->SetValue(toDouble(l[2]));
-                }
-            }
-//            else if(startsWith(msg, "PIN_8"))
-//            {
-//                StringList l(msg,'=');
-//                if(l.size() == 2)
-//                {
-////                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
-//                }
-//            }
-//            else if(startsWith(msg, "PIN_3"))
-//            {
-//                StringList l(msg,'=');
-//                if(l.size() == 2)
-//                {
-//  //                  Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
-//                }
-//            }
         }
     };
 
@@ -572,7 +551,6 @@ void __fastcall TMain::mResetCountBtnClick(TObject *Sender)
 	mArduinoClient.resetSectionCounter();
 }
 
-
 void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
 {
 	if(mAutoPuffCB->Checked)
@@ -585,20 +563,20 @@ void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
     }
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::mFrontBackLEDBtnClick(TObject *Sender)
-{
-	TButton* b = dynamic_cast<TButton*>(Sender);
-    if(b == mFrontBackLEDBtn)
-    {
-    	mArduinoClient.toggleLED();
-    }
-
-    if(b == mToggleCoaxBtn)
-    {
-    	mArduinoClient.toggleCoax();
-    }
-}
+////---------------------------------------------------------------------------
+//void __fastcall TMain::mFrontBackLEDBtnClick(TObject *Sender)
+//{
+//	TButton* b = dynamic_cast<TButton*>(Sender);
+//    if(b == mFrontBackLEDBtn)
+//    {
+//    	mArduinoClient.toggleLED();
+//    }
+//
+//    if(b == mToggleCoaxBtn)
+//    {
+//    	mArduinoClient.toggleCoax();
+//    }
+//}
 
 
 void __fastcall TMain::mButtonPanelDblClick(TObject *Sender)

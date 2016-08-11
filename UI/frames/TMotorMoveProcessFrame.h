@@ -1,6 +1,5 @@
 #ifndef TMotorMoveProcessFrameH
 #define TMotorMoveProcessFrameH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -33,9 +32,6 @@ __published:	// IDE-managed Components
 	TPanel *Panel2;
 	TLabel *mHaveTriggerLabel;
 	TButton *mAddTriggerB;
-	TGroupBox *GroupBox1;
-	TFloatLabeledEdit *mPostDwellTimeE;
-	TFloatLabeledEdit *mPreDwellTimeE;
 	void __fastcall MotorsCBClick(TObject *Sender);
 	void __fastcall MotorsCBChange(TObject *Sender);
 	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);

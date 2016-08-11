@@ -96,7 +96,7 @@ void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 void __fastcall TABProcessSequencerFrame::refreshSequencesCB()
 {
     mSequencesCB->Clear();
-    mProcessSequencer.loadAll(gAppDataFolder);
+    mProcessSequencer.loadAll(joinPath(gAppDataFolder, "sequences"));
     ProcessSequences& seqs = mProcessSequencer.getSequences();
    	ProcessSequence* s = seqs.getFirst();
     while(s)

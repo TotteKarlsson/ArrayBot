@@ -290,10 +290,18 @@ void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
     	createFolder(fldr);
     }
 
+    string ext(".jpg");
     //Count files in folder
-    int nrShots = countFiles(fldr, "*.jpg") + 1;
+    int nrOfShots = countFiles(fldr, "*" + ext) + 1;
+    string fName = joinPath(fldr, mtk::toString(nrOfShots) + ext);
+    int i = 1;
 
-    string fName = joinPath(fldr, mtk::toString(nrShots) + ".jpg");
+    while(fileExists(fName))
+    {
+        nrOfShots = countFiles(fldr, "*" + ext) + ++i;
+        fName = joinPath(fldr, mtk::toString(nrOfShots) + ext);
+    }
+
 	if(mCamera.SaveImage(fName.c_str()))
     {
     	Log(lError) << "Failed saving snapshot..";
@@ -493,35 +501,54 @@ void __fastcall TMainForm::mMoviesLBDblClick(TObject *Sender)
 void __fastcall TMainForm::Delete1Click(TObject *Sender)
 {
 
-	ShowMessage(Sender->ClassName());
+    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
 
-	if(mMoviesLB->ItemIndex == -1)
+   	if(lb && lb->ItemIndex == -1)
     {
 		return;
     }
 
-	//Delete current selected movie
-    string fName = stdstr(mMoviesLB->Items->Strings[mMoviesLB->ItemIndex]);
-	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
-
-    fName = joinPath(fldr, fName);
-    if(fileExists(fName))
+    if(lb == mMoviesLB)
     {
-    	removeFile(fName);
-        updateVideoFileLB();
+        //Delete current selected item
+        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+        string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
+
+        fName = joinPath(fldr, fName);
+        if(fileExists(fName))
+        {
+            removeFile(fName);
+            updateVideoFileLB();
+        }
+    }
+    else if (lb == mShotsLB)
+    {
+        //Delete current selected item
+        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+        string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
+
+        fName = joinPath(fldr, fName);
+        if(fileExists(fName))
+        {
+            removeFile(fName);
+            updateShotsLB();
+        }
     }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
 {
-	TMenuItem* mi = dynamic_cast<TMenuItem*>(Sender);
+    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
 
-    TListBox* lb = dynamic_cast<TListBox*>(mi->Owner->Owner);
+   	if(lb && lb->ItemIndex == -1)
+    {
+		return;
+    }
 
     if(lb == mMoviesLB)
     {
-        while(mMoviesLB->Count)
+        while(lb->Count)
         {
             string fName = stdstr(lb->Items->Strings[0]);
             string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
@@ -535,7 +562,7 @@ void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
     }
     else if (lb == mShotsLB)
     {
-        while(mMoviesLB->Count)
+        while(lb->Count)
         {
             string fName = stdstr(lb->Items->Strings[0]);
             string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");

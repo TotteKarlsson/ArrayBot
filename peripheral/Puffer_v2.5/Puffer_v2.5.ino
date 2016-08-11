@@ -1,7 +1,8 @@
 
-//Ribbon Separator control code.  
+//Ribbon separator control code.  
 //Uses a Hall effect sensor digital out to pin2, pin 13 output ot an LED, 
 //and solenoid connected to Motor 1 terminals on Adafruit motor shield
+
 #include <Wire.h>
 #include "Adafruit_MotorShield.h"
 
@@ -16,12 +17,13 @@ Adafruit_DCMotor *pufferValve = AFMS.getMotor(1);
 
 // global variables
 const int       sensorPin       = 2;    // Hall sensor pin
-const int       ledPin          = 13;   // LED pin, illuminates when solenoid is triggered
-  
+const int       ledPin          = 13;   // LED pin, illuminates when solenoid is triggered 
 const int       pufferPin       = 3;    // Pushbutton 1 pin
+
 int             puffDuration    = 50;   // msec puffer on
-int             pufferValveSpeed= 255;   // msec puffer on
-bool            enablePuffer;
+int             pufferValveSpeed= 255;  // msec puffer on
+
+bool            enablePuffer(false);
 unsigned long   lastReadTime = millis();
 
 void setup() 
@@ -54,20 +56,20 @@ void loop()
     }    
 
     //Simulate Hall Sensor
-    unsigned long currentTime = millis();
-    if(currentTime - lastReadTime > 500)
-    {
-        lastReadTime = currentTime;        
-        Serial << "[HALL_SENSOR=HIGH]";                
-        Serial << "[HALL_SENSOR=LOW]";                        
-    }
+    //unsigned long currentTime = millis();
+    //if(currentTime - lastReadTime > 500)
+    //{
+    //    lastReadTime = currentTime;        
+    //    Serial << "[HALL_SENSOR=HIGH]";                
+    //    Serial << "[HALL_SENSOR=LOW]";                        
+    //}
         
     if(digitalRead(sensorPin) == HIGH)  // if Hall sensor is high    
     {
         Serial << "[HALL_SENSOR=HIGH]";        
         digitalWrite(ledPin, HIGH);     // turn the LED on        
 
-        //Set off puffer, if enabled by push button or host pc
+        //Set off puffer, but only if enabled by PUSH BUTTON or HOST PC (enablePuffer)
         if (digitalRead(pufferPin) || enablePuffer)
         {
             puff(puffDuration);
@@ -79,12 +81,9 @@ void loop()
         { }
         
         Serial << "[HALL_SENSOR=LOW]";
-        digitalWrite(ledPin, LOW);      // turn the LED off        
     }
-    else
-    {
-        digitalWrite(ledPin, LOW);      // turn the LED off
-    }   
+    
+    digitalWrite(ledPin, LOW);      // turn the LED off        
 }
 
 void sendInfo()
@@ -103,29 +102,34 @@ void processByte(char ch)
 {
     switch(ch)
     {
-        case 'p': //Enable puffing
+        //Enable puffing
+        case 'p': 
             enablePuffer = true;
             Serial << "[PUFFER_ENABLED]";
         break;
 
-        case 'd': //Set puffer duration
+        //Set puffer duration
+        case 'd': 
             //Next byte is the value
             puffDuration = Serial.parseInt(); 
             sendInfo();                
         break;                
 
-        case 'v': //Set puffer valve speed
+        //Set puffer valve speed
+        case 'v': 
             //Next byte is the value
             pufferValveSpeed = Serial.parseInt(); 
             pufferValve->setSpeed(pufferValveSpeed);            
             sendInfo();                   
         break;                
 
-        case 'i': //Return some info about current state
+        //Return some info about current state
+        case 'i': 
             sendInfo();
         break;
-        
-        default: //Do nothing
-        ;
+
+        //Report foreign character...
+        default: 
+            Serial << "Unhandled character in puffer instream: "<<ch;        
     }    
 }

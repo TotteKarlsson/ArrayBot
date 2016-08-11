@@ -1,38 +1,34 @@
 #ifndef MainFormH
 #define MainFormH
-#include <System.Classes.hpp>
-#include <Vcl.Controls.hpp>
-#include <Vcl.StdCtrls.hpp>
-#include <Vcl.Forms.hpp>
-#include <Vcl.ComCtrls.hpp>
-#include <Vcl.ToolWin.hpp>
-#include <Vcl.Buttons.hpp>
-#include <System.Actions.hpp>
-#include <Vcl.ActnList.hpp>
-#include "mtkLogFileReader.h"
-#include <Vcl.ExtCtrls.hpp>
-#include "TIntegerLabeledEdit.h"
-#include "TFloatLabeledEdit.h"
-#include <Vcl.AppEvnts.hpp>
-#include "Poco/Timestamp.h"
-#include "TSTDStringLabeledEdit.h"
-#include "TRegistryForm.h"
-#include "abArrayBot.h"
-#include "mtkIniFileProperties.h"
-#include <mmsystem.h>
-#include <Vcl.StdActns.hpp>
-#include <Vcl.Menus.hpp>
-#include <Vcl.Mask.hpp>
-#include "mtkLogLevel.h"
-#include "abUIDataStructures.h"
 #include "abApplicationMessages.h"
-#include "InitArrayBotThread.h"
 #include "abArduinoClient.h"
+#include "abArrayBot.h"
+#include "abUIDataStructures.h"
+#include "InitArrayBotThread.h"
+#include "mtkIniFileProperties.h"
+#include "mtkLogFileReader.h"
+#include "TRegistryForm.h"
+#include "TSTDStringLabeledEdit.h"
+#include <System.Actions.hpp>
+#include <System.Classes.hpp>
+#include <Vcl.ActnList.hpp>
+#include <Vcl.AppEvnts.hpp>
+#include <Vcl.Buttons.hpp>
+#include <Vcl.ComCtrls.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.Mask.hpp>
+#include <Vcl.Menus.hpp>
+#include <Vcl.StdActns.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.ToolWin.hpp>
+#include "TAboutArrayBot_2Frame.h"
+#include "TFloatLabeledEdit.h"
+#include "TIntegerLabeledEdit.h"
 #include "TIntLabel.h"
 #include "TPropertyCheckBox.h"
-#include "mtkFloatLabel.h"
-#include "TAboutArrayBotFrame.h"
-#include "TAboutArrayBot_2Frame.h"
+
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -127,8 +123,6 @@ class TMain : public TRegistryForm
 	TButton *mASStartBtn;
 	TTabSheet *TabSheet3;
 	TAboutArrayBotFrame_2 *TAboutArrayBotFrame_21;
-	TButton *mFrontBackLEDBtn;
-	TButton *mToggleCoaxBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -161,7 +155,6 @@ class TMain : public TRegistryForm
 	void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall mResetCountBtnClick(TObject *Sender);
 	void __fastcall mAutoPuffCBClick(TObject *Sender);
-	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
 	void __fastcall mButtonPanelDblClick(TObject *Sender);
 
     private:

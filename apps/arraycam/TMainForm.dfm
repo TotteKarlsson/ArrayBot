@@ -46,7 +46,6 @@ object MainForm: TMainForm
     Height = 862
     Align = alRight
     TabOrder = 0
-    ExplicitHeight = 1118
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
@@ -172,7 +171,6 @@ object MainForm: TMainForm
       Caption = 'Exit'
       TabOrder = 8
       OnClick = Button2Click
-      ExplicitTop = 1077
     end
     object mSettingsBtn: TButton
       Left = 1
@@ -192,7 +190,6 @@ object MainForm: TMainForm
       Align = alBottom
       Caption = 'Temperature'
       TabOrder = 10
-      ExplicitTop = 857
       object mTemperatureLbl: mtkFloatLabel
         Left = 32
         Top = 26
@@ -222,7 +219,6 @@ object MainForm: TMainForm
       Align = alBottom
       Caption = 'Humidity'
       TabOrder = 11
-      ExplicitTop = 917
       object mHumidityE: mtkFloatLabel
         Left = 32
         Top = 23
@@ -254,7 +250,6 @@ object MainForm: TMainForm
       TabOrder = 12
       WordWrap = True
       OnClick = mFrontBackLEDBtnClick
-      ExplicitTop = 977
     end
     object mToggleCoaxBtn: TButton
       Left = 1
@@ -266,7 +261,6 @@ object MainForm: TMainForm
       TabOrder = 13
       WordWrap = True
       OnClick = mFrontBackLEDBtnClick
-      ExplicitTop = 1027
     end
     object GroupBox7: TGroupBox
       Left = 1
@@ -276,7 +270,6 @@ object MainForm: TMainForm
       Align = alBottom
       Caption = 'Light Intensities'
       TabOrder = 14
-      ExplicitTop = 696
       object mCoaxTB: TTrackBar
         Left = 2
         Top = 105
@@ -317,8 +310,6 @@ object MainForm: TMainForm
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
-    ExplicitTop = -2
-    ExplicitHeight = 1118
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -348,7 +339,6 @@ object MainForm: TMainForm
     Height = 159
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 1121
     object infoMemo: TMemo
       Left = 225
       Top = 42
@@ -432,8 +422,8 @@ object MainForm: TMainForm
     Top = 80
   end
   object mMediaPopup: TPopupMenu
-    Left = 64
-    Top = 528
+    Left = 72
+    Top = 640
     object Delete1: TMenuItem
       Caption = 'Delete'
       OnClick = Delete1Click
