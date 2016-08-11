@@ -1,9 +1,11 @@
+#pragma hdrstop
 #include "MainForm.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "TSplashForm.h"
 #include "TAboutArduinoServerForm.h"
+#include "mtkLogger.h"
 using namespace mtk;
 
 static HWND gOtherAppWindow = NULL;
@@ -109,15 +111,14 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 
 void __fastcall TMain::LogLevelCBChange(TObject *Sender)
 {
-    if(LogLevelCB->ItemIndex == 0)
+	if(LogLevelCB->ItemIndex == -1)
     {
-        mLogLevel = lInfo;
-    }
-    else if(LogLevelCB->ItemIndex == 1)
-    {
-        mLogLevel = lAny;
+    	return;
     }
 
+    string lvl = stdstr(LogLevelCB->Items->Strings[LogLevelCB->ItemIndex]);
+
+    mLogLevel = toLogLevel(lvl);
     gLogger.setLogLevel(mLogLevel);
 }
 

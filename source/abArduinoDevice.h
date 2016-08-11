@@ -12,7 +12,7 @@ using Poco::Condition;
 using mtk::StringList;
 
 /*
-    The classes ArduinoDevide and Serial are based on classes
+    The ArduinoDevice and Serial classes are based on classes
     found at: http://playground.arduino.cc/Interfacing/CPPWindows
     The original classes are extended to allow for a more robust serial communication
     mechanism, involving reading/writing on the serial port in a seperate thread.
@@ -39,18 +39,12 @@ class AB_CORE ArduinoDevice : public ABObject
         bool						hasMessage();
 		string						getMessage();
 
-//        bool                        setPinMode(int pin, bool mode);
-//        							//Read
-//        int                         analogRead(int pin);
-//        bool                        digitalRead(int pin);
-//
-//        							//Write
-//        bool                        analogWrite(int pin, int value);
-//        bool                        digitalWrite(int pin, bool value);
         bool						send(const string& msg);
 		InitCallBack				init;
 
     private:
+    								//!Serial communication can be quite complex. It is wrapped by the Serial class
+                                    //and confined to the SerialPort class
         Serial						mSerial;
         string						mName;
 

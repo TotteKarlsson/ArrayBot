@@ -13,7 +13,6 @@ void SerialWorker::run()
 		Log(lInfo) << "Serial port is not connected.";
     }
 
-
 	// Create a handle for the overlapped operations
 	HANDLE hevtOverlapped = ::CreateEventA(0,TRUE,FALSE,0);
 	if (hevtOverlapped == 0)
@@ -57,103 +56,100 @@ void SerialWorker::run()
         // Wait until something happens
         switch (::WaitForMultipleObjects(sizeof(ahWait)/sizeof(*ahWait),ahWait,FALSE,INFINITE))
         {
-            case WAIT_OBJECT_0:
-            {
-                // Save event
-                const SerialPort::EEvent eEvent = mSP.GetEventType();
+        	case WAIT_OBJECT_0:
+            {		//To allow for local variables
+                    // Save event
+                    const SerialPort::EEvent eEvent = mSP.GetEventType();
 
-                // Handle break event
-                if (eEvent & SerialPort::EEventBreak)
-                {
-                    printf("\n### BREAK received ###\n");
-                }
-
-                // Handle CTS event
-                if (eEvent & SerialPort::EEventCTS)
-                {
-                    printf("\n### Clear to send %s ###\n", mSP.GetCTS()?"on":"off");
-                }
-
-                // Handle DSR event
-                if (eEvent & SerialPort::EEventDSR)
-                {
-                    printf("\n### Data set ready %s ###\n", mSP.GetDSR()?"on":"off");
-                }
-
-                // Handle error event
-                if (eEvent & SerialPort::EEventError)
-                {
-                    switch (mSP.GetError())
+                    // Handle break event
+                    if (eEvent & SerialPort::EEventBreak)
                     {
-                        case SerialPort::EErrorBreak:		Log(lError) <<("Break condition");			break;
-                        case SerialPort::EErrorFrame:		Log(lError) <<("Framing error");			break;
-                        case SerialPort::EErrorIOE:			Log(lError) <<("IO device error");			break;
-                        case SerialPort::EErrorMode:		Log(lError) <<("Unsupported mode");			break;
-                        case SerialPort::EErrorOverrun:		Log(lError) <<("Buffer overrun");			break;
-                        case SerialPort::EErrorRxOver:		Log(lError) <<("Input buffer overflow");	break;
-                        case SerialPort::EErrorParity:		Log(lError) <<("Input parity error");		break;
-                        case SerialPort::EErrorTxFull:		Log(lError) <<("Output buffer full");		break;
-                        default:							Log(lError) <<("Unknown Error");					break;
+                        printf("\n### BREAK received ###\n");
                     }
-                }
 
-                // Handle ring event
-                if (eEvent & SerialPort::EEventRing)
-                {
-                    printf("\n### RING ###\n");
-                }
-
-                // Handle RLSD/CD event
-                if (eEvent & SerialPort::EEventRLSD)
-                {
-                    printf("\n### RLSD/CD %s ###\n", mSP.GetRLSD()?"on":"off");
-                }
-
-                // Handle data receive event
-                if (eEvent & SerialPort::EEventRecv)
-                {
-                    // Read data, until there is nothing left
-                    DWORD dwBytesRead = 0;
-                    do
+                    // Handle CTS event
+                    if (eEvent & SerialPort::EEventCTS)
                     {
-                        char szBuffer[1024];
+                        printf("\n### Clear to send %s ###\n", mSP.GetCTS()?"on":"off");
+                    }
 
-                        // Read data from the COM-port
-                        lLastError = mSP.Read(szBuffer, sizeof(szBuffer)-1, &dwBytesRead);
-                        if (lLastError != ERROR_SUCCESS)
-                        {
-                            string errorMsg = getLastWin32Error();
-                            Log(lError) <<"Unable to read from COM-port.";
-                            Log(lError) <<"Error was: "<<errorMsg;
-                            break;
-                        }
+                    // Handle DSR event
+                    if (eEvent & SerialPort::EEventDSR)
+                    {
+                        printf("\n### Data set ready %s ###\n", mSP.GetDSR()?"on":"off");
+                    }
 
-                        if (dwBytesRead > 0)
+                    // Handle error event
+                    if (eEvent & SerialPort::EEventError)
+                    {
+                        switch (mSP.GetError())
                         {
-                            // Finalize the data, so it is a valid message
-                            szBuffer[dwBytesRead] = '\0';
-                            processReceiveBuffer(szBuffer, dwBytesRead);
+                            case SerialPort::EErrorBreak:		Log(lError) <<("Break condition");			break;
+                            case SerialPort::EErrorFrame:		Log(lError) <<("Framing error");			break;
+                            case SerialPort::EErrorIOE:			Log(lError) <<("IO device error");			break;
+                            case SerialPort::EErrorMode:		Log(lError) <<("Unsupported mode");			break;
+                            case SerialPort::EErrorOverrun:		Log(lError) <<("Buffer overrun");			break;
+                            case SerialPort::EErrorRxOver:		Log(lError) <<("Input buffer overflow");	break;
+                            case SerialPort::EErrorParity:		Log(lError) <<("Input parity error");		break;
+                            case SerialPort::EErrorTxFull:		Log(lError) <<("Output buffer full");		break;
+                            default:							Log(lError) <<("Unknown Error");					break;
                         }
                     }
-                    while (dwBytesRead > 0);
-                }
+
+                    // Handle ring event
+                    if (eEvent & SerialPort::EEventRing)
+                    {
+                        printf("\n### RING ###\n");
+                    }
+
+                    // Handle RLSD/CD event
+                    if (eEvent & SerialPort::EEventRLSD)
+                    {
+                        printf("\n### RLSD/CD %s ###\n", mSP.GetRLSD()?"on":"off");
+                    }
+
+                    // Handle data receive event
+                    if (eEvent & SerialPort::EEventRecv)
+                    {
+                        // Read data, until there is nothing left
+                        DWORD dwBytesRead = 0;
+                        do
+                        {
+                            char szBuffer[1024];
+
+                            // Read data from the COM-port
+                            lLastError = mSP.Read(szBuffer, sizeof(szBuffer)-1, &dwBytesRead);
+                            if (lLastError != ERROR_SUCCESS)
+                            {
+                                string errorMsg = getLastWin32Error();
+                                Log(lError) <<"Unable to read from COM-port.";
+                                Log(lError) <<"Error was: "<<errorMsg;
+                                break;
+                            }
+
+                            if (dwBytesRead > 0)
+                            {
+                                // Finalize the data, so it is a valid message
+                                szBuffer[dwBytesRead] = '\0';
+                                processReceiveBuffer(szBuffer, dwBytesRead);
+                            }
+                        }while (dwBytesRead > 0);
+                	}
             }
             break;
+
             case WAIT_OBJECT_0+1:
-                {
                     // Set the continue bit to false, so we'll exit
                     mIsTimeToDie = true;
-                }
-                break;
+            break;
 
             default:
                     // Something went wrong
                     string errorMsg = getLastWin32Error();
                     Log(lError) <<"Something went wrong";
                     Log(lError) <<"Error was: "<<errorMsg;
-                    return;
-
-                break;
+                    //return;
+            break;
         }
     }
 
@@ -177,16 +173,12 @@ int SerialWorker::processReceiveBuffer(char* buffer, int bufSize)
                 Poco::ScopedLock<Poco::Mutex> lock(mTheHost.mReceivedMessagesMutex);
                 Log(lDebug5) << "Received: " << mMessageBuilder.getMessage();
 
+                //Execute callback if present..
                 if(mTheHost.mReceivedCB)
                 {
                 	//We need to synchronize this with the main UI thread
                 	mTheHost.mReceivedCB(mMessageBuilder.getMessage());
                 }
-
-//                if(mTheHost.mReceivedCB_C)
-//                {
-//                	mTheHost.mReceivedCB_C(mMessageBuilder.getMessage());
-//                }
             }
             nrOfMessages++;
             mMessageBuilder.reset();

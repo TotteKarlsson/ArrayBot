@@ -258,6 +258,11 @@ object Main: TMain
           OnChange = LogLevelCBChange
           Items.Strings = (
             'INFO'
+            'DEBUG'
+            'DEBUG1'
+            'DEBUG2'
+            'DEBUG3'
+            'DEBUG4'
             'Everything')
         end
       end

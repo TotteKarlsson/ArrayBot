@@ -45,7 +45,7 @@ class AB_CORE Serial : public ABObject
         void								assignMessageReceivedCallBack(SerialMessageReceivedCallBack cb);
 
     private:
-        									//CSerial is doint the work
+        									//CSerial is doing the underlying serial port work
 		SerialPort							mSP;
 
         									//The serial worker reads data on the serial port
@@ -56,9 +56,11 @@ class AB_CORE Serial : public ABObject
 
         						            //Messages from an arduino
 		Mutex					            mReceivedMessagesMutex;
+
+        									//!Messages are stored in a list of strings and consumed
+                                            //by the Arduino server
         StringList				            mReceivedMessages;
 
-//        MessageReceivedCallBackC			mReceivedCB_C;
         SerialMessageReceivedCallBack	 	mReceivedCB;
         Poco::Condition                     mGotMessage;
 };

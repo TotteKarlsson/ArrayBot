@@ -99,6 +99,10 @@ object CombinedMoveFrame: TCombinedMoveFrame
           ExplicitWidth = 566
           ExplicitHeight = 377
           inherited MainGB: TGroupBox
+            Width = 566
+            Height = 377
+            ExplicitWidth = 566
+            ExplicitHeight = 377
             inherited mMovePosE: TFloatLabeledEdit
               Width = 65
               ExplicitWidth = 65
@@ -107,12 +111,8 @@ object CombinedMoveFrame: TCombinedMoveFrame
         end
         inherited mTriggersSheet: TTabSheet
           inherited Panel2: TPanel
-            Height = 377
             inherited Panel1: TPanel
-              Top = 316
-            end
-            inherited mTriggersLB: TListBox
-              Height = 315
+              ExplicitTop = 316
             end
           end
         end

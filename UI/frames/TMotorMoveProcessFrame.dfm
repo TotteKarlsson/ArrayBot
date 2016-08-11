@@ -2,7 +2,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
   Width = 451
-  Height = 436
+  Height = 304
   Align = alClient
   AutoSize = True
   Font.Charset = DEFAULT_CHARSET
@@ -12,28 +12,24 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  ExplicitHeight = 304
   object PageControl1: TPageControl
     Left = 0
     Top = 0
     Width = 451
-    Height = 436
+    Height = 304
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 304
     object TabSheet1: TTabSheet
       Caption = 'Move Parameters'
-      ExplicitHeight = 266
       object MainGB: TGroupBox
         Left = 0
         Top = 0
         Width = 443
-        Height = 398
+        Height = 266
         Align = alClient
         Caption = 'MotorMove Process'
         TabOrder = 0
-        ExplicitHeight = 266
         object mHaveTriggerLabel: TLabel
           Left = 272
           Top = 176
@@ -105,17 +101,18 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         Left = 0
         Top = 0
         Width = 185
-        Height = 398
+        Height = 266
         Align = alLeft
         Caption = 'Panel2'
         TabOrder = 0
         object Panel1: TPanel
           Left = 1
-          Top = 337
+          Top = 205
           Width = 183
           Height = 60
           Align = alBottom
           TabOrder = 0
+          ExplicitTop = 337
           object mDeleteTriggerB: TButton
             Left = 1
             Top = 1
@@ -131,7 +128,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
           Left = 1
           Top = 1
           Width = 183
-          Height = 336
+          Height = 204
           Align = alClient
           ItemHeight = 23
           TabOrder = 1

@@ -1,11 +1,6 @@
 #ifndef abArduinoServerH
 #define abArduinoServerH
 //---------------------------------------------------------------------------
-//!An arduino server is a component that serve clients with Arduino connections over
-//tcp/ip. The arraybot arduino server is designed to handle messages and data related to the
-//arraybot project. The Arduino server is a descendant of the IPC server class, implementing all
-//network functionality.
-//In short, an arduino server forwards any messages sent from the arduino board to any connected tcp/ip clients
 
 #include "abExporter.h"
 #include "abABObject.h"
@@ -22,7 +17,16 @@ using std::vector;
 mtk::SocketWorker* AB_CORE createArduinoIPCReceiver(int portNr, int socketHandle, void* parent);
 
 typedef void (__closure *OnMessageUpdateCB)(const string& msg);
-//---------------------------------------------------------------------------
+
+//!The Arduino server is a component that serve clients with Arduino connections over a
+//tcp/ip socket. The Arraybot Arduino server is designed to handle messages and data related to the
+//arraybot project. The Arduino server is a descendant of the IPC server class that is implementing all
+//network functionality.
+//The Arduino server forwards any messages sent from the arduino board to any connected tcp/ip clients.
+//
+//There are currently two Arduino boards, the 'Puffer' board, and a 'Sensor' board containing sensors and
+//light controlling logic.
+
 class AB_CORE ArduinoServer : public IPCServer
 {
     public:
@@ -54,7 +58,7 @@ class AB_CORE ArduinoServer : public IPCServer
         void								broadcastStatus();
 
     protected:
-    							            //!Arduino Devices
+    							            //!Container for Arduino devices
 		vector<ArduinoDevice*> 	            mArduinos;
     	ArduinoDevice 			            mPufferArduino;
     	ArduinoDevice 			            mSensorArduino;
