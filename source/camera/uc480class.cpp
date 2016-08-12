@@ -73,7 +73,7 @@ bool Cuc480::openCamera(HWND hwnd)
 
 bool Cuc480::exitCamera()
 {
-    if( IsInit() )
+    if(IsInit())
     {
         EnableMessage( IS_FRAME, NULL );
         StopLiveVideo( IS_WAIT );
@@ -82,8 +82,9 @@ bool Cuc480::exitCamera()
             FreeImageMem( mImageMemory, mMemoryId );
 
         mImageMemory = NULL;
-        ExitCamera();
+        return ExitCamera();
     }
+    return false;
 }
 
 int Cuc480::InitDisplayMode()
