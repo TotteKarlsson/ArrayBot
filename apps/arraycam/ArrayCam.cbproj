@@ -115,10 +115,6 @@
         <CppCompile Include="TSettingsForm.cpp">
             <BuildOrder>4</BuildOrder>
         </CppCompile>
-        <LibFiles Include="..\..\source\camera\lib\uc480_tools_B.lib" Condition="'$(Platform)'=='Win32'">
-            <BuildOrder>3</BuildOrder>
-            <IgnorePath>true</IgnorePath>
-        </LibFiles>
         <FormResources Include="TMainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

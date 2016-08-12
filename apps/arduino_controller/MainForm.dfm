@@ -53,7 +53,6 @@ object Main: TMain
       Caption = 'Flip LED Light ON'
       TabOrder = 1
       OnClick = LigthsBtnsClick
-      ExplicitTop = 1
     end
     object Button1: TButton
       Left = 1
@@ -74,8 +73,6 @@ object Main: TMain
       Caption = 'Flip Coax Light ON'
       TabOrder = 3
       OnClick = LigthsBtnsClick
-      ExplicitLeft = 2
-      ExplicitTop = 9
     end
   end
   object MainPanel: TPanel
@@ -166,6 +163,10 @@ object Main: TMain
         object TabSheet2: TTabSheet
           Caption = 'Settings'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0

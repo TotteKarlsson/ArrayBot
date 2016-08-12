@@ -37,7 +37,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 :
 	TRegistryForm("Test", "MainForm", Owner),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
-    mIniFile(joinPath(gAppDataFolder, "ArduinoController.ini"), true, true),
+    mIniFile(joinPath(gAppDataFolder, "arduino_controller.ini"), true, true),
     mLogLevel(lAny),
     mArduinoServer(-1),
     mPufferArduino(mArduinoServer.getPufferArduino()),

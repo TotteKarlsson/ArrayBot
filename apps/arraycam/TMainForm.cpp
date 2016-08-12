@@ -19,19 +19,45 @@ TMainForm *MainForm;
 
 extern string gLogFileName;
 extern string gApplicationRegistryRoot;
+extern string gLogFileLocation;
+extern string gLogFileName;
+extern string gAppDataFolder;
+extern bool   gAppIsStartingUp;
+
 //---------------------------------------------------------------------------
 __fastcall TMainForm::TMainForm(TComponent* Owner)
 	: TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
     	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
         mCaptureVideo(false),
-        mAVIID(0)
+        mAVIID(0),
+    	mIniFile(joinPath(gAppDataFolder, "array_cam.ini"), true, true),
+    	mLogLevel(lAny),
+        mAutoGain(false),
+        mAutoExposure(false),
+        mVerticalMirror(false),
+        mHorizontalMirror(false)
 {
    	mLogFileReader.start(true);
 
+	//Setup UI/INI properties
+    mProperties.setSection("GENERAL");
+	mProperties.setIniFile(&mIniFile);
+	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	    	"LOG_LEVEL",    lAny));
+	mProperties.add((BaseProperty*)  &mAutoGain.setup(			"AUTO_GAIN",    false));
+	mProperties.add((BaseProperty*)  &mAutoExposure.setup( 		"AUTO_EXPOSURE",    false));
+	mProperties.add((BaseProperty*)  &mVerticalMirror.setup(	"VERTICAL_MIRROR",    false));
+	mProperties.add((BaseProperty*)  &mHorizontalMirror.setup(	"HORIZONTAL_MIRROR",    false));
+    mProperties.read();
+
 	//Camera rendering mode
     mRenderMode = IS_RENDER_FIT_TO_WINDOW;
-
 	mArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
+}
+
+__fastcall TMainForm::~TMainForm()
+{
+	mProperties.write();
+    mIniFile.save();
 }
 
 //This one is called from the reader thread
@@ -44,20 +70,34 @@ void __fastcall TMainForm::logMsg()
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mCameraStartLiveBtnClick(TObject *Sender)
 {
-        Log(lDebug) << "Init camera..";
-        //Live
-        if(!mCamera.IsInit())
-        {
-            openCamera();
-        }
+    Log(lDebug) << "Init camera..";
+    //Live
+    if(!mCamera.IsInit())
+    {
+        openCamera();
+    }
 
-        if(mCamera.IsInit())
-        {
-        	int x, y;
-       		mCamera.GetMaxImageSize(&x,&y);
-            Log(lInfo) << "Max image size (x,y): ("<<x<<", "<<y<<")";
-            mCamera.CaptureVideo( IS_WAIT );
-        }
+    if(mCamera.IsInit())
+    {
+        int x, y;
+        mCamera.GetMaxImageSize(&x,&y);
+        Log(lInfo) << "Max image size (x,y): ("<<x<<", "<<y<<")";
+        mCamera.CaptureVideo( IS_WAIT );
+
+        HCAM hc = mCamera.GetCameraHandle();
+        //Enable/Disable auto gain control:
+        double dEnable = mAutoGain.getValue() ? 1 : 0;
+        int ret = is_SetAutoParameter (hc, IS_SET_ENABLE_AUTO_GAIN, &dEnable, 0);
+
+		dEnable = mAutoExposure.getValue() ? 1 : 0;
+
+        //Enable/Disable auto exposure
+        ret = is_SetAutoParameter (hc, IS_SET_ENABLE_AUTO_SHUTTER, &dEnable, 0);
+
+        //Set brightness setpoint to 128:
+        double nominal = 128;
+        ret = is_SetAutoParameter (hc, IS_SET_AUTO_REFERENCE, &nominal, 0);
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -65,9 +105,6 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 {
 	mDisplayHandle 	= this->mCameraStreamPanel->Handle;
 	mCameraStartLiveBtnClick(Sender);
-
-    mAutoGainCB->Checked = true;
-    mAutoExposureCB->Checked = true;
 
 	mCameraStreamPanel->Width = 1280;
 	mCameraStreamPanel->Height = 1024;
@@ -77,6 +114,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	updateVideoFileLB();
 	updateShotsLB();
 
+	//Try to connect to arduinos..
 	mArduinoClient.connect(50000);
 }
 
@@ -158,69 +196,11 @@ void __fastcall TMainForm::TrackBar1Change(TObject *Sender)
 //	INT nRet = is_Gamma(hCam, IS_GAMMA_CMD_SET, (void*) &nGamma, sizeof(nGamma));
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::AutoParaCBClick(TObject *Sender)
-{
-    HCAM hCam = mCamera.GetCameraHandle();
+////---------------------------------------------------------------------------
+//void __fastcall TMainForm::AutoParaCBClick(TObject *Sender)
+//{
+//}
 
-    TCheckBox* cb = dynamic_cast<TCheckBox*>(Sender);
-
-    double dEnable;
-	int ret;
-    if(cb)
-    {
-    	dEnable = cb->Checked ? 1 : 0;
-    }
-
-    if(cb == mAutoGainCB)
-    {
-	    //Enable auto gain control:
-	    ret = is_SetAutoParameter (hCam, IS_SET_ENABLE_AUTO_GAIN, &dEnable, 0);
-    }
-    else if (cb == mAutoExposureCB)
-    {
-	    //Enable auto gain control:
-	    ret = is_SetAutoParameter (hCam, IS_SET_ENABLE_AUTO_SHUTTER, &dEnable, 0);
-    }
-
-    //Check return value;
-
-    //Set brightness setpoint to 128:
-    double nominal = 128;
-    ret = is_SetAutoParameter (hCam, IS_SET_AUTO_REFERENCE, &nominal, 0);
-
-//    //Return shutter control limit:
-//    double maxShutter;
-//    ret = is_SetAutoParameter (hCam, IS_GET_AUTO_SHUTTER_MAX, &maxShutter, 0);
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mVerticalMirrorCBClick(TObject *Sender)
-{
-    HCAM hCam = mCamera.GetCameraHandle();
-	if(mVerticalMirrorCB->Checked)
-    {
-		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_LEFTRIGHT, 1, 0);
-    }
-    else
-    {
-		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_LEFTRIGHT, 0, 0);
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mHorizontalMirrorCBClick(TObject *Sender)
-{
-    HCAM hCam = mCamera.GetCameraHandle();
-	if(mHorizontalMirrorCB->Checked)
-    {
-		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_UPDOWN, 1, 0);
-    }
-    else
-    {
-		is_SetRopEffect (hCam, IS_SET_ROP_MIRROR_UPDOWN, 0, 0);
-    }
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mOneToTwoBtnClick(TObject *Sender)
@@ -680,6 +660,20 @@ void __fastcall TMainForm::LightTBChange(TObject *Sender)
         s<<"SET_COAX_INTENSITY="<<nr;
         mArduinoClient.request(s.str());
     }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::LogLevelCBChange(TObject *Sender)
+{
+	if(LogLevelCB->ItemIndex == -1)
+    {
+    	return;
+    }
+
+    string lvl = stdstr(LogLevelCB->Items->Strings[LogLevelCB->ItemIndex]);
+
+    mLogLevel = toLogLevel(lvl);
+    gLogger.setLogLevel(mLogLevel);
 
 }
 

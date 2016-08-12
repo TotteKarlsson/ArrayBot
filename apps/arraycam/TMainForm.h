@@ -10,13 +10,23 @@
 #include "TPropertyCheckBox.h"
 #include <Vcl.Menus.hpp>
 
-//#define __AFXWIN_H__
-#include "camera/uc480Class.h"
 #include "mtkLogFileReader.h"
+#include "mtkIniFileProperties.h"
+#include "mtkIniFile.h"
+#include "mtkLogger.h"
 #include "TRegistryForm.h"
+#include "camera/uc480Class.h"
 
 #include "abArduinoClient.h"
 #include "mtkFloatLabel.h"
+#include <Vcl.Buttons.hpp>
+#include <Vcl.ToolWin.hpp>
+
+
+using Poco::Timestamp;
+using mtk::IniFileProperties;
+using mtk::IniFile;
+
 
 class TSettingsForm;
 //---------------------------------------------------------------------------
@@ -27,14 +37,9 @@ class TMainForm  : public TRegistryForm
 	__published:	// IDE-managed Components
 	TMemo *infoMemo;
 	TTimer *mShutDownTimer;
-	TCheckBox *mAutoGainCB;
 	TPanel *Panel2;
 	TSplitter *Splitter1;
 	TSplitter *Splitter2;
-	TGroupBox *GroupBox1;
-	TGroupBox *GroupBox2;
-	TPropertyCheckBox *mVerticalMirrorCB;
-	TPropertyCheckBox *mHorizontalMirrorCB;
 	TButton *mOneToTwoBtn;
 	TButton *mOneToOneBtn;
 	TButton *mFitToScreenButton;
@@ -45,7 +50,6 @@ class TMainForm  : public TRegistryForm
 	TButton *mRecordMovieBtn;
 	TButton *mSnapShotBtn;
 	TTimer *Timer1;
-	TButton *Button1;
 	TPanel *mBottomPanel;
 	TPanel *Panel1;
 	TListBox *mMoviesLB;
@@ -55,7 +59,6 @@ class TMainForm  : public TRegistryForm
 	TListBox *mShotsLB;
 	TGroupBox *GroupBox3;
 	TGroupBox *GroupBox4;
-	TCheckBox *mAutoExposureCB;
 	TButton *Button2;
 	TButton *mSettingsBtn;
 	TGroupBox *GroupBox6;
@@ -68,6 +71,10 @@ class TMainForm  : public TRegistryForm
 	TTrackBar *mCoaxTB;
 	TTrackBar *mBackLEDTB;
 	TTrackBar *mFrontLEDTB;
+	TGroupBox *GroupBox8;
+	TToolBar *ToolBar1;
+	TBitBtn *mClearLogMemoBtn;
+	TComboBox *LogLevelCB;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -75,9 +82,8 @@ class TMainForm  : public TRegistryForm
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall mShutDownTimerTimer(TObject *Sender);
 	void __fastcall TrackBar1Change(TObject *Sender);
-	void __fastcall AutoParaCBClick(TObject *Sender);
-	void __fastcall mVerticalMirrorCBClick(TObject *Sender);
-	void __fastcall mHorizontalMirrorCBClick(TObject *Sender);
+
+
 	void __fastcall mOneToTwoBtnClick(TObject *Sender);
 	void __fastcall mOneToOneBtnClick(TObject *Sender);
 	void __fastcall mFitToScreenButtonClick(TObject *Sender);
@@ -95,10 +101,20 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mSettingsBtnClick(TObject *Sender);
 	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
 	void __fastcall LightTBChange(TObject *Sender);
+	void __fastcall LogLevelCBChange(TObject *Sender);
 
     private:
         LogFileReader                           mLogFileReader;
         void __fastcall                         logMsg();
+
+
+        IniFile						            mIniFile;
+        IniFileProperties  			            mProperties;
+		mtk::Property<mtk::LogLevel>            mLogLevel;
+        mtk::Property<bool>						mAutoGain;
+        mtk::Property<bool>						mAutoExposure;
+        mtk::Property<bool>						mVerticalMirror;
+        mtk::Property<bool>						mHorizontalMirror;
 
 								                // Camera variables
 
@@ -131,6 +147,7 @@ class TMainForm  : public TRegistryForm
 
     public:
  			       __fastcall 					TMainForm(TComponent* Owner);
+ 			       __fastcall 					~TMainForm();
 
 												//!Camera stuff is processed in the message loop
 	LRESULT 									OnUSBCameraMessage(TMessage msg);

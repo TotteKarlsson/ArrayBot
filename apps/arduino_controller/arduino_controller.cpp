@@ -22,8 +22,8 @@ using namespace mtk;
 using namespace std;
 
 extern string       gLogFileLocation            = "";
-extern string       gLogFileName                = "ArduinoController.log";
-extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArduinoController\\0.5.0";
+extern string       gLogFileName                = "arduino_controller.log";
+extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\arduino_controller\\0.5.0";
 extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 static HWND         gOtherAppWindow             = NULL;
 extern string       gDefaultAppTheme            = "Iceberg Classico";
@@ -31,7 +31,8 @@ extern string       gRestartMutexName           = "arduinoControllerRestartMutex
 extern string       gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
 extern string       gDateFormat                 = "%Y-%m-%d";
 extern string       gTimeFormat                 = "%H:%M:%S";
-extern string       gCommonAppDataLocation      = ""; //Filled out later
+
+extern string       gCommonAppDataLocation      = "";
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
 extern bool         gHideSplash                 = true;
@@ -95,7 +96,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
             gSplashForm->Close();
         }
 
-		Application->Title = "ArduinoController - Software for Robots";
+		Application->Title = "arduino_controller";
 		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->Run();

@@ -33,12 +33,13 @@
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
+using mtk::IniFile;
 
 class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
 class TXYZUnitFrame;
 class TSequencerButtonsFrame;
-using mtk::IniFile;
+
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
 {
