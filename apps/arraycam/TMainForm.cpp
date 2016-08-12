@@ -85,6 +85,9 @@ void __fastcall TMainForm::mCameraStartLiveBtnClick(TObject *Sender)
         mCamera.CaptureVideo( IS_WAIT );
 
         HCAM hc = mCamera.GetCameraHandle();
+
+		//Setup camera using values from INI file
+
         //Enable/Disable auto gain control:
         double dEnable = mAutoGain.getValue() ? 1 : 0;
         int ret = is_SetAutoParameter (hc, IS_SET_ENABLE_AUTO_GAIN, &dEnable, 0);
@@ -97,6 +100,10 @@ void __fastcall TMainForm::mCameraStartLiveBtnClick(TObject *Sender)
         //Set brightness setpoint to 128:
         double nominal = 128;
         ret = is_SetAutoParameter (hc, IS_SET_AUTO_REFERENCE, &nominal, 0);
+
+        //Mirror stuff
+		is_SetRopEffect (hc, IS_SET_ROP_MIRROR_LEFTRIGHT, mVerticalMirror.getValue(), 0);
+		is_SetRopEffect (hc, IS_SET_ROP_MIRROR_UPDOWN, 	mHorizontalMirror.getValue(), 0);
     }
 }
 
@@ -186,21 +193,6 @@ void __fastcall TMainForm::mShutDownTimerTimer(TObject *Sender)
 
     Close();
 }
-
-void __fastcall TMainForm::TrackBar1Change(TObject *Sender)
-{
-	//Set brightness
-	/* set gamma value to 1.6 */
-//	INT nGamma = TrackBar1->Position;
-//    HCAM hCam = mCamera.GetCameraHandle();
-//	INT nRet = is_Gamma(hCam, IS_GAMMA_CMD_SET, (void*) &nGamma, sizeof(nGamma));
-}
-
-////---------------------------------------------------------------------------
-//void __fastcall TMainForm::AutoParaCBClick(TObject *Sender)
-//{
-//}
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mOneToTwoBtnClick(TObject *Sender)

@@ -210,7 +210,7 @@ void processByte(char ch)
         break;
         
         default: //Do nothing
-            Serial << "[UNHANDLED_CHAR_RECEIVED:'"<<ch<<"']";
+            //Serial << "[UNHANDLED_CHAR_RECEIVED]";//:'\\"<<ch<<"']";
         ;
     }    
 }

@@ -1,3 +1,19 @@
+Release 0.7.6 (Aug 12)
+=======================
+* Added saving of parameters for the ArrayCam application
+* Cleaned up arduino controller app
+* Updated Arduinoserver with some light extra code
+* Fixed some arduinoserver shutdown issues
+* Removed arraybot doxygen stuff from repository
+* Re moved light control from Arraybot Main UI
+* Now storing sequences in "sequences" folder
+* Removed pre and post dwell times from process frames
+* Fixed deletion/addition of camera shots and videos minor update to puffer sketch
+* Added ability to control lights with trackbars
+* Added settings form to ArrayCam
+* Added maximized screen features to main forms
+* Added saving form properties to registry
+
 Release 0.7.5 (Aug 10)
 =======================
 * New camera features

@@ -78,12 +78,8 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
-
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall mShutDownTimerTimer(TObject *Sender);
-	void __fastcall TrackBar1Change(TObject *Sender);
-
-
 	void __fastcall mOneToTwoBtnClick(TObject *Sender);
 	void __fastcall mOneToOneBtnClick(TObject *Sender);
 	void __fastcall mFitToScreenButtonClick(TObject *Sender);

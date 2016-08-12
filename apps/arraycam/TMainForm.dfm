@@ -55,7 +55,6 @@ object MainForm: TMainForm
       Caption = '1:2'
       TabOrder = 0
       OnClick = mOneToTwoBtnClick
-      ExplicitTop = 81
     end
     object mOneToOneBtn: TButton
       Left = 1
@@ -66,7 +65,6 @@ object MainForm: TMainForm
       Caption = '1:1'
       TabOrder = 1
       OnClick = mOneToOneBtnClick
-      ExplicitTop = 41
     end
     object mFitToScreenButton: TButton
       Left = 1
@@ -77,7 +75,6 @@ object MainForm: TMainForm
       Caption = 'Fit to screen'
       TabOrder = 2
       OnClick = mFitToScreenButtonClick
-      ExplicitTop = 1
     end
     object mToggleLogPanelBtn: TButton
       Left = 1
@@ -88,7 +85,6 @@ object MainForm: TMainForm
       Caption = 'Hide Bottom Panel'
       TabOrder = 3
       OnClick = mToggleLogPanelClick
-      ExplicitTop = 161
     end
     object mRecordMovieBtn: TButton
       Left = 1
@@ -99,7 +95,6 @@ object MainForm: TMainForm
       Caption = 'Record Movie'
       TabOrder = 4
       OnClick = mRecordMovieBtnClick
-      ExplicitTop = 201
     end
     object mSnapShotBtn: TButton
       Left = 1
@@ -110,8 +105,6 @@ object MainForm: TMainForm
       Caption = 'Snap Shot'
       TabOrder = 5
       OnClick = mSnapShotBtnClick
-      ExplicitLeft = 25
-      ExplicitTop = 216
     end
     object Button2: TButton
       Left = 1
@@ -132,8 +125,6 @@ object MainForm: TMainForm
       Caption = 'Settings'
       TabOrder = 7
       OnClick = mSettingsBtnClick
-      ExplicitLeft = -7
-      ExplicitTop = -39
     end
     object GroupBox5: TGroupBox
       Left = 1
@@ -143,8 +134,6 @@ object MainForm: TMainForm
       Align = alBottom
       Caption = 'Temperature'
       TabOrder = 8
-      ExplicitLeft = -7
-      ExplicitTop = 390
       object mTemperatureLbl: mtkFloatLabel
         Left = 32
         Top = 23
@@ -174,8 +163,6 @@ object MainForm: TMainForm
       Align = alBottom
       Caption = 'Humidity'
       TabOrder = 9
-      ExplicitLeft = 3
-      ExplicitTop = 390
       object mHumidityE: mtkFloatLabel
         Left = 32
         Top = 23
@@ -227,7 +214,6 @@ object MainForm: TMainForm
       Align = alBottom
       Caption = 'Light Intensities'
       TabOrder = 12
-      ExplicitTop = 456
       object mCoaxTB: TTrackBar
         Left = 2
         Top = 105

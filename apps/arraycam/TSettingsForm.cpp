@@ -51,7 +51,6 @@ void __fastcall TSettingsForm::UIUpdateTimerTimer(TObject *Sender)
 	mArduinoServerPortE->Enabled 	= !mMainForm.mArduinoClient.isConnected();
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TSettingsForm::mVerticalMirrorCBClick(TObject *Sender)
 {
