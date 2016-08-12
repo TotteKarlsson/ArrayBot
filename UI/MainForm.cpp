@@ -17,21 +17,14 @@
 #include "TRibbonLifterFrame.h"
 #include "TXYZUnitFrame.h"
 #include "TSequencerButtonsFrame.h"
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
-#pragma link "TIntLabel"
-#pragma link "TPropertyCheckBox"
 #pragma link "mtkFloatLabel"
 #pragma link "TAboutArrayBotFrame"
 #pragma link "TAboutArrayBot_2Frame"
-#pragma link "TAboutArrayBot_2Frame"
-#pragma link "TFloatLabeledEdit"
-#pragma link "TIntegerLabeledEdit"
-#pragma link "TIntLabel"
 #pragma link "TPropertyCheckBox"
 #pragma resource "*.dfm"
 TMain *Main;
@@ -41,8 +34,9 @@ extern string           gLogFileName;
 extern string           gAppDataFolder;
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
+extern string 			gApplicationRegistryRoot;
+
 using namespace mtk;
-extern string 		gApplicationRegistryRoot;
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :

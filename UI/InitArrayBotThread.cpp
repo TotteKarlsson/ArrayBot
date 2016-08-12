@@ -1,3 +1,4 @@
+#include <vcl.h>
 #pragma hdrstop
 #include <System.Classes.hpp>
 #include "InitArrayBotThread.h"
