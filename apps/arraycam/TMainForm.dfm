@@ -1,10 +1,9 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
-  BorderStyle = bsNone
   Caption = 'Array Cam 0.5'
-  ClientHeight = 1024
-  ClientWidth = 979
+  ClientHeight = 986
+  ClientWidth = 963
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,8 +20,8 @@ object MainForm: TMainForm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 862
-    Width = 979
+    Top = 824
+    Width = 963
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -31,226 +30,280 @@ object MainForm: TMainForm
     ExplicitWidth = 967
   end
   object Splitter2: TSplitter
-    Left = 861
+    Left = 845
     Top = 0
-    Height = 862
+    Height = 824
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
     ExplicitHeight = 100
   end
   object Panel2: TPanel
-    Left = 864
+    Left = 848
     Top = 0
     Width = 115
-    Height = 862
+    Height = 824
     Align = alRight
     TabOrder = 0
-    object mOneToTwoBtn: TButton
-      Left = 1
-      Top = 129
-      Width = 113
-      Height = 40
-      Align = alTop
-      Caption = '1:2'
-      TabOrder = 0
-      OnClick = mOneToTwoBtnClick
-    end
-    object mOneToOneBtn: TButton
-      Left = 1
-      Top = 89
-      Width = 113
-      Height = 40
-      Align = alTop
-      Caption = '1:1'
-      TabOrder = 1
-      OnClick = mOneToOneBtnClick
-    end
-    object mFitToScreenButton: TButton
-      Left = 1
-      Top = 49
-      Width = 113
-      Height = 40
-      Align = alTop
-      Caption = 'Fit to screen'
-      TabOrder = 2
-      OnClick = mFitToScreenButtonClick
-    end
-    object mToggleLogPanelBtn: TButton
-      Left = 1
-      Top = 169
-      Width = 113
-      Height = 40
-      Align = alTop
-      Caption = 'Hide Bottom Panel'
-      TabOrder = 3
-      OnClick = mToggleLogPanelClick
-    end
-    object mRecordMovieBtn: TButton
-      Left = 1
-      Top = 209
-      Width = 113
-      Height = 40
-      Align = alTop
-      Caption = 'Record Movie'
-      TabOrder = 4
-      OnClick = mRecordMovieBtnClick
-    end
-    object mSnapShotBtn: TButton
-      Left = 1
-      Top = 249
-      Width = 113
-      Height = 40
-      Align = alTop
-      Caption = 'Snap Shot'
-      TabOrder = 5
-      OnClick = mSnapShotBtnClick
-    end
-    object Button2: TButton
-      Left = 1
-      Top = 821
-      Width = 113
-      Height = 40
-      Align = alBottom
-      Caption = 'Exit'
-      TabOrder = 6
-      OnClick = Button2Click
-    end
-    object mSettingsBtn: TButton
+    object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
       Width = 113
-      Height = 48
-      Align = alTop
-      Caption = 'Settings'
-      TabOrder = 7
-      OnClick = mSettingsBtnClick
-    end
-    object GroupBox5: TGroupBox
-      Left = 1
-      Top = 456
-      Width = 113
-      Height = 60
-      Align = alBottom
-      Caption = 'Temperature'
-      TabOrder = 8
-      object mTemperatureLbl: mtkFloatLabel
-        Left = 32
-        Top = 23
-        Width = 43
-        Height = 23
-        Caption = '-1.00'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        ValueString = '-1.00'
-        Value = -1.000000000000000000
-        TheFont.Charset = DEFAULT_CHARSET
-        TheFont.Color = clWindowText
-        TheFont.Height = -19
-        TheFont.Name = 'Tahoma'
-        TheFont.Style = []
-      end
-    end
-    object GroupBox6: TGroupBox
-      Left = 1
-      Top = 516
-      Width = 113
-      Height = 60
-      Align = alBottom
-      Caption = 'Humidity'
-      TabOrder = 9
-      object mHumidityE: mtkFloatLabel
-        Left = 32
-        Top = 23
-        Width = 43
-        Height = 23
-        Caption = '-1.00'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        ValueString = '-1.00'
-        Value = -1.000000000000000000
-        TheFont.Charset = DEFAULT_CHARSET
-        TheFont.Color = clWindowText
-        TheFont.Height = -19
-        TheFont.Name = 'Tahoma'
-        TheFont.Style = []
-      end
-    end
-    object mFrontBackLEDBtn: TButton
-      Left = 1
-      Top = 721
-      Width = 113
-      Height = 50
-      Align = alBottom
-      Caption = 'Toggle LED Light'
-      TabOrder = 10
-      WordWrap = True
-      OnClick = mFrontBackLEDBtnClick
-    end
-    object mToggleCoaxBtn: TButton
-      Left = 1
-      Top = 771
-      Width = 113
-      Height = 50
-      Align = alBottom
-      Caption = 'Toggle Coax Light'
-      TabOrder = 11
-      WordWrap = True
-      OnClick = mFrontBackLEDBtnClick
-    end
-    object GroupBox7: TGroupBox
-      Left = 1
-      Top = 576
-      Width = 113
-      Height = 145
-      Align = alBottom
-      Caption = 'Light Intensities'
-      TabOrder = 12
-      object mCoaxTB: TTrackBar
-        Left = 2
-        Top = 105
+      Height = 822
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = 24
+      ExplicitTop = 320
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+      object Button2: TButton
+        Left = 0
+        Top = 413
         Width = 109
-        Height = 45
-        Align = alTop
-        Max = 255
+        Height = 40
+        Align = alBottom
+        Caption = 'Exit'
         TabOrder = 0
-        OnChange = LightTBChange
+        OnClick = Button2Click
+        ExplicitLeft = 1
+        ExplicitTop = 783
+        ExplicitWidth = 113
       end
-      object mBackLEDTB: TTrackBar
-        Left = 2
-        Top = 60
+      object GroupBox5: TGroupBox
+        Left = 0
+        Top = 453
         Width = 109
-        Height = 45
-        Align = alTop
-        Max = 255
+        Height = 60
+        Align = alBottom
+        Caption = 'Temperature'
         TabOrder = 1
-        OnChange = LightTBChange
+        ExplicitLeft = 1
+        ExplicitTop = 458
+        ExplicitWidth = 113
+        object mTemperatureLbl: mtkFloatLabel
+          Left = 32
+          Top = 23
+          Width = 43
+          Height = 23
+          Caption = '-1.00'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ValueString = '-1.00'
+          Value = -1.000000000000000000
+          TheFont.Charset = DEFAULT_CHARSET
+          TheFont.Color = clWindowText
+          TheFont.Height = -19
+          TheFont.Name = 'Tahoma'
+          TheFont.Style = []
+        end
       end
-      object mFrontLEDTB: TTrackBar
-        Left = 2
-        Top = 15
+      object GroupBox6: TGroupBox
+        Left = 0
+        Top = 513
         Width = 109
-        Height = 45
-        Align = alTop
-        Max = 255
+        Height = 60
+        Align = alBottom
+        Caption = 'Humidity'
         TabOrder = 2
-        OnChange = LightTBChange
+        ExplicitLeft = 1
+        ExplicitTop = 518
+        ExplicitWidth = 113
+        object mHumidityE: mtkFloatLabel
+          Left = 32
+          Top = 23
+          Width = 43
+          Height = 23
+          Caption = '-1.00'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ValueString = '-1.00'
+          Value = -1.000000000000000000
+          TheFont.Charset = DEFAULT_CHARSET
+          TheFont.Color = clWindowText
+          TheFont.Height = -19
+          TheFont.Name = 'Tahoma'
+          TheFont.Style = []
+        end
+      end
+      object GroupBox7: TGroupBox
+        Left = 0
+        Top = 573
+        Width = 109
+        Height = 145
+        Align = alBottom
+        Caption = 'Light Intensities'
+        TabOrder = 3
+        ExplicitLeft = 1
+        ExplicitTop = 578
+        ExplicitWidth = 113
+        object mCoaxTB: TTrackBar
+          Left = 2
+          Top = 105
+          Width = 105
+          Height = 45
+          Align = alTop
+          Max = 255
+          TabOrder = 0
+          OnChange = LightTBChange
+          ExplicitWidth = 109
+        end
+        object mBackLEDTB: TTrackBar
+          Left = 2
+          Top = 60
+          Width = 105
+          Height = 45
+          Align = alTop
+          Max = 255
+          TabOrder = 1
+          OnChange = LightTBChange
+          ExplicitWidth = 109
+        end
+        object mFrontLEDTB: TTrackBar
+          Left = 2
+          Top = 15
+          Width = 105
+          Height = 45
+          Align = alTop
+          Max = 255
+          TabOrder = 2
+          OnChange = LightTBChange
+          ExplicitWidth = 109
+        end
+      end
+      object mFitToScreenButton: TButton
+        Left = 0
+        Top = 0
+        Width = 109
+        Height = 40
+        Align = alTop
+        Caption = 'Fit to screen'
+        TabOrder = 4
+        OnClick = mFitToScreenButtonClick
+        ExplicitLeft = 1
+        ExplicitTop = 49
+        ExplicitWidth = 113
+      end
+      object mFrontBackLEDBtn: TButton
+        Left = 0
+        Top = 718
+        Width = 109
+        Height = 50
+        Align = alBottom
+        Caption = 'Toggle LED Light'
+        TabOrder = 5
+        WordWrap = True
+        OnClick = mFrontBackLEDBtnClick
+        ExplicitLeft = 1
+        ExplicitTop = 723
+        ExplicitWidth = 113
+      end
+      object mOneToOneBtn: TButton
+        Left = 0
+        Top = 168
+        Width = 109
+        Height = 40
+        Align = alTop
+        Caption = '1:1'
+        TabOrder = 6
+        OnClick = mOneToOneBtnClick
+        ExplicitLeft = 1
+        ExplicitTop = 49
+        ExplicitWidth = 113
+      end
+      object mOneToTwoBtn: TButton
+        Left = 0
+        Top = 208
+        Width = 109
+        Height = 40
+        Align = alTop
+        Caption = '1:2'
+        TabOrder = 7
+        OnClick = mOneToTwoBtnClick
+        ExplicitLeft = 1
+        ExplicitTop = 49
+        ExplicitWidth = 113
+      end
+      object mRecordMovieBtn: TButton
+        Left = 0
+        Top = 248
+        Width = 109
+        Height = 40
+        Align = alTop
+        Caption = 'Record Movie'
+        TabOrder = 8
+        OnClick = mRecordMovieBtnClick
+        ExplicitLeft = 1
+        ExplicitTop = 89
+        ExplicitWidth = 113
+      end
+      object mSettingsBtn: TButton
+        Left = 0
+        Top = 80
+        Width = 109
+        Height = 48
+        Align = alTop
+        Caption = 'Settings'
+        TabOrder = 9
+        OnClick = mSettingsBtnClick
+        ExplicitLeft = 1
+        ExplicitTop = 1
+        ExplicitWidth = 113
+      end
+      object mSnapShotBtn: TButton
+        Left = 0
+        Top = 128
+        Width = 109
+        Height = 40
+        Align = alTop
+        Caption = 'Snap Shot'
+        TabOrder = 10
+        OnClick = mSnapShotBtnClick
+        ExplicitLeft = 1
+        ExplicitTop = 41
+        ExplicitWidth = 113
+      end
+      object mToggleCoaxBtn: TButton
+        Left = 0
+        Top = 768
+        Width = 109
+        Height = 50
+        Align = alBottom
+        Caption = 'Toggle Coax Light'
+        TabOrder = 11
+        WordWrap = True
+        OnClick = mFrontBackLEDBtnClick
+        ExplicitLeft = 1
+        ExplicitTop = 773
+        ExplicitWidth = 113
+      end
+      object mToggleLogPanelBtn: TButton
+        Left = 0
+        Top = 40
+        Width = 109
+        Height = 40
+        Align = alTop
+        Caption = 'Hide Bottom Panel'
+        TabOrder = 12
+        OnClick = mToggleLogPanelClick
+        ExplicitLeft = 1
+        ExplicitTop = 1
+        ExplicitWidth = 113
       end
     end
   end
   object mMainPanel: TPanel
     Left = 0
     Top = 0
-    Width = 861
-    Height = 862
+    Width = 845
+    Height = 824
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
@@ -278,8 +331,8 @@ object MainForm: TMainForm
   end
   object mBottomPanel: TPanel
     Left = 0
-    Top = 865
-    Width = 979
+    Top = 827
+    Width = 963
     Height = 159
     Align = alBottom
     TabOrder = 2
@@ -326,7 +379,7 @@ object MainForm: TMainForm
     object GroupBox8: TGroupBox
       Left = 225
       Top = 1
-      Width = 753
+      Width = 737
       Height = 157
       Align = alClient
       Caption = 'Logs'
@@ -334,7 +387,7 @@ object MainForm: TMainForm
       object infoMemo: TMemo
         Left = 2
         Top = 56
-        Width = 749
+        Width = 733
         Height = 99
         Align = alClient
         ScrollBars = ssVertical
@@ -343,7 +396,7 @@ object MainForm: TMainForm
       object Panel1: TPanel
         Left = 2
         Top = 15
-        Width = 749
+        Width = 733
         Height = 41
         Align = alTop
         BevelOuter = bvNone
@@ -351,7 +404,7 @@ object MainForm: TMainForm
         object ToolBar1: TToolBar
           Left = 0
           Top = 0
-          Width = 749
+          Width = 733
           Height = 30
           AutoSize = True
           ButtonHeight = 30

@@ -550,7 +550,7 @@ void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
 
 void __fastcall TMainForm::mCameraStreamPanelDblClick(TObject *Sender)
 {
-	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSingle : bsNone;
+//	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSingle : bsNone;
 }
 
 //---------------------------------------------------------------------------

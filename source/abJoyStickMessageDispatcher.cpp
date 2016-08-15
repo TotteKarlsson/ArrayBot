@@ -14,7 +14,6 @@ JoyStickMessageDispatcher::JoyStickMessageDispatcher(ArrayBotJoyStick& js, int n
 mJoyStickID(id),
 mJoyStick(js),
 mEnabled(false),
-mMoveResolution(100),
 mNrOfButtons(nrOfButtons)
 {
     mUpdateStateTimer.setInterval(30);
@@ -155,6 +154,7 @@ void JoyStickMessageDispatcher::refresh()
 
     mJoyInfo.dwSize  	=  sizeof(JOYINFOEX);
     mJoyInfo.dwFlags 	= JOY_RETURNALL;
+
     int res 			= joyGetPosEx(mJoyStickID, &mJoyInfo);
     if(res != JOYERR_NOERROR)
     {

@@ -75,6 +75,7 @@ class TMainForm  : public TRegistryForm
 	TToolBar *ToolBar1;
 	TBitBtn *mClearLogMemoBtn;
 	TComboBox *LogLevelCB;
+	TScrollBox *ScrollBox1;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);

@@ -57,7 +57,6 @@ class AB_CORE JoyStickMessageDispatcher : public ABObject
 		    ArrayBotJoyStick&			        mJoyStick;
             bool				                mEnabled;
 
-            int					                mMoveResolution;
             const int			                mNrOfButtons;
             bool 				                readCapabilities();
 
