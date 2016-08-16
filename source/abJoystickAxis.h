@@ -6,6 +6,7 @@
 //---------------------------------------------------------------------------
 
 class APTMotor;
+
 ///The joystick Axis class encapsulate needed functionality in the ArrayBot API
 ///for movement of a motor, by a joystick.
 ///In short, a joystick axis have an associated motor to control, as well as a

@@ -91,6 +91,8 @@ double JoyStickAxis::getCurrentVelocity()
 }
 
 
+//The move function is where the joystick axis position
+//is translated to a move command
 void JoyStickAxis::Move(int newPosition)
 {
 	if(!mMotor || !isEnabled())
@@ -101,7 +103,6 @@ void JoyStickAxis::Move(int newPosition)
     //Scale the incoming position to be in the motors velocity range,
     double scaledPosition 	= ((newPosition)  - mMaxPosition/2.0 ); //-32767.5 -> +32767.5
     scaledPosition 			= (scaledPosition/mMaxPosition) * 2.0; //-1 -> +1
-
 
     int    nrOfSteps = getNumberOfGears();
 	double stepSize  = mMaxVelocity  / nrOfSteps;
@@ -115,36 +116,13 @@ void JoyStickAxis::Move(int newPosition)
         {
         	//Bring down velocity manually to zero
             double v = mMotor->getJogVelocity();
-//            mMotor->setJogMoveParameters(fabs(v*.6), 3.0);
-
-//            if(v < 0.001)
-            {
-          		mMotor->stopProfiled();
-            }
-//            else if (mMotorVelocity > 0)
-//            {
-//                mMotor->jogForward();
-//            }
-//            else
-//            {
-//                mMotor->jogReverse();
-//            }
-
+       		mMotor->stopProfiled();
         }
     }
-    else 	//Check if joystick value have changed more than the step
+    else
     {
-                //TODO::Write a function for this
-        //		if(fabs((mMotorVelocity - mLastSetVelocity)) < stepSize/3.)
-        //        {
-        //        	//Do nothing
-        //            //Log (lDebug) << "Doing nothing..";
-        //	        return;
-        //        }
-
 	    Log(lDebug3) << "Axis numbers: ("<<newPosition<<","<<scaledPosition<<","<<stepSize<<")";
         Log(lDebug3) << "Setting jog velocity: "<<fabs(mMotorVelocity);
-
 
 		mMotor->setJogVelocity(fabs(mMotorVelocity));
    		mLastSetVelocity = mMotorVelocity;

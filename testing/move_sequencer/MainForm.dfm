@@ -96,13 +96,15 @@ object Main: TMain
           Height = 495
           Align = alClient
           TabOrder = 1
-          ExplicitLeft = 328
-          ExplicitWidth = 419
         end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

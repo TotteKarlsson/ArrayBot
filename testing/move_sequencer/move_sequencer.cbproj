@@ -148,9 +148,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\..\UI\frames\TMoveSequencerFrame.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
+        <FormResources Include="..\..\UI\frames\TMoveSequencerFrame.dfm"/>
         <FormResources Include="..\..\source\VCL\abMotorFrame.dfm"/>
         <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="..\..\UI\frames\TMoveSequencerFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

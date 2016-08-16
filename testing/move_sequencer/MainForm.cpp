@@ -42,7 +42,6 @@ __fastcall TMain::TMain(TComponent* Owner)
     mMoveSequencer()
 {
 	TMemoLogger::mMemoIsEnabled = false;
-
 	mXYZUnit.initialize();
 	//Setup UI properties
     mProperties.setSection("UI");
