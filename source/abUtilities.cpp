@@ -8,7 +8,6 @@
 using namespace std;
 using namespace mtk;
 
-
 string toString(LogicOperator o)
 {
 	switch(o)

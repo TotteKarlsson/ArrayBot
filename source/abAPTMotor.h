@@ -6,10 +6,17 @@
 #include "abMotorMessageProcessor.h"
 #include "abMotorMessageContainer.h"
 #include "mtkRange.h"
+#include "abMotorMessageData.h"
 //---------------------------------------------------------------------------
 
+
+class TMotorFrame;
+//!An APT (Advanced Position Technology) Motor is an abstract class encaspulating properties/behaviour of a Thorlabs motor
+//The Thorlabs C API does unfortuntaly not allow a proper abstraction, meaning a lot of repetion of code in descendant
+//classes :(
 class AB_CORE APTMotor : public APTDevice
 {
+	friend class TMotorFrame;
     public:
 						                    APTMotor(int serial);
 		virtual			                    ~APTMotor();
@@ -89,26 +96,51 @@ class AB_CORE APTMotor : public APTDevice
         virtual bool	                    setJogVelocity(double v) = 0;
         virtual bool	                    setJogAcceleration(double a) = 0;
 
-
         virtual void		                forward(bool inThread = true) = 0;
         virtual void		                reverse(bool inThread = true) = 0;
         virtual bool		                moveToPosition(double position, bool inThread = true) = 0;
         virtual void						setPotentiometerVelocity(double v) = 0;
+
 
     protected:
     										//!Motor commands are processed in a thread by the
                                             //MotorMessage processer
 		double								mDesiredPosition;
        	int									mMotorCommandsPending;
+
+											//!The status time checks a motors position
+                                            //!If the position gets close to its limits,
+                                            //!a message is sent to the main application to
+                                            //!let it know. The UI may respond with stopping the motor
+                                            //!after an alarm is sounded
     	Timer				                mStatusTimer;
+        void								onStatusTimer();
+
+
         unsigned long			            mStatusBits;
         MotorScalingFactors		            mScalingFactors;
 		HardwareInformation 	  			mHWInfo;
         bool								applyProperties();
 
+        									//!The position range is the physical position range
+                                            //a motor has.
         Property< Range<double> > 			mPositionRange;
+
+										    //!Position limits may be used to limit a motors range of motion
+        Property< Range<double> > 			mPositionLimits;
+
+        									//!The alarm zone allow an application to warn
+                                            //!the user before a motor hit a preset positional limit
+                                            //The warning zone starts at 10% of full distance by default
+		Property< double >					mWarningZone;
+
+        									//!To be able to move a motor that crossed the limits, disable
+                                            //!usage of limits by setting mPositionLimitsEnabled to false
+        Property< bool > 					mPositionLimitsEnabled;
+
         Range<double> 						mVelocityRange;
         Range<double> 						mAccelerationRange;
+
         Property<double>					mManualJogVelocity;
         Property<double>					mManualJogAcceleration;
         Property<double>					mPotentiometerVelocity;
@@ -116,6 +148,8 @@ class AB_CORE APTMotor : public APTDevice
 		void                                post(const MotorCommand& cmd);
         MotorMessageProcessor				mMotorMessageProcessor;
         MotorMessageContainer  				mMotorMessageContainer;
+
+        void								populateMotorMessageData(MotorMessageData* data);
 };
 
 #endif

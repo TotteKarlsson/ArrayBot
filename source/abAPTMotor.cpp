@@ -1,12 +1,16 @@
 #pragma hdrstop
 #include "abAPTMotor.h"
 #include "mtkLogger.h"
+#include "abCore.h"
 
 //---------------------------------------------------------------------------
 APTMotor::APTMotor(int serialNo)
 :
 	APTDevice(serialNo),
     mPositionRange(Range<double>(0,0)),
+    mPositionLimits(Range<double>(0,0)),
+    mPositionLimitsEnabled(true),
+    mWarningZone(10.0),
     mVelocityRange(0,0),
     mAccelerationRange(0,0),
 	mManualJogVelocity(0),
@@ -14,26 +18,81 @@ APTMotor::APTMotor(int serialNo)
 	mPotentiometerVelocity(0),
 	mMotorMessageProcessor(mMotorMessageContainer),
     mMotorCommandsPending(0),
-    mDesiredPosition(-1)
+    mDesiredPosition(-1),
+    mStatusTimer(150, onStatusTimer)
 {
-    mProperties.add((BaseProperty*) &mManualJogVelocity.setup(		"MANUAL_JOG_VELOCITY"		, 			0.1,                true));
-    mProperties.add((BaseProperty*) &mManualJogAcceleration.setup(	"MANUAL_JOG_ACCELERATION"	, 			0.1,                true));
-    mProperties.add((BaseProperty*) &mPotentiometerVelocity.setup(	"POTENTIOMETER_VELOCITY"	, 			1, 					true));
-    mProperties.add((BaseProperty*) &mPositionRange.setup(			"POSITION_RANGE"			, 			Range<double>(0,0), true));
+    mProperties.add((BaseProperty*) &mManualJogVelocity.setup(		"MANUAL_JOG_VELOCITY"		    , 			0.1,                true));
+    mProperties.add((BaseProperty*) &mManualJogAcceleration.setup(	"MANUAL_JOG_ACCELERATION"	    , 			0.1,                true));
+    mProperties.add((BaseProperty*) &mPotentiometerVelocity.setup(	"POTENTIOMETER_VELOCITY"	    , 			1, 					true));
+    mProperties.add((BaseProperty*) &mPositionRange.setup(			"POSITION_RANGE"			    , 			Range<double>(0,0), true));
+    mProperties.add((BaseProperty*) &mPositionLimits.setup(			"POSITION_LIMITS"			    , 			Range<double>(0,0), true));
+    mProperties.add((BaseProperty*) &mPositionLimitsEnabled.setup(	"POSITION_LIMITS_ENABLED"       , 			false, 				true));
+    mProperties.add((BaseProperty*) &mWarningZone.setup(			"POSITION_LIMIT_WARNING_ZONE"   , 			10.0, 				true));
 
 	mMotorMessageProcessor.assignMotor(this);
 	mMotorMessageProcessor.start(true);
+
+    mStatusTimer.start();
 }
 
 APTMotor::~APTMotor()
 {
 	mMotorMessageProcessor.stop();
-    while(mMotorMessageProcessor.isRunning())
+    mStatusTimer.stop();
+
+    while(mMotorMessageProcessor.isRunning() || mStatusTimer.isRunning())
     {
 		sleep(5);
     }
 	Log(lDebug) <<"Destructing motor with serial: "<<mSerial;
     mProperties.write();
+}
+
+void APTMotor::onStatusTimer()
+{
+	if(!isActive() || isHoming())
+    {
+    	return;
+    }
+
+    //Check position
+    if(mPositionLimitsEnabled)
+    {
+        double pos = getPosition();
+        if(pos >= mPositionLimits.getValue().getMax())
+        {
+            Log(lWarning) << "Motor \""<<getName()<<"\" has crossed the maximum position limit";
+
+            MotorMessageData* msgData = new MotorMessageData;
+			populateMotorMessageData(msgData);
+
+            //Send windows message
+            int ret = PostMessage(HWND_BROADCAST, getABCoreMessageID(MOTOR_WARNING_MESSAGE), reinterpret_cast<WPARAM> (msgData) , 0);
+            if(!ret)
+            {
+            	Log(lError) << "Post message failed..";
+            }
+        }
+
+        if(pos <= mPositionLimits.getValue().getMin())
+        {
+            Log(lWarning) << "Motor \""<<getName()<<"\" has crossed the minimum position limit";
+
+        }
+    }
+}
+
+void APTMotor::populateMotorMessageData(MotorMessageData* data)
+{
+	if(!data)
+    {
+    	return;
+    }
+    data->mSerial = mSerial;
+    data->mName = getName();
+    data->mCurrentPosition = getPosition();
+    data->mPositionLimits = mPositionLimits;
+    data->mPositionLimitsEnabled = mPositionLimitsEnabled;
 }
 
 bool APTMotor::isMotorCommandPending()
@@ -61,9 +120,9 @@ bool APTMotor::applyProperties()
 
 bool APTMotor::setJogMoveParameters(double v, double a)
 {
-	bool res1 = setJogVelocity(v);
-	bool res2 = setJogAcceleration(a);
-    return res1 && res2;
+	bool 	res1 = setJogVelocity(v);
+	bool 	res2 = setJogAcceleration(a);
+    return 	res1 && res2;
 }
 
 bool APTMotor::moveAbsolute(double position, double v, double a)

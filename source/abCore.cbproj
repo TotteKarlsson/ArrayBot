@@ -206,6 +206,9 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="abMotorMessageCreator.cpp">
             <BuildOrder>14</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abMotorMessageData.cpp">
+            <BuildOrder>54</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abMotorMessageProcessor.cpp">
             <DependentOn>abMotorMessageProcessor.h</DependentOn>
             <BuildOrder>11</BuildOrder>
@@ -284,6 +287,9 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="abXYZUnit.cpp">
             <DependentOn>abXYZUnit.h</DependentOn>
             <BuildOrder>17</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="auto_link.cpp">
+            <BuildOrder>56</BuildOrder>
         </CppCompile>
         <CppCompile Include="camera\Dynamic_uc480.cpp">
             <BuildOrder>52</BuildOrder>

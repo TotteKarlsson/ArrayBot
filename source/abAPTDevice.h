@@ -26,8 +26,8 @@ class AB_CORE APTDevice : public ABObject
 
                                                 //Enable/Disable functions simply sets boolean to
                                                 //true or false.
-        bool	        		                enable();
-        bool	        		                disable();
+        virtual bool	                    	enable() = 0;
+        virtual bool	                    	disable() = 0;
 
         string					                getSerial();
         string 									getName();
@@ -49,7 +49,5 @@ class AB_CORE APTDevice : public ABObject
                                                 //established
         bool					                mIsConnected;
 
-        						                //Allow the device to be enabled/disabled (in software)
-//        bool					                mIsActive;
 };
 #endif

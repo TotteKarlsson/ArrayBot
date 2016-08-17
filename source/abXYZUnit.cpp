@@ -7,9 +7,9 @@
 //---------------------------------------------------------------------------
 using namespace mtk;
 
-XYZUnit::XYZUnit(const string& name, IniFile& iniFile, const string& appFolder)
+XYZUnit::XYZUnit(const string& name, IniFile& iniFile, const string& appDataFolder)
 :
-mAppDataFolder(appFolder),
+mAppDataFolder(appDataFolder),
 mXMotorSerialNr(-1),
 mYMotorSerialNr(-1),
 mZMotorSerialNr(-1),
@@ -20,8 +20,7 @@ mYMotor(NULL),
 mZMotor(NULL),
 mAngleMotor(NULL),
 mJoyStick(NULL),
-mIniFile(iniFile)//,
-//mProcessSequencer(appFolder)
+mIniFile(iniFile)
 {
 	//Setup properties
     mProperties.setSection(name);
@@ -86,6 +85,7 @@ bool XYZUnit::isActive()
     {
     	ca = mAngleMotor->isActive();
     }
+
     return xa || ya || za || ca;
 }
 
@@ -419,6 +419,31 @@ APTMotor* XYZUnit::getMotorWithName(const string& name)
     }
 
 	if(getAngleMotor() && getAngleMotor()->getName() == name)
+    {
+    	return getAngleMotor();
+    }
+
+    return NULL;
+}
+
+APTMotor* XYZUnit::getMotorWithSerial(const string& serial)
+{
+	if(getXMotor() && getXMotor()->getSerial() == serial)
+    {
+    	return getXMotor();
+    }
+
+	if(getYMotor() && getYMotor()->getSerial() == serial)
+    {
+    	return getYMotor();
+    }
+
+	if(getZMotor() && getZMotor()->getSerial() == serial)
+    {
+    	return getZMotor();
+    }
+
+	if(getAngleMotor() && getAngleMotor()->getSerial() == serial)
     {
     	return getAngleMotor();
     }

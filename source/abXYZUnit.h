@@ -20,7 +20,7 @@ using mtk::IniFile;
 class AB_CORE XYZUnit : public ABObject
 {
 	public:
-    					                XYZUnit(const string& name, IniFile& iniFile, const string& appFolder);
+    					                XYZUnit(const string& name, IniFile& iniFile, const string& appDataFolder);
     					                ~XYZUnit();
         vector<APTMotor*>		        getAllMotors();
 		bool					        isActive();
@@ -49,6 +49,7 @@ class AB_CORE XYZUnit : public ABObject
 		APTMotor*			            getZMotor() const;
         APTMotor*				        getAngleMotor() const;
         APTMotor*				        getMotorWithName(const string& name);
+        APTMotor*				        getMotorWithSerial(const string& ser);
 
         Property<int>		            mXMotorSerialNr;
         Property<int>		            mYMotorSerialNr;
@@ -78,6 +79,5 @@ class AB_CORE XYZUnit : public ABObject
 
         ArrayBotJoyStick*               mJoyStick;
         Positions				        mPositions;
-//        ProcessSequencer 		        mProcessSequencer;
 };
 #endif

@@ -21,7 +21,6 @@ enum ProcessType {ptBaseType = 0, ptMove, ptCombinedMove, ptTimeDelay, ptUnknown
 AB_CORE string toString(ProcessType tp);
 AB_CORE ProcessType toProcessType(const string& str);
 
-
 //!Logic operators, used in triggers
 enum LogicOperator {loLargerThan = 0, loSmallerThan, loLargerThanOrEqual, loSmallerThanOrEqual, loEqualTo, loUndefined};
 
@@ -49,7 +48,6 @@ AB_CORE	int         getNumberOfConnectedDevices();
 AB_CORE string 		toString(DeviceTypeID val);
 AB_CORE string 		toString(const TLI_DeviceInfo& val);
 AB_CORE string 		tlError(int errCode);
-
 
 template<> inline
 std::string Property< DeviceTypeID >::getValueAsString() const
