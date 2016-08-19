@@ -14,7 +14,7 @@ mJoyStickID(-1),
 mJoyStick(mJoyStickID.getReference()),
 mJSSettings("JOYSTICK SETTINGS",	mIniFile),
 mCoverSlip("COVERSLIP UNIT", 		mIniFile, appFolder),
-mWhisker("WHISKER UNIT", 			mIniFile, appFolder),
+mWhisker(mIniFile, appFolder),
 mLifts("PAIRED_MOVES", 				mIniFile),
 mProcessSequencer(*this, appFolder),
 mIsShuttingDown(false)
@@ -36,27 +36,30 @@ ArrayBot::~ArrayBot()
     mProperties.write();
 }
 
-
 bool ArrayBot::enableCoverSlipUnit()
 {
 	mCoverSlip.enableJSAxes();
     mCoverSlip.enableZButtons();
+    return true;
 }
 
 bool ArrayBot::disableCoverSlipUnit()
 {
 	mCoverSlip.disableJSAxes();
     mCoverSlip.disableZButtons();
+    return true;
 }
 
 bool ArrayBot::enableWhiskerUnit()
 {
 	mWhisker.enableJSAxes();
+    return true;
 }
 
 bool ArrayBot::disableWhiskerUnit()
 {
 	mWhisker.disableJSAxes();
+    return true;
 }
 
 ProcessSequencer& ArrayBot::getProcessSequencer()
@@ -82,6 +85,19 @@ APTMotor* ArrayBot::getMotorWithName(const string& mn)
     for(int i = 0; i < ms.size(); i++)
     {
     	if(ms[i]->getName() == mn)
+        {
+        	return ms[i];
+        }
+    }
+    return NULL;
+}
+
+APTMotor* ArrayBot::getMotorWithSerial(const string& s)
+{
+	vector<APTMotor*> ms = getAllMotors();
+    for(int i = 0; i < ms.size(); i++)
+    {
+    	if(ms[i]->getSerial() == s)
         {
         	return ms[i];
         }

@@ -28,6 +28,9 @@ mJSMessageDispatcher(*this, 14, mJoyStickID)
     mJSMessageDispatcher.setButtonEvents(5, mButton5.down,  mButton5.up);
     mJSMessageDispatcher.setButtonEvents(6, mButton6.down,  mButton6.up);
 
+    mJSMessageDispatcher.setButtonEvents(7, mButton7.down,  mButton7.up);
+    mJSMessageDispatcher.setButtonEvents(8, mButton8.down,  mButton8.up);
+
     mJSMessageDispatcher.setPOVButtonEvents(1, mPOVButton1.down,  mPOVButton1.up);
     mJSMessageDispatcher.setPOVButtonEvents(2, mPOVButton2.down,  mPOVButton2.up);
     mJSMessageDispatcher.setPOVButtonEvents(3, mPOVButton3.down,  mPOVButton3.up);
@@ -197,6 +200,10 @@ JoyStickButton& ArrayBotJoyStick::getButton(int nr)
     	case 2:  return mButton2;
     	case 3:  return mButton3;
     	case 4:  return mButton4;
+
+    	case 7:  return mButton7;
+    	case 8:  return mButton8;
+
     	case 9:  return mButton9;
     	case 10: return mButton10;
 

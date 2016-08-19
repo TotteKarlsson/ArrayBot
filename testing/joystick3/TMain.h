@@ -42,7 +42,9 @@ __published:	// IDE-managed Components
 	void __fastcall Button15Click(TObject *Sender);
 
 	private:	// User declarations
+        int 						mJoyStickID;
     	ArrayBotJoyStick 	        mJS;
+
 
         void 				        onButton1Down();
         void 				        onButton1Up();

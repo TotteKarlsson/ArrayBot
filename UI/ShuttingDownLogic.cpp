@@ -5,8 +5,8 @@
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "TSplashForm.h"
-#include "TRibbonLifterFrame.h"
-#include "TXYZUnitFrame.h"
+#include "frames/TRibbonLifterFrame.h"
+#include "frames/TXYZUnitFrame.h"
 #include "TAboutArrayBotForm.h"
 using namespace mtk;
 

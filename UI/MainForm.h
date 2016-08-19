@@ -165,6 +165,8 @@ class TMain : public TRegistryForm
         LogFileReader                           mLogFileReader;
         void __fastcall                         logMsg();
 
+        void __fastcall 						WndProc(TMessage& Message);
+
 		void 						            setupWindowTitle();
         InitBotThread					        mInitBotThread;
         void __fastcall					        onFinishedInitBot();

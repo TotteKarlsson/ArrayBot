@@ -48,6 +48,20 @@ APTMotor::~APTMotor()
     mProperties.write();
 }
 
+bool APTMotor::isInDangerZone()
+{
+    if(mPositionLimitsEnabled)
+    {
+        double pos = getPosition();
+        if(pos >= mPositionLimits.getValue().getMax() * 0.9)
+        {
+        	return true;
+        }
+    }
+
+    return false;
+}
+
 void APTMotor::onStatusTimer()
 {
 	if(!isActive() || isHoming())
@@ -59,7 +73,7 @@ void APTMotor::onStatusTimer()
     if(mPositionLimitsEnabled)
     {
         double pos = getPosition();
-        if(pos >= mPositionLimits.getValue().getMax())
+        if(isInDangerZone() || pos >= mPositionLimits.getValue().getMax())
         {
             Log(lWarning) << "Motor \""<<getName()<<"\" has crossed the maximum position limit";
 

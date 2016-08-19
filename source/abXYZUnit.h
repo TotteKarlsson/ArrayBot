@@ -22,7 +22,7 @@ class AB_CORE XYZUnit : public ABObject
 	public:
     					                XYZUnit(const string& name, IniFile& iniFile, const string& appDataFolder);
     					                ~XYZUnit();
-        vector<APTMotor*>		        getAllMotors();
+
 		bool					        isActive();
 
 		bool					        enableJSAxes();
@@ -41,8 +41,9 @@ class AB_CORE XYZUnit : public ABObject
 		string					        getName() const;
         Positions&				        positions(){return mPositions;}
 
-		bool				            initialize();
-        bool					        stopAll();
+		virtual bool	  	            initialize();
+        virtual bool	  		        stopAll();
+        virtual vector<APTMotor*>	    getAllMotors();
 
 		APTMotor*			            getXMotor() const;
 		APTMotor*			            getYMotor() const;
@@ -53,7 +54,7 @@ class AB_CORE XYZUnit : public ABObject
 
         Property<int>		            mXMotorSerialNr;
         Property<int>		            mYMotorSerialNr;
-        Property<int>		            mZMotorSerialNr;
+		Property<int>		            mZMotorSerialNr;
 	    Property<int>		            mAngleMotorSerialNr;
 
         						        //TODO: move the devicemanager to ArrayBot and

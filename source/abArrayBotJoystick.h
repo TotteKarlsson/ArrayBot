@@ -92,6 +92,10 @@ class AB_CORE ArrayBotJoyStick : public ABObject
         JoyStickButton		                        mButton5;
         JoyStickButton		                        mButton6;
 
+        											//Z2 on whisker
+        JoyStickButton		                        mButton7;
+        JoyStickButton		                        mButton8;
+
         JoyStickButton		                        mPOVButton1;
         JoyStickButton		                        mPOVButton2;
         JoyStickButton		                        mPOVButton3;

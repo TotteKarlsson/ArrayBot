@@ -25,6 +25,8 @@ class AB_CORE APTMotor : public APTDevice
 		bool	                    		setVelocityForward(double v);
 		bool	                    		setVelocityReverse(double v);
 
+        bool								isInDangerZone();
+
         									//!MoveAbsolute takes a position and a velocity parameters
         bool		                		moveAbsolute(double position, double v, double a = 0);
 

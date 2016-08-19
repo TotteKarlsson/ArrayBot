@@ -108,6 +108,11 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
+        <RcItem Include="..\resources\sounds\BUZZ.WAV">
+            <ContainerId>ResourceItem</ContainerId>
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>MOTOR_WARNING_SOUND</ResourceId>
+        </RcItem>
         <CppCompile Include="abABObject.cpp">
             <BuildOrder>2</BuildOrder>
         </CppCompile>
@@ -264,6 +269,10 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="abSerialWorker.cpp">
             <BuildOrder>49</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abSounds.cpp">
+            <DependentOn>abSounds.h</DependentOn>
+            <BuildOrder>58</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abTCubeDCServo.cpp">
             <BuildOrder>23</BuildOrder>
         </CppCompile>
@@ -283,6 +292,10 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="abUtilities.cpp">
             <DependentOn>abUtilities.h</DependentOn>
             <BuildOrder>5</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abWhiskerUnit.cpp">
+            <DependentOn>abWhiskerUnit.h</DependentOn>
+            <BuildOrder>58</BuildOrder>
         </CppCompile>
         <CppCompile Include="abXYZUnit.cpp">
             <DependentOn>abXYZUnit.h</DependentOn>

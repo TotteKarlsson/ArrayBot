@@ -3,6 +3,7 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include "abXYZUnit.h"
+#include "abWhiskerUnit.h"
 #include "abArrayBotJoyStick.h"
 #include "abPairedMoves.h"
 #include "abJoyStickSettings.h"
@@ -53,6 +54,7 @@ class AB_CORE ArrayBot : public ABObject
         bool						                    writeINIParameters();
         vector<APTMotor*>			                    getAllMotors();
         APTMotor*										getMotorWithName(const string& mn);
+        APTMotor*										getMotorWithSerial(const string& serial);
         ProcessSequencer&								getProcessSequencer();
 
 
@@ -68,7 +70,7 @@ class AB_CORE ArrayBot : public ABObject
         JoyStickSettings			                    mJSSettings;
 
         XYZUnit						                    mCoverSlip;
-        XYZUnit						                    mWhisker;
+        WhiskerUnit		 			                    mWhisker;
 
         							                    //!List of Lifts
         PairedMoves					                    mLifts;

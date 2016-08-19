@@ -58,7 +58,6 @@ class TMain : public TRegistryForm
 	TPanel *TopPanel;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet4;
-	TTabSheet *TabSheet5;
 	TPanel *BottomPanel;
 	TMemo *infoMemo;
 	TToolBar *ToolBar1;
@@ -91,6 +90,7 @@ class TMain : public TRegistryForm
 		void __fastcall				        refreshSequencesCB();
 
 		 void __fastcall 					WndProc(TMessage& Message);
+
 	public:		// User declarations
 		__fastcall 					        TMain(TComponent* Owner);
 		__fastcall 					        ~TMain();

@@ -2,7 +2,7 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'Motor Frame Tester 0.5'
-  ClientHeight = 567
+  ClientHeight = 631
   ClientWidth = 884
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,12 +24,12 @@ object Main: TMain
     Left = 757
     Top = 0
     Width = 127
-    Height = 567
+    Height = 631
     Align = alRight
     TabOrder = 0
     object Button7: TButton
       Left = 1
-      Top = 444
+      Top = 508
       Width = 125
       Height = 60
       Action = stopAllA
@@ -46,7 +46,7 @@ object Main: TMain
     end
     object Button5: TButton
       Left = 1
-      Top = 504
+      Top = 568
       Width = 125
       Height = 62
       Action = FileExit1
@@ -64,7 +64,7 @@ object Main: TMain
     Left = 0
     Top = 0
     Width = 757
-    Height = 567
+    Height = 631
     Align = alClient
     Constraints.MinHeight = 348
     Constraints.MinWidth = 670
@@ -73,7 +73,7 @@ object Main: TMain
       Left = 1
       Top = 1
       Width = 755
-      Height = 565
+      Height = 629
       ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
@@ -81,42 +81,30 @@ object Main: TMain
       TabWidth = 100
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
           Width = 747
-          Height = 495
+          Height = 416
           Align = alClient
           TabOrder = 0
         end
-      end
-      object TabSheet5: TTabSheet
-        Caption = 'Logging'
-        ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
-          Top = 0
+          Top = 416
           Width = 747
-          Height = 495
-          Align = alClient
-          TabOrder = 0
+          Height = 143
+          Align = alBottom
+          TabOrder = 1
           object infoMemo: TMemo
             Left = 1
             Top = 51
             Width = 745
-            Height = 443
+            Height = 91
             Align = alClient
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
-            Font.Height = -19
+            Font.Height = -13
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False

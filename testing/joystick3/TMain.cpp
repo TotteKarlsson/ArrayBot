@@ -19,7 +19,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 TForm(Owner),
 logMsgMethod(&logMsg),
 mLogFileReader(joinPath(".", gLogFileName), logMsgMethod),
-mJS()
+mJoyStickID(1),
+mJS(mJoyStickID)
 {
     //Associate functions with events
     mJS.setButtonEvents(1, onButton1Down,  onButton1Up    );
@@ -333,7 +334,8 @@ void TMain::onPOVButton4Down()
 //---------------------------------------------------------------------------
 void __fastcall TMain::Button15Click(TObject *Sender)
 {
-	mJS.switchJoyStickDevice();
+	mJoyStickID = (mJoyStickID == 1) ? 2 : 1;
+    mJS.enableJoyStickWithID(mJoyStickID);
 }
 
 

@@ -12,11 +12,14 @@
 #include "mtkMathUtils.h"
 #include "abExceptions.h"
 #include "TSplashForm.h"
-#include "TABProcessSequencerFrame.h"
-#include "TXYZPositionsFrame.h"
-#include "TRibbonLifterFrame.h"
-#include "TXYZUnitFrame.h"
-#include "TSequencerButtonsFrame.h"
+#include "abSounds.h"
+#include "abCore.h"
+
+#include "frames/TABProcessSequencerFrame.h"
+#include "frames/TXYZPositionsFrame.h"
+#include "frames/TRibbonLifterFrame.h"
+#include "frames/TXYZUnitFrame.h"
+#include "frames/TSequencerButtonsFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -48,6 +51,9 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mABProcessSequencerFrame(NULL),
     mRibbonLifterFrame(NULL)
 {
+    //Init the DLL -> give intra messages their ID's
+	initABCoreLib();
+
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
 
@@ -129,6 +135,47 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
+}
+
+void __fastcall TMain::WndProc(TMessage& Message)
+{
+    if (Message.Msg == getABCoreMessageID("MOTOR_WARNING_MESSAGE") && getABCoreMessageID("MOTOR_WARNING_MESSAGE") != 0)
+    {
+    	MotorMessageData* msg = reinterpret_cast<MotorMessageData*>(Message.WParam);
+       	APTMotor* mtr = mAB->getMotorWithSerial(msg->mSerial);
+
+        if(!mtr)
+        {
+        	//real bad....
+        }
+
+		//Handle the warning..
+        if(msg->mCurrentPosition >= msg->mPositionLimits.getValue().getMax())
+        {
+            if(mtr)
+            {
+            	if(mtr->getLastCommand() != mcStopHard)
+                {
+            		mtr->stop();
+	                playABSound(absMotorWarning);
+    	            Log(lInfo) << "Stopped motor: "<<mtr->getName();
+                }
+            }
+        }
+
+        if(mtr->isInDangerZone())
+        {
+        	playABSound(absMotorWarning);
+        }
+
+
+        //Message is now consumed.. delete it
+        delete msg;
+    }
+    else
+    {
+        TForm::WndProc(Message);
+    }
 }
 
 //---------------------------------------------------------------------------

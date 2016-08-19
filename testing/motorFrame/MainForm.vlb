@@ -19,9 +19,6 @@ Coordinates=44,106,58,51
 [BitBtn2]
 Coordinates=216,71,50,51
 
-[TabSheet5]
-Coordinates=608,261,66,33
-
 [infoMemo]
 Coordinates=335,71,62,51
 
@@ -35,5 +32,5 @@ Coordinates=608,313,58,33
 Coordinates=197,320,53,51
 
 []
-Coordinates=0,0,68,33
+Coordinates=608,261,66,33
 

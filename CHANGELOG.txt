@@ -1,5 +1,13 @@
 Release 0.7.6 (Aug 12)
 =======================
+* Added positional limits to all motors, causing them to stop
+* Added warning sounds when a motor crosses a positional limit
+* Creating forms and frames folders, and eventually libs
+* Added xinput application to get joystick battery status
+* Added scrollbox to ArrayCam application for right panel controls
+
+Release 0.7.6 (Aug 12)
+=======================
 * Added saving of parameters for the ArrayCam application
 * Cleaned up arduino controller app
 * Updated Arduinoserver with some light extra code

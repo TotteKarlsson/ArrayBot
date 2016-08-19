@@ -5,6 +5,7 @@
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "TMotorFrame.h"
+#include "abWhiskerUnit.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"
@@ -18,11 +19,11 @@ int TXYZUnitFrame::mFrameNr = 0;
 //---------------------------------------------------------------------------
 __fastcall TXYZUnitFrame::TXYZUnitFrame(TComponent* Owner)
 	: TFrame(Owner),
-    mUnit(NULL),
-    mXMotorFrame(NULL),
-    mYMotorFrame(NULL),
-    mZMotorFrame(NULL),
-    mAngleMotorFrame(NULL)
+    mUnit(NULL)
+//    mXMotorFrame(NULL),
+//    mYMotorFrame(NULL),
+//    mZMotorFrame(NULL),
+//    mAngleMotorFrame(NULL)
 {
     TFrame::Name = vclstr("XYZUnitFrame_" + mtk::toString(++mFrameNr));
 }
@@ -31,80 +32,50 @@ __fastcall TXYZUnitFrame::TXYZUnitFrame(TComponent* Owner)
 void TXYZUnitFrame::assignUnit(XYZUnit* u)
 {
 	mUnit = u;
-    mainGB->Caption = vclstr(u->getName());
 
     if(mUnit)
     {
-    	if(mUnit->getAngleMotor())
-        {
-        	//Check if we have created a Frame for it
-            if(!mAngleMotorFrame)
-            {
-            	mAngleMotorFrame = new TMotorFrame(mUnit->getAngleMotor()->getSerial(), this);
-                mAngleMotorFrame->SetParentComponent(ScrollBox1);
-                mAngleMotorFrame->Align = alLeft;
-                mAngleMotorFrame->assignMotor(mUnit->getAngleMotor());
-            }
-        }
+        mainGB->Caption = vclstr(mUnit->getName());
 
-    	if(mUnit->getZMotor())
-        {
-        	//Check if we have created a Frame for it
-            if(!mZMotorFrame)
-            {
-            	mZMotorFrame = new TMotorFrame(mUnit->getZMotor()->getSerial(), this);
-                mZMotorFrame->SetParentComponent(ScrollBox1);
-                mZMotorFrame->Align = alLeft;
-                mZMotorFrame->assignMotor(mUnit->getZMotor());
-            }
-        }
+        vector<APTMotor*> mtrs = mUnit->getAllMotors();
 
-    	if(mUnit->getYMotor())
+        for(int i = 0; i < mtrs.size(); i++)
         {
-        	//Check if we have created a Frame for it
-            if(!mYMotorFrame)
-            {
-            	mYMotorFrame = new TMotorFrame(mUnit->getYMotor()->getSerial(), this);
-                mYMotorFrame->SetParentComponent(ScrollBox1);
-                mYMotorFrame->Align = alLeft;
-                mYMotorFrame->assignMotor(mUnit->getYMotor());
-            }
-        }
-
-    	if(mUnit->getXMotor())
-        {
-        	//Check if we have created a Frame for it
-            if(!mXMotorFrame)
-            {
-            	mXMotorFrame = new TMotorFrame(mUnit->getXMotor()->getSerial(), this);
-                mXMotorFrame->SetParentComponent(ScrollBox1);
-                mXMotorFrame->Align = alLeft;
-                mXMotorFrame->assignMotor(mUnit->getXMotor());
-            }
+            TMotorFrame* f = new TMotorFrame(mtrs[i]->getSerial(), this);
+            f->SetParentComponent(ScrollBox1);
+            f->Align = alLeft;
+            f->assignMotor(mtrs[i]);
+            mFrames.push_back(f);
         }
     }
 }
 
 void TXYZUnitFrame::disable()
 {
-	if(mXMotorFrame)
+	for(int i = 0; i < mFrames.size(); i++)
     {
-    	mXMotorFrame->mMotorStatusTimer->Enabled = false;
+		mFrames[i]->mMotorStatusTimer->Enabled = false;
     }
 
-	if(mYMotorFrame)
-    {
-    	mYMotorFrame->mMotorStatusTimer->Enabled = false;
-    }
-
-	if(mZMotorFrame)
-    {
-    	mZMotorFrame->mMotorStatusTimer->Enabled = false;
-    }
-
-	if(mAngleMotorFrame)
-    {
-    	mAngleMotorFrame->mMotorStatusTimer->Enabled = false;
-    }
+//	if(mXMotorFrame)
+//    {
+//    	mXMotorFrame->mMotorStatusTimer->Enabled = false;
+//    }
+//
+//	if(mYMotorFrame)
+//    {
+//    	mYMotorFrame->mMotorStatusTimer->Enabled = false;
+//    }
+//
+//	if(mZMotorFrame)
+//    {
+//    	mZMotorFrame->mMotorStatusTimer->Enabled = false;
+//    }
+//
+//	if(mAngleMotorFrame)
+//    {
+//    	mAngleMotorFrame->mMotorStatusTimer->Enabled = false;
+//    }
 }
+
 

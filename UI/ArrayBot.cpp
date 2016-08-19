@@ -14,21 +14,20 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
-USEFORM("frames\TTimeDelayFrame.cpp", CombinedMoveFrame); /* TFrame: File Type */
-USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
-USEFORM("frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
-USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
-USEFORM("frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
 USEFORM("MainForm.cpp", Main);
-USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 USEFORM("forms\TSplashForm.cpp", SplashForm);
-USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
-USEFORM("forms\abAddLiftForm.cpp", AddLiftSettingForm);
-USEFORM("frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame); /* TFrame: File Type */
 USEFORM("frames\TAboutArrayBot_2Frame.cpp", AboutArrayBotFrame_2);
-USEFORM("frames\TABProcessSequencerFrame.cpp", ABProcessSequencerFrame);
+USEFORM("..\source\forms\TShowFileContentForm.cpp", ShowFileContentForm);
+USEFORM("..\source\frames\TXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
+USEFORM("..\source\frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("..\source\frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
+USEFORM("..\source\frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
+USEFORM("..\source\frames\TTimeDelayFrame.cpp", TimeDelayFrame); /* TFrame: File Type */
+USEFORM("..\source\frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
+USEFORM("..\source\frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
+USEFORM("..\source\frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
+USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";
@@ -109,7 +108,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->CreateForm(__classid(TShowFileContentForm), &ShowFileContentForm);
-		Application->CreateForm(__classid(TAddLiftSettingForm), &AddLiftSettingForm);
 		Application->CreateForm(__classid(TAddJoyStickSettingForm), &AddJoyStickSettingForm);
 		Application->Run();
 	}

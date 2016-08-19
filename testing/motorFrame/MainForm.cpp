@@ -14,6 +14,7 @@
 #include "TMemoLogger.h"
 #include <bitset>
 #include "abCore.h"
+#include "abSounds.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -69,20 +70,32 @@ void __fastcall TMain::WndProc(TMessage& Message)
     if (Message.Msg == getABCoreMessageID("MOTOR_WARNING_MESSAGE") && getABCoreMessageID("MOTOR_WARNING_MESSAGE") != 0)
     {
     	MotorMessageData* msg = reinterpret_cast<MotorMessageData*>(Message.WParam);
+       	APTMotor* mtr = mXYZUnit.getMotorWithSerial(msg->mSerial);
+
+        if(!mtr)
+        {
+        	//real bad....
+        }
 
 		//Handle the warning..
-        if(msg->mCurrentPosition > msg->mPositionLimits.getValue().getMax())
+        if(msg->mCurrentPosition >= msg->mPositionLimits.getValue().getMax())
         {
-        	APTMotor* mtr = mXYZUnit.getMotorWithSerial(msg->mSerial);
             if(mtr)
             {
-            	mtr->stop();
-
-                playABSound(MOTOR_STOP_SOUND);
-
-                Log(lInfo) << "Stopped motor: "<<mtr->getName();
+            	if(mtr->getLastCommand() != mcStopHard)
+                {
+            		mtr->stop();
+	                playABSound(absMotorWarning);
+    	            Log(lInfo) << "Stopped motor: "<<mtr->getName();
+                }
             }
         }
+
+        if(mtr->isInDangerZone())
+        {
+        	playABSound(absMotorWarning);
+        }
+
 
         //Message is now consumed.. delete it
         delete msg;
