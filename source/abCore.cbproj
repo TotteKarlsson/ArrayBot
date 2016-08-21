@@ -166,6 +166,9 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="abDeviceManager.cpp">
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abDirectSound.cpp">
+            <BuildOrder>59</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abExceptions.cpp">
             <BuildOrder>9</BuildOrder>
         </CppCompile>

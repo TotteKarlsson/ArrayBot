@@ -1,31 +1,10 @@
-/////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 1998 by Jörg König
-// All rights reserved
-//
-// This file is part of the completely free tetris clone "CGTetris".
-//
-// This is free software.
-// You may redistribute it by any means providing it is not sold for profit
-// without the authors written consent.
-//
-// No warrantee of any kind, expressed or implied, is included with this
-// software; use at your own risk, responsibility for damages (if any) to
-// anyone resulting from the use of this software rests entirely with the
-// user.
-//
-// Send bug reports, bug fixes, enhancements, requests, flames, etc., and
-// I'll try to keep a version up to date.  I can be reached as follows:
-//    J.Koenig@adg.de                 (company site)
-//    Joerg.Koenig@rhein-neckar.de    (private site)
-/////////////////////////////////////////////////////////////////////////////
-
-
-// DirectSound.cpp: implementation of the CDirectSound class.
-//
-//////////////////////////////////////////////////////////////////////
-
-//#include "stdafx.h"
+#pragma hdrstop
 #include "abDirectSound.h"
+#include <mmsystem.h>
+#include "mtkLogger.h"
+
+using namespace mtk;
+
 
 // The following macro is defined since DirectX 5, but will work with
 // older versions too.
@@ -33,32 +12,26 @@
 	#define DSBLOCK_ENTIREBUFFER        0x00000002
 #endif
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
-
-static void DSError( HRESULT hRes )
+static void DSError(HRESULT hRes)
 {
 	switch(hRes)
     {
-//		case DS_OK: TRACE0("NO ERROR\n"); break;
-//		case DSERR_ALLOCATED: TRACE0("ALLOCATED\n"); break;
-//		case DSERR_INVALIDPARAM: TRACE0("INVALIDPARAM\n"); break;
-//		case DSERR_OUTOFMEMORY: TRACE0("OUTOFMEMORY\n"); break;
-//		case DSERR_UNSUPPORTED: TRACE0("UNSUPPORTED\n"); break;
-//		case DSERR_NOAGGREGATION: TRACE0("NOAGGREGATION\n"); break;
-//		case DSERR_UNINITIALIZED: TRACE0("UNINITIALIZED\n"); break;
-//		case DSERR_BADFORMAT: TRACE0("BADFORMAT\n"); break;
-//		case DSERR_ALREADYINITIALIZED: TRACE0("ALREADYINITIALIZED\n"); break;
-//		case DSERR_BUFFERLOST: TRACE0("BUFFERLOST\n"); break;
-//		case DSERR_CONTROLUNAVAIL: TRACE0("CONTROLUNAVAIL\n"); break;
-//		case DSERR_GENERIC: TRACE0("GENERIC\n"); break;
-//		case DSERR_INVALIDCALL: TRACE0("INVALIDCALL\n"); break;
-//		case DSERR_OTHERAPPHASPRIO: TRACE0("OTHERAPPHASPRIO\n"); break;
-//		case DSERR_PRIOLEVELNEEDED: TRACE0("PRIOLEVELNEEDED\n"); break;
-//		default: TRACE1("%lu\n",hRes);break;
+		case DS_OK: 					Log(lError) << ("NO ERROR\n"); 			        break;
+		case DSERR_ALLOCATED: 			Log(lError) << ("ALLOCATED\n"); 		        break;
+		case DSERR_INVALIDPARAM: 		Log(lError) << ("INVALIDPARAM\n"); 		        break;
+		case DSERR_OUTOFMEMORY: 		Log(lError) << ("OUTOFMEMORY\n"); 		        break;
+		case DSERR_UNSUPPORTED: 		Log(lError) << ("UNSUPPORTED\n"); 		        break;
+		case DSERR_NOAGGREGATION: 		Log(lError) << ("NOAGGREGATION\n"); 	        break;
+		case DSERR_UNINITIALIZED: 		Log(lError) << ("UNINITIALIZED\n"); 	        break;
+		case DSERR_BADFORMAT: 			Log(lError) << ("BADFORMAT\n"); 		        break;
+		case DSERR_ALREADYINITIALIZED: 	Log(lError) << ("ALREADYINITIALIZED\n");        break;
+		case DSERR_BUFFERLOST: 			Log(lError) << ("BUFFERLOST\n"); 		        break;
+		case DSERR_CONTROLUNAVAIL: 		Log(lError) << ("CONTROLUNAVAIL\n"); 	        break;
+		case DSERR_GENERIC: 			Log(lError) << ("GENERIC\n"); 			        break;
+		case DSERR_INVALIDCALL: 		Log(lError) << ("INVALIDCALL\n"); 		        break;
+		case DSERR_OTHERAPPHASPRIO: 	Log(lError) << ("OTHERAPPHASPRIO\n"); 	        break;
+		case DSERR_PRIOLEVELNEEDED: 	Log(lError) << ("PRIOLEVELNEEDED\n"); 	        break;
+		default: 						Log(lError) << "Direct Sound error: "<<hRes;    break;
 	}
 }
 
@@ -69,14 +42,13 @@ static void DSError( HRESULT hRes )
 LPDIRECTSOUND CDirectSound::m_lpDirectSound;
 DWORD CDirectSound::m_dwInstances;
 
-
 CDirectSound::CDirectSound()
 {
 	m_lpDirectSound = 0;
 	m_pDsb = 0;
 	m_pTheSound = 0;
 	m_dwTheSound = 0;
-	m_bEnabled = TRUE;
+	m_bEnabled = true;
 
 	++m_dwInstances;
 }
@@ -84,20 +56,35 @@ CDirectSound::CDirectSound()
 CDirectSound::~CDirectSound()
 {
 	if( m_pDsb )
+    {
 		m_pDsb->Release();
+    }
 
-	if( !--m_dwInstances && m_lpDirectSound ) {
+	if( !--m_dwInstances && m_lpDirectSound )
+    {
 		m_lpDirectSound->Release();
 		m_lpDirectSound = 0;
 	}
 }
 
-BOOL CDirectSound::Create(UINT uResourceID)//, CWnd * pWnd = 0)
+bool CDirectSound::Create(UINT uResourceID)//, CWnd * pWnd = 0)
 {
 	return Create(MAKEINTRESOURCE(uResourceID));
 }
 
-BOOL CDirectSound::Create(LPCTSTR pszResource)//, CWnd * pWnd)
+CDirectSound& CDirectSound::EnableSound(bool bEnable)
+{
+	m_bEnabled = bEnable;
+
+	if(!bEnable)
+    {
+		Stop();
+    }
+
+	return *this;
+}
+
+bool CDirectSound::Create(LPCTSTR pszResource)//, CWnd * pWnd)
 {
 	//////////////////////////////////////////////////////////////////
 	// load resource
@@ -105,40 +92,32 @@ BOOL CDirectSound::Create(LPCTSTR pszResource)//, CWnd * pWnd)
 
     //	ASSERT(hApp);
 
-	HRSRC hResInfo = ::FindResource(hApp, pszResource, MAKEINTRESOURCE(10) );
+	HRSRC hResInfo = ::FindResourceA(hApp, pszResource, MAKEINTRESOURCE(10));
 	if(hResInfo == 0)
     {
-		return FALSE;
+		return false;
     }
 
 	HGLOBAL hRes = ::LoadResource(hApp, hResInfo);
 	if(hRes == 0)
     {
-		return FALSE;
+		return false;
     }
 
 	LPVOID pTheSound = ::LockResource(hRes);
 	if(pTheSound == 0)
     {
-		return FALSE;
+		return false;
     }
 
 	return Create(pTheSound);
 }
 
 
-BOOL CDirectSound::Create(LPVOID pSoundData)//, CWnd * pWnd)
+bool CDirectSound::Create(LPVOID pSoundData)
 {
-//	if(pWnd == 0)
-//		pWnd = AfxGetApp()->GetMainWnd();
-//
-//	ASSERT(pWnd != 0);
-//	ASSERT(::IsWindow(pWnd->GetSafeHwnd()));
-//	ASSERT(pSoundData != 0);
-
 	//////////////////////////////////////////////////////////////////
 	// create direct sound object
-
 	if( m_lpDirectSound == 0 )
     {
 		// Someone might use sounds for starting apps. This may cause
@@ -155,36 +134,31 @@ BOOL CDirectSound::Create(LPVOID pSoundData)//, CWnd * pWnd)
             }
 			hRes = ::DirectSoundCreate(0, &m_lpDirectSound, 0);
 			++nRes;
-		} while( nRes < 10 && (hRes == DSERR_ALLOCATED || hRes == DSERR_NODRIVER) );
 
-		if( hRes != DS_OK )
+		}while( nRes < 10 && (hRes == DSERR_ALLOCATED || hRes == DSERR_NODRIVER) );
+
+		if(hRes != DS_OK)
         {
-			return FALSE;
+			return false;
         }
 
-//		HINSTANCE hApp = ::GetModuleHandle(0);
-//		HINSTANCE hApp = ::GetDesktopWindow();
 		HWND hWnd = ::GetConsoleWindow();
-//		m_lpDirectSound->SetCooperativeLevel(pWnd->GetSafeHwnd(), DSSCL_NORMAL);
-
 		m_lpDirectSound->SetCooperativeLevel(hWnd, DSSCL_NORMAL);
 	}
 
-//	ASSERT(m_lpDirectSound != 0);
-
 	WAVEFORMATEX * pcmwf;
-	if( ! GetWaveData(pSoundData, pcmwf, m_pTheSound, m_dwTheSound) ||
-		! CreateSoundBuffer(pcmwf) ||
-		! SetSoundData(m_pTheSound, m_dwTheSound) )
+	if( !GetWaveData(pSoundData, pcmwf, m_pTheSound, m_dwTheSound) ||
+		!CreateSoundBuffer(pcmwf) ||
+		!SetSoundData(m_pTheSound, m_dwTheSound) )
 	{
-		return FALSE;
+		return false;
     }
 
-	return TRUE;
+	return true;
 }
 
 
-BOOL CDirectSound :: GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void * & pbWaveData, DWORD & cbWaveSize)
+bool CDirectSound::GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void * & pbWaveData, DWORD & cbWaveSize)
 {
 	pWaveHeader = 0;
 	pbWaveData = 0;
@@ -196,10 +170,10 @@ BOOL CDirectSound :: GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void
 	DWORD dwType = *pdw++;
 
 	if( dwRiff != mmioFOURCC('R', 'I', 'F', 'F') )
-		return FALSE;      // not even RIFF
+		return false;      // not even RIFF
 
 	if( dwType != mmioFOURCC('W', 'A', 'V', 'E') )
-		return FALSE;      // not a WAV
+		return false;      // not a WAV
 
 	DWORD * pdwEnd = (DWORD *)((BYTE *)pdw + dwLength-4);
 
@@ -211,12 +185,12 @@ BOOL CDirectSound :: GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void
 			case mmioFOURCC('f', 'm', 't', ' '):
 				if( !pWaveHeader ) {
 					if( dwLength < sizeof(WAVEFORMAT) )
-						return FALSE;      // not a WAV
+						return false;      // not a WAV
 
 					pWaveHeader = (WAVEFORMATEX *)pdw;
 
 					if( pbWaveData && cbWaveSize )
-						return TRUE;
+						return true;
 				}
 				break;
 
@@ -225,16 +199,16 @@ BOOL CDirectSound :: GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void
 				cbWaveSize = dwLength;
 
 				if( pWaveHeader )
-					return TRUE;
+					return true;
 				break;
 		}
 		pdw = (DWORD *)((BYTE *)pdw + ((dwLength+1)&~1));
 	}
 
-	return FALSE;
+	return false;
 }
 
-BOOL CDirectSound::CreateSoundBuffer(WAVEFORMATEX * pcmwf)
+bool CDirectSound::CreateSoundBuffer(WAVEFORMATEX * pcmwf)
 {
 	DSBUFFERDESC dsbdesc;
 
@@ -247,18 +221,18 @@ BOOL CDirectSound::CreateSoundBuffer(WAVEFORMATEX * pcmwf)
 	dsbdesc.dwBufferBytes = m_dwTheSound;
 	dsbdesc.lpwfxFormat = pcmwf;    // Create buffer.
 	HRESULT hRes;
-	if( DS_OK != (hRes = m_lpDirectSound->CreateSoundBuffer(&dsbdesc, &m_pDsb, 0)) )
+	if(DS_OK != (hRes = m_lpDirectSound->CreateSoundBuffer(&dsbdesc, &m_pDsb, 0)))
     {
 		// Failed.
-		DSError0(hRes);
+		DSError(hRes);
 		m_pDsb = 0;
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
-BOOL CDirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
+bool CDirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
 {
 	LPVOID lpvPtr1;
 	DWORD dwBytes1;
@@ -266,10 +240,12 @@ BOOL CDirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
 	HRESULT hr = m_pDsb->Lock(0, 0, &lpvPtr1, &dwBytes1, 0, 0, DSBLOCK_ENTIREBUFFER);
 
     // If DSERR_BUFFERLOST is returned, restore and retry lock.
-	if(DSERR_BUFFERLOST == hr) {
+	if(DSERR_BUFFERLOST == hr)
+    {
 		m_pDsb->Restore();
 		hr = m_pDsb->Lock(0, 0, &lpvPtr1, &dwBytes1, 0, 0, DSBLOCK_ENTIREBUFFER);
 	}
+
 	if(DS_OK == hr)
     {
 		// Write to pointers.
@@ -277,13 +253,15 @@ BOOL CDirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
 		// Release the data back to DirectSound.
 		hr = m_pDsb->Unlock(lpvPtr1, dwBytes1, 0, 0);
 		if(DS_OK == hr)
-            return TRUE;
+        {
+            return true;
+        }
 	}
 	// Lock, Unlock, or Restore failed.
-	return FALSE;
+	return false;
 }
 
-void CDirectSound::Play(DWORD dwStartPosition, BOOL bLoop)
+void CDirectSound::Play(DWORD dwStartPosition, bool bLoop)
 {
 	if(!IsValid() || ! IsEnabled())
     {
@@ -309,11 +287,12 @@ void CDirectSound::Play(DWORD dwStartPosition, BOOL bLoop)
 	}
 }
 
-
 void CDirectSound::Stop()
 {
 	if( IsValid() )
+    {
 		m_pDsb->Stop();
+    }
 }
 
 void CDirectSound::Pause()
@@ -323,14 +302,15 @@ void CDirectSound::Pause()
 
 void CDirectSound::Continue()
 {
-	if( IsValid() ) {
+	if(IsValid())
+    {
 		DWORD dwPlayCursor, dwWriteCursor;
 		m_pDsb->GetCurrentPosition(&dwPlayCursor, &dwWriteCursor);
 		Play(dwPlayCursor);
 	}
 }
 
-BOOL CDirectSound::IsValid() const
+bool CDirectSound::IsValid() const
 {
-	return (m_lpDirectSound && m_pDsb && m_pTheSound && m_dwTheSound) ? TRUE : FALSE;
+	return (m_lpDirectSound && m_pDsb && m_pTheSound && m_dwTheSound) ? true : false;
 }
