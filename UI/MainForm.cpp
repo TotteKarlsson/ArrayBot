@@ -622,7 +622,7 @@ void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
 
 void __fastcall TMain::mButtonPanelDblClick(TObject *Sender)
 {
-	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSingle : bsNone;
+	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSizeable : bsNone;
 }
 
 

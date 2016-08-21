@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ArrayBot"
-#define MyAppVersion "0.7.6"
+#define MyAppVersion "0.7.7"
 #define MyAppPublisher "Smith Lab"
 #define MyAppURL "http://www.example.com/"
 #define MyAppExeName "ArrayBot.exe"
@@ -22,7 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
 OutputBaseFilename={#MyAppName}-{#MyAppVersion}
-OutputDir=p:\versions\{#MyAppName}
+OutputDir=x:\arrayBot\versions
 Compression=lzma
 SolidCompression=yes
 

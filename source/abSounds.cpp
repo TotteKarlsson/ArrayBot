@@ -44,7 +44,8 @@ bool PlayResource(const string& resName, long flags)
       	return false;
     }
 
-    if(PlaySound(lpRes, modHandle, SND_MEMORY | SND_ASYNC | flags)  == false)
+//    if(PlaySound(lpRes, modHandle, SND_MEMORY | SND_ASYNC | flags)  == false)
+    if(PlaySound(lpRes, modHandle, SND_MEMORY | flags)  == false)
     {
     	string error = getLastWin32Error();
     	return false;

@@ -1,4 +1,4 @@
-Release 0.7.6 (Aug 12)
+Release 0.7.7 (Aug 19)
 =======================
 * Added positional limits to all motors, causing them to stop
 * Added warning sounds when a motor crosses a positional limit

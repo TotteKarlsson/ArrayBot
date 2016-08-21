@@ -52,10 +52,6 @@ object MainForm: TMainForm
       Height = 822
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 24
-      ExplicitTop = 320
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Button2: TButton
         Left = 0
         Top = 413
@@ -65,9 +61,6 @@ object MainForm: TMainForm
         Caption = 'Exit'
         TabOrder = 0
         OnClick = Button2Click
-        ExplicitLeft = 1
-        ExplicitTop = 783
-        ExplicitWidth = 113
       end
       object GroupBox5: TGroupBox
         Left = 0
@@ -77,9 +70,6 @@ object MainForm: TMainForm
         Align = alBottom
         Caption = 'Temperature'
         TabOrder = 1
-        ExplicitLeft = 1
-        ExplicitTop = 458
-        ExplicitWidth = 113
         object mTemperatureLbl: mtkFloatLabel
           Left = 32
           Top = 23
@@ -109,9 +99,6 @@ object MainForm: TMainForm
         Align = alBottom
         Caption = 'Humidity'
         TabOrder = 2
-        ExplicitLeft = 1
-        ExplicitTop = 518
-        ExplicitWidth = 113
         object mHumidityE: mtkFloatLabel
           Left = 32
           Top = 23
@@ -141,9 +128,6 @@ object MainForm: TMainForm
         Align = alBottom
         Caption = 'Light Intensities'
         TabOrder = 3
-        ExplicitLeft = 1
-        ExplicitTop = 578
-        ExplicitWidth = 113
         object mCoaxTB: TTrackBar
           Left = 2
           Top = 105
@@ -153,7 +137,6 @@ object MainForm: TMainForm
           Max = 255
           TabOrder = 0
           OnChange = LightTBChange
-          ExplicitWidth = 109
         end
         object mBackLEDTB: TTrackBar
           Left = 2
@@ -164,7 +147,6 @@ object MainForm: TMainForm
           Max = 255
           TabOrder = 1
           OnChange = LightTBChange
-          ExplicitWidth = 109
         end
         object mFrontLEDTB: TTrackBar
           Left = 2
@@ -175,7 +157,6 @@ object MainForm: TMainForm
           Max = 255
           TabOrder = 2
           OnChange = LightTBChange
-          ExplicitWidth = 109
         end
       end
       object mFitToScreenButton: TButton
@@ -187,9 +168,6 @@ object MainForm: TMainForm
         Caption = 'Fit to screen'
         TabOrder = 4
         OnClick = mFitToScreenButtonClick
-        ExplicitLeft = 1
-        ExplicitTop = 49
-        ExplicitWidth = 113
       end
       object mFrontBackLEDBtn: TButton
         Left = 0
@@ -201,9 +179,6 @@ object MainForm: TMainForm
         TabOrder = 5
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
-        ExplicitLeft = 1
-        ExplicitTop = 723
-        ExplicitWidth = 113
       end
       object mOneToOneBtn: TButton
         Left = 0
@@ -214,9 +189,6 @@ object MainForm: TMainForm
         Caption = '1:1'
         TabOrder = 6
         OnClick = mOneToOneBtnClick
-        ExplicitLeft = 1
-        ExplicitTop = 49
-        ExplicitWidth = 113
       end
       object mOneToTwoBtn: TButton
         Left = 0
@@ -227,9 +199,6 @@ object MainForm: TMainForm
         Caption = '1:2'
         TabOrder = 7
         OnClick = mOneToTwoBtnClick
-        ExplicitLeft = 1
-        ExplicitTop = 49
-        ExplicitWidth = 113
       end
       object mRecordMovieBtn: TButton
         Left = 0
@@ -240,9 +209,6 @@ object MainForm: TMainForm
         Caption = 'Record Movie'
         TabOrder = 8
         OnClick = mRecordMovieBtnClick
-        ExplicitLeft = 1
-        ExplicitTop = 89
-        ExplicitWidth = 113
       end
       object mSettingsBtn: TButton
         Left = 0
@@ -253,9 +219,6 @@ object MainForm: TMainForm
         Caption = 'Settings'
         TabOrder = 9
         OnClick = mSettingsBtnClick
-        ExplicitLeft = 1
-        ExplicitTop = 1
-        ExplicitWidth = 113
       end
       object mSnapShotBtn: TButton
         Left = 0
@@ -266,9 +229,6 @@ object MainForm: TMainForm
         Caption = 'Snap Shot'
         TabOrder = 10
         OnClick = mSnapShotBtnClick
-        ExplicitLeft = 1
-        ExplicitTop = 41
-        ExplicitWidth = 113
       end
       object mToggleCoaxBtn: TButton
         Left = 0
@@ -280,9 +240,6 @@ object MainForm: TMainForm
         TabOrder = 11
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
-        ExplicitLeft = 1
-        ExplicitTop = 773
-        ExplicitWidth = 113
       end
       object mToggleLogPanelBtn: TButton
         Left = 0
@@ -293,9 +250,6 @@ object MainForm: TMainForm
         Caption = 'Hide Bottom Panel'
         TabOrder = 12
         OnClick = mToggleLogPanelClick
-        ExplicitLeft = 1
-        ExplicitTop = 1
-        ExplicitWidth = 113
       end
     end
   end
