@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{ECDD9893-1F2A-4A2F-9F3D-9B9CF9D42A38}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\resources\abResources.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DirectSound.cbproj">
+            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="abResources">
+        <MSBuild Projects="..\..\resources\abResources.cbproj"/>
+    </Target>
+    <Target Name="abResources:Clean">
+        <MSBuild Projects="..\..\resources\abResources.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abResources:Make">
+        <MSBuild Projects="..\..\resources\abResources.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abCore">
+        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DirectSound" DependsOnTargets="abCore">
+        <MSBuild Projects="DirectSound.cbproj"/>
+    </Target>
+    <Target Name="DirectSound:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="DirectSound.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DirectSound:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="DirectSound.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="abResources;abCore;DirectSound"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="abResources:Clean;abCore:Clean;DirectSound:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="abResources:Make;abCore:Make;DirectSound:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

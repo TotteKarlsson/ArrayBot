@@ -5,44 +5,21 @@
 
 using namespace mtk;
 
-
 // The following macro is defined since DirectX 5, but will work with
 // older versions too.
 #ifndef DSBLOCK_ENTIREBUFFER
 	#define DSBLOCK_ENTIREBUFFER        0x00000002
 #endif
 
-static void DSError(HRESULT hRes)
-{
-	switch(hRes)
-    {
-		case DS_OK: 					Log(lError) << ("NO ERROR\n"); 			        break;
-		case DSERR_ALLOCATED: 			Log(lError) << ("ALLOCATED\n"); 		        break;
-		case DSERR_INVALIDPARAM: 		Log(lError) << ("INVALIDPARAM\n"); 		        break;
-		case DSERR_OUTOFMEMORY: 		Log(lError) << ("OUTOFMEMORY\n"); 		        break;
-		case DSERR_UNSUPPORTED: 		Log(lError) << ("UNSUPPORTED\n"); 		        break;
-		case DSERR_NOAGGREGATION: 		Log(lError) << ("NOAGGREGATION\n"); 	        break;
-		case DSERR_UNINITIALIZED: 		Log(lError) << ("UNINITIALIZED\n"); 	        break;
-		case DSERR_BADFORMAT: 			Log(lError) << ("BADFORMAT\n"); 		        break;
-		case DSERR_ALREADYINITIALIZED: 	Log(lError) << ("ALREADYINITIALIZED\n");        break;
-		case DSERR_BUFFERLOST: 			Log(lError) << ("BUFFERLOST\n"); 		        break;
-		case DSERR_CONTROLUNAVAIL: 		Log(lError) << ("CONTROLUNAVAIL\n"); 	        break;
-		case DSERR_GENERIC: 			Log(lError) << ("GENERIC\n"); 			        break;
-		case DSERR_INVALIDCALL: 		Log(lError) << ("INVALIDCALL\n"); 		        break;
-		case DSERR_OTHERAPPHASPRIO: 	Log(lError) << ("OTHERAPPHASPRIO\n"); 	        break;
-		case DSERR_PRIOLEVELNEEDED: 	Log(lError) << ("PRIOLEVELNEEDED\n"); 	        break;
-		default: 						Log(lError) << "Direct Sound error: "<<hRes;    break;
-	}
-}
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-LPDIRECTSOUND CDirectSound::m_lpDirectSound;
-DWORD CDirectSound::m_dwInstances;
+LPDIRECTSOUND DirectSound::m_lpDirectSound;
+DWORD DirectSound::m_dwInstances;
 
-CDirectSound::CDirectSound()
+static void DSError(HRESULT hRes);
+DirectSound::DirectSound()
 {
 	m_lpDirectSound = 0;
 	m_pDsb = 0;
@@ -53,7 +30,7 @@ CDirectSound::CDirectSound()
 	++m_dwInstances;
 }
 
-CDirectSound::~CDirectSound()
+DirectSound::~DirectSound()
 {
 	if( m_pDsb )
     {
@@ -67,12 +44,12 @@ CDirectSound::~CDirectSound()
 	}
 }
 
-bool CDirectSound::Create(UINT uResourceID)//, CWnd * pWnd = 0)
+bool DirectSound::Create(UINT uResourceID)//, CWnd * pWnd = 0)
 {
 	return Create(MAKEINTRESOURCE(uResourceID));
 }
 
-CDirectSound& CDirectSound::EnableSound(bool bEnable)
+DirectSound& DirectSound::EnableSound(bool bEnable)
 {
 	m_bEnabled = bEnable;
 
@@ -84,21 +61,19 @@ CDirectSound& CDirectSound::EnableSound(bool bEnable)
 	return *this;
 }
 
-bool CDirectSound::Create(LPCTSTR pszResource)//, CWnd * pWnd)
+bool DirectSound::Create(const string& pszResource, HWND hWnd)
 {
 	//////////////////////////////////////////////////////////////////
 	// load resource
-	HINSTANCE hApp = ::GetModuleHandle(0);
+	HINSTANCE hResourceDLL = ::GetModuleHandle("abResources.dll");
 
-    //	ASSERT(hApp);
-
-	HRSRC hResInfo = ::FindResourceA(hApp, pszResource, MAKEINTRESOURCE(10));
+	HRSRC hResInfo = ::FindResourceA(hResourceDLL, pszResource.c_str(), MAKEINTRESOURCE(10));
 	if(hResInfo == 0)
     {
 		return false;
     }
 
-	HGLOBAL hRes = ::LoadResource(hApp, hResInfo);
+	HGLOBAL hRes = ::LoadResource(hResourceDLL, hResInfo);
 	if(hRes == 0)
     {
 		return false;
@@ -110,11 +85,10 @@ bool CDirectSound::Create(LPCTSTR pszResource)//, CWnd * pWnd)
 		return false;
     }
 
-	return Create(pTheSound);
+	return Create(pTheSound, hWnd);
 }
 
-
-bool CDirectSound::Create(LPVOID pSoundData)
+bool DirectSound::Create(LPVOID pSoundData, HWND hWnd)
 {
 	//////////////////////////////////////////////////////////////////
 	// create direct sound object
@@ -142,7 +116,11 @@ bool CDirectSound::Create(LPVOID pSoundData)
 			return false;
         }
 
-		HWND hWnd = ::GetConsoleWindow();
+        if(!hWnd)
+        {
+			hWnd = ::GetConsoleWindow();
+        }
+
 		m_lpDirectSound->SetCooperativeLevel(hWnd, DSSCL_NORMAL);
 	}
 
@@ -157,8 +135,7 @@ bool CDirectSound::Create(LPVOID pSoundData)
 	return true;
 }
 
-
-bool CDirectSound::GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void * & pbWaveData, DWORD & cbWaveSize)
+bool DirectSound::GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void * & pbWaveData, DWORD & cbWaveSize)
 {
 	pWaveHeader = 0;
 	pbWaveData = 0;
@@ -208,7 +185,7 @@ bool CDirectSound::GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void *
 	return false;
 }
 
-bool CDirectSound::CreateSoundBuffer(WAVEFORMATEX * pcmwf)
+bool DirectSound::CreateSoundBuffer(WAVEFORMATEX * pcmwf)
 {
 	DSBUFFERDESC dsbdesc;
 
@@ -232,7 +209,7 @@ bool CDirectSound::CreateSoundBuffer(WAVEFORMATEX * pcmwf)
 	return true;
 }
 
-bool CDirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
+bool DirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
 {
 	LPVOID lpvPtr1;
 	DWORD dwBytes1;
@@ -257,11 +234,12 @@ bool CDirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
             return true;
         }
 	}
+
 	// Lock, Unlock, or Restore failed.
 	return false;
 }
 
-void CDirectSound::Play(DWORD dwStartPosition, bool bLoop)
+void DirectSound::Play(DWORD dwStartPosition, bool bLoop)
 {
 	if(!IsValid() || ! IsEnabled())
     {
@@ -287,7 +265,7 @@ void CDirectSound::Play(DWORD dwStartPosition, bool bLoop)
 	}
 }
 
-void CDirectSound::Stop()
+void DirectSound::Stop()
 {
 	if( IsValid() )
     {
@@ -295,12 +273,12 @@ void CDirectSound::Stop()
     }
 }
 
-void CDirectSound::Pause()
+void DirectSound::Pause()
 {
 	Stop();
 }
 
-void CDirectSound::Continue()
+void DirectSound::Continue()
 {
 	if(IsValid())
     {
@@ -310,7 +288,32 @@ void CDirectSound::Continue()
 	}
 }
 
-bool CDirectSound::IsValid() const
+bool DirectSound::IsValid() const
 {
 	return (m_lpDirectSound && m_pDsb && m_pTheSound && m_dwTheSound) ? true : false;
 }
+
+static void DSError(HRESULT hRes)
+{
+	switch(hRes)
+    {
+		case DS_OK: 					Log(lError) << ("NO ERROR\n"); 			        break;
+		case DSERR_ALLOCATED: 			Log(lError) << ("ALLOCATED\n"); 		        break;
+		case DSERR_INVALIDPARAM: 		Log(lError) << ("INVALIDPARAM\n"); 		        break;
+		case DSERR_OUTOFMEMORY: 		Log(lError) << ("OUTOFMEMORY\n"); 		        break;
+		case DSERR_UNSUPPORTED: 		Log(lError) << ("UNSUPPORTED\n"); 		        break;
+		case DSERR_NOAGGREGATION: 		Log(lError) << ("NOAGGREGATION\n"); 	        break;
+		case DSERR_UNINITIALIZED: 		Log(lError) << ("UNINITIALIZED\n"); 	        break;
+		case DSERR_BADFORMAT: 			Log(lError) << ("BADFORMAT\n"); 		        break;
+		case DSERR_ALREADYINITIALIZED: 	Log(lError) << ("ALREADYINITIALIZED\n");        break;
+		case DSERR_BUFFERLOST: 			Log(lError) << ("BUFFERLOST\n"); 		        break;
+		case DSERR_CONTROLUNAVAIL: 		Log(lError) << ("CONTROLUNAVAIL\n"); 	        break;
+		case DSERR_GENERIC: 			Log(lError) << ("GENERIC\n"); 			        break;
+		case DSERR_INVALIDCALL: 		Log(lError) << ("INVALIDCALL\n"); 		        break;
+		case DSERR_OTHERAPPHASPRIO: 	Log(lError) << ("OTHERAPPHASPRIO\n"); 	        break;
+		case DSERR_PRIOLEVELNEEDED: 	Log(lError) << ("PRIOLEVELNEEDED\n"); 	        break;
+		default: 						Log(lError) << "Direct Sound error: "<<hRes;    break;
+	}
+}
+
+
