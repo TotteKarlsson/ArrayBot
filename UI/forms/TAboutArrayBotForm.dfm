@@ -75,8 +75,6 @@ object AboutArrayBotForm: TAboutArrayBotForm
     Height = 249
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = -40
-    ExplicitTop = -6
     ExplicitWidth = 571
     ExplicitHeight = 249
     inherited Image1: TImage
@@ -90,6 +88,8 @@ object AboutArrayBotForm: TAboutArrayBotForm
     inherited Image2: TImage
       Width = 571
       Height = 249
+      ExplicitWidth = 571
+      ExplicitHeight = 249
     end
   end
   object ActionList1: TActionList

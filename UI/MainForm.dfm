@@ -85,7 +85,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = TabSheet1
+      ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0

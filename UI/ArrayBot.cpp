@@ -15,10 +15,10 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
-USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 USEFORM("frames\TAboutArrayBot_2Frame.cpp", AboutArrayBotFrame_2);
 USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame); /* TFrame: File Type */
 USEFORM("forms\TSplashForm.cpp", SplashForm);
+USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayBot.log";

@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TAboutArrayBotForm.h"
-#include "TShowFileContentForm.h"
+#include "forms/TShowFileContentForm.h"
 #include "mtkApplicationInfo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"

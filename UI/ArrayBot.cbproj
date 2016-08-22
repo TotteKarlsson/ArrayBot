@@ -129,7 +129,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="forms\abAddJoyStickSettingForm.cpp">
             <Form>AddJoyStickSettingForm</Form>
             <DependentOn>forms\abAddJoyStickSettingForm.h</DependentOn>
-            <BuildOrder>21</BuildOrder>
+            <BuildOrder>13</BuildOrder>
         </CppCompile>
         <CppCompile Include="forms\TAboutArrayBotForm.cpp">
             <BuildOrder>13</BuildOrder>
@@ -176,10 +176,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
         <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="forms\abAddJoyStickSettingForm.dfm"/>
         <FormResources Include="frames\TAboutArrayBot_2Frame.dfm"/>
         <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="forms\TSplashForm.dfm"/>
+        <FormResources Include="forms\abAddJoyStickSettingForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
