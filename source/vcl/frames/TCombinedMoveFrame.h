@@ -16,7 +16,7 @@ class Process;
 class CombinedMove;
 class XYZUnit;
 //---------------------------------------------------------------------------
-class TCombinedMoveFrame : public TFrame
+class PACKAGE TCombinedMoveFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TListBox *mMoveLB;

@@ -19,6 +19,8 @@
 #pragma link "TCombinedMoveFrame"
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TTimeDelayFrame"
+#pragma link "TCombinedMoveFrame"
+#pragma link "TTimeDelayFrame"
 #pragma resource "*.dfm"
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------

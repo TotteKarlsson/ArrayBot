@@ -5,12 +5,13 @@
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "TSplashForm.h"
-#include "frames/TRibbonLifterFrame.h"
+//#include "frames/TRibbonLifterFrame.h"
 #include "frames/TXYZUnitFrame.h"
-#include "TAboutArrayBotForm.h"
+
 using namespace mtk;
 
 static HWND gOtherAppWindow = NULL;
+
 extern TSplashForm*  gSplashForm;
 //---------------------------------------------------------------------------
 void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
@@ -64,7 +65,6 @@ void __fastcall TMain::logMsg()
 {
     infoMemo->Lines->Insert(0, (vclstr(mLogFileReader.getData())));
     mLogFileReader.purge();
-
 }
 
 //---------------------------------------------------------------------------
@@ -82,16 +82,7 @@ void TMain::setupWindowTitle()
 	this->Caption = vclstr(title);
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::mAboutBtnClick(TObject *Sender)
-{
-	//Show about frame
-    TAboutArrayBotForm* af = new TAboutArrayBotForm(this);
-    af->ShowModal();
-    delete af;
-}
-
-BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
+int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam)
 {
 	int length = ::GetWindowTextLength(hwnd);
 	if(!length)
@@ -111,10 +102,10 @@ BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
         delete buffer;
 
         //Stop enumerating..
-		return FALSE;
+		return false;
 	}
 
     delete buffer;
-	return TRUE;
+	return true;
 }
 

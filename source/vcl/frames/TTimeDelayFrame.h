@@ -19,7 +19,7 @@ class TimeDelay;
 
 class XYZUnit;
 //---------------------------------------------------------------------------
-class TTimeDelayFrame : public TFrame
+class PACKAGE TTimeDelayFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;

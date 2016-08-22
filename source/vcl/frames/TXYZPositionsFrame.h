@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 
 class XYZUnit;
-class TXYZPositionsFrame : public TFrame
+class PACKAGE TXYZPositionsFrame : public TFrame
 {
     __published:	// IDE-managed Components
         TGroupBox *GroupBox1;

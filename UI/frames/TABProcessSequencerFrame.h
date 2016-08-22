@@ -14,6 +14,8 @@
 #include "frames/TCombinedMoveFrame.h"
 #include "TSTDStringLabeledEdit.h"
 #include "frames/TTimeDelayFrame.h"
+#include "TCombinedMoveFrame.h"
+#include "TTimeDelayFrame.h"
 //---------------------------------------------------------------------------
 
 class ArrayBot;

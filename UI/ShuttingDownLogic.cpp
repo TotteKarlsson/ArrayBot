@@ -7,7 +7,7 @@
 #include "TSplashForm.h"
 #include "frames/TRibbonLifterFrame.h"
 #include "frames/TXYZUnitFrame.h"
-#include "TAboutArrayBotForm.h"
+
 using namespace mtk;
 
 static HWND gOtherAppWindow = NULL;

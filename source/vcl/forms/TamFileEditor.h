@@ -1,7 +1,5 @@
-//---------------------------------------------------------------------------
 #ifndef TamFileEditorH
 #define TamFileEditorH
-//---------------------------------------------------------------------------
 #include <Classes.hpp>
 #include <Controls.hpp>
 #include <StdCtrls.hpp>

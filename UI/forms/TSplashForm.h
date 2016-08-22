@@ -41,7 +41,7 @@ class PACKAGE TSplashForm : public TForm
         void __fastcall                 					logMsg();
 
 	public:		// User declarations
-										__fastcall          TSplashForm(TComponent* Owner);
+										__fastcall          TSplashForm(const string& logFileName, TComponent* Owner);
 										__fastcall          ~TSplashForm();
         bool                                                mMainAppIsRunning;
 

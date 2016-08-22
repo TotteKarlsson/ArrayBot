@@ -9,7 +9,7 @@ typedef void __fastcall (__closure *callback)(void);
 
 class ArrayBot;
 
-class InitBotThread : public mtk::Thread
+class PACKAGE InitBotThread : public mtk::Thread
 {
 	public:
     					InitBotThread();

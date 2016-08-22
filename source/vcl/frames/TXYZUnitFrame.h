@@ -13,7 +13,7 @@ using std::vector;
 class XYZUnit;
 class TMotorFrame;
 
-class TXYZUnitFrame : public TFrame
+class PACKAGE TXYZUnitFrame : public TFrame
 {
     __published:
         TGroupBox 		*mainGB;

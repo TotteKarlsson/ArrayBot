@@ -10,9 +10,10 @@
 #endif
 
 #pragma comment(lib, "abCore.lib")
-#pragma comment(lib, "abVCLCore.lib")
+#pragma comment(lib, "abVCLCore.bpi")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "tinyxml2-static.lib")
 
+#pragma comment(lib, "ArrayBotPackage.bpi")
 #pragma comment(lib, "VCLCommon.bpi")
 #pragma comment(lib, "DuneForms.lib")

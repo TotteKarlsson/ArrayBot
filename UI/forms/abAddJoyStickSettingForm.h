@@ -10,7 +10,7 @@
 #include "abJoyStickSetting.h";
 //---------------------------------------------------------------------------
 
-class TAddJoyStickSettingForm : public TForm
+class PACKAGE TAddJoyStickSettingForm : public TForm
 {
 __published:	// IDE-managed Components
 	TSTDStringLabeledEdit *mSettingsNameE;

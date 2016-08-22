@@ -2,27 +2,23 @@
 #pragma hdrstop
 #include "TSplashForm.h"
 #include "mtkVCLUtils.h"
-#include "abApplicationMessages.h"
+#include "../abApplicationMessages.h"
 #include "mtkLogger.h"
-#include "UIUtilities.h"
-#include "mtkApplicationLicenseController.h"
+#include "../UIUtilities.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 
 using namespace mtk;
 
-extern string gApplicationRegistryRoot;
-extern string gLogFileLocation;
-extern string gLogFileName;
 //---------------------------------------------------------------------------
-__fastcall TSplashForm::TSplashForm(TComponent* Owner)
+__fastcall TSplashForm::TSplashForm(const string& logFileName, TComponent* Owner)
 :
 	TForm(Owner),
 	mCanClose(true),
 	mMinimumTimeShowing(5*Poco::Timespan::SECONDS),
 	mMainAppIsRunning(false),
-	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsg)
+	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", logFileName), logMsg)
 {
    	mLogFileReader.start(true);
 }
@@ -30,24 +26,6 @@ __fastcall TSplashForm::TSplashForm(TComponent* Owner)
 __fastcall TSplashForm::~TSplashForm()
 {
 	closeTimer->Enabled = false;
-}
-
-bool startsWith(const string& prefix, const string& theStr)
-{
-	if (theStr.find(prefix) == 0)
-	{
-		return true;
-	}
-	return false;
-}
-
-bool contains(const string& prefix, const string& theStr)
-{
-	if (theStr.find(prefix) != std::string::npos)
-	{
-		return true;
-	}
-	return false;
 }
 
 void __fastcall TSplashForm::logMsg()

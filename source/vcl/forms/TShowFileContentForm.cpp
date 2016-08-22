@@ -21,11 +21,3 @@ void __fastcall TShowFileContentForm::FormKeyDown(TObject *Sender, WORD &Key,
         Close();
     }
 }
-
-//---------------------------------------------------------------------------
-void __fastcall TShowFileContentForm::Button1Click(TObject *Sender)
-{
-    Close();
-}
-
-

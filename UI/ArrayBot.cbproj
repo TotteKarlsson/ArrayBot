@@ -40,13 +40,13 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;P:\dslib\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;P:\dslib\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
-        <IncludePath>..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib</AllPackageLibs>
+        <IncludePath>..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
+        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;abVCLCore.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -87,6 +87,7 @@
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <_TCHARMapping>char</_TCHARMapping>
         <VerInfo_Release>7</VerInfo_Release>
         <BCC_wcsu>false</BCC_wcsu>
         <BCC_PCHInject>ArrayBotPCH1.h</BCC_PCHInject>
@@ -105,7 +106,7 @@ xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y
 xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y
 REM xcopy $(OUTPUTDIR)*.exe $(APP_RELEASES)\ArrayBot /y
 $(PostBuildEvent)]]></PostBuildEvent>
-        <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib</LinkPackageStatics>
+        <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;abVCLCore.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dslib\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\ThirdParty\Poco\Foundation\src\;P:\libs\dslib\VCL\Forms\;P:\libs\dslib\VCL\Common\;P:\libs\dslib\Common\Math\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
@@ -126,39 +127,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="auto_link.cpp">
             <BuildOrder>13</BuildOrder>
         </CppCompile>
-        <CppCompile Include="forms\abAddJoyStickSettingForm.cpp">
-            <Form>AddJoyStickSettingForm</Form>
-            <DependentOn>forms\abAddJoyStickSettingForm.h</DependentOn>
-            <BuildOrder>13</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="forms\TAboutArrayBotForm.cpp">
-            <BuildOrder>13</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="forms\TSplashForm.cpp">
-            <Form>SplashForm</Form>
-            <DependentOn>forms\TSplashForm.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="frames\TAboutArrayBotFrame.cpp">
-            <Form>AboutArrayBotFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>frames\TAboutArrayBotFrame.h</DependentOn>
-            <BuildOrder>23</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="frames\TAboutArrayBot_2Frame.cpp">
-            <Form>AboutArrayBotFrame_2</Form>
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
         <CppCompile Include="frames\TABProcessSequencerFrame.cpp">
             <DependentOn>frames\TABProcessSequencerFrame.h</DependentOn>
             <BuildOrder>12</BuildOrder>
         </CppCompile>
-        <CppCompile Include="InitArrayBotThread.cpp">
-            <DependentOn>InitArrayBotThread.h</DependentOn>
-            <BuildOrder>17</BuildOrder>
-        </CppCompile>
         <CppCompile Include="JoyStickRelated.cpp">
-            <BuildOrder>4</BuildOrder>
+            <BuildOrder>6</BuildOrder>
         </CppCompile>
         <CppCompile Include="MainForm.cpp">
             <Form>Main</Form>
@@ -172,14 +146,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="ShuttingDownLogic.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <CppCompile Include="UIUtilities.cpp">
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
         <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="frames\TAboutArrayBot_2Frame.dfm"/>
-        <FormResources Include="frames\TAboutArrayBotFrame.dfm"/>
-        <FormResources Include="forms\TSplashForm.dfm"/>
-        <FormResources Include="forms\abAddJoyStickSettingForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -1,17 +1,12 @@
 #ifndef UIUtilitiesH
 #define UIUtilitiesH
 #include "abUIDataStructures.h"
-#include "mtkSQLite.h"
 #include "mtkStringList.h"
 
-using mtk::SQLite;
-using mtk::StringList;
-#define AML_CORE
 //---------------------------------------------------------------------------
-AML_CORE void loadStyles();
-AML_CORE void setupApplicationTheme();
-AML_CORE void setupLogging();
-bool sendAppMessage(ApplicationMessageEnum msgID, void* s);
-AML_CORE bool sendAppMessage(ApplicationMessageEnum msg, void* struc = NULL);
+PACKAGE void loadStyles();
+PACKAGE void setupApplicationTheme(const string& appRegRoot, string& theme);
+PACKAGE void setupLogging(const string& logFileLocation, const string& logFileName);
+PACKAGE bool sendAppMessage(ApplicationMessageEnum msg, void* struc = NULL);
 
 #endif

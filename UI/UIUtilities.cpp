@@ -8,12 +8,13 @@
 #include "abApplicationMessages.h"
 #include "mtkMoleculixException.h"
 #include "Poco/DateTimeFormatter.h"
+#pragma package(smart_init)
 
 using namespace mtk;
-extern string 	gLogFileLocation;
-extern string 	gLogFileName;
-extern string 	gDefaultAppTheme;
-extern string 	gApplicationRegistryRoot;
+//extern string 	gLogFileLocation;
+//extern string 	gLogFileName;
+//extern string 	gDefaultAppTheme;
+//extern string 	gApplicationRegistryRoot;
 
 //---------------------------------------------------------------------------
 bool sendAppMessage(ApplicationMessageEnum msgID, void* s)
@@ -35,7 +36,7 @@ bool sendAppMessage(ApplicationMessageEnum msgID, void* s)
 }
 
 //---------------------------------------------------------------------------
-void setupApplicationTheme()
+void setupApplicationTheme(const string& appRegRoot, string& theme)
 {
 	if(mtk::checkForCommandLineFlag("-Theme="))
 	{
@@ -51,27 +52,27 @@ void setupApplicationTheme()
 			IniKey aKey(record);
 			if(aKey.mKey == "Theme")
 			{
-				 gDefaultAppTheme = aKey.mValue;
+				 theme = aKey.mValue;
 			}
 		}
 	}
 	else
 	{
 		//Read from registry
-		gDefaultAppTheme = readStringFromRegistry(gApplicationRegistryRoot, "", "Theme", gDefaultAppTheme);
+		theme = readStringFromRegistry(appRegRoot, "", "Theme", theme);
 	}
 
-	if(gDefaultAppTheme.size())
+	if(theme.size())
 	{
 		try
 		{
-			if(gDefaultAppTheme == "Windows")
+			if(theme == "Windows")
 			{
 				//Do nothing..
 			}
 			else
 			{
-				TStyleManager::TrySetStyle(gDefaultAppTheme.c_str());
+				TStyleManager::TrySetStyle(theme.c_str());
 			}
 		}
 		catch(...)
@@ -106,18 +107,18 @@ void loadStyles()
 	}
 }
 
-void setupLogging()
+void setupLogging(const string& logFileLocation, const string& logFileName)
 {
 	//Get Application folder
-	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
-	if(!folderExists(fldr))
+//	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
+	if(!folderExists(logFileLocation))
 	{
-		createFolder(fldr);
+		createFolder(logFileLocation);
 	}
 
-	gLogFileLocation = fldr;
+//	gLogFileLocation = fldr;
 
-	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
+	string fullLogFileName(joinPath(logFileLocation, logFileName));
 	clearFile(fullLogFileName);
 	mtk::gLogger.logToFile(fullLogFileName);
     mtk::gLogger.setLogLevel(lInfo);

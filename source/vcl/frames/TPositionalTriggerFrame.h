@@ -12,7 +12,7 @@ class PositionalTrigger;
 class Trigger;
 class ArrayBot;
 
-class TPositionalTriggerFrame : public TFrame
+class PACKAGE TPositionalTriggerFrame : public TFrame
 {
     __published:	// IDE-managed Components
 	TGroupBox *MainGB;

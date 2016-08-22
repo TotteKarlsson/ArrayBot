@@ -9,18 +9,14 @@
 #include "abExceptions.h"
 #include "TSplashForm.h"
 #include "mtkRestartApplicationUtils.h"
-
+#include "UIUtilities.h"
 using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
-USEFORM("frames\TAboutArrayBot_2Frame.cpp", AboutArrayBotFrame_2);
-USEFORM("frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame); /* TFrame: File Type */
-USEFORM("forms\TSplashForm.cpp", SplashForm);
-USEFORM("forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 //---------------------------------------------------------------------------
-extern string       gLogFileLocation            = "";
+extern string       gLogFileLocation            = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 extern string       gLogFileName                = "ArrayBot.log";
 extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArrayBot\\0.5.0";
 extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
@@ -37,9 +33,7 @@ extern bool         gHideSplash                 = false;
 extern TSplashForm* gSplashForm                 = NULL;
 //extern SQLite       gDB                         ;
 
-void setupLogging();
-
-BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam);
+int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam);
 
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
@@ -78,12 +72,12 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
             return(1); // Exit program
         }
 
-        setupLogging();
+        setupLogging(gLogFileLocation, gLogFileName);
 
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 
-        gSplashForm = new TSplashForm(Application);
+        gSplashForm = new TSplashForm(gLogFileName, Application);
         if(!gHideSplash)
         {
             Application->ShowMainForm = false;
@@ -98,7 +92,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Title = "ArrayBot - Software for Robots";
 		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMain), &Main);
-		Application->CreateForm(__classid(TAddJoyStickSettingForm), &AddJoyStickSettingForm);
 		Application->Run();
 	}
 	catch (Exception &exception)

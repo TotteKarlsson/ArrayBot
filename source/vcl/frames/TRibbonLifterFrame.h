@@ -10,7 +10,7 @@
 #include "abRibbonLifter.h"
 //---------------------------------------------------------------------------
 
-class TRibbonLifterFrame : public TFrame
+class PACKAGE TRibbonLifterFrame : public TFrame
 {
     __published:	// IDE-managed Components
         TGroupBox *GroupBox2;

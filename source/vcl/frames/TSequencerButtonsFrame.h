@@ -10,8 +10,7 @@
 #include <Vcl.ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 
-
-class TSequencerButtonsFrame : public TFrame
+class PACKAGE TSequencerButtonsFrame : public TFrame
 {
     __published:	// IDE-managed Components
 	TTimer *mSequenceStatusTimer;

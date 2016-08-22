@@ -146,7 +146,6 @@ class TMain : public TRegistryForm
 	void __fastcall liftAExecute(TObject *Sender);
 	void __fastcall mLiftCBChange(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
-	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
 	void __fastcall mJoyStickRGClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
