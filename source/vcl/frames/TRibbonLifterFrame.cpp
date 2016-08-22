@@ -1,11 +1,15 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TRibbonLifterFrame.h"
+#include "mtkLogger.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
 #pragma resource "*.dfm"
 TRibbonLifterFrame *RibbonLifterFrame;
+
+using namespace mtk;
 
 bool TRibbonLifterFrame::gIsFrameOpen = false;
 

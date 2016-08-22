@@ -6,8 +6,11 @@
         <Projects Include="source\abCore.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="source\vcl\abVCLCore.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
-            <Dependencies>source\abCore.cbproj</Dependencies>
+            <Dependencies>source\abCore.cbproj;source\vcl\abVCLCore.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -26,23 +29,32 @@
     <Target Name="abCore:Make">
         <MSBuild Projects="source\abCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBot" DependsOnTargets="abCore">
+    <Target Name="abVCLCore">
+        <MSBuild Projects="source\vcl\abVCLCore.cbproj"/>
+    </Target>
+    <Target Name="abVCLCore:Clean">
+        <MSBuild Projects="source\vcl\abVCLCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abVCLCore:Make">
+        <MSBuild Projects="source\vcl\abVCLCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayBot" DependsOnTargets="abCore;abVCLCore">
         <MSBuild Projects="UI\ArrayBot.cbproj"/>
     </Target>
-    <Target Name="ArrayBot:Clean" DependsOnTargets="abCore:Clean">
+    <Target Name="ArrayBot:Clean" DependsOnTargets="abCore:Clean;abVCLCore:Clean">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make">
+    <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make;abVCLCore:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;ArrayBot"/>
+        <CallTarget Targets="abCore;abVCLCore;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;ArrayBot:Make"/>
+        <CallTarget Targets="abCore:Make;abVCLCore:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

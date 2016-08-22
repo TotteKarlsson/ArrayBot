@@ -15,7 +15,7 @@ class TPositionalTriggerFrame;
 class ArrayBot;
 class XYZUnit;
 
-class TMotorMoveProcessFrame : public TFrame
+class PACKAGE TMotorMoveProcessFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *MainGB;

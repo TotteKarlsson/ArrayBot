@@ -15,6 +15,7 @@ extern string 	gLogFileName;
 extern string 	gDefaultAppTheme;
 extern string 	gApplicationRegistryRoot;
 
+//---------------------------------------------------------------------------
 bool sendAppMessage(ApplicationMessageEnum msgID, void* s)
 {
     HWND h = Application->MainForm->Handle;

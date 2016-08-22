@@ -11,8 +11,7 @@ using mtk::StringList;
 AML_CORE void loadStyles();
 AML_CORE void setupApplicationTheme();
 AML_CORE void setupLogging();
-
+bool sendAppMessage(ApplicationMessageEnum msgID, void* s);
 AML_CORE bool sendAppMessage(ApplicationMessageEnum msg, void* struc = NULL);
-
 
 #endif

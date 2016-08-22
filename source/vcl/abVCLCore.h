@@ -1,2 +1,5 @@
-#include <tchar.h>
+#ifndef abVCLCoreH
+#define abVCLCoreH
 
+
+#endif

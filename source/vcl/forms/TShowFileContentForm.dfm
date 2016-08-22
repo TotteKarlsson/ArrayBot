@@ -29,7 +29,5 @@ object ShowFileContentForm: TShowFileContentForm
     ScrollBars = ssBoth
     TabOrder = 0
     WordWrap = False
-    ExplicitWidth = 609
-    ExplicitHeight = 617
   end
 end

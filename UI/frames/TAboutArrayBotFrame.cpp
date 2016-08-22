@@ -7,12 +7,10 @@
 #include "mtkApplicationInfo.h"
 #include "abApplicationMessages.h"
 #include "mtkLogger.h"
-#include "TShowFileContentForm.h"
+#include "forms/TShowFileContentForm.h"
 #include "Poco/DateTimeFormatter.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "mtkURLLabel"
-#pragma link "mtkURLLabel"
 #pragma resource "*.dfm"
 TAboutArrayBotFrame *AboutArrayBotFrame;
 

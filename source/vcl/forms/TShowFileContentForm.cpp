@@ -1,6 +1,5 @@
 #include <vcl.h>
 #pragma hdrstop
-
 #include "TShowFileContentForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

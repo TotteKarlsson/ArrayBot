@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{D74166E6-7306-40FB-B915-D6043C28AD20}</ProjectGuid>
         <ProjectVersion>14.4</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>VCL</FrameworkType>
         <MainSource>abVCLCore.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
@@ -36,11 +36,11 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <ProjectType>CppPackage</ProjectType>
-        <ILINK_LibraryPath>P:\ArrayBot\source\vcl\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>frames\;forms\;P:\ArrayBot\source\vcl\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Multithreaded>true</Multithreaded>
         <ILINK_GenerateImportLibrary>true</ILINK_GenerateImportLibrary>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>P:\ArrayBot\source\vcl\;$(IncludePath)</IncludePath>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+        <IncludePath>frames\;forms\;P:\ArrayBot\source\vcl\;$(IncludePath)</IncludePath>
         <_TCHARMapping>char</_TCHARMapping>
         <ILINK_GenerateLibFile>true</ILINK_GenerateLibFile>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
@@ -53,6 +53,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <PackageImports>CSKGenerator;VCLCommon;fs17;frx17;bindcompfmx;DBXSqliteDriver;vcldbx;RaizeComponentsTrialVcl;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;DbxDevartSQLiteDriver170;vclie;HsBarcode1DRun;RaizeComponentsTrialVclDb;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;IndyCore;vcl;fmxase;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;frxDB17;inet;fsDB17;fmxobj;vclx;frxe17;inetdbxpress;webdsnap;fmxdae;bdertl;DuneComponents;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
@@ -82,6 +83,9 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <Defines>POCO_STATIC;$(Defines)</Defines>
+        <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <ILINK_Description>ArrayBot VCL Core package</ILINK_Description>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -94,12 +98,87 @@
         <CppCompile Include="abVCLCore.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
+        <None Include="abVCLCore.h">
+            <BuildOrder>16</BuildOrder>
+        </None>
         <PCHCompile Include="abVCLCorePCH.h">
             <BuildOrder>2</BuildOrder>
         </PCHCompile>
+        <CppCompile Include="forms\TamFileEditor.cpp">
+            <Form>amFileEditor</Form>
+            <DependentOn>forms\TamFileEditor.h</DependentOn>
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="forms\TShowFileContentForm.cpp">
+            <Form>ShowFileContentForm</Form>
+            <DependentOn>forms\TShowFileContentForm.h</DependentOn>
+            <BuildOrder>3</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TCombinedMoveFrame.cpp">
+            <DependentOn>frames\TCombinedMoveFrame.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TMotorFrame.cpp">
+            <Form>MotorFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TMotorFrame.h</DependentOn>
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TMotorMoveProcessFrame.cpp">
+            <Form>MotorMoveProcessFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TMotorMoveProcessFrame.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TPositionalTriggerFrame.cpp">
+            <Form>PositionalTriggerFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TPositionalTriggerFrame.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TRibbonLifterFrame.cpp">
+            <Form>RibbonLifterFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TRibbonLifterFrame.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TSequencerButtonsFrame.cpp">
+            <Form>SequencerButtonsFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TSequencerButtonsFrame.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TTimeDelayFrame.cpp">
+            <Form>TimeDelayFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TTimeDelayFrame.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TXYZPositionsFrame.cpp">
+            <Form>XYZPositionsFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TXYZPositionsFrame.h</DependentOn>
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TXYZUnitFrame.cpp">
+            <Form>XYZUnitFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TXYZUnitFrame.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
         <PackageImport Include="rtl.bpi">
             <BuildOrder>1</BuildOrder>
         </PackageImport>
+        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
+        <FormResources Include="frames\TRibbonLifterFrame.dfm"/>
+        <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
+        <FormResources Include="frames\TTimeDelayFrame.dfm"/>
+        <FormResources Include="frames\TXYZUnitFrame.dfm"/>
+        <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
+        <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="forms\TamFileEditor.dfm"/>
+        <FormResources Include="frames\TMotorFrame.dfm"/>
+        <FormResources Include="forms\TShowFileContentForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
