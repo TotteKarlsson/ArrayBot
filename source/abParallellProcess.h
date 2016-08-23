@@ -1,5 +1,5 @@
-#ifndef abParallellH
-#define abParallellH
+#ifndef abParallellProcessH
+#define abParallellProcessH
 #include "abProcess.h"
 #include <vector>
 #include "mtkXMLUtils.h"
@@ -11,11 +11,11 @@ using namespace std;
 //!When starting a parallell process, all parallell processes are started virtually simultaneously (occurs in a loop).
 //!A parallell process is not finished until all processes, including their triggered processes
 //!are processed, finished
-class AB_CORE Parallell : public Process
+class AB_CORE ParallellProcess : public Process
 {
     public:
-        	   			            Parallell(const string& lbl);
-    	virtual			            ~Parallell(){}
+        	   			            ParallellProcess(const string& lbl);
+    	virtual			            ~ParallellProcess(){}
 		virtual void		   		init(ArrayBot& ab);
 		const string 				getTypeName() const;
         void						clear();

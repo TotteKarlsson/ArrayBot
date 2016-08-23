@@ -3,7 +3,7 @@
 #include "mtkXMLUtils.h"
 #include "mtkLogger.h"
 #include "abProcessSequence.h"
-#include "abParallell.h"
+#include "abParallellProcess.h"
 #include "abPosition.h"
 #include "abArrayBot.h"
 #include "abAbsoluteMove.h"
@@ -68,9 +68,9 @@ bool ProcessSequenceProject::save(const string& fName)
     {
         Log(lDebug) << "Saving process: " << p->getProcessName();
         XMLElement* xmlProc = p->addToXMLDocument(mTheXML, sequence);
-        if(dynamic_cast<Parallell*>(p))
+        if(dynamic_cast<ParallellProcess*>(p))
 	    {
-        	Parallell* clm = dynamic_cast<Parallell*>(p);
+        	ParallellProcess* clm = dynamic_cast<ParallellProcess*>(p);
 
         	//Write subprocesses
 			clm->addToXMLDocumentAsChildProcess(mTheXML, xmlProc);
@@ -177,7 +177,7 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
 
 Process* ProcessSequenceProject::createParallellProcess(XMLElement* element)
 {
-    Parallell* p = new Parallell(element->Attribute("name"));
+    ParallellProcess* p = new ParallellProcess(element->Attribute("name"));
 
     //Read data
     XMLElement* proc = element->FirstChildElement("process");

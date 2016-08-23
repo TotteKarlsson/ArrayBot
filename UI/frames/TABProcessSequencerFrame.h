@@ -11,10 +11,10 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include "frames/TMotorMoveProcessFrame.h"
-#include "frames/TCombinedMoveFrame.h"
+#include "frames/TParallellProcessesFrame.h"
 #include "TSTDStringLabeledEdit.h"
 #include "frames/TTimeDelayFrame.h"
-#include "TCombinedMoveFrame.h"
+
 #include "TTimeDelayFrame.h"
 #include "TSequenceInfoFrame.h"
 //---------------------------------------------------------------------------

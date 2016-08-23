@@ -1,5 +1,5 @@
 #pragma hdrstop
-#include "abParallell.h"
+#include "abParallellProcess.h"
 #include "abXYZUnit.h"
 #include "abAPTMotor.h"
 #include "abPosition.h"
@@ -9,19 +9,19 @@ using namespace mtk;
 using namespace ab;
 
 //---------------------------------------------------------------------------
-Parallell::Parallell(const string& lbl)
+ParallellProcess::ParallellProcess(const string& lbl)
 :
 Process(lbl, NULL)
 {
 	mProcessType = ptParallell;
 }
 
-const string Parallell::getTypeName() const
+const string ParallellProcess::getTypeName() const
 {
 	return "combinedMove";
 }
 
-void Parallell::init(ArrayBot& ab)
+void ParallellProcess::init(ArrayBot& ab)
 {
 	Process::init(ab);
 
@@ -35,12 +35,12 @@ void Parallell::init(ArrayBot& ab)
     }
 }
 
-void Parallell::clear()
+void ParallellProcess::clear()
 {
 	mProcesses.clear();
 }
 
-void Parallell::addProcess(Process* lm)
+void ParallellProcess::addProcess(Process* lm)
 {
 	if(lm && lm->getProcessName() =="")
     {
@@ -54,7 +54,7 @@ void Parallell::addProcess(Process* lm)
 
 }
 
-bool Parallell::removeProcess(const string& name)
+bool ParallellProcess::removeProcess(const string& name)
 {
 	for(int i = 0; i < mProcesses.size(); i++)
     {
@@ -67,12 +67,12 @@ bool Parallell::removeProcess(const string& name)
     return true;
 }
 
-bool Parallell::removeProcess(Process* m)
+bool ParallellProcess::removeProcess(Process* m)
 {
 	return false;
 }
 
-Process* Parallell::getProcess(int i)
+Process* ParallellProcess::getProcess(int i)
 {
 	if(i < mProcesses.size())
     {
@@ -81,7 +81,7 @@ Process* Parallell::getProcess(int i)
     return NULL;
 }
 
-Process*	Parallell::getProcess(const string& lbl)
+Process*	ParallellProcess::getProcess(const string& lbl)
 {
 	// look for item
     for(int i = 0 ; i < mProcesses.size(); i++)
@@ -95,7 +95,7 @@ Process*	Parallell::getProcess(const string& lbl)
     return NULL;
 }
 
-XMLElement* Parallell::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
+XMLElement* ParallellProcess::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
 {
 	for(int i = 0; i < mProcesses.size(); i++)
     {
@@ -106,7 +106,7 @@ XMLElement* Parallell::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc
     return dynamic_cast<XMLElement*>(docRoot);
 }
 
-bool Parallell::isBeingProcessed()
+bool ParallellProcess::isBeingProcessed()
 {
 	if(isDone())
     {
@@ -119,7 +119,7 @@ bool Parallell::isBeingProcessed()
     return mIsBeingProcessed;
 }
 
-bool Parallell::isProcessed()
+bool ParallellProcess::isProcessed()
 {
     if(mIsProcessed == true)
     {
@@ -137,7 +137,7 @@ bool Parallell::isProcessed()
 	return false;
 }
 
-bool Parallell::isCommandPending()
+bool ParallellProcess::isCommandPending()
 {
 	for(int i = 0; i < mProcesses.size(); i++)
     {
@@ -150,7 +150,7 @@ bool Parallell::isCommandPending()
     return false;
 }
 
-bool Parallell::areMotorsActive()
+bool ParallellProcess::areMotorsActive()
 {
 	for(int i = 0; i < mProcesses.size(); i++)
     {
@@ -163,7 +163,7 @@ bool Parallell::areMotorsActive()
     return false;
 }
 
-bool Parallell::start()
+bool ParallellProcess::start()
 {
 	for(int i = 0; i < mProcesses.size(); i++)
     {
@@ -174,7 +174,7 @@ bool Parallell::start()
 	return Process::start();
 }
 
-bool Parallell::stop()
+bool ParallellProcess::stop()
 {
 	for(int i = 0; i < mProcesses.size(); i++)
     {
@@ -184,7 +184,7 @@ bool Parallell::stop()
 	return Process::stop();
 }
 
-bool Parallell::isDone()
+bool ParallellProcess::isDone()
 {
 	//Check all subprocesses here
 	for(int i = 0; i < mProcesses.size(); i++)
@@ -198,7 +198,7 @@ bool Parallell::isDone()
     return true;
 }
 
-bool Parallell::undo()
+bool ParallellProcess::undo()
 {
 	return false;
 }

@@ -13,11 +13,11 @@
 #include <Vcl.ExtCtrls.hpp>
 
 class Process;
-class CombinedMove;
+class ParallellProcess;
 class XYZUnit;
 
 //---------------------------------------------------------------------------
-class PACKAGE TCombinedMoveFrame : public TFrame
+class PACKAGE TParallellProcessesFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TListBox *mMoveLB;
@@ -40,15 +40,15 @@ __published:	// IDE-managed Components
 
     private:	// User declarations
 		ArrayBot*						mAB;
-		CombinedMove*					mCombinedMove;
-		void					    	selectItem(ab::Move* mv);
+		ParallellProcess*				mParallell;
+		void					    	selectItem(Process* mv);
 
 	public:		// User declarations
-							__fastcall  TCombinedMoveFrame(TComponent* Owner);
+							__fastcall  TParallellProcessesFrame(TComponent* Owner);
 
     	void							populate(ArrayBot& ab, Process* p);
     	void							rePopulate(Process* p);
 };
 
-extern PACKAGE TCombinedMoveFrame *CombinedMoveFrame;
+extern PACKAGE TParallellProcessesFrame *ParallellProcessesFrame;
 #endif

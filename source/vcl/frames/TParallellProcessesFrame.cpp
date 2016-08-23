@@ -4,7 +4,7 @@
 #include "mtkVCLUtils.h"
 #include "abProcess.h"
 #include "abMove.h"
-#include "abCParallell.h"
+#include "abParallellProcess.h"
 #include "mtkLogger.h"
 #include "abArrayBot.h"
 #include "abAPTMotor.h"
@@ -17,36 +17,36 @@
 
 using namespace mtk;
 
-TCombinedMoveFrame *CombinedMoveFrame;
+TParallellProcessesFrame *ParallellProcessesFrame;
 //---------------------------------------------------------------------------
-__fastcall TCombinedMoveFrame::TCombinedMoveFrame(TComponent* Owner)
+__fastcall TParallellProcessesFrame::TParallellProcessesFrame(TComponent* Owner)
 	: TFrame(Owner)
 {
 }
 
-void TCombinedMoveFrame::populate(ArrayBot& ab, Process* p)
+void TParallellProcessesFrame::populate(ArrayBot& ab, Process* p)
 {
 	mAB = &ab;
 	rePopulate(p);
 }
 
-void TCombinedMoveFrame::rePopulate(Process* p)
+void TParallellProcessesFrame::rePopulate(Process* p)
 {
 	mMoveLB->Clear();
 
 	//Populate, update frame with data from process
-    mCombinedMove = dynamic_cast<CombinedMove*>(p);
+    mParallell = dynamic_cast<ParallellProcess*>(p);
     if(!p)
     {
     	EnableDisableFrame(this, false);
         return;
     }
 
-	mProcessNameE->setValue(mCombinedMove->getProcessName());
+	mProcessNameE->setValue(mParallell->getProcessName());
     //Fill out the listbox with moves
-    for(int i = 0; i < mCombinedMove->getNumberOfMoves(); i++)
+    for(int i = 0; i < mParallell->getNumberOfProcesses(); i++)
     {
-    	ab::Move* mv = mCombinedMove->getMove(i);
+    	Process* mv = mParallell->getProcess(i);
         if(mv)
         {
         	mMoveLB->Items->Add(vclstr(mv->getProcessName()));
@@ -57,19 +57,19 @@ void TCombinedMoveFrame::rePopulate(Process* p)
    	EnableDisableFrame(this->TMotorMoveProcessFrame1, false);
 }
 
-void __fastcall TCombinedMoveFrame::addMoveAExecute(TObject *Sender)
+void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
 {
 	//Add a move to current process
-    if(!mCombinedMove)
+    if(!mParallell)
     {
     	Log(lError) << "This is something else...!";
         return;
     }
 
-    ab::Move* lm = new AbsoluteMove("");
+    Process* lm = new AbsoluteMove("");
 
     //Add the move to the container.. this will give the move a name
-    mCombinedMove->addMove(lm);
+    mParallell->addProcess(lm);
 
     //Add move to Listbox
     int indx = mMoveLB->Items->Add(lm->getProcessName().c_str());
@@ -80,19 +80,19 @@ void __fastcall TCombinedMoveFrame::addMoveAExecute(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TCombinedMoveFrame::removeMoveAExecute(TObject *Sender)
+void __fastcall TParallellProcessesFrame::removeMoveAExecute(TObject *Sender)
 {
 	//Get selected move
     int index = mMoveLB->ItemIndex;
     if(index != -1)
     {
     	string moveName = stdstr(mMoveLB->Items->Strings[index]);
-        mCombinedMove->removeMove(moveName);
-		rePopulate(mCombinedMove);
+        mParallell->removeProcess(moveName);
+		rePopulate(mParallell);
     }
 }
 
-void TCombinedMoveFrame::selectItem(ab::Move* mv)
+void TParallellProcessesFrame::selectItem(Process* mv)
 {
 	if(dynamic_cast<AbsoluteMove*>(mv))
     {
@@ -101,28 +101,28 @@ void TCombinedMoveFrame::selectItem(ab::Move* mv)
     }
 }
 
-void __fastcall TCombinedMoveFrame::mMoveLBClick(TObject *Sender)
+void __fastcall TParallellProcessesFrame::mMoveLBClick(TObject *Sender)
 {
-	if(mMoveLB->ItemIndex == -1 || mCombinedMove == NULL)
+	if(mMoveLB->ItemIndex == -1 || mParallell == NULL)
     {
     	return;
     }
 
 	//Get Current itemIndex, retrieve the move and populate the move frame
 	string moveName = stdstr(mMoveLB->Items->Strings[mMoveLB->ItemIndex]);
-    ab::Move* mv = mCombinedMove->getMove(moveName);
+    Process* mv = mParallell->getProcess(moveName);
 
     selectItem(mv);
 }
 
 
 //---------------------------------------------------------------------------
-void __fastcall TCombinedMoveFrame::mProcessNameEKeyDown(TObject *Sender, WORD &Key,
+void __fastcall TParallellProcessesFrame::mProcessNameEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
-	if(Key == vkReturn && mCombinedMove != NULL)
+	if(Key == vkReturn && mParallell != NULL)
     {
-   		mCombinedMove->setProcessName(mProcessNameE->getValue());
+   		mParallell->setProcessName(mProcessNameE->getValue());
     }
 }
 

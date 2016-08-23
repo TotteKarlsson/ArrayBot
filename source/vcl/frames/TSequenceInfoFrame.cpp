@@ -2,12 +2,13 @@
 #pragma hdrstop
 #include "TSequenceInfoFrame.h"
 #include "abProcess.h"
+#include "abParallellProcess.h"
 #include "abProcessSequence.h"
 #include "mtkVCLUtils.h"
-#include "abCombinedMove.h"
+
 #include "abTimeDelay.h"
 #include "frames/TMotorMoveProcessFrame.h"
-#include "frames/TCombinedMoveFrame.h"
+#include "frames/TParallellProcessesFrame.h"
 #include "frames/TTimeDelayFrame.h"
 #include "abVCLUtils.h"
 #include "mtkLogger.h"
@@ -25,7 +26,7 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(TComponent* Owner)
     mSequence(NULL),
     mAB(NULL)
 {
-	mCombinedMoveFrame = new TCombinedMoveFrame(Owner);
+	mCombinedMoveFrame = new TParallellProcessesFrame(Owner);
     mCombinedMoveFrame->Visible = false;
 }
 
@@ -160,7 +161,7 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
     Process* p = getCurrentlySelectedProcess();
     if(p)
     {
-    	CombinedMove* cm = dynamic_cast<CombinedMove*>(p);
+    	ParallellProcess* cm = dynamic_cast<ParallellProcess*>(p);
 //    	TimeDelay* td= dynamic_cast<TimeDelay*>(p);
         if(cm)
         {
@@ -216,7 +217,7 @@ void __fastcall TSequenceInfoFrame::AddCombinedMoveAExecute(TObject *Sender)
     int nr  = mSequence->getNumberOfProcesses() + 1;
 
 	//Create and add a process to the sequence
-	Process *p = new CombinedMove("Process " + mtk::toString(nr));
+	Process *p = new ParallellProcess("Process " + mtk::toString(nr));
    	mSequence->add(p);
     mSequence->write();
 

@@ -5,7 +5,7 @@
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
-#include "abCombinedMove.h"
+#include "abParallellProcess.h"
 #include "abArrayBot.h"
 #include "abTimeDelay.h"
 #include "abApplicationMessages.h"
@@ -209,7 +209,7 @@ void __fastcall TABProcessSequencerFrame::addCombinedMovesProcessAExecute(TObjec
     int nr  = s->getNumberOfProcesses() + 1;
 
 	//Create and add a process to the sequence
-	Process *p = new CombinedMove("Process " + mtk::toString(nr));
+	Process *p = new ParallellProcess("Process " + mtk::toString(nr));
    	s->add(p);
 
     //Update LB

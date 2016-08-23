@@ -1,4 +1,4 @@
-object CombinedMoveFrame: TCombinedMoveFrame
+object ParallellProcessesFrame: TParallellProcessesFrame
   Left = 0
   Top = 0
   Width = 723
@@ -24,7 +24,7 @@ object CombinedMoveFrame: TCombinedMoveFrame
       Width = 145
       Height = 415
       Align = alLeft
-      Caption = 'Moves'
+      Caption = 'Processes'
       TabOrder = 0
       object Button1: TButton
         Left = 13
@@ -112,7 +112,7 @@ object CombinedMoveFrame: TCombinedMoveFrame
         inherited mTriggersSheet: TTabSheet
           inherited Panel2: TPanel
             inherited Panel1: TPanel
-              ExplicitTop = 316
+              ExplicitTop = 205
             end
           end
         end

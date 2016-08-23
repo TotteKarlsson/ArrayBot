@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 
 class ProcessSequence;
-class TCombinedMoveFrame;
+class TParallellProcessesFrame;
 class Process;
 class ArrayBot;
 
@@ -40,11 +40,11 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 
 
     private:	// User declarations
-		ProcessSequence*		mSequence;
-        string					mSequencesFolder;
-        ArrayBot*				mAB;
-        TPanel*					mProcessPanel;
-        TCombinedMoveFrame*		mCombinedMoveFrame;
+		ProcessSequence*		        mSequence;
+        string					        mSequencesFolder;
+        ArrayBot*				        mAB;
+        TPanel*					        mProcessPanel;
+        TParallellProcessesFrame*		mCombinedMoveFrame;
 
 		void		__fastcall  empty();
         void					disableEnableButtons(bool enabled);

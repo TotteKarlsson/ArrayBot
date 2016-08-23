@@ -223,7 +223,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="abPairedMoves.cpp">
             <BuildOrder>36</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abParallell.cpp">
+        <CppCompile Include="abParallellProcess.cpp">
             <BuildOrder>41</BuildOrder>
         </CppCompile>
         <CppCompile Include="abPosition.cpp">

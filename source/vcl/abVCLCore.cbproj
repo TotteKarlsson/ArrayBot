@@ -125,6 +125,7 @@
             <BuildOrder>9</BuildOrder>
         </CppCompile>
         <CppCompile Include="frames\TParallellProcessesFrame.cpp">
+            <Form>ParallellProcessesFrame</Form>
             <DependentOn>frames\TParallellProcessesFrame.h</DependentOn>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
@@ -175,6 +176,7 @@
         <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
         <FormResources Include="forms\TamFileEditor.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="frames\TParallellProcessesFrame.dfm"/>
         <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
         <FormResources Include="frames\TMotorFrame.dfm"/>
         <BuildConfiguration Include="Release">

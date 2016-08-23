@@ -6,7 +6,7 @@
 #include "mtkIniFile.h"
 #include "abArrayBot.h"
 #include "mtkINIFileProperties.h"
-#include "abParallell.h"
+#include "abParallellProcess.h"
 
 //---------------------------------------------------------------------------
 //!The ribbon lifter class encapsulates data and logic for
@@ -77,8 +77,8 @@ class AB_CORE RibbonLifter : public ABObject
                                         //!motor position etc, as the
                                         //!lifter is working
         Timer						    mProcessTimer;
-		Parallell				    mMove1;
-		Parallell				    mMove2;
+		ParallellProcess		 	    mMove1;
+		ParallellProcess		 	    mMove2;
 
 };
 #endif

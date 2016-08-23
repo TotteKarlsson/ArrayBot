@@ -8,6 +8,7 @@ USEFORM("frames\TXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
 USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
 USEFORM("forms\TamFileEditor.cpp", amFileEditor);
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
+USEFORM("frames\TParallellProcessesFrame.cpp", ParallellProcessesFrame);
 USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 USEFORM("frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
