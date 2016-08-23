@@ -12,7 +12,6 @@ string toString(LogicOperator o)
 {
 	switch(o)
     {
-
 		case loLargerThan: 			return ">";
         case loSmallerThan:    		return "<";
         case loEqualTo:             return "=";
@@ -49,23 +48,25 @@ string toString(ProcessType pt)
 {
 	switch(pt)
     {
-    	case ptMove: 			return "linearMove";
-    	case ptCombinedMove: 	return "combinedMove";
+    	case ptAbsoluteMove: 	return "absoluteMove";
+    	case ptParallell: 		return "parallell";
     	case ptTimeDelay: 		return "timeDelay";
         default: 				return "unknownProcessType";
     }
 }
 
+//enum ProcessType {ptBaseType = 0, ptMaster, ptParallell, ptAbsoluteMove, ptTimeDelay, ptUnknown};
+
 ProcessType toProcessType(const string& str)
 {
-	if(str == "linearMove")
+	if(str == "parallell")
     {
-    	return ptMove;
+    	return ptParallell;
     }
 
-	if(str == "combinedMove")
+	if(str == "absoluteMove")
     {
-    	return ptCombinedMove;
+    	return ptAbsoluteMove;
     }
 
 	if(str == "timeDelay")

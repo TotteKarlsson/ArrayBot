@@ -25,7 +25,6 @@ __fastcall TMotorMoveProcessFrame::TMotorMoveProcessFrame(TComponent* Owner)
     mPosTriggerFrame->Parent = mTriggersSheet;
     mPosTriggerFrame->Align = alClient;
     mPosTriggerFrame->Visible = false;
-
 }
 
 void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)

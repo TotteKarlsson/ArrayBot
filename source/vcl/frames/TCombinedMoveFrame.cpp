@@ -19,7 +19,6 @@ using namespace mtk;
 
 TCombinedMoveFrame *CombinedMoveFrame;
 //---------------------------------------------------------------------------
-
 __fastcall TCombinedMoveFrame::TCombinedMoveFrame(TComponent* Owner)
 	: TFrame(Owner)
 {
@@ -97,8 +96,8 @@ void TCombinedMoveFrame::selectItem(ab::Move* mv)
 {
 	if(dynamic_cast<AbsoluteMove*>(mv))
     {
-		this->TMotorMoveProcessFrame1->populate(mAB, dynamic_cast<AbsoluteMove*>(mv));
-   		EnableDisableFrame(this->TMotorMoveProcessFrame1, true);
+        this->TMotorMoveProcessFrame1->populate(mAB, dynamic_cast<AbsoluteMove*>(mv));
+        EnableDisableFrame(this->TMotorMoveProcessFrame1, true);
     }
 }
 

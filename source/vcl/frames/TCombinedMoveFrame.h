@@ -15,6 +15,7 @@
 class Process;
 class CombinedMove;
 class XYZUnit;
+
 //---------------------------------------------------------------------------
 class PACKAGE TCombinedMoveFrame : public TFrame
 {

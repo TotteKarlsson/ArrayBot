@@ -99,9 +99,6 @@
         <CppCompile Include="abVCLCore.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <None Include="abVCLCore.h">
-            <BuildOrder>16</BuildOrder>
-        </None>
         <PCHCompile Include="abVCLCorePCH.h">
             <BuildOrder>2</BuildOrder>
         </PCHCompile>

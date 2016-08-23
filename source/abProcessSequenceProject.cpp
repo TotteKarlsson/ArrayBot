@@ -168,7 +168,7 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
   	//What process?
     switch(pt)
     {
-    	case ptCombinedMove: 	return createCombinedMoveProcess(element);
+    	case ptParallell: 		return createParallellProcess(element);
         case ptTimeDelay:       return createTimeDelayProcess(element);
     }
 

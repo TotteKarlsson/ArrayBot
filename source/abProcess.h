@@ -27,6 +27,12 @@ class AB_CORE Process : public ABObject
         							            Process(const string& name, ABObject* ao = NULL);
 							                    ~Process(){}
 		virtual void		   		            init(ArrayBot& ab);
+
+        virtual bool	                        start() 			= 0;
+        virtual bool	                        stop() 				= 0;
+        virtual	bool	                        undo() 				= 0;
+
+
 		string 						            getProcessType();
 		virtual void	                        assignUnit(ABObject* o){mSubject = o;}
         void									setSubjectName(const string& n){mSubjectName = n;}
@@ -46,29 +52,25 @@ class AB_CORE Process : public ABObject
         virtual	bool 			 	            isProcessed() 		{return mIsProcessed;}
         virtual	bool 			 	            isStarted() 		{return mIsStarted;}
 
-        virtual bool	                        start() 			= 0;
-        virtual bool	                        stop() 				= 0;
-        virtual	bool	                        undo() 				= 0;
 
         virtual mtk::XMLElement*           		addToXMLDocument(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 		virtual mtk::XMLElement*                addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 
     protected:
         							            //!The Process Name identifies the process in a sequence
-                                                //and in a ini file
         string						            mProcessName;
 
         					                    //!The subject object can be casted in derived classes
+                                                //!The subject is typically a motor or relay for example
     	ABObject* 		                        mSubject;
 
-        										//!When reconstructing a process from XML use strings
+        										//!When reconstructing a process from XML we use strings
                                                 //!to identify objects
         string									mSubjectName;
 
         							            //!The process type help us construct
                                                 //a new process object from a file
         ProcessType					            mProcessType;
-
 
 		bool						            mIsStarted;
 		bool						            mIsBeingProcessed;
@@ -79,11 +81,6 @@ class AB_CORE Process : public ABObject
         Timestamp					            mStartTime;
         Timestamp					            mEndTime;
         Poco::Timespan 				            mTimeOut;
-
-        										//!Each process can have one trigger
-                                                //!Todo: Make this a container and enable multiple trigger
-                                                //!functionality. Also triggers of various subtypes
-//        Trigger*								mTrigger;
 };
 
 #endif

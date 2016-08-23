@@ -16,7 +16,7 @@ object CombinedMoveFrame: TCombinedMoveFrame
     Width = 723
     Height = 526
     Align = alClient
-    Caption = 'Parallell Processes'
+    Caption = 'Sub Processes'
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 2

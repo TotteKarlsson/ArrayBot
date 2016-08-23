@@ -44,16 +44,6 @@ void ProcessSequence::init()
     }
 }
 
-bool ProcessSequence::read(const string& fName)
-{
-	if(mProject.loadFromFile(fName))
-    {
-    	bool res = mProject.open();
-    	return res;
-    }
-    return false;
-}
-
 bool ProcessSequence::moveForward(Process* ps)
 {
 	//Check first if it is possible
@@ -83,8 +73,6 @@ bool ProcessSequence::moveBack(Process* ps)
     }
     return false;
 }
-
-
 
 bool ProcessSequence::isFirst(Process* p)
 {
@@ -121,10 +109,23 @@ string ProcessSequence::getFileName()
 	return mProject.getFileName();
 }
 
+bool ProcessSequence::read(const string& fName)
+{
+	if(mProject.loadFromFile(fName))
+    {
+    	bool res = mProject.open();
+    	return res;
+    }
+    return false;
+}
+
 bool ProcessSequence::write(const string& folder)
 {
-	//Create XML document
-    mProject.setFileFolder(folder);
+	if(folder.size())
+    {
+		//Create XML document
+	    mProject.setFileFolder(folder);
+    }
 
     if(mProject.getFileName() == "")
     {

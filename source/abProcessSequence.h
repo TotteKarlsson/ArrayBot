@@ -8,6 +8,7 @@
 #include "mtkINISection.h"
 #include "mtkProperty.h"
 #include "abProcessSequenceProject.h"
+#include "mtkConstants.h"
 //---------------------------------------------------------------------------
 
 using std::list;
@@ -32,7 +33,7 @@ class AB_CORE ProcessSequence : public ABObject
         string								getName(){return mProject.getProjectName();}
 
         virtual bool	 		            read(const string& fName);
-        virtual bool			            write(const string& folder);
+        virtual bool			            write(const string& folder = mtk::gEmptyString);
 
 		virtual bool	   		            assignUnit(ABObject* o);
 		virtual bool 			            add(Process* p);

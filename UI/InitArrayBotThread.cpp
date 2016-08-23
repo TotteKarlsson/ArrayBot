@@ -4,7 +4,6 @@
 #include "InitArrayBotThread.h"
 #include "abArrayBot.h"
 #include "mtkLogger.h"
-
 #pragma package(smart_init)
 
 using namespace mtk;

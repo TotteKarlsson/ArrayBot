@@ -10,6 +10,7 @@
 #include "abTimeDelay.h"
 #include "abApplicationMessages.h"
 #include "UIUtilities.h"
+#include "abVCLUtils.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -19,16 +20,13 @@
 #pragma link "TCombinedMoveFrame"
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TTimeDelayFrame"
-#pragma link "TCombinedMoveFrame"
-#pragma link "TTimeDelayFrame"
+#pragma link "TSequenceInfoFrame"
 #pragma resource "*.dfm"
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
 
 extern string gAppDataFolder;
 using namespace mtk;
-
-int selectItem(TObject* p, TListBox* lb);
 
 int TABProcessSequencerFrame::mFrameNr = 0;
 __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner)
@@ -37,8 +35,8 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, cons
     mProcessSequencer(mAB.getProcessSequencer())
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
-
     mProcessFileExtension = "abp";
+    TSequenceInfoFrame1->assignArrayBot(&ab);
     refreshSequencesCB();
 }
 
@@ -48,6 +46,11 @@ void TABProcessSequencerFrame::init()
     {
         mSequencesCB->ItemIndex = 0;
 		mSequencesCBChange(NULL);
+    }
+    else
+    {
+    	mDeleteSequenceBtn->Enabled = false;
+		mSaveSequenceBtn->Enabled = false;
     }
 }
 
@@ -60,12 +63,14 @@ void __fastcall TABProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sende
     	string seqName = stdstr(mSequencesCB->Items->Strings[idx]);
         mProcessSequencer.deleteSequence(seqName);
 		mSequencesCB->DeleteSelected();
-		mProcessesLB->Clear();
-        if(mSequencesCB->Items->Count)
+        mSequencesCB->Update();
+		if(mSequencesCB->Items->Count)
         {
-  			mSequencesCB->ItemIndex = 0;
+	        mSequencesCB->ItemIndex = 0;
         }
     }
+
+	mSequencesCBChange(Sender);
 
     //Send a message to main ui to update sequence shortcuts
     if(sendAppMessage(abSequencerUpdate) != true)
@@ -106,7 +111,7 @@ void __fastcall TABProcessSequencerFrame::refreshSequencesCB()
     	mSequencesCB->Items->Add(s->getName().c_str());
         s = seqs.getNext();
     }
-    mProcessesLB->Clear();
+//    mProcessesLB->Clear();
 }
 
 //---------------------------------------------------------------------------
@@ -116,37 +121,26 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
     int index = mSequencesCB->ItemIndex;
     if(index == -1)
     {
+        TSequenceInfoFrame1->populate(NULL);
     	return;
     }
 
-    mProcessesLB->Clear();
+    mDeleteSequenceBtn->Enabled = true;
+    mSaveSequenceBtn->Enabled 	= true;
+
     string sName(stdstr(mSequencesCB->Items->Strings[index]));
 
     //Repopulate the listbox
 	if(mProcessSequencer.selectSequence(sName))
     {
-    	//Fill out listbox
+    	//Fill out sequence frame
 		ProcessSequence* seq = mProcessSequencer.getCurrentSequence();
         if(!seq)
         {
         	return;
         }
 
-        mSequenceNameE->setValue(seq->getName());
-
-        Process* p = seq->getFirst();
-        while(p)
-        {
-    		mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
-            p = seq->getNext();
-        }
-
-        //Select the first move in the sequence
-        if(mProcessesLB->Count)
-        {
-	        mProcessesLB->ItemIndex = 0;
-        }
-        mProcessesLBClick(NULL);
+        TSequenceInfoFrame1->populate(seq, mProcessPanel);
     }
     else
     {
@@ -176,92 +170,6 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
 {
-	saveSequence();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::mProcessesLBClick(TObject *Sender)
-{
-	//Retrieve current process and populate UI
-    //Check what kind of process we have, Pause, or CombinedMove
-    int i = mProcessesLB->ItemIndex;
-    if(i == -1)
-    {
-	    TCombinedMoveFrame1->Visible = false;//(mAB, NULL);
-	    TTimeDelayFrame1->Visible = false;//(mAB, NULL);
-        updateSequenceArrows();
-    	return;
-    }
-
-    Process* p = (Process*) mProcessesLB->Items->Objects[i];
-    if(p)
-    {
-    	CombinedMove* cm = dynamic_cast<CombinedMove*>(p);
-    	TimeDelay* td= dynamic_cast<TimeDelay*>(p);
-        if(cm)
-        {
-            TTimeDelayFrame1->Visible = false;
-    		TCombinedMoveFrame1->populate(mAB, cm);
-			TCombinedMoveFrame1->Visible = true;
-            TCombinedMoveFrame1->Align = alClient;
-        }
-        else if(td)
-        {
-			TCombinedMoveFrame1->Visible = false;
-            TTimeDelayFrame1->populate(mAB, td);
-            TTimeDelayFrame1->Visible = true;
-            TTimeDelayFrame1->Align = alClient;
-        }
-    }
-
-	updateSequenceArrows();
-}
-
-void TABProcessSequencerFrame::updateSequenceArrows()
-{
-	if(mProcessesLB->SelCount < 1 || mProcessesLB->Count <= 1)
-    {
-		mMoveSequenceUpBtn->Enabled = false;
-		mMoveSequenceDownBtn->Enabled = false;
-    	return;
-    }
-
-	//Depending which item is selected, enable/disable items
-
-	//Last item
-    if(mProcessesLB->ItemIndex > 0 && (mProcessesLB->ItemIndex + 1) == mProcessesLB->Count)
-    {
-		mMoveSequenceUpBtn->Enabled 	= true;
-		mMoveSequenceDownBtn->Enabled 	= false;
-    }
-    //First item
-    else if(mProcessesLB->ItemIndex == 0)
-    {
-		mMoveSequenceUpBtn->Enabled 	= false;
-		mMoveSequenceDownBtn->Enabled 	= true;
-    }
-    else
-    {
-		mMoveSequenceUpBtn->Enabled 	= true;
-		mMoveSequenceDownBtn->Enabled 	= true;
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::moveParEdit(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-    saveSequence();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::MotorsCBChange(TObject *Sender)
-{
-    int i = mProcessesLB->ItemIndex;
-    if(i == -1)
-    {
-        return;
-    }
-
 	saveSequence();
 }
 
@@ -305,31 +213,7 @@ void __fastcall TABProcessSequencerFrame::addCombinedMovesProcessAExecute(TObjec
    	s->add(p);
 
     //Update LB
-    mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::removeProcessAExecute(TObject *Sender)
-{
-	ProcessSequence* s = mProcessSequencer.getCurrentSequence();
-	if(!s)
-    {
-    	Log(lError) << "Tried to remove process from NULL sequence";
-    	return;
-    }
-
-    int i = mProcessesLB->ItemIndex;
-    Process* p = (Process*) mProcessesLB->Items->Objects[i];
-
-    s->remove(p);
-    mProcessesLB->DeleteSelected();
-
-    if(mProcessesLB->Count > -1)
-    {
-		mProcessesLB->ItemIndex = 0;
-		mProcessesLBClick(NULL);
-    }
-    saveSequence();
+//    mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
 }
 
 //---------------------------------------------------------------------------
@@ -340,123 +224,16 @@ void __fastcall TABProcessSequencerFrame::mSequenceNameEKeyDown(TObject *Sender,
     {
     	//Change name of sequence in CB
         int indx = mSequencesCB->ItemIndex;
-		mSequencesCB->Items->Strings[indx] = vclstr(mSequenceNameE->getValue());
+		mSequencesCB->Items->Strings[indx] = vclstr(TSequenceInfoFrame1->mSequenceNameE->getValue());
 		mSequencesCB->ItemIndex = indx;
 		ProcessSequence* s = mProcessSequencer.getCurrentSequence();
-        s->setProjectName(mSequenceNameE->getValue());
+        s->setProjectName(TSequenceInfoFrame1->mSequenceNameE->getValue());
         saveSequence();
-    }
-}
 
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::addTimeDelayProcessExecute(TObject *Sender)
-{
-	ProcessSequence* s = mProcessSequencer.getCurrentSequence();
-	if(!s)
-    {
-    	Log(lError) << "Tried to add process to NULL sequence";
-    	return;
-    }
-
-    int nr  = s->getNumberOfProcesses() + 1;
-
-	//Create and add a process to the sequence
-	Process *p = new TimeDelay("Process " + mtk::toString(nr), Poco::Timespan(1000*Poco::Timespan::MILLISECONDS));
-   	s->add(p);
-
-    //Update LB
-    int indx = mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
-    mProcessesLB->ItemIndex = indx;
-	mProcessesLBClick(NULL);
-
-
-    saveSequence();
-}
-
-
-void __fastcall TABProcessSequencerFrame::TTimeDelayFrame1mNameEditKeyDown(TObject *Sender,
-          WORD &Key, TShiftState Shift)
-{
-	TTimeDelayFrame1->mEditKeyDown(Sender, Key, Shift);
-    if(Key == vkReturn)
-    {
-	    //Change name of process in CB
-	    int indx = mProcessesLB->ItemIndex;
- 	   	mProcessesLB->Items->Strings[indx] = vclstr(TTimeDelayFrame1->mNameEdit->getValue());
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::TCombinedMoveFrame1mProcessNameEKeyDown(TObject *Sender,
-          WORD &Key, TShiftState Shift)
-{
-	TCombinedMoveFrame1->mProcessNameEKeyDown(Sender, Key, Shift);
-    if(Key == vkReturn)
-    {
-	    //Change name of process in CB
-	    int indx = mProcessesLB->ItemIndex;
- 	   	mProcessesLB->Items->Strings[indx] = vclstr(TCombinedMoveFrame1->mProcessNameE->getValue());
-    }
-}
-
-
-void __fastcall TABProcessSequencerFrame::mMoveSequenceDownBtnClick(TObject *Sender)
-{
-	//Get selected sequence
-    int i = mProcessesLB->ItemIndex;
-    Process* p = (Process*) mProcessesLB->Items->Objects[i];
-    if(p)
-    {
-    	mProcessSequencer.getCurrentSequence()->moveForward(p);
-
-        //Rebuild the Listbox
-        mSequencesCBChange(Sender);
-
-        //Select process
-        int index = selectItem((TObject*) p, mProcessesLB);
-    }
-}
-
-//---------------------------------------------------------------------------
-
-void __fastcall TABProcessSequencerFrame::mMoveSequenceUpBtnClick(TObject *Sender)
-{
-	//Get selected sequence
-    int i = mProcessesLB->ItemIndex;
-    Process* p = (Process*) mProcessesLB->Items->Objects[i];
-    if(p)
-    {
-    	mProcessSequencer.getCurrentSequence()->moveBack(p);
-
-        //Rebuild the Listbox
-        mSequencesCBChange(Sender);
-
-        //Select process
-        int index = selectItem((TObject*) p, mProcessesLB);
-    }
-}
-
-//---------------------------------------------------------------------------
-int selectItem(TObject* p, TListBox* lb)
-{
-	//find the item in the list box;
-	for(int i = 0; i < lb->Count; i++)
-    {
-    	if(lb->Items->Objects[i] == p)
+        //Send a message to main ui to update sequence shortcuts
+        if(sendAppMessage(abSequencerUpdate) != true)
         {
-        	lb->Selected[i] = true;
-            lb->OnClick(NULL);
-            return i;
+            Log(lDebug)<<"Sending sequencer update was unsuccesful";
         }
     }
-    return -1;
 }
-
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::TCombinedMoveFrame1Button1Click(TObject *Sender)
-{
-	TCombinedMoveFrame1->addMoveAExecute(Sender);
-    saveSequence();
-}
-
-

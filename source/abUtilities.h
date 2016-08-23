@@ -16,7 +16,7 @@ using mtk::IniFile;
 struct TLI_DeviceInfo;
 
 //!We are using an enum for process type in order to save/retrieve different processes from XML
-enum ProcessType {ptBaseType = 0, ptMove, ptCombinedMove, ptTimeDelay, ptUnknown};
+enum ProcessType {ptBaseType = 0, ptMaster, ptParallell, ptAbsoluteMove, ptTimeDelay, ptUnknown};
 
 AB_CORE string toString(ProcessType tp);
 AB_CORE ProcessType toProcessType(const string& str);
@@ -27,17 +27,16 @@ enum LogicOperator {loLargerThan = 0, loSmallerThan, loLargerThanOrEqual, loSmal
 AB_CORE string 			toString(LogicOperator o);
 AB_CORE LogicOperator 	toLogicOperator(const string& p);
 
-///Enum holding Thorlab Device IDS
+///Enum holding Thorlab Device Type IDS
 enum DeviceTypeID
 {
-	didUnknown=0,
-    didLongTravelStage = 45,
-    didTCubeStepperMotor = 80,
-    didTCubeDCServo = 83
+	didUnknown				= 0,
+    didLongTravelStage 		= 45,
+    didTCubeStepperMotor 	= 80,
+    didTCubeDCServo 		= 83
 };
 
 AB_CORE DeviceTypeID getDeviceTypeID(const string& level);
-
 
 ///getDeviceSerials populate a Stringlist with serial numbers for
 ///devices of the type supplied

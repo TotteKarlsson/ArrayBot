@@ -22,10 +22,6 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Move Parameters'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object MainGB: TGroupBox
         Left = 0
         Top = 0
@@ -101,10 +97,6 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       Caption = 'Triggers'
       ImageIndex = 1
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel2: TPanel
         Left = 0
         Top = 0

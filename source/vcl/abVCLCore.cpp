@@ -1,9 +1,9 @@
 #include <System.hpp>
 #pragma hdrstop
 USEFORM("frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
-USEFORM("frames\TTimeDelayFrame.cpp", TimeDelayFrame); /* TFrame: File Type */
-USEFORM("frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
 USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
+USEFORM("frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
+USEFORM("frames\TTimeDelayFrame.cpp", TimeDelayFrame); /* TFrame: File Type */
 USEFORM("frames\TXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
 USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
 USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
@@ -15,10 +15,12 @@ USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 //---------------------------------------------------------------------------
 
 #pragma argsused
+
 extern "C" int _libmain(unsigned long reason)
 {
 	return 1;
 }
+
 
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "abCore.lib")
