@@ -2,7 +2,7 @@ object ParallellProcessesFrame: TParallellProcessesFrame
   Left = 0
   Top = 0
   Width = 723
-  Height = 526
+  Height = 531
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -14,18 +14,20 @@ object ParallellProcessesFrame: TParallellProcessesFrame
     Left = 0
     Top = 0
     Width = 723
-    Height = 526
+    Height = 531
     Align = alClient
     Caption = 'Sub Processes'
     TabOrder = 0
+    ExplicitHeight = 526
     object GroupBox1: TGroupBox
       Left = 2
       Top = 109
       Width = 145
-      Height = 415
+      Height = 420
       Align = alLeft
       Caption = 'Processes'
       TabOrder = 0
+      ExplicitHeight = 415
       object Button1: TButton
         Left = 13
         Top = 182
@@ -76,9 +78,8 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       Left = 147
       Top = 109
       Width = 574
-      Height = 415
+      Height = 420
       Align = alClient
-      AutoSize = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -19
@@ -90,50 +91,57 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       ExplicitTop = 109
       ExplicitWidth = 574
       ExplicitHeight = 415
-      inherited PageControl1: TPageControl
+      inherited MainGB: TGroupBox
         Width = 574
-        Height = 415
+        Height = 171
         ExplicitWidth = 574
-        ExplicitHeight = 415
-        inherited TabSheet1: TTabSheet
-          ExplicitWidth = 566
-          ExplicitHeight = 377
-          inherited MainGB: TGroupBox
-            Width = 566
-            Height = 377
-            ExplicitWidth = 566
-            ExplicitHeight = 377
-            inherited mMovePosE: TFloatLabeledEdit
-              Width = 65
-              ExplicitWidth = 65
-            end
-            inherited mMaxVelE: TFloatLabeledEdit
-              Left = 104
-              EditLabel.ExplicitLeft = 104
-              EditLabel.ExplicitTop = 100
-              EditLabel.ExplicitWidth = 103
-              ExplicitLeft = 104
-            end
-            inherited mAccE: TFloatLabeledEdit
-              Left = 224
-              EditLabel.ExplicitLeft = 224
-              EditLabel.ExplicitTop = 100
-              EditLabel.ExplicitWidth = 101
-              ExplicitLeft = 224
-            end
-            inherited mAddTriggerB: TButton
-              Left = 368
-              Top = 99
-              ExplicitLeft = 368
-              ExplicitTop = 99
-            end
-          end
+        ExplicitHeight = 171
+        inherited mMovePosE: TFloatLabeledEdit
+          TabOrder = 1
         end
-        inherited mTriggersSheet: TTabSheet
-          inherited Panel2: TPanel
-            inherited Panel1: TPanel
-              ExplicitTop = 205
-            end
+        inherited mMaxVelE: TFloatLabeledEdit
+          EditLabel.ExplicitLeft = 0
+          EditLabel.ExplicitTop = -26
+          EditLabel.ExplicitWidth = 86
+          TabOrder = 2
+        end
+        inherited mAccE: TFloatLabeledEdit
+          EditLabel.ExplicitLeft = 0
+          EditLabel.ExplicitTop = -26
+          EditLabel.ExplicitWidth = 56
+          TabOrder = 3
+        end
+        inherited MotorsCB: TComboBox
+          TabOrder = 0
+        end
+        inherited mAddTriggerBtn: TButton
+          Left = 360
+          Top = 49
+          Height = 108
+          ExplicitLeft = 360
+          ExplicitTop = 49
+          ExplicitHeight = 108
+        end
+      end
+      inherited mTriggerPanel: TPanel
+        Top = 171
+        Width = 574
+        Height = 249
+        inherited GroupBox1: TGroupBox
+          Width = 160
+          Height = 247
+          ExplicitWidth = 160
+          ExplicitHeight = 247
+          inherited mTriggersLB: TListBox
+            Width = 156
+            Height = 160
+          end
+          inherited Panel1: TPanel
+            Top = 185
+            Width = 156
+            ExplicitLeft = 2
+            ExplicitTop = 22
+            ExplicitWidth = 196
           end
         end
       end

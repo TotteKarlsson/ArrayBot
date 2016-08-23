@@ -143,8 +143,8 @@ void __fastcall TMotorMoveProcessFrame::TriggersLBClick(TObject *Sender)
     int indx = mTriggersLB->ItemIndex;
     if(indx == -1)
     {
-       	mAddTriggerBtn->Enabled = false;
-        mDeleteTriggerB->Enabled = false;
+       	mAddTriggerBtn->Enabled 	= false;
+        mDeleteTriggerB->Enabled 	= false;
     	return;
     }
 
@@ -171,6 +171,7 @@ void __fastcall TMotorMoveProcessFrame::mDeleteTriggerBClick(TObject *Sender)
     {
     	mMove->deleteTrigger();
 	    mTriggersLB->Clear();
+	    mPosTriggerFrame->Visible = false;
     }
 }
 

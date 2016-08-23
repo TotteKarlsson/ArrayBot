@@ -18,19 +18,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Height = 95
     Align = alBottom
     TabOrder = 0
-    object mStatusLbl: TLabel
-      Left = 154
-      Top = 35
-      Width = 148
-      Height = 23
-      Caption = 'Sequencer Status'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
     object mStartBtn: TButton
       Left = 1
       Top = 1
@@ -40,6 +27,35 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Caption = 'Start'
       TabOrder = 0
       OnClick = mStartBtnClick
+    end
+    object Panel2: TPanel
+      Left = 584
+      Top = 1
+      Width = 416
+      Height = 93
+      Align = alRight
+      TabOrder = 1
+      object mStatusLbl: TLabel
+        Left = 50
+        Top = 35
+        Width = 148
+        Height = 23
+        Caption = 'Sequencer Status'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+    end
+    object mContinousExecutionCB: TCheckBox
+      Left = 119
+      Top = 12
+      Width = 114
+      Height = 17
+      Caption = 'Continous'
+      TabOrder = 2
     end
   end
   object mMainPanel: TPanel
@@ -155,7 +171,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Enabled = False
     Interval = 100
     OnTimer = mSequenceTimerTimer
-    Left = 728
+    Left = 320
     Top = 560
   end
   object Actions: TActionList

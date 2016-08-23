@@ -74,9 +74,9 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     end
     object mAddTriggerBtn: TButton
       Left = 368
-      Top = 99
+      Top = 49
       Width = 137
-      Height = 58
+      Height = 108
       Caption = 'Add Trigger'
       TabOrder = 4
       OnClick = AddTriggerBClick

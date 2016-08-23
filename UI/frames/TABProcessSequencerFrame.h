@@ -41,6 +41,8 @@ class TABProcessSequencerFrame : public TFrame
 	TPanel *mLeftPanel;
 	TSequenceInfoFrame *TSequenceInfoFrame1;
 	TPanel *mProcessPanel;
+	TPanel *Panel2;
+	TCheckBox *mContinousExecutionCB;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
         void __fastcall mStartBtnClick(TObject *Sender);

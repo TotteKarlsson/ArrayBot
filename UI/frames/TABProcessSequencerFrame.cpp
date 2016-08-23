@@ -152,14 +152,22 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
 
 void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
 {
-    if(mStartBtn->Caption == "Start")
+    if(mStartBtn->Caption == "Start" )
     {
     	//Save current sequence
        	saveSequence();
-
         mAB.disableJoyStickAxes();
-    	mProcessSequencer.start(true);
+
+    	mProcessSequencer.start(mContinousExecutionCB->Checked);
 		mSequenceStatusTimer->Enabled = true;
+    }
+    else if(mStartBtn->Caption == "Continue")
+    {
+        if(mProcessSequencer.forward())
+        {
+    		mProcessSequencer.continueExecution();
+			mSequenceStatusTimer->Enabled = true;
+        }
     }
     else
     {
@@ -190,9 +198,27 @@ void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
     {
 		mSequenceStatusTimer->Enabled = false;
         mAB.enableJoyStickAxes();
-
-    	mStartBtn->Caption = "Start";
 	  	mStatusLbl->Caption = "Idle";
+
+        if(!mContinousExecutionCB->Checked)
+        {
+            //We need to check if we can continue
+            if(mProcessSequencer.canContinue())
+            {
+        		//Forward the sequence next time
+	           	mStartBtn->Caption = "Continue";
+            }
+            else
+            {
+		    	mStartBtn->Caption = "Start";
+            }
+
+
+        }
+        else
+        {
+	    	mStartBtn->Caption = "Start";
+        }
     }
 }
 

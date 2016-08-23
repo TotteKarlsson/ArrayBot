@@ -2,7 +2,7 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
   Left = 0
   Top = 0
   Width = 509
-  Height = 329
+  Height = 442
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -14,48 +14,52 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
     Left = 0
     Top = 0
     Width = 509
-    Height = 329
+    Height = 442
     Align = alClient
     BiDiMode = bdLeftToRight
     Caption = 'Positional Trigger'
     ParentBiDiMode = False
     TabOrder = 0
+    ExplicitHeight = 329
     object GroupBox3: TGroupBox
       Left = 2
-      Top = 123
+      Top = 201
       Width = 505
-      Height = 204
+      Height = 239
       Align = alClient
       Caption = 'Device to Trigger'
-      TabOrder = 0
+      TabOrder = 1
+      ExplicitTop = 217
+      ExplicitHeight = 223
       object GroupBox2: TGroupBox
-        Left = 15
-        Top = 64
-        Width = 482
-        Height = 129
+        Left = 2
+        Top = 56
+        Width = 501
+        Height = 169
+        Align = alTop
         Caption = 'Trigger Parameters'
-        TabOrder = 0
+        TabOrder = 1
         object mNewVelE: TFloatLabeledEdit
-          Left = 153
-          Top = 56
+          Left = 7
+          Top = 120
           Width = 121
           Height = 31
           EditLabel.Width = 106
           EditLabel.Height = 23
           EditLabel.Caption = 'New Velocity'
-          TabOrder = 0
+          TabOrder = 1
           Text = '0.0'
           OnKeyDown = mNewVelEKeyDown
         end
         object mNewAccE: TFloatLabeledEdit
-          Left = 305
-          Top = 56
+          Left = 145
+          Top = 120
           Width = 121
           Height = 31
           EditLabel.Width = 144
           EditLabel.Height = 23
           EditLabel.Caption = 'New Acceleration'
-          TabOrder = 1
+          TabOrder = 2
           Text = '0.0'
           OnKeyDown = mNewVelEKeyDown
         end
@@ -67,31 +71,35 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
           EditLabel.Width = 108
           EditLabel.Height = 23
           EditLabel.Caption = 'Final Position'
-          TabOrder = 2
+          TabOrder = 0
           Text = '0.0'
           OnKeyDown = mNewVelEKeyDown
         end
       end
       object mDevicesCB: TComboBox
-        Left = 15
-        Top = 27
-        Width = 313
+        Left = 2
+        Top = 25
+        Width = 501
         Height = 31
-        TabOrder = 1
+        Align = alTop
+        TabOrder = 0
         Text = 'ComboBox1'
         OnChange = mDevicesCBChange
+        ExplicitLeft = 15
+        ExplicitTop = 51
+        ExplicitWidth = 313
       end
     end
     object GroupBox4: TGroupBox
       Left = 2
       Top = 25
       Width = 505
-      Height = 98
+      Height = 176
       Align = alTop
       BiDiMode = bdLeftToRight
       Caption = 'Condition'
       ParentBiDiMode = False
-      TabOrder = 1
+      TabOrder = 0
       object mPositionE: TFloatLabeledEdit
         Left = 22
         Top = 59
@@ -105,9 +113,9 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
         OnKeyDown = mPositionEKeyDown
       end
       object mOpRG: TRadioGroup
-        Left = 144
-        Top = 27
-        Width = 342
+        Left = 15
+        Top = 96
+        Width = 266
         Height = 65
         Caption = 'Operator'
         Columns = 4

@@ -44,6 +44,7 @@ void ProcessSequence::init()
     }
 }
 
+
 bool ProcessSequence::moveForward(Process* ps)
 {
 	//Check first if it is possible
@@ -152,6 +153,18 @@ bool ProcessSequence::remove(Process* p)
 bool ProcessSequence::remove(const string& lbl)
 {
 	//Find item with label
+    return false;
+}
+
+bool ProcessSequence::peekNext()
+{
+	list<Process*>::iterator test = mProcessIter;
+    test++;
+
+    if(test != mProcesses.end())
+    {
+    	return true;
+    }
     return false;
 }
 

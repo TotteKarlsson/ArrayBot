@@ -11,9 +11,156 @@ ProcessSequencer::ProcessSequencer(ArrayBot& ab, const string& fileFolder)
 :
 mAB(ab),
 mSequences(fileFolder, "abp", mAB),
-mSequenceTimer(100)
+mSequenceTimer(50)
 {
 	mSequenceTimer.assignTimerFunction(onTimerFunc);
+}
+
+ProcessSequencer::~ProcessSequencer()
+{
+	mSequenceTimer.assignTimerFunction(NULL);
+	mSequenceTimer.stop();
+}
+
+void ProcessSequencer::start(bool autoExecute)
+{
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
+    {
+    	return;
+    }
+
+    //ReInit sequence so it can be executed over and over
+    s->init();
+
+	mExecuteAutomatic = autoExecute;
+	Process* aMove = s->getFirst();
+    if(aMove)
+    {
+    	Log(lInfo) << "Executing sequence";
+        mSequenceTimer.start();
+    }
+    else
+    {
+    	Log(lError) << "There are no processes to sequence!";
+    }
+}
+
+bool ProcessSequencer::continueExecution()
+{
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
+    {
+    	return false;
+    }
+
+	Process* p = s->getCurrent();
+    if(p)
+    {
+        mSequenceTimer.start();
+	    Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
+        if(!p->start())
+        {
+            Log(lError) << "Failed executing a move: " << p->getProcessName();
+            Log(lError) << "Aborting execution of process sequence: "<<s->getName();
+            mSequenceTimer.stop();
+            return false;
+        }
+	}
+    else
+    {
+    	Log(lError) << "There are no processes to sequence!";
+        return false;
+    }
+    return true;
+}
+
+bool ProcessSequencer::isDone()
+{
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
+    {
+    	return true;
+    }
+
+	return s->getCurrent() == NULL ? true : false;
+}
+
+bool ProcessSequencer::canContinue()
+{
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
+    {
+    	return false;
+    }
+    return s->peekNext() == NULL ? false : true;
+}
+
+bool ProcessSequencer::forward()
+{
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
+    {
+    	return false;
+    }
+
+	Process* p = s->getNext();
+    if(!p)
+    {
+    	Log(lInfo) << "Reached the end of process pipeline";
+        return false;
+    }
+
+  	Log(lInfo) << "Sequence was forwarded";
+
+
+    if(mExecuteAutomatic)
+    {
+	    Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
+        if(!p->start())
+        {
+            Log(lError) << "Failed executing a move: " << p->getProcessName();
+            Log(lError) << "Aborting execution of process sequence: "<<s->getName();
+            mSequenceTimer.stop();
+            return false;
+        }
+    }
+    return true;
+}
+
+//bool ProcessSequencer::reverse()
+//{
+// 	ProcessSequence* s = mSequences.getCurrent();
+//    if(!s)
+//    {
+//    	return;
+//    }
+//
+//	Process* p = s->getCurrent();
+//    if(p)
+//    {
+//    	p->undo();
+//    }
+//    else
+//    {
+//    	Log(lError) << "Can't reverse that move";
+//    }
+//}
+
+void ProcessSequencer::stop()
+{
+	mSequenceTimer.stop();
+
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
+    {
+    	return;
+    }
+
+    if(s->getCurrent())
+    {
+	   s->getCurrent()->stop();
+    }
 }
 
 ProcessSequence* ProcessSequencer::getCurrentSequence()
@@ -100,7 +247,7 @@ void ProcessSequencer::onTimerFunc()
 	if(p)
     {
     	//Check if we are to move forward in the sequence
-        if(p->isProcessed() == true)
+        if(p->isProcessed() == true && mExecuteAutomatic)
         {
 	        Log(lInfo) << "Process \"" << p->getProcessName() <<"\" finished";
         	forward();
@@ -108,11 +255,9 @@ void ProcessSequencer::onTimerFunc()
         else if (s->isFirst(p) && p->isStarted() == false)
         {
 	        Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
-            bool res = p->start();
-
-            if(!res)
+            if(!p->start())
             {
-                Log(lError) << "Failed executing move: "<<p->getProcessName();
+                Log(lError) << "Failed executing process: "<<p->getProcessName();
 				Log(lError) << "Aborting execution of process sequence: "<<s->getName();
 	            mSequenceTimer.stop();
                 return;
@@ -123,102 +268,18 @@ void ProcessSequencer::onTimerFunc()
         	Log(lError) << "Process \""<<p->getProcessName()<<"\" timed out";
         	stop();
         }
-    }
-    else
-    {
-        //We have finished
-        mSequenceTimer.stop();
-        Log(lInfo) << "Finished processing sequence: " << s->getName();
-        //Enable the JoyStick
-
-        return;
-    }
-}
-
-void ProcessSequencer::start(bool autoExecute)
-{
- 	ProcessSequence* s = mSequences.getCurrent();
-    if(!s)
-    {
-    	return;
-    }
-
-	mExecuteAutomatic = autoExecute;
-
-    //ReInit sequence so it can be executed over and over
-    s->init();
-
-	Process* aMove = s->getFirst();
-    if(aMove)
-    {
-        if(mExecuteAutomatic)
+        else if(p->isProcessed() == true && mExecuteAutomatic == false)
         {
-	    	Log(lInfo) << "Executing sequence";
-	        mSequenceTimer.start();
+            //We have finished one process in the sequence
+            mSequenceTimer.stop();
+            Log(lInfo) << "Finished processing process: "<<p->getProcessName()<<" in the sequence: " << s->getName();
         }
     }
     else
     {
-    	Log(lError) << "There are no processes to sequence!";
-    }
-}
-
-void ProcessSequencer::forward()
-{
- 	ProcessSequence* s = mSequences.getCurrent();
-    if(!s)
-    {
-    	return;
-    }
-
-	Process* p = s->getNext();
-    if(!p)
-    {
-    	Log(lInfo) << "Reached the end of process pipeline";
-        return;
-    }
-
-    Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
-    if(!p->start())
-    {
-        Log(lError) << "Failed executing a move: " << p->getProcessName();
-        Log(lError) << "Aborting execution of process sequence: "<<s->getName();
+        //Null process indicate that we have finished
         mSequenceTimer.stop();
-    }
-}
-
-void ProcessSequencer::reverse()
-{
- 	ProcessSequence* s = mSequences.getCurrent();
-    if(!s)
-    {
-    	return;
-    }
-
-	Process* p = s->getCurrent();
-    if(p)
-    {
-    	p->undo();
-    }
-    else
-    {
-    	Log(lError) << "Can't reverse that move";
-    }
-}
-
-void ProcessSequencer::stop()
-{
-	mSequenceTimer.stop();
-
- 	ProcessSequence* s = mSequences.getCurrent();
-    if(!s)
-    {
-    	return;
-    }
-
-    if(s->getCurrent())
-    {
-	   s->getCurrent()->stop();
+        Log(lInfo) << "Finished processing sequence: " << s->getName();
     }
 }
 

@@ -15,13 +15,17 @@ namespace ab
 }
 
 class ArrayBot;
-
+//!The Process sequencer executes and maintain a process sequence.
+//!A sequence individual processes can be executed step by step, or executed
+//!continously.
+//!The sequencer do currently load all available sequences into a sequence container.
+//Todo: Break out the sequence container to simplify the complexity of the sequencer
 //---------------------------------------------------------------------------
 class AB_CORE ProcessSequencer : public ABObject
 {
 	public:
 			      	                        ProcessSequencer(ArrayBot& ab, const string& fileFolder);
-                  	                        ~ProcessSequencer(){}
+                  	                        ~ProcessSequencer();
 
 		bool						        selectSequence(const string& sName);
 
@@ -33,11 +37,19 @@ class AB_CORE ProcessSequencer : public ABObject
 
 		void				                clear();
 		void		                        start(bool continous = true);
-		void		                        forward();
-        void		                        reverse();
+		bool								continueExecution();
+
+		bool		                        forward();
+        bool								canContinue();
+
+//        bool		                        reverse();
         void		                        stop();
         bool				                isRunning();
         bool				                isCurrentProcessActive();
+
+
+        									//!when all processes are executed, the processsequence is done
+        bool								isDone();
 
         ProcessSequence*   	                getCurrentSequence();
         string				                getCurrentSequenceName();
