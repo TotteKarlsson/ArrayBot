@@ -45,6 +45,7 @@ class AB_CORE Move : public Process
         Trigger*							getTrigger(){return mTrigger;}
         virtual void						addTrigger(Trigger* t);
         virtual void						deleteTrigger(Trigger* t = NULL);
+
     protected:
         double			                    mMaxVelocity;
         double			                    mAcceleration;

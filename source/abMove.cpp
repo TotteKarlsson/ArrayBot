@@ -9,7 +9,7 @@
 namespace ab
 {
 
-using namespace std::tr1;
+//using namespace std::tr1;
 using namespace mtk;
 using namespace ab;
 
@@ -91,7 +91,7 @@ void Move::assignUnit(ABObject* o)
 
     if(mSubject == NULL)
     {
-   		Log(lError) << "Motor Unit is NULL for Move: "<<mProcessName;
+   		Log(lError) << "Motor Unit is NULL for MoveProcess: "<<mProcessName;
     }
     else
     {

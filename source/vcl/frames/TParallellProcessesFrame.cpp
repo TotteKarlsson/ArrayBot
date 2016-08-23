@@ -126,3 +126,4 @@ void __fastcall TParallellProcessesFrame::mProcessNameEKeyDown(TObject *Sender, 
     }
 }
 
+

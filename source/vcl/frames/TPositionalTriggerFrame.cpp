@@ -92,7 +92,7 @@ void TPositionalTriggerFrame::populateDevicesCB()
     vector<APTMotor*> motors = mAB->getAllMotors();
     for(int i = 0; i < motors.size(); i++)
     {
-        if(motors[i] && (motors[i]->getName() != mtr->getName()))
+        if(motors[i] )//&& (motors[i]->getName() != mtr->getName()))
         {
         	mDevicesCB->Items->InsertObject(mDevicesCB->Items->Count, motors[i]->getName().c_str(), (TObject*) motors[i]);
         }

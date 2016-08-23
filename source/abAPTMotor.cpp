@@ -37,15 +37,18 @@ APTMotor::APTMotor(int serialNo)
 
 APTMotor::~APTMotor()
 {
+	Log(lDebug) <<"Destructing motor with serial: "<<mSerial;
 	mMotorMessageProcessor.stop();
     mStatusTimer.stop();
 
     while(mMotorMessageProcessor.isRunning() || mStatusTimer.isRunning())
     {
+    	//This is not very nice...
 		sleep(5);
     }
-	Log(lDebug) <<"Destructing motor with serial: "<<mSerial;
+
     mProperties.write();
+	Log(lDebug) <<"Exiting destructor for motor with serial: "<<mSerial;
 }
 
 bool APTMotor::isInDangerZone()

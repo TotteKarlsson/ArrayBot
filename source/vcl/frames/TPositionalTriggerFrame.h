@@ -15,27 +15,25 @@ class ArrayBot;
 class PACKAGE TPositionalTriggerFrame : public TFrame
 {
     __published:	// IDE-managed Components
-	TGroupBox *MainGB;
-	TFloatLabeledEdit *mPositionE;
-	TRadioGroup *mOpRG;
-	TComboBox *mDevicesCB;
+		TGroupBox *MainGB;
+		TFloatLabeledEdit *mPositionE;
+		TRadioGroup *mOpRG;
+		TComboBox *mDevicesCB;
         TGroupBox *GroupBox2;
         TFloatLabeledEdit *mNewVelE;
         TFloatLabeledEdit *mNewAccE;
         TGroupBox *GroupBox3;
         TGroupBox *GroupBox4;
-	TFloatLabeledEdit *mFinalPositionE;
-	void __fastcall mPositionEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall mOpRGClick(TObject *Sender);
-	void __fastcall mDevicesCBChange(TObject *Sender);
-	void __fastcall mNewVelEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-
+		TFloatLabeledEdit *mFinalPositionE;
+		void __fastcall mPositionEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+		void __fastcall mOpRGClick(TObject *Sender);
+		void __fastcall mDevicesCBChange(TObject *Sender);
+		void __fastcall mNewVelEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
     private:
         Trigger* 	 				mTrigger;
         ArrayBot*					mAB;
 		void 						populateDevicesCB();
-
 
     public:
     					__fastcall 	TPositionalTriggerFrame(TComponent* Owner);
@@ -43,7 +41,6 @@ class PACKAGE TPositionalTriggerFrame : public TFrame
     	void						rePopulate(Trigger* p);
 };
 
-//---------------------------------------------------------------------------
 extern PACKAGE TPositionalTriggerFrame *PositionalTriggerFrame;
 //---------------------------------------------------------------------------
 #endif

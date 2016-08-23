@@ -141,10 +141,11 @@ bool ParallellProcess::isCommandPending()
 {
 	for(int i = 0; i < mProcesses.size(); i++)
     {
-//    	if(mProcesses[i]->isMotorCommandPending())
-//        {
-//        	return true;
-//        }
+	    Move* m = dynamic_cast<Move*>(mProcesses[i]);
+    	if(m && m->isMotorCommandPending())
+        {
+        	return true;
+        }
     }
 
     return false;
@@ -154,10 +155,11 @@ bool ParallellProcess::areMotorsActive()
 {
 	for(int i = 0; i < mProcesses.size(); i++)
     {
-//    	if(mProcesses[i]->isMotorActive())
-//        {
-//        	return true;
-//        }
+	    Move* m = dynamic_cast<Move*>(mProcesses[i]);
+    	if(m && m->isMotorCommandPending())
+        {
+        	return true;
+        }
     }
 
     return false;

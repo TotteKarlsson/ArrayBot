@@ -107,6 +107,26 @@ object ParallellProcessesFrame: TParallellProcessesFrame
               Width = 65
               ExplicitWidth = 65
             end
+            inherited mMaxVelE: TFloatLabeledEdit
+              Left = 104
+              EditLabel.ExplicitLeft = 104
+              EditLabel.ExplicitTop = 100
+              EditLabel.ExplicitWidth = 103
+              ExplicitLeft = 104
+            end
+            inherited mAccE: TFloatLabeledEdit
+              Left = 224
+              EditLabel.ExplicitLeft = 224
+              EditLabel.ExplicitTop = 100
+              EditLabel.ExplicitWidth = 101
+              ExplicitLeft = 224
+            end
+            inherited mAddTriggerB: TButton
+              Left = 368
+              Top = 99
+              ExplicitLeft = 368
+              ExplicitTop = 99
+            end
           end
         end
         inherited mTriggersSheet: TTabSheet

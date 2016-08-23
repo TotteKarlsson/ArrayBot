@@ -240,8 +240,6 @@
                     <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\DuneComponentsDD.bpl">Components by DuneScientific</Excluded_Packages>
-                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\abVCLCore.bpl">ArrayBot VCL Core package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>

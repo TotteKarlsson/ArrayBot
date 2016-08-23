@@ -22,7 +22,7 @@ __fastcall TMotorMoveProcessFrame::TMotorMoveProcessFrame(TComponent* Owner)
     mPosTriggerFrame(NULL)
 {
 	mPosTriggerFrame = new TPositionalTriggerFrame(this);
-    mPosTriggerFrame->Parent = mTriggersSheet;
+    mPosTriggerFrame->Parent = mTriggerPanel;
     mPosTriggerFrame->Align = alClient;
     mPosTriggerFrame->Visible = false;
 }
@@ -42,14 +42,14 @@ void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
 		mTriggersLB->Items->AddObject(mMove->getTrigger()->getTypeName().c_str(), (TObject*) mMove->getTrigger());
         mTriggersLB->ItemIndex = 0;
 		TriggersLBClick(NULL);
-        mAddTriggerB->Visible = false;
-		mTriggersSheet->TabVisible = true;
+        mAddTriggerBtn->Visible 	= true;
+		mTriggerPanel->Visible 	= true;
     }
     else
     {
-	    mPosTriggerFrame->Visible = false;
-        mAddTriggerB->Visible = true;
-		mTriggersSheet->TabVisible = false;
+	    mPosTriggerFrame->Visible 	= false;
+        mAddTriggerBtn->Visible 		= true;
+		mTriggerPanel->Visible 		= false;
     }
 }
 
@@ -99,12 +99,6 @@ void TMotorMoveProcessFrame::populateMotorCB()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMotorMoveProcessFrame::MotorsCBClick(TObject *Sender)
-{
-	;
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMotorMoveProcessFrame::MotorsCBChange(TObject *Sender)
 {
 	//Check if a motor is selected
@@ -149,12 +143,12 @@ void __fastcall TMotorMoveProcessFrame::TriggersLBClick(TObject *Sender)
     int indx = mTriggersLB->ItemIndex;
     if(indx == -1)
     {
-       	mAddTriggerB->Enabled = false;
+       	mAddTriggerBtn->Enabled = false;
         mDeleteTriggerB->Enabled = false;
     	return;
     }
 
-   	mAddTriggerB->Enabled = true;
+   	mAddTriggerBtn->Enabled = true;
     mDeleteTriggerB->Enabled = true;
     Trigger* t = (Trigger*) mTriggersLB->Items->Objects[indx];
     if(t)

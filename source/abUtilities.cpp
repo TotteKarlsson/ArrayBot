@@ -2,8 +2,8 @@
 #include "abUtilities.h"
 #include <sstream>
 #include "mtkLogger.h"
-//---------------------------------------------------------------------------
 #include "Thorlabs.MotionControl.IntegratedStepperMotors.h"
+//---------------------------------------------------------------------------
 
 using namespace std;
 using namespace mtk;

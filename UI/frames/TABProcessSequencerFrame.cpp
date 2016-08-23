@@ -17,7 +17,7 @@
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TMotorMoveProcessFrame"
-#pragma link "TCombinedMoveFrame"
+#pragma link "TParallellProcessesFrame"
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TTimeDelayFrame"
 #pragma link "TSequenceInfoFrame"
