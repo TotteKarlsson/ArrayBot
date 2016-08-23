@@ -74,8 +74,8 @@ bool RibbonLifter::setupMove1()
     xMove->assignUnit(mArrayBot.getWhiskerUnit().getXMotor());
     yMove->assignUnit(mArrayBot.getWhiskerUnit().getYMotor());
 
-	mMove1.addMove(xMove);
-	mMove1.addMove(yMove);
+	mMove1.addProcess(xMove);
+	mMove1.addProcess(yMove);
 
     mLiftSequence.add(&mMove1);
     mSequencer.addSequence(&mLiftSequence);
@@ -97,7 +97,7 @@ bool RibbonLifter::setupMove2()
 
 	ContinousMove *whiskerZMove = new ContinousMove("whiskerZMove", mLiftVelocityZ, mLiftAccZ);
 
-	mMove2.addMove(whiskerZMove);
+	mMove2.addProcess(whiskerZMove);
     mLiftSequence.add(&mMove2);
     mSequencer.addSequence(&mLiftSequence);
 

@@ -149,9 +149,6 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DependentOn>abArrayBotJoystick.h</DependentOn>
             <BuildOrder>16</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abCombinedMove.cpp">
-            <BuildOrder>41</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abContinousMove.cpp">
             <BuildOrder>39</BuildOrder>
         </CppCompile>
@@ -225,6 +222,9 @@ $(PreBuildEvent)]]></PreBuildEvent>
         </CppCompile>
         <CppCompile Include="abPairedMoves.cpp">
             <BuildOrder>36</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abParallell.cpp">
+            <BuildOrder>41</BuildOrder>
         </CppCompile>
         <CppCompile Include="abPosition.cpp">
             <DependentOn>abPosition.h</DependentOn>

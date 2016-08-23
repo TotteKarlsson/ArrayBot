@@ -11,11 +11,10 @@ class AB_CORE AbsoluteMove : public ab::Move
 		const string 				getTypeName() const;
         virtual void				addTrigger(Trigger* t);
 
-
         bool 			            setPosition(double pos){mPosition = pos; return true;}
         double			            getPosition(){return mPosition;}
 
-        bool						isDone();
+        virtual bool	  			isDone();
 		bool 						start();
 		virtual mtk::XMLElement*    addToXMLDocumentAsChild(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
 

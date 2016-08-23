@@ -112,10 +112,6 @@
             <DependentOn>forms\TShowFileContentForm.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <CppCompile Include="frames\TCombinedMoveFrame.cpp">
-            <DependentOn>frames\TCombinedMoveFrame.h</DependentOn>
-            <BuildOrder>7</BuildOrder>
-        </CppCompile>
         <CppCompile Include="frames\TMotorFrame.cpp">
             <Form>MotorFrame</Form>
             <DesignClass>TFrame</DesignClass>
@@ -127,6 +123,10 @@
             <DesignClass>TFrame</DesignClass>
             <DependentOn>frames\TMotorMoveProcessFrame.h</DependentOn>
             <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frames\TParallellProcessesFrame.cpp">
+            <DependentOn>frames\TParallellProcessesFrame.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
         </CppCompile>
         <CppCompile Include="frames\TPositionalTriggerFrame.cpp">
             <Form>PositionalTriggerFrame</Form>
@@ -173,10 +173,10 @@
         <FormResources Include="frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="frames\TXYZUnitFrame.dfm"/>
         <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
-        <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
         <FormResources Include="forms\TamFileEditor.dfm"/>
-        <FormResources Include="frames\TMotorFrame.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="frames\TMotorFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

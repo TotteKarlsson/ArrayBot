@@ -31,7 +31,7 @@ class AB_CORE Process : public ABObject
         virtual bool	                        start() 			= 0;
         virtual bool	                        stop() 				= 0;
         virtual	bool	                        undo() 				= 0;
-
+        virtual bool 	  						isDone()			= 0;
 
 		string 						            getProcessType();
 		virtual void	                        assignUnit(ABObject* o){mSubject = o;}

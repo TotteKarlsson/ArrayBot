@@ -6,29 +6,29 @@
 //---------------------------------------------------------------------------
 using namespace std;
 
-namespace ab
-{
-class Move;
-}
-
-class AB_CORE CombinedMove : public Process
+//!A parallell process is a process combining one or more processes that are
+//!executed in parallell.
+//!When starting a parallell process, all parallell processes are started virtually simultaneously (occurs in a loop).
+//!A parallell process is not finished until all processes, including their triggered processes
+//!are processed, finished
+class AB_CORE Parallell : public Process
 {
     public:
-        	   			            CombinedMove(const string& lbl);
-    	virtual			            ~CombinedMove(){}
+        	   			            Parallell(const string& lbl);
+    	virtual			            ~Parallell(){}
 		virtual void		   		init(ArrayBot& ab);
 		const string 				getTypeName() const;
         void						clear();
 
         virtual mtk::XMLElement*    addToXMLDocumentAsChildProcess(mtk::XMLDocument& doc, mtk::XMLNode* docRoot);
-        int							getNumberOfMoves(){return mMoves.size();}
+        int							getNumberOfProcesses(){return mProcesses.size();}
 
-		virtual void	            addMove(ab::Move* lm);
-        ab::Move*					getMove(const string& lbl);
-        ab::Move*					getMove(int i);
+		virtual void	            addProcess(Process* lm);
+        Process*			  		getProcess(const string& lbl);
+        Process*					getProcess(int i);
 
-        bool 						removeMove(ab::Move* m);
-        bool 						removeMove(const string& name);
+        bool 						removeProcess(Process* m);
+        bool 						removeProcess(const string& name);
 
         							//!All moves starts at the same time
         virtual bool	            start();
@@ -39,11 +39,11 @@ class AB_CORE CombinedMove : public Process
         virtual	bool	            undo();
 
 									//Check if we are at proper position(s)
-        bool 						isDone();
+        virtual bool 	  			isDone();
         virtual bool	            areMotorsActive();
 
-    protected:                      //!The Moves container contain all moves
-		vector<ab::Move*>			mMoves;
+    protected:                      //!The Processes container contain all moves
+		vector<Process*>	  	mProcesses;
 };
 
 #endif

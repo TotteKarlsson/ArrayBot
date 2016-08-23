@@ -3,7 +3,7 @@
 #include "mtkXMLUtils.h"
 #include "mtkLogger.h"
 #include "abProcessSequence.h"
-#include "abCombinedMove.h"
+#include "abParallell.h"
 #include "abPosition.h"
 #include "abArrayBot.h"
 #include "abAbsoluteMove.h"
@@ -68,9 +68,9 @@ bool ProcessSequenceProject::save(const string& fName)
     {
         Log(lDebug) << "Saving process: " << p->getProcessName();
         XMLElement* xmlProc = p->addToXMLDocument(mTheXML, sequence);
-        if(dynamic_cast<CombinedMove*>(p))
+        if(dynamic_cast<Parallell*>(p))
 	    {
-        	CombinedMove* clm = dynamic_cast<CombinedMove*>(p);
+        	Parallell* clm = dynamic_cast<Parallell*>(p);
 
         	//Write subprocesses
 			clm->addToXMLDocumentAsChildProcess(mTheXML, xmlProc);
@@ -175,9 +175,9 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
     return NULL;
 }
 
-Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
+Process* ProcessSequenceProject::createParallellProcess(XMLElement* element)
 {
-    CombinedMove* p = new CombinedMove(element->Attribute("name"));
+    Parallell* p = new Parallell(element->Attribute("name"));
 
     //Read data
     XMLElement* proc = element->FirstChildElement("process");
@@ -298,7 +298,7 @@ Process* ProcessSequenceProject::createCombinedMoveProcess(XMLElement* element)
                 //We need to associate the motor with 'name' with a
                 //real motor object provided for by ArrayBot
                 absMove->assignUnit(mProcessSequence.getArrayBot());
-                p->addMove(absMove);
+                p->addProcess(absMove);
             }
 
             proc = proc->NextSiblingElement();

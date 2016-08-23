@@ -27,6 +27,7 @@ bool AbsoluteMove::isDone()
         {
         	return false;
         }
+
         //Also, if we did setoff a trigger, check on that and add that to the lifetime of
         //the process
 		if(mTrigger)
@@ -39,6 +40,7 @@ bool AbsoluteMove::isDone()
                 }
             }
         }
+
     	double p = o->getPosition();
     	return (isEqual(p, mPosition, mPositionResolution)) ? true : false;
     }

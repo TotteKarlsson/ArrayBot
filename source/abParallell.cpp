@@ -9,84 +9,84 @@ using namespace mtk;
 using namespace ab;
 
 //---------------------------------------------------------------------------
-CombinedMove::CombinedMove(const string& lbl)
+Parallell::Parallell(const string& lbl)
 :
 Process(lbl, NULL)
 {
-	mProcessType = ptCombinedMove;
+	mProcessType = ptParallell;
 }
 
-const string CombinedMove::getTypeName() const
+const string Parallell::getTypeName() const
 {
 	return "combinedMove";
 }
 
-void CombinedMove::init(ArrayBot& ab)
+void Parallell::init(ArrayBot& ab)
 {
 	Process::init(ab);
 
     //Call init for each sub move
-    for(int i = 0; i < mMoves.size(); i++)
+    for(int i = 0; i < mProcesses.size(); i++)
     {
-    	if(mMoves[i])
+    	if(mProcesses[i])
         {
-        	mMoves[i]->init(ab);
+        	mProcesses[i]->init(ab);
         }
     }
 }
 
-void CombinedMove::clear()
+void Parallell::clear()
 {
-	mMoves.clear();
+	mProcesses.clear();
 }
 
-void CombinedMove::addMove(Move* lm)
+void Parallell::addProcess(Process* lm)
 {
 	if(lm && lm->getProcessName() =="")
     {
-    	lm->setProcessName("Move " + mtk::toString((mMoves.size() + 1)));
+    	lm->setProcessName("Process " + mtk::toString((mProcesses.size() + 1)));
     }
 
     if(lm)
     {
-		mMoves.push_back(lm);
+		mProcesses.push_back(lm);
     }
 
 }
 
-bool CombinedMove::removeMove(const string& name)
+bool Parallell::removeProcess(const string& name)
 {
-	for(int i = 0; i < mMoves.size(); i++)
+	for(int i = 0; i < mProcesses.size(); i++)
     {
-    	if(mMoves[i]->getProcessName() == name)
+    	if(mProcesses[i]->getProcessName() == name)
         {
-        	Move* lm = (mMoves[i]);
-            mMoves.erase(mMoves.begin() + i);
+        	Process* lm = (mProcesses[i]);
+            mProcesses.erase(mProcesses.begin() + i);
         }
     }
     return true;
 }
 
-bool CombinedMove::removeMove(Move* m)
+bool Parallell::removeProcess(Process* m)
 {
 	return false;
 }
 
-Move* CombinedMove::getMove(int i)
+Process* Parallell::getProcess(int i)
 {
-	if(i < mMoves.size())
+	if(i < mProcesses.size())
     {
-    	return (mMoves[i]);
+    	return (mProcesses[i]);
     }
     return NULL;
 }
 
-Move*	CombinedMove::getMove(const string& lbl)
+Process*	Parallell::getProcess(const string& lbl)
 {
 	// look for item
-    for(int i = 0 ; i < mMoves.size(); i++)
+    for(int i = 0 ; i < mProcesses.size(); i++)
     {
-    	Move* mv = mMoves[i];
+    	Process* mv = mProcesses[i];
         if(mv->getProcessName() == lbl)
         {
         	return mv;
@@ -95,18 +95,18 @@ Move*	CombinedMove::getMove(const string& lbl)
     return NULL;
 }
 
-XMLElement* CombinedMove::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
+XMLElement* Parallell::addToXMLDocumentAsChildProcess(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
 {
-	for(int i = 0; i < mMoves.size(); i++)
+	for(int i = 0; i < mProcesses.size(); i++)
     {
-    	Move* lm = mMoves[i];
+    	Process* lm = mProcesses[i];
         lm->addToXMLDocumentAsChild(doc, docRoot);
     }
 
     return dynamic_cast<XMLElement*>(docRoot);
 }
 
-bool CombinedMove::isBeingProcessed()
+bool Parallell::isBeingProcessed()
 {
 	if(isDone())
     {
@@ -119,7 +119,7 @@ bool CombinedMove::isBeingProcessed()
     return mIsBeingProcessed;
 }
 
-bool CombinedMove::isProcessed()
+bool Parallell::isProcessed()
 {
     if(mIsProcessed == true)
     {
@@ -137,59 +137,59 @@ bool CombinedMove::isProcessed()
 	return false;
 }
 
-bool CombinedMove::isCommandPending()
+bool Parallell::isCommandPending()
 {
-	for(int i = 0; i < mMoves.size(); i++)
+	for(int i = 0; i < mProcesses.size(); i++)
     {
-    	if(mMoves[i]->isMotorCommandPending())
-        {
-        	return true;
-        }
+//    	if(mProcesses[i]->isMotorCommandPending())
+//        {
+//        	return true;
+//        }
     }
 
     return false;
 }
 
-bool CombinedMove::areMotorsActive()
+bool Parallell::areMotorsActive()
 {
-	for(int i = 0; i < mMoves.size(); i++)
+	for(int i = 0; i < mProcesses.size(); i++)
     {
-    	if(mMoves[i]->isMotorActive())
-        {
-        	return true;
-        }
+//    	if(mProcesses[i]->isMotorActive())
+//        {
+//        	return true;
+//        }
     }
 
     return false;
 }
 
-bool CombinedMove::start()
+bool Parallell::start()
 {
-	for(int i = 0; i < mMoves.size(); i++)
+	for(int i = 0; i < mProcesses.size(); i++)
     {
-    	mMoves[i]->start();
-        Log(lInfo) << "Started MoveProcess \"" << mMoves[i]->getProcessName()<<"\"";
+    	mProcesses[i]->start();
+        Log(lInfo) << "Started Process \"" << mProcesses[i]->getProcessName()<<"\"";
     }
 
 	return Process::start();
 }
 
-bool CombinedMove::stop()
+bool Parallell::stop()
 {
-	for(int i = 0; i < mMoves.size(); i++)
+	for(int i = 0; i < mProcesses.size(); i++)
     {
-    	mMoves[i]->stop();
+    	mProcesses[i]->stop();
     }
 
 	return Process::stop();
 }
 
-bool CombinedMove::isDone()
+bool Parallell::isDone()
 {
 	//Check all subprocesses here
-	for(int i = 0; i < mMoves.size(); i++)
+	for(int i = 0; i < mProcesses.size(); i++)
     {
-    	if(!mMoves[i]->isDone())
+    	if(!mProcesses[i]->isDone())
         {
         	return false;
         }
@@ -198,7 +198,7 @@ bool CombinedMove::isDone()
     return true;
 }
 
-bool CombinedMove::undo()
+bool Parallell::undo()
 {
 	return false;
 }
