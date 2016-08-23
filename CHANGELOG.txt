@@ -1,3 +1,17 @@
+Release 0.7.8 (Aug 23)
+=======================
+* Implemented ability to step trough a sequence of processes
+* Allowed a process to trigger its own device..
+* Renamed CombinedMoveFrame to ParallellProcessFrame
+* Renamed class Parallell to ParallellProcess
+* Major redesign of how Process sequences are implemented in the UI
+* Added a vcl utils unit
+* Added ArrayBot package
+* Restructuring/simplifying
+* Added an ArrayBot Resource DLL, to hold sound and other resources
+* Added DirectSound class to ArrayBot
+* Adding sound support using DirectX
+
 Release 0.7.7 (Aug 19)
 =======================
 * Added positional limits to all motors, causing them to stop
