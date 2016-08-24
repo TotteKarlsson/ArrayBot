@@ -17,15 +17,9 @@ class PACKAGE TXYZUnitFrame : public TFrame
 {
     __published:
         TGroupBox 		*mainGB;
-        TScrollBox 		*ScrollBox1;
 
     private:
         XYZUnit*			    mUnit;
-//        TMotorFrame*		    mXMotorFrame;
-//        TMotorFrame*		    mYMotorFrame;
-//        TMotorFrame*		    mZMotorFrame;
-//        TMotorFrame*		    mZ2MotorFrame;
-//        TMotorFrame*		    mAngleMotorFrame;
 		static int				mFrameNr;
 
     public:

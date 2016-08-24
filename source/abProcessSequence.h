@@ -28,7 +28,9 @@ class AB_CORE ProcessSequence : public ABObject
 
                                             //!Init the sequence brings all processes into their
                                             //!initial state. Required if a sequence is to be rerun
+                                            //!init and reset are synonomous
 		void								init();
+
 		void					            clear();
         string								getName(){return mProject.getProjectName();}
 
@@ -47,6 +49,7 @@ class AB_CORE ProcessSequence : public ABObject
         Process*                          	getNext() const;
         Process*                          	getPrevious() const;
         Process*                          	getCurrent() const;
+        bool								gotoProcess(Process* p);
 
         void								setProjectName(const string& name);
         void								setFileFolder(const string& f);

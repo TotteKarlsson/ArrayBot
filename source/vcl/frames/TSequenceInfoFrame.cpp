@@ -26,8 +26,8 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(TComponent* Owner)
     mSequence(NULL),
     mAB(NULL)
 {
-	mCombinedMoveFrame = new TParallellProcessesFrame(Owner);
-    mCombinedMoveFrame->Visible = false;
+	mParallellProcessesFrame = new TParallellProcessesFrame(Owner);
+    mParallellProcessesFrame->Visible = false;
 }
 
 void TSequenceInfoFrame::assignArrayBot(ArrayBot* ab)
@@ -47,7 +47,7 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TPanel* processPanel)
     if(processPanel)
     {
     	mProcessPanel = processPanel;
-		mCombinedMoveFrame->Parent 	= mProcessPanel;
+		mParallellProcessesFrame->Parent 	= mProcessPanel;
     }
 
     mProcessesLB->Clear();
@@ -86,7 +86,7 @@ void __fastcall TSequenceInfoFrame::mMoveSequenceUpBtnClick(TObject *Sender)
 		populate(mSequence);
 
         //Select process
-        selectAndClickListBoxItem((TObject*) p, mProcessesLB);
+        selectAndClickListBoxItem(mProcessesLB, (TObject*) p);
     }
 }
 
@@ -105,7 +105,7 @@ void __fastcall TSequenceInfoFrame::mMoveSequenceDownBtnClick(TObject *Sender)
 		populate(mSequence);
 
         //Select process
-        selectAndClickListBoxItem((TObject*) p, mProcessesLB);
+        selectAndClickListBoxItem(mProcessesLB, (TObject*) p);
     }
 }
 
@@ -162,33 +162,22 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
     if(p)
     {
     	ParallellProcess* cm = dynamic_cast<ParallellProcess*>(p);
-//    	TimeDelay* td= dynamic_cast<TimeDelay*>(p);
+
         if(cm)
         {
-//            mTimeDelayFrame->Visible = false;
             if(mAB)
     		{
-            	mCombinedMoveFrame->populate(*mAB, cm);
+            	mParallellProcessesFrame->populate(*mAB, cm);
+                mParallellProcessesFrame->mSubProcessesLB->ItemIndex = 0;
+                mParallellProcessesFrame->mSubProcessesLB->OnClick(NULL);
             }
-			mCombinedMoveFrame->Visible = true;
-            mCombinedMoveFrame->Align = alClient;
+			mParallellProcessesFrame->Visible = true;
+            mParallellProcessesFrame->Align = alClient;
         }
-//        else if(td)
-//        {
-//			mCombinedMoveFrame->Visible = false;
-//            if(mAB)
-//    		{
-//	            mTimeDelayFrame->populate(*mAB, td);
-//            }
-//
-//            mTimeDelayFrame->Visible = true;
-//            mTimeDelayFrame->Align = alClient;
-//        }
     }
     else
     {
-//        mTimeDelayFrame->Visible = false;
-		mCombinedMoveFrame->Visible = false;
+		mParallellProcessesFrame->Visible = false;
     }
 }
 
@@ -223,29 +212,8 @@ void __fastcall TSequenceInfoFrame::AddCombinedMoveAExecute(TObject *Sender)
 
     //Update LB
     mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
-	selectAndClickListBoxItem((TObject*) p, mProcessesLB);
+	selectAndClickListBoxItem(mProcessesLB, (TObject*) p);
 }
-
-////---------------------------------------------------------------------------
-//void __fastcall TSequenceInfoFrame::AddTimeDelayProcessAExecute(TObject *Sender)
-//{
-////	if(!mSequence)
-////    {
-////    	Log(lError) << "Tried to add process to NULL sequence";
-////    	return;
-////    }
-////
-////    int nr  = mSequence->getNumberOfProcesses() + 1;
-////
-////	//Create and add a process to the sequence
-////	Process *p = new TimeDelay("Process " + mtk::toString(nr), Poco::Timespan(1000*Poco::Timespan::MILLISECONDS));
-////   	mSequence->add(p);
-////    mSequence->write();
-////
-////    //Update LB
-////    int indx = mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
-////	selectAndClickListBoxItem((TObject*) p, mProcessesLB);
-//}
 
 void TSequenceInfoFrame::updateSequenceArrows()
 {
@@ -276,30 +244,3 @@ void TSequenceInfoFrame::updateSequenceArrows()
 		mMoveSequenceDownBtn->Enabled 	= true;
     }
 }
-
-////---------------------------------------------------------------------------
-//void __fastcall TSequenceInfoFrame::SequenceNameEKeyDown(TObject *Sender, WORD &Key,
-//          TShiftState Shift)
-//{
-//	//Update any info..
-//	if(Key == vkReturn && mSequence != NULL)
-//    {
-//    	//Change name of sequence in CB
-//        mSequence->setProjectName(mSequenceNameE->getValue());
-//        mSequence->write();
-//    }
-//}
-//
-////---------------------------------------------------------------------------
-//void __fastcall TSequenceInfoFrame::mSequenceNameEKeyPress(TObject *Sender, System::WideChar &Key)
-//{
-//	//Update any info..
-//	if(Key == vkReturn && mSequence != NULL)
-//    {
-//    	//Change name of sequence in CB
-//        mSequence->setProjectName(mSequenceNameE->getValue());
-//        mSequence->write();
-//    }
-//}
-//
-

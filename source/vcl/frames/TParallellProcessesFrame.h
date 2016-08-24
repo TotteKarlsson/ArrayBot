@@ -20,7 +20,7 @@ class XYZUnit;
 class PACKAGE TParallellProcessesFrame : public TFrame
 {
 __published:	// IDE-managed Components
-	TListBox *mMoveLB;
+	TListBox *mSubProcessesLB;
 	TButton *Button1;
 	TButton *Button2;
 	TGroupBox *GroupBox1;
@@ -31,10 +31,13 @@ __published:	// IDE-managed Components
 	TSTDStringLabeledEdit *mProcessNameE;
 	TGroupBox *GroupBox2;
 	TMotorMoveProcessFrame *TMotorMoveProcessFrame1;
+	TButton *Button3;
+	TAction *mUpdateFinalPositionsA;
 	void __fastcall addMoveAExecute(TObject *Sender);
-	void __fastcall mMoveLBClick(TObject *Sender);
+	void __fastcall mSubProcessesLBClick(TObject *Sender);
 	void __fastcall removeMoveAExecute(TObject *Sender);
 	void __fastcall mProcessNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mUpdateFinalPositionsAExecute(TObject *Sender);
 
     private:	// User declarations
 		ArrayBot*						mAB;

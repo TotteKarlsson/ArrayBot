@@ -11,6 +11,7 @@ USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 USEFORM("frames\TParallellProcessesFrame.cpp", ParallellProcessesFrame);
 USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 USEFORM("frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("frames\TSequenceInfoFrame.cpp", SequenceInfoFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 //---------------------------------------------------------------------------

@@ -35,16 +35,13 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	void __fastcall mMoveSequenceDownBtnClick(TObject *Sender);
 	void __fastcall mProcessesLBClick(TObject *Sender);
 	void __fastcall AddCombinedMoveAExecute(TObject *Sender);
-//	void __fastcall SequenceNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-//	void __fastcall mSequenceNameEKeyPress(TObject *Sender, System::WideChar &Key);
-
 
     private:	// User declarations
 		ProcessSequence*		        mSequence;
         string					        mSequencesFolder;
         ArrayBot*				        mAB;
         TPanel*					        mProcessPanel;
-        TParallellProcessesFrame*		mCombinedMoveFrame;
+        TParallellProcessesFrame*		mParallellProcessesFrame;
 
 		void		__fastcall  empty();
         void					disableEnableButtons(bool enabled);

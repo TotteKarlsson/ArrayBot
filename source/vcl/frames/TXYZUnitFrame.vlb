@@ -1,9 +1,6 @@
-﻿[ScrollBox1]
-Coordinates=53,70,68,33
-
-[mainGB]
+﻿[mainGB]
 Coordinates=0,0,53,51
 
 []
-Coordinates=72,1,60,51
+Coordinates=53,70,68,33
 

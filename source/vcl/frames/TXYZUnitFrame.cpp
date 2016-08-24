@@ -20,10 +20,6 @@ int TXYZUnitFrame::mFrameNr = 0;
 __fastcall TXYZUnitFrame::TXYZUnitFrame(TComponent* Owner)
 	: TFrame(Owner),
     mUnit(NULL)
-//    mXMotorFrame(NULL),
-//    mYMotorFrame(NULL),
-//    mZMotorFrame(NULL),
-//    mAngleMotorFrame(NULL)
 {
     TFrame::Name = vclstr("XYZUnitFrame_" + mtk::toString(++mFrameNr));
 }
@@ -42,7 +38,7 @@ void TXYZUnitFrame::assignUnit(XYZUnit* u)
         for(int i = 0; i < mtrs.size(); i++)
         {
             TMotorFrame* f = new TMotorFrame(mtrs[i]->getSerial(), this);
-            f->SetParentComponent(ScrollBox1);
+            f->SetParentComponent(this);
             f->Align = alLeft;
             f->assignMotor(mtrs[i]);
             mFrames.push_back(f);
@@ -56,26 +52,6 @@ void TXYZUnitFrame::disable()
     {
 		mFrames[i]->mMotorStatusTimer->Enabled = false;
     }
-
-//	if(mXMotorFrame)
-//    {
-//    	mXMotorFrame->mMotorStatusTimer->Enabled = false;
-//    }
-//
-//	if(mYMotorFrame)
-//    {
-//    	mYMotorFrame->mMotorStatusTimer->Enabled = false;
-//    }
-//
-//	if(mZMotorFrame)
-//    {
-//    	mZMotorFrame->mMotorStatusTimer->Enabled = false;
-//    }
-//
-//	if(mAngleMotorFrame)
-//    {
-//    	mAngleMotorFrame->mMotorStatusTimer->Enabled = false;
-//    }
 }
 
 

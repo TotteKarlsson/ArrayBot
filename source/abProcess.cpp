@@ -35,10 +35,10 @@ bool Process::start()
 
 void Process::init(ArrayBot& ab)
 {
-	mIsBeingProcessed =  false;
-    mIsProcessed = false;
-    mIsStarted = false;
-    mEndTime = mStartTime;
+	mIsBeingProcessed 	=  false;
+    mIsProcessed 		= false;
+    mIsStarted 			= false;
+    mEndTime 			= mStartTime;
 }
 
 bool Process::stop()

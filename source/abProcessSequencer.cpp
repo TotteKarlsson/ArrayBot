@@ -46,6 +46,17 @@ void ProcessSequencer::start(bool autoExecute)
     }
 }
 
+bool ProcessSequencer::reset()
+{
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
+    {
+    	return false;
+    }
+	s->init();
+    return true;
+}
+
 bool ProcessSequencer::continueExecution()
 {
  	ProcessSequence* s = mSequences.getCurrent();

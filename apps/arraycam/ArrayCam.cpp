@@ -7,6 +7,8 @@
 #include "mtkWin32Utils.h"
 #include "mtkLogger.h"
 
+#include <Vcl.Styles.hpp>
+#include <Vcl.Themes.hpp>
 using std::string;
 using namespace mtk;
 
@@ -26,6 +28,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 		setupLogging();
+		TStyleManager::TrySetStyle("Sapphire Kamri");
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->Run();
 	}

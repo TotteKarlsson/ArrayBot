@@ -18,16 +18,14 @@ object ParallellProcessesFrame: TParallellProcessesFrame
     Align = alClient
     Caption = 'Sub Processes'
     TabOrder = 0
-    ExplicitHeight = 526
     object GroupBox1: TGroupBox
       Left = 2
-      Top = 109
+      Top = 113
       Width = 145
-      Height = 420
+      Height = 416
       Align = alLeft
       Caption = 'Processes'
       TabOrder = 0
-      ExplicitHeight = 415
       object Button1: TButton
         Left = 13
         Top = 182
@@ -44,28 +42,28 @@ object ParallellProcessesFrame: TParallellProcessesFrame
         Action = removeMoveA
         TabOrder = 1
       end
-      object mMoveLB: TListBox
+      object mSubProcessesLB: TListBox
         Left = 13
         Top = 32
         Width = 118
         Height = 139
         ItemHeight = 23
         TabOrder = 2
-        OnClick = mMoveLBClick
+        OnClick = mSubProcessesLBClick
       end
     end
     object Panel1: TPanel
       Left = 2
       Top = 25
       Width = 719
-      Height = 84
+      Height = 88
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
       object mProcessNameE: TSTDStringLabeledEdit
         Left = 13
         Top = 35
-        Width = 197
+        Width = 356
         Height = 31
         EditLabel.Width = 49
         EditLabel.Height = 23
@@ -73,12 +71,20 @@ object ParallellProcessesFrame: TParallellProcessesFrame
         TabOrder = 0
         OnKeyDown = mProcessNameEKeyDown
       end
+      object Button3: TButton
+        Left = 385
+        Top = 15
+        Width = 202
+        Height = 72
+        Action = mUpdateFinalPositionsA
+        TabOrder = 1
+      end
     end
     inline TMotorMoveProcessFrame1: TMotorMoveProcessFrame
       Left = 147
-      Top = 109
+      Top = 113
       Width = 574
-      Height = 420
+      Height = 416
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -88,9 +94,9 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       ParentFont = False
       TabOrder = 2
       ExplicitLeft = 147
-      ExplicitTop = 109
+      ExplicitTop = 113
       ExplicitWidth = 574
-      ExplicitHeight = 415
+      ExplicitHeight = 416
       inherited MainGB: TGroupBox
         Width = 574
         Height = 171
@@ -100,15 +106,9 @@ object ParallellProcessesFrame: TParallellProcessesFrame
           TabOrder = 1
         end
         inherited mMaxVelE: TFloatLabeledEdit
-          EditLabel.ExplicitLeft = 0
-          EditLabel.ExplicitTop = -26
-          EditLabel.ExplicitWidth = 86
           TabOrder = 2
         end
         inherited mAccE: TFloatLabeledEdit
-          EditLabel.ExplicitLeft = 0
-          EditLabel.ExplicitTop = -26
-          EditLabel.ExplicitWidth = 56
           TabOrder = 3
         end
         inherited MotorsCB: TComboBox
@@ -116,32 +116,32 @@ object ParallellProcessesFrame: TParallellProcessesFrame
         end
         inherited mAddTriggerBtn: TButton
           Left = 360
-          Top = 49
-          Height = 108
           ExplicitLeft = 360
-          ExplicitTop = 49
-          ExplicitHeight = 108
         end
       end
       inherited mTriggerPanel: TPanel
         Top = 171
         Width = 574
-        Height = 249
+        Height = 245
+        ExplicitTop = 171
+        ExplicitWidth = 574
+        ExplicitHeight = 245
         inherited GroupBox1: TGroupBox
           Width = 160
-          Height = 247
+          Height = 243
           ExplicitWidth = 160
-          ExplicitHeight = 247
+          ExplicitHeight = 243
           inherited mTriggersLB: TListBox
             Width = 156
-            Height = 160
+            Height = 156
+            ExplicitWidth = 156
+            ExplicitHeight = 156
           end
           inherited Panel1: TPanel
-            Top = 185
+            Top = 181
             Width = 156
-            ExplicitLeft = 2
-            ExplicitTop = 22
-            ExplicitWidth = 196
+            ExplicitTop = 181
+            ExplicitWidth = 156
           end
         end
       end
@@ -157,6 +157,10 @@ object ParallellProcessesFrame: TParallellProcessesFrame
     object removeMoveA: TAction
       Caption = 'Remove'
       OnExecute = removeMoveAExecute
+    end
+    object mUpdateFinalPositionsA: TAction
+      Caption = 'Update Final Positions'
+      OnExecute = mUpdateFinalPositionsAExecute
     end
   end
 end

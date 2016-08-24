@@ -111,7 +111,6 @@ void __fastcall TABProcessSequencerFrame::refreshSequencesCB()
     	mSequencesCB->Items->Add(s->getName().c_str());
         s = seqs.getNext();
     }
-//    mProcessesLB->Clear();
 }
 
 //---------------------------------------------------------------------------
@@ -157,15 +156,25 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
     	//Save current sequence
        	saveSequence();
         mAB.disableJoyStickAxes();
-
     	mProcessSequencer.start(mContinousExecutionCB->Checked);
 		mSequenceStatusTimer->Enabled = true;
+        string pName = mProcessSequencer.getCurrentProcessName();
+        selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
     }
     else if(mStartBtn->Caption == "Continue")
     {
         if(mProcessSequencer.forward())
         {
+        	string pName = mProcessSequencer.getCurrentProcessName();
+            selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
     		mProcessSequencer.continueExecution();
+			mSequenceStatusTimer->Enabled = true;
+        }
+        else
+        {
+        	//Something bad is going on
+           	mProcessSequencer.stop();
+			mProcessSequencer.reset();
 			mSequenceStatusTimer->Enabled = true;
         }
     }
@@ -212,34 +221,12 @@ void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
             {
 		    	mStartBtn->Caption = "Start";
             }
-
-
         }
         else
         {
 	    	mStartBtn->Caption = "Start";
         }
     }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::addCombinedMovesProcessAExecute(TObject *Sender)
-{
-	ProcessSequence* s = mProcessSequencer.getCurrentSequence();
-	if(!s)
-    {
-    	Log(lError) << "Tried to add process to NULL sequence";
-    	return;
-    }
-
-    int nr  = s->getNumberOfProcesses() + 1;
-
-	//Create and add a process to the sequence
-	Process *p = new ParallellProcess("Process " + mtk::toString(nr));
-   	s->add(p);
-
-    //Update LB
-//    mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
 }
 
 //---------------------------------------------------------------------------
@@ -262,4 +249,13 @@ void __fastcall TABProcessSequencerFrame::mSequenceNameEKeyDown(TObject *Sender,
             Log(lDebug)<<"Sending sequencer update was unsuccesful";
         }
     }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TABProcessSequencerFrame::mRewindButtonClick(TObject *Sender)
+{
+	mProcessSequencer.stop();
+    mProcessSequencer.reset();
+	mSequenceStatusTimer->Enabled = false;
+	mStartBtn->Caption = "Start";
 }

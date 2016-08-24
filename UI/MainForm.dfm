@@ -6,6 +6,8 @@ object Main: TMain
   ClientHeight = 919
   ClientWidth = 1103
   Color = clBtnFace
+  Constraints.MinHeight = 900
+  Constraints.MinWidth = 1100
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -85,7 +87,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = mMoveSequencesPage
+      ActivePage = TabSheet1
       Align = alClient
       TabHeight = 60
       TabOrder = 0

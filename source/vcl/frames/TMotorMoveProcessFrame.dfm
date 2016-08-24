@@ -1,8 +1,8 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 531
-  Height = 583
+  Width = 451
+  Height = 304
   Align = alClient
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,12 +11,10 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  ExplicitWidth = 451
-  ExplicitHeight = 304
   object MainGB: TGroupBox
     Left = 0
     Top = 0
-    Width = 531
+    Width = 451
     Height = 177
     Align = alTop
     Caption = 'MotorMove Process'
@@ -85,19 +83,15 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   object mTriggerPanel: TPanel
     Left = 0
     Top = 177
-    Width = 531
-    Height = 406
+    Width = 451
+    Height = 127
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 136
-    ExplicitTop = 262
-    ExplicitWidth = 369
-    ExplicitHeight = 299
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 200
-      Height = 404
+      Height = 125
       Align = alLeft
       Caption = 'Triggers'
       TabOrder = 0
@@ -105,26 +99,19 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         Left = 2
         Top = 25
         Width = 196
-        Height = 317
+        Height = 38
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
         OnClick = TriggersLBClick
-        ExplicitLeft = 3
-        ExplicitTop = 67
-        ExplicitWidth = 183
-        ExplicitHeight = 150
       end
       object Panel1: TPanel
         Left = 2
-        Top = 342
+        Top = 63
         Width = 196
         Height = 60
         Align = alBottom
         TabOrder = 1
-        ExplicitLeft = 1
-        ExplicitTop = 238
-        ExplicitWidth = 367
         object mDeleteTriggerB: TButton
           Left = 1
           Top = 1

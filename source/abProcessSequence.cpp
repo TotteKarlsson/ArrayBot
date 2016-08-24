@@ -33,6 +33,7 @@ void ProcessSequence::clear()
 	mProcesses.clear();
 }
 
+//Loop trough each process and "init" it.
 void ProcessSequence::init()
 {
     Process* process = getFirst();
@@ -43,7 +44,6 @@ void ProcessSequence::init()
         process = getNext();
     }
 }
-
 
 bool ProcessSequence::moveForward(Process* ps)
 {
@@ -66,7 +66,6 @@ bool ProcessSequence::moveBack(Process* ps)
     list<Process*>::iterator it1 = find(mProcesses.begin(), mProcesses.end(), ps);
     list<Process*>::iterator it2 = it1;
     it2--;
-
     if(it1 != mProcesses.begin() || it2 != mProcesses.begin())
     {
         swap(*it1, *it2);
@@ -132,7 +131,26 @@ bool ProcessSequence::write(const string& folder)
     {
         mProject.setFileName(mProject.getProjectName() + ".abp");
     }
-    return mProject.save();
+    //We need to preserve the current process iterator in the sequence
+    list<Process*>::iterator savedIter = mProcessIter;
+
+    bool saveRes = mProject.save();
+    gotoProcess(*(savedIter));
+    return saveRes;
+}
+
+bool ProcessSequence::gotoProcess(Process* p)
+{
+	Process* test = getFirst();
+    while(test)
+    {
+    	if(test == p)
+        {
+        	return true;
+        }
+        test = getNext();
+    }
+    return false;
 }
 
 bool ProcessSequence::add(Process* pos)

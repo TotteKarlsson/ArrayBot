@@ -2,7 +2,7 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
   Left = 0
   Top = 0
   Width = 509
-  Height = 442
+  Height = 365
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -14,23 +14,22 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
     Left = 0
     Top = 0
     Width = 509
-    Height = 442
+    Height = 365
     Align = alClient
     BiDiMode = bdLeftToRight
     Caption = 'Positional Trigger'
     ParentBiDiMode = False
     TabOrder = 0
-    ExplicitHeight = 329
+    ExplicitHeight = 442
     object GroupBox3: TGroupBox
       Left = 2
-      Top = 201
+      Top = 129
       Width = 505
-      Height = 239
+      Height = 234
       Align = alClient
       Caption = 'Device to Trigger'
       TabOrder = 1
-      ExplicitTop = 217
-      ExplicitHeight = 223
+      ExplicitHeight = 311
       object GroupBox2: TGroupBox
         Left = 2
         Top = 56
@@ -85,16 +84,13 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
         TabOrder = 0
         Text = 'ComboBox1'
         OnChange = mDevicesCBChange
-        ExplicitLeft = 15
-        ExplicitTop = 51
-        ExplicitWidth = 313
       end
     end
     object GroupBox4: TGroupBox
       Left = 2
       Top = 25
       Width = 505
-      Height = 176
+      Height = 104
       Align = alTop
       BiDiMode = bdLeftToRight
       Caption = 'Condition'
@@ -113,8 +109,8 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
         OnKeyDown = mPositionEKeyDown
       end
       object mOpRG: TRadioGroup
-        Left = 15
-        Top = 96
+        Left = 147
+        Top = 25
         Width = 266
         Height = 65
         Caption = 'Operator'

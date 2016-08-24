@@ -57,6 +57,16 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Caption = 'Continous'
       TabOrder = 2
     end
+    object mRewindButton: TButton
+      Left = 464
+      Top = 1
+      Width = 120
+      Height = 93
+      Align = alRight
+      Caption = 'Reset'
+      TabOrder = 3
+      OnClick = mRewindButtonClick
+    end
   end
   object mMainPanel: TPanel
     Left = 0
@@ -179,7 +189,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Top = 40
     object addCombinedMovesProcessA: TAction
       Caption = 'Add Combined Move'
-      OnExecute = addCombinedMovesProcessAExecute
     end
     object addTimeDelayProcess: TAction
       Caption = 'Add TimeDelay'

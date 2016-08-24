@@ -9,6 +9,7 @@
 #include "abArrayBot.h"
 #include "abAPTMotor.h"
 #include "abAbsoluteMove.h"
+#include "abVCLUtils.h"
 
 #pragma package(smart_init)
 #pragma link "TMotorMoveProcessFrame"
@@ -21,8 +22,7 @@ TParallellProcessesFrame *ParallellProcessesFrame;
 //---------------------------------------------------------------------------
 __fastcall TParallellProcessesFrame::TParallellProcessesFrame(TComponent* Owner)
 	: TFrame(Owner)
-{
-}
+{}
 
 void TParallellProcessesFrame::populate(ArrayBot& ab, Process* p)
 {
@@ -30,31 +30,41 @@ void TParallellProcessesFrame::populate(ArrayBot& ab, Process* p)
 	rePopulate(p);
 }
 
-void TParallellProcessesFrame::rePopulate(Process* p)
+void TParallellProcessesFrame::rePopulate(Process* pp)
 {
-	mMoveLB->Clear();
-
-	//Populate, update frame with data from process
-    mParallell = dynamic_cast<ParallellProcess*>(p);
-    if(!p)
+	mSubProcessesLB->Clear();
+    if(!pp)
     {
     	EnableDisableFrame(this, false);
         return;
     }
 
+	//Populate, update frame with data from process
+    mParallell = dynamic_cast<ParallellProcess*>(pp);
+
 	mProcessNameE->setValue(mParallell->getProcessName());
+
     //Fill out the listbox with moves
     for(int i = 0; i < mParallell->getNumberOfProcesses(); i++)
     {
-    	Process* mv = mParallell->getProcess(i);
-        if(mv)
+    	Process* p = mParallell->getProcess(i);
+        if(p)
         {
-        	mMoveLB->Items->Add(vclstr(mv->getProcessName()));
+        	mSubProcessesLB->Items->Add(vclstr(p->getProcessName()));
         }
     }
 
   	EnableDisableFrame(this, true);
-   	EnableDisableFrame(this->TMotorMoveProcessFrame1, false);
+
+    if(mSubProcessesLB->Count)
+    {
+	    selectAndClickListBoxItem(mSubProcessesLB, 0);
+   		EnableDisableFrame(this->TMotorMoveProcessFrame1, true);
+    }
+    else
+    {
+		this->TMotorMoveProcessFrame1->Visible = false;
+    }
 }
 
 void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
@@ -72,8 +82,8 @@ void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
     mParallell->addProcess(lm);
 
     //Add move to Listbox
-    int indx = mMoveLB->Items->Add(lm->getProcessName().c_str());
-	mMoveLB->ItemIndex = indx;
+    int indx = mSubProcessesLB->Items->Add(lm->getProcessName().c_str());
+	mSubProcessesLB->ItemIndex = indx;
 
 	//Select the new process
     selectItem(lm);
@@ -83,10 +93,10 @@ void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
 void __fastcall TParallellProcessesFrame::removeMoveAExecute(TObject *Sender)
 {
 	//Get selected move
-    int index = mMoveLB->ItemIndex;
+    int index = mSubProcessesLB->ItemIndex;
     if(index != -1)
     {
-    	string moveName = stdstr(mMoveLB->Items->Strings[index]);
+    	string moveName = stdstr(mSubProcessesLB->Items->Strings[index]);
         mParallell->removeProcess(moveName);
 		rePopulate(mParallell);
     }
@@ -101,20 +111,18 @@ void TParallellProcessesFrame::selectItem(Process* mv)
     }
 }
 
-void __fastcall TParallellProcessesFrame::mMoveLBClick(TObject *Sender)
+void __fastcall TParallellProcessesFrame::mSubProcessesLBClick(TObject *Sender)
 {
-	if(mMoveLB->ItemIndex == -1 || mParallell == NULL)
+	if(mSubProcessesLB->ItemIndex == -1 || mParallell == NULL)
     {
     	return;
     }
 
 	//Get Current itemIndex, retrieve the move and populate the move frame
-	string moveName = stdstr(mMoveLB->Items->Strings[mMoveLB->ItemIndex]);
+	string moveName = stdstr(mSubProcessesLB->Items->Strings[mSubProcessesLB->ItemIndex]);
     Process* mv = mParallell->getProcess(moveName);
-
     selectItem(mv);
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TParallellProcessesFrame::mProcessNameEKeyDown(TObject *Sender, WORD &Key,
@@ -124,6 +132,59 @@ void __fastcall TParallellProcessesFrame::mProcessNameEKeyDown(TObject *Sender, 
     {
    		mParallell->setProcessName(mProcessNameE->getValue());
     }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject *Sender)
+{
+	//Populate, update frame with data from process
+    if(!mParallell)
+    {
+    	return;
+    }
+
+    if(mParallell->getNumberOfProcesses() == 0)
+    {
+    	MessageDlg("There are no moves to update", mtInformation, TMsgDlgButtons() << mbOK, 0);
+    }
+
+    //Fill out the listbox with moves
+    for(int i = 0; i < mParallell->getNumberOfProcesses(); i++)
+    {
+    	Process* p = mParallell->getProcess(i);
+        if(!p)
+        {
+        	continue;
+        }
+
+        //Check if the process is a move process, and if so check if we can
+        //update its final position
+        AbsoluteMove* am = dynamic_cast<AbsoluteMove*>(p);
+        if(am)
+        {
+            APTMotor* mtr = mAB->getMotorWithName(am->getMotorName());
+            if(mtr && am->getPosition() != mtr->getPosition())
+            {
+                stringstream msg;
+                msg <<
+                "Update final motor position for motor: "<<am->getMotorName() <<
+                "\n("<<am->getPosition()<<" -> "<< mtr->getPosition()<<")";
+
+                if(MessageDlg(vclstr(msg.str()), mtConfirmation, TMsgDlgButtons() << mbYes<<mbNo, 0) == mrYes)
+                {
+                	am->setPosition(mtr->getPosition());
+
+                    //Save updated sequence
+                    mAB->getProcessSequencer().saveCurrent();
+
+                }
+            }
+        }
+    }
+
+//    //Update UI
+//	rePopulate(mParallell);
+	selectAndClickListBoxItem(mSubProcessesLB, 0);
 }
 
 

@@ -37,6 +37,7 @@ class AB_CORE ProcessSequencer : public ABObject
 
 		void				                clear();
 		void		                        start(bool continous = true);
+		bool		                        reset();
 		bool								continueExecution();
 
 		bool		                        forward();
