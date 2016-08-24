@@ -96,9 +96,6 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <PackageImport Include="DuneComponents.bpi">
-            <BuildOrder>17</BuildOrder>
-        </PackageImport>
         <CppCompile Include="abVCLCore.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
@@ -109,6 +106,9 @@
             <DependentOn>abVCLUtils.h</DependentOn>
             <BuildOrder>14</BuildOrder>
         </CppCompile>
+        <PackageImport Include="DuneComponents.bpi">
+            <BuildOrder>17</BuildOrder>
+        </PackageImport>
         <CppCompile Include="forms\TamFileEditor.cpp">
             <Form>amFileEditor</Form>
             <DependentOn>forms\TamFileEditor.h</DependentOn>
@@ -193,18 +193,18 @@
         <PackageImport Include="vclx.bpi">
             <BuildOrder>19</BuildOrder>
         </PackageImport>
+        <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
+        <FormResources Include="frames\TXYZUnitFrame.dfm"/>
+        <FormResources Include="frames\TTimeDelayFrame.dfm"/>
+        <FormResources Include="frames\TSequenceInfoFrame.dfm"/>
         <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="frames\TRibbonLifterFrame.dfm"/>
-        <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
-        <FormResources Include="frames\TTimeDelayFrame.dfm"/>
-        <FormResources Include="frames\TXYZUnitFrame.dfm"/>
-        <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
         <FormResources Include="forms\TamFileEditor.dfm"/>
-        <FormResources Include="forms\TShowFileContentForm.dfm"/>
         <FormResources Include="frames\TParallellProcessesFrame.dfm"/>
+        <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
         <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="forms\TShowFileContentForm.dfm"/>
         <FormResources Include="frames\TMotorFrame.dfm"/>
-        <FormResources Include="frames\TSequenceInfoFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

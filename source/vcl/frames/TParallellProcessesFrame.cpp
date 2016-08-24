@@ -10,7 +10,8 @@
 #include "abAPTMotor.h"
 #include "abAbsoluteMove.h"
 #include "abVCLUtils.h"
-
+#include "mtkMathUtils.h"
+#include "abTriggerFunction.h"
 #pragma package(smart_init)
 #pragma link "TMotorMoveProcessFrame"
 #pragma link "TSTDStringLabeledEdit"
@@ -163,7 +164,7 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
         if(am)
         {
             APTMotor* mtr = mAB->getMotorWithName(am->getMotorName());
-            if(mtr && am->getPosition() != mtr->getPosition())
+            if(mtr && isEqual(am->getPosition(), mtr->getPosition(), 1.e-4) == false)
             {
                 stringstream msg;
                 msg <<
@@ -179,11 +180,37 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
 
                 }
             }
+
+            //Check if this move has a trigger
+            PositionalTrigger* pt = dynamic_cast<PositionalTrigger*>(am->getTrigger());
+            if(pt)
+            {
+            	//Get the trigger function
+                MoveAbsolute *fn = dynamic_cast<MoveAbsolute*>(pt->getTriggerFunction());
+            	APTMotor* mtr = dynamic_cast<APTMotor*>(pt->getSubject());
+                if(mtr && fn)
+                {
+                    if(mtr && isEqual(fn->getPosition(), mtr->getPosition(), 1.e-4) == false)
+                    {
+                        stringstream msg;
+                        msg <<
+                        "Update final TRIGGERED motor position for motor: "<<mtr->getName() <<
+                        "\n("<<fn->getPosition()<<" -> "<< mtr->getPosition()<<")";
+
+                        if(MessageDlg(vclstr(msg.str()), mtConfirmation, TMsgDlgButtons() << mbYes<<mbNo, 0) == mrYes)
+                        {
+                            fn->setPosition(mtr->getPosition());
+
+                            //Save updated sequence
+                            mAB->getProcessSequencer().saveCurrent();
+                        }
+                    }
+                }
+            }
         }
     }
 
-//    //Update UI
-//	rePopulate(mParallell);
+    //Update UI
 	selectAndClickListBoxItem(mSubProcessesLB, 0);
 }
 

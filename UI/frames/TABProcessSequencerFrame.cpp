@@ -157,6 +157,7 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
        	saveSequence();
         mAB.disableJoyStickAxes();
     	mProcessSequencer.start(mContinousExecutionCB->Checked);
+
 		mSequenceStatusTimer->Enabled = true;
         string pName = mProcessSequencer.getCurrentProcessName();
         selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
@@ -165,10 +166,11 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
     {
         if(mProcessSequencer.forward())
         {
+	        mAB.disableJoyStickAxes();
+    		mProcessSequencer.continueExecution();
+    		mSequenceStatusTimer->Enabled = true;
         	string pName = mProcessSequencer.getCurrentProcessName();
             selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
-    		mProcessSequencer.continueExecution();
-			mSequenceStatusTimer->Enabled = true;
         }
         else
         {
