@@ -78,14 +78,14 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     object mLeftPanel: TPanel
       Left = 1
       Top = 1
-      Width = 280
+      Width = 304
       Height = 528
       Align = alLeft
       TabOrder = 0
       object GroupBox2: TGroupBox
         Left = 1
         Top = 1
-        Width = 278
+        Width = 302
         Height = 128
         Align = alTop
         Caption = 'Sequence'
@@ -93,35 +93,35 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         TabOrder = 0
         object mAddSeqBtn: TButton
           Left = 13
-          Top = 70
-          Width = 53
+          Top = 78
+          Width = 80
           Height = 44
-          Caption = 'Add'
+          Caption = 'New'
           TabOrder = 0
           OnClick = mAddSeqBtnClick
         end
         object mDeleteSequenceBtn: TButton
-          Left = 72
-          Top = 70
-          Width = 74
+          Left = 205
+          Top = 78
+          Width = 80
           Height = 44
           Caption = 'Delete'
           TabOrder = 1
           OnClick = mDeleteSequenceBtnClick
         end
         object mSaveSequenceBtn: TButton
-          Left = 152
-          Top = 70
-          Width = 61
+          Left = 109
+          Top = 78
+          Width = 80
           Height = 44
           Caption = 'Save'
           TabOrder = 2
           OnClick = mSaveSequenceBtnClick
         end
         object mSequencesCB: TComboBox
-          Left = 13
+          Left = 15
           Top = 33
-          Width = 200
+          Width = 270
           Height = 31
           Style = csDropDownList
           ItemIndex = 0
@@ -135,7 +135,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       inline TSequenceInfoFrame1: TSequenceInfoFrame
         Left = 1
         Top = 129
-        Width = 278
+        Width = 302
         Height = 398
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -147,32 +147,31 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         TabOrder = 1
         ExplicitLeft = 1
         ExplicitTop = 129
-        ExplicitWidth = 278
+        ExplicitWidth = 302
         ExplicitHeight = 398
         inherited GroupBox1: TGroupBox
-          Width = 278
+          Width = 302
           Height = 398
-          ExplicitWidth = 278
+          ExplicitWidth = 302
           ExplicitHeight = 398
           inherited GroupBox3: TPanel
-            Width = 274
-            ExplicitTop = 25
-            ExplicitWidth = 274
+            Width = 298
+            ExplicitWidth = 298
             inherited mSequenceNameE: TSTDStringLabeledEdit
               OnKeyDown = mSequenceNameEKeyDown
             end
           end
           inherited GroupBox2: TGroupBox
-            Width = 274
-            ExplicitWidth = 274
+            Width = 298
+            ExplicitWidth = 298
           end
         end
       end
     end
     object mProcessPanel: TPanel
-      Left = 281
+      Left = 305
       Top = 1
-      Width = 719
+      Width = 695
       Height = 528
       Align = alClient
       TabOrder = 1

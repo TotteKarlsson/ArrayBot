@@ -27,7 +27,6 @@ object SequenceInfoFrame: TSequenceInfoFrame
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 0
-      ExplicitTop = 32
       object mSequenceNameE: TSTDStringLabeledEdit
         Left = 13
         Top = 24
@@ -50,7 +49,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
       Width = 260
       Height = 50
       Action = AddCombinedMoveA
-      Caption = 'New Process'
+      Caption = 'New'
       TabOrder = 1
     end
     object GroupBox2: TGroupBox

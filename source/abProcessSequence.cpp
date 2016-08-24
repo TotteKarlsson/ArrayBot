@@ -134,16 +134,21 @@ bool ProcessSequence::write(const string& folder)
         mProject.setFileName(mProject.getProjectName() + ".abp");
     }
 
+	bool saveRes(false);
     if(mProcessIter != mProcesses.begin())
     {
         //We need to preserve the current process iterator in the sequence
         list<Process*>::iterator savedIter = mProcessIter;
 
-        bool saveRes = mProject.save();
+        saveRes = mProject.save();
         gotoProcess(*(savedIter));
 	    return saveRes;
     }
-    return true;
+    else
+    {
+        saveRes = mProject.save();
+    }
+    return saveRes;
 }
 
 bool ProcessSequence::gotoProcess(Process* p)
