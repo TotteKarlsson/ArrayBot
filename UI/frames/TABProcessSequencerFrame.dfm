@@ -88,12 +88,12 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         Width = 278
         Height = 128
         Align = alTop
-        Caption = 'Sequences'
+        Caption = 'Sequence'
         Padding.Top = 10
         TabOrder = 0
         object mAddSeqBtn: TButton
           Left = 13
-          Top = 78
+          Top = 70
           Width = 53
           Height = 44
           Caption = 'Add'
@@ -102,7 +102,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object mDeleteSequenceBtn: TButton
           Left = 72
-          Top = 78
+          Top = 70
           Width = 74
           Height = 44
           Caption = 'Delete'
@@ -111,7 +111,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object mSaveSequenceBtn: TButton
           Left = 152
-          Top = 78
+          Top = 70
           Width = 61
           Height = 44
           Caption = 'Save'
@@ -120,7 +120,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object mSequencesCB: TComboBox
           Left = 13
-          Top = 41
+          Top = 33
           Width = 200
           Height = 31
           Style = csDropDownList
@@ -156,6 +156,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           ExplicitHeight = 398
           inherited GroupBox3: TPanel
             Width = 274
+            ExplicitTop = 25
             ExplicitWidth = 274
             inherited mSequenceNameE: TSTDStringLabeledEdit
               OnKeyDown = mSequenceNameEKeyDown

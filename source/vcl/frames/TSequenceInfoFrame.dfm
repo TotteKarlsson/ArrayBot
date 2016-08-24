@@ -16,21 +16,21 @@ object SequenceInfoFrame: TSequenceInfoFrame
     Width = 286
     Height = 448
     Align = alClient
-    Caption = 'Sequence'
     TabOrder = 0
     object GroupBox3: TPanel
       Left = 2
       Top = 25
       Width = 282
-      Height = 80
+      Height = 67
       Align = alTop
       BevelEdges = [beLeft, beRight, beBottom]
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 0
+      ExplicitTop = 32
       object mSequenceNameE: TSTDStringLabeledEdit
         Left = 13
-        Top = 37
+        Top = 24
         Width = 200
         Height = 31
         BevelEdges = [beLeft, beRight, beBottom]
@@ -50,15 +50,16 @@ object SequenceInfoFrame: TSequenceInfoFrame
       Width = 260
       Height = 50
       Action = AddCombinedMoveA
+      Caption = 'New Process'
       TabOrder = 1
     end
     object GroupBox2: TGroupBox
       Left = 2
-      Top = 105
+      Top = 92
       Width = 282
       Height = 155
       Align = alTop
-      Caption = 'Master Processes'
+      Caption = 'Processes'
       TabOrder = 2
       object mDeleteMoveBtn: TButton
         Left = 219

@@ -20,23 +20,21 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
     Caption = 'Positional Trigger'
     ParentBiDiMode = False
     TabOrder = 0
-    ExplicitHeight = 442
     object GroupBox3: TGroupBox
       Left = 2
       Top = 129
       Width = 505
       Height = 234
       Align = alClient
-      Caption = 'Device to Trigger'
+      Caption = 'Child Device'
       TabOrder = 1
-      ExplicitHeight = 311
       object GroupBox2: TGroupBox
         Left = 2
         Top = 56
         Width = 501
         Height = 169
         Align = alTop
-        Caption = 'Trigger Parameters'
+        Caption = 'Move Parameters'
         TabOrder = 1
         object mNewVelE: TFloatLabeledEdit
           Left = 7
@@ -93,7 +91,7 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
       Height = 104
       Align = alTop
       BiDiMode = bdLeftToRight
-      Caption = 'Condition'
+      Caption = 'Trigger Condition'
       ParentBiDiMode = False
       TabOrder = 0
       object mPositionE: TFloatLabeledEdit

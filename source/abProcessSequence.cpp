@@ -12,7 +12,9 @@ ProcessSequence::ProcessSequence(ArrayBot& ab, const string& name, const string&
 :
 mAB(ab),
 mProject(*this, fileExt)
-{}
+{
+	mProcessIter = mProcesses.begin();
+}
 
 ProcessSequence::~ProcessSequence()
 {}
@@ -131,12 +133,17 @@ bool ProcessSequence::write(const string& folder)
     {
         mProject.setFileName(mProject.getProjectName() + ".abp");
     }
-    //We need to preserve the current process iterator in the sequence
-    list<Process*>::iterator savedIter = mProcessIter;
 
-    bool saveRes = mProject.save();
-    gotoProcess(*(savedIter));
-    return saveRes;
+    if(mProcessIter != mProcesses.begin())
+    {
+        //We need to preserve the current process iterator in the sequence
+        list<Process*>::iterator savedIter = mProcessIter;
+
+        bool saveRes = mProject.save();
+        gotoProcess(*(savedIter));
+	    return saveRes;
+    }
+    return true;
 }
 
 bool ProcessSequence::gotoProcess(Process* p)

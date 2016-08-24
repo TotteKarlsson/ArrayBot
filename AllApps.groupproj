@@ -37,7 +37,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
-            <Dependencies/>
+            <Dependencies>source\abCore.cbproj;source\vcl\abVCLCore.cbproj;UI\lib\ArrayBotPackage.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -146,13 +146,13 @@
     <Target Name="arduino_controller:Make">
         <MSBuild Projects="apps\arduino_controller\arduino_controller.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBot">
+    <Target Name="ArrayBot" DependsOnTargets="abCore;abVCLCore;ArrayBotPackage">
         <MSBuild Projects="UI\ArrayBot.cbproj"/>
     </Target>
-    <Target Name="ArrayBot:Clean">
+    <Target Name="ArrayBot:Clean" DependsOnTargets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ArrayBot:Make">
+    <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">

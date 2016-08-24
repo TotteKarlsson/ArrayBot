@@ -39,7 +39,7 @@ void TPositionalTriggerFrame::rePopulate(Trigger* t)
     APTMotor* mtr = dynamic_cast<APTMotor*>(mTrigger->getSubject());
     if(mtr)
     {
-    	MainGB->Caption = "Trigger for: " + vclstr(mtr->getName());
+    	MainGB->Caption = "";//"Parent Device: " + vclstr(mtr->getName());
     }
 
     //Setup the position

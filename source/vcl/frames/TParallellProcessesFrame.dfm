@@ -16,7 +16,6 @@ object ParallellProcessesFrame: TParallellProcessesFrame
     Width = 723
     Height = 531
     Align = alClient
-    Caption = 'Sub Processes'
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 2
@@ -24,7 +23,7 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       Width = 145
       Height = 416
       Align = alLeft
-      Caption = 'Processes'
+      Caption = 'Actions'
       TabOrder = 0
       object Button1: TButton
         Left = 13
@@ -62,18 +61,18 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       TabOrder = 1
       object mProcessNameE: TSTDStringLabeledEdit
         Left = 13
-        Top = 35
+        Top = 32
         Width = 356
         Height = 31
-        EditLabel.Width = 49
+        EditLabel.Width = 117
         EditLabel.Height = 23
-        EditLabel.Caption = 'Name'
+        EditLabel.Caption = 'Process Name'
         TabOrder = 0
         OnKeyDown = mProcessNameEKeyDown
       end
       object Button3: TButton
-        Left = 385
-        Top = 15
+        Left = 505
+        Top = 10
         Width = 202
         Height = 72
         Action = mUpdateFinalPositionsA
@@ -116,7 +115,10 @@ object ParallellProcessesFrame: TParallellProcessesFrame
         end
         inherited mAddTriggerBtn: TButton
           Left = 360
+          Width = 201
+          Caption = 'Add Child Action'
           ExplicitLeft = 360
+          ExplicitWidth = 201
         end
       end
       inherited mTriggerPanel: TPanel

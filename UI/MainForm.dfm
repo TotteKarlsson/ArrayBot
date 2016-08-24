@@ -87,7 +87,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = TabSheet1
+      ActivePage = mMoveSequencesPage
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -350,7 +350,14 @@ object Main: TMain
           Top = 0
           Width = 910
           Height = 742
+          HorzScrollBar.Smooth = True
+          VertScrollBar.Tracking = True
           Align = alClient
+          BorderStyle = bsNone
+          Padding.Left = 20
+          Padding.Top = 20
+          Padding.Right = 20
+          Padding.Bottom = 20
           TabOrder = 0
         end
         object Panel1: TPanel
@@ -399,7 +406,7 @@ object Main: TMain
         end
       end
       object mMoveSequencesPage: TTabSheet
-        Caption = 'Move Sequences'
+        Caption = 'Sequences'
         ImageIndex = 4
       end
       object TabSheet2: TTabSheet
