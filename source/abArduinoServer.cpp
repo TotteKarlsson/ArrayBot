@@ -39,7 +39,6 @@ ArduinoServer::~ArduinoServer()
 void ArduinoServer::enableAutoPuff()
 {
 	mAutoPuff = true;
-
     stringstream msg;
     msg <<"AUTO_PUFF="<<toString(mAutoPuff);
    	updateClients(msg.str());
@@ -147,6 +146,11 @@ bool ArduinoServer::puff()
 	return mPufferArduino.send("p");
 }
 
+bool ArduinoServer::enablePuffer()
+{
+	return mPufferArduino.send("e");
+}
+
 bool ArduinoServer::turnLEDLightOn()
 {
 	return mSensorArduino.send(mLEDLightONLine);
@@ -197,8 +201,6 @@ bool ArduinoServer::toggleCoax()
     }
 }
 
-
-
 //Handle simple text messages over the socket
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
@@ -217,6 +219,11 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Resetting section counter";
         broadcastStatus();
     }
+    else if(compareStrings(msg, "ENABLE_PUFFER"))
+    {
+    	Log(lInfo) << "Enabling auto puffing";
+        enablePuffer();
+    }
     else if(compareStrings(msg, "ENABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Enabling auto puffing";
@@ -227,7 +234,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Disabling auto puffing";
         disableAutoPuff();
     }
-    else if(startsWith(msg, "PUFF_AFTER_SECTION_COUNT"))
+    else if(startsWith("PUFF_AFTER_SECTION_COUNT", msg))
     {
     	Log(lInfo) << "Setting puff after section count";
 		StringList l(msg,'=');
@@ -236,7 +243,12 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	setPuffAfterSectionCount(toInt(l[1]));
         }
     }
-    else if(startsWith(msg, "TOGGLE_LED_LIGHT"))
+    else if(startsWith("PUFF", msg))
+    {
+	    puff();
+    }
+
+    else if(startsWith("TOGGLE_LED_LIGHT", msg))
     {
     	Log(lInfo) << "Toggling LED on/off";
         toggleLED();
@@ -246,7 +258,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Toggling Coax on/off";
         toggleCoax();
     }
-    else if(startsWith(msg, "SET_FRONTLED"))
+    else if(startsWith("SET_FRONTLED", msg))
     {
         StringList sl(msg,'=');
         if(sl.size() == 2)
@@ -257,7 +269,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	mSensorArduino.send(s.str());
         }
     }
-    else if(startsWith(msg, "SET_BACKLED"))
+    else if(startsWith("SET_BACKLED", msg))
     {
         StringList sl(msg,'=');
         if(sl.size() == 2)
@@ -268,7 +280,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	mSensorArduino.send(s.str());
         }
     }
-    else if(startsWith(msg, "SET_COAX"))
+    else if(startsWith("SET_COAX", msg))
     {
         StringList sl(msg,'=');
         if(sl.size() == 2)
@@ -278,6 +290,10 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
 			Log(lInfo) << "Set COAX Light Intensity ("<<sl[1]<<")";
         	mSensorArduino.send(s.str());
         }
+    }
+    else
+    {
+    	Log(lError) << "UNHANDLED ARDUINO MESSAGE: "<<msg;
     }
 
     return msg.IsProcessed();

@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
+#pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 TMotorMoveProcessFrame *MotorMoveProcessFrame;
 
@@ -42,13 +43,13 @@ void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
 		mTriggersLB->Items->AddObject(mMove->getTrigger()->getTypeName().c_str(), (TObject*) mMove->getTrigger());
         mTriggersLB->ItemIndex = 0;
 		TriggersLBClick(NULL);
-        mAddTriggerBtn->Visible 	= true;
+        mAddTriggerBtn->Visible	= true;
 		mTriggerPanel->Visible 	= true;
     }
     else
     {
 	    mPosTriggerFrame->Visible 	= false;
-        mAddTriggerBtn->Visible 		= true;
+        mAddTriggerBtn->Visible   	= true;
 		mTriggerPanel->Visible 		= false;
     }
 }
@@ -62,6 +63,8 @@ void TMotorMoveProcessFrame::rePopulate(AbsoluteMove* m)
 
     mMove = m;
     MainGB->Caption = vclstr(mMove->getProcessName());
+    mMoveActionNameE->setValue(mMove->getProcessName());
+
 	mMovePosE->setValue(mMove->getPosition());
     mMaxVelE->setValue(mMove->getMaxVelocity());
     mAccE->setValue(mMove->getAcceleration());
@@ -190,5 +193,18 @@ void __fastcall TMotorMoveProcessFrame::AddTriggerBClick(TObject *Sender)
 	populate(mAB, mMove);
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMotorMoveProcessFrame::mMoveActionNameEKeyDown(TObject *Sender,
+          WORD &Key, TShiftState Shift)
+{
+    if(Key != vkReturn || mMove == NULL)
+    {
+    	return;
+    }
+
+    mMove->setProcessName(mMoveActionNameE->getValue());
+
+    //Update parent listbox
+}
 
 

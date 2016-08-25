@@ -54,6 +54,20 @@ void ArduinoClient::enableAutoPuff()
 	request(msg.str());
 }
 
+void ArduinoClient::enablePuffer()
+{
+	stringstream msg;
+    msg <<"ENABLE_PUFFER";
+	request(msg.str());
+}
+
+void ArduinoClient::puff()
+{
+	stringstream msg;
+    msg <<"PUFF";
+	request(msg.str());
+}
+
 void ArduinoClient::disableAutoPuff()
 {
 	stringstream msg;

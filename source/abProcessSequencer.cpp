@@ -86,6 +86,21 @@ bool ProcessSequencer::continueExecution()
     return true;
 }
 
+string ProcessSequencer:: getNextProcessName()
+{
+ 	ProcessSequence* s = mSequences.getCurrent();
+    if(!s)
+    {
+    	return false;
+    }
+
+    if(s->peekNext() != NULL)
+    {
+    	return s->peekNext()->getProcessName();
+    }
+    return gNoneString;
+}
+
 bool ProcessSequencer::isDone()
 {
  	ProcessSequence* s = mSequences.getCurrent();

@@ -42,7 +42,7 @@ class AB_CORE ProcessSequencer : public ABObject
 
 		bool		                        forward();
         bool								canContinue();
-
+		string								getNextProcessName();
 //        bool		                        reverse();
         void		                        stop();
         bool				                isRunning();

@@ -123,6 +123,9 @@ class TMain : public TRegistryForm
 	TButton *mASStartBtn;
 	TTabSheet *TabSheet3;
 	TAboutArrayBotFrame_2 *TAboutArrayBotFrame_21;
+	TGroupBox *GroupBox5;
+	TButton *mPuffBtn;
+	TButton *mEnablePuffBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);

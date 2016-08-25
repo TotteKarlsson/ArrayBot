@@ -10,7 +10,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  object GroupBox1: TGroupBox
+  object mMainGB: TGroupBox
     Left = 0
     Top = 0
     Width = 286
@@ -43,23 +43,14 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Value = '<none>'
       end
     end
-    object mAddMoveBtn: TButton
-      Left = 15
-      Top = 266
-      Width = 260
-      Height = 50
-      Action = AddCombinedMoveA
-      Caption = 'New'
-      TabOrder = 1
-    end
     object GroupBox2: TGroupBox
       Left = 2
       Top = 92
       Width = 282
-      Height = 155
+      Height = 237
       Align = alTop
       Caption = 'Processes'
-      TabOrder = 2
+      TabOrder = 1
       object mDeleteMoveBtn: TButton
         Left = 219
         Top = 26
@@ -95,6 +86,23 @@ object SequenceInfoFrame: TSequenceInfoFrame
         TabOrder = 3
         OnClick = mProcessesLBClick
       end
+      object mAddMoveBtn: TButton
+        Left = 13
+        Top = 168
+        Width = 200
+        Height = 50
+        Action = AddCombinedMoveA
+        Caption = 'New Process'
+        TabOrder = 4
+      end
+    end
+    object mUpdatePositionsBtn: TButton
+      Left = 25
+      Top = 346
+      Width = 228
+      Height = 72
+      TabOrder = 2
+      OnClick = mUpdatePositionsBtnClick
     end
   end
   object mSequenceAL: TActionList

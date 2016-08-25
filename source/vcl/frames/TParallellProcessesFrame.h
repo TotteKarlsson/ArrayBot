@@ -31,7 +31,6 @@ __published:	// IDE-managed Components
 	TSTDStringLabeledEdit *mProcessNameE;
 	TGroupBox *GroupBox2;
 	TMotorMoveProcessFrame *TMotorMoveProcessFrame1;
-	TButton *Button3;
 	TAction *mUpdateFinalPositionsA;
 	void __fastcall addMoveAExecute(TObject *Sender);
 	void __fastcall mSubProcessesLBClick(TObject *Sender);

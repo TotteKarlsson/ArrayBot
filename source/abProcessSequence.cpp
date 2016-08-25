@@ -186,16 +186,16 @@ bool ProcessSequence::remove(const string& lbl)
     return false;
 }
 
-bool ProcessSequence::peekNext()
+Process* ProcessSequence::peekNext()
 {
 	list<Process*>::iterator test = mProcessIter;
     test++;
 
     if(test != mProcesses.end())
     {
-    	return true;
+    	return *(test);
     }
-    return false;
+    return NULL;
 }
 
 Process* ProcessSequence::getFirst() const

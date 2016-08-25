@@ -87,7 +87,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = mMoveSequencesPage
+      ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -162,6 +162,33 @@ object Main: TMain
               Caption = 'Enabled'
               TabOrder = 1
               OnClick = mAutoPuffCBClick
+            end
+          end
+          object GroupBox5: TGroupBox
+            Left = 573
+            Top = 1
+            Width = 314
+            Height = 165
+            Align = alLeft
+            Caption = 'Misc. Puffer'
+            TabOrder = 2
+            object mPuffBtn: TButton
+              Left = 24
+              Top = 43
+              Width = 100
+              Height = 75
+              Caption = 'Puff'
+              TabOrder = 0
+              OnClick = mResetCountBtnClick
+            end
+            object mEnablePuffBtn: TButton
+              Left = 151
+              Top = 43
+              Width = 150
+              Height = 75
+              Caption = 'Enable Puffer'
+              TabOrder = 1
+              OnClick = mResetCountBtnClick
             end
           end
         end

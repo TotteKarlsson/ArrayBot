@@ -10,14 +10,11 @@ Coordinates=151,232,64,51
 [mSequencesCB]
 Coordinates=337,71,92,87
 
-[mSaveSequenceBtn]
-Coordinates=476,1,113,51
-
 [mStatusLbl]
 Coordinates=288,321,70,51
 
 []
-Coordinates=330,1,97,51
+Coordinates=476,1,113,51
 
 [TMotorMoveProcessFrame1.mAccE]
 Coordinates=467,177,190,51

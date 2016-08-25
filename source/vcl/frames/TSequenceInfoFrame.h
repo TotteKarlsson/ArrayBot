@@ -18,7 +18,7 @@ class ArrayBot;
 class PACKAGE TSequenceInfoFrame : public TFrame
 {
     __published:	// IDE-managed Components
-        TGroupBox *GroupBox1;
+	TGroupBox *mMainGB;
 	TActionList *mSequenceAL;
         TAction *RemoveProcessA;
 	TButton *mAddMoveBtn;
@@ -30,11 +30,13 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	TListBox *mProcessesLB;
 	TSTDStringLabeledEdit *mSequenceNameE;
 	TGroupBox *GroupBox2;
+	TButton *mUpdatePositionsBtn;
     void __fastcall mMoveSequenceUpBtnClick(TObject *Sender);
     void __fastcall RemoveProcessAExecute(TObject *Sender);
 	void __fastcall mMoveSequenceDownBtnClick(TObject *Sender);
 	void __fastcall mProcessesLBClick(TObject *Sender);
 	void __fastcall AddCombinedMoveAExecute(TObject *Sender);
+	void __fastcall mUpdatePositionsBtnClick(TObject *Sender);
 
     private:	// User declarations
 		ProcessSequence*		        mSequence;

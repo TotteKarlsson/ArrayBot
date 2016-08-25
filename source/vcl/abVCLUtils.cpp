@@ -8,6 +8,15 @@
 
 using namespace mtk;
 
+bool updateComboBoxItemCaption(int indx, const string& name, TComboBox* cb)
+{
+	if(indx > -1 && indx < cb->Items->Count)
+    {
+		cb->Items->Strings[indx] = vclstr(name);
+        return true;
+    }
+    return false;
+}
 
 int selectAndClickListBoxItem(TListBox* lb, TObject* p)
 {

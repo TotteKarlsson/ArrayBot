@@ -34,24 +34,6 @@ __fastcall TSplashForm::~TSplashForm()
 	closeTimer->Enabled = false;
 }
 
-bool startsWith(const string& prefix, const string& theStr)
-{
-	if (theStr.find(prefix) == 0)
-	{
-		return true;
-	}
-	return false;
-}
-
-bool contains(const string& prefix, const string& theStr)
-{
-	if (theStr.find(prefix) != std::string::npos)
-	{
-		return true;
-	}
-	return false;
-}
-
 void __fastcall TSplashForm::logMsg()
 {
 	string lmsg = mLogFileReader.getData();

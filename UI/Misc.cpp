@@ -94,7 +94,7 @@ int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam)
 	GetWindowText(hwnd, buffer, length + 1);
 
     string s(stdstr(buffer));
-	if(startsWith(s, "ArrayBot"))
+	if(startsWith("ArrayBot", s))
 	{
 		// do something with hwnd here
 		gOtherAppWindow = hwnd;

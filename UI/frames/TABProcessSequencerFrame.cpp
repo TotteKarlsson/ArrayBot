@@ -50,7 +50,6 @@ void TABProcessSequencerFrame::init()
     else
     {
     	mDeleteSequenceBtn->Enabled = false;
-		mSaveSequenceBtn->Enabled = false;
     }
 }
 
@@ -125,7 +124,6 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
     }
 
     mDeleteSequenceBtn->Enabled = true;
-    mSaveSequenceBtn->Enabled 	= true;
 
     string sName(stdstr(mSequencesCB->Items->Strings[index]));
 
@@ -162,7 +160,7 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
         string pName = mProcessSequencer.getCurrentProcessName();
         selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
     }
-    else if(mStartBtn->Caption == "Continue")
+    else if(startsWith("Continue", stdstr(mStartBtn->Caption)))
     {
         if(mProcessSequencer.forward())
         {
@@ -216,8 +214,12 @@ void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
             //We need to check if we can continue
             if(mProcessSequencer.canContinue())
             {
+                stringstream str;
+	            str << "\n(" << mProcessSequencer.getNextProcessName() << ")";
+
         		//Forward the sequence next time
-	           	mStartBtn->Caption = "Continue";
+	           	mStartBtn->Caption = "Continue" + vclstr(str.str());
+
             }
             else
             {
@@ -237,12 +239,17 @@ void __fastcall TABProcessSequencerFrame::mSequenceNameEKeyDown(TObject *Sender,
 {
 	if(Key == vkReturn)
     {
+    	string newName(stdstr(TSequenceInfoFrame1->mMainGB->Caption));
+
     	//Change name of sequence in CB
         int indx = mSequencesCB->ItemIndex;
-		mSequencesCB->Items->Strings[indx] = vclstr(TSequenceInfoFrame1->mSequenceNameE->getValue());
-		mSequencesCB->ItemIndex = indx;
+        if(updateComboBoxItemCaption(indx, newName, mSequencesCB) == false)
+        {
+        	//bad.....
+        }
+
 		ProcessSequence* s = mProcessSequencer.getCurrentSequence();
-        s->setProjectName(TSequenceInfoFrame1->mSequenceNameE->getValue());
+        s->setProjectName(newName);
         saveSequence();
 
         //Send a message to main ui to update sequence shortcuts

@@ -575,7 +575,7 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
         string msg;
         void __fastcall onPufferArduinoMessage()
         {
-            if(startsWith(msg, "DHT22DATA"))
+            if(startsWith("DHT22DATA", msg))
             {
                 //Parse the message
                 StringList l(msg,',');
@@ -585,7 +585,7 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
                     MainForm->mHumidityE->SetValue(toDouble(l[2]));
                 }
             }
-//            else if(startsWith(msg, "PIN_8"))
+//            else if(startsWith("PIN_8", msg))
 //            {
 //                StringList l(msg,'=');
 //                if(l.size() == 2)
@@ -593,7 +593,7 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
 ////                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
 //                }
 //            }
-//            else if(startsWith(msg, "PIN_3"))
+//            else if(startsWith("PIN_3", msg))
 //            {
 //                StringList l(msg,'=');
 //                if(l.size() == 2)

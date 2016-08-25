@@ -28,6 +28,8 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(TComponent* Owner)
 {
 	mParallellProcessesFrame = new TParallellProcessesFrame(Owner);
     mParallellProcessesFrame->Visible = false;
+
+	mUpdatePositionsBtn->Action = mParallellProcessesFrame->mUpdateFinalPositionsA;
 }
 
 void TSequenceInfoFrame::assignArrayBot(ArrayBot* ab)
@@ -47,10 +49,11 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TPanel* processPanel)
     if(processPanel)
     {
     	mProcessPanel = processPanel;
-		mParallellProcessesFrame->Parent 	= mProcessPanel;
+		mParallellProcessesFrame->Parent = mProcessPanel;
     }
 
     mProcessesLB->Clear();
+    mMainGB->Caption = vclstr(seq->getName());
 	mSequence = seq;
     mSequenceNameE->setValue(seq->getName());
     Process* p = seq->getFirst();
@@ -171,13 +174,15 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
                 mParallellProcessesFrame->mSubProcessesLB->ItemIndex = 0;
                 mParallellProcessesFrame->mSubProcessesLB->OnClick(NULL);
             }
-			mParallellProcessesFrame->Visible = true;
+			mParallellProcessesFrame->Visible 	= true;
+			mUpdatePositionsBtn->Enabled 		= true;
             mParallellProcessesFrame->Align = alClient;
         }
     }
     else
     {
 		mParallellProcessesFrame->Visible = false;
+		mUpdatePositionsBtn->Enabled = false;
     }
 }
 
@@ -244,3 +249,11 @@ void TSequenceInfoFrame::updateSequenceArrows()
 		mMoveSequenceDownBtn->Enabled 	= true;
     }
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TSequenceInfoFrame::mUpdatePositionsBtnClick(TObject *Sender)
+{
+	mParallellProcessesFrame->mUpdateFinalPositionsAExecute(Sender);
+}
+
+

@@ -21,7 +21,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     object mStartBtn: TButton
       Left = 1
       Top = 1
-      Width = 112
+      Width = 216
       Height = 93
       Align = alLeft
       Caption = 'Start'
@@ -50,8 +50,8 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       end
     end
     object mContinousExecutionCB: TCheckBox
-      Left = 119
-      Top = 12
+      Left = 305
+      Top = 14
       Width = 114
       Height = 17
       Caption = 'Continous'
@@ -88,35 +88,26 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         Width = 302
         Height = 128
         Align = alTop
-        Caption = 'Sequence'
+        Caption = 'Select Sequence'
         Padding.Top = 10
         TabOrder = 0
         object mAddSeqBtn: TButton
-          Left = 13
+          Left = 15
           Top = 78
-          Width = 80
+          Width = 114
           Height = 44
           Caption = 'New'
           TabOrder = 0
           OnClick = mAddSeqBtnClick
         end
         object mDeleteSequenceBtn: TButton
-          Left = 205
+          Left = 160
           Top = 78
-          Width = 80
+          Width = 125
           Height = 44
           Caption = 'Delete'
           TabOrder = 1
           OnClick = mDeleteSequenceBtnClick
-        end
-        object mSaveSequenceBtn: TButton
-          Left = 109
-          Top = 78
-          Width = 80
-          Height = 44
-          Caption = 'Save'
-          TabOrder = 2
-          OnClick = mSaveSequenceBtnClick
         end
         object mSequencesCB: TComboBox
           Left = 15
@@ -125,7 +116,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Height = 31
           Style = csDropDownList
           ItemIndex = 0
-          TabOrder = 3
+          TabOrder = 2
           Text = 'MoveSequence'
           OnChange = mSequencesCBChange
           Items.Strings = (
@@ -149,9 +140,10 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         ExplicitTop = 129
         ExplicitWidth = 302
         ExplicitHeight = 398
-        inherited GroupBox1: TGroupBox
+        inherited mMainGB: TGroupBox
           Width = 302
           Height = 398
+          Caption = 'Seq Name'
           ExplicitWidth = 302
           ExplicitHeight = 398
           inherited GroupBox3: TPanel
@@ -165,6 +157,10 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
             Width = 298
             ExplicitWidth = 298
           end
+        end
+        inherited mSequenceAL: TActionList
+          Left = 112
+          Top = 32
         end
       end
     end

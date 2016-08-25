@@ -146,27 +146,32 @@ object Main: TMain
             Left = 327
             Top = 20
             Width = 258
-            Height = 157
+            Height = 277
             Caption = 'Manual Puff'
             TabOrder = 1
-            object PuffNowBtn: TButton
+            object mPuffNowBtn: TButton
               Left = 19
               Top = 32
               Width = 214
               Height = 104
               Caption = 'Puff'
               TabOrder = 0
-              OnClick = PuffNowBtnClick
+              OnClick = mPuffRelatedBtnClick
+            end
+            object mEnablePuffBtn: TButton
+              Left = 19
+              Top = 142
+              Width = 214
+              Height = 104
+              Caption = 'Enable Puff'
+              TabOrder = 1
+              OnClick = mPuffRelatedBtnClick
             end
           end
         end
         object TabSheet2: TTabSheet
           Caption = 'Settings'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0

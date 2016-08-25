@@ -7,6 +7,7 @@
 #include "TFloatLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.ComCtrls.hpp>
+#include "TSTDStringLabeledEdit.h"
 //---------------------------------------------------------------------------
 
 class AbsoluteMove;
@@ -30,11 +31,14 @@ __published:	// IDE-managed Components
 	TLabel *mHaveTriggerLabel;
 	TButton *mAddTriggerBtn;
 	TGroupBox *GroupBox1;
+	TSTDStringLabeledEdit *mMoveActionNameE;
 	void __fastcall MotorsCBChange(TObject *Sender);
 	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall TriggersLBClick(TObject *Sender);
 	void __fastcall mDeleteTriggerBClick(TObject *Sender);
 	void __fastcall AddTriggerBClick(TObject *Sender);
+	void __fastcall mMoveActionNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
     private:	// User declarations
         AbsoluteMove* 	   			mMove;

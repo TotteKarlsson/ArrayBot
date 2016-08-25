@@ -43,7 +43,7 @@ void TAboutArrayBotFrame_2::populate()
 //---------------------------------------------------------------------------
 void __fastcall TAboutArrayBotFrame_2::checkForUpdateAExecute(TObject *Sender)
 {
-    if(startsWith(stdstr(checkForUpdateA->Caption), "Check"))
+    if(startsWith("Check", stdstr(checkForUpdateA->Caption)))
     {
         mGetRemoteVersionThread.setURL(joinPath(mRemoteDownloadURL, "VERSION.txt", '/'));
         mGetRemoteVersionThread.assignCallBack(NotifyAboutUpdate);

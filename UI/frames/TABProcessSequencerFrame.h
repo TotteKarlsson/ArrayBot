@@ -26,7 +26,6 @@ class TABProcessSequencerFrame : public TFrame
     __published:	// IDE-managed Components
         TButton *mStartBtn;
         TComboBox *mSequencesCB;
-        TButton *mSaveSequenceBtn;
         TButton *mDeleteSequenceBtn;
         TButton *mAddSeqBtn;
         TTimer *mSequenceStatusTimer;

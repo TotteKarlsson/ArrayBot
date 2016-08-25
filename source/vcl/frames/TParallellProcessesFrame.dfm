@@ -2,7 +2,7 @@ object ParallellProcessesFrame: TParallellProcessesFrame
   Left = 0
   Top = 0
   Width = 723
-  Height = 531
+  Height = 620
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -14,14 +14,14 @@ object ParallellProcessesFrame: TParallellProcessesFrame
     Left = 0
     Top = 0
     Width = 723
-    Height = 531
+    Height = 620
     Align = alClient
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 2
       Top = 113
       Width = 145
-      Height = 416
+      Height = 505
       Align = alLeft
       Caption = 'Actions'
       TabOrder = 0
@@ -70,20 +70,12 @@ object ParallellProcessesFrame: TParallellProcessesFrame
         TabOrder = 0
         OnKeyDown = mProcessNameEKeyDown
       end
-      object Button3: TButton
-        Left = 505
-        Top = 10
-        Width = 202
-        Height = 72
-        Action = mUpdateFinalPositionsA
-        TabOrder = 1
-      end
     end
     inline TMotorMoveProcessFrame1: TMotorMoveProcessFrame
       Left = 147
       Top = 113
       Width = 574
-      Height = 416
+      Height = 505
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -95,54 +87,31 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       ExplicitLeft = 147
       ExplicitTop = 113
       ExplicitWidth = 574
-      ExplicitHeight = 416
+      ExplicitHeight = 505
       inherited MainGB: TGroupBox
         Width = 574
-        Height = 171
         ExplicitWidth = 574
-        ExplicitHeight = 171
-        inherited mMovePosE: TFloatLabeledEdit
-          TabOrder = 1
-        end
-        inherited mMaxVelE: TFloatLabeledEdit
-          TabOrder = 2
-        end
-        inherited mAccE: TFloatLabeledEdit
-          TabOrder = 3
-        end
-        inherited MotorsCB: TComboBox
-          TabOrder = 0
-        end
-        inherited mAddTriggerBtn: TButton
-          Left = 360
-          Width = 201
-          Caption = 'Add Child Action'
-          ExplicitLeft = 360
-          ExplicitWidth = 201
-        end
       end
       inherited mTriggerPanel: TPanel
-        Top = 171
         Width = 574
-        Height = 245
-        ExplicitTop = 171
+        Height = 288
         ExplicitWidth = 574
-        ExplicitHeight = 245
+        ExplicitHeight = 288
         inherited GroupBox1: TGroupBox
           Width = 160
-          Height = 243
+          Height = 286
           ExplicitWidth = 160
-          ExplicitHeight = 243
+          ExplicitHeight = 286
           inherited mTriggersLB: TListBox
             Width = 156
-            Height = 156
+            Height = 199
             ExplicitWidth = 156
-            ExplicitHeight = 156
+            ExplicitHeight = 199
           end
           inherited Panel1: TPanel
-            Top = 181
+            Top = 224
             Width = 156
-            ExplicitTop = 181
+            ExplicitTop = 224
             ExplicitWidth = 156
           end
         end

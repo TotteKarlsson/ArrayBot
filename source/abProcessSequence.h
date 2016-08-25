@@ -40,7 +40,7 @@ class AB_CORE ProcessSequence : public ABObject
 		virtual bool	   		            assignUnit(ABObject* o);
 		virtual bool 			            add(Process* p);
 
-        bool								peekNext();
+        Process*							peekNext();
 		bool 					            remove(Process* p);
 		bool 					            remove(const string& lbl);
 

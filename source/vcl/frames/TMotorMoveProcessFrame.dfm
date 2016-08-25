@@ -15,7 +15,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     Left = 0
     Top = 0
     Width = 451
-    Height = 177
+    Height = 217
     Align = alTop
     Caption = 'MotorMove Process'
     TabOrder = 0
@@ -27,7 +27,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     end
     object mMovePosE: TFloatLabeledEdit
       Left = 16
-      Top = 126
+      Top = 169
       Width = 89
       Height = 31
       EditLabel.Width = 63
@@ -39,7 +39,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     end
     object mMaxVelE: TFloatLabeledEdit
       Left = 120
-      Top = 126
+      Top = 169
       Width = 89
       Height = 31
       EditLabel.Width = 103
@@ -51,7 +51,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     end
     object mAccE: TFloatLabeledEdit
       Left = 240
-      Top = 126
+      Top = 169
       Width = 81
       Height = 31
       EditLabel.Width = 101
@@ -63,7 +63,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     end
     object MotorsCB: TComboBox
       Left = 16
-      Top = 49
+      Top = 108
       Width = 281
       Height = 31
       Style = csDropDownList
@@ -73,25 +73,36 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     object mAddTriggerBtn: TButton
       Left = 368
       Top = 49
-      Width = 137
+      Width = 169
       Height = 108
-      Caption = 'Add Trigger'
+      Caption = 'Add Child Action'
       TabOrder = 4
       OnClick = AddTriggerBClick
+    end
+    object mMoveActionNameE: TSTDStringLabeledEdit
+      Left = 20
+      Top = 57
+      Width = 277
+      Height = 31
+      EditLabel.Width = 12
+      EditLabel.Height = 23
+      EditLabel.Caption = '  '
+      TabOrder = 5
+      OnKeyDown = mMoveActionNameEKeyDown
     end
   end
   object mTriggerPanel: TPanel
     Left = 0
-    Top = 177
+    Top = 217
     Width = 451
-    Height = 127
+    Height = 87
     Align = alClient
     TabOrder = 1
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 200
-      Height = 125
+      Height = 85
       Align = alLeft
       Caption = 'Triggers'
       TabOrder = 0
@@ -99,7 +110,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         Left = 2
         Top = 25
         Width = 196
-        Height = 38
+        Height = 193
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
@@ -107,7 +118,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       end
       object Panel1: TPanel
         Left = 2
-        Top = 63
+        Top = 23
         Width = 196
         Height = 60
         Align = alBottom

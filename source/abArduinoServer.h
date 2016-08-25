@@ -42,6 +42,7 @@ class AB_CORE ArduinoServer : public IPCServer
     	ArduinoDevice& 			            getSensorArduino(){return mSensorArduino;}
         bool            		            shutDown();
 
+		bool        						enablePuffer();
 		void        						enableAutoPuff();
 		void        						disableAutoPuff();
         bool					            puff();
@@ -53,7 +54,6 @@ class AB_CORE ArduinoServer : public IPCServer
 		bool								toggleCoax();
         bool								turnCoaxLightOn();
         bool								turnCoaxLightOff();
-
 
         void					            incrementSectionCount(){mSectionCount++;}
         int						            getSectionCount(){return mSectionCount;}
@@ -77,14 +77,12 @@ class AB_CORE ArduinoServer : public IPCServer
 		int									mCoaxLightOFFLine;
 
 
-
         OnMessageUpdateCB					onMessageUpdateCB;
 
 									        //!The section count is compared to the mPuffAfterSectionCount
                                             //used for emitting a puff
         int						            mSectionCount;
 
-                                            //
         int									mPuffAfterSectionCount;
         bool								mAutoPuff;
 		void					            pufferMessageReceived(const string& msg);

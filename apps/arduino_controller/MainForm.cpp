@@ -133,11 +133,11 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
         string msg;
         void __fastcall onPufferArduinoMessage()
         {
-            if(startsWith(msg, "SECTION_COUNT"))
+            if(startsWith("SECTION_COUNT", msg))
             {
 				Main->mSectionCount->SetNumber(Main->mArduinoServer.getSectionCount());
             }
-            else if(startsWith(msg, "AUTO_PUFF="))
+            else if(startsWith("AUTO_PUFF=", msg))
             {
                 //Parse the message
                 StringList l(msg, '=');
@@ -146,7 +146,7 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
                     Main->mAutoPuffCB->Checked = (toBool(l[1])) ? true : false;
                 }
             }
-            else if(startsWith(msg, "PUFF_AFTER_SECTION_COUNT"))
+            else if(startsWith("PUFF_AFTER_SECTION_COUNT", msg))
             {
                 //Parse the message
                 StringList l(msg, '=');
@@ -155,7 +155,7 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
                     Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
                 }
             }
-            else if(startsWith(msg, "DHT22DATA"))
+            else if(startsWith("DHT22DATA", msg))
             {
                 //Parse the message
                 StringList l(msg,',');
@@ -201,9 +201,18 @@ void __fastcall TMain::mResetCounterBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::PuffNowBtnClick(TObject *Sender)
+void __fastcall TMain::mPuffRelatedBtnClick(TObject *Sender)
 {
-	mPufferArduino.send("p");
+	TButton* b = dynamic_cast<TButton*>(Sender);
+    if(b == mPuffNowBtn)
+    {
+		mPufferArduino.send("p");
+    }
+    else if(b == mEnablePuffBtn)
+    {
+		mPufferArduino.send("e");
+    }
+
     mSectionCount->SetValue(0);
 }
 

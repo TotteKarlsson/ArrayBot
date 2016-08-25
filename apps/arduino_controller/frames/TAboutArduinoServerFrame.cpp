@@ -40,7 +40,7 @@ void TAboutArduinoServerFrame::populate()
 //---------------------------------------------------------------------------
 void __fastcall TAboutArduinoServerFrame::checkForUpdateAExecute(TObject *Sender)
 {
-    if(startsWith(stdstr(checkForUpdateA->Caption), "Check"))
+    if(startsWith("Check", stdstr(checkForUpdateA->Caption)))
     {
         mGetRemoteVersionThread.setURL(joinPath(mRemoteDownloadURL, "VERSION.txt", '/'));
         mGetRemoteVersionThread.assignCallBack(NotifyAboutUpdate);

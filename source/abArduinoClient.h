@@ -37,11 +37,15 @@ class AB_CORE ArduinoClient : public SocketClient
         									//Requests to the server
         void								resetSectionCounter();
         void								setPuffAfterSectionCount(int c);
+
+        void								enablePuffer();
+
         void								enableAutoPuff();
         void								disableAutoPuff();
+		void								puff();
+
 		void								toggleLED();
 		void								toggleCoax();
-
 
 		void								getStatus();
 

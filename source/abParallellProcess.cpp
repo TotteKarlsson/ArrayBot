@@ -44,7 +44,7 @@ void ParallellProcess::addProcess(Process* lm)
 {
 	if(lm && lm->getProcessName() =="")
     {
-    	lm->setProcessName("Process " + mtk::toString((mProcesses.size() + 1)));
+    	lm->setProcessName("Action " + mtk::toString((mProcesses.size() + 1)));
     }
 
     if(lm)
@@ -170,7 +170,7 @@ bool ParallellProcess::start()
 	for(int i = 0; i < mProcesses.size(); i++)
     {
     	mProcesses[i]->start();
-        Log(lInfo) << "Started Process \"" << mProcesses[i]->getProcessName()<<"\"";
+        Log(lInfo) << "Started Action \"" << mProcesses[i]->getProcessName()<<"\"";
     }
 
 	return Process::start();
