@@ -94,16 +94,16 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         object mAddSeqBtn: TButton
           Left = 15
           Top = 78
-          Width = 114
+          Width = 74
           Height = 44
           Caption = 'New'
           TabOrder = 0
           OnClick = mAddSeqBtnClick
         end
         object mDeleteSequenceBtn: TButton
-          Left = 160
+          Left = 95
           Top = 78
-          Width = 125
+          Width = 98
           Height = 44
           Caption = 'Delete'
           TabOrder = 1
@@ -121,6 +121,15 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           OnChange = mSequencesCBChange
           Items.Strings = (
             'MoveSequence')
+        end
+        object Button1: TButton
+          Left = 199
+          Top = 78
+          Width = 86
+          Height = 44
+          Caption = 'Rename'
+          TabOrder = 3
+          OnClick = Button1Click
         end
       end
       inline TSequenceInfoFrame1: TSequenceInfoFrame

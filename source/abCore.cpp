@@ -11,7 +11,6 @@ extern "C" int _libmain(unsigned long reason)
 	return 1;
 }
 
-
 //These integers are local data in the DLL
 static unsigned int WM_MOTOR_WARNING_MESSAGE = 0;
 

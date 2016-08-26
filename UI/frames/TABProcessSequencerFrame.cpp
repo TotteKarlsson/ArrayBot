@@ -11,7 +11,7 @@
 #include "abApplicationMessages.h"
 #include "UIUtilities.h"
 #include "abVCLUtils.h"
-
+#include "TTextInputDialog.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -268,3 +268,13 @@ void __fastcall TABProcessSequencerFrame::mRewindButtonClick(TObject *Sender)
 	mSequenceStatusTimer->Enabled = false;
 	mStartBtn->Caption = "Start";
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TABProcessSequencerFrame::Button1Click(TObject *Sender)
+{
+	//Open string input form
+	TTextInputDialog* d = new TTextInputDialog(this);
+    d->ShowModal();
+}
+
+

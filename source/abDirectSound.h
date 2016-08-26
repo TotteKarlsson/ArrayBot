@@ -8,28 +8,27 @@
 
 class AB_CORE DirectSound : public ABObject
 {
-    public:		// construction/destruction
+    public:
 							        DirectSound();
         virtual 					~DirectSound();
 
-    	// If the "pWnd" paramter is NULL, then AfxGetApp()->GetMainWnd() will be used.
+    								// If the "pWnd" paramter is NULL, then AfxGetApp()->GetMainWnd() will be used.
         bool						Create(const string& pszResource, HWND hWnd = NULL);
         bool						Create(UINT uResourceID);
 
-        // Alternativly you can specify the sound by yourself
-        // Note that the class does not copy the entire data ! Instead
-        // a pointer to the given data will be stored !
-        // You can load an entire WAV file into memory and then call this
-        // Create() method.
+                                    // Alternativly you can specify the sound by yourself
+                                    // Note that the class does not copy the entire data ! Instead
+                                    // a pointer to the given data will be stored !
+                                    // You can load an entire WAV file into memory and then call this
+                                    // Create() method.
         bool						Create(LPVOID pSoundData, HWND hWnd =  NULL);//, CWnd * pWnd = 0);
 
-    public:		// operations
         bool			            IsValid() const;
         void			            Play(DWORD dwStartPosition = 0, bool bLoop = FALSE);
         void			            Stop();
         void			            Pause();
         void			            Continue();
-        DirectSound &	            EnableSound(bool bEnable = TRUE);
+        DirectSound &	            EnableSound(bool bEnable = true);
         bool						IsEnabled() const { return m_bEnabled; }
 
     protected:	// implementation

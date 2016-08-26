@@ -1,1 +1,5 @@
 MOTOR_WARNING_SOUND RCDATA "sounds\\ball.wav"
+BUTTON_CLICK_1 RCDATA "sounds\\button-click_1.wav"
+CAMERA_CLICK RCDATA "sounds\\CAMERA.WAV"
+LONG_BEEP_1 RCDATA "sounds\\long_beep.wav"
+SHORT_BEEP_1 RCDATA "sounds\\short_beep_1.wav"

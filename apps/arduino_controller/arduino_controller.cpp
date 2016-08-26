@@ -97,7 +97,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         }
 
 		Application->Title = "arduino_controller";
-		TStyleManager::TrySetStyle("Sapphire Kamri");
+		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->Run();
 	}

@@ -15,7 +15,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	initABCoreLib();
 
 	HWND hWnd = this->Handle;
-    mSound.Create("MOTOR_WARNING_SOUND", hWnd);
+    mSound.Create("BUTTON_CLICK_1", hWnd);
 }
 
 void __fastcall TForm1::Button1Click(TObject *Sender)

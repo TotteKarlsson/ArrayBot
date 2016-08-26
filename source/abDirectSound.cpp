@@ -125,49 +125,74 @@ bool DirectSound::Create(LPVOID pSoundData, HWND hWnd)
 	}
 
 	WAVEFORMATEX * pcmwf;
-	if( !GetWaveData(pSoundData, pcmwf, m_pTheSound, m_dwTheSound) ||
-		!CreateSoundBuffer(pcmwf) ||
-		!SetSoundData(m_pTheSound, m_dwTheSound) )
+	if(!GetWaveData(pSoundData, pcmwf, m_pTheSound, m_dwTheSound))
 	{
+    	string error = getLastWin32Error();
+        Log(lError) << "Last win32 error: "<<error;
+   		return false;
+    }
+
+    if(!CreateSoundBuffer(pcmwf))
+    {
+    	string error = getLastWin32Error();
+        Log(lError) << "Last win32 error: "<<error;
+		return false;
+    }
+
+    if(!SetSoundData(m_pTheSound, m_dwTheSound) )
+	{
+    	string error = getLastWin32Error();
+        Log(lError) << "Last win32 error: "<<error;
 		return false;
     }
 
 	return true;
 }
 
-bool DirectSound::GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void * & pbWaveData, DWORD & cbWaveSize)
+bool DirectSound::GetWaveData(void* pRes, WAVEFORMATEX* &pWaveHeader, void* &pbWaveData, DWORD &cbWaveSize)
 {
 	pWaveHeader = 0;
 	pbWaveData = 0;
 	cbWaveSize = 0;
 
-	DWORD * pdw = (DWORD *)pRes;
-	DWORD dwRiff = *pdw++;
-	DWORD dwLength = *pdw++;
-	DWORD dwType = *pdw++;
+	DWORD *pdw 		= (DWORD *)pRes;
+	DWORD dwRiff 	= *pdw++;
+	DWORD dwLength 	= *pdw++;
+	DWORD dwType 	= *pdw++;
 
-	if( dwRiff != mmioFOURCC('R', 'I', 'F', 'F') )
+	if(dwRiff != mmioFOURCC('R', 'I', 'F', 'F'))
+    {
 		return false;      // not even RIFF
+    }
 
-	if( dwType != mmioFOURCC('W', 'A', 'V', 'E') )
+	if(dwType != mmioFOURCC('W', 'A', 'V', 'E'))
+    {
 		return false;      // not a WAV
+    }
 
-	DWORD * pdwEnd = (DWORD *)((BYTE *)pdw + dwLength-4);
+	DWORD* pdwEnd = (DWORD *)((BYTE *)pdw + dwLength-4);
 
-	while( pdw < pdwEnd ) {
+	while(pdw < pdwEnd)
+    {
 		dwType = *pdw++;
 		dwLength = *pdw++;
 
-		switch( dwType ) {
+		switch(dwType)
+        {
 			case mmioFOURCC('f', 'm', 't', ' '):
-				if( !pWaveHeader ) {
+				if(!pWaveHeader)
+                {
 					if( dwLength < sizeof(WAVEFORMAT) )
-						return false;      // not a WAV
+                    {
+                    	return false;      // not a WAV
+                    }
 
 					pWaveHeader = (WAVEFORMATEX *)pdw;
 
 					if( pbWaveData && cbWaveSize )
+                    {
 						return true;
+                    }
 				}
 				break;
 
@@ -175,8 +200,10 @@ bool DirectSound::GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void * 
 				pbWaveData = LPVOID(pdw);
 				cbWaveSize = dwLength;
 
-				if( pWaveHeader )
+				if(pWaveHeader)
+                {
 					return true;
+                }
 				break;
 		}
 		pdw = (DWORD *)((BYTE *)pdw + ((dwLength+1)&~1));

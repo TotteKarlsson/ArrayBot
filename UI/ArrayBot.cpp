@@ -15,6 +15,7 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
+USEFORM("..\source\vcl\forms\TTextInputDialog.cpp", TextInputDialog);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 extern string       gLogFileName                = "ArrayBot.log";
@@ -90,8 +91,9 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         }
 
 		Application->Title = "ArrayBot - Software for Robots";
-		TStyleManager::TrySetStyle("Sapphire Kamri");
+		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->CreateForm(__classid(TMain), &Main);
+		Application->CreateForm(__classid(TTextInputDialog), &TextInputDialog);
 		Application->Run();
 	}
 	catch (Exception &exception)

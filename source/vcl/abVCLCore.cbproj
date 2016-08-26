@@ -36,11 +36,11 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <ProjectType>CppPackage</ProjectType>
-        <ILINK_LibraryPath>frames\;forms\;P:\ArrayBot\source\vcl\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Multithreaded>true</Multithreaded>
         <ILINK_GenerateImportLibrary>true</ILINK_GenerateImportLibrary>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>frames\;forms\;P:\ArrayBot\source\vcl\;$(IncludePath)</IncludePath>
+        <IncludePath>components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(IncludePath)</IncludePath>
         <_TCHARMapping>char</_TCHARMapping>
         <ILINK_GenerateLibFile>true</ILINK_GenerateLibFile>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
@@ -83,7 +83,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <ILINK_GenerateLibFile>false</ILINK_GenerateLibFile>
+        <BCC_PCHInject>abVCLCorePCH.h</BCC_PCHInject>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
@@ -99,12 +99,13 @@
         <CppCompile Include="abVCLCore.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="abVCLCorePCH.h">
-            <BuildOrder>2</BuildOrder>
-        </PCHCompile>
         <CppCompile Include="abVCLUtils.cpp">
             <DependentOn>abVCLUtils.h</DependentOn>
             <BuildOrder>14</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="components\TArrayBotBtn.cpp">
+            <DependentOn>components\TArrayBotBtn.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
         </CppCompile>
         <PackageImport Include="DuneComponents.bpi">
             <BuildOrder>17</BuildOrder>

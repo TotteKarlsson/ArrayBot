@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{62E70745-9BE3-4E16-BB18-1D60EB19E945}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\source\vcl\abVCLCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\UI\lib\ArrayBotPackage.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Project1.cbproj">
+            <Dependencies>..\..\source\vcl\abVCLCore.cbproj</Dependencies>
+        </Projects>
+        <Projects Include="..\abDirectSound\DirectSound.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="abCore">
+        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abVCLCore">
+        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj"/>
+    </Target>
+    <Target Name="abVCLCore:Clean">
+        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abVCLCore:Make">
+        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayBotPackage">
+        <MSBuild Projects="..\..\UI\lib\ArrayBotPackage.cbproj"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Clean">
+        <MSBuild Projects="..\..\UI\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Make">
+        <MSBuild Projects="..\..\UI\lib\ArrayBotPackage.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project1" DependsOnTargets="abVCLCore">
+        <MSBuild Projects="Project1.cbproj"/>
+    </Target>
+    <Target Name="Project1:Clean" DependsOnTargets="abVCLCore:Clean">
+        <MSBuild Projects="Project1.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make" DependsOnTargets="abVCLCore:Make">
+        <MSBuild Projects="Project1.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DirectSound">
+        <MSBuild Projects="..\abDirectSound\DirectSound.cbproj"/>
+    </Target>
+    <Target Name="DirectSound:Clean">
+        <MSBuild Projects="..\abDirectSound\DirectSound.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DirectSound:Make">
+        <MSBuild Projects="..\abDirectSound\DirectSound.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="abCore;abVCLCore;ArrayBotPackage;Project1;DirectSound"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;Project1:Clean;DirectSound:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;Project1:Make;DirectSound:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

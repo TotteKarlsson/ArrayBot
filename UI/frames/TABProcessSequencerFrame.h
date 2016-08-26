@@ -43,6 +43,7 @@ class TABProcessSequencerFrame : public TFrame
 	TPanel *Panel2;
 	TCheckBox *mContinousExecutionCB;
 	TButton *mRewindButton;
+	TButton *Button1;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
         void __fastcall mStartBtnClick(TObject *Sender);
@@ -51,6 +52,7 @@ class TABProcessSequencerFrame : public TFrame
         void __fastcall mSequenceTimerTimer(TObject *Sender);
         void __fastcall mSequenceNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mRewindButtonClick(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
 
 
 
