@@ -83,6 +83,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <ILINK_GenerateLibFile>false</ILINK_GenerateLibFile>
         <BCC_PCHInject>abVCLCorePCH.h</BCC_PCHInject>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>

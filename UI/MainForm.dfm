@@ -95,6 +95,10 @@ object Main: TMain
       OnChange = PageControl1Change
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object mBottomPanel: TPanel
           Left = 0
           Top = 680
@@ -172,23 +176,27 @@ object Main: TMain
             Align = alLeft
             Caption = 'Misc. Puffer'
             TabOrder = 2
-            object mPuffBtn: TButton
+            object mPuffBtn: TArrayBotButton
               Left = 24
               Top = 43
               Width = 100
               Height = 75
               Caption = 'Puff'
+              ParentDoubleBuffered = True
               TabOrder = 0
               OnClick = mResetCountBtnClick
+              SoundID = 'BUTTON_CLICK_1'
             end
-            object mEnablePuffBtn: TButton
+            object mEnablePuffBtn: TArrayBotButton
               Left = 151
               Top = 43
               Width = 150
               Height = 75
               Caption = 'Enable Puffer'
+              ParentDoubleBuffered = True
               TabOrder = 1
               OnClick = mResetCountBtnClick
+              SoundID = 'BUTTON_CLICK_1'
             end
           end
         end

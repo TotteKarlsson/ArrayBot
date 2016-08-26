@@ -1,3 +1,13 @@
+Release 0.7.9 (Aug 26)
+=======================
+* Created a ArrayBot buttons with small feedback sound
+* Added buttons to main window for setting of and enabling the puffer
+* Fixed saving of sequences
+* Refining Process Sequence wording
+* Added positional update of Trigger functions
+* Added check for motor positions and not asking for updating in case position difference is negligible
+* Updated "save positions with a click" code
+
 Release 0.7.8 (Aug 23)
 =======================
 * Implemented ability to step trough a sequence of processes

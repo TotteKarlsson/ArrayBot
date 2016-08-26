@@ -28,6 +28,7 @@
 #include "TIntegerLabeledEdit.h"
 #include "TIntLabel.h"
 #include "TPropertyCheckBox.h"
+#include "TArrayBotBtn.h"
 
 
 using Poco::Timestamp;
@@ -124,8 +125,8 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet3;
 	TAboutArrayBotFrame_2 *TAboutArrayBotFrame_21;
 	TGroupBox *GroupBox5;
-	TButton *mPuffBtn;
-	TButton *mEnablePuffBtn;
+	TArrayBotButton *mPuffBtn;
+	TArrayBotButton *mEnablePuffBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
