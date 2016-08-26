@@ -109,7 +109,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;adortl.bpi;dbrtl.bpi</LinkPackageImports>
         <IncludePath>P:\ArrayBot\source;$(DSL_ROOT)\Common;$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(AB_ROOT)\source\vcl\frames;$(AB_ROOT)\UI\frames;$(AB_ROOT)\UI\forms;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(AB_ROOT)\source\vcl\frames;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -123,13 +123,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="arduino_controller.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <CppCompile Include="forms\TAboutArduinoServerForm.cpp">
-            <DependentOn>forms\TAboutArduinoServerForm.h</DependentOn>
+        <CppCompile Include="forms\TAboutArduinoControllerForm.cpp">
+            <Form>AboutArduinoControllerForm</Form>
+            <DependentOn>forms\TAboutArduinoControllerForm.h</DependentOn>
             <BuildOrder>6</BuildOrder>
         </CppCompile>
-        <CppCompile Include="forms\TSplashForm.cpp">
-            <Form>SplashForm</Form>
-            <DependentOn>forms\TSplashForm.h</DependentOn>
+        <CppCompile Include="forms\TArduinoControllerSplashForm.cpp">
+            <Form>ArduinoControllerSplashForm</Form>
+            <DependentOn>forms\TArduinoControllerSplashForm.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
         <CppCompile Include="frames\TAboutArduinoServerFrame.cpp">
@@ -174,7 +175,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="MainForm.dfm"/>
         <FormResources Include="frames\TSensorAndLightArduinoFrame.dfm"/>
         <FormResources Include="frames\TPufferArduinoBoardFrame.dfm"/>
-        <FormResources Include="forms\TSplashForm.dfm"/>
+        <FormResources Include="forms\TAboutArduinoControllerForm.dfm"/>
+        <FormResources Include="forms\TArduinoControllerSplashForm.dfm"/>
         <FormResources Include="frames\TArduinoBoardFrame.dfm"/>
         <FormResources Include="frames\TAboutArduinoServerFrame.dfm"/>
         <BuildConfiguration Include="Release">

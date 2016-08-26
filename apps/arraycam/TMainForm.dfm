@@ -7,7 +7,7 @@ object MainForm: TMainForm
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -16
   Font.Name = 'Tahoma'
   Font.Style = []
   KeyPreview = True
@@ -17,7 +17,7 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 19
   object Splitter1: TSplitter
     Left = 0
     Top = 824
@@ -30,7 +30,7 @@ object MainForm: TMainForm
     ExplicitWidth = 967
   end
   object Splitter2: TSplitter
-    Left = 845
+    Left = 781
     Top = 0
     Height = 824
     Align = alRight
@@ -39,24 +39,24 @@ object MainForm: TMainForm
     ExplicitHeight = 100
   end
   object Panel2: TPanel
-    Left = 848
+    Left = 784
     Top = 0
-    Width = 115
+    Width = 179
     Height = 824
     Align = alRight
     TabOrder = 0
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
-      Width = 113
+      Width = 177
       Height = 822
       Align = alClient
       TabOrder = 0
       object Button2: TButton
         Left = 0
-        Top = 413
-        Width = 109
-        Height = 40
+        Top = 805
+        Width = 156
+        Height = 60
         Align = alBottom
         Caption = 'Exit'
         TabOrder = 0
@@ -64,10 +64,10 @@ object MainForm: TMainForm
       end
       object GroupBox5: TGroupBox
         Left = 0
-        Top = 453
-        Width = 109
+        Top = 0
+        Width = 156
         Height = 60
-        Align = alBottom
+        Align = alTop
         Caption = 'Temperature'
         TabOrder = 1
         object mTemperatureLbl: mtkFloatLabel
@@ -93,10 +93,10 @@ object MainForm: TMainForm
       end
       object GroupBox6: TGroupBox
         Left = 0
-        Top = 513
-        Width = 109
+        Top = 60
+        Width = 156
         Height = 60
-        Align = alBottom
+        Align = alTop
         Caption = 'Humidity'
         TabOrder = 2
         object mHumidityE: mtkFloatLabel
@@ -122,16 +122,16 @@ object MainForm: TMainForm
       end
       object GroupBox7: TGroupBox
         Left = 0
-        Top = 573
-        Width = 109
+        Top = 540
+        Width = 156
         Height = 145
         Align = alBottom
         Caption = 'Light Intensities'
         TabOrder = 3
         object mCoaxTB: TTrackBar
           Left = 2
-          Top = 105
-          Width = 105
+          Top = 111
+          Width = 152
           Height = 45
           Align = alTop
           Max = 255
@@ -140,8 +140,8 @@ object MainForm: TMainForm
         end
         object mBackLEDTB: TTrackBar
           Left = 2
-          Top = 60
-          Width = 105
+          Top = 66
+          Width = 152
           Height = 45
           Align = alTop
           Max = 255
@@ -150,8 +150,8 @@ object MainForm: TMainForm
         end
         object mFrontLEDTB: TTrackBar
           Left = 2
-          Top = 15
-          Width = 105
+          Top = 21
+          Width = 152
           Height = 45
           Align = alTop
           Max = 255
@@ -161,9 +161,9 @@ object MainForm: TMainForm
       end
       object mFitToScreenButton: TButton
         Left = 0
-        Top = 0
-        Width = 109
-        Height = 40
+        Top = 120
+        Width = 156
+        Height = 60
         Align = alTop
         Caption = 'Fit to screen'
         TabOrder = 4
@@ -171,9 +171,9 @@ object MainForm: TMainForm
       end
       object mFrontBackLEDBtn: TButton
         Left = 0
-        Top = 718
-        Width = 109
-        Height = 50
+        Top = 685
+        Width = 156
+        Height = 60
         Align = alBottom
         Caption = 'Toggle LED Light'
         TabOrder = 5
@@ -182,9 +182,9 @@ object MainForm: TMainForm
       end
       object mOneToOneBtn: TButton
         Left = 0
-        Top = 168
-        Width = 109
-        Height = 40
+        Top = 360
+        Width = 156
+        Height = 60
         Align = alTop
         Caption = '1:1'
         TabOrder = 6
@@ -192,9 +192,9 @@ object MainForm: TMainForm
       end
       object mOneToTwoBtn: TButton
         Left = 0
-        Top = 208
-        Width = 109
-        Height = 40
+        Top = 420
+        Width = 156
+        Height = 60
         Align = alTop
         Caption = '1:2'
         TabOrder = 7
@@ -202,9 +202,9 @@ object MainForm: TMainForm
       end
       object mRecordMovieBtn: TButton
         Left = 0
-        Top = 248
-        Width = 109
-        Height = 40
+        Top = 480
+        Width = 156
+        Height = 60
         Align = alTop
         Caption = 'Record Movie'
         TabOrder = 8
@@ -212,9 +212,9 @@ object MainForm: TMainForm
       end
       object mSettingsBtn: TButton
         Left = 0
-        Top = 80
-        Width = 109
-        Height = 48
+        Top = 240
+        Width = 156
+        Height = 60
         Align = alTop
         Caption = 'Settings'
         TabOrder = 9
@@ -222,9 +222,9 @@ object MainForm: TMainForm
       end
       object mSnapShotBtn: TButton
         Left = 0
-        Top = 128
-        Width = 109
-        Height = 40
+        Top = 300
+        Width = 156
+        Height = 60
         Align = alTop
         Caption = 'Snap Shot'
         TabOrder = 10
@@ -232,9 +232,9 @@ object MainForm: TMainForm
       end
       object mToggleCoaxBtn: TButton
         Left = 0
-        Top = 768
-        Width = 109
-        Height = 50
+        Top = 745
+        Width = 156
+        Height = 60
         Align = alBottom
         Caption = 'Toggle Coax Light'
         TabOrder = 11
@@ -243,9 +243,9 @@ object MainForm: TMainForm
       end
       object mToggleLogPanelBtn: TButton
         Left = 0
-        Top = 40
-        Width = 109
-        Height = 40
+        Top = 180
+        Width = 156
+        Height = 60
         Align = alTop
         Caption = 'Hide Bottom Panel'
         TabOrder = 12
@@ -256,7 +256,7 @@ object MainForm: TMainForm
   object mMainPanel: TPanel
     Left = 0
     Top = 0
-    Width = 845
+    Width = 781
     Height = 824
     Align = alClient
     TabOrder = 1
@@ -300,11 +300,11 @@ object MainForm: TMainForm
       TabOrder = 0
       object mShotsLB: TListBox
         Left = 2
-        Top = 15
+        Top = 21
         Width = 116
-        Height = 140
+        Height = 134
         Align = alClient
-        ItemHeight = 13
+        ItemHeight = 19
         PopupMenu = mMediaPopup
         TabOrder = 0
         OnDblClick = mMoviesLBDblClick
@@ -320,11 +320,11 @@ object MainForm: TMainForm
       TabOrder = 1
       object mMoviesLB: TListBox
         Left = 2
-        Top = 15
+        Top = 21
         Width = 100
-        Height = 140
+        Height = 134
         Align = alClient
-        ItemHeight = 13
+        ItemHeight = 19
         PopupMenu = mMediaPopup
         TabOrder = 0
         OnDblClick = mMoviesLBDblClick
@@ -340,16 +340,16 @@ object MainForm: TMainForm
       TabOrder = 2
       object infoMemo: TMemo
         Left = 2
-        Top = 56
+        Top = 62
         Width = 733
-        Height = 99
+        Height = 93
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
       end
       object Panel1: TPanel
         Left = 2
-        Top = 15
+        Top = 21
         Width = 733
         Height = 41
         Align = alTop

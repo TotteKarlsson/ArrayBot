@@ -1,5 +1,5 @@
-#ifndef TAboutArduinoServerFormH
-#define TAboutArduinoServerFormH
+#ifndef TAboutArduinoControllerFormH
+#define TAboutArduinoControllerFormH
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -10,7 +10,7 @@
 #include <Vcl.ActnList.hpp>
 //---------------------------------------------------------------------------
 
-class PACKAGE TAboutArduinoServerForm : public TForm
+class PACKAGE TAboutArduinoControllerForm : public TForm
 {
 __published:	// IDE-managed Components
     TPanel *Panel1;
@@ -32,8 +32,8 @@ private:	// User declarations
         TAboutArduinoServerFrame*                       mAboutFrame;
 
 public:		// User declarations
-    __fastcall TAboutArduinoServerForm(TComponent* Owner);
+    __fastcall TAboutArduinoControllerForm(TComponent* Owner);
 };
 
-extern PACKAGE TAboutArduinoServerForm *AboutArduinoServerForm;
+extern PACKAGE TAboutArduinoControllerForm *AboutArduinoControllerForm;
 #endif

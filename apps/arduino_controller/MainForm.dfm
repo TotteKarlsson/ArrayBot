@@ -211,7 +211,7 @@ object Main: TMain
           object mArduinoSB: TScrollBox
             Left = 257
             Top = 0
-            Width = 541
+            Width = 531
             Height = 320
             Align = alClient
             TabOrder = 1

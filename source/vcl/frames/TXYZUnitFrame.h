@@ -16,7 +16,6 @@ class TMotorFrame;
 class PACKAGE TXYZUnitFrame : public TFrame
 {
     __published:
-        TGroupBox 		*mainGB;
 
     private:
         XYZUnit*			    mUnit;

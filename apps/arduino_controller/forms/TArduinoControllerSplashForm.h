@@ -1,5 +1,5 @@
-#ifndef TSplashFormH
-#define TSplashFormH
+#ifndef TArduinoControllerSplashFormH
+#define TArduinoControllerSplashFormH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -17,7 +17,7 @@
 using Poco::Timespan;
 using mtk::MessageContainer;
 //---------------------------------------------------------------------------
-class PACKAGE TSplashForm : public TForm
+class PACKAGE TArduinoControllerSplashForm : public TForm
 {
 	__published:	// IDE-managed Components
     TTimer *closeTimer;
@@ -41,8 +41,8 @@ class PACKAGE TSplashForm : public TForm
         void __fastcall                 					logMsg();
 
 	public:		// User declarations
-										__fastcall          TSplashForm(TComponent* Owner);
-										__fastcall          ~TSplashForm();
+										__fastcall          TArduinoControllerSplashForm(TComponent* Owner);
+										__fastcall          ~TArduinoControllerSplashForm();
         bool                                                mMainAppIsRunning;
 
         mtk::Timer                                          mShowTimer;

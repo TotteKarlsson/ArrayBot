@@ -251,15 +251,24 @@ void __fastcall	TMain::setupUIFrames()
 
 	//Create and setup XYZ unit frames
     mXYZUnitFrame1 = new TXYZUnitFrame(this);
-    mXYZUnitFrame1->Parent = ScrollBox1;
-    mXYZUnitFrame1->Align = alTop;
-
     mXYZUnitFrame2 = new TXYZUnitFrame(this);
+
     mXYZUnitFrame2->Parent = ScrollBox1;
-    mXYZUnitFrame2->Align = alTop;
+    mXYZUnitFrame1->Parent = ScrollBox1;
 
     mXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
     mXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
+
+
+    mXYZUnitFrame1->Align = alTop;
+    mXYZUnitFrame2->Align = alTop;
+
+    mXYZUnitFrame1->Align = alNone;
+    mXYZUnitFrame2->Align = alNone;
+    mXYZUnitFrame2->Top = mXYZUnitFrame1->Top + mXYZUnitFrame1->Height;
+
+//    mScrollPanel->Width = max(mXYZUnitFrame2->Width, mXYZUnitFrame1->Width);// + 400;
+//	mScrollPanel->Height = mXYZUnitFrame2->Height + mXYZUnitFrame1->Height;
 
     //Create MoveSequencer frame
     mABProcessSequencerFrame = new TABProcessSequencerFrame(*(mAB), gAppDataFolder, mMoveSequencesPage);
@@ -588,7 +597,7 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::mResetCountBtnClick(TObject *Sender)
 {
-    TButton* b = dynamic_cast<TButton*>(Sender);
+    TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
     if(b == mResetCountBtn)
     {
 		//Send a request to reset the counter
@@ -619,6 +628,16 @@ void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
 void __fastcall TMain::mButtonPanelDblClick(TObject *Sender)
 {
 	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSizeable : bsNone;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+	if(Key == vkReturn)
+    {
+		mArduinoClient.setPuffAfterSectionCount(mPuffAfterSectionCountE->getValue());
+    }
 }
 
 

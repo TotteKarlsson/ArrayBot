@@ -1,6 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TAboutArduinoServerForm.h"
+#include "TAboutArduinoControllerForm.h"
 #include "TShowFileContentForm.h"
 #include "mtkApplicationInfo.h"
 #include "mtkVCLUtils.h"
@@ -9,16 +9,16 @@
 #pragma package(smart_init)
 #pragma link "TAboutArduinoServerFrame"
 #pragma resource "*.dfm"
-TAboutArduinoServerForm *AboutArduinoServerForm;
+TAboutArduinoControllerForm *AboutArduinoControllerForm;
 
 using namespace mtk;
 //---------------------------------------------------------------------------
-__fastcall TAboutArduinoServerForm::TAboutArduinoServerForm(TComponent* Owner)
+__fastcall TAboutArduinoControllerForm::TAboutArduinoControllerForm(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TAboutArduinoServerForm::FormShow(TObject *Sender)
+void __fastcall TAboutArduinoControllerForm::FormShow(TObject *Sender)
 {
     if(!mAboutFrame)
     {
@@ -34,13 +34,13 @@ void __fastcall TAboutArduinoServerForm::FormShow(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArduinoServerForm::Button4Click(TObject *Sender)
+void __fastcall TAboutArduinoControllerForm::Button4Click(TObject *Sender)
 {
     CloseModal();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArduinoServerForm::Button3Click(TObject *Sender)
+void __fastcall TAboutArduinoControllerForm::Button3Click(TObject *Sender)
 {
     try
     {
@@ -53,7 +53,7 @@ void __fastcall TAboutArduinoServerForm::Button3Click(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArduinoServerForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+void __fastcall TAboutArduinoControllerForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     if(Key == VK_ESCAPE)
     {
@@ -61,13 +61,13 @@ void __fastcall TAboutArduinoServerForm::FormKeyDown(TObject *Sender, WORD &Key,
     }
 }
 
-void __fastcall TAboutArduinoServerForm::FormClose(TObject *Sender, TCloseAction &Action)
+void __fastcall TAboutArduinoControllerForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
 //    Action = caFree;
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAboutArduinoServerForm::FormCloseQuery(TObject *Sender, bool &CanClose)
+void __fastcall TAboutArduinoControllerForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
     //Check threads...
 }

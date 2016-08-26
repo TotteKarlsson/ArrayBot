@@ -113,7 +113,6 @@ class TMain : public TRegistryForm
 	TPanel *Panel2;
 	TGroupBox *GroupBox2;
 	TIntLabel *mSectionCountLbl;
-	TButton *mResetCountBtn;
 	TGroupBox *GroupBox4;
 	TIntegerLabeledEdit *mPuffAfterSectionCountE;
 	TPropertyCheckBox *mAutoPuffCB;
@@ -127,6 +126,7 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox5;
 	TArrayBotButton *mPuffBtn;
 	TArrayBotButton *mEnablePuffBtn;
+	TArrayBotButton *mResetCountBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -159,6 +159,8 @@ class TMain : public TRegistryForm
 	void __fastcall mResetCountBtnClick(TObject *Sender);
 	void __fastcall mAutoPuffCBClick(TObject *Sender);
 	void __fastcall mButtonPanelDblClick(TObject *Sender);
+	void __fastcall mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMotors = 1,

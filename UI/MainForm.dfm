@@ -87,7 +87,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = TabSheet4
+      ActivePage = TabSheet1
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -128,14 +128,16 @@ object Main: TMain
               TheFont.Name = 'Tahoma'
               TheFont.Style = []
             end
-            object mResetCountBtn: TButton
+            object mResetCountBtn: TArrayBotButton
               Left = 104
               Top = 35
               Width = 153
               Height = 100
               Caption = 'Reset'
+              ParentDoubleBuffered = True
               TabOrder = 0
               OnClick = mResetCountBtnClick
+              SoundID = 'BUTTON_CLICK_1'
             end
           end
           object GroupBox4: TGroupBox
@@ -156,6 +158,7 @@ object Main: TMain
               EditLabel.Caption = 'Puff after count'
               TabOrder = 0
               Text = '-1'
+              OnKeyDown = mPuffAfterSectionCountEKeyDown
               Value = -1
             end
             object mAutoPuffCB: TPropertyCheckBox
@@ -384,10 +387,6 @@ object Main: TMain
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -397,10 +396,10 @@ object Main: TMain
           VertScrollBar.Tracking = True
           Align = alClient
           BorderStyle = bsNone
-          Padding.Left = 20
-          Padding.Top = 20
-          Padding.Right = 20
-          Padding.Bottom = 20
+          Padding.Left = 5
+          Padding.Top = 5
+          Padding.Right = 5
+          Padding.Bottom = 5
           TabOrder = 0
         end
         object Panel1: TPanel

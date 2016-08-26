@@ -7,14 +7,15 @@
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "abExceptions.h"
-#include "TSplashForm.h"
+#include "TArduinoControllerSplashForm.h"
 #include "mtkRestartApplicationUtils.h"
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
 USEFORM("frames\TSensorAndLightArduinoFrame.cpp", SensorAndLightArduinoFrame); /* TFrame: File Type */
 USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame); /* TFrame: File Type */
-USEFORM("forms\TSplashForm.cpp", SplashForm);
+USEFORM("forms\TAboutArduinoControllerForm.cpp", AboutArduinoControllerForm);
+USEFORM("forms\TArduinoControllerSplashForm.cpp", ArduinoControllerSplashForm);
 USEFORM("frames\TArduinoBoardFrame.cpp", ArduinoBoardFrame); /* TFrame: File Type */
 USEFORM("frames\TAboutArduinoServerFrame.cpp", AboutArduinoServerFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
@@ -36,7 +37,7 @@ extern string       gCommonAppDataLocation      = "";
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
 extern bool         gHideSplash                 = true;
-extern TSplashForm* gSplashForm                 = NULL;
+extern TArduinoControllerSplashForm* gSplashForm                 = NULL;
 
 void setupLogging();
 
@@ -84,7 +85,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 
-        gSplashForm = new TSplashForm(Application);
+        gSplashForm = new TArduinoControllerSplashForm(Application);
         if(!gHideSplash)
         {
             Application->ShowMainForm = false;

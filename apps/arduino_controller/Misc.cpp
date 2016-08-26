@@ -4,7 +4,7 @@
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "TSplashForm.h"
-#include "TAboutArduinoServerForm.h"
+#include "TAboutArduinoControllerForm.h"
 #include "mtkLogger.h"
 using namespace mtk;
 
@@ -97,7 +97,7 @@ void TMain::setupWindowTitle()
 void __fastcall TMain::mAboutBtnClick(TObject *Sender)
 {
 	//Show about frame
-    TAboutArduinoServerForm* af = new TAboutArduinoServerForm(this);
+    TAboutArduinoControllerForm* af = new TAboutArduinoControllerForm(this);
     af->ShowModal();
     delete af;
 }

@@ -1,4 +1,4 @@
-object AboutArduinoServerForm: TAboutArduinoServerForm
+object AboutArduinoControllerForm: TAboutArduinoControllerForm
   Left = 0
   Top = 0
   BorderStyle = bsDialog
@@ -28,8 +28,6 @@ object AboutArduinoServerForm: TAboutArduinoServerForm
     Align = alBottom
     BevelOuter = bvLowered
     TabOrder = 0
-    ExplicitTop = 249
-    ExplicitWidth = 571
     DesignSize = (
       674
       47)
@@ -59,7 +57,6 @@ object AboutArduinoServerForm: TAboutArduinoServerForm
       ModalResult = 1
       TabOrder = 0
       OnClick = Button4Click
-      ExplicitLeft = 464
     end
   end
   inline TAboutArduinoServerFrame1: TAboutArduinoServerFrame
@@ -69,8 +66,8 @@ object AboutArduinoServerForm: TAboutArduinoServerForm
     Height = 505
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 571
-    ExplicitHeight = 249
+    ExplicitWidth = 674
+    ExplicitHeight = 505
     inherited Image1: TImage
       Width = 223
       ExplicitWidth = 223
@@ -82,7 +79,7 @@ object AboutArduinoServerForm: TAboutArduinoServerForm
     inherited mChangeLogMemo: TMemo
       Top = 195
       Width = 674
-      ExplicitTop = 219
+      ExplicitTop = 195
       ExplicitWidth = 674
     end
   end
