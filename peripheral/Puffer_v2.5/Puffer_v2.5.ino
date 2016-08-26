@@ -103,9 +103,14 @@ void processByte(char ch)
     switch(ch)
     {
         //Enable puffing
-        case 'p': 
+        case 'e': 
             enablePuffer = true;
             Serial << "[PUFFER_ENABLED]";
+        break;
+
+        case 'p': 
+            puff(puffDuration);
+            Serial << "[EXECUTED_PUFF]";
         break;
 
         //Set puffer duration
