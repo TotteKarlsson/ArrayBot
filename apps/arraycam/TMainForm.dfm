@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Top = 0
   Caption = 'Array Cam 0.5'
   ClientHeight = 986
-  ClientWidth = 963
+  ClientWidth = 968
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object MainForm: TMainForm
   object Splitter1: TSplitter
     Left = 0
     Top = 824
-    Width = 963
+    Width = 968
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -30,7 +30,7 @@ object MainForm: TMainForm
     ExplicitWidth = 967
   end
   object Splitter2: TSplitter
-    Left = 781
+    Left = 786
     Top = 0
     Height = 824
     Align = alRight
@@ -39,12 +39,13 @@ object MainForm: TMainForm
     ExplicitHeight = 100
   end
   object Panel2: TPanel
-    Left = 784
+    Left = 789
     Top = 0
     Width = 179
     Height = 824
     Align = alRight
     TabOrder = 0
+    ExplicitLeft = 784
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
@@ -256,11 +257,12 @@ object MainForm: TMainForm
   object mMainPanel: TPanel
     Left = 0
     Top = 0
-    Width = 781
+    Width = 786
     Height = 824
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
+    ExplicitWidth = 781
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -286,10 +288,11 @@ object MainForm: TMainForm
   object mBottomPanel: TPanel
     Left = 0
     Top = 827
-    Width = 963
+    Width = 968
     Height = 159
     Align = alBottom
     TabOrder = 2
+    ExplicitWidth = 963
     object GroupBox3: TGroupBox
       Left = 105
       Top = 1
@@ -333,37 +336,41 @@ object MainForm: TMainForm
     object GroupBox8: TGroupBox
       Left = 225
       Top = 1
-      Width = 737
+      Width = 742
       Height = 157
       Align = alClient
       Caption = 'Logs'
       TabOrder = 2
+      ExplicitWidth = 737
       object infoMemo: TMemo
         Left = 2
         Top = 62
-        Width = 733
+        Width = 738
         Height = 93
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
+        ExplicitWidth = 733
       end
       object Panel1: TPanel
         Left = 2
         Top = 21
-        Width = 733
+        Width = 738
         Height = 41
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 1
+        ExplicitWidth = 733
         object ToolBar1: TToolBar
           Left = 0
           Top = 0
-          Width = 733
+          Width = 738
           Height = 30
           AutoSize = True
           ButtonHeight = 30
           Caption = 'ToolBar1'
           TabOrder = 0
+          ExplicitWidth = 733
           object mClearLogMemoBtn: TBitBtn
             Left = 0
             Top = 0
@@ -381,7 +388,7 @@ object MainForm: TMainForm
           end
           object LogLevelCB: TComboBox
             Left = 75
-            Top = 0
+            Top = 4
             Width = 145
             Height = 21
             Font.Charset = DEFAULT_CHARSET

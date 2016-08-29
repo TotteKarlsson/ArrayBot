@@ -245,6 +245,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     }
     else if(startsWith("PUFF", msg))
     {
+    	Log(lInfo) << "Executing puffer";
 	    puff();
     }
 

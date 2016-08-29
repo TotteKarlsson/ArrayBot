@@ -7,7 +7,7 @@ This sketch expects an Adafruit Motor Shield for Arduino v2
 */
 
 #include <Wire.h>
-#include "Adafruit_MotorShield.h"
+#include <Adafruit_MotorShield.h>
 //#include "./utility/Adafruit_MS_PWMServoDriver.h"
 
 //The DHT22 is a combined temp/humidity sensor
@@ -79,7 +79,8 @@ void setup()
 
     // setup serial port
     Serial.begin(250000);
-    Serial << "[ArrayBot Lights]";
+    sendInfo();
+    
 }
 
 void loop() 
@@ -147,12 +148,10 @@ void loop()
     unsigned long currentReadTime = millis();
     if(currentReadTime - lastReadTime > 3000)
     {
-        checkPINStates();
+        //Read temp/humidity sensor, about every 2s.
+        //readEnvironmentalSensors(gDHT22);           
         lastReadTime = currentReadTime;
-    }
-    
-    //Read temp/humidity sensor, about every 2s.
-      readEnvironmentalSensors(gDHT22);    
+    }    
 }
   
 void processByte(char ch)
@@ -186,6 +185,7 @@ void processByte(char ch)
         
         case 'i': //Return some info about current state
             sendInfo();
+            
         break;
         
         default: //Do nothing
@@ -197,19 +197,20 @@ void processByte(char ch)
 void checkPINStates()
 {
     //Read and report states of "light pins"            
-    Serial << ((digitalRead(1)) ? "[PIN_1=HIGH]" : "[PIN_1=LOW]");
-    Serial << ((digitalRead(2)) ? "[PIN_2=HIGH]" : "[PIN_2=LOW]");    
-    Serial << ((digitalRead(3)) ? "[PIN_3=HIGH]" : "[PIN_3=LOW]");    
-    Serial << ((digitalRead(4)) ? "[PIN_4=HIGH]" : "[PIN_4=LOW]");
-    Serial << ((digitalRead(5)) ? "[PIN_5=HIGH]" : "[PIN_5=LOW]");    
-    Serial << ((digitalRead(6)) ? "[PIN_6=HIGH]" : "[PIN_6=LOW]"); 
-    Serial << ((digitalRead(7)) ? "[PIN_7=HIGH]" : "[PIN_7=LOW]");    
-    Serial << ((digitalRead(8)) ? "[PIN_8=HIGH]" : "[PIN_8=LOW]");        
+    Serial << ((digitalRead(1)) ? "[PIN_1=HIGH]" : "[PIN_1=LOW]") << 
+     ((digitalRead(2)) ? "[PIN_2=HIGH]" : "[PIN_2=LOW]") <<     
+     ((digitalRead(3)) ? "[PIN_3=HIGH]" : "[PIN_3=LOW]") << 
+     ((digitalRead(4)) ? "[PIN_4=HIGH]" : "[PIN_4=LOW]") <<
+     ((digitalRead(5)) ? "[PIN_5=HIGH]" : "[PIN_5=LOW]") <<     
+     ((digitalRead(6)) ? "[PIN_6=HIGH]" : "[PIN_6=LOW]") << 
+     ((digitalRead(7)) ? "[PIN_7=HIGH]" : "[PIN_7=LOW]") <<    
+     ((digitalRead(8)) ? "[PIN_8=HIGH]" : "[PIN_8=LOW]");
 }        
 
 void sendInfo()
 {
-    Serial << "[VERSION=5.6]";    
+    Serial << "[ArrayBot Lights VERSION=5.6]";        
+    checkPINStates();
 }
 
 void readEnvironmentalSensors(DHT22& s)
