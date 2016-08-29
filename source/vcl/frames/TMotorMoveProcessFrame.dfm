@@ -1,9 +1,10 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 451
-  Height = 304
+  Width = 972
+  Height = 821
   Align = alClient
+  AutoSize = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -11,118 +12,147 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  object MainGB: TGroupBox
+  ExplicitWidth = 451
+  ExplicitHeight = 304
+  object mMainGB: TGroupBox
     Left = 0
     Top = 0
-    Width = 451
-    Height = 217
+    Width = 972
+    Height = 417
     Align = alTop
-    Caption = 'MotorMove Process'
+    Caption = 'Action Properties'
+    Padding.Left = 15
+    Padding.Right = 15
     TabOrder = 0
-    object mHaveTriggerLabel: TLabel
-      Left = 272
-      Top = 176
-      Width = 6
-      Height = 23
+    ExplicitWidth = 451
+    object mActionInfo: TLabel
+      Left = 17
+      Top = 25
+      Width = 938
+      Height = 199
+      Align = alClient
+      AutoSize = False
+      Caption = 
+        'This move will move the Z motor to a good position for cover sli' +
+        'p extraction. As Z gets above 200 mm, the x motor is triggered t' +
+        'o move to a convenient position.'
+      Layout = tlCenter
+      WordWrap = True
+      OnClick = mActionInfoClick
+      ExplicitLeft = 1
+      ExplicitTop = 24
+      ExplicitWidth = 426
+      ExplicitHeight = 182
     end
-    object mMovePosE: TFloatLabeledEdit
-      Left = 16
-      Top = 169
-      Width = 89
-      Height = 31
-      EditLabel.Width = 63
-      EditLabel.Height = 23
-      EditLabel.Caption = 'Position'
+    object Panel2: TPanel
+      Left = 17
+      Top = 224
+      Width = 938
+      Height = 191
+      Align = alBottom
+      BevelOuter = bvNone
       TabOrder = 0
-      Text = '0.0'
-      OnKeyDown = mMovePosEKeyDown
-    end
-    object mMaxVelE: TFloatLabeledEdit
-      Left = 120
-      Top = 169
-      Width = 89
-      Height = 31
-      EditLabel.Width = 103
-      EditLabel.Height = 23
-      EditLabel.Caption = 'Max Velocity'
-      TabOrder = 1
-      Text = '0.0'
-      OnKeyDown = mMovePosEKeyDown
-    end
-    object mAccE: TFloatLabeledEdit
-      Left = 240
-      Top = 169
-      Width = 81
-      Height = 31
-      EditLabel.Width = 101
-      EditLabel.Height = 23
-      EditLabel.Caption = 'Acceleration'
-      TabOrder = 2
-      Text = '0.0'
-      OnKeyDown = mMovePosEKeyDown
-    end
-    object MotorsCB: TComboBox
-      Left = 16
-      Top = 108
-      Width = 281
-      Height = 31
-      Style = csDropDownList
-      TabOrder = 3
-      OnChange = MotorsCBChange
-    end
-    object mAddTriggerBtn: TButton
-      Left = 368
-      Top = 49
-      Width = 169
-      Height = 108
-      Caption = 'Add Child Action'
-      TabOrder = 4
-      OnClick = AddTriggerBClick
-    end
-    object mMoveActionNameE: TSTDStringLabeledEdit
-      Left = 20
-      Top = 57
-      Width = 277
-      Height = 31
-      EditLabel.Width = 12
-      EditLabel.Height = 23
-      EditLabel.Caption = '  '
-      TabOrder = 5
-      OnKeyDown = mMoveActionNameEKeyDown
+      ExplicitWidth = 417
+      object Label1: TLabel
+        Left = 16
+        Top = 15
+        Width = 48
+        Height = 23
+        Caption = 'Motor'
+      end
+      object mAccE: TFloatLabeledEdit
+        Left = 240
+        Top = 121
+        Width = 81
+        Height = 31
+        EditLabel.Width = 101
+        EditLabel.Height = 23
+        EditLabel.Caption = 'Acceleration'
+        TabOrder = 0
+        Text = '0.0'
+        OnKeyDown = mMovePosEKeyDown
+      end
+      object mAddTriggerBtn: TButton
+        Left = 351
+        Top = 44
+        Width = 169
+        Height = 108
+        Caption = 'Add Child Action'
+        TabOrder = 1
+        OnClick = AddTriggerBClick
+      end
+      object mMaxVelE: TFloatLabeledEdit
+        Left = 120
+        Top = 121
+        Width = 89
+        Height = 31
+        EditLabel.Width = 103
+        EditLabel.Height = 23
+        EditLabel.Caption = 'Max Velocity'
+        TabOrder = 2
+        Text = '0.0'
+        OnKeyDown = mMovePosEKeyDown
+      end
+      object mMovePosE: TFloatLabeledEdit
+        Left = 16
+        Top = 121
+        Width = 89
+        Height = 31
+        EditLabel.Width = 63
+        EditLabel.Height = 23
+        EditLabel.Caption = 'Position'
+        TabOrder = 3
+        Text = '0.0'
+        OnKeyDown = mMovePosEKeyDown
+      end
+      object MotorsCB: TComboBox
+        Left = 16
+        Top = 44
+        Width = 281
+        Height = 31
+        Style = csDropDownList
+        TabOrder = 4
+        OnChange = MotorsCBChange
+      end
     end
   end
   object mTriggerPanel: TPanel
     Left = 0
-    Top = 217
-    Width = 451
-    Height = 87
+    Top = 417
+    Width = 972
+    Height = 404
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 451
+    ExplicitHeight = 229
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 200
-      Height = 85
+      Height = 402
       Align = alLeft
       Caption = 'Triggers'
       TabOrder = 0
+      ExplicitHeight = 227
       object mTriggersLB: TListBox
         Left = 2
         Top = 25
         Width = 196
-        Height = 193
+        Height = 315
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
         OnClick = TriggersLBClick
+        ExplicitHeight = 140
       end
       object Panel1: TPanel
         Left = 2
-        Top = 23
+        Top = 340
         Width = 196
         Height = 60
         Align = alBottom
         TabOrder = 1
+        ExplicitTop = 165
         object mDeleteTriggerB: TButton
           Left = 1
           Top = 1

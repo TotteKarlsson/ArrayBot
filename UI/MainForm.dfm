@@ -87,7 +87,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = TabSheet1
+      ActivePage = mMoveSequencesPage
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -450,10 +450,6 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Sequences'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'

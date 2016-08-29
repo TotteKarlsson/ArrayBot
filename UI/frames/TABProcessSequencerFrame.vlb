@@ -1,10 +1,4 @@
-﻿[mAddSeqBtn]
-Coordinates=220,211,79,51
-
-[mDeleteSequenceBtn]
-Coordinates=318,232,120,51
-
-[mStartBtn]
+﻿[mStartBtn]
 Coordinates=151,232,64,51
 
 [mSequencesCB]
@@ -14,7 +8,7 @@ Coordinates=337,71,92,87
 Coordinates=288,321,70,51
 
 []
-Coordinates=476,1,113,51
+Coordinates=318,232,120,51
 
 [TMotorMoveProcessFrame1.mAccE]
 Coordinates=467,177,190,51

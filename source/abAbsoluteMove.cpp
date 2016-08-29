@@ -96,7 +96,11 @@ XMLElement* AbsoluteMove::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* doc
     pn->SetAttribute("type", getTypeName().c_str());
     pn->SetAttribute("name", mProcessName.c_str());
 
-	XMLElement* dataval1 = doc.NewElement("motor_name");
+	XMLElement* dataval1 = doc.NewElement("info");
+    dataval1->SetText(mInfoText.c_str());
+	pn->InsertEndChild(dataval1);
+
+	dataval1 = doc.NewElement("motor_name");
     dataval1->SetText(mSubjectName.c_str());
 	pn->InsertEndChild(dataval1);
 

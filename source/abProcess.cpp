@@ -1,6 +1,7 @@
 #pragma hdrstop
 #include "abProcess.h"
 #include "mtkXMLUtils.h"
+#include "abProcessSequence.h"
 //---------------------------------------------------------------------------
 
 using Poco::Timespan;
@@ -15,7 +16,9 @@ mPostDwellTime(0),
 mTimeOut(60*Poco::Timespan::SECONDS),
 mIsBeingProcessed(false),
 mIsProcessed(false),
-mIsStarted(false)
+mIsStarted(false),
+mProcessSequence(NULL),
+mInfoText("<none>")
 {}
 
 string Process::getProcessType()
@@ -48,6 +51,15 @@ bool Process::stop()
     return true;
 }
 
+bool Process::write()
+{
+	if(mProcessSequence)
+    {
+    	return mProcessSequence->write();
+    }
+	return false;
+}
+
 XMLElement* Process::addToXMLDocument(tinyxml2::XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file
@@ -57,6 +69,10 @@ XMLElement* Process::addToXMLDocument(tinyxml2::XMLDocument& doc, XMLNode* docRo
     //Attributes
     processNode->SetAttribute("type", getProcessType().c_str());
     processNode->SetAttribute("name", mProcessName.c_str());
+
+	XMLElement* dataval1 = doc.NewElement("info");
+    dataval1->SetText(mInfoText.c_str());
+	processNode->InsertEndChild(dataval1);
 
     processNode->InsertEndChild(rootNode);
     docRoot->InsertEndChild(processNode);

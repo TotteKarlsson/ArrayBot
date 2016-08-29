@@ -134,6 +134,8 @@ int ProcessSequenceProject::loadProcesses()
     {
         //Find out what kind of element p is
         Process* aProc = createProcess(p);
+
+
         if(aProc)
         {
             mProcessSequence.add(aProc);
@@ -163,9 +165,8 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
     	return NULL;
     }
 
+  	//What processtype?
 	ProcessType pt = toProcessType(element->Attribute("type"));
-
-  	//What process?
     switch(pt)
     {
     	case ptParallell: 		return createParallellProcess(element);
@@ -178,6 +179,7 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
 Process* ProcessSequenceProject::createParallellProcess(XMLElement* element)
 {
     ParallellProcess* p = new ParallellProcess(element->Attribute("name"));
+    p->assignProcessSequence(&mProcessSequence);
 
     //Read data
     XMLElement* proc = element->FirstChildElement("process");
@@ -198,9 +200,17 @@ Process* ProcessSequenceProject::createParallellProcess(XMLElement* element)
                 if(compareNoCase(type, "absoluteMove"))
                 {
                     absMove = new AbsoluteMove(name);
+					absMove->assignProcessSequence(&mProcessSequence);
                 }
 
-                XMLElement* data = proc->FirstChildElement("motor_name");
+
+                XMLElement* data = proc->FirstChildElement("info");
+                if(data && data->GetText())
+                {
+                    absMove->setInfoText(data->GetText());
+                }
+
+                data = proc->FirstChildElement("motor_name");
                 if(data && data->GetText())
                 {
                     absMove->setSubjectName(data->GetText());

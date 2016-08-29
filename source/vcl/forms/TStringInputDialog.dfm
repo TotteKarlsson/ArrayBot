@@ -1,9 +1,10 @@
-object TextInputDialog: TTextInputDialog
+object StringInputDialog: TStringInputDialog
   Left = 0
   Top = 0
+  AutoSize = True
   BorderStyle = bsDialog
-  Caption = 'TextInputDialog'
-  ClientHeight = 683
+  Caption = 'String InputDialog'
+  ClientHeight = 166
   ClientWidth = 746
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,12 +17,12 @@ object TextInputDialog: TTextInputDialog
   OnShow = FormShow
   DesignSize = (
     746
-    683)
+    166)
   PixelsPerInch = 96
   TextHeight = 23
   object Panel1: TPanel
     Left = 0
-    Top = 593
+    Top = 76
     Width = 746
     Height = 90
     Align = alBottom
@@ -51,15 +52,18 @@ object TextInputDialog: TTextInputDialog
       TabOrder = 1
     end
   end
-  object mInfoMemo: TMemo
+  object STDStringLabeledEdit1: TSTDStringLabeledEdit
     Left = 24
-    Top = 24
+    Top = 26
     Width = 688
-    Height = 548
+    Height = 31
     Anchors = [akLeft, akTop, akRight, akBottom]
+    EditLabel.Width = 89
+    EditLabel.Height = 23
+    EditLabel.Caption = 'New Value'
     TabOrder = 1
-    OnChange = mInfoMemoChange
-    OnClick = mInfoMemoClick
-    OnKeyDown = mInfoMemoKeyDown
+    OnChange = STDStringLabeledEdit1Change
+    OnClick = STDStringLabeledEdit1Click
+    OnKeyDown = STDStringLabeledEdit1KeyDown
   end
 end

@@ -43,7 +43,7 @@ class AB_CORE ParallellProcess : public Process
         virtual bool	            areMotorsActive();
 
     protected:                      //!The Processes container contain all moves
-		vector<Process*>	  	mProcesses;
+		vector<Process*>	  		mProcesses;
 };
 
 #endif

@@ -19,7 +19,7 @@ class XYZUnit;
 class PACKAGE TMotorMoveProcessFrame : public TFrame
 {
 __published:	// IDE-managed Components
-	TGroupBox *MainGB;
+	TGroupBox *mMainGB;
 	TFloatLabeledEdit *mMovePosE;
 	TFloatLabeledEdit *mMaxVelE;
 	TFloatLabeledEdit *mAccE;
@@ -28,17 +28,17 @@ __published:	// IDE-managed Components
 	TButton *mDeleteTriggerB;
 	TListBox *mTriggersLB;
 	TPanel *mTriggerPanel;
-	TLabel *mHaveTriggerLabel;
 	TButton *mAddTriggerBtn;
 	TGroupBox *GroupBox1;
-	TSTDStringLabeledEdit *mMoveActionNameE;
+	TLabel *Label1;
+	TLabel *mActionInfo;
+	TPanel *Panel2;
 	void __fastcall MotorsCBChange(TObject *Sender);
 	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall TriggersLBClick(TObject *Sender);
 	void __fastcall mDeleteTriggerBClick(TObject *Sender);
 	void __fastcall AddTriggerBClick(TObject *Sender);
-	void __fastcall mMoveActionNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-
+	void __fastcall mActionInfoClick(TObject *Sender);
 
     private:	// User declarations
         AbsoluteMove* 	   			mMove;

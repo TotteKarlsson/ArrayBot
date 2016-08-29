@@ -17,6 +17,8 @@
 
 #include "TTimeDelayFrame.h"
 #include "TSequenceInfoFrame.h"
+#include "TArrayBotBtn.h"
+#include <Vcl.Buttons.hpp>
 //---------------------------------------------------------------------------
 
 class ArrayBot;
@@ -26,8 +28,6 @@ class TABProcessSequencerFrame : public TFrame
     __published:	// IDE-managed Components
         TButton *mStartBtn;
         TComboBox *mSequencesCB;
-        TButton *mDeleteSequenceBtn;
-        TButton *mAddSeqBtn;
         TTimer *mSequenceStatusTimer;
         TLabel *mStatusLbl;
         TActionList *Actions;
@@ -43,16 +43,18 @@ class TABProcessSequencerFrame : public TFrame
 	TPanel *Panel2;
 	TCheckBox *mContinousExecutionCB;
 	TButton *mRewindButton;
-	TButton *Button1;
+	TArrayBotButton *mAddSeqBtn;
+	TArrayBotButton *mDeleteSequenceBtn;
+	TArrayBotButton *mRenameButton;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
         void __fastcall mStartBtnClick(TObject *Sender);
         void __fastcall mSaveSequenceBtnClick(TObject *Sender);
         void __fastcall mSequencesCBChange(TObject *Sender);
         void __fastcall mSequenceTimerTimer(TObject *Sender);
-        void __fastcall mSequenceNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall mRewindButtonClick(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
+		void __fastcall mRewindButtonClick(TObject *Sender);
+		void __fastcall mRenameButtonClick(TObject *Sender);
+
 
 
 
@@ -60,6 +62,7 @@ class TABProcessSequencerFrame : public TFrame
         ArrayBot&					mAB;
 	    ProcessSequencer&  			mProcessSequencer;
         string 						mProcessFileExtension;
+        string						getCurrentlySelectedSequence();
 		void __fastcall 			refreshSequencesCB();
 		static int 					mFrameNr;
 		void						saveSequence();

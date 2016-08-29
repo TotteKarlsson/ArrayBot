@@ -20,6 +20,7 @@ namespace mtk
 
 class Trigger;
 class ArrayBot;
+class ProcessSequence;
 
 class AB_CORE Process : public ABObject
 {
@@ -33,8 +34,18 @@ class AB_CORE Process : public ABObject
         virtual	bool	                        undo() 				= 0;
         virtual bool 	  						isDone()			= 0;
 
+        										//If the process is part of a sequence, write will
+                                                //update the xml and save to file
+        bool									write();
+
+        string									getInfoText(){return mInfoText;}
+        void									setInfoText(const string& txt){mInfoText = txt;}
+
 		string 						            getProcessType();
 		virtual void	                        assignUnit(ABObject* o){mSubject = o;}
+		virtual void	                        assignProcessSequence(ProcessSequence* ps){mProcessSequence = ps;}
+		ProcessSequence*						getProcessSequence(){return mProcessSequence;}
+
         void									setSubjectName(const string& n){mSubjectName = n;}
 		ABObject*					            getUnit(){return mSubject;}
         string						            getProcessName(){return mProcessName;}
@@ -71,6 +82,13 @@ class AB_CORE Process : public ABObject
         							            //!The process type help us construct
                                                 //a new process object from a file
         ProcessType					            mProcessType;
+
+        										//!A process may be part of a process sequence
+		ProcessSequence*						mProcessSequence;
+
+        										//!Info text is used if the user want to document the purpose of
+                                                //a particular process
+        string									mInfoText;
 
 		bool						            mIsStarted;
 		bool						            mIsBeingProcessed;

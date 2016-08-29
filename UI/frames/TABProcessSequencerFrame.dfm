@@ -91,24 +91,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         Caption = 'Select Sequence'
         Padding.Top = 10
         TabOrder = 0
-        object mAddSeqBtn: TButton
-          Left = 15
-          Top = 78
-          Width = 74
-          Height = 44
-          Caption = 'New'
-          TabOrder = 0
-          OnClick = mAddSeqBtnClick
-        end
-        object mDeleteSequenceBtn: TButton
-          Left = 95
-          Top = 78
-          Width = 98
-          Height = 44
-          Caption = 'Delete'
-          TabOrder = 1
-          OnClick = mDeleteSequenceBtnClick
-        end
         object mSequencesCB: TComboBox
           Left = 15
           Top = 33
@@ -122,14 +104,38 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Items.Strings = (
             'MoveSequence')
         end
-        object Button1: TButton
+        object mAddSeqBtn: TArrayBotButton
+          Left = 15
+          Top = 78
+          Width = 74
+          Height = 44
+          Caption = 'New'
+          ParentDoubleBuffered = True
+          TabOrder = 0
+          OnClick = mAddSeqBtnClick
+          SoundID = 'BUTTON_CLICK_1'
+        end
+        object mDeleteSequenceBtn: TArrayBotButton
+          Left = 95
+          Top = 78
+          Width = 98
+          Height = 44
+          Caption = 'Delete'
+          ParentDoubleBuffered = True
+          TabOrder = 1
+          OnClick = mDeleteSequenceBtnClick
+          SoundID = 'BUTTON_CLICK_1'
+        end
+        object mRenameButton: TArrayBotButton
           Left = 199
           Top = 78
           Width = 86
           Height = 44
           Caption = 'Rename'
+          ParentDoubleBuffered = True
           TabOrder = 3
-          OnClick = Button1Click
+          OnClick = mRenameButtonClick
+          SoundID = 'BUTTON_CLICK_1'
         end
       end
       inline TSequenceInfoFrame1: TSequenceInfoFrame
@@ -152,16 +158,8 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         inherited mMainGB: TGroupBox
           Width = 302
           Height = 398
-          Caption = 'Seq Name'
           ExplicitWidth = 302
           ExplicitHeight = 398
-          inherited GroupBox3: TPanel
-            Width = 298
-            ExplicitWidth = 298
-            inherited mSequenceNameE: TSTDStringLabeledEdit
-              OnKeyDown = mSequenceNameEKeyDown
-            end
-          end
           inherited GroupBox2: TGroupBox
             Width = 298
             ExplicitWidth = 298

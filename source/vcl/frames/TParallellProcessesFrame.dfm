@@ -10,110 +10,142 @@ object ParallellProcessesFrame: TParallellProcessesFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  object GroupBox2: TGroupBox
+  object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 723
+    Width = 145
+    Height = 620
+    Align = alLeft
+    Caption = 'Actions'
+    TabOrder = 0
+    ExplicitLeft = 2
+    ExplicitTop = 25
+    ExplicitHeight = 593
+    object Button1: TButton
+      Left = 13
+      Top = 182
+      Width = 118
+      Height = 60
+      Action = addMoveA
+      Caption = 'New'
+      TabOrder = 0
+    end
+    object Button2: TButton
+      Left = 13
+      Top = 253
+      Width = 118
+      Height = 60
+      Action = removeMoveA
+      TabOrder = 1
+    end
+    object mSubProcessesLB: TListBox
+      Left = 13
+      Top = 37
+      Width = 118
+      Height = 139
+      ItemHeight = 23
+      TabOrder = 2
+      OnClick = mSubProcessesLBClick
+    end
+    object mRenameBtn: TArrayBotButton
+      Left = 13
+      Top = 325
+      Width = 118
+      Height = 60
+      Caption = 'Rename'
+      TabOrder = 3
+      OnClick = mRenameBtnClick
+      SoundID = 'BUTTON_CLICK_1'
+    end
+  end
+  inline TMotorMoveProcessFrame1: TMotorMoveProcessFrame
+    Left = 145
+    Top = 0
+    Width = 578
     Height = 620
     Align = alClient
-    TabOrder = 0
-    object GroupBox1: TGroupBox
-      Left = 2
-      Top = 113
-      Width = 145
-      Height = 505
-      Align = alLeft
-      Caption = 'Actions'
-      TabOrder = 0
-      object Button1: TButton
-        Left = 13
-        Top = 182
-        Width = 118
-        Height = 60
-        Action = addMoveA
-        TabOrder = 0
+    AutoSize = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    ExplicitLeft = 2
+    ExplicitTop = 25
+    ExplicitWidth = 574
+    ExplicitHeight = 593
+    inherited mMainGB: TGroupBox
+      Width = 578
+      Height = 401
+      ExplicitWidth = 578
+      ExplicitHeight = 401
+      inherited mActionInfo: TLabel
+        Width = 544
+        Height = 183
+        ExplicitWidth = 570
+        ExplicitHeight = 183
       end
-      object Button2: TButton
-        Left = 13
-        Top = 259
-        Width = 118
-        Height = 60
-        Action = removeMoveA
-        TabOrder = 1
-      end
-      object mSubProcessesLB: TListBox
-        Left = 13
-        Top = 32
-        Width = 118
-        Height = 139
-        ItemHeight = 23
-        TabOrder = 2
-        OnClick = mSubProcessesLBClick
+      inherited Panel2: TPanel
+        Top = 208
+        Width = 544
+        ExplicitTop = 208
+        ExplicitWidth = 544
+        inherited Label1: TLabel
+          Top = 33
+          ExplicitTop = 33
+        end
+        inherited mAccE: TFloatLabeledEdit
+          Top = 126
+          EditLabel.ExplicitLeft = 240
+          EditLabel.ExplicitTop = 100
+          EditLabel.ExplicitWidth = 101
+          ExplicitTop = 126
+        end
+        inherited mMaxVelE: TFloatLabeledEdit
+          Top = 126
+          EditLabel.ExplicitLeft = 120
+          EditLabel.ExplicitTop = 100
+          EditLabel.ExplicitWidth = 103
+          ExplicitTop = 126
+        end
+        inherited mMovePosE: TFloatLabeledEdit
+          Top = 126
+          EditLabel.ExplicitLeft = 16
+          EditLabel.ExplicitTop = 100
+          EditLabel.ExplicitWidth = 63
+          ExplicitTop = 126
+        end
+        inherited MotorsCB: TComboBox
+          Top = 62
+          ExplicitTop = 62
+        end
       end
     end
-    object Panel1: TPanel
-      Left = 2
-      Top = 25
-      Width = 719
-      Height = 88
-      Align = alTop
-      BevelOuter = bvNone
-      TabOrder = 1
-      object mProcessNameE: TSTDStringLabeledEdit
-        Left = 13
-        Top = 32
-        Width = 356
-        Height = 31
-        EditLabel.Width = 117
-        EditLabel.Height = 23
-        EditLabel.Caption = 'Process Name'
-        TabOrder = 0
-        OnKeyDown = mProcessNameEKeyDown
-      end
-    end
-    inline TMotorMoveProcessFrame1: TMotorMoveProcessFrame
-      Left = 147
-      Top = 113
-      Width = 574
-      Height = 505
-      Align = alClient
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 2
-      ExplicitLeft = 147
-      ExplicitTop = 113
-      ExplicitWidth = 574
-      ExplicitHeight = 505
-      inherited MainGB: TGroupBox
-        Width = 574
-        ExplicitWidth = 574
-      end
-      inherited mTriggerPanel: TPanel
-        Width = 574
-        Height = 288
-        ExplicitWidth = 574
-        ExplicitHeight = 288
-        inherited GroupBox1: TGroupBox
-          Width = 160
-          Height = 286
-          ExplicitWidth = 160
-          ExplicitHeight = 286
-          inherited mTriggersLB: TListBox
-            Width = 156
-            Height = 199
-            ExplicitWidth = 156
-            ExplicitHeight = 199
-          end
-          inherited Panel1: TPanel
-            Top = 224
-            Width = 156
-            ExplicitTop = 224
-            ExplicitWidth = 156
-          end
+    inherited mTriggerPanel: TPanel
+      Top = 401
+      Width = 578
+      Height = 219
+      ExplicitTop = 401
+      ExplicitWidth = 578
+      ExplicitHeight = 219
+      inherited GroupBox1: TGroupBox
+        Width = 160
+        Height = 217
+        ExplicitWidth = 160
+        ExplicitHeight = 217
+        inherited mTriggersLB: TListBox
+          Width = 156
+          Height = 130
+          ExplicitWidth = 156
+          ExplicitHeight = 130
+        end
+        inherited Panel1: TPanel
+          Top = 155
+          Width = 156
+          ExplicitTop = 155
+          ExplicitWidth = 156
         end
       end
     end

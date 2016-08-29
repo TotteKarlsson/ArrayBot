@@ -8,6 +8,8 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include <Vcl.ExtCtrls.hpp>
+#include "TArrayBotBtn.h"
+#include <Vcl.Buttons.hpp>
 //---------------------------------------------------------------------------
 
 class ProcessSequence;
@@ -23,20 +25,20 @@ class PACKAGE TSequenceInfoFrame : public TFrame
         TAction *RemoveProcessA;
 	TButton *mAddMoveBtn;
 	TAction *AddCombinedMoveA;
-	TPanel *GroupBox3;
 	TButton *mDeleteMoveBtn;
 	TButton *mMoveSequenceDownBtn;
 	TButton *mMoveSequenceUpBtn;
 	TListBox *mProcessesLB;
-	TSTDStringLabeledEdit *mSequenceNameE;
 	TGroupBox *GroupBox2;
 	TButton *mUpdatePositionsBtn;
+	TArrayBotButton *mRenameBtn;
     void __fastcall mMoveSequenceUpBtnClick(TObject *Sender);
     void __fastcall RemoveProcessAExecute(TObject *Sender);
 	void __fastcall mMoveSequenceDownBtnClick(TObject *Sender);
 	void __fastcall mProcessesLBClick(TObject *Sender);
 	void __fastcall AddCombinedMoveAExecute(TObject *Sender);
 	void __fastcall mUpdatePositionsBtnClick(TObject *Sender);
+	void __fastcall mRenameBtnClick(TObject *Sender);
 
     private:	// User declarations
 		ProcessSequence*		        mSequence;

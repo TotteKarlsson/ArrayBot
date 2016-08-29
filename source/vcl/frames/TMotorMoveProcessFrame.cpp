@@ -9,6 +9,8 @@
 #include "abArrayBot.h"
 #include "abAbsoluteMove.h"
 #include "abTriggerFunction.h"
+#include "TTextInputDialog.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -43,7 +45,7 @@ void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
 		mTriggersLB->Items->AddObject(mMove->getTrigger()->getTypeName().c_str(), (TObject*) mMove->getTrigger());
         mTriggersLB->ItemIndex = 0;
 		TriggersLBClick(NULL);
-        mAddTriggerBtn->Visible	= true;
+        mAddTriggerBtn->Visible	= false;
 		mTriggerPanel->Visible 	= true;
     }
     else
@@ -62,8 +64,7 @@ void TMotorMoveProcessFrame::rePopulate(AbsoluteMove* m)
     }
 
     mMove = m;
-    MainGB->Caption = vclstr(mMove->getProcessName());
-    mMoveActionNameE->setValue(mMove->getProcessName());
+    mActionInfo->Caption = vclstr(mMove->getInfoText());
 
 	mMovePosE->setValue(mMove->getPosition());
     mMaxVelE->setValue(mMove->getMaxVelocity());
@@ -175,6 +176,7 @@ void __fastcall TMotorMoveProcessFrame::mDeleteTriggerBClick(TObject *Sender)
     	mMove->deleteTrigger();
 	    mTriggersLB->Clear();
 	    mPosTriggerFrame->Visible = false;
+		populate(mAB, mMove);
     }
 }
 
@@ -189,22 +191,34 @@ void __fastcall TMotorMoveProcessFrame::AddTriggerBClick(TObject *Sender)
     //Also add a trigger function
     MoveAbsolute *tf = new MoveAbsolute(NULL);
     t->assignTriggerFunction(tf);
-
 	populate(mAB, mMove);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMotorMoveProcessFrame::mMoveActionNameEKeyDown(TObject *Sender,
-          WORD &Key, TShiftState Shift)
+void __fastcall TMotorMoveProcessFrame::mActionInfoClick(TObject *Sender)
 {
-    if(Key != vkReturn || mMove == NULL)
+    if(!mMove)
     {
     	return;
     }
 
-    mMove->setProcessName(mMoveActionNameE->getValue());
+	//Open text edit form
+	TTextInputDialog* t = new TTextInputDialog(this);
 
-    //Update parent listbox
+    t->Caption = "Update Action Information";
+	Process* p =  mMove;
+
+    t->setText(mMove->getInfoText());
+
+    if(t->ShowModal() == mrOk)
+    {
+		//Rename the currently selected sequence
+    	string newText(t->getText());
+		mMove->setInfoText(newText);
+		mMove->write();
+        mActionInfo->Caption = vclstr(newText);
+    }
+    delete t;
 }
 
 

@@ -17,40 +17,14 @@ object SequenceInfoFrame: TSequenceInfoFrame
     Height = 448
     Align = alClient
     TabOrder = 0
-    object GroupBox3: TPanel
+    object GroupBox2: TGroupBox
       Left = 2
       Top = 25
       Width = 282
-      Height = 67
-      Align = alTop
-      BevelEdges = [beLeft, beRight, beBottom]
-      BevelOuter = bvNone
-      ParentColor = True
-      TabOrder = 0
-      object mSequenceNameE: TSTDStringLabeledEdit
-        Left = 13
-        Top = 24
-        Width = 200
-        Height = 31
-        BevelEdges = [beLeft, beRight, beBottom]
-        BevelInner = bvNone
-        BevelOuter = bvNone
-        EditLabel.Width = 49
-        EditLabel.Height = 23
-        EditLabel.Caption = 'Name'
-        TabOrder = 0
-        Text = '<none>'
-        Value = '<none>'
-      end
-    end
-    object GroupBox2: TGroupBox
-      Left = 2
-      Top = 92
-      Width = 282
-      Height = 237
+      Height = 296
       Align = alTop
       Caption = 'Processes'
-      TabOrder = 1
+      TabOrder = 0
       object mDeleteMoveBtn: TButton
         Left = 219
         Top = 26
@@ -88,12 +62,22 @@ object SequenceInfoFrame: TSequenceInfoFrame
       end
       object mAddMoveBtn: TButton
         Left = 13
-        Top = 168
-        Width = 200
+        Top = 150
+        Width = 148
         Height = 50
         Action = AddCombinedMoveA
         Caption = 'New Process'
         TabOrder = 4
+      end
+      object mRenameBtn: TArrayBotButton
+        Left = 176
+        Top = 150
+        Width = 97
+        Height = 51
+        Caption = 'Rename'
+        TabOrder = 5
+        OnClick = mRenameBtnClick
+        SoundID = 'BUTTON_CLICK_1'
       end
     end
     object mUpdatePositionsBtn: TButton
@@ -101,13 +85,13 @@ object SequenceInfoFrame: TSequenceInfoFrame
       Top = 346
       Width = 228
       Height = 72
-      TabOrder = 2
+      TabOrder = 1
       OnClick = mUpdatePositionsBtnClick
     end
   end
   object mSequenceAL: TActionList
-    Left = 224
-    Top = 24
+    Left = 208
+    Top = 16
     object RemoveProcessA: TAction
       Caption = 'X'
       OnExecute = RemoveProcessAExecute

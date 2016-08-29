@@ -49,7 +49,7 @@ class AB_CORE ProcessSequence : public ABObject
         Process*                          	getNext() const;
         Process*                          	getPrevious() const;
         Process*                          	getCurrent() const;
-        bool								gotoProcess(Process* p);
+        bool								selectProcess(Process* p);
 
         void								setProjectName(const string& name);
         void								setFileFolder(const string& f);

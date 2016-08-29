@@ -8,11 +8,12 @@
 
 using namespace mtk;
 
-bool updateComboBoxItemCaption(int indx, const string& name, TComboBox* cb)
+
+bool updateListBoxItemCaption(TListBox* lb, int indx, const string& name)
 {
-	if(indx > -1 && indx < cb->Items->Count)
+	if(indx > -1 && indx < lb->Count)
     {
-		cb->Items->Strings[indx] = vclstr(name);
+		lb->Items->Strings[indx] = vclstr(name);
         return true;
     }
     return false;
@@ -54,7 +55,7 @@ int selectAndClickListBoxItem(TListBox* lb, int itemIndex)
     return itemIndex;
 }
 
-int selectAndClickListBoxItem(TListBox* lb, const string&  item)
+int selectAndClickListBoxItem(TListBox* lb, const string& item)
 {
 	if(!lb)
     {
@@ -72,5 +73,34 @@ int selectAndClickListBoxItem(TListBox* lb, const string&  item)
         }
     }
     return -1;
+}
+
+int selectAndClickComboBoxItem(TComboBox* cb, const string& name)
+{
+	if(!cb)
+    {
+    	return -1;
+    }
+
+	//find the item in the list box;
+	for(int i = 0; i < cb->Items->Count; i++)
+    {
+    	if(compareStrings(stdstr(cb->Items->Strings[i]) , name))
+        {
+        	cb->ItemIndex = i;
+            return i;
+        }
+    }
+    return -1;
+}
+
+bool updateComboBoxItemCaption(TComboBox* cb, int indx, const string& name)
+{
+	if(indx > -1 && indx < cb->Items->Count)
+    {
+		cb->Items->Strings[indx] = vclstr(name);
+        return true;
+    }
+    return false;
 }
 

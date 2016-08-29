@@ -12,9 +12,12 @@
 #include "abVCLUtils.h"
 #include "mtkMathUtils.h"
 #include "abTriggerFunction.h"
+#include "TStringInputDialog.h"
+
 #pragma package(smart_init)
 #pragma link "TMotorMoveProcessFrame"
 #pragma link "TSTDStringLabeledEdit"
+#pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 
 using namespace mtk;
@@ -43,15 +46,13 @@ void TParallellProcessesFrame::rePopulate(Process* pp)
 	//Populate, update frame with data from process
     mParallell = dynamic_cast<ParallellProcess*>(pp);
 
-	mProcessNameE->setValue(mParallell->getProcessName());
-
     //Fill out the listbox with moves
     for(int i = 0; i < mParallell->getNumberOfProcesses(); i++)
     {
     	Process* p = mParallell->getProcess(i);
         if(p)
         {
-        	mSubProcessesLB->Items->Add(vclstr(p->getProcessName()));
+        	mSubProcessesLB->Items->AddObject(vclstr(p->getProcessName()), (TObject*) p);
         }
     }
 
@@ -60,6 +61,7 @@ void TParallellProcessesFrame::rePopulate(Process* pp)
     if(mSubProcessesLB->Count)
     {
 	    selectAndClickListBoxItem(mSubProcessesLB, 0);
+		this->TMotorMoveProcessFrame1->Visible = true;
    		EnableDisableFrame(this->TMotorMoveProcessFrame1, true);
     }
     else
@@ -82,8 +84,11 @@ void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
     //Add the move to the container.. this will give the move a name
     mParallell->addProcess(lm);
 
+    lm->assignProcessSequence(mParallell->getProcessSequence());
+    mParallell->write();
+
     //Add move to Listbox
-    int indx = mSubProcessesLB->Items->Add(lm->getProcessName().c_str());
+    int indx = mSubProcessesLB->Items->AddObject(lm->getProcessName().c_str(), (TObject*) lm);
 	mSubProcessesLB->ItemIndex = indx;
 
 	//Select the new process
@@ -99,6 +104,7 @@ void __fastcall TParallellProcessesFrame::removeMoveAExecute(TObject *Sender)
     {
     	string moveName = stdstr(mSubProcessesLB->Items->Strings[index]);
         mParallell->removeProcess(moveName);
+        mParallell->write();
 		rePopulate(mParallell);
     }
 }
@@ -108,6 +114,7 @@ void TParallellProcessesFrame::selectItem(Process* mv)
 	if(dynamic_cast<AbsoluteMove*>(mv))
     {
         this->TMotorMoveProcessFrame1->populate(mAB, dynamic_cast<AbsoluteMove*>(mv));
+        this->TMotorMoveProcessFrame1->Visible = true;
         EnableDisableFrame(this->TMotorMoveProcessFrame1, true);
     }
 }
@@ -123,16 +130,6 @@ void __fastcall TParallellProcessesFrame::mSubProcessesLBClick(TObject *Sender)
 	string moveName = stdstr(mSubProcessesLB->Items->Strings[mSubProcessesLB->ItemIndex]);
     Process* mv = mParallell->getProcess(moveName);
     selectItem(mv);
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TParallellProcessesFrame::mProcessNameEKeyDown(TObject *Sender, WORD &Key,
-          TShiftState Shift)
-{
-	if(Key == vkReturn && mParallell != NULL)
-    {
-   		mParallell->setProcessName(mProcessNameE->getValue());
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -214,4 +211,48 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
 	selectAndClickListBoxItem(mSubProcessesLB, 0);
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TParallellProcessesFrame::mRenameBtnClick(TObject *Sender)
+{
+	//Open string input form
+	TStringInputDialog* t = new TStringInputDialog(this);
 
+    t->Caption = "Rename Action";
+	Process* p =  getCurrentlySelectedSubProcess();
+    if(!p)
+    {
+    	return;
+    }
+    t->setText(p->getProcessName());
+
+    if(t->ShowModal() == mrOk)
+    {
+		//Rename the currently selected sequence
+    	string newName(t->getText());
+
+		p->setProcessName(newName);
+		p->write();
+
+        int indx = mSubProcessesLB->ItemIndex;
+        if(updateListBoxItemCaption(mSubProcessesLB, indx, newName) == false)
+        {
+
+        }
+
+        if(selectAndClickListBoxItem(mSubProcessesLB, newName) == false)
+        {
+        	//bad..
+        }
+    }
+    delete t;
+}
+
+Process* TParallellProcessesFrame::getCurrentlySelectedSubProcess()
+{
+	if(mSubProcessesLB->Count > 0 && mSubProcessesLB->ItemIndex != -1)
+    {
+	    Process* p = (Process*) mSubProcessesLB->Items->Objects[mSubProcessesLB->ItemIndex];
+        return p;
+    }
+    return NULL;
+}

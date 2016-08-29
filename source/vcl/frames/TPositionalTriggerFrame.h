@@ -15,7 +15,6 @@ class ArrayBot;
 class PACKAGE TPositionalTriggerFrame : public TFrame
 {
     __published:	// IDE-managed Components
-		TGroupBox *MainGB;
 		TFloatLabeledEdit *mPositionE;
 		TRadioGroup *mOpRG;
 		TComboBox *mDevicesCB;

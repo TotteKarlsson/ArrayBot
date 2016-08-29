@@ -11,6 +11,8 @@
 #include "abArrayBot.h"
 #include "TSTDStringLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
+#include "TArrayBotBtn.h"
+#include <Vcl.Buttons.hpp>
 
 class Process;
 class ParallellProcess;
@@ -27,21 +29,20 @@ __published:	// IDE-managed Components
 	TActionList *ActionList1;
 	TAction *addMoveA;
 	TAction *removeMoveA;
-	TPanel *Panel1;
-	TSTDStringLabeledEdit *mProcessNameE;
-	TGroupBox *GroupBox2;
 	TMotorMoveProcessFrame *TMotorMoveProcessFrame1;
 	TAction *mUpdateFinalPositionsA;
+	TArrayBotButton *mRenameBtn;
 	void __fastcall addMoveAExecute(TObject *Sender);
 	void __fastcall mSubProcessesLBClick(TObject *Sender);
 	void __fastcall removeMoveAExecute(TObject *Sender);
-	void __fastcall mProcessNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mUpdateFinalPositionsAExecute(TObject *Sender);
+	void __fastcall mRenameBtnClick(TObject *Sender);
 
     private:	// User declarations
 		ArrayBot*						mAB;
 		ParallellProcess*				mParallell;
 		void					    	selectItem(Process* mv);
+		Process*						getCurrentlySelectedSubProcess();
 
 	public:		// User declarations
 							__fastcall  TParallellProcessesFrame(TComponent* Owner);

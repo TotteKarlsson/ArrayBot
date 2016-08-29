@@ -11,7 +11,7 @@
 #include "abApplicationMessages.h"
 #include "UIUtilities.h"
 #include "abVCLUtils.h"
-#include "TTextInputDialog.h"
+#include "TStringInputDialog.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -21,6 +21,7 @@
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TTimeDelayFrame"
 #pragma link "TSequenceInfoFrame"
+#pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
@@ -234,33 +235,6 @@ void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::mSequenceNameEKeyDown(TObject *Sender,
-          WORD &Key, TShiftState Shift)
-{
-	if(Key == vkReturn)
-    {
-    	string newName(stdstr(TSequenceInfoFrame1->mMainGB->Caption));
-
-    	//Change name of sequence in CB
-        int indx = mSequencesCB->ItemIndex;
-        if(updateComboBoxItemCaption(indx, newName, mSequencesCB) == false)
-        {
-        	//bad.....
-        }
-
-		ProcessSequence* s = mProcessSequencer.getCurrentSequence();
-        s->setProjectName(newName);
-        saveSequence();
-
-        //Send a message to main ui to update sequence shortcuts
-        if(sendAppMessage(abSequencerUpdate) != true)
-        {
-            Log(lDebug)<<"Sending sequencer update was unsuccesful";
-        }
-    }
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::mRewindButtonClick(TObject *Sender)
 {
 	mProcessSequencer.stop();
@@ -269,12 +243,54 @@ void __fastcall TABProcessSequencerFrame::mRewindButtonClick(TObject *Sender)
 	mStartBtn->Caption = "Start";
 }
 
+string TABProcessSequencerFrame::getCurrentlySelectedSequence()
+{
+	int indx = mSequencesCB->ItemIndex;
+    if(indx > -1)
+    {
+    	return stdstr(mSequencesCB->Items->Strings[indx]);
+    }
+    else
+    {
+    	return gNoneString;
+    }
+}
+
 //---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::Button1Click(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::mRenameButtonClick(TObject *Sender)
 {
 	//Open string input form
-	TTextInputDialog* d = new TTextInputDialog(this);
-    d->ShowModal();
+	TStringInputDialog* t = new TStringInputDialog(this);
+
+    t->Caption = "Rename Move Sequence";
+    t->setText(getCurrentlySelectedSequence());
+
+    if(t->ShowModal() == mrOk)
+    {
+		//Rename the currently selected sequence
+    	string newName(t->getText());
+
+		ProcessSequence* s = mProcessSequencer.getCurrentSequence();
+        s->setProjectName(newName);
+        saveSequence();
+
+    	//Change name of sequence in CB
+        int indx = mSequencesCB->ItemIndex;
+        if(updateComboBoxItemCaption(mSequencesCB, indx, newName) == false)
+        {
+        	//bad..
+        }
+
+        mSequencesCB->ItemIndex = selectAndClickComboBoxItem(mSequencesCB, newName);
+
+
+        //Send a message to main ui to update sequence shortcuts
+        if(sendAppMessage(abSequencerUpdate) != true)
+        {
+            Log(lDebug)<<"Sending sequencer update was unsuccesful";
+        }
+    }
+    delete t;
 }
 
 

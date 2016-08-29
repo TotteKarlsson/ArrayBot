@@ -141,7 +141,7 @@ bool ProcessSequence::write(const string& folder)
         list<Process*>::iterator savedIter = mProcessIter;
 
         saveRes = mProject.save();
-        gotoProcess(*(savedIter));
+        selectProcess(*(savedIter));
 	    return saveRes;
     }
     else
@@ -151,7 +151,7 @@ bool ProcessSequence::write(const string& folder)
     return saveRes;
 }
 
-bool ProcessSequence::gotoProcess(Process* p)
+bool ProcessSequence::selectProcess(Process* p)
 {
 	Process* test = getFirst();
     while(test)
@@ -165,10 +165,11 @@ bool ProcessSequence::gotoProcess(Process* p)
     return false;
 }
 
-bool ProcessSequence::add(Process* pos)
+bool ProcessSequence::add(Process* p)
 {
 	//Check label
-    mProcesses.push_back(pos);
+    p->assignProcessSequence(this);
+    mProcesses.push_back(p);
     mProcessIter = mProcesses.begin();
     return true;
 }
@@ -176,6 +177,7 @@ bool ProcessSequence::add(Process* pos)
 bool ProcessSequence::remove(Process* p)
 {
 	//Find item
+    p->assignProcessSequence(NULL);
     mProcesses.remove(p);
     return true;
 }

@@ -5,7 +5,7 @@
 #include "abParallellProcess.h"
 #include "abProcessSequence.h"
 #include "mtkVCLUtils.h"
-
+#include "TStringInputDialog.h"
 #include "abTimeDelay.h"
 #include "frames/TMotorMoveProcessFrame.h"
 #include "frames/TParallellProcessesFrame.h"
@@ -18,6 +18,7 @@ using namespace mtk;
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"
+#pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 TSequenceInfoFrame *SequenceInfoFrame;
 //---------------------------------------------------------------------------
@@ -53,9 +54,9 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TPanel* processPanel)
     }
 
     mProcessesLB->Clear();
-    mMainGB->Caption = vclstr(seq->getName());
+    //mMainGB->Caption = vclstr(seq->getName());
 	mSequence = seq;
-    mSequenceNameE->setValue(seq->getName());
+//    mSequenceNameE->setValue(seq->getName());
     Process* p = seq->getFirst();
     while(p)
     {
@@ -158,6 +159,7 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
 	   	disableEnableButtons(false);
 		mDeleteMoveBtn->Enabled = true;
     }
+
 	updateSequenceArrows();
 
     //Check what kind of process we have, Pause, or CombinedMove
@@ -195,7 +197,7 @@ void TSequenceInfoFrame::disableEnableButtons(bool enabled)
 //---------------------------------------------------------------------------
 void __fastcall TSequenceInfoFrame::empty()
 {
-	mSequenceNameE->Text = "<none>";
+	//mMainGB->Caption = "<none>";
 	mProcessesLB->Clear();
     EnableDisableFrame(this, false);
 }
@@ -254,6 +256,45 @@ void TSequenceInfoFrame::updateSequenceArrows()
 void __fastcall TSequenceInfoFrame::mUpdatePositionsBtnClick(TObject *Sender)
 {
 	mParallellProcessesFrame->mUpdateFinalPositionsAExecute(Sender);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TSequenceInfoFrame::mRenameBtnClick(TObject *Sender)
+{
+	//Open string input form
+	TStringInputDialog* t = new TStringInputDialog(this);
+    t->Caption = "Rename Process";
+
+    Process* p = getCurrentlySelectedProcess();
+    if(!p)
+    {
+    	return;
+    }
+
+    t->setText(p->getProcessName());
+
+    if(t->ShowModal() == mrOk)
+    {
+		//Rename the currently selected sequence
+    	string newName(t->getText());
+
+		p->setProcessName(newName);
+        mSequence->write();
+
+    	//Change name of sequence in ListBox
+        int indx = mProcessesLB->ItemIndex;
+        if(updateListBoxItemCaption(mProcessesLB, indx, newName) == false)
+        {
+
+        }
+
+        if(selectAndClickListBoxItem(mProcessesLB, newName) == false)
+        {
+        	//bad..
+        }
+
+    }
+    delete t;
 }
 
 

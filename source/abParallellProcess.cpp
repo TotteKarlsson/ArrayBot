@@ -42,16 +42,16 @@ void ParallellProcess::clear()
 
 void ParallellProcess::addProcess(Process* lm)
 {
-	if(lm && lm->getProcessName() =="")
+	if(!lm)
+    {
+    	return;
+    }
+	if(lm->getProcessName() =="")
     {
     	lm->setProcessName("Action " + mtk::toString((mProcesses.size() + 1)));
     }
 
-    if(lm)
-    {
-		mProcesses.push_back(lm);
-    }
-
+	mProcesses.push_back(lm);
 }
 
 bool ParallellProcess::removeProcess(const string& name)
