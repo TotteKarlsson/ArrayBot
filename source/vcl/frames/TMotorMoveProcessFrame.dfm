@@ -1,8 +1,8 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 972
-  Height = 821
+  Width = 893
+  Height = 678
   Align = alClient
   AutoSize = True
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +17,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   object mMainGB: TGroupBox
     Left = 0
     Top = 0
-    Width = 972
+    Width = 893
     Height = 417
     Align = alTop
     Caption = 'Action Properties'
@@ -28,7 +28,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     object mActionInfo: TLabel
       Left = 17
       Top = 25
-      Width = 938
+      Width = 859
       Height = 199
       Align = alClient
       AutoSize = False
@@ -47,7 +47,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     object Panel2: TPanel
       Left = 17
       Top = 224
-      Width = 938
+      Width = 859
       Height = 191
       Align = alBottom
       BevelOuter = bvNone
@@ -71,15 +71,6 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         TabOrder = 0
         Text = '0.0'
         OnKeyDown = mMovePosEKeyDown
-      end
-      object mAddTriggerBtn: TButton
-        Left = 351
-        Top = 44
-        Width = 169
-        Height = 108
-        Caption = 'Add Child Action'
-        TabOrder = 1
-        OnClick = AddTriggerBClick
       end
       object mMaxVelE: TFloatLabeledEdit
         Left = 120
@@ -114,54 +105,67 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         TabOrder = 4
         OnChange = MotorsCBChange
       end
+      object mAddTriggerBtn: TArrayBotButton
+        Left = 351
+        Top = 44
+        Width = 169
+        Height = 108
+        Caption = 'Add Child Action'
+        ParentDoubleBuffered = True
+        TabOrder = 1
+        OnClick = AddTriggerBClick
+        SoundID = 'BUTTON_CLICK_1'
+      end
     end
   end
   object mTriggerPanel: TPanel
     Left = 0
     Top = 417
-    Width = 972
-    Height = 404
+    Width = 893
+    Height = 261
     Align = alClient
     TabOrder = 1
     ExplicitWidth = 451
-    ExplicitHeight = 229
+    ExplicitHeight = 404
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 200
-      Height = 402
+      Height = 259
       Align = alLeft
       Caption = 'Triggers'
       TabOrder = 0
-      ExplicitHeight = 227
+      ExplicitHeight = 402
       object mTriggersLB: TListBox
         Left = 2
         Top = 25
         Width = 196
-        Height = 315
+        Height = 172
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
         OnClick = TriggersLBClick
-        ExplicitHeight = 140
+        ExplicitHeight = 315
       end
       object Panel1: TPanel
         Left = 2
-        Top = 340
+        Top = 197
         Width = 196
         Height = 60
         Align = alBottom
         TabOrder = 1
-        ExplicitTop = 165
-        object mDeleteTriggerB: TButton
+        ExplicitTop = 340
+        object mDeleteTriggerB: TArrayBotButton
           Left = 1
           Top = 1
           Width = 90
           Height = 58
           Align = alLeft
           Caption = 'Delete'
+          ParentDoubleBuffered = True
           TabOrder = 0
           OnClick = mDeleteTriggerBClick
+          SoundID = 'BUTTON_CLICK_1'
         end
       end
     end

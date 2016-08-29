@@ -87,7 +87,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = mMoveSequencesPage
+      ActivePage = TabSheet4
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -95,10 +95,6 @@ object Main: TMain
       OnChange = PageControl1Change
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mBottomPanel: TPanel
           Left = 0
           Top = 680
@@ -380,10 +376,6 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
@@ -454,10 +446,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mJSStatusL: TLabel
           Left = 455
           Top = 192
@@ -632,10 +620,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

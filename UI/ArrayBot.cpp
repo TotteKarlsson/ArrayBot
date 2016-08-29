@@ -30,7 +30,7 @@ extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
-extern bool         gHideSplash                 = true;
+extern bool         gHideSplash                 = false;
 extern TSplashForm* gSplashForm                 = NULL;
 //extern SQLite       gDB                         ;
 

@@ -8,6 +8,8 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.ComCtrls.hpp>
 #include "TSTDStringLabeledEdit.h"
+#include "TArrayBotBtn.h"
+#include <Vcl.Buttons.hpp>
 //---------------------------------------------------------------------------
 
 class AbsoluteMove;
@@ -25,14 +27,14 @@ __published:	// IDE-managed Components
 	TFloatLabeledEdit *mAccE;
 	TComboBox *MotorsCB;
 	TPanel *Panel1;
-	TButton *mDeleteTriggerB;
 	TListBox *mTriggersLB;
 	TPanel *mTriggerPanel;
-	TButton *mAddTriggerBtn;
 	TGroupBox *GroupBox1;
 	TLabel *Label1;
 	TLabel *mActionInfo;
 	TPanel *Panel2;
+	TArrayBotButton *mAddTriggerBtn;
+	TArrayBotButton *mDeleteTriggerB;
 	void __fastcall MotorsCBChange(TObject *Sender);
 	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall TriggersLBClick(TObject *Sender);

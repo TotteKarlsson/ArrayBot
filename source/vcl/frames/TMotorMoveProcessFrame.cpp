@@ -15,6 +15,7 @@
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
+#pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 TMotorMoveProcessFrame *MotorMoveProcessFrame;
 
