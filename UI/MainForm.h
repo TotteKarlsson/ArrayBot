@@ -116,8 +116,6 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox4;
 	TIntegerLabeledEdit *mPuffAfterSectionCountE;
 	TPropertyCheckBox *mAutoPuffCB;
-	TGroupBox *GroupBox3;
-	TButton *PuffNowBtn;
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mArduinoServerPortE;
 	TButton *mASStartBtn;

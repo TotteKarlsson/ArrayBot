@@ -14,8 +14,9 @@ using mtk::StringList;
 /*
     The ArduinoDevice and Serial classes are based on classes
     found at: http://playground.arduino.cc/Interfacing/CPPWindows
-    The original classes are extended to allow for a more robust serial communication
-    mechanism, involving reading/writing on the serial port in a seperate thread.
+    The original classes are extended and modified in order to allow for a more
+    robust serial communication mechanism, involving reading/writing on the serial
+    port in a seperate thread.
 */
 
 typedef void (__closure *InitCallBack)();
@@ -49,11 +50,9 @@ class AB_CORE ArduinoDevice : public ABObject
         Serial						mSerial;
         string						mName;
 
-
         							//A stream makes it easy to compose messages
         std::stringstream		  	mSS;
         int					        readSerialPort();
-
 };
 
 #endif

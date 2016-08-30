@@ -165,9 +165,10 @@ bool ArrayBot::shutDown()
 
 void ArrayBot::stopAll()
 {
-	mProcessSequencer.stop();
 	//In case the JoyStick is running amok, disable it (has never happened actually..)
-    mJoyStick.disable();
+    //mJoyStick.disable();
+
+	mProcessSequencer.stop();
     mCoverSlip.stopAll();
     mWhisker.stopAll();
 }

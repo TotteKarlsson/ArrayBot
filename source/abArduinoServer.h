@@ -76,7 +76,6 @@ class AB_CORE ArduinoServer : public IPCServer
 		int 								mCoaxLightONLine;
 		int									mCoaxLightOFFLine;
 
-
         OnMessageUpdateCB					onMessageUpdateCB;
 
 									        //!The section count is compared to the mPuffAfterSectionCount

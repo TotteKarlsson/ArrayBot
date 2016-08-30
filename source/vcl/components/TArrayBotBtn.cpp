@@ -22,7 +22,15 @@ __fastcall TArrayBotButton::TArrayBotButton(TComponent* Owner)
 void __fastcall	TArrayBotButton::CreateWnd()
 {
 	TWinControl::CreateWnd();
-    mSound.Create(stdstr(FSoundID), this->Handle);
+    if(!this->Handle)
+    {
+    	Log(lError) << "The button does not have a handle";
+    }
+
+    if(!mSound.Create(stdstr(FSoundID), this->Handle))
+    {
+    	Log(lError) << "Failed creating sound for button";
+    }
 }
 
 void __fastcall	TArrayBotButton::DestroyWnd()
@@ -51,8 +59,8 @@ bool TArrayBotButton::init(HWND wnd)
 
 void __fastcall TArrayBotButton::WndProc(TMessage& msg)
 {
-	const int WM_POINTERDOWN = 0x0246;
-    const int WM_POINTERUP = 0x247;
+	const int WM_POINTERDOWN 	= 0x0246;
+    const int WM_POINTERUP 		= 0x247;
 
     switch (msg.Msg)
     {

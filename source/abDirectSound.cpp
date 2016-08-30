@@ -11,36 +11,33 @@ using namespace mtk;
 	#define DSBLOCK_ENTIREBUFFER        0x00000002
 #endif
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-LPDIRECTSOUND DirectSound::m_lpDirectSound;
-DWORD DirectSound::m_dwInstances;
+//LPDIRECTSOUND DirectSound::mDirectSoundStructure;
+DWORD DirectSound::mNrOfInstances;
 
 static void DSError(HRESULT hRes);
-DirectSound::DirectSound()
-{
-	m_lpDirectSound = 0;
-	m_pDsb = 0;
-	m_pTheSound = 0;
-	m_dwTheSound = 0;
-	m_bEnabled = true;
 
-	++m_dwInstances;
+DirectSound::DirectSound()
+:
+mDirectSoundBuffer(0),
+mTheSound(0),
+mTheSoundBytes(0),
+mEnabled(true)
+{
+	mDirectSoundStructure = 0;
+	++mNrOfInstances;
 }
 
 DirectSound::~DirectSound()
 {
-	if( m_pDsb )
+	if( mDirectSoundBuffer )
     {
-		m_pDsb->Release();
+		mDirectSoundBuffer->Release();
     }
 
-	if( !--m_dwInstances && m_lpDirectSound )
+	if( !--mNrOfInstances && mDirectSoundStructure )
     {
-		m_lpDirectSound->Release();
-		m_lpDirectSound = 0;
+		mDirectSoundStructure->Release();
+		mDirectSoundStructure = 0;
 	}
 }
 
@@ -51,7 +48,7 @@ bool DirectSound::Create(UINT uResourceID)//, CWnd * pWnd = 0)
 
 DirectSound& DirectSound::EnableSound(bool bEnable)
 {
-	m_bEnabled = bEnable;
+	mEnabled = bEnable;
 
 	if(!bEnable)
     {
@@ -85,14 +82,19 @@ bool DirectSound::Create(const string& pszResource, HWND hWnd)
 		return false;
     }
 
-	return Create(pTheSound, hWnd);
+    if(!Create(pTheSound, hWnd))
+    {
+    	return false;
+    }
+
+	return true;
 }
 
 bool DirectSound::Create(LPVOID pSoundData, HWND hWnd)
 {
 	//////////////////////////////////////////////////////////////////
 	// create direct sound object
-	if( m_lpDirectSound == 0 )
+	if(mDirectSoundStructure == 0)
     {
 		// Someone might use sounds for starting apps. This may cause
 		// DirectSoundCreate() to fail because the driver is used by
@@ -106,10 +108,11 @@ bool DirectSound::Create(LPVOID pSoundData, HWND hWnd)
             {
 				::Sleep(500);
             }
-			hRes = ::DirectSoundCreate(0, &m_lpDirectSound, 0);
+			hRes = ::DirectSoundCreate(0, &mDirectSoundStructure, 0);
 			++nRes;
 
-		}while( nRes < 10 && (hRes == DSERR_ALLOCATED || hRes == DSERR_NODRIVER) );
+		}
+        while( nRes < 10 && (hRes == DSERR_ALLOCATED || hRes == DSERR_NODRIVER) );
 
 		if(hRes != DS_OK)
         {
@@ -121,11 +124,11 @@ bool DirectSound::Create(LPVOID pSoundData, HWND hWnd)
 			hWnd = ::GetConsoleWindow();
         }
 
-		m_lpDirectSound->SetCooperativeLevel(hWnd, DSSCL_NORMAL);
+		mDirectSoundStructure->SetCooperativeLevel(hWnd, DSSCL_NORMAL);
 	}
 
 	WAVEFORMATEX * pcmwf;
-	if(!GetWaveData(pSoundData, pcmwf, m_pTheSound, m_dwTheSound))
+	if(!GetWaveData(pSoundData, pcmwf, mTheSound, mTheSoundBytes))
 	{
     	string error = getLastWin32Error();
         Log(lError) << "Last win32 error: "<<error;
@@ -139,7 +142,7 @@ bool DirectSound::Create(LPVOID pSoundData, HWND hWnd)
 		return false;
     }
 
-    if(!SetSoundData(m_pTheSound, m_dwTheSound) )
+    if(!SetSoundData(mTheSound, mTheSoundBytes) )
 	{
     	string error = getLastWin32Error();
         Log(lError) << "Last win32 error: "<<error;
@@ -222,14 +225,14 @@ bool DirectSound::CreateSoundBuffer(WAVEFORMATEX * pcmwf)
 
 	// Need no controls (pan, volume, frequency).
 	dsbdesc.dwFlags = DSBCAPS_STATIC;		// assumes that the sound is played often
-	dsbdesc.dwBufferBytes = m_dwTheSound;
+	dsbdesc.dwBufferBytes = mTheSoundBytes;
 	dsbdesc.lpwfxFormat = pcmwf;    // Create buffer.
 	HRESULT hRes;
-	if(DS_OK != (hRes = m_lpDirectSound->CreateSoundBuffer(&dsbdesc, &m_pDsb, 0)))
+	if(DS_OK != (hRes = mDirectSoundStructure->CreateSoundBuffer(&dsbdesc, &mDirectSoundBuffer, 0)))
     {
 		// Failed.
 		DSError(hRes);
-		m_pDsb = 0;
+		mDirectSoundBuffer = 0;
 		return false;
 	}
 
@@ -241,13 +244,13 @@ bool DirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
 	LPVOID lpvPtr1;
 	DWORD dwBytes1;
 	// Obtain write pointer.
-	HRESULT hr = m_pDsb->Lock(0, 0, &lpvPtr1, &dwBytes1, 0, 0, DSBLOCK_ENTIREBUFFER);
+	HRESULT hr = mDirectSoundBuffer->Lock(0, 0, &lpvPtr1, &dwBytes1, 0, 0, DSBLOCK_ENTIREBUFFER);
 
     // If DSERR_BUFFERLOST is returned, restore and retry lock.
 	if(DSERR_BUFFERLOST == hr)
     {
-		m_pDsb->Restore();
-		hr = m_pDsb->Lock(0, 0, &lpvPtr1, &dwBytes1, 0, 0, DSBLOCK_ENTIREBUFFER);
+		mDirectSoundBuffer->Restore();
+		hr = mDirectSoundBuffer->Lock(0, 0, &lpvPtr1, &dwBytes1, 0, 0, DSBLOCK_ENTIREBUFFER);
 	}
 
 	if(DS_OK == hr)
@@ -255,7 +258,7 @@ bool DirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
 		// Write to pointers.
 		::CopyMemory(lpvPtr1, pSoundData, dwBytes1);
 		// Release the data back to DirectSound.
-		hr = m_pDsb->Unlock(lpvPtr1, dwBytes1, 0, 0);
+		hr = mDirectSoundBuffer->Unlock(lpvPtr1, dwBytes1, 0, 0);
 		if(DS_OK == hr)
         {
             return true;
@@ -266,37 +269,39 @@ bool DirectSound::SetSoundData(void * pSoundData, DWORD dwSoundSize)
 	return false;
 }
 
-void DirectSound::Play(DWORD dwStartPosition, bool bLoop)
+bool DirectSound::Play(DWORD dwStartPosition, bool loop)
 {
 	if(!IsValid() || ! IsEnabled())
     {
-		return;		// no chance to play the sound ...
+		return false;		// no chance to play the sound ...
     }
 
-	if(dwStartPosition > m_dwTheSound)
+	if(dwStartPosition > mTheSoundBytes)
     {
-    	dwStartPosition = m_dwTheSound;
+    	dwStartPosition = mTheSoundBytes;
     }
 
-	m_pDsb->SetCurrentPosition(dwStartPosition);
+	mDirectSoundBuffer->SetCurrentPosition(dwStartPosition);
 
-	if( DSERR_BUFFERLOST == m_pDsb->Play(0, 0, bLoop ? DSBPLAY_LOOPING : 0) )
+	if( DSERR_BUFFERLOST == mDirectSoundBuffer->Play(0, 0, loop ? DSBPLAY_LOOPING : 0) )
     {
 		// another application had stolen our buffer
 		// Note that a "Restore()" is not enough, because
 		// the sound data is invalid after Restore().
-		SetSoundData(m_pTheSound, m_dwTheSound);
+		SetSoundData(mTheSound, mTheSoundBytes);
 
 		// Try playing again
-		m_pDsb->Play(0, 0, bLoop ? DSBPLAY_LOOPING : 0);
+		mDirectSoundBuffer->Play(0, 0, loop ? DSBPLAY_LOOPING : 0);
+        return true;
 	}
+    return true;
 }
 
 void DirectSound::Stop()
 {
 	if( IsValid() )
     {
-		m_pDsb->Stop();
+		mDirectSoundBuffer->Stop();
     }
 }
 
@@ -310,14 +315,14 @@ void DirectSound::Continue()
 	if(IsValid())
     {
 		DWORD dwPlayCursor, dwWriteCursor;
-		m_pDsb->GetCurrentPosition(&dwPlayCursor, &dwWriteCursor);
+		mDirectSoundBuffer->GetCurrentPosition(&dwPlayCursor, &dwWriteCursor);
 		Play(dwPlayCursor);
 	}
 }
 
 bool DirectSound::IsValid() const
 {
-	return (m_lpDirectSound && m_pDsb && m_pTheSound && m_dwTheSound) ? true : false;
+	return (mDirectSoundStructure && mDirectSoundBuffer && mTheSound && mTheSoundBytes) ? true : false;
 }
 
 static void DSError(HRESULT hRes)

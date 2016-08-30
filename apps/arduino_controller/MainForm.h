@@ -30,7 +30,8 @@
 #include "mtkFloatLabel.h"
 #include "TIntLabel.h"
 #include "TPropertyCheckBox.h"
-
+#include "TArrayBotBtn.h"
+#include "abDirectSound.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;
@@ -62,7 +63,6 @@ class TMain : public TRegistryForm
 	TFileExit *FileExit1;
 	TPanel *TopPanel;
 	TTimer *UIUpdateTimer;
-	TSpeedButton *Button5;
 	TPanel *BottomBtnPanel;
 	TAction *abortLiftA;
 	TAction *liftA;
@@ -93,10 +93,12 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox4;
 	TGroupBox *GroupBox5;
 	TGroupBox *GroupBox6;
-	TButton *mFrontBackLEDBtn;
-	TButton *Button1;
-	TButton *mCoaxLightBtn;
 	TButton *mEnablePuffBtn;
+	TArrayBotButton *mFrontBackLEDBtn;
+	TArrayBotButton *Button1;
+	TArrayBotButton *mCoaxLightBtn;
+	TArrayBotButton *Button5;
+	TPropertyCheckBox *mEnablesoundsCB;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -141,6 +143,8 @@ class TMain : public TRegistryForm
         ArduinoServer					    mArduinoServer;
         ArduinoDevice&					    mPufferArduino;
         ArduinoDevice&					    mSensorArduino;
+        DirectSound							mGetReadyForZeroCutSound;
+        DirectSound							mSetZeroCutSound;
 
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,    mlxStructMessage,         AppInBox);

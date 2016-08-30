@@ -54,9 +54,8 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TPanel* processPanel)
     }
 
     mProcessesLB->Clear();
-    //mMainGB->Caption = vclstr(seq->getName());
 	mSequence = seq;
-//    mSequenceNameE->setValue(seq->getName());
+
     Process* p = seq->getFirst();
     while(p)
     {

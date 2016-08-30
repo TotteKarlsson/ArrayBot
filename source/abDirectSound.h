@@ -3,7 +3,7 @@
 #include "abABObject.h"
 
 #include <windows.h>
-#include <Mmreg.h>
+#include <mmreg.h>
 #include <dsound.h>
 
 class AB_CORE DirectSound : public ABObject
@@ -24,25 +24,25 @@ class AB_CORE DirectSound : public ABObject
         bool						Create(LPVOID pSoundData, HWND hWnd =  NULL);//, CWnd * pWnd = 0);
 
         bool			            IsValid() const;
-        void			            Play(DWORD dwStartPosition = 0, bool bLoop = FALSE);
+        bool			            Play(DWORD dwStartPosition = 0, bool bLoop = FALSE);
         void			            Stop();
         void			            Pause();
         void			            Continue();
         DirectSound &	            EnableSound(bool bEnable = true);
-        bool						IsEnabled() const { return m_bEnabled; }
+        bool						IsEnabled() const {return mEnabled;}
 
-    protected:	// implementation
+    protected:
         bool                        SetSoundData(LPVOID pSoundData, DWORD dwSoundSize);
         bool                        CreateSoundBuffer(WAVEFORMATEX * pcmwf);
         bool                        GetWaveData(void * pRes, WAVEFORMATEX * & pWaveHeader, void * & pbWaveData, DWORD & cbWaveSize);
 
-    private:	// data member
-        LPVOID 						m_pTheSound;
-        DWORD 						m_dwTheSound;
-        LPDIRECTSOUNDBUFFER 		m_pDsb;
-        bool 						m_bEnabled;
-        static LPDIRECTSOUND 		m_lpDirectSound;
-        static DWORD 				m_dwInstances;
+    private:
+        LPVOID 						mTheSound;
+        DWORD 						mTheSoundBytes;
+        LPDIRECTSOUNDBUFFER 		mDirectSoundBuffer;
+        bool 						mEnabled;
+        LPDIRECTSOUND 				mDirectSoundStructure;
+        static DWORD 				mNrOfInstances;
 };
 
 #pragma message("linking with Microsoft's DirectSound library ...")

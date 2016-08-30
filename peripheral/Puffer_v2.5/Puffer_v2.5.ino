@@ -25,6 +25,7 @@ int             pufferValveSpeed= 255;  // msec puffer on
 
 bool            enablePuffer(false);
 unsigned long   lastReadTime = millis();
+bool            simulateHallSensor(true);
 
 void setup() 
 {
@@ -56,15 +57,17 @@ void loop()
     }    
 
     //Simulate Hall Sensor
-    //unsigned long currentTime = millis();
-    //if(currentTime - lastReadTime > 500)
-    //{
-    //    lastReadTime = currentTime;        
-    //    Serial << "[HALL_SENSOR=HIGH]";                
-    //    Serial << "[HALL_SENSOR=LOW]";                        
-    //}
-        
-    if(digitalRead(sensorPin) == HIGH)  // if Hall sensor is high    
+    if(simulateHallSensor == true)
+    {
+        unsigned long currentTime = millis();
+        if(currentTime - lastReadTime > 4000)
+        {
+            lastReadTime = currentTime;        
+            Serial << "[HALL_SENSOR=HIGH]";                
+            Serial << "[HALL_SENSOR=LOW]";                        
+        }
+    }
+    else if(digitalRead(sensorPin) == HIGH)  // if Hall sensor is high    
     {
         Serial << "[HALL_SENSOR=HIGH]";        
         digitalWrite(ledPin, HIGH);     // turn the LED on        

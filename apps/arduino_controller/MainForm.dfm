@@ -37,44 +37,54 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      object Button5: TSpeedButton
+      object Button5: TArrayBotButton
         Left = 1
         Top = 1
         Width = 179
         Height = 125
         Action = FileExit1
         Align = alBottom
+        Caption = 'E&xit'
+        ParentDoubleBuffered = True
+        TabOrder = 0
+        SoundID = 'BUTTON_CLICK_1'
       end
     end
-    object mFrontBackLEDBtn: TButton
+    object mFrontBackLEDBtn: TArrayBotButton
       Left = 1
       Top = 101
       Width = 181
       Height = 100
       Align = alTop
       Caption = 'Flip LED Light ON'
+      ParentDoubleBuffered = True
       TabOrder = 1
       OnClick = LigthsBtnsClick
+      SoundID = 'BUTTON_CLICK_1'
     end
-    object Button1: TButton
+    object Button1: TArrayBotButton
       Left = 1
       Top = 336
       Width = 181
       Height = 111
       Align = alBottom
       Caption = 'About'
+      ParentDoubleBuffered = True
       TabOrder = 2
       OnClick = mAboutBtnClick
+      SoundID = 'BUTTON_CLICK_1'
     end
-    object mCoaxLightBtn: TButton
+    object mCoaxLightBtn: TArrayBotButton
       Left = 1
       Top = 1
       Width = 181
       Height = 100
       Align = alTop
       Caption = 'Flip Coax Light ON'
+      ParentDoubleBuffered = True
       TabOrder = 3
       OnClick = LigthsBtnsClick
+      SoundID = 'BUTTON_CLICK_1'
     end
   end
   object MainPanel: TPanel
@@ -115,10 +125,10 @@ object Main: TMain
         object TabSheet1: TTabSheet
           Caption = 'Ribbon Controller'
           object GroupBox3: TGroupBox
-            Left = 18
+            Left = 3
             Top = 20
             Width = 303
-            Height = 157
+            Height = 277
             Caption = 'Auto Puff Control'
             TabOrder = 0
             object mPuffAfterSectionCountE: TIntegerLabeledEdit
@@ -126,9 +136,9 @@ object Main: TMain
               Top = 50
               Width = 129
               Height = 31
-              EditLabel.Width = 131
+              EditLabel.Width = 123
               EditLabel.Height = 23
-              EditLabel.Caption = 'Puff after count'
+              EditLabel.Caption = 'Ribbon Length'
               TabOrder = 0
               Text = '-1'
               OnKeyDown = mPuffAfterSectionCountEKeyDown
@@ -142,6 +152,14 @@ object Main: TMain
               Caption = 'Enabled'
               TabOrder = 1
               OnClick = mAutoPuffCBClick
+            end
+            object mEnablesoundsCB: TPropertyCheckBox
+              Left = 16
+              Top = 117
+              Width = 169
+              Height = 17
+              Caption = 'Enable Sounds'
+              TabOrder = 2
             end
           end
           object GroupBox6: TGroupBox
@@ -174,10 +192,6 @@ object Main: TMain
         object TabSheet2: TTabSheet
           Caption = 'Settings'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0
@@ -419,7 +433,7 @@ object Main: TMain
     object FileExit1: TFileExit
       Caption = 'E&xit'
       Hint = 'Exit|Quits the application'
-      ImageIndex = 43
+      ImageIndex = 0
     end
     object abortLiftA: TAction
       Caption = 'Abort Lift'
@@ -444,7 +458,7 @@ object Main: TMain
     Enabled = False
     Interval = 300
     OnTimer = UIUpdateTimerTimer
-    Left = 180
-    Top = 416
+    Left = 660
+    Top = 272
   end
 end

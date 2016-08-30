@@ -20,6 +20,7 @@
 #include "frames/TRibbonLifterFrame.h"
 #include "frames/TXYZUnitFrame.h"
 #include "frames/TSequencerButtonsFrame.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -480,7 +481,7 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
     //Check validity
     if(!mAB->getJoyStick().isValid())
     {
-        mJSStatusL->Caption = "Current joystick could not be found";
+        mJSStatusL->Caption = "Current joystick could not be found!";
         mJSCSBtn->Enabled = false;
     }
     else

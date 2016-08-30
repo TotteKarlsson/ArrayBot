@@ -1,8 +1,8 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 893
-  Height = 678
+  Width = 913
+  Height = 725
   Align = alClient
   AutoSize = True
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +17,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   object mMainGB: TGroupBox
     Left = 0
     Top = 0
-    Width = 893
+    Width = 913
     Height = 417
     Align = alTop
     Caption = 'Action Properties'
@@ -28,7 +28,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     object mActionInfo: TLabel
       Left = 17
       Top = 25
-      Width = 859
+      Width = 879
       Height = 199
       Align = alClient
       AutoSize = False
@@ -47,7 +47,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     object Panel2: TPanel
       Left = 17
       Top = 224
-      Width = 859
+      Width = 879
       Height = 191
       Align = alBottom
       BevelOuter = bvNone
@@ -121,40 +121,40 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   object mTriggerPanel: TPanel
     Left = 0
     Top = 417
-    Width = 893
-    Height = 261
+    Width = 913
+    Height = 308
     Align = alClient
     TabOrder = 1
     ExplicitWidth = 451
-    ExplicitHeight = 404
+    ExplicitHeight = 261
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 200
-      Height = 259
+      Height = 306
       Align = alLeft
       Caption = 'Triggers'
       TabOrder = 0
-      ExplicitHeight = 402
+      ExplicitHeight = 259
       object mTriggersLB: TListBox
         Left = 2
         Top = 25
         Width = 196
-        Height = 172
+        Height = 219
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
         OnClick = TriggersLBClick
-        ExplicitHeight = 315
+        ExplicitHeight = 172
       end
       object Panel1: TPanel
         Left = 2
-        Top = 197
+        Top = 244
         Width = 196
         Height = 60
         Align = alBottom
         TabOrder = 1
-        ExplicitTop = 340
+        ExplicitTop = 197
         object mDeleteTriggerB: TArrayBotButton
           Left = 1
           Top = 1

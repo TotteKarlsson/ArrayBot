@@ -22,6 +22,7 @@
 #pragma link "mtkFloatLabel"
 #pragma link "TIntLabel"
 #pragma link "TPropertyCheckBox"
+#pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -102,6 +103,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	//Setup frames for the Arduinos
 	setupUIFrames();
 	mArduinoServer.broadcastStatus();
+
+	mGetReadyForZeroCutSound.Create("SHORT_BEEP_1", this->Handle);
+	mSetZeroCutSound.Create("MOTOR_WARNING_SOUND", this->Handle);
 }
 
 //---------------------------------------------------------------------------
@@ -136,6 +140,10 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
             if(startsWith("SECTION_COUNT", msg))
             {
 				Main->mSectionCount->SetNumber(Main->mArduinoServer.getSectionCount());
+                if(Main->mSectionCount->GetValue() == 0)
+                {
+	   				Main->mSetZeroCutSound.Stop();
+                }
             }
             else if(startsWith("AUTO_PUFF=", msg))
             {
@@ -153,6 +161,28 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
                 if(l.size() == 2)
                 {
                     Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
+                }
+            }
+            else if(startsWith("GET_READY_FOR_ZERO_CUT_1", msg))
+            {
+                if(Main->mEnablesoundsCB->Checked)
+                {
+					Main->mGetReadyForZeroCutSound.Play(0, false);
+                }
+            }
+            else if(startsWith("GET_READY_FOR_ZERO_CUT_2", msg))
+            {
+                if(Main->mEnablesoundsCB->Checked)
+                {
+					Main->mGetReadyForZeroCutSound.Play(0, false);
+                }
+            }
+            else if(startsWith("SET_ZERO_CUT", msg))
+            {
+	            Main->mGetReadyForZeroCutSound.Stop();
+                if(Main->mEnablesoundsCB->Checked)
+                {
+					Main->mSetZeroCutSound.Play(0, true);
                 }
             }
             else if(startsWith("DHT22DATA", msg))
@@ -219,21 +249,20 @@ void __fastcall TMain::mPuffRelatedBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
 {
-	TButton* b = dynamic_cast<TButton*>(Sender);
+	TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
     if(b == mFrontBackLEDBtn )
     {
     	static string cap = "ON";
 	   	if(contains("OFF", cap))
         {
-
-        	mFrontBackLEDBtn->Caption = "Flip LEDs ON";
         	mArduinoServer.turnLEDLightOn();
+        	mFrontBackLEDBtn->Caption = "Flip LEDs ON";
             cap = "ON";
         }
         else
         {
-        	mFrontBackLEDBtn->Caption = "Flip LEDs OFF";
         	mArduinoServer.turnLEDLightOff();
+        	mFrontBackLEDBtn->Caption = "Flip LEDs OFF";
             cap = "OFF";
         }
     }
@@ -243,14 +272,14 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
 	   	if(contains("OFF", ccap))
         {
 
-        	mCoaxLightBtn->Caption = "Flip CoaxLight ON";
         	mArduinoServer.turnCoaxLightOn();
+        	mCoaxLightBtn->Caption = "Flip CoaxLight ON";
             ccap = "ON";
         }
         else
         {
-        	mCoaxLightBtn->Caption = "Flip CoaxLight OFF";
         	mArduinoServer.turnCoaxLightOff();
+        	mCoaxLightBtn->Caption = "Flip CoaxLight OFF";
             ccap = "OFF";
         }
     }

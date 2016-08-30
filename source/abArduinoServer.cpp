@@ -77,6 +77,11 @@ void ArduinoServer::resetSectionCount()
 	updateClients(msg.str());
 }
 
+void ArduinoServer::sensorMessageReceived(const string& msg)
+{
+	updateClients(msg);
+}
+
 //This is called from the arduino devices receive thread
 void ArduinoServer::pufferMessageReceived(const string& msg)
 {
@@ -95,7 +100,35 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
         mSectionCount++;
     	if(mAutoPuff)
     	{
-        	if(mSectionCount >= mPuffAfterSectionCount)
+        	if(mSectionCount == mPuffAfterSectionCount - 2)
+            {
+                stringstream msg;
+        		msg <<"GET_READY_FOR_ZERO_CUT_1";
+				updateClients(msg.str());
+            }
+
+        	if(mSectionCount == mPuffAfterSectionCount - 2)
+            {
+                stringstream msg;
+        		msg <<"GET_READY_FOR_ZERO_CUT_2";
+				updateClients(msg.str());
+            }
+
+        	if(mSectionCount == mPuffAfterSectionCount - 1)
+            {
+                stringstream msg;
+        		msg <<"SET_ZERO_CUT";
+				updateClients(msg.str());
+            }
+
+        	if(mSectionCount == 0)
+            {
+                stringstream msg;
+        		msg <<"RESTORE_FROM_ZERO_CUT";
+				updateClients(msg.str());
+            }
+
+        	if(mSectionCount > mPuffAfterSectionCount)
         	{
         		puff();
 				mSectionCount = 0;
@@ -126,11 +159,6 @@ void ArduinoServer::setPuffAfterSectionCount(int val)
 	updateClients(msg.str());
 }
 
-void ArduinoServer::sensorMessageReceived(const string& msg)
-{
-	updateClients(msg);
-}
-
 bool ArduinoServer::shutDown()
 {
     IPCServer::shutDown();
@@ -143,31 +171,37 @@ bool ArduinoServer::shutDown()
 
 bool ArduinoServer::puff()
 {
+	Log(lInfo) << "Sending puff command";
 	return mPufferArduino.send("p");
 }
 
 bool ArduinoServer::enablePuffer()
 {
+	Log(lInfo) << "Sending puffer enabled command";
 	return mPufferArduino.send("e");
 }
 
 bool ArduinoServer::turnLEDLightOn()
 {
+	Log(lInfo) << "Turning on LEDs";
 	return mSensorArduino.send(mLEDLightONLine);
 }
 
 bool ArduinoServer::turnLEDLightOff()
 {
+	Log(lInfo) << "Turning off LEDs";
 	return mSensorArduino.send(mLEDLightOFFLine);
 }
 
 bool ArduinoServer::turnCoaxLightOn()
 {
+	Log(lInfo) << "Turning on Coax light";
 	return mSensorArduino.send(mCoaxLightONLine);
 }
 
 bool ArduinoServer::turnCoaxLightOff()
 {
+	Log(lInfo) << "Turning off Coax light";
 	return mSensorArduino.send(mCoaxLightOFFLine);
 }
 

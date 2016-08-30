@@ -571,29 +571,13 @@ object Main: TMain
           TabOrder = 1
           OnClick = mJoyStickRGClick
         end
-        object GroupBox3: TGroupBox
-          Left = 11
-          Top = 390
-          Width = 258
-          Height = 155
-          Caption = 'Manual Puff'
-          TabOrder = 2
-          object PuffNowBtn: TButton
-            Left = 19
-            Top = 32
-            Width = 214
-            Height = 100
-            Caption = 'Puff'
-            TabOrder = 0
-          end
-        end
         object GroupBox1: TGroupBox
-          Left = 275
+          Left = 11
           Top = 390
           Width = 257
           Height = 155
           Caption = 'Arduino Client'
-          TabOrder = 3
+          TabOrder = 2
           object mArduinoServerPortE: TIntegerLabeledEdit
             Left = 16
             Top = 56

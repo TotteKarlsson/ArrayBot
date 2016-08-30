@@ -1,17 +1,17 @@
 #include <System.hpp>
 #pragma hdrstop
+USEFORM("frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
 USEFORM("frames\TTimeDelayFrame.cpp", TimeDelayFrame); /* TFrame: File Type */
 USEFORM("frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
-USEFORM("frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
+USEFORM("frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
 USEFORM("frames\TRibbonLifterFrame.cpp", RibbonLifterFrame); /* TFrame: File Type */
 USEFORM("frames\TSequenceInfoFrame.cpp", SequenceInfoFrame); /* TFrame: File Type */
 USEFORM("frames\TXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
 USEFORM("forms\TamFileEditor.cpp", amFileEditor);
-USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("frames\TParallellProcessesFrame.cpp", ParallellProcessesFrame);
-USEFORM("frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
-USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 USEFORM("frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
+USEFORM("frames\TParallellProcessesFrame.cpp", ParallellProcessesFrame);
+USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
 USEFORM("forms\TStringInputDialog.cpp", StringInputDialog);
 USEFORM("forms\TTextInputDialog.cpp", TextInputDialog);
 //---------------------------------------------------------------------------

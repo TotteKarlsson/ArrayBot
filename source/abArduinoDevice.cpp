@@ -3,7 +3,6 @@
 #include "mtkWin32Utils.h"
 #include "mtkLogger.h"
 
-
 using namespace mtk;
 
 ArduinoDevice::ArduinoDevice(int pNr, int baudRate)
@@ -56,5 +55,3 @@ string ArduinoDevice::getMessage()
 {
 	return mSerial.popMessage();
 }
-
-
