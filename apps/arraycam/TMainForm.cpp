@@ -14,6 +14,7 @@ using namespace mtk;
 #pragma package(smart_init)
 #pragma link "TPropertyCheckBox"
 #pragma link "mtkFloatLabel"
+#pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 TMainForm *MainForm;
 
@@ -35,7 +36,10 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
         mAutoGain(false),
         mAutoExposure(false),
         mVerticalMirror(false),
-        mHorizontalMirror(false)
+        mHorizontalMirror(false),
+		mGetReadyForZeroCutSound("SHORT_BEEP_2", 10, 500),
+		mSetZeroCutSound("SHORT_BEEP_2", 25, 150),
+		mRestoreFromZeroCutSound("CLOSING_DOWN_1", 15, 350)
 {
    	mLogFileReader.start(true);
 
@@ -121,8 +125,13 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	updateVideoFileLB();
 	updateShotsLB();
 
-	//Try to connect to arduinos..
+	//Try to connect to the arduino server..
 	mArduinoClient.connect(50000);
+
+	//Setup sounds
+	mGetReadyForZeroCutSound.create(this->Handle);
+	mSetZeroCutSound.create(this->Handle);
+	mRestoreFromZeroCutSound.create(this->Handle);
 }
 
 LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
@@ -394,7 +403,7 @@ void __fastcall TMainForm::Timer1Timer(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::Button1Click(TObject *Sender)
+void __fastcall TMainForm::ClearLogMemo(TObject *Sender)
 {
 	infoMemo->Clear();
 }
@@ -585,6 +594,34 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
                     MainForm->mHumidityE->SetValue(toDouble(l[2]));
                 }
             }
+
+//            if(startsWith("GET_READY_FOR_ZERO_CUT_1", msg))
+//            {
+//            	Log(lInfo) <<"Ready for zero cut";
+//				MainForm->mGetReadyForZeroCutSound.play();
+//            }
+
+            if(startsWith("GET_READY_FOR_ZERO_CUT_2", msg))
+            {
+            	Log(lInfo) <<"Steady for zero cut";
+                MainForm->stopSounds();
+				MainForm->mGetReadyForZeroCutSound.play();
+            }
+
+            if(startsWith("SET_ZERO_CUT", msg))
+            {
+            	Log(lInfo) <<"Go for zero cut ";
+                MainForm->stopSounds();
+				MainForm->mSetZeroCutSound.play();
+            }
+
+            if(startsWith("RESTORE_FROM_ZERO_CUT", msg))
+            {
+            	Log(lInfo) <<"Restore from zero Cut ";
+                MainForm->stopSounds();
+				MainForm->mRestoreFromZeroCutSound.play();
+            }
+
 //            else if(startsWith("PIN_8", msg))
 //            {
 //                StringList l(msg,'=');
@@ -615,7 +652,7 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mFrontBackLEDBtnClick(TObject *Sender)
 {
-	TButton* b = dynamic_cast<TButton*>(Sender);
+	TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
     if(b == mFrontBackLEDBtn)
     {
     	mArduinoClient.toggleLED();
@@ -669,4 +706,32 @@ void __fastcall TMainForm::LogLevelCBChange(TObject *Sender)
 
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::Button1Click(TObject *Sender)
+{
+	TButton* b = dynamic_cast<TButton*>(Sender);
 
+    if(b == Button1)
+    {
+		mGetReadyForZeroCutSound.play();
+    }
+    else if(b == goButton)
+    {
+		mSetZeroCutSound.play();
+    }
+    else if (b == restoreBtn) 
+    {
+		mRestoreFromZeroCutSound.play();
+    }
+    else if (b == stopBtn) 
+    {
+        stopSounds();
+    }
+}
+
+void TMainForm::stopSounds()
+{
+    mGetReadyForZeroCutSound.stop();
+    mRestoreFromZeroCutSound.stop();
+    mSetZeroCutSound.stop();
+}

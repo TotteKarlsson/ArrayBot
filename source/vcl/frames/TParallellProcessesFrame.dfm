@@ -55,7 +55,7 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       Caption = 'Rename'
       TabOrder = 3
       OnClick = mRenameBtnClick
-      SoundID = 'BUTTON_CLICK_1'
+      SoundID = 'BUTTON_CLICK_4'
     end
   end
   inline TMotorMoveProcessFrame1: TMotorMoveProcessFrame

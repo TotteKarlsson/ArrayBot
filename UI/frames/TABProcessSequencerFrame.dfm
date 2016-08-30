@@ -113,7 +113,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           ParentDoubleBuffered = True
           TabOrder = 0
           OnClick = mAddSeqBtnClick
-          SoundID = 'BUTTON_CLICK_1'
+          SoundID = 'BUTTON_CLICK_4'
         end
         object mDeleteSequenceBtn: TArrayBotButton
           Left = 95
@@ -124,7 +124,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           ParentDoubleBuffered = True
           TabOrder = 1
           OnClick = mDeleteSequenceBtnClick
-          SoundID = 'BUTTON_CLICK_1'
+          SoundID = 'BUTTON_CLICK_4'
         end
         object mRenameButton: TArrayBotButton
           Left = 199
@@ -135,7 +135,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           ParentDoubleBuffered = True
           TabOrder = 3
           OnClick = mRenameButtonClick
-          SoundID = 'BUTTON_CLICK_1'
+          SoundID = 'BUTTON_CLICK_4'
         end
       end
       inline TSequenceInfoFrame1: TSequenceInfoFrame

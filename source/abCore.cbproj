@@ -267,6 +267,10 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="abSerialWorker.cpp">
             <BuildOrder>49</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abSoundPlayer.cpp">
+            <DependentOn>abSoundPlayer.h</DependentOn>
+            <BuildOrder>59</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abSounds.cpp">
             <DependentOn>abSounds.h</DependentOn>
             <BuildOrder>58</BuildOrder>

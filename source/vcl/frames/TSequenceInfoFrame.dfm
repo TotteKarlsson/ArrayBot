@@ -42,7 +42,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Caption = 'Rename'
         TabOrder = 5
         OnClick = mRenameBtnClick
-        SoundID = 'BUTTON_CLICK_1'
+        SoundID = 'BUTTON_CLICK_4'
       end
       object mAddMoveBtn: TArrayBotButton
         Left = 13
@@ -53,7 +53,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Caption = 'New Process'
         ParentDoubleBuffered = True
         TabOrder = 4
-        SoundID = 'BUTTON_CLICK_1'
+        SoundID = 'BUTTON_CLICK_4'
       end
       object mDeleteMoveBtn: TArrayBotButton
         Left = 219
@@ -64,7 +64,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Caption = 'X'
         ParentDoubleBuffered = True
         TabOrder = 0
-        SoundID = 'BUTTON_CLICK_1'
+        SoundID = 'BUTTON_CLICK_4'
       end
       object mMoveSequenceDownBtn: TArrayBotButton
         Left = 219
@@ -75,7 +75,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         ParentDoubleBuffered = True
         TabOrder = 1
         OnClick = mMoveSequenceDownBtnClick
-        SoundID = 'BUTTON_CLICK_1'
+        SoundID = 'BUTTON_CLICK_4'
       end
       object mMoveSequenceUpBtn: TArrayBotButton
         Left = 219
@@ -86,7 +86,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         ParentDoubleBuffered = True
         TabOrder = 2
         OnClick = mMoveSequenceUpBtnClick
-        SoundID = 'BUTTON_CLICK_1'
+        SoundID = 'BUTTON_CLICK_4'
       end
     end
     object mUpdatePositionsBtn: TArrayBotButton
@@ -97,7 +97,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
       ParentDoubleBuffered = True
       TabOrder = 1
       OnClick = mUpdatePositionsBtnClick
-      SoundID = 'BUTTON_CLICK_1'
+      SoundID = 'BUTTON_CLICK_4'
     end
   end
   object mSequenceAL: TActionList

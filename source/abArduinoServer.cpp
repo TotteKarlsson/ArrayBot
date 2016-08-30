@@ -100,7 +100,7 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
         mSectionCount++;
     	if(mAutoPuff)
     	{
-        	if(mSectionCount == mPuffAfterSectionCount - 2)
+        	if(mSectionCount == mPuffAfterSectionCount - 3)
             {
                 stringstream msg;
         		msg <<"GET_READY_FOR_ZERO_CUT_1";
@@ -121,17 +121,13 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
 				updateClients(msg.str());
             }
 
-        	if(mSectionCount == 0)
-            {
-                stringstream msg;
-        		msg <<"RESTORE_FROM_ZERO_CUT";
-				updateClients(msg.str());
-            }
-
         	if(mSectionCount > mPuffAfterSectionCount)
         	{
         		puff();
 				mSectionCount = 0;
+                stringstream msg;
+        		msg <<"RESTORE_FROM_ZERO_CUT";
+				updateClients(msg.str());
             }
         }
 

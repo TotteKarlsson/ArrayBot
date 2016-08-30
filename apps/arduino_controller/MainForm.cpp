@@ -104,8 +104,8 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	setupUIFrames();
 	mArduinoServer.broadcastStatus();
 
-	mGetReadyForZeroCutSound.Create("SHORT_BEEP_1", this->Handle);
-	mSetZeroCutSound.Create("MOTOR_WARNING_SOUND", this->Handle);
+	mGetReadyForZeroCutSound.Create("SHORT_BEEP_2", this->Handle);
+	mSetZeroCutSound.Create("BUTTON_CLICK_2", this->Handle);
 }
 
 //---------------------------------------------------------------------------

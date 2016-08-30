@@ -54,7 +54,7 @@ object Form1: TForm1
     Caption = 'ArrayBotButton1'
     TabOrder = 3
     OnClick = ArrayBotButton1Click
-    SoundID = 'BUTTON_CLICK_1'
+    SoundID = 'BUTTON_CLICK_4'
   end
   object mInfoMemo: TMemo
     Left = 0

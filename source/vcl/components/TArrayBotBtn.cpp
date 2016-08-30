@@ -14,7 +14,7 @@ using namespace mtk;
 //---------------------------------------------------------------------------
 __fastcall TArrayBotButton::TArrayBotButton(TComponent* Owner)
 	: TBitBtn(Owner),
-    FSoundID("BUTTON_CLICK_1")
+    FSoundID("BUTTON_CLICK_4")
 {
 	initABCoreLib();
 }

@@ -21,12 +21,11 @@
 #include "mtkFloatLabel.h"
 #include <Vcl.Buttons.hpp>
 #include <Vcl.ToolWin.hpp>
-
-
+#include "TArrayBotBtn.h"
+#include "abSoundPlayer.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;
-
 
 class TSettingsForm;
 //---------------------------------------------------------------------------
@@ -40,15 +39,9 @@ class TMainForm  : public TRegistryForm
 	TPanel *Panel2;
 	TSplitter *Splitter1;
 	TSplitter *Splitter2;
-	TButton *mOneToTwoBtn;
-	TButton *mOneToOneBtn;
-	TButton *mFitToScreenButton;
 	TPanel *mMainPanel;
 	TPanel *mCameraBackPanel;
 	TPanel *mCameraStreamPanel;
-	TButton *mToggleLogPanelBtn;
-	TButton *mRecordMovieBtn;
-	TButton *mSnapShotBtn;
 	TTimer *Timer1;
 	TPanel *mBottomPanel;
 	TPanel *Panel1;
@@ -59,14 +52,10 @@ class TMainForm  : public TRegistryForm
 	TListBox *mShotsLB;
 	TGroupBox *GroupBox3;
 	TGroupBox *GroupBox4;
-	TButton *Button2;
-	TButton *mSettingsBtn;
 	TGroupBox *GroupBox6;
 	mtkFloatLabel *mHumidityE;
 	TGroupBox *GroupBox5;
 	mtkFloatLabel *mTemperatureLbl;
-	TButton *mFrontBackLEDBtn;
-	TButton *mToggleCoaxBtn;
 	TGroupBox *GroupBox7;
 	TTrackBar *mCoaxTB;
 	TTrackBar *mBackLEDTB;
@@ -76,6 +65,21 @@ class TMainForm  : public TRegistryForm
 	TBitBtn *mClearLogMemoBtn;
 	TComboBox *LogLevelCB;
 	TScrollBox *ScrollBox1;
+	TArrayBotButton *Button2;
+	TArrayBotButton *mFitToScreenButton;
+	TArrayBotButton *mFrontBackLEDBtn;
+	TArrayBotButton *mOneToOneBtn;
+	TArrayBotButton *mOneToTwoBtn;
+	TArrayBotButton *mRecordMovieBtn;
+	TArrayBotButton *mSettingsBtn;
+	TArrayBotButton *mSnapShotBtn;
+	TArrayBotButton *mToggleCoaxBtn;
+	TArrayBotButton *mToggleLogPanelBtn;
+	TButton *Button1;
+	TButton *goButton;
+	TButton *restoreBtn;
+	TButton *stopBtn;
+	TPanel *Panel3;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -89,7 +93,7 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mSnapShotBtnClick(TObject *Sender);
 	void __fastcall mRecordMovieBtnClick(TObject *Sender);
 	void __fastcall Timer1Timer(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall ClearLogMemo(TObject *Sender);
 	void __fastcall mMoviesLBDblClick(TObject *Sender);
 	void __fastcall Delete1Click(TObject *Sender);
 	void __fastcall DeleteAll1Click(TObject *Sender);
@@ -99,6 +103,7 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
 	void __fastcall LightTBChange(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
 
     private:
         LogFileReader                           mLogFileReader;
@@ -112,6 +117,7 @@ class TMainForm  : public TRegistryForm
         mtk::Property<bool>						mAutoExposure;
         mtk::Property<bool>						mVerticalMirror;
         mtk::Property<bool>						mHorizontalMirror;
+
 
 								                // Camera variables
 
@@ -145,6 +151,11 @@ class TMainForm  : public TRegistryForm
     public:
  			       __fastcall 					TMainForm(TComponent* Owner);
  			       __fastcall 					~TMainForm();
+
+		SoundPlayer								mGetReadyForZeroCutSound;
+        SoundPlayer								mSetZeroCutSound;
+        SoundPlayer								mRestoreFromZeroCutSound;
+        void									stopSounds();
 
 												//!Camera stuff is processed in the message loop
 	LRESULT 									OnUSBCameraMessage(TMessage msg);

@@ -25,6 +25,7 @@ __published:	// IDE-managed Components
 	TButton *Button1;
 	TPropertyCheckBox *mAutoExposureCB;
 	TPropertyCheckBox *mAutoGainCB;
+	TButton *Button2;
 	void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mVerticalMirrorCBClick(TObject *Sender);

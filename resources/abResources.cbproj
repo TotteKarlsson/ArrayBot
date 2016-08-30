@@ -93,34 +93,13 @@
         <CppCompile Include="abResources.cpp">
             <BuildOrder>1</BuildOrder>
         </CppCompile>
+        <ResourceCompile Include="abResources_resources.rc">
+            <Form>abResources_resources.res</Form>
+            <BuildOrder>2</BuildOrder>
+        </ResourceCompile>
         <PCHCompile Include="ab_resources_PCH.h">
             <BuildOrder>0</BuildOrder>
         </PCHCompile>
-        <RcItem Include="sounds\ball.wav">
-            <ContainerId>ResourceItem</ContainerId>
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>MOTOR_WARNING_SOUND</ResourceId>
-        </RcItem>
-        <RcItem Include="sounds\button-click_1.wav">
-            <ContainerId>ResourceItem</ContainerId>
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>BUTTON_CLICK_1</ResourceId>
-        </RcItem>
-        <RcItem Include="sounds\CAMERA.WAV">
-            <ContainerId>ResourceItem</ContainerId>
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>CAMERA_CLICK</ResourceId>
-        </RcItem>
-        <RcItem Include="sounds\long_beep.wav">
-            <ContainerId>ResourceItem</ContainerId>
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>LONG_BEEP_1</ResourceId>
-        </RcItem>
-        <RcItem Include="sounds\short_beep_1.wav">
-            <ContainerId>ResourceItem</ContainerId>
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>SHORT_BEEP_1</ResourceId>
-        </RcItem>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

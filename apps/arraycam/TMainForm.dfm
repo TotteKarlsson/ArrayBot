@@ -45,7 +45,6 @@ object MainForm: TMainForm
     Height = 824
     Align = alRight
     TabOrder = 0
-    ExplicitLeft = 784
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
@@ -53,16 +52,6 @@ object MainForm: TMainForm
       Height = 822
       Align = alClient
       TabOrder = 0
-      object Button2: TButton
-        Left = 0
-        Top = 805
-        Width = 156
-        Height = 60
-        Align = alBottom
-        Caption = 'Exit'
-        TabOrder = 0
-        OnClick = Button2Click
-      end
       object GroupBox5: TGroupBox
         Left = 0
         Top = 0
@@ -123,7 +112,7 @@ object MainForm: TMainForm
       end
       object GroupBox7: TGroupBox
         Left = 0
-        Top = 540
+        Top = 720
         Width = 156
         Height = 145
         Align = alBottom
@@ -160,97 +149,127 @@ object MainForm: TMainForm
           OnChange = LightTBChange
         end
       end
-      object mFitToScreenButton: TButton
+      object Button2: TArrayBotButton
+        Left = 0
+        Top = 660
+        Width = 156
+        Height = 60
+        Align = alBottom
+        Caption = 'Exit'
+        ParentDoubleBuffered = True
+        TabOrder = 0
+        OnClick = Button2Click
+        SoundID = 'BUTTON_CLICK_4'
+      end
+      object mFitToScreenButton: TArrayBotButton
         Left = 0
         Top = 120
         Width = 156
         Height = 60
         Align = alTop
         Caption = 'Fit to screen'
+        ParentDoubleBuffered = True
         TabOrder = 4
         OnClick = mFitToScreenButtonClick
+        SoundID = 'BUTTON_CLICK_4'
       end
-      object mFrontBackLEDBtn: TButton
+      object mFrontBackLEDBtn: TArrayBotButton
         Left = 0
-        Top = 685
+        Top = 600
         Width = 156
         Height = 60
         Align = alBottom
         Caption = 'Toggle LED Light'
+        ParentDoubleBuffered = True
         TabOrder = 5
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
+        SoundID = 'BUTTON_CLICK_4'
       end
-      object mOneToOneBtn: TButton
+      object mOneToOneBtn: TArrayBotButton
         Left = 0
         Top = 360
         Width = 156
         Height = 60
         Align = alTop
         Caption = '1:1'
+        ParentDoubleBuffered = True
         TabOrder = 6
         OnClick = mOneToOneBtnClick
+        SoundID = 'BUTTON_CLICK_4'
       end
-      object mOneToTwoBtn: TButton
+      object mOneToTwoBtn: TArrayBotButton
         Left = 0
         Top = 420
         Width = 156
         Height = 60
         Align = alTop
         Caption = '1:2'
+        ParentDoubleBuffered = True
         TabOrder = 7
         OnClick = mOneToTwoBtnClick
+        SoundID = 'BUTTON_CLICK_4'
       end
-      object mRecordMovieBtn: TButton
+      object mRecordMovieBtn: TArrayBotButton
         Left = 0
         Top = 480
         Width = 156
         Height = 60
         Align = alTop
         Caption = 'Record Movie'
+        ParentDoubleBuffered = True
         TabOrder = 8
         OnClick = mRecordMovieBtnClick
+        SoundID = 'BUTTON_CLICK_4'
       end
-      object mSettingsBtn: TButton
+      object mSettingsBtn: TArrayBotButton
         Left = 0
         Top = 240
         Width = 156
         Height = 60
         Align = alTop
         Caption = 'Settings'
+        ParentDoubleBuffered = True
         TabOrder = 9
         OnClick = mSettingsBtnClick
+        SoundID = 'BUTTON_CLICK_4'
       end
-      object mSnapShotBtn: TButton
+      object mSnapShotBtn: TArrayBotButton
         Left = 0
         Top = 300
         Width = 156
         Height = 60
         Align = alTop
         Caption = 'Snap Shot'
+        ParentDoubleBuffered = True
         TabOrder = 10
         OnClick = mSnapShotBtnClick
+        SoundID = 'CAMERA_SHUTTER_1'
       end
-      object mToggleCoaxBtn: TButton
+      object mToggleCoaxBtn: TArrayBotButton
         Left = 0
-        Top = 745
+        Top = 540
         Width = 156
         Height = 60
         Align = alBottom
         Caption = 'Toggle Coax Light'
+        ParentDoubleBuffered = True
         TabOrder = 11
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
+        SoundID = 'BUTTON_CLICK_4'
       end
-      object mToggleLogPanelBtn: TButton
+      object mToggleLogPanelBtn: TArrayBotButton
         Left = 0
         Top = 180
         Width = 156
         Height = 60
         Align = alTop
         Caption = 'Hide Bottom Panel'
+        ParentDoubleBuffered = True
         TabOrder = 12
         OnClick = mToggleLogPanelClick
+        SoundID = 'BUTTON_CLICK_4'
       end
     end
   end
@@ -262,7 +281,9 @@ object MainForm: TMainForm
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
-    ExplicitWidth = 781
+    DesignSize = (
+      786
+      824)
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -284,6 +305,67 @@ object MainForm: TMainForm
         OnDblClick = mCameraStreamPanelDblClick
       end
     end
+    object Panel3: TPanel
+      Left = 635
+      Top = 331
+      Width = 121
+      Height = 166
+      Anchors = [akTop, akRight]
+      AutoSize = True
+      Caption = 'Panel3'
+      TabOrder = 1
+      object Button1: TButton
+        Left = 1
+        Top = 1
+        Width = 119
+        Height = 41
+        Align = alTop
+        Caption = 'Ready Sound'
+        TabOrder = 0
+        OnClick = Button1Click
+        ExplicitLeft = 150
+        ExplicitTop = 304
+        ExplicitWidth = 107
+      end
+      object goButton: TButton
+        Left = 1
+        Top = 42
+        Width = 119
+        Height = 41
+        Align = alTop
+        Caption = 'Go'
+        TabOrder = 1
+        OnClick = Button1Click
+        ExplicitLeft = 150
+        ExplicitTop = 304
+        ExplicitWidth = 107
+      end
+      object restoreBtn: TButton
+        Left = 1
+        Top = 83
+        Width = 119
+        Height = 41
+        Align = alTop
+        Caption = 'Restore'
+        TabOrder = 2
+        OnClick = Button1Click
+        ExplicitLeft = 150
+        ExplicitTop = 304
+        ExplicitWidth = 107
+      end
+      object stopBtn: TButton
+        Left = 1
+        Top = 124
+        Width = 119
+        Height = 41
+        Align = alTop
+        Caption = 'Stop'
+        TabOrder = 3
+        OnClick = Button1Click
+        ExplicitLeft = -95
+        ExplicitTop = 130
+      end
+    end
   end
   object mBottomPanel: TPanel
     Left = 0
@@ -292,7 +374,6 @@ object MainForm: TMainForm
     Height = 159
     Align = alBottom
     TabOrder = 2
-    ExplicitWidth = 963
     object GroupBox3: TGroupBox
       Left = 105
       Top = 1
@@ -341,7 +422,6 @@ object MainForm: TMainForm
       Align = alClient
       Caption = 'Logs'
       TabOrder = 2
-      ExplicitWidth = 737
       object infoMemo: TMemo
         Left = 2
         Top = 62
@@ -350,7 +430,6 @@ object MainForm: TMainForm
         Align = alClient
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitWidth = 733
       end
       object Panel1: TPanel
         Left = 2
@@ -360,7 +439,6 @@ object MainForm: TMainForm
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitWidth = 733
         object ToolBar1: TToolBar
           Left = 0
           Top = 0
@@ -370,7 +448,6 @@ object MainForm: TMainForm
           ButtonHeight = 30
           Caption = 'ToolBar1'
           TabOrder = 0
-          ExplicitWidth = 733
           object mClearLogMemoBtn: TBitBtn
             Left = 0
             Top = 0
@@ -384,11 +461,11 @@ object MainForm: TMainForm
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            OnClick = Button1Click
+            OnClick = ClearLogMemo
           end
           object LogLevelCB: TComboBox
             Left = 75
-            Top = 4
+            Top = 0
             Width = 145
             Height = 21
             Font.Charset = DEFAULT_CHARSET

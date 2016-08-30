@@ -47,7 +47,7 @@ object Main: TMain
         Caption = 'E&xit'
         ParentDoubleBuffered = True
         TabOrder = 0
-        SoundID = 'BUTTON_CLICK_1'
+        SoundID = 'BUTTON_CLICK_4'
       end
     end
     object mFrontBackLEDBtn: TArrayBotButton
@@ -60,7 +60,7 @@ object Main: TMain
       ParentDoubleBuffered = True
       TabOrder = 1
       OnClick = LigthsBtnsClick
-      SoundID = 'BUTTON_CLICK_1'
+      SoundID = 'BUTTON_CLICK_4'
     end
     object Button1: TArrayBotButton
       Left = 1
@@ -72,7 +72,7 @@ object Main: TMain
       ParentDoubleBuffered = True
       TabOrder = 2
       OnClick = mAboutBtnClick
-      SoundID = 'BUTTON_CLICK_1'
+      SoundID = 'BUTTON_CLICK_4'
     end
     object mCoaxLightBtn: TArrayBotButton
       Left = 1
@@ -84,7 +84,7 @@ object Main: TMain
       ParentDoubleBuffered = True
       TabOrder = 3
       OnClick = LigthsBtnsClick
-      SoundID = 'BUTTON_CLICK_1'
+      SoundID = 'BUTTON_CLICK_4'
     end
   end
   object MainPanel: TPanel
@@ -124,6 +124,10 @@ object Main: TMain
         TabOrder = 0
         object TabSheet1: TTabSheet
           Caption = 'Ribbon Controller'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GroupBox3: TGroupBox
             Left = 3
             Top = 20
@@ -192,6 +196,10 @@ object Main: TMain
         object TabSheet2: TTabSheet
           Caption = 'Settings'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0

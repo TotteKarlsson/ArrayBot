@@ -125,3 +125,4 @@ void __fastcall TSettingsForm::Button1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+

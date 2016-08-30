@@ -114,7 +114,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         ParentDoubleBuffered = True
         TabOrder = 1
         OnClick = AddTriggerBClick
-        SoundID = 'BUTTON_CLICK_1'
+        SoundID = 'BUTTON_CLICK_4'
       end
     end
   end
@@ -165,7 +165,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
           ParentDoubleBuffered = True
           TabOrder = 0
           OnClick = mDeleteTriggerBClick
-          SoundID = 'BUTTON_CLICK_1'
+          SoundID = 'BUTTON_CLICK_4'
         end
       end
     end

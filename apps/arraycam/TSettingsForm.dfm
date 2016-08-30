@@ -2,8 +2,8 @@ object SettingsForm: TSettingsForm
   Left = 0
   Top = 0
   Caption = 'ArrayCam Settings'
-  ClientHeight = 349
-  ClientWidth = 545
+  ClientHeight = 355
+  ClientWidth = 549
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -111,6 +111,14 @@ object SettingsForm: TSettingsForm
     Caption = 'Close'
     TabOrder = 2
     OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 34
+    Top = 224
+    Width = 75
+    Height = 25
+    Caption = 'Button2'
+    TabOrder = 3
   end
   object UIUpdateTimer: TTimer
     Enabled = False

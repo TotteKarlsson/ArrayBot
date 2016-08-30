@@ -133,7 +133,7 @@ object Main: TMain
               ParentDoubleBuffered = True
               TabOrder = 0
               OnClick = mResetCountBtnClick
-              SoundID = 'BUTTON_CLICK_1'
+              SoundID = 'BUTTON_CLICK_4'
             end
           end
           object GroupBox4: TGroupBox
@@ -184,7 +184,7 @@ object Main: TMain
               ParentDoubleBuffered = True
               TabOrder = 0
               OnClick = mResetCountBtnClick
-              SoundID = 'BUTTON_CLICK_1'
+              SoundID = 'BUTTON_CLICK_4'
             end
             object mEnablePuffBtn: TArrayBotButton
               Left = 151
@@ -195,7 +195,7 @@ object Main: TMain
               ParentDoubleBuffered = True
               TabOrder = 1
               OnClick = mResetCountBtnClick
-              SoundID = 'BUTTON_CLICK_1'
+              SoundID = 'BUTTON_CLICK_4'
             end
           end
         end
