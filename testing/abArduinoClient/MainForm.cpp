@@ -179,7 +179,7 @@ void TMain::onMessageReceived(const string& msg)
                 }
             }
 
-            else if(startsWith(msg, "PUFF_AFTER_SECTION_COUNT"))
+            else if(startsWith(msg, "DESIRED_RIBBON_LENGTH"))
             {
                 //Parse the message
                 StringList l(msg, '=');

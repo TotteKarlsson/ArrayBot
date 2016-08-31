@@ -52,7 +52,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mProperties.setIniFile(&mIniFile);
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	 lAny));
 	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup(	"SERVER_PORT",    	 50000));
-	mProperties.add((BaseProperty*)  &mPuffAfterSectionCountE->getProperty()->setup("PUFF_AFTER_SECTION_COUNT",    	 25));
+	mProperties.add((BaseProperty*)  &mPuffAfterSectionCountE->getProperty()->setup("DESIRED_RIBBON_LENGTH",    	 25));
 
     mProperties.read();
 	mArduinoServerPortE->update();
@@ -154,7 +154,7 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
                     Main->mAutoPuffCB->Checked = (toBool(l[1])) ? true : false;
                 }
             }
-            else if(startsWith("PUFF_AFTER_SECTION_COUNT", msg))
+            else if(startsWith("DESIRED_RIBBON_LENGTH", msg))
             {
                 //Parse the message
                 StringList l(msg, '=');
@@ -182,7 +182,7 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
 	            Main->mGetReadyForZeroCutSound.Stop();
                 if(Main->mEnablesoundsCB->Checked)
                 {
-					Main->mSetZeroCutSound.Play(0, true);
+					Main->mSetZeroCutSound.Play(0, false);
                 }
             }
             else if(startsWith("DHT22DATA", msg))
@@ -233,17 +233,16 @@ void __fastcall TMain::mResetCounterBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::mPuffRelatedBtnClick(TObject *Sender)
 {
-	TButton* b = dynamic_cast<TButton*>(Sender);
+	TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
     if(b == mPuffNowBtn)
     {
-		mPufferArduino.send("p");
+		mArduinoServer.puff();
     }
     else if(b == mEnablePuffBtn)
     {
-		mPufferArduino.send("e");
+    	mArduinoServer.enablePuffer();
+//		mPufferArduino.send("e");
     }
-
-    mSectionCount->SetValue(0);
 }
 
 //---------------------------------------------------------------------------
@@ -255,15 +254,16 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
     	static string cap = "ON";
 	   	if(contains("OFF", cap))
         {
-        	mArduinoServer.turnLEDLightOn();
+
         	mFrontBackLEDBtn->Caption = "Flip LEDs ON";
             cap = "ON";
+        	mArduinoServer.turnLEDLightOn();
         }
         else
         {
-        	mArduinoServer.turnLEDLightOff();
         	mFrontBackLEDBtn->Caption = "Flip LEDs OFF";
             cap = "OFF";
+        	mArduinoServer.turnLEDLightOff();
         }
     }
     else if(b == mCoaxLightBtn)
@@ -271,16 +271,15 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
     	static string ccap = "ON";
 	   	if(contains("OFF", ccap))
         {
-
-        	mArduinoServer.turnCoaxLightOn();
         	mCoaxLightBtn->Caption = "Flip CoaxLight ON";
             ccap = "ON";
+        	mArduinoServer.turnCoaxLightOn();
         }
         else
         {
-        	mArduinoServer.turnCoaxLightOff();
         	mCoaxLightBtn->Caption = "Flip CoaxLight OFF";
             ccap = "OFF";
+        	mArduinoServer.turnCoaxLightOff();
         }
     }
 }

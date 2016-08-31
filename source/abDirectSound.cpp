@@ -224,7 +224,7 @@ bool DirectSound::CreateSoundBuffer(WAVEFORMATEX * pcmwf)
 	dsbdesc.dwSize = sizeof(DSBUFFERDESC);
 
 	// Need no controls (pan, volume, frequency).
-	dsbdesc.dwFlags = DSBCAPS_STATIC;		// assumes that the sound is played often
+	dsbdesc.dwFlags = DSBCAPS_STATIC | DSBCAPS_GLOBALFOCUS | DSBCAPS_CTRLVOLUME;
 	dsbdesc.dwBufferBytes = mTheSoundBytes;
 	dsbdesc.lpwfxFormat = pcmwf;    // Create buffer.
 	HRESULT hRes;

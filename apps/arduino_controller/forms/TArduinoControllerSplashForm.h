@@ -30,7 +30,6 @@ class PACKAGE TArduinoControllerSplashForm : public TForm
     void __fastcall FormShow(TObject *Sender);
     void __fastcall Image2Click(TObject *Sender);
 
-
 	private:
 		void __fastcall                                     CreateParams(TCreateParams& Params);	// User declarations
 		Poco::Timespan                                      mMinimumTimeShowing;

@@ -78,11 +78,11 @@ class AB_CORE ArduinoServer : public IPCServer
 
         OnMessageUpdateCB					onMessageUpdateCB;
 
-									        //!The section count is compared to the mPuffAfterSectionCount
+									        //!The section count is compared to the mDesiredRibbonLength
                                             //used for emitting a puff
         int						            mSectionCount;
 
-        int									mPuffAfterSectionCount;
+        int									mDesiredRibbonLength;
         bool								mAutoPuff;
 		void					            pufferMessageReceived(const string& msg);
 		void					            sensorMessageReceived(const string& msg);

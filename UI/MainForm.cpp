@@ -561,13 +561,13 @@ void TMain::onArduinoMessageReceived(const string& msg)
                     Main->mAutoPuffCB->Checked = (toBool(l[1])) ? true : false;
                 }
             }
-            else if(startsWith("PUFF_AFTER_SECTION_COUNT", msg))
+            else if(startsWith("DESIRED_RIBBON_LENGTH", msg))
             {
                 //Parse the message
                 StringList l(msg, '=');
                 if(l.size() == 2)
                 {
-                    Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
+                    Main->mRibbonLengthE->setValue(toInt(l[1]));
                 }
             }
         }
@@ -632,12 +632,12 @@ void __fastcall TMain::mButtonPanelDblClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+void __fastcall TMain::mRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
 	if(Key == vkReturn)
     {
-		mArduinoClient.setPuffAfterSectionCount(mPuffAfterSectionCountE->getValue());
+		mArduinoClient.setPuffAfterSectionCount(mRibbonLengthE->getValue());
     }
 }
 

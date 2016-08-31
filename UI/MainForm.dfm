@@ -51,16 +51,18 @@ object Main: TMain
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      object Button5: TSpeedButton
+      object Button5: TArrayBotButton
         Left = 1
         Top = 126
         Width = 179
         Height = 125
         Action = FileExit1
         Align = alBottom
-        ExplicitWidth = 123
+        Caption = 'E&xit'
+        TabOrder = 0
+        SoundID = 'BUTTON_CLICK_4'
       end
-      object Button7: TSpeedButton
+      object Button7: TArrayBotButton
         Left = 1
         Top = 1
         Width = 179
@@ -68,8 +70,10 @@ object Main: TMain
         Action = stopAllA
         Align = alBottom
         BiDiMode = bdLeftToRight
+        Caption = 'Stop All'
         ParentBiDiMode = False
-        ExplicitWidth = 123
+        TabOrder = 1
+        SoundID = 'BUTTON_CLICK_4'
       end
     end
   end
@@ -142,19 +146,19 @@ object Main: TMain
             Width = 303
             Height = 165
             Align = alLeft
-            Caption = 'Auto Puff Control'
+            Caption = 'Ribbon Length Control'
             TabOrder = 1
-            object mPuffAfterSectionCountE: TIntegerLabeledEdit
+            object mRibbonLengthE: TIntegerLabeledEdit
               Left = 152
               Top = 50
               Width = 129
               Height = 31
-              EditLabel.Width = 131
+              EditLabel.Width = 123
               EditLabel.Height = 23
-              EditLabel.Caption = 'Puff after count'
+              EditLabel.Caption = 'Ribbon Length'
               TabOrder = 0
               Text = '-1'
-              OnKeyDown = mPuffAfterSectionCountEKeyDown
+              OnKeyDown = mRibbonLengthEKeyDown
               Value = -1
             end
             object mAutoPuffCB: TPropertyCheckBox

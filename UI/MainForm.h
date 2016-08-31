@@ -88,8 +88,6 @@ class TMain : public TRegistryForm
 	TGroupBox *LiftGB;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
-	TSpeedButton *Button7;
-	TSpeedButton *Button5;
 	TPanel *BottomBtnPanel;
 	TTimer *mLiftTimer;
 	TAction *abortLiftA;
@@ -114,7 +112,7 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox2;
 	TIntLabel *mSectionCountLbl;
 	TGroupBox *GroupBox4;
-	TIntegerLabeledEdit *mPuffAfterSectionCountE;
+	TIntegerLabeledEdit *mRibbonLengthE;
 	TPropertyCheckBox *mAutoPuffCB;
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mArduinoServerPortE;
@@ -125,6 +123,8 @@ class TMain : public TRegistryForm
 	TArrayBotButton *mPuffBtn;
 	TArrayBotButton *mEnablePuffBtn;
 	TArrayBotButton *mResetCountBtn;
+	TArrayBotButton *Button5;
+	TArrayBotButton *Button7;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -157,7 +157,7 @@ class TMain : public TRegistryForm
 	void __fastcall mResetCountBtnClick(TObject *Sender);
 	void __fastcall mAutoPuffCBClick(TObject *Sender);
 	void __fastcall mButtonPanelDblClick(TObject *Sender);
-	void __fastcall mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+	void __fastcall mRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
 
     private:

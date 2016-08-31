@@ -617,9 +617,9 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
 
             if(startsWith("RESTORE_FROM_ZERO_CUT", msg))
             {
-            	Log(lInfo) <<"Restore from zero Cut ";
+				Log(lInfo) <<"Restore from zero Cut ";
                 MainForm->stopSounds();
-				MainForm->mRestoreFromZeroCutSound.play();
+				//MainForm->mRestoreFromZeroCutSound.play();
             }
 
 //            else if(startsWith("PIN_8", msg))

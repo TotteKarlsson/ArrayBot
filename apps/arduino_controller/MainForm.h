@@ -81,24 +81,24 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet1;
 	TTabSheet *TabSheet2;
 	TGroupBox *GroupBox2;
-	TButton *mResetCounterBtn;
 	TIntLabel *mSectionCount;
 	TGroupBox *GroupBox3;
 	TIntegerLabeledEdit *mPuffAfterSectionCountE;
 	TPropertyCheckBox *mAutoPuffCB;
-	TButton *mPuffNowBtn;
 	mtkFloatLabel *mTemperatureLbl;
 	mtkFloatLabel *mHumidityE;
 	TPanel *Panel1;
 	TGroupBox *GroupBox4;
 	TGroupBox *GroupBox5;
 	TGroupBox *GroupBox6;
-	TButton *mEnablePuffBtn;
 	TArrayBotButton *mFrontBackLEDBtn;
 	TArrayBotButton *Button1;
 	TArrayBotButton *mCoaxLightBtn;
 	TArrayBotButton *Button5;
 	TPropertyCheckBox *mEnablesoundsCB;
+	TArrayBotButton *mPuffNowBtn;
+	TArrayBotButton *mEnablePuffBtn;
+	TArrayBotButton *mResetCounterBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -141,6 +141,7 @@ class TMain : public TRegistryForm
 		void __fastcall                 	AppInBox(mlxStructMessage &Msg);
 
         ArduinoServer					    mArduinoServer;
+
         ArduinoDevice&					    mPufferArduino;
         ArduinoDevice&					    mSensorArduino;
         DirectSound							mGetReadyForZeroCutSound;

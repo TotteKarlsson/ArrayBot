@@ -43,7 +43,7 @@ void ArduinoClient::resetSectionCounter()
 void ArduinoClient::setPuffAfterSectionCount(int count)
 {
 	stringstream msg;
-    msg <<"PUFF_AFTER_SECTION_COUNT="<<count;
+    msg <<"DESIRED_RIBBON_LENGTH="<<count;
 	request(msg.str());
 }
 

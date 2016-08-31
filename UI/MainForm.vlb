@@ -7,9 +7,6 @@ Coordinates=297,373,66,33
 [JoyStickGB2]
 Coordinates=253,1,77,51
 
-[Button7]
-Coordinates=51,373,53,33
-
 [ToolBar1]
 Coordinates=750,141,58,33
 
@@ -70,9 +67,6 @@ Coordinates=103,1,112,87
 [LiftBtn]
 Coordinates=227,462,47,33
 
-[Button5]
-Coordinates=168,462,53,33
-
 [ScrollBox1]
 Coordinates=20,462,68,33
 
@@ -104,7 +98,7 @@ Coordinates=776,533,81,33
 Coordinates=159,373,128,33
 
 []
-Coordinates=89,462,70,33
+Coordinates=51,373,53,33
 
 [mBottomPanel]
 Coordinates=750,333,87,51

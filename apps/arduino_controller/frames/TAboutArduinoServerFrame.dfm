@@ -901,35 +901,13 @@ object AboutArduinoServerFrame: TAboutArduinoServerFrame
   object ActionList1: TActionList
     Left = 304
     Top = 160
-    object StartUnlockProcedureA: TAction
-      Caption = 'Unlock'
-    end
-    object ValidateKeyAction: TAction
-      Caption = 'Validate'
-      Visible = False
-    end
-    object checkForUpdateA: TAction
-      Caption = 'Check for update'
-      OnExecute = checkForUpdateAExecute
-    end
-    object retrieveChangeLogA: TAction
-      Caption = 'Get latest changelog'
-      OnExecute = retrieveChangeLogAExecute
-    end
-    object showLicenseTextA: TAction
-      Caption = 'License'
-    end
-    object showChangeLog: TAction
-      Caption = 'Change Log'
-    end
     object CloseA: TAction
       Caption = 'Close'
       OnExecute = CloseAExecute
     end
   end
   object ThreadCheckTimer: TTimer
-    OnTimer = ThreadCheckTimerTimer
-    Left = 272
-    Top = 96
+    Left = 224
+    Top = 152
   end
 end
