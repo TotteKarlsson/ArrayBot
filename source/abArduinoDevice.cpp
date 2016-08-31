@@ -3,6 +3,9 @@
 #include "mtkWin32Utils.h"
 #include "mtkLogger.h"
 
+#include "Poco/Mutex.h"
+
+//using namespace Poco::Mutex;
 using namespace mtk;
 
 ArduinoDevice::ArduinoDevice(int pNr, int baudRate)
@@ -23,11 +26,13 @@ bool ArduinoDevice::connect(int portNr, int baudRate)
 
 bool ArduinoDevice::send(int val)
 {
+	Poco::ScopedLock<Poco::Mutex> lock(mSerialPortMutex);
 	return send(toString(val));
 }
 
 bool ArduinoDevice::send(const string& msg)
 {
+	Poco::ScopedLock<Poco::Mutex> lock(mSerialPortMutex);
 	return mSerial.send(msg);
 }
 

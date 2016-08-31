@@ -69,14 +69,6 @@ void ArduinoServer::broadcastStatus()
    	updateClients(msg.str());
 }
 
-void ArduinoServer::resetSectionCount()
-{
-	mSectionCount = 0;
-    stringstream msg;
-    msg <<"SECTION_COUNT="<<mSectionCount;
-	updateClients(msg.str());
-}
-
 void ArduinoServer::sensorMessageReceived(const string& msg)
 {
 	updateClients(msg);
@@ -85,6 +77,8 @@ void ArduinoServer::sensorMessageReceived(const string& msg)
 //This is called from the arduino devices receive thread
 void ArduinoServer::pufferMessageReceived(const string& msg)
 {
+	Log(lDebug5) << "Handling puffer message: "<<msg;
+
     //Check what message we got from arduino device
     if(msg == "ArrayBot Puffer Init")
     {
@@ -126,7 +120,8 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
             	try
                 {
         			enablePuffer();
-                }catch(...)
+                }
+                catch(...)
                 {
                 	Log(lError) << "SuperError";
                 }
@@ -146,10 +141,12 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
 
 void ArduinoServer::updateClients(const string msg)
 {
+	//TODO: There is a problem with this...
     if(onMessageUpdateCB)
     {
         onMessageUpdateCB(msg);
     }
+
     broadcast(msg);
 }
 
@@ -178,9 +175,24 @@ bool ArduinoServer::puff()
     bool res = mPufferArduino.send("p");
     if(res)
     {
-    	resetSectionCount();
+    	try
+        {
+    		resetSectionCount();
+        }
+        catch(...)
+        {
+        	Log(lError) << "Bad stuff..";
+        }
     }
 	return res;
+}
+
+void ArduinoServer::resetSectionCount()
+{
+	mSectionCount = 0;
+    stringstream msg;
+    msg <<"SECTION_COUNT="<<mSectionCount;
+	updateClients(msg.str());
 }
 
 bool ArduinoServer::enablePuffer()

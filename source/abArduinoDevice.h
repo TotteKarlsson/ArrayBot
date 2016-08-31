@@ -45,9 +45,14 @@ class AB_CORE ArduinoDevice : public ABObject
 		InitCallBack				init;
 
     private:
+
     								//!Serial communication can be quite complex. It is wrapped by the Serial class
                                     //and confined to the SerialPort class
         Serial						mSerial;
+
+									//!Threat the serial port as a resource that can only be accesed from
+                                    //the outside by one client at a time
+		Mutex						mSerialPortMutex;
         string						mName;
 
         							//A stream makes it easy to compose messages

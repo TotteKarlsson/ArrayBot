@@ -104,8 +104,8 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	setupUIFrames();
 	mArduinoServer.broadcastStatus();
 
-	mGetReadyForZeroCutSound.Create("SHORT_BEEP_2", this->Handle);
-	mSetZeroCutSound.Create("BUTTON_CLICK_2", this->Handle);
+//	mGetReadyForZeroCutSound.Create("SHORT_BEEP_2", this->Handle);
+//	mSetZeroCutSound.Create("BUTTON_CLICK_2", this->Handle);
 }
 
 //---------------------------------------------------------------------------
@@ -139,10 +139,15 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
         {
             if(startsWith("SECTION_COUNT", msg))
             {
-				Main->mSectionCount->SetNumber(Main->mArduinoServer.getSectionCount());
-                if(Main->mSectionCount->GetValue() == 0)
+                StringList l(msg, '=');
+                if(l.size() == 2)
                 {
-	   				Main->mSetZeroCutSound.Stop();
+					Main->mSectionCount->SetNumber(toInt(l[1]));
+                }
+
+                if(Main->mSectionCount->GetValue() == 0 &&  Main->mEnablesoundsCB->Checked)
+                {
+//	   				Main->mSetZeroCutSound.Stop();
                 }
             }
             else if(startsWith("AUTO_PUFF=", msg))
@@ -160,29 +165,29 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
                 StringList l(msg, '=');
                 if(l.size() == 2)
                 {
-                    Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
+//                    Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
                 }
             }
             else if(startsWith("GET_READY_FOR_ZERO_CUT_1", msg))
             {
                 if(Main->mEnablesoundsCB->Checked)
                 {
-					Main->mGetReadyForZeroCutSound.Play(0, false);
+//					Main->mGetReadyForZeroCutSound.Play(0, false);
                 }
             }
             else if(startsWith("GET_READY_FOR_ZERO_CUT_2", msg))
             {
                 if(Main->mEnablesoundsCB->Checked)
                 {
-					Main->mGetReadyForZeroCutSound.Play(0, false);
+//					Main->mGetReadyForZeroCutSound.Play(0, false);
                 }
             }
             else if(startsWith("SET_ZERO_CUT", msg))
             {
-	            Main->mGetReadyForZeroCutSound.Stop();
+//	            Main->mGetReadyForZeroCutSound.Stop();
                 if(Main->mEnablesoundsCB->Checked)
                 {
-					Main->mSetZeroCutSound.Play(0, false);
+//					Main->mSetZeroCutSound.Play(0, false);
                 }
             }
             else if(startsWith("DHT22DATA", msg))
@@ -200,6 +205,8 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
 
     TLocalArgs args;
     args.msg = msg;
+
+    Log(lDebug5) << "Handling onUpdatesFromArduino message in synchronize:" << msg;
 
     //This causes this fucntion to be called in the UI thread
  	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
@@ -241,7 +248,6 @@ void __fastcall TMain::mPuffRelatedBtnClick(TObject *Sender)
     else if(b == mEnablePuffBtn)
     {
     	mArduinoServer.enablePuffer();
-//		mPufferArduino.send("e");
     }
 }
 

@@ -141,6 +141,7 @@ bool Serial::send(const string& msg)
 {
 	OVERLAPPED osWrite = {0};
    	DWORD dwWritten;
+	Log(lDebug5) << "Sending serial message: "<<msg;
 
    	// Create this write operation's OVERLAPPED structure's hEvent.
    	osWrite.hEvent = CreateEventA(NULL, TRUE, FALSE, NULL);

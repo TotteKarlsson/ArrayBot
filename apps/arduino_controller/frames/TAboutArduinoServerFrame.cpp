@@ -8,9 +8,11 @@
 #include "abApplicationMessages.h"
 #include "mtkLogger.h"
 #include "Poco/DateTimeFormatter.h"
+#include "mtkVersion.h"
+
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "mtkURLLabel"
 #pragma resource "*.dfm"
 TAboutArduinoServerFrame *AboutArduinoServerFrame;
 

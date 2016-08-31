@@ -144,8 +144,8 @@ class TMain : public TRegistryForm
 
         ArduinoDevice&					    mPufferArduino;
         ArduinoDevice&					    mSensorArduino;
-        DirectSound							mGetReadyForZeroCutSound;
-        DirectSound							mSetZeroCutSound;
+//        DirectSound							mGetReadyForZeroCutSound;
+//        DirectSound							mSetZeroCutSound;
 
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,    mlxStructMessage,         AppInBox);

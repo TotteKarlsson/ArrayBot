@@ -57,10 +57,6 @@ object ArduinoControllerSplashForm: TArduinoControllerSplashForm
       ExplicitTop = -9
       ExplicitWidth = 615
     end
-    inherited ThreadCheckTimer: TTimer
-      Left = 128
-      Top = 144
-    end
   end
   object closeTimer: TTimer
     Enabled = False

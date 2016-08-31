@@ -1,3 +1,12 @@
+Release 0.8.1 (Aug 31)
+=======================
+* Fixed log level initialization in ArrayCam
+* Renamed array_cam.ini to ArrayCam.ini
+* Fixed sounds for unfocused windows
+* Removed the 'restore' sounds from the main UI
+* Added a soundplayer class for playing simple sounds
+* Upgrading the sound experience
+
 Release 0.8.0 (Aug 26)
 =======================
 * Improved readability of sequence page
