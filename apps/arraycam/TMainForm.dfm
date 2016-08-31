@@ -323,9 +323,6 @@ object MainForm: TMainForm
         Caption = 'Ready Sound'
         TabOrder = 0
         OnClick = Button1Click
-        ExplicitLeft = 150
-        ExplicitTop = 304
-        ExplicitWidth = 107
       end
       object goButton: TButton
         Left = 1
@@ -336,9 +333,6 @@ object MainForm: TMainForm
         Caption = 'Go'
         TabOrder = 1
         OnClick = Button1Click
-        ExplicitLeft = 150
-        ExplicitTop = 304
-        ExplicitWidth = 107
       end
       object restoreBtn: TButton
         Left = 1
@@ -349,9 +343,6 @@ object MainForm: TMainForm
         Caption = 'Restore'
         TabOrder = 2
         OnClick = Button1Click
-        ExplicitLeft = 150
-        ExplicitTop = 304
-        ExplicitWidth = 107
       end
       object stopBtn: TButton
         Left = 1
@@ -362,8 +353,6 @@ object MainForm: TMainForm
         Caption = 'Stop'
         TabOrder = 3
         OnClick = Button1Click
-        ExplicitLeft = -95
-        ExplicitTop = 130
       end
     end
   end
@@ -494,15 +483,15 @@ object MainForm: TMainForm
     Enabled = False
     Interval = 10
     OnTimer = mShutDownTimerTimer
-    Left = 672
-    Top = 152
+    Left = 304
+    Top = 640
   end
-  object Timer1: TTimer
+  object mCaptureVideoTimer: TTimer
     Enabled = False
     Interval = 1
-    OnTimer = Timer1Timer
-    Left = 688
-    Top = 80
+    OnTimer = mCaptureVideoTimerTimer
+    Left = 208
+    Top = 680
   end
   object mMediaPopup: TPopupMenu
     Left = 72

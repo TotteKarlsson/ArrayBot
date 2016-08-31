@@ -908,27 +908,19 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
     end
     object checkForUpdateA: TAction
       Caption = 'Check for update'
-      OnExecute = checkForUpdateAExecute
     end
     object retrieveChangeLogA: TAction
       Caption = 'Get latest changelog'
-      OnExecute = retrieveChangeLogAExecute
     end
     object showLicenseTextA: TAction
       Caption = 'License'
     end
     object showChangeLog: TAction
       Caption = 'Change Log'
-      OnExecute = showChangeLogExecute
     end
     object CloseA: TAction
       Caption = 'Close'
       OnExecute = CloseAExecute
     end
-  end
-  object ThreadCheckTimer: TTimer
-    OnTimer = ThreadCheckTimerTimer
-    Left = 272
-    Top = 96
   end
 end

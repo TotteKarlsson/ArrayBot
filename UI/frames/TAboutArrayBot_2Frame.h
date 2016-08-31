@@ -30,7 +30,6 @@ __published:	// IDE-managed Components
     TAction *StartUnlockProcedureA;
     TAction *ValidateKeyAction;
     TAction *checkForUpdateA;
-    TTimer *ThreadCheckTimer;
     TAction *retrieveChangeLogA;
     TAction *showLicenseTextA;
     TAction *showChangeLog;
@@ -40,23 +39,9 @@ __published:	// IDE-managed Components
 	TMemo *Memo1;
 	TGroupBox *GroupBox1;
 	TPanel *Panel1;
-    void __fastcall checkForUpdateAExecute(TObject *Sender);
-    void __fastcall ThreadCheckTimerTimer(TObject *Sender);
-    void __fastcall retrieveChangeLogAExecute(TObject *Sender);
-    void __fastcall showChangeLogExecute(TObject *Sender);
     void __fastcall CloseAExecute(TObject *Sender);
 
     private:	// User declarations
-        bool                                            mStartCheckForChangeLogThread;
-        Version                                         mRemoteVersion;
-        GetRemoteTextFileDataThread                     mGetRemoteVersionThread;
-        GetRemoteTextFileDataThread                     mGetNewestChangeLogThread;
-
-        void                                __fastcall  NotifyAboutUpdate(const string& data);
-        void                                __fastcall  NotifyAboutChangeLog(const string& data);
-
-                                                        //This is being repeated from the main form
-        string                                          mRemoteDownloadURL;
         void                                            close();
 
 

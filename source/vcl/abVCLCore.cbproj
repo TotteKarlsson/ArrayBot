@@ -205,18 +205,18 @@
         <PackageImport Include="vclx.bpi">
             <BuildOrder>19</BuildOrder>
         </PackageImport>
-        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
-        <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
+        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="frames\TRibbonLifterFrame.dfm"/>
         <FormResources Include="frames\TSequenceInfoFrame.dfm"/>
         <FormResources Include="frames\TXYZUnitFrame.dfm"/>
+        <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
         <FormResources Include="forms\TamFileEditor.dfm"/>
-        <FormResources Include="frames\TMotorFrame.dfm"/>
+        <FormResources Include="forms\TShowFileContentForm.dfm"/>
         <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
         <FormResources Include="frames\TParallellProcessesFrame.dfm"/>
-        <FormResources Include="forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="frames\TMotorFrame.dfm"/>
         <FormResources Include="forms\TStringInputDialog.dfm"/>
         <FormResources Include="forms\TTextInputDialog.dfm"/>
         <BuildConfiguration Include="Release">

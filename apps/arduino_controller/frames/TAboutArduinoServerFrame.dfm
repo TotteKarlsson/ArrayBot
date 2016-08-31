@@ -906,8 +906,4 @@ object AboutArduinoServerFrame: TAboutArduinoServerFrame
       OnExecute = CloseAExecute
     end
   end
-  object ThreadCheckTimer: TTimer
-    Left = 224
-    Top = 152
-  end
 end

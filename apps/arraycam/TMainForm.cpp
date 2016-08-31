@@ -31,7 +31,7 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
         mCaptureVideo(false),
         mAVIID(0),
-    	mIniFile(joinPath(gAppDataFolder, "array_cam.ini"), true, true),
+    	mIniFile(joinPath(gAppDataFolder, "ArrayCam.ini"), true, true),
     	mLogLevel(lAny),
         mAutoGain(false),
         mAutoExposure(false),
@@ -56,6 +56,7 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	//Camera rendering mode
     mRenderMode = IS_RENDER_FIT_TO_WINDOW;
 	mArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
+    gLogger.setLogLevel(mLogLevel);
 }
 
 __fastcall TMainForm::~TMainForm()
@@ -132,6 +133,17 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	mGetReadyForZeroCutSound.create(this->Handle);
 	mSetZeroCutSound.create(this->Handle);
 	mRestoreFromZeroCutSound.create(this->Handle);
+
+    //Setup LogLevel CB
+    string logLevel = mtk::toString(gLogger.getLogLevel());
+
+    //Find item in CB with this loglevel
+    int index = LogLevelCB->Items->IndexOf(vclstr(logLevel));
+
+    if(index > -1)
+    {
+		LogLevelCB->ItemIndex = index;
+    }
 }
 
 LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
@@ -299,7 +311,7 @@ void __fastcall TMainForm::mRecordMovieBtnClick(TObject *Sender)
 {
 	if(mRecordMovieBtn->Caption == "Record Movie")
     {
-        Timer1->Enabled = true;
+        mCaptureVideoTimer->Enabled = true;
 
         isavi_InitAVI(&mAVIID, mCamera.GetCameraHandle());
 
@@ -356,7 +368,7 @@ void __fastcall TMainForm::mRecordMovieBtnClick(TObject *Sender)
     }
     else
     {
-        Timer1->Enabled = false;
+        mCaptureVideoTimer->Enabled = false;
         mRecordMovieBtn->Caption = "Record Movie";
         int retVal = isavi_StopAVI(mAVIID);
         if(retVal != IS_AVI_NO_ERR)
@@ -383,7 +395,7 @@ void __fastcall TMainForm::mRecordMovieBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::Timer1Timer(TObject *Sender)
+void __fastcall TMainForm::mCaptureVideoTimerTimer(TObject *Sender)
 {
 	//Todo: this should be executed in its own thread and not in a timer..
     mCaptureVideo = true;
@@ -700,10 +712,8 @@ void __fastcall TMainForm::LogLevelCBChange(TObject *Sender)
     }
 
     string lvl = stdstr(LogLevelCB->Items->Strings[LogLevelCB->ItemIndex]);
-
     mLogLevel = toLogLevel(lvl);
     gLogger.setLogLevel(mLogLevel);
-
 }
 
 //---------------------------------------------------------------------------

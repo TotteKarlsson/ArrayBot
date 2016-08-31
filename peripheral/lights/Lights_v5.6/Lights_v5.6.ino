@@ -80,7 +80,6 @@ void setup()
     // setup serial port
     Serial.begin(250000);
     sendInfo();
-    
 }
 
 void loop() 

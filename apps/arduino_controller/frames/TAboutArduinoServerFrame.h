@@ -27,23 +27,22 @@ __published:	// IDE-managed Components
     TLabel *Label1;
     TLabel *versionLabel;
     TActionList *ActionList1;
-    TTimer *ThreadCheckTimer;
     TAction *CloseA;
     TImage *Image1;
 	TLabel *logLabel;
 	TMemo *mChangeLogMemo;
     void __fastcall CloseAExecute(TObject *Sender);
 
-    private:	// User declarations
+    private:
                                                         //This is being repeated from the main form
         void                                            close();
 
 
-    public:		// User declarations
+    public:
                                             __fastcall  TAboutArduinoServerFrame(TComponent* Owner);
         void                                            populate();
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TAboutArduinoServerFrame *AboutArduinoServerFrame;
-//---------------------------------------------------------------------------
+
 #endif

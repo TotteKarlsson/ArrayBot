@@ -42,7 +42,7 @@ class TMainForm  : public TRegistryForm
 	TPanel *mMainPanel;
 	TPanel *mCameraBackPanel;
 	TPanel *mCameraStreamPanel;
-	TTimer *Timer1;
+	TTimer *mCaptureVideoTimer;
 	TPanel *mBottomPanel;
 	TPanel *Panel1;
 	TListBox *mMoviesLB;
@@ -92,7 +92,7 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mToggleLogPanelClick(TObject *Sender);
 	void __fastcall mSnapShotBtnClick(TObject *Sender);
 	void __fastcall mRecordMovieBtnClick(TObject *Sender);
-	void __fastcall Timer1Timer(TObject *Sender);
+	void __fastcall mCaptureVideoTimerTimer(TObject *Sender);
 	void __fastcall ClearLogMemo(TObject *Sender);
 	void __fastcall mMoviesLBDblClick(TObject *Sender);
 	void __fastcall Delete1Click(TObject *Sender);

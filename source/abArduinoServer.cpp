@@ -16,7 +16,7 @@ mPufferArduino(-1),
 mSensorArduino(-1),
 mSectionCount(0),
 mDesiredRibbonLength(10),
-mAutoPuff(true),
+mAutoPuff(false),
 mLEDLightONLine(3),
 mLEDLightOFFLine(4),
 mCoaxLightONLine(1),
@@ -123,9 +123,16 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
 
         	if(mSectionCount >= mDesiredRibbonLength)
         	{
-        		enablePuffer();
+            	try
+                {
+        			enablePuffer();
+                }catch(...)
+                {
+                	Log(lError) << "SuperError";
+                }
 				mSectionCount = 0;
                 stringstream msg;
+
         		msg <<"RESTORE_FROM_ZERO_CUT";
 				updateClients(msg.str());
             }
