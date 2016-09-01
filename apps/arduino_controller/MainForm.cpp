@@ -58,7 +58,10 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mArduinoServerPortE->update();
     mPuffAfterSectionCountE->update();
 
+    //This will update the UI from a thread
     mArduinoServer.assignOnUpdateCallBack(onUpdatesFromArduinoServer);
+
+
     mArduinoServer.setPuffAfterSectionCount(mPuffAfterSectionCountE->getValue());
 }
 
@@ -129,13 +132,13 @@ void __fastcall	TMain::setupUIFrames()
 
 }
 
-//This callback is called from the
-void TMain::onUpdatesFromArduinoServer(const string& msg)
+//This callback is called from the arduino server
+void TMain::onUpdatesFromArduinoServer(const string& new_msg)
 {
 	struct TLocalArgs
     {
         string msg;
-        void __fastcall onPufferArduinoMessage()
+        void __fastcall onMsg()
         {
             if(startsWith("SECTION_COUNT", msg))
             {
@@ -165,7 +168,7 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
                 StringList l(msg, '=');
                 if(l.size() == 2)
                 {
-//                    Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
+                    Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
                 }
             }
             else if(startsWith("GET_READY_FOR_ZERO_CUT_1", msg))
@@ -204,12 +207,12 @@ void TMain::onUpdatesFromArduinoServer(const string& msg)
     };
 
     TLocalArgs args;
-    args.msg = msg;
+    args.msg = new_msg;
 
-    Log(lDebug5) << "Handling onUpdatesFromArduino message in synchronize:" << msg;
+    Log(lDebug5) << "Handling onUpdatesFromArduino message in synchronize:" << new_msg;
 
-    //This causes this fucntion to be called in the UI thread
- 	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
+    //This causes this function to be called in the UI thread
+ 	TThread::Synchronize(NULL, &args.onMsg);
 }
 
 //---------------------------------------------------------------------------
@@ -234,7 +237,8 @@ void __fastcall TMain::mArduinoServerStartBtnClick(TObject *Sender)
 
 void __fastcall TMain::mResetCounterBtnClick(TObject *Sender)
 {
-	mArduinoServer.resetSectionCount();
+   	IPCMessage msg(-1, "RESET_SECTION_COUNT");
+	mArduinoServer.postIPCMessage(msg);
 }
 
 //---------------------------------------------------------------------------
@@ -243,11 +247,13 @@ void __fastcall TMain::mPuffRelatedBtnClick(TObject *Sender)
 	TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
     if(b == mPuffNowBtn)
     {
-		mArduinoServer.puff();
+    	IPCMessage msg(-1, "PUFF");
+		mArduinoServer.postIPCMessage(msg);
     }
     else if(b == mEnablePuffBtn)
     {
-    	mArduinoServer.enablePuffer();
+    	IPCMessage msg(-1, "ENABLE_PUFFER");
+		mArduinoServer.postIPCMessage(msg);
     }
 }
 
@@ -263,6 +269,8 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
 
         	mFrontBackLEDBtn->Caption = "Flip LEDs ON";
             cap = "ON";
+//	    	IPCMessage msg(-1, "ENABLE_PUFFER");
+//			mArduinoServer.postIPCMessage(msg);
         	mArduinoServer.turnLEDLightOn();
         }
         else

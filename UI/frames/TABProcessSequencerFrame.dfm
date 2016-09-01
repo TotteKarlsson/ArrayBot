@@ -17,7 +17,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Width = 1001
     Height = 95
     Align = alBottom
-    TabOrder = 0
+    TabOrder = 1
     object mStartBtn: TButton
       Left = 1
       Top = 1
@@ -74,7 +74,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Width = 1001
     Height = 530
     Align = alClient
-    TabOrder = 1
+    TabOrder = 0
     object mLeftPanel: TPanel
       Left = 1
       Top = 1
@@ -98,7 +98,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Height = 31
           Style = csDropDownList
           ItemIndex = 0
-          TabOrder = 2
+          TabOrder = 0
           Text = 'MoveSequence'
           OnChange = mSequencesCBChange
           Items.Strings = (
@@ -111,7 +111,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Height = 44
           Caption = 'New'
           ParentDoubleBuffered = True
-          TabOrder = 0
+          TabOrder = 1
           OnClick = mAddSeqBtnClick
           SoundID = 'BUTTON_CLICK_4'
         end
@@ -122,7 +122,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           Height = 44
           Caption = 'Delete'
           ParentDoubleBuffered = True
-          TabOrder = 1
+          TabOrder = 2
           OnClick = mDeleteSequenceBtnClick
           SoundID = 'BUTTON_CLICK_4'
         end

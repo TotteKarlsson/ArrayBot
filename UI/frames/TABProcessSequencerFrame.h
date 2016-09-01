@@ -15,15 +15,15 @@
 #include "TSTDStringLabeledEdit.h"
 #include "frames/TTimeDelayFrame.h"
 
-#include "TTimeDelayFrame.h"
-#include "TSequenceInfoFrame.h"
+#include "frames\TTimeDelayFrame.h"
+#include "frames\TSequenceInfoFrame.h"
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
 //---------------------------------------------------------------------------
 
 class ArrayBot;
 
-class TABProcessSequencerFrame : public TFrame
+class PACKAGE TABProcessSequencerFrame : public TFrame
 {
     __published:	// IDE-managed Components
         TButton *mStartBtn;
@@ -55,18 +55,15 @@ class TABProcessSequencerFrame : public TFrame
 		void __fastcall mRewindButtonClick(TObject *Sender);
 		void __fastcall mRenameButtonClick(TObject *Sender);
 
-
-
-
 	private:	// User declarations
         ArrayBot&					mAB;
 	    ProcessSequencer&  			mProcessSequencer;
         string 						mProcessFileExtension;
+        string 						mAppDataFolder;
         string						getCurrentlySelectedSequence();
 		void __fastcall 			refreshSequencesCB();
 		static int 					mFrameNr;
 		void						saveSequence();
-
 
 	public:
 						 __fastcall TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner);

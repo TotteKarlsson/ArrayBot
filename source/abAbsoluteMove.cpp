@@ -82,7 +82,9 @@ void AbsoluteMove::addTrigger(Trigger* t)
     if(pt)
     {
     	if(dynamic_cast<APTMotor*>(getUnit()))
+        {
 			pt->setTestFunction(dynamic_cast<APTMotor*>(getUnit())->getPosition);
+        }
     }
 }
 

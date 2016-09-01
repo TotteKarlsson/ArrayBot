@@ -31,7 +31,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Width = 200
         Height = 118
         ItemHeight = 23
-        TabOrder = 3
+        TabOrder = 0
         OnClick = mProcessesLBClick
       end
       object mRenameBtn: TArrayBotButton
@@ -63,7 +63,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Action = RemoveProcessA
         Caption = 'X'
         ParentDoubleBuffered = True
-        TabOrder = 0
+        TabOrder = 1
         SoundID = 'BUTTON_CLICK_4'
       end
       object mMoveSequenceDownBtn: TArrayBotButton
@@ -73,7 +73,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Height = 34
         Caption = #9660
         ParentDoubleBuffered = True
-        TabOrder = 1
+        TabOrder = 3
         OnClick = mMoveSequenceDownBtnClick
         SoundID = 'BUTTON_CLICK_4'
       end

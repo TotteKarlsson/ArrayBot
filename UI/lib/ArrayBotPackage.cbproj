@@ -86,7 +86,7 @@
         <ILINK_GenerateLibFile>false</ILINK_GenerateLibFile>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(AB_ROOT)\source\vcl\frames;$(AB_ROOT)\source\vcl\forms;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
+        <IncludePath>$(DEBUG_BUILD)\include;$(AB_ROOT)\source\vcl;$(AB_ROOT)\source;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
@@ -117,6 +117,12 @@
             <DependentOn>..\frames\TAboutArrayBot_2Frame.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\frames\TABProcessSequencerFrame.cpp">
+            <Form>ABProcessSequencerFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TABProcessSequencerFrame.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\InitArrayBotThread.cpp">
             <DependentOn>..\InitArrayBotThread.h</DependentOn>
             <BuildOrder>8</BuildOrder>
@@ -140,6 +146,7 @@
         <FormResources Include="..\forms\TSplashForm.dfm"/>
         <FormResources Include="..\forms\abAddJoyStickSettingForm.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
+        <FormResources Include="..\frames\TABProcessSequencerFrame.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

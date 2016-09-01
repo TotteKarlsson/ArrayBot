@@ -19,7 +19,7 @@ class APTMotor;
 class AB_CORE PositionalTrigger : public Trigger
 {
     public:
-                                			PositionalTrigger(APTMotor* m = NULL, double position = -1, LogicOperator lt = loLargerThan);
+                                			PositionalTrigger(APTMotor* m = NULL, double position = 0, LogicOperator lt = loLargerThan);
                                 			~PositionalTrigger(){}
 
 		virtual void	 					execute();

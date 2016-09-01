@@ -11,8 +11,10 @@ object TextInputDialog: TTextInputDialog
   Font.Height = -19
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   DesignSize = (
     746

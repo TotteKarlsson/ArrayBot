@@ -1,7 +1,6 @@
 #ifndef abArduinoServerH
 #define abArduinoServerH
 //---------------------------------------------------------------------------
-
 #include "abExporter.h"
 #include "abABObject.h"
 #include "mtkIPCServer.h"
@@ -86,7 +85,7 @@ class AB_CORE ArduinoServer : public IPCServer
         bool								mAutoPuff;
 		void					            pufferMessageReceived(const string& msg);
 		void					            sensorMessageReceived(const string& msg);
-        void								updateClients(const string msg);
+        void								updateClients(const string& msg);
 };
 
 #endif

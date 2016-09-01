@@ -52,6 +52,17 @@ void ArduinoServer::disableAutoPuff()
    	updateClients(msg.str());
 }
 
+void ArduinoServer::updateClients(const string& msg)
+{
+	//TODO: There is a problem with this...
+    if(onMessageUpdateCB)
+    {
+        onMessageUpdateCB(msg);
+    }
+
+    broadcast(msg);
+}
+
 void ArduinoServer::broadcastStatus()
 {
 	//These are all status messages possible
@@ -74,7 +85,8 @@ void ArduinoServer::sensorMessageReceived(const string& msg)
 	updateClients(msg);
 }
 
-//This is called from the arduino devices receive thread
+//This is called from the arduino devices class upon receiving
+//a message from the arduino thread over the serial port
 void ArduinoServer::pufferMessageReceived(const string& msg)
 {
 	Log(lDebug5) << "Handling puffer message: "<<msg;
@@ -137,17 +149,6 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
         msg <<"SECTION_COUNT="<<mSectionCount;
 		updateClients(msg.str());
     }
-}
-
-void ArduinoServer::updateClients(const string msg)
-{
-	//TODO: There is a problem with this...
-    if(onMessageUpdateCB)
-    {
-        onMessageUpdateCB(msg);
-    }
-
-    broadcast(msg);
 }
 
 void ArduinoServer::setPuffAfterSectionCount(int val)
@@ -255,7 +256,7 @@ bool ArduinoServer::toggleCoax()
     }
 }
 
-//Handle simple text messages over the socket
+//Handle incoming text messages over the socket
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
     if(msg.isPacked())

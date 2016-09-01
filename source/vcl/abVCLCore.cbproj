@@ -36,11 +36,11 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <ProjectType>CppPackage</ProjectType>
-        <ILINK_LibraryPath>components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\UI\frames\;components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Multithreaded>true</Multithreaded>
         <ILINK_GenerateImportLibrary>true</ILINK_GenerateImportLibrary>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(IncludePath)</IncludePath>
+        <IncludePath>..\..\UI\frames\;components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(IncludePath)</IncludePath>
         <_TCHARMapping>char</_TCHARMapping>
         <ILINK_GenerateLibFile>true</ILINK_GenerateLibFile>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>

@@ -19,6 +19,8 @@ __published:	// IDE-managed Components
 	void __fastcall mInfoMemoClick(TObject *Sender);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall mInfoMemoKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
 private:	// User declarations
 

@@ -40,7 +40,7 @@ class AB_CORE TriggerFunction : public ABObject
 class AB_CORE MoveAbsolute : public  TriggerFunction
 {
 	public:
-								            MoveAbsolute(APTMotor* mtr, double pos = -1, double v = -1, double a = -1);
+								            MoveAbsolute(APTMotor* mtr, double pos = 0, double v = 1.0, double a = 1.0);
 
         virtual bool	                    execute();
         const string   	                    getTypeName() const {return "absoluteMove";}

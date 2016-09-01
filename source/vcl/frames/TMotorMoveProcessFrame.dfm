@@ -1,8 +1,8 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 913
-  Height = 725
+  Width = 451
+  Height = 304
   Align = alClient
   AutoSize = True
   Font.Charset = DEFAULT_CHARSET
@@ -12,23 +12,20 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  ExplicitWidth = 451
-  ExplicitHeight = 304
   object mMainGB: TGroupBox
     Left = 0
     Top = 0
-    Width = 913
+    Width = 451
     Height = 417
     Align = alTop
     Caption = 'Action Properties'
     Padding.Left = 15
     Padding.Right = 15
-    TabOrder = 0
-    ExplicitWidth = 451
+    TabOrder = 1
     object mActionInfo: TLabel
       Left = 17
       Top = 25
-      Width = 879
+      Width = 417
       Height = 199
       Align = alClient
       AutoSize = False
@@ -47,12 +44,11 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     object Panel2: TPanel
       Left = 17
       Top = 224
-      Width = 879
+      Width = 417
       Height = 191
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitWidth = 417
       object Label1: TLabel
         Left = 16
         Top = 15
@@ -68,7 +64,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         EditLabel.Width = 101
         EditLabel.Height = 23
         EditLabel.Caption = 'Acceleration'
-        TabOrder = 0
+        TabOrder = 3
         Text = '0.0'
         OnKeyDown = mMovePosEKeyDown
       end
@@ -92,7 +88,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         EditLabel.Width = 63
         EditLabel.Height = 23
         EditLabel.Caption = 'Position'
-        TabOrder = 3
+        TabOrder = 1
         Text = '0.0'
         OnKeyDown = mMovePosEKeyDown
       end
@@ -102,7 +98,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         Width = 281
         Height = 31
         Style = csDropDownList
-        TabOrder = 4
+        TabOrder = 0
         OnChange = MotorsCBChange
       end
       object mAddTriggerBtn: TArrayBotButton
@@ -112,7 +108,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         Height = 108
         Caption = 'Add Child Action'
         ParentDoubleBuffered = True
-        TabOrder = 1
+        TabOrder = 4
         OnClick = AddTriggerBClick
         SoundID = 'BUTTON_CLICK_4'
       end
@@ -121,40 +117,36 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   object mTriggerPanel: TPanel
     Left = 0
     Top = 417
-    Width = 913
-    Height = 308
+    Width = 451
+    Height = 266
     Align = alClient
-    TabOrder = 1
-    ExplicitWidth = 451
-    ExplicitHeight = 261
+    TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 200
-      Height = 306
+      Height = 264
       Align = alLeft
       Caption = 'Triggers'
       TabOrder = 0
-      ExplicitHeight = 259
       object mTriggersLB: TListBox
         Left = 2
         Top = 25
         Width = 196
-        Height = 219
+        Height = 177
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
         OnClick = TriggersLBClick
-        ExplicitHeight = 172
       end
       object Panel1: TPanel
         Left = 2
-        Top = 244
+        Top = 202
         Width = 196
         Height = 60
         Align = alBottom
         TabOrder = 1
-        ExplicitTop = 197
+        ExplicitTop = 230
         object mDeleteTriggerB: TArrayBotButton
           Left = 1
           Top = 1

@@ -17,11 +17,7 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
     Height = 520
     Align = alClient
     Caption = 'Child Device'
-    TabOrder = 0
-    ExplicitLeft = 2
-    ExplicitTop = 129
-    ExplicitWidth = 785
-    ExplicitHeight = 493
+    TabOrder = 1
     object GroupBox2: TGroupBox
       Left = 2
       Top = 56
@@ -30,7 +26,6 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
       Align = alTop
       Caption = 'Move Parameters'
       TabOrder = 1
-      ExplicitWidth = 781
       object mNewVelE: TFloatLabeledEdit
         Left = 7
         Top = 120
@@ -77,7 +72,6 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
       TabOrder = 0
       Text = 'ComboBox1'
       OnChange = mDevicesCBChange
-      ExplicitWidth = 781
     end
   end
   object GroupBox4: TGroupBox
@@ -89,10 +83,7 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
     BiDiMode = bdLeftToRight
     Caption = 'Trigger Condition'
     ParentBiDiMode = False
-    TabOrder = 1
-    ExplicitLeft = 2
-    ExplicitTop = 25
-    ExplicitWidth = 785
+    TabOrder = 0
     object mPositionE: TFloatLabeledEdit
       Left = 22
       Top = 59

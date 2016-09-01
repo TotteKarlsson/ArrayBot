@@ -11,7 +11,7 @@
 #include "abApplicationMessages.h"
 #include "UIUtilities.h"
 #include "abVCLUtils.h"
-#include "TStringInputDialog.h"
+#include "forms\TStringInputDialog.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -26,14 +26,15 @@
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
 
-extern string gAppDataFolder;
+//extern string gAppDataFolder;
 using namespace mtk;
 
 int TABProcessSequencerFrame::mFrameNr = 0;
 __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner)
 	: TFrame(Owner),
     mAB(ab),
-    mProcessSequencer(mAB.getProcessSequencer())
+    mProcessSequencer(mAB.getProcessSequencer()),
+    mAppDataFolder(appFolder)
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
     mProcessFileExtension = "abp";
@@ -103,7 +104,7 @@ void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 void __fastcall TABProcessSequencerFrame::refreshSequencesCB()
 {
     mSequencesCB->Clear();
-    mProcessSequencer.loadAll(joinPath(gAppDataFolder, "sequences"));
+    mProcessSequencer.loadAll(joinPath(mAppDataFolder, "sequences"));
     ProcessSequences& seqs = mProcessSequencer.getSequences();
    	ProcessSequence* s = seqs.getFirst();
     while(s)

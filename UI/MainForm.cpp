@@ -134,6 +134,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 		LogLevelCB->ItemIndex = 1;
 	}
 
+	//Try to connect to the arduino server..
+	mArduinoClient.connect(50000);
+
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
 }

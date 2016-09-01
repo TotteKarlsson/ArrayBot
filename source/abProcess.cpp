@@ -18,7 +18,7 @@ mIsBeingProcessed(false),
 mIsProcessed(false),
 mIsStarted(false),
 mProcessSequence(NULL),
-mInfoText("<none>")
+mInfoText("Process Information..(click me!)")
 {}
 
 string Process::getProcessType()

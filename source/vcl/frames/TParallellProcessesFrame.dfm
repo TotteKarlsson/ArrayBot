@@ -18,9 +18,6 @@ object ParallellProcessesFrame: TParallellProcessesFrame
     Align = alLeft
     Caption = 'Actions'
     TabOrder = 0
-    ExplicitLeft = 2
-    ExplicitTop = 25
-    ExplicitHeight = 593
     object Button1: TButton
       Left = 13
       Top = 182
@@ -28,7 +25,7 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       Height = 60
       Action = addMoveA
       Caption = 'New'
-      TabOrder = 0
+      TabOrder = 1
     end
     object Button2: TButton
       Left = 13
@@ -36,7 +33,7 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       Width = 118
       Height = 60
       Action = removeMoveA
-      TabOrder = 1
+      TabOrder = 2
     end
     object mSubProcessesLB: TListBox
       Left = 13
@@ -44,7 +41,7 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       Width = 118
       Height = 139
       ItemHeight = 23
-      TabOrder = 2
+      TabOrder = 0
       OnClick = mSubProcessesLBClick
     end
     object mRenameBtn: TArrayBotButton
@@ -72,13 +69,13 @@ object ParallellProcessesFrame: TParallellProcessesFrame
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    ExplicitLeft = 2
-    ExplicitTop = 25
-    ExplicitWidth = 574
-    ExplicitHeight = 593
+    ExplicitLeft = 145
+    ExplicitWidth = 578
+    ExplicitHeight = 620
     inherited mMainGB: TGroupBox
       Width = 578
       Height = 401
+      TabOrder = 0
       ExplicitWidth = 578
       ExplicitHeight = 401
       inherited mActionInfo: TLabel
@@ -127,6 +124,7 @@ object ParallellProcessesFrame: TParallellProcessesFrame
       Top = 401
       Width = 578
       Height = 219
+      TabOrder = 1
       ExplicitTop = 401
       ExplicitWidth = 578
       ExplicitHeight = 219

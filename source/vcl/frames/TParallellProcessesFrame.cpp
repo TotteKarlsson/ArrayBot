@@ -256,3 +256,4 @@ Process* TParallellProcessesFrame::getCurrentlySelectedSubProcess()
     }
     return NULL;
 }
+

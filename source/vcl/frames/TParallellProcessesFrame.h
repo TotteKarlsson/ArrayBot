@@ -1,6 +1,5 @@
 #ifndef TParallellProcessesFrameH
 #define TParallellProcessesFrameH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -13,12 +12,13 @@
 #include <Vcl.ExtCtrls.hpp>
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
+//---------------------------------------------------------------------------
 
 class Process;
 class ParallellProcess;
 class XYZUnit;
 
-//---------------------------------------------------------------------------
+
 class PACKAGE TParallellProcessesFrame : public TFrame
 {
 __published:	// IDE-managed Components

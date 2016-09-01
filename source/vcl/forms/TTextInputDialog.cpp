@@ -20,7 +20,6 @@ __fastcall TTextInputDialog::TTextInputDialog(TComponent* Owner)
 //---------------------------------------------------------------------------
 string TTextInputDialog::getText()
 {
-
 	StringList strs;
     for(int i = 0; i < mInfoMemo->Lines->Count; i++)
     {
@@ -43,6 +42,9 @@ void TTextInputDialog::setText(const string& txt)
     {
 		mInfoMemo->Lines->Add(vclstr(sl[i]));
     }
+
+    mInfoMemo->SelStart = 0;//Memo1->GetTextLen();
+    mInfoMemo->Perform(EM_SCROLLCARET, 0, 0);
 }
 
 void __fastcall TTextInputDialog::mInfoMemoClick(TObject *Sender)
@@ -72,6 +74,16 @@ void __fastcall TTextInputDialog::mInfoMemoKeyDown(TObject *Sender,
 //    {
 //    	this->ModalResult = mrOk;
 //    }
+}
+
+
+void __fastcall TTextInputDialog::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+
+{
+	if(Key == vkEscape)
+    {
+     	this->ModalResult = mrCancel;
+    }
 }
 
 

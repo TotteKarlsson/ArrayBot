@@ -8,7 +8,7 @@
 #include "TSTDStringLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 //---------------------------------------------------------------------------
-class TStringInputDialog : public TForm
+class PACKAGE TStringInputDialog : public TForm
 {
 __published:	// IDE-managed Components
 	TPanel *Panel1;
