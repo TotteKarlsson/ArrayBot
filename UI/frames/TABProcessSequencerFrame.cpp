@@ -156,7 +156,7 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
     	//Save current sequence
        	saveSequence();
         mAB.disableJoyStickAxes();
-    	mProcessSequencer.start(mContinousExecutionCB->Checked);
+    	mProcessSequencer.start(!mSteppedExecutionCB->Checked);
 
 		mSequenceStatusTimer->Enabled = true;
         string pName = mProcessSequencer.getCurrentProcessName();
@@ -211,7 +211,7 @@ void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
         mAB.enableJoyStickAxes();
 	  	mStatusLbl->Caption = "Idle";
 
-        if(!mContinousExecutionCB->Checked)
+        if(mSteppedExecutionCB->Checked)
         {
             //We need to check if we can continue
             if(mProcessSequencer.canContinue())

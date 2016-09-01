@@ -26,15 +26,13 @@ __published:	// IDE-managed Components
 	TFloatLabeledEdit *mMaxVelE;
 	TFloatLabeledEdit *mAccE;
 	TComboBox *MotorsCB;
-	TPanel *Panel1;
-	TListBox *mTriggersLB;
 	TPanel *mTriggerPanel;
-	TGroupBox *GroupBox1;
 	TLabel *Label1;
 	TLabel *mActionInfo;
 	TPanel *Panel2;
 	TArrayBotButton *mAddTriggerBtn;
-	TArrayBotButton *mDeleteTriggerB;
+	TGroupBox *GroupBox1;
+	TListBox *mTriggersLB;
 	void __fastcall MotorsCBChange(TObject *Sender);
 	void __fastcall mMovePosEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall TriggersLBClick(TObject *Sender);

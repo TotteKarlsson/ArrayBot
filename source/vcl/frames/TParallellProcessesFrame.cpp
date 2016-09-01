@@ -42,6 +42,10 @@ void TParallellProcessesFrame::rePopulate(Process* pp)
     	EnableDisableFrame(this, false);
         return;
     }
+    stringstream c;
+    c << "Update Final Process Positions \n";
+    c << "("<<pp->getProcessName()<<")";
+	mUpdateFinalPositionsA->Caption =  vclstr(c.str());
 
 	//Populate, update frame with data from process
     mParallell = dynamic_cast<ParallellProcess*>(pp);

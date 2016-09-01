@@ -2,8 +2,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
   Left = 0
   Top = 0
   Width = 1001
-  Height = 625
-  AutoSize = True
+  Height = 723
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -13,7 +12,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
   TabOrder = 0
   object Panel1: TPanel
     Left = 0
-    Top = 530
+    Top = 628
     Width = 1001
     Height = 95
     Align = alBottom
@@ -29,9 +28,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       OnClick = mStartBtnClick
     end
     object Panel2: TPanel
-      Left = 584
+      Left = 640
       Top = 1
-      Width = 416
+      Width = 360
       Height = 93
       Align = alRight
       TabOrder = 1
@@ -49,21 +48,23 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         ParentFont = False
       end
     end
-    object mContinousExecutionCB: TCheckBox
-      Left = 305
-      Top = 14
-      Width = 114
-      Height = 17
-      Caption = 'Continous'
+    object mSteppedExecutionCB: TCheckBox
+      Left = 233
+      Top = 30
+      Width = 304
+      Height = 27
+      Caption = 'Execute Process by Process'
+      Checked = True
+      State = cbChecked
       TabOrder = 2
     end
     object mRewindButton: TButton
       Left = 464
       Top = 1
-      Width = 120
+      Width = 176
       Height = 93
       Align = alRight
-      Caption = 'Reset'
+      Caption = 'Reset Sequence'
       TabOrder = 3
       OnClick = mRewindButtonClick
     end
@@ -72,14 +73,14 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Left = 0
     Top = 0
     Width = 1001
-    Height = 530
+    Height = 628
     Align = alClient
     TabOrder = 0
     object mLeftPanel: TPanel
       Left = 1
       Top = 1
       Width = 304
-      Height = 528
+      Height = 626
       Align = alLeft
       TabOrder = 0
       object GroupBox2: TGroupBox
@@ -142,7 +143,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         Left = 1
         Top = 129
         Width = 302
-        Height = 398
+        Height = 496
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -154,16 +155,10 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         ExplicitLeft = 1
         ExplicitTop = 129
         ExplicitWidth = 302
-        ExplicitHeight = 398
-        inherited mMainGB: TGroupBox
+        ExplicitHeight = 496
+        inherited GroupBox2: TGroupBox
           Width = 302
-          Height = 398
           ExplicitWidth = 302
-          ExplicitHeight = 398
-          inherited GroupBox2: TGroupBox
-            Width = 298
-            ExplicitWidth = 298
-          end
         end
         inherited mSequenceAL: TActionList
           Left = 112
@@ -175,7 +170,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Left = 305
       Top = 1
       Width = 695
-      Height = 528
+      Height = 626
       Align = alClient
       TabOrder = 1
     end

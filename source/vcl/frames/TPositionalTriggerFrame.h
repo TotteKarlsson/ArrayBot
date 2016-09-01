@@ -18,7 +18,6 @@ class PACKAGE TPositionalTriggerFrame : public TFrame
 		TFloatLabeledEdit *mPositionE;
 		TRadioGroup *mOpRG;
 		TComboBox *mDevicesCB;
-        TGroupBox *GroupBox2;
         TFloatLabeledEdit *mNewVelE;
         TFloatLabeledEdit *mNewAccE;
         TGroupBox *GroupBox3;

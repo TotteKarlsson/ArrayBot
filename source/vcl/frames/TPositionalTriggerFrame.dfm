@@ -1,8 +1,8 @@
 object PositionalTriggerFrame: TPositionalTriggerFrame
   Left = 0
   Top = 0
-  Width = 789
-  Height = 624
+  Width = 591
+  Height = 434
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -13,71 +13,62 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
   object GroupBox3: TGroupBox
     Left = 0
     Top = 104
-    Width = 789
-    Height = 520
+    Width = 591
+    Height = 330
     Align = alClient
-    Caption = 'Child Device'
+    Caption = 'Child Action Properties'
     TabOrder = 1
-    object GroupBox2: TGroupBox
-      Left = 2
-      Top = 56
-      Width = 785
-      Height = 169
-      Align = alTop
-      Caption = 'Move Parameters'
-      TabOrder = 1
-      object mNewVelE: TFloatLabeledEdit
-        Left = 7
-        Top = 120
-        Width = 121
-        Height = 31
-        EditLabel.Width = 106
-        EditLabel.Height = 23
-        EditLabel.Caption = 'New Velocity'
-        TabOrder = 1
-        Text = '0.0'
-        OnKeyDown = mNewVelEKeyDown
-      end
-      object mNewAccE: TFloatLabeledEdit
-        Left = 145
-        Top = 120
-        Width = 121
-        Height = 31
-        EditLabel.Width = 144
-        EditLabel.Height = 23
-        EditLabel.Caption = 'New Acceleration'
-        TabOrder = 2
-        Text = '0.0'
-        OnKeyDown = mNewVelEKeyDown
-      end
-      object mFinalPositionE: TFloatLabeledEdit
-        Left = 7
-        Top = 56
-        Width = 121
-        Height = 31
-        EditLabel.Width = 108
-        EditLabel.Height = 23
-        EditLabel.Caption = 'Final Position'
-        TabOrder = 0
-        Text = '0.0'
-        OnKeyDown = mNewVelEKeyDown
-      end
-    end
     object mDevicesCB: TComboBox
-      Left = 2
-      Top = 25
-      Width = 785
+      Left = 15
+      Top = 44
+      Width = 300
       Height = 31
-      Align = alTop
+      Constraints.MaxWidth = 300
       TabOrder = 0
       Text = 'ComboBox1'
       OnChange = mDevicesCBChange
+    end
+    object mFinalPositionE: TFloatLabeledEdit
+      Left = 15
+      Top = 120
+      Width = 121
+      Height = 31
+      EditLabel.Width = 108
+      EditLabel.Height = 23
+      EditLabel.Caption = 'Final Position'
+      TabOrder = 1
+      Text = '0.0'
+      OnKeyDown = mNewVelEKeyDown
+    end
+    object mNewAccE: TFloatLabeledEdit
+      Left = 280
+      Top = 120
+      Width = 121
+      Height = 31
+      EditLabel.Width = 101
+      EditLabel.Height = 23
+      EditLabel.Caption = 'Acceleration'
+      TabOrder = 2
+      Text = '0.0'
+      OnKeyDown = mNewVelEKeyDown
+    end
+    object mNewVelE: TFloatLabeledEdit
+      Left = 147
+      Top = 120
+      Width = 121
+      Height = 31
+      EditLabel.Width = 63
+      EditLabel.Height = 23
+      EditLabel.Caption = 'Velocity'
+      TabOrder = 3
+      Text = '0.0'
+      OnKeyDown = mNewVelEKeyDown
     end
   end
   object GroupBox4: TGroupBox
     Left = 0
     Top = 0
-    Width = 789
+    Width = 591
     Height = 104
     Align = alTop
     BiDiMode = bdLeftToRight

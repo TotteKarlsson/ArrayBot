@@ -4,7 +4,6 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Width = 451
   Height = 304
   Align = alClient
-  AutoSize = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -16,7 +15,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     Left = 0
     Top = 0
     Width = 451
-    Height = 417
+    Height = 369
     Align = alTop
     Caption = 'Action Properties'
     Padding.Left = 15
@@ -26,7 +25,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       Left = 17
       Top = 25
       Width = 417
-      Height = 199
+      Height = 151
       Align = alClient
       AutoSize = False
       Caption = 
@@ -43,7 +42,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     end
     object Panel2: TPanel
       Left = 17
-      Top = 224
+      Top = 176
       Width = 417
       Height = 191
       Align = alBottom
@@ -59,7 +58,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       object mAccE: TFloatLabeledEdit
         Left = 240
         Top = 121
-        Width = 81
+        Width = 105
         Height = 31
         EditLabel.Width = 101
         EditLabel.Height = 23
@@ -69,13 +68,13 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         OnKeyDown = mMovePosEKeyDown
       end
       object mMaxVelE: TFloatLabeledEdit
-        Left = 120
+        Left = 128
         Top = 121
-        Width = 89
+        Width = 105
         Height = 31
-        EditLabel.Width = 103
+        EditLabel.Width = 63
         EditLabel.Height = 23
-        EditLabel.Caption = 'Max Velocity'
+        EditLabel.Caption = 'Velocity'
         TabOrder = 2
         Text = '0.0'
         OnKeyDown = mMovePosEKeyDown
@@ -83,11 +82,11 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
       object mMovePosE: TFloatLabeledEdit
         Left = 16
         Top = 121
-        Width = 89
+        Width = 105
         Height = 31
-        EditLabel.Width = 63
+        EditLabel.Width = 108
         EditLabel.Height = 23
-        EditLabel.Caption = 'Position'
+        EditLabel.Caption = 'Final Position'
         TabOrder = 1
         Text = '0.0'
         OnKeyDown = mMovePosEKeyDown
@@ -102,11 +101,12 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
         OnChange = MotorsCBChange
       end
       object mAddTriggerBtn: TArrayBotButton
-        Left = 351
+        Left = 375
         Top = 44
         Width = 169
         Height = 108
         Caption = 'Add Child Action'
+        Enabled = False
         ParentDoubleBuffered = True
         TabOrder = 4
         OnClick = AddTriggerBClick
@@ -116,49 +116,28 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   end
   object mTriggerPanel: TPanel
     Left = 0
-    Top = 417
+    Top = 369
     Width = 451
-    Height = 266
+    Height = 235
     Align = alClient
     TabOrder = 0
     object GroupBox1: TGroupBox
-      Left = 1
-      Top = 1
+      Left = 377
+      Top = 32
       Width = 200
-      Height = 264
-      Align = alLeft
+      Height = 125
       Caption = 'Triggers'
       TabOrder = 0
+      Visible = False
       object mTriggersLB: TListBox
         Left = 2
         Top = 25
         Width = 196
-        Height = 177
+        Height = 98
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
         OnClick = TriggersLBClick
-      end
-      object Panel1: TPanel
-        Left = 2
-        Top = 202
-        Width = 196
-        Height = 60
-        Align = alBottom
-        TabOrder = 1
-        ExplicitTop = 230
-        object mDeleteTriggerB: TArrayBotButton
-          Left = 1
-          Top = 1
-          Width = 90
-          Height = 58
-          Align = alLeft
-          Caption = 'Delete'
-          ParentDoubleBuffered = True
-          TabOrder = 0
-          OnClick = mDeleteTriggerBClick
-          SoundID = 'BUTTON_CLICK_4'
-        end
       end
     end
   end

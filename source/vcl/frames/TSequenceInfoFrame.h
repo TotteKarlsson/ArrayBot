@@ -20,7 +20,6 @@ class ArrayBot;
 class PACKAGE TSequenceInfoFrame : public TFrame
 {
     __published:	// IDE-managed Components
-	TGroupBox *mMainGB;
 	TActionList *mSequenceAL;
         TAction *RemoveProcessA;
 	TAction *AddCombinedMoveA;

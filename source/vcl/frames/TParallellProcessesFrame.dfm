@@ -135,15 +135,9 @@ object ParallellProcessesFrame: TParallellProcessesFrame
         ExplicitHeight = 217
         inherited mTriggersLB: TListBox
           Width = 156
-          Height = 130
+          Height = 190
           ExplicitWidth = 156
-          ExplicitHeight = 130
-        end
-        inherited Panel1: TPanel
-          Top = 155
-          Width = 156
-          ExplicitTop = 155
-          ExplicitWidth = 156
+          ExplicitHeight = 190
         end
       end
     end

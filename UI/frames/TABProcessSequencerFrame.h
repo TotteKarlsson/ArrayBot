@@ -41,7 +41,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 	TSequenceInfoFrame *TSequenceInfoFrame1;
 	TPanel *mProcessPanel;
 	TPanel *Panel2;
-	TCheckBox *mContinousExecutionCB;
+	TCheckBox *mSteppedExecutionCB;
 	TButton *mRewindButton;
 	TArrayBotButton *mAddSeqBtn;
 	TArrayBotButton *mDeleteSequenceBtn;

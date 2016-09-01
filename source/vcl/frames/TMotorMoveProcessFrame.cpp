@@ -46,15 +46,19 @@ void TMotorMoveProcessFrame::populate(ArrayBot* ab, AbsoluteMove* m)
 		mTriggersLB->Items->AddObject(mMove->getTrigger()->getTypeName().c_str(), (TObject*) mMove->getTrigger());
         mTriggersLB->ItemIndex = 0;
 		TriggersLBClick(NULL);
-        mAddTriggerBtn->Visible	= false;
+        //mAddTriggerBtn->Visible	= false;
+        mAddTriggerBtn->Caption = "Delete Child Action";
 		mTriggerPanel->Visible 	= true;
     }
     else
     {
+   		mAddTriggerBtn->Caption = "Add Child Action";
 	    mPosTriggerFrame->Visible 	= false;
         mAddTriggerBtn->Visible   	= true;
 		mTriggerPanel->Visible 		= false;
     }
+
+   	mAddTriggerBtn->Enabled =  (MotorsCB->ItemIndex == -1) ? false : true;
 }
 
 void TMotorMoveProcessFrame::rePopulate(AbsoluteMove* m)
@@ -115,11 +119,13 @@ void __fastcall TMotorMoveProcessFrame::MotorsCBChange(TObject *Sender)
     	mMovePosE->Enabled = true;
         mAccE->Enabled = true;
         mMove->assignUnit(motor);
+        mAddTriggerBtn->Enabled = true;
     }
     else
     {
     	mMovePosE->Enabled 	= false;
         mAccE->Enabled 		= false;
+        mAddTriggerBtn->Enabled = false;
     }
 
 
@@ -149,12 +155,11 @@ void __fastcall TMotorMoveProcessFrame::TriggersLBClick(TObject *Sender)
     if(indx == -1)
     {
        	mAddTriggerBtn->Enabled 	= false;
-        mDeleteTriggerB->Enabled 	= false;
     	return;
     }
 
    	mAddTriggerBtn->Enabled = true;
-    mDeleteTriggerB->Enabled = true;
+
     Trigger* t = (Trigger*) mTriggersLB->Items->Objects[indx];
     if(t)
     {
@@ -184,15 +189,29 @@ void __fastcall TMotorMoveProcessFrame::mDeleteTriggerBClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMotorMoveProcessFrame::AddTriggerBClick(TObject *Sender)
 {
-	//Create a new Trigger
-    Trigger* t = new PositionalTrigger(NULL);
+	if(mAddTriggerBtn->Caption == "Add Child Action")
+    {
+        //Create a new Trigger
+        Trigger* t = new PositionalTrigger(NULL);
+        mMove->addTrigger(t);
 
-    mMove->addTrigger(t);
-
-    //Also add a trigger function
-    MoveAbsolute *tf = new MoveAbsolute(NULL);
-    t->assignTriggerFunction(tf);
-	populate(mAB, mMove);
+        //Also add a trigger function
+        MoveAbsolute *tf = new MoveAbsolute(NULL);
+        t->assignTriggerFunction(tf);
+        populate(mAB, mMove);
+    }
+    else
+    {
+        //delete currently selected trigger
+//        int indx = mTriggersLB->ItemIndex;
+//        if(indx != -1)
+        {
+            mMove->deleteTrigger();
+//            mTriggersLB->Clear();
+            mPosTriggerFrame->Visible = false;
+            populate(mAB, mMove);
+        }
+    }
 }
 
 //---------------------------------------------------------------------------
