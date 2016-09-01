@@ -255,24 +255,15 @@ void __fastcall	TMain::setupUIFrames()
 
 	//Create and setup XYZ unit frames
     mXYZUnitFrame1 = new TXYZUnitFrame(this);
-    mXYZUnitFrame2 = new TXYZUnitFrame(this);
-
-    mXYZUnitFrame2->Parent = ScrollBox1;
-    mXYZUnitFrame1->Parent = ScrollBox1;
-
     mXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
+    mXYZUnitFrame1->Parent = ScrollBox1;
+    mXYZUnitFrame1->Left = 10;
+
+    mXYZUnitFrame2 = new TXYZUnitFrame(this);
     mXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
-
-
-    mXYZUnitFrame1->Align = alTop;
-    mXYZUnitFrame2->Align = alTop;
-
-    mXYZUnitFrame1->Align = alNone;
-    mXYZUnitFrame2->Align = alNone;
+    mXYZUnitFrame2->Parent = ScrollBox1;
+    mXYZUnitFrame2->Left = 10;
     mXYZUnitFrame2->Top = mXYZUnitFrame1->Top + mXYZUnitFrame1->Height;
-
-//    mScrollPanel->Width = max(mXYZUnitFrame2->Width, mXYZUnitFrame1->Width);// + 400;
-//	mScrollPanel->Height = mXYZUnitFrame2->Height + mXYZUnitFrame1->Height;
 
     //Create MoveSequencer frame
     mABProcessSequencerFrame = new TABProcessSequencerFrame(*(mAB), gAppDataFolder, mMoveSequencesPage);

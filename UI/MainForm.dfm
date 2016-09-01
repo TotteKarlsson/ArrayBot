@@ -91,7 +91,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = TabSheet4
+      ActivePage = TabSheet1
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -99,6 +99,10 @@ object Main: TMain
       OnChange = PageControl1Change
       object TabSheet4: TTabSheet
         Caption = 'The Bot'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object mBottomPanel: TPanel
           Left = 0
           Top = 680

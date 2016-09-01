@@ -32,15 +32,21 @@ void TXYZUnitFrame::assignUnit(XYZUnit* u)
     if(mUnit)
     {
         vector<APTMotor*> mtrs = mUnit->getAllMotors();
-
+        int frameWidth (0);
         for(int i = 0; i < mtrs.size(); i++)
         {
             TMotorFrame* f = new TMotorFrame(mtrs[i]->getSerial(), this);
             f->SetParentComponent(this);
             f->Align = alLeft;
             f->assignMotor(mtrs[i]);
+//            f->Color = this->Color;
             mFrames.push_back(f);
+            if(i == 0)
+            {
+	            frameWidth = f->Width;
+            }
         }
+        this->Width = mtrs.size() * frameWidth + 24;
     }
 }
 
