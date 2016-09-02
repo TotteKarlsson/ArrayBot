@@ -58,9 +58,6 @@ Coordinates=25,106,50,51
 [BottomPanel]
 Coordinates=554,351,77,51
 
-[TabSheet4]
-Coordinates=276,462,66,33
-
 [JoyStickSettingsCB]
 Coordinates=103,1,112,87
 
@@ -105,4 +102,7 @@ Coordinates=750,333,87,51
 
 [mButtonPanel]
 Coordinates=234,195,58,51
+
+[mFrontPage]
+Coordinates=276,462,66,33
 

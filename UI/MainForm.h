@@ -61,7 +61,7 @@ class TMain : public TRegistryForm
 	TFileExit *FileExit1;
 	TPanel *TopPanel;
 	TPageControl *PageControl1;
-	TTabSheet *TabSheet4;
+	TTabSheet *mFrontPage;
 	TGroupBox *JSGB;
 	TSpeedButton *mJSSpeedFastBtn;
 	TSpeedButton *mJSSpeedMediumBtn;
@@ -101,7 +101,7 @@ class TMain : public TRegistryForm
 	TPanel *mTopPanel;
 	TTabSheet *RibbonLifterTabSheet;
 	TPanel *Panel1;
-	TBitBtn *BitBtn1;
+	TBitBtn *mCheckDevicesBtn;
 	TBitBtn *ReInitBotBtn;
 	TPanel *mMiddlePanel;
 	TSpeedButton *mJSCSBtn;

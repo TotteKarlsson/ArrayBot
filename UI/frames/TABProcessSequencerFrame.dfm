@@ -166,12 +166,18 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
       end
     end
-    object mProcessPanel: TPanel
+    object mProcessPanel: TScrollBox
       Left = 305
       Top = 1
       Width = 695
       Height = 626
       Align = alClient
+      BevelInner = bvNone
+      BevelOuter = bvRaised
+      BorderStyle = bsNone
+      Color = clBtnFace
+      ParentBackground = True
+      ParentColor = False
       TabOrder = 1
     end
   end

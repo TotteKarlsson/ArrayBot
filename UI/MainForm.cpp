@@ -522,6 +522,16 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     {
     	//Reload the currently selected sequence
 		mABProcessSequencerFrame->mSequencesCBChange(Sender);
+        mTopPanel->Parent = mMoveSequencesPage;
+    }
+
+    else if(PageControl1->TabIndex == pcMain)
+    {
+        mTopPanel->Parent = mFrontPage;
+    }
+    else if(PageControl1->TabIndex == pcMotors)
+    {
+    	//
     }
 
 	else if(PageControl1->TabIndex == pcAbout)

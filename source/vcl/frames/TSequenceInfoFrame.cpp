@@ -39,7 +39,7 @@ void TSequenceInfoFrame::assignArrayBot(ArrayBot* ab)
 }
 
 //---------------------------------------------------------------------------
-bool TSequenceInfoFrame::populate(ProcessSequence* seq, TPanel* processPanel)
+bool TSequenceInfoFrame::populate(ProcessSequence* seq, TScrollBox* processPanel)
 {
 	if(!seq)
     {

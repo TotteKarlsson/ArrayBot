@@ -39,13 +39,13 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 	TPanel *mMainPanel;
 	TPanel *mLeftPanel;
 	TSequenceInfoFrame *TSequenceInfoFrame1;
-	TPanel *mProcessPanel;
 	TPanel *Panel2;
 	TCheckBox *mSteppedExecutionCB;
 	TButton *mRewindButton;
 	TArrayBotButton *mAddSeqBtn;
 	TArrayBotButton *mDeleteSequenceBtn;
 	TArrayBotButton *mRenameButton;
+	TScrollBox *mProcessPanel;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
         void __fastcall mStartBtnClick(TObject *Sender);

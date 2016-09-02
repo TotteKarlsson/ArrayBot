@@ -91,18 +91,14 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = TabSheet1
+      ActivePage = mFrontPage
       Align = alClient
       TabHeight = 60
       TabOrder = 0
       TabWidth = 150
       OnChange = PageControl1Change
-      object TabSheet4: TTabSheet
+      object mFrontPage: TTabSheet
         Caption = 'The Bot'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mBottomPanel: TPanel
           Left = 0
           Top = 680
@@ -211,16 +207,16 @@ object Main: TMain
           Left = 0
           Top = 0
           Width = 910
-          Height = 187
+          Height = 91
           Align = alTop
           AutoSize = True
           TabOrder = 1
         end
         object mMiddlePanel: TPanel
           Left = 0
-          Top = 187
+          Top = 91
           Width = 910
-          Height = 493
+          Height = 589
           Align = alClient
           AutoSize = True
           TabOrder = 2
@@ -228,7 +224,7 @@ object Main: TMain
             Left = 1
             Top = 1
             Width = 461
-            Height = 491
+            Height = 587
             Align = alLeft
             Caption = 'Joystick'
             Font.Charset = DEFAULT_CHARSET
@@ -323,7 +319,7 @@ object Main: TMain
             Left = 462
             Top = 1
             Width = 447
-            Height = 491
+            Height = 587
             Align = alClient
             Caption = 'Lift'
             Font.Charset = DEFAULT_CHARSET
@@ -417,7 +413,7 @@ object Main: TMain
           Height = 105
           Align = alBottom
           TabOrder = 1
-          object BitBtn1: TBitBtn
+          object mCheckDevicesBtn: TBitBtn
             Left = 178
             Top = 1
             Width = 176

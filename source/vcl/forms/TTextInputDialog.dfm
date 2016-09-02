@@ -31,7 +31,7 @@ object TextInputDialog: TTextInputDialog
     DesignSize = (
       746
       90)
-    object Button1: TButton
+    object mCancelBtn: TButton
       Left = 619
       Top = 16
       Width = 115

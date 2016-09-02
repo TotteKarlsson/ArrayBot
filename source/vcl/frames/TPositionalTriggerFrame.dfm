@@ -1,8 +1,9 @@
 object PositionalTriggerFrame: TPositionalTriggerFrame
   Left = 0
   Top = 0
-  Width = 591
-  Height = 434
+  Width = 424
+  Height = 267
+  Constraints.MinHeight = 267
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -13,11 +14,13 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
   object GroupBox3: TGroupBox
     Left = 0
     Top = 104
-    Width = 591
-    Height = 330
+    Width = 424
+    Height = 163
     Align = alClient
     Caption = 'Child Action Properties'
     TabOrder = 1
+    ExplicitWidth = 591
+    ExplicitHeight = 330
     object mDevicesCB: TComboBox
       Left = 15
       Top = 44
@@ -48,7 +51,7 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
       EditLabel.Width = 101
       EditLabel.Height = 23
       EditLabel.Caption = 'Acceleration'
-      TabOrder = 2
+      TabOrder = 3
       Text = '0.0'
       OnKeyDown = mNewVelEKeyDown
     end
@@ -60,7 +63,7 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
       EditLabel.Width = 63
       EditLabel.Height = 23
       EditLabel.Caption = 'Velocity'
-      TabOrder = 3
+      TabOrder = 2
       Text = '0.0'
       OnKeyDown = mNewVelEKeyDown
     end
@@ -68,13 +71,14 @@ object PositionalTriggerFrame: TPositionalTriggerFrame
   object GroupBox4: TGroupBox
     Left = 0
     Top = 0
-    Width = 591
+    Width = 424
     Height = 104
     Align = alTop
     BiDiMode = bdLeftToRight
     Caption = 'Trigger Condition'
     ParentBiDiMode = False
     TabOrder = 0
+    ExplicitWidth = 591
     object mPositionE: TFloatLabeledEdit
       Left = 22
       Top = 59

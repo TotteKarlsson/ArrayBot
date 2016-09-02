@@ -38,6 +38,11 @@ bool AbsoluteMove::isDone()
                 {
                 	return false;
                 }
+
+                //This return statement allows a trigger to 'finish' a process in a different
+                //position than its 'mother' process
+
+                return true;
             }
         }
 
@@ -50,8 +55,6 @@ bool AbsoluteMove::isDone()
 
 bool AbsoluteMove::start()
 {
-	Process::start();
-
 	APTMotor* m = dynamic_cast<APTMotor*>(mSubject);
     if(m)
     {
@@ -71,6 +74,10 @@ bool AbsoluteMove::start()
     	m->setVelocityParameters(mMaxVelocity, mAcceleration);
         return m->moveToPosition(mPosition);
     }
+
+    //This will start the processs internal timer that checks for
+    //process events
+	Process::start();
     return true;
 }
 

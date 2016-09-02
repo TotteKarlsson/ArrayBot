@@ -5,7 +5,7 @@
 #include "mtkVCLUtils.h"
 #include "abAPTMotor.h"
 #include "TSplashForm.h"
-//#include "frames/TRibbonLifterFrame.h"
+#include "forms/TTextInputDialog.h"
 #include "frames/TXYZUnitFrame.h"
 
 using namespace mtk;
@@ -22,14 +22,43 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
         return;
     }
 
+    stringstream info;
     for(int i = 0; i < 90; i++)
     {
 		StringList serials = getSerialsForDeviceType((DeviceTypeID) i);
         for(u_int j = 0; j < serials.count(); j++)
         {
-            Log(lInfo) <<"Found device of type '"<<::toString((DeviceTypeID) i)<<"' with serial: " <<serials[j];
+            APTMotor* m = mAB->getMotorWithSerial(serials[j]);
+            if(m)
+            {
+            	info << "Device ("<<m->getName()<<") of type '"<<::toString((DeviceTypeID) i)<<"' with serial " <<serials[j]<<" is ";
+
+                if(m->isHomed())
+                {
+                    info <<"homed";
+                }
+                else
+                {
+            		info << "NOT HOMED";
+                }
+            }
+            else
+            {
+               	info << "not part of ArrayBot system";
+            }
+            info << endl;
         }
     }
+
+	TTextInputDialog* t = new TTextInputDialog(NULL);
+    t->Width = 1024;
+    t->Caption = "Device Information";
+    t->mInfoMemo->ReadOnly = true;
+	t->mCancelBtn->Visible = false;
+    t->setText(info.str());
+    t->ShowModal();
+
+    delete t;
 }
 
 void __fastcall TMain::FrameClosed(TObject *Sender)

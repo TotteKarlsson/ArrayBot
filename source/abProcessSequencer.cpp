@@ -154,25 +154,6 @@ bool ProcessSequencer::forward()
     return true;
 }
 
-//bool ProcessSequencer::reverse()
-//{
-// 	ProcessSequence* s = mSequences.getCurrent();
-//    if(!s)
-//    {
-//    	return;
-//    }
-//
-//	Process* p = s->getCurrent();
-//    if(p)
-//    {
-//    	p->undo();
-//    }
-//    else
-//    {
-//    	Log(lError) << "Can't reverse that move";
-//    }
-//}
-
 void ProcessSequencer::stop()
 {
 	mSequenceTimer.stop();

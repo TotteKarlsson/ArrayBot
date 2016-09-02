@@ -43,7 +43,7 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 		ProcessSequence*		        mSequence;
         string					        mSequencesFolder;
         ArrayBot*				        mAB;
-        TPanel*					        mProcessPanel;
+        TScrollBox*					        mProcessPanel;
         TParallellProcessesFrame*		mParallellProcessesFrame;
 
 		void		__fastcall  empty();
@@ -54,7 +54,7 @@ class PACKAGE TSequenceInfoFrame : public TFrame
     public:		// User declarations
         			__fastcall 	TSequenceInfoFrame(TComponent* Owner);
 		void					assignArrayBot(ArrayBot* ab);
-		bool					populate(ProcessSequence* seq, TPanel* processPanel = NULL);
+		bool					populate(ProcessSequence* seq, TScrollBox* processPanel = NULL);
 };
 
 extern PACKAGE TSequenceInfoFrame *SequenceInfoFrame;

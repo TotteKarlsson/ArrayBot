@@ -74,56 +74,75 @@ object ParallellProcessesFrame: TParallellProcessesFrame
     ExplicitHeight = 620
     inherited mMainGB: TGroupBox
       Width = 578
-      Height = 401
+      Height = 297
       TabOrder = 0
       ExplicitWidth = 578
-      ExplicitHeight = 401
+      ExplicitHeight = 297
       inherited mActionInfo: TLabel
         Width = 544
-        Height = 183
-        ExplicitWidth = 570
-        ExplicitHeight = 183
+        Height = 131
+        ExplicitLeft = 17
+        ExplicitTop = 25
+        ExplicitWidth = 542
+        ExplicitHeight = 69
       end
       inherited Panel2: TPanel
-        Top = 208
+        Top = 156
         Width = 544
-        ExplicitTop = 208
+        Height = 139
+        ExplicitTop = 134
         ExplicitWidth = 544
+        ExplicitHeight = 139
         inherited Label1: TLabel
-          Top = 33
-          ExplicitTop = 33
+          Left = 0
+          Top = 7
+          ExplicitLeft = 0
+          ExplicitTop = 7
         end
         inherited mAccE: TFloatLabeledEdit
-          Top = 126
-          EditLabel.ExplicitLeft = 240
-          EditLabel.ExplicitTop = 100
+          Left = 224
+          Top = 100
+          EditLabel.ExplicitLeft = 224
+          EditLabel.ExplicitTop = 74
           EditLabel.ExplicitWidth = 101
-          ExplicitTop = 126
+          ExplicitLeft = 224
+          ExplicitTop = 100
         end
         inherited mMaxVelE: TFloatLabeledEdit
-          Top = 126
-          EditLabel.ExplicitLeft = 120
-          EditLabel.ExplicitTop = 100
-          EditLabel.ExplicitWidth = 103
-          ExplicitTop = 126
+          Left = 112
+          Top = 100
+          EditLabel.ExplicitLeft = 112
+          EditLabel.ExplicitTop = 74
+          EditLabel.ExplicitWidth = 63
+          ExplicitLeft = 112
+          ExplicitTop = 100
         end
         inherited mMovePosE: TFloatLabeledEdit
-          Top = 126
-          EditLabel.ExplicitLeft = 16
-          EditLabel.ExplicitTop = 100
-          EditLabel.ExplicitWidth = 63
-          ExplicitTop = 126
+          Left = 0
+          Top = 100
+          EditLabel.ExplicitTop = 74
+          EditLabel.ExplicitWidth = 108
+          ExplicitLeft = 0
+          ExplicitTop = 100
         end
         inherited MotorsCB: TComboBox
-          Top = 62
-          ExplicitTop = 62
+          Left = 0
+          Top = 36
+          ExplicitLeft = 0
+          ExplicitTop = 36
+        end
+        inherited mAddTriggerBtn: TArrayBotButton
+          Left = 359
+          Top = 18
+          ExplicitLeft = 359
+          ExplicitTop = 18
         end
       end
     end
     inherited mTriggerPanel: TPanel
-      Top = 401
+      Top = 297
       Width = 578
-      Height = 219
+      Height = 323
       TabOrder = 1
       ExplicitTop = 401
       ExplicitWidth = 578

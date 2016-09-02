@@ -8,11 +8,11 @@
 #include "TSTDStringLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 //---------------------------------------------------------------------------
-class TTextInputDialog : public TForm
+class PACKAGE TTextInputDialog : public TForm
 {
 __published:	// IDE-managed Components
 	TPanel *Panel1;
-	TButton *Button1;
+	TButton *mCancelBtn;
 	TButton *mOkBtn;
 	TMemo *mInfoMemo;
 	void __fastcall mInfoMemoChange(TObject *Sender);

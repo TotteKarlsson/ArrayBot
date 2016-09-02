@@ -10,8 +10,7 @@
 //!A trigger function can be called and saved together with a Trigger.
 //Any derived trigger functions implement their own data and functions.
 //A triggerFunction is 'kind of' a a functor, but instead of an implemented operator()
-//a triggerfunction executes by executing 'execute()'
-
+//a triggerfunction executes by executing its 'execute()' function.
 
 //typedef function<void (double, double, double) > 	FireFunctionP;
 
