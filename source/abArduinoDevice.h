@@ -14,7 +14,7 @@ using mtk::StringList;
 /*
     The ArduinoDevice and Serial classes are based on classes
     found at: http://playground.arduino.cc/Interfacing/CPPWindows
-    The original classes are extended and modified in order to allow for a more
+    The original classes are extended and modified in order to allow for a
     robust serial communication mechanism, involving reading/writing on the serial
     port in a seperate thread.
 */
@@ -40,8 +40,20 @@ class AB_CORE ArduinoDevice : public ABObject
         bool						hasMessage();
 		string						getMessage();
 
+									//!Read state of an Arduino digital pin
+		virtual bool	 			readDigitalPin(int pin);
+
+									//!Set (write) the state of an Arduino digital output pin
+		virtual bool	   			writeDigitalPin(int pin);
+
+									//!Send custom message to the Arduino
         bool						send(const string& msg);
-        bool						send(int val);
+
+        							//!send an integer
+        bool						send(int nr);
+
+        							//!The init callback is designed to give an ArduinoDevice client a
+                                    //!way to update its state on initialization
 		InitCallBack				init;
 
     private:

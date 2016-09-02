@@ -2,10 +2,7 @@
 #include "abArduinoDevice.h"
 #include "mtkWin32Utils.h"
 #include "mtkLogger.h"
-
 #include "Poco/Mutex.h"
-
-//using namespace Poco::Mutex;
 using namespace mtk;
 
 ArduinoDevice::ArduinoDevice(int pNr, int baudRate)
@@ -22,6 +19,16 @@ ArduinoDevice::~ArduinoDevice()
 bool ArduinoDevice::connect(int portNr, int baudRate)
 {
 	return mSerial.connect(portNr, baudRate);
+}
+
+bool ArduinoDevice::readDigitalPin(int pin)
+{
+	return false;
+}
+
+bool ArduinoDevice::writeDigitalPin(int pin)
+{
+	return false;
 }
 
 bool ArduinoDevice::send(int val)

@@ -99,6 +99,10 @@ object Main: TMain
       OnChange = PageControl1Change
       object mFrontPage: TTabSheet
         Caption = 'The Bot'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object mBottomPanel: TPanel
           Left = 0
           Top = 680

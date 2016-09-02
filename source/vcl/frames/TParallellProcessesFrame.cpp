@@ -178,7 +178,6 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
 
                     //Save updated sequence
                     mAB->getProcessSequencer().saveCurrent();
-
                 }
             }
 
@@ -191,7 +190,7 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
             	APTMotor* mtr = dynamic_cast<APTMotor*>(pt->getSubject());
                 if(mtr && fn)
                 {
-                    if(mtr && isEqual(fn->getPosition(), mtr->getPosition(), 1.e-4) == false)
+                    if(isEqual(fn->getPosition(), mtr->getPosition(), 1.e-4) == false)
                     {
                         stringstream msg;
                         msg <<
