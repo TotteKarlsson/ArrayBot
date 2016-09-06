@@ -2,7 +2,7 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'Arduino Controller'
-  ClientHeight = 646
+  ClientHeight = 714
   ClientWidth = 1006
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,13 +24,12 @@ object Main: TMain
     Left = 823
     Top = 71
     Width = 183
-    Height = 575
+    Height = 643
     Align = alRight
     TabOrder = 0
-    ExplicitLeft = 722
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 447
+      Top = 515
       Width = 181
       Height = 127
       Align = alBottom
@@ -51,7 +50,7 @@ object Main: TMain
     end
     object Button1: TArrayBotButton
       Left = 1
-      Top = 336
+      Top = 404
       Width = 181
       Height = 111
       Align = alBottom
@@ -66,13 +65,12 @@ object Main: TMain
     Left = 0
     Top = 71
     Width = 823
-    Height = 575
+    Height = 643
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 722
     object Splitter1: TSplitter
       Left = 1
-      Top = 361
+      Top = 473
       Width = 821
       Height = 3
       Cursor = crVSplit
@@ -85,71 +83,68 @@ object Main: TMain
       Left = 1
       Top = 1
       Width = 821
-      Height = 360
+      Height = 472
       Align = alTop
       TabOrder = 0
-      ExplicitWidth = 720
       object PageControl1: TPageControl
         Left = 1
         Top = 1
         Width = 819
-        Height = 358
-        ActivePage = TabSheet1
+        Height = 470
+        ActivePage = TabSheet2
         Align = alClient
         TabOrder = 0
         object TabSheet1: TTabSheet
-          Caption = 'Ribbon Controller'
-          ExplicitWidth = 710
+          Caption = 'Ribbon Control'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GroupBox3: TGroupBox
-            Left = 4
-            Top = 20
+            Left = 3
+            Top = 85
             Width = 303
-            Height = 157
-            Caption = 'Auto Puff Control'
+            Height = 156
+            Caption = 'Ribbon Separation'
             TabOrder = 0
-            object mPuffAfterSectionCountE: TIntegerLabeledEdit
-              Left = 152
-              Top = 50
-              Width = 129
-              Height = 31
-              EditLabel.Width = 123
-              EditLabel.Height = 23
-              EditLabel.Caption = 'Ribbon Length'
-              TabOrder = 0
-              Text = '-1'
-              OnKeyDown = mPuffAfterSectionCountEKeyDown
-              Value = -1
-            end
             object mAutoPuffCB: TPropertyCheckBox
               Left = 16
-              Top = 57
-              Width = 97
+              Top = 39
+              Width = 169
               Height = 17
-              Caption = 'Enabled'
-              TabOrder = 1
+              Caption = 'Enable Auto Puff'
+              TabOrder = 0
               OnClick = mAutoPuffCBClick
             end
             object mEnablesoundsCB: TPropertyCheckBox
               Left = 16
-              Top = 101
+              Top = 107
+              Width = 257
+              Height = 17
+              Caption = 'Enable Notification Sounds'
+              TabOrder = 1
+            end
+            object mEnableAutoZeroCutCB: TPropertyCheckBox
+              Left = 16
+              Top = 72
               Width = 169
               Height = 17
-              Caption = 'Enable Sounds'
+              Caption = 'Enable Zero Cut'
               TabOrder = 2
             end
           end
           object GroupBox6: TGroupBox
             Left = 327
             Top = 20
-            Width = 410
-            Height = 277
-            Caption = 'Manual Puff'
+            Width = 346
+            Height = 136
+            Caption = 'Puffer'
             TabOrder = 1
             object mPuffNowBtn: TArrayBotButton
-              Left = 19
-              Top = 32
+              Left = 23
+              Top = 37
               Width = 150
-              Height = 104
+              Height = 80
               Caption = 'Puff'
               ParentDoubleBuffered = True
               TabOrder = 0
@@ -158,9 +153,9 @@ object Main: TMain
             end
             object mEnablePuffBtn: TArrayBotButton
               Left = 179
-              Top = 32
+              Top = 37
               Width = 150
-              Height = 104
+              Height = 80
               Caption = 'Enable Puff'
               ParentDoubleBuffered = True
               TabOrder = 1
@@ -168,10 +163,74 @@ object Main: TMain
               SoundID = 'BUTTON_CLICK_4'
             end
           end
+          object mDesiredRibbonLengthE: TIntegerLabeledEdit
+            Left = 3
+            Top = 42
+            Width = 303
+            Height = 31
+            EditLabel.Width = 192
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Desired Ribbon Length'
+            TabOrder = 2
+            Text = '-1'
+            OnKeyDown = mDesiredRibbonLengthEKeyDown
+            Value = -1
+          end
+          object GroupBox7: TGroupBox
+            Left = 327
+            Top = 168
+            Width = 346
+            Height = 249
+            Caption = 'Leica UC7'
+            TabOrder = 3
+            object Label1: TLabel
+              Left = 192
+              Top = 27
+              Width = 115
+              Height = 23
+              Caption = 'Cut Thickness'
+            end
+            object mSetZeroCutBtn: TArrayBotButton
+              Left = 16
+              Top = 102
+              Width = 145
+              Height = 80
+              Caption = 'Set Zero Cut'
+              TabOrder = 0
+              SoundID = 'short_beep_3'
+            end
+            object mSetPresetCutBtn: TArrayBotButton
+              Left = 190
+              Top = 102
+              Width = 145
+              Height = 80
+              Caption = 'Set Preset Cut'
+              TabOrder = 1
+              SoundID = 'short_beep_3'
+            end
+            object ComboBox1: TComboBox
+              Left = 192
+              Top = 56
+              Width = 137
+              Height = 31
+              ItemIndex = 3
+              TabOrder = 2
+              Text = '45'
+              Items.Strings = (
+                '1000'
+                '500'
+                '100'
+                '45')
+            end
+          end
         end
         object TabSheet3: TTabSheet
           Caption = 'Lights and Sensors'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object mFrontBackLEDBtn: TArrayBotButton
             Left = 18
             Top = 51
@@ -198,11 +257,15 @@ object Main: TMain
         object TabSheet2: TTabSheet
           Caption = 'Board Settings'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0
             Width = 257
-            Height = 320
+            Height = 432
             Align = alLeft
             Caption = 'Arduino Server'
             TabOrder = 0
@@ -232,7 +295,7 @@ object Main: TMain
             Left = 257
             Top = 0
             Width = 554
-            Height = 320
+            Height = 432
             Align = alClient
             TabOrder = 1
           end
@@ -241,17 +304,16 @@ object Main: TMain
     end
     object BottomPanel: TPanel
       Left = 1
-      Top = 364
+      Top = 476
       Width = 821
-      Height = 210
+      Height = 166
       Align = alClient
       TabOrder = 1
-      ExplicitWidth = 720
       object infoMemo: TMemo
         Left = 1
         Top = 31
         Width = 819
-        Height = 178
+        Height = 134
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -263,7 +325,6 @@ object Main: TMain
         ScrollBars = ssBoth
         TabOrder = 0
         WordWrap = False
-        ExplicitWidth = 718
       end
       object ToolBar1: TToolBar
         Left = 1
@@ -274,7 +335,6 @@ object Main: TMain
         ButtonHeight = 30
         Caption = 'ToolBar1'
         TabOrder = 1
-        ExplicitWidth = 718
         object mClearLogMemoBtn: TBitBtn
           Left = 0
           Top = 0
@@ -323,7 +383,6 @@ object Main: TMain
     Height = 71
     Align = alTop
     TabOrder = 2
-    ExplicitWidth = 905
     object GroupBox4: TGroupBox
       Left = 749
       Top = 1
@@ -332,7 +391,6 @@ object Main: TMain
       Align = alRight
       Caption = 'Temperature'
       TabOrder = 0
-      ExplicitLeft = 648
       object mTemperatureLbl: mtkFloatLabel
         Left = 40
         Top = 31
@@ -356,7 +414,6 @@ object Main: TMain
       Align = alRight
       Caption = 'Humidity'
       TabOrder = 1
-      ExplicitLeft = 787
       object mHumidityE: mtkFloatLabel
         Left = 30
         Top = 31
@@ -409,8 +466,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    Left = 492
-    Top = 288
+    Left = 164
+    Top = 464
     object checkForDevices: TAction
       Caption = 'Devices Check'
     end
@@ -460,19 +517,19 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 476
-    Top = 360
+    Left = 44
+    Top = 384
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 384
-    Top = 288
+    Left = 32
+    Top = 464
   end
   object UIUpdateTimer: TTimer
     Enabled = False
     Interval = 300
     OnTimer = UIUpdateTimerTimer
-    Left = 660
-    Top = 272
+    Left = 172
+    Top = 384
   end
 end

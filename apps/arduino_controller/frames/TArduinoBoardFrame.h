@@ -17,14 +17,13 @@
 using mtk::IniFileProperties;
 using mtk::IniFile;
 
-class TArduinoBoardFrame : public TFrame
+class PACKAGE TArduinoBoardFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mCommPortE;
 	TIntegerLabeledEdit *mBaudRateE;
 	TButton *mConnectBtn;
-	TButton *Button1;
 	TTimer *Timer1;
 	TSTDStringLabeledEdit *mSendMSGE;
 	void __fastcall ConnectBtnClick(TObject *Sender);
@@ -35,6 +34,7 @@ __published:	// IDE-managed Components
 	protected:
 
         ArduinoDevice&					mArduinoDevice;
+
         								//The init function will initialize the device
                                         //using parameters from ini file
         virtual void	 				init();

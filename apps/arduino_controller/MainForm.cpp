@@ -4,8 +4,6 @@
 #include "TMemoLogger.h"
 #include "mtkStringList.h"
 #include "abUtilities.h"
-#include "abAPTMotor.h"
-#include "abTCubeDCServo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 #include <bitset>
@@ -52,16 +50,16 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mProperties.setIniFile(&mIniFile);
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	 lAny));
 	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup(	"SERVER_PORT",    	 50000));
-	mProperties.add((BaseProperty*)  &mPuffAfterSectionCountE->getProperty()->setup("DESIRED_RIBBON_LENGTH",    	 25));
+	mProperties.add((BaseProperty*)  &mDesiredRibbonLengthE->getProperty()->setup("DESIRED_RIBBON_LENGTH",    	 25));
 
     mProperties.read();
 	mArduinoServerPortE->update();
-    mPuffAfterSectionCountE->update();
+    mDesiredRibbonLengthE->update();
 
     //This will update the UI from a thread
     mArduinoServer.assignOnUpdateCallBack(onUpdatesFromArduinoServer);
 
-    mArduinoServer.setPuffAfterSectionCount(mPuffAfterSectionCountE->getValue());
+    mArduinoServer.setPuffAfterSectionCount(mDesiredRibbonLengthE->getValue());
 }
 
 __fastcall TMain::~TMain()
@@ -128,7 +126,6 @@ void __fastcall	TMain::setupUIFrames()
     af2->Align = alTop;
     af2->ConnectBtnClick(NULL);
     mFrames.push_back(af2);
-
 }
 
 //This callback is called from the arduino server
@@ -167,7 +164,7 @@ void TMain::onUpdatesFromArduinoServer(const string& new_msg)
                 StringList l(msg, '=');
                 if(l.size() == 2)
                 {
-                    Main->mPuffAfterSectionCountE->setValue(toInt(l[1]));
+                    Main->mDesiredRibbonLengthE->setValue(toInt(l[1]));
                 }
             }
             else if(startsWith("GET_READY_FOR_ZERO_CUT_1", msg))
@@ -208,7 +205,7 @@ void TMain::onUpdatesFromArduinoServer(const string& new_msg)
     TLocalArgs args;
     args.msg = new_msg;
 
-    Log(lDebug5) << "Handling onUpdatesFromArduino message in synchronize:" << new_msg;
+	//    Log(lDebug5) << "Handling onUpdatesFromArduino message in synchronize:" << new_msg;
 
     //This causes this function to be called in the UI thread
  	TThread::Synchronize(NULL, &args.onMsg);
@@ -311,13 +308,16 @@ void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+void __fastcall TMain::mDesiredRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
     if(Key == vkReturn)
     {
-    	mArduinoServer.setPuffAfterSectionCount(mPuffAfterSectionCountE->getValue());
+    	mArduinoServer.setPuffAfterSectionCount(mDesiredRibbonLengthE->getValue());
     }
 }
+
+
+
 
 

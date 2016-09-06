@@ -83,7 +83,7 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox2;
 	TIntLabel *mSectionCount;
 	TGroupBox *GroupBox3;
-	TIntegerLabeledEdit *mPuffAfterSectionCountE;
+	TIntegerLabeledEdit *mDesiredRibbonLengthE;
 	TPropertyCheckBox *mAutoPuffCB;
 	mtkFloatLabel *mTemperatureLbl;
 	mtkFloatLabel *mHumidityE;
@@ -100,6 +100,12 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet3;
 	TArrayBotButton *mFrontBackLEDBtn;
 	TArrayBotButton *mCoaxLightBtn;
+	TPropertyCheckBox *mEnableAutoZeroCutCB;
+	TGroupBox *GroupBox7;
+	TArrayBotButton *mSetZeroCutBtn;
+	TArrayBotButton *mSetPresetCutBtn;
+	TComboBox *ComboBox1;
+	TLabel *Label1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -116,8 +122,9 @@ class TMain : public TRegistryForm
 	void __fastcall mPuffRelatedBtnClick(TObject *Sender);
 	void __fastcall LigthsBtnsClick(TObject *Sender);
 	void __fastcall mAutoPuffCBClick(TObject *Sender);
-	void __fastcall mPuffAfterSectionCountEKeyDown(TObject *Sender, WORD &Key,
+	void __fastcall mDesiredRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
+
 
     private:
         LogFileReader                       mLogFileReader;

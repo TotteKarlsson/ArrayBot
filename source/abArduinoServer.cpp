@@ -256,7 +256,7 @@ bool ArduinoServer::toggleCoax()
     }
 }
 
-//Handle incoming text messages over the socket
+//Handle incoming CLIENT text messages over the socket
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
     if(msg.isPacked())

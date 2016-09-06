@@ -13,41 +13,61 @@ template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg);
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
 
 // Get port M1 address
-Adafruit_DCMotor *pufferValve = AFMS.getMotor(1);
+Adafruit_DCMotor* gPufferValve = AFMS.getMotor(1);
 
-// global variables
-const int       sensorPin       = 2;    // Hall sensor pin
-const int       ledPin          = 13;   // LED pin, illuminates when solenoid is triggered 
-const int       pufferPin       = 3;    // Pushbutton 1 pin
+// global variables (g)
 
-int             puffDuration    = 50;   // msec puffer on
-int             pufferValveSpeed= 255;  // msec puffer on
+//Pins
+const int       gSensorPin       = 2;    // Hall sensor pin
+const int       gLedPin          = 13;   // LED pin, illuminates when solenoid is triggered 
+const int       gPufferPin       = 3;    // Pushbutton 1 pin
 
-bool            enablePuffer(false);
-unsigned long   lastReadTime = millis();
-bool            simulateHallSensor(true);
+//Leica mouse control
+const int       gSetZeroCutPin   = 4;
+const int       gReadZeroCutPin  = 12;
+const int       gSetCutPreset1   = 5;
+const int       gReadCutPreset1  = 11;
+
+int             gPuffDuration    = 50;   // msec puffer on
+int             gPufferValveSpeed= 255;  // msec puffer on
+
+bool            gEnablePuffer(false);
+unsigned long   gLastReadTime = millis();
+bool            gSimulateHallSensor(true);
+
+//Use these booleans to avoid sending more than necessary messages to PC
+bool            gSendZeroCutMessage(false);
+bool            gSendCutPreset1Message(false);
+
+//functions..
+void simulateHallSensor();
+void puff(int duration_in_ms);
+void sendInfo();        
+void processByte(char ch);           
 
 void setup() 
 {
     AFMS.begin();  // create with the default frequency 1.6KHz
 
     // depower and set up puffer solenoid
-    pufferValve->run(RELEASE);
-    pufferValve->setSpeed(pufferValveSpeed);
+    gPufferValve->run(RELEASE);
+    gPufferValve->setSpeed(gPufferValveSpeed);
   
     // set up i/o pins
-    pinMode(sensorPin, INPUT);      // Set up the Hall sensor pin to be an input
-    pinMode(ledPin,    OUTPUT);     // Set up the LED pin to be an output
-    pinMode(pufferPin, INPUT);      // Set off the puffer manually by this pin    
+    pinMode(gSensorPin,         INPUT);     // Set up the Hall sensor pin to be an input
+    pinMode(gLedPin,            OUTPUT);    // Set up the LED pin to be an output
+    pinMode(gPufferPin,         INPUT);     // Set off the puffer manually by this pin    
+
+    pinMode(gSetZeroCutPin,     OUTPUT);    //Leica mouse control trough arduinos
+    pinMode(gReadZeroCutPin,    INPUT);
+
+    pinMode(gSetCutPreset1,     OUTPUT);
+    pinMode(gReadCutPreset1,    INPUT);
 
     // setup serial port
     Serial.begin(250000);
-    Serial << "[ArrayBot Puffer Init]";
+    Serial << "[ArrayBot Puffer Arduino]";
 }
-
-void puff(int duration_in_ms);
-void sendInfo();        
-void processByte(char ch);           
 
 void loop() 
 {    
@@ -57,77 +77,111 @@ void loop()
     }    
 
     //Simulate Hall Sensor
-    if(simulateHallSensor == true)
+    if(gSimulateHallSensor == true)
     {
-        unsigned long currentTime = millis();
-        if(currentTime - lastReadTime > 70)
-        {
-            lastReadTime = currentTime;        
-            Serial << "[HALL_SENSOR=HIGH]";                
-            Serial << "[HALL_SENSOR=LOW]";                        
-        }
+        simulateHallSensor();                 
     }
-    else if(digitalRead(sensorPin) == HIGH)  // if Hall sensor is high    
+    else if(digitalRead(gSensorPin) == HIGH)  // if Hall sensor is high    
     {
         Serial << "[HALL_SENSOR=HIGH]";        
-        digitalWrite(ledPin, HIGH);     // turn the LED on        
+        digitalWrite(gLedPin, HIGH);     // turn the LED on        
 
-        //Set off puffer, but only if enabled by PUSH BUTTON or HOST PC (enablePuffer)
-        if (digitalRead(pufferPin) || enablePuffer)
+        //Set off puffer, but only if enabled by the PUSH BUTTON or the HOST PC (enablePuffer)
+        if (digitalRead(gPufferPin) || gEnablePuffer)
         {
-            puff(puffDuration);
-            enablePuffer = false;
+            puff(gPuffDuration);
+            gEnablePuffer = false;
         }
                             
         //Wait for HALL sensor to go LOW
-        while(digitalRead(sensorPin) == HIGH) 
+        while(digitalRead(gSensorPin) == HIGH) 
         { }
         
         Serial << "[HALL_SENSOR=LOW]";
     }
     
-    digitalWrite(ledPin, LOW);      // turn the LED off        
+    digitalWrite(gLedPin, LOW);      // turn the LED off       
+
+    if(digitalRead(gReadZeroCutPin) == HIGH)
+    {
+        //Notify PC over serial that zero cut request was acknowledged
+        if(gSendZeroCutMessage == true)
+        {
+            Serial << "[ZERO_CUT=TRUE]";          
+            gSendZeroCutMessage = false;
+        }
+    }
 }
 
 void sendInfo()
 {
-    Serial << "[VERSION=2.5, PUFFER_DURATION=" << puffDuration << ", PUFFER_VALVE_SPEED=" << pufferValveSpeed << "]\n";    
+    Serial << "[VERSION=2.5, PUFFER_DURATION=" << gPuffDuration << ", PUFFER_VALVE_SPEED=" << gPufferValveSpeed << "]\n";    
 }
 
 void puff(int duration_in_ms)
 {
-    pufferValve->run(FORWARD);      // turn on solenoid
+    gPufferValve->run(FORWARD);     // turn on solenoid
     delay(duration_in_ms);          //duration of LED/solenoid being on        
-    pufferValve->run(RELEASE);      // turn off solenoid    
+    gPufferValve->run(RELEASE);     // turn off solenoid    
 }
 
 void processByte(char ch)
 {
     switch(ch)
     {
+        //Set digital output lines
+        case 'Z':            
+            if(Serial.parseInt())
+            {
+                digitalWrite(gSetZeroCutPin, HIGH);                
+                Serial << "[PIN_"<<gSetZeroCutPin<<" -> HIGH]";
+                gSendZeroCutMessage = true;                                                
+            }
+            else
+            {
+                digitalWrite(gSetZeroCutPin, LOW);
+                Serial << "[PIN_"<<gSetZeroCutPin<<" -> LOW]";                
+            }            
+        break;            
+                    
+        case 'C':            
+            if(Serial.parseInt() == 1) 
+            { 
+                digitalWrite(gSetCutPreset1, HIGH);
+                Serial << "[PIN_"<<gSetCutPreset1<<" -> HIGH]";                                                
+                gSendCutPreset1Message = true;                                                                                
+            }
+            else
+            {
+                digitalWrite(gSetCutPreset1, LOW);
+                Serial << "[PIN_"<<gSetCutPreset1<<" -> LOW]";                                
+            }
+        break;            
+        
         //Enable puffing
         case 'e': 
-            enablePuffer = true;
+            gEnablePuffer = true;
             Serial << "[PUFFER_ENABLED]";
         break;
 
+        //Set off the puffer
         case 'p': 
-            puff(puffDuration);
+            puff(gPuffDuration);
             Serial << "[EXECUTED_PUFF]";
         break;
 
         //Set puffer duration
         case 'd': 
             //Next byte is the value
-            puffDuration = Serial.parseInt(); 
+            gPuffDuration = Serial.parseInt(); 
             sendInfo();                
         break;                
 
         //Set puffer valve speed
         case 'v': 
             //Next byte is the value
-            pufferValveSpeed = Serial.parseInt(); 
-            pufferValve->setSpeed(pufferValveSpeed);            
+            gPufferValveSpeed = Serial.parseInt(); 
+            gPufferValve->setSpeed(gPufferValveSpeed);            
             sendInfo();                   
         break;                
 
@@ -136,8 +190,20 @@ void processByte(char ch)
             sendInfo();
         break;
 
-        //Report foreign character...
+        //Report unhandled character
         default: 
             Serial << "Unhandled character in puffer instream: "<<ch;        
+        break;            
     }    
+}
+
+void simulateHallSensor()
+{
+    unsigned long currentTime = millis();
+    if(currentTime - gLastReadTime > 5000)
+    {
+        gLastReadTime = currentTime;        
+        Serial << "[HALL_SENSOR=HIGH]";                
+        Serial << "[HALL_SENSOR=LOW]";                        
+    }
 }

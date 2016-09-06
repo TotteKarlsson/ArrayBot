@@ -56,7 +56,11 @@ void __fastcall TArduinoBoardFrame::ConnectBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TArduinoBoardFrame::Button1Click(TObject *Sender)
 {
-	mArduinoDevice.send(mSendMSGE->getValue());
+	string msg = mSendMSGE->getValue();
+    if(msg.size())
+    {
+	    mArduinoDevice.send(msg);
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -65,7 +69,7 @@ void __fastcall TArduinoBoardFrame::mSendMSGEKeyDown(TObject *Sender, WORD &Key,
 {
 	if(Key == vkReturn)
     {
-  		mArduinoDevice.send(mSendMSGE->getValue());
+		Button1Click(Sender);
     }
 }
 

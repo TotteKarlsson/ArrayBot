@@ -18,6 +18,7 @@ __published:
 	TIntegerLabeledEdit *mPufferValveSpeedE;
 	void __fastcall updateParameter(TObject *Sender, WORD &Key, TShiftState Shift);
 
+
 	private:
 
 	public:

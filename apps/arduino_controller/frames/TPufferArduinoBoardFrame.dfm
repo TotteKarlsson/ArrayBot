@@ -38,7 +38,7 @@ inherited PufferArduinoBoardFrame: TPufferArduinoBoardFrame
     end
   end
   inherited Timer1: TTimer
-    Left = 104
-    Top = 104
+    Left = 336
+    Top = 208
   end
 end

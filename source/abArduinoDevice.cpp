@@ -18,6 +18,7 @@ ArduinoDevice::~ArduinoDevice()
 
 bool ArduinoDevice::connect(int portNr, int baudRate)
 {
+	Poco::ScopedLock<Poco::Mutex> lock(mSerialPortMutex);
 	return mSerial.connect(portNr, baudRate);
 }
 
@@ -50,20 +51,24 @@ void ArduinoDevice::assignSerialMessageReceivedCallBack(SerialMessageReceivedCal
 
 bool ArduinoDevice::isConnected()
 {
+	Poco::ScopedLock<Poco::Mutex> lock(mSerialPortMutex);
 	return mSerial.isConnected();
 }
 
 bool ArduinoDevice::disConnect()
 {
+	Poco::ScopedLock<Poco::Mutex> lock(mSerialPortMutex);
 	return mSerial.disConnect();
 }
 
 bool ArduinoDevice::hasMessage()
 {
+	Poco::ScopedLock<Poco::Mutex> lock(mSerialPortMutex);
 	return mSerial.hasMessage();
 }
 
 string ArduinoDevice::getMessage()
 {
+	Poco::ScopedLock<Poco::Mutex> lock(mSerialPortMutex);
 	return mSerial.popMessage();
 }

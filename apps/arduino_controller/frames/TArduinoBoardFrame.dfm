@@ -52,15 +52,6 @@ object ArduinoBoardFrame: TArduinoBoardFrame
       TabOrder = 2
       OnClick = ConnectBtnClick
     end
-    object Button1: TButton
-      Left = 111
-      Top = 132
-      Width = 34
-      Height = 40
-      Caption = '->'
-      TabOrder = 4
-      OnClick = Button1Click
-    end
     object mSendMSGE: TSTDStringLabeledEdit
       Left = 24
       Top = 136
