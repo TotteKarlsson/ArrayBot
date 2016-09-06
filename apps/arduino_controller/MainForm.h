@@ -91,14 +91,15 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox4;
 	TGroupBox *GroupBox5;
 	TGroupBox *GroupBox6;
-	TArrayBotButton *mFrontBackLEDBtn;
 	TArrayBotButton *Button1;
-	TArrayBotButton *mCoaxLightBtn;
 	TArrayBotButton *Button5;
 	TPropertyCheckBox *mEnablesoundsCB;
 	TArrayBotButton *mPuffNowBtn;
 	TArrayBotButton *mEnablePuffBtn;
 	TArrayBotButton *mResetCounterBtn;
+	TTabSheet *TabSheet3;
+	TArrayBotButton *mFrontBackLEDBtn;
+	TArrayBotButton *mCoaxLightBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);

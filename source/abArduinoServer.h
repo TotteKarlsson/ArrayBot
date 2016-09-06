@@ -5,7 +5,8 @@
 #include "abABObject.h"
 #include "mtkIPCServer.h"
 #include "mtkSocketWorker.h"
-#include "abArduinoDevice.h"
+#include "abPufferArduino.h"
+#include "abLightsArduino.h"
 #include <vector>
 #include "mtkTimer.h"
 
@@ -38,7 +39,7 @@ class AB_CORE ArduinoServer : public IPCServer
     	bool 					            processMessage(IPCMessage& msg);
 
     	ArduinoDevice& 			            getPufferArduino(){return mPufferArduino;}
-    	ArduinoDevice& 			            getSensorArduino(){return mSensorArduino;}
+    	ArduinoDevice& 			            getSensorArduino(){return mLightsArduino;}
         bool            		            shutDown();
 
 		bool        						enablePuffer();
@@ -65,8 +66,8 @@ class AB_CORE ArduinoServer : public IPCServer
     protected:
     							            //!Container for Arduino devices
 		vector<ArduinoDevice*> 	            mArduinos;
-    	ArduinoDevice 			            mPufferArduino;
-    	ArduinoDevice 			            mSensorArduino;
+    	PufferArduino 			            mPufferArduino;
+    	LightsArduino 			            mLightsArduino;
 
         									//!ArduinoLines
 		int 								mLEDLightONLine;

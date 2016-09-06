@@ -3,7 +3,7 @@ object Main: TMain
   Top = 0
   Caption = 'Arduino Controller'
   ClientHeight = 646
-  ClientWidth = 905
+  ClientWidth = 1006
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,12 +21,13 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 23
   object mButtonPanel: TPanel
-    Left = 722
+    Left = 823
     Top = 71
     Width = 183
     Height = 575
     Align = alRight
     TabOrder = 0
+    ExplicitLeft = 722
     object BottomBtnPanel: TPanel
       Left = 1
       Top = 447
@@ -48,18 +49,6 @@ object Main: TMain
         SoundID = 'BUTTON_CLICK_4'
       end
     end
-    object mFrontBackLEDBtn: TArrayBotButton
-      Left = 1
-      Top = 101
-      Width = 181
-      Height = 100
-      Align = alTop
-      Caption = 'Flip LED Light ON'
-      ParentDoubleBuffered = True
-      TabOrder = 1
-      OnClick = LigthsBtnsClick
-      SoundID = 'BUTTON_CLICK_4'
-    end
     object Button1: TArrayBotButton
       Left = 1
       Top = 336
@@ -68,34 +57,23 @@ object Main: TMain
       Align = alBottom
       Caption = 'About'
       ParentDoubleBuffered = True
-      TabOrder = 2
+      TabOrder = 1
       OnClick = mAboutBtnClick
-      SoundID = 'BUTTON_CLICK_4'
-    end
-    object mCoaxLightBtn: TArrayBotButton
-      Left = 1
-      Top = 1
-      Width = 181
-      Height = 100
-      Align = alTop
-      Caption = 'Flip Coax Light ON'
-      ParentDoubleBuffered = True
-      TabOrder = 3
-      OnClick = LigthsBtnsClick
       SoundID = 'BUTTON_CLICK_4'
     end
   end
   object MainPanel: TPanel
     Left = 0
     Top = 71
-    Width = 722
+    Width = 823
     Height = 575
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 722
     object Splitter1: TSplitter
       Left = 1
       Top = 361
-      Width = 720
+      Width = 821
       Height = 3
       Cursor = crVSplit
       Align = alTop
@@ -106,25 +84,27 @@ object Main: TMain
     object TopPanel: TPanel
       Left = 1
       Top = 1
-      Width = 720
+      Width = 821
       Height = 360
       Align = alTop
       TabOrder = 0
+      ExplicitWidth = 720
       object PageControl1: TPageControl
         Left = 1
         Top = 1
-        Width = 718
+        Width = 819
         Height = 358
         ActivePage = TabSheet1
         Align = alClient
         TabOrder = 0
         object TabSheet1: TTabSheet
           Caption = 'Ribbon Controller'
+          ExplicitWidth = 710
           object GroupBox3: TGroupBox
-            Left = 3
+            Left = 4
             Top = 20
             Width = 303
-            Height = 277
+            Height = 157
             Caption = 'Auto Puff Control'
             TabOrder = 0
             object mPuffAfterSectionCountE: TIntegerLabeledEdit
@@ -151,7 +131,7 @@ object Main: TMain
             end
             object mEnablesoundsCB: TPropertyCheckBox
               Left = 16
-              Top = 117
+              Top = 101
               Width = 169
               Height = 17
               Caption = 'Enable Sounds'
@@ -161,14 +141,14 @@ object Main: TMain
           object GroupBox6: TGroupBox
             Left = 327
             Top = 20
-            Width = 258
+            Width = 410
             Height = 277
             Caption = 'Manual Puff'
             TabOrder = 1
             object mPuffNowBtn: TArrayBotButton
               Left = 19
               Top = 32
-              Width = 214
+              Width = 150
               Height = 104
               Caption = 'Puff'
               ParentDoubleBuffered = True
@@ -177,9 +157,9 @@ object Main: TMain
               SoundID = 'short_beep_3'
             end
             object mEnablePuffBtn: TArrayBotButton
-              Left = 19
-              Top = 142
-              Width = 214
+              Left = 179
+              Top = 32
+              Width = 150
               Height = 104
               Caption = 'Enable Puff'
               ParentDoubleBuffered = True
@@ -189,8 +169,34 @@ object Main: TMain
             end
           end
         end
+        object TabSheet3: TTabSheet
+          Caption = 'Lights and Sensors'
+          ImageIndex = 2
+          object mFrontBackLEDBtn: TArrayBotButton
+            Left = 18
+            Top = 51
+            Width = 167
+            Height = 100
+            Caption = 'Flip LEDs ON'
+            ParentDoubleBuffered = True
+            TabOrder = 0
+            OnClick = LigthsBtnsClick
+            SoundID = 'BUTTON_CLICK_4'
+          end
+          object mCoaxLightBtn: TArrayBotButton
+            Left = 227
+            Top = 51
+            Width = 181
+            Height = 100
+            Caption = 'Flip Coax Light ON'
+            ParentDoubleBuffered = True
+            TabOrder = 1
+            OnClick = LigthsBtnsClick
+            SoundID = 'BUTTON_CLICK_4'
+          end
+        end
         object TabSheet2: TTabSheet
-          Caption = 'Settings'
+          Caption = 'Board Settings'
           ImageIndex = 1
           object GroupBox1: TGroupBox
             Left = 0
@@ -225,7 +231,7 @@ object Main: TMain
           object mArduinoSB: TScrollBox
             Left = 257
             Top = 0
-            Width = 453
+            Width = 554
             Height = 320
             Align = alClient
             TabOrder = 1
@@ -236,14 +242,15 @@ object Main: TMain
     object BottomPanel: TPanel
       Left = 1
       Top = 364
-      Width = 720
+      Width = 821
       Height = 210
       Align = alClient
       TabOrder = 1
+      ExplicitWidth = 720
       object infoMemo: TMemo
         Left = 1
         Top = 31
-        Width = 718
+        Width = 819
         Height = 178
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -256,16 +263,18 @@ object Main: TMain
         ScrollBars = ssBoth
         TabOrder = 0
         WordWrap = False
+        ExplicitWidth = 718
       end
       object ToolBar1: TToolBar
         Left = 1
         Top = 1
-        Width = 718
+        Width = 819
         Height = 30
         AutoSize = True
         ButtonHeight = 30
         Caption = 'ToolBar1'
         TabOrder = 1
+        ExplicitWidth = 718
         object mClearLogMemoBtn: TBitBtn
           Left = 0
           Top = 0
@@ -310,18 +319,20 @@ object Main: TMain
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 905
+    Width = 1006
     Height = 71
     Align = alTop
     TabOrder = 2
+    ExplicitWidth = 905
     object GroupBox4: TGroupBox
-      Left = 648
+      Left = 749
       Top = 1
       Width = 139
       Height = 69
       Align = alRight
       Caption = 'Temperature'
       TabOrder = 0
+      ExplicitLeft = 648
       object mTemperatureLbl: mtkFloatLabel
         Left = 40
         Top = 31
@@ -338,13 +349,14 @@ object Main: TMain
       end
     end
     object GroupBox5: TGroupBox
-      Left = 787
+      Left = 888
       Top = 1
       Width = 117
       Height = 69
       Align = alRight
       Caption = 'Humidity'
       TabOrder = 1
+      ExplicitLeft = 787
       object mHumidityE: mtkFloatLabel
         Left = 30
         Top = 31
@@ -397,8 +409,8 @@ object Main: TMain
     end
   end
   object ActionList1: TActionList
-    Left = 260
-    Top = 360
+    Left = 492
+    Top = 288
     object checkForDevices: TAction
       Caption = 'Devices Check'
     end
@@ -453,8 +465,8 @@ object Main: TMain
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 152
-    Top = 360
+    Left = 384
+    Top = 288
   end
   object UIUpdateTimer: TTimer
     Enabled = False

@@ -13,7 +13,7 @@ ArduinoServer::ArduinoServer(int portNumber)
 :
 IPCServer(portNumber, "ARDUINO_SERVER", createArduinoIPCReceiver),
 mPufferArduino(-1),
-mSensorArduino(-1),
+mLightsArduino(-1),
 mSectionCount(0),
 mDesiredRibbonLength(10),
 mAutoPuff(false),
@@ -23,17 +23,17 @@ mCoaxLightONLine(1),
 mCoaxLightOFFLine(2)
 {
 	mArduinos.push_back(&mPufferArduino);
-	mArduinos.push_back(&mSensorArduino);
+	mArduinos.push_back(&mLightsArduino);
 
     //Assign receive callbacks
     mPufferArduino.assignSerialMessageReceivedCallBack(pufferMessageReceived);
-    mSensorArduino.assignSerialMessageReceivedCallBack(sensorMessageReceived);
+    mLightsArduino.assignSerialMessageReceivedCallBack(sensorMessageReceived);
 }
 
 ArduinoServer::~ArduinoServer()
 {
     mPufferArduino.assignSerialMessageReceivedCallBack(NULL);
-    mSensorArduino.assignSerialMessageReceivedCallBack(NULL);
+    mLightsArduino.assignSerialMessageReceivedCallBack(NULL);
 }
 
 void ArduinoServer::enableAutoPuff()
@@ -205,25 +205,25 @@ bool ArduinoServer::enablePuffer()
 bool ArduinoServer::turnLEDLightOn()
 {
 	Log(lInfo) << "Turning on LEDs";
-	return mSensorArduino.send(mLEDLightONLine);
+	return mLightsArduino.send(mLEDLightONLine);
 }
 
 bool ArduinoServer::turnLEDLightOff()
 {
 	Log(lInfo) << "Turning off LEDs";
-	return mSensorArduino.send(mLEDLightOFFLine);
+	return mLightsArduino.send(mLEDLightOFFLine);
 }
 
 bool ArduinoServer::turnCoaxLightOn()
 {
 	Log(lInfo) << "Turning on Coax light";
-	return mSensorArduino.send(mCoaxLightONLine);
+	return mLightsArduino.send(mCoaxLightONLine);
 }
 
 bool ArduinoServer::turnCoaxLightOff()
 {
 	Log(lInfo) << "Turning off Coax light";
-	return mSensorArduino.send(mCoaxLightOFFLine);
+	return mLightsArduino.send(mCoaxLightOFFLine);
 }
 
 bool ArduinoServer::toggleLED()
@@ -233,11 +233,11 @@ bool ArduinoServer::toggleLED()
     switcher = !switcher;
     if(switcher)
     {
-		return mSensorArduino.send(mLEDLightONLine);
+		return mLightsArduino.send(mLEDLightONLine);
     }
     else
     {
-		return mSensorArduino.send(mLEDLightOFFLine);
+		return mLightsArduino.send(mLEDLightOFFLine);
     }
 }
 
@@ -248,11 +248,11 @@ bool ArduinoServer::toggleCoax()
     switcher = !switcher;
     if(switcher)
     {
-		return mSensorArduino.send(mCoaxLightONLine);
+		return mLightsArduino.send(mCoaxLightONLine);
     }
     else
     {
-		return mSensorArduino.send(mCoaxLightOFFLine);
+		return mLightsArduino.send(mCoaxLightOFFLine);
     }
 }
 
@@ -322,7 +322,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
             stringstream s;
             s << 'f' <<sl[1];
 			Log(lInfo) << "Set Front LED Intensity ("<<sl[1]<<")";
-        	mSensorArduino.send(s.str());
+        	mLightsArduino.send(s.str());
         }
     }
     else if(startsWith("SET_BACKLED", msg))
@@ -333,7 +333,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
             stringstream s;
             s << 'b' <<sl[1];
 			Log(lInfo) << "Set Back LED Intensity ("<<sl[1]<<")";
-        	mSensorArduino.send(s.str());
+        	mLightsArduino.send(s.str());
         }
     }
     else if(startsWith("SET_COAX", msg))
@@ -344,7 +344,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
             stringstream s;
             s << 'c' <<sl[1];
 			Log(lInfo) << "Set COAX Light Intensity ("<<sl[1]<<")";
-        	mSensorArduino.send(s.str());
+        	mLightsArduino.send(s.str());
         }
     }
     else

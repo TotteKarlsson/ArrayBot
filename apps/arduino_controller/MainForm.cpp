@@ -61,7 +61,6 @@ __fastcall TMain::TMain(TComponent* Owner)
     //This will update the UI from a thread
     mArduinoServer.assignOnUpdateCallBack(onUpdatesFromArduinoServer);
 
-
     mArduinoServer.setPuffAfterSectionCount(mPuffAfterSectionCountE->getValue());
 }
 
