@@ -26,8 +26,8 @@ mCoaxLightOFFLine(2)
 	mArduinos.push_back(&mLightsArduino);
 
     //Assign receive callbacks
-//    mPufferArduino.assignSerialMessageReceivedCallBack(pufferMessageReceived);
-//    mLightsArduino.assignSerialMessageReceivedCallBack(sensorMessageReceived);
+    mPufferArduino.assignSerialMessageReceivedCallBack(pufferMessageReceived);
+    mLightsArduino.assignSerialMessageReceivedCallBack(sensorMessageReceived);
 }
 
 ArduinoServer::~ArduinoServer()
@@ -143,6 +143,10 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
         		msg <<"RESTORE_FROM_ZERO_CUT";
 				updateClients(msg.str());
             }
+        }
+        else
+        {
+           ;
         }
 
         stringstream msg;
@@ -303,7 +307,6 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Executing puffer";
 	    puff();
     }
-
     else if(startsWith("TOGGLE_LED_LIGHT", msg))
     {
     	Log(lInfo) << "Toggling LED on/off";
@@ -345,6 +348,15 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
             s << 'c' <<sl[1];
 			Log(lInfo) << "Set COAX Light Intensity ("<<sl[1]<<")";
         	mLightsArduino.send(s.str());
+        }
+    }
+    else if(startsWith("SET_CUT_PRESET", msg))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+			Log(lInfo) << "Request Cut Preset ("<<sl[1]<<")";
+        	mPufferArduino.setCutPreset(toInt(sl[1]));
         }
     }
     else

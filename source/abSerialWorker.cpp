@@ -172,7 +172,7 @@ int SerialWorker::processReceiveBuffer(char* buffer, int bufSize)
         {
             {
                 Poco::ScopedLock<Poco::Mutex> lock(mTheHost.mReceivedMessagesMutex);
-                Log(lDebug5) << "Received: " << mMessageBuilder.getMessage();
+                Log(lDebug5) << "Received Serial: " << mMessageBuilder.getMessage();
 
                 //Execute callback if present..
                 if(mTheHost.mReceivedCB)

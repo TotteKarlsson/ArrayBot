@@ -194,6 +194,10 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DependentOn>abJoyStickSettings.h</DependentOn>
             <BuildOrder>25</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abLeicaUC7Controller.cpp">
+            <DependentOn>abLeicaUC7Controller.h</DependentOn>
+            <BuildOrder>62</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abLightsArduino.cpp">
             <DependentOn>abLightsArduino.h</DependentOn>
             <BuildOrder>60</BuildOrder>

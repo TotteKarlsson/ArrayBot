@@ -1,6 +1,5 @@
 #ifndef TPufferArduinoBoardFrameH
 #define TPufferArduinoBoardFrameH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -9,6 +8,7 @@
 #include "TIntegerLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "TSTDStringLabeledEdit.h"
+#include "abPufferArduino.h"
 //---------------------------------------------------------------------------
 
 class PACKAGE TPufferArduinoBoardFrame : public TArduinoBoardFrame
@@ -21,7 +21,7 @@ __published:
 	private:
 
 	public:
-							__fastcall 	TPufferArduinoBoardFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner);
+							__fastcall 	TPufferArduinoBoardFrame(PufferArduino& dev, IniFile& ini, TComponent* Owner);
 							__fastcall 	~TPufferArduinoBoardFrame();
     	void 							init();
 };

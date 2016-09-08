@@ -88,47 +88,26 @@ void loop()
         processByte(ch);
     }    
 
-     if(mySerial.available()) 
-     {
+     if(mySerial.available())  
+     {       
         //We get acknowledgments from Leica. Just forward        
-        char ch = mySerial.read() ;
+        char ch = mySerial.read();
         if(ch == '[')
         {
             gLeicaMessage = "";    
         }
         else if(ch == ']')
         {
-            Serial << "[Leica Message: \"" << gLeicaMessage <<"\"]";            
+            Serial << "[Leica Message: " << gLeicaMessage <<"]";            
         }
         else
         {
             gLeicaMessage += ch;    
         }        
      }
-
-//    //Check, would be nice to use interupts, but uno only have 2 pins for such
-//    if(digitalRead(gReadCutPreset0) == HIGH)
-//    {
-//        //Notify PC over serial that zero cut request was acknowledged
-//        if(gSendCutPreset0Message == true)
-//        {
-//            Serial << "[CUT_PRESET_1=TRUE]";          
-//            gSendCutPreset0Message = false;
-//        }
-//    }
-//    
-//    if(digitalRead(gReadCutPreset1) == HIGH)
-//    {
-//        //Notify PC over serial that zero cut request was acknowledged
-//        if(gSendCutPreset1Message == true)
-//        {
-//            Serial << "[CUT_PRESET_2=TRUE]";          
-//            gSendCutPreset1Message = false;
-//        }
-//    }    
-    
+   
     //Simulate Hall Sensor
-    if(gSimulateHallSensor == true)
+    if(gSimulateHallSensor == false)
     {
         simulateHallSensor();                 
     }
@@ -230,7 +209,7 @@ void processByte(char ch)
 void simulateHallSensor()
 {
     unsigned long currentTime = millis();
-    if(currentTime - gLastReadTime > 50)
+    if(currentTime - gLastReadTime > 15000)
     {
         gLastReadTime = currentTime;        
         Serial << "[HALL_SENSOR=HIGH]";                

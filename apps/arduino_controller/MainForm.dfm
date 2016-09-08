@@ -91,15 +91,11 @@ object Main: TMain
         Top = 1
         Width = 819
         Height = 470
-        ActivePage = TabSheet2
+        ActivePage = TabSheet1
         Align = alClient
         TabOrder = 0
         object TabSheet1: TTabSheet
           Caption = 'Ribbon Control'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GroupBox3: TGroupBox
             Left = 3
             Top = 85
@@ -197,6 +193,7 @@ object Main: TMain
               Height = 80
               Caption = 'Set Zero Cut'
               TabOrder = 0
+              OnClick = mSetZeroCutBtnClick
               SoundID = 'short_beep_3'
             end
             object mSetPresetCutBtn: TArrayBotButton
@@ -206,31 +203,27 @@ object Main: TMain
               Height = 80
               Caption = 'Set Preset Cut'
               TabOrder = 1
+              OnClick = mSetPresetCutBtnClick
               SoundID = 'short_beep_3'
             end
-            object ComboBox1: TComboBox
+            object mLeicaCutThicknessLB: TComboBox
               Left = 192
               Top = 56
               Width = 137
               Height = 31
-              ItemIndex = 3
               TabOrder = 2
               Text = '45'
               Items.Strings = (
-                '1000'
-                '500'
+                '45'
                 '100'
-                '45')
+                '500'
+                '1000')
             end
           end
         end
         object TabSheet3: TTabSheet
           Caption = 'Lights and Sensors'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object mFrontBackLEDBtn: TArrayBotButton
             Left = 18
             Top = 51
@@ -257,10 +250,6 @@ object Main: TMain
         object TabSheet2: TTabSheet
           Caption = 'Board Settings'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0

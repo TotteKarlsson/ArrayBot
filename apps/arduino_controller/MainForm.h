@@ -32,6 +32,8 @@
 #include "TPropertyCheckBox.h"
 #include "TArrayBotBtn.h"
 #include "abDirectSound.h"
+#include "abPufferArduino.h"
+#include "abLightsArduino.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;
@@ -104,7 +106,7 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox7;
 	TArrayBotButton *mSetZeroCutBtn;
 	TArrayBotButton *mSetPresetCutBtn;
-	TComboBox *ComboBox1;
+	TComboBox *mLeicaCutThicknessLB;
 	TLabel *Label1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
@@ -124,6 +126,8 @@ class TMain : public TRegistryForm
 	void __fastcall mAutoPuffCBClick(TObject *Sender);
 	void __fastcall mDesiredRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
+	void __fastcall mSetZeroCutBtnClick(TObject *Sender);
+	void __fastcall mSetPresetCutBtnClick(TObject *Sender);
 
 
     private:
@@ -150,8 +154,8 @@ class TMain : public TRegistryForm
 
         ArduinoServer					    mArduinoServer;
 
-        ArduinoDevice&					    mPufferArduino;
-        ArduinoDevice&					    mSensorArduino;
+        PufferArduino&					    mPufferArduino;
+        LightsArduino&					    mSensorArduino;
 //        DirectSound							mGetReadyForZeroCutSound;
 //        DirectSound							mSetZeroCutSound;
 

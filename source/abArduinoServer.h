@@ -38,8 +38,8 @@ class AB_CORE ArduinoServer : public IPCServer
                                             //!Messages sent to the server from a client are processed.
     	bool 					            processMessage(IPCMessage& msg);
 
-    	ArduinoDevice& 			            getPufferArduino(){return mPufferArduino;}
-    	ArduinoDevice& 			            getSensorArduino(){return mLightsArduino;}
+    	PufferArduino& 			            getPufferArduino(){return mPufferArduino;}
+    	LightsArduino& 			            getSensorArduino(){return mLightsArduino;}
         bool            		            shutDown();
 
 		bool        						enablePuffer();

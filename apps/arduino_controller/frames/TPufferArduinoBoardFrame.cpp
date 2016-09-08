@@ -2,7 +2,6 @@
 #pragma hdrstop
 #include "TPufferArduinoBoardFrame.h"
 #include "mtkBaseProperty.h"
-//---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TArduinoBoardFrame"
 #pragma link "TIntegerLabeledEdit"
@@ -13,7 +12,7 @@ TPufferArduinoBoardFrame *PufferArduinoBoardFrame;
 
 using namespace mtk;
 
-__fastcall TPufferArduinoBoardFrame::TPufferArduinoBoardFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner)
+__fastcall TPufferArduinoBoardFrame::TPufferArduinoBoardFrame(PufferArduino& dev, IniFile& ini, TComponent* Owner)
 	: TArduinoBoardFrame(dev, ini, Owner)
 {
 	mProperties.add((BaseProperty*)  &mPufferDurationE->getProperty()->setup(  	   "PUFFER_DURATION",    	 50));
@@ -57,8 +56,8 @@ void __fastcall TPufferArduinoBoardFrame::updateParameter(TObject *Sender,
 			msg<<"v"<<mPufferValveSpeedE->getValue()<<'\n';
         }
 
-       	mArduinoDevice.send("[]");
-//       	mArduinoDevice.send(msg.str());
+//       	mArduinoDevice.send("[]");
+       	mArduinoDevice.send(msg.str());
     }
 }
 

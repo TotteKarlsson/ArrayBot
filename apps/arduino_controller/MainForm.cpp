@@ -265,8 +265,6 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
 
         	mFrontBackLEDBtn->Caption = "Flip LEDs ON";
             cap = "ON";
-//	    	IPCMessage msg(-1, "ENABLE_PUFFER");
-//			mArduinoServer.postIPCMessage(msg);
         	mArduinoServer.turnLEDLightOn();
         }
         else
@@ -317,7 +315,32 @@ void __fastcall TMain::mDesiredRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::mSetZeroCutBtnClick(TObject *Sender)
+{
+	//	mPufferArduino.setCutPreset(1);
+	IPCMessage msg(-1, "SET_CUT_PRESET=1");
+	mArduinoServer.postIPCMessage(msg);
+}
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::mSetPresetCutBtnClick(TObject *Sender)
+{
+	//Check the listbox for current preset
+    String txt  = mLeicaCutThicknessLB->Text;
+    int indx = mLeicaCutThicknessLB->Items->IndexOf(txt);
+    if(indx != -1)
+    {
+        stringstream msg;
+        msg <<"SET_CUT_PRESET="<<indx+1;
 
+        IPCMessage ipc_msg(-1, msg.str());
+        mArduinoServer.postIPCMessage(ipc_msg);
+    }
+    else
+    {
+    	Log(lError) <<"Error setting cut preset!";
+    }
+}
 
 
