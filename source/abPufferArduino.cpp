@@ -8,9 +8,7 @@ PufferArduino::PufferArduino(int portNr, int baudRate)
 :
 ArduinoDevice(portNr, baudRate),
 mTheLeica(*this)
-{
-
-}
+{}
 
 bool PufferArduino::setCutPreset(int preset)
 {

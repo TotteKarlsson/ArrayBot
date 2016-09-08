@@ -47,6 +47,10 @@ class AB_CORE ArduinoServer : public IPCServer
 		void        						disableAutoPuff();
         bool					            puff();
 
+		void        						enableAutoZeroCut();
+		void        						disableAutoZeroCut();
+        bool								setZeroCut();
+
 		bool								toggleLED();
         bool								turnLEDLightOn();
         bool								turnLEDLightOff();
@@ -66,6 +70,9 @@ class AB_CORE ArduinoServer : public IPCServer
     protected:
     							            //!Container for Arduino devices
 		vector<ArduinoDevice*> 	            mArduinos;
+
+        									//We need to create a mutex for each of these
+                                            //devices...
     	PufferArduino 			            mPufferArduino;
     	LightsArduino 			            mLightsArduino;
 
@@ -84,6 +91,7 @@ class AB_CORE ArduinoServer : public IPCServer
 
         int									mDesiredRibbonLength;
         bool								mAutoPuff;
+        bool								mAutoZeroCut;
 		void					            pufferMessageReceived(const string& msg);
 		void					            sensorMessageReceived(const string& msg);
         void								updateClients(const string& msg);

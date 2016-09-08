@@ -102,7 +102,7 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet3;
 	TArrayBotButton *mFrontBackLEDBtn;
 	TArrayBotButton *mCoaxLightBtn;
-	TPropertyCheckBox *mEnableAutoZeroCutCB;
+	TPropertyCheckBox *mAutoZeroCutCB;
 	TGroupBox *GroupBox7;
 	TArrayBotButton *mSetZeroCutBtn;
 	TArrayBotButton *mSetPresetCutBtn;
@@ -128,6 +128,7 @@ class TMain : public TRegistryForm
           TShiftState Shift);
 	void __fastcall mSetZeroCutBtnClick(TObject *Sender);
 	void __fastcall mSetPresetCutBtnClick(TObject *Sender);
+	void __fastcall mAutoZeroCutCBClick(TObject *Sender);
 
 
     private:

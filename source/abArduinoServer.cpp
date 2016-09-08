@@ -17,6 +17,7 @@ mLightsArduino(-1),
 mSectionCount(0),
 mDesiredRibbonLength(10),
 mAutoPuff(false),
+mAutoZeroCut(false),
 mLEDLightONLine(3),
 mLEDLightOFFLine(4),
 mCoaxLightONLine(1),
@@ -36,11 +37,21 @@ ArduinoServer::~ArduinoServer()
     mLightsArduino.assignSerialMessageReceivedCallBack(NULL);
 }
 
+bool ArduinoServer::shutDown()
+{
+    IPCServer::shutDown();
+	for(int i = 0; i < mArduinos.size(); i++)
+    {
+		mArduinos[i]->disConnect();
+    }
+    return true;
+}
+
 void ArduinoServer::enableAutoPuff()
 {
 	mAutoPuff = true;
     stringstream msg;
-    msg <<"AUTO_PUFF="<<toString(mAutoPuff);
+    msg <<"AUTO_PUFF=true";
    	updateClients(msg.str());
 }
 
@@ -48,7 +59,23 @@ void ArduinoServer::disableAutoPuff()
 {
 	mAutoPuff = false;
     stringstream msg;
-    msg <<"AUTO_PUFF="<<toString(mAutoPuff);
+    msg <<"AUTO_PUFF=false";
+   	updateClients(msg.str());
+}
+
+void ArduinoServer::enableAutoZeroCut()
+{
+	mAutoZeroCut = true;
+    stringstream msg;
+    msg <<"AUTO_ZERO_CUT=true";
+   	updateClients(msg.str());
+}
+
+void ArduinoServer::disableAutoZeroCut()
+{
+	mAutoZeroCut = false;
+    stringstream msg;
+    msg <<"AUTO_ZERO_CUT=false";
    	updateClients(msg.str());
 }
 
@@ -78,6 +105,10 @@ void ArduinoServer::broadcastStatus()
     msg.str("");
     msg <<"AUTO_PUFF="<<toString(mAutoPuff);
    	updateClients(msg.str());
+
+    msg.str("");
+    msg <<"AUTO_ZERO_CUT="<<toString(mAutoZeroCut);
+   	updateClients(msg.str());
 }
 
 void ArduinoServer::sensorMessageReceived(const string& msg)
@@ -106,24 +137,25 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
         mSectionCount++;
     	if(mAutoPuff)
     	{
-        	if(mSectionCount == mDesiredRibbonLength - 3)
+        	if(mSectionCount == mDesiredRibbonLength - 2)
             {
                 stringstream msg;
         		msg <<"GET_READY_FOR_ZERO_CUT_1";
 				updateClients(msg.str());
             }
 
-        	if(mSectionCount == mDesiredRibbonLength - 2)
+        	else if(mSectionCount == mDesiredRibbonLength - 1)
             {
                 stringstream msg;
         		msg <<"GET_READY_FOR_ZERO_CUT_2";
 				updateClients(msg.str());
             }
 
-        	if(mSectionCount == mDesiredRibbonLength - 1)
+        	else if(mSectionCount == mDesiredRibbonLength && mAutoZeroCut == true)
             {
                 stringstream msg;
         		msg <<"SET_ZERO_CUT";
+                setZeroCut();
 				updateClients(msg.str());
             }
 
@@ -158,20 +190,21 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
 void ArduinoServer::setPuffAfterSectionCount(int val)
 {
 	mDesiredRibbonLength = val;
-
     stringstream msg;
     msg <<"DESIRED_RIBBON_LENGTH="<<mDesiredRibbonLength;
 	updateClients(msg.str());
 }
 
-bool ArduinoServer::shutDown()
+bool ArduinoServer::setZeroCut()
 {
-    IPCServer::shutDown();
-	for(int i = 0; i < mArduinos.size(); i++)
-    {
-		mArduinos[i]->disConnect();
-    }
-    return true;
+	Log(lInfo) << "Requesting Zero Cut";
+	bool res;
+   	//bool res = mPufferArduino.setCutPreset(1);
+	//	mPufferArduino.setCutPreset(1);
+	IPCMessage msg(-1, "SET_CUT_PRESET=1");
+
+    res = postIPCMessage(msg);
+	return res;
 }
 
 bool ArduinoServer::puff()

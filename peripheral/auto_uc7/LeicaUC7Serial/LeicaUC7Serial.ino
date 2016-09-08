@@ -29,7 +29,7 @@ void loop() {
     if(Serial1.available() > 0){
         //Handle "commands": P1, P2..P5 and C1,C2
         //Client should end each command with a non-numeric character 
-        //to avoid wasted time in the parseInt function        
+        //to avoid wasted time in the parseInt function below        
         char ch = Serial1.read();
 
         if(ch == 'P' || ch == 'C'){            

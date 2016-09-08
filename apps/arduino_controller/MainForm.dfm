@@ -120,13 +120,14 @@ object Main: TMain
               Caption = 'Enable Notification Sounds'
               TabOrder = 1
             end
-            object mEnableAutoZeroCutCB: TPropertyCheckBox
+            object mAutoZeroCutCB: TPropertyCheckBox
               Left = 16
               Top = 72
               Width = 169
               Height = 17
               Caption = 'Enable Zero Cut'
               TabOrder = 2
+              OnClick = mAutoZeroCutCBClick
             end
           end
           object GroupBox6: TGroupBox
@@ -211,9 +212,11 @@ object Main: TMain
               Top = 56
               Width = 137
               Height = 31
+              ItemIndex = 2
               TabOrder = 2
-              Text = '45'
+              Text = '100'
               Items.Strings = (
+                '0'
                 '45'
                 '100'
                 '500'

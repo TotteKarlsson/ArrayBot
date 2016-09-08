@@ -107,7 +107,7 @@ void loop()
      }
    
     //Simulate Hall Sensor
-    if(gSimulateHallSensor == false)
+    if(gSimulateHallSensor == true)
     {
         simulateHallSensor();                 
     }
@@ -209,7 +209,7 @@ void processByte(char ch)
 void simulateHallSensor()
 {
     unsigned long currentTime = millis();
-    if(currentTime - gLastReadTime > 15000)
+    if(currentTime - gLastReadTime > 500)
     {
         gLastReadTime = currentTime;        
         Serial << "[HALL_SENSOR=HIGH]";                

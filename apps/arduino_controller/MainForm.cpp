@@ -305,6 +305,18 @@ void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
     }
 }
 
+void __fastcall TMain::mAutoZeroCutCBClick(TObject *Sender)
+{
+	if(mAutoZeroCutCB->Checked)
+    {
+		mArduinoServer.enableAutoZeroCut();
+    }
+    else
+    {
+		mArduinoServer.disableAutoZeroCut();
+    }
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::mDesiredRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift)
@@ -342,5 +354,4 @@ void __fastcall TMain::mSetPresetCutBtnClick(TObject *Sender)
     	Log(lError) <<"Error setting cut preset!";
     }
 }
-
 
