@@ -74,8 +74,12 @@ void __fastcall TMain::FormShow(TObject *Sender)
 //This one is called from the reader thread
 void __fastcall TMain::logMsg()
 {
-    infoMemo->Lines->Insert(0, (vclstr(mLogFileReader.getData())));
-    mLogFileReader.purge();
+	string& msg = mLogFileReader.getData();
+    if(msg.size())
+    {
+    	infoMemo->Lines->Insert(0, vclstr(msg));
+	    mLogFileReader.purge();
+    }
 }
 
 //---------------------------------------------------------------------------

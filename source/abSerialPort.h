@@ -82,9 +82,11 @@
 //TK Changes: renamed unit files to abSerial
 //TK Changes: Renamed CSerial to SerialPort
 
+class SerialWorker;
 class AB_CORE SerialPort
 {
 // Class enumerations
+	friend SerialWorker;
 public:
 	// Communication event
 	typedef enum

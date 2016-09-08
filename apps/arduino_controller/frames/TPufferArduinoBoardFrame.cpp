@@ -57,7 +57,8 @@ void __fastcall TPufferArduinoBoardFrame::updateParameter(TObject *Sender,
 			msg<<"v"<<mPufferValveSpeedE->getValue()<<'\n';
         }
 
-       	mArduinoDevice.send(msg.str());
+       	mArduinoDevice.send("[]");
+//       	mArduinoDevice.send(msg.str());
     }
 }
 

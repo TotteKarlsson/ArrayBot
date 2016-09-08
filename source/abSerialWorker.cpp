@@ -14,7 +14,8 @@ void SerialWorker::run()
     }
 
 	// Create a handle for the overlapped operations
-	HANDLE hevtOverlapped = ::CreateEventA(0,TRUE,FALSE,0);
+	HANDLE hevtOverlapped = mSP.m_hevtOverlapped; //::CreateEventA(0,TRUE,FALSE,0);
+
 	if (hevtOverlapped == 0)
     {
         string errorMsg = getLastWin32Error();
@@ -115,7 +116,7 @@ void SerialWorker::run()
                         DWORD dwBytesRead = 0;
                         do
                         {
-                            char szBuffer[1024];
+                            char szBuffer[4096];
 
                             // Read data from the COM-port
                             lLastError = mSP.Read(szBuffer, sizeof(szBuffer)-1, &dwBytesRead);

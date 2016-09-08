@@ -4,12 +4,22 @@
 template<class T> inline Print &operator <<(Print &o, T arg) {o.print(arg); return o;}
 
 //moveSize is the (pixel?) size of the steps taken 
-//when moving cursor to a particular position
-const int moveSize = 10;
+//when moving the mouse cursor to a particular position
+const int moveSize      = 10;
+const int preset0AckPin = 4;
+const int preset1AckPin = 5;
+const int preset1pin    = 3;
+const int preset0pin    = 2;
    
-void setup() {
+void setup() {  
   // Prepare led + buttons
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(preset0AckPin, OUTPUT);
+  pinMode(preset1AckPin, OUTPUT);
+  pinMode(preset1pin, INPUT_PULLUP);
+  pinMode(preset0pin, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(preset0pin), setPresetZero, RISING);
+  attachInterrupt(digitalPinToInterrupt(preset1pin), setPresetOne, RISING);
   Serial1.begin(9600);
   Mouse.begin();  
   Serial1 <<"[LeicaUC7-Serial]";
@@ -22,9 +32,7 @@ void loop() {
         //to avoid wasted time in the parseInt function        
         char ch = Serial1.read();
 
-        if(ch == 'P' || ch == 'C'){
-            
-            //Observe that the parseInt function returns 0 on timeout.             
+        if(ch == 'P' || ch == 'C'){            
             int preset = Serial1.parseInt();      
             
             switch (ch){            
@@ -40,7 +48,7 @@ void loop() {
             }
     
             //Response
-            Serial1 << ch << preset;                                                        
+            Serial1 << "[" << ch << preset << "]";                                                        
         }
     }
 }
@@ -108,6 +116,20 @@ void startStopCutting(int i){
     else{    
         stopCutting();
     }
+}
+
+void setPresetZero(){
+  digitalWrite(preset0AckPin,LOW);
+  setPreset(1);
+  delay(2000);
+  digitalWrite(preset0AckPin,HIGH);
+}
+
+void setPresetOne(){
+  digitalWrite(preset1AckPin,LOW);
+  setPreset(2);
+  delay(2000);
+  digitalWrite(preset1AckPin,HIGH);
 }
 
 void startCutting(){

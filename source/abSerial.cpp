@@ -40,6 +40,38 @@ bool Serial::connect(int pNr, int baudRate)
 	return true;
 }
 
+bool Serial::send(const string& msg)
+{
+	OVERLAPPED osWrite = {0};
+   	DWORD dwWritten;
+	Log(lDebug5) << "Sending serial message: "<<msg;
+
+   	// Create this write operation's OVERLAPPED structure's hEvent.
+   	osWrite.hEvent = CreateEventA(NULL, TRUE, FALSE, NULL);
+   	if (osWrite.hEvent == NULL)
+    {
+      	// error creating overlapped event handle
+    	Log(lError) << "Failed to create overlapped Event handle";
+      	return false;
+    }
+
+	int error = mSP.Write(msg.c_str(), msg.size(), &dwWritten, &osWrite);
+    if(error)
+    {
+    	Log(lError) << "Failed to send over Serial Port..";
+        return false;
+    }
+	return true;
+}
+
+string Serial::popMessage()
+{
+    {
+        Poco::ScopedLock<Poco::Mutex> lock(mReceivedMessagesMutex);
+		return mReceivedMessages.size() ? mReceivedMessages.popBack() : string("");
+    }
+}
+
 void Serial::assignMessageReceivedCallBack(SerialMessageReceivedCallBack cb)
 {
 	mReceivedCB = cb;
@@ -127,38 +159,6 @@ bool Serial::hasMessage()
         Poco::ScopedLock<Poco::Mutex> lock(mReceivedMessagesMutex);
 		return mReceivedMessages.size() ? true : false;
     }
-}
-
-string Serial::popMessage()
-{
-    {
-        Poco::ScopedLock<Poco::Mutex> lock(mReceivedMessagesMutex);
-		return mReceivedMessages.size() ? mReceivedMessages.popBack() : string("");
-    }
-}
-
-bool Serial::send(const string& msg)
-{
-	OVERLAPPED osWrite = {0};
-   	DWORD dwWritten;
-	Log(lDebug5) << "Sending serial message: "<<msg;
-
-   	// Create this write operation's OVERLAPPED structure's hEvent.
-   	osWrite.hEvent = CreateEventA(NULL, TRUE, FALSE, NULL);
-   	if (osWrite.hEvent == NULL)
-    {
-      	// error creating overlapped event handle
-    	Log(lError) << "Failed to create overlapped Event handle";
-      	return false;
-    }
-
-	int error = mSP.Write(msg.c_str(), msg.size(), &dwWritten, &osWrite);
-    if(error)
-    {
-    	Log(lError) << "Failed to send over Serial Port..";
-        return false;
-    }
-	return true;
 }
 
 bool Serial::isConnected()

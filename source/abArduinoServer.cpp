@@ -26,8 +26,8 @@ mCoaxLightOFFLine(2)
 	mArduinos.push_back(&mLightsArduino);
 
     //Assign receive callbacks
-    mPufferArduino.assignSerialMessageReceivedCallBack(pufferMessageReceived);
-    mLightsArduino.assignSerialMessageReceivedCallBack(sensorMessageReceived);
+//    mPufferArduino.assignSerialMessageReceivedCallBack(pufferMessageReceived);
+//    mLightsArduino.assignSerialMessageReceivedCallBack(sensorMessageReceived);
 }
 
 ArduinoServer::~ArduinoServer()
