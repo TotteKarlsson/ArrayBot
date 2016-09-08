@@ -1,3 +1,25 @@
+Release 0.8.2 (Sept 8)
+=======================
+* Implemented Control of Leica UI trough mouse automation by an arduino
+* Implemented auto zero cut together with the puffer
+* Added a  LeicaUC7Controller class
+* Nasty UI bug seem to be related to using the ArduinoDevice directly in the UI instead of going trough the ArduinoServer class
+* Added SET_CUT_PRESET command handler in the ArduinoServer
+* Puffer Arduino code and LeicaArduino code was changed to agree..
+* Added ZeroCut, and PresetCut buttons, with logic to perform the actions, to Controller UI
+* Updated puffer arduino sketch
+* Added LeicaSerial sketch test
+* Setting up zero cut with leica
+* Added Puffer and Lights Arduino classes
+* Adding Arduino pin read and write functions
+* Updated motor, devices info page
+* Fixed triggered child action logic so that a child action can act on a parent action and end at a different position.
+* Cleaned up arduino sketches
+* Fixed scrollbars on motors page
+* Cleaned up sequencing UI
+* Fixed tabbing issues on forms and frames.
+* Moved several forms and frames to arraybots VCLPackage
+
 Release 0.8.1 (Aug 31)
 =======================
 * Fixed log level initialization in ArrayCam
