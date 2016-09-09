@@ -56,10 +56,9 @@ class AB_CORE ArduinoDevice : public ABObject
                                     //!way to update its state on initialization
 		InitCallBack				init;
 
-    private:
-
+    protected:
     								//!Serial communication can be quite complex. It is wrapped by the Serial class
-                                    //and confined to the SerialPort class
+                                    //and confined further with low level functions in the SerialPort class
         Serial						mSerial;
 
 									//!Threat the serial port as a resource that can only be accesed from

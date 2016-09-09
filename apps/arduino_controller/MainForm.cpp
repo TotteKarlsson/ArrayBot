@@ -1,4 +1,4 @@
-#include <vcl.h>
+	#include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
 #include "TMemoLogger.h"
@@ -50,7 +50,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mProperties.setIniFile(&mIniFile);
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	 lAny));
 	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup(	"SERVER_PORT",    	 50000));
-	mProperties.add((BaseProperty*)  &mDesiredRibbonLengthE->getProperty()->setup("DESIRED_RIBBON_LENGTH",    	 25));
+	mProperties.add((BaseProperty*)  &mDesiredRibbonLengthE->getProperty()->setup(	"DESIRED_RIBBON_LENGTH",    	 25));
 
     mProperties.read();
 	mArduinoServerPortE->update();
@@ -58,8 +58,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 
     //This will update the UI from a thread
     mArduinoServer.assignOnUpdateCallBack(onUpdatesFromArduinoServer);
-
-    mArduinoServer.setPuffAfterSectionCount(mDesiredRibbonLengthE->getValue());
 }
 
 __fastcall TMain::~TMain()
@@ -96,6 +94,11 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
+
+	stringstream smsg;
+	smsg << "SET_DESIRED_RIBBON_LENGTH=" << mDesiredRibbonLengthE->getValue();
+   	IPCMessage msg(-1, smsg.str());
+	mArduinoServer.postIPCMessage(msg);
 
     //Setup the server
     mArduinoServer.start(mArduinoServerPortE->getValue());
@@ -141,10 +144,10 @@ void TMain::onUpdatesFromArduinoServer(const string& new_msg)
                 StringList l(msg, '=');
                 if(l.size() == 2)
                 {
-					Main->mSectionCount->SetNumber(toInt(l[1]));
+					Main->mSectionCountLbl->SetNumber(toInt(l[1]));
                 }
 
-                if(Main->mSectionCount->GetValue() == 0 &&  Main->mEnablesoundsCB->Checked)
+                if(Main->mSectionCountLbl->GetValue() == 0 &&  Main->mEnablesoundsCB->Checked)
                 {
 //	   				Main->mSetZeroCutSound.Stop();
                 }
@@ -323,7 +326,10 @@ void __fastcall TMain::mDesiredRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
 {
     if(Key == vkReturn)
     {
-    	mArduinoServer.setPuffAfterSectionCount(mDesiredRibbonLengthE->getValue());
+    	stringstream smsg;
+        smsg << "SET_DESIRED_RIBBON_LENGTH=" << mDesiredRibbonLengthE->getValue();
+        IPCMessage msg(-1, smsg.str());
+        mArduinoServer.postIPCMessage(msg);
     }
 }
 

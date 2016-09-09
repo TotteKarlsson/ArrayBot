@@ -38,9 +38,9 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 		mAB->getJoyStick().disable();
     }
 
-    if(mArduinoClient.isConnected())
+    if(mPufferArduinoClient.isConnected())
     {
-    	mArduinoClient.disConnect();
+    	mPufferArduinoClient.disConnect();
     }
 
     //This will save any ini parameters in the frame
@@ -86,7 +86,7 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
         || 	UIUpdateTimer->Enabled
         || 	(gSplashForm && gSplashForm->isOnShowTime())
 		|| 	TRibbonLifterFrame::gIsFrameOpen
-        ||  mArduinoClient.isConnected()
+        ||  mPufferArduinoClient.isConnected()
         ||  mFrames.size()
       )
     {

@@ -202,6 +202,10 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DependentOn>abLightsArduino.h</DependentOn>
             <BuildOrder>60</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abLightsArduinoClient.cpp">
+            <DependentOn>abLightsArduinoClient.h</DependentOn>
+            <BuildOrder>65</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abLongTravelStage.cpp">
             <BuildOrder>14</BuildOrder>
         </CppCompile>
@@ -265,6 +269,14 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="abPufferArduino.cpp">
             <DependentOn>abPufferArduino.h</DependentOn>
             <BuildOrder>61</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abPufferArduinoClient.cpp">
+            <DependentOn>abPufferArduinoClient.h</DependentOn>
+            <BuildOrder>64</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abRibbonLengthController.cpp">
+            <DependentOn>abRibbonLengthController.h</DependentOn>
+            <BuildOrder>63</BuildOrder>
         </CppCompile>
         <CppCompile Include="abRibbonLifter.cpp">
             <DependentOn>abRibbonLifter.h</DependentOn>

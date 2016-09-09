@@ -35,60 +35,6 @@ void ArduinoClient::getStatus()
 	request("GET_STATUS");
 }
 
-void ArduinoClient::resetSectionCounter()
-{
-	request("RESET_SECTION_COUNT");
-}
-
-void ArduinoClient::setPuffAfterSectionCount(int count)
-{
-	stringstream msg;
-    msg <<"DESIRED_RIBBON_LENGTH="<<count;
-	request(msg.str());
-}
-
-void ArduinoClient::enableAutoPuff()
-{
-	stringstream msg;
-    msg <<"ENABLE_AUTO_PUFF";
-	request(msg.str());
-}
-
-void ArduinoClient::enablePuffer()
-{
-	stringstream msg;
-    msg <<"ENABLE_PUFFER";
-	request(msg.str());
-}
-
-void ArduinoClient::puff()
-{
-	stringstream msg;
-    msg <<"PUFF";
-	request(msg.str());
-}
-
-void ArduinoClient::disableAutoPuff()
-{
-	stringstream msg;
-    msg <<"DISABLE_AUTO_PUFF";
-	request(msg.str());
-}
-
-void ArduinoClient::toggleLED()
-{
-	stringstream msg;
-    msg <<"TOGGLE_LED_LIGHT";
-	request(msg.str());
-}
-
-void ArduinoClient::toggleCoax()
-{
-	stringstream msg;
-    msg <<"TOGGLE_COAX_LIGHT";
-	request(msg.str());
-}
-
 void ArduinoClient::assignOnMessageReceivedCallBack(OnMessageReceivedCB cb)
 {
 	mMessageProcessor.assignOnMessageReceivedCallBack(cb);

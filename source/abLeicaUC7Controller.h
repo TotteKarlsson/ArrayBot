@@ -11,6 +11,7 @@ class AB_CORE LeicaUC7Controller : public ABObject
                                 LeicaUC7Controller(PufferArduino& p);
                                 ~LeicaUC7Controller(){}
 		bool					setCutPreset(int cutPreset);
+		bool					setDeltaY(int dy);
 
     protected:
     	PufferArduino&			mPufferArduino;

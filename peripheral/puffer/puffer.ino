@@ -6,8 +6,6 @@
 #include "Adafruit_MotorShield.h"
 #include <SoftwareSerial.h>
 
-SoftwareSerial mySerial(10, 11); // RX, TX
-
 //Allow nice syntax for serial printing
 template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg); return obj; }
 
@@ -18,40 +16,23 @@ Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 Adafruit_DCMotor* gPufferValve = AFMS.getMotor(1);
 
 // global variables (g)
-bool            gSimulateHallSensor(true);
-unsigned int    gTimeOut        = 500;
+bool            gSimulateHallSensor(false);
+unsigned int    gSimulationSpeed    = 5000;
+
 //Pins
-const int       gHallSensorPin   = 2;    // Hall sensor pin
-const int       gLedPin          = 13;   // LED pin, illuminates when solenoid is triggered 
-const int       gPufferPin       = 3;    // Pushbutton 1 pin
+const int       gHallSensorPin      = 2;    // Hall sensor pin
+const int       gPufferPin          = 3;    // Pushbutton 1 pin
+const int       gLedPin             = 13;   // LED pin, illuminates when solenoid is triggered 
 
 //Leica mouse control
-const int       gSetCutPreset0   = 4;
-const int       gSetCutPreset1   = 5;
-const int       gSetCutPreset2   = 6;
-const int       gSetCutPreset3   = 7;
-const int       gReadCutPreset0  = 9;
-const int       gReadCutPreset1  = 10;
-const int       gReadCutPreset2  = 11;
-const int       gReadCutPreset3  = 12;
+SoftwareSerial  leicaSerial(10, 11); // RX, TX
 
-int             gPuffDuration    = 50;   // msec puffer on
-int             gPufferValveSpeed= 255;  // msec puffer on
+int             gPuffDuration       = 50;   // msec puffer on
+int             gPufferValveSpeed   = 255;  // msec puffer on
 
 bool            gEnablePuffer(false);
 unsigned long   gLastReadTime = millis();
 String          gLeicaMessage;
-
-//Use these booleans to avoid sending more than necessary messages to PC
-bool            gSendCutPreset0Message(false);
-bool            gSendCutPreset1Message(false);
-
-//functions..
-
-void simulateHallSensor();
-void puff(int duration_in_ms);
-void sendInfo();        
-void processByte(char ch);           
 
 void setup() 
 {
@@ -65,19 +46,13 @@ void setup()
     pinMode(gHallSensorPin,     INPUT);     // Set up the Hall sensor pin to be an input
     pinMode(gLedPin,            OUTPUT);    // Set up the LED pin to be an output
     pinMode(gPufferPin,         INPUT);     // Set off the puffer manually by this pin    
-
-    pinMode(gSetCutPreset0,     OUTPUT);    //Leica mouse control trough arduinos
-    pinMode(gReadCutPreset0,    INPUT);
-
-    pinMode(gSetCutPreset1,     OUTPUT);
-    pinMode(gReadCutPreset1,    INPUT);
-
+    
     // setup HW serial port
     Serial.begin(250000);
     Serial << "[ArrayBot Puffer Arduino]";
 
     //setup SW serial port to the Leica Arduino.    
-    mySerial.begin(9600);    
+    leicaSerial.begin(9600);    
 }
 
 void loop() 
@@ -88,17 +63,17 @@ void loop()
         processByte(ch);
     }    
 
-     if(mySerial.available())  
+     if(leicaSerial.available())  
      {       
-        //We get acknowledgments from Leica. Just forward        
-        char ch = mySerial.read();
+        //We get acknowledgments from the Leica. Just simply forward
+        char ch = leicaSerial.read();
         if(ch == '[')
         {
             gLeicaMessage = "";    
         }
         else if(ch == ']')
         {
-            Serial << "[Leica Message: " << gLeicaMessage <<"]";            
+            Serial << "[LEICA MESSAGE: " << gLeicaMessage <<"]";            
         }
         else
         {
@@ -149,7 +124,24 @@ void processByte(char ch)
 {
     switch(ch)    
     {
-        //CutPreset                   
+        //Enable simulation
+        case 'S':
+        {
+            //Get flag
+            int flag = Serial.parseInt(); 
+            gSimulateHallSensor = (flag == 1) ? true : false;        
+        }
+        break;
+        
+        //Set simulation speed
+        case 's':
+        {            
+            int ms = Serial.parseInt(); 
+            gSimulationSpeed = ms;        
+        }
+        break;
+
+        //CutPreset (Leica)                  
         case 'P':   
         {
             //Get Preset
@@ -157,7 +149,7 @@ void processByte(char ch)
             if(preset > 0 && preset <= 5 )
             {               
                Serial << "[REQUEST_CUT_PRESET_"<<preset<<"]";                                                                   
-               mySerial <<"P"<<preset<<" ";                                  
+               leicaSerial <<"P"<<preset<<" ";                                  
             }
             else
             {
@@ -165,8 +157,20 @@ void processByte(char ch)
             }                                                         
         }
         break;            
+
+        //Set delta Y on the Leica
+        case 'Y':
+        {
+            //Get dy
+            int preset = Serial.parseInt(); 
+            
+            Serial << "[REQUEST_DELTA_Y="<<preset<<"]";                                                                   
+            leicaSerial <<"Y"<<preset<<" ";                                  
+        }
+        break;            
         
-        //Enable puffing
+        //Enable puffing. When puffing is enabled, the logic in the loop will automatically set off the puffer
+        //at the calibrated moment by checking the hall sensor state
         case 'e': 
             gEnablePuffer = true;
             Serial << "[PUFFER_ENABLED]";
@@ -201,7 +205,7 @@ void processByte(char ch)
         //Report unhandled character
         
         default: 
-            Serial << "[Unhandled character in puffer instream: "<<ch<<"]";        
+            Serial << "[Unhandled character in puffer arduino instream: "<<ch<<"]";        
         break;            
     }    
 }
@@ -209,7 +213,7 @@ void processByte(char ch)
 void simulateHallSensor()
 {
     unsigned long currentTime = millis();
-    if(currentTime - gLastReadTime > 500)
+    if(currentTime - gLastReadTime > gSimulationSpeed)
     {
         gLastReadTime = currentTime;        
         Serial << "[HALL_SENSOR=HIGH]";                

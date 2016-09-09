@@ -86,7 +86,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mInitBotThread.start();
 
 	WaitForDeviceInitTimer->Enabled = true;
-	mArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
+	mPufferArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
 }
 
 __fastcall TMain::~TMain()
@@ -135,7 +135,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	}
 
 	//Try to connect to the arduino server..
-	mArduinoClient.connect(50000);
+	mPufferArduinoClient.connect(50000);
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
@@ -485,8 +485,8 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
        	mJSCSBtn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
     }
 
-   	mASStartBtn->Caption 			= mArduinoClient.isConnected()	? "Stop" : "Start";
-	mArduinoServerPortE->Enabled 	= !mArduinoClient.isConnected();
+   	mASStartBtn->Caption 			= mPufferArduinoClient.isConnected()	? "Stop" : "Start";
+	mArduinoServerPortE->Enabled 	= !mPufferArduinoClient.isConnected();
 }
 
 //---------------------------------------------------------------------------
@@ -589,13 +589,13 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 {
 	if(mASStartBtn->Caption == "Start")
     {
-    	mArduinoClient.connect(mArduinoServerPortE->getValue());
+    	mPufferArduinoClient.connect(mArduinoServerPortE->getValue());
         mASStartBtn->Caption == "Connecting";
-        mArduinoClient.getStatus();
+        mPufferArduinoClient.getStatus();
     }
     else
     {
-    	mArduinoClient.disConnect();
+    	mPufferArduinoClient.disConnect();
     }
 }
 
@@ -606,15 +606,15 @@ void __fastcall TMain::mResetCountBtnClick(TObject *Sender)
     if(b == mResetCountBtn)
     {
 		//Send a request to reset the counter
-		mArduinoClient.resetSectionCounter();
+		mPufferArduinoClient.resetSectionCounter();
     }
     else if(b == mPuffBtn)
     {
-		mArduinoClient.puff();
+		mPufferArduinoClient.puff();
     }
     else if(b == mEnablePuffBtn)
     {
-		mArduinoClient.enablePuffer();
+		mPufferArduinoClient.enablePuffer();
     }
 }
 
@@ -622,11 +622,11 @@ void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
 {
 	if(mAutoPuffCB->Checked)
     {
-		mArduinoClient.enableAutoPuff();
+		mPufferArduinoClient.enableAutoPuff();
     }
     else
     {
-		mArduinoClient.disableAutoPuff();
+		mPufferArduinoClient.disableAutoPuff();
     }
 }
 
@@ -641,7 +641,7 @@ void __fastcall TMain::mRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
 {
 	if(Key == vkReturn)
     {
-		mArduinoClient.setPuffAfterSectionCount(mRibbonLengthE->getValue());
+		mPufferArduinoClient.setPuffAfterSectionCount(mRibbonLengthE->getValue());
     }
 }
 

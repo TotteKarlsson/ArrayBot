@@ -17,7 +17,7 @@
 #include "TRegistryForm.h"
 #include "camera/uc480Class.h"
 
-#include "abArduinoClient.h"
+#include "abLightsArduinoClient.h"
 #include "mtkFloatLabel.h"
 #include <Vcl.Buttons.hpp>
 #include <Vcl.ToolWin.hpp>
@@ -143,7 +143,7 @@ class TMainForm  : public TRegistryForm
                                                 //an arduino server. The client processes
                                                 //incoming messages over a socket, in
                                                 //onArduinoMessageReceived
-		ArduinoClient 					        mArduinoClient;
+		LightsArduinoClient    			        mLightsArduinoClient;
 
         										//Callback
 		void 									onArduinoMessageReceived(const string& msg);

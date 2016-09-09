@@ -83,7 +83,7 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet1;
 	TTabSheet *TabSheet2;
 	TGroupBox *GroupBox2;
-	TIntLabel *mSectionCount;
+	TIntLabel *mSectionCountLbl;
 	TGroupBox *GroupBox3;
 	TIntegerLabeledEdit *mDesiredRibbonLengthE;
 	TPropertyCheckBox *mAutoPuffCB;

@@ -34,21 +34,21 @@ void __fastcall TSettingsForm::mASStartBtnClick(TObject *Sender)
 {
 	if(mASStartBtn->Caption == "Start")
     {
-    	mMainForm.mArduinoClient.connect(mArduinoServerPortE->getValue());
+    	mMainForm.mLightsArduinoClient.connect(mArduinoServerPortE->getValue());
         mASStartBtn->Caption == "Connecting";
-        mMainForm.mArduinoClient.getStatus();
+        mMainForm.mLightsArduinoClient.getStatus();
     }
     else
     {
-    	mMainForm.mArduinoClient.disConnect();
+    	mMainForm.mLightsArduinoClient.disConnect();
     }
 }
 
 //--------------------------------------------------------------------------
 void __fastcall TSettingsForm::UIUpdateTimerTimer(TObject *Sender)
 {
-   	mASStartBtn->Caption 			= mMainForm.mArduinoClient.isConnected()	? "Stop" : "Start";
-	mArduinoServerPortE->Enabled 	= !mMainForm.mArduinoClient.isConnected();
+   	mASStartBtn->Caption 			= mMainForm.mLightsArduinoClient.isConnected()	? "Stop" : "Start";
+	mArduinoServerPortE->Enabled 	= !mMainForm.mLightsArduinoClient.isConnected();
 }
 
 //---------------------------------------------------------------------------

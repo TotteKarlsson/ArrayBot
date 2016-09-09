@@ -9,7 +9,7 @@
 #include "abLightsArduino.h"
 #include <vector>
 #include "mtkTimer.h"
-
+#include "abRibbonLengthController.h"
 using mtk::IPCServer;
 using mtk::IPCMessage;
 using std::vector;
@@ -23,17 +23,20 @@ typedef void (__closure *OnMessageUpdateCB)(const string& msg);
 //arraybot project. The Arduino server is a descendant of the IPC server class that is implementing all
 //network functionality.
 //The Arduino server forwards any messages sent from the arduino board to any connected tcp/ip clients.
-//
+
 //There are currently two Arduino boards, the 'Puffer' board, and a 'Sensor' board containing sensors and
 //light controlling logic.
 
+
+
 class AB_CORE ArduinoServer : public IPCServer
 {
+	friend RibbonLengthController;
     public:
                                             ArduinoServer(int portNumber = 50000);
 	                                        ~ArduinoServer();
 
-                                            //!The process message is an overide from the base class.
+                                            //!The process message is an overide from the IPCServer base class.
                                             //!Process message implements arduino server specific processing.
                                             //!Messages sent to the server from a client are processed.
     	bool 					            processMessage(IPCMessage& msg);
@@ -42,10 +45,10 @@ class AB_CORE ArduinoServer : public IPCServer
     	LightsArduino& 			            getSensorArduino(){return mLightsArduino;}
         bool            		            shutDown();
 
-		bool        						enablePuffer();
+//		bool        						enablePuffer();
 		void        						enableAutoPuff();
 		void        						disableAutoPuff();
-        bool					            puff();
+//        bool					            puff();
 
 		void        						enableAutoZeroCut();
 		void        						disableAutoZeroCut();
@@ -59,11 +62,12 @@ class AB_CORE ArduinoServer : public IPCServer
         bool								turnCoaxLightOn();
         bool								turnCoaxLightOff();
 
-        void					            incrementSectionCount(){mSectionCount++;}
-        int						            getSectionCount(){return mSectionCount;}
-        void					            resetSectionCount();
-		void								setPuffAfterSectionCount(int val);
-        void								assignOnUpdateCallBack(OnMessageUpdateCB cb){onMessageUpdateCB = cb;}
+//        void					            incrementSectionCount(){mSectionCount++;}
+//        int						            getSectionCount(){return mSectionCount;}
+//        void					            resetSectionCount();
+//		void								setPuffAfterSectionCount(int val);
+
+        void								assignOnUpdateCallBack(OnMessageUpdateCB cb);
 		void								onUpdateClientsTimer();
         void								broadcastStatus();
 
@@ -71,10 +75,12 @@ class AB_CORE ArduinoServer : public IPCServer
     							            //!Container for Arduino devices
 		vector<ArduinoDevice*> 	            mArduinos;
 
-        									//We need to create a mutex for each of these
+        									//We should create a mutex for each of these
                                             //devices...
     	PufferArduino 			            mPufferArduino;
     	LightsArduino 			            mLightsArduino;
+
+		RibbonLengthController				mRibbonLengthController;
 
         									//!ArduinoLines
 		int 								mLEDLightONLine;
@@ -85,13 +91,6 @@ class AB_CORE ArduinoServer : public IPCServer
 
         OnMessageUpdateCB					onMessageUpdateCB;
 
-									        //!The section count is compared to the mDesiredRibbonLength
-                                            //used for emitting a puff
-        int						            mSectionCount;
-
-        int									mDesiredRibbonLength;
-        bool								mAutoPuff;
-        bool								mAutoZeroCut;
 		void					            pufferMessageReceived(const string& msg);
 		void					            sensorMessageReceived(const string& msg);
         void								updateClients(const string& msg);

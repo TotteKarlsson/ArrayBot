@@ -1,7 +1,7 @@
 #ifndef MainFormH
 #define MainFormH
 #include "abApplicationMessages.h"
-#include "abArduinoClient.h"
+#include "abPufferArduinoClient.h"
 #include "abArrayBot.h"
 #include "abUIDataStructures.h"
 #include "InitArrayBotThread.h"
@@ -180,11 +180,11 @@ class TMain : public TRegistryForm
 		mtk::Property<mtk::LogLevel>            mLogLevel;
         vector<TFrame*>					        mFrames;
 
-        										//!The arduino client connects to
+        										//!The puffer arduino client connects to
                                                 //an arduino server. The client processes
                                                 //incoming messages over a socket, in
                                                 //onArduinoMessageReceived
-		ArduinoClient 					        mArduinoClient;
+		PufferArduinoClient				        mPufferArduinoClient;
 
         										//Callback
 		void 									onArduinoMessageReceived(const string& msg);

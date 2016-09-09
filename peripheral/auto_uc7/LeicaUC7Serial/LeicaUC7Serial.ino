@@ -3,23 +3,32 @@
 //Allow easy syntax for serial printing
 template<class T> inline Print &operator <<(Print &o, T arg) {o.print(arg); return o;}
 
-//moveSize is the (pixel?) size of the steps taken 
-//when moving the mouse cursor to a particular position
+//moveSize is the size of the steps taken when 
+//moving the mouse cursor to a particular position
 const int moveSize      = 10;
-const int preset0AckPin = 4;
-const int preset1AckPin = 5;
-const int preset1pin    = 3;
+
+//DeltaY is steps taken between presets
+const int gDeltaY       = 15;
+
+//Hardware interface
 const int preset0pin    = 2;
-   
+const int preset0AckPin = 4;
+const int preset1pin    = 3;
+const int preset1AckPin = 5;
+  
 void setup() {  
   // Prepare led + buttons
-  pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(preset0AckPin, OUTPUT);
-  pinMode(preset1AckPin, OUTPUT);
-  pinMode(preset1pin, INPUT_PULLUP);
-  pinMode(preset0pin, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(preset0pin), setPresetZero, RISING);
-  attachInterrupt(digitalPinToInterrupt(preset1pin), setPresetOne, RISING);
+  pinMode(LED_BUILTIN,      OUTPUT);
+  pinMode(preset0AckPin,    OUTPUT);
+  pinMode(preset1AckPin,    OUTPUT);
+  
+  pinMode(preset0pin,       INPUT_PULLUP);
+  pinMode(preset1pin,       INPUT_PULLUP);
+    
+  attachInterrupt(digitalPinToInterrupt(preset0pin), setPresetOne, RISING);
+  attachInterrupt(digitalPinToInterrupt(preset1pin), setPresetTwo, RISING);
+
+  //Main interface is Serial1 (Pin 0 == Rx, Pin 1 == Tx)
   Serial1.begin(9600);
   Mouse.begin();  
   Serial1 <<"[LeicaUC7-Serial]";
@@ -27,23 +36,21 @@ void setup() {
 
 void loop() {
     if(Serial1.available() > 0){
-        //Handle "commands": P1, P2..P5 and C1,C2
+        //Handle "commands": P1, P2..P5
         //Client should end each command with a non-numeric character 
-        //to avoid wasted time in the parseInt function below        
+        //to avoid wasted time in the parseInt function below                
         char ch = Serial1.read();
 
         if(ch == 'P' || ch == 'C'){            
+            //parseInt is not so nice, returns 0 on timeout.    
             int preset = Serial1.parseInt();      
             
             switch (ch){            
                 //change cut thickness by preset
                 case 'P': setPreset(preset);        break;
     
-                //start or stop cutting                         
-                case 'C': startStopCutting(preset); break;               
-                
                 default: //For debugging..
-                    Serial1 << "\n[Invalid input: "<<ch<<"]\n";
+                    Serial1 << "[Invalid input: "<<ch<<"]\n";
                 break;                                  
             }
     
@@ -53,15 +60,15 @@ void loop() {
     }
 }
 
-//The following preset are 1-5 corresponding to the 5 'thickness' buttons
+//Valid presets, 1-5 corresponds to the 5 'thickness' buttons
 //on the Leica UI. 1 -> zero thickness, 5 -> 1000 nm
 void setPreset(int preset){
-    if(preset > 0 && preset <= 5){
-        resetPos();
-        delay(2);
-        moveAbsXY(5,155-13*(preset - 1));
-        Mouse.click();
-    }
+  if(preset > 0 && preset <= 5){
+    resetPos();
+    delay(2);        
+    moveAbsXY(5, 155 - gDeltaY*(preset - 1));
+    Mouse.click();
+  }
 }
 
 void resetPos(){
@@ -108,34 +115,16 @@ void moveAbsXY(int x, int y){
   moveVert(y);
 }
 
-//1 == startCutting, anything else == stopCutting
-void startStopCutting(int i){
-    if(i == 1){
-        startCutting();        
-    }
-    else{    
-        stopCutting();
-    }
-}
-
-void setPresetZero(){
+void setPresetOne(){
   digitalWrite(preset0AckPin,LOW);
   setPreset(1);
   delay(2000);
   digitalWrite(preset0AckPin,HIGH);
 }
 
-void setPresetOne(){
+void setPresetTwo(){
   digitalWrite(preset1AckPin,LOW);
   setPreset(2);
   delay(2000);
   digitalWrite(preset1AckPin,HIGH);
-}
-
-void startCutting(){
-  resetPos();
-}
-
-void stopCutting(){
-  resetPos();
 }

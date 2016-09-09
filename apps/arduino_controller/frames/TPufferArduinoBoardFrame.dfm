@@ -31,7 +31,7 @@ inherited PufferArduinoBoardFrame: TPufferArduinoBoardFrame
       EditLabel.Width = 221
       EditLabel.Height = 23
       EditLabel.Caption = 'Puffer valve speed (0-255)'
-      TabOrder = 6
+      TabOrder = 4
       Text = '-1'
       OnKeyDown = updateParameter
       Value = -1

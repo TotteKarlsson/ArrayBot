@@ -55,7 +55,7 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 
 	//Camera rendering mode
     mRenderMode = IS_RENDER_FIT_TO_WINDOW;
-	mArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
+	mLightsArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
     gLogger.setLogLevel(mLogLevel);
 }
 
@@ -127,7 +127,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	updateShotsLB();
 
 	//Try to connect to the arduino server..
-	mArduinoClient.connect(50000);
+	mLightsArduinoClient.connect(50000);
 
 	//Setup sounds
 	mGetReadyForZeroCutSound.create(this->Handle);
@@ -667,12 +667,12 @@ void __fastcall TMainForm::mFrontBackLEDBtnClick(TObject *Sender)
 	TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
     if(b == mFrontBackLEDBtn)
     {
-    	mArduinoClient.toggleLED();
+    	mLightsArduinoClient.toggleLED();
     }
 
     if(b == mToggleCoaxBtn)
     {
-    	mArduinoClient.toggleCoax();
+    	mLightsArduinoClient.toggleCoax();
     }
 }
 
@@ -685,21 +685,21 @@ void __fastcall TMainForm::LightTBChange(TObject *Sender)
     	int nr = tb->Position;
         stringstream s;
         s<<"SET_FRONTLED_INTENSITY="<<nr;
-        mArduinoClient.request(s.str());
+        mLightsArduinoClient.request(s.str());
     }
     else if(tb == mBackLEDTB)
     {
     	int nr = tb->Position;
         stringstream s;
         s<<"SET_BACKLED_INTENSITY="<<nr;
-        mArduinoClient.request(s.str());
+        mLightsArduinoClient.request(s.str());
     }
     else if(tb == mCoaxTB)
     {
     	int nr = tb->Position;
         stringstream s;
         s<<"SET_COAX_INTENSITY="<<nr;
-        mArduinoClient.request(s.str());
+        mLightsArduinoClient.request(s.str());
     }
 }
 

@@ -14,10 +14,7 @@ ArduinoServer::ArduinoServer(int portNumber)
 IPCServer(portNumber, "ARDUINO_SERVER", createArduinoIPCReceiver),
 mPufferArduino(-1),
 mLightsArduino(-1),
-mSectionCount(0),
-mDesiredRibbonLength(10),
-mAutoPuff(false),
-mAutoZeroCut(false),
+mRibbonLengthController(*this),
 mLEDLightONLine(3),
 mLEDLightOFFLine(4),
 mCoaxLightONLine(1),
@@ -37,6 +34,11 @@ ArduinoServer::~ArduinoServer()
     mLightsArduino.assignSerialMessageReceivedCallBack(NULL);
 }
 
+void ArduinoServer::assignOnUpdateCallBack(OnMessageUpdateCB cb)
+{
+	onMessageUpdateCB = cb;
+}
+
 bool ArduinoServer::shutDown()
 {
     IPCServer::shutDown();
@@ -49,7 +51,7 @@ bool ArduinoServer::shutDown()
 
 void ArduinoServer::enableAutoPuff()
 {
-	mAutoPuff = true;
+	mRibbonLengthController.enableAutoPuff();
     stringstream msg;
     msg <<"AUTO_PUFF=true";
    	updateClients(msg.str());
@@ -57,7 +59,7 @@ void ArduinoServer::enableAutoPuff()
 
 void ArduinoServer::disableAutoPuff()
 {
-	mAutoPuff = false;
+	mRibbonLengthController.disableAutoPuff();
     stringstream msg;
     msg <<"AUTO_PUFF=false";
    	updateClients(msg.str());
@@ -65,7 +67,7 @@ void ArduinoServer::disableAutoPuff()
 
 void ArduinoServer::enableAutoZeroCut()
 {
-	mAutoZeroCut = true;
+	mRibbonLengthController.enableAutoZeroCut();
     stringstream msg;
     msg <<"AUTO_ZERO_CUT=true";
    	updateClients(msg.str());
@@ -73,7 +75,7 @@ void ArduinoServer::enableAutoZeroCut()
 
 void ArduinoServer::disableAutoZeroCut()
 {
-	mAutoZeroCut = false;
+	mRibbonLengthController.disableAutoZeroCut();
     stringstream msg;
     msg <<"AUTO_ZERO_CUT=false";
    	updateClients(msg.str());
@@ -93,21 +95,21 @@ void ArduinoServer::updateClients(const string& msg)
 void ArduinoServer::broadcastStatus()
 {
 	//These are all status messages possible
-    //A client typically call this one once, to sync their UI
+    //A client may call this one in order to sync their UI
     stringstream msg;
-    msg <<"SECTION_COUNT="<<mSectionCount;
+    msg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
    	updateClients(msg.str());
 
     msg.str("");
-    msg <<"DESIRED_RIBBON_LENGTH="<<mDesiredRibbonLength;
+    msg <<"DESIRED_RIBBON_LENGTH="<<mRibbonLengthController.getDesiredRibbonLength();
    	updateClients(msg.str());
 
     msg.str("");
-    msg <<"AUTO_PUFF="<<toString(mAutoPuff);
+    msg <<"AUTO_PUFF="<<toString(mRibbonLengthController.getAutoPuffSetting());
    	updateClients(msg.str());
 
     msg.str("");
-    msg <<"AUTO_ZERO_CUT="<<toString(mAutoZeroCut);
+    msg <<"AUTO_ZERO_CUT="<<toString(mRibbonLengthController.getAutoZeroCutSetting());
    	updateClients(msg.str());
 }
 
@@ -118,6 +120,7 @@ void ArduinoServer::sensorMessageReceived(const string& msg)
 
 //This is called from the arduino devices class upon receiving
 //a message from the arduino thread over the serial port
+//Socket clients are updated using the updateClients funtion
 void ArduinoServer::pufferMessageReceived(const string& msg)
 {
 	Log(lDebug5) << "Handling puffer message: "<<msg;
@@ -134,110 +137,33 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
     }
     else if (msg == "HALL_SENSOR=HIGH")
     {
-        mSectionCount++;
-    	if(mAutoPuff)
-    	{
-        	if(mSectionCount == mDesiredRibbonLength - 2)
-            {
-                stringstream msg;
-        		msg <<"GET_READY_FOR_ZERO_CUT_1";
-				updateClients(msg.str());
-            }
-
-        	else if(mSectionCount == mDesiredRibbonLength - 1)
-            {
-                stringstream msg;
-        		msg <<"GET_READY_FOR_ZERO_CUT_2";
-				updateClients(msg.str());
-            }
-
-        	else if(mSectionCount == mDesiredRibbonLength && mAutoZeroCut == true)
-            {
-                stringstream msg;
-        		msg <<"SET_ZERO_CUT";
-                setZeroCut();
-				updateClients(msg.str());
-            }
-
-        	if(mSectionCount >= mDesiredRibbonLength)
-        	{
-            	try
-                {
-        			enablePuffer();
-                }
-                catch(...)
-                {
-                	Log(lError) << "SuperError";
-                }
-				mSectionCount = 0;
-                stringstream msg;
-
-        		msg <<"RESTORE_FROM_ZERO_CUT";
-				updateClients(msg.str());
-            }
-        }
-        else
-        {
-           ;
-        }
+        mRibbonLengthController.check();
+    	mRibbonLengthController.incrementSectionCount();
 
         stringstream msg;
-        msg <<"SECTION_COUNT="<<mSectionCount;
+        msg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
 		updateClients(msg.str());
     }
 }
 
-void ArduinoServer::setPuffAfterSectionCount(int val)
-{
-	mDesiredRibbonLength = val;
-    stringstream msg;
-    msg <<"DESIRED_RIBBON_LENGTH="<<mDesiredRibbonLength;
-	updateClients(msg.str());
-}
-
-bool ArduinoServer::setZeroCut()
-{
-	Log(lInfo) << "Requesting Zero Cut";
-	bool res;
-   	//bool res = mPufferArduino.setCutPreset(1);
-	//	mPufferArduino.setCutPreset(1);
-	IPCMessage msg(-1, "SET_CUT_PRESET=1");
-
-    res = postIPCMessage(msg);
-	return res;
-}
-
-bool ArduinoServer::puff()
-{
-	Log(lInfo) << "Sending puff command";
-    bool res = mPufferArduino.send("p");
-    if(res)
-    {
-    	try
-        {
-    		resetSectionCount();
-        }
-        catch(...)
-        {
-        	Log(lError) << "Bad stuff..";
-        }
-    }
-	return res;
-}
-
-void ArduinoServer::resetSectionCount()
-{
-	mSectionCount = 0;
-    stringstream msg;
-    msg <<"SECTION_COUNT="<<mSectionCount;
-	updateClients(msg.str());
-}
-
-bool ArduinoServer::enablePuffer()
-{
-	Log(lInfo) << "Sending puffer enabled command";
-	return mPufferArduino.send("e");
-}
+//void ArduinoServer::setPuffAfterSectionCount(int val)
+//{
+//	mDesiredRibbonLength = val;
+//    stringstream msg;
+//    msg <<"DESIRED_RIBBON_LENGTH="<<mDesiredRibbonLength;
+//	updateClients(msg.str());
+//}
+//
+//bool ArduinoServer::setZeroCut()
+//{
+//	Log(lInfo) << "Requesting Zero Cut";
+//	bool res;
+//	IPCMessage msg(-1, "SET_CUT_PRESET=1");
+//
+//    res = postIPCMessage(msg);
+//	return res;
+//}
+//
 
 bool ArduinoServer::turnLEDLightOn()
 {
@@ -293,7 +219,10 @@ bool ArduinoServer::toggleCoax()
     }
 }
 
-//Handle incoming CLIENT text messages over the socket
+//Handle incoming client requests over the socket
+//These messages are handled in a thread
+//Depending on message, a response may be sent using the
+//updateClients function
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
     if(msg.isPacked())
@@ -304,17 +233,15 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     if(compareStrings(msg, "RESET_SECTION_COUNT"))
     {
     	Log(lInfo) << "Resetting section counter";
-        resetSectionCount();
-    }
-    else if(compareStrings(msg, "GET_STATUS"))
-    {
-    	Log(lInfo) << "Resetting section counter";
-        broadcastStatus();
+        mRibbonLengthController.resetSectionCount();
+	    stringstream smsg;
+	    smsg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
+		updateClients(smsg.str());
     }
     else if(compareStrings(msg, "ENABLE_PUFFER"))
     {
     	Log(lInfo) << "Enabling auto puffing";
-        enablePuffer();
+        mPufferArduino.enablePuffer();
     }
     else if(compareStrings(msg, "ENABLE_AUTO_PUFF"))
     {
@@ -326,19 +253,19 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Disabling auto puffing";
         disableAutoPuff();
     }
-    else if(startsWith("DESIRED_RIBBON_LENGTH", msg))
+    else if(startsWith("SET_DESIRED_RIBBON_LENGTH", msg))
     {
-    	Log(lInfo) << "Setting puff after section count";
+    	Log(lInfo) << "Setting desired ribbon length";
 		StringList l(msg,'=');
-        if(l.size()==2)
+        if(l.size() == 2)
         {
-        	setPuffAfterSectionCount(toInt(l[1]));
+        	mRibbonLengthController.setDesiredRibbonLength(toInt(l[1]));
         }
     }
     else if(startsWith("PUFF", msg))
     {
     	Log(lInfo) << "Executing puffer";
-	    puff();
+	    mRibbonLengthController.manualPuff();
     }
     else if(startsWith("TOGGLE_LED_LIGHT", msg))
     {
@@ -392,9 +319,23 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	mPufferArduino.setCutPreset(toInt(sl[1]));
         }
     }
+    else if(startsWith("SET_DELTAY", msg))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+			Log(lInfo) << "Request DeltaY("<<sl[1]<<")";
+        	mPufferArduino.setDeltaY(toInt(sl[1]));
+        }
+    }
+    else if(compareStrings(msg, "GET_STATUS"))
+    {
+    	Log(lInfo) << "Broadcast status";
+        broadcastStatus();
+    }
     else
     {
-    	Log(lError) << "UNHANDLED ARDUINO MESSAGE: "<<msg;
+    	Log(lError) << "UNHANDLED ARDUINO SERVER MESSAGE: "<<msg;
     }
 
     return msg.IsProcessed();
