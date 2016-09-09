@@ -23,7 +23,7 @@ using namespace mtk;
 using namespace std;
 
 extern string       gLogFileLocation            = "";
-extern string       gLogFileName                = "arduino_controller.log";
+extern string       gLogFileName                = "ArduinoController.log";
 extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\arduino_controller\\0.5.0";
 extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 static HWND         gOtherAppWindow             = NULL;

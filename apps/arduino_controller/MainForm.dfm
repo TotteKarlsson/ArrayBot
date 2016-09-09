@@ -227,10 +227,6 @@ object Main: TMain
         object TabSheet3: TTabSheet
           Caption = 'Lights and Sensors'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object mFrontBackLEDBtn: TArrayBotButton
             Left = 18
             Top = 51
@@ -257,10 +253,6 @@ object Main: TMain
         object TabSheet2: TTabSheet
           Caption = 'Board Settings'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 0
             Top = 0

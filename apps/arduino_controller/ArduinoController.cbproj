@@ -4,7 +4,7 @@
         <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
-        <MainSource>arduino_controller.cpp</MainSource>
+        <MainSource>ArduinoController.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -120,7 +120,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="arduino_controller.cpp">
+        <CppCompile Include="ArduinoController.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
         <CppCompile Include="forms\TAboutArduinoControllerForm.cpp">
@@ -197,7 +197,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <BorlandProject>
             <CPlusPlusBuilder.Personality>
                 <Source>
-                    <Source Name="MainSource">arduino_controller.cpp</Source>
+                    <Source Name="MainSource">ArduinoController.cpp</Source>
                 </Source>
                 <VersionInfo>
                     <VersionInfo Name="IncludeVerInfo">False</VersionInfo>

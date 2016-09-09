@@ -115,9 +115,12 @@
             <BuildOrder>2</BuildOrder>
         </CppCompile>
         <CppCompile Include="TSettingsForm.cpp">
-            <BuildOrder>4</BuildOrder>
+            <Form>SettingsForm</Form>
+            <DependentOn>TSettingsForm.h</DependentOn>
+            <BuildOrder>3</BuildOrder>
         </CppCompile>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="TSettingsForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

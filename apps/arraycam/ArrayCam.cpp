@@ -13,9 +13,10 @@ using std::string;
 using namespace mtk;
 
 USEFORM("TMainForm.cpp", MainForm);
+USEFORM("TSettingsForm.cpp", SettingsForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
-extern string       gLogFileName                = "array_cam.log";
+extern string       gLogFileName                = "ArrayCam.log";
 extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\array_cam\\0.5.0";
 extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 
@@ -30,6 +31,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		setupLogging();
 		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->CreateForm(__classid(TMainForm), &MainForm);
+		Application->CreateForm(__classid(TSettingsForm), &SettingsForm);
 		Application->Run();
 	}
 	catch (Exception &exception)
