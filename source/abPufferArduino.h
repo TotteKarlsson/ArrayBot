@@ -17,9 +17,9 @@ class AB_CORE PufferArduino : public ArduinoDevice
 
 		bool					manualPuff();
 
-
         bool					setSimualorSpeed(int ms);
-		bool					setCutPreset(int preset);
+		bool					setCutThicknessPreset(int preset);
+        int						getLastCutThicknessPreset();
 		bool					setDeltaY(int dy);
 
     protected:

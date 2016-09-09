@@ -38,18 +38,23 @@ class AB_CORE RibbonLengthController : public ABObject
         void								disableAutoPuff();
         bool								getAutoPuffSetting();
 
-        void								enablePuffer();
+        bool								enablePuffer();
+        bool								disablePuffer();
         void								enableAutoZeroCut();
         void								disableAutoZeroCut();
         bool								getAutoZeroCutSetting();
+
+        void								prepareForNewRibbon();
 
         int									getDesiredRibbonLength();
         void								setDesiredRibbonLength(int r);
 
 	protected:
     	ArduinoServer&			            mArduinoServer;
+        bool								mPrepareForNewRibbon;
 
- 		int									mCutThicknessPreset;
+        									//!Use this to restore from 0 cut thickness prest
+        int									mLastCutThicknessPreset;
 
 									        //!The section count is compared to the mDesiredRibbonLength
                                             //used for emitting a puff

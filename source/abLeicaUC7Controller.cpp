@@ -7,11 +7,11 @@ using namespace mtk;
 
 LeicaUC7Controller::LeicaUC7Controller(PufferArduino& p)
 :
-mPufferArduino(p)
+mPufferArduino(p),
+mLastSetCutThicknessPreset(-1)
 {}
 
-
-bool LeicaUC7Controller::setCutPreset(int cutPreset)
+bool LeicaUC7Controller::setCutThicknessPreset(int cutPreset)
 {
 	//There are five cut presets, 1-5. Requests for any is
     //send trough the puffer Arduino
@@ -27,6 +27,7 @@ bool LeicaUC7Controller::setCutPreset(int cutPreset)
     {
     	Log(lError) << "Failed Request: P"<<cutPreset;
     }
+    mLastSetCutThicknessPreset = cutPreset;
     return res;
 }
 

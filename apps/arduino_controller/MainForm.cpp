@@ -350,8 +350,7 @@ void __fastcall TMain::mSetPresetCutBtnClick(TObject *Sender)
     if(indx != -1)
     {
         stringstream msg;
-        msg <<"SET_CUT_PRESET="<<indx+1;
-
+        msg <<"SET_CUT_PRESET="<<indx + 1;
         IPCMessage ipc_msg(-1, msg.str());
         mArduinoServer.postIPCMessage(ipc_msg);
     }
@@ -360,4 +359,16 @@ void __fastcall TMain::mSetPresetCutBtnClick(TObject *Sender)
     	Log(lError) <<"Error setting cut preset!";
     }
 }
+
+////---------------------------------------------------------------------------
+void __fastcall TMain::mStartNewRibbonButtonClick(TObject *Sender)
+{
+	//Tell Arduino server to start new Ribbon
+    stringstream msg;
+    msg <<"START_NEW_RIBBON";
+    IPCMessage ipc_msg(-1, msg.str());
+    mArduinoServer.postIPCMessage(ipc_msg);
+
+}
+
 

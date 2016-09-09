@@ -13,9 +13,14 @@ ArduinoDevice(portNr, baudRate),
 mTheLeica(*this)
 {}
 
-bool PufferArduino::setCutPreset(int preset)
+bool PufferArduino::setCutThicknessPreset(int preset)
 {
-  	return mTheLeica.setCutPreset(preset);
+  	return mTheLeica.setCutThicknessPreset(preset);
+}
+
+int	PufferArduino::getLastCutThicknessPreset()
+{
+	return mTheLeica.getLastSetCutThicknessPreset();
 }
 
 bool PufferArduino::setDeltaY(int dy)
@@ -38,7 +43,8 @@ bool PufferArduino::enablePuffer()
 
 bool PufferArduino::disablePuffer()
 {
-	return false;
+	Log(lInfo) << "Sending puffer disable request";
+	return send("a");
 }
 
 bool PufferArduino::enableDisableSimulator(bool flag)

@@ -108,6 +108,7 @@ class TMain : public TRegistryForm
 	TArrayBotButton *mSetPresetCutBtn;
 	TComboBox *mLeicaCutThicknessLB;
 	TLabel *Label1;
+	TArrayBotButton *mStartNewRibbonButton;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -129,6 +130,7 @@ class TMain : public TRegistryForm
 	void __fastcall mSetZeroCutBtnClick(TObject *Sender);
 	void __fastcall mSetPresetCutBtnClick(TObject *Sender);
 	void __fastcall mAutoZeroCutCBClick(TObject *Sender);
+	void __fastcall mStartNewRibbonButtonClick(TObject *Sender);
 
 
     private:

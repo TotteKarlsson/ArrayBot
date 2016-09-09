@@ -176,6 +176,12 @@ void processByte(char ch)
             Serial << "[PUFFER_ENABLED]";
         break;
 
+        //Disable puffing. 
+        case 'a': 
+            gEnablePuffer = false;
+            Serial << "[PUFFER_DISABLED]";
+        break;
+
         //Set off the puffer
         case 'p': 
             puff(gPuffDuration);

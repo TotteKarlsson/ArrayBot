@@ -54,7 +54,7 @@ void ArduinoServer::enableAutoPuff()
 	mRibbonLengthController.enableAutoPuff();
     stringstream msg;
     msg <<"AUTO_PUFF=true";
-   	updateClients(msg.str());
+   	notifyClients(msg.str());
 }
 
 void ArduinoServer::disableAutoPuff()
@@ -62,7 +62,7 @@ void ArduinoServer::disableAutoPuff()
 	mRibbonLengthController.disableAutoPuff();
     stringstream msg;
     msg <<"AUTO_PUFF=false";
-   	updateClients(msg.str());
+   	notifyClients(msg.str());
 }
 
 void ArduinoServer::enableAutoZeroCut()
@@ -70,7 +70,7 @@ void ArduinoServer::enableAutoZeroCut()
 	mRibbonLengthController.enableAutoZeroCut();
     stringstream msg;
     msg <<"AUTO_ZERO_CUT=true";
-   	updateClients(msg.str());
+   	notifyClients(msg.str());
 }
 
 void ArduinoServer::disableAutoZeroCut()
@@ -78,10 +78,10 @@ void ArduinoServer::disableAutoZeroCut()
 	mRibbonLengthController.disableAutoZeroCut();
     stringstream msg;
     msg <<"AUTO_ZERO_CUT=false";
-   	updateClients(msg.str());
+   	notifyClients(msg.str());
 }
 
-void ArduinoServer::updateClients(const string& msg)
+void ArduinoServer::notifyClients(const string& msg)
 {
 	//TODO: There is a problem with this...
     if(onMessageUpdateCB)
@@ -98,29 +98,29 @@ void ArduinoServer::broadcastStatus()
     //A client may call this one in order to sync their UI
     stringstream msg;
     msg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
-   	updateClients(msg.str());
+   	notifyClients(msg.str());
 
     msg.str("");
     msg <<"DESIRED_RIBBON_LENGTH="<<mRibbonLengthController.getDesiredRibbonLength();
-   	updateClients(msg.str());
+   	notifyClients(msg.str());
 
     msg.str("");
     msg <<"AUTO_PUFF="<<toString(mRibbonLengthController.getAutoPuffSetting());
-   	updateClients(msg.str());
+   	notifyClients(msg.str());
 
     msg.str("");
     msg <<"AUTO_ZERO_CUT="<<toString(mRibbonLengthController.getAutoZeroCutSetting());
-   	updateClients(msg.str());
+   	notifyClients(msg.str());
 }
 
 void ArduinoServer::sensorMessageReceived(const string& msg)
 {
-	updateClients(msg);
+	notifyClients(msg);
 }
 
 //This is called from the arduino devices class upon receiving
 //a message from the arduino thread over the serial port
-//Socket clients are updated using the updateClients funtion
+//Socket clients are updated using the notifyClients funtion
 void ArduinoServer::pufferMessageReceived(const string& msg)
 {
 	Log(lDebug5) << "Handling puffer message: "<<msg;
@@ -137,33 +137,17 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
     }
     else if (msg == "HALL_SENSOR=HIGH")
     {
+    	if(mPufferArduino.getLastCutThicknessPreset() != 1)
+        {
+    		mRibbonLengthController.incrementSectionCount();
+        }
         mRibbonLengthController.check();
-    	mRibbonLengthController.incrementSectionCount();
 
         stringstream msg;
         msg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
-		updateClients(msg.str());
+		notifyClients(msg.str());
     }
 }
-
-//void ArduinoServer::setPuffAfterSectionCount(int val)
-//{
-//	mDesiredRibbonLength = val;
-//    stringstream msg;
-//    msg <<"DESIRED_RIBBON_LENGTH="<<mDesiredRibbonLength;
-//	updateClients(msg.str());
-//}
-//
-//bool ArduinoServer::setZeroCut()
-//{
-//	Log(lInfo) << "Requesting Zero Cut";
-//	bool res;
-//	IPCMessage msg(-1, "SET_CUT_PRESET=1");
-//
-//    res = postIPCMessage(msg);
-//	return res;
-//}
-//
 
 bool ArduinoServer::turnLEDLightOn()
 {
@@ -222,26 +206,31 @@ bool ArduinoServer::toggleCoax()
 //Handle incoming client requests over the socket
 //These messages are handled in a thread
 //Depending on message, a response may be sent using the
-//updateClients function
+//notifyClients function
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
     if(msg.isPacked())
     {
         msg.unPack();
     }
-
     if(compareStrings(msg, "RESET_SECTION_COUNT"))
     {
     	Log(lInfo) << "Resetting section counter";
         mRibbonLengthController.resetSectionCount();
+
 	    stringstream smsg;
 	    smsg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
-		updateClients(smsg.str());
+		notifyClients(smsg.str());
     }
     else if(compareStrings(msg, "ENABLE_PUFFER"))
     {
     	Log(lInfo) << "Enabling auto puffing";
         mPufferArduino.enablePuffer();
+    }
+    else if(compareStrings(msg, "DISABLE_PUFFER"))
+    {
+    	Log(lInfo) << "Disable auto puffing";
+        mPufferArduino.disablePuffer();
     }
     else if(compareStrings(msg, "ENABLE_AUTO_PUFF"))
     {
@@ -266,6 +255,11 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     {
     	Log(lInfo) << "Executing puffer";
 	    mRibbonLengthController.manualPuff();
+    }
+    else if(startsWith("START_NEW_RIBBON", msg))
+    {
+    	Log(lInfo) << "Starting new ribbon";
+		mRibbonLengthController.prepareForNewRibbon();
     }
     else if(startsWith("TOGGLE_LED_LIGHT", msg))
     {
@@ -316,7 +310,8 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         if(sl.size() == 2)
         {
 			Log(lInfo) << "Request Cut Preset ("<<sl[1]<<")";
-        	mPufferArduino.setCutPreset(toInt(sl[1]));
+        	mPufferArduino.setCutThicknessPreset(toInt(sl[1]));
+            mRibbonLengthController.setCutThicknessPreset(toInt(sl[1]));
         }
     }
     else if(startsWith("SET_DELTAY", msg))

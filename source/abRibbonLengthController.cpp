@@ -10,11 +10,12 @@ using namespace std;
 RibbonLengthController::RibbonLengthController(ArduinoServer& s)
 :
 	mArduinoServer(s),
-    mCutThicknessPreset(0),
     mSectionCount(0),
     mDesiredRibbonLength(0),
     mAutoPuff(false),
-    mAutoZeroCut(false)
+    mAutoZeroCut(false),
+    mPrepareForNewRibbon(false),
+    mLastCutThicknessPreset(1)
 {}
 
 RibbonLengthController::~RibbonLengthController()
@@ -22,51 +23,66 @@ RibbonLengthController::~RibbonLengthController()
 
 void RibbonLengthController::check()
 {
+    if(mPrepareForNewRibbon)
+    {
+        disablePuffer();
+        resetSectionCount();
+        setCutThicknessPreset(mLastCutThicknessPreset);
+
+        stringstream msg;
+    	msg <<"SET_CUT_PRESET="<<mLastCutThicknessPreset;
+	    IPCMessage ipc_msg(-1, msg.str());
+    	mArduinoServer.postIPCMessage(ipc_msg);
+
+        mPrepareForNewRibbon = false;
+        return;
+    }
+
     if(mAutoPuff)
     {
+        stringstream msg;
         if(mSectionCount == mDesiredRibbonLength - 2)
         {
-            stringstream msg;
             msg <<"GET_READY_FOR_ZERO_CUT_1";
-            mArduinoServer.updateClients(msg.str());
+            mArduinoServer.notifyClients(msg.str());
         }
-
+        //Next stroke creates ribbon of desired length
         else if(mSectionCount == mDesiredRibbonLength - 1)
         {
-            stringstream msg;
             msg <<"GET_READY_FOR_ZERO_CUT_2";
-            mArduinoServer.updateClients(msg.str());
+            mArduinoServer.notifyClients(msg.str());
         }
-
         else if(mSectionCount == mDesiredRibbonLength && mAutoZeroCut == true)
         {
-            stringstream msg;
-            msg <<"SET_ZERO_CUT";
             setZeroCut();
-            mArduinoServer.updateClients(msg.str());
+            enablePuffer();
+            msg <<"RIBBON_IS_SEPARATING";
+            mArduinoServer.notifyClients(msg.str());
         }
-
-        if(mSectionCount >= mDesiredRibbonLength)
+        else if(mSectionCount >= mDesiredRibbonLength)
         {
-            try
-            {
-                enablePuffer();
-            }
-            catch(...)
-            {
-                Log(lError) << "SuperError";
-            }
-            mSectionCount = 0;
-            stringstream msg;
-
             msg <<"RESTORE_FROM_ZERO_CUT";
-            mArduinoServer.updateClients(msg.str());
+            mArduinoServer.notifyClients(msg.str());
         }
     }
-    else
+}
+
+bool RibbonLengthController::setCutThicknessPreset(int preset)
+{
+	if(preset != 1)
     {
-       ;
+		mLastCutThicknessPreset = preset;
     }
+
+	return true;
+}
+
+bool RibbonLengthController::setZeroCut()
+{
+    stringstream msg;
+    msg <<"SET_CUT_PRESET="<<1;
+    IPCMessage ipc_msg(-1, msg.str());
+    return mArduinoServer.postIPCMessage(ipc_msg);
 }
 
 bool RibbonLengthController::manualPuff()
@@ -77,21 +93,6 @@ bool RibbonLengthController::manualPuff()
         resetSectionCount();
     }
 	return res;
-}
-
-bool RibbonLengthController::setZeroCut()
-{
-	return mArduinoServer.mPufferArduino.setCutPreset(1);
-}
-
-bool RibbonLengthController::setCutThicknessPreset(int preset)
-{
-	mCutThicknessPreset = preset;
-}
-
-int	RibbonLengthController::getCutThicknessPreset()
-{
-	return mCutThicknessPreset;
 }
 
 int	RibbonLengthController::getSectionCount()
@@ -129,9 +130,25 @@ bool RibbonLengthController::getAutoPuffSetting()
 	return mAutoPuff;
 }
 
-void RibbonLengthController::enablePuffer()
+void RibbonLengthController::prepareForNewRibbon()
 {
-	mArduinoServer.mPufferArduino.enablePuffer();
+	mPrepareForNewRibbon = true;
+}
+
+bool RibbonLengthController::enablePuffer()
+{
+    stringstream msg;
+    msg <<"ENABLE_PUFFER";
+    IPCMessage ipc_msg(-1, msg.str());
+    return mArduinoServer.postIPCMessage(ipc_msg);
+}
+
+bool RibbonLengthController::disablePuffer()
+{
+    stringstream msg;
+    msg <<"DISABLE_PUFFER";
+    IPCMessage ipc_msg(-1, msg.str());
+    return mArduinoServer.postIPCMessage(ipc_msg);
 }
 
 void RibbonLengthController::enableAutoZeroCut()
@@ -159,7 +176,7 @@ void RibbonLengthController::setDesiredRibbonLength(int n)
 	mDesiredRibbonLength = n;
     stringstream msg;
     msg <<"DESIRED_RIBBON_LENGTH="<<n;
-    mArduinoServer.updateClients(msg.str());
+    mArduinoServer.notifyClients(msg.str());
 }
 
 

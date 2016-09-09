@@ -100,7 +100,7 @@ object Main: TMain
             Left = 3
             Top = 85
             Width = 303
-            Height = 156
+            Height = 268
             Caption = 'Ribbon Separation'
             TabOrder = 0
             object mAutoPuffCB: TPropertyCheckBox
@@ -128,6 +128,16 @@ object Main: TMain
               Caption = 'Enable Zero Cut'
               TabOrder = 2
               OnClick = mAutoZeroCutCBClick
+            end
+            object mStartNewRibbonButton: TArrayBotButton
+              Left = 16
+              Top = 152
+              Width = 257
+              Height = 97
+              Caption = 'Start new ribbon'
+              TabOrder = 3
+              OnClick = mStartNewRibbonButtonClick
+              SoundID = 'BUTTON_CLICK_4'
             end
           end
           object GroupBox6: TGroupBox
@@ -509,8 +519,8 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 44
-    Top = 384
+    Left = 260
+    Top = 400
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
@@ -521,7 +531,7 @@ object Main: TMain
     Enabled = False
     Interval = 300
     OnTimer = UIUpdateTimerTimer
-    Left = 172
-    Top = 384
+    Left = 260
+    Top = 464
   end
 end
