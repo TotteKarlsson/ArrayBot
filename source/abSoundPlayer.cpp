@@ -25,7 +25,7 @@ bool SoundPlayer::create(HWND hWnd)
 bool SoundPlayer::stop()
 {
 	mPlayingTimer.stop();
-	mTheSound.Stop();
+	return mTheSound.Stop();
 }
 
 void SoundPlayer::onTimer()

@@ -25,9 +25,9 @@ class AB_CORE DirectSound : public ABObject
 
         bool			            IsValid() const;
         bool			            Play(DWORD dwStartPosition = 0, bool bLoop = FALSE);
-        void			            Stop();
-        void			            Pause();
-        void			            Continue();
+        bool			            Stop();
+        bool			            Pause();
+        bool			            Continue();
         DirectSound &	            EnableSound(bool bEnable = true);
         bool						IsEnabled() const {return mEnabled;}
 

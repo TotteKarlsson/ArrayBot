@@ -297,27 +297,30 @@ bool DirectSound::Play(DWORD dwStartPosition, bool loop)
     return true;
 }
 
-void DirectSound::Stop()
+bool DirectSound::Stop()
 {
 	if( IsValid() )
     {
 		mDirectSoundBuffer->Stop();
+        return true;
     }
+	return false;
 }
 
-void DirectSound::Pause()
+bool DirectSound::Pause()
 {
-	Stop();
+	return Stop();
 }
 
-void DirectSound::Continue()
+bool DirectSound::Continue()
 {
 	if(IsValid())
     {
 		DWORD dwPlayCursor, dwWriteCursor;
 		mDirectSoundBuffer->GetCurrentPosition(&dwPlayCursor, &dwWriteCursor);
-		Play(dwPlayCursor);
+		return Play(dwPlayCursor);
 	}
+    return false;
 }
 
 bool DirectSound::IsValid() const

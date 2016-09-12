@@ -119,8 +119,8 @@ int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam)
 	    return TRUE;
     }
 
-	TCHAR* buffer = new TCHAR[length + 1];
-	GetWindowText(hwnd, buffer, length + 1);
+	vector<TCHAR> buffer(length + 1);
+	GetWindowText(hwnd, &buffer[0], length + 1);
 
     string s(stdstr(buffer));
 	if(startsWith("ArrayBot", s))
@@ -128,13 +128,11 @@ int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam)
 		// do something with hwnd here
 		gOtherAppWindow = hwnd;
         SetFocus(hwnd);
-        delete buffer;
 
         //Stop enumerating..
 		return false;
 	}
 
-    delete buffer;
 	return true;
 }
 

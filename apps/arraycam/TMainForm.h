@@ -75,11 +75,6 @@ class TMainForm  : public TRegistryForm
 	TArrayBotButton *mSnapShotBtn;
 	TArrayBotButton *mToggleCoaxBtn;
 	TArrayBotButton *mToggleLogPanelBtn;
-	TButton *Button1;
-	TButton *goButton;
-	TButton *restoreBtn;
-	TButton *stopBtn;
-	TPanel *Panel3;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);

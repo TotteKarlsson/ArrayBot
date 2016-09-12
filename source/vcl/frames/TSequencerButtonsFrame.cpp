@@ -32,6 +32,8 @@ void TSequencerButtonsFrame::update()
 	ProcessSequence*  current = pss.getCurrent();
     ProcessSequence*  ps = pss.getFirst();
 
+    int nrOfButtons = pss.count();
+
     while(ps)
     {
         TSpeedButton* btn = new TSpeedButton(this);
@@ -43,7 +45,7 @@ void TSequencerButtonsFrame::update()
         btn->OnClick = runSequenceBtnClick;
         btn->Font->Size = 14;
         ps = pss.getNext();
-        btn->Width = this->Height;
+        btn->Width = this->Width / nrOfButtons;
     }
 
     //Restore back to the sequence wich was selected

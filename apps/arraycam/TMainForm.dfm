@@ -281,9 +281,6 @@ object MainForm: TMainForm
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
-    DesignSize = (
-      786
-      824)
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -303,56 +300,6 @@ object MainForm: TMainForm
         ParentBackground = False
         TabOrder = 0
         OnDblClick = mCameraStreamPanelDblClick
-      end
-    end
-    object Panel3: TPanel
-      Left = 635
-      Top = 331
-      Width = 121
-      Height = 166
-      Anchors = [akTop, akRight]
-      AutoSize = True
-      Caption = 'Panel3'
-      TabOrder = 1
-      object Button1: TButton
-        Left = 1
-        Top = 1
-        Width = 119
-        Height = 41
-        Align = alTop
-        Caption = 'Ready Sound'
-        TabOrder = 0
-        OnClick = Button1Click
-      end
-      object goButton: TButton
-        Left = 1
-        Top = 42
-        Width = 119
-        Height = 41
-        Align = alTop
-        Caption = 'Go'
-        TabOrder = 1
-        OnClick = Button1Click
-      end
-      object restoreBtn: TButton
-        Left = 1
-        Top = 83
-        Width = 119
-        Height = 41
-        Align = alTop
-        Caption = 'Restore'
-        TabOrder = 2
-        OnClick = Button1Click
-      end
-      object stopBtn: TButton
-        Left = 1
-        Top = 124
-        Width = 119
-        Height = 41
-        Align = alTop
-        Caption = 'Stop'
-        TabOrder = 3
-        OnClick = Button1Click
       end
     end
   end

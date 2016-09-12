@@ -167,7 +167,7 @@ LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
 //---------------------------------------------------------------------------
 bool TMainForm::openCamera()
 {
-	mCamera.openCamera(this->Handle);
+	return	mCamera.openCamera(this->Handle);
 }
 
 //---------------------------------------------------------------------------
@@ -721,22 +721,22 @@ void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
 	TButton* b = dynamic_cast<TButton*>(Sender);
 
-    if(b == Button1)
-    {
-		mGetReadyForZeroCutSound.play();
-    }
-    else if(b == goButton)
-    {
-		mSetZeroCutSound.play();
-    }
-    else if (b == restoreBtn) 
-    {
-		mRestoreFromZeroCutSound.play();
-    }
-    else if (b == stopBtn) 
-    {
-        stopSounds();
-    }
+//    if(b == Button1)
+//    {
+//		mGetReadyForZeroCutSound.play();
+//    }
+//    else if(b == goButton)
+//    {
+//		mSetZeroCutSound.play();
+//    }
+//    else if (b == restoreBtn)
+//    {
+//		mRestoreFromZeroCutSound.play();
+//    }
+//    else if (b == stopBtn)
+//    {
+//        stopSounds();
+//    }
 }
 
 void TMainForm::stopSounds()
