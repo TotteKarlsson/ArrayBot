@@ -55,11 +55,11 @@ object ArduinoBoardFrame: TArduinoBoardFrame
     object mSendMSGE: TSTDStringLabeledEdit
       Left = 24
       Top = 136
-      Width = 81
+      Width = 216
       Height = 31
-      EditLabel.Width = 43
+      EditLabel.Width = 134
       EditLabel.Height = 23
-      EditLabel.Caption = 'Send'
+      EditLabel.Caption = 'Send Command'
       TabOrder = 3
       Text = 'i'
       OnKeyDown = mSendMSGEKeyDown
@@ -70,6 +70,6 @@ object ArduinoBoardFrame: TArduinoBoardFrame
     Interval = 500
     OnTimer = Timer1Timer
     Left = 224
-    Top = 112
+    Top = 96
   end
 end

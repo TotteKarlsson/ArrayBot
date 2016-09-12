@@ -33,8 +33,8 @@ bool LeicaUC7Controller::setCutThicknessPreset(int cutPreset)
 
 bool LeicaUC7Controller::setDeltaY(int dy)
 {
-	//There are five cut presets, 1-5. Requests for any is
-    //send trough the puffer Arduino
+	//The deltaY sets the step for the
+    //mouse when moving between presets
     stringstream msg;
     msg <<"Y"<<dy<<'\n';
 

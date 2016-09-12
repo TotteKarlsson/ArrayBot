@@ -7,15 +7,14 @@ using namespace std;
 PufferArduinoClient::PufferArduinoClient()
 :
 ArduinoClient()
-{
-}
+{}
 
 void PufferArduinoClient::resetSectionCounter()
 {
 	request("RESET_SECTION_COUNT");
 }
 
-void PufferArduinoClient::setPuffAfterSectionCount(int count)
+void PufferArduinoClient::setDesiredRibbonLength(int count)
 {
 	stringstream msg;
     msg <<"SET_DESIRED_RIBBON_LENGTH="<<count;
@@ -24,29 +23,42 @@ void PufferArduinoClient::setPuffAfterSectionCount(int count)
 
 void PufferArduinoClient::enableAutoPuff()
 {
-	stringstream msg;
-    msg <<"ENABLE_AUTO_PUFF";
-	request(msg.str());
-}
-
-void PufferArduinoClient::enablePuffer()
-{
-	stringstream msg;
-    msg <<"ENABLE_PUFFER";
-	request(msg.str());
-}
-
-void PufferArduinoClient::puff()
-{
-	stringstream msg;
-    msg <<"PUFF";
-	request(msg.str());
+	request("ENABLE_AUTO_PUFF");
 }
 
 void PufferArduinoClient::disableAutoPuff()
 {
-	stringstream msg;
-    msg <<"DISABLE_AUTO_PUFF";
-	request(msg.str());
+	request("DISABLE_AUTO_PUFF");
 }
 
+void PufferArduinoClient::enablePuffer()
+{
+	request("ENABLE_PUFFER");
+}
+
+void PufferArduinoClient::puff()
+{
+	request("PUFF");
+}
+
+void PufferArduinoClient::enableAutoZeroCut()
+{
+	request("ENABLE_AUTO_ZERO_CUT");
+}
+
+void PufferArduinoClient::disableAutoZeroCut()
+{
+	request("DISABLE_AUTO_ZERO_CUT");
+}
+
+void PufferArduinoClient::startNewRibbon()
+{
+	request("START_NEW_RIBBON");
+}
+
+void PufferArduinoClient::setCutPreset(int preset)
+{
+	stringstream msg;
+    msg <<"SET_CUT_THICKNESS_PRESET="<<preset;
+    request(msg.str());
+}

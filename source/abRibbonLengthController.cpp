@@ -30,10 +30,9 @@ void RibbonLengthController::check()
         setCutThicknessPreset(mLastCutThicknessPreset);
 
         stringstream msg;
-    	msg <<"SET_CUT_PRESET="<<mLastCutThicknessPreset;
+    	msg <<"SET_CUT_THICKNESS_PRESET="<<mLastCutThicknessPreset;
 	    IPCMessage ipc_msg(-1, msg.str());
     	mArduinoServer.postIPCMessage(ipc_msg);
-
         mPrepareForNewRibbon = false;
         return;
     }
@@ -44,26 +43,24 @@ void RibbonLengthController::check()
         if(mSectionCount == mDesiredRibbonLength - 2)
         {
             msg <<"GET_READY_FOR_ZERO_CUT_1";
-            mArduinoServer.notifyClients(msg.str());
         }
         //Next stroke creates ribbon of desired length
         else if(mSectionCount == mDesiredRibbonLength - 1)
         {
             msg <<"GET_READY_FOR_ZERO_CUT_2";
-            mArduinoServer.notifyClients(msg.str());
         }
         else if(mSectionCount == mDesiredRibbonLength && mAutoZeroCut == true)
         {
             setZeroCut();
             enablePuffer();
             msg <<"RIBBON_IS_SEPARATING";
-            mArduinoServer.notifyClients(msg.str());
         }
         else if(mSectionCount >= mDesiredRibbonLength)
         {
             msg <<"RESTORE_FROM_ZERO_CUT";
-            mArduinoServer.notifyClients(msg.str());
         }
+
+        mArduinoServer.notifyClients(msg.str());
     }
 }
 
@@ -80,7 +77,7 @@ bool RibbonLengthController::setCutThicknessPreset(int preset)
 bool RibbonLengthController::setZeroCut()
 {
     stringstream msg;
-    msg <<"SET_CUT_PRESET="<<1;
+    msg <<"SET_CUT_THICKNESS_PRESET=" << 1;
     IPCMessage ipc_msg(-1, msg.str());
     return mArduinoServer.postIPCMessage(ipc_msg);
 }

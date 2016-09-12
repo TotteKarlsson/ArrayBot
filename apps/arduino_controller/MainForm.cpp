@@ -106,9 +106,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	//Setup frames for the Arduinos
 	setupUIFrames();
 	mArduinoServer.broadcastStatus();
-
-//	mGetReadyForZeroCutSound.Create("SHORT_BEEP_2", this->Handle);
-//	mSetZeroCutSound.Create("BUTTON_CLICK_2", this->Handle);
 }
 
 //---------------------------------------------------------------------------
@@ -132,6 +129,7 @@ void __fastcall	TMain::setupUIFrames()
 }
 
 //This callback is called from the arduino server
+//Its purpose is to update the servers UI.
 void TMain::onUpdatesFromArduinoServer(const string& new_msg)
 {
 	struct TLocalArgs
@@ -139,67 +137,35 @@ void TMain::onUpdatesFromArduinoServer(const string& new_msg)
         string msg;
         void __fastcall onMsg()
         {
+            //Parse the message
+        	StringList l(msg, '=');
             if(startsWith("SECTION_COUNT", msg))
             {
-                StringList l(msg, '=');
                 if(l.size() == 2)
                 {
 					Main->mSectionCountLbl->SetNumber(toInt(l[1]));
                 }
-
-                if(Main->mSectionCountLbl->GetValue() == 0 &&  Main->mEnablesoundsCB->Checked)
-                {
-//	   				Main->mSetZeroCutSound.Stop();
-                }
             }
             else if(startsWith("AUTO_PUFF=", msg))
             {
-                //Parse the message
-                StringList l(msg, '=');
                 if(l.size() == 2)
                 {
                     Main->mAutoPuffCB->Checked = (toBool(l[1])) ? true : false;
                 }
             }
+            else if(startsWith("AUTO_ZERO_CUT=", msg))
+            {
+                if(l.size() == 2)
+                {
+                    Main->mAutoZeroCutCB->Checked = (toBool(l[1])) ? true : false;
+                }
+            }
+
             else if(startsWith("DESIRED_RIBBON_LENGTH", msg))
             {
-                //Parse the message
-                StringList l(msg, '=');
                 if(l.size() == 2)
                 {
                     Main->mDesiredRibbonLengthE->setValue(toInt(l[1]));
-                }
-            }
-            else if(startsWith("GET_READY_FOR_ZERO_CUT_1", msg))
-            {
-                if(Main->mEnablesoundsCB->Checked)
-                {
-//					Main->mGetReadyForZeroCutSound.Play(0, false);
-                }
-            }
-            else if(startsWith("GET_READY_FOR_ZERO_CUT_2", msg))
-            {
-                if(Main->mEnablesoundsCB->Checked)
-                {
-//					Main->mGetReadyForZeroCutSound.Play(0, false);
-                }
-            }
-            else if(startsWith("SET_ZERO_CUT", msg))
-            {
-//	            Main->mGetReadyForZeroCutSound.Stop();
-                if(Main->mEnablesoundsCB->Checked)
-                {
-//					Main->mSetZeroCutSound.Play(0, false);
-                }
-            }
-            else if(startsWith("DHT22DATA", msg))
-            {
-                //Parse the message
-                StringList l(msg,',');
-                if(l.size() == 3)
-                {
-                    Main->mTemperatureLbl->SetValue(toDouble(l[1]));
-                    Main->mHumidityE->SetValue(toDouble(l[2]));
                 }
             }
         }
@@ -208,7 +174,6 @@ void TMain::onUpdatesFromArduinoServer(const string& new_msg)
     TLocalArgs args;
     args.msg = new_msg;
 
-	//    Log(lDebug5) << "Handling onUpdatesFromArduino message in synchronize:" << new_msg;
 
     //This causes this function to be called in the UI thread
  	TThread::Synchronize(NULL, &args.onMsg);
@@ -336,8 +301,7 @@ void __fastcall TMain::mDesiredRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
 //---------------------------------------------------------------------------
 void __fastcall TMain::mSetZeroCutBtnClick(TObject *Sender)
 {
-	//	mPufferArduino.setCutPreset(1);
-	IPCMessage msg(-1, "SET_CUT_PRESET=1");
+	IPCMessage msg(-1, "SET_CUT_THICKNESS_PRESET=1");
 	mArduinoServer.postIPCMessage(msg);
 }
 
@@ -350,7 +314,7 @@ void __fastcall TMain::mSetPresetCutBtnClick(TObject *Sender)
     if(indx != -1)
     {
         stringstream msg;
-        msg <<"SET_CUT_PRESET="<<indx + 1;
+        msg <<"SET_CUT_THICKNESS_PRESET="<<indx + 1;
         IPCMessage ipc_msg(-1, msg.str());
         mArduinoServer.postIPCMessage(ipc_msg);
     }
@@ -360,7 +324,7 @@ void __fastcall TMain::mSetPresetCutBtnClick(TObject *Sender)
     }
 }
 
-////---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 void __fastcall TMain::mStartNewRibbonButtonClick(TObject *Sender)
 {
 	//Tell Arduino server to start new Ribbon
@@ -368,7 +332,6 @@ void __fastcall TMain::mStartNewRibbonButtonClick(TObject *Sender)
     msg <<"START_NEW_RIBBON";
     IPCMessage ipc_msg(-1, msg.str());
     mArduinoServer.postIPCMessage(ipc_msg);
-
 }
 
 

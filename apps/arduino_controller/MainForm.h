@@ -31,7 +31,6 @@
 #include "TIntLabel.h"
 #include "TPropertyCheckBox.h"
 #include "TArrayBotBtn.h"
-#include "abDirectSound.h"
 #include "abPufferArduino.h"
 #include "abLightsArduino.h"
 using Poco::Timestamp;
@@ -87,15 +86,10 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox3;
 	TIntegerLabeledEdit *mDesiredRibbonLengthE;
 	TPropertyCheckBox *mAutoPuffCB;
-	mtkFloatLabel *mTemperatureLbl;
-	mtkFloatLabel *mHumidityE;
 	TPanel *Panel1;
-	TGroupBox *GroupBox4;
-	TGroupBox *GroupBox5;
 	TGroupBox *GroupBox6;
 	TArrayBotButton *Button1;
 	TArrayBotButton *Button5;
-	TPropertyCheckBox *mEnablesoundsCB;
 	TArrayBotButton *mPuffNowBtn;
 	TArrayBotButton *mEnablePuffBtn;
 	TArrayBotButton *mResetCounterBtn;
@@ -149,7 +143,7 @@ class TMain : public TRegistryForm
         vector<TFrame*>					    mFrames;
 	  	void								onUpdatesFromArduinoServer(const string& msg);
 
-	public:		// User declarations
+	public:
 		__fastcall 					        TMain(TComponent* Owner);
 		__fastcall 					        ~TMain();
 
@@ -159,8 +153,6 @@ class TMain : public TRegistryForm
 
         PufferArduino&					    mPufferArduino;
         LightsArduino&					    mSensorArduino;
-//        DirectSound							mGetReadyForZeroCutSound;
-//        DirectSound							mSetZeroCutSound;
 
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,    mlxStructMessage,         AppInBox);

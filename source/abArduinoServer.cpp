@@ -83,7 +83,12 @@ void ArduinoServer::disableAutoZeroCut()
 
 void ArduinoServer::notifyClients(const string& msg)
 {
-	//TODO: There is a problem with this...
+	if(!msg.size())
+    {
+    	return;
+    }
+
+	//TODO: There might be a threading problem with this...
     if(onMessageUpdateCB)
     {
         onMessageUpdateCB(msg);
@@ -205,10 +210,11 @@ bool ArduinoServer::toggleCoax()
 
 //Handle incoming client requests over the socket
 //These messages are handled in a thread
-//Depending on message, a response may be sent using the
+//Depending on the message, a response may be sent using the
 //notifyClients function
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
+    stringstream clientMessage;
     if(msg.isPacked())
     {
         msg.unPack();
@@ -217,10 +223,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     {
     	Log(lInfo) << "Resetting section counter";
         mRibbonLengthController.resetSectionCount();
-
-	    stringstream smsg;
-	    smsg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
-		notifyClients(smsg.str());
+	    clientMessage <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
     }
     else if(compareStrings(msg, "ENABLE_PUFFER"))
     {
@@ -304,12 +307,12 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	mLightsArduino.send(s.str());
         }
     }
-    else if(startsWith("SET_CUT_PRESET", msg))
+    else if(startsWith("SET_CUT_THICKNESS_PRESET", msg))
     {
         StringList sl(msg,'=');
         if(sl.size() == 2)
         {
-			Log(lInfo) << "Request Cut Preset ("<<sl[1]<<")";
+			Log(lInfo) << "Requesting Cut Thickness Preset ("<<sl[1]<<")";
         	mPufferArduino.setCutThicknessPreset(toInt(sl[1]));
             mRibbonLengthController.setCutThicknessPreset(toInt(sl[1]));
         }
@@ -319,9 +322,21 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         StringList sl(msg,'=');
         if(sl.size() == 2)
         {
-			Log(lInfo) << "Request DeltaY("<<sl[1]<<")";
+			Log(lInfo) << "Requesting DeltaY("<<sl[1]<<")";
         	mPufferArduino.setDeltaY(toInt(sl[1]));
         }
+    }
+    else if(startsWith("ENABLE_AUTO_ZERO_CUT", msg))
+    {
+    	Log(lInfo) << "Enabling auto zero cut";
+        mRibbonLengthController.enableAutoZeroCut();
+        clientMessage <<"AUTO_ZERO_CUT=true";
+    }
+    else if(startsWith("DISABLE_AUTO_ZERO_CUT", msg))
+    {
+    	Log(lInfo) << "Disabling auto zero cut";
+        mRibbonLengthController.disableAutoZeroCut();
+        clientMessage << "AUTO_ZERO_CUT=false";
     }
     else if(compareStrings(msg, "GET_STATUS"))
     {
@@ -332,6 +347,8 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     {
     	Log(lError) << "UNHANDLED ARDUINO SERVER MESSAGE: "<<msg;
     }
+
+   	notifyClients(clientMessage.str());
 
     return msg.IsProcessed();
 }

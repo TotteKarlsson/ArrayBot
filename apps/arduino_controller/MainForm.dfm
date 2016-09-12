@@ -112,30 +112,22 @@ object Main: TMain
               TabOrder = 0
               OnClick = mAutoPuffCBClick
             end
-            object mEnablesoundsCB: TPropertyCheckBox
-              Left = 16
-              Top = 107
-              Width = 257
-              Height = 17
-              Caption = 'Enable Notification Sounds'
-              TabOrder = 1
-            end
             object mAutoZeroCutCB: TPropertyCheckBox
               Left = 16
               Top = 72
               Width = 169
               Height = 17
               Caption = 'Enable Zero Cut'
-              TabOrder = 2
+              TabOrder = 1
               OnClick = mAutoZeroCutCBClick
             end
             object mStartNewRibbonButton: TArrayBotButton
               Left = 16
-              Top = 152
+              Top = 136
               Width = 257
-              Height = 97
+              Height = 113
               Caption = 'Start new ribbon'
-              TabOrder = 3
+              TabOrder = 2
               OnClick = mStartNewRibbonButtonClick
               SoundID = 'BUTTON_CLICK_4'
             end
@@ -385,52 +377,6 @@ object Main: TMain
     Height = 71
     Align = alTop
     TabOrder = 2
-    object GroupBox4: TGroupBox
-      Left = 749
-      Top = 1
-      Width = 139
-      Height = 69
-      Align = alRight
-      Caption = 'Temperature'
-      TabOrder = 0
-      object mTemperatureLbl: mtkFloatLabel
-        Left = 40
-        Top = 31
-        Width = 43
-        Height = 23
-        Caption = '-1.00'
-        ValueString = '-1.00'
-        Value = -1.000000000000000000
-        TheFont.Charset = DEFAULT_CHARSET
-        TheFont.Color = clWindowText
-        TheFont.Height = -19
-        TheFont.Name = 'Tahoma'
-        TheFont.Style = []
-      end
-    end
-    object GroupBox5: TGroupBox
-      Left = 888
-      Top = 1
-      Width = 117
-      Height = 69
-      Align = alRight
-      Caption = 'Humidity'
-      TabOrder = 1
-      object mHumidityE: mtkFloatLabel
-        Left = 30
-        Top = 31
-        Width = 43
-        Height = 23
-        Caption = '-1.00'
-        ValueString = '-1.00'
-        Value = -1.000000000000000000
-        TheFont.Charset = DEFAULT_CHARSET
-        TheFont.Color = clWindowText
-        TheFont.Height = -19
-        TheFont.Name = 'Tahoma'
-        TheFont.Style = []
-      end
-    end
     object GroupBox2: TGroupBox
       Left = 1
       Top = 1
@@ -438,7 +384,7 @@ object Main: TMain
       Height = 69
       Align = alLeft
       Caption = 'Section Count'
-      TabOrder = 2
+      TabOrder = 0
       object mSectionCountLbl: TIntLabel
         Left = 40
         Top = 31
@@ -462,7 +408,7 @@ object Main: TMain
       Align = alLeft
       Caption = 'Reset Counter'
       ParentDoubleBuffered = True
-      TabOrder = 3
+      TabOrder = 1
       OnClick = mResetCounterBtnClick
       SoundID = 'BUTTON_CLICK_4'
     end

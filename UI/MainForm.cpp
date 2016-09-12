@@ -562,7 +562,7 @@ void TMain::onArduinoMessageReceived(const string& msg)
                 StringList l(msg, '=');
                 if(l.size() == 2)
                 {
-                    Main->mAutoPuffCB->Checked = (toBool(l[1])) ? true : false;
+                    Main->mAutoSeparationCB->Checked = (toBool(l[1])) ? true : false;
                 }
             }
             else if(startsWith("DESIRED_RIBBON_LENGTH", msg))
@@ -600,7 +600,7 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mResetCountBtnClick(TObject *Sender)
+void __fastcall TMain::RibbonControlBtnClick(TObject *Sender)
 {
     TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
     if(b == mResetCountBtn)
@@ -616,17 +616,41 @@ void __fastcall TMain::mResetCountBtnClick(TObject *Sender)
     {
 		mPufferArduinoClient.enablePuffer();
     }
+    else if(b == mStartNewRibbonBtn)
+    {
+		mPufferArduinoClient.startNewRibbon();
+    }
+    else if(b == mSetZeroCutThicknessBtn)
+    {
+		mPufferArduinoClient.setCutPreset(1);
+    }
+    else if (b == mSetPresetCutBtn)
+    {
+    	//Check the listbox for current preset
+        String txt  = mLeicaCutThicknessLB->Text;
+        int indx = mLeicaCutThicknessLB->Items->IndexOf(txt);
+        if(indx != -1)
+        {
+            mPufferArduinoClient.setCutPreset(indx + 1);
+        }
+        else
+        {
+            Log(lError) <<"Error setting cut preset!";
+        }
+    }
 }
 
-void __fastcall TMain::mAutoPuffCBClick(TObject *Sender)
+void __fastcall TMain::mAutoSeparationCBClick(TObject *Sender)
 {
-	if(mAutoPuffCB->Checked)
+	if(mAutoSeparationCB->Checked)
     {
 		mPufferArduinoClient.enableAutoPuff();
+        mPufferArduinoClient.enableAutoZeroCut();
     }
     else
     {
 		mPufferArduinoClient.disableAutoPuff();
+        mPufferArduinoClient.disableAutoZeroCut();
     }
 }
 
@@ -641,8 +665,10 @@ void __fastcall TMain::mRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
 {
 	if(Key == vkReturn)
     {
-		mPufferArduinoClient.setPuffAfterSectionCount(mRibbonLengthE->getValue());
+		mPufferArduinoClient.setDesiredRibbonLength(mRibbonLengthE->getValue());
     }
 }
+
+
 
 

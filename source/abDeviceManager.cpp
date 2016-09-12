@@ -242,19 +242,7 @@ int DeviceManager::getNumberOfConnectedDevices() const
 string DeviceManager::getInfo() const
 {
     stringstream info;
-//    info<<setw(50)<<left<<"Number of loaded devices:"          <<getNumberOfPlugins()<<"\n";
-//    info<<setw(50)<<left<<"Number of created device objects:"  <<mPluginObjects.size()<<"\n";
-//    if(getNumberOfDevices())
-//    {
-//        info<<setw(25)<<left<<"Plugin Libraries"<<"\n";
-//        mPluginsIter = mPlugins.begin();
-//        while(mPluginsIter != mPlugins.end())
-//        {
-//            PluginLib pl = (*mPluginsIter).second;
-//            info<<"  "<<setw(25)<<left<< getFileNameNoExtension(pl->getPath())<<"\n";
-//            ++mPluginsIter;
-//        }
-//    }
+    info << "No info yet...";
     return info.str();
 }
 

@@ -101,22 +101,22 @@ object Main: TMain
         Caption = 'The Bot'
         object mBottomPanel: TPanel
           Left = 0
-          Top = 680
+          Top = 640
           Width = 910
-          Height = 167
+          Height = 207
           Align = alBottom
           TabOrder = 0
           object GroupBox2: TGroupBox
             Left = 1
             Top = 1
-            Width = 269
-            Height = 165
+            Width = 216
+            Height = 205
             Align = alLeft
             Caption = 'Section Count'
             TabOrder = 0
             object mSectionCountLbl: TIntLabel
-              Left = 32
-              Top = 40
+              Left = 24
+              Top = 64
               Width = 17
               Height = 23
               Caption = '-1'
@@ -129,29 +129,29 @@ object Main: TMain
               TheFont.Style = []
             end
             object mResetCountBtn: TArrayBotButton
-              Left = 104
-              Top = 35
-              Width = 153
+              Left = 72
+              Top = 27
+              Width = 121
               Height = 100
               Caption = 'Reset'
               ParentDoubleBuffered = True
               TabOrder = 0
-              OnClick = mResetCountBtnClick
+              OnClick = RibbonControlBtnClick
               SoundID = 'BUTTON_CLICK_4'
             end
           end
           object GroupBox4: TGroupBox
-            Left = 270
+            Left = 217
             Top = 1
-            Width = 303
-            Height = 165
+            Width = 328
+            Height = 205
             Align = alLeft
             Caption = 'Ribbon Length Control'
             TabOrder = 1
             object mRibbonLengthE: TIntegerLabeledEdit
-              Left = 152
-              Top = 50
-              Width = 129
+              Left = 16
+              Top = 106
+              Width = 121
               Height = 31
               EditLabel.Width = 123
               EditLabel.Height = 23
@@ -161,45 +161,75 @@ object Main: TMain
               OnKeyDown = mRibbonLengthEKeyDown
               Value = -1
             end
-            object mAutoPuffCB: TPropertyCheckBox
+            object mAutoSeparationCB: TPropertyCheckBox
               Left = 16
-              Top = 57
+              Top = 41
               Width = 97
               Height = 17
               Caption = 'Enabled'
               TabOrder = 1
-              OnClick = mAutoPuffCBClick
+              OnClick = mAutoSeparationCBClick
+            end
+            object mStartNewRibbonBtn: TArrayBotButton
+              Left = 159
+              Top = 32
+              Width = 154
+              Height = 121
+              Caption = 'New Ribbon'
+              ParentDoubleBuffered = True
+              TabOrder = 2
+              OnClick = RibbonControlBtnClick
+              SoundID = 'BUTTON_CLICK_4'
             end
           end
           object GroupBox5: TGroupBox
-            Left = 573
+            Left = 545
             Top = 1
-            Width = 314
-            Height = 165
-            Align = alLeft
-            Caption = 'Misc. Puffer'
+            Width = 364
+            Height = 205
+            Align = alClient
+            Caption = 'Leica UC7'
             TabOrder = 2
-            object mPuffBtn: TArrayBotButton
-              Left = 24
-              Top = 43
-              Width = 100
-              Height = 75
-              Caption = 'Puff'
-              ParentDoubleBuffered = True
-              TabOrder = 0
-              OnClick = mResetCountBtnClick
-              SoundID = 'BUTTON_CLICK_4'
+            object Label1: TLabel
+              Left = 192
+              Top = 27
+              Width = 115
+              Height = 23
+              Caption = 'Cut Thickness'
             end
-            object mEnablePuffBtn: TArrayBotButton
-              Left = 151
-              Top = 43
-              Width = 150
-              Height = 75
-              Caption = 'Enable Puffer'
-              ParentDoubleBuffered = True
+            object mSetZeroCutThicknessBtn: TArrayBotButton
+              Left = 21
+              Top = 38
+              Width = 145
+              Height = 80
+              Caption = 'Set Zero Cut'
+              TabOrder = 0
+              OnClick = RibbonControlBtnClick
+              SoundID = 'short_beep_3'
+            end
+            object mSetPresetCutBtn: TArrayBotButton
+              Left = 189
+              Top = 109
+              Width = 145
+              Height = 80
+              Caption = 'Set Preset Cut'
               TabOrder = 1
-              OnClick = mResetCountBtnClick
-              SoundID = 'BUTTON_CLICK_4'
+              OnClick = RibbonControlBtnClick
+              SoundID = 'short_beep_3'
+            end
+            object mLeicaCutThicknessLB: TComboBox
+              Left = 192
+              Top = 56
+              Width = 113
+              Height = 31
+              TabOrder = 2
+              Text = '100'
+              Items.Strings = (
+                '0'
+                '45'
+                '100'
+                '500'
+                '1000')
             end
           end
         end
@@ -216,7 +246,7 @@ object Main: TMain
           Left = 0
           Top = 91
           Width = 910
-          Height = 589
+          Height = 549
           Align = alClient
           AutoSize = True
           TabOrder = 2
@@ -224,7 +254,7 @@ object Main: TMain
             Left = 1
             Top = 1
             Width = 461
-            Height = 587
+            Height = 547
             Align = alLeft
             Caption = 'Joystick'
             Font.Charset = DEFAULT_CHARSET
@@ -319,7 +349,7 @@ object Main: TMain
             Left = 462
             Top = 1
             Width = 447
-            Height = 587
+            Height = 547
             Align = alClient
             Caption = 'Lift'
             Font.Charset = DEFAULT_CHARSET
@@ -604,6 +634,36 @@ object Main: TMain
             OnClick = mASStartBtnClick
           end
         end
+        object GroupBox3: TGroupBox
+          Left = 455
+          Top = 280
+          Width = 314
+          Height = 143
+          Caption = 'Misc. Puffer'
+          TabOrder = 3
+          object mPuffBtn: TArrayBotButton
+            Left = 24
+            Top = 43
+            Width = 121
+            Height = 75
+            Caption = 'Puff'
+            ParentDoubleBuffered = True
+            TabOrder = 0
+            OnClick = RibbonControlBtnClick
+            SoundID = 'BUTTON_CLICK_4'
+          end
+          object mEnablePuffBtn: TArrayBotButton
+            Left = 151
+            Top = 43
+            Width = 150
+            Height = 75
+            Caption = 'Enable Puffer'
+            ParentDoubleBuffered = True
+            TabOrder = 1
+            OnClick = RibbonControlBtnClick
+            SoundID = 'BUTTON_CLICK_4'
+          end
+        end
       end
       object TabSheet5: TTabSheet
         Caption = 'Logging'
@@ -785,8 +845,8 @@ object Main: TMain
     Enabled = False
     Interval = 250
     OnTimer = UIUpdateTimerTimer
-    Left = 364
-    Top = 664
+    Left = 580
+    Top = 552
   end
   object mLiftTimer: TTimer
     Enabled = False
@@ -799,7 +859,7 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = WaitForDeviceInitTimerTimer
-    Left = 248
-    Top = 664
+    Left = 480
+    Top = 536
   end
 end
