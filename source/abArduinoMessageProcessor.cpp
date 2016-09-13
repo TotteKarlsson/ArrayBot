@@ -1,7 +1,6 @@
 #pragma hdrstop
 #include "mtkStringUtils.h"
 #include "mtkMessageContainer.h"
-#include "mtkIPCMessage.h"
 #include "mtkSocketClient.h"
 #include "mtkLogger.h"
 #include "abArduinoMessageProcessor.h"

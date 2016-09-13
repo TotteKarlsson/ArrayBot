@@ -1,6 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TSettingsForm.h"
+#include <sstream>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -8,6 +9,7 @@
 #pragma resource "*.dfm"
 TSettingsForm *SettingsForm;
 
+using namespace std;
 //---------------------------------------------------------------------------
 __fastcall TSettingsForm::TSettingsForm(TMainForm& mf)
 	: TForm(&mf),
@@ -126,3 +128,30 @@ void __fastcall TSettingsForm::Button1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
+
+void __fastcall TSettingsForm::LightTBChange(TObject *Sender)
+{
+	//---------------------------------------------------------------------------
+	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
+    if(tb == mFrontLEDTB)
+    {
+    	int nr = tb->Position;
+        stringstream s;
+        s<<"SET_FRONTLED_INTENSITY="<<nr;
+        mMainForm.mLightsArduinoClient.request(s.str());
+    }
+    else if(tb == mBackLEDTB)
+    {
+    	int nr = tb->Position;
+        stringstream s;
+        s<<"SET_BACKLED_INTENSITY="<<nr;
+        mMainForm.mLightsArduinoClient.request(s.str());
+    }
+    else if(tb == mCoaxTB)
+    {
+    	int nr = tb->Position;
+        stringstream s;
+        s<<"SET_COAX_INTENSITY="<<nr;
+        mMainForm.mLightsArduinoClient.request(s.str());
+    }
+}

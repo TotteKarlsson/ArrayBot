@@ -196,7 +196,8 @@ void processByte(char ch)
 void checkPINStates()
 {
     //Read and report states of "light pins"            
-    Serial << ((digitalRead(1)) ? "[PIN_1=HIGH]" : "[PIN_1=LOW]") << 
+    Serial << 
+     ((digitalRead(1)) ? "[PIN_1=HIGH]" : "[PIN_1=LOW]") << 
      ((digitalRead(2)) ? "[PIN_2=HIGH]" : "[PIN_2=LOW]") <<     
      ((digitalRead(3)) ? "[PIN_3=HIGH]" : "[PIN_3=LOW]") << 
      ((digitalRead(4)) ? "[PIN_4=HIGH]" : "[PIN_4=LOW]") <<

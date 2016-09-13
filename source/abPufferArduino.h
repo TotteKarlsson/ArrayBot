@@ -1,10 +1,10 @@
 #ifndef abPufferArduinoH
 #define abPufferArduinoH
-#include "abExporter.h"
 #include "abArduinoDevice.h"
 #include "abLeicaUC7Controller.h"
 //---------------------------------------------------------------------------
 
+//!The puffer arduino class expose a simple interface to control the puffer arduino.
 class AB_CORE PufferArduino : public ArduinoDevice
 {
     public:

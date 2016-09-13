@@ -53,12 +53,12 @@ class AB_CORE ArduinoServer : public IPCServer
         bool								setZeroCut();
 
 		bool								toggleLED();
-        bool								turnLEDLightOn();
-        bool								turnLEDLightOff();
+//        bool								turnLEDLightOn();
+//        bool								turnLEDLightOff();
 
 		bool								toggleCoax();
-        bool								turnCoaxLightOn();
-        bool								turnCoaxLightOff();
+//        bool								turnCoaxLightOn();
+//        bool								turnCoaxLightOff();
 
         void								assignOnUpdateCallBack(OnMessageUpdateCB cb);
 		void								onUpdateClientsTimer();

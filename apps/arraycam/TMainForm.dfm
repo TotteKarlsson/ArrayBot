@@ -55,11 +55,13 @@ object MainForm: TMainForm
       object GroupBox5: TGroupBox
         Left = 0
         Top = 0
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Temperature'
         TabOrder = 1
+        Visible = False
+        ExplicitWidth = 156
         object mTemperatureLbl: mtkFloatLabel
           Left = 32
           Top = 23
@@ -84,11 +86,13 @@ object MainForm: TMainForm
       object GroupBox6: TGroupBox
         Left = 0
         Top = 60
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Humidity'
         TabOrder = 2
+        Visible = False
+        ExplicitWidth = 156
         object mHumidityE: mtkFloatLabel
           Left = 32
           Top = 23
@@ -110,49 +114,10 @@ object MainForm: TMainForm
           TheFont.Style = []
         end
       end
-      object GroupBox7: TGroupBox
-        Left = 0
-        Top = 720
-        Width = 156
-        Height = 145
-        Align = alBottom
-        Caption = 'Light Intensities'
-        TabOrder = 3
-        object mCoaxTB: TTrackBar
-          Left = 2
-          Top = 111
-          Width = 152
-          Height = 45
-          Align = alTop
-          Max = 255
-          TabOrder = 0
-          OnChange = LightTBChange
-        end
-        object mBackLEDTB: TTrackBar
-          Left = 2
-          Top = 66
-          Width = 152
-          Height = 45
-          Align = alTop
-          Max = 255
-          TabOrder = 1
-          OnChange = LightTBChange
-        end
-        object mFrontLEDTB: TTrackBar
-          Left = 2
-          Top = 21
-          Width = 152
-          Height = 45
-          Align = alTop
-          Max = 255
-          TabOrder = 2
-          OnChange = LightTBChange
-        end
-      end
       object Button2: TArrayBotButton
         Left = 0
-        Top = 660
-        Width = 156
+        Top = 758
+        Width = 173
         Height = 60
         Align = alBottom
         Caption = 'Exit'
@@ -160,116 +125,129 @@ object MainForm: TMainForm
         TabOrder = 0
         OnClick = Button2Click
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitTop = 660
+        ExplicitWidth = 156
       end
       object mFitToScreenButton: TArrayBotButton
         Left = 0
         Top = 120
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Fit to screen'
         ParentDoubleBuffered = True
-        TabOrder = 4
+        TabOrder = 3
         OnClick = mFitToScreenButtonClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitWidth = 156
       end
       object mFrontBackLEDBtn: TArrayBotButton
         Left = 0
-        Top = 600
-        Width = 156
+        Top = 698
+        Width = 173
         Height = 60
         Align = alBottom
         Caption = 'Toggle LED Light'
         ParentDoubleBuffered = True
-        TabOrder = 5
+        TabOrder = 4
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitTop = 600
+        ExplicitWidth = 156
       end
       object mOneToOneBtn: TArrayBotButton
         Left = 0
         Top = 360
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = '1:1'
         ParentDoubleBuffered = True
-        TabOrder = 6
+        TabOrder = 5
         OnClick = mOneToOneBtnClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitWidth = 156
       end
       object mOneToTwoBtn: TArrayBotButton
         Left = 0
         Top = 420
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = '1:2'
         ParentDoubleBuffered = True
-        TabOrder = 7
+        TabOrder = 6
         OnClick = mOneToTwoBtnClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitWidth = 156
       end
       object mRecordMovieBtn: TArrayBotButton
         Left = 0
         Top = 480
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Record Movie'
         ParentDoubleBuffered = True
-        TabOrder = 8
+        TabOrder = 7
         OnClick = mRecordMovieBtnClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitWidth = 156
       end
       object mSettingsBtn: TArrayBotButton
         Left = 0
         Top = 240
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Settings'
         ParentDoubleBuffered = True
-        TabOrder = 9
+        TabOrder = 8
         OnClick = mSettingsBtnClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitWidth = 156
       end
       object mSnapShotBtn: TArrayBotButton
         Left = 0
         Top = 300
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Snap Shot'
         ParentDoubleBuffered = True
-        TabOrder = 10
+        TabOrder = 9
         OnClick = mSnapShotBtnClick
         SoundID = 'CAMERA_SHUTTER_1'
+        ExplicitWidth = 156
       end
       object mToggleCoaxBtn: TArrayBotButton
         Left = 0
-        Top = 540
-        Width = 156
+        Top = 638
+        Width = 173
         Height = 60
         Align = alBottom
         Caption = 'Toggle Coax Light'
         ParentDoubleBuffered = True
-        TabOrder = 11
+        TabOrder = 10
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitTop = 540
+        ExplicitWidth = 156
       end
       object mToggleLogPanelBtn: TArrayBotButton
         Left = 0
         Top = 180
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Hide Bottom Panel'
         ParentDoubleBuffered = True
-        TabOrder = 12
+        TabOrder = 11
         OnClick = mToggleLogPanelClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitWidth = 156
       end
     end
   end

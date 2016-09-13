@@ -112,13 +112,46 @@ object SettingsForm: TSettingsForm
     TabOrder = 2
     OnClick = Button1Click
   end
-  object Button2: TButton
-    Left = 34
-    Top = 224
-    Width = 75
-    Height = 25
-    Caption = 'Button2'
+  object GroupBox5: TGroupBox
+    Left = 8
+    Top = 204
+    Width = 145
+    Height = 143
+    Caption = 'Light Intensities'
     TabOrder = 3
+    object mCoaxTB: TTrackBar
+      Left = 2
+      Top = 105
+      Width = 141
+      Height = 45
+      Align = alTop
+      Max = 255
+      TabOrder = 0
+      OnChange = LightTBChange
+      ExplicitWidth = 152
+    end
+    object mBackLEDTB: TTrackBar
+      Left = 2
+      Top = 60
+      Width = 141
+      Height = 45
+      Align = alTop
+      Max = 255
+      TabOrder = 1
+      OnChange = LightTBChange
+      ExplicitWidth = 152
+    end
+    object mFrontLEDTB: TTrackBar
+      Left = 2
+      Top = 15
+      Width = 141
+      Height = 45
+      Align = alTop
+      Max = 255
+      TabOrder = 2
+      OnChange = LightTBChange
+      ExplicitWidth = 152
+    end
   end
   object UIUpdateTimer: TTimer
     Enabled = False

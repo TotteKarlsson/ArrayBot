@@ -40,10 +40,10 @@ class AB_CORE ArduinoDevice : public ABObject
         bool						hasMessage();
 		string						getMessage();
 
-									//!Read state of an Arduino digital pin
+									//!Read state of an Arduino digital pin (not implemented)
 		virtual bool	 			readDigitalPin(int pin);
 
-									//!Set (write) the state of an Arduino digital output pin
+									//!Set (write) the state of an Arduino digital output pin (not implemented)
 		virtual bool	   			writeDigitalPin(int pin);
 
 									//!Send custom message to the Arduino
@@ -57,6 +57,9 @@ class AB_CORE ArduinoDevice : public ABObject
 		InitCallBack				init;
 
     protected:
+    								//!The arduino device name. Used in the INI file
+        string						mName;
+
     								//!Serial communication can be quite complex. It is wrapped by the Serial class
                                     //and confined further with low level functions in the SerialPort class
         Serial						mSerial;
@@ -64,11 +67,10 @@ class AB_CORE ArduinoDevice : public ABObject
 									//!Threat the serial port as a resource that can only be accesed from
                                     //the outside by one client at a time
 		Mutex						mSerialPortMutex;
-        string						mName;
 
         							//A stream makes it easy to compose messages
         std::stringstream		  	mSS;
-        int					        readSerialPort();
+
 };
 
 #endif

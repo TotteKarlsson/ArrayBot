@@ -154,34 +154,33 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
     }
 }
 
-bool ArduinoServer::turnLEDLightOn()
-{
-	Log(lInfo) << "Turning on LEDs";
-	return mLightsArduino.send(mLEDLightONLine);
-}
-
-bool ArduinoServer::turnLEDLightOff()
-{
-	Log(lInfo) << "Turning off LEDs";
-	return mLightsArduino.send(mLEDLightOFFLine);
-}
-
-bool ArduinoServer::turnCoaxLightOn()
-{
-	Log(lInfo) << "Turning on Coax light";
-	return mLightsArduino.send(mCoaxLightONLine);
-}
-
-bool ArduinoServer::turnCoaxLightOff()
-{
-	Log(lInfo) << "Turning off Coax light";
-	return mLightsArduino.send(mCoaxLightOFFLine);
-}
+//bool ArduinoServer::turnLEDLightOn()
+//{
+//	Log(lInfo) << "Turning on LEDs";
+//	return mLightsArduino.send(mLEDLightONLine);
+//}
+//
+//bool ArduinoServer::turnLEDLightOff()
+//{
+//	Log(lInfo) << "Turning off LEDs";
+//	return mLightsArduino.send(mLEDLightOFFLine);
+//}
+//
+//bool ArduinoServer::turnCoaxLightOn()
+//{
+//	Log(lInfo) << "Turning on Coax light";
+//	return mLightsArduino.send(mCoaxLightONLine);
+//}
+//
+//bool ArduinoServer::turnCoaxLightOff()
+//{
+//	Log(lInfo) << "Turning off Coax light";
+//	return mLightsArduino.send(mCoaxLightOFFLine);
+//}
 
 bool ArduinoServer::toggleLED()
 {
 	static bool switcher(false);
-
     switcher = !switcher;
     if(switcher)
     {

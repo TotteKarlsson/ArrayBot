@@ -67,7 +67,6 @@ object ArduinoBoardFrame: TArduinoBoardFrame
     end
   end
   object Timer1: TTimer
-    Interval = 500
     OnTimer = Timer1Timer
     Left = 224
     Top = 96

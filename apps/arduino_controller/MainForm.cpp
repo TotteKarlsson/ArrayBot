@@ -1,4 +1,4 @@
-	#include <vcl.h>
+#include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
 #include "TMemoLogger.h"
@@ -95,10 +95,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
 
-	stringstream smsg;
-	smsg << "SET_DESIRED_RIBBON_LENGTH=" << mDesiredRibbonLengthE->getValue();
-   	IPCMessage msg(-1, smsg.str());
-	mArduinoServer.postIPCMessage(msg);
+	stringstream msg;
+	msg << "SET_DESIRED_RIBBON_LENGTH=" << mDesiredRibbonLengthE->getValue();
+	mArduinoServer.request(msg.str());
 
     //Setup the server
     mArduinoServer.start(mArduinoServerPortE->getValue());
@@ -201,8 +200,7 @@ void __fastcall TMain::mArduinoServerStartBtnClick(TObject *Sender)
 
 void __fastcall TMain::mResetCounterBtnClick(TObject *Sender)
 {
-   	IPCMessage msg(-1, "RESET_SECTION_COUNT");
-	mArduinoServer.postIPCMessage(msg);
+	mArduinoServer.request("RESET_SECTION_COUNT");
 }
 
 //---------------------------------------------------------------------------
@@ -211,13 +209,11 @@ void __fastcall TMain::mPuffRelatedBtnClick(TObject *Sender)
 	TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
     if(b == mPuffNowBtn)
     {
-    	IPCMessage msg(-1, "PUFF");
-		mArduinoServer.postIPCMessage(msg);
+		mArduinoServer.request("PUFF");
     }
     else if(b == mEnablePuffBtn)
     {
-    	IPCMessage msg(-1, "ENABLE_PUFFER");
-		mArduinoServer.postIPCMessage(msg);
+		mArduinoServer.request("ENABLE_PUFFER");
     }
 }
 
@@ -233,13 +229,13 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
 
         	mFrontBackLEDBtn->Caption = "Flip LEDs ON";
             cap = "ON";
-        	mArduinoServer.turnLEDLightOn();
+        	//mArduinoServer.turnLEDLightOn();
         }
         else
         {
         	mFrontBackLEDBtn->Caption = "Flip LEDs OFF";
             cap = "OFF";
-        	mArduinoServer.turnLEDLightOff();
+        	//mArduinoServer.turnLEDLightOff();
         }
     }
     else if(b == mCoaxLightBtn)
@@ -249,13 +245,13 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
         {
         	mCoaxLightBtn->Caption = "Flip CoaxLight ON";
             ccap = "ON";
-        	mArduinoServer.turnCoaxLightOn();
+        	//mArduinoServer.turnCoaxLightOn();
         }
         else
         {
         	mCoaxLightBtn->Caption = "Flip CoaxLight OFF";
             ccap = "OFF";
-        	mArduinoServer.turnCoaxLightOff();
+        	//mArduinoServer.turnCoaxLightOff();
         }
     }
 }
@@ -293,16 +289,14 @@ void __fastcall TMain::mDesiredRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
     {
     	stringstream smsg;
         smsg << "SET_DESIRED_RIBBON_LENGTH=" << mDesiredRibbonLengthE->getValue();
-        IPCMessage msg(-1, smsg.str());
-        mArduinoServer.postIPCMessage(msg);
+        mArduinoServer.request(smsg.str());
     }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mSetZeroCutBtnClick(TObject *Sender)
 {
-	IPCMessage msg(-1, "SET_CUT_THICKNESS_PRESET=1");
-	mArduinoServer.postIPCMessage(msg);
+	mArduinoServer.request("SET_CUT_THICKNESS_PRESET=1");
 }
 
 //---------------------------------------------------------------------------
@@ -315,8 +309,7 @@ void __fastcall TMain::mSetPresetCutBtnClick(TObject *Sender)
     {
         stringstream msg;
         msg <<"SET_CUT_THICKNESS_PRESET="<<indx + 1;
-        IPCMessage ipc_msg(-1, msg.str());
-        mArduinoServer.postIPCMessage(ipc_msg);
+        mArduinoServer.request(msg.str());
     }
     else
     {
@@ -330,8 +323,7 @@ void __fastcall TMain::mStartNewRibbonButtonClick(TObject *Sender)
 	//Tell Arduino server to start new Ribbon
     stringstream msg;
     msg <<"START_NEW_RIBBON";
-    IPCMessage ipc_msg(-1, msg.str());
-    mArduinoServer.postIPCMessage(ipc_msg);
+    mArduinoServer.request(msg.str());
 }
 
 

@@ -56,10 +56,6 @@ class TMainForm  : public TRegistryForm
 	mtkFloatLabel *mHumidityE;
 	TGroupBox *GroupBox5;
 	mtkFloatLabel *mTemperatureLbl;
-	TGroupBox *GroupBox7;
-	TTrackBar *mCoaxTB;
-	TTrackBar *mBackLEDTB;
-	TTrackBar *mFrontLEDTB;
 	TGroupBox *GroupBox8;
 	TToolBar *ToolBar1;
 	TBitBtn *mClearLogMemoBtn;
@@ -96,7 +92,6 @@ class TMainForm  : public TRegistryForm
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall mSettingsBtnClick(TObject *Sender);
 	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
-	void __fastcall LightTBChange(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 

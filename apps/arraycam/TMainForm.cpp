@@ -677,33 +677,6 @@ void __fastcall TMainForm::mFrontBackLEDBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::LightTBChange(TObject *Sender)
-{
-	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
-    if(tb == mFrontLEDTB)
-    {
-    	int nr = tb->Position;
-        stringstream s;
-        s<<"SET_FRONTLED_INTENSITY="<<nr;
-        mLightsArduinoClient.request(s.str());
-    }
-    else if(tb == mBackLEDTB)
-    {
-    	int nr = tb->Position;
-        stringstream s;
-        s<<"SET_BACKLED_INTENSITY="<<nr;
-        mLightsArduinoClient.request(s.str());
-    }
-    else if(tb == mCoaxTB)
-    {
-    	int nr = tb->Position;
-        stringstream s;
-        s<<"SET_COAX_INTENSITY="<<nr;
-        mLightsArduinoClient.request(s.str());
-    }
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::LogLevelCBChange(TObject *Sender)
 {
 	if(LogLevelCB->ItemIndex == -1)

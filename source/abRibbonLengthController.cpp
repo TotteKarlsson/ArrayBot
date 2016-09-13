@@ -31,8 +31,8 @@ void RibbonLengthController::check()
 
         stringstream msg;
     	msg <<"SET_CUT_THICKNESS_PRESET="<<mLastCutThicknessPreset;
-	    IPCMessage ipc_msg(-1, msg.str());
-    	mArduinoServer.postIPCMessage(ipc_msg);
+
+    	mArduinoServer.request(msg.str());
         mPrepareForNewRibbon = false;
         return;
     }
@@ -76,10 +76,7 @@ bool RibbonLengthController::setCutThicknessPreset(int preset)
 
 bool RibbonLengthController::setZeroCut()
 {
-    stringstream msg;
-    msg <<"SET_CUT_THICKNESS_PRESET=" << 1;
-    IPCMessage ipc_msg(-1, msg.str());
-    return mArduinoServer.postIPCMessage(ipc_msg);
+    return mArduinoServer.request("SET_CUT_THICKNESS_PRESET=1");
 }
 
 bool RibbonLengthController::manualPuff()
@@ -134,18 +131,12 @@ void RibbonLengthController::prepareForNewRibbon()
 
 bool RibbonLengthController::enablePuffer()
 {
-    stringstream msg;
-    msg <<"ENABLE_PUFFER";
-    IPCMessage ipc_msg(-1, msg.str());
-    return mArduinoServer.postIPCMessage(ipc_msg);
+    return mArduinoServer.request("ENABLE_PUFFER");
 }
 
 bool RibbonLengthController::disablePuffer()
 {
-    stringstream msg;
-    msg <<"DISABLE_PUFFER";
-    IPCMessage ipc_msg(-1, msg.str());
-    return mArduinoServer.postIPCMessage(ipc_msg);
+    return mArduinoServer.request("DISABLE_PUFFER");
 }
 
 void RibbonLengthController::enableAutoZeroCut()
