@@ -30,6 +30,8 @@ __fastcall TPufferArduinoBoardFrame::~TPufferArduinoBoardFrame()
 	mProperties.write();
 }
 
+//When the server receives that the arduino was just connected, the following
+//init function is called.
 void TPufferArduinoBoardFrame::init()
 {
     stringstream msg;

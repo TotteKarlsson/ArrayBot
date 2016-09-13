@@ -14,11 +14,7 @@ ArduinoServer::ArduinoServer(int portNumber)
 IPCServer(portNumber, "ARDUINO_SERVER", createArduinoIPCReceiver),
 mPufferArduino(-1),
 mLightsArduino(-1),
-mRibbonLengthController(*this),
-mLEDLightONLine(3),
-mLEDLightOFFLine(4),
-mCoaxLightONLine(1),
-mCoaxLightOFFLine(2)
+mRibbonLengthController(*this)
 {
 	mArduinos.push_back(&mPufferArduino);
 	mArduinos.push_back(&mLightsArduino);
@@ -88,7 +84,8 @@ void ArduinoServer::notifyClients(const string& msg)
     	return;
     }
 
-	//TODO: There might be a threading problem with this...
+	//TODO: There might be a threading problem with this.
+    //This call will update the UI
     if(onMessageUpdateCB)
     {
         onMessageUpdateCB(msg);
@@ -118,6 +115,9 @@ void ArduinoServer::broadcastStatus()
    	notifyClients(msg.str());
 }
 
+//This is called from the arduino devices class upon receiving
+//a message from the arduino thread over the serial port
+//Socket clients are updated using the notifyClients funtion
 void ArduinoServer::sensorMessageReceived(const string& msg)
 {
 	notifyClients(msg);
@@ -131,7 +131,7 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
 	Log(lDebug5) << "Handling puffer message: "<<msg;
 
     //Check what message we got from arduino device
-    if(msg == "ArrayBot Puffer Init")
+    if(msg == "ArrayBot Puffer Arduino")
     {
         //Setup variables
         //Puffer duration etc..
@@ -146,64 +146,12 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
         {
     		mRibbonLengthController.incrementSectionCount();
         }
-        mRibbonLengthController.check();
+
+        mRibbonLengthController.checkProgress();
 
         stringstream msg;
         msg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
 		notifyClients(msg.str());
-    }
-}
-
-//bool ArduinoServer::turnLEDLightOn()
-//{
-//	Log(lInfo) << "Turning on LEDs";
-//	return mLightsArduino.send(mLEDLightONLine);
-//}
-//
-//bool ArduinoServer::turnLEDLightOff()
-//{
-//	Log(lInfo) << "Turning off LEDs";
-//	return mLightsArduino.send(mLEDLightOFFLine);
-//}
-//
-//bool ArduinoServer::turnCoaxLightOn()
-//{
-//	Log(lInfo) << "Turning on Coax light";
-//	return mLightsArduino.send(mCoaxLightONLine);
-//}
-//
-//bool ArduinoServer::turnCoaxLightOff()
-//{
-//	Log(lInfo) << "Turning off Coax light";
-//	return mLightsArduino.send(mCoaxLightOFFLine);
-//}
-
-bool ArduinoServer::toggleLED()
-{
-	static bool switcher(false);
-    switcher = !switcher;
-    if(switcher)
-    {
-		return mLightsArduino.send(mLEDLightONLine);
-    }
-    else
-    {
-		return mLightsArduino.send(mLEDLightOFFLine);
-    }
-}
-
-bool ArduinoServer::toggleCoax()
-{
-	static bool switcher(false);
-
-    switcher = !switcher;
-    if(switcher)
-    {
-		return mLightsArduino.send(mCoaxLightONLine);
-    }
-    else
-    {
-		return mLightsArduino.send(mCoaxLightOFFLine);
     }
 }
 
@@ -266,12 +214,12 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     else if(startsWith("TOGGLE_LED_LIGHT", msg))
     {
     	Log(lInfo) << "Toggling LED on/off";
-        toggleLED();
+        mLightsArduino.toggleLED();
     }
     else if(startsWith(msg, "TOGGLE_COAX_LIGHT"))
     {
     	Log(lInfo) << "Toggling Coax on/off";
-        toggleCoax();
+        mLightsArduino.toggleCoax();
     }
     else if(startsWith("SET_FRONTLED", msg))
     {
@@ -348,6 +296,5 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     }
 
    	notifyClients(clientMessage.str());
-
     return msg.IsProcessed();
 }

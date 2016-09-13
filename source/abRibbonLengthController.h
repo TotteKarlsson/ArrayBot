@@ -12,13 +12,13 @@ class AB_CORE RibbonLengthController : public ABObject
 						                    RibbonLengthController(ArduinoServer& s);
 						                    ~RibbonLengthController();
 
-                                            //!The check function checks the status
+                                            //!The check progress function checks the status
                                             //!of the current length of the ribbon.
                                             //!If ribbon separation is enabled, autopuff and
-                                            //!auto zerocut will prepare the HW for puffing and
+                                            //!auto zerocut will prepare the hardware for puffing and
                                             //!zerocutting in order to obtain a ribbon of proper
                                             //!length
-		void								check();
+		void								checkProgress();
 
         									//!A manual puff overrides the automatic puff
                                             //!initiated by the enablePuffer command.

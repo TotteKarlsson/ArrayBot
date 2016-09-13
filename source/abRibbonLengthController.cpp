@@ -21,7 +21,7 @@ RibbonLengthController::RibbonLengthController(ArduinoServer& s)
 RibbonLengthController::~RibbonLengthController()
 {}
 
-void RibbonLengthController::check()
+void RibbonLengthController::checkProgress()
 {
     if(mPrepareForNewRibbon)
     {
@@ -32,6 +32,7 @@ void RibbonLengthController::check()
         stringstream msg;
     	msg <<"SET_CUT_THICKNESS_PRESET="<<mLastCutThicknessPreset;
 
+        //Post message to the server
     	mArduinoServer.request(msg.str());
         mPrepareForNewRibbon = false;
         return;
@@ -60,6 +61,7 @@ void RibbonLengthController::check()
             msg <<"RESTORE_FROM_ZERO_CUT";
         }
 
+        //Post message to the server
         mArduinoServer.notifyClients(msg.str());
     }
 }
@@ -81,7 +83,7 @@ bool RibbonLengthController::setZeroCut()
 
 bool RibbonLengthController::manualPuff()
 {
-	bool res = mArduinoServer.mPufferArduino.manualPuff();
+	bool res = mArduinoServer.request("PUFF");
     if(res)
     {
         resetSectionCount();
