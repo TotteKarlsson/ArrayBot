@@ -203,6 +203,15 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Starting new ribbon";
 		mRibbonLengthController.prepareForNewRibbon();
     }
+
+    //SENSOR ARDUINO
+
+    else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
+    {
+    	Log(lInfo) << "Requestiong SENSOR_ARDUINO status";
+        mLightsArduino.getStatus();
+    }
+
     else if(startsWith("TOGGLE_LED_LIGHT", msg))
     {
     	Log(lInfo) << "Toggling LED on/off";

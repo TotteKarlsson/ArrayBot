@@ -56,6 +56,9 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	//Camera rendering mode
     mRenderMode = IS_RENDER_FIT_TO_WINDOW;
 	mLightsArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
+
+    mLightsArduinoClient.onConnected 		= onArduinoClientConnected;
+	mLightsArduinoClient.onDisconnected 	= onArduinoClientDisconnected;
     gLogger.setLogLevel(mLogLevel);
 }
 
@@ -72,6 +75,29 @@ void __fastcall TMainForm::logMsg()
     mLogFileReader.purge();
 }
 
+//Callback from socket client class
+void TMainForm::onArduinoClientConnected()
+{
+    Log(lDebug) << "ArduinoClient was connected..";
+
+    //Send message to update UI
+    mLightsArduinoClient.getBoardStatus();
+    enableDisableClientControls(true);
+}
+
+void TMainForm::onArduinoClientDisconnected()
+{
+    Log(lDebug) << "Arduino Client was disconnected..";
+    enableDisableClientControls(false);
+}
+
+void TMainForm::enableDisableClientControls(bool enable)
+{
+	//Disable client related components..
+    EnableDisableGroupBox(LightIntensitiesGB, enable);
+	mToggleCoaxBtn->Enabled = enable;
+    mFrontBackLEDBtn->Enabled = enable;
+}
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mCameraStartLiveBtnClick(TObject *Sender)
 {

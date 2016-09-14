@@ -12,7 +12,7 @@ class AB_CORE LightsArduinoClient : public ArduinoClient
 
 		void								toggleLED();
 		void								toggleCoax();
-
+		virtual void	 					getBoardStatus();
 
     protected:
 

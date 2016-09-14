@@ -6,7 +6,6 @@
 #include "mtkMessageContainer.h"
 #include "abArduinoMessageProcessor.h"
 #include "mtkSocketClient.h"
-#include "mtkSocketReceiver.h"
 
 namespace mtk
 {
@@ -36,17 +35,14 @@ class AB_CORE ArduinoClient : public SocketClient
         bool                                disConnect();
         bool                                connect(int pNumber = -1, const string& host = mtk::gEmptyString);
 
+		virtual void	 					getBoardStatus(){}
 		void								getStatus();
 
 									        //!Post a custom message to the message list
         virtual void                        postMessage(const string& msg);
-
-        string                              getClientInfo();
         void		 						assignOnMessageReceivedCallBack(OnMessageReceivedCB cb);
 
     protected:
-        MessageContainer                 	mIncomingMessages;
-        SocketReceiver						mReceiver;
         ArduinoMessageProcessor   			mMessageProcessor;
 };
 

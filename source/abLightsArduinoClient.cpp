@@ -9,6 +9,12 @@ LightsArduinoClient::LightsArduinoClient()
 	ArduinoClient()
 {}
 
+void LightsArduinoClient::getBoardStatus()
+{
+	stringstream msg;
+    msg <<"GET_SENSOR_ARDUINO_STATUS";
+	request(msg.str());
+}
 
 void LightsArduinoClient::toggleLED()
 {

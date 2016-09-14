@@ -8,9 +8,10 @@ using namespace mtk;
 
 ArduinoClient::ArduinoClient()
 :
-mReceiver(*this, mIncomingMessages),
 mMessageProcessor(*this)
-{}
+{
+
+}
 
 ArduinoClient::~ArduinoClient()
 {
@@ -24,7 +25,7 @@ bool ArduinoClient::init(int serverPort, const string& hostname, bool connectOnI
 
     if(connectOnInit)
     {
-    	SocketClient::connect(serverPort, hostname);
+    	bool res = SocketClient::connect(serverPort, hostname);
     }
 
     return true;
@@ -38,11 +39,6 @@ void ArduinoClient::getStatus()
 void ArduinoClient::assignOnMessageReceivedCallBack(OnMessageReceivedCB cb)
 {
 	mMessageProcessor.assignOnMessageReceivedCallBack(cb);
-}
-
-string ArduinoClient::getClientInfo()
-{
-    return SocketClient::getInfo();
 }
 
 bool ArduinoClient::isConnected()

@@ -389,7 +389,7 @@ object MainForm: TMainForm
         end
       end
     end
-    object GroupBox1: TGroupBox
+    object LightIntensitiesGB: TGroupBox
       Left = 225
       Top = 1
       Width = 288

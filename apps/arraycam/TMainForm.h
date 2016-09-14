@@ -71,7 +71,7 @@ class TMainForm  : public TRegistryForm
 	TArrayBotButton *mSnapShotBtn;
 	TArrayBotButton *mToggleCoaxBtn;
 	TArrayBotButton *mToggleLogPanelBtn;
-	TGroupBox *GroupBox1;
+	TGroupBox *LightIntensitiesGB;
 	TTrackBar *mCoaxTB;
 	TTrackBar *mBackLEDTB;
 	TTrackBar *mFrontLEDTB;
@@ -144,8 +144,14 @@ class TMainForm  : public TRegistryForm
                                                 //onArduinoMessageReceived
 		LightsArduinoClient    			        mLightsArduinoClient;
 
+        										//Callbacks
+        void									onArduinoClientConnected();
+        void									onArduinoClientDisconnected();
+
         										//Callback
 		void 									onArduinoMessageReceived(const string& msg);
+
+        void									enableDisableClientControls(bool enable);
 
     public:
  			       __fastcall 					TMainForm(TComponent* Owner);
