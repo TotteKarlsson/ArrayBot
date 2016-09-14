@@ -6,6 +6,7 @@ This sketch expects an Adafruit Motor Shield for Arduino v2
 - and also read temperature and humidity.
 */
 
+double sketchVersion = 1.0;
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 //#include "./utility/Adafruit_MS_PWMServoDriver.h"
@@ -20,8 +21,6 @@ This sketch expects an Adafruit Motor Shield for Arduino v2
 DHT22 gDHT22(DHT22_PIN);
 void readEnvironmentalSensors(DHT22& gDHT22);
 
-//Allow nice syntax for serial printing
-template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg); return obj; }
 
 // Create the "motor" shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
@@ -46,15 +45,22 @@ Adafruit_DCMotor *backLEDs  = AFMS.getMotor(4);
   bool btn4(false);  
   bool btn5(false);    
 
-  // create variables
-  int flashFlag = false;
-  int flashToggle = true;
+  //To control light intensity
+  int coaxDrive(128);
+  int frontLEDDrive(128);
+  int backLEDDrive(128);
+
+  int flashFlag     = false;
+  int flashToggle   = true;
   int flashInterval = 500;
   unsigned long flashMillis = millis();
   unsigned long lastReadTime = millis();
     
   void checkPINStates();
   void processByte(char ch); 
+
+  //Allow nice syntax for serial printing
+  template<class T> inline Print &operator <<(Print &o, T arg) { o.print(arg); return o; }
   
 void setup() 
 {
@@ -66,9 +72,9 @@ void setup()
     backLEDs->run(RELEASE);
        
     // set solenoid "on" duty cycles:
-    coaxLEDs->setSpeed(32);
-    frontLEDs->setSpeed(128);
-    backLEDs->setSpeed(128);
+    coaxLEDs->setSpeed(coaxDrive);
+    frontLEDs->setSpeed(frontLEDDrive);
+    backLEDs->setSpeed(backLEDDrive);
      
     // set the pushbutton pins as inputs:
     pinMode(pushButton_1, INPUT); // Coax LEDs OFF
@@ -78,8 +84,8 @@ void setup()
     pinMode(pushButton_5, INPUT); // front-back ALT
 
     // setup serial port
-    Serial.begin(250000);
-    sendInfo();
+    Serial.begin(57600);
+    sendInfo();    
 }
 
 void loop() 
@@ -91,18 +97,21 @@ void loop()
    
     if (digitalRead(pushButton_1) || btn1 == true)
     {
+        Serial << "[BUTTON_1_DOWN]";
         coaxLEDs->run(RELEASE);
         btn1 = false; 
     }
   
     if (digitalRead(pushButton_2) || btn2 == true)
     {
+        Serial << "[BUTTON_2_DOWN]";
         coaxLEDs->run(FORWARD);
         btn2 = false; 
     }
 
     if (digitalRead(pushButton_3) || btn3 == true)
     {
+        Serial << "[BUTTON_3_DOWN]";
         frontLEDs->run(RELEASE);
         backLEDs->run(RELEASE);
         flashFlag = false;
@@ -111,6 +120,7 @@ void loop()
 
     if (digitalRead(pushButton_4) || btn4 == true)
     {
+        Serial << "[BUTTON_4_DOWN]";
         frontLEDs->run(FORWARD);
         backLEDs->run(FORWARD);
         flashFlag = false;
@@ -119,7 +129,8 @@ void loop()
 
     if (digitalRead(pushButton_5) || btn5 == true)
     {
-        flashFlag = true;
+        Serial << "[BUTTON_5_DOWN]";
+        flashFlag   = true;
         flashToggle = true;
         flashMillis = millis();
         btn5 = false; 
@@ -144,47 +155,47 @@ void loop()
 
     //Read digital lines and send status over serial port so the host
     //can update its UI
-    unsigned long currentReadTime = millis();
-    if(currentReadTime - lastReadTime > 3000)
-    {
-        //Read temp/humidity sensor, about every 2s.
-        //readEnvironmentalSensors(gDHT22);           
-        lastReadTime = currentReadTime;
-    }    
+//    unsigned long currentReadTime = millis();
+//    if(currentReadTime - lastReadTime > 3000)
+//    {
+//        lastReadTime = currentReadTime;
+//        readEnvironmentalSensors(gDHT22);    
+//    }
+    
+    //Read temp/humidity sensor, about every 2s.
+
 }
   
 void processByte(char ch)
 {
     switch(ch)
     {
-        case '1':
-            btn1 = true ;
-            Serial << "[BUTTON_1_MSG]";
+        case '1':            btn1 = true ;        break;
+        case '2':            btn2 = true ;        break;
+        case '3':            btn3 = true ;        break;
+        case '4':            btn4 = true ;        break;
+        case '5':            btn5 = true ;        break;
+        
+        case 'c': //Read next integer and use as the drive            
+            coaxDrive = Serial.parseInt();
+            coaxLEDs->setSpeed(coaxDrive);
+            Serial << "[COAX_DRIVE=" << coaxDrive << "]";            
+        break;
+
+        case 'f':
+            frontLEDDrive = Serial.parseInt();
+            frontLEDs->setSpeed(frontLEDDrive);
+            Serial << "[FRONT_LED_DRIVE=" << frontLEDDrive<<"]";                        
+        break;
+
+        case 'b':
+            backLEDDrive = Serial.parseInt();
+            backLEDs->setSpeed(backLEDDrive);
+            Serial << "[BACK_LED_DRIVE="<<backLEDDrive<<"]";                                    
         break;
         
-        case '2':
-            btn2 = true ;
-            Serial << "[BUTTON_2_MSG]";
-        break;
-
-        case '3':
-            btn3 = true ;
-            Serial << "[BUTTON_3_MSG]";
-        break;
-
-        case '4':
-            btn4 = true ;
-            Serial << "[BUTTON_4_MSG]";
-        break;
-
-        case '5':
-            btn5 = true ;
-            Serial << "[BUTTON_5_MSG]";
-        break;
-        
-        case 'i': //Return some info about current state
+        case 'i': //Return info about current HW state
             sendInfo();
-            
         break;
         
         default: //Do nothing
@@ -196,20 +207,25 @@ void processByte(char ch)
 void checkPINStates()
 {
     //Read and report states of "light pins"            
-    Serial << 
-     ((digitalRead(1)) ? "[PIN_1=HIGH]" : "[PIN_1=LOW]") << 
-     ((digitalRead(2)) ? "[PIN_2=HIGH]" : "[PIN_2=LOW]") <<     
-     ((digitalRead(3)) ? "[PIN_3=HIGH]" : "[PIN_3=LOW]") << 
-     ((digitalRead(4)) ? "[PIN_4=HIGH]" : "[PIN_4=LOW]") <<
-     ((digitalRead(5)) ? "[PIN_5=HIGH]" : "[PIN_5=LOW]") <<     
-     ((digitalRead(6)) ? "[PIN_6=HIGH]" : "[PIN_6=LOW]") << 
-     ((digitalRead(7)) ? "[PIN_7=HIGH]" : "[PIN_7=LOW]") <<    
-     ((digitalRead(8)) ? "[PIN_8=HIGH]" : "[PIN_8=LOW]");
+    Serial <<"[";
+    Serial << ((digitalRead(1)) ? "PIN_1=HIGH," : "PIN_1=LOW,");
+    Serial << ((digitalRead(2)) ? "PIN_2=HIGH," : "PIN_2=LOW,");    
+    Serial << ((digitalRead(3)) ? "PIN_3=HIGH," : "PIN_3=LOW,");    
+    Serial << ((digitalRead(4)) ? "PIN_4=HIGH," : "PIN_4=LOW,");
+    Serial << ((digitalRead(5)) ? "PIN_5=HIGH," : "PIN_5=LOW,");    
+    Serial << ((digitalRead(6)) ? "PIN_6=HIGH," : "PIN_6=LOW,"); 
+    Serial << ((digitalRead(7)) ? "PIN_7=HIGH," : "PIN_7=LOW,");    
+    Serial << ((digitalRead(8)) ? "PIN_8=HIGH," : "PIN_8=LOW,");        
+    Serial << "COAX_DRIVE="<<coaxDrive<<",";
+    Serial << "FRONT_LED_DRIVE="<<frontLEDDrive<<",";
+    Serial << "BACK_LED_DRIVE="<<backLEDDrive;
+    Serial << "]"
+    ;            
 }        
 
 void sendInfo()
 {
-    Serial << "[ArrayBot Lights VERSION=5.6]";        
+    Serial << "[ARRAYBOT LIGHTS VERSION="<<sketchVersion<<"]";    
     checkPINStates();
 }
 
@@ -221,7 +237,7 @@ void readEnvironmentalSensors(DHT22& s)
             Serial << "[DHT22DATA," << s.getTemperatureC() << "," << s.getHumidity() << "]";
         break;
 
-        //The following are error conditions. Pulling to quick happens easily, no need to report
+        //The following are error conditions. Polling to quick happens easily, no need to report
         case DHT_ERROR_CHECKSUM:        Serial << "[DHT22_ERROR, Check Sum Error ";        break;
         case DHT_BUS_HUNG:              Serial << "[DHT22_ERROR, BUS Hung]";               break;
         case DHT_ERROR_NOT_PRESENT:     Serial << "[DHT22_ERROR, Not Present]";            break;
