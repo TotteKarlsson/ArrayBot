@@ -263,43 +263,15 @@ object Main: TMain
           ExplicitTop = 0
           ExplicitWidth = 0
           ExplicitHeight = 0
-          object GroupBox1: TGroupBox
+          object mArduinoSB: TScrollBox
             Left = 0
             Top = 0
-            Width = 257
-            Height = 432
-            Align = alLeft
-            Caption = 'Arduino Server'
-            TabOrder = 0
-            object mArduinoServerPortE: TIntegerLabeledEdit
-              Left = 16
-              Top = 56
-              Width = 121
-              Height = 31
-              EditLabel.Width = 108
-              EditLabel.Height = 23
-              EditLabel.Caption = 'Network Port'
-              TabOrder = 0
-              Text = '50000'
-              Value = 50000
-            end
-            object mArduinoServerStartBtn: TButton
-              Left = 16
-              Top = 160
-              Width = 200
-              Height = 65
-              Caption = 'Start/Stop'
-              TabOrder = 1
-              OnClick = mArduinoServerStartBtnClick
-            end
-          end
-          object mArduinoSB: TScrollBox
-            Left = 257
-            Top = 0
-            Width = 554
+            Width = 811
             Height = 432
             Align = alClient
-            TabOrder = 1
+            TabOrder = 0
+            ExplicitLeft = 257
+            ExplicitWidth = 554
           end
         end
       end
@@ -311,69 +283,108 @@ object Main: TMain
       Height = 166
       Align = alClient
       TabOrder = 1
-      object infoMemo: TMemo
-        Left = 1
-        Top = 31
-        Width = 819
-        Height = 134
-        Align = alClient
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        ReadOnly = True
-        ScrollBars = ssBoth
-        TabOrder = 0
-        WordWrap = False
-      end
-      object ToolBar1: TToolBar
+      object GroupBox1: TGroupBox
         Left = 1
         Top = 1
-        Width = 819
-        Height = 30
-        AutoSize = True
-        ButtonHeight = 30
-        Caption = 'ToolBar1'
-        TabOrder = 1
-        object mClearLogMemoBtn: TBitBtn
-          Left = 0
-          Top = 0
-          Width = 75
-          Height = 30
-          Caption = 'Clear'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-          OnClick = mClearLogMemoBtnClick
-        end
-        object LogLevelCB: TComboBox
-          Left = 75
-          Top = 0
-          Width = 145
+        Width = 160
+        Height = 164
+        Align = alLeft
+        Caption = 'Arduino Server'
+        TabOrder = 0
+        object mArduinoServerPortE: TIntegerLabeledEdit
+          Left = 16
+          Top = 56
+          Width = 121
           Height = 31
+          EditLabel.Width = 108
+          EditLabel.Height = 23
+          EditLabel.Caption = 'Network Port'
+          TabOrder = 0
+          Text = '50000'
+          Value = 50000
+        end
+        object mArduinoServerStartBtn: TButton
+          Left = 13
+          Top = 93
+          Width = 124
+          Height = 52
+          Caption = 'Start/Stop'
+          TabOrder = 1
+          OnClick = mArduinoServerStartBtnClick
+        end
+      end
+      object Panel2: TPanel
+        Left = 161
+        Top = 1
+        Width = 659
+        Height = 164
+        Align = alClient
+        Caption = 'Panel2'
+        TabOrder = 1
+        object infoMemo: TMemo
+          Left = 1
+          Top = 31
+          Width = 657
+          Height = 132
+          Align = alClient
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -19
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          ReadOnly = True
+          ScrollBars = ssBoth
+          TabOrder = 0
+          WordWrap = False
+        end
+        object ToolBar1: TToolBar
+          Left = 1
+          Top = 1
+          Width = 657
+          Height = 30
+          AutoSize = True
+          ButtonHeight = 30
+          Caption = 'ToolBar1'
           TabOrder = 1
-          Text = 'INFO'
-          OnChange = LogLevelCBChange
-          Items.Strings = (
-            'INFO'
-            'DEBUG'
-            'DEBUG1'
-            'DEBUG2'
-            'DEBUG3'
-            'DEBUG4'
-            'DEBUG5')
+          object mClearLogMemoBtn: TBitBtn
+            Left = 0
+            Top = 0
+            Width = 75
+            Height = 30
+            Caption = 'Clear'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            OnClick = mClearLogMemoBtnClick
+          end
+          object LogLevelCB: TComboBox
+            Left = 75
+            Top = 0
+            Width = 145
+            Height = 31
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
+            Text = 'INFO'
+            OnChange = LogLevelCBChange
+            Items.Strings = (
+              'INFO'
+              'DEBUG'
+              'DEBUG1'
+              'DEBUG2'
+              'DEBUG3'
+              'DEBUG4'
+              'DEBUG5')
+          end
         end
       end
     end

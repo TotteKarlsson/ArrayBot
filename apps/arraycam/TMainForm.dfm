@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Array Cam 0.5'
-  ClientHeight = 986
+  ClientHeight = 902
   ClientWidth = 968
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object MainForm: TMainForm
   TextHeight = 19
   object Splitter1: TSplitter
     Left = 0
-    Top = 824
+    Top = 740
     Width = 968
     Height = 3
     Cursor = crVSplit
@@ -32,7 +32,7 @@ object MainForm: TMainForm
   object Splitter2: TSplitter
     Left = 786
     Top = 0
-    Height = 824
+    Height = 740
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
@@ -42,16 +42,18 @@ object MainForm: TMainForm
     Left = 789
     Top = 0
     Width = 179
-    Height = 824
+    Height = 740
     Align = alRight
     TabOrder = 0
+    ExplicitHeight = 824
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
       Width = 177
-      Height = 822
+      Height = 738
       Align = alClient
       TabOrder = 0
+      ExplicitHeight = 822
       object GroupBox5: TGroupBox
         Left = 0
         Top = 0
@@ -114,7 +116,7 @@ object MainForm: TMainForm
       end
       object Button2: TArrayBotButton
         Left = 0
-        Top = 758
+        Top = 674
         Width = 173
         Height = 60
         Align = alBottom
@@ -123,6 +125,7 @@ object MainForm: TMainForm
         TabOrder = 0
         OnClick = Button2Click
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitTop = 758
       end
       object mFitToScreenButton: TArrayBotButton
         Left = 0
@@ -138,7 +141,7 @@ object MainForm: TMainForm
       end
       object mFrontBackLEDBtn: TArrayBotButton
         Left = 0
-        Top = 698
+        Top = 614
         Width = 173
         Height = 60
         Align = alBottom
@@ -148,6 +151,7 @@ object MainForm: TMainForm
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitTop = 698
       end
       object mOneToOneBtn: TArrayBotButton
         Left = 0
@@ -211,7 +215,7 @@ object MainForm: TMainForm
       end
       object mToggleCoaxBtn: TArrayBotButton
         Left = 0
-        Top = 638
+        Top = 554
         Width = 173
         Height = 60
         Align = alBottom
@@ -221,6 +225,7 @@ object MainForm: TMainForm
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
+        ExplicitTop = 638
       end
       object mToggleLogPanelBtn: TArrayBotButton
         Left = 0
@@ -240,10 +245,11 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 786
-    Height = 824
+    Height = 740
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
+    ExplicitHeight = 824
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -268,11 +274,12 @@ object MainForm: TMainForm
   end
   object mBottomPanel: TPanel
     Left = 0
-    Top = 827
+    Top = 743
     Width = 968
     Height = 159
     Align = alBottom
     TabOrder = 2
+    ExplicitTop = 827
     object GroupBox3: TGroupBox
       Left = 105
       Top = 1

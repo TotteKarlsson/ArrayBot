@@ -74,9 +74,6 @@ class TMain : public TRegistryForm
 	TComboBox *LogLevelCB;
 	TPanel *MainPanel;
 	TSplitter *Splitter1;
-	TGroupBox *GroupBox1;
-	TIntegerLabeledEdit *mArduinoServerPortE;
-	TButton *mArduinoServerStartBtn;
 	TScrollBox *mArduinoSB;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet1;
@@ -103,6 +100,10 @@ class TMain : public TRegistryForm
 	TComboBox *mLeicaCutThicknessLB;
 	TLabel *Label1;
 	TArrayBotButton *mStartNewRibbonButton;
+	TGroupBox *GroupBox1;
+	TIntegerLabeledEdit *mArduinoServerPortE;
+	TButton *mArduinoServerStartBtn;
+	TPanel *Panel2;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);

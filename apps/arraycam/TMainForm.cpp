@@ -152,6 +152,8 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	updateVideoFileLB();
 	updateShotsLB();
 
+    enableDisableClientControls(false);
+
 	//Try to connect to the arduino server..
 	mLightsArduinoClient.connect(50000);
 

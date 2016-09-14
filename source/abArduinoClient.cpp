@@ -26,6 +26,16 @@ bool ArduinoClient::init(int serverPort, const string& hostname, bool connectOnI
     if(connectOnInit)
     {
     	bool res = SocketClient::connect(serverPort, hostname);
+
+        if(isConnected() && mReceiver.isFinished())
+        {
+            return mReceiver.start(true);
+        }
+    }
+
+    if(!mMessageProcessor.isRunning())
+    {
+        mMessageProcessor.start(true);
     }
 
     return true;
@@ -48,6 +58,7 @@ bool ArduinoClient::isConnected()
 
 bool ArduinoClient::shutDown()
 {
+    Log(lDebug3)<<"Stop receiving";
 	mReceiver.stop();
 
     Log(lDebug3)<<"Stop processing messages";
@@ -65,16 +76,7 @@ bool ArduinoClient::connect(int serverPort, const string& host)
 	//This should be done in a thread..
     bool res = init(serverPort, host, true);
 
-    if(!mMessageProcessor.isRunning())
-    {
-        mMessageProcessor.start(true);
-    }
-
-    if(isConnected())
-    {
-    	return mReceiver.start(true);
-    }
-    return false;
+    return res;
 }
 
 bool ArduinoClient::disConnect()
