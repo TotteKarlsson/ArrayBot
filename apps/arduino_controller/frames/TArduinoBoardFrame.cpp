@@ -74,7 +74,7 @@ void __fastcall TArduinoBoardFrame::mSendMSGEKeyDown(TObject *Sender, WORD &Key,
 //---------------------------------------------------------------------------
 void __fastcall TArduinoBoardFrame::Timer1Timer(TObject *Sender)
 {
-    mConnectBtn->Caption 	=  mArduinoDevice.isConnected()  ? "Disconnect" : "Connect";
+    mConnectBtn->Caption 	=  mArduinoDevice.isConnected() ? "Disconnect" : "Connect";
     mCommPortE->Enabled 	= !mArduinoDevice.isConnected();
     mBaudRateE->Enabled 	= !mArduinoDevice.isConnected();
     mSendMSGE->Enabled 		=  mArduinoDevice.isConnected();
