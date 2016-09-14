@@ -207,19 +207,19 @@ void processByte(char ch)
 void checkPINStates()
 {
     //Read and report states of "light pins"            
-    Serial <<"[";
-    Serial << ((digitalRead(1)) ? "PIN_1=HIGH," : "PIN_1=LOW,");
-    Serial << ((digitalRead(2)) ? "PIN_2=HIGH," : "PIN_2=LOW,");    
-    Serial << ((digitalRead(3)) ? "PIN_3=HIGH," : "PIN_3=LOW,");    
-    Serial << ((digitalRead(4)) ? "PIN_4=HIGH," : "PIN_4=LOW,");
-    Serial << ((digitalRead(5)) ? "PIN_5=HIGH," : "PIN_5=LOW,");    
-    Serial << ((digitalRead(6)) ? "PIN_6=HIGH," : "PIN_6=LOW,"); 
-    Serial << ((digitalRead(7)) ? "PIN_7=HIGH," : "PIN_7=LOW,");    
-    Serial << ((digitalRead(8)) ? "PIN_8=HIGH," : "PIN_8=LOW,");        
-    Serial << "COAX_DRIVE="<<coaxDrive<<",";
-    Serial << "FRONT_LED_DRIVE="<<frontLEDDrive<<",";
-    Serial << "BACK_LED_DRIVE="<<backLEDDrive;
-    Serial << "]"
+    
+    Serial << "[" << ((digitalRead(1)) ? "PIN_1=HIGH," : "PIN_1=LOW") << "]";
+    Serial << "[" << ((digitalRead(2)) ? "PIN_2=HIGH," : "PIN_2=LOW") << "]";    
+    Serial << "[" << ((digitalRead(3)) ? "PIN_3=HIGH," : "PIN_3=LOW") << "]";    
+    Serial << "[" << ((digitalRead(4)) ? "PIN_4=HIGH," : "PIN_4=LOW") << "]";
+    Serial << "[" << ((digitalRead(5)) ? "PIN_5=HIGH," : "PIN_5=LOW") << "]";    
+    Serial << "[" << ((digitalRead(6)) ? "PIN_6=HIGH," : "PIN_6=LOW") << "]"; 
+    Serial << "[" << ((digitalRead(7)) ? "PIN_7=HIGH," : "PIN_7=LOW") << "]";    
+    Serial << "[" << ((digitalRead(8)) ? "PIN_8=HIGH," : "PIN_8=LOW") << "]";        
+    Serial << "[COAX_DRIVE="<<coaxDrive<<"]";
+    Serial << "[FRONT_LED_DRIVE="<<frontLEDDrive<<"]";
+    Serial << "[BACK_LED_DRIVE="<<backLEDDrive<<"]";
+    
     ;            
 }        
 
@@ -234,7 +234,7 @@ void readEnvironmentalSensors(DHT22& s)
     switch(s.readData())
     {
         case DHT_ERROR_NONE:
-            Serial << "[DHT22DATA," << s.getTemperatureC() << "," << s.getHumidity() << "]";
+            Serial << "[DHT22_DATA," << s.getTemperatureC() << "," << s.getHumidity() << "]";
         break;
 
         //The following are error conditions. Polling to quick happens easily, no need to report

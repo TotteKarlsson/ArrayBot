@@ -61,7 +61,6 @@ object MainForm: TMainForm
         Caption = 'Temperature'
         TabOrder = 1
         Visible = False
-        ExplicitWidth = 156
         object mTemperatureLbl: mtkFloatLabel
           Left = 32
           Top = 23
@@ -92,7 +91,6 @@ object MainForm: TMainForm
         Caption = 'Humidity'
         TabOrder = 2
         Visible = False
-        ExplicitWidth = 156
         object mHumidityE: mtkFloatLabel
           Left = 32
           Top = 23
@@ -125,8 +123,6 @@ object MainForm: TMainForm
         TabOrder = 0
         OnClick = Button2Click
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitTop = 660
-        ExplicitWidth = 156
       end
       object mFitToScreenButton: TArrayBotButton
         Left = 0
@@ -139,7 +135,6 @@ object MainForm: TMainForm
         TabOrder = 3
         OnClick = mFitToScreenButtonClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitWidth = 156
       end
       object mFrontBackLEDBtn: TArrayBotButton
         Left = 0
@@ -153,8 +148,6 @@ object MainForm: TMainForm
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitTop = 600
-        ExplicitWidth = 156
       end
       object mOneToOneBtn: TArrayBotButton
         Left = 0
@@ -167,7 +160,6 @@ object MainForm: TMainForm
         TabOrder = 5
         OnClick = mOneToOneBtnClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitWidth = 156
       end
       object mOneToTwoBtn: TArrayBotButton
         Left = 0
@@ -180,7 +172,6 @@ object MainForm: TMainForm
         TabOrder = 6
         OnClick = mOneToTwoBtnClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitWidth = 156
       end
       object mRecordMovieBtn: TArrayBotButton
         Left = 0
@@ -193,7 +184,6 @@ object MainForm: TMainForm
         TabOrder = 7
         OnClick = mRecordMovieBtnClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitWidth = 156
       end
       object mSettingsBtn: TArrayBotButton
         Left = 0
@@ -206,7 +196,6 @@ object MainForm: TMainForm
         TabOrder = 8
         OnClick = mSettingsBtnClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitWidth = 156
       end
       object mSnapShotBtn: TArrayBotButton
         Left = 0
@@ -219,7 +208,6 @@ object MainForm: TMainForm
         TabOrder = 9
         OnClick = mSnapShotBtnClick
         SoundID = 'CAMERA_SHUTTER_1'
-        ExplicitWidth = 156
       end
       object mToggleCoaxBtn: TArrayBotButton
         Left = 0
@@ -233,8 +221,6 @@ object MainForm: TMainForm
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitTop = 540
-        ExplicitWidth = 156
       end
       object mToggleLogPanelBtn: TArrayBotButton
         Left = 0
@@ -247,7 +233,6 @@ object MainForm: TMainForm
         TabOrder = 11
         OnClick = mToggleLogPanelClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitWidth = 156
       end
     end
   end
@@ -329,9 +314,9 @@ object MainForm: TMainForm
       end
     end
     object GroupBox8: TGroupBox
-      Left = 225
+      Left = 513
       Top = 1
-      Width = 742
+      Width = 454
       Height = 157
       Align = alClient
       Caption = 'Logs'
@@ -339,7 +324,7 @@ object MainForm: TMainForm
       object infoMemo: TMemo
         Left = 2
         Top = 62
-        Width = 738
+        Width = 450
         Height = 93
         Align = alClient
         ScrollBars = ssVertical
@@ -348,7 +333,7 @@ object MainForm: TMainForm
       object Panel1: TPanel
         Left = 2
         Top = 21
-        Width = 738
+        Width = 450
         Height = 41
         Align = alTop
         BevelOuter = bvNone
@@ -356,17 +341,18 @@ object MainForm: TMainForm
         object ToolBar1: TToolBar
           Left = 0
           Top = 0
-          Width = 738
-          Height = 30
+          Width = 450
+          Height = 40
           AutoSize = True
-          ButtonHeight = 30
+          ButtonHeight = 40
           Caption = 'ToolBar1'
           TabOrder = 0
           object mClearLogMemoBtn: TBitBtn
             Left = 0
             Top = 0
-            Width = 75
-            Height = 30
+            Width = 113
+            Height = 40
+            Align = alLeft
             Caption = 'Clear'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -378,7 +364,7 @@ object MainForm: TMainForm
             OnClick = ClearLogMemo
           end
           object LogLevelCB: TComboBox
-            Left = 75
+            Left = 113
             Top = 0
             Width = 145
             Height = 21
@@ -400,6 +386,77 @@ object MainForm: TMainForm
               'DEBUG4'
               'DEBUG5')
           end
+        end
+      end
+    end
+    object GroupBox1: TGroupBox
+      Left = 225
+      Top = 1
+      Width = 288
+      Height = 157
+      Align = alLeft
+      Caption = 'Light Intensities'
+      TabOrder = 3
+      object mCoaxLbl: TLabel
+        Left = 151
+        Top = 112
+        Width = 85
+        Height = 19
+        Caption = 'Coax: (122)'
+      end
+      object mBackLEDLbl: TLabel
+        Left = 151
+        Top = 69
+        Width = 85
+        Height = 19
+        Caption = 'Coax: (122)'
+      end
+      object mFrontLEDLbl: TLabel
+        Left = 151
+        Top = 26
+        Width = 85
+        Height = 19
+        Caption = 'Coax: (122)'
+      end
+      object Panel3: TPanel
+        Left = 2
+        Top = 21
+        Width = 143
+        Height = 134
+        Align = alLeft
+        TabOrder = 0
+        object mBackLEDTB: TTrackBar
+          Left = 1
+          Top = 46
+          Width = 141
+          Height = 45
+          Align = alTop
+          Max = 255
+          TabOrder = 0
+          TickStyle = tsNone
+          OnChange = IntensityChange
+        end
+        object mCoaxTB: TTrackBar
+          Left = 1
+          Top = 91
+          Width = 141
+          Height = 45
+          Align = alTop
+          Max = 255
+          TabOrder = 1
+          TickStyle = tsNone
+          OnChange = IntensityChange
+        end
+        object mFrontLEDTB: TTrackBar
+          Left = 1
+          Top = 1
+          Width = 141
+          Height = 45
+          Align = alTop
+          Max = 255
+          TabOrder = 2
+          TickStyle = tsNone
+          OnChange = IntensityChange
         end
       end
     end

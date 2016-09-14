@@ -48,8 +48,12 @@ bool LightsArduino::toggleLED()
 bool LightsArduino::toggleCoax()
 {
 	static bool switcher(false);
-
     switcher = !switcher;
-
     return (switcher) ? send(mCoaxLightONLine) : send(mCoaxLightOFFLine);
+}
+
+bool LightsArduino::getStatus()
+{
+	Log(lInfo) << "Requestiong sensor arduino status";
+	return send("i");
 }

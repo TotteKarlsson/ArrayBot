@@ -21,6 +21,7 @@ class AB_CORE PufferArduino : public ArduinoDevice
 		bool					setCutThicknessPreset(int preset);
         int						getLastCutThicknessPreset();
 		bool					setDeltaY(int dy);
+		bool 					getStatus();
 
     protected:
     	LeicaUC7Controller		mTheLeica;

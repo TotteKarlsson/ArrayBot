@@ -188,7 +188,7 @@ HWND TMainForm::GetSafeHwnd()
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
-	if(mLogFileReader.isRunning() || mCamera.IsInit())
+	if(mLogFileReader.isRunning() || mCamera.IsInit() || mLightsArduinoClient.isConnected())
     {
         CanClose = false;
         mShutDownTimer->Enabled = true;
@@ -207,9 +207,14 @@ void __fastcall TMainForm::mShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
     }
 
-    if( mCamera.IsInit())
+    if(mCamera.IsInit())
     {
     	mCamera.exitCamera();
+    }
+
+    if(mLightsArduinoClient.isConnected())
+    {
+		mLightsArduinoClient.disConnect();
     }
 
     Close();
@@ -596,7 +601,9 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
         string msg;
         void __fastcall onPufferArduinoMessage()
         {
-            if(startsWith("DHT22DATA", msg))
+        	//If mouse is down.. do not update certain UI objects
+            bool isMouseBtnDown = (bool) GetAsyncKeyState(VK_LBUTTON);
+            if(startsWith("DHT22_DATA", msg))
             {
                 //Parse the message
                 StringList l(msg,',');
@@ -613,26 +620,59 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
 //				MainForm->mGetReadyForZeroCutSound.play();
 //            }
 
-            if(startsWith("GET_READY_FOR_ZERO_CUT_2", msg))
+            else if(startsWith("GET_READY_FOR_ZERO_CUT_2", msg))
             {
             	Log(lInfo) <<"Steady for zero cut";
                 MainForm->stopSounds();
 				MainForm->mGetReadyForZeroCutSound.play();
             }
 
-            if(startsWith("SET_ZERO_CUT", msg))
+            else if(startsWith("SET_ZERO_CUT", msg))
             {
             	Log(lInfo) <<"Go for zero cut ";
                 MainForm->stopSounds();
 				MainForm->mSetZeroCutSound.play();
             }
 
-            if(startsWith("RESTORE_FROM_ZERO_CUT", msg))
+            else if(startsWith("RESTORE_FROM_ZERO_CUT", msg))
             {
 				Log(lInfo) <<"Restore from zero Cut ";
                 MainForm->stopSounds();
 				//MainForm->mRestoreFromZeroCutSound.play();
             }
+
+            else if(startsWith("COAX_DRIVE", msg) && isMouseBtnDown == false )
+            {
+                StringList l(msg,'=');
+                if(l.size() == 2)
+                {
+	                MainForm->mCoaxTB->Tag = 1;
+                    MainForm->mCoaxTB->Position = toInt(l[1]);
+	                MainForm->mCoaxTB->Tag = 0;
+                }
+            }
+            else if(startsWith("FRONT_LED_DRIVE", msg) && isMouseBtnDown == false)
+            {
+                StringList l(msg,'=');
+                if(l.size() == 2)
+                {
+   	                MainForm->mFrontLEDTB->Tag = 1;
+                    MainForm->mFrontLEDTB->Position = toInt(l[1]);
+   	                MainForm->mFrontLEDTB->Tag = 0;
+                }
+            }
+
+            else if(startsWith("BACK_LED_DRIVE", msg) && isMouseBtnDown == false)
+            {
+                StringList l(msg,'=');
+                if(l.size() == 2)
+                {
+   	                MainForm->mBackLEDTB->Tag = 1;
+                    MainForm->mBackLEDTB->Position = toInt(l[1]);
+   	                MainForm->mBackLEDTB->Tag = 0;
+                }
+            }
+
 
 //            else if(startsWith("PIN_8", msg))
 //            {
@@ -718,3 +758,46 @@ void TMainForm::stopSounds()
     mRestoreFromZeroCutSound.stop();
     mSetZeroCutSound.stop();
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::IntensityChange(TObject *Sender)
+{
+	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
+    if(tb == mFrontLEDTB)
+    {
+    	int nr = tb->Position;
+        if(tb->Tag != 1) //Means we are updating UI
+        {
+        	stringstream s;
+	        s<<"SET_FRONT_LED_INTENSITY="<<nr;
+	        mLightsArduinoClient.request(s.str());
+        }
+        mFrontLEDLbl->Caption = "Front LED (" + IntToStr(nr) + ")";
+    }
+    else if(tb == mBackLEDTB)
+    {
+    	int nr = tb->Position;
+
+        if(tb->Tag != 1) //Means we are updating UI
+        {
+	        stringstream s;
+	        s<<"SET_BACK_LED_INTENSITY="<<nr;
+    	    mLightsArduinoClient.request(s.str());
+        }
+        mBackLEDLbl->Caption = "Back LED (" + IntToStr(nr) + ")";
+
+    }
+    else if(tb == mCoaxTB)
+    {
+    	int nr = tb->Position;
+        if(tb->Tag != 1) //Means we are updating UI
+        {
+			stringstream s;
+	        s<<"SET_COAX_INTENSITY="<<nr;
+    	    mLightsArduinoClient.request(s.str());
+        }
+        mCoaxLbl->Caption = "Coax (" + IntToStr(nr) + ")";
+    }
+}
+
+

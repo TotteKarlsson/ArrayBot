@@ -48,33 +48,21 @@ bool ArduinoServer::shutDown()
 void ArduinoServer::enableAutoPuff()
 {
 	mRibbonLengthController.enableAutoPuff();
-    stringstream msg;
-    msg <<"AUTO_PUFF=true";
-   	notifyClients(msg.str());
 }
 
 void ArduinoServer::disableAutoPuff()
 {
 	mRibbonLengthController.disableAutoPuff();
-    stringstream msg;
-    msg <<"AUTO_PUFF=false";
-   	notifyClients(msg.str());
 }
 
 void ArduinoServer::enableAutoZeroCut()
 {
 	mRibbonLengthController.enableAutoZeroCut();
-    stringstream msg;
-    msg <<"AUTO_ZERO_CUT=true";
-   	notifyClients(msg.str());
 }
 
 void ArduinoServer::disableAutoZeroCut()
 {
 	mRibbonLengthController.disableAutoZeroCut();
-    stringstream msg;
-    msg <<"AUTO_ZERO_CUT=false";
-   	notifyClients(msg.str());
 }
 
 void ArduinoServer::notifyClients(const string& msg)
@@ -113,6 +101,7 @@ void ArduinoServer::broadcastStatus()
     msg.str("");
     msg <<"AUTO_ZERO_CUT="<<toString(mRibbonLengthController.getAutoZeroCutSetting());
    	notifyClients(msg.str());
+
 }
 
 //This is called from the arduino devices class upon receiving
@@ -159,6 +148,7 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
 //These messages are handled in a thread
 //Depending on the message, a response may be sent using the
 //notifyClients function
+
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
     stringstream clientMessage;
@@ -186,11 +176,13 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     {
     	Log(lInfo) << "Enabling auto puffing";
         enableAutoPuff();
+    	clientMessage <<"AUTO_PUFF=true";
     }
     else if(compareStrings(msg, "DISABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Disabling auto puffing";
         disableAutoPuff();
+    	clientMessage <<"AUTO_PUFF=false";
     }
     else if(startsWith("SET_DESIRED_RIBBON_LENGTH", msg))
     {
@@ -221,7 +213,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Toggling Coax on/off";
         mLightsArduino.toggleCoax();
     }
-    else if(startsWith("SET_FRONTLED", msg))
+    else if(startsWith("SET_FRONT_LED", msg))
     {
         StringList sl(msg,'=');
         if(sl.size() == 2)
@@ -232,7 +224,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	mLightsArduino.send(s.str());
         }
     }
-    else if(startsWith("SET_BACKLED", msg))
+    else if(startsWith("SET_BACK_LED", msg))
     {
         StringList sl(msg,'=');
         if(sl.size() == 2)
@@ -284,6 +276,11 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Disabling auto zero cut";
         mRibbonLengthController.disableAutoZeroCut();
         clientMessage << "AUTO_ZERO_CUT=false";
+    }
+    else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
+    {
+		Log(lInfo) << "Requesting sensor arduino statis";
+        mLightsArduino.getStatus();
     }
     else if(compareStrings(msg, "GET_STATUS"))
     {

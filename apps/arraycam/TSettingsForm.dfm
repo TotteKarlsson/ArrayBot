@@ -12,6 +12,7 @@ object SettingsForm: TSettingsForm
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -111,47 +112,6 @@ object SettingsForm: TSettingsForm
     Caption = 'Close'
     TabOrder = 2
     OnClick = Button1Click
-  end
-  object GroupBox5: TGroupBox
-    Left = 8
-    Top = 204
-    Width = 145
-    Height = 143
-    Caption = 'Light Intensities'
-    TabOrder = 3
-    object mCoaxTB: TTrackBar
-      Left = 2
-      Top = 105
-      Width = 141
-      Height = 45
-      Align = alTop
-      Max = 255
-      TabOrder = 0
-      OnChange = LightTBChange
-      ExplicitWidth = 152
-    end
-    object mBackLEDTB: TTrackBar
-      Left = 2
-      Top = 60
-      Width = 141
-      Height = 45
-      Align = alTop
-      Max = 255
-      TabOrder = 1
-      OnChange = LightTBChange
-      ExplicitWidth = 152
-    end
-    object mFrontLEDTB: TTrackBar
-      Left = 2
-      Top = 15
-      Width = 141
-      Height = 45
-      Align = alTop
-      Max = 255
-      TabOrder = 2
-      OnChange = LightTBChange
-      ExplicitWidth = 152
-    end
   end
   object UIUpdateTimer: TTimer
     Enabled = False

@@ -59,5 +59,10 @@ bool PufferArduino::setSimualorSpeed(int ms)
     mSS.str("");
 	mSS << "s"<<ms;
 	return send(mSS.str());
+}
 
+bool PufferArduino::getStatus()
+{
+	Log(lInfo) << "Requesting puffer arduino status";
+	return send("i");
 }

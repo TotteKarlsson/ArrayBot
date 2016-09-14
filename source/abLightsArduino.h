@@ -18,6 +18,8 @@ class AB_CORE LightsArduino : public ArduinoDevice
         bool								turnCoaxLightOn();
         bool								turnCoaxLightOff();
 
+        bool								getStatus();
+
 
     protected:
         									//!ArduinoLines

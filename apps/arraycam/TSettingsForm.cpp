@@ -129,29 +129,10 @@ void __fastcall TSettingsForm::Button1Click(TObject *Sender)
 
 
 
-void __fastcall TSettingsForm::LightTBChange(TObject *Sender)
+void __fastcall TSettingsForm::FormClose(TObject *Sender, TCloseAction &Action)
+
 {
-	//---------------------------------------------------------------------------
-	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
-    if(tb == mFrontLEDTB)
-    {
-    	int nr = tb->Position;
-        stringstream s;
-        s<<"SET_FRONTLED_INTENSITY="<<nr;
-        mMainForm.mLightsArduinoClient.request(s.str());
-    }
-    else if(tb == mBackLEDTB)
-    {
-    	int nr = tb->Position;
-        stringstream s;
-        s<<"SET_BACKLED_INTENSITY="<<nr;
-        mMainForm.mLightsArduinoClient.request(s.str());
-    }
-    else if(tb == mCoaxTB)
-    {
-    	int nr = tb->Position;
-        stringstream s;
-        s<<"SET_COAX_INTENSITY="<<nr;
-        mMainForm.mLightsArduinoClient.request(s.str());
-    }
+	UIUpdateTimer->Enabled = false;
 }
+//---------------------------------------------------------------------------
+

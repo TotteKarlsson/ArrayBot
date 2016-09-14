@@ -71,6 +71,14 @@ class TMainForm  : public TRegistryForm
 	TArrayBotButton *mSnapShotBtn;
 	TArrayBotButton *mToggleCoaxBtn;
 	TArrayBotButton *mToggleLogPanelBtn;
+	TGroupBox *GroupBox1;
+	TTrackBar *mCoaxTB;
+	TTrackBar *mBackLEDTB;
+	TTrackBar *mFrontLEDTB;
+	TPanel *Panel3;
+	TLabel *mCoaxLbl;
+	TLabel *mBackLEDLbl;
+	TLabel *mFrontLEDLbl;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -94,6 +102,7 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall IntensityChange(TObject *Sender);
 
     private:
         LogFileReader                           mLogFileReader;
