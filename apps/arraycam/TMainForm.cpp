@@ -37,6 +37,7 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
         mAutoExposure(false),
         mVerticalMirror(false),
         mHorizontalMirror(false),
+        mPairLEDs(false),
 		mGetReadyForZeroCutSound("SHORT_BEEP_2", 10, 500),
 		mSetZeroCutSound("SHORT_BEEP_2", 25, 150),
 		mRestoreFromZeroCutSound("CLOSING_DOWN_1", 15, 350)
@@ -46,11 +47,14 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	//Setup UI/INI properties
     mProperties.setSection("GENERAL");
 	mProperties.setIniFile(&mIniFile);
-	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	    	"LOG_LEVEL",    lAny));
-	mProperties.add((BaseProperty*)  &mAutoGain.setup(			"AUTO_GAIN",    false));
-	mProperties.add((BaseProperty*)  &mAutoExposure.setup( 		"AUTO_EXPOSURE",    false));
-	mProperties.add((BaseProperty*)  &mVerticalMirror.setup(	"VERTICAL_MIRROR",    false));
+	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	    	"LOG_LEVEL",    		lAny));
+	mProperties.add((BaseProperty*)  &mAutoGain.setup(			"AUTO_GAIN",    		false));
+	mProperties.add((BaseProperty*)  &mAutoExposure.setup( 		"AUTO_EXPOSURE",    	false));
+	mProperties.add((BaseProperty*)  &mVerticalMirror.setup(	"VERTICAL_MIRROR",    	false));
 	mProperties.add((BaseProperty*)  &mHorizontalMirror.setup(	"HORIZONTAL_MIRROR",    false));
+	mProperties.add((BaseProperty*)  &mHorizontalMirror.setup(	"HORIZONTAL_MIRROR",    false));
+	mProperties.add((BaseProperty*)  &mPairLEDs.setup(			"PAIR_LEDS",    		true));
+
     mProperties.read();
 
 	//Camera rendering mode
@@ -98,45 +102,6 @@ void TMainForm::enableDisableClientControls(bool enable)
 	mToggleCoaxBtn->Enabled = enable;
     mFrontBackLEDBtn->Enabled = enable;
 }
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mCameraStartLiveBtnClick(TObject *Sender)
-{
-    Log(lDebug) << "Init camera..";
-    //Live
-    if(!mCamera.IsInit())
-    {
-        openCamera();
-    }
-
-    if(mCamera.IsInit())
-    {
-        int x, y;
-        mCamera.GetMaxImageSize(&x,&y);
-        Log(lInfo) << "Max image size (x,y): ("<<x<<", "<<y<<")";
-        mCamera.CaptureVideo( IS_WAIT );
-
-        HCAM hc = mCamera.GetCameraHandle();
-
-		//Setup camera using values from INI file
-
-        //Enable/Disable auto gain control:
-        double dEnable = mAutoGain.getValue() ? 1 : 0;
-        int ret = is_SetAutoParameter (hc, IS_SET_ENABLE_AUTO_GAIN, &dEnable, 0);
-
-		dEnable = mAutoExposure.getValue() ? 1 : 0;
-
-        //Enable/Disable auto exposure
-        ret = is_SetAutoParameter (hc, IS_SET_ENABLE_AUTO_SHUTTER, &dEnable, 0);
-
-        //Set brightness setpoint to 128:
-        double nominal = 128;
-        ret = is_SetAutoParameter (hc, IS_SET_AUTO_REFERENCE, &nominal, 0);
-
-        //Mirror stuff
-		is_SetRopEffect (hc, IS_SET_ROP_MIRROR_LEFTRIGHT, mVerticalMirror.getValue(), 0);
-		is_SetRopEffect (hc, IS_SET_ROP_MIRROR_UPDOWN, 	mHorizontalMirror.getValue(), 0);
-    }
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormCreate(TObject *Sender)
@@ -174,29 +139,6 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
     }
 }
 
-LRESULT TMainForm::OnUSBCameraMessage(TMessage msg)
-{
-    switch ( msg.WParam )
-    {
-        case IS_DEVICE_REMOVED:            Beep( 400, 50 );        break;
-        case IS_DEVICE_RECONNECTED:        Beep( 400, 50 );        break;
-
-        case IS_FRAME:
-            if(mCamera.mImageMemory != NULL)
-            {
-                mCamera.RenderBitmap(mCamera.mMemoryId, mDisplayHandle, mRenderMode);
-            }
-        break;
-    }
-
-    return 0;
-}
-
-//---------------------------------------------------------------------------
-bool TMainForm::openCamera()
-{
-	return	mCamera.openCamera(this->Handle);
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
@@ -208,91 +150,10 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState S
     }
 }
 
-HWND TMainForm::GetSafeHwnd()
-{
-	return this->Handle;
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::FormCloseQuery(TObject *Sender, bool &CanClose)
-{
-	if(mLogFileReader.isRunning() || mCamera.IsInit() || mLightsArduinoClient.isConnected())
-    {
-        CanClose = false;
-        mShutDownTimer->Enabled = true;
-        return;
-    }
-
-    CanClose = true;
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mShutDownTimerTimer(TObject *Sender)
-{
-    mShutDownTimer->Enabled = false;
-	if(mLogFileReader.isRunning())
-    {
-		mLogFileReader.stop();
-    }
-
-    if(mCamera.IsInit())
-    {
-    	mCamera.exitCamera();
-    }
-
-    if(mLightsArduinoClient.isConnected())
-    {
-		mLightsArduinoClient.disConnect();
-    }
-
-    Close();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mOneToTwoBtnClick(TObject *Sender)
-{
-	mRenderMode = IS_RENDER_DOWNSCALE_1_2;
-
-   	int x, y;
-	mCamera.GetMaxImageSize(&x,&y);
-	mCameraBackPanel->Width = x/2.;
-	mCameraBackPanel->Height = y/2.;
-}
-
-void __fastcall TMainForm::mOneToOneBtnClick(TObject *Sender)
-{
-    mRenderMode = IS_RENDER_FIT_TO_WINDOW;
-    mCameraStreamPanel->Invalidate();
-
-   	int x, y;
-	mCamera.GetMaxImageSize(&x,&y);
-	mCameraBackPanel->Width  = x;
-	mCameraBackPanel->Height = y;
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mFitToScreenButtonClick(TObject *Sender)
-{
-	//Check widths and heights
-    double wRatio = (double) mMainPanel->Width / mCameraBackPanel->Width;
-    double hRatio = (double) mMainPanel->Height / mCameraBackPanel->Height;
-
-    if(hRatio < wRatio)
-    {
-	    mCameraBackPanel->Height = mMainPanel->Height;
-        mCameraBackPanel->Width *= hRatio;
-    }
-    else
-    {
-	    mCameraBackPanel->Width = mMainPanel->Width;
-        mCameraBackPanel->Height *= wRatio;
-    }
-
-    mCameraBackPanel->Invalidate();
-    mCameraStreamPanel->Invalidate();
-	Log(lInfo) << "W x H = " <<mCameraBackPanel->Width<<","<<mCameraBackPanel->Height<<" Ratio = "<<(double) mCameraBackPanel->Width / mCameraBackPanel->Height;
-}
-
+//HWND TMainForm::GetSafeHwnd()
+//{
+//	return this->Handle;
+//}
 
 void __fastcall TMainForm::mMainPanelResize(TObject *Sender)
 {
@@ -307,145 +168,6 @@ void __fastcall TMainForm::mToggleLogPanelClick(TObject *Sender)
 	mFitToScreenButtonClick(Sender);
 }
 
-void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
-{
-	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
-
-    if(!folderExists(fldr))
-    {
-    	createFolder(fldr);
-    }
-
-    string ext(".jpg");
-    //Count files in folder
-    int nrOfShots = countFiles(fldr, "*" + ext) + 1;
-    string fName = joinPath(fldr, mtk::toString(nrOfShots) + ext);
-    int i = 1;
-
-    while(fileExists(fName))
-    {
-        nrOfShots = countFiles(fldr, "*" + ext) + ++i;
-        fName = joinPath(fldr, mtk::toString(nrOfShots) + ext);
-    }
-
-	if(mCamera.SaveImage(fName.c_str()))
-    {
-    	Log(lError) << "Failed saving snapshot..";
-    }
-    else
-    {
-    	Log(lInfo) << "Saved snap shot to: "<< fName;
-    }
-	updateShotsLB();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mRecordMovieBtnClick(TObject *Sender)
-{
-	if(mRecordMovieBtn->Caption == "Record Movie")
-    {
-        mCaptureVideoTimer->Enabled = true;
-
-        isavi_InitAVI(&mAVIID, mCamera.GetCameraHandle());
-
-        int w = mCamera.mSizeX;
-        int h = mCamera.mSizeY;
-        int retVal = isavi_SetImageSize(mAVIID, mCamera.mColorMode, w, h, 0, 0, 0);
-
-        if(retVal != IS_AVI_NO_ERR)
-        {
-            Log(lError) << "There was a SetImageSize AVI error: "<<retVal;
-            return;
-        }
-
-        retVal = isavi_SetImageQuality(mAVIID, 100);
-        if(retVal != IS_AVI_NO_ERR)
-        {
-            Log(lError) << "There was a SetImageQuality AVI error: "<<retVal;
-            return;
-        }
-
-        string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
-
-        //Count files in folder
-        int nrOfMovies = countFiles(fldr, "*.avi") + 1;
-        string fName = joinPath(fldr, mtk::toString(nrOfMovies) + ".avi");
-        int i = 1;
-        while(fileExists(fName))
-        {
-        	nrOfMovies = countFiles(fldr, "*.avi") + ++i;
-        	fName = joinPath(fldr, mtk::toString(nrOfMovies) + ".avi");
-        }
-
-        retVal = isavi_OpenAVI(mAVIID, fName.c_str());
-        if(retVal != IS_AVI_NO_ERR)
-        {
-            Log(lError) << "There was a OpenAVI error: "<<retVal;
-            return;
-        }
-
-        retVal = isavi_SetFrameRate(mAVIID, 25);
-        if(retVal != IS_AVI_NO_ERR)
-        {
-            Log(lError) << "There was a SetFrameRate AVI error: "<<retVal;
-            return;
-        }
-
-        retVal = isavi_StartAVI(mAVIID);
-        if(retVal != IS_AVI_NO_ERR)
-        {
-            Log(lError) << "There was a StartAVI error: "<<retVal;
-            return;
-        }
-        mRecordMovieBtn->Caption = "Stop Recording";
-    }
-    else
-    {
-        mCaptureVideoTimer->Enabled = false;
-        mRecordMovieBtn->Caption = "Record Movie";
-        int retVal = isavi_StopAVI(mAVIID);
-        if(retVal != IS_AVI_NO_ERR)
-        {
-            Log(lError) << "There was a StopAVI error: "<<retVal;
-            return;
-        }
-
-        retVal = isavi_CloseAVI(mAVIID);
-        if(retVal != IS_AVI_NO_ERR)
-        {
-            Log(lError) << "There was a CloseAVI error: "<<retVal;
-            return;
-        }
-
-        retVal = isavi_ExitAVI(mAVIID);
-        if(retVal != IS_AVI_NO_ERR)
-        {
-            Log(lError) << "There was a ExitAVI error: "<<retVal;
-            return;
-        }
-        updateVideoFileLB();
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mCaptureVideoTimerTimer(TObject *Sender)
-{
-	//Todo: this should be executed in its own thread and not in a timer..
-    mCaptureVideo = true;
-    static int frames(0);
-
-    int retVal = isavi_AddFrame(mAVIID, mCamera.mImageMemory);
-
-    if(retVal != IS_AVI_NO_ERR)
-    {
-        //Log(lError) << "There was an AddFrame AVI error: "<<retVal;
-    }
-    else
-    {
-        frames++;
-        Log(lInfo) << "Added frame: "<<frames;
-    }
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::ClearLogMemo(TObject *Sender)
@@ -700,24 +422,6 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
    	                MainForm->mBackLEDTB->Tag = 0;
                 }
             }
-
-
-//            else if(startsWith("PIN_8", msg))
-//            {
-//                StringList l(msg,'=');
-//                if(l.size() == 2)
-//                {
-////                    Main->mCoaxLEDBtn->Caption = l[1] == "HIGH" ? "Coax LEDs OFF" : "Coax LEDs On";
-//                }
-//            }
-//            else if(startsWith("PIN_3", msg))
-//            {
-//                StringList l(msg,'=');
-//                if(l.size() == 2)
-//                {
-//  //                  Main->mFrontBackLEDBtn->Caption = l[1] == "HIGH" ? "Front/Back LEDs OFF" : "Front/Back LEDs On";
-//                }
-//            }
         }
     };
 
@@ -727,7 +431,6 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
     //This causes this fucntion to be called in the UI thread
 	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mFrontBackLEDBtnClick(TObject *Sender)
@@ -791,40 +494,50 @@ void TMainForm::stopSounds()
 void __fastcall TMainForm::IntensityChange(TObject *Sender)
 {
 	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
+    if(!tb)
+    {
+    	return;
+    }
+
+   	int pos = tb->Position;
     if(tb == mFrontLEDTB)
     {
-    	int nr = tb->Position;
-        if(tb->Tag != 1) //Means we are updating UI
+    	if(mPairLEDs.getValue() == true)
+        {
+        	if(mBackLEDTB->Position != mFrontLEDTB->Position)
+            {
+				mBackLEDTB->Position = mFrontLEDTB->Position;
+            }
+        }
+
+        if(tb->Tag != 1) //Means we are updating UI from thread
         {
         	stringstream s;
-	        s<<"SET_FRONT_LED_INTENSITY="<<nr;
+	        s<<"SET_FRONT_LED_INTENSITY="<<pos;
 	        mLightsArduinoClient.request(s.str());
         }
-        mFrontLEDLbl->Caption = "Front LED (" + IntToStr(nr) + ")";
+        mFrontLEDLbl->Caption = "Front LED (" + IntToStr(pos) + ")";
     }
     else if(tb == mBackLEDTB)
     {
-    	int nr = tb->Position;
-
         if(tb->Tag != 1) //Means we are updating UI
         {
 	        stringstream s;
-	        s<<"SET_BACK_LED_INTENSITY="<<nr;
+	        s<<"SET_BACK_LED_INTENSITY="<<pos;
     	    mLightsArduinoClient.request(s.str());
         }
-        mBackLEDLbl->Caption = "Back LED (" + IntToStr(nr) + ")";
+        mBackLEDLbl->Caption = "Back LED (" + IntToStr(pos) + ")";
 
     }
     else if(tb == mCoaxTB)
     {
-    	int nr = tb->Position;
         if(tb->Tag != 1) //Means we are updating UI
         {
 			stringstream s;
-	        s<<"SET_COAX_INTENSITY="<<nr;
+	        s<<"SET_COAX_INTENSITY="<<pos;
     	    mLightsArduinoClient.request(s.str());
         }
-        mCoaxLbl->Caption = "Coax (" + IntToStr(nr) + ")";
+        mCoaxLbl->Caption = "Coax (" + IntToStr(pos) + ")";
     }
 }
 

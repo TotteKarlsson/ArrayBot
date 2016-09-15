@@ -26,6 +26,8 @@ __published:	// IDE-managed Components
 	TButton *Button1;
 	TPropertyCheckBox *mAutoExposureCB;
 	TPropertyCheckBox *mAutoGainCB;
+	TGroupBox *GroupBox5;
+	TPropertyCheckBox *mPairLEDsCB;
 	void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mVerticalMirrorCBClick(TObject *Sender);
@@ -33,6 +35,10 @@ __published:	// IDE-managed Components
 	void __fastcall AutoParaCBClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall mPairLEDsCBClick(TObject *Sender);
+	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
+
 private:	// User declarations
 public:		// User declarations
 

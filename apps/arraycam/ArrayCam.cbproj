@@ -108,6 +108,12 @@
         <PCHCompile Include="ArrayCamPCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
+        <CppCompile Include="CameraFunctions.cpp">
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Closing.cpp">
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
         <CppCompile Include="TMainForm.cpp">
             <Form>MainForm</Form>
             <FormType>dfm</FormType>

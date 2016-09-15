@@ -55,7 +55,7 @@ void ArduinoServerIPCReceiver::Worker()
                     {
                         mServer->postIPCMessage(msg);
                     }
-                    send("[ACK]");
+
                     aMessage.reset();
                 }
             }
