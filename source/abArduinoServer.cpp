@@ -163,6 +163,28 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         mPufferArduino.getStatus();
     }
 
+    else if(startsWith("SET_PUFFER_DURATION", msg))
+    {
+    	Log(lInfo) << "Setting puffer duration";
+		StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+        	mPufferArduino.setPufferDuration(toInt(l[1]));
+		    clientMessage <<"SET_PUFFER_DURATION="<<l[1];
+        }
+    }
+
+    else if(startsWith("SET_PUFFER_VALVE_SPEED", msg))
+    {
+    	Log(lInfo) << "Setting puffer valve speed";
+		StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+        	mPufferArduino.setPufferValveSpeed(toInt(l[1]));
+		    clientMessage <<"SET_PUFFER_VALVE_SPEED="<<l[1];
+        }
+    }
+
     else if(compareStrings(msg, "RESET_SECTION_COUNT"))
     {
     	Log(lInfo) << "Resetting section counter";
@@ -196,11 +218,48 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	clientMessage <<"AUTO_PUFF=false";
     }
 
-    else if(startsWith("PUFF", msg))
+    else if(compareStrings("PUFF", msg))
     {
     	Log(lInfo) << "Executing puffer";
         mPufferArduino.manualPuff();
 	    mRibbonLengthController.manualPuff();
+    }
+
+    else if(startsWith("SET_CUT_THICKNESS_PRESET", msg))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+			Log(lInfo) << "Requesting Cut Thickness Preset ("<<sl[1]<<")";
+        	mPufferArduino.setCutThicknessPreset(toInt(sl[1]));
+            mRibbonLengthController.setCutThicknessPreset(toInt(sl[1]));
+        }
+    }
+    else if(startsWith("SET_DELTAY", msg))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+			Log(lInfo) << "Requesting DeltaY("<<sl[1]<<")";
+        	mPufferArduino.setDeltaY(toInt(sl[1]));
+        }
+    }
+
+    else if(startsWith("PUFFER_CUSTOM_MESSAGE", msg))
+    {
+		StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+	    	Log(lInfo) << "Sending puffer custom message: "<<l[1];
+	        mPufferArduino.send(l[1]);
+        }
+    }
+
+	//Commands only changing internal data
+    else if(startsWith("START_NEW_RIBBON", msg))
+    {
+    	Log(lInfo) << "Starting new ribbon";
+		mRibbonLengthController.prepareForNewRibbon();
     }
 
     else if(startsWith("SET_DESIRED_RIBBON_LENGTH", msg))
@@ -213,10 +272,19 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
 		    clientMessage <<"DESIRED_RIBBON_LENGTH="<<l[1];
         }
     }
-    else if(startsWith("START_NEW_RIBBON", msg))
+
+    else if(startsWith("ENABLE_AUTO_ZERO_CUT", msg))
     {
-    	Log(lInfo) << "Starting new ribbon";
-		mRibbonLengthController.prepareForNewRibbon();
+    	Log(lInfo) << "Enabling auto zero cut";
+        mRibbonLengthController.enableAutoZeroCut();
+        clientMessage <<"AUTO_ZERO_CUT=true";
+    }
+
+    else if(startsWith("DISABLE_AUTO_ZERO_CUT", msg))
+    {
+    	Log(lInfo) << "Disabling auto zero cut";
+        mRibbonLengthController.disableAutoZeroCut();
+        clientMessage << "AUTO_ZERO_CUT=false";
     }
 
     //SENSOR ARDUINO MESSAGES
@@ -298,43 +366,20 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         }
     }
 
-    else if(startsWith("SET_CUT_THICKNESS_PRESET", msg))
-    {
-        StringList sl(msg,'=');
-        if(sl.size() == 2)
-        {
-			Log(lInfo) << "Requesting Cut Thickness Preset ("<<sl[1]<<")";
-        	mPufferArduino.setCutThicknessPreset(toInt(sl[1]));
-            mRibbonLengthController.setCutThicknessPreset(toInt(sl[1]));
-        }
-    }
-    else if(startsWith("SET_DELTAY", msg))
-    {
-        StringList sl(msg,'=');
-        if(sl.size() == 2)
-        {
-			Log(lInfo) << "Requesting DeltaY("<<sl[1]<<")";
-        	mPufferArduino.setDeltaY(toInt(sl[1]));
-        }
-    }
-    else if(startsWith("ENABLE_AUTO_ZERO_CUT", msg))
-    {
-    	Log(lInfo) << "Enabling auto zero cut";
-        mRibbonLengthController.enableAutoZeroCut();
-        clientMessage <<"AUTO_ZERO_CUT=true";
-    }
-
-    else if(startsWith("DISABLE_AUTO_ZERO_CUT", msg))
-    {
-    	Log(lInfo) << "Disabling auto zero cut";
-        mRibbonLengthController.disableAutoZeroCut();
-        clientMessage << "AUTO_ZERO_CUT=false";
-    }
-
     else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
     {
 		Log(lInfo) << "Requesting sensor arduino status";
         mLightsArduino.getStatus();
+    }
+
+    else if(startsWith("SENSOR_CUSTOM_MESSAGE", msg))
+    {
+    	StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+	    	Log(lInfo) << "Sending sensor custom message: "<<l[1];
+	        mLightsArduino.send(l[1]);
+        }
     }
 
     else if(compareStrings(msg, "GET_STATUS"))

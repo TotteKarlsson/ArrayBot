@@ -5,9 +5,10 @@
 #include <Wire.h>
 #include "Adafruit_MotorShield.h"
 #include <SoftwareSerial.h>
+double gSketchVersion = 1.0;
 
 //Allow nice syntax for serial printing
-template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg); return obj; }
+template<class T> inline Print &operator <<(Print &o, T arg) { o.print(arg); return o; }
 
 // Create the motor shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
@@ -15,7 +16,7 @@ Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 // Get port M1 address
 Adafruit_DCMotor* gPufferValve = AFMS.getMotor(1);
 
-// global variables (g)
+// global variables
 bool            gSimulateHallSensor(false);
 unsigned int    gSimulationSpeed    = 5000;
 
@@ -24,15 +25,16 @@ const int       gHallSensorPin      = 2;    // Hall sensor pin
 const int       gPufferPin          = 3;    // Pushbutton 1 pin
 const int       gLedPin             = 13;   // LED pin, illuminates when solenoid is triggered 
 
-//Leica mouse control
-SoftwareSerial  leicaSerial(10, 11); // RX, TX
-
 int             gPuffDuration       = 50;   // msec puffer on
 int             gPufferValveSpeed   = 255;  // msec puffer on
 
 bool            gEnablePuffer(false);
 unsigned long   gLastReadTime = millis();
+
+//Leica mouse control
+SoftwareSerial  leicaSerial(10, 11); // RX, TX
 String          gLeicaMessage;
+
 
 void setup() 
 {
@@ -48,7 +50,7 @@ void setup()
     pinMode(gPufferPin,         INPUT);     // Set off the puffer manually by this pin    
     
     // setup HW serial port
-    Serial.begin(250000);
+    Serial.begin(57600);
     Serial << "[ArrayBot Puffer Arduino]";
 
     //setup SW serial port to the Leica Arduino.    
@@ -110,7 +112,9 @@ void loop()
 
 void sendInfo()
 {
-    Serial << "[VERSION=2.5, PUFFER_DURATION=" << gPuffDuration << ", PUFFER_VALVE_SPEED=" << gPufferValveSpeed << "]\n";    
+    Serial << "[PUFFER_SKETCH_VERSION=" << gSketchVersion << "]";    
+    Serial << "[PUFFER_DURATION=" << gPuffDuration << "]";
+    Serial << "[PUFFER_VALVE_SPEED=" << gPufferValveSpeed << "]";    
 }
 
 void puff(int duration_in_ms)
@@ -192,7 +196,7 @@ void processByte(char ch)
         case 'd': 
             //Next byte is the value
             gPuffDuration = Serial.parseInt(); 
-            sendInfo();                
+            Serial << "[PUFFER_DURATION=" << gPuffDuration << "]";                
         break;                
 
         //Set puffer valve speed
@@ -200,7 +204,7 @@ void processByte(char ch)
             //Next byte is the value
             gPufferValveSpeed = Serial.parseInt(); 
             gPufferValve->setSpeed(gPufferValveSpeed);            
-            sendInfo();                   
+            Serial << "[PUFFER_VALVE_SPEED=" << gPufferValveSpeed << "]";                
         break;                
 
         //Return some info about current state

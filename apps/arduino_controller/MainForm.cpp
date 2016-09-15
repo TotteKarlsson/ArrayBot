@@ -105,7 +105,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	//Setup frames for the Arduinos
 	setupUIFrames();
-	mArduinoServer.broadcastStatus();
 }
 
 //---------------------------------------------------------------------------
@@ -114,16 +113,16 @@ void __fastcall	TMain::setupUIFrames()
     mPufferArduino.setName("PUFFER_ARDUINO");
 
     //Create ArduinoFrames
-    TPufferArduinoBoardFrame* af1 = new TPufferArduinoBoardFrame(mPufferArduino, mIniFile, this);
+    TPufferArduinoBoardFrame* af1 = new TPufferArduinoBoardFrame(mArduinoServer, mPufferArduino, mIniFile, this);
     af1->Parent =  mArduinoSB;
-    af1->Align = alTop;
+    af1->Align = alLeft;
     af1->ConnectBtnClick(NULL);
     mFrames.push_back(af1);
 
     mSensorArduino.setName("SENSOR_ARDUINO");
-    TSensorAndLightArduinoFrame* af2 = new TSensorAndLightArduinoFrame(mSensorArduino, mIniFile, this);
+    TSensorAndLightArduinoFrame* af2 = new TSensorAndLightArduinoFrame(mArduinoServer, mSensorArduino, mIniFile, this);
     af2->Parent =  mArduinoSB;
-    af2->Align = alTop;
+    af2->Align = alLeft;
     af2->ConnectBtnClick(NULL);
     mFrames.push_back(af2);
 }
@@ -245,13 +244,13 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
         {
         	mCoaxLightBtn->Caption = "Flip CoaxLight ON";
             ccap = "ON";
-        	mArduinoServer.request("TURN_ON_COAX_LED_LIGHT");
+        	mArduinoServer.request("TURN_ON_COAX_LIGHT");
         }
         else
         {
         	mCoaxLightBtn->Caption = "Flip CoaxLight OFF";
             ccap = "OFF";
-        	mArduinoServer.request("TURN_OFF_COAX_LED_LIGHT");
+        	mArduinoServer.request("TURN_OFF_COAX_LIGHT");
         }
     }
 }

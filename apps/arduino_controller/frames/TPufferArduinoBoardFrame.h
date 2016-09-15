@@ -17,12 +17,17 @@ __published:
 	TIntegerLabeledEdit *mPufferDurationE;
 	TIntegerLabeledEdit *mPufferValveSpeedE;
 	void __fastcall updateParameter(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mSendBtnClick(TObject *Sender);
+
+
 
 
 	private:
+		PufferArduino&					mPufferArduino;
 
 	public:
-							__fastcall 	TPufferArduinoBoardFrame(PufferArduino& dev, IniFile& ini, TComponent* Owner);
+							__fastcall 	TPufferArduinoBoardFrame(ArduinoServer& server, PufferArduino& dev, IniFile& ini, TComponent* Owner);
 							__fastcall 	~TPufferArduinoBoardFrame();
     	void 							init();
 };

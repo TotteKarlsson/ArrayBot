@@ -2,6 +2,7 @@
 #pragma hdrstop
 #include "TSensorAndLightArduinoFrame.h"
 #include <sstream>
+#include "mtkBaseProperty.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TArduinoBoardFrame"
@@ -12,17 +13,14 @@ TSensorAndLightArduinoFrame *SensorAndLightArduinoFrame;
 //---------------------------------------------------------------------------
 
 using std::stringstream;
+using namespace mtk;
 
-__fastcall TSensorAndLightArduinoFrame::TSensorAndLightArduinoFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner)
-	: TArduinoBoardFrame(dev, ini, Owner)
+__fastcall TSensorAndLightArduinoFrame::TSensorAndLightArduinoFrame(ArduinoServer& server, ArduinoDevice& dev, IniFile& ini, TComponent* Owner)
+	: TArduinoBoardFrame(server, dev, ini, Owner)
 {
-//	mProperties.add((BaseProperty*)  &mPufferDurationE->getProperty()->setup(  	   "PUFFER_DURATION",    	 50));
-//	mProperties.add((BaseProperty*)  &mPufferValveSpeedE->getProperty()->setup(    "PUFFER_VALVE_SPEED", 	 255));
-//	mProperties.add((BaseProperty*)  &mSendMSGE->getProperty()->setup(    	       "SEND_TEXT", 	 		 "i"));
+	mProperties.add((BaseProperty*)  &mSendMSGE->getProperty()->setup(    	       "SEND_TEXT", 	 		 "i"));
     mProperties.read();
 
-//	mPufferDurationE->update();
-//	mPufferValveSpeedE->update();
 	mSendMSGE->update();
 }
 
@@ -36,4 +34,27 @@ void TSensorAndLightArduinoFrame::init()
     stringstream msg;
     mArduinoDevice.send(msg.str());
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TSensorAndLightArduinoFrame::mSendMSGEKeyDown(TObject *Sender,
+          WORD &Key, TShiftState Shift)
+{
+    if(Key = vkReturn)
+    {
+		string msg = mSendMSGE->getValue();
+        stringstream customMsg;
+ 		customMsg << "SENSOR_CUSTOM_MESSAGE="<<msg;
+	    mServer.request(customMsg.str());
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TSensorAndLightArduinoFrame::mSendBtnClick(TObject *Sender)
+{
+    string msg = mSendMSGE->getValue();
+    stringstream customMsg;
+    customMsg << "SENSOR_CUSTOM_MESSAGE="<<msg;
+    mServer.request(customMsg.str());
+}
+
 
