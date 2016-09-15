@@ -87,6 +87,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 
 	WaitForDeviceInitTimer->Enabled = true;
 	mPufferArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
+    mPufferArduinoClient.onConnected 		= onArduinoClientConnected;
+	mPufferArduinoClient.onDisconnected 	= onArduinoClientDisconnected;
 }
 
 __fastcall TMain::~TMain()
@@ -101,7 +103,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 {
 	setupWindowTitle();
 	gAppIsStartingUp = false;
-
+    enableDisableClientControls(false);
 
     if(this->BorderStyle == bsNone)
     {
@@ -180,6 +182,31 @@ void __fastcall TMain::WndProc(TMessage& Message)
     {
         TForm::WndProc(Message);
     }
+}
+
+//Callback from socket client class
+void TMain::onArduinoClientConnected()
+{
+    Log(lDebug) << "ArduinoClient was connected..";
+
+    //Send message to update UI
+    mPufferArduinoClient.getBoardStatus();
+    enableDisableClientControls(true);
+}
+
+void TMain::onArduinoClientDisconnected()
+{
+    Log(lDebug) << "Arduino Client was disconnected..";
+    enableDisableClientControls(false);
+
+}
+
+void TMain::enableDisableClientControls(bool enable)
+{
+	//Disable client related components..
+    enableDisablePanel(mBottomPanel, enable);
+    EnableDisableGroupBox(mPufferGB, enable);
+
 }
 
 //---------------------------------------------------------------------------

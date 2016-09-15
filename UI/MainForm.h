@@ -123,7 +123,7 @@ class TMain : public TRegistryForm
 	TArrayBotButton *Button5;
 	TArrayBotButton *Button7;
 	TArrayBotButton *mStartNewRibbonBtn;
-	TGroupBox *GroupBox3;
+	TGroupBox *mPufferGB;
 	TArrayBotButton *mPuffBtn;
 	TArrayBotButton *mEnablePuffBtn;
 	TGroupBox *GroupBox5;
@@ -195,6 +195,11 @@ class TMain : public TRegistryForm
         										//Callback
 		void 									onArduinoMessageReceived(const string& msg);
 
+      											//Callbacks
+        void									onArduinoClientConnected();
+        void									onArduinoClientDisconnected();
+        void									enableDisableClientControls(bool enable);
+
         							            //!Arraybot is allocated on the stack.
                                                 //!So that we can catch exceptions in the
                                                 //!constructor
@@ -221,6 +226,8 @@ class TMain : public TRegistryForm
         void						            onJSButton14Click();
 
         void __fastcall 				        FrameClosed(TObject *Sender);
+
+
 
 	public:		// User declarations
 		__fastcall 					            TMain(TComponent* Owner);

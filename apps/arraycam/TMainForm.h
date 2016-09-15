@@ -150,7 +150,6 @@ class TMainForm  : public TRegistryForm
 
         										//Callback
 		void 									onArduinoMessageReceived(const string& msg);
-
         void									enableDisableClientControls(bool enable);
 
     public:

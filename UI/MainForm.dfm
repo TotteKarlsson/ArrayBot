@@ -91,7 +91,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = mFrontPage
+      ActivePage = TabSheet2
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -634,7 +634,7 @@ object Main: TMain
             OnClick = mASStartBtnClick
           end
         end
-        object GroupBox3: TGroupBox
+        object mPufferGB: TGroupBox
           Left = 455
           Top = 280
           Width = 314
