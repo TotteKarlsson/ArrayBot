@@ -92,6 +92,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Title = "ArrayBot - Software for Robots";
 		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->CreateForm(__classid(TMain), &Main);
+		Application->ShowMainForm = false;
 		Application->Run();
 	}
 	catch (Exception &exception)

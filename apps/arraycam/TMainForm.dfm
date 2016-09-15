@@ -45,7 +45,6 @@ object MainForm: TMainForm
     Height = 531
     Align = alRight
     TabOrder = 0
-    ExplicitHeight = 740
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
@@ -54,7 +53,6 @@ object MainForm: TMainForm
       VertScrollBar.Position = 174
       Align = alClient
       TabOrder = 0
-      ExplicitHeight = 738
       object GroupBox5: TGroupBox
         Left = 0
         Top = -174
@@ -247,7 +245,6 @@ object MainForm: TMainForm
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
-    ExplicitHeight = 740
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -277,7 +274,6 @@ object MainForm: TMainForm
     Height = 159
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 743
     object GroupBox3: TGroupBox
       Left = 105
       Top = 1

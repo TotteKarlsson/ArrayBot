@@ -91,7 +91,7 @@ object Main: TMain
       Top = 1
       Width = 918
       Height = 917
-      ActivePage = TabSheet2
+      ActivePage = mFrontPage
       Align = alClient
       TabHeight = 60
       TabOrder = 0
@@ -359,19 +359,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            object LiftBtn: TSpeedButton
-              Left = 16
-              Top = 129
-              Width = 409
-              Height = 136
-              Action = liftA
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -16
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentFont = False
-            end
             object mMoveAccelerationE: TFloatLabeledEdit
               Left = 105
               Top = 92
@@ -402,6 +389,22 @@ object Main: TMain
               TabOrder = 2
               Text = '<none>'
               OnChange = mLiftCBChange
+            end
+            object LiftBtn: TArrayBotButton
+              Left = 16
+              Top = 129
+              Width = 409
+              Height = 136
+              Action = liftA
+              Caption = 'Lift'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -16
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 3
+              SoundID = 'BUTTON_CLICK_4'
             end
           end
         end

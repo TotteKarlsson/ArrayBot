@@ -98,7 +98,7 @@ void TMainForm::onArduinoClientDisconnected()
 void TMainForm::enableDisableClientControls(bool enable)
 {
 	//Disable client related components..
-    EnableDisableGroupBox(LightIntensitiesGB, enable);
+    enableDisableGroupBox(LightIntensitiesGB, enable);
 	mToggleCoaxBtn->Enabled = enable;
     mFrontBackLEDBtn->Enabled = enable;
 }

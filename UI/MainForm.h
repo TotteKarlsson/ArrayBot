@@ -92,7 +92,6 @@ class TMain : public TRegistryForm
 	TTimer *mLiftTimer;
 	TAction *abortLiftA;
 	TAction *liftA;
-	TSpeedButton *LiftBtn;
 	TComboBox *mLiftCB;
 	TComboBox *LogLevelCB;
 	TTabSheet *mMoveSequencesPage;
@@ -131,6 +130,7 @@ class TMain : public TRegistryForm
 	TArrayBotButton *mSetZeroCutThicknessBtn;
 	TArrayBotButton *mSetPresetCutBtn;
 	TComboBox *mLeicaCutThicknessLB;
+	TArrayBotButton *LiftBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -171,6 +171,7 @@ class TMain : public TRegistryForm
         										pcMoveSequences = 2, pcSettings = 3,
                                                 pcLogs = 4, pcAbout = 5};
 
+        void									enableDisableUI(bool enable);
         LogFileReader                           mLogFileReader;
         void __fastcall                         logMsg();
 

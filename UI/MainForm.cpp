@@ -101,7 +101,11 @@ __fastcall TMain::~TMain()
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
 {
+	enableDisableUI(false);
+
+	this->Visible = true;
 	setupWindowTitle();
+
 	gAppIsStartingUp = false;
     enableDisableClientControls(false);
 
@@ -113,7 +117,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	TMemoLogger::mMemoIsEnabled = true;
 	gSplashForm->mMainAppIsRunning = true;
 
-	this->Visible = true;
 	while(gSplashForm->isOnShowTime() == true || mInitBotThread.isAlive())
 	{
        	Application->ProcessMessages();
@@ -124,8 +127,11 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 		}
 	}
 
+    setupUIFrames();
 	gSplashForm->Close();
 	gLogger.setLogLevel(mLogLevel);
+
+	enableDisableUI(true);
 
 	if(mLogLevel == lInfo)
 	{
@@ -141,6 +147,16 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
+}
+
+void TMain::enableDisableUI(bool e)
+{
+	PageControl1->Visible = e;
+	//enableDisablePageControl(PageControl1, enable);
+	enableDisablePanel(mButtonPanel, e);
+	enableDisablePanel(mTopPanel, e);
+    enableDisableGroupBox(JSGB, e);
+    enableDisableGroupBox(LiftGB, e);
 }
 
 void __fastcall TMain::WndProc(TMessage& Message)
@@ -198,14 +214,13 @@ void TMain::onArduinoClientDisconnected()
 {
     Log(lDebug) << "Arduino Client was disconnected..";
     enableDisableClientControls(false);
-
 }
 
 void TMain::enableDisableClientControls(bool enable)
 {
 	//Disable client related components..
     enableDisablePanel(mBottomPanel, enable);
-    EnableDisableGroupBox(mPufferGB, enable);
+    enableDisableGroupBox(mPufferGB, enable);
 
 }
 
@@ -215,7 +230,6 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
 	if(!mInitBotThread.isRunning()) //Not waiting for devices any more
     {
 		WaitForDeviceInitTimer->Enabled = false;
-        setupUIFrames();
     }
 }
 
@@ -297,6 +311,7 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->Parent = mMoveSequencesPage;
     mABProcessSequencerFrame->Align = alClient;
     mABProcessSequencerFrame->init();
+
 
 	mSequencerButtons = new TSequencerButtonsFrame(*(mAB), mBottomPanel);
 	mSequencerButtons->Parent = mTopPanel;
