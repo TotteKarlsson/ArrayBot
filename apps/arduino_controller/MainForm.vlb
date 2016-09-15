@@ -1,11 +1,8 @@
-﻿[TopPanel]
-Coordinates=299,284,60,51
-
-[BottomBtnPanel]
+﻿[BottomBtnPanel]
 Coordinates=200,284,95,51
 
 []
-Coordinates=168,462,53,33
+Coordinates=299,284,60,51
 
 [mButtonPanel]
 Coordinates=234,195,58,51

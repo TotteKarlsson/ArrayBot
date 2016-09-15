@@ -148,7 +148,6 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
 //These messages are handled in a thread
 //Depending on the message, a response may be sent using the
 //notifyClients function
-
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
     stringstream clientMessage;
@@ -156,34 +155,54 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     {
         msg.unPack();
     }
-    if(compareStrings(msg, "RESET_SECTION_COUNT"))
+
+    //PUFFER ARDUINO MESSAGES
+    if(startsWith("GET_PUFFER_ARDUINO_STATUS", msg))
+    {
+    	Log(lInfo) << "Requestiong PUFFER_ARDUINO status";
+        mPufferArduino.getStatus();
+    }
+
+    else if(compareStrings(msg, "RESET_SECTION_COUNT"))
     {
     	Log(lInfo) << "Resetting section counter";
         mRibbonLengthController.resetSectionCount();
 	    clientMessage <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
     }
+
     else if(compareStrings(msg, "ENABLE_PUFFER"))
     {
     	Log(lInfo) << "Enabling auto puffing";
         mPufferArduino.enablePuffer();
     }
+
     else if(compareStrings(msg, "DISABLE_PUFFER"))
     {
     	Log(lInfo) << "Disable auto puffing";
         mPufferArduino.disablePuffer();
     }
+
     else if(compareStrings(msg, "ENABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Enabling auto puffing";
         enableAutoPuff();
     	clientMessage <<"AUTO_PUFF=true";
     }
+
     else if(compareStrings(msg, "DISABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Disabling auto puffing";
         disableAutoPuff();
     	clientMessage <<"AUTO_PUFF=false";
     }
+
+    else if(startsWith("PUFF", msg))
+    {
+    	Log(lInfo) << "Executing puffer";
+        mPufferArduino.manualPuff();
+	    mRibbonLengthController.manualPuff();
+    }
+
     else if(startsWith("SET_DESIRED_RIBBON_LENGTH", msg))
     {
     	Log(lInfo) << "Setting desired ribbon length";
@@ -191,12 +210,8 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         if(l.size() == 2)
         {
         	mRibbonLengthController.setDesiredRibbonLength(toInt(l[1]));
+		    clientMessage <<"DESIRED_RIBBON_LENGTH="<<l[1];
         }
-    }
-    else if(startsWith("PUFF", msg))
-    {
-    	Log(lInfo) << "Executing puffer";
-	    mRibbonLengthController.manualPuff();
     }
     else if(startsWith("START_NEW_RIBBON", msg))
     {
@@ -204,12 +219,35 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
 		mRibbonLengthController.prepareForNewRibbon();
     }
 
-    //SENSOR ARDUINO
-
+    //SENSOR ARDUINO MESSAGES
     else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
     {
     	Log(lInfo) << "Requestiong SENSOR_ARDUINO status";
         mLightsArduino.getStatus();
+    }
+
+    else if(startsWith("TURN_ON_LED_LIGHTS", msg))
+    {
+    	Log(lInfo) << "Turn on LED lights";
+        mLightsArduino.turnLEDLightsOn();
+    }
+
+    else if(startsWith("TURN_OFF_LED_LIGHTS", msg))
+    {
+    	Log(lInfo) << "Turn off LED lights";
+        mLightsArduino.turnLEDLightsOff();
+    }
+
+    else if(startsWith("TURN_ON_COAX_LIGHT", msg))
+    {
+    	Log(lInfo) << "Turn on Coax lights";
+        mLightsArduino.turnCoaxLightOn();
+    }
+
+    else if(startsWith("TURN_OFF_COAX_LIGHTS", msg))
+    {
+    	Log(lInfo) << "Turn off Coax lights";
+        mLightsArduino.turnCoaxLightOff();
     }
 
     else if(startsWith("TOGGLE_LED_LIGHT", msg))
@@ -217,11 +255,13 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lInfo) << "Toggling LED on/off";
         mLightsArduino.toggleLED();
     }
+
     else if(startsWith(msg, "TOGGLE_COAX_LIGHT"))
     {
     	Log(lInfo) << "Toggling Coax on/off";
         mLightsArduino.toggleCoax();
     }
+
     else if(startsWith("SET_FRONT_LED", msg))
     {
         StringList sl(msg,'=');
@@ -233,6 +273,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	mLightsArduino.send(s.str());
         }
     }
+
     else if(startsWith("SET_BACK_LED", msg))
     {
         StringList sl(msg,'=');
@@ -244,6 +285,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	mLightsArduino.send(s.str());
         }
     }
+
     else if(startsWith("SET_COAX", msg))
     {
         StringList sl(msg,'=');
@@ -255,6 +297,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	mLightsArduino.send(s.str());
         }
     }
+
     else if(startsWith("SET_CUT_THICKNESS_PRESET", msg))
     {
         StringList sl(msg,'=');
@@ -280,22 +323,26 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         mRibbonLengthController.enableAutoZeroCut();
         clientMessage <<"AUTO_ZERO_CUT=true";
     }
+
     else if(startsWith("DISABLE_AUTO_ZERO_CUT", msg))
     {
     	Log(lInfo) << "Disabling auto zero cut";
         mRibbonLengthController.disableAutoZeroCut();
         clientMessage << "AUTO_ZERO_CUT=false";
     }
+
     else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
     {
-		Log(lInfo) << "Requesting sensor arduino statis";
+		Log(lInfo) << "Requesting sensor arduino status";
         mLightsArduino.getStatus();
     }
+
     else if(compareStrings(msg, "GET_STATUS"))
     {
     	Log(lInfo) << "Broadcast status";
         broadcastStatus();
     }
+
     else
     {
     	Log(lError) << "UNHANDLED ARDUINO SERVER MESSAGE: "<<msg;

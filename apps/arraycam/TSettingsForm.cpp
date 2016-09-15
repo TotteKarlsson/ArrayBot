@@ -38,7 +38,6 @@ void __fastcall TSettingsForm::mASStartBtnClick(TObject *Sender)
     {
     	mMainForm.mLightsArduinoClient.connect(mArduinoServerPortE->getValue());
         mASStartBtn->Caption == "Connecting";
-        mMainForm.mLightsArduinoClient.getStatus();
     }
     else
     {

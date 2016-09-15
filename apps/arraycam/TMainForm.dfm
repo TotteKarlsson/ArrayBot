@@ -45,7 +45,6 @@ object MainForm: TMainForm
     Height = 740
     Align = alRight
     TabOrder = 0
-    ExplicitHeight = 824
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
@@ -53,7 +52,6 @@ object MainForm: TMainForm
       Height = 738
       Align = alClient
       TabOrder = 0
-      ExplicitHeight = 822
       object GroupBox5: TGroupBox
         Left = 0
         Top = 0
@@ -125,7 +123,6 @@ object MainForm: TMainForm
         TabOrder = 0
         OnClick = Button2Click
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitTop = 758
       end
       object mFitToScreenButton: TArrayBotButton
         Left = 0
@@ -151,7 +148,6 @@ object MainForm: TMainForm
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitTop = 698
       end
       object mOneToOneBtn: TArrayBotButton
         Left = 0
@@ -225,7 +221,6 @@ object MainForm: TMainForm
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitTop = 638
       end
       object mToggleLogPanelBtn: TArrayBotButton
         Left = 0
@@ -249,7 +244,6 @@ object MainForm: TMainForm
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
-    ExplicitHeight = 824
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -279,7 +273,6 @@ object MainForm: TMainForm
     Height = 159
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 827
     object GroupBox3: TGroupBox
       Left = 105
       Top = 1

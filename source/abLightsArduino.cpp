@@ -14,13 +14,13 @@ mCoaxLightONLine(1),
 mCoaxLightOFFLine(2)
 {}
 
-bool LightsArduino::turnLEDLightOn()
+bool LightsArduino::turnLEDLightsOn()
 {
 	Log(lInfo) << "Turning on LEDs";
 	return send(mLEDLightONLine);
 }
 
-bool LightsArduino::turnLEDLightOff()
+bool LightsArduino::turnLEDLightsOff()
 {
 	Log(lInfo) << "Turning off LEDs";
 	return send(mLEDLightOFFLine);

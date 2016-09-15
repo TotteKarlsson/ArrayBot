@@ -28,13 +28,14 @@ extern string           gLogFileLocation;
 extern string           gLogFileName;
 extern string           gAppDataFolder;
 extern TSplashForm*  	gSplashForm;
+extern string 			gApplicationRegistryRoot;
 extern bool             gAppIsStartingUp;
 using namespace mtk;
 
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
-	TRegistryForm("Test", "MainForm", Owner),
+	TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, "ArduinoController.ini"), true, true),
     mLogLevel(lAny),
@@ -226,16 +227,15 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
     	static string cap = "ON";
 	   	if(contains("OFF", cap))
         {
-
         	mFrontBackLEDBtn->Caption = "Flip LEDs ON";
             cap = "ON";
-        	//mArduinoServer.turnLEDLightOn();
+        	mArduinoServer.request("TURN_ON_LED_LIGHTS");
         }
         else
         {
         	mFrontBackLEDBtn->Caption = "Flip LEDs OFF";
             cap = "OFF";
-        	//mArduinoServer.turnLEDLightOff();
+        	mArduinoServer.request("TURN_OFF_LED_LIGHTS");
         }
     }
     else if(b == mCoaxLightBtn)
@@ -245,13 +245,13 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
         {
         	mCoaxLightBtn->Caption = "Flip CoaxLight ON";
             ccap = "ON";
-        	//mArduinoServer.turnCoaxLightOn();
+        	mArduinoServer.request("TURN_ON_COAX_LED_LIGHT");
         }
         else
         {
         	mCoaxLightBtn->Caption = "Flip CoaxLight OFF";
             ccap = "OFF";
-        	//mArduinoServer.turnCoaxLightOff();
+        	mArduinoServer.request("TURN_OFF_COAX_LED_LIGHT");
         }
     }
 }
