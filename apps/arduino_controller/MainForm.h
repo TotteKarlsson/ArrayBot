@@ -60,10 +60,8 @@ class TMain : public TRegistryForm
         TApplicationEvents *ApplicationEvents1;
 	TAction *reInitBotA;
         TAction *ShutDownA;
-	TPanel *mButtonPanel;
 	TFileExit *FileExit1;
 	TTimer *UIUpdateTimer;
-	TPanel *BottomBtnPanel;
 	TAction *abortLiftA;
 	TAction *liftA;
 	TPanel *BottomPanel;
@@ -81,7 +79,7 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox3;
 	TIntegerLabeledEdit *mDesiredRibbonLengthE;
 	TPropertyCheckBox *mAutoPuffCB;
-	TPanel *Panel1;
+	TPanel *TopPanel;
 	TGroupBox *GroupBox6;
 	TArrayBotButton *Button1;
 	TArrayBotButton *Button5;

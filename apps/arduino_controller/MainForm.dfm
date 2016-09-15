@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'Arduino Controller'
-  ClientHeight = 711
-  ClientWidth = 1006
+  ClientHeight = 657
+  ClientWidth = 855
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,62 +20,22 @@ object Main: TMain
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 23
-  object mButtonPanel: TPanel
-    Left = 823
-    Top = 71
-    Width = 183
-    Height = 640
-    Align = alRight
-    TabOrder = 0
-    object BottomBtnPanel: TPanel
-      Left = 1
-      Top = 512
-      Width = 181
-      Height = 127
-      Align = alBottom
-      AutoSize = True
-      TabOrder = 0
-      object Button5: TArrayBotButton
-        Left = 1
-        Top = 1
-        Width = 179
-        Height = 125
-        Action = FileExit1
-        Align = alBottom
-        Caption = 'E&xit'
-        ParentDoubleBuffered = True
-        TabOrder = 0
-        SoundID = 'BUTTON_CLICK_4'
-      end
-    end
-    object Button1: TArrayBotButton
-      Left = 1
-      Top = 401
-      Width = 181
-      Height = 111
-      Align = alBottom
-      Caption = 'About'
-      ParentDoubleBuffered = True
-      TabOrder = 1
-      OnClick = mAboutBtnClick
-      SoundID = 'BUTTON_CLICK_4'
-    end
-  end
-  object Panel1: TPanel
+  object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 1006
-    Height = 71
+    Width = 855
+    Height = 89
     Align = alTop
-    TabOrder = 1
+    TabOrder = 0
     object GroupBox2: TGroupBox
       Left = 1
       Top = 1
       Width = 152
-      Height = 69
+      Height = 87
       Align = alLeft
       Caption = 'Section Count'
       TabOrder = 0
+      ExplicitHeight = 69
       object mSectionCountLbl: TIntLabel
         Left = 40
         Top = 31
@@ -95,83 +55,118 @@ object Main: TMain
       Left = 153
       Top = 1
       Width = 160
-      Height = 69
+      Height = 87
       Align = alLeft
       Caption = 'Reset Counter'
       ParentDoubleBuffered = True
       TabOrder = 1
       OnClick = mResetCounterBtnClick
       SoundID = 'BUTTON_CLICK_4'
+      ExplicitHeight = 69
+    end
+    object Button1: TArrayBotButton
+      Left = 618
+      Top = 1
+      Width = 111
+      Height = 87
+      Align = alRight
+      Caption = 'About'
+      ParentDoubleBuffered = True
+      TabOrder = 2
+      OnClick = mAboutBtnClick
+      SoundID = 'BUTTON_CLICK_4'
+      ExplicitHeight = 69
+    end
+    object Button5: TArrayBotButton
+      Left = 729
+      Top = 1
+      Width = 125
+      Height = 87
+      Action = FileExit1
+      Align = alRight
+      Caption = 'E&xit'
+      ParentDoubleBuffered = True
+      TabOrder = 3
+      SoundID = 'BUTTON_CLICK_4'
+      ExplicitHeight = 69
+    end
+    object GroupBox1: TGroupBox
+      Left = 319
+      Top = 1
+      Width = 299
+      Height = 87
+      Align = alRight
+      Caption = 'Server'
+      TabOrder = 4
+      object mArduinoServerPortE: TIntegerLabeledEdit
+        Left = 184
+        Top = 28
+        Width = 96
+        Height = 31
+        EditLabel.Width = 33
+        EditLabel.Height = 23
+        EditLabel.Caption = 'Port'
+        LabelPosition = lpLeft
+        TabOrder = 0
+        Text = '50000'
+        Value = 50000
+      end
+      object mArduinoServerStartBtn: TButton
+        Left = 11
+        Top = 27
+        Width = 126
+        Height = 55
+        Caption = 'Start/Stop'
+        TabOrder = 1
+        OnClick = mArduinoServerStartBtnClick
+      end
     end
   end
   object CenterPanel: TPanel
     Left = 0
-    Top = 71
-    Width = 823
-    Height = 640
+    Top = 89
+    Width = 855
+    Height = 568
     Align = alClient
     Caption = 'CenterPanel'
-    TabOrder = 2
+    TabOrder = 1
+    ExplicitTop = 71
+    ExplicitHeight = 586
     object Splitter1: TSplitter
       Left = 1
       Top = 390
-      Width = 821
+      Width = 853
       Height = 3
       Cursor = crVSplit
       Align = alTop
       ExplicitLeft = 57
       ExplicitTop = 457
+      ExplicitWidth = 821
     end
     object BottomPanel: TPanel
       Left = 1
       Top = 393
-      Width = 821
-      Height = 246
+      Width = 853
+      Height = 174
       Align = alClient
       TabOrder = 0
-      object GroupBox1: TGroupBox
+      ExplicitHeight = 192
+      object Panel2: TPanel
         Left = 1
         Top = 1
-        Width = 160
-        Height = 244
-        Align = alLeft
-        Caption = 'Arduino Server'
-        TabOrder = 0
-        object mArduinoServerPortE: TIntegerLabeledEdit
-          Left = 16
-          Top = 56
-          Width = 121
-          Height = 31
-          EditLabel.Width = 108
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Network Port'
-          TabOrder = 0
-          Text = '50000'
-          Value = 50000
-        end
-        object mArduinoServerStartBtn: TButton
-          Left = 13
-          Top = 93
-          Width = 124
-          Height = 52
-          Caption = 'Start/Stop'
-          TabOrder = 1
-          OnClick = mArduinoServerStartBtnClick
-        end
-      end
-      object Panel2: TPanel
-        Left = 161
-        Top = 1
-        Width = 659
-        Height = 244
+        Width = 851
+        Height = 172
         Align = alClient
         Caption = 'Panel2'
-        TabOrder = 1
+        TabOrder = 0
+        ExplicitLeft = 161
+        ExplicitWidth = 691
+        ExplicitHeight = 190
         object infoMemo: TMemo
           Left = 1
           Top = 31
-          Width = 657
-          Height = 212
+          Width = 849
+          Height = 140
           Align = alClient
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -183,16 +178,19 @@ object Main: TMain
           ScrollBars = ssBoth
           TabOrder = 0
           WordWrap = False
+          ExplicitWidth = 689
+          ExplicitHeight = 158
         end
         object ToolBar1: TToolBar
           Left = 1
           Top = 1
-          Width = 657
+          Width = 849
           Height = 30
           AutoSize = True
           ButtonHeight = 30
           Caption = 'ToolBar1'
           TabOrder = 1
+          ExplicitWidth = 689
           object mClearLogMemoBtn: TBitBtn
             Left = 0
             Top = 0
@@ -237,9 +235,9 @@ object Main: TMain
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 821
+      Width = 853
       Height = 389
-      ActivePage = TabSheet3
+      ActivePage = TabSheet1
       Align = alTop
       TabOrder = 1
       object TabSheet1: TTabSheet
@@ -406,7 +404,7 @@ object Main: TMain
         object mArduinoSB: TScrollBox
           Left = 0
           Top = 0
-          Width = 813
+          Width = 845
           Height = 351
           Align = alClient
           TabOrder = 0
