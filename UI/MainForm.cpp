@@ -152,7 +152,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 void TMain::enableDisableUI(bool e)
 {
 	PageControl1->Visible = e;
-	//enableDisablePageControl(PageControl1, enable);
+
 	enableDisablePanel(mButtonPanel, e);
 	enableDisablePanel(mTopPanel, e);
     enableDisableGroupBox(JSGB, e);
@@ -206,7 +206,7 @@ void TMain::onArduinoClientConnected()
     Log(lDebug) << "ArduinoClient was connected..";
 
     //Send message to update UI
-    mPufferArduinoClient.getBoardStatus();
+    mPufferArduinoClient.getServerStatus();
     enableDisableClientControls(true);
 }
 
@@ -345,24 +345,6 @@ void __fastcall TMain::reInitBotAExecute(TObject *Sender)
     }
 
     ReInitBotBtn->Action = ShutDownA;
-}
-
-void __fastcall TMain::ShutDownAExecute(TObject *Sender)
-{
-    mAB->getJoyStick().disable();
-
-    mXYZUnitFrame1->disable();
-    mXYZUnitFrame2->disable();
-
-    //The shutdown disconnects all devices
-    mAB->shutDown();
-
-	while(mAB->isActive())
-    {
-    	sleep(100);
-    }
-
-    ReInitBotBtn->Action = reInitBotA;
 }
 
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
@@ -633,7 +615,6 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
     {
     	mPufferArduinoClient.connect(mArduinoServerPortE->getValue());
         mASStartBtn->Caption == "Connecting";
-        mPufferArduinoClient.getStatus();
     }
     else
     {

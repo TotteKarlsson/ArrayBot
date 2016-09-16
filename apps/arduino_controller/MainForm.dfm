@@ -35,7 +35,6 @@ object Main: TMain
       Align = alLeft
       Caption = 'Section Count'
       TabOrder = 0
-      ExplicitHeight = 69
       object mSectionCountLbl: TIntLabel
         Left = 40
         Top = 31
@@ -62,7 +61,6 @@ object Main: TMain
       TabOrder = 1
       OnClick = mResetCounterBtnClick
       SoundID = 'BUTTON_CLICK_4'
-      ExplicitHeight = 69
     end
     object Button1: TArrayBotButton
       Left = 618
@@ -75,7 +73,6 @@ object Main: TMain
       TabOrder = 2
       OnClick = mAboutBtnClick
       SoundID = 'BUTTON_CLICK_4'
-      ExplicitHeight = 69
     end
     object Button5: TArrayBotButton
       Left = 729
@@ -88,7 +85,6 @@ object Main: TMain
       ParentDoubleBuffered = True
       TabOrder = 3
       SoundID = 'BUTTON_CLICK_4'
-      ExplicitHeight = 69
     end
     object GroupBox1: TGroupBox
       Left = 319
@@ -130,8 +126,6 @@ object Main: TMain
     Align = alClient
     Caption = 'CenterPanel'
     TabOrder = 1
-    ExplicitTop = 71
-    ExplicitHeight = 586
     object Splitter1: TSplitter
       Left = 1
       Top = 390
@@ -150,7 +144,6 @@ object Main: TMain
       Height = 174
       Align = alClient
       TabOrder = 0
-      ExplicitHeight = 192
       object Panel2: TPanel
         Left = 1
         Top = 1
@@ -159,9 +152,6 @@ object Main: TMain
         Align = alClient
         Caption = 'Panel2'
         TabOrder = 0
-        ExplicitLeft = 161
-        ExplicitWidth = 691
-        ExplicitHeight = 190
         object infoMemo: TMemo
           Left = 1
           Top = 31
@@ -178,8 +168,6 @@ object Main: TMain
           ScrollBars = ssBoth
           TabOrder = 0
           WordWrap = False
-          ExplicitWidth = 689
-          ExplicitHeight = 158
         end
         object ToolBar1: TToolBar
           Left = 1
@@ -190,7 +178,6 @@ object Main: TMain
           ButtonHeight = 30
           Caption = 'ToolBar1'
           TabOrder = 1
-          ExplicitWidth = 689
           object mClearLogMemoBtn: TBitBtn
             Left = 0
             Top = 0
@@ -375,6 +362,10 @@ object Main: TMain
       object TabSheet3: TTabSheet
         Caption = 'Lights and Sensors'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object mFrontBackLEDBtn: TArrayBotButton
           Left = 12
           Top = 51
@@ -401,6 +392,10 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Board Settings'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object mArduinoSB: TScrollBox
           Left = 0
           Top = 0

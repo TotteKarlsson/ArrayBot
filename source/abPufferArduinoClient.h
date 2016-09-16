@@ -10,6 +10,8 @@ class AB_CORE PufferArduinoClient : public ArduinoClient
 			   			        PufferArduinoClient();
 		virtual			        ~PufferArduinoClient(){}
 
+		void 					getBoardStatus();
+
         						//Requests to the server
         void					resetSectionCounter();
 

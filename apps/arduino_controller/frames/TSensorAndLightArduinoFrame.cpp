@@ -39,7 +39,7 @@ void TSensorAndLightArduinoFrame::init()
 void __fastcall TSensorAndLightArduinoFrame::mSendMSGEKeyDown(TObject *Sender,
           WORD &Key, TShiftState Shift)
 {
-    if(Key = vkReturn)
+    if(Key == vkReturn)
     {
 		string msg = mSendMSGE->getValue();
         stringstream customMsg;

@@ -101,7 +101,6 @@ void ArduinoServer::broadcastStatus()
     msg.str("");
     msg <<"AUTO_ZERO_CUT="<<toString(mRibbonLengthController.getAutoZeroCutSetting());
    	notifyClients(msg.str());
-
 }
 
 //This is called from the arduino devices class upon receiving
@@ -382,9 +381,11 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         }
     }
 
-    else if(compareStrings(msg, "GET_STATUS"))
+    else if(compareStrings(msg, "GET_SERVER_STATUS"))
     {
-    	Log(lInfo) << "Broadcast status";
+    	Log(lInfo) << "Broadcast server status";
+        request("GET_SENSOR_ARDUINO_STATUS");
+        request("GET_PUFFER_ARDUINO_STATUS");
         broadcastStatus();
     }
 
@@ -393,6 +394,9 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     	Log(lError) << "UNHANDLED ARDUINO SERVER MESSAGE: "<<msg;
     }
 
-   	notifyClients(clientMessage.str());
+    if(clientMessage.str().size())
+    {
+   		notifyClients(clientMessage.str());
+    }
     return msg.IsProcessed();
 }

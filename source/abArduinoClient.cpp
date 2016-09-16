@@ -46,9 +46,9 @@ bool ArduinoClient::init(int serverPort, const string& hostname, bool connectOnI
     return true;
 }
 
-void ArduinoClient::getStatus()
+void ArduinoClient::getServerStatus()
 {
-	request("GET_STATUS");
+	request("GET_SERVER_STATUS");
 }
 
 void ArduinoClient::assignOnMessageReceivedCallBack(OnMessageReceivedCB cb)

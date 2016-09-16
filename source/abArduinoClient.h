@@ -36,7 +36,7 @@ class AB_CORE ArduinoClient : public SocketClient
         bool                                connect(int pNumber = -1, const string& host = mtk::gEmptyString);
 
 		virtual void	 					getBoardStatus(){}
-		void								getStatus();
+		void								getServerStatus();
 
 									        //!Post a custom message to the message list
         virtual void                        postMessage(const string& msg);

@@ -68,7 +68,7 @@ void __fastcall TPufferArduinoBoardFrame::updateParameter(TObject *Sender,
 void __fastcall TPufferArduinoBoardFrame::mSendMSGEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
-    if(Key = vkReturn)
+    if(Key == vkReturn)
     {
 		string msg = mSendMSGE->getValue();
         stringstream customMsg;
