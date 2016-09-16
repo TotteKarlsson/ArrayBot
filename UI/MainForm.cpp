@@ -87,6 +87,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 
 	WaitForDeviceInitTimer->Enabled = true;
 	mPufferArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
+    mPufferArduinoClient.onConnected 		= onArduinoClientConnected;
+	mPufferArduinoClient.onDisconnected 	= onArduinoClientDisconnected;
 }
 
 __fastcall TMain::~TMain()
@@ -99,9 +101,13 @@ __fastcall TMain::~TMain()
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
 {
-	setupWindowTitle();
-	gAppIsStartingUp = false;
+	enableDisableUI(false);
 
+	this->Visible = true;
+	setupWindowTitle();
+
+	gAppIsStartingUp = false;
+    enableDisableClientControls(false);
 
     if(this->BorderStyle == bsNone)
     {
@@ -111,7 +117,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	TMemoLogger::mMemoIsEnabled = true;
 	gSplashForm->mMainAppIsRunning = true;
 
-	this->Visible = true;
 	while(gSplashForm->isOnShowTime() == true || mInitBotThread.isAlive())
 	{
        	Application->ProcessMessages();
@@ -122,8 +127,11 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 		}
 	}
 
+    setupUIFrames();
 	gSplashForm->Close();
 	gLogger.setLogLevel(mLogLevel);
+
+	enableDisableUI(true);
 
 	if(mLogLevel == lInfo)
 	{
@@ -139,6 +147,16 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
+}
+
+void TMain::enableDisableUI(bool e)
+{
+	PageControl1->Visible = e;
+
+	enableDisablePanel(mButtonPanel, e);
+	enableDisablePanel(mTopPanel, e);
+    enableDisableGroupBox(JSGB, e);
+    enableDisableGroupBox(LiftGB, e);
 }
 
 void __fastcall TMain::WndProc(TMessage& Message)
@@ -182,13 +200,36 @@ void __fastcall TMain::WndProc(TMessage& Message)
     }
 }
 
+//Callback from socket client class
+void TMain::onArduinoClientConnected()
+{
+    Log(lDebug) << "ArduinoClient was connected..";
+
+    //Send message to update UI
+    mPufferArduinoClient.getServerStatus();
+    enableDisableClientControls(true);
+}
+
+void TMain::onArduinoClientDisconnected()
+{
+    Log(lDebug) << "Arduino Client was disconnected..";
+    enableDisableClientControls(false);
+}
+
+void TMain::enableDisableClientControls(bool enable)
+{
+	//Disable client related components..
+    enableDisablePanel(mBottomPanel, enable);
+    enableDisableGroupBox(mPufferGB, enable);
+
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
 {
 	if(!mInitBotThread.isRunning()) //Not waiting for devices any more
     {
 		WaitForDeviceInitTimer->Enabled = false;
-        setupUIFrames();
     }
 }
 
@@ -271,6 +312,7 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->Align = alClient;
     mABProcessSequencerFrame->init();
 
+
 	mSequencerButtons = new TSequencerButtonsFrame(*(mAB), mBottomPanel);
 	mSequencerButtons->Parent = mTopPanel;
     mSequencerButtons->Align = alClient;
@@ -303,24 +345,6 @@ void __fastcall TMain::reInitBotAExecute(TObject *Sender)
     }
 
     ReInitBotBtn->Action = ShutDownA;
-}
-
-void __fastcall TMain::ShutDownAExecute(TObject *Sender)
-{
-    mAB->getJoyStick().disable();
-
-    mXYZUnitFrame1->disable();
-    mXYZUnitFrame2->disable();
-
-    //The shutdown disconnects all devices
-    mAB->shutDown();
-
-	while(mAB->isActive())
-    {
-    	sleep(100);
-    }
-
-    ReInitBotBtn->Action = reInitBotA;
 }
 
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
@@ -591,7 +615,6 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
     {
     	mPufferArduinoClient.connect(mArduinoServerPortE->getValue());
         mASStartBtn->Caption == "Connecting";
-        mPufferArduinoClient.getStatus();
     }
     else
     {

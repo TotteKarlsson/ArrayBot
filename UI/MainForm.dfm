@@ -359,19 +359,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            object LiftBtn: TSpeedButton
-              Left = 16
-              Top = 129
-              Width = 409
-              Height = 136
-              Action = liftA
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -16
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentFont = False
-            end
             object mMoveAccelerationE: TFloatLabeledEdit
               Left = 105
               Top = 92
@@ -403,6 +390,22 @@ object Main: TMain
               Text = '<none>'
               OnChange = mLiftCBChange
             end
+            object LiftBtn: TArrayBotButton
+              Left = 16
+              Top = 129
+              Width = 409
+              Height = 136
+              Action = liftA
+              Caption = 'Lift'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -16
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 3
+              SoundID = 'BUTTON_CLICK_4'
+            end
           end
         end
       end
@@ -410,9 +413,17 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -476,10 +487,18 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Sequences'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object mJSStatusL: TLabel
           Left = 455
           Top = 192
@@ -634,7 +653,7 @@ object Main: TMain
             OnClick = mASStartBtnClick
           end
         end
-        object GroupBox3: TGroupBox
+        object mPufferGB: TGroupBox
           Left = 455
           Top = 280
           Width = 314
@@ -668,6 +687,10 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

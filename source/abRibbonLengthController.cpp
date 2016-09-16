@@ -83,12 +83,8 @@ bool RibbonLengthController::setZeroCut()
 
 bool RibbonLengthController::manualPuff()
 {
-	bool res = mArduinoServer.request("PUFF");
-    if(res)
-    {
-        resetSectionCount();
-    }
-	return res;
+    resetSectionCount();
+	return true;
 }
 
 int	RibbonLengthController::getSectionCount()
@@ -164,9 +160,6 @@ int	RibbonLengthController::getDesiredRibbonLength()
 void RibbonLengthController::setDesiredRibbonLength(int n)
 {
 	mDesiredRibbonLength = n;
-    stringstream msg;
-    msg <<"DESIRED_RIBBON_LENGTH="<<n;
-    mArduinoServer.notifyClients(msg.str());
 }
 
 

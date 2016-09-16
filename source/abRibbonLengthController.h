@@ -47,7 +47,7 @@ class AB_CORE RibbonLengthController : public ABObject
         void								prepareForNewRibbon();
 
         int									getDesiredRibbonLength();
-        void								setDesiredRibbonLength(int r);
+        void								setDesiredRibbonLength(int n);
 
 	protected:
     	ArduinoServer&			            mArduinoServer;

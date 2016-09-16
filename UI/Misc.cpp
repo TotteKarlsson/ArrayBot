@@ -66,6 +66,11 @@ void __fastcall TMain::FrameClosed(TObject *Sender)
 	;
 }
 
+void TMain::enableDisableUI(bool enable)
+{
+	this->Visible = enable;
+}
+
 void __fastcall	TMain::OnException()
 {
 	Log(lInfo) << "Exception TMain::OnException()";

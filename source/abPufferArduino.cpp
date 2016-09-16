@@ -35,6 +35,22 @@ bool PufferArduino::manualPuff()
 	return res;
 }
 
+bool PufferArduino::setPufferDuration(int ms)
+{
+	Log(lInfo) << "Setting puffer duration";
+    mSS.str("");
+	mSS << "d" << ms;
+    return  send(mSS.str());
+}
+
+bool PufferArduino::setPufferValveSpeed(int n)
+{
+	Log(lInfo) << "Setting puffer valve speed";
+    mSS.str("");
+	mSS << "v" << n;
+    return  send(mSS.str());
+}
+
 bool PufferArduino::enablePuffer()
 {
 	Log(lInfo) << "Sending puffer enable request";
@@ -54,7 +70,7 @@ bool PufferArduino::enableDisableSimulator(bool flag)
 	return send(mSS.str());
 }
 
-bool PufferArduino::setSimualorSpeed(int ms)
+bool PufferArduino::setSimulatorSpeed(int ms)
 {
     mSS.str("");
 	mSS << "s"<<ms;

@@ -49,26 +49,33 @@ object ArduinoBoardFrame: TArduinoBoardFrame
       Width = 216
       Height = 65
       Caption = 'Connect/Disconnect'
-      TabOrder = 2
+      TabOrder = 3
       OnClick = ConnectBtnClick
     end
     object mSendMSGE: TSTDStringLabeledEdit
       Left = 24
       Top = 136
-      Width = 216
+      Width = 129
       Height = 31
-      EditLabel.Width = 134
+      EditLabel.Width = 102
       EditLabel.Height = 23
-      EditLabel.Caption = 'Send Command'
-      TabOrder = 3
+      EditLabel.Caption = 'Custom Msg'
+      TabOrder = 2
       Text = 'i'
-      OnKeyDown = mSendMSGEKeyDown
       Value = 'i'
+    end
+    object mSendBtn: TButton
+      Left = 165
+      Top = 132
+      Width = 75
+      Height = 39
+      Caption = 'Send'
+      TabOrder = 4
     end
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
     Left = 224
-    Top = 96
+    Top = 56
   end
 end

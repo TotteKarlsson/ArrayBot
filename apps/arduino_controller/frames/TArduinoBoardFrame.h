@@ -12,6 +12,7 @@
 #include "abArduinoDevice.h"
 #include "mtkIniFileProperties.h"
 #include "TSTDStringLabeledEdit.h"
+#include "abArduinoServer.h"
 //---------------------------------------------------------------------------
 
 using mtk::IniFileProperties;
@@ -26,13 +27,13 @@ __published:	// IDE-managed Components
 	TButton *mConnectBtn;
 	TTimer *Timer1;
 	TSTDStringLabeledEdit *mSendMSGE;
+	TButton *mSendBtn;
 	void __fastcall ConnectBtnClick(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall Timer1Timer(TObject *Sender);
 
 	protected:
 
+    	ArduinoServer&					mServer;
         ArduinoDevice&					mArduinoDevice;
 
         								//The init function will initialize the device
@@ -40,7 +41,7 @@ __published:	// IDE-managed Components
         virtual void	 				init();
 
 	public:		// User declarations
-    						__fastcall  TArduinoBoardFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner);
+    						__fastcall  TArduinoBoardFrame(ArduinoServer& server, ArduinoDevice& dev, IniFile& ini, TComponent* Owner);
     	virtual				__fastcall  ~TArduinoBoardFrame();
         IniFileProperties  			    mProperties;
 };

@@ -92,7 +92,6 @@ class TMain : public TRegistryForm
 	TTimer *mLiftTimer;
 	TAction *abortLiftA;
 	TAction *liftA;
-	TSpeedButton *LiftBtn;
 	TComboBox *mLiftCB;
 	TComboBox *LogLevelCB;
 	TTabSheet *mMoveSequencesPage;
@@ -123,7 +122,7 @@ class TMain : public TRegistryForm
 	TArrayBotButton *Button5;
 	TArrayBotButton *Button7;
 	TArrayBotButton *mStartNewRibbonBtn;
-	TGroupBox *GroupBox3;
+	TGroupBox *mPufferGB;
 	TArrayBotButton *mPuffBtn;
 	TArrayBotButton *mEnablePuffBtn;
 	TGroupBox *GroupBox5;
@@ -131,6 +130,7 @@ class TMain : public TRegistryForm
 	TArrayBotButton *mSetZeroCutThicknessBtn;
 	TArrayBotButton *mSetPresetCutBtn;
 	TComboBox *mLeicaCutThicknessLB;
+	TArrayBotButton *LiftBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -171,6 +171,7 @@ class TMain : public TRegistryForm
         										pcMoveSequences = 2, pcSettings = 3,
                                                 pcLogs = 4, pcAbout = 5};
 
+        void									enableDisableUI(bool enable);
         LogFileReader                           mLogFileReader;
         void __fastcall                         logMsg();
 
@@ -194,6 +195,11 @@ class TMain : public TRegistryForm
 
         										//Callback
 		void 									onArduinoMessageReceived(const string& msg);
+
+      											//Callbacks
+        void									onArduinoClientConnected();
+        void									onArduinoClientDisconnected();
+        void									enableDisableClientControls(bool enable);
 
         							            //!Arraybot is allocated on the stack.
                                                 //!So that we can catch exceptions in the
@@ -221,6 +227,8 @@ class TMain : public TRegistryForm
         void						            onJSButton14Click();
 
         void __fastcall 				        FrameClosed(TObject *Sender);
+
+
 
 	public:		// User declarations
 		__fastcall 					            TMain(TComponent* Owner);

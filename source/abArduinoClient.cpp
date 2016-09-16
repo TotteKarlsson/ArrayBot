@@ -27,9 +27,14 @@ bool ArduinoClient::init(int serverPort, const string& hostname, bool connectOnI
     {
     	bool res = SocketClient::connect(serverPort, hostname);
 
-        if(isConnected() && mReceiver.isFinished())
+        if(isConnected())
         {
-            return mReceiver.start(true);
+        	if(mReceiver.isRunning())
+            {
+            	mReceiver.stop();
+            }
+
+            mReceiver.start(true);
         }
     }
 
@@ -41,9 +46,9 @@ bool ArduinoClient::init(int serverPort, const string& hostname, bool connectOnI
     return true;
 }
 
-void ArduinoClient::getStatus()
+void ArduinoClient::getServerStatus()
 {
-	request("GET_STATUS");
+	request("GET_SERVER_STATUS");
 }
 
 void ArduinoClient::assignOnMessageReceivedCallBack(OnMessageReceivedCB cb)

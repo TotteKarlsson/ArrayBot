@@ -14,10 +14,13 @@
 class PACKAGE TSensorAndLightArduinoFrame : public TArduinoBoardFrame
 {
 	__published:	// IDE-managed Components
+	void __fastcall mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mSendBtnClick(TObject *Sender);
+
 		private:	// User declarations
 		public:		// User declarations
 
-							__fastcall 	TSensorAndLightArduinoFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner);
+							__fastcall 	TSensorAndLightArduinoFrame(ArduinoServer& server, ArduinoDevice& dev, IniFile& ini, TComponent* Owner);
 							__fastcall 	~TSensorAndLightArduinoFrame();
 
 		void 							init();

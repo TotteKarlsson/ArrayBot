@@ -28,13 +28,14 @@ extern string           gLogFileLocation;
 extern string           gLogFileName;
 extern string           gAppDataFolder;
 extern TSplashForm*  	gSplashForm;
+extern string 			gApplicationRegistryRoot;
 extern bool             gAppIsStartingUp;
 using namespace mtk;
 
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
-	TRegistryForm("Test", "MainForm", Owner),
+	TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, "ArduinoController.ini"), true, true),
     mLogLevel(lAny),
@@ -104,7 +105,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	//Setup frames for the Arduinos
 	setupUIFrames();
-	mArduinoServer.broadcastStatus();
 }
 
 //---------------------------------------------------------------------------
@@ -113,16 +113,16 @@ void __fastcall	TMain::setupUIFrames()
     mPufferArduino.setName("PUFFER_ARDUINO");
 
     //Create ArduinoFrames
-    TPufferArduinoBoardFrame* af1 = new TPufferArduinoBoardFrame(mPufferArduino, mIniFile, this);
+    TPufferArduinoBoardFrame* af1 = new TPufferArduinoBoardFrame(mArduinoServer, mPufferArduino, mIniFile, this);
     af1->Parent =  mArduinoSB;
-    af1->Align = alTop;
+    af1->Align = alLeft;
     af1->ConnectBtnClick(NULL);
     mFrames.push_back(af1);
 
     mSensorArduino.setName("SENSOR_ARDUINO");
-    TSensorAndLightArduinoFrame* af2 = new TSensorAndLightArduinoFrame(mSensorArduino, mIniFile, this);
+    TSensorAndLightArduinoFrame* af2 = new TSensorAndLightArduinoFrame(mArduinoServer, mSensorArduino, mIniFile, this);
     af2->Parent =  mArduinoSB;
-    af2->Align = alTop;
+    af2->Align = alLeft;
     af2->ConnectBtnClick(NULL);
     mFrames.push_back(af2);
 }
@@ -226,16 +226,15 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
     	static string cap = "ON";
 	   	if(contains("OFF", cap))
         {
-
         	mFrontBackLEDBtn->Caption = "Flip LEDs ON";
             cap = "ON";
-        	//mArduinoServer.turnLEDLightOn();
+        	mArduinoServer.request("TURN_ON_LED_LIGHTS");
         }
         else
         {
         	mFrontBackLEDBtn->Caption = "Flip LEDs OFF";
             cap = "OFF";
-        	//mArduinoServer.turnLEDLightOff();
+        	mArduinoServer.request("TURN_OFF_LED_LIGHTS");
         }
     }
     else if(b == mCoaxLightBtn)
@@ -245,13 +244,13 @@ void __fastcall TMain::LigthsBtnsClick(TObject *Sender)
         {
         	mCoaxLightBtn->Caption = "Flip CoaxLight ON";
             ccap = "ON";
-        	//mArduinoServer.turnCoaxLightOn();
+        	mArduinoServer.request("TURN_ON_COAX_LIGHT");
         }
         else
         {
         	mCoaxLightBtn->Caption = "Flip CoaxLight OFF";
             ccap = "OFF";
-        	//mArduinoServer.turnCoaxLightOff();
+        	mArduinoServer.request("TURN_OFF_COAX_LIGHT");
         }
     }
 }

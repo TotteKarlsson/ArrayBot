@@ -71,6 +71,23 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 	Close();
 }
 
+void __fastcall TMain::ShutDownAExecute(TObject *Sender)
+{
+    mAB->getJoyStick().disable();
+    mXYZUnitFrame1->disable();
+    mXYZUnitFrame2->disable();
+
+    //The shutdown disconnects all devices
+    mAB->shutDown();
+
+	while(mAB->isActive())
+    {
+    	sleep(100);
+    }
+
+    ReInitBotBtn->Action = reInitBotA;
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 {

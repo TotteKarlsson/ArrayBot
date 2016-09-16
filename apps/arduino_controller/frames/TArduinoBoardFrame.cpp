@@ -10,8 +10,9 @@ TArduinoBoardFrame *ArduinoBoardFrame;
 //---------------------------------------------------------------------------
 
 using namespace mtk;
-__fastcall TArduinoBoardFrame::TArduinoBoardFrame(ArduinoDevice& dev, IniFile& ini, TComponent* Owner)
+__fastcall TArduinoBoardFrame::TArduinoBoardFrame(ArduinoServer& server, ArduinoDevice& dev, IniFile& ini, TComponent* Owner)
 	: TFrame(Owner),
+    mServer(server),
     mArduinoDevice(dev)
 {
     mProperties.setSection(dev.getName());
@@ -48,26 +49,6 @@ void __fastcall TArduinoBoardFrame::ConnectBtnClick(TObject *Sender)
     else
     {
     	mArduinoDevice.connect(mCommPortE->getValue(), mBaudRateE->getValue());
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TArduinoBoardFrame::Button1Click(TObject *Sender)
-{
-	string msg = mSendMSGE->getValue();
-    if(msg.size())
-    {
-	    mArduinoDevice.send(msg);
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TArduinoBoardFrame::mSendMSGEKeyDown(TObject *Sender, WORD &Key,
-          TShiftState Shift)
-{
-	if(Key == vkReturn)
-    {
-		Button1Click(Sender);
     }
 }
 

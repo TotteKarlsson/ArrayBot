@@ -29,6 +29,9 @@ __fastcall TSettingsForm::TSettingsForm(TMainForm& mf)
 
     mHorizontalMirrorCB->setReference(mMainForm.mHorizontalMirror.getReference());
 	mHorizontalMirrorCB->Update();
+
+    mPairLEDsCB->setReference(mMainForm.mPairLEDs.getReference());
+    mPairLEDsCB->Update();
 }
 
 //---------------------------------------------------------------------------
@@ -38,7 +41,6 @@ void __fastcall TSettingsForm::mASStartBtnClick(TObject *Sender)
     {
     	mMainForm.mLightsArduinoClient.connect(mArduinoServerPortE->getValue());
         mASStartBtn->Caption == "Connecting";
-        mMainForm.mLightsArduinoClient.getStatus();
     }
     else
     {
@@ -120,19 +122,30 @@ void __fastcall TSettingsForm::AutoParaCBClick(TObject *Sender)
 //    ret = is_SetAutoParameter (hCam, IS_GET_AUTO_SHUTTER_MAX, &maxShutter, 0);
 }
 
-
 void __fastcall TSettingsForm::Button1Click(TObject *Sender)
 {
 	Close();
 }
+
 //---------------------------------------------------------------------------
-
-
-
 void __fastcall TSettingsForm::FormClose(TObject *Sender, TCloseAction &Action)
 
 {
 	UIUpdateTimer->Enabled = false;
 }
+
+void __fastcall TSettingsForm::mPairLEDsCBClick(TObject *Sender)
+{
+	mPairLEDsCB->OnClick(Sender);
+}
+
 //---------------------------------------------------------------------------
+void __fastcall TSettingsForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	if(Key == vkEscape)
+    {
+    	Close();
+    }
+}
+
 

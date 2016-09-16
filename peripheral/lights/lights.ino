@@ -204,10 +204,11 @@ void processByte(char ch)
     }    
 }
 
-void checkPINStates()
+void sendInfo()
 {
-    //Read and report states of "light pins"            
+    Serial << "[ARRAYBOT LIGHTS VERSION="<<sketchVersion<<"]";    
     
+    //Read and report states of "light pins"                
     Serial << "[" << ((digitalRead(1)) ? "PIN_1=HIGH," : "PIN_1=LOW") << "]";
     Serial << "[" << ((digitalRead(2)) ? "PIN_2=HIGH," : "PIN_2=LOW") << "]";    
     Serial << "[" << ((digitalRead(3)) ? "PIN_3=HIGH," : "PIN_3=LOW") << "]";    
@@ -219,14 +220,6 @@ void checkPINStates()
     Serial << "[COAX_DRIVE="<<coaxDrive<<"]";
     Serial << "[FRONT_LED_DRIVE="<<frontLEDDrive<<"]";
     Serial << "[BACK_LED_DRIVE="<<backLEDDrive<<"]";
-    
-    ;            
-}        
-
-void sendInfo()
-{
-    Serial << "[ARRAYBOT LIGHTS VERSION="<<sketchVersion<<"]";    
-    checkPINStates();
 }
 
 void readEnvironmentalSensors(DHT22& s)

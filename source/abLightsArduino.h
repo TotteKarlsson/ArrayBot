@@ -11,8 +11,8 @@ class AB_CORE LightsArduino : public ArduinoDevice
 			                                ~LightsArduino(){}
 
 		bool								toggleLED();
-        bool								turnLEDLightOn();
-        bool								turnLEDLightOff();
+        bool								turnLEDLightsOn();
+        bool								turnLEDLightsOff();
 
 		bool								toggleCoax();
         bool								turnCoaxLightOn();

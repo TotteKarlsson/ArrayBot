@@ -61,9 +61,6 @@ Coordinates=554,351,77,51
 [JoyStickSettingsCB]
 Coordinates=103,1,112,87
 
-[LiftBtn]
-Coordinates=227,462,47,33
-
 [ScrollBox1]
 Coordinates=20,462,68,33
 
@@ -95,7 +92,7 @@ Coordinates=776,533,81,33
 Coordinates=159,373,128,33
 
 []
-Coordinates=51,373,53,33
+Coordinates=227,462,47,33
 
 [mBottomPanel]
 Coordinates=750,333,87,51

@@ -1,18 +1,24 @@
 inherited SensorAndLightArduinoFrame: TSensorAndLightArduinoFrame
-  Width = 441
+  Width = 270
   Height = 263
   AutoSize = False
-  ExplicitWidth = 441
+  ExplicitWidth = 270
   ExplicitHeight = 263
   inherited GroupBox1: TGroupBox
-    Width = 441
+    Width = 270
     Height = 263
     Caption = 'Sensor Board'
-    ExplicitWidth = 441
+    ExplicitWidth = 270
     ExplicitHeight = 263
-    inherited mConnectBtn: TButton [0]
+    inherited mConnectBtn: TButton [1]
     end
-    inherited mCommPortE: TIntegerLabeledEdit [2]
+    inherited mBaudRateE: TIntegerLabeledEdit [2]
+    end
+    inherited mSendMSGE: TSTDStringLabeledEdit
+      OnKeyDown = mSendMSGEKeyDown
+    end
+    inherited mSendBtn: TButton
+      OnClick = mSendBtnClick
     end
   end
   inherited Timer1: TTimer

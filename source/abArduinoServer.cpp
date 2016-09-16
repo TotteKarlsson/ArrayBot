@@ -101,7 +101,6 @@ void ArduinoServer::broadcastStatus()
     msg.str("");
     msg <<"AUTO_ZERO_CUT="<<toString(mRibbonLengthController.getAutoZeroCutSetting());
    	notifyClients(msg.str());
-
 }
 
 //This is called from the arduino devices class upon receiving
@@ -148,7 +147,6 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
 //These messages are handled in a thread
 //Depending on the message, a response may be sent using the
 //notifyClients function
-
 bool ArduinoServer::processMessage(IPCMessage& msg)
 {
     stringstream clientMessage;
@@ -156,105 +154,76 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     {
         msg.unPack();
     }
-    if(compareStrings(msg, "RESET_SECTION_COUNT"))
+
+    //PUFFER ARDUINO MESSAGES
+    if(startsWith("GET_PUFFER_ARDUINO_STATUS", msg))
+    {
+    	Log(lInfo) << "Requestiong PUFFER_ARDUINO status";
+        mPufferArduino.getStatus();
+    }
+
+    else if(startsWith("SET_PUFFER_DURATION", msg))
+    {
+    	Log(lInfo) << "Setting puffer duration";
+		StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+        	mPufferArduino.setPufferDuration(toInt(l[1]));
+		    clientMessage <<"SET_PUFFER_DURATION="<<l[1];
+        }
+    }
+
+    else if(startsWith("SET_PUFFER_VALVE_SPEED", msg))
+    {
+    	Log(lInfo) << "Setting puffer valve speed";
+		StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+        	mPufferArduino.setPufferValveSpeed(toInt(l[1]));
+		    clientMessage <<"SET_PUFFER_VALVE_SPEED="<<l[1];
+        }
+    }
+
+    else if(compareStrings(msg, "RESET_SECTION_COUNT"))
     {
     	Log(lInfo) << "Resetting section counter";
         mRibbonLengthController.resetSectionCount();
 	    clientMessage <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
     }
+
     else if(compareStrings(msg, "ENABLE_PUFFER"))
     {
     	Log(lInfo) << "Enabling auto puffing";
         mPufferArduino.enablePuffer();
     }
+
     else if(compareStrings(msg, "DISABLE_PUFFER"))
     {
     	Log(lInfo) << "Disable auto puffing";
         mPufferArduino.disablePuffer();
     }
+
     else if(compareStrings(msg, "ENABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Enabling auto puffing";
         enableAutoPuff();
     	clientMessage <<"AUTO_PUFF=true";
     }
+
     else if(compareStrings(msg, "DISABLE_AUTO_PUFF"))
     {
     	Log(lInfo) << "Disabling auto puffing";
         disableAutoPuff();
     	clientMessage <<"AUTO_PUFF=false";
     }
-    else if(startsWith("SET_DESIRED_RIBBON_LENGTH", msg))
-    {
-    	Log(lInfo) << "Setting desired ribbon length";
-		StringList l(msg,'=');
-        if(l.size() == 2)
-        {
-        	mRibbonLengthController.setDesiredRibbonLength(toInt(l[1]));
-        }
-    }
-    else if(startsWith("PUFF", msg))
+
+    else if(compareStrings("PUFF", msg))
     {
     	Log(lInfo) << "Executing puffer";
+        mPufferArduino.manualPuff();
 	    mRibbonLengthController.manualPuff();
     }
-    else if(startsWith("START_NEW_RIBBON", msg))
-    {
-    	Log(lInfo) << "Starting new ribbon";
-		mRibbonLengthController.prepareForNewRibbon();
-    }
 
-    //SENSOR ARDUINO
-
-    else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
-    {
-    	Log(lInfo) << "Requestiong SENSOR_ARDUINO status";
-        mLightsArduino.getStatus();
-    }
-
-    else if(startsWith("TOGGLE_LED_LIGHT", msg))
-    {
-    	Log(lInfo) << "Toggling LED on/off";
-        mLightsArduino.toggleLED();
-    }
-    else if(startsWith(msg, "TOGGLE_COAX_LIGHT"))
-    {
-    	Log(lInfo) << "Toggling Coax on/off";
-        mLightsArduino.toggleCoax();
-    }
-    else if(startsWith("SET_FRONT_LED", msg))
-    {
-        StringList sl(msg,'=');
-        if(sl.size() == 2)
-        {
-            stringstream s;
-            s << 'f' <<sl[1];
-			Log(lInfo) << "Set Front LED Intensity ("<<sl[1]<<")";
-        	mLightsArduino.send(s.str());
-        }
-    }
-    else if(startsWith("SET_BACK_LED", msg))
-    {
-        StringList sl(msg,'=');
-        if(sl.size() == 2)
-        {
-            stringstream s;
-            s << 'b' <<sl[1];
-			Log(lInfo) << "Set Back LED Intensity ("<<sl[1]<<")";
-        	mLightsArduino.send(s.str());
-        }
-    }
-    else if(startsWith("SET_COAX", msg))
-    {
-        StringList sl(msg,'=');
-        if(sl.size() == 2)
-        {
-            stringstream s;
-            s << 'c' <<sl[1];
-			Log(lInfo) << "Set COAX Light Intensity ("<<sl[1]<<")";
-        	mLightsArduino.send(s.str());
-        }
-    }
     else if(startsWith("SET_CUT_THICKNESS_PRESET", msg))
     {
         StringList sl(msg,'=');
@@ -274,33 +243,160 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         	mPufferArduino.setDeltaY(toInt(sl[1]));
         }
     }
+
+    else if(startsWith("PUFFER_CUSTOM_MESSAGE", msg))
+    {
+		StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+	    	Log(lInfo) << "Sending puffer custom message: "<<l[1];
+	        mPufferArduino.send(l[1]);
+        }
+    }
+
+	//Commands only changing internal data
+    else if(startsWith("START_NEW_RIBBON", msg))
+    {
+    	Log(lInfo) << "Starting new ribbon";
+		mRibbonLengthController.prepareForNewRibbon();
+    }
+
+    else if(startsWith("SET_DESIRED_RIBBON_LENGTH", msg))
+    {
+    	Log(lInfo) << "Setting desired ribbon length";
+		StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+        	mRibbonLengthController.setDesiredRibbonLength(toInt(l[1]));
+		    clientMessage <<"DESIRED_RIBBON_LENGTH="<<l[1];
+        }
+    }
+
     else if(startsWith("ENABLE_AUTO_ZERO_CUT", msg))
     {
     	Log(lInfo) << "Enabling auto zero cut";
         mRibbonLengthController.enableAutoZeroCut();
         clientMessage <<"AUTO_ZERO_CUT=true";
     }
+
     else if(startsWith("DISABLE_AUTO_ZERO_CUT", msg))
     {
     	Log(lInfo) << "Disabling auto zero cut";
         mRibbonLengthController.disableAutoZeroCut();
         clientMessage << "AUTO_ZERO_CUT=false";
     }
+
+    //SENSOR ARDUINO MESSAGES
     else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
     {
-		Log(lInfo) << "Requesting sensor arduino statis";
+    	Log(lInfo) << "Requestiong SENSOR_ARDUINO status";
         mLightsArduino.getStatus();
     }
-    else if(compareStrings(msg, "GET_STATUS"))
+
+    else if(startsWith("TURN_ON_LED_LIGHTS", msg))
     {
-    	Log(lInfo) << "Broadcast status";
+    	Log(lInfo) << "Turn on LED lights";
+        mLightsArduino.turnLEDLightsOn();
+    }
+
+    else if(startsWith("TURN_OFF_LED_LIGHTS", msg))
+    {
+    	Log(lInfo) << "Turn off LED lights";
+        mLightsArduino.turnLEDLightsOff();
+    }
+
+    else if(startsWith("TURN_ON_COAX_LIGHT", msg))
+    {
+    	Log(lInfo) << "Turn on Coax lights";
+        mLightsArduino.turnCoaxLightOn();
+    }
+
+    else if(startsWith("TURN_OFF_COAX_LIGHTS", msg))
+    {
+    	Log(lInfo) << "Turn off Coax lights";
+        mLightsArduino.turnCoaxLightOff();
+    }
+
+    else if(startsWith("TOGGLE_LED_LIGHT", msg))
+    {
+    	Log(lInfo) << "Toggling LED on/off";
+        mLightsArduino.toggleLED();
+    }
+
+    else if(startsWith(msg, "TOGGLE_COAX_LIGHT"))
+    {
+    	Log(lInfo) << "Toggling Coax on/off";
+        mLightsArduino.toggleCoax();
+    }
+
+    else if(startsWith("SET_FRONT_LED", msg))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+            stringstream s;
+            s << 'f' <<sl[1];
+			Log(lInfo) << "Set Front LED Intensity ("<<sl[1]<<")";
+        	mLightsArduino.send(s.str());
+        }
+    }
+
+    else if(startsWith("SET_BACK_LED", msg))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+            stringstream s;
+            s << 'b' <<sl[1];
+			Log(lInfo) << "Set Back LED Intensity ("<<sl[1]<<")";
+        	mLightsArduino.send(s.str());
+        }
+    }
+
+    else if(startsWith("SET_COAX", msg))
+    {
+        StringList sl(msg,'=');
+        if(sl.size() == 2)
+        {
+            stringstream s;
+            s << 'c' <<sl[1];
+			Log(lInfo) << "Set COAX Light Intensity ("<<sl[1]<<")";
+        	mLightsArduino.send(s.str());
+        }
+    }
+
+    else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
+    {
+		Log(lInfo) << "Requesting sensor arduino status";
+        mLightsArduino.getStatus();
+    }
+
+    else if(startsWith("SENSOR_CUSTOM_MESSAGE", msg))
+    {
+    	StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+	    	Log(lInfo) << "Sending sensor custom message: "<<l[1];
+	        mLightsArduino.send(l[1]);
+        }
+    }
+
+    else if(compareStrings(msg, "GET_SERVER_STATUS"))
+    {
+    	Log(lInfo) << "Broadcast server status";
+        request("GET_SENSOR_ARDUINO_STATUS");
+        request("GET_PUFFER_ARDUINO_STATUS");
         broadcastStatus();
     }
+
     else
     {
     	Log(lError) << "UNHANDLED ARDUINO SERVER MESSAGE: "<<msg;
     }
 
-   	notifyClients(clientMessage.str());
+    if(clientMessage.str().size())
+    {
+   		notifyClients(clientMessage.str());
+    }
     return msg.IsProcessed();
 }

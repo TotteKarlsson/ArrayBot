@@ -60,11 +60,8 @@ class TMain : public TRegistryForm
         TApplicationEvents *ApplicationEvents1;
 	TAction *reInitBotA;
         TAction *ShutDownA;
-	TPanel *mButtonPanel;
 	TFileExit *FileExit1;
-	TPanel *TopPanel;
 	TTimer *UIUpdateTimer;
-	TPanel *BottomBtnPanel;
 	TAction *abortLiftA;
 	TAction *liftA;
 	TPanel *BottomPanel;
@@ -72,7 +69,6 @@ class TMain : public TRegistryForm
 	TToolBar *ToolBar1;
 	TBitBtn *mClearLogMemoBtn;
 	TComboBox *LogLevelCB;
-	TPanel *MainPanel;
 	TSplitter *Splitter1;
 	TScrollBox *mArduinoSB;
 	TPageControl *PageControl1;
@@ -83,7 +79,7 @@ class TMain : public TRegistryForm
 	TGroupBox *GroupBox3;
 	TIntegerLabeledEdit *mDesiredRibbonLengthE;
 	TPropertyCheckBox *mAutoPuffCB;
-	TPanel *Panel1;
+	TPanel *TopPanel;
 	TGroupBox *GroupBox6;
 	TArrayBotButton *Button1;
 	TArrayBotButton *Button5;
@@ -104,6 +100,7 @@ class TMain : public TRegistryForm
 	TIntegerLabeledEdit *mArduinoServerPortE;
 	TButton *mArduinoServerStartBtn;
 	TPanel *Panel2;
+	TPanel *CenterPanel;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);

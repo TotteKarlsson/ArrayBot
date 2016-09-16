@@ -9,6 +9,11 @@ PufferArduinoClient::PufferArduinoClient()
 ArduinoClient()
 {}
 
+void PufferArduinoClient::getBoardStatus()
+{
+	request("GET_PUFFER_ARDUINO_STATUS");
+}
+
 void PufferArduinoClient::resetSectionCounter()
 {
 	request("RESET_SECTION_COUNT");

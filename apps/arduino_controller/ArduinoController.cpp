@@ -24,7 +24,7 @@ using namespace std;
 
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArduinoController.log";
-extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\arduino_controller\\0.5.0";
+extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArduinoController\\0.5.0";
 extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 static HWND         gOtherAppWindow             = NULL;
 extern string       gDefaultAppTheme            = "Iceberg Classico";

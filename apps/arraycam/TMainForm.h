@@ -116,6 +116,7 @@ class TMainForm  : public TRegistryForm
         mtk::Property<bool>						mAutoExposure;
         mtk::Property<bool>						mVerticalMirror;
         mtk::Property<bool>						mHorizontalMirror;
+        mtk::Property<bool>						mPairLEDs;
 
 
 								                // Camera variables
@@ -124,7 +125,6 @@ class TMainForm  : public TRegistryForm
 		Cuc480   						        mCamera;
         long							        mRenderMode;
         HWND	                		        mDisplayHandle;	// handle to diplay window
-        HWND 							        GetSafeHwnd();
 		bool							        openCamera();
 
         								        //!Boolean to check if we are
@@ -150,7 +150,6 @@ class TMainForm  : public TRegistryForm
 
         										//Callback
 		void 									onArduinoMessageReceived(const string& msg);
-
         void									enableDisableClientControls(bool enable);
 
     public:

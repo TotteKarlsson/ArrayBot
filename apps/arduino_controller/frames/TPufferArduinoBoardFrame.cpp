@@ -12,8 +12,9 @@ TPufferArduinoBoardFrame *PufferArduinoBoardFrame;
 
 using namespace mtk;
 
-__fastcall TPufferArduinoBoardFrame::TPufferArduinoBoardFrame(PufferArduino& dev, IniFile& ini, TComponent* Owner)
-	: TArduinoBoardFrame(dev, ini, Owner)
+__fastcall TPufferArduinoBoardFrame::TPufferArduinoBoardFrame(ArduinoServer& server, PufferArduino& dev, IniFile& ini, TComponent* Owner)
+	: TArduinoBoardFrame(server, dev, ini, Owner),
+    mPufferArduino(dev)
 {
 	mProperties.add((BaseProperty*)  &mPufferDurationE->getProperty()->setup(  	   "PUFFER_DURATION",    	 50));
 	mProperties.add((BaseProperty*)  &mPufferValveSpeedE->getProperty()->setup(    "PUFFER_VALVE_SPEED", 	 255));
@@ -34,10 +35,11 @@ __fastcall TPufferArduinoBoardFrame::~TPufferArduinoBoardFrame()
 //init function is called.
 void TPufferArduinoBoardFrame::init()
 {
-    stringstream msg;
-    msg<<"d"<<mPufferDurationE->getValue()<<'\n';
-    msg<<"v"<<mPufferValveSpeedE->getValue()<<'\n';
-    mArduinoDevice.send(msg.str());
+//    stringstream msg;
+//    msg<<"d"<<mPufferDurationE->getValue()<<'\n';
+//    msg<<"v"<<mPufferValveSpeedE->getValue()<<'\n';
+//    mServer.request("SET_PUFFER_DURATION=)
+//    mPufferArduino.send(msg.str());
 }
 
 //---------------------------------------------------------------------------
@@ -50,20 +52,38 @@ void __fastcall TPufferArduinoBoardFrame::updateParameter(TObject *Sender,
     	TIntegerLabeledEdit* e = dynamic_cast<TIntegerLabeledEdit*>(Sender);
         if(e == mPufferDurationE)
         {
-			msg<<"d"<<mPufferDurationE->getValue()<<'\n';
+			msg<<"SET_PUFFER_DURATION="<<mPufferDurationE->getValue()<<'\n';
         }
 
         if(e == mPufferValveSpeedE)
         {
-			msg<<"v"<<mPufferValveSpeedE->getValue()<<'\n';
+			msg<<"SET_PUFFER_VALVE_SPEED="<<mPufferValveSpeedE->getValue()<<'\n';
         }
 
-//       	mArduinoDevice.send("[]");
-       	mArduinoDevice.send(msg.str());
+       	mServer.request(msg.str());
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TPufferArduinoBoardFrame::mSendMSGEKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+    if(Key == vkReturn)
+    {
+		string msg = mSendMSGE->getValue();
+        stringstream customMsg;
+ 		customMsg << "PUFFER_CUSTOM_MESSAGE="<<msg;
+	    mServer.request(customMsg.str());
+    }
+}
 
-
+//---------------------------------------------------------------------------
+void __fastcall TPufferArduinoBoardFrame::mSendBtnClick(TObject *Sender)
+{
+    string msg = mSendMSGE->getValue();
+    stringstream customMsg;
+    customMsg << "PUFFER_CUSTOM_MESSAGE="<<msg;
+    mServer.request(customMsg.str());
+}
 
 

@@ -13,6 +13,7 @@ object SettingsForm: TSettingsForm
   OldCreateOrder = False
   Position = poMainFormCenter
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -48,7 +49,7 @@ object SettingsForm: TSettingsForm
     Left = 8
     Top = 8
     Width = 259
-    Height = 193
+    Height = 105
     Caption = 'Camera'
     TabOrder = 1
     object GroupBox3: TGroupBox
@@ -78,8 +79,8 @@ object SettingsForm: TSettingsForm
       end
     end
     object GroupBox2: TGroupBox
-      Left = 16
-      Top = 96
+      Left = 143
+      Top = 26
       Width = 113
       Height = 64
       Caption = 'Mirror planes'
@@ -112,6 +113,23 @@ object SettingsForm: TSettingsForm
     Caption = 'Close'
     TabOrder = 2
     OnClick = Button1Click
+  end
+  object GroupBox5: TGroupBox
+    Left = 8
+    Top = 128
+    Width = 185
+    Height = 105
+    Caption = 'Miscellaneous'
+    TabOrder = 3
+    object mPairLEDsCB: TPropertyCheckBox
+      Left = 16
+      Top = 32
+      Width = 97
+      Height = 17
+      Caption = 'Pair F/B LEDs'
+      TabOrder = 0
+      OnClick = mPairLEDsCBClick
+    end
   end
   object UIUpdateTimer: TTimer
     Enabled = False
