@@ -68,6 +68,11 @@ __fastcall TMain::TMain(TComponent* Owner)
 		MessageDlg(e.Message().c_str(), mtWarning, TMsgDlgButtons() << mbOK, 0);
     }
 
+    if(mAB)
+    {
+	   	mAB->setArduinoClient(&mPufferArduinoClient);
+    }
+
 	//Setup UI properties
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
@@ -86,6 +91,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mInitBotThread.start();
 
 	WaitForDeviceInitTimer->Enabled = true;
+
 	mPufferArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
     mPufferArduinoClient.onConnected 		= onArduinoClientConnected;
 	mPufferArduinoClient.onDisconnected 	= onArduinoClientDisconnected;
@@ -107,7 +113,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	setupWindowTitle();
 
 	gAppIsStartingUp = false;
-    enableDisableClientControls(false);
+    enableDisableArduinoClientControls(false);
 
     if(this->BorderStyle == bsNone)
     {
@@ -207,21 +213,20 @@ void TMain::onArduinoClientConnected()
 
     //Send message to update UI
     mPufferArduinoClient.getServerStatus();
-    enableDisableClientControls(true);
+    enableDisableArduinoClientControls(true);
 }
 
 void TMain::onArduinoClientDisconnected()
 {
     Log(lDebug) << "Arduino Client was disconnected..";
-    enableDisableClientControls(false);
+    enableDisableArduinoClientControls(false);
 }
 
-void TMain::enableDisableClientControls(bool enable)
+void TMain::enableDisableArduinoClientControls(bool enable)
 {
 	//Disable client related components..
     enableDisablePanel(mBottomPanel, enable);
     enableDisableGroupBox(mPufferGB, enable);
-
 }
 
 //---------------------------------------------------------------------------
@@ -442,7 +447,7 @@ void __fastcall TMain::LogLevelCBChange(TObject *Sender)
 
 void __fastcall	TMain::onFinishedInitBot()
 {
-	Log(lInfo) << "Synching arraybot with UI";
+	Log(lInfo) << "Synching ArrayBot UI";
     ReInitBotBtn->Action = ShutDownA;
 }
 

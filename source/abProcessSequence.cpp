@@ -19,12 +19,12 @@ mProject(*this, fileExt)
 ProcessSequence::~ProcessSequence()
 {}
 
-bool ProcessSequence::assignUnit(ABObject* o)
+bool ProcessSequence::assignSubject(ABObject* o)
 {
     Process* p = getFirst();
     while(p)
     {
-    	p->assignUnit(o);
+    	p->assignSubject(o);
         p = getNext();
     }
     return true;

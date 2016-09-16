@@ -138,6 +138,9 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DependentOn>abArduinoServer.h</DependentOn>
             <BuildOrder>43</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abArduinoServerCommand.cpp">
+            <BuildOrder>36</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abArduinoUtils.cpp">
             <BuildOrder>44</BuildOrder>
         </CppCompile>
@@ -226,7 +229,8 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
         <CppCompile Include="abMove.cpp">
-            <BuildOrder>36</BuildOrder>
+            <DependentOn>abMove.h</DependentOn>
+            <BuildOrder>66</BuildOrder>
         </CppCompile>
         <CppCompile Include="abPairedMove.cpp">
             <DependentOn>abPairedMove.h</DependentOn>

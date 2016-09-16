@@ -11,16 +11,17 @@ class AB_CORE PufferArduino : public ArduinoDevice
                                 PufferArduino(int portNr, int baudRate = 9600);
                                 ~PufferArduino(){}
 
-		bool					enableDisableSimulator(bool flag);
         bool					enablePuffer();
         bool					disablePuffer();
+
+        						//!Enable/disable vaccum
+        bool					activateVaccum();
+        bool					deActivateVaccum();
 
 		bool					manualPuff();
 
         bool					setPufferDuration(int ms);
         bool					setPufferValveSpeed(int n);
-
-        bool					setSimulatorSpeed(int ms);
 
 		bool					setCutThicknessPreset(int preset);
 
@@ -28,9 +29,10 @@ class AB_CORE PufferArduino : public ArduinoDevice
 		bool					setDeltaY(int dy);
 		bool 					getStatus();
 
+		bool					enableDisableSimulator(bool flag);
+        bool					setSimulatorSpeed(int ms);
+
     protected:
     	LeicaUC7Controller		mTheLeica;
-
-
 };
 #endif

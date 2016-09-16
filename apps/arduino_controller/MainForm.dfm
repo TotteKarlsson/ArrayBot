@@ -38,11 +38,10 @@ object Main: TMain
       object mSectionCountLbl: TIntLabel
         Left = 40
         Top = 31
-        Width = 17
+        Width = 10
         Height = 23
-        Caption = '-1'
-        ValueString = '-1'
-        Value = -1
+        Caption = '0'
+        ValueString = '0'
         TheFont.Charset = DEFAULT_CHARSET
         TheFont.Color = clWindowText
         TheFont.Height = -19
@@ -362,10 +361,6 @@ object Main: TMain
       object TabSheet3: TTabSheet
         Caption = 'Lights and Sensors'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mFrontBackLEDBtn: TArrayBotButton
           Left = 12
           Top = 51
@@ -392,10 +387,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Board Settings'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mArduinoSB: TScrollBox
           Left = 0
           Top = 0

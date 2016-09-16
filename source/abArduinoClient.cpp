@@ -9,9 +9,7 @@ using namespace mtk;
 ArduinoClient::ArduinoClient()
 :
 mMessageProcessor(*this)
-{
-
-}
+{}
 
 ArduinoClient::~ArduinoClient()
 {

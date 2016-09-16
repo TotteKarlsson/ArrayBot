@@ -71,7 +71,7 @@ bool Property<DeviceTypeID>::write(IniFile* iniFile, const string& section)
 template<> inline
 bool Property<DeviceTypeID>::read(IniFile* iniFile, const string& section)
 {
-    if(&iniFile == NULL)
+    if(iniFile == NULL)
     {
         return false;
     }
@@ -79,7 +79,6 @@ bool Property<DeviceTypeID>::read(IniFile* iniFile, const string& section)
     string val(iniFile->readString(mKey, section, mtk::toString(mDefaultValue)));
 
     DeviceTypeID tempVal = getDeviceTypeID(val);
-
     mWasRead = iniFile->wasItFound();
     setValue( mWasRead ? tempVal : mDefaultValue);
     return mWasRead;

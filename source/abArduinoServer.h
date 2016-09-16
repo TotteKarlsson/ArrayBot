@@ -27,8 +27,6 @@ typedef void (__closure *OnMessageUpdateCB)(const string& msg);
 //There are currently two Arduino boards, the 'Puffer' board, and a 'Sensor' board containing sensors and
 //light controlling logic.
 
-
-
 class AB_CORE ArduinoServer : public IPCServer
 {
 	friend RibbonLengthController;

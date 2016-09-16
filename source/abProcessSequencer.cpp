@@ -34,8 +34,8 @@ void ProcessSequencer::start(bool autoExecute)
     s->init();
 
 	mExecuteAutomatic = autoExecute;
-	Process* aMove = s->getFirst();
-    if(aMove)
+	Process* p = s->getFirst();
+    if(p)
     {
     	Log(lInfo) << "Executing sequence";
         mSequenceTimer.start();
@@ -72,7 +72,7 @@ bool ProcessSequencer::continueExecution()
 	    Log(lInfo) << "Executing process \"" << p->getProcessName() <<"\" of type: "<<p->getProcessType();
         if(!p->start())
         {
-            Log(lError) << "Failed executing a move: " << p->getProcessName();
+            Log(lError) << "Failed executing a process: " << p->getProcessName();
             Log(lError) << "Aborting execution of process sequence: "<<s->getName();
             mSequenceTimer.stop();
             return false;
@@ -86,7 +86,7 @@ bool ProcessSequencer::continueExecution()
     return true;
 }
 
-string ProcessSequencer:: getNextProcessName()
+string ProcessSequencer::getNextProcessName()
 {
  	ProcessSequence* s = mSequences.getCurrent();
     if(!s)

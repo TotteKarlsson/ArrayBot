@@ -13,6 +13,8 @@
 #include "mtkMathUtils.h"
 #include "abTriggerFunction.h"
 #include "TStringInputDialog.h"
+#include "abArduinoServerCommand.h"
+#include "TArduinoServerCommandFrame.h"
 
 #pragma package(smart_init)
 #pragma link "TMotorMoveProcessFrame"
@@ -26,7 +28,18 @@ TParallellProcessesFrame *ParallellProcessesFrame;
 //---------------------------------------------------------------------------
 __fastcall TParallellProcessesFrame::TParallellProcessesFrame(TComponent* Owner)
 	: TFrame(Owner)
-{}
+{
+	mTMotorMoveProcessFrame 	= new TMotorMoveProcessFrame(Owner);
+    mTMotorMoveProcessFrame->Parent = this;
+    mTMotorMoveProcessFrame->Visible = false;
+    mTMotorMoveProcessFrame->Align 	 = alClient;
+
+    mTArduinoServerCommandFrame = new TArduinoServerCommandFrame(Owner);
+    mTArduinoServerCommandFrame->Parent = this;
+    mTArduinoServerCommandFrame->Visible = false;
+    mTArduinoServerCommandFrame->Align = alClient;
+
+}
 
 void TParallellProcessesFrame::populate(ArrayBot& ab, Process* p)
 {
@@ -65,12 +78,12 @@ void TParallellProcessesFrame::rePopulate(Process* pp)
     if(mSubProcessesLB->Count)
     {
 	    selectAndClickListBoxItem(mSubProcessesLB, 0);
-		this->TMotorMoveProcessFrame1->Visible = true;
-   		EnableDisableFrame(this->TMotorMoveProcessFrame1, true);
+		this->mTMotorMoveProcessFrame->Visible = true;
+   		EnableDisableFrame(this->mTMotorMoveProcessFrame, true);
     }
     else
     {
-		this->TMotorMoveProcessFrame1->Visible = false;
+		this->mTMotorMoveProcessFrame->Visible = false;
     }
 }
 
@@ -99,6 +112,33 @@ void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
     selectItem(lm);
 }
 
+
+//---------------------------------------------------------------------------
+void __fastcall TParallellProcessesFrame::addArduinoCommandAExecute(TObject *Sender)
+{
+	//Add a move to current process
+    if(!mParallell)
+    {
+    	Log(lError) << "This is something else...!";
+        return;
+    }
+
+    Process* c = new ArduinoServerCommand("");
+
+    //Add the move to the container.. this will give the move a name
+    mParallell->addProcess(c);
+
+    c->assignProcessSequence(mParallell->getProcessSequence());
+    mParallell->write();
+
+    //Add move to Listbox
+    int indx = mSubProcessesLB->Items->AddObject(c->getProcessName().c_str(), (TObject*) c);
+	mSubProcessesLB->ItemIndex = indx;
+
+	//Select the new process
+    selectItem(c);
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TParallellProcessesFrame::removeMoveAExecute(TObject *Sender)
 {
@@ -113,14 +153,19 @@ void __fastcall TParallellProcessesFrame::removeMoveAExecute(TObject *Sender)
     }
 }
 
-void TParallellProcessesFrame::selectItem(Process* mv)
+void TParallellProcessesFrame::selectItem(Process* p)
 {
-	if(dynamic_cast<AbsoluteMove*>(mv))
+	if(dynamic_cast<AbsoluteMove*>(p))
     {
-        this->TMotorMoveProcessFrame1->populate(mAB, dynamic_cast<AbsoluteMove*>(mv));
-        this->TMotorMoveProcessFrame1->Visible = true;
-        EnableDisableFrame(this->TMotorMoveProcessFrame1, true);
+        this->mTMotorMoveProcessFrame->populate(mAB, dynamic_cast<AbsoluteMove*>(p));
+        this->mTMotorMoveProcessFrame->Visible = true;
+        EnableDisableFrame(this->mTMotorMoveProcessFrame, true);
     }
+    else if(dynamic_cast<ArduinoServerCommand*>(p))
+    {
+        this->mTMotorMoveProcessFrame->Visible = false;
+    }
+
 }
 
 void __fastcall TParallellProcessesFrame::mSubProcessesLBClick(TObject *Sender)
@@ -132,8 +177,8 @@ void __fastcall TParallellProcessesFrame::mSubProcessesLBClick(TObject *Sender)
 
 	//Get Current itemIndex, retrieve the move and populate the move frame
 	string moveName = stdstr(mSubProcessesLB->Items->Strings[mSubProcessesLB->ItemIndex]);
-    Process* mv = mParallell->getProcess(moveName);
-    selectItem(mv);
+    Process* p = mParallell->getProcess(moveName);
+    selectItem(p);
 }
 
 //---------------------------------------------------------------------------
@@ -259,4 +304,6 @@ Process* TParallellProcessesFrame::getCurrentlySelectedSubProcess()
     }
     return NULL;
 }
+
+
 

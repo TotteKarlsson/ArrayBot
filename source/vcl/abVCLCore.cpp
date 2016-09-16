@@ -9,11 +9,12 @@ USEFORM("frames\TXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
 USEFORM("frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
 USEFORM("forms\TamFileEditor.cpp", amFileEditor);
 USEFORM("forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
+USEFORM("frames\TArduinoServerCommandFrame.cpp", ArduinoServerCommandFrame); /* TFrame: File Type */
 USEFORM("frames\TParallellProcessesFrame.cpp", ParallellProcessesFrame);
 USEFORM("frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 USEFORM("forms\TStringInputDialog.cpp", StringInputDialog);
 USEFORM("forms\TTextInputDialog.cpp", TextInputDialog);
+USEFORM("frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 //---------------------------------------------------------------------------

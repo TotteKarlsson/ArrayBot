@@ -42,7 +42,7 @@ class AB_CORE Process : public ABObject
         void									setInfoText(const string& txt){mInfoText = txt;}
 
 		string 						            getProcessType();
-		virtual void	                        assignUnit(ABObject* o){mSubject = o;}
+		virtual void	                        assignSubject(ABObject* o){mSubject = o;}
 		virtual void	                        assignProcessSequence(ProcessSequence* ps){mProcessSequence = ps;}
 		ProcessSequence*						getProcessSequence(){return mProcessSequence;}
 

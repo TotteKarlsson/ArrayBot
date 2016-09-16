@@ -19,8 +19,6 @@
 //TODO: These triggerfunctions may be replaced later
 //on by using pure process objects instead, like the MoveAbsoluteProcess
 
-using std::tr1::function;
-
 class APTMotor;
 class AB_CORE TriggerFunction : public ABObject
 {

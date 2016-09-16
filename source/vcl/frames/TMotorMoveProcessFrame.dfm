@@ -118,7 +118,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     Left = 0
     Top = 369
     Width = 451
-    Height = 235
+    Height = 268
     Align = alClient
     TabOrder = 0
     object GroupBox1: TGroupBox

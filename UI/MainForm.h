@@ -199,7 +199,7 @@ class TMain : public TRegistryForm
       											//Callbacks
         void									onArduinoClientConnected();
         void									onArduinoClientDisconnected();
-        void									enableDisableClientControls(bool enable);
+        void									enableDisableArduinoClientControls(bool enable);
 
         							            //!Arraybot is allocated on the stack.
                                                 //!So that we can catch exceptions in the
