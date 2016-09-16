@@ -48,7 +48,7 @@ void setup()
     pinMode(gPufferPin,         INPUT);     // Set off the puffer manually by this pin    
     
     // setup HW serial port
-    Serial.begin(250000);
+    Serial.begin(57600);
     Serial << "[ArrayBot Puffer Arduino]";
 
     //setup SW serial port to the Leica Arduino.    
