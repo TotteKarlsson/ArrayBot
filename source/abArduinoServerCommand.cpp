@@ -16,7 +16,9 @@ using namespace ab;
 ArduinoServerCommand::ArduinoServerCommand(const string& lbl)
 :
 Process(lbl, NULL),
-mTrigger(NULL)
+mTrigger(NULL),
+mCommand("ENABLE_PUFFER"),
+mArduinoClient(NULL)
 {}
 
 const string ArduinoServerCommand::getTypeName() const
@@ -28,30 +30,7 @@ void ArduinoServerCommand::init(ArrayBot& ab)
 {
 	Process::init(ab);
 	mArduinoClient = ab.getArduinoClient();
-
-//    //Setup any triggers
-//    if(mTrigger && mTrigger->getTriggerFunction())
-//    {
-//        TriggerFunction* tf = mTrigger->getTriggerFunction();
-//        if(dynamic_cast<ArduinoServerCommandAbsolute*>(tf))
-//        {
-//        	ArduinoServerCommandAbsolute* ma = dynamic_cast<ArduinoServerCommandAbsolute*>(tf);
-//            ma->setMotor(ab.getMotorWithName(ma->getMotorName()));
-//        }
-//    }
 }
-
-//void ArduinoServerCommand::addTrigger(Trigger* t)
-//{
-//	mTrigger = t;
-//    mTrigger->assignSubject(this);
-//}
-//
-//void ArduinoServerCommand::deleteTrigger(Trigger* t)
-//{
-//	delete mTrigger;
-//    mTrigger = NULL;
-//}
 
 bool ArduinoServerCommand::isBeingProcessed()
 {
@@ -62,7 +41,6 @@ bool ArduinoServerCommand::isBeingProcessed()
        	Timestamp now;
         mEndTime = now;
     }
-
     return mIsBeingProcessed;
 }
 
@@ -93,8 +71,10 @@ bool ArduinoServerCommand::start()
 {
     if(mArduinoClient)
     {
-		bool res = mArduinoClient->send(mCommand);
-		if(res)
+    	stringstream cmd;
+        cmd << "[" << mCommand << "]";
+		int res = mArduinoClient->send(cmd.str());
+		if(res != -1)
         {
         	Log(lDebug3) << "ArduinoServerCommand was executed successfully ("<<mCommand;
         }
@@ -103,10 +83,11 @@ bool ArduinoServerCommand::start()
         	Log(lError) << "ArduinoServerCommand was executed unsuccessfully ("<<mCommand;
         }
 
+        Process::start();
         mIsProcessed = true;
+
         //This will start the processs internal timer that checks for
         //process events
-        Process::start();
         return res;
     }
 
@@ -116,8 +97,8 @@ bool ArduinoServerCommand::start()
 XMLElement* ArduinoServerCommand::addToXMLDocumentAsChild(XMLDocument& doc, XMLNode* docRoot)
 {
     //Create XML for saving to file
-    XMLElement* pn	  			= doc.NewElement("process");
-    XMLNode*    rootNode 		= doc.InsertFirstChild(pn);
+    XMLElement* pn	  	 = doc.NewElement("process");
+    XMLNode*    rootNode = doc.InsertFirstChild(pn);
 
     //Attributes
     pn->SetAttribute("type", getTypeName().c_str());
@@ -139,15 +120,8 @@ XMLElement* ArduinoServerCommand::addToXMLDocumentAsChild(XMLDocument& doc, XMLN
     dataval1->SetText(toString(getPostDwellTime()).c_str());
 	pn->InsertEndChild(dataval1);
 
-//	//Add trigger
-//    if(mTrigger)
-//    {
-//    	mTrigger->addToXMLDocumentAsChild(doc, pn);
-//    }
-
     pn->InsertEndChild(rootNode);
     docRoot->InsertEndChild(pn);
-
     return pn;
 }
 

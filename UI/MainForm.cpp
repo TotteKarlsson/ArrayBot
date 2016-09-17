@@ -121,20 +121,24 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     }
 
 	TMemoLogger::mMemoIsEnabled = true;
-	gSplashForm->mMainAppIsRunning = true;
+    if(gSplashForm)
+    {
+		gSplashForm->mMainAppIsRunning = true;
 
-	while(gSplashForm->isOnShowTime() == true || mInitBotThread.isAlive())
-	{
-       	Application->ProcessMessages();
-		//In order to show whats going on on the splash screen
-		if(gSplashForm->Visible == false)
-		{
-			break;
-		}
-	}
+        while(gSplashForm->isOnShowTime() == true || mInitBotThread.isAlive())
+        {
+            Application->ProcessMessages();
+            //In order to show whats going on on the splash screen
+            if(gSplashForm->Visible == false)
+            {
+                break;
+            }
+        }
+		gSplashForm->Close();
+    }
 
     setupUIFrames();
-	gSplashForm->Close();
+
 	gLogger.setLogLevel(mLogLevel);
 
 	enableDisableUI(true);

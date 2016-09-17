@@ -21,6 +21,8 @@ class AB_CORE ArduinoServerCommand : public Process
         bool 						        isProcessed();
         virtual	bool	                    undo();
 
+        void								setArduinoClient(ArduinoClient* c){mArduinoClient = c;}
+        void								setCommand(const string& c){mCommand = c;}
 
         virtual bool	                    start();
         virtual bool	                    stop(){return Process::stop();}

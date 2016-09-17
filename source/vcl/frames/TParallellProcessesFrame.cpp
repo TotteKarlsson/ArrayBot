@@ -38,7 +38,6 @@ __fastcall TParallellProcessesFrame::TParallellProcessesFrame(TComponent* Owner)
     mTArduinoServerCommandFrame->Parent = this;
     mTArduinoServerCommandFrame->Visible = false;
     mTArduinoServerCommandFrame->Align = alClient;
-
 }
 
 void TParallellProcessesFrame::populate(ArrayBot& ab, Process* p)
@@ -55,6 +54,7 @@ void TParallellProcessesFrame::rePopulate(Process* pp)
     	EnableDisableFrame(this, false);
         return;
     }
+
     stringstream c;
     c << "Update Final Process Positions \n";
     c << "("<<pp->getProcessName()<<")";
@@ -78,12 +78,11 @@ void TParallellProcessesFrame::rePopulate(Process* pp)
     if(mSubProcessesLB->Count)
     {
 	    selectAndClickListBoxItem(mSubProcessesLB, 0);
-		this->mTMotorMoveProcessFrame->Visible = true;
-   		EnableDisableFrame(this->mTMotorMoveProcessFrame, true);
     }
     else
     {
-		this->mTMotorMoveProcessFrame->Visible = false;
+		mTMotorMoveProcessFrame->Visible = false;
+        mTArduinoServerCommandFrame->Visible = false;
     }
 }
 
@@ -111,7 +110,6 @@ void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
 	//Select the new process
     selectItem(lm);
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TParallellProcessesFrame::addArduinoCommandAExecute(TObject *Sender)
@@ -157,15 +155,18 @@ void TParallellProcessesFrame::selectItem(Process* p)
 {
 	if(dynamic_cast<AbsoluteMove*>(p))
     {
-        this->mTMotorMoveProcessFrame->populate(mAB, dynamic_cast<AbsoluteMove*>(p));
-        this->mTMotorMoveProcessFrame->Visible = true;
-        EnableDisableFrame(this->mTMotorMoveProcessFrame, true);
+        mTMotorMoveProcessFrame->populate(mAB, dynamic_cast<AbsoluteMove*>(p));
+        mTMotorMoveProcessFrame->Visible = true;
+       	mTArduinoServerCommandFrame->Visible = false;
+        EnableDisableFrame(mTMotorMoveProcessFrame, true);
     }
     else if(dynamic_cast<ArduinoServerCommand*>(p))
     {
-        this->mTMotorMoveProcessFrame->Visible = false;
+        mTMotorMoveProcessFrame->Visible = false;
+        mTArduinoServerCommandFrame->populate(mAB, dynamic_cast<ArduinoServerCommand*>(p));
+        mTArduinoServerCommandFrame->Visible = true;
+        EnableDisableFrame(mTArduinoServerCommandFrame, true);
     }
-
 }
 
 void __fastcall TParallellProcessesFrame::mSubProcessesLBClick(TObject *Sender)

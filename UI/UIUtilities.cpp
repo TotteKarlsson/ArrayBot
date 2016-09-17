@@ -11,10 +11,6 @@
 #pragma package(smart_init)
 
 using namespace mtk;
-//extern string 	gLogFileLocation;
-//extern string 	gLogFileName;
-//extern string 	gDefaultAppTheme;
-//extern string 	gApplicationRegistryRoot;
 
 //---------------------------------------------------------------------------
 bool sendAppMessage(ApplicationMessageEnum msgID, void* s)

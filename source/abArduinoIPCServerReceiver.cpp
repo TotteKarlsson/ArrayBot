@@ -44,7 +44,7 @@ void ArduinoServerIPCReceiver::Worker()
 
                 if(!aMessage.build(ch))
                 {
-                    Log(lDebug)<<"Character was discarded in IPCReceiver: \'"<<ch<<"\'"<<endl;
+                    Log(lDebug)<<"Character was discarded in Arduino Server IPCReceiver: \'"<<ch<<"\'"<<endl;
                 }
 
                 if(aMessage.isComplete() )

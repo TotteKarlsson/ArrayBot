@@ -34,7 +34,6 @@ void TArduinoServerCommandFrame::rePopulate(ArduinoServerCommand* m)
 
     mProcess = m;
     mActionInfo->Caption = vclstr(mProcess->getInfoText());
-
 }
 
 //---------------------------------------------------------------------------

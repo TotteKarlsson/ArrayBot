@@ -43,13 +43,21 @@ void __fastcall TSplashForm::logMsg()
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
-    //Send message to application that the splash form is closing
-    if(sendAppMessage(abSplashWasClosed) != true)
+	if(this->Visible == false)
     {
-        Log(lDebug)<<"Sending UWM_SPLASH_IS_CLOSING was unsuccesful";
-    }
+		Action = caFree;
 
-	Action = caFree;
+    }
+    else
+    {
+        //Send message to application that the splash form is closing
+        if(sendAppMessage(abSplashWasClosed) != true)
+        {
+            Log(lDebug)<<"Sending UWM_SPLASH_IS_CLOSING was unsuccesful";
+        }
+
+        Action = caFree;
+    }
 }
 
 void TSplashForm::setShowTime(int ms)

@@ -18,7 +18,6 @@ object ParallellProcessesFrame: TParallellProcessesFrame
     Align = alLeft
     Caption = 'Actions'
     TabOrder = 0
-    ExplicitHeight = 620
     object Button1: TButton
       Left = 13
       Top = 182
