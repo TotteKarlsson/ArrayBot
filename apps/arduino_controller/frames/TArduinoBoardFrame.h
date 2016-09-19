@@ -9,10 +9,11 @@
 #include <Vcl.ExtCtrls.hpp>
 #include "mtkIniFile.h"
 #include "mtkIniFileProperties.h"
-#include "abArduinoDevice.h"
+#include "arduino/abArduinoDevice.h"
+#include "arduino/abArduinoServer.h"
 #include "mtkIniFileProperties.h"
 #include "TSTDStringLabeledEdit.h"
-#include "abArduinoServer.h"
+
 //---------------------------------------------------------------------------
 
 using mtk::IniFileProperties;

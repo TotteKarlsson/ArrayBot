@@ -7,7 +7,7 @@
 #include "abTimeDelay.h"
 #include "mtkLogger.h"
 #include "abArrayBot.h"
-#include "abAPTMotor.h"
+#include "apt/abAPTMotor.h"
 #include "abTimeDelay.h"
 
 #pragma package(smart_init)

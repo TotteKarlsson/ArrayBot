@@ -26,13 +26,13 @@
 #include "abUIDataStructures.h"
 #include "abApplicationMessages.h"
 #include "mtkIniFile.h"
-#include "abArduinoServer.h"
+#include "arduino/abArduinoServer.h"
 #include "mtkFloatLabel.h"
 #include "TIntLabel.h"
 #include "TPropertyCheckBox.h"
 #include "TArrayBotBtn.h"
-#include "abPufferArduino.h"
-#include "abLightsArduino.h"
+#include "arduino/abPufferArduino.h"
+#include "arduino/abLightsArduino.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;

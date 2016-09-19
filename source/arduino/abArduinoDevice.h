@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Poco/Mutex.h"
 #include "Poco/Condition.h"
-#include "abSerial.h"
+#include "serial/abSerial.h"
 using Poco::Mutex;
 using Poco::Condition;
 

@@ -1,7 +1,7 @@
 #ifndef MainFormH
 #define MainFormH
 #include "abApplicationMessages.h"
-#include "abPufferArduinoClient.h"
+#include "arduino/abPufferArduinoClient.h"
 #include "abArrayBot.h"
 #include "abUIDataStructures.h"
 #include "InitArrayBotThread.h"

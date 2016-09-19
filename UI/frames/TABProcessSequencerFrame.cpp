@@ -4,7 +4,7 @@
 #include "abXYZUnit.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-#include "abAPTMotor.h"
+#include "apt/abAPTMotor.h"
 #include "abParallellProcess.h"
 #include "abArrayBot.h"
 #include "abTimeDelay.h"

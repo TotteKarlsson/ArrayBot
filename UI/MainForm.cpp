@@ -4,15 +4,15 @@
 #include "TMemoLogger.h"
 #include "mtkStringList.h"
 #include "abUtilities.h"
-#include "abAPTMotor.h"
-#include "abTCubeDCServo.h"
+#include "apt/abAPTMotor.h"
+#include "apt/abTCubeDCServo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 #include <bitset>
 #include "mtkMathUtils.h"
 #include "abExceptions.h"
 #include "TSplashForm.h"
-#include "abSounds.h"
+#include "sound/abSounds.h"
 #include "abCore.h"
 
 #include "frames/TABProcessSequencerFrame.h"

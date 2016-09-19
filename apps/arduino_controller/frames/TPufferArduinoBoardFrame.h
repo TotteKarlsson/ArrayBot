@@ -8,7 +8,7 @@
 #include "TIntegerLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "TSTDStringLabeledEdit.h"
-#include "abPufferArduino.h"
+#include "arduino/abPufferArduino.h"
 //---------------------------------------------------------------------------
 
 class PACKAGE TPufferArduinoBoardFrame : public TArduinoBoardFrame

@@ -3,7 +3,7 @@
 #include "TXYZUnitFrame.h"
 #include "abXYZUnit.h"
 #include "mtkVCLUtils.h"
-#include "abAPTMotor.h"
+#include "apt/abAPTMotor.h"
 #include "TMotorFrame.h"
 #include "abWhiskerUnit.h"
 //---------------------------------------------------------------------------

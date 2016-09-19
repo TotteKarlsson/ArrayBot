@@ -3,7 +3,7 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include "abUtilities.h"
-#include "abDeviceManager.h"
+#include "apt/abDeviceManager.h"
 #include "mtkProperties.h"
 #include "mtkINIFileProperties.h"
 #include "mtkINIFile.h"

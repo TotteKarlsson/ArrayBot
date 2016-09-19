@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TArduinoServerCommandFrame.h"
-#include "abArduinoServerCommand.h"
+#include "arduino/abArduinoServerCommand.h"
 #include "mtkVCLUtils.h"
 #include "abArrayBot.h"
 #include "TTextInputDialog.h"

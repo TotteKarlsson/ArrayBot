@@ -17,12 +17,12 @@
 #include "TRegistryForm.h"
 #include "camera/uc480Class.h"
 
-#include "abLightsArduinoClient.h"
+#include "arduino/abLightsArduinoClient.h"
 #include "mtkFloatLabel.h"
 #include <Vcl.Buttons.hpp>
 #include <Vcl.ToolWin.hpp>
 #include "TArrayBotBtn.h"
-#include "abSoundPlayer.h"
+#include "sound/abSoundPlayer.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;

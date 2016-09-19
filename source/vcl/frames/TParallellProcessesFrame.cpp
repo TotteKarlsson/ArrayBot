@@ -7,13 +7,13 @@
 #include "abParallellProcess.h"
 #include "mtkLogger.h"
 #include "abArrayBot.h"
-#include "abAPTMotor.h"
+#include "apt/abAPTMotor.h"
 #include "abAbsoluteMove.h"
 #include "abVCLUtils.h"
 #include "mtkMathUtils.h"
 #include "abTriggerFunction.h"
 #include "TStringInputDialog.h"
-#include "abArduinoServerCommand.h"
+#include "arduino/abArduinoServerCommand.h"
 #include "TArduinoServerCommandFrame.h"
 
 #pragma package(smart_init)

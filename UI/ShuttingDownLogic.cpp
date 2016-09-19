@@ -3,7 +3,7 @@
 #include "MainForm.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-#include "abAPTMotor.h"
+#include "apt/abAPTMotor.h"
 #include "TSplashForm.h"
 #include "frames/TRibbonLifterFrame.h"
 #include "frames/TXYZUnitFrame.h"

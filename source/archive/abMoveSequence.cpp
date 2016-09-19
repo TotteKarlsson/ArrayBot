@@ -5,7 +5,6 @@
 
 using namespace mtk;
 
-
 MoveSequence::MoveSequence()
 {
 
