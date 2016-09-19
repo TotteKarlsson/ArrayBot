@@ -54,6 +54,6 @@ bool LightsArduino::toggleCoax()
 
 bool LightsArduino::getStatus()
 {
-	Log(lInfo) << "Requestiong sensor arduino status";
+	Log(lInfo) << "Requesting sensor arduino status";
 	return send("i");
 }

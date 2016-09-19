@@ -1,16 +1,16 @@
-#ifndef abRibbonLengthControllerH
-#define abRibbonLengthControllerH
+#ifndef abRibbonControllerH
+#define abRibbonControllerH
 #include "abExporter.h"
 #include "abABObject.h"
 //---------------------------------------------------------------------------
 
 class ArduinoServer;
 
-class AB_CORE RibbonLengthController : public ABObject
+class AB_CORE RibbonController : public ABObject
 {
     public:
-						                    RibbonLengthController(ArduinoServer& s);
-						                    ~RibbonLengthController();
+						                    RibbonController(ArduinoServer& s);
+						                    ~RibbonController();
 
                                             //!The check progress function checks the status
                                             //!of the current length of the ribbon.
@@ -22,7 +22,7 @@ class AB_CORE RibbonLengthController : public ABObject
 
         									//!A manual puff overrides the automatic puff
                                             //!initiated by the enablePuffer command.
-                                            //!manualPuff simply sets off the puffer manually
+                                            //!manualPuff simply sets off the puffer manually and instantly
 		bool								manualPuff();
 
         bool								setZeroCut();
@@ -51,9 +51,11 @@ class AB_CORE RibbonLengthController : public ABObject
 
 	protected:
     	ArduinoServer&			            mArduinoServer;
+
+        									//!Flag to use to reset the controller
         bool								mPrepareForNewRibbon;
 
-        									//!Use this to restore from 0 cut thickness prest
+        									//!Use this to restore from 0 cut thickness preset
         int									mLastCutThicknessPreset;
 
 									        //!The section count is compared to the mDesiredRibbonLength
@@ -65,7 +67,12 @@ class AB_CORE RibbonLengthController : public ABObject
                                             //!ribbon
         int									mDesiredRibbonLength;
 
+        									//!If auto puff is true, puffer is enabled
+                                            //is set when section count == desiredRibbon length
         bool								mAutoPuff;
+
+        									//!If auto zero cut is true, zero thickness cut
+                                            //is set when section count == desiredRibbon length
         bool								mAutoZeroCut;
 
 };

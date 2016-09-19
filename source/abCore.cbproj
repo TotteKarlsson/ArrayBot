@@ -176,8 +176,8 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DependentOn>abRelativeMove.h</DependentOn>
             <BuildOrder>21</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abRibbonLengthController.cpp">
-            <DependentOn>abRibbonLengthController.h</DependentOn>
+        <CppCompile Include="abRibbonController.cpp">
+            <DependentOn>abRibbonController.h</DependentOn>
             <BuildOrder>22</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTimeDelay.cpp">

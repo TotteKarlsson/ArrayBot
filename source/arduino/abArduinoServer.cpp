@@ -14,7 +14,7 @@ ArduinoServer::ArduinoServer(int portNumber)
 IPCServer(portNumber, "ARDUINO_SERVER", createArduinoIPCReceiver),
 mPufferArduino(-1),
 mLightsArduino(-1),
-mRibbonLengthController(*this)
+mRibbonController(*this)
 {
 	mArduinos.push_back(&mPufferArduino);
 	mArduinos.push_back(&mLightsArduino);
@@ -47,22 +47,22 @@ bool ArduinoServer::shutDown()
 
 void ArduinoServer::enableAutoPuff()
 {
-	mRibbonLengthController.enableAutoPuff();
+	mRibbonController.enableAutoPuff();
 }
 
 void ArduinoServer::disableAutoPuff()
 {
-	mRibbonLengthController.disableAutoPuff();
+	mRibbonController.disableAutoPuff();
 }
 
 void ArduinoServer::enableAutoZeroCut()
 {
-	mRibbonLengthController.enableAutoZeroCut();
+	mRibbonController.enableAutoZeroCut();
 }
 
 void ArduinoServer::disableAutoZeroCut()
 {
-	mRibbonLengthController.disableAutoZeroCut();
+	mRibbonController.disableAutoZeroCut();
 }
 
 void ArduinoServer::notifyClients(const string& msg)
@@ -87,19 +87,19 @@ void ArduinoServer::broadcastStatus()
 	//These are all status messages possible
     //A client may call this one in order to sync their UI
     stringstream msg;
-    msg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
+    msg <<"SECTION_COUNT="<<mRibbonController.getSectionCount();
    	notifyClients(msg.str());
 
     msg.str("");
-    msg <<"DESIRED_RIBBON_LENGTH="<<mRibbonLengthController.getDesiredRibbonLength();
+    msg <<"DESIRED_RIBBON_LENGTH="<<mRibbonController.getDesiredRibbonLength();
    	notifyClients(msg.str());
 
     msg.str("");
-    msg <<"AUTO_PUFF="<<toString(mRibbonLengthController.getAutoPuffSetting());
+    msg <<"AUTO_PUFF="<<toString(mRibbonController.getAutoPuffSetting());
    	notifyClients(msg.str());
 
     msg.str("");
-    msg <<"AUTO_ZERO_CUT="<<toString(mRibbonLengthController.getAutoZeroCutSetting());
+    msg <<"AUTO_ZERO_CUT="<<toString(mRibbonController.getAutoZeroCutSetting());
    	notifyClients(msg.str());
 }
 
@@ -132,13 +132,13 @@ void ArduinoServer::pufferMessageReceived(const string& msg)
     {
     	if(mPufferArduino.getLastCutThicknessPreset() != 1)
         {
-    		mRibbonLengthController.incrementSectionCount();
+    		mRibbonController.incrementSectionCount();
         }
 
-        mRibbonLengthController.checkProgress();
+        mRibbonController.checkProgress();
 
         stringstream msg;
-        msg <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
+        msg <<"SECTION_COUNT="<<mRibbonController.getSectionCount();
 		notifyClients(msg.str());
     }
 }
@@ -187,8 +187,8 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     else if(compareStrings(msg, "RESET_SECTION_COUNT"))
     {
     	Log(lInfo) << "Resetting section counter";
-        mRibbonLengthController.resetSectionCount();
-	    clientMessage <<"SECTION_COUNT="<<mRibbonLengthController.getSectionCount();
+        mRibbonController.resetSectionCount();
+	    clientMessage <<"SECTION_COUNT="<<mRibbonController.getSectionCount();
     }
 
     else if(compareStrings(msg, "ENABLE_PUFFER"))
@@ -221,7 +221,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     {
     	Log(lInfo) << "Executing puffer";
         mPufferArduino.manualPuff();
-	    mRibbonLengthController.manualPuff();
+	    mRibbonController.manualPuff();
     }
 
     else if(startsWith("SET_CUT_THICKNESS_PRESET", msg))
@@ -231,7 +231,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         {
 			Log(lInfo) << "Requesting Cut Thickness Preset ("<<sl[1]<<")";
         	mPufferArduino.setCutThicknessPreset(toInt(sl[1]));
-            mRibbonLengthController.setCutThicknessPreset(toInt(sl[1]));
+            mRibbonController.setCutThicknessPreset(toInt(sl[1]));
         }
     }
     else if(startsWith("SET_DELTAY", msg))
@@ -258,7 +258,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     else if(startsWith("START_NEW_RIBBON", msg))
     {
     	Log(lInfo) << "Starting new ribbon";
-		mRibbonLengthController.prepareForNewRibbon();
+		mRibbonController.prepareForNewRibbon();
     }
 
     else if(startsWith("SET_DESIRED_RIBBON_LENGTH", msg))
@@ -267,7 +267,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
 		StringList l(msg,'=');
         if(l.size() == 2)
         {
-        	mRibbonLengthController.setDesiredRibbonLength(toInt(l[1]));
+        	mRibbonController.setDesiredRibbonLength(toInt(l[1]));
 		    clientMessage <<"DESIRED_RIBBON_LENGTH="<<l[1];
         }
     }
@@ -275,14 +275,14 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
     else if(startsWith("ENABLE_AUTO_ZERO_CUT", msg))
     {
     	Log(lInfo) << "Enabling auto zero cut";
-        mRibbonLengthController.enableAutoZeroCut();
+        mRibbonController.enableAutoZeroCut();
         clientMessage <<"AUTO_ZERO_CUT=true";
     }
 
     else if(startsWith("DISABLE_AUTO_ZERO_CUT", msg))
     {
     	Log(lInfo) << "Disabling auto zero cut";
-        mRibbonLengthController.disableAutoZeroCut();
+        mRibbonController.disableAutoZeroCut();
         clientMessage << "AUTO_ZERO_CUT=false";
     }
 
@@ -311,7 +311,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         mLightsArduino.turnCoaxLightOn();
     }
 
-    else if(startsWith("TURN_OFF_COAX_LIGHTS", msg))
+    else if(startsWith("TURN_OFF_COAX_LIGHT", msg))
     {
     	Log(lInfo) << "Turn off Coax lights";
         mLightsArduino.turnCoaxLightOff();

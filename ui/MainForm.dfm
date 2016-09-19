@@ -146,16 +146,16 @@ object Main: TMain
             Width = 328
             Height = 205
             Align = alLeft
-            Caption = 'Ribbon Length Control'
+            Caption = 'Ribbon Control'
             TabOrder = 1
             object mRibbonLengthE: TIntegerLabeledEdit
               Left = 16
-              Top = 106
-              Width = 121
+              Top = 98
+              Width = 161
               Height = 31
-              EditLabel.Width = 123
+              EditLabel.Width = 192
               EditLabel.Height = 23
-              EditLabel.Caption = 'Ribbon Length'
+              EditLabel.Caption = 'Desired Ribbon Length'
               TabOrder = 0
               Text = '-1'
               OnKeyDown = mRibbonLengthEKeyDown
@@ -163,18 +163,18 @@ object Main: TMain
             end
             object mAutoSeparationCB: TPropertyCheckBox
               Left = 16
-              Top = 41
-              Width = 97
-              Height = 17
-              Caption = 'Enabled'
+              Top = 36
+              Width = 241
+              Height = 32
+              Caption = 'Enable Auto Separation'
               TabOrder = 1
               OnClick = mAutoSeparationCBClick
             end
             object mStartNewRibbonBtn: TArrayBotButton
-              Left = 159
-              Top = 32
-              Width = 154
-              Height = 121
+              Left = 201
+              Top = 105
+              Width = 121
+              Height = 97
               Caption = 'New Ribbon'
               ParentDoubleBuffered = True
               TabOrder = 2
@@ -210,7 +210,7 @@ object Main: TMain
             object mSetPresetCutBtn: TArrayBotButton
               Left = 189
               Top = 109
-              Width = 145
+              Width = 148
               Height = 80
               Caption = 'Set Preset Cut'
               TabOrder = 1
@@ -223,7 +223,7 @@ object Main: TMain
               Width = 113
               Height = 31
               TabOrder = 2
-              Text = '100'
+              Text = '0'
               Items.Strings = (
                 '0'
                 '45'
@@ -413,17 +413,9 @@ object Main: TMain
         Caption = 'The Pickup'
         ImageIndex = 5
         TabVisible = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object TabSheet1: TTabSheet
         Caption = 'Motors'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -487,18 +479,10 @@ object Main: TMain
       object mMoveSequencesPage: TTabSheet
         Caption = 'Sequences'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object TabSheet2: TTabSheet
         Caption = 'Settings'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mJSStatusL: TLabel
           Left = 455
           Top = 192
@@ -687,10 +671,6 @@ object Main: TMain
       object TabSheet5: TTabSheet
         Caption = 'Logging'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

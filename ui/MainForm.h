@@ -38,7 +38,7 @@ class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
 class TXYZUnitFrame;
 class TSequencerButtonsFrame;
-
+class TNewRibbonForm;
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
 {
@@ -229,7 +229,6 @@ class TMain : public TRegistryForm
         void __fastcall 				        FrameClosed(TObject *Sender);
 
 
-
 	public:		// User declarations
 		__fastcall 					            TMain(TComponent* Owner);
 		__fastcall 					            ~TMain();
@@ -238,6 +237,8 @@ class TMain : public TRegistryForm
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,        mlxStructMessage,         AppInBox);
         END_MESSAGE_MAP(TForm)
+
+		TNewRibbonForm* 						mNewRibbonForm;
 };
 
 extern PACKAGE TMain *Main;

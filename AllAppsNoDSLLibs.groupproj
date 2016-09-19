@@ -12,10 +12,10 @@
         <Projects Include="UI\lib\ArrayBotPackage.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="apps\arduino_controller\ArduinoController.cbproj">
-            <Dependencies>source\abCore.cbproj;source\vcl\abVCLCore.cbproj</Dependencies>
-        </Projects>
         <Projects Include="apps\arraycam\ArrayCam.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="apps\arduinocontroller\ArduinoController.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
@@ -56,15 +56,6 @@
     <Target Name="ArrayBotPackage:Make">
         <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArduinoController" DependsOnTargets="abCore;abVCLCore">
-        <MSBuild Projects="apps\arduino_controller\ArduinoController.cbproj"/>
-    </Target>
-    <Target Name="ArduinoController:Clean" DependsOnTargets="abCore:Clean;abVCLCore:Clean">
-        <MSBuild Projects="apps\arduino_controller\ArduinoController.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ArduinoController:Make" DependsOnTargets="abCore:Make;abVCLCore:Make">
-        <MSBuild Projects="apps\arduino_controller\ArduinoController.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="ArrayCam">
         <MSBuild Projects="apps\arraycam\ArrayCam.cbproj"/>
     </Target>
@@ -73,6 +64,15 @@
     </Target>
     <Target Name="ArrayCam:Make">
         <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArduinoController">
+        <MSBuild Projects="apps\arduinocontroller\ArduinoController.cbproj"/>
+    </Target>
+    <Target Name="ArduinoController:Clean">
+        <MSBuild Projects="apps\arduinocontroller\ArduinoController.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArduinoController:Make">
+        <MSBuild Projects="apps\arduinocontroller\ArduinoController.cbproj" Targets="Make"/>
     </Target>
     <Target Name="ArrayBot" DependsOnTargets="abCore;abVCLCore;ArrayBotPackage">
         <MSBuild Projects="UI\ArrayBot.cbproj"/>
@@ -84,13 +84,13 @@
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;abVCLCore;ArrayBotPackage;ArduinoController;ArrayCam;ArrayBot"/>
+        <CallTarget Targets="abCore;abVCLCore;ArrayBotPackage;ArrayCam;ArduinoController;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;ArduinoController:Clean;ArrayCam:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;ArrayCam:Clean;ArduinoController:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;ArduinoController:Make;ArrayCam:Make;ArrayBot:Make"/>
+        <CallTarget Targets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;ArrayCam:Make;ArduinoController:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

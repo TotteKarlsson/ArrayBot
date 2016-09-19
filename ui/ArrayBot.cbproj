@@ -127,6 +127,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="auto_link.cpp">
             <BuildOrder>13</BuildOrder>
         </CppCompile>
+        <CppCompile Include="forms\TNewRibbonForm.cpp">
+            <Form>NewRibbonForm</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>forms\TNewRibbonForm.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
         <CppCompile Include="JoyStickRelated.cpp">
             <BuildOrder>6</BuildOrder>
         </CppCompile>
@@ -143,6 +149,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
         <FormResources Include="MainForm.dfm"/>
+        <FormResources Include="forms\TNewRibbonForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -9,7 +9,7 @@
 #include "abLightsArduino.h"
 #include <vector>
 #include "mtkTimer.h"
-#include "abRibbonLengthController.h"
+#include "abRibbonController.h"
 using mtk::IPCServer;
 using mtk::IPCMessage;
 using std::vector;
@@ -29,7 +29,7 @@ typedef void (__closure *OnMessageUpdateCB)(const string& msg);
 
 class AB_CORE ArduinoServer : public IPCServer
 {
-	friend RibbonLengthController;
+	friend RibbonController;
     public:
                                             ArduinoServer(int portNumber = 50000);
 	                                        ~ArduinoServer();
@@ -64,7 +64,7 @@ class AB_CORE ArduinoServer : public IPCServer
     	PufferArduino 			            mPufferArduino;
     	LightsArduino 			            mLightsArduino;
 
-		RibbonLengthController				mRibbonLengthController;
+		RibbonController				mRibbonController;
 
         OnMessageUpdateCB					onMessageUpdateCB;
 

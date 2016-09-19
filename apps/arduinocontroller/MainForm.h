@@ -86,7 +86,6 @@ class TMain : public TRegistryForm
 	TArrayBotButton *mPuffNowBtn;
 	TArrayBotButton *mEnablePuffBtn;
 	TArrayBotButton *mResetCounterBtn;
-	TTabSheet *TabSheet3;
 	TArrayBotButton *mFrontBackLEDBtn;
 	TArrayBotButton *mCoaxLightBtn;
 	TPropertyCheckBox *mAutoZeroCutCB;
@@ -101,6 +100,7 @@ class TMain : public TRegistryForm
 	TButton *mArduinoServerStartBtn;
 	TPanel *Panel2;
 	TPanel *CenterPanel;
+	TGroupBox *GroupBox4;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);

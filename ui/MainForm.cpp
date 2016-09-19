@@ -14,6 +14,7 @@
 #include "TSplashForm.h"
 #include "sound/abSounds.h"
 #include "abCore.h"
+#include "TNewRibbonForm.h"
 
 #include "frames/TABProcessSequencerFrame.h"
 #include "frames/TXYZPositionsFrame.h"
@@ -599,13 +600,26 @@ void TMain::onArduinoMessageReceived(const string& msg)
                     Main->mRibbonLengthE->setValue(toInt(l[1]));
                 }
             }
+            else if(startsWith("RIBBON_IS_SEPARATING", msg))
+            {
+//            	if(!Main->mNewRibbonForm)
+//                {
+//					//Create the new ribbon form..
+//	                Main->mNewRibbonForm = new TNewRibbonForm(NULL);
+//	                Main->mNewRibbonForm->Show();
+//                }
+//                else if(Main->mNewRibbonForm->Visible == false)
+//                {
+//                	Main->mNewRibbonForm->Show();
+//                }
+            }
         }
     };
 
     TLocalArgs args;
     args.msg = msg;
 
-    //This causes this fucntion to be called in the UI thread
+    //This causes this function to be called in the UI thread
 	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
 }
 

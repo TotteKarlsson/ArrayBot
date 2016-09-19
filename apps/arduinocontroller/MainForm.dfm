@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'Arduino Controller'
-  ClientHeight = 657
-  ClientWidth = 855
+  ClientHeight = 707
+  ClientWidth = 986
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,7 +23,7 @@ object Main: TMain
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 855
+    Width = 986
     Height = 89
     Align = alTop
     TabOrder = 0
@@ -52,7 +52,7 @@ object Main: TMain
     object mResetCounterBtn: TArrayBotButton
       Left = 153
       Top = 1
-      Width = 160
+      Width = 136
       Height = 87
       Align = alLeft
       Caption = 'Reset Counter'
@@ -62,9 +62,9 @@ object Main: TMain
       SoundID = 'BUTTON_CLICK_4'
     end
     object Button1: TArrayBotButton
-      Left = 618
+      Left = 818
       Top = 1
-      Width = 111
+      Width = 88
       Height = 87
       Align = alRight
       Caption = 'About'
@@ -74,9 +74,9 @@ object Main: TMain
       SoundID = 'BUTTON_CLICK_4'
     end
     object Button5: TArrayBotButton
-      Left = 729
+      Left = 906
       Top = 1
-      Width = 125
+      Width = 79
       Height = 87
       Action = FileExit1
       Align = alRight
@@ -86,7 +86,7 @@ object Main: TMain
       SoundID = 'BUTTON_CLICK_4'
     end
     object GroupBox1: TGroupBox
-      Left = 319
+      Left = 519
       Top = 1
       Width = 299
       Height = 87
@@ -120,15 +120,16 @@ object Main: TMain
   object CenterPanel: TPanel
     Left = 0
     Top = 89
-    Width = 855
-    Height = 568
+    Width = 986
+    Height = 618
     Align = alClient
     Caption = 'CenterPanel'
     TabOrder = 1
+    ExplicitHeight = 568
     object Splitter1: TSplitter
       Left = 1
-      Top = 390
-      Width = 853
+      Top = 419
+      Width = 984
       Height = 3
       Cursor = crVSplit
       Align = alTop
@@ -138,24 +139,27 @@ object Main: TMain
     end
     object BottomPanel: TPanel
       Left = 1
-      Top = 393
-      Width = 853
-      Height = 174
+      Top = 422
+      Width = 984
+      Height = 195
       Align = alClient
       TabOrder = 0
+      ExplicitTop = 393
+      ExplicitHeight = 224
       object Panel2: TPanel
         Left = 1
         Top = 1
-        Width = 851
-        Height = 172
+        Width = 982
+        Height = 193
         Align = alClient
         Caption = 'Panel2'
         TabOrder = 0
+        ExplicitHeight = 172
         object infoMemo: TMemo
           Left = 1
           Top = 31
-          Width = 849
-          Height = 140
+          Width = 980
+          Height = 161
           Align = alClient
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -167,11 +171,12 @@ object Main: TMain
           ScrollBars = ssBoth
           TabOrder = 0
           WordWrap = False
+          ExplicitHeight = 140
         end
         object ToolBar1: TToolBar
           Left = 1
           Top = 1
-          Width = 849
+          Width = 980
           Height = 30
           AutoSize = True
           ButtonHeight = 30
@@ -221,13 +226,14 @@ object Main: TMain
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 853
-      Height = 389
+      Width = 984
+      Height = 418
       ActivePage = TabSheet1
       Align = alTop
       TabOrder = 1
       object TabSheet1: TTabSheet
-        Caption = 'Ribbon Control'
+        Caption = 'Controls'
+        ExplicitHeight = 354
         object GroupBox3: TGroupBox
           Left = 3
           Top = 85
@@ -297,7 +303,7 @@ object Main: TMain
         object mDesiredRibbonLengthE: TIntegerLabeledEdit
           Left = 3
           Top = 42
-          Width = 303
+          Width = 198
           Height = 31
           EditLabel.Width = 192
           EditLabel.Height = 23
@@ -346,9 +352,9 @@ object Main: TMain
             Top = 56
             Width = 137
             Height = 31
-            ItemIndex = 2
+            ItemIndex = 0
             TabOrder = 2
-            Text = '100'
+            Text = '0'
             Items.Strings = (
               '0'
               '45'
@@ -357,43 +363,49 @@ object Main: TMain
               '1000')
           end
         end
-      end
-      object TabSheet3: TTabSheet
-        Caption = 'Lights and Sensors'
-        ImageIndex = 2
-        object mFrontBackLEDBtn: TArrayBotButton
-          Left = 12
-          Top = 51
-          Width = 167
-          Height = 100
-          Caption = 'Flip LEDs ON'
-          ParentDoubleBuffered = True
-          TabOrder = 0
-          OnClick = LigthsBtnsClick
-          SoundID = 'BUTTON_CLICK_4'
-        end
-        object mCoaxLightBtn: TArrayBotButton
-          Left = 227
-          Top = 51
-          Width = 181
-          Height = 100
-          Caption = 'Flip Coax Light ON'
-          ParentDoubleBuffered = True
-          TabOrder = 1
-          OnClick = LigthsBtnsClick
-          SoundID = 'BUTTON_CLICK_4'
+        object GroupBox4: TGroupBox
+          Left = 679
+          Top = 14
+          Width = 250
+          Height = 339
+          Caption = 'Lights'
+          TabOrder = 4
+          object mCoaxLightBtn: TArrayBotButton
+            Left = 24
+            Top = 138
+            Width = 200
+            Height = 79
+            Caption = 'Flip Coax Light ON'
+            ParentDoubleBuffered = True
+            TabOrder = 0
+            OnClick = LigthsBtnsClick
+            SoundID = 'BUTTON_CLICK_4'
+          end
+          object mFrontBackLEDBtn: TArrayBotButton
+            Left = 24
+            Top = 37
+            Width = 200
+            Height = 80
+            Caption = 'Flip LEDs ON'
+            ParentDoubleBuffered = True
+            TabOrder = 1
+            OnClick = LigthsBtnsClick
+            SoundID = 'BUTTON_CLICK_4'
+          end
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Board Settings'
         ImageIndex = 1
+        ExplicitHeight = 351
         object mArduinoSB: TScrollBox
           Left = 0
           Top = 0
-          Width = 845
-          Height = 351
+          Width = 976
+          Height = 380
           Align = alClient
           TabOrder = 0
+          ExplicitHeight = 351
         end
       end
     end
