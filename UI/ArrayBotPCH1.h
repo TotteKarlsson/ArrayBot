@@ -15,7 +15,7 @@
 #include "mtkBaseProperty.h"
 #include "mtkMathUtils.h"
 
-#include "abArrayBotJoyStick.h"
+#include "joystick/abArrayBotJoyStick.h"
 
 #include "MainForm.h"
 #include "abAPTMotor.h"

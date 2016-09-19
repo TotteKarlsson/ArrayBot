@@ -47,8 +47,8 @@
         <ProjectType>CppDynamicLibrary</ProjectType>
         <Multithreaded>true</Multithreaded>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>camera\;P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>camera\;P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>joystick\;camera\;P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>joystick\;camera\;P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -148,10 +148,6 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DependentOn>abArrayBot.h</DependentOn>
             <BuildOrder>20</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abArrayBotJoystick.cpp">
-            <DependentOn>abArrayBotJoystick.h</DependentOn>
-            <BuildOrder>16</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abContinousMove.cpp">
             <BuildOrder>39</BuildOrder>
         </CppCompile>
@@ -166,36 +162,6 @@ $(PreBuildEvent)]]></PreBuildEvent>
         </CppCompile>
         <CppCompile Include="abExceptions.cpp">
             <BuildOrder>9</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoystickAxis.cpp">
-            <DependentOn>abJoystickAxis.h</DependentOn>
-            <BuildOrder>15</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickAxisStateEventDispatcher.cpp">
-            <DependentOn>abJoyStickAxisStateEventDispatcher.h</DependentOn>
-            <BuildOrder>31</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickButton.cpp">
-            <DependentOn>abJoyStickButton.h</DependentOn>
-            <BuildOrder>14</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickButtonStateEventDispatcher.cpp">
-            <BuildOrder>33</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickMessageDispatcher.cpp">
-            <DependentOn>abJoyStickMessageDispatcher.h</DependentOn>
-            <BuildOrder>32</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickPOVStateEventDispatcher.cpp">
-            <BuildOrder>34</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickSetting.cpp">
-            <DependentOn>abJoyStickSetting.h</DependentOn>
-            <BuildOrder>26</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickSettings.cpp">
-            <DependentOn>abJoyStickSettings.h</DependentOn>
-            <BuildOrder>25</BuildOrder>
         </CppCompile>
         <CppCompile Include="abLeicaUC7Controller.cpp">
             <DependentOn>abLeicaUC7Controller.h</DependentOn>
@@ -339,6 +305,42 @@ $(PreBuildEvent)]]></PreBuildEvent>
         </CppCompile>
         <CppCompile Include="camera\uc480class.cpp">
             <BuildOrder>53</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abArrayBotJoystick.cpp">
+            <DependentOn>joystick\abArrayBotJoystick.h</DependentOn>
+            <BuildOrder>58</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoystickAxis.cpp">
+            <DependentOn>joystick\abJoystickAxis.h</DependentOn>
+            <BuildOrder>59</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickAxisStateEventDispatcher.cpp">
+            <DependentOn>joystick\abJoyStickAxisStateEventDispatcher.h</DependentOn>
+            <BuildOrder>60</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickButton.cpp">
+            <DependentOn>joystick\abJoyStickButton.h</DependentOn>
+            <BuildOrder>61</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickButtonStateEventDispatcher.cpp">
+            <DependentOn>joystick\abJoyStickButtonStateEventDispatcher.h</DependentOn>
+            <BuildOrder>62</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickMessageDispatcher.cpp">
+            <DependentOn>joystick\abJoyStickMessageDispatcher.h</DependentOn>
+            <BuildOrder>63</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickPOVStateEventDispatcher.cpp">
+            <DependentOn>joystick\abJoyStickPOVStateEventDispatcher.h</DependentOn>
+            <BuildOrder>64</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickSetting.cpp">
+            <DependentOn>joystick\abJoyStickSetting.h</DependentOn>
+            <BuildOrder>65</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickSettings.cpp">
+            <DependentOn>joystick\abJoyStickSettings.h</DependentOn>
+            <BuildOrder>66</BuildOrder>
         </CppCompile>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

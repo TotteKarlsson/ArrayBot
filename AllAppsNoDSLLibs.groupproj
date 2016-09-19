@@ -1,0 +1,96 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D205F2C9-997F-479F-8C2E-0DC7AF7C3730}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="source\vcl\abVCLCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="UI\lib\ArrayBotPackage.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="apps\arduino_controller\ArduinoController.cbproj">
+            <Dependencies>source\abCore.cbproj;source\vcl\abVCLCore.cbproj</Dependencies>
+        </Projects>
+        <Projects Include="apps\arraycam\ArrayCam.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="UI\ArrayBot.cbproj">
+            <Dependencies>source\abCore.cbproj;source\vcl\abVCLCore.cbproj;UI\lib\ArrayBotPackage.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="abCore">
+        <MSBuild Projects="source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abVCLCore">
+        <MSBuild Projects="source\vcl\abVCLCore.cbproj"/>
+    </Target>
+    <Target Name="abVCLCore:Clean">
+        <MSBuild Projects="source\vcl\abVCLCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abVCLCore:Make">
+        <MSBuild Projects="source\vcl\abVCLCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayBotPackage">
+        <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Clean">
+        <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Make">
+        <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArduinoController" DependsOnTargets="abCore;abVCLCore">
+        <MSBuild Projects="apps\arduino_controller\ArduinoController.cbproj"/>
+    </Target>
+    <Target Name="ArduinoController:Clean" DependsOnTargets="abCore:Clean;abVCLCore:Clean">
+        <MSBuild Projects="apps\arduino_controller\ArduinoController.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArduinoController:Make" DependsOnTargets="abCore:Make;abVCLCore:Make">
+        <MSBuild Projects="apps\arduino_controller\ArduinoController.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayCam">
+        <MSBuild Projects="apps\arraycam\ArrayCam.cbproj"/>
+    </Target>
+    <Target Name="ArrayCam:Clean">
+        <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayCam:Make">
+        <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayBot" DependsOnTargets="abCore;abVCLCore;ArrayBotPackage">
+        <MSBuild Projects="UI\ArrayBot.cbproj"/>
+    </Target>
+    <Target Name="ArrayBot:Clean" DependsOnTargets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean">
+        <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make">
+        <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="abCore;abVCLCore;ArrayBotPackage;ArduinoController;ArrayCam;ArrayBot"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;ArduinoController:Clean;ArrayCam:Clean;ArrayBot:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;ArduinoController:Make;ArrayCam:Make;ArrayBot:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

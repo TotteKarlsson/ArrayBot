@@ -4,9 +4,9 @@
 #include "abABObject.h"
 #include "abXYZUnit.h"
 #include "abWhiskerUnit.h"
-#include "abArrayBotJoyStick.h"
+#include "joystick/abArrayBotJoyStick.h"
 #include "abPairedMoves.h"
-#include "abJoyStickSettings.h"
+#include "joystick/abJoyStickSettings.h"
 #include "abProcessSequencer.h"
 //---------------------------------------------------------------------------
 
