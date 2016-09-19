@@ -2,7 +2,7 @@
 #define abMoveH
 #include "abExporter.h"
 #include "abProcess.h"
-#include "abPosition.h"
+//#include "abPosition.h"
 #include "abPositionalTrigger.h"
 //---------------------------------------------------------------------------
 

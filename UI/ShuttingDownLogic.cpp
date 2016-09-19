@@ -5,7 +5,7 @@
 #include "mtkVCLUtils.h"
 #include "apt/abAPTMotor.h"
 #include "TSplashForm.h"
-#include "frames/TRibbonLifterFrame.h"
+//#include "frames/TRibbonLifterFrame.h"
 #include "frames/TXYZUnitFrame.h"
 
 using namespace mtk;
@@ -17,10 +17,10 @@ extern TSplashForm*  gSplashForm;
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 {
 	ShutDownTimer->Enabled = false;
-    if(TRibbonLifterFrame::gIsFrameOpen)
-    {
-    	mRibbonLifterFrame->close();
-    }
+//    if(TRibbonLifterFrame::gIsFrameOpen)
+//    {
+//    	mRibbonLifterFrame->close();
+//    }
 
 	if(mLogFileReader.isRunning())
 	{
@@ -102,7 +102,7 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
     	|| 	mAB->isActive()
         || 	UIUpdateTimer->Enabled
         || 	(gSplashForm && gSplashForm->isOnShowTime())
-		|| 	TRibbonLifterFrame::gIsFrameOpen
+//		|| 	TRibbonLifterFrame::gIsFrameOpen
         ||  mPufferArduinoClient.isConnected()
         ||  mFrames.size()
       )

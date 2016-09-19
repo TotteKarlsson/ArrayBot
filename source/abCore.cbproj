@@ -148,17 +148,9 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DependentOn>abParallellProcess.h</DependentOn>
             <BuildOrder>12</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abPosition.cpp">
-            <DependentOn>abPosition.h</DependentOn>
-            <BuildOrder>13</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abPositionalTrigger.cpp">
             <DependentOn>abPositionalTrigger.h</DependentOn>
             <BuildOrder>14</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abPositions.cpp">
-            <DependentOn>abPositions.h</DependentOn>
-            <BuildOrder>15</BuildOrder>
         </CppCompile>
         <CppCompile Include="abProcess.cpp">
             <DependentOn>abProcess.h</DependentOn>
@@ -187,10 +179,6 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="abRibbonLengthController.cpp">
             <DependentOn>abRibbonLengthController.h</DependentOn>
             <BuildOrder>22</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abRibbonLifter.cpp">
-            <DependentOn>abRibbonLifter.h</DependentOn>
-            <BuildOrder>23</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTimeDelay.cpp">
             <DependentOn>abTimeDelay.h</DependentOn>

@@ -17,7 +17,7 @@
 
 #include "frames/TABProcessSequencerFrame.h"
 #include "frames/TXYZPositionsFrame.h"
-#include "frames/TRibbonLifterFrame.h"
+//#include "frames/TRibbonLifterFrame.h"
 #include "frames/TXYZUnitFrame.h"
 #include "frames/TSequencerButtonsFrame.h"
 
@@ -326,14 +326,6 @@ void __fastcall	TMain::setupUIFrames()
 	mSequencerButtons->Parent = mTopPanel;
     mSequencerButtons->Align = alClient;
 	mSequencerButtons->update();
-
-    //Create the ribbon lifter frame
-    mRibbonLifterFrame = new TRibbonLifterFrame((*mAB), mIniFile, this);
-    mRibbonLifterFrame->Parent = RibbonLifterTabSheet;
-    mRibbonLifterFrame->Align = alTop;
-    mRibbonLifterFrame->OnClose = &FrameClosed;
-
-    mRibbonLifterFrame->init();
 }
 
 void __fastcall TMain::reInitBotAExecute(TObject *Sender)

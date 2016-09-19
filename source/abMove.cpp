@@ -4,7 +4,7 @@
 #include "mtkLogger.h"
 #include "abArrayBot.h"
 #include "abAPTMotor.h"
-#include "abPosition.h"
+//#include "abPosition.h"
 #include "abTriggerFunction.h"
 namespace ab
 {

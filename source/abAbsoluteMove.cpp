@@ -1,7 +1,7 @@
 #pragma hdrstop
 #include "abAbsoluteMove.h"
 #include "abAPTMotor.h"
-#include "abPosition.h"
+//#include "abPosition.h"
 #include "abTriggerFunction.h"
 //---------------------------------------------------------------------------
 

@@ -43,3 +43,5 @@ Debug
 *.lastbuildstate
 *.dsk
 /*.dsk
+/apps/ArduinoServer/crash_dump
+/apps/ArduinoServer/crash_dump_2

@@ -2,7 +2,7 @@
 #include "abTimeDelay.h"
 #include "abXYZUnit.h"
 #include "abAPTMotor.h"
-#include "abPosition.h"
+//#include "abPosition.h"
 #include "mtkLogger.h"
 #include "abMove.h"
 #include "mtkXMLUtils.h"

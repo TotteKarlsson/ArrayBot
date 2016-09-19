@@ -7,7 +7,7 @@
 #include <Vcl.Forms.hpp>
 #include "TFloatLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "abRibbonLifter.h"
+//#include "abRibbonLifter.h"
 //---------------------------------------------------------------------------
 
 class PACKAGE TRibbonLifterFrame : public TFrame

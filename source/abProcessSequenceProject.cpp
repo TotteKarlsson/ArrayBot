@@ -4,7 +4,7 @@
 #include "mtkLogger.h"
 #include "abProcessSequence.h"
 #include "abParallellProcess.h"
-#include "abPosition.h"
+//#include "abPosition.h"
 #include "abArrayBot.h"
 #include "abAbsoluteMove.h"
 #include "abMove.h"

@@ -160,12 +160,6 @@
             <DependentOn>frames\TPositionalTriggerFrame.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
-        <CppCompile Include="frames\TRibbonLifterFrame.cpp">
-            <Form>RibbonLifterFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>frames\TRibbonLifterFrame.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
         <CppCompile Include="frames\TSequenceInfoFrame.cpp">
             <Form>SequenceInfoFrame</Form>
             <DesignClass>TFrame</DesignClass>
@@ -215,7 +209,6 @@
         <FormResources Include="frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
         <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
-        <FormResources Include="frames\TRibbonLifterFrame.dfm"/>
         <FormResources Include="frames\TSequenceInfoFrame.dfm"/>
         <FormResources Include="frames\TXYZUnitFrame.dfm"/>
         <FormResources Include="forms\TamFileEditor.dfm"/>

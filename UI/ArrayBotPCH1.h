@@ -18,7 +18,7 @@
 #include "joystick/abArrayBotJoyStick.h"
 
 #include "MainForm.h"
-#include "abAPTMotor.h"
+#include "apt/abAPTMotor.h"
 
 
 
