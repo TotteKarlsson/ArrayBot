@@ -26,11 +26,11 @@ __published:	// IDE-managed Components
 	TIntegerLabeledEdit *mCommPortE;
 	TIntegerLabeledEdit *mBaudRateE;
 	TButton *mConnectBtn;
-	TTimer *Timer1;
+	TTimer *mCheckConnectionTimer;
 	TSTDStringLabeledEdit *mSendMSGE;
 	TButton *mSendBtn;
 	void __fastcall ConnectBtnClick(TObject *Sender);
-	void __fastcall Timer1Timer(TObject *Sender);
+	void __fastcall mCheckConnectionTimerTimer(TObject *Sender);
 
 	protected:
 

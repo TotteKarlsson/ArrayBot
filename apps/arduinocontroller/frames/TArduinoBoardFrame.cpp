@@ -53,7 +53,7 @@ void __fastcall TArduinoBoardFrame::ConnectBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TArduinoBoardFrame::Timer1Timer(TObject *Sender)
+void __fastcall TArduinoBoardFrame::mCheckConnectionTimerTimer(TObject *Sender)
 {
     mConnectBtn->Caption 	=  mArduinoDevice.isConnected() ? "Disconnect" : "Connect";
     mCommPortE->Enabled 	= !mArduinoDevice.isConnected();

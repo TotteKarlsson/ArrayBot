@@ -73,8 +73,8 @@ object ArduinoBoardFrame: TArduinoBoardFrame
       TabOrder = 4
     end
   end
-  object Timer1: TTimer
-    OnTimer = Timer1Timer
+  object mCheckConnectionTimer: TTimer
+    OnTimer = mCheckConnectionTimerTimer
     Left = 224
     Top = 56
   end

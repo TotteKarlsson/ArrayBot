@@ -15,7 +15,6 @@ class PACKAGE TPufferArduinoBoardFrame : public TArduinoBoardFrame
 {
 __published:
 	TIntegerLabeledEdit *mPufferDurationE;
-	TIntegerLabeledEdit *mPufferValveSpeedE;
 	void __fastcall updateParameter(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mSendMSGEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mSendBtnClick(TObject *Sender);

@@ -10,9 +10,11 @@ inherited SensorAndLightArduinoFrame: TSensorAndLightArduinoFrame
     Caption = 'Sensor Board'
     ExplicitWidth = 270
     ExplicitHeight = 263
+    inherited mBaudRateE: TIntegerLabeledEdit [0]
+    end
     inherited mConnectBtn: TButton [1]
     end
-    inherited mBaudRateE: TIntegerLabeledEdit [2]
+    inherited mCommPortE: TIntegerLabeledEdit [2]
     end
     inherited mSendMSGE: TSTDStringLabeledEdit
       OnKeyDown = mSendMSGEKeyDown
@@ -20,8 +22,5 @@ inherited SensorAndLightArduinoFrame: TSensorAndLightArduinoFrame
     inherited mSendBtn: TButton
       OnClick = mSendBtnClick
     end
-  end
-  inherited Timer1: TTimer
-    Left = 216
   end
 end

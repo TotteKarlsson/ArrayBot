@@ -125,7 +125,6 @@ object Main: TMain
     Align = alClient
     Caption = 'CenterPanel'
     TabOrder = 1
-    ExplicitHeight = 568
     object Splitter1: TSplitter
       Left = 1
       Top = 419
@@ -144,8 +143,6 @@ object Main: TMain
       Height = 195
       Align = alClient
       TabOrder = 0
-      ExplicitTop = 393
-      ExplicitHeight = 224
       object Panel2: TPanel
         Left = 1
         Top = 1
@@ -154,7 +151,6 @@ object Main: TMain
         Align = alClient
         Caption = 'Panel2'
         TabOrder = 0
-        ExplicitHeight = 172
         object infoMemo: TMemo
           Left = 1
           Top = 31
@@ -171,7 +167,6 @@ object Main: TMain
           ScrollBars = ssBoth
           TabOrder = 0
           WordWrap = False
-          ExplicitHeight = 140
         end
         object ToolBar1: TToolBar
           Left = 1
@@ -228,12 +223,15 @@ object Main: TMain
       Top = 1
       Width = 984
       Height = 418
-      ActivePage = TabSheet1
+      ActivePage = TabSheet2
       Align = alTop
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Controls'
-        ExplicitHeight = 354
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 3
           Top = 85
@@ -397,7 +395,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Board Settings'
         ImageIndex = 1
-        ExplicitHeight = 351
         object mArduinoSB: TScrollBox
           Left = 0
           Top = 0
@@ -405,7 +402,6 @@ object Main: TMain
           Height = 380
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 351
         end
       end
     end

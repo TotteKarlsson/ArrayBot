@@ -19,19 +19,6 @@ inherited PufferArduinoBoardFrame: TPufferArduinoBoardFrame
       OnKeyDown = updateParameter
       Value = -1
     end
-    object mPufferValveSpeedE: TIntegerLabeledEdit [1]
-      Left = 259
-      Top = 136
-      Width = 121
-      Height = 31
-      EditLabel.Width = 221
-      EditLabel.Height = 23
-      EditLabel.Caption = 'Puffer valve speed (0-255)'
-      TabOrder = 5
-      Text = '-1'
-      OnKeyDown = updateParameter
-      Value = -1
-    end
     inherited mSendMSGE: TSTDStringLabeledEdit
       Text = '<none>'
       OnKeyDown = mSendMSGEKeyDown
@@ -39,12 +26,12 @@ inherited PufferArduinoBoardFrame: TPufferArduinoBoardFrame
     end
     inherited mSendBtn: TButton
       Top = 131
-      TabOrder = 6
+      TabOrder = 5
       OnClick = mSendBtnClick
       ExplicitTop = 131
     end
   end
-  inherited Timer1: TTimer
+  inherited mCheckConnectionTimer: TTimer
     Left = 336
     Top = 208
   end

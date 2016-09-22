@@ -17,12 +17,10 @@ __fastcall TPufferArduinoBoardFrame::TPufferArduinoBoardFrame(ArduinoServer& ser
     mPufferArduino(dev)
 {
 	mProperties.add((BaseProperty*)  &mPufferDurationE->getProperty()->setup(  	   "PUFFER_DURATION",    	 50));
-	mProperties.add((BaseProperty*)  &mPufferValveSpeedE->getProperty()->setup(    "PUFFER_VALVE_SPEED", 	 255));
 	mProperties.add((BaseProperty*)  &mSendMSGE->getProperty()->setup(    	       "SEND_TEXT", 	 		 "i"));
     mProperties.read();
 
 	mPufferDurationE->update();
-	mPufferValveSpeedE->update();
 	mSendMSGE->update();
 }
 
@@ -55,11 +53,6 @@ void __fastcall TPufferArduinoBoardFrame::updateParameter(TObject *Sender,
 			msg<<"SET_PUFFER_DURATION="<<mPufferDurationE->getValue()<<'\n';
         }
 
-        if(e == mPufferValveSpeedE)
-        {
-			msg<<"SET_PUFFER_VALVE_SPEED="<<mPufferValveSpeedE->getValue()<<'\n';
-        }
-
        	mServer.request(msg.str());
     }
 }
@@ -85,5 +78,6 @@ void __fastcall TPufferArduinoBoardFrame::mSendBtnClick(TObject *Sender)
     customMsg << "PUFFER_CUSTOM_MESSAGE="<<msg;
     mServer.request(customMsg.str());
 }
+
 
 
