@@ -24,7 +24,6 @@ TMain *Main;
 extern string           gLogFileLocation;
 extern string           gLogFileName;
 extern string           gAppDataFolder;
-//extern TSplashForm*  	gSplashForm;
 extern string 			gApplicationRegistryRoot;
 extern string 			gApplicationName;
 extern bool             gAppIsStartingUp;
@@ -45,8 +44,6 @@ __fastcall TMain::TMain(TComponent* Owner)
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	 lAny));
-
-
     mProperties.read();
 }
 
@@ -63,27 +60,13 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	gAppIsStartingUp = false;
 
 	TMemoLogger::mMemoIsEnabled = true;
-//	gSplashForm->mMainAppIsRunning = true;
 
 	this->Visible = true;
-//	while(gSplashForm->isOnShowTime() == true)
-//	{
-//       	Application->ProcessMessages();
-//
-//		//In order to show whats going on on the splash screen
-//		if(gSplashForm->Visible == false)
-//		{
-//			break;
-//		}
-//	}
-//
-//	gSplashForm->Close();
 	gLogger.setLogLevel(mLogLevel);
 
 	LogLevelCB->ItemIndex = mLogLevel.getValue() - 2;
 
 	TMemoLogger::mMemoIsEnabled = true;
-    UIUpdateTimer->Enabled = true;
 
 	//Setup frames for the Arduinos
 	setupUIFrames();
@@ -93,4 +76,5 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 void __fastcall	TMain::setupUIFrames()
 {
 }
+
 

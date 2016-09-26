@@ -33,9 +33,6 @@ extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = "";
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
-extern bool         gHideSplash                 = true;
-
-extern TArduinoControllerSplashForm* gSplashForm                 = NULL;
 
 void setupLogging();
 

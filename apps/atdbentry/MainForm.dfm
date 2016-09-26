@@ -226,10 +226,4 @@ object Main: TMain
     Left = 96
     Top = 304
   end
-  object UIUpdateTimer: TTimer
-    Enabled = False
-    Interval = 300
-    Left = 428
-    Top = 352
-  end
 end

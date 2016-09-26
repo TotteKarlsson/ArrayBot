@@ -11,12 +11,8 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 	{
 		Log(lDebug) << "Shutting down log file reader";
 		mLogFileReader.stop();
+        mLogFileReader.assignOnMessageCallBack(NULL);
 	}
-
-    if(UIUpdateTimer->Enabled)
-    {
-        UIUpdateTimer->Enabled = false;
-    }
 
     //This will save any ini parameters in the frame
     for(int i = 0; i < mFrames.size(); i++)
@@ -33,12 +29,11 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
 	Log(lInfo) << "Closing down....";
 
-	//Check if we can close.. abort all threads..
-	CanClose = (mLogFileReader.isRunning()) ? false : true;
-
 	//Check if active stuff is going on.. if so call the ShutDown in the
     //Timer fire    if(
-   	CanClose = (   mFrames.size()
+   	CanClose = (
+    			    mLogFileReader.isRunning()
+    			||  mFrames.size()
 
                 ) ? false : true;
 

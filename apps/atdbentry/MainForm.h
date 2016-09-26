@@ -61,7 +61,6 @@ class TMain : public TRegistryForm
 	TAction *reInitBotA;
         TAction *ShutDownA;
 	TFileExit *FileExit1;
-	TTimer *UIUpdateTimer;
 	TAction *abortLiftA;
 	TAction *liftA;
 	TPanel *BottomPanel;
