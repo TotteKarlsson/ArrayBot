@@ -19,6 +19,9 @@ using Poco::Data::RecordSet;
 //!The ATDB server session class encapsulate a database session
 //!with the ATDB MySQL database
 
+enum dbKeyword {dbAscending = 0, dbDescending};
+string toString(dbKeyword kw);
+
 class AB_CORE ATDBServerSession : public ABObject
 {
     public:
@@ -26,9 +29,9 @@ class AB_CORE ATDBServerSession : public ABObject
 					        	        ~ATDBServerSession(){}
 
 										//!Statements
-		RecordSet* 						getBlocks();
+		RecordSet* 						getBlocks(dbKeyword kw = dbDescending);
         bool							insertBlock(int userID, const string& lbl, const string& note);
-		RecordSet* 						getUsers();
+		RecordSet* 						getUsers(dbKeyword kw = dbAscending);
 
 		bool							isConnected();//{return mTheSession ? true : false;}
 		bool							connect();
@@ -39,7 +42,7 @@ class AB_CORE ATDBServerSession : public ABObject
         string					        mHost;
         string 					        mDataBaseUser;
         string					        mDataBasePassword;
-		Poco::Data::Session*	        mTheSession;
+		Session*	        			mTheSession;
 
 };
 #endif

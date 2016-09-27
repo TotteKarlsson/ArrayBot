@@ -11,7 +11,17 @@
 using namespace mtk;
 
 using namespace Poco::Data;
-//using namespace Poco::Data::Keywords;
+using namespace Poco::Data::Keywords;
+
+string toString(dbKeyword kw)
+{
+	switch(kw)
+    {
+    	case dbKeyword::dbAscending: return "ASC";
+    	case dbKeyword::dbDescending: return "DESC";
+    }
+    return "";
+}
 
 ATDBServerSession::ATDBServerSession(const string& host, const string& user, const string& password)
 :
@@ -79,7 +89,7 @@ bool ATDBServerSession::disConnect()
     }
 }
 
-RecordSet* ATDBServerSession::getBlocks()
+RecordSet* ATDBServerSession::getBlocks(dbKeyword kw)
 {
     if(!mTheSession)
     {
@@ -88,7 +98,7 @@ RecordSet* ATDBServerSession::getBlocks()
     }
 
     Statement select(*mTheSession);
-    select << "SELECT * FROM block";
+    select << "SELECT * FROM block ORDER BY id " << toString(kw);
 
     int nrRows = select.execute();
     return new RecordSet(select);
@@ -102,15 +112,32 @@ bool ATDBServerSession::insertBlock(int userID, const string& lbl, const string&
         return NULL;
     }
 
-    string l(lbl);
-    string n(note);
+    Session& ses = *mTheSession;
+
+    //We need local variables for the statements..
     int id(userID);
-	Statement insert(*mTheSession);
-    insert << "INSERT INTO block (created_by, label) VALUES(?, ?)", Keywords::use(id), Keywords::use(l), Keywords::now;
+    string l(lbl), n(note);
+
+	Statement s(ses);
+    s << "INSERT INTO block (created_by, label) VALUES(?, ?)", use(id), use(l), now;
+    s.reset(ses);
+
+    int blockID;
+    s << "SELECT MAX(id) FROM block", into(blockID), now;
+    s.reset(ses);
+
+    s << "INSERT INTO note (created_by, note) VALUES(?, ?)", use(id), use(n), now;
+    s.reset(ses);
+
+    int noteID;
+    s << "SELECT MAX(id) FROM note", into(noteID), now;
+    s.reset(ses);
+
+    s << "INSERT INTO block_note (block_id, note_id) VALUES(?, ?)", use(blockID), use(noteID), now;
 	return true;
 }
 
-RecordSet* ATDBServerSession::getUsers()
+RecordSet* ATDBServerSession::getUsers(dbKeyword kw)
 {
     if(!mTheSession)
     {
