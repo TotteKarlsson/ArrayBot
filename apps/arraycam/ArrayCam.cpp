@@ -84,6 +84,11 @@ void setupLogging()
 	#pragma comment(lib, "mtkIPC.lib")
 #endif
 
+#pragma comment(lib, "libmysqlB.lib")
+
+#pragma comment(lib, "poco_mysql_connector-static.lib")
+#pragma comment(lib, "poco_data-static.lib")
+
 #pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "uc480_B.lib")
@@ -91,3 +96,4 @@ void setupLogging()
 
 #pragma comment(lib, "VCLCommon.bpi")
 #pragma comment(lib, "DuneForms.bpi")
+

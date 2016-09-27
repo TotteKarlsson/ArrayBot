@@ -88,19 +88,19 @@ RecordSet ATDBServerSession::getBlocks()
     return RecordSet(select);
 }
 
-RecordSet ATDBServerSession::getUsers()
+RecordSet* ATDBServerSession::getUsers()
 {
     if(!mTheSession)
     {
         Log(lError) << "No Session...";
-        return RecordSet(NULL);
+        return NULL;
     }
 
     Statement select(*mTheSession);
     select << "SELECT * FROM user";
     int nrRows = select.execute();
 
-    return RecordSet(select);
+    return new RecordSet(select);
 }
 
 

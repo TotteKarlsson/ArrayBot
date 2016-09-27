@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{531D5E19-B3DE-4B17-B740-3F4EFDE4E8CD}</ProjectGuid>
+        <ProjectGuid>{F886D02D-BF6B-4FBE-AD81-2820B91FB139}</ProjectGuid>
         <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
@@ -34,25 +34,15 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
-        <Cfg_2_Win32>true</Cfg_2_Win32>
-        <CfgParent>Cfg_2</CfgParent>
-        <Cfg_2>true</Cfg_2>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Cyan Night|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\CyanNight.vsf&quot;;&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;;&quot;Sapphire Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\SapphireKamri.vsf&quot;;&quot;Smokey Quartz Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\SmokeyQuartzKamri.vsf&quot;</VCL_Custom_Styles>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <Manifest_File>None</Manifest_File>
-        <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>..\..\source\database\forms\;..\..\source\database\;..\UI\frames\;frames\;forms\;P:\dslib\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+        <ILINK_LibraryPath>P:\ArrayBot\apps\atdbentry\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <ProjectType>CppVCLApplication</ProjectType>
+        <IncludePath>P:\ArrayBot\apps\atdbentry\;$(IncludePath)</IncludePath>
+        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib</AllPackageLibs>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <Multithreaded>true</Multithreaded>
-        <IncludePath>..\..\source\database\forms\;..\..\source\database\;..\..\source\;..\UI\frames\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;abVCLCore.lib</AllPackageLibs>
+        <_TCHARMapping>wchar_t</_TCHARMapping>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -61,15 +51,16 @@
         <BCC_wpar>false</BCC_wpar>
         <BCC_OptimizeForSpeed>true</BCC_OptimizeForSpeed>
         <BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
+        <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <PackageImports>CSKGenerator;VCLCommon;ArrayBotPackage;fs17;frx17;bindcompfmx;DBXSqliteDriver;vcldbx;RaizeComponentsTrialVcl;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;DbxDevartSQLiteDriver170;vclie;HsBarcode1DRun;RaizeComponentsTrialVclDb;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;IndyCore;vcl;fmxase;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;frxDB17;inet;fsDB17;fmxobj;abVCLCore;vclx;frxe17;inetdbxpress;webdsnap;fmxdae;bdertl;DuneComponents;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <PackageImports>vtk;bindcompfmx;DBXSqliteDriver;vcldbx;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;vclie;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;Intraweb;IndyCore;vcl;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;inet;vclx;inetdbxpress;webdsnap;bdertl;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
@@ -91,50 +82,22 @@
         <BCC_DisableSpellChecking>true</BCC_DisableSpellChecking>
         <CLANG_UnwindTables>true</CLANG_UnwindTables>
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <_TCHARMapping>char</_TCHARMapping>
-        <BCC_whid>false</BCC_whid>
-        <BCC_wcsu>false</BCC_wcsu>
-        <BCC_PCHInject>ArrayBotPCH1.h</BCC_PCHInject>
-        <Icon_MainIcon>resources\arduino_controller_BVB_icon.ico</Icon_MainIcon>
-        <VerInfo_Debug>true</VerInfo_Debug>
-        <VerInfo_MinorVer>5</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileDescription=;FileVersion=0.5.0.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArduinoServer;ProductVersion=0.5;Comments=</VerInfo_Keys>
-        <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <PostBuildEvent><![CDATA[xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y
-$(PostBuildEvent)]]></PostBuildEvent>
-        <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;ArrayBotPackage.lib;abVCLCore.lib</LinkPackageStatics>
-        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <Defines>POCO_STATIC;$(Defines)</Defines>
-        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dslib\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\ThirdParty\Poco\Foundation\src\;P:\libs\dslib\VCL\Forms\;P:\libs\dslib\VCL\Common\;P:\libs\dslib\Common\Math\;P:\libs\dslib\Common\IPC\;P:\ArrayBot\source\vcl\components\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
-        <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;adortl.bpi;dbrtl.bpi</LinkPackageImports>
-        <IncludePath>P:\ArrayBot\source;$(DSL_ROOT)\Common;$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(AB_ROOT)\source\vcl\frames;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-    </PropertyGroup>
     <ItemGroup>
         <CppCompile Include="AtDBEntry.cpp">
             <BuildOrder>0</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="forms\TAboutATDBEntry.cpp">
-            <Form>AboutATDBEntry</Form>
-            <DependentOn>forms\TAboutATDBEntry.h</DependentOn>
-            <BuildOrder>6</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="frames\TAboutATDBEntryFrame.cpp">
-            <Form>AboutATDBDataEntryFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>frames\TAboutATDBEntryFrame.h</DependentOn>
-            <BuildOrder>7</BuildOrder>
         </CppCompile>
         <CppCompile Include="MainForm.cpp">
             <Form>Main</Form>
@@ -145,32 +108,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Misc.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <PCHCompile Include="pch.h">
+            <BuildOrder>1</BuildOrder>
+        </PCHCompile>
         <CppCompile Include="ShutDownLogic.cpp">
-            <BuildOrder>10</BuildOrder>
+            <BuildOrder>5</BuildOrder>
         </CppCompile>
         <CppCompile Include="UIUtilities.cpp">
-            <BuildOrder>11</BuildOrder>
+            <DependentOn>UIUtilities.h</DependentOn>
+            <BuildOrder>4</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\..\source\database\abATDBServerSession.cpp">
-            <DependentOn>..\..\source\database\abATDBServerSession.h</DependentOn>
-            <BuildOrder>7</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\..\source\database\forms\TATDBServerEntry.cpp">
-            <Form>ATDBServerEntry</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>..\..\source\database\forms\TATDBServerEntry.h</DependentOn>
-            <BuildOrder>8</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\..\source\database\forms\TBlockEntryForm.cpp">
-            <Form>BlockEntryForm</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>..\..\source\database\forms\TBlockEntryForm.h</DependentOn>
-            <BuildOrder>9</BuildOrder>
-        </CppCompile>
-        <FormResources Include="..\..\source\database\forms\TBlockEntryForm.dfm"/>
-        <FormResources Include="..\..\source\database\forms\TATDBServerEntry.dfm"/>
-        <FormResources Include="forms\TAboutATDBEntry.dfm"/>
-        <FormResources Include="frames\TAboutATDBEntryFrame.dfm"/>
         <FormResources Include="MainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -227,15 +174,15 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <VersionInfoKeys Name="CFBundleAllowMixedLocalizations"/>
                     <VersionInfoKeys Name="CFBundleExecutable"/>
                 </VersionInfoKeys>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
-                </Excluded_Packages>
                 <ProjectProperties>
                     <ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
                     <ProjectProperties Name="ManagePaths">True</ProjectProperties>
                     <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
                 </ProjectProperties>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                </Excluded_Packages>
             </CPlusPlusBuilder.Personality>
             <Deployment/>
             <Platforms>
@@ -246,12 +193,4 @@ $(PostBuildEvent)]]></PostBuildEvent>
     </ProjectExtensions>
     <Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
-    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
-        <PreBuildEvent/>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y</PostBuildEvent>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
 </Project>

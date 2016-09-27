@@ -28,7 +28,7 @@ void __fastcall TBlockEntryForm::FormShow(TObject *Sender)
 	//Populate user drop down
     try
     {
-        RecordSet rs = mServerSession.getUsers();
+        RecordSet *rs = mServerSession.getUsers();
 //        else
 //        {
 //            bool more = rs->moveFirst();
@@ -47,7 +47,7 @@ void __fastcall TBlockEntryForm::FormShow(TObject *Sender)
 //                more = rs->moveNext();
 //            }
 //        }
-//        delete rs;
+        delete rs;
     }
     catch(const Poco::Data::MySQL::StatementException& e)
     {

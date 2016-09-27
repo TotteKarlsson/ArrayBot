@@ -23,7 +23,7 @@ class AB_CORE ATDBServerSession : public ABObject
 
 										//!Statements
 		RecordSet 						getBlocks();
-		RecordSet 						getUsers();
+		RecordSet* 						getUsers();
 
 		bool							isConnected();//{return mTheSession ? true : false;}
 		bool							connect();
