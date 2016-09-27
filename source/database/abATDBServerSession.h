@@ -2,13 +2,20 @@
 #define abATDBServerSessionH
 #include "abExporter.h"
 #include "abABObject.h"
-#include "Poco/Data/MySQL/Connector.h"
 #include "Poco/Data/RecordSet.h"
 //---------------------------------------------------------------------------
 
 using namespace Poco::Data;
-using std::vector;
+//using std::vector;
 
+//namespace Poco{
+//	namespace Data{
+//        class RecordSet;
+//        class Session;
+//    }
+//}
+
+using Poco::Data::RecordSet;
 //!The ATDB server session class encapsulate a database session
 //!with the ATDB MySQL database
 
@@ -19,7 +26,8 @@ class AB_CORE ATDBServerSession : public ABObject
 					        	        ~ATDBServerSession(){}
 
 										//!Statements
-		RecordSet 						getBlocks();
+		RecordSet* 						getBlocks();
+        bool							insertBlock(int userID, const string& lbl, const string& note);
 		RecordSet* 						getUsers();
 
 		bool							isConnected();//{return mTheSession ? true : false;}

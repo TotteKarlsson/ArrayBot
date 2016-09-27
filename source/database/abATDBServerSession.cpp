@@ -1,12 +1,17 @@
 #pragma hdrstop
 #include "abATDBServerSession.h"
 #include "mtkLogger.h"
+#include "Poco/Common.h"
+#include "Poco/Data/MySQL/Connector.h"
+#include "Poco/Data/MySQL/MySQLException.h"
+#include "Poco/Data/SessionFactory.h"
+#include "Poco/Data/Session.h"
 #include "Poco/Data/RecordSet.h"
-#include <Poco/Data/SessionFactory.h>
-#include <Poco/Data/MySQL/MySQLException.h>
 //---------------------------------------------------------------------------
 using namespace mtk;
 
+using namespace Poco::Data;
+//using namespace Poco::Data::Keywords;
 
 ATDBServerSession::ATDBServerSession(const string& host, const string& user, const string& password)
 :
@@ -74,19 +79,35 @@ bool ATDBServerSession::disConnect()
     }
 }
 
-RecordSet ATDBServerSession::getBlocks()
+RecordSet* ATDBServerSession::getBlocks()
 {
     if(!mTheSession)
     {
         Log(lError) << "No Session...";
-        return RecordSet(NULL);
+        return NULL;
     }
 
     Statement select(*mTheSession);
     select << "SELECT * FROM block";
 
     int nrRows = select.execute();
-    return RecordSet(select);
+    return new RecordSet(select);
+}
+
+bool ATDBServerSession::insertBlock(int userID, const string& lbl, const string& note)
+{
+    if(!mTheSession)
+    {
+        Log(lError) << "No Session...";
+        return NULL;
+    }
+
+    string l(lbl);
+    string n(note);
+    int id(userID);
+	Statement insert(*mTheSession);
+    insert << "INSERT INTO block (created_by, label) VALUES(?, ?)", Keywords::use(id), Keywords::use(l), Keywords::now;
+	return true;
 }
 
 RecordSet* ATDBServerSession::getUsers()

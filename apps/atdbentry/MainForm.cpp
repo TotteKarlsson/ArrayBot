@@ -4,7 +4,8 @@
 #include "MainForm.h"
 #include "mtkLogger.h"
 #include "forms/TBlockEntryForm.h"
-
+#include "Poco/Data/RecordSet.h"
+#include <Poco/Data/MySQL/MySQLException.h>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TArrayBotBtn"
@@ -84,7 +85,6 @@ void __fastcall TMain::ArrayBotButton1Click(TObject *Sender)
                     }
                 }
 
-
 				Log(lInfo) << cs.str();
 
     	        // iterate over all rows and columns
@@ -121,10 +121,29 @@ void __fastcall TMain::ArrayBotButton2Click(TObject *Sender)
         if(mr == mrOk)
         {
             //Capture data and submit to database
+            Log(lInfo) << "Populating DB";
+            mServerSession.insertBlock(7, stdstr(f->mBlockLabel->Text), stdstr(f->mBlockNote->Text));
 
+        }
+        else
+        {
+        	Log(lInfo) << "Canceled Populating DB";
         }
 
     }
+   	catch (const Poco::Data::MySQL::ConnectionException& e)
+    {
+        Log(lError) << e.message() <<endl;
+    }
+    catch(const Poco::Data::MySQL::StatementException& e)
+    {
+        Log(lError) << e.message() << endl;
+    }
+    catch(const Poco::Data::MySQL::MySQLException& e)
+    {
+        Log(lError) << e.message() << endl;
+    }
+
     catch(...)
     {}
 

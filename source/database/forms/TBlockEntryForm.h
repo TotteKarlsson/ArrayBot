@@ -12,10 +12,13 @@ class TBlockEntryForm : public TATDBServerEntry
 {
 __published:	// IDE-managed Components
 	TLabeledEdit *mBlockLabel;
-	TLabeledEdit *mBlockNote;
 	TComboBox *mUserCB;
 	TLabel *Label1;
+	TMemo *mBlockNote;
+	TLabel *Label2;
+	TTimer *mValidateTimer;
 	void __fastcall FormShow(TObject *Sender);
+	void __fastcall mValidateTimerTimer(TObject *Sender);
 
     private:	// User declarations
 

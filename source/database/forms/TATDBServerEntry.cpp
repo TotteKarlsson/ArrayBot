@@ -14,3 +14,15 @@ __fastcall TATDBServerEntry::TATDBServerEntry(ATDBServerSession& dbs, TComponent
 }
 
 
+//---------------------------------------------------------------------------
+void __fastcall TATDBServerEntry::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+
+{
+	if(Key == vkEscape)
+    {
+    	Close();
+    }
+
+}
+
+

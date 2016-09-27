@@ -15,7 +15,10 @@ using namespace mtk;
 __fastcall TBlockEntryForm::TBlockEntryForm(ATDBServerSession& dbs, TComponent* Owner)
 	:
     TATDBServerEntry(dbs, Owner)
-{}
+{
+	mCancelBtn->TabOrder = 3;
+    mSubmitButton->TabOrder = 4;
+}
 
 void __fastcall TBlockEntryForm::FormShow(TObject *Sender)
 {
@@ -70,4 +73,9 @@ void __fastcall TBlockEntryForm::FormShow(TObject *Sender)
 
 }
 
+void __fastcall TBlockEntryForm::mValidateTimerTimer(TObject *Sender)
+{
+	 mSubmitButton->Enabled  =  (mBlockLabel->Text.Length() > 10) ? true : false;
+}
+//---------------------------------------------------------------------------
 

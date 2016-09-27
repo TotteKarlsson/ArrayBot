@@ -1,12 +1,12 @@
 inherited BlockEntryForm: TBlockEntryForm
   BorderStyle = bsDialog
   Caption = 'BlockEntryForm'
-  ClientHeight = 329
-  ClientWidth = 526
+  ClientHeight = 332
+  ClientWidth = 316
   Position = poOwnerFormCenter
   OnShow = FormShow
-  ExplicitWidth = 532
-  ExplicitHeight = 357
+  ExplicitWidth = 322
+  ExplicitHeight = 360
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel [0]
@@ -16,39 +16,56 @@ inherited BlockEntryForm: TBlockEntryForm
     Height = 13
     Caption = 'User'
   end
-  object mUserCB: TComboBox [1]
-    Left = 8
-    Top = 32
-    Width = 145
-    Height = 21
-    Style = csDropDownList
-    TabOrder = 2
-  end
-  object mBlockNote: TLabeledEdit [2]
+  object Label2: TLabel [1]
     Left = 16
-    Top = 136
-    Width = 297
-    Height = 21
-    EditLabel.Width = 23
-    EditLabel.Height = 13
-    EditLabel.Caption = 'Note'
-    TabOrder = 1
+    Top = 117
+    Width = 23
+    Height = 13
+    Caption = 'Note'
   end
-  object mBlockLabel: TLabeledEdit [3]
+  object mBlockLabel: TLabeledEdit [2]
     Left = 16
     Top = 84
-    Width = 121
+    Width = 281
     Height = 21
-    EditLabel.Width = 25
+    EditLabel.Width = 121
     EditLabel.Height = 13
-    EditLabel.Caption = 'Label'
+    EditLabel.Caption = 'Label (10 characters min)'
+    TabOrder = 1
+  end
+  object mUserCB: TComboBox [3]
+    Left = 16
+    Top = 32
+    Width = 281
+    Height = 21
+    Style = csDropDownList
     TabOrder = 0
   end
+  object mBlockNote: TMemo [4]
+    Left = 16
+    Top = 136
+    Width = 281
+    Height = 124
+    TabOrder = 2
+  end
   inherited Panel1: TPanel
-    Top = 263
-    Width = 526
+    Top = 276
+    Width = 316
     TabOrder = 3
-    ExplicitTop = 263
-    ExplicitWidth = 526
+    inherited mSubmitButton: TButton
+      Left = 236
+      ExplicitLeft = 229
+      ExplicitWidth = 68
+    end
+    inherited mCancelBtn: TButton
+      Left = 154
+      ExplicitLeft = 147
+    end
+  end
+  object mValidateTimer: TTimer
+    Interval = 100
+    OnTimer = mValidateTimerTimer
+    Left = 256
+    Top = 112
   end
 end

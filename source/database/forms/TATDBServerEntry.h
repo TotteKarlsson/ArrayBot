@@ -12,8 +12,10 @@ class TATDBServerEntry : public TForm
 {
 __published:	// IDE-managed Components
 	TPanel *Panel1;
-	TButton *Button1;
-	TButton *Button2;
+	TButton *mSubmitButton;
+	TButton *mCancelBtn;
+	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 	private:	// User declarations
 
 

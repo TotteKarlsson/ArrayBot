@@ -27,15 +27,13 @@ object Main: TMain
     Lines.Strings = (
       'infoMemo')
     TabOrder = 0
-    ExplicitTop = 193
-    ExplicitWidth = 418
   end
   object ArrayBotButton1: TArrayBotButton
     Left = 16
     Top = 56
     Width = 137
     Height = 65
-    Caption = 'ArrayBotButton1'
+    Caption = 'Connet to DB'
     TabOrder = 1
     OnClick = ArrayBotButton1Click
     SoundID = 'BUTTON_CLICK_4'
@@ -45,7 +43,7 @@ object Main: TMain
     Top = 56
     Width = 161
     Height = 65
-    Caption = 'ArrayBotButton2'
+    Caption = 'Register New Block'
     TabOrder = 2
     OnClick = ArrayBotButton2Click
     SoundID = 'BUTTON_CLICK_4'
