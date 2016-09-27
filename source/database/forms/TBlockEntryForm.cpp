@@ -2,6 +2,7 @@
 #pragma hdrstop
 #include "TBlockEntryForm.h"
 #include "mtkLogger.h"
+#include <Poco/Data/MySQL/MySQLException.h>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TATDBServerEntry"
@@ -28,26 +29,27 @@ void __fastcall TBlockEntryForm::FormShow(TObject *Sender)
 	//Populate user drop down
     try
     {
-        RecordSet *rs = mServerSession.getUsers();
-//        else
-//        {
-//            bool more = rs->moveFirst();
-//            int rows = rs->rowCount();
-//            int cols = rs->columnCount();
-//
-//
-//            while(more)
-//            {
-//                // print all column names
-//                for (std::size_t col = 0; col < cols; ++col)
-//                {
-//                    Log(lInfo) << rs->columnName(col) << std::endl;
-//                }
-//
-//                more = rs->moveNext();
-//            }
-//        }
-        delete rs;
+        //Fetch data
+        RecordSet *rs =  mServerSession.getUsers();
+        if(!rs->rowCount())
+        {
+            Log(lInfo) << "There are no users...";
+        }
+        else
+        {
+            int cols = rs->columnCount();
+            int rows = rs->rowCount();
+
+            // iterate over all rows and columns
+            for (RecordSet::Iterator it = rs->begin(); it != rs->end(); ++it)
+            {
+                Poco::Data::Row& row = *it;
+                string user(row[1].convert<std::string>());
+				mUserCB->Items->Add(user.c_str());
+                Log(lInfo) <<user;
+            }
+            mUserCB->ItemIndex = 0;
+        }
     }
     catch(const Poco::Data::MySQL::StatementException& e)
     {

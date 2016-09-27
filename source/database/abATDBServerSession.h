@@ -1,13 +1,10 @@
 #ifndef abATDBServerSessionH
 #define abATDBServerSessionH
-//---------------------------------------------------------------------------
 #include "abExporter.h"
 #include "abABObject.h"
-#include "Poco/Common.h"
 #include "Poco/Data/MySQL/Connector.h"
-#include <Poco/Data/MySQL/MySQLException.h>
-#include <Poco/Data/SessionFactory.h>
 #include "Poco/Data/RecordSet.h"
+//---------------------------------------------------------------------------
 
 using namespace Poco::Data;
 using std::vector;

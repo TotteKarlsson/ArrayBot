@@ -2,7 +2,8 @@
 #include "abATDBServerSession.h"
 #include "mtkLogger.h"
 #include "Poco/Data/RecordSet.h"
-
+#include <Poco/Data/SessionFactory.h>
+#include <Poco/Data/MySQL/MySQLException.h>
 //---------------------------------------------------------------------------
 using namespace mtk;
 

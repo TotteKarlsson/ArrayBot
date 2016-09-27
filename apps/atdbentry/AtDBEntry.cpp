@@ -6,6 +6,8 @@
 #include "mtkVCLUtils.h"
 #include "abExceptions.h"
 //---------------------------------------------------------------------------
+#include <Vcl.Styles.hpp>
+#include <Vcl.Themes.hpp>
 USEFORM("MainForm.cpp", Main);
 //---------------------------------------------------------------------------
 using namespace mtk;
@@ -35,6 +37,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         setupLogging();
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
+		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->Run();
 	}

@@ -17,7 +17,7 @@ inherited BlockEntryForm: TBlockEntryForm
     Caption = 'User'
   end
   object mUserCB: TComboBox [1]
-    Left = 16
+    Left = 8
     Top = 32
     Width = 145
     Height = 21
