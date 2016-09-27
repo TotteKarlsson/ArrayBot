@@ -31,11 +31,12 @@
 #include "TPropertyCheckBox.h"
 #include "TArrayBotBtn.h"
 #include <vector>
-
+#include "abATDBServerSession.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;
-using namespace std;
+using std::vector;
+using std::string;
 
 class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
@@ -47,22 +48,10 @@ class TMain : public TRegistryForm
 {
     __published:	// IDE-managed Components
         TActionList *ActionList1;
-        TAction *checkForDevices;
-        TAction *addDevicesToListBox;
         TTimer *ShutDownTimer;
-        TAction *identifyCurrent;
-        TAction *homeDevice;
-        TAction *jogForward;
-        TAction *jogBackwards;
-        TAction *moveForward;
-        TAction *moveBackward;
-        TAction *stopAllA;
         TApplicationEvents *ApplicationEvents1;
-	TAction *reInitBotA;
         TAction *ShutDownA;
 	TFileExit *FileExit1;
-	TAction *abortLiftA;
-	TAction *liftA;
 	TPanel *BottomPanel;
 	TMemo *infoMemo;
 	TToolBar *ToolBar1;
@@ -76,6 +65,9 @@ class TMain : public TRegistryForm
 	TArrayBotButton *Button5;
 	TPanel *Panel2;
 	TPanel *CenterPanel;
+	TButton *mCheckForServerDataBtn;
+	TTabSheet *TabSheet2;
+	TButton *Button3;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
@@ -86,6 +78,8 @@ class TMain : public TRegistryForm
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAboutBtnClick(TObject *Sender);
 	void __fastcall mClearLogMemoBtnClick(TObject *Sender);
+	void __fastcall mCheckForServerDataBtnClick(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
 
     private:
         LogFileReader                       mLogFileReader;
@@ -101,6 +95,8 @@ class TMain : public TRegistryForm
 		void __fastcall		                OnException();
 
         vector<TFrame*>					    mFrames;
+
+        ATDBServerSession					mServerSession;
 
 
 	public:

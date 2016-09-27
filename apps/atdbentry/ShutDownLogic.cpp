@@ -14,6 +14,11 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         mLogFileReader.assignOnMessageCallBack(NULL);
 	}
 
+    if(mServerSession.isConnected())
+    {
+    	mServerSession.disConnect();
+    }
+
     //This will save any ini parameters in the frame
     for(int i = 0; i < mFrames.size(); i++)
     {
@@ -33,7 +38,8 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
     //Timer fire    if(
    	CanClose = (
     			    mLogFileReader.isRunning()
-    			||  mFrames.size()
+    			||	mServerSession.isConnected()
+                ||  mFrames.size()
 
                 ) ? false : true;
 

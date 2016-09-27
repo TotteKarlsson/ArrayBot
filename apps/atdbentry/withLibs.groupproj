@@ -30,7 +30,13 @@
         <Projects Include="..\..\source\vcl\abVCLCore.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\..\source\vcl\atdbentry\abATDBEntry.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="AtDBEntry.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -122,6 +128,15 @@
     <Target Name="abVCLCore:Make">
         <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="abATDBEntry">
+        <MSBuild Projects="..\..\source\vcl\atdbentry\abATDBEntry.cbproj"/>
+    </Target>
+    <Target Name="abATDBEntry:Clean">
+        <MSBuild Projects="..\..\source\vcl\atdbentry\abATDBEntry.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abATDBEntry:Make">
+        <MSBuild Projects="..\..\source\vcl\atdbentry\abATDBEntry.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="AtDBEntry">
         <MSBuild Projects="AtDBEntry.cbproj"/>
     </Target>
@@ -131,14 +146,23 @@
     <Target Name="AtDBEntry:Make">
         <MSBuild Projects="AtDBEntry.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="sql_insert">
+        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj"/>
+    </Target>
+    <Target Name="sql_insert:Clean">
+        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="sql_insert:Make">
+        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;mtkDataBase;VCLCommon;DuneComponents;DuneForms;abCore;abVCLCore;AtDBEntry"/>
+        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;mtkDataBase;VCLCommon;DuneComponents;DuneForms;abCore;abVCLCore;abATDBEntry;AtDBEntry;sql_insert"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;mtkDataBase:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;abVCLCore:Clean;AtDBEntry:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;mtkDataBase:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;abVCLCore:Clean;abATDBEntry:Clean;AtDBEntry:Clean;sql_insert:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;mtkDataBase:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;abVCLCore:Make;AtDBEntry:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;mtkDataBase:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;abVCLCore:Make;abATDBEntry:Make;AtDBEntry:Make;sql_insert:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

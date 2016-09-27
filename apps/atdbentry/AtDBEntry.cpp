@@ -11,9 +11,10 @@
 #include "mtkRestartApplicationUtils.h"
 
 //---------------------------------------------------------------------------
-USEFORM("MainForm.cpp", Main);
 USEFORM("forms\TAboutATDBEntry.cpp", AboutATDBEntry);
+USEFORM("MainForm.cpp", Main);
 USEFORM("frames\TAboutATDBEntryFrame.cpp", AboutATDBDataEntryFrame); /* TFrame: File Type */
+
 //---------------------------------------------------------------------------
 using namespace mtk;
 using namespace std;
@@ -81,7 +82,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->MainFormOnTaskBar = true;
 
 		TStyleManager::TrySetStyle("Iceberg Classico");
-		Application->Title = "arduino_controller";
+		Application->Title = gApplicationName.c_str();
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->Run();
 	}
@@ -119,6 +120,11 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 #endif
 
 #pragma comment(lib, "abCore.lib")
+
+#pragma comment(lib, "libmysqlB.lib")
+
+#pragma comment(lib, "poco_mysql_connector-static.lib")
+#pragma comment(lib, "poco_data-static.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "tinyxml2-static.lib")
 #pragma comment(lib, "VCLCommon.bpi")

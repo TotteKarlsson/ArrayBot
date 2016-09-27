@@ -46,12 +46,12 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>..\UI\frames\;frames\;forms\;P:\dslib\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\source\database\forms\;..\..\source\database\;..\UI\frames\;frames\;forms\;P:\dslib\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
-        <IncludePath>..\..\source\;..\UI\frames\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
+        <IncludePath>..\..\source\database\forms\;..\..\source\database\;..\..\source\;..\UI\frames\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
         <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;abVCLCore.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
@@ -93,6 +93,8 @@
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <_TCHARMapping>char</_TCHARMapping>
+        <BCC_whid>false</BCC_whid>
         <BCC_wcsu>false</BCC_wcsu>
         <BCC_PCHInject>ArrayBotPCH1.h</BCC_PCHInject>
         <Icon_MainIcon>resources\arduino_controller_BVB_icon.ico</Icon_MainIcon>
@@ -149,9 +151,27 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="UIUtilities.cpp">
             <BuildOrder>11</BuildOrder>
         </CppCompile>
-        <FormResources Include="MainForm.dfm"/>
+        <CppCompile Include="..\..\source\database\abATDBServerSession.cpp">
+            <DependentOn>..\..\source\database\abATDBServerSession.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\source\database\forms\TATDBServerEntry.cpp">
+            <Form>ATDBServerEntry</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>..\..\source\database\forms\TATDBServerEntry.h</DependentOn>
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\source\database\forms\TBlockEntryForm.cpp">
+            <Form>BlockEntryForm</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>..\..\source\database\forms\TBlockEntryForm.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <FormResources Include="..\..\source\database\forms\TBlockEntryForm.dfm"/>
+        <FormResources Include="..\..\source\database\forms\TATDBServerEntry.dfm"/>
         <FormResources Include="forms\TAboutATDBEntry.dfm"/>
         <FormResources Include="frames\TAboutATDBEntryFrame.dfm"/>
+        <FormResources Include="MainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

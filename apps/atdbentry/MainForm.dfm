@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 0
   Top = 0
-  Caption = 'Arduino Controller'
+  Caption = 'ATDB Data Entry'
   ClientHeight = 707
   ClientWidth = 986
   Color = clBtnFace
@@ -162,43 +162,43 @@ object Main: TMain
       Align = alTop
       TabOrder = 1
       object TabSheet1: TTabSheet
-        Caption = 'Controls'
+        Caption = 'General'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
+        object mCheckForServerDataBtn: TButton
+          Left = 16
+          Top = 16
+          Width = 241
+          Height = 65
+          Caption = 'Check for Server Data'
+          TabOrder = 0
+          OnClick = mCheckForServerDataBtnClick
+        end
+      end
+      object TabSheet2: TTabSheet
+        Caption = 'Blocks'
+        ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
+        object Button3: TButton
+          Left = 16
+          Top = 40
+          Width = 145
+          Height = 65
+          Caption = 'Register Block'
+          TabOrder = 0
+          OnClick = Button3Click
+        end
       end
     end
   end
   object ActionList1: TActionList
-    Left = 164
-    Top = 464
-    object checkForDevices: TAction
-      Caption = 'Devices Check'
-    end
-    object addDevicesToListBox: TAction
-      Caption = 'Connect All'
-    end
-    object identifyCurrent: TAction
-      Caption = 'Identify'
-    end
-    object homeDevice: TAction
-      Caption = 'Home'
-    end
-    object jogForward: TAction
-      Caption = 'Fwd'
-    end
-    object jogBackwards: TAction
-      Caption = 'Rev'
-    end
-    object moveForward: TAction
-      Caption = 'Forward'
-    end
-    object moveBackward: TAction
-      Caption = 'Backward'
-    end
-    object stopAllA: TAction
-      Caption = 'Stop All'
-    end
-    object reInitBotA: TAction
-      Caption = 'Reinitialize Devices'
-    end
+    Left = 900
+    Top = 288
     object ShutDownA: TAction
       Caption = 'Disconnect Devices'
     end
@@ -207,23 +207,17 @@ object Main: TMain
       Hint = 'Exit|Quits the application'
       ImageIndex = 0
     end
-    object abortLiftA: TAction
-      Caption = 'Abort Lift'
-    end
-    object liftA: TAction
-      Caption = 'Lift'
-    end
   end
   object ShutDownTimer: TTimer
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 316
-    Top = 352
+    Left = 900
+    Top = 224
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 96
-    Top = 304
+    Left = 896
+    Top = 168
   end
 end

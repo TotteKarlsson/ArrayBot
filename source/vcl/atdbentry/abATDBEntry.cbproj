@@ -82,6 +82,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <ILINK_GenerateLibFile>false</ILINK_GenerateLibFile>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <ILINK_Description>Entry of ATDB related data</ILINK_Description>
         <VerInfo_Locale>1033</VerInfo_Locale>

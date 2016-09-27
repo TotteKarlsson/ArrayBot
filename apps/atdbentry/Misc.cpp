@@ -2,7 +2,6 @@
 #include "MainForm.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-#include "apt/abAPTMotor.h"
 #include "TAboutATDBEntry.h"
 #include "mtkLogger.h"
 using namespace mtk;
@@ -76,7 +75,7 @@ void __fastcall TMain::FormShow(TObject *Sender)
 void __fastcall TMain::logMsg()
 {
 	string& msg = mLogFileReader.getData();
-    if(msg.size())
+    if(msg.size() )
     {
     	infoMemo->Lines->Insert(0, vclstr(msg));
 	    mLogFileReader.purge();
