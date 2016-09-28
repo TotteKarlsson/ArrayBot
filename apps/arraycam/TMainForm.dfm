@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Array Cam 0.5'
-  ClientHeight = 693
+  ClientHeight = 722
   ClientWidth = 968
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object MainForm: TMainForm
   TextHeight = 19
   object Splitter1: TSplitter
     Left = 0
-    Top = 531
+    Top = 560
     Width = 968
     Height = 3
     Cursor = crVSplit
@@ -32,7 +32,7 @@ object MainForm: TMainForm
   object Splitter2: TSplitter
     Left = 786
     Top = 0
-    Height = 531
+    Height = 560
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
@@ -42,26 +42,26 @@ object MainForm: TMainForm
     Left = 789
     Top = 0
     Width = 179
-    Height = 531
+    Height = 560
     Align = alRight
     TabOrder = 0
+    ExplicitHeight = 531
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
       Width = 177
-      Height = 529
-      VertScrollBar.Position = 174
+      Height = 558
       Align = alClient
       TabOrder = 0
+      ExplicitHeight = 529
       object GroupBox5: TGroupBox
         Left = 0
-        Top = -174
+        Top = 0
         Width = 156
         Height = 60
         Align = alTop
-        Caption = 'Temperature'
+        Caption = 'Temperature (C)'
         TabOrder = 1
-        Visible = False
         object mTemperatureLbl: mtkFloatLabel
           Left = 32
           Top = 23
@@ -85,13 +85,12 @@ object MainForm: TMainForm
       end
       object GroupBox6: TGroupBox
         Left = 0
-        Top = -114
+        Top = 60
         Width = 156
         Height = 60
         Align = alTop
-        Caption = 'Humidity'
+        Caption = 'Relative Humidity (%)'
         TabOrder = 2
-        Visible = False
         object mHumidityE: mtkFloatLabel
           Left = 32
           Top = 23
@@ -115,7 +114,7 @@ object MainForm: TMainForm
       end
       object Button2: TArrayBotButton
         Left = 0
-        Top = 486
+        Top = 660
         Width = 156
         Height = 60
         Align = alBottom
@@ -127,7 +126,7 @@ object MainForm: TMainForm
       end
       object mFitToScreenButton: TArrayBotButton
         Left = 0
-        Top = -54
+        Top = 120
         Width = 156
         Height = 60
         Align = alTop
@@ -139,7 +138,7 @@ object MainForm: TMainForm
       end
       object mFrontBackLEDBtn: TArrayBotButton
         Left = 0
-        Top = 426
+        Top = 600
         Width = 156
         Height = 60
         Align = alBottom
@@ -152,7 +151,7 @@ object MainForm: TMainForm
       end
       object mOneToOneBtn: TArrayBotButton
         Left = 0
-        Top = 186
+        Top = 360
         Width = 156
         Height = 60
         Align = alTop
@@ -164,7 +163,7 @@ object MainForm: TMainForm
       end
       object mOneToTwoBtn: TArrayBotButton
         Left = 0
-        Top = 246
+        Top = 420
         Width = 156
         Height = 60
         Align = alTop
@@ -176,7 +175,7 @@ object MainForm: TMainForm
       end
       object mRecordMovieBtn: TArrayBotButton
         Left = 0
-        Top = 306
+        Top = 480
         Width = 156
         Height = 60
         Align = alTop
@@ -188,7 +187,7 @@ object MainForm: TMainForm
       end
       object mSettingsBtn: TArrayBotButton
         Left = 0
-        Top = 66
+        Top = 240
         Width = 156
         Height = 60
         Align = alTop
@@ -200,7 +199,7 @@ object MainForm: TMainForm
       end
       object mSnapShotBtn: TArrayBotButton
         Left = 0
-        Top = 126
+        Top = 300
         Width = 156
         Height = 60
         Align = alTop
@@ -212,7 +211,7 @@ object MainForm: TMainForm
       end
       object mToggleCoaxBtn: TArrayBotButton
         Left = 0
-        Top = 366
+        Top = 540
         Width = 156
         Height = 60
         Align = alBottom
@@ -225,7 +224,7 @@ object MainForm: TMainForm
       end
       object mToggleLogPanelBtn: TArrayBotButton
         Left = 0
-        Top = 6
+        Top = 180
         Width = 156
         Height = 60
         Align = alTop
@@ -241,10 +240,12 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 786
-    Height = 531
+    Height = 560
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
+    ExplicitLeft = -3
+    ExplicitTop = -2
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -269,11 +270,12 @@ object MainForm: TMainForm
   end
   object mBottomPanel: TPanel
     Left = 0
-    Top = 534
+    Top = 563
     Width = 968
     Height = 159
     Align = alBottom
     TabOrder = 2
+    ExplicitTop = 534
     object GroupBox3: TGroupBox
       Left = 105
       Top = 1
@@ -428,23 +430,25 @@ object MainForm: TMainForm
         TabOrder = 0
         object mBackLEDTB: TTrackBar
           Left = 1
-          Top = 46
+          Top = 41
           Width = 141
-          Height = 45
+          Height = 40
           Align = alTop
           Max = 255
           TabOrder = 0
+          ThumbLength = 30
           TickStyle = tsNone
           OnChange = IntensityChange
         end
         object mCoaxTB: TTrackBar
           Left = 1
-          Top = 91
+          Top = 81
           Width = 141
-          Height = 45
+          Height = 40
           Align = alTop
           Max = 255
           TabOrder = 1
+          ThumbLength = 30
           TickStyle = tsNone
           OnChange = IntensityChange
         end
@@ -452,10 +456,11 @@ object MainForm: TMainForm
           Left = 1
           Top = 1
           Width = 141
-          Height = 45
+          Height = 40
           Align = alTop
           Max = 255
           TabOrder = 2
+          ThumbLength = 30
           TickStyle = tsNone
           OnChange = IntensityChange
         end

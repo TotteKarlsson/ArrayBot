@@ -24,6 +24,7 @@ extern string gLogFileLocation;
 extern string gLogFileName;
 extern string gAppDataFolder;
 extern bool   gAppIsStartingUp;
+extern bool   gAppIsClosing;
 
 //---------------------------------------------------------------------------
 __fastcall TMainForm::TMainForm(TComponent* Owner)
@@ -92,7 +93,12 @@ void TMainForm::onArduinoClientConnected()
 void TMainForm::onArduinoClientDisconnected()
 {
     Log(lDebug) << "Arduino Client was disconnected..";
-    enableDisableClientControls(false);
+
+	//Don't worry if we are closing down..
+    if(gAppIsClosing != true)
+    {
+    	enableDisableClientControls(false);
+    }
 }
 
 void TMainForm::enableDisableClientControls(bool enable)
@@ -357,7 +363,7 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
             {
                 //Parse the message
                 StringList l(msg,',');
-                if(l.size() == 3)
+                if(l.size() == 4)
                 {
                     MainForm->mTemperatureLbl->SetValue(toDouble(l[1]));
                     MainForm->mHumidityE->SetValue(toDouble(l[2]));
@@ -540,5 +546,6 @@ void __fastcall TMainForm::IntensityChange(TObject *Sender)
         mCoaxLbl->Caption = "Coax (" + IntToStr(pos) + ")";
     }
 }
+
 
 

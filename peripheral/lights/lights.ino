@@ -12,14 +12,16 @@ double sketchVersion = 1.0;
 //#include "./utility/Adafruit_MS_PWMServoDriver.h"
 
 //The DHT22 is a combined temp/humidity sensor
-#include "DHT22.h"
+#include "DHT.h"
+#define DHTTYPE DHT22
+
 // Data wire is plugged into port 7 on the Arduino
 // Connect a 4.7K resistor between VCC and the data pin (strong pullup)
 #define DHT22_PIN 7
 
 // Setup a GLOBAL DHT22 instance
-DHT22 gDHT22(DHT22_PIN);
-void readEnvironmentalSensors(DHT22& gDHT22);
+DHT gDHT22(DHT22_PIN, DHTTYPE);
+void readEnvironmentalSensors(DHT& gDHT22);
 
 // Create the "motor" shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
@@ -155,7 +157,7 @@ void loop()
     //Read digital lines and send status over serial port so the host
     //can update its UI
     unsigned long currentReadTime = millis();
-    if(currentReadTime - lastReadTime > 3000)
+    if(currentReadTime - lastReadTime > 2000)
     {
         lastReadTime = currentReadTime;
         readEnvironmentalSensors(gDHT22);    
@@ -221,23 +223,19 @@ void sendInfo()
     Serial << "[BACK_LED_DRIVE="<<backLEDDrive<<"]";
 }
 
-void readEnvironmentalSensors(DHT22& s)
+void readEnvironmentalSensors(DHT& s)
 {
-    switch(s.readData())
+    s.read();
+    float h = s.readHumidity();
+    float t = s.readTemperature();
+    float hic = s.computeHeatIndex(t, h, false);
+    if(isnan(h) || isnan(t))
     {
-        case DHT_ERROR_NONE:
-            Serial << "[DHT22_DATA," << s.getTemperatureC() << "," << s.getHumidity() << "]";
-        break;
-
-        //The following are error conditions. Polling to quick happens easily, no need to report
-        case DHT_ERROR_CHECKSUM:        Serial << "[DHT22_ERROR, Check Sum Error ";        break;
-        case DHT_BUS_HUNG:              Serial << "[DHT22_ERROR, BUS Hung]";               break;
-        case DHT_ERROR_NOT_PRESENT:     Serial << "[DHT22_ERROR, Not Present]";            break;
-        case DHT_ERROR_ACK_TOO_LONG:    Serial << "[DHT22_ERROR, ACK Time out]";           break;
-        case DHT_ERROR_SYNC_TIMEOUT:    Serial << "[DHT22_ERROR, Sync Timeout]";           break;
-        case DHT_ERROR_DATA_TIMEOUT:    Serial << "[DHT22_ERROR, Data Timeout]";           break;
-        case DHT_ERROR_TOOQUICK:        /*Serial << "[DHT22_ERROR, Polled to Quick]";*/    break;
-        default:                        Serial << "[DHT22_ERROR, ERROR CODE NOT DEFINED]"; break;      
-    }    
+        Serial << "[DHT22_ERROR, READ_ERROR]";
+    } 
+    else
+    {
+        Serial << "[DHT22_DATA," << t << "," << h << "," << hic << "]";
+    }      
 }
   

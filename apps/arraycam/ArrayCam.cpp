@@ -19,7 +19,8 @@ extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayCam.log";
 extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\array_cam\\0.5.0";
 extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
-
+extern bool         gAppIsStartingUp            = true;
+extern bool         gAppIsClosing	            = false;
 void setupLogging();
 
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
