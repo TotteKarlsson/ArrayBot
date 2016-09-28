@@ -70,7 +70,6 @@ void __fastcall TBlockEntryForm::FormShow(TObject *Sender)
     {
     	Log(lError) << "Unhandled exception...";
     }
-
 }
 
 void __fastcall TBlockEntryForm::mValidateTimerTimer(TObject *Sender)

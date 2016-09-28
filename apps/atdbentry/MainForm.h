@@ -27,26 +27,44 @@ class TMain : public TRegistryForm
 __published:	// IDE-managed Components
 	TMemo *infoMemo;
 	TTimer *ShutDownTimer;
-	TArrayBotButton *ArrayBotButton1;
-	TArrayBotButton *ArrayBotButton2;
+	TArrayBotButton *mConnectDBBtn;
+	TArrayBotButton *mRegisterBlockBtn;
 	TRzStringGrid *mBlocksT;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet1;
-	TButton *Button1;
+	TButton *mDeleteRowB;
 	TPanel *Panel1;
 	TPanel *Panel2;
 	TPanel *Panel3;
 	TButton *Button2;
 	TSplitter *Splitter1;
+	TRzStringGrid *mNotesGrid;
+	TLabel *Label1;
+	TMemo *mNotesMemo;
+	TLabel *Label2;
+	TButton *mAddNoteBtn;
+	TButton *mUpdateNoteBtn;
+	TPanel *Panel4;
+	TComboBox *mUserCB;
+	TLabel *Label3;
+	TButton *mDeleteNoteBtn;
+	TLabel *mUserIDLbl;
+	TTabSheet *TabSheet2;
+	TLabeledEdit *mBlockIDEdit;
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall ShutDownTimerTimer(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall ArrayBotButton1Click(TObject *Sender);
-	void __fastcall ArrayBotButton2Click(TObject *Sender);
+	void __fastcall mConnectDBBtnClick(TObject *Sender);
+	void __fastcall mRegisterBlockBtnClick(TObject *Sender);
 	void __fastcall mBlocksTClick(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall mDeleteRowBClick(TObject *Sender);
+	void __fastcall mNotesGridClick(TObject *Sender);
+	void __fastcall mAddNoteBtnClick(TObject *Sender);
+	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
+	void __fastcall mUserCBCloseUp(TObject *Sender);
 
 
 private:	// User declarations
@@ -56,6 +74,13 @@ private:	// User declarations
         IniFileProperties  			        mProperties;
 		mtk::Property<mtk::LogLevel>        mLogLevel;
         ATDBServerSession					mServerSession;
+        void 							   	syncGrids();
+		void								populateNotes(RecordSet* notes);
+		void    							populateUsers();
+	    int  								getCurrentBlockID();
+	    int  								getCurrentUserID();
+        int									getCurrentNoteID();
+
 public:		// User declarations
 	__fastcall TMain(TComponent* Owner);
 		__fastcall 					        ~TMain();

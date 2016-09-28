@@ -23,7 +23,22 @@ inherited BlockEntryForm: TBlockEntryForm
     Height = 13
     Caption = 'Note'
   end
-  object mBlockLabel: TLabeledEdit [2]
+  object mUserCB: TComboBox [2]
+    Left = 16
+    Top = 32
+    Width = 281
+    Height = 21
+    Style = csDropDownList
+    TabOrder = 0
+  end
+  object mBlockNote: TMemo [3]
+    Left = 16
+    Top = 136
+    Width = 281
+    Height = 124
+    TabOrder = 2
+  end
+  object mBlockLabel: TLabeledEdit [4]
     Left = 16
     Top = 84
     Width = 281
@@ -33,33 +48,19 @@ inherited BlockEntryForm: TBlockEntryForm
     EditLabel.Caption = 'Label (10 characters min)'
     TabOrder = 1
   end
-  object mUserCB: TComboBox [3]
-    Left = 16
-    Top = 32
-    Width = 281
-    Height = 21
-    Style = csDropDownList
-    TabOrder = 0
-  end
-  object mBlockNote: TMemo [4]
-    Left = 16
-    Top = 136
-    Width = 281
-    Height = 124
-    TabOrder = 2
-  end
   inherited Panel1: TPanel
     Top = 276
     Width = 316
     TabOrder = 3
+    ExplicitTop = 276
+    ExplicitWidth = 316
     inherited mSubmitButton: TButton
       Left = 236
-      ExplicitLeft = 229
-      ExplicitWidth = 68
+      ExplicitLeft = 236
     end
     inherited mCancelBtn: TButton
       Left = 154
-      ExplicitLeft = 147
+      ExplicitLeft = 154
     end
   end
   object mValidateTimer: TTimer

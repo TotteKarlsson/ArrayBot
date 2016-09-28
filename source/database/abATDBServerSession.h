@@ -6,22 +6,14 @@
 //---------------------------------------------------------------------------
 
 using namespace Poco::Data;
-//using std::vector;
-
-//namespace Poco{
-//	namespace Data{
-//        class RecordSet;
-//        class Session;
-//    }
-//}
 
 using Poco::Data::RecordSet;
-//!The ATDB server session class encapsulate a database session
-//!with the ATDB MySQL database
 
 enum dbKeyword {dbAscending = 0, dbDescending};
 string toString(dbKeyword kw);
 
+//!The ATDB server session class encapsulate a database session
+//!with the ATDB MySQL database
 class AB_CORE ATDBServerSession : public ABObject
 {
     public:
@@ -31,6 +23,12 @@ class AB_CORE ATDBServerSession : public ABObject
 										//!Statements
 		RecordSet* 						getBlocks(dbKeyword kw = dbDescending);
         bool							insertBlock(int userID, const string& lbl, const string& note);
+        bool							deleteBlock(int bId);
+		RecordSet*        				getNotesForBlockWithID(int blockID);
+		bool							addNoteForBlockWithID(int blockID, int userID);
+		bool							deleteNoteWithID(int noteID);
+		bool							updateNoteWithID(int noteID, const string& note);
+
 		RecordSet* 						getUsers(dbKeyword kw = dbAscending);
 
 		bool							isConnected();//{return mTheSession ? true : false;}

@@ -21,7 +21,6 @@ double sketchVersion = 1.0;
 DHT22 gDHT22(DHT22_PIN);
 void readEnvironmentalSensors(DHT22& gDHT22);
 
-
 // Create the "motor" shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 
@@ -155,12 +154,12 @@ void loop()
 
     //Read digital lines and send status over serial port so the host
     //can update its UI
-//    unsigned long currentReadTime = millis();
-//    if(currentReadTime - lastReadTime > 3000)
-//    {
-//        lastReadTime = currentReadTime;
-//        readEnvironmentalSensors(gDHT22);    
-//    }
+    unsigned long currentReadTime = millis();
+    if(currentReadTime - lastReadTime > 3000)
+    {
+        lastReadTime = currentReadTime;
+        readEnvironmentalSensors(gDHT22);    
+    }
     
     //Read temp/humidity sensor, about every 2s.
 
