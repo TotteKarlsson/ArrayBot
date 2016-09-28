@@ -119,10 +119,11 @@ void __fastcall TMainForm::mFitToScreenButtonClick(TObject *Sender)
 
 void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
 {
-	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
+	string fldr =  mSnapShotFolder; //joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
 
     if(!folderExists(fldr))
     {
+    	Log(lInfo) << "Creating folder: "<<fldr;
     	createFolder(fldr);
     }
 
@@ -144,7 +145,7 @@ void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
     }
     else
     {
-    	Log(lInfo) << "Saved snap shot to: "<< fName;
+    	Log(lInfo) << "Saved snapshot to file: "<< fName;
     }
 	updateShotsLB();
 }
@@ -175,7 +176,12 @@ void __fastcall TMainForm::mRecordMovieBtnClick(TObject *Sender)
             return;
         }
 
-        string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
+        string fldr =  mMoviesFolder; //joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
+        if(!folderExists(fldr))
+        {
+            Log(lInfo) << "Creating folder: "<<fldr;
+            createFolder(fldr);
+        }
 
         //Count files in folder
         int nrOfMovies = countFiles(fldr, "*.avi") + 1;

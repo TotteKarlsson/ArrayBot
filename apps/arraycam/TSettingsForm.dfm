@@ -10,6 +10,7 @@ object SettingsForm: TSettingsForm
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poMainFormCenter
   OnClose = FormClose
@@ -48,8 +49,8 @@ object SettingsForm: TSettingsForm
   object GroupBox4: TGroupBox
     Left = 8
     Top = 8
-    Width = 259
-    Height = 105
+    Width = 266
+    Height = 202
     Caption = 'Camera'
     TabOrder = 1
     object GroupBox3: TGroupBox
@@ -104,6 +105,45 @@ object SettingsForm: TSettingsForm
         OnClick = mHorizontalMirrorCBClick
       end
     end
+    object mPhotoOutputBaseFolder: TSTDStringLabeledEdit
+      Left = 14
+      Top = 116
+      Width = 219
+      Height = 21
+      EditLabel.AlignWithMargins = True
+      EditLabel.Width = 61
+      EditLabel.Height = 13
+      EditLabel.Caption = 'Photo Folder'
+      TabOrder = 2
+    end
+    object mMoviesFolderE: TSTDStringLabeledEdit
+      Left = 14
+      Top = 161
+      Width = 219
+      Height = 21
+      EditLabel.Width = 66
+      EditLabel.Height = 13
+      EditLabel.Caption = 'Movies Folder'
+      TabOrder = 3
+    end
+    object mBrowseForImagesFolderBtn: TButton
+      Left = 236
+      Top = 114
+      Width = 27
+      Height = 25
+      Caption = '...'
+      TabOrder = 4
+      OnClick = BrowseForFolder
+    end
+    object mBrowseForMoviesFolderBtn: TButton
+      Left = 236
+      Top = 159
+      Width = 27
+      Height = 25
+      Caption = '...'
+      TabOrder = 5
+      OnClick = BrowseForFolder
+    end
   end
   object Button1: TButton
     Left = 440
@@ -116,7 +156,7 @@ object SettingsForm: TSettingsForm
   end
   object GroupBox5: TGroupBox
     Left = 8
-    Top = 128
+    Top = 216
     Width = 185
     Height = 105
     Caption = 'Miscellaneous'

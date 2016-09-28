@@ -45,18 +45,17 @@ object MainForm: TMainForm
     Height = 560
     Align = alRight
     TabOrder = 0
-    ExplicitHeight = 531
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
       Width = 177
       Height = 558
+      VertScrollBar.Position = 166
       Align = alClient
       TabOrder = 0
-      ExplicitHeight = 529
       object GroupBox5: TGroupBox
         Left = 0
-        Top = 0
+        Top = -166
         Width = 156
         Height = 60
         Align = alTop
@@ -85,7 +84,7 @@ object MainForm: TMainForm
       end
       object GroupBox6: TGroupBox
         Left = 0
-        Top = 60
+        Top = -106
         Width = 156
         Height = 60
         Align = alTop
@@ -114,7 +113,7 @@ object MainForm: TMainForm
       end
       object Button2: TArrayBotButton
         Left = 0
-        Top = 660
+        Top = 494
         Width = 156
         Height = 60
         Align = alBottom
@@ -126,7 +125,7 @@ object MainForm: TMainForm
       end
       object mFitToScreenButton: TArrayBotButton
         Left = 0
-        Top = 120
+        Top = -46
         Width = 156
         Height = 60
         Align = alTop
@@ -138,7 +137,7 @@ object MainForm: TMainForm
       end
       object mFrontBackLEDBtn: TArrayBotButton
         Left = 0
-        Top = 600
+        Top = 434
         Width = 156
         Height = 60
         Align = alBottom
@@ -151,7 +150,7 @@ object MainForm: TMainForm
       end
       object mOneToOneBtn: TArrayBotButton
         Left = 0
-        Top = 360
+        Top = 194
         Width = 156
         Height = 60
         Align = alTop
@@ -163,7 +162,7 @@ object MainForm: TMainForm
       end
       object mOneToTwoBtn: TArrayBotButton
         Left = 0
-        Top = 420
+        Top = 254
         Width = 156
         Height = 60
         Align = alTop
@@ -175,7 +174,7 @@ object MainForm: TMainForm
       end
       object mRecordMovieBtn: TArrayBotButton
         Left = 0
-        Top = 480
+        Top = 314
         Width = 156
         Height = 60
         Align = alTop
@@ -187,7 +186,7 @@ object MainForm: TMainForm
       end
       object mSettingsBtn: TArrayBotButton
         Left = 0
-        Top = 240
+        Top = 74
         Width = 156
         Height = 60
         Align = alTop
@@ -199,7 +198,7 @@ object MainForm: TMainForm
       end
       object mSnapShotBtn: TArrayBotButton
         Left = 0
-        Top = 300
+        Top = 134
         Width = 156
         Height = 60
         Align = alTop
@@ -211,7 +210,7 @@ object MainForm: TMainForm
       end
       object mToggleCoaxBtn: TArrayBotButton
         Left = 0
-        Top = 540
+        Top = 374
         Width = 156
         Height = 60
         Align = alBottom
@@ -224,7 +223,7 @@ object MainForm: TMainForm
       end
       object mToggleLogPanelBtn: TArrayBotButton
         Left = 0
-        Top = 180
+        Top = 14
         Width = 156
         Height = 60
         Align = alTop
@@ -244,8 +243,6 @@ object MainForm: TMainForm
     Align = alClient
     TabOrder = 1
     OnResize = mMainPanelResize
-    ExplicitLeft = -3
-    ExplicitTop = -2
     object mCameraBackPanel: TPanel
       Left = 0
       Top = 0
@@ -275,7 +272,6 @@ object MainForm: TMainForm
     Height = 159
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 534
     object GroupBox3: TGroupBox
       Left = 105
       Top = 1

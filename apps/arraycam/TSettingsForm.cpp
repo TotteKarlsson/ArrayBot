@@ -2,14 +2,19 @@
 #pragma hdrstop
 #include "TSettingsForm.h"
 #include <sstream>
+#include "mtkVCLUtils.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TPropertyCheckBox"
+#pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 TSettingsForm *SettingsForm;
 
 using namespace std;
+using namespace mtk;
+
 //---------------------------------------------------------------------------
 __fastcall TSettingsForm::TSettingsForm(TMainForm& mf)
 	: TForm(&mf),
@@ -32,6 +37,9 @@ __fastcall TSettingsForm::TSettingsForm(TMainForm& mf)
 
     mPairLEDsCB->setReference(mMainForm.mPairLEDs.getReference());
     mPairLEDsCB->Update();
+
+    mPhotoOutputBaseFolder->setReference(mMainForm.mSnapShotFolder.getReference());
+    mMoviesFolderE->setReference(mMainForm.mMoviesFolder.getReference());    
 }
 
 //---------------------------------------------------------------------------
@@ -147,5 +155,35 @@ void __fastcall TSettingsForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftSta
     	Close();
     }
 }
+
+
+//---------------------------------------------------------------------------
+void __fastcall TSettingsForm::BrowseForFolder(TObject *Sender)
+{
+	//Open Browse for folder dialog
+
+	TButton* b = dynamic_cast<TButton*>(Sender);
+    if(b == mBrowseForImagesFolderBtn)
+    {
+        string f = browseForFolder(mMainForm.mSnapShotFolder);
+        if(!f.size())
+        {
+            return;
+        }
+
+    	mPhotoOutputBaseFolder->setValue(f);
+    }
+    else if(b == mBrowseForMoviesFolderBtn)
+    {
+        string f = browseForFolder(mMainForm.mSnapShotFolder);
+        if(!f.size())
+        {
+            return;
+        }
+
+    	mMoviesFolderE->setValue(f);
+    }    
+}
+
 
 

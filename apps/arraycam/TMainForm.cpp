@@ -41,7 +41,10 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
         mPairLEDs(false),
 		mGetReadyForZeroCutSound("SHORT_BEEP_2", 10, 500),
 		mSetZeroCutSound("SHORT_BEEP_2", 25, 150),
-		mRestoreFromZeroCutSound("CLOSING_DOWN_1", 15, 350)
+		mRestoreFromZeroCutSound("CLOSING_DOWN_1", 15, 350),
+        mSnapShotFolder(""),
+        mMoviesFolder("")
+
 {
    	mLogFileReader.start(true);
 
@@ -55,6 +58,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	mProperties.add((BaseProperty*)  &mHorizontalMirror.setup(	"HORIZONTAL_MIRROR",    false));
 	mProperties.add((BaseProperty*)  &mHorizontalMirror.setup(	"HORIZONTAL_MIRROR",    false));
 	mProperties.add((BaseProperty*)  &mPairLEDs.setup(			"PAIR_LEDS",    		true));
+    mProperties.add((BaseProperty*)  &mSnapShotFolder.setup(	"SNAP_SHOT_FOLDER",     "C:\\Temp"	));
+	mProperties.add((BaseProperty*)  &mMoviesFolder.setup(		"MOVIES_FOLDER",   		"C:\\Temp"	));
 
     mProperties.read();
 
