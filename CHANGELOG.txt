@@ -1,3 +1,17 @@
+Release 0.8.4 (Sept 28)
+=======================
+* Added ability to specify output folders for snapshots and movies in ArrayCam
+* Changed Arduino DHT code to use different library code (that actually works)
+* Added isClosingDown boolean to ArrayCam in order to avoid UI updates during shutdown
+* Wrote database code to handle blocks and multiple notes
+* Added new library to use for the DHT22 arduino temperature sensor
+* Adding deletion capability of blocks
+* Got first data entry form working
+* Getting DB application closer to initial testing
+* Restarting DB application creation
+* Added abATDB entry package
+* Added new atdb data entry application
+
 Release 0.8.3 (Sept 19)
 =======================
 * Various organizing refactoring stuff
