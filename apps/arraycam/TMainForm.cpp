@@ -188,7 +188,7 @@ void __fastcall TMainForm::ClearLogMemo(TObject *Sender)
 
 void  TMainForm::updateVideoFileLB()
 {
-	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
+	string fldr = mMoviesFolder;
     StringList files = getFilesInDir(fldr, "avi");
 
     for(int i = 0; i < files.count(); i++)
@@ -207,7 +207,7 @@ void  TMainForm::updateVideoFileLB()
 
 void  TMainForm::updateShotsLB()
 {
-	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
+	string fldr =  mSnapShotFolder;
     StringList files = getFilesInDir(fldr, "jpg");
 
     for(int i = 0; i < files.count(); i++)
@@ -234,7 +234,7 @@ void __fastcall TMainForm::mMoviesLBDblClick(TObject *Sender)
     {
         //Check if we have a valid file
         string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-        string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
+        string fldr =  mMoviesFolder;
 
         fName = joinPath(fldr, fName);
         if(fileExists(fName))
@@ -246,7 +246,7 @@ void __fastcall TMainForm::mMoviesLBDblClick(TObject *Sender)
     {
         //Check if we have a valid file
         string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-        string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
+        string fldr =  mSnapShotFolder;
 
         fName = joinPath(fldr, fName);
         if(fileExists(fName))
@@ -271,7 +271,7 @@ void __fastcall TMainForm::Delete1Click(TObject *Sender)
     {
         //Delete current selected item
         string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-        string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
+        string fldr  = mMoviesFolder;
 
         fName = joinPath(fldr, fName);
         if(fileExists(fName))
@@ -284,7 +284,7 @@ void __fastcall TMainForm::Delete1Click(TObject *Sender)
     {
         //Delete current selected item
         string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-        string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
+        string fldr =  mSnapShotFolder;
 
         fName = joinPath(fldr, fName);
         if(fileExists(fName))
@@ -310,7 +310,7 @@ void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
         while(lb->Count)
         {
             string fName = stdstr(lb->Items->Strings[0]);
-            string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "movies");
+            string fldr =  mMoviesFolder;
             fName = joinPath(fldr, fName);
             if(fileExists(fName))
             {
@@ -324,7 +324,7 @@ void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
         while(lb->Count)
         {
             string fName = stdstr(lb->Items->Strings[0]);
-            string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
+            string fldr =  mSnapShotFolder;
             fName = joinPath(fldr, fName);
             if(fileExists(fName))
             {
