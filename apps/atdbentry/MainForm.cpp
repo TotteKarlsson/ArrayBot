@@ -21,6 +21,7 @@ extern string 			gApplicationName;
 extern bool             gAppIsStartingUp;
 using namespace mtk;
 
+void handlePocoDataMySQLException();
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
@@ -28,7 +29,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, (gApplicationName + ".ini")), true, true),
     mLogLevel(lAny)
-
 {
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
@@ -106,20 +106,27 @@ void TMain::syncGrids()
 //---------------------------------------------------------------------------
 void __fastcall TMain::mConnectDBBtnClick(TObject *Sender)
 {
-	if(!mServerSession.isConnected())
+	try
     {
-		mServerSession.connect();
-    }
+        if(!mServerSession.isConnected())
+        {
+            mServerSession.connect();
+        }
 
-    if(mServerSession.isConnected())
-    {
-    	populateUsers();
-		mUserIDLbl->Caption = getCurrentUserID();
-       	syncGrids();
+        if(mServerSession.isConnected())
+        {
+            populateUsers();
+            mUserIDLbl->Caption = getCurrentUserID();
+            syncGrids();
+        }
+        else
+        {
+            Log(lError) << "Failed to connect to database server...";
+        }
     }
-    else
+    catch(...)
     {
-    	Log(lError) << "Failed to connect to database server...";
+    	handlePocoDataMySQLException();
     }
 }
 
@@ -163,21 +170,9 @@ void TMain::populateUsers()
             mUserCB->ItemIndex = 0;
         }
     }
-    catch(const Poco::Data::MySQL::StatementException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
-    catch(const Poco::Data::MySQL::MySQLException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
-    catch(const Poco::NullPointerException& e)
-    {
-        Log(lError) << "Null Pointer exception..";
-    }
     catch(...)
     {
-        Log(lError) << "Unhandled exception...";
+    	handlePocoDataMySQLException();
     }
 }
 
@@ -203,25 +198,10 @@ void __fastcall TMain::mRegisterBlockBtnClick(TObject *Sender)
         }
 
     }
-   	catch (const Poco::Data::MySQL::ConnectionException& e)
-    {
-        Log(lError) << e.message() <<endl;
-    }
-    catch(const Poco::Data::MySQL::StatementException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
-    catch(const Poco::Data::MySQL::MySQLException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
-    catch(const Poco::NullPointerException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
     catch(...)
-    {}
-
+    {
+    	handlePocoDataMySQLException();
+    }
     delete f;
 }
 
@@ -266,24 +246,10 @@ void __fastcall TMain::mBlocksTClick(TObject *Sender)
         Log(lInfo) << s.str();
         mDeleteRowB->Enabled = (r > -1) ? true : false;
     }
-   	catch (const Poco::Data::MySQL::ConnectionException& e)
-    {
-        Log(lError) << e.message() <<endl;
-    }
-    catch(const Poco::Data::MySQL::StatementException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
-    catch(const Poco::Data::MySQL::MySQLException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
-    catch(const Poco::NullPointerException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
     catch(...)
-    {}
+    {
+    	handlePocoDataMySQLException();
+    }
 }
 
 void TMain::populateNotes(RecordSet* rs)
@@ -340,11 +306,19 @@ void __fastcall TMain::Button2Click(TObject *Sender)
 void __fastcall TMain::mDeleteRowBClick(TObject *Sender)
 {
 	//Get selected row id
-   int r =  mBlocksT->Row;
-   int blockId = mBlocksT->Cells[0][r].ToInt();
+   	int r =  mBlocksT->Row;
+	int blockId = mBlocksT->Cells[0][r].ToInt();
 
-   mServerSession.deleteBlock(blockId);
-   syncGrids();
+	try
+    {
+		mServerSession.deleteBlock(blockId);
+    }
+    catch(...)
+    {
+    	handlePocoDataMySQLException();
+    }
+
+   	syncGrids();
 }
 
 //---------------------------------------------------------------------------
@@ -404,24 +378,10 @@ void __fastcall TMain::mAddNoteBtnClick(TObject *Sender)
             mBlocksTClick(Sender);
             mNotesMemo->Clear();
         }
-        catch (const Poco::Data::MySQL::ConnectionException& e)
-        {
-            Log(lError) << e.message() <<endl;
-        }
-        catch(const Poco::Data::MySQL::StatementException& e)
-        {
-            Log(lError) << e.message() << endl;
-        }
-        catch(const Poco::Data::MySQL::MySQLException& e)
-        {
-            Log(lError) << e.message() << endl;
-        }
-        catch(const Poco::NullPointerException& e)
-        {
-            Log(lError) << e.message() << endl;
-        }
         catch(...)
-        {}
+        {
+            handlePocoDataMySQLException();
+        }
     }
 }
 
@@ -448,4 +408,35 @@ void __fastcall TMain::mUserCBCloseUp(TObject *Sender)
 	mUserIDLbl->Caption = getCurrentUserID();
 }
 
+void handlePocoDataMySQLException()
+{
+	try
+    {
+    	throw;
+    }
+	catch (const Poco::Data::ConnectionFailedException& e)
+    {
+        Log(lError) << e.message() <<endl;
+    }
+   	catch (const Poco::Data::MySQL::ConnectionException& e)
+    {
+        Log(lError) << e.message() <<endl;
+    }
+    catch(const Poco::Data::MySQL::StatementException& e)
+    {
+        Log(lError) << e.message() << endl;
+    }
+    catch(const Poco::Data::MySQL::MySQLException& e)
+    {
+        Log(lError) << e.message() << endl;
+    }
+    catch(const Poco::NullPointerException& e)
+    {
+        Log(lError) << e.message() << endl;
+    }
+    catch(...)
+    {
+    	Log(lError) << "Unhandled PocoDataMySQL exception...";
+    }
 
+}
