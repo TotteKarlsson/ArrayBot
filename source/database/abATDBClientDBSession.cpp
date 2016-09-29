@@ -1,9 +1,9 @@
 #pragma hdrstop
-#include "abATDBServerSession.h"
+#include "abATDBClientDBSession.h"
 #include "mtkLogger.h"
 #include "Poco/Common.h"
-#include "Poco/Data/MySQL/Connector.h"
-#include "Poco/Data/MySQL/MySQLException.h"
+#include "Poco/Data/SQLite/Connector.h"
+#include "Poco/Data/SQLite/SQLiteException.h"
 #include "Poco/Data/SessionFactory.h"
 #include "Poco/Data/Session.h"
 #include "Poco/Data/RecordSet.h"
@@ -13,17 +13,7 @@ using namespace mtk;
 using namespace Poco::Data;
 using namespace Poco::Data::Keywords;
 
-string toString(dbSQLKeyword kw)
-{
-	switch(kw)
-    {
-    	case dbSQLKeyword::dbAscending: return "ASC";
-    	case dbSQLKeyword::dbDescending: return "DESC";
-    }
-    return "";
-}
-
-ATDBServerSession::ATDBServerSession(const string& host, const string& user, const string& password)
+ATDBClientDBSession::ATDBClientDBSession(const string& host, const string& user, const string& password)
 :
 mDataBaseName("atdb"),
 mHost(host),
@@ -32,54 +22,54 @@ mDataBasePassword(password),
 mTheSession(NULL)
 {}
 
-ATDBServerSession::~ATDBServerSession()
+ATDBClientDBSession::~ATDBClientDBSession()
 {}
 
-bool ATDBServerSession::isConnected()
+bool ATDBClientDBSession::isConnected()
 {
 	return mTheSession ? true : false;
 }
 
-bool ATDBServerSession::connect()
+bool ATDBClientDBSession::connect()
 {
 	try
     {
 		//Register DB connector
-	    MySQL::Connector::registerConnector();
+	    SQLite::Connector::registerConnector();
 
     	//Create connection string
 		//string str = "host=127.0.0.1;user=atdb_client;password=atdb123;db=atdb";
         stringstream c;
         c <<"host="<<mHost<<";"<<"user="<<mDataBaseUser<<";"<<"password="<<mDataBasePassword<<";"<<"db="<<mDataBaseName;
-		mTheSession = new Poco::Data::Session(Poco::Data::SessionFactory::instance().create(Poco::Data::MySQL::Connector::KEY, c.str() ));
+		mTheSession = new Poco::Data::Session(Poco::Data::SessionFactory::instance().create(Poco::Data::SQLite::Connector::KEY, c.str() ));
 
         Log(lInfo) << "Connected to "<<mHost;
         return true;
     }
-  	catch (const Poco::Data::MySQL::ConnectionException& e)
-    {
-        Log(lError) << e.message() <<endl;
-        return false;
-    }
-    catch(const Poco::Data::MySQL::StatementException& e)
-    {
-        Log(lError) << e.message() << endl;
-        return false;
-    }
-    catch(const Poco::Data::MySQL::MySQLException& e)
+//  	catch (const Poco::Data::SQLite::ConnectionException& e)
+//    {
+//        Log(lError) << e.message() <<endl;
+//        return false;
+//    }
+//    catch(const Poco::Data::MySQL::StatementException& e)
+//    {
+//        Log(lError) << e.message() << endl;
+//        return false;
+//    }
+    catch(const Poco::Data::SQLite::SQLiteException& e)
     {
         Log(lError) << e.message() << endl;
         return false;
     }
 }
 
-bool ATDBServerSession::disConnect()
+bool ATDBClientDBSession::disConnect()
 {
 	try
     {
     	delete mTheSession;
         mTheSession = NULL;
-	    MySQL::Connector::unregisterConnector();
+	    SQLite::Connector::unregisterConnector();
         return true;
     }
     catch(...)
@@ -89,7 +79,7 @@ bool ATDBServerSession::disConnect()
     }
 }
 
-RecordSet* ATDBServerSession::getBlocks(dbSQLKeyword kw)
+RecordSet* ATDBClientDBSession::getBlocks(dbSQLKeyword kw)
 {
     if(!mTheSession)
     {
@@ -104,7 +94,7 @@ RecordSet* ATDBServerSession::getBlocks(dbSQLKeyword kw)
     return new RecordSet(select);
 }
 
-RecordSet* ATDBServerSession::getNotesForBlockWithID(int blockID)
+RecordSet* ATDBClientDBSession::getNotesForBlockWithID(int blockID)
 {
     if(!mTheSession)
     {
@@ -122,7 +112,7 @@ RecordSet* ATDBServerSession::getNotesForBlockWithID(int blockID)
     return new RecordSet(s);
 }
 
-bool ATDBServerSession::addNoteForBlockWithID(int blockID, int userID)
+bool ATDBClientDBSession::addNoteForBlockWithID(int blockID, int userID)
 {
     if(!mTheSession)
     {
@@ -149,7 +139,7 @@ bool ATDBServerSession::addNoteForBlockWithID(int blockID, int userID)
 	return true;
 }
 
-bool ATDBServerSession::deleteNoteWithID(int noteID)
+bool ATDBClientDBSession::deleteNoteWithID(int noteID)
 {
     if(!mTheSession)
     {
@@ -167,7 +157,7 @@ bool ATDBServerSession::deleteNoteWithID(int noteID)
 	return true;
 }
 
-bool ATDBServerSession::updateNoteWithID(int noteID, const string& note)
+bool ATDBClientDBSession::updateNoteWithID(int noteID, const string& note)
 {
     if(!mTheSession)
     {
@@ -186,7 +176,7 @@ bool ATDBServerSession::updateNoteWithID(int noteID, const string& note)
 	return true;
 }
 
-bool ATDBServerSession::insertBlock(int userID, const string& lbl, const string& note)
+bool ATDBClientDBSession::insertBlock(int userID, const string& lbl, const string& note)
 {
     if(!mTheSession)
     {
@@ -220,7 +210,7 @@ bool ATDBServerSession::insertBlock(int userID, const string& lbl, const string&
 }
 
 
-bool ATDBServerSession::deleteBlock(int bId)
+bool ATDBClientDBSession::deleteBlock(int bId)
 {
     Session& ses = *mTheSession;
 
@@ -234,7 +224,7 @@ bool ATDBServerSession::deleteBlock(int bId)
 }
 
 
-RecordSet* ATDBServerSession::getUsers(dbSQLKeyword kw)
+RecordSet* ATDBClientDBSession::getUsers(dbSQLKeyword kw)
 {
     if(!mTheSession)
     {

@@ -18,7 +18,7 @@ object iBotDataModule: TiBotDataModule
       'ProductName=DevartSQLite'
       'LibraryName=dbexpsqlite40.dll'
       'VendorLib=sqlite3.dll'
-      'Database=p:\iBot\db\atDB.db'
+      'Database=p:\Arraybot\db\atDB.db'
       'LocaleCode=0000'
       'IsolationLevel=ReadCommitted'
       'ASCIIDataBase=False'
@@ -32,12 +32,10 @@ object iBotDataModule: TiBotDataModule
       'EnableLoadExtension=False'
       'BlobSize=-1')
     AfterConnect = SQLConnection1AfterConnect
-    Connected = True
     Left = 48
     Top = 40
   end
   object mImageStainSessionDS: TSQLDataSet
-    Active = True
     CommandText = 'SELECT * from imageStainSession'
     MaxBlobSize = -1
     Params = <>
@@ -62,7 +60,6 @@ object iBotDataModule: TiBotDataModule
     Top = 128
   end
   object mImageStainSessionCDSet: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'mImageStainProvider'

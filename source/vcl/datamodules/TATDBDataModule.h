@@ -8,6 +8,8 @@
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
 #include <SimpleDS.hpp>
+
+//!The TatDM class encapsulate data exchange with the ATDB database
 //---------------------------------------------------------------------------
 class TatDM : public TDataModule
 {
@@ -70,6 +72,14 @@ __published:	// IDE-managed Components
 	TWideMemoField *mRibbonCDSetnotes;
 	TSQLQuery *ribbonsQ;
 	TIntegerField *mRibbonCDSetbar_code;
+	TSQLDataSet *abImageDS;
+	TDataSetProvider *mImageProvider;
+	TClientDataSet *mImageClientDS;
+	TDataSource *mABImageDataSource;
+	TIntegerField *abImageDSid;
+	TWideStringField *abImageDSfile_name;
+	TIntegerField *mImageClientDSid;
+	TWideStringField *mImageClientDSfile_name;
 	void __fastcall usersClientDataSetuser_nameGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
 	void __fastcall usersClientDataSetBeforeApplyUpdates(TObject *Sender, OleVariant &OwnerData);
@@ -91,11 +101,6 @@ __published:	// IDE-managed Components
 	void __fastcall mRibbonCDSetAfterDelete(TDataSet *DataSet);
 	void __fastcall mRibbonCDSetCalcFields(TDataSet *DataSet);
 	void __fastcall SQLConnection1AfterConnect(TObject *Sender);
-
-
-
-
-
 private:	// User declarations
 public:		// User declarations
 	__fastcall TatDM(TComponent* Owner);

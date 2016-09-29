@@ -472,26 +472,22 @@ void __fastcall TMainForm::LogLevelCBChange(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::Button1Click(TObject *Sender)
+void __fastcall TMainForm::mAddImageFileBtnClick(TObject *Sender)
 {
 	TButton* b = dynamic_cast<TButton*>(Sender);
 
-//    if(b == Button1)
-//    {
-//		mGetReadyForZeroCutSound.play();
-//    }
-//    else if(b == goButton)
-//    {
-//		mSetZeroCutSound.play();
-//    }
-//    else if (b == restoreBtn)
-//    {
-//		mRestoreFromZeroCutSound.play();
-//    }
-//    else if (b == stopBtn)
-//    {
-//        stopSounds();
-//    }
+    if(b == mAddImageFileBtn)
+    {
+		//Browse for file
+        string f = browseForFile(mSnapShotFolder);
+        if(!f.size())
+        {
+            return;
+        }
+
+
+
+    }
 }
 
 void TMainForm::stopSounds()

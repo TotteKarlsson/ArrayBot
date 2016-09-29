@@ -14,7 +14,6 @@ USEFORM("iBotUI\Source\Frames\TSlotFrame.cpp", SlotFrame); /* TFrame: File Type 
 #include "mtkRestartApplicationUtils.h"
 #include "mtkLogger.h"
 #include "ibUtilities.h"
-//#include "TSplashForm.h"
 #include "mtkMoleculixException.h"
 #include "mtkSQLite.h"
 #pragma package(smart_init)

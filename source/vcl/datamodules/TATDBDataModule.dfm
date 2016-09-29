@@ -344,4 +344,45 @@ object atDM: TatDM
     Left = 32
     Top = 224
   end
+  object abImageDS: TSQLDataSet
+    Active = True
+    CommandText = 'select * from abImage'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 32
+    Top = 336
+    object abImageDSid: TIntegerField
+      FieldName = 'id'
+    end
+    object abImageDSfile_name: TWideStringField
+      FieldName = 'file_name'
+      Size = 1024
+    end
+  end
+  object mImageProvider: TDataSetProvider
+    DataSet = abImageDS
+    Left = 120
+    Top = 336
+  end
+  object mImageClientDS: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'mImageProvider'
+    Left = 240
+    Top = 336
+    object mImageClientDSid: TIntegerField
+      FieldName = 'id'
+    end
+    object mImageClientDSfile_name: TWideStringField
+      FieldName = 'file_name'
+      Size = 1024
+    end
+  end
+  object mABImageDataSource: TDataSource
+    DataSet = mImageClientDS
+    Left = 336
+    Top = 336
+  end
 end

@@ -47,8 +47,8 @@
         <ProjectType>CppDynamicLibrary</ProjectType>
         <Multithreaded>true</Multithreaded>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>apt\;sound\;serial\;arduino\;joystick\;camera\;P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>apt\;sound\;serial\;arduino\;joystick\;camera\;P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>database\;apt\;sound\;serial\;arduino\;joystick\;camera\;P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>database\;apt\;sound\;serial\;arduino\;joystick\;camera\;P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -308,6 +308,13 @@ $(PreBuildEvent)]]></PreBuildEvent>
         </CppCompile>
         <CppCompile Include="camera\uc480class.cpp">
             <BuildOrder>53</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="database\abATDBServerSession.cpp">
+            <DependentOn>database\abATDBServerSession.h</DependentOn>
+            <BuildOrder>67</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="database\abDBUtils.cpp">
+            <BuildOrder>66</BuildOrder>
         </CppCompile>
         <CppCompile Include="joystick\abArrayBotJoystick.cpp">
             <DependentOn>joystick\abArrayBotJoystick.h</DependentOn>

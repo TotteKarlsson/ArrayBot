@@ -37,10 +37,10 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;</VCL_Custom_Styles>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
-        <ILINK_LibraryPath>..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\source\vcl\datamodules\;..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <ProjectType>CppVCLApplication</ProjectType>
-        <IncludePath>..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;abVCLCore.lib;DuneComponents.lib;RaizeComponentsTrialVcl.lib</AllPackageLibs>
+        <IncludePath>..\..\source\vcl\datamodules\;..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;$(IncludePath)</IncludePath>
+        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;abVCLCore.lib;DuneComponents.lib;RaizeComponentsTrialVcl.lib;dsnap.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dbxcds.lib;DbxDevartSQLiteDriver170.lib</AllPackageLibs>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <Multithreaded>true</Multithreaded>
         <_TCHARMapping>wchar_t</_TCHARMapping>
@@ -94,7 +94,7 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;abVCLCore.bpi;DuneComponents.bpi;RaizeComponentsTrialVcl.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;abVCLCore.bpi;DuneComponents.bpi;RaizeComponentsTrialVcl.bpi;dsnap.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dbxcds.bpi;DbxDevartSQLiteDriver170.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
@@ -123,7 +123,7 @@
             <DependentOn>UIUtilities.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\..\source\database\abATDBServerSession.cpp">
+        <CppCompile Include="..\..\source\database\abATDBClientDBSession.cpp">
             <BuildOrder>6</BuildOrder>
         </CppCompile>
         <CppCompile Include="..\..\source\database\forms\TATDBServerEntry.cpp">
@@ -132,6 +132,13 @@
         <CppCompile Include="..\..\source\database\forms\TBlockEntryForm.cpp">
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\..\source\vcl\datamodules\TATDBDataModule.cpp">
+            <Form>atDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>..\..\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <FormResources Include="..\..\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="MainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

@@ -1,5 +1,5 @@
-#ifndef abATDBServerSessionH
-#define abATDBServerSessionH
+#ifndef abATDBClientDBSessionH
+#define abATDBClientDBSessionH
 #include "abExporter.h"
 #include "abABObject.h"
 #include "abDBUtils.h"
@@ -9,14 +9,13 @@
 using namespace Poco::Data;
 using Poco::Data::RecordSet;
 
-
 //!The ATDB server session class encapsulate a database session
 //!with the ATDB MySQL database
-class AB_CORE ATDBServerSession : public ABObject
+class AB_CORE ATDBClientDBSession : public ABObject
 {
     public:
-					        	        ATDBServerSession(const string& host="127.0.0.1", const string& user="atdb_client", const string& password="atdb123"){}
-					        	        ~ATDBServerSession(){}
+					        	        ATDBClientDBSession(const string& host="127.0.0.1", const string& user="atdb_client", const string& password="atdb123"){}
+					        	        ~ATDBClientDBSession(){}
 
 										//!Statements
 		RecordSet* 						getBlocks(dbSQLKeyword kw = dbDescending);
@@ -29,7 +28,7 @@ class AB_CORE ATDBServerSession : public ABObject
 
 		RecordSet* 						getUsers(dbSQLKeyword kw = dbAscending);
 
-		bool							isConnected();//{return mTheSession ? true : false;}
+		bool							isConnected();
 		bool							connect();
         bool							disConnect();
 

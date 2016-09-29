@@ -22,6 +22,9 @@
 #include <Vcl.ToolWin.hpp>
 #include "TArrayBotBtn.h"
 #include "sound/abSoundPlayer.h"
+#include <Vcl.DBCtrls.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.Grids.hpp>
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -80,6 +83,18 @@ class TMainForm  : public TRegistryForm
 	TLabel *mCoaxLbl;
 	TLabel *mBackLEDLbl;
 	TLabel *mFrontLEDLbl;
+	TPageControl *PageControl1;
+	TTabSheet *TabSheet1;
+	TTabSheet *TabSheet2;
+	TPageControl *PageControl2;
+	TTabSheet *TabSheet3;
+	TTabSheet *TabSheet4;
+	TDBGrid *DBGrid1;
+	TDBNavigator *DBNavigator1;
+	TDBGrid *DBGrid2;
+	TDBNavigator *DBNavigator2;
+	TMemo *Memo1;
+	TButton *mAddImageFileBtn;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -102,7 +117,7 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mSettingsBtnClick(TObject *Sender);
 	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall mAddImageFileBtnClick(TObject *Sender);
 	void __fastcall IntensityChange(TObject *Sender);
 
     private:

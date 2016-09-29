@@ -235,43 +235,13 @@ object MainForm: TMainForm
       end
     end
   end
-  object mMainPanel: TPanel
-    Left = 0
-    Top = 0
-    Width = 786
-    Height = 560
-    Align = alClient
-    TabOrder = 1
-    OnResize = mMainPanelResize
-    object mCameraBackPanel: TPanel
-      Left = 0
-      Top = 0
-      Width = 320
-      Height = 256
-      BorderStyle = bsSingle
-      Caption = 'mCameraBackPanel'
-      TabOrder = 0
-      object mCameraStreamPanel: TPanel
-        Left = 1
-        Top = 1
-        Width = 314
-        Height = 250
-        Align = alClient
-        AutoSize = True
-        Color = clTeal
-        ParentBackground = False
-        TabOrder = 0
-        OnDblClick = mCameraStreamPanelDblClick
-      end
-    end
-  end
   object mBottomPanel: TPanel
     Left = 0
     Top = 563
     Width = 968
     Height = 159
     Align = alBottom
-    TabOrder = 2
+    TabOrder = 1
     object GroupBox3: TGroupBox
       Left = 105
       Top = 1
@@ -459,6 +429,125 @@ object MainForm: TMainForm
           ThumbLength = 30
           TickStyle = tsNone
           OnChange = IntensityChange
+        end
+      end
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 786
+    Height = 560
+    ActivePage = TabSheet2
+    Align = alClient
+    TabOrder = 2
+    TabPosition = tpBottom
+    object TabSheet1: TTabSheet
+      Caption = 'Live'
+      object mMainPanel: TPanel
+        Left = 0
+        Top = 0
+        Width = 778
+        Height = 528
+        Align = alClient
+        TabOrder = 0
+        OnResize = mMainPanelResize
+        object mCameraBackPanel: TPanel
+          Left = 0
+          Top = 0
+          Width = 320
+          Height = 256
+          BorderStyle = bsSingle
+          Caption = 'mCameraBackPanel'
+          TabOrder = 0
+          object mCameraStreamPanel: TPanel
+            Left = 1
+            Top = 1
+            Width = 314
+            Height = 250
+            Align = alClient
+            AutoSize = True
+            Color = clTeal
+            ParentBackground = False
+            TabOrder = 0
+            OnDblClick = mCameraStreamPanelDblClick
+          end
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'History'
+      ImageIndex = 1
+      object PageControl2: TPageControl
+        Left = 0
+        Top = 0
+        Width = 778
+        Height = 528
+        ActivePage = TabSheet3
+        Align = alClient
+        TabOrder = 0
+        object TabSheet3: TTabSheet
+          Caption = 'Images'
+          object DBGrid1: TDBGrid
+            Left = 9
+            Top = 72
+            Width = 240
+            Height = 167
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -16
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+          end
+          object DBNavigator1: TDBNavigator
+            Left = 9
+            Top = 32
+            Width = 240
+            Height = 25
+            TabOrder = 1
+          end
+          object DBGrid2: TDBGrid
+            Left = 9
+            Top = 289
+            Width = 240
+            Height = 94
+            TabOrder = 2
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -16
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+          end
+          object DBNavigator2: TDBNavigator
+            Left = 9
+            Top = 258
+            Width = 240
+            Height = 25
+            TabOrder = 3
+          end
+          object Memo1: TMemo
+            Left = 268
+            Top = 289
+            Width = 405
+            Height = 94
+            Lines.Strings = (
+              'Memo1')
+            TabOrder = 4
+          end
+          object mAddImageFileBtn: TButton
+            Left = 286
+            Top = 72
+            Width = 131
+            Height = 49
+            Caption = 'Add Image File'
+            TabOrder = 5
+            OnClick = mAddImageFileBtnClick
+          end
+        end
+        object TabSheet4: TTabSheet
+          Caption = 'Movies'
+          ImageIndex = 1
         end
       end
     end

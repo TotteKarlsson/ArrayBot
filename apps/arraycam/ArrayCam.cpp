@@ -14,6 +14,7 @@ using namespace mtk;
 
 USEFORM("TMainForm.cpp", MainForm);
 USEFORM("TSettingsForm.cpp", SettingsForm);
+USEFORM("..\..\source\vcl\datamodules\TATDBDataModule.cpp", atDM); /* TDataModule: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayCam.log";
@@ -33,6 +34,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TSettingsForm), &SettingsForm);
+		Application->CreateForm(__classid(TatDM), &atDM);
 		Application->Run();
 	}
 	catch (Exception &exception)
