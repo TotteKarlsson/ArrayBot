@@ -4,12 +4,13 @@
 #include "abABObject.h"
 #include "abXYZUnit.h"
 #include "abWhiskerUnit.h"
-#include "abArrayBotJoyStick.h"
+#include "joystick/abArrayBotJoyStick.h"
 #include "abPairedMoves.h"
-#include "abJoyStickSettings.h"
+#include "joystick/abJoyStickSettings.h"
 #include "abProcessSequencer.h"
 //---------------------------------------------------------------------------
 
+class ArduinoClient;
 class AB_CORE ArrayBot : public ABObject
 {
     public:
@@ -17,7 +18,6 @@ class AB_CORE ArrayBot : public ABObject
 									                    ~ArrayBot();
 
 		void 						                    initialize();
-		//bool 						                    switchJoyStick();
 
 		bool											enableCoverSlipUnit();
 		bool											disableCoverSlipUnit();
@@ -57,6 +57,8 @@ class AB_CORE ArrayBot : public ABObject
         APTMotor*										getMotorWithSerial(const string& serial);
         ProcessSequencer&								getProcessSequencer();
 
+        void											setArduinoClient(ArduinoClient* c){mArduinoClient = c;}
+        ArduinoClient*									getArduinoClient(){return mArduinoClient;}
 
     private:
         bool						                    mIsShuttingDown;
@@ -64,6 +66,7 @@ class AB_CORE ArrayBot : public ABObject
         IniFile&					                    mIniFile;
         IniFileProperties  			    				mProperties;
 
+        ArduinoClient*									mArduinoClient;
         Property<int>									mJoyStickID;
         ArrayBotJoyStick			                    mJoyStick;
 

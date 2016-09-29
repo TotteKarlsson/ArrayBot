@@ -37,7 +37,8 @@ class AB_CORE ProcessSequence : public ABObject
         virtual bool	 		            read(const string& fName);
         virtual bool			            write(const string& folder = mtk::gEmptyString);
 
-		virtual bool	   		            assignUnit(ABObject* o);
+		virtual bool	   		            assignSubject(ABObject* o);
+
 		virtual bool 			            add(Process* p);
 
         Process*							peekNext();

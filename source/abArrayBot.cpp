@@ -12,6 +12,7 @@ mAppDataFolder(appFolder),
 mIniFile(ini),
 mJoyStickID(-1),
 mJoyStick(mJoyStickID.getReference()),
+mArduinoClient(NULL),
 mJSSettings("JOYSTICK SETTINGS",	mIniFile),
 mCoverSlip("COVERSLIP UNIT", 		mIniFile, appFolder),
 mWhisker(mIniFile, appFolder),
@@ -166,8 +167,7 @@ bool ArrayBot::shutDown()
 void ArrayBot::stopAll()
 {
 	//In case the JoyStick is running amok, disable it (has never happened actually..)
-    //mJoyStick.disable();
-
+    mJoyStick.disable();
 	mProcessSequencer.stop();
     mCoverSlip.stopAll();
     mWhisker.stopAll();

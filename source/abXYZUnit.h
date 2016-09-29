@@ -3,11 +3,11 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include "abUtilities.h"
-#include "abDeviceManager.h"
+#include "apt/abDeviceManager.h"
 #include "mtkProperties.h"
 #include "mtkINIFileProperties.h"
 #include "mtkINIFile.h"
-#include "abPositions.h"
+//#include "abPositions.h"
 //---------------------------------------------------------------------------
 
 class APTMotor;
@@ -39,7 +39,7 @@ class AB_CORE XYZUnit : public ABObject
 
 		void				            shutDown();
 		string					        getName() const;
-        Positions&				        positions(){return mPositions;}
+  //      Positions&				        positions(){return mPositions;}
 
 		virtual bool	  	            initialize();
         virtual bool	  		        stopAll();
@@ -79,6 +79,6 @@ class AB_CORE XYZUnit : public ABObject
         APTMotor*			            mAngleMotor;
 
         ArrayBotJoyStick*               mJoyStick;
-        Positions				        mPositions;
+//        Positions				        mPositions;
 };
 #endif

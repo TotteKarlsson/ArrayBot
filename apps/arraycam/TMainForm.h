@@ -16,16 +16,17 @@
 #include "mtkLogger.h"
 #include "TRegistryForm.h"
 #include "camera/uc480Class.h"
-
-#include "abLightsArduinoClient.h"
+#include "arduino/abLightsArduinoClient.h"
 #include "mtkFloatLabel.h"
 #include <Vcl.Buttons.hpp>
 #include <Vcl.ToolWin.hpp>
 #include "TArrayBotBtn.h"
-#include "abSoundPlayer.h"
+#include "sound/abSoundPlayer.h"
+
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;
+using mtk::Property;
 
 class TSettingsForm;
 //---------------------------------------------------------------------------
@@ -106,21 +107,22 @@ class TMainForm  : public TRegistryForm
 
     private:
         LogFileReader                           mLogFileReader;
+
         void __fastcall                         logMsg();
 
 
         IniFile						            mIniFile;
         IniFileProperties  			            mProperties;
-		mtk::Property<mtk::LogLevel>            mLogLevel;
-        mtk::Property<bool>						mAutoGain;
-        mtk::Property<bool>						mAutoExposure;
-        mtk::Property<bool>						mVerticalMirror;
-        mtk::Property<bool>						mHorizontalMirror;
-        mtk::Property<bool>						mPairLEDs;
-
+		Property<mtk::LogLevel>            		mLogLevel;
+        Property<bool>						    mAutoGain;
+        Property<bool>						    mAutoExposure;
+        Property<bool>						    mVerticalMirror;
+        Property<bool>						    mHorizontalMirror;
+        Property<bool>						    mPairLEDs;
+        Property<string>						mSnapShotFolder;
+        Property<string>						mMoviesFolder;
 
 								                // Camera variables
-
         								        //!The camera class
 		Cuc480   						        mCamera;
         long							        mRenderMode;

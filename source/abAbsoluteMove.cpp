@@ -1,7 +1,7 @@
 #pragma hdrstop
 #include "abAbsoluteMove.h"
 #include "abAPTMotor.h"
-#include "abPosition.h"
+//#include "abPosition.h"
 #include "abTriggerFunction.h"
 //---------------------------------------------------------------------------
 
@@ -71,14 +71,14 @@ bool AbsoluteMove::start()
 	        mTrigger->enable();
         }
 
+        //This will start the processs internal time checking that checks for
+        //process events
+        Process::start();
     	m->setVelocityParameters(mMaxVelocity, mAcceleration);
         return m->moveToPosition(mPosition);
     }
 
-    //This will start the processs internal timer that checks for
-    //process events
-	Process::start();
-    return true;
+    return false;
 }
 
 void AbsoluteMove::addTrigger(Trigger* t)

@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{85F0140E-57A2-4DF0-800D-9B36879F005F}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="AtDBEntry.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\Examples\SQL\mysql\session\sql_session.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\atDB\UI\atDB.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="AtDBEntry">
+        <MSBuild Projects="AtDBEntry.cbproj"/>
+    </Target>
+    <Target Name="AtDBEntry:Clean">
+        <MSBuild Projects="AtDBEntry.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AtDBEntry:Make">
+        <MSBuild Projects="AtDBEntry.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="sql_session">
+        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\session\sql_session.cbproj"/>
+    </Target>
+    <Target Name="sql_session:Clean">
+        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\session\sql_session.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="sql_session:Make">
+        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\session\sql_session.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="sql_insert">
+        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj"/>
+    </Target>
+    <Target Name="sql_insert:Clean">
+        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="sql_insert:Make">
+        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDB">
+        <MSBuild Projects="P:\atDB\UI\atDB.cbproj"/>
+    </Target>
+    <Target Name="atDB:Clean">
+        <MSBuild Projects="P:\atDB\UI\atDB.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDB:Make">
+        <MSBuild Projects="P:\atDB\UI\atDB.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="AtDBEntry;sql_session;sql_insert;atDB"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="AtDBEntry:Clean;sql_session:Clean;sql_insert:Clean;atDB:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="AtDBEntry:Make;sql_session:Make;sql_insert:Make;atDB:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

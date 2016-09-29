@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include "TArrayBotBtn.h"
 #include "mtkLogger.h"
-#include "abDirectSound.h"
+#include "sound/abDirectSound.h"
 #include "abCore.h"
 #include "mtkVCLUtils.h"
 

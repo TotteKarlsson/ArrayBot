@@ -1,3 +1,58 @@
+Release 0.8.4 (Sept 28)
+=======================
+* Added ability to specify output folders for snapshots and movies in ArrayCam
+* Changed Arduino DHT code to use different library code (that actually works)
+* Added isClosingDown boolean to ArrayCam in order to avoid UI updates during shutdown
+* Wrote database code to handle blocks and multiple notes
+* Added new library to use for the DHT22 arduino temperature sensor
+* Adding deletion capability of blocks
+* Got first data entry form working
+* Getting DB application closer to initial testing
+* Restarting DB application creation
+* Added abATDB entry package
+* Added new atdb data entry application
+
+Release 0.8.3 (Sept 19)
+=======================
+* Various organizing refactoring stuff
+* Using lower case on folders
+* Removed a few obsolete units
+* Compiled using new relative folders
+* Added ability to add arduinoserver command to a process sequence
+* Added ArduinoServer command initial code
+* Added message to get puffer arduino status
+* Stability fixes
+* Disabled part of UI during startup to avoid mishaps during init
+* Added logic to disable/enable UI controls based on connection to arduino server
+* Partioned ArrayCam functions into Closing and CameraFunctions cpp files
+* Added ability to pair front and back LED's.
+* Fixed bunch of UI annoyances
+* Changed usage of arduino device messaging in the arduino controller application -> all messaging now goes trough the server.
+* Added more message handling to the server
+* Fixed mistake in Arduino client class
+* Added more command in the Arduino server class
+* Fixed UI bugs in arduino server application
+* Added client connect/disconnect callbacks in order to properly update ArrayCam UI
+* Updated Lights sketch to send messages useful for updating UI's
+* Updated camera app to update its trackbars regarding lights
+* Restored Lights sketch.
+* Moved LightsArduino logic to the Lights Arduino device class
+* Preparing to make the arduino controller into standalone server
+* Cleaning up interfaces
+* Added ribbon length automation control to ArrayBot UI
+* Removed sound control in the arduino controller UI
+* Removed some raw pointers
+* Cleaned up ArrayCam UI a little
+* Changed ArrayBot shortcut buttons to fill the space on their buttonbar
+* Added new Arduino messages DISABLE_PUFFER and START_NEW_RIBBON
+* Renamed arduino_controller to ArduinoController
+* Specialized arduino client logic into new classes, puffer and lights arduino clients respectively
+* Added ability to control puffer arduino simulator over serial port
+* Created class to specifically deal with ribbon length control
+* Created a LeicaUC7 controller
+* Moved specialized functionality from arduino device into pufferarduino class
+* Added ability to set some mouse parameters trough the Leica arduino sketch
+
 Release 0.8.2 (Sept 8)
 =======================
 * Implemented Control of Leica UI trough mouse automation by an arduino

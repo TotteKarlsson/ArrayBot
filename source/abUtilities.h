@@ -16,7 +16,7 @@ using mtk::IniFile;
 struct TLI_DeviceInfo;
 
 //!We are using an enum for process type in order to save/retrieve different processes from XML
-enum ProcessType {ptBaseType = 0, ptMaster, ptParallell, ptAbsoluteMove, ptTimeDelay, ptUnknown};
+enum ProcessType {ptBaseType = 0, ptMaster, ptParallell, ptAbsoluteMove, ptArduinoServerCommand, ptTimeDelay, ptUnknown};
 
 AB_CORE string toString(ProcessType tp);
 AB_CORE ProcessType toProcessType(const string& str);
@@ -71,7 +71,7 @@ bool Property<DeviceTypeID>::write(IniFile* iniFile, const string& section)
 template<> inline
 bool Property<DeviceTypeID>::read(IniFile* iniFile, const string& section)
 {
-    if(&iniFile == NULL)
+    if(iniFile == NULL)
     {
         return false;
     }
@@ -79,7 +79,6 @@ bool Property<DeviceTypeID>::read(IniFile* iniFile, const string& section)
     string val(iniFile->readString(mKey, section, mtk::toString(mDefaultValue)));
 
     DeviceTypeID tempVal = getDeviceTypeID(val);
-
     mWasRead = iniFile->wasItFound();
     setValue( mWasRead ? tempVal : mDefaultValue);
     return mWasRead;

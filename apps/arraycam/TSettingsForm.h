@@ -10,6 +10,7 @@
 #include "TMainForm.h"
 #include "TPropertyCheckBox.h"
 #include <Vcl.ComCtrls.hpp>
+#include "TSTDStringLabeledEdit.h"
 //---------------------------------------------------------------------------
 class TSettingsForm : public TForm
 {
@@ -28,6 +29,10 @@ __published:	// IDE-managed Components
 	TPropertyCheckBox *mAutoGainCB;
 	TGroupBox *GroupBox5;
 	TPropertyCheckBox *mPairLEDsCB;
+	TSTDStringLabeledEdit *mPhotoOutputBaseFolder;
+	TSTDStringLabeledEdit *mMoviesFolderE;
+	TButton *mBrowseForImagesFolderBtn;
+	TButton *mBrowseForMoviesFolderBtn;
 	void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mVerticalMirrorCBClick(TObject *Sender);
@@ -37,6 +42,7 @@ __published:	// IDE-managed Components
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall mPairLEDsCBClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall BrowseForFolder(TObject *Sender);
 
 
 private:	// User declarations

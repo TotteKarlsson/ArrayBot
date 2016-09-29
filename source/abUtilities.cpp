@@ -48,10 +48,11 @@ string toString(ProcessType pt)
 {
 	switch(pt)
     {
-    	case ptAbsoluteMove: 	return "absoluteMove";
-    	case ptParallell: 		return "parallell";
-    	case ptTimeDelay: 		return "timeDelay";
-        default: 				return "unknownProcessType";
+    	case ptAbsoluteMove: 			return "absoluteMove";
+    	case ptArduinoServerCommand: 	return "arduinoServerCommand";
+    	case ptParallell: 		        return "parallell";
+    	case ptTimeDelay: 		        return "timeDelay";
+        default: 				        return "unknownProcessType";
     }
 }
 
@@ -67,6 +68,11 @@ ProcessType toProcessType(const string& str)
 	if(str == "absoluteMove")
     {
     	return ptAbsoluteMove;
+    }
+
+  	if(str == "arduinoServerCommand")
+    {
+    	return ptArduinoServerCommand;
     }
 
 	if(str == "timeDelay")

@@ -4,12 +4,14 @@
 #include "mtkLogger.h"
 #include "abProcessSequence.h"
 #include "abParallellProcess.h"
-#include "abPosition.h"
+//#include "abPosition.h"
 #include "abArrayBot.h"
 #include "abAbsoluteMove.h"
+#include "abMove.h"
 #include "abTimedelay.h"
 #include "abAPTMotor.h"
 #include "abTriggerFunction.h"
+#include "abArduinoServerCommand.h"
 using namespace mtk;
 using namespace tinyxml2;
 
@@ -135,7 +137,6 @@ int ProcessSequenceProject::loadProcesses()
         //Find out what kind of element p is
         Process* aProc = createProcess(p);
 
-
         if(aProc)
         {
             mProcessSequence.add(aProc);
@@ -169,8 +170,8 @@ Process* ProcessSequenceProject::createProcess(tinyxml2::XMLElement* element)
 	ProcessType pt = toProcessType(element->Attribute("type"));
     switch(pt)
     {
-    	case ptParallell: 		return createParallellProcess(element);
-        case ptTimeDelay:       return createTimeDelayProcess(element);
+    	case ptParallell: 				return createParallellProcess(element);
+        case ptTimeDelay:       		return createTimeDelayProcess(element);
     }
 
     return NULL;
@@ -188,8 +189,6 @@ Process* ProcessSequenceProject::createParallellProcess(XMLElement* element)
         //Loop over childs
         while(proc)
         {
-            AbsoluteMove* absMove(NULL);
-
             const char* type = proc->Attribute("type");
             const char* name = proc->Attribute("name");
 
@@ -199,116 +198,21 @@ Process* ProcessSequenceProject::createParallellProcess(XMLElement* element)
 
                 if(compareNoCase(type, "absoluteMove"))
                 {
-                    absMove = new AbsoluteMove(name);
-					absMove->assignProcessSequence(&mProcessSequence);
+                	AbsoluteMove* absMove = createAbsoluteMoveFromXML(name, proc);
+    				absMove->assignProcessSequence(&mProcessSequence);
+
+                    //We need to associate the motor with 'name' with a
+                    //real motor object provided for by ArrayBot
+                    absMove->assignUnit(mProcessSequence.getArrayBot());
+                    p->addProcess(absMove);
                 }
 
-
-                XMLElement* data = proc->FirstChildElement("info");
-                if(data && data->GetText())
+                if(compareNoCase(type, "arduinoServerCommand"))
                 {
-                    absMove->setInfoText(data->GetText());
+                	ArduinoServerCommand* c = createArduinoServerCommandFromXML(name, proc);
+    				c->assignProcessSequence(&mProcessSequence);
+                    p->addProcess(c);
                 }
-
-                data = proc->FirstChildElement("motor_name");
-                if(data && data->GetText())
-                {
-                    absMove->setSubjectName(data->GetText());
-                }
-
-                data = proc->FirstChildElement("final_position");
-                if(data && data->GetText())
-                {
-                    absMove->setPosition(toDouble(data->GetText()));
-                }
-
-                data = proc->FirstChildElement("max_velocity");
-                if(data && data->GetText())
-                {
-                    absMove->setMaxVelocity(toDouble(data->GetText()));
-                }
-
-                data = proc->FirstChildElement("acc");
-                if(data && data->GetText())
-                {
-                    absMove->setAcceleration(toDouble(data->GetText()));
-                }
-
-                data = proc->FirstChildElement("pre_dwell_time");
-                if(data && data->GetText())
-                {
-                    absMove->setPreDwellTime(toDouble(data->GetText()));
-                }
-
-                data = proc->FirstChildElement("post_dwell_time");
-                if(data && data->GetText())
-                {
-                    absMove->setPostDwellTime(toDouble(data->GetText()));
-                }
-
-                //Load the trigger
-                data = proc->FirstChildElement("trigger");
-
-                if(data)
-                {
-                    const char* ttype = data->Attribute("type");
-                    if(ttype && compareNoCase(ttype, "positionalTrigger"))
-                    {
-                    	PositionalTrigger* pt = new PositionalTrigger(NULL);
-						absMove->addTrigger(pt);
-
-                        XMLElement* e = data->FirstChildElement("position");
-                        if(e)
-                        {
-                            pt->setPosition(toDouble(e->GetText()));
-                        }
-
-                        e = data->FirstChildElement("operator");
-                        if(e)
-                        {
-                            pt->setTestOperator(toLogicOperator(e->GetText()));
-                        }
-
-                        //Load trigger function(s)
-                        //Load the trigger
-                        XMLElement* tfData = data->FirstChildElement("trigger_function");
-                        if(tfData)
-                        {
-                            const char* type = tfData->Attribute("type");
-                            if(type && compareNoCase(type, "absoluteMove"))
-                            {
-                                MoveAbsolute* tf = new MoveAbsolute(NULL, 0,0,0);
-
-                                const char* mtrName = tfData->Attribute("motor_name");
-                                tf->setMotorName(mtrName);
-                                pt->assignTriggerFunction(tf);
-
-                                XMLElement* e = tfData->FirstChildElement("final_position");
-                                if(e && e->GetText())
-                                {
-                                    tf->setPosition(toDouble(e->GetText()));
-                                }
-
-                                e = tfData->FirstChildElement("max_velocity");
-                                if(e && e->GetText())
-                                {
-                                    tf->setVelocity(toDouble(e->GetText()));
-                                }
-
-                                e = tfData->FirstChildElement("acceleration");
-                                if(e && e->GetText())
-                                {
-                                    tf->setAcceleration(toDouble(e->GetText()));
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //We need to associate the motor with 'name' with a
-                //real motor object provided for by ArrayBot
-                absMove->assignUnit(mProcessSequence.getArrayBot());
-                p->addProcess(absMove);
             }
 
             proc = proc->NextSiblingElement();
@@ -316,6 +220,124 @@ Process* ProcessSequenceProject::createParallellProcess(XMLElement* element)
     }
 
     return p;
+}
+
+AbsoluteMove* ProcessSequenceProject::createAbsoluteMoveFromXML(const string& name,  XMLElement* proc)
+{
+	AbsoluteMove* absMove = new AbsoluteMove(name);
+    XMLElement* data = proc->FirstChildElement("info");
+    if(data && data->GetText())
+    {
+        absMove->setInfoText(data->GetText());
+    }
+
+    data = proc->FirstChildElement("motor_name");
+    if(data && data->GetText())
+    {
+        absMove->setSubjectName(data->GetText());
+    }
+
+    data = proc->FirstChildElement("final_position");
+    if(data && data->GetText())
+    {
+        absMove->setPosition(toDouble(data->GetText()));
+    }
+
+    data = proc->FirstChildElement("max_velocity");
+    if(data && data->GetText())
+    {
+        absMove->setMaxVelocity(toDouble(data->GetText()));
+    }
+
+    data = proc->FirstChildElement("acc");
+    if(data && data->GetText())
+    {
+        absMove->setAcceleration(toDouble(data->GetText()));
+    }
+
+    data = proc->FirstChildElement("pre_dwell_time");
+    if(data && data->GetText())
+    {
+        absMove->setPreDwellTime(toDouble(data->GetText()));
+    }
+
+    data = proc->FirstChildElement("post_dwell_time");
+    if(data && data->GetText())
+    {
+        absMove->setPostDwellTime(toDouble(data->GetText()));
+    }
+
+    //Load the trigger
+    data = proc->FirstChildElement("trigger");
+
+    if(data)
+    {
+        const char* ttype = data->Attribute("type");
+        if(ttype && compareNoCase(ttype, "positionalTrigger"))
+        {
+            PositionalTrigger* pt = new PositionalTrigger(NULL);
+            absMove->addTrigger(pt);
+
+            XMLElement* e = data->FirstChildElement("position");
+            if(e)
+            {
+                pt->setPosition(toDouble(e->GetText()));
+            }
+
+            e = data->FirstChildElement("operator");
+            if(e)
+            {
+                pt->setTestOperator(toLogicOperator(e->GetText()));
+            }
+
+            //Load trigger function(s)
+            //Load the trigger
+            XMLElement* tfData = data->FirstChildElement("trigger_function");
+            if(tfData)
+            {
+                const char* type = tfData->Attribute("type");
+                if(type && compareNoCase(type, "absoluteMove"))
+                {
+                    MoveAbsolute* tf = new MoveAbsolute(NULL, 0,0,0);
+
+                    const char* mtrName = tfData->Attribute("motor_name");
+                    tf->setMotorName(mtrName);
+                    pt->assignTriggerFunction(tf);
+
+                    XMLElement* e = tfData->FirstChildElement("final_position");
+                    if(e && e->GetText())
+                    {
+                        tf->setPosition(toDouble(e->GetText()));
+                    }
+
+                    e = tfData->FirstChildElement("max_velocity");
+                    if(e && e->GetText())
+                    {
+                        tf->setVelocity(toDouble(e->GetText()));
+                    }
+
+                    e = tfData->FirstChildElement("acceleration");
+                    if(e && e->GetText())
+                    {
+                        tf->setAcceleration(toDouble(e->GetText()));
+                    }
+                }
+            }
+        }
+    }
+    return absMove;
+}
+
+ArduinoServerCommand* ProcessSequenceProject::createArduinoServerCommandFromXML(const string& name,  XMLElement* proc)
+{
+	ArduinoServerCommand* c = new ArduinoServerCommand(name);
+
+    XMLElement* data = proc->FirstChildElement("command");
+    if(data && data->GetText())
+    {
+        c->setCommand(data->GetText());
+    }
+	return c;
 }
 
 Process* ProcessSequenceProject::createTimeDelayProcess(XMLElement* element)

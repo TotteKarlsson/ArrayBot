@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include "TPositionalTriggerFrame.h"
 #include "abMove.h"
-#include "abAPTMotor.h"
+#include "apt/abAPTMotor.h"
 #include "abArrayBot.h"
 #include "mtkVCLUtils.h"
 #include "abTriggerFunction.h"

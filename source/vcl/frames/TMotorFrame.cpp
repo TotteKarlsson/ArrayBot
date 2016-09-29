@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMotorFrame.h"
-#include "abAPTMotor.h"
+#include "apt/abAPTMotor.h"
 #include <bitset>
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"

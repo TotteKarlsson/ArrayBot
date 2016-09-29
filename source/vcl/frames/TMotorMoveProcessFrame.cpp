@@ -3,7 +3,7 @@
 #include "TMotorMoveProcessFrame.h"
 #include "TPositionalTriggerFrame.h"
 #include "abMove.h"
-#include "abAPTMotor.h"
+#include "apt/abAPTMotor.h"
 #include "mtkVCLUtils.h"
 #include "abXYZUnit.h"
 #include "abArrayBot.h"

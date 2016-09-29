@@ -24,6 +24,7 @@ extern string gLogFileLocation;
 extern string gLogFileName;
 extern string gAppDataFolder;
 extern bool   gAppIsStartingUp;
+extern bool   gAppIsClosing;
 
 //---------------------------------------------------------------------------
 __fastcall TMainForm::TMainForm(TComponent* Owner)
@@ -40,7 +41,10 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
         mPairLEDs(false),
 		mGetReadyForZeroCutSound("SHORT_BEEP_2", 10, 500),
 		mSetZeroCutSound("SHORT_BEEP_2", 25, 150),
-		mRestoreFromZeroCutSound("CLOSING_DOWN_1", 15, 350)
+		mRestoreFromZeroCutSound("CLOSING_DOWN_1", 15, 350),
+        mSnapShotFolder(""),
+        mMoviesFolder("")
+
 {
    	mLogFileReader.start(true);
 
@@ -54,6 +58,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	mProperties.add((BaseProperty*)  &mHorizontalMirror.setup(	"HORIZONTAL_MIRROR",    false));
 	mProperties.add((BaseProperty*)  &mHorizontalMirror.setup(	"HORIZONTAL_MIRROR",    false));
 	mProperties.add((BaseProperty*)  &mPairLEDs.setup(			"PAIR_LEDS",    		true));
+    mProperties.add((BaseProperty*)  &mSnapShotFolder.setup(	"SNAP_SHOT_FOLDER",     "C:\\Temp"	));
+	mProperties.add((BaseProperty*)  &mMoviesFolder.setup(		"MOVIES_FOLDER",   		"C:\\Temp"	));
 
     mProperties.read();
 
@@ -92,7 +98,12 @@ void TMainForm::onArduinoClientConnected()
 void TMainForm::onArduinoClientDisconnected()
 {
     Log(lDebug) << "Arduino Client was disconnected..";
-    enableDisableClientControls(false);
+
+	//Don't worry if we are closing down..
+    if(gAppIsClosing != true)
+    {
+    	enableDisableClientControls(false);
+    }
 }
 
 void TMainForm::enableDisableClientControls(bool enable)
@@ -357,7 +368,7 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
             {
                 //Parse the message
                 StringList l(msg,',');
-                if(l.size() == 3)
+                if(l.size() == 4)
                 {
                     MainForm->mTemperatureLbl->SetValue(toDouble(l[1]));
                     MainForm->mHumidityE->SetValue(toDouble(l[2]));
@@ -540,5 +551,6 @@ void __fastcall TMainForm::IntensityChange(TObject *Sender)
         mCoaxLbl->Caption = "Coax (" + IntToStr(pos) + ")";
     }
 }
+
 
 

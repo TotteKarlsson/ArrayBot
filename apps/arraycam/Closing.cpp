@@ -3,8 +3,10 @@
 #include "TMainForm.h"
 //---------------------------------------------------------------------------
 
+extern bool gAppIsClosing;
 void __fastcall TMainForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
+	gAppIsClosing = true;
 	if(mLogFileReader.isRunning() || mCamera.IsInit() || mLightsArduinoClient.isConnected())
     {
         CanClose = false;

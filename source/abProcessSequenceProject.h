@@ -8,7 +8,16 @@
 //---------------------------------------------------------------------------
 AB_CORE extern const string gProcessSequenceProjectFileVersion;
 
+namespace tinyxml2
+{
+	class XMLElement;
+}
+
 class ProcessSequence;
+class AbsoluteMove;
+class ArduinoServerCommand;
+
+
 class AB_CORE ProcessSequenceProject : public mtk::Project
 {
     public:
@@ -27,6 +36,9 @@ class AB_CORE ProcessSequenceProject : public mtk::Project
         Process*				                createProcess(tinyxml2::XMLElement* element);
 		Process*								createParallellProcess(tinyxml2::XMLElement* element);
 		Process*								createTimeDelayProcess(tinyxml2::XMLElement* element);
+
+		AbsoluteMove* 				  			createAbsoluteMoveFromXML(const string& name,  tinyxml2::XMLElement* proc);
+		ArduinoServerCommand* 					createArduinoServerCommandFromXML(const string& name,  tinyxml2::XMLElement* proc);
 };
 
 #endif

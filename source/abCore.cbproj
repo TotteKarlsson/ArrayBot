@@ -47,8 +47,8 @@
         <ProjectType>CppDynamicLibrary</ProjectType>
         <Multithreaded>true</Multithreaded>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>camera\;P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>camera\;P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>apt\;sound\;serial\;arduino\;joystick\;camera\;P:\ArrayBot\source\;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>apt\;sound\;serial\;arduino\;joystick\;camera\;P:\ArrayBot\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -109,223 +109,196 @@ $(PreBuildEvent)]]></PreBuildEvent>
     </PropertyGroup>
     <ItemGroup>
         <CppCompile Include="abABObject.cpp">
-            <BuildOrder>2</BuildOrder>
+            <DependentOn>abABObject.h</DependentOn>
+            <BuildOrder>30</BuildOrder>
         </CppCompile>
         <CppCompile Include="abAbsoluteMove.cpp">
-            <BuildOrder>38</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abAPTDevice.cpp">
-            <BuildOrder>3</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abAPTMotor.cpp">
-            <DependentOn>abAPTMotor.h</DependentOn>
-            <BuildOrder>4</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abArduinoClient.cpp">
-            <DependentOn>abArduinoClient.h</DependentOn>
-            <BuildOrder>51</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abArduinoDevice.cpp">
-            <BuildOrder>46</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abArduinoIPCServerReceiver.cpp">
-            <BuildOrder>45</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abArduinoMessageProcessor.cpp">
-            <BuildOrder>51</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abArduinoServer.cpp">
-            <DependentOn>abArduinoServer.h</DependentOn>
-            <BuildOrder>43</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abArduinoUtils.cpp">
-            <BuildOrder>44</BuildOrder>
+            <DependentOn>abAbsoluteMove.h</DependentOn>
+            <BuildOrder>31</BuildOrder>
         </CppCompile>
         <CppCompile Include="abArrayBot.cpp">
             <DependentOn>abArrayBot.h</DependentOn>
-            <BuildOrder>20</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abArrayBotJoystick.cpp">
-            <DependentOn>abArrayBotJoystick.h</DependentOn>
-            <BuildOrder>16</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abContinousMove.cpp">
-            <BuildOrder>39</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abCore.cpp">
-            <BuildOrder>1</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abDeviceManager.cpp">
-            <BuildOrder>7</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abDirectSound.cpp">
-            <BuildOrder>59</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abExceptions.cpp">
-            <BuildOrder>9</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoystickAxis.cpp">
-            <DependentOn>abJoystickAxis.h</DependentOn>
-            <BuildOrder>15</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickAxisStateEventDispatcher.cpp">
-            <DependentOn>abJoyStickAxisStateEventDispatcher.h</DependentOn>
-            <BuildOrder>31</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickButton.cpp">
-            <DependentOn>abJoyStickButton.h</DependentOn>
-            <BuildOrder>14</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickButtonStateEventDispatcher.cpp">
-            <BuildOrder>33</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickMessageDispatcher.cpp">
-            <DependentOn>abJoyStickMessageDispatcher.h</DependentOn>
             <BuildOrder>32</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abJoyStickPOVStateEventDispatcher.cpp">
+        <CppCompile Include="abContinousMove.cpp">
+            <DependentOn>abContinousMove.h</DependentOn>
+            <BuildOrder>33</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="abCore.cpp">
+            <DependentOn>abCore.h</DependentOn>
             <BuildOrder>34</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abJoyStickSetting.cpp">
-            <DependentOn>abJoyStickSetting.h</DependentOn>
-            <BuildOrder>26</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abJoyStickSettings.cpp">
-            <DependentOn>abJoyStickSettings.h</DependentOn>
-            <BuildOrder>25</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abLeicaUC7Controller.cpp">
-            <DependentOn>abLeicaUC7Controller.h</DependentOn>
-            <BuildOrder>62</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abLightsArduino.cpp">
-            <DependentOn>abLightsArduino.h</DependentOn>
-            <BuildOrder>60</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abLightsArduinoClient.cpp">
-            <DependentOn>abLightsArduinoClient.h</DependentOn>
-            <BuildOrder>65</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abLongTravelStage.cpp">
-            <BuildOrder>14</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abMotorCommand.cpp">
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abMotorMessageContainer.cpp">
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abMotorMessageCreator.cpp">
-            <BuildOrder>14</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abMotorMessageData.cpp">
-            <BuildOrder>54</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abMotorMessageProcessor.cpp">
-            <DependentOn>abMotorMessageProcessor.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
+        <CppCompile Include="abExceptions.cpp">
+            <DependentOn>abExceptions.h</DependentOn>
+            <BuildOrder>35</BuildOrder>
         </CppCompile>
         <CppCompile Include="abMove.cpp">
+            <DependentOn>abMove.h</DependentOn>
             <BuildOrder>36</BuildOrder>
         </CppCompile>
         <CppCompile Include="abPairedMove.cpp">
             <DependentOn>abPairedMove.h</DependentOn>
-            <BuildOrder>24</BuildOrder>
+            <BuildOrder>38</BuildOrder>
         </CppCompile>
         <CppCompile Include="abPairedMoves.cpp">
-            <BuildOrder>36</BuildOrder>
+            <DependentOn>abPairedMoves.h</DependentOn>
+            <BuildOrder>39</BuildOrder>
         </CppCompile>
         <CppCompile Include="abParallellProcess.cpp">
-            <BuildOrder>41</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abPosition.cpp">
-            <DependentOn>abPosition.h</DependentOn>
-            <BuildOrder>19</BuildOrder>
+            <DependentOn>abParallellProcess.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
         </CppCompile>
         <CppCompile Include="abPositionalTrigger.cpp">
-            <BuildOrder>41</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abPositions.cpp">
-            <BuildOrder>38</BuildOrder>
+            <DependentOn>abPositionalTrigger.h</DependentOn>
+            <BuildOrder>14</BuildOrder>
         </CppCompile>
         <CppCompile Include="abProcess.cpp">
             <DependentOn>abProcess.h</DependentOn>
-            <BuildOrder>30</BuildOrder>
+            <BuildOrder>16</BuildOrder>
         </CppCompile>
         <CppCompile Include="abProcessSequence.cpp">
-            <BuildOrder>36</BuildOrder>
+            <DependentOn>abProcessSequence.h</DependentOn>
+            <BuildOrder>17</BuildOrder>
         </CppCompile>
         <CppCompile Include="abProcessSequenceProject.cpp">
-            <BuildOrder>37</BuildOrder>
+            <DependentOn>abProcessSequenceProject.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
         </CppCompile>
         <CppCompile Include="abProcessSequencer.cpp">
             <DependentOn>abProcessSequencer.h</DependentOn>
-            <BuildOrder>21</BuildOrder>
+            <BuildOrder>19</BuildOrder>
         </CppCompile>
         <CppCompile Include="abProcessSequences.cpp">
             <DependentOn>abProcessSequences.h</DependentOn>
-            <BuildOrder>18</BuildOrder>
+            <BuildOrder>20</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abPufferArduino.cpp">
-            <DependentOn>abPufferArduino.h</DependentOn>
-            <BuildOrder>61</BuildOrder>
+        <CppCompile Include="abRelativeMove.cpp">
+            <DependentOn>abRelativeMove.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
         </CppCompile>
-        <CppCompile Include="abPufferArduinoClient.cpp">
-            <DependentOn>abPufferArduinoClient.h</DependentOn>
-            <BuildOrder>64</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abRibbonLengthController.cpp">
-            <DependentOn>abRibbonLengthController.h</DependentOn>
-            <BuildOrder>63</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abRibbonLifter.cpp">
-            <DependentOn>abRibbonLifter.h</DependentOn>
-            <BuildOrder>37</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abSerial.cpp">
-            <BuildOrder>48</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abSerialPort.cpp">
-            <BuildOrder>47</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abSerialWorker.cpp">
-            <BuildOrder>49</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abSoundPlayer.cpp">
-            <DependentOn>abSoundPlayer.h</DependentOn>
-            <BuildOrder>59</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abSounds.cpp">
-            <DependentOn>abSounds.h</DependentOn>
-            <BuildOrder>58</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abTCubeDCServo.cpp">
-            <BuildOrder>23</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="abTCubeStepperMotor.cpp">
-            <BuildOrder>8</BuildOrder>
+        <CppCompile Include="abRibbonController.cpp">
+            <DependentOn>abRibbonController.h</DependentOn>
+            <BuildOrder>22</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTimeDelay.cpp">
-            <BuildOrder>30</BuildOrder>
+            <DependentOn>abTimeDelay.h</DependentOn>
+            <BuildOrder>24</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTrigger.cpp">
-            <BuildOrder>40</BuildOrder>
+            <DependentOn>abTrigger.h</DependentOn>
+            <BuildOrder>25</BuildOrder>
         </CppCompile>
         <CppCompile Include="abTriggerFunction.cpp">
             <DependentOn>abTriggerFunction.h</DependentOn>
-            <BuildOrder>42</BuildOrder>
+            <BuildOrder>26</BuildOrder>
         </CppCompile>
         <CppCompile Include="abUtilities.cpp">
             <DependentOn>abUtilities.h</DependentOn>
-            <BuildOrder>5</BuildOrder>
+            <BuildOrder>27</BuildOrder>
         </CppCompile>
         <CppCompile Include="abWhiskerUnit.cpp">
             <DependentOn>abWhiskerUnit.h</DependentOn>
-            <BuildOrder>58</BuildOrder>
+            <BuildOrder>28</BuildOrder>
         </CppCompile>
         <CppCompile Include="abXYZUnit.cpp">
             <DependentOn>abXYZUnit.h</DependentOn>
-            <BuildOrder>17</BuildOrder>
+            <BuildOrder>29</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abAPTDevice.cpp">
+            <DependentOn>apt\abAPTDevice.h</DependentOn>
+            <BuildOrder>60</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abAPTMotor.cpp">
+            <DependentOn>apt\abAPTMotor.h</DependentOn>
+            <BuildOrder>61</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abDeviceManager.cpp">
+            <DependentOn>apt\abDeviceManager.h</DependentOn>
+            <BuildOrder>62</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abLongTravelStage.cpp">
+            <DependentOn>apt\abLongTravelStage.h</DependentOn>
+            <BuildOrder>63</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abMotorCommand.cpp">
+            <DependentOn>apt\abMotorCommand.h</DependentOn>
+            <BuildOrder>64</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abMotorMessageContainer.cpp">
+            <DependentOn>apt\abMotorMessageContainer.h</DependentOn>
+            <BuildOrder>65</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abMotorMessageCreator.cpp">
+            <DependentOn>apt\abMotorMessageCreator.h</DependentOn>
+            <BuildOrder>66</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abMotorMessageData.cpp">
+            <DependentOn>apt\abMotorMessageData.h</DependentOn>
+            <BuildOrder>67</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abMotorMessageProcessor.cpp">
+            <DependentOn>apt\abMotorMessageProcessor.h</DependentOn>
+            <BuildOrder>68</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abTCubeDCServo.cpp">
+            <DependentOn>apt\abTCubeDCServo.h</DependentOn>
+            <BuildOrder>69</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abTCubeStepperMotor.cpp">
+            <DependentOn>apt\abTCubeStepperMotor.h</DependentOn>
+            <BuildOrder>70</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="apt\abThorlabStructs.cpp">
+            <DependentOn>apt\abThorlabStructs.h</DependentOn>
+            <BuildOrder>59</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abArduinoClient.cpp">
+            <DependentOn>arduino\abArduinoClient.h</DependentOn>
+            <BuildOrder>41</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abArduinoDevice.cpp">
+            <DependentOn>arduino\abArduinoDevice.h</DependentOn>
+            <BuildOrder>42</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abArduinoIPCServerReceiver.cpp">
+            <DependentOn>arduino\abArduinoIPCServerReceiver.h</DependentOn>
+            <BuildOrder>43</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abArduinoMessageProcessor.cpp">
+            <DependentOn>arduino\abArduinoMessageProcessor.h</DependentOn>
+            <BuildOrder>44</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abArduinoServer.cpp">
+            <DependentOn>arduino\abArduinoServer.h</DependentOn>
+            <BuildOrder>45</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abArduinoServerCommand.cpp">
+            <DependentOn>arduino\abArduinoServerCommand.h</DependentOn>
+            <BuildOrder>46</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abArduinoUtils.cpp">
+            <DependentOn>arduino\abArduinoUtils.h</DependentOn>
+            <BuildOrder>47</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abLeicaUC7Controller.cpp">
+            <DependentOn>arduino\abLeicaUC7Controller.h</DependentOn>
+            <BuildOrder>48</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abLightsArduino.cpp">
+            <DependentOn>arduino\abLightsArduino.h</DependentOn>
+            <BuildOrder>49</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abLightsArduinoClient.cpp">
+            <DependentOn>arduino\abLightsArduinoClient.h</DependentOn>
+            <BuildOrder>50</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abPufferArduino.cpp">
+            <DependentOn>arduino\abPufferArduino.h</DependentOn>
+            <BuildOrder>51</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abPufferArduinoClient.cpp">
+            <DependentOn>arduino\abPufferArduinoClient.h</DependentOn>
+            <BuildOrder>40</BuildOrder>
         </CppCompile>
         <CppCompile Include="auto_link.cpp">
             <BuildOrder>56</BuildOrder>
@@ -335,6 +308,66 @@ $(PreBuildEvent)]]></PreBuildEvent>
         </CppCompile>
         <CppCompile Include="camera\uc480class.cpp">
             <BuildOrder>53</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abArrayBotJoystick.cpp">
+            <DependentOn>joystick\abArrayBotJoystick.h</DependentOn>
+            <BuildOrder>58</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoystickAxis.cpp">
+            <DependentOn>joystick\abJoystickAxis.h</DependentOn>
+            <BuildOrder>59</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickAxisStateEventDispatcher.cpp">
+            <DependentOn>joystick\abJoyStickAxisStateEventDispatcher.h</DependentOn>
+            <BuildOrder>60</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickButton.cpp">
+            <DependentOn>joystick\abJoyStickButton.h</DependentOn>
+            <BuildOrder>61</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickButtonStateEventDispatcher.cpp">
+            <DependentOn>joystick\abJoyStickButtonStateEventDispatcher.h</DependentOn>
+            <BuildOrder>62</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickMessageDispatcher.cpp">
+            <DependentOn>joystick\abJoyStickMessageDispatcher.h</DependentOn>
+            <BuildOrder>63</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickPOVStateEventDispatcher.cpp">
+            <DependentOn>joystick\abJoyStickPOVStateEventDispatcher.h</DependentOn>
+            <BuildOrder>64</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickSetting.cpp">
+            <DependentOn>joystick\abJoyStickSetting.h</DependentOn>
+            <BuildOrder>65</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="joystick\abJoyStickSettings.cpp">
+            <DependentOn>joystick\abJoyStickSettings.h</DependentOn>
+            <BuildOrder>66</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="serial\abSerial.cpp">
+            <DependentOn>serial\abSerial.h</DependentOn>
+            <BuildOrder>53</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="serial\abSerialPort.cpp">
+            <DependentOn>serial\abSerialPort.h</DependentOn>
+            <BuildOrder>55</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="serial\abSerialWorker.cpp">
+            <DependentOn>serial\abSerialWorker.h</DependentOn>
+            <BuildOrder>52</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="sound\abDirectSound.cpp">
+            <DependentOn>sound\abDirectSound.h</DependentOn>
+            <BuildOrder>57</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="sound\abSoundPlayer.cpp">
+            <DependentOn>sound\abSoundPlayer.h</DependentOn>
+            <BuildOrder>58</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="sound\abSounds.cpp">
+            <DependentOn>sound\abSounds.h</DependentOn>
+            <BuildOrder>56</BuildOrder>
         </CppCompile>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

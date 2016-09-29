@@ -19,7 +19,8 @@ extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayCam.log";
 extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\array_cam\\0.5.0";
 extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
-
+extern bool         gAppIsStartingUp            = true;
+extern bool         gAppIsClosing	            = false;
 void setupLogging();
 
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
@@ -84,6 +85,11 @@ void setupLogging()
 	#pragma comment(lib, "mtkIPC.lib")
 #endif
 
+#pragma comment(lib, "libmysqlB.lib")
+
+#pragma comment(lib, "poco_mysql_connector-static.lib")
+#pragma comment(lib, "poco_data-static.lib")
+
 #pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "uc480_B.lib")
@@ -91,3 +97,4 @@ void setupLogging()
 
 #pragma comment(lib, "VCLCommon.bpi")
 #pragma comment(lib, "DuneForms.bpi")
+
