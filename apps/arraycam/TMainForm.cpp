@@ -7,7 +7,7 @@
 #include "mtkUtils.h"
 #include "camera/uc480_tools.h"
 #include "TSettingsForm.h"
-
+#include "abDBUtils.h"
 using namespace mtk;
 
 //---------------------------------------------------------------------------
@@ -114,41 +114,6 @@ void TMainForm::enableDisableClientControls(bool enable)
     mFrontBackLEDBtn->Enabled = enable;
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::FormCreate(TObject *Sender)
-{
-	mDisplayHandle 	= this->mCameraStreamPanel->Handle;
-	mCameraStartLiveBtnClick(Sender);
-
-	mCameraStreamPanel->Width = 1280;
-	mCameraStreamPanel->Height = 1024;
-	mCameraStreamPanel->Top = 0;
-	mCameraStreamPanel->Left = 0;
-	mFitToScreenButtonClick(Sender);
-	updateVideoFileLB();
-	updateShotsLB();
-
-    enableDisableClientControls(false);
-
-	//Try to connect to the arduino server..
-	mLightsArduinoClient.connect(50000);
-
-	//Setup sounds
-	mGetReadyForZeroCutSound.create(this->Handle);
-	mSetZeroCutSound.create(this->Handle);
-	mRestoreFromZeroCutSound.create(this->Handle);
-
-    //Setup LogLevel CB
-    string logLevel = mtk::toString(gLogger.getLogLevel());
-
-    //Find item in CB with this loglevel
-    int index = LogLevelCB->Items->IndexOf(vclstr(logLevel));
-
-    if(index > -1)
-    {
-		LogLevelCB->ItemIndex = index;
-    }
-}
 
 
 //---------------------------------------------------------------------------
@@ -484,6 +449,9 @@ void __fastcall TMainForm::mAddImageFileBtnClick(TObject *Sender)
         {
             return;
         }
+
+        //Add this file to DB and open a metadata entry form for the user
+
 
 
 

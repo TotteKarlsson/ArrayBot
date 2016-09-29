@@ -52,10 +52,10 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <ProjectType>CppVCLApplication</ProjectType>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
-        <ILINK_LibraryPath>..\..\source\vcl\datamodules\;iBotUI\Source\;iBotUI\Source\Core\;iBotUI\Source\Frames\;..\..\;P:\atDB\UI\;DataModules\;Core\;Forms\;Frames\;P:\iBot\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\source\vcl\datamodules\;iBotUI\Source\;iBotUI\Source\Core\;iBotUI\Source\Frames\;..\..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <IncludePath>..\..\source\vcl\datamodules\;iBotUI\Source\;iBotUI\Source\Core\;iBotUI\Source\Frames\;..\..\;P:\atDB\UI\;DataModules\;Core\;Forms\;Frames\;P:\iBot\;$(IncludePath)</IncludePath>
+        <IncludePath>..\..\source\vcl\datamodules\;iBotUI\Source\;iBotUI\Source\Core\;iBotUI\Source\Frames\;..\..\;$(IncludePath)</IncludePath>
         <Multithreaded>true</Multithreaded>
         <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;abVCLCore.lib;ArrayBotPackage.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
@@ -244,6 +244,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <ProjectProperties Name="VerifyPackages">False</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\abVCLCore.bpl">ArrayBot VCL Core package</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\ArrayBotPackage.bpl">ArrayBotPackage</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>

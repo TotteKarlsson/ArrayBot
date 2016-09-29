@@ -13,12 +13,9 @@ using namespace mtk;
 using namespace Poco::Data;
 using namespace Poco::Data::Keywords;
 
-ATDBClientDBSession::ATDBClientDBSession(const string& host, const string& user, const string& password)
+ATDBClientDBSession::ATDBClientDBSession(const string& dbFile)
 :
-mDataBaseName("atdb"),
-mHost(host),
-mDataBaseUser(user),
-mDataBasePassword(password),
+mDBFileName(dbFile),
 mTheSession(NULL)
 {}
 
@@ -39,23 +36,12 @@ bool ATDBClientDBSession::connect()
 
     	//Create connection string
 		//string str = "host=127.0.0.1;user=atdb_client;password=atdb123;db=atdb";
-        stringstream c;
-        c <<"host="<<mHost<<";"<<"user="<<mDataBaseUser<<";"<<"password="<<mDataBasePassword<<";"<<"db="<<mDataBaseName;
-		mTheSession = new Poco::Data::Session(Poco::Data::SessionFactory::instance().create(Poco::Data::SQLite::Connector::KEY, c.str() ));
 
-        Log(lInfo) << "Connected to "<<mHost;
+		mTheSession = new Poco::Data::Session(Poco::Data::SessionFactory::instance().create(Poco::Data::SQLite::Connector::KEY, mDBFileName ));
+
+        Log(lInfo) << "Opened SQLite Database: "<<mDBFileName;
         return true;
     }
-//  	catch (const Poco::Data::SQLite::ConnectionException& e)
-//    {
-//        Log(lError) << e.message() <<endl;
-//        return false;
-//    }
-//    catch(const Poco::Data::MySQL::StatementException& e)
-//    {
-//        Log(lError) << e.message() << endl;
-//        return false;
-//    }
     catch(const Poco::Data::SQLite::SQLiteException& e)
     {
         Log(lError) << e.message() << endl;

@@ -126,6 +126,10 @@
         <CppCompile Include="..\..\source\database\abATDBClientDBSession.cpp">
             <BuildOrder>6</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\..\source\database\abATDBServerSession.cpp">
+            <DependentOn>..\..\source\database\abATDBServerSession.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\..\source\database\forms\TATDBServerEntry.cpp">
             <BuildOrder>8</BuildOrder>
         </CppCompile>

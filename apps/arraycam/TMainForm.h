@@ -25,6 +25,7 @@
 #include <Vcl.DBCtrls.hpp>
 #include <Vcl.DBGrids.hpp>
 #include <Vcl.Grids.hpp>
+#include "abATDBClientDBSession.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -125,7 +126,7 @@ class TMainForm  : public TRegistryForm
 
         void __fastcall                         logMsg();
 
-
+		ATDBClientDBSession						mClientDBSession;
         IniFile						            mIniFile;
         IniFileProperties  			            mProperties;
 		Property<mtk::LogLevel>            		mLogLevel;

@@ -14,7 +14,7 @@ using Poco::Data::RecordSet;
 class AB_CORE ATDBClientDBSession : public ABObject
 {
     public:
-					        	        ATDBClientDBSession(const string& host="127.0.0.1", const string& user="atdb_client", const string& password="atdb123"){}
+					        	        ATDBClientDBSession(const string& dbFile = "atDB.db"){}
 					        	        ~ATDBClientDBSession(){}
 
 										//!Statements
@@ -33,10 +33,7 @@ class AB_CORE ATDBClientDBSession : public ABObject
         bool							disConnect();
 
     protected:
-        string					        mDataBaseName;
-        string					        mHost;
-        string 					        mDataBaseUser;
-        string					        mDataBasePassword;
+        string					        mDBFileName;
 		Session*	        			mTheSession;
 };
 #endif

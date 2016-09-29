@@ -6,6 +6,7 @@
 #include "forms/TBlockEntryForm.h"
 #include "Poco/Data/RecordSet.h"
 #include <Poco/Data/MySQL/MySQLException.h>
+#include "abDBUtils.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TArrayBotBtn"
@@ -21,7 +22,7 @@ extern string 			gApplicationName;
 extern bool             gAppIsStartingUp;
 using namespace mtk;
 
-void handlePocoDataMySQLException();
+
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
@@ -48,6 +49,34 @@ void __fastcall TMain::FormShow(TObject *Sender)
 	mLogFileReader.start();
 	mConnectDBBtnClick(Sender);
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::mConnectDBBtnClick(TObject *Sender)
+{
+	try
+    {
+        if(!mServerSession.isConnected())
+        {
+            mServerSession.connect();
+        }
+
+        if(mServerSession.isConnected())
+        {
+            populateUsers();
+            mUserIDLbl->Caption = getCurrentUserID();
+            syncGrids();
+        }
+        else
+        {
+            Log(lError) << "Failed to connect to database server...";
+        }
+    }
+    catch(...)
+    {
+    	handleMySQLException();
+    }
+}
+
 
 void TMain::syncGrids()
 {
@@ -103,33 +132,6 @@ void TMain::syncGrids()
     }
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::mConnectDBBtnClick(TObject *Sender)
-{
-	try
-    {
-        if(!mServerSession.isConnected())
-        {
-            mServerSession.connect();
-        }
-
-        if(mServerSession.isConnected())
-        {
-            populateUsers();
-            mUserIDLbl->Caption = getCurrentUserID();
-            syncGrids();
-        }
-        else
-        {
-            Log(lError) << "Failed to connect to database server...";
-        }
-    }
-    catch(...)
-    {
-    	handlePocoDataMySQLException();
-    }
-}
-
 int TMain::getCurrentUserID()
 {
 	int i = mUserCB->ItemIndex;
@@ -172,7 +174,7 @@ void TMain::populateUsers()
     }
     catch(...)
     {
-    	handlePocoDataMySQLException();
+    	handleMySQLException();
     }
 }
 
@@ -200,7 +202,7 @@ void __fastcall TMain::mRegisterBlockBtnClick(TObject *Sender)
     }
     catch(...)
     {
-    	handlePocoDataMySQLException();
+    	handleMySQLException();
     }
     delete f;
 }
@@ -248,7 +250,7 @@ void __fastcall TMain::mBlocksTClick(TObject *Sender)
     }
     catch(...)
     {
-    	handlePocoDataMySQLException();
+    	handleMySQLException();
     }
 }
 
@@ -315,7 +317,7 @@ void __fastcall TMain::mDeleteRowBClick(TObject *Sender)
     }
     catch(...)
     {
-    	handlePocoDataMySQLException();
+    	handleMySQLException();
     }
 
    	syncGrids();
@@ -380,7 +382,7 @@ void __fastcall TMain::mAddNoteBtnClick(TObject *Sender)
         }
         catch(...)
         {
-            handlePocoDataMySQLException();
+            handleMySQLException();
         }
     }
 }
@@ -408,35 +410,4 @@ void __fastcall TMain::mUserCBCloseUp(TObject *Sender)
 	mUserIDLbl->Caption = getCurrentUserID();
 }
 
-void handlePocoDataMySQLException()
-{
-	try
-    {
-    	throw;
-    }
-	catch (const Poco::Data::ConnectionFailedException& e)
-    {
-        Log(lError) << e.message() <<endl;
-    }
-   	catch (const Poco::Data::MySQL::ConnectionException& e)
-    {
-        Log(lError) << e.message() <<endl;
-    }
-    catch(const Poco::Data::MySQL::StatementException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
-    catch(const Poco::Data::MySQL::MySQLException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
-    catch(const Poco::NullPointerException& e)
-    {
-        Log(lError) << e.message() << endl;
-    }
-    catch(...)
-    {
-    	Log(lError) << "Unhandled PocoDataMySQL exception...";
-    }
 
-}

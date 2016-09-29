@@ -87,9 +87,11 @@ void setupLogging()
 	#pragma comment(lib, "mtkIPC.lib")
 #endif
 
+#pragma comment(lib, "SQLite-static.lib")
 #pragma comment(lib, "libmysqlB.lib")
 
 #pragma comment(lib, "poco_mysql_connector-static.lib")
+#pragma comment(lib, "poco_sqlite_connector-static.lib")
 #pragma comment(lib, "poco_data-static.lib")
 
 #pragma comment(lib, "abCore.lib")

@@ -309,10 +309,6 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="camera\uc480class.cpp">
             <BuildOrder>53</BuildOrder>
         </CppCompile>
-        <CppCompile Include="database\abATDBServerSession.cpp">
-            <DependentOn>database\abATDBServerSession.h</DependentOn>
-            <BuildOrder>67</BuildOrder>
-        </CppCompile>
         <CppCompile Include="database\abDBUtils.cpp">
             <BuildOrder>66</BuildOrder>
         </CppCompile>

@@ -563,8 +563,8 @@ object MainForm: TMainForm
     Enabled = False
     Interval = 1
     OnTimer = mCaptureVideoTimerTimer
-    Left = 208
-    Top = 680
+    Left = 224
+    Top = 640
   end
   object mMediaPopup: TPopupMenu
     Left = 72
