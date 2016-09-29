@@ -328,6 +328,10 @@ object MainForm: TMainForm
       object TabSheet2: TTabSheet
         Caption = 'Data Tables'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object PageControl2: TPageControl
           Left = 0
           Top = 0
@@ -338,6 +342,10 @@ object MainForm: TMainForm
           TabOrder = 0
           object TabSheet3: TTabSheet
             Caption = 'Blocks && Ribbons'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object ScrollBox1: TScrollBox
               Left = 0
               Top = 0

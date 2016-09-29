@@ -7,7 +7,7 @@
 #include "Poco/DateTimeFormatter.h"
 #include "mtkLogger.h"
 #include "mtkIniSection.h"
-#include "amlUtilities.h"
+#include "Core/amlUtilities.h"
 #include "Poco/Timezone.h"
 
 extern bool             gAppIsStartingUp;
@@ -59,7 +59,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 		msgs.append("INFO");
 
 		//Only add lines to logwindow with lInfo and "higher"
-		for(int i = 0; i < logs.size(); i++)
+		for(uint i = 0; i < logs.size(); i++)
 		{
 			if(contains(msgs, logs[i]))
 			{

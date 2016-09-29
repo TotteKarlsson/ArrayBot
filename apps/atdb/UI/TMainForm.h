@@ -9,8 +9,8 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Grids.hpp>
 //---------------------------------------------------------------------------
-#include "amlApplicationMessages.h"
-#include "amlDataStructures.h"
+#include "Core/amlApplicationMessages.h"
+#include "Core/amlDataStructures.h"
 #include "mtkIniFileC.h"
 #include "mtkIniFileProperties.h"
 #include "mtkLogFileReader.h"

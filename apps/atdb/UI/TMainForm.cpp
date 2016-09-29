@@ -242,13 +242,13 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
 
     	case TNavigateBtn::nbInsert:
 	        atDM->mRibbonCDSet->FieldByName("block_id")->Value = atDM->blocksCDS->FieldByName("id")->Value;
-			mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbPost);
+			mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbPost);
         break;
         case TNavigateBtn::nbPost:
-	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
-	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
-	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbLast);
-	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
+	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
+	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
+	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbLast);
+	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
         break;
         case TNavigateBtn::nbRefresh:
         	Log(lInfo) << "Refreshed Ribbons Dataset";
@@ -288,7 +288,7 @@ void __fastcall TMainForm::RegisterNewBlock(TObject *Sender)
     atDM->blocksCDS->FieldValues["created_by"] = userID;
 	atDM->blocksCDS->Post();
     atDM->blocksCDS->Refresh();
-    mBlocksNavigator->BtnClick(Data::Bind::Controls::nbRefresh);
+    mBlocksNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
 
 }
 

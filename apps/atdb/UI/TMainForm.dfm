@@ -256,16 +256,19 @@ object MainForm: TMainForm
               item
                 Expanded = False
                 FieldName = 'block_id'
+                Width = 64
                 Visible = True
               end
               item
                 Expanded = False
                 FieldName = 'created'
+                Width = 64
                 Visible = True
               end
               item
                 Expanded = False
                 FieldName = 'cutting_order'
+                Width = 64
                 Visible = True
               end
               item
@@ -298,6 +301,10 @@ object MainForm: TMainForm
       object TabSheet1: TTabSheet
         Caption = 'Blocks'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object DBGrid2: TDBGrid
           Left = 0
           Top = 89
@@ -337,6 +344,10 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Users'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object DBGrid3: TDBGrid
           Left = 21
           Top = 96

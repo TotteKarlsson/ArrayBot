@@ -44,7 +44,7 @@
 #include <Data.Bind.Grid.hpp>
 #include <Vcl.Bind.DBEngExt.hpp>
 #include <Vcl.Bind.Navigator.hpp>
-#include "TatDM.h"
+#include "TATDBDataModule.h"
 #include "iBotDataModule.h"
 #include "TSlotFrame.h"
 
