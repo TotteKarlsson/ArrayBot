@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{ED82AEF0-570D-46E3-A5CA-2D0CF512D3CC}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dslib\IPC\mtkIPC.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="clientSocketApp.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mtkIPC">
+        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj"/>
+    </Target>
+    <Target Name="mtkIPC:Clean">
+        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkIPC:Make">
+        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="clientSocketApp">
+        <MSBuild Projects="clientSocketApp.cbproj"/>
+    </Target>
+    <Target Name="clientSocketApp:Clean">
+        <MSBuild Projects="clientSocketApp.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="clientSocketApp:Make">
+        <MSBuild Projects="clientSocketApp.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mtkIPC;clientSocketApp"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mtkIPC:Clean;clientSocketApp:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mtkIPC:Make;clientSocketApp:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
