@@ -8,7 +8,9 @@
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
 #include <SimpleDS.hpp>
+#include <string>
 
+using std::string;
 //!The TatDM class encapsulate data exchange with the ATDB database
 //---------------------------------------------------------------------------
 class TatDM : public TDataModule
@@ -101,11 +103,15 @@ __published:	// IDE-managed Components
 	void __fastcall mRibbonCDSetAfterDelete(TDataSet *DataSet);
 	void __fastcall mRibbonCDSetCalcFields(TDataSet *DataSet);
 	void __fastcall SQLConnection1AfterConnect(TObject *Sender);
+	void __fastcall abImageDSBeforeScroll(TDataSet *DataSet);
 private:	// User declarations
 public:		// User declarations
-	__fastcall TatDM(TComponent* Owner);
+				__fastcall TatDM(TComponent* Owner);
+
+		bool _fastcall Connect(const string& DatabaseFile);
+
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TatDM *atDM;
-//---------------------------------------------------------------------------
+
 #endif

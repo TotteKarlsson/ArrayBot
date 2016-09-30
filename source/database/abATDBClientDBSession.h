@@ -14,11 +14,14 @@ using Poco::Data::RecordSet;
 class AB_CORE ATDBClientDBSession : public ABObject
 {
     public:
-					        	        ATDBClientDBSession(const string& dbFile = "atDB.db"){}
+					        	        ATDBClientDBSession(const string& dbFile){}
 					        	        ~ATDBClientDBSession(){}
 
 										//!Statements
+		bool							insertImageFile(const string& fName, const string& note="");
+		bool							insertImageNote(int imageID, const string& note="", int userID = -1);
 		RecordSet* 						getBlocks(dbSQLKeyword kw = dbDescending);
+
         bool							insertBlock(int userID, const string& lbl, const string& note);
         bool							deleteBlock(int bId);
 		RecordSet*        				getNotesForBlockWithID(int blockID);
@@ -29,7 +32,7 @@ class AB_CORE ATDBClientDBSession : public ABObject
 		RecordSet* 						getUsers(dbSQLKeyword kw = dbAscending);
 
 		bool							isConnected();
-		bool							connect();
+		bool							connect(const string& dbName = "");
         bool							disConnect();
 
     protected:

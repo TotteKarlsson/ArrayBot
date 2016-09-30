@@ -8,6 +8,8 @@
 #include "camera/uc480_tools.h"
 #include "TSettingsForm.h"
 #include "abDBUtils.h"
+#include "TATDBDataModule.h"
+#include "TATDBImagesAndMoviesDataModule.h"
 using namespace mtk;
 
 //---------------------------------------------------------------------------
@@ -43,8 +45,9 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 		mSetZeroCutSound("SHORT_BEEP_2", 25, 150),
 		mRestoreFromZeroCutSound("CLOSING_DOWN_1", 15, 350),
         mSnapShotFolder(""),
-        mMoviesFolder("")
-
+        mMoviesFolder(""),
+        mLocalDBFile(""),
+        mClientDBSession("")
 {
    	mLogFileReader.start(true);
 
@@ -60,13 +63,14 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	mProperties.add((BaseProperty*)  &mPairLEDs.setup(			"PAIR_LEDS",    		true));
     mProperties.add((BaseProperty*)  &mSnapShotFolder.setup(	"SNAP_SHOT_FOLDER",     "C:\\Temp"	));
 	mProperties.add((BaseProperty*)  &mMoviesFolder.setup(		"MOVIES_FOLDER",   		"C:\\Temp"	));
+	mProperties.add((BaseProperty*)  &mLocalDBFile.setup(		"LOCAL_DB",   			joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "atdb.db")	));
 
     mProperties.read();
 
+    mClientDBSession.connect(mLocalDBFile);
 	//Camera rendering mode
     mRenderMode = IS_RENDER_FIT_TO_WINDOW;
 	mLightsArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
-
     mLightsArduinoClient.onConnected 		= onArduinoClientConnected;
 	mLightsArduinoClient.onDisconnected 	= onArduinoClientDisconnected;
     gLogger.setLogLevel(mLogLevel);
@@ -144,7 +148,6 @@ void __fastcall TMainForm::mToggleLogPanelClick(TObject *Sender)
 	mFitToScreenButtonClick(Sender);
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::ClearLogMemo(TObject *Sender)
 {
@@ -192,9 +195,7 @@ void  TMainForm::updateShotsLB()
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mMoviesLBDblClick(TObject *Sender)
 {
-
 	TListBox* lb = dynamic_cast<TListBox*>(Sender);
-
     if(lb == mMoviesLB)
     {
         //Check if we have a valid file
@@ -316,8 +317,8 @@ void __fastcall TMainForm::mSettingsBtnClick(TObject *Sender)
 {
 	//Open settings form
 	TSettingsForm* sf = new TSettingsForm(*this);
-    sf->ShowModal();
-    delete sf;
+    sf->Show();
+//    delete sf;
 }
 
 void TMainForm::onArduinoMessageReceived(const string& msg)
@@ -340,12 +341,6 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
                 }
             }
 
-//            if(startsWith("GET_READY_FOR_ZERO_CUT_1", msg))
-//            {
-//            	Log(lInfo) <<"Ready for zero cut";
-//				MainForm->mGetReadyForZeroCutSound.play();
-//            }
-
             else if(startsWith("GET_READY_FOR_ZERO_CUT_2", msg))
             {
             	Log(lInfo) <<"Steady for zero cut";
@@ -366,7 +361,6 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
                 MainForm->stopSounds();
 				//MainForm->mRestoreFromZeroCutSound.play();
             }
-
             else if(startsWith("COAX_DRIVE", msg) && isMouseBtnDown == false )
             {
                 StringList l(msg,'=');
@@ -451,10 +445,24 @@ void __fastcall TMainForm::mAddImageFileBtnClick(TObject *Sender)
         }
 
         //Add this file to DB and open a metadata entry form for the user
+        try
+        {
+            mClientDBSession.insertImageFile(getFileNameNoPath(f), "Note..");
+            DBNavigator1->BtnClick(nbRefresh);
+            DBNavigator1->BtnClick(nbRefresh);
 
-
-
-
+//			ImagesAndMoviesDM->images->Active = false;
+//			ImagesAndMoviesDM->images->Close();
+//
+//			ImagesAndMoviesDM->images->ExecSQL();
+//
+//			ImagesAndMoviesDM->images->Open();
+//    		ImagesAndMoviesDM->images->Active = true;
+        }
+        catch(...)
+        {
+            handleSQLiteException();
+        }
     }
 }
 
@@ -516,5 +524,108 @@ void __fastcall TMainForm::IntensityChange(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::FormShow(TObject *Sender)
+{
+	string dBase(mLocalDBFile);
+	if (atDM->Connect(dBase))
+    {
+    	Log(lInfo) << "Connected to database: "<<dBase;
+       // Connection successfull
+    }
+    else
+    {
+    	Log(lInfo) << "Failed to connect to database: "<<dBase;
+    }
+    gAppIsStartingUp = false;
+}
+
+void __fastcall TMainForm::DBMemo1Change(TObject *Sender)
+{
+	//Enable update button
+    mUpdateNoteBtn->Enabled = true;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
+{
+	//Apply and post updates to database
+	ImagesAndMoviesDM->notesCDS->ApplyUpdates(-1);
+    mUpdateNoteBtn->Enabled = false;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::DBNavigator2Click(TObject *Sender, TNavigateBtn Button)
+
+{
+	//
+}
+
+
+void __fastcall TMainForm::DBNavigator2BeforeAction(TObject *Sender, TNavigateBtn Button)
+
+{
+	if(Button == nbInsert)
+    {
+
+
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::Button1Click(TObject *Sender)
+{
+	int imageID = ImagesAndMoviesDM->imagesCDS->Fields->FieldByName("id")->Value;
+    Log(lInfo) <<"Current ID: "<<imageID;
+	mClientDBSession.insertImageNote(imageID, "New note..");
+
+	ImagesAndMoviesDM->imageNoteCDS->Active = false;
+	ImagesAndMoviesDM->imageNoteCDS->Active = true;
+    ImagesAndMoviesDM->imageNoteCDS->Refresh();
+}
+
+void __fastcall TMainForm::DBMemo1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	mUpdateNoteBtn->Enabled = true;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mImagesGridMouseDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y)
+{
+	ImagesAndMoviesDM->imagesCDS->AfterRefresh(NULL);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mImagesGridCellClick(TColumn *Column)
+{
+	//Retrieve file name and show the image
+//    mImagesGrid->
+	String f =	ImagesAndMoviesDM->imagesCDS->FieldByName("file_name")->AsString;
+    string fName = joinPath(mSnapShotFolder, stdstr(f));
+
+    if(fileExists(fName))
+    {
+		Image1->Picture->LoadFromFile(fName.c_str());
+    }
+    else
+    {
+    	Log(lError) << "The file: "<<fName<<" could not be found";
+    }
+}
+
+
+void __fastcall TMainForm::mImagesGridDblClick(TObject *Sender)
+{
+//    //Check if we have a valid file
+//    string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+//    string fldr =  mSnapShotFolder;
+//
+//    fName = joinPath(fldr, fName);
+//    if(fileExists(fName))
+//    {
+//        ShellExecuteA(NULL, NULL, stdstr(fName).c_str(), 0, 0, SW_SHOWNA);
+//    }
+}
 
 

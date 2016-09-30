@@ -98,6 +98,19 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 	BottomPanel->Height     = mBottomPanelHeight + 1;
 	SB->Top = MainForm->Top + MainForm->Height + 10;
 	SB->SizeGrip = true;
+
+
+	mLocalDBFile = 	joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "atdb.db") ;
+	string dBase(mLocalDBFile);
+	if (atDM->Connect(dBase))
+    {
+    	Log(lInfo) << "Connected to database: "<<dBase;
+       // Connection successfull
+    }
+    else
+    {
+    	Log(lInfo) << "Failed to connect to database: "<<dBase;
+    }
 }
 
 void TMainForm::setupIniFile()

@@ -7,6 +7,9 @@
 #include "Poco/Data/SessionFactory.h"
 #include "Poco/Data/Session.h"
 #include "Poco/Data/RecordSet.h"
+#include "mtkFileUtils.h"
+
+
 //---------------------------------------------------------------------------
 using namespace mtk;
 
@@ -27,10 +30,19 @@ bool ATDBClientDBSession::isConnected()
 	return mTheSession ? true : false;
 }
 
-bool ATDBClientDBSession::connect()
+bool ATDBClientDBSession::connect(const string& dbName)
 {
 	try
     {
+    	if(dbName.size())
+        {
+	        if(!fileExists(dbName))
+            {
+            	throw("That file do not exist");
+            }
+            mDBFileName = dbName;
+        }
+
 		//Register DB connector
 	    SQLite::Connector::registerConnector();
 
@@ -161,6 +173,71 @@ bool ATDBClientDBSession::updateNoteWithID(int noteID, const string& note)
     s << "UPDATE note SET note = ? WHERE id = ?", use(t), use(nID), now;
 	return true;
 }
+
+bool ATDBClientDBSession::insertImageFile(const string& fName, const string& note)
+{
+    if(!mTheSession)
+    {
+        Log(lError) << "No Session...";
+        return NULL;
+    }
+
+    Session& ses = *mTheSession;
+
+    //We need local variables for the statements..
+
+    string f(fName), n(note);
+
+	Statement s(ses);
+    s << "INSERT INTO abImage (file_name) VALUES(?)", use(f), now;
+    s.reset(ses);
+
+    int image_id;
+    s << "SELECT MAX(id) FROM abImage", into(image_id), now;
+    s.reset(ses);
+
+
+	return insertImageNote(image_id, n, -1);
+//    int userID(-1);
+//    s << "INSERT INTO note (created_by, note) VALUES(?, ?)", use(userID), use(n), now;
+//    s.reset(ses);
+//
+//    int noteID;
+//    s << "SELECT MAX(id) FROM note", into(noteID), now;
+//    s.reset(ses);
+//
+//    s << "INSERT INTO abImage_note (image_id, note_id) VALUES(?, ?)", use(image_id), use(noteID), now;
+//	return true;
+}
+
+bool ATDBClientDBSession::insertImageNote(int imageID, const string& note, int userID)
+{
+    if(!mTheSession)
+    {
+        Log(lError) << "No Session...";
+        return NULL;
+    }
+
+    Session& ses = *mTheSession;
+	Statement s(ses);
+
+    //We need local variables for the statements..
+	int id(imageID);
+
+    string n(note);
+    int user_id(userID);
+    s << "INSERT INTO note (created_by, note) VALUES(?, ?)", use(user_id), use(n), now;
+    s.reset(ses);
+
+    int noteID;
+    s << "SELECT MAX(id) FROM note", into(noteID), now;
+    s.reset(ses);
+
+    s << "INSERT INTO abImage_note (image_id, note_id) VALUES(?, ?)", use(id), use(noteID), now;
+	return true;
+
+}
+
 
 bool ATDBClientDBSession::insertBlock(int userID, const string& lbl, const string& note)
 {

@@ -256,19 +256,16 @@ object MainForm: TMainForm
               item
                 Expanded = False
                 FieldName = 'block_id'
-                Width = 64
                 Visible = True
               end
               item
                 Expanded = False
                 FieldName = 'created'
-                Width = 64
                 Visible = True
               end
               item
                 Expanded = False
                 FieldName = 'cutting_order'
-                Width = 64
                 Visible = True
               end
               item

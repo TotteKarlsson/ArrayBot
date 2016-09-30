@@ -21,6 +21,33 @@ __fastcall TatDM::TatDM(TComponent* Owner)
 	: TDataModule(Owner)
 {}
 
+bool __fastcall TatDM::Connect(const string& DatabaseFile)
+{
+	try
+    {
+       SQLConnection1->Connected = false;
+       SQLConnection1->Params->Values[_D("Database")]= vclstr(DatabaseFile);
+       SQLConnection1->Connected= true;
+    }
+    catch (const Exception &E)
+    {
+       Application->MessageBox(E.Message.c_str(), _D("Error connecting to database"),  MB_ICONSTOP | MB_OK);
+    }
+
+    return SQLConnection1->Connected;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TatDM::SQLConnection1AfterConnect(TObject *Sender)
+{
+	Log(lInfo) << "After Connect";
+    abImageDS->Active = true;
+	mImageClientDS->Active = true;
+	usersDS->Active = true;
+    blocksDS->Active = true;
+    noteDS->Active = true;
+}
+
 void __fastcall TatDM::usersClientDataSetuser_nameGetText(TField *Sender,
           UnicodeString &Text, bool DisplayText)
 {
@@ -219,11 +246,40 @@ void __fastcall TatDM::mRibbonCDSetCalcFields(TDataSet *DataSet)
 		}
 	}
 }
-//---------------------------------------------------------------------------
 
-void __fastcall TatDM::SQLConnection1AfterConnect(TObject *Sender)
+
+void __fastcall TatDM::abImageDSBeforeScroll(TDataSet *DataSet)
 {
-	Log(lInfo) << "After Connect";
+	if(!SQLConnection1->Connected)
+    {
+    	return;
+    }
+
+	int imageID = mImageClientDS->FieldByName("id")->AsInteger;
+	blockNotesQ->Params->ParamByName("blockID")->AsInteger = imageID;
+    blockNotesQ->Open();
+
+    //Get notes
+	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
+	Log(lInfo) << "Note is: "<<note;
+	blockNotesQ->Close();
+
+	if(gAppIsStartingUp == false && SQLConnection1->Connected)
+	{
+		//Update customers orders
+		mRibbonCDSet->Active = false;
+		TField* field = blocksCDS->FieldByName("id");
+
+		if(field)
+		{
+			String val = field->AsString;
+			ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + val + "'";
+
+//			Log(lDebug) << stdstr((customerOrdersQ->SQL->Text));
+		}
+		mRibbonCDSet->Active = true;
+	}
+
 }
 //---------------------------------------------------------------------------
 

@@ -18,7 +18,7 @@ object atDM: TatDM
       'ProductName=DevartSQLite'
       'LibraryName=dbexpsqlite40.dll'
       'VendorLib=sqlite3.dll'
-      'Database=p:\ArrayBot\db\atDB.db'
+      'Database=C:\Users\matsk\AppData\Local\ArrayBot\atDB.db'
       'LocaleCode=0000'
       'IsolationLevel=ReadCommitted'
       'ASCIIDataBase=False'
@@ -197,6 +197,7 @@ object atDM: TatDM
     Top = 560
   end
   object blockNotesDSet: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blockNotesProvider'
@@ -232,6 +233,7 @@ object atDM: TatDM
     Top = 632
   end
   object noteDS: TSQLDataSet
+    Active = True
     CommandText = 'select * from note'
     DataSource = blocksDataSource
     MaxBlobSize = -1
@@ -246,6 +248,7 @@ object atDM: TatDM
     Top = 640
   end
   object notesCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'notesProvider'
@@ -267,6 +270,7 @@ object atDM: TatDM
     end
   end
   object notesDSource: TDataSource
+    DataSet = notesCDS
     Left = 328
     Top = 640
   end
@@ -329,7 +333,6 @@ object atDM: TatDM
     Top = 224
   end
   object ribbonsQ: TSQLQuery
-    Active = True
     DataSource = mRibbonDSource
     MaxBlobSize = -1
     Params = <
@@ -345,13 +348,14 @@ object atDM: TatDM
     Top = 224
   end
   object abImageDS: TSQLDataSet
+    BeforeScroll = abImageDSBeforeScroll
     Active = True
     CommandText = 'select * from abImage'
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConnection1
     Left = 32
-    Top = 336
+    Top = 304
     object abImageDSid: TIntegerField
       FieldName = 'id'
     end
@@ -363,7 +367,7 @@ object atDM: TatDM
   object mImageProvider: TDataSetProvider
     DataSet = abImageDS
     Left = 120
-    Top = 336
+    Top = 304
   end
   object mImageClientDS: TClientDataSet
     Active = True
@@ -371,7 +375,7 @@ object atDM: TatDM
     Params = <>
     ProviderName = 'mImageProvider'
     Left = 240
-    Top = 336
+    Top = 304
     object mImageClientDSid: TIntegerField
       FieldName = 'id'
     end
@@ -383,6 +387,6 @@ object atDM: TatDM
   object mABImageDataSource: TDataSource
     DataSet = mImageClientDS
     Left = 336
-    Top = 336
+    Top = 304
   end
 end

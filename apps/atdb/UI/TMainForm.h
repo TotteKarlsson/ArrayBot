@@ -48,7 +48,7 @@
 #include <Data.FMTBcd.hpp>
 #include <Data.SqlExpr.hpp>
 #include <Vcl.Mask.hpp>
-#include "TatDM.h"
+#include "TATDBDataModule.h"
 #include "pBarcode1D.hpp"
 #include "pUPC.hpp"
 #include "pUPCA.hpp"
@@ -170,15 +170,14 @@ class TMainForm : public TRegistryForm
         mtk::Property<int>	                            mBottomPanelHeight;
 		mtk::Property<int>	                            mMainTabIndex;
 		mtk::Property<mtk::LogLevel>	                mLogLevel;
-
+        mtk::Property<string>							mLocalDBFile;
         TRegistryProperties   	  	                    mSplashProperties;
         mtk::Property<bool>                             mShowSplashOnStartup;
         void        __fastcall                          PopulateStyleMenu();
 
         bool                                            setupAndReadIniParameters();
         void                                            setupIniFile();
-        string                                          mDBConnectionName;
-        bool                                            ConnectToDataBase(const string& ConnectionName);
+
 		void __fastcall                                 AppInBox(mlxStructMessage &Msg);
 
     public:		// User declarations

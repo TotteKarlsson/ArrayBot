@@ -18,7 +18,6 @@
 #include <Vcl.Grids.hpp>
 #include <Vcl.ComCtrls.hpp>
 
-
 //---------------------------------------------------------------------------
 
 using namespace mtk;

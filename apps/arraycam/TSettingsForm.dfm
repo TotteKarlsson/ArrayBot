@@ -50,9 +50,16 @@ object SettingsForm: TSettingsForm
     Left = 8
     Top = 8
     Width = 266
-    Height = 202
+    Height = 234
     Caption = 'Camera'
     TabOrder = 1
+    object mGamma: TLabel
+      Left = 187
+      Top = 104
+      Width = 6
+      Height = 13
+      Caption = '1'
+    end
     object GroupBox3: TGroupBox
       Left = 16
       Top = 26
@@ -107,7 +114,7 @@ object SettingsForm: TSettingsForm
     end
     object mPhotoOutputBaseFolder: TSTDStringLabeledEdit
       Left = 14
-      Top = 116
+      Top = 161
       Width = 219
       Height = 21
       EditLabel.AlignWithMargins = True
@@ -118,7 +125,7 @@ object SettingsForm: TSettingsForm
     end
     object mMoviesFolderE: TSTDStringLabeledEdit
       Left = 14
-      Top = 161
+      Top = 206
       Width = 219
       Height = 21
       EditLabel.Width = 66
@@ -128,7 +135,7 @@ object SettingsForm: TSettingsForm
     end
     object mBrowseForImagesFolderBtn: TButton
       Left = 236
-      Top = 114
+      Top = 159
       Width = 27
       Height = 25
       Caption = '...'
@@ -137,12 +144,25 @@ object SettingsForm: TSettingsForm
     end
     object mBrowseForMoviesFolderBtn: TButton
       Left = 236
-      Top = 159
+      Top = 204
       Width = 27
       Height = 25
       Caption = '...'
       TabOrder = 5
       OnClick = BrowseForFolder
+    end
+    object mGammaSB: TTrackBar
+      Left = 14
+      Top = 96
+      Width = 150
+      Height = 35
+      Max = 1000
+      Position = 100
+      ShowSelRange = False
+      TabOrder = 6
+      ThumbLength = 35
+      TickStyle = tsNone
+      OnChange = mGammaSBChange
     end
   end
   object Button1: TButton
@@ -156,9 +176,9 @@ object SettingsForm: TSettingsForm
   end
   object GroupBox5: TGroupBox
     Left = 8
-    Top = 216
+    Top = 248
     Width = 185
-    Height = 105
+    Height = 73
     Caption = 'Miscellaneous'
     TabOrder = 3
     object mPairLEDsCB: TPropertyCheckBox

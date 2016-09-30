@@ -33,6 +33,8 @@ __published:	// IDE-managed Components
 	TSTDStringLabeledEdit *mMoviesFolderE;
 	TButton *mBrowseForImagesFolderBtn;
 	TButton *mBrowseForMoviesFolderBtn;
+	TTrackBar *mGammaSB;
+	TLabel *mGamma;
 	void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mVerticalMirrorCBClick(TObject *Sender);
@@ -43,6 +45,7 @@ __published:	// IDE-managed Components
 	void __fastcall mPairLEDsCBClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall BrowseForFolder(TObject *Sender);
+	void __fastcall mGammaSBChange(TObject *Sender);
 
 
 private:	// User declarations

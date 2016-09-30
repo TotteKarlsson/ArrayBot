@@ -43,7 +43,6 @@ extern bool gIsDevelopmentRelease;
 __fastcall TMainForm::TMainForm(TComponent* Owner)
     : TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
 
-    mDBConnectionName("atDBDebug"),
     mBottomPanelHeight(205),
     mMainTabIndex(0),
     mSplashProperties(gApplicationRegistryRoot, "Splash"),
@@ -52,13 +51,15 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     mIsStyleMenuPopulated(false),
     gCanClose(true),
     logMsgMethod(&logMsg),
-    mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod)
+    mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
+    mLocalDBFile("")
 {
     //Close any dataconnection created by stupid TSQLConnection
     mTempFileFolder = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB");
     TMemoLogger::mMemoIsEnabled = false;
     setupIniFile();
     setupAndReadIniParameters();
+
 }
 
 //This one is called from the reader thread

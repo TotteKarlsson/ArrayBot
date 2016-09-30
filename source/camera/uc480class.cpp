@@ -434,9 +434,30 @@ int Cuc480::WriteEEPROM(int lAdr, char* pcBuf, int lCount)
   return nRet;
 }
 
+const wchar_t* getWideChar(const char *c)
+{
+    const size_t cSize = strlen(c)+1;
+    wchar_t* wc = new wchar_t[cSize];
+    mbstowcs (wc, c, cSize);
+    return wc;
+}
+
 int Cuc480::SaveImage(const char* pcFile)
 {
-  return is_SaveImage(m_hu, pcFile);
+	IMAGE_FILE_PARAMS ImageFileParams;
+	ImageFileParams.pwchFileName = NULL;
+	ImageFileParams.pnImageID = NULL;
+	ImageFileParams.ppcImageMem = NULL;
+//	ImageFileParams.nQuality = 100;
+
+	ImageFileParams.pwchFileName = const_cast<wchar_t*>(getWideChar(pcFile));
+	ImageFileParams.nFileType = IS_IMG_JPG;
+	ImageFileParams.nQuality = 80;
+	int nRet = is_ImageFile(m_hu, IS_IMAGE_FILE_CMD_SAVE, (void*)&ImageFileParams,	sizeof(ImageFileParams));
+
+	return nRet;
+//
+//  return is_SaveImage(m_hu, pcFile);
 }
 
 int Cuc480::LoadImage(char* pcFile)

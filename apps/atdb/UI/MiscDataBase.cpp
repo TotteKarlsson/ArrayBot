@@ -14,15 +14,4 @@
 using namespace mtk;
 extern string gCommonAppDataLocation;
 //---------------------------------------------------------------------------
-bool TMainForm::ConnectToDataBase(const string& dbName)
-{
-    Log(lInfo) << "Creating DB connection with DB: "<<dbName;
-
-    //This will trigger the OnBeforeConnect event
-    //Setup db parameters in the event
-    string dbPath = joinPath (gCommonAppDataLocation, dbName + ".db");
-
-    return true;
-}
-
 

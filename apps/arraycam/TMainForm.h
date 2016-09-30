@@ -26,6 +26,7 @@
 #include <Vcl.DBGrids.hpp>
 #include <Vcl.Grids.hpp>
 #include "abATDBClientDBSession.h"
+#include <Vcl.Imaging.jpeg.hpp>
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -90,12 +91,16 @@ class TMainForm  : public TRegistryForm
 	TPageControl *PageControl2;
 	TTabSheet *TabSheet3;
 	TTabSheet *TabSheet4;
-	TDBGrid *DBGrid1;
+	TDBGrid *mImagesGrid;
 	TDBNavigator *DBNavigator1;
 	TDBGrid *DBGrid2;
-	TDBNavigator *DBNavigator2;
-	TMemo *Memo1;
 	TButton *mAddImageFileBtn;
+	TDBMemo *DBMemo1;
+	TButton *mUpdateNoteBtn;
+	TButton *Button1;
+	TButton *Button3;
+	TImage *Image1;
+	TGroupBox *GroupBox1;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -120,6 +125,19 @@ class TMainForm  : public TRegistryForm
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAddImageFileBtnClick(TObject *Sender);
 	void __fastcall IntensityChange(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
+	void __fastcall DBMemo1Change(TObject *Sender);
+	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
+	void __fastcall DBNavigator2Click(TObject *Sender, TNavigateBtn Button);
+	void __fastcall DBNavigator2BeforeAction(TObject *Sender, TNavigateBtn Button);
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall DBMemo1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mImagesGridMouseDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y);
+	void __fastcall mImagesGridCellClick(TColumn *Column);
+	void __fastcall mImagesGridDblClick(TObject *Sender);
+
+
 
     private:
         LogFileReader                           mLogFileReader;
@@ -137,6 +155,7 @@ class TMainForm  : public TRegistryForm
         Property<bool>						    mPairLEDs;
         Property<string>						mSnapShotFolder;
         Property<string>						mMoviesFolder;
+        Property<string>						mLocalDBFile;
 
 								                // Camera variables
         								        //!The camera class

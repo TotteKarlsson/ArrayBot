@@ -37,13 +37,8 @@ object Main: TMain
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 398
     object TabSheet1: TTabSheet
       Caption = 'Blocks'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 370
       DesignSize = (
         897
         435)
@@ -151,8 +146,8 @@ object Main: TMain
       ImageIndex = 1
       ExplicitLeft = 0
       ExplicitTop = 0
-      ExplicitWidth = 747
-      ExplicitHeight = 406
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object mBlockIDEdit: TLabeledEdit
         Left = 4
         Top = 24
@@ -193,7 +188,6 @@ object Main: TMain
     Align = alBottom
     Caption = 'Panel2'
     TabOrder = 2
-    ExplicitTop = 515
     object infoMemo: TMemo
       Left = 1
       Top = 42

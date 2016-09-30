@@ -12,12 +12,6 @@
         <Projects Include="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\atDB\UI\atDB.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\iBot\iBotUI\Source\iBot.cbproj">
-            <Dependencies/>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -53,32 +47,14 @@
     <Target Name="sql_insert:Make">
         <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atDB">
-        <MSBuild Projects="P:\atDB\UI\atDB.cbproj"/>
-    </Target>
-    <Target Name="atDB:Clean">
-        <MSBuild Projects="P:\atDB\UI\atDB.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atDB:Make">
-        <MSBuild Projects="P:\atDB\UI\atDB.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="iBot">
-        <MSBuild Projects="P:\iBot\iBotUI\Source\iBot.cbproj"/>
-    </Target>
-    <Target Name="iBot:Clean">
-        <MSBuild Projects="P:\iBot\iBotUI\Source\iBot.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="iBot:Make">
-        <MSBuild Projects="P:\iBot\iBotUI\Source\iBot.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="AtDBEntry;sql_session;sql_insert;atDB;iBot"/>
+        <CallTarget Targets="AtDBEntry;sql_session;sql_insert"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="AtDBEntry:Clean;sql_session:Clean;sql_insert:Clean;atDB:Clean;iBot:Clean"/>
+        <CallTarget Targets="AtDBEntry:Clean;sql_session:Clean;sql_insert:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="AtDBEntry:Make;sql_session:Make;sql_insert:Make;atDB:Make;iBot:Make"/>
+        <CallTarget Targets="AtDBEntry:Make;sql_session:Make;sql_insert:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -119,7 +119,7 @@ void __fastcall TMainForm::mFitToScreenButtonClick(TObject *Sender)
 
 void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
 {
-	string fldr =  mSnapShotFolder; //joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "snap_shots");
+	string fldr =  mSnapShotFolder;
 
     if(!folderExists(fldr))
     {
@@ -146,6 +146,11 @@ void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
     else
     {
     	Log(lInfo) << "Saved snapshot to file: "<< fName;
+        //save to DB
+        mClientDBSession.insertImageFile(getFileNameNoPath(fName), "Note..");
+        DBNavigator1->BtnClick(nbRefresh);
+        DBNavigator1->BtnClick(nbRefresh);
+
     }
 	updateShotsLB();
 }
