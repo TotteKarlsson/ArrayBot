@@ -28,6 +28,7 @@ __published:	// IDE-managed Components
 	TClientDataSet *notesCDS;
 	TDataSource *imageNotes;
 	void __fastcall imagesCDSAfterScroll(TDataSet *DataSet);
+	void __fastcall SQLConnection1AfterConnect(TObject *Sender);
 
 
 private:	// User declarations

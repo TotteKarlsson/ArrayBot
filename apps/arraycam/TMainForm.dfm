@@ -446,6 +446,10 @@ object MainForm: TMainForm
     TabPosition = tpLeft
     object TabSheet1: TTabSheet
       Caption = 'Live'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object mMainPanel: TPanel
         Left = 0
         Top = 0
@@ -480,6 +484,10 @@ object MainForm: TMainForm
     object TabSheet2: TTabSheet
       Caption = 'History'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
         Top = 0
@@ -490,6 +498,10 @@ object MainForm: TMainForm
         TabOrder = 0
         object TabSheet3: TTabSheet
           Caption = 'Images'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Image1: TImage
             Left = 282
             Top = 0
@@ -2173,7 +2185,6 @@ object MainForm: TMainForm
               Width = 262
               Height = 142
               DataField = 'note'
-              DataSource = ImagesAndMoviesDM.imageNotes
               TabOrder = 0
               OnKeyDown = DBMemo1KeyDown
             end
@@ -2199,7 +2210,6 @@ object MainForm: TMainForm
               Top = 53
               Width = 162
               Height = 209
-              DataSource = ImagesAndMoviesDM.imageNotes
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
               TabOrder = 3
               TitleFont.Charset = DEFAULT_CHARSET
@@ -2220,7 +2230,6 @@ object MainForm: TMainForm
               Top = 22
               Width = 252
               Height = 25
-              DataSource = ImagesAndMoviesDM.imagesDS
               VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               TabOrder = 4
             end
@@ -2239,7 +2248,6 @@ object MainForm: TMainForm
               Top = 53
               Width = 94
               Height = 209
-              DataSource = ImagesAndMoviesDM.imagesDS
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
               TabOrder = 6
               TitleFont.Charset = DEFAULT_CHARSET
@@ -2273,6 +2281,10 @@ object MainForm: TMainForm
         object TabSheet4: TTabSheet
           Caption = 'Movies'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
       end
     end

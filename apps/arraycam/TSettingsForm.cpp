@@ -115,7 +115,8 @@ void __fastcall TSettingsForm::AutoParaCBClick(TObject *Sender)
     else if (cb == mAutoExposureCB)
     {
 	    mAutoExposureCB->OnClick(Sender);
-	    //Enable auto gain control:
+
+	    //Enable auto shutter:
 	    ret = is_SetAutoParameter (hCam, IS_SET_ENABLE_AUTO_SHUTTER, &dEnable, 0);
     }
 

@@ -39,12 +39,11 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
       'UseUnicode=True'
       'EnableLoadExtension=False'
       'BlobSize=-1')
-    Connected = True
+    AfterConnect = SQLConnection1AfterConnect
     Left = 32
     Top = 32
   end
   object imageNote: TSQLQuery
-    Active = True
     DataSource = image_note
     MaxBlobSize = -1
     Params = <>
@@ -55,7 +54,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 184
   end
   object notesQ: TSQLQuery
-    Active = True
     DataSource = imageNotes
     MaxBlobSize = -1
     Params = <>
@@ -83,7 +81,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 112
   end
   object imagesCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'imagesProvider'
@@ -102,7 +99,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 184
   end
   object imageNoteCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider1'
@@ -110,7 +106,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 184
   end
   object notesCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider2'

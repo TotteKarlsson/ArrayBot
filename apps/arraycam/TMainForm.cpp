@@ -528,14 +528,22 @@ void __fastcall TMainForm::IntensityChange(TObject *Sender)
 void __fastcall TMainForm::FormShow(TObject *Sender)
 {
 	string dBase(mLocalDBFile);
-	if (atDM->Connect(dBase))
+    if(!fileExists(dBase))
     {
-    	Log(lInfo) << "Connected to database: "<<dBase;
-       // Connection successfull
+	  	Log(lError) << "The db file: "<<dBase<<" do not exist!";
+
     }
     else
     {
-    	Log(lInfo) << "Failed to connect to database: "<<dBase;
+        if (atDM->Connect(dBase))
+        {
+            Log(lInfo) << "Connected to database: "<<dBase;
+           // Connection successfull
+        }
+        else
+        {
+            Log(lInfo) << "Failed to connect to database: "<<dBase;
+        }
     }
     gAppIsStartingUp = false;
 }

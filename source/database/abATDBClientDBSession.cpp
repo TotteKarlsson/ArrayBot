@@ -36,12 +36,14 @@ bool ATDBClientDBSession::connect(const string& dbName)
     {
     	if(dbName.size())
         {
-	        if(!fileExists(dbName))
-            {
-            	throw("That file do not exist");
-            }
             mDBFileName = dbName;
         }
+
+        if(!fileExists(mDBFileName))
+        {
+            return false;
+        }
+
 
 		//Register DB connector
 	    SQLite::Connector::registerConnector();

@@ -36,3 +36,16 @@ void __fastcall TImagesAndMoviesDM::imagesCDSAfterScroll(TDataSet *DataSet)
     }
 }
 
+void __fastcall TImagesAndMoviesDM::SQLConnection1AfterConnect(TObject *Sender)
+
+{
+	Log(lInfo) << "After Connect (Images and Movies)";
+//    abImageDS->Active = true;
+//	mImageClientDS->Active = true;
+//	usersDS->Active = true;
+//    blocksDS->Active = true;
+//    noteDS->Active = true;
+
+}
+//---------------------------------------------------------------------------
+

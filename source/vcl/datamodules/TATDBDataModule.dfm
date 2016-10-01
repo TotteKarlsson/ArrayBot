@@ -18,7 +18,7 @@ object atDM: TatDM
       'ProductName=DevartSQLite'
       'LibraryName=dbexpsqlite40.dll'
       'VendorLib=sqlite3.dll'
-      'Database=C:\Users\matsk\AppData\Local\ArrayBot\atDB.db'
+      'Database='
       'LocaleCode=0000'
       'IsolationLevel=ReadCommitted'
       'ASCIIDataBase=False'
@@ -32,7 +32,6 @@ object atDM: TatDM
       'EnableLoadExtension=False'
       'BlobSize=-1')
     AfterConnect = SQLConnection1AfterConnect
-    Connected = True
     Left = 40
     Top = 24
   end
@@ -42,7 +41,6 @@ object atDM: TatDM
     Top = 152
   end
   object blocksCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blocksProvider'
@@ -81,7 +79,6 @@ object atDM: TatDM
   end
   object blocksDS: TSQLDataSet
     ObjectView = True
-    Active = True
     CommandText = 'select * from block'
     DataSource = mRibbonDSource
     MaxBlobSize = -1
@@ -111,7 +108,6 @@ object atDM: TatDM
     end
   end
   object usersDS: TSQLDataSet
-    Active = True
     CommandText = 'select * from user'
     MaxBlobSize = -1
     Params = <>
@@ -138,7 +134,6 @@ object atDM: TatDM
     Top = 88
   end
   object usersClientDataSet: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'usersProvider'
@@ -197,7 +192,6 @@ object atDM: TatDM
     Top = 560
   end
   object blockNotesDSet: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blockNotesProvider'
@@ -233,7 +227,6 @@ object atDM: TatDM
     Top = 632
   end
   object noteDS: TSQLDataSet
-    Active = True
     CommandText = 'select * from note'
     DataSource = blocksDataSource
     MaxBlobSize = -1
@@ -248,7 +241,6 @@ object atDM: TatDM
     Top = 640
   end
   object notesCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'notesProvider'
@@ -280,7 +272,6 @@ object atDM: TatDM
     Top = 224
   end
   object mRibbonCDSet: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'mRibbonProvider'
@@ -349,7 +340,6 @@ object atDM: TatDM
   end
   object abImageDS: TSQLDataSet
     BeforeScroll = abImageDSBeforeScroll
-    Active = True
     CommandText = 'select * from abImage'
     MaxBlobSize = -1
     Params = <>
@@ -370,7 +360,6 @@ object atDM: TatDM
     Top = 304
   end
   object mImageClientDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'mImageProvider'
