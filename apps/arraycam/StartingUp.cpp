@@ -5,6 +5,7 @@
 #include "mtkVCLUtils.h"
 
 using namespace mtk;
+using namespace ab;
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormCreate(TObject *Sender)

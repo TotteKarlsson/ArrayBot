@@ -14,6 +14,7 @@
 #pragma comment(lib, "poco_mysql_connector-static.lib")
 #pragma comment(lib, "poco_sqlite_connector-static.lib")
 #pragma comment(lib, "tinyxml2-static.lib")
+#pragma comment(lib, "libmysqlB.lib")
 
 //Thorlabs
 #pragma comment(lib, "Thorlabs.MotionControl.TDIEngineB.lib")

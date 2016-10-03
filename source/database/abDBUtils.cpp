@@ -6,6 +6,8 @@
 
 
 //---------------------------------------------------------------------------
+namespace ab
+{
 using namespace Poco::Data;
 using namespace Poco::Data::SQLite;
 using namespace mtk;
@@ -241,6 +243,7 @@ void handleMySQLException()
     {
     	Log(lError) << "Unhandled PocoDataMySQL exception...";
     }
-
 }
+
+}//Namespace ab
 

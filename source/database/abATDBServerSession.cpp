@@ -1,27 +1,17 @@
 #pragma hdrstop
 #include "abATDBServerSession.h"
-#include "mtkLogger.h"
-#include "Poco/Common.h"
 #include "Poco/Data/MySQL/Connector.h"
 #include "Poco/Data/MySQL/MySQLException.h"
-#include "Poco/Data/SessionFactory.h"
 #include "Poco/Data/Session.h"
-#include "Poco/Data/RecordSet.h"
+#include "Poco/Data/SessionFactory.h"
+#include "abDBUtils.h"
+#include "mtkLogger.h"
 //---------------------------------------------------------------------------
 using namespace mtk;
+using namespace ab;
 
 using namespace Poco::Data;
 using namespace Poco::Data::Keywords;
-
-string toString(dbSQLKeyword kw)
-{
-	switch(kw)
-    {
-    	case dbSQLKeyword::dbAscending: return "ASC";
-    	case dbSQLKeyword::dbDescending: return "DESC";
-    }
-    return "";
-}
 
 ATDBServerSession::ATDBServerSession(const string& host, const string& user, const string& password)
 :
@@ -98,7 +88,7 @@ RecordSet* ATDBServerSession::getBlocks(dbSQLKeyword kw)
     }
 
     Statement select(*mTheSession);
-    select << "SELECT * FROM block ORDER BY id " << toString(kw);
+    select << "SELECT * FROM block ORDER BY id " << ab::toString((dbSQLKeyword) kw);
 
     int nrRows = select.execute();
     return new RecordSet(select);

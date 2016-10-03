@@ -3,11 +3,80 @@
 #include "abVCLUtils.h"
 #include "mtkVCLUtils.h"
 #include "mtkStringUtils.h"
+#include "mtkLogger.h"
+
+using namespace mtk;
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
 using namespace mtk;
 
+int getCurrentUserID(TComboBox* mUserCB)
+{
+	int i = mUserCB->ItemIndex;
+
+    if(i > -1)
+    {
+    	return * ((int*) mUserCB->Items->Objects[i]);
+    }
+
+	return  -1;
+}
+
+void populateUsersCB(TComboBox* mUserCB, ATDBServerSession& ses)
+{
+    //Fetch data
+    mUserCB->Clear();
+    RecordSet *rs =  ses.getUsers();
+    if(!rs->rowCount())
+    {
+        Log(lInfo) << "There are no users...";
+    }
+    else
+    {
+        int cols = rs->columnCount();
+        int rows = rs->rowCount();
+
+        // iterate over all rows and columns
+        for (RecordSet::Iterator it = rs->begin(); it != rs->end(); ++it)
+        {
+            Poco::Data::Row& row = *it;
+            string user(row[1].convert<std::string>());
+            int *userId = new int(row[0].convert<int>());
+            mUserCB->Items->AddObject(user.c_str(), (TObject*) userId );
+            Log(lInfo) <<user;
+        }
+        mUserCB->ItemIndex = 0;
+    }
+}
+
+void populateUsersCB(TComboBox* mUserCB, ATDBClientDBSession& ses)
+{
+    //Fetch data
+    mUserCB->Clear();
+    RecordSet *rs =  ses.getUsers();
+    if(!rs->rowCount())
+    {
+        Log(lInfo) << "There are no users...";
+    }
+    else
+    {
+        int cols = rs->columnCount();
+        int rows = rs->rowCount();
+
+        // iterate over all rows and columns
+        for (RecordSet::Iterator it = rs->begin(); it != rs->end(); ++it)
+        {
+            Poco::Data::Row& row = *it;
+            string user(row[1].convert<std::string>());
+            int *userId = new int(row[0].convert<int>());
+            mUserCB->Items->AddObject(user.c_str(), (TObject*) userId );
+            Log(lInfo) <<user;
+        }
+        mUserCB->ItemIndex = 0;
+    }
+}
 
 bool updateListBoxItemCaption(TListBox* lb, int indx, const string& name)
 {

@@ -1,8 +1,5 @@
-//---------------------------------------------------------------------------
-
 #ifndef TATDBImagesAndMoviesDataModuleH
 #define TATDBImagesAndMoviesDataModuleH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include "DbxDevartSQLite.hpp"
 #include <Data.DB.hpp>
@@ -11,29 +8,48 @@
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
 //---------------------------------------------------------------------------
+
 class TImagesAndMoviesDM : public TDataModule
 {
-__published:	// IDE-managed Components
-	TSQLDataSet *images;
-	TSQLConnection *SQLConnection1;
-	TSQLQuery *imageNote;
-	TSQLQuery *notesQ;
-	TDataSetProvider *DataSetProvider2;
-	TDataSetProvider *DataSetProvider1;
-	TDataSetProvider *imagesProvider;
-	TClientDataSet *imagesCDS;
-	TDataSource *imagesDS;
-	TDataSource *image_note;
-	TClientDataSet *imageNoteCDS;
-	TClientDataSet *notesCDS;
-	TDataSource *imageNotes;
-	void __fastcall imagesCDSAfterScroll(TDataSet *DataSet);
-	void __fastcall SQLConnection1AfterConnect(TObject *Sender);
+    __published:	// IDE-managed Components
+        TSQLDataSet *images;
+        TSQLConnection *SQLConnection1;
+        TSQLQuery *imageNote;
+        TSQLQuery *notesQ;
+        TDataSetProvider *DataSetProvider2;
+        TDataSetProvider *DataSetProvider1;
+        TDataSetProvider *imagesProvider;
+        TClientDataSet *imagesCDS;
+        TDataSource *imagesDS;
+        TDataSource *image_note;
+        TClientDataSet *imageNoteCDS;
+        TClientDataSet *notesCDS;
+        TDataSource *imageNotes;
+	TIntegerField *imagesCDSid;
+	TWideStringField *imagesCDSfile_name;
+	TSQLTimeStampField *imagesCDSdate;
+	TIntegerField *imageNoteCDSimage_id;
+	TIntegerField *imageNoteCDSnote_ID;
+	TIntegerField *notesCDSid;
+	TWideMemoField *notesCDSnote;
+	TSQLTimeStampField *notesCDScreated_on;
+	TWideStringField *notesCDScreated_by;
+	TIntegerField *imageNoteimage_id;
+	TIntegerField *imageNotenote_ID;
+	TIntegerField *imagesid;
+	TWideStringField *imagesfile_name;
+	TSQLTimeStampField *imagesdate;
+	TIntegerField *notesQid;
+	TWideMemoField *notesQnote;
+	TSQLTimeStampField *notesQcreated_on;
+	TWideStringField *notesQcreated_by;
+        void __fastcall imagesCDSAfterScroll(TDataSet *DataSet);
+        void __fastcall SQLConnection1AfterConnect(TObject *Sender);
 
+	private:	// User declarations
 
-private:	// User declarations
-public:		// User declarations
-	__fastcall TImagesAndMoviesDM(TComponent* Owner);
+	public:		// User declarations
+		__fastcall TImagesAndMoviesDM(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TImagesAndMoviesDM *ImagesAndMoviesDM;

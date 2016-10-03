@@ -9,6 +9,16 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     SQLConnection = SQLConnection1
     Left = 32
     Top = 112
+    object imagesid: TIntegerField
+      FieldName = 'id'
+    end
+    object imagesfile_name: TWideStringField
+      FieldName = 'file_name'
+      Size = 1024
+    end
+    object imagesdate: TSQLTimeStampField
+      FieldName = 'date'
+    end
   end
   object SQLConnection1: TSQLConnection
     ConnectionName = 'ATDBDebug'
@@ -40,6 +50,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
       'EnableLoadExtension=False'
       'BlobSize=-1')
     AfterConnect = SQLConnection1AfterConnect
+    Connected = True
     Left = 32
     Top = 32
   end
@@ -52,6 +63,12 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     SQLConnection = SQLConnection1
     Left = 40
     Top = 184
+    object imageNoteimage_id: TIntegerField
+      FieldName = 'image_id'
+    end
+    object imageNotenote_ID: TIntegerField
+      FieldName = 'note_ID'
+    end
   end
   object notesQ: TSQLQuery
     DataSource = imageNotes
@@ -64,6 +81,21 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     SQLConnection = SQLConnection1
     Left = 40
     Top = 256
+    object notesQid: TIntegerField
+      FieldName = 'id'
+    end
+    object notesQnote: TWideMemoField
+      FieldName = 'note'
+      BlobType = ftWideMemo
+      Size = -1
+    end
+    object notesQcreated_on: TSQLTimeStampField
+      FieldName = 'created_on'
+    end
+    object notesQcreated_by: TWideStringField
+      FieldName = 'created_by'
+      Size = 512
+    end
   end
   object DataSetProvider2: TDataSetProvider
     DataSet = notesQ
@@ -87,6 +119,16 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     AfterScroll = imagesCDSAfterScroll
     Left = 256
     Top = 112
+    object imagesCDSid: TIntegerField
+      FieldName = 'id'
+    end
+    object imagesCDSfile_name: TWideStringField
+      FieldName = 'file_name'
+      Size = 1024
+    end
+    object imagesCDSdate: TSQLTimeStampField
+      FieldName = 'date'
+    end
   end
   object imagesDS: TDataSource
     DataSet = imagesCDS
@@ -104,6 +146,12 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     ProviderName = 'DataSetProvider1'
     Left = 256
     Top = 184
+    object imageNoteCDSimage_id: TIntegerField
+      FieldName = 'image_id'
+    end
+    object imageNoteCDSnote_ID: TIntegerField
+      FieldName = 'note_ID'
+    end
   end
   object notesCDS: TClientDataSet
     Aggregates = <>
@@ -111,6 +159,20 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     ProviderName = 'DataSetProvider2'
     Left = 256
     Top = 256
+    object notesCDSid: TIntegerField
+      FieldName = 'id'
+    end
+    object notesCDSnote: TWideMemoField
+      FieldName = 'note'
+      BlobType = ftWideMemo
+    end
+    object notesCDScreated_on: TSQLTimeStampField
+      FieldName = 'created_on'
+    end
+    object notesCDScreated_by: TWideStringField
+      FieldName = 'created_by'
+      Size = 512
+    end
   end
   object imageNotes: TDataSource
     DataSet = notesCDS

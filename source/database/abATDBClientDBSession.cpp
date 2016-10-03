@@ -1,18 +1,15 @@
 #pragma hdrstop
 #include "abATDBClientDBSession.h"
 #include "mtkLogger.h"
-#include "Poco/Common.h"
 #include "Poco/Data/SQLite/Connector.h"
-#include "Poco/Data/SQLite/SQLiteException.h"
 #include "Poco/Data/SessionFactory.h"
-#include "Poco/Data/Session.h"
-#include "Poco/Data/RecordSet.h"
+#include "Poco/Data/SQLite/SQLiteException.h"
 #include "mtkFileUtils.h"
 
 
 //---------------------------------------------------------------------------
 using namespace mtk;
-
+using namespace ab;
 using namespace Poco::Data;
 using namespace Poco::Data::Keywords;
 
@@ -44,7 +41,6 @@ bool ATDBClientDBSession::connect(const string& dbName)
             return false;
         }
 
-
 		//Register DB connector
 	    SQLite::Connector::registerConnector();
 
@@ -52,8 +48,21 @@ bool ATDBClientDBSession::connect(const string& dbName)
 		//string str = "host=127.0.0.1;user=atdb_client;password=atdb123;db=atdb";
 
 		mTheSession = new Poco::Data::Session(Poco::Data::SessionFactory::instance().create(Poco::Data::SQLite::Connector::KEY, mDBFileName ));
-
         Log(lInfo) << "Opened SQLite Database: "<<mDBFileName;
+
+        //Enable foreign key support
+        int support;
+        Session& ses = *mTheSession;
+	   	Statement s(ses);
+    	s << "PRAGMA foreign_keys", into(support), now;
+
+        s.reset(ses);
+        Log(lInfo) <<"Foreign key support:" <<support;
+        s << "PRAGMA foreign_keys = ON", now;
+        s.reset(ses);
+
+    	s << "PRAGMA foreign_keys", into(support), now;
+        Log(lInfo) <<"Foreign key support:" <<support;
         return true;
     }
     catch(const Poco::Data::SQLite::SQLiteException& e)
@@ -88,7 +97,7 @@ RecordSet* ATDBClientDBSession::getBlocks(dbSQLKeyword kw)
     }
 
     Statement select(*mTheSession);
-    select << "SELECT * FROM block ORDER BY id " << toString(kw);
+    select << "SELECT * FROM block ORDER BY id " << mtk::toString(kw);
 
     int nrRows = select.execute();
     return new RecordSet(select);
@@ -176,7 +185,7 @@ bool ATDBClientDBSession::updateNoteWithID(int noteID, const string& note)
 	return true;
 }
 
-bool ATDBClientDBSession::insertImageFile(const string& fName, const string& note)
+bool ATDBClientDBSession::insertImageFile(const string& fName, int userID, const string& note)
 {
     if(!mTheSession)
     {
@@ -199,7 +208,7 @@ bool ATDBClientDBSession::insertImageFile(const string& fName, const string& not
     s.reset(ses);
 
 
-	return insertImageNote(image_id, n, -1);
+	return insertImageNote(image_id, userID, note);
 //    int userID(-1);
 //    s << "INSERT INTO note (created_by, note) VALUES(?, ?)", use(userID), use(n), now;
 //    s.reset(ses);
@@ -212,7 +221,7 @@ bool ATDBClientDBSession::insertImageFile(const string& fName, const string& not
 //	return true;
 }
 
-bool ATDBClientDBSession::insertImageNote(int imageID, const string& note, int userID)
+bool ATDBClientDBSession::insertImageNote(int imageID, int userID, const string& note)
 {
     if(!mTheSession)
     {

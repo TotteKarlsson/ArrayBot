@@ -3,24 +3,24 @@
 #include "abExporter.h"
 #include "abABObject.h"
 #include "abDBUtils.h"
+#include <deque>
 #include "Poco/Data/RecordSet.h"
 //---------------------------------------------------------------------------
-
-using namespace Poco::Data;
 using Poco::Data::RecordSet;
+using Poco::Data::Session;
 
 //!The ATDB server session class encapsulate a database session
 //!with the ATDB MySQL database
 class AB_CORE ATDBClientDBSession : public ABObject
 {
     public:
-					        	        ATDBClientDBSession(const string& dbFile){}
-					        	        ~ATDBClientDBSession(){}
+					        	        ATDBClientDBSession(const string& dbFile);
+					        	        ~ATDBClientDBSession();
 
 										//!Statements
-		bool							insertImageFile(const string& fName, const string& note="");
-		bool							insertImageNote(int imageID, const string& note="", int userID = -1);
-		RecordSet* 						getBlocks(dbSQLKeyword kw = dbDescending);
+		bool							insertImageFile(const string& fName, int userID, const string& note="");
+		bool							insertImageNote(int imageID, int userID, const string& note="");
+		RecordSet* 						getBlocks(ab::dbSQLKeyword kw =ab::dbDescending);
 
         bool							insertBlock(int userID, const string& lbl, const string& note);
         bool							deleteBlock(int bId);
@@ -29,7 +29,7 @@ class AB_CORE ATDBClientDBSession : public ABObject
 		bool							deleteNoteWithID(int noteID);
 		bool							updateNoteWithID(int noteID, const string& note);
 
-		RecordSet* 						getUsers(dbSQLKeyword kw = dbAscending);
+		RecordSet* 						getUsers(ab::dbSQLKeyword kw = ab::dbAscending);
 
 		bool							isConnected();
 		bool							connect(const string& dbName = "");

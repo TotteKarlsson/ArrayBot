@@ -5,6 +5,7 @@
 #include "mtkUtils.h"
 #include "mtkWin32Utils.h"
 #include "camera/uc480_tools.h"
+#include "abVCLUtils.h"
 using namespace mtk;
 
 //---------------------------------------------------------------------------
@@ -147,7 +148,7 @@ void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
     {
     	Log(lInfo) << "Saved snapshot to file: "<< fName;
         //save to DB
-        mClientDBSession.insertImageFile(getFileNameNoPath(fName), "Note..");
+        mClientDBSession.insertImageFile(getFileNameNoPath(fName), getCurrentUserID(mUsersCB), "Note..");
         DBNavigator1->BtnClick(nbRefresh);
         DBNavigator1->BtnClick(nbRefresh);
 

@@ -1,6 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMainForm.h"
+#include "abVCLUtils.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "mtkWin32Utils.h"
@@ -8,9 +9,9 @@
 #include "camera/uc480_tools.h"
 #include "TSettingsForm.h"
 #include "abDBUtils.h"
-#include "TATDBDataModule.h"
-#include "TATDBImagesAndMoviesDataModule.h"
+#include "abVCLUtils.h"
 using namespace mtk;
+using namespace ab;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -447,7 +448,7 @@ void __fastcall TMainForm::mAddImageFileBtnClick(TObject *Sender)
         //Add this file to DB and open a metadata entry form for the user
         try
         {
-            mClientDBSession.insertImageFile(getFileNameNoPath(f), "Note..");
+            mClientDBSession.insertImageFile(getFileNameNoPath(f), getCurrentUserID(mUsersCB), "Note..");
             DBNavigator1->BtnClick(nbRefresh);
             DBNavigator1->BtnClick(nbRefresh);
 
@@ -531,18 +532,18 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
     if(!fileExists(dBase))
     {
 	  	Log(lError) << "The db file: "<<dBase<<" do not exist!";
-
     }
     else
     {
         if (atDM->Connect(dBase))
         {
-            Log(lInfo) << "Connected to database: "<<dBase;
            // Connection successfull
+            Log(lInfo) << "DataModule connected to the database: "<<dBase;
+            populateUsersCB(mUsersCB, mClientDBSession);
         }
         else
         {
-            Log(lInfo) << "Failed to connect to database: "<<dBase;
+            Log(lInfo) << "Datamodule failed to connect to database: "<<dBase;
         }
     }
     gAppIsStartingUp = false;
@@ -574,22 +575,42 @@ void __fastcall TMainForm::DBNavigator2BeforeAction(TObject *Sender, TNavigateBt
 
 {
 	if(Button == nbInsert)
-    {
-
-
-    }
+    {    }
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::Button1Click(TObject *Sender)
+void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
 {
-	int imageID = ImagesAndMoviesDM->imagesCDS->Fields->FieldByName("id")->Value;
-    Log(lInfo) <<"Current ID: "<<imageID;
-	mClientDBSession.insertImageNote(imageID, "New note..");
+    int imageID = ImagesAndMoviesDM->imagesCDS->Fields->FieldByName("id")->Value;
+    Log(lInfo) <<"Current image note ID: "<<imageID;
 
-	ImagesAndMoviesDM->imageNoteCDS->Active = false;
-	ImagesAndMoviesDM->imageNoteCDS->Active = true;
-    ImagesAndMoviesDM->imageNoteCDS->Refresh();
+	TButton* b = dynamic_cast<TButton*>(Sender);
+
+	try
+    {
+        if(b == mNewNoteBtn)
+        {
+        	int userID = getCurrentUserID(mUsersCB);
+            ImagesAndMoviesDM->notesCDS->Active = false;
+            mClientDBSession.insertImageNote(imageID, userID, "New note..");
+            ImagesAndMoviesDM->notesCDS->Active = true;
+            ImagesAndMoviesDM->notesCDS->Refresh();
+        }
+        else if(b == mDeleteNoteBtn)
+        {
+            int noteID = ImagesAndMoviesDM->notesCDS->Fields->FieldByName("id")->Value;
+            Log(lInfo) << "Removing image note with ID: "<<noteID;
+            ImagesAndMoviesDM->notesCDS->Active = false;
+            mClientDBSession.deleteNoteWithID(noteID);
+            ImagesAndMoviesDM->notesCDS->Active = true;
+            ImagesAndMoviesDM->notesCDS->Refresh();
+        }
+    }
+    catch(...)
+    {
+    	handleSQLiteException();
+    }
+
 }
 
 void __fastcall TMainForm::DBMemo1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
@@ -622,6 +643,18 @@ void __fastcall TMainForm::mImagesGridCellClick(TColumn *Column)
     }
 }
 
+
+void TMainForm::populateUsers()
+{
+    try
+    {
+    	populateUsersCB(mUsersCB, mClientDBSession);
+    }
+    catch(...)
+    {
+    	handleMySQLException();
+    }
+}
 
 void __fastcall TMainForm::mImagesGridDblClick(TObject *Sender)
 {

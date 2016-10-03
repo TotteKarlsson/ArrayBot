@@ -36,11 +36,11 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <ProjectType>CppPackage</ProjectType>
-        <ILINK_LibraryPath>..\..\UI\frames\;components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\database\;..\..\UI\frames\;components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Multithreaded>true</Multithreaded>
         <ILINK_GenerateImportLibrary>true</ILINK_GenerateImportLibrary>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>..\..\UI\frames\;components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(IncludePath)</IncludePath>
+        <IncludePath>..\database\;..\..\UI\frames\;components\;frames\;forms\;P:\ArrayBot\source\vcl\;$(IncludePath)</IncludePath>
         <_TCHARMapping>char</_TCHARMapping>
         <ILINK_GenerateLibFile>true</ILINK_GenerateLibFile>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
@@ -83,6 +83,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <BCC_whid>false</BCC_whid>
         <ILINK_GenerateLibFile>false</ILINK_GenerateLibFile>
         <BCC_PCHInject>abVCLCorePCH.h</BCC_PCHInject>
         <Defines>POCO_STATIC;$(Defines)</Defines>
@@ -97,6 +98,14 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="..\database\abATDBClientDBSession.cpp">
+            <DependentOn>..\database\abATDBClientDBSession.h</DependentOn>
+            <BuildOrder>23</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\database\abATDBServerSession.cpp">
+            <DependentOn>..\database\abATDBServerSession.h</DependentOn>
+            <BuildOrder>24</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abVCLCore.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
@@ -205,20 +214,20 @@
         <PackageImport Include="vclx.bpi">
             <BuildOrder>19</BuildOrder>
         </PackageImport>
+        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
-        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
+        <FormResources Include="frames\TParallellProcessesFrame.dfm"/>
         <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
         <FormResources Include="frames\TSequenceInfoFrame.dfm"/>
         <FormResources Include="frames\TXYZUnitFrame.dfm"/>
-        <FormResources Include="frames\TParallellProcessesFrame.dfm"/>
+        <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="forms\TTextInputDialog.dfm"/>
+        <FormResources Include="frames\TArduinoServerCommandFrame.dfm"/>
+        <FormResources Include="frames\TMotorFrame.dfm"/>
         <FormResources Include="forms\TamFileEditor.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
-        <FormResources Include="frames\TMotorFrame.dfm"/>
-        <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
-        <FormResources Include="frames\TArduinoServerCommandFrame.dfm"/>
         <FormResources Include="forms\TStringInputDialog.dfm"/>
-        <FormResources Include="forms\TTextInputDialog.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

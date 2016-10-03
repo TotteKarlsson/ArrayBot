@@ -28,6 +28,9 @@
 #include "abATDBClientDBSession.h"
 #include <Vcl.Imaging.jpeg.hpp>
 
+#include "TATDBDataModule.h"
+#include "TATDBImagesAndMoviesDataModule.h"
+
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;
@@ -97,10 +100,13 @@ class TMainForm  : public TRegistryForm
 	TButton *mAddImageFileBtn;
 	TDBMemo *DBMemo1;
 	TButton *mUpdateNoteBtn;
-	TButton *Button1;
-	TButton *Button3;
+	TButton *mNewNoteBtn;
+	TButton *mDeleteNoteBtn;
 	TImage *Image1;
 	TGroupBox *GroupBox1;
+	TPanel *Panel4;
+	TComboBox *mUsersCB;
+	TLabel *Label1;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -130,7 +136,7 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall DBNavigator2Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator2BeforeAction(TObject *Sender, TNavigateBtn Button);
-	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall mNewNoteBtnClick(TObject *Sender);
 	void __fastcall DBMemo1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mImagesGridMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
@@ -188,6 +194,7 @@ class TMainForm  : public TRegistryForm
         										//Callback
 		void 									onArduinoMessageReceived(const string& msg);
         void									enableDisableClientControls(bool enable);
+		void    								populateUsers();
 
     public:
  			       __fastcall 					TMainForm(TComponent* Owner);

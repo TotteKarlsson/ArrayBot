@@ -26,8 +26,9 @@ bool __fastcall TatDM::Connect(const string& DatabaseFile)
 	try
     {
        SQLConnection1->Connected = false;
-       SQLConnection1->Params->Values[_D("Database")]= vclstr(DatabaseFile);
+       SQLConnection1->Params->Values[_D("Database")] = vclstr(DatabaseFile);
        SQLConnection1->Connected= true;
+
     }
     catch (const Exception &E)
     {

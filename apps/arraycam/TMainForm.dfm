@@ -484,29 +484,21 @@ object MainForm: TMainForm
     object TabSheet2: TTabSheet
       Caption = 'History'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
-        Top = 0
+        Top = 41
         Width = 752
-        Height = 568
+        Height = 527
         ActivePage = TabSheet3
         Align = alClient
         TabOrder = 0
         object TabSheet3: TTabSheet
           Caption = 'Images'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Image1: TImage
             Left = 282
             Top = 0
             Width = 462
-            Height = 534
+            Height = 493
             Align = alClient
             IncrementalDisplay = True
             Picture.Data = {
@@ -2175,7 +2167,7 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 282
-            Height = 534
+            Height = 493
             Align = alLeft
             Caption = 'Images'
             TabOrder = 0
@@ -2185,31 +2177,34 @@ object MainForm: TMainForm
               Width = 262
               Height = 142
               DataField = 'note'
+              DataSource = ImagesAndMoviesDM.imageNotes
               TabOrder = 0
               OnKeyDown = DBMemo1KeyDown
             end
-            object Button1: TButton
+            object mNewNoteBtn: TButton
               Left = 103
               Top = 268
               Width = 75
               Height = 32
               Caption = 'New'
               TabOrder = 1
-              OnClick = Button1Click
+              OnClick = mNewNoteBtnClick
             end
-            object Button3: TButton
+            object mDeleteNoteBtn: TButton
               Left = 184
               Top = 268
               Width = 75
               Height = 32
               Caption = 'Delete'
               TabOrder = 2
+              OnClick = mNewNoteBtnClick
             end
             object DBGrid2: TDBGrid
               Left = 103
               Top = 53
               Width = 162
               Height = 209
+              DataSource = ImagesAndMoviesDM.imageNotes
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
               TabOrder = 3
               TitleFont.Charset = DEFAULT_CHARSET
@@ -2226,18 +2221,19 @@ object MainForm: TMainForm
                 end>
             end
             object DBNavigator1: TDBNavigator
-              Left = 9
+              Left = 11
               Top = 22
               Width = 252
               Height = 25
+              DataSource = ImagesAndMoviesDM.imagesDS
               VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               TabOrder = 4
             end
             object mAddImageFileBtn: TButton
               Left = 119
-              Top = 469
+              Top = 457
               Width = 131
-              Height = 31
+              Height = 43
               Caption = 'Add Image File'
               TabOrder = 5
               Visible = False
@@ -2248,6 +2244,7 @@ object MainForm: TMainForm
               Top = 53
               Width = 94
               Height = 209
+              DataSource = ImagesAndMoviesDM.imagesDS
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
               TabOrder = 6
               TitleFont.Charset = DEFAULT_CHARSET
@@ -2285,6 +2282,29 @@ object MainForm: TMainForm
           ExplicitTop = 0
           ExplicitWidth = 0
           ExplicitHeight = 0
+        end
+      end
+      object Panel4: TPanel
+        Left = 0
+        Top = 0
+        Width = 752
+        Height = 41
+        Align = alTop
+        TabOrder = 1
+        object Label1: TLabel
+          Left = 15
+          Top = 11
+          Width = 38
+          Height = 19
+          Caption = 'User:'
+        end
+        object mUsersCB: TComboBox
+          Left = 67
+          Top = 8
+          Width = 145
+          Height = 27
+          Style = csDropDownList
+          TabOrder = 0
         end
       end
     end

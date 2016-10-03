@@ -39,6 +39,10 @@ object Main: TMain
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Blocks'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         897
         435)

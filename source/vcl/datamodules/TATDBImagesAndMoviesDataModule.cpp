@@ -1,5 +1,9 @@
 #pragma hdrstop
 #include "TATDBImagesAndMoviesDataModule.h"
+#include "mtkLogger.h"
+
+using namespace mtk;
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma classgroup "System.Classes.TPersistent"
@@ -19,15 +23,15 @@ void __fastcall TImagesAndMoviesDM::imagesCDSAfterScroll(TDataSet *DataSet)
 	{
         imageNoteCDS->CancelUpdates();
 		notesCDS->CancelUpdates();
-		//Update customers orders
+
 		TField* field = imagesCDS->FieldByName("id");
 		imageNote->Active = false;
         notesQ->Active = false;
 		if(field)
 		{
 			String val = field->AsString;
-			imageNote->SQL->Text = "SELECT * from abImage_note where image_id ='" + val + "'";
-            notesQ->SQL->Text = "SELECT * FROM note WHERE id IN (SELECT note_id FROM abImage_note WHERE image_id = '" + val + "')";
+			imageNote->SQL->Text 	= "SELECT * from abImage_note where image_id ='" + val + "'";
+            notesQ->SQL->Text 		= "SELECT * FROM note WHERE id IN (SELECT note_id FROM abImage_note WHERE image_id = '" + val + "')";
 			imageNoteCDS->Refresh();
             notesCDS->Refresh();
 		}
@@ -37,14 +41,11 @@ void __fastcall TImagesAndMoviesDM::imagesCDSAfterScroll(TDataSet *DataSet)
 }
 
 void __fastcall TImagesAndMoviesDM::SQLConnection1AfterConnect(TObject *Sender)
-
 {
 	Log(lInfo) << "After Connect (Images and Movies)";
-//    abImageDS->Active = true;
-//	mImageClientDS->Active = true;
-//	usersDS->Active = true;
-//    blocksDS->Active = true;
-//    noteDS->Active = true;
+    imagesCDS->Active = true;
+    imageNoteCDS->Active = true;
+	notesCDS->Active = true;
 
 }
 //---------------------------------------------------------------------------

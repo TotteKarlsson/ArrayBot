@@ -195,7 +195,7 @@ object SettingsForm: TSettingsForm
     Enabled = False
     Interval = 200
     OnTimer = UIUpdateTimerTimer
-    Left = 344
-    Top = 240
+    Left = 352
+    Top = 264
   end
 end

@@ -37,7 +37,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="apps\arraycam\ArrayCam.cbproj">
-            <Dependencies>P:\libs\dslib\VCL\Common\VCLCommon.cbproj</Dependencies>
+            <Dependencies>source\vcl\abVCLCore.cbproj;P:\libs\dslib\VCL\Common\VCLCommon.cbproj;source\abCore.cbproj</Dependencies>
         </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
             <Dependencies>source\abCore.cbproj;source\vcl\abVCLCore.cbproj;UI\lib\ArrayBotPackage.cbproj</Dependencies>
@@ -158,13 +158,13 @@
     <Target Name="ArduinoController:Make">
         <MSBuild Projects="apps\arduinocontroller\ArduinoController.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayCam" DependsOnTargets="VCLCommon">
+    <Target Name="ArrayCam" DependsOnTargets="abVCLCore;VCLCommon;abCore">
         <MSBuild Projects="apps\arraycam\ArrayCam.cbproj"/>
     </Target>
-    <Target Name="ArrayCam:Clean" DependsOnTargets="VCLCommon:Clean">
+    <Target Name="ArrayCam:Clean" DependsOnTargets="abVCLCore:Clean;VCLCommon:Clean;abCore:Clean">
         <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ArrayCam:Make" DependsOnTargets="VCLCommon:Make">
+    <Target Name="ArrayCam:Make" DependsOnTargets="abVCLCore:Make;VCLCommon:Make;abCore:Make">
         <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Make"/>
     </Target>
     <Target Name="ArrayBot" DependsOnTargets="abCore;abVCLCore;ArrayBotPackage">
