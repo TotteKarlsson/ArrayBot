@@ -145,17 +145,20 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>frames\TArduinoBoardFrame.h</DependentOn>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <CppCompile Include="frames\TLightsArduinoFrame.cpp">
+            <Form>LightsArduinoFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TLightsArduinoFrame.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
         <CppCompile Include="frames\TPufferArduinoBoardFrame.cpp">
             <Form>PufferArduinoBoardFrame</Form>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>frames\TPufferArduinoBoardFrame.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
-        <CppCompile Include="frames\TSensorAndLightArduinoFrame.cpp">
-            <Form>SensorAndLightArduinoFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>frames\TSensorAndLightArduinoFrame.h</DependentOn>
-            <BuildOrder>9</BuildOrder>
+        <CppCompile Include="frames\TSensorsArduinoFrame.cpp">
+            <BuildOrder>11</BuildOrder>
         </CppCompile>
         <CppCompile Include="MainForm.cpp">
             <Form>Main</Form>
@@ -173,7 +176,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
         <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="frames\TSensorAndLightArduinoFrame.dfm"/>
+        <FormResources Include="frames\TLightsArduinoFrame.dfm"/>
         <FormResources Include="frames\TPufferArduinoBoardFrame.dfm"/>
         <FormResources Include="forms\TAboutArduinoControllerForm.dfm"/>
         <FormResources Include="forms\TArduinoControllerSplashForm.dfm"/>

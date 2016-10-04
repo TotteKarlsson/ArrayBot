@@ -12,7 +12,7 @@
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
-USEFORM("frames\TSensorAndLightArduinoFrame.cpp", SensorAndLightArduinoFrame); /* TFrame: File Type */
+USEFORM("frames\TLightsArduinoFrame.cpp", LightsArduinoFrame); /* TFrame: File Type */
 USEFORM("frames\TPufferArduinoBoardFrame.cpp", PufferArduinoBoardFrame); /* TFrame: File Type */
 USEFORM("forms\TAboutArduinoControllerForm.cpp", AboutArduinoControllerForm);
 USEFORM("forms\TArduinoControllerSplashForm.cpp", ArduinoControllerSplashForm);

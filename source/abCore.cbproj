@@ -286,8 +286,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <BuildOrder>48</BuildOrder>
         </CppCompile>
         <CppCompile Include="arduino\abLightsArduino.cpp">
-            <DependentOn>arduino\abLightsArduino.h</DependentOn>
-            <BuildOrder>49</BuildOrder>
+            <BuildOrder>69</BuildOrder>
         </CppCompile>
         <CppCompile Include="arduino\abLightsArduinoClient.cpp">
             <DependentOn>arduino\abLightsArduinoClient.h</DependentOn>
@@ -300,6 +299,10 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <CppCompile Include="arduino\abPufferArduinoClient.cpp">
             <DependentOn>arduino\abPufferArduinoClient.h</DependentOn>
             <BuildOrder>40</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="arduino\abSensorsArduino.cpp">
+            <DependentOn>arduino\abSensorsArduino.h</DependentOn>
+            <BuildOrder>49</BuildOrder>
         </CppCompile>
         <CppCompile Include="auto_link.cpp">
             <BuildOrder>56</BuildOrder>

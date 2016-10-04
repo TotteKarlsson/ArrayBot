@@ -33,6 +33,7 @@
 #include "TArrayBotBtn.h"
 #include "arduino/abPufferArduino.h"
 #include "arduino/abLightsArduino.h"
+#include "arduino/abSensorsArduino.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;
@@ -149,8 +150,10 @@ class TMain : public TRegistryForm
 
         ArduinoServer					    mArduinoServer;
 
+           									//References to arduino objects
         PufferArduino&					    mPufferArduino;
         LightsArduino&					    mLightsArduino;
+        SensorsArduino&					    mSensorsArduino;
 
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,    mlxStructMessage,         AppInBox);

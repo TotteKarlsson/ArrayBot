@@ -2,26 +2,12 @@
 This sketch expects an Adafruit Motor Shield for Arduino v2
 ---->	http://www.adafruit.com/products/1438
 - Adjust LEDs by PWM on motor lines 1 (coax), 3 (front), 4 (back) - 
-- Ver 5.5 TK added support for serial commands to control the lights
-- and also read temperature and humidity.
+- Removed sensor reads
 */
 
 double sketchVersion = 1.0;
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
-//#include "./utility/Adafruit_MS_PWMServoDriver.h"
-
-//The DHT22 is a combined temp/humidity sensor
-#include "DHT.h"
-#define DHTTYPE DHT22
-
-// Data wire is plugged into port 7 on the Arduino
-// Connect a 4.7K resistor between VCC and the data pin (strong pullup)
-#define DHT22_PIN 7
-
-// Setup a GLOBAL DHT22 instance
-DHT gDHT22(DHT22_PIN, DHTTYPE);
-void readEnvironmentalSensors(DHT& gDHT22);
 
 // Create the "motor" shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
@@ -55,7 +41,6 @@ Adafruit_DCMotor *backLEDs  = AFMS.getMotor(4);
   int flashToggle   = true;
   int flashInterval = 500;
   unsigned long flashMillis = millis();
-  unsigned long lastReadTime = millis();
     
   void checkPINStates();
   void processByte(char ch); 
@@ -153,18 +138,6 @@ void loop()
         }
         flashMillis = millis() + flashInterval;
     }
-
-    //Read digital lines and send status over serial port so the host
-    //can update its UI
-    unsigned long currentReadTime = millis();
-    if(currentReadTime - lastReadTime > 2000)
-    {
-        lastReadTime = currentReadTime;
-        readEnvironmentalSensors(gDHT22);    
-    }
-    
-    //Read temp/humidity sensor, about every 2s.
-
 }
   
 void processByte(char ch)
@@ -221,21 +194,5 @@ void sendInfo()
     Serial << "[COAX_DRIVE="<<coaxDrive<<"]";
     Serial << "[FRONT_LED_DRIVE="<<frontLEDDrive<<"]";
     Serial << "[BACK_LED_DRIVE="<<backLEDDrive<<"]";
-}
-
-void readEnvironmentalSensors(DHT& s)
-{
-    s.read();
-    float h = s.readHumidity();
-    float t = s.readTemperature();
-    float hic = s.computeHeatIndex(t, h, false);
-    if(isnan(h) || isnan(t))
-    {
-        Serial << "[DHT22_ERROR, READ_ERROR]";
-    } 
-    else
-    {
-        Serial << "[DHT22_DATA," << t << "," << h << "," << hic << "]";
-    }      
 }
   

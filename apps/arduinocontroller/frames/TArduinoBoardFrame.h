@@ -33,7 +33,6 @@ __published:	// IDE-managed Components
 	void __fastcall mCheckConnectionTimerTimer(TObject *Sender);
 
 	protected:
-
     	ArduinoServer&					mServer;
         ArduinoDevice&					mArduinoDevice;
 

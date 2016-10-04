@@ -11,7 +11,8 @@
 #include "abExceptions.h"
 #include "TSplashForm.h"
 #include "TPufferArduinoBoardFrame.h"
-#include "TSensorAndLightArduinoFrame.h"
+#include "TLightsArduinoFrame.h"
+#include "TSensorsArduinoFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -41,7 +42,8 @@ __fastcall TMain::TMain(TComponent* Owner)
     mLogLevel(lAny),
     mArduinoServer(-1),
     mPufferArduino(mArduinoServer.getPufferArduino()),
-    mLightsArduino(mArduinoServer.getSensorArduino())
+    mLightsArduino(mArduinoServer.getLightsArduino()),
+    mSensorsArduino(mArduinoServer.getSensorsArduino())
 {
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
@@ -119,12 +121,19 @@ void __fastcall	TMain::setupUIFrames()
     af1->ConnectBtnClick(NULL);
     mFrames.push_back(af1);
 
-    mLightsArduino.setName("SENSOR_ARDUINO");
-    TSensorAndLightArduinoFrame* af2 = new TSensorAndLightArduinoFrame(mArduinoServer, mLightsArduino, mIniFile, this);
+    mLightsArduino.setName("LIGHTS_ARDUINO");
+    TLightsArduinoFrame* af2 = new TLightsArduinoFrame(mArduinoServer, mLightsArduino, mIniFile, this);
     af2->Parent =  mArduinoSB;
     af2->Align = alLeft;
     af2->ConnectBtnClick(NULL);
     mFrames.push_back(af2);
+
+    mSensorsArduino.setName("SENSORS_ARDUINO");
+    TSensorsArduinoFrame* af3 = new TSensorsArduinoFrame(mArduinoServer, mSensorsArduino, mIniFile, this);
+    af3->Parent =  mArduinoSB;
+    af3->Align = alLeft;
+    af3->ConnectBtnClick(NULL);
+    mFrames.push_back(af3);
 }
 
 //This callback is called from the arduino server

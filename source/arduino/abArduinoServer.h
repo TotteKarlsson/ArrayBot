@@ -7,6 +7,7 @@
 #include "mtkSocketWorker.h"
 #include "abPufferArduino.h"
 #include "abLightsArduino.h"
+#include "abSensorsArduino.h"
 #include <vector>
 #include "mtkTimer.h"
 #include "abRibbonController.h"
@@ -35,12 +36,13 @@ class AB_CORE ArduinoServer : public IPCServer
 	                                        ~ArduinoServer();
 
                                             //!The process message is an overide from the IPCServer base class.
-                                            //!Process message implements arduino server specific processing.
-                                            //!Messages sent to the server from a client are processed.
+                                            //!Process message implements the arduino server specific processing.
+                                            //!These messages are sent to the server from a client.
     	bool 					            processMessage(IPCMessage& msg);
 
     	PufferArduino& 			            getPufferArduino(){return mPufferArduino;}
-    	LightsArduino& 			            getSensorArduino(){return mLightsArduino;}
+    	LightsArduino& 			            getLightsArduino(){return mLightsArduino;}
+    	SensorsArduino& 		            getSensorsArduino(){return mSensorsArduino;}
         bool            		            shutDown();
 
 		void        						enableAutoPuff();
@@ -49,7 +51,6 @@ class AB_CORE ArduinoServer : public IPCServer
 		void        						enableAutoZeroCut();
 		void        						disableAutoZeroCut();
         bool								setZeroCut();
-
 
         void								assignOnUpdateCallBack(OnMessageUpdateCB cb);
 		void								onUpdateClientsTimer();
@@ -63,13 +64,15 @@ class AB_CORE ArduinoServer : public IPCServer
                                             //devices...
     	PufferArduino 			            mPufferArduino;
     	LightsArduino 			            mLightsArduino;
+    	SensorsArduino 			            mSensorsArduino;
 
-		RibbonController				mRibbonController;
+		RibbonController					mRibbonController;
 
         OnMessageUpdateCB					onMessageUpdateCB;
 
-		void					            pufferMessageReceived(const string& msg);
-		void					            sensorMessageReceived(const string& msg);
+		void					            pufferArduinoMessageReceived(const string& msg);
+		void					            lightsArduinoMessageReceived(const string& msg);
+		void					            sensorsArduinoMessageReceived(const string& msg);
         void								notifyClients(const string& msg);
 };
 

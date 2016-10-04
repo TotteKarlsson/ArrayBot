@@ -14,14 +14,16 @@ ArduinoServer::ArduinoServer(int portNumber)
 IPCServer(portNumber, "ARDUINO_SERVER", createArduinoIPCReceiver),
 mPufferArduino(-1),
 mLightsArduino(-1),
+mSensorsArduino(-1),
 mRibbonController(*this)
 {
 	mArduinos.push_back(&mPufferArduino);
 	mArduinos.push_back(&mLightsArduino);
 
     //Assign receive callbacks
-    mPufferArduino.assignSerialMessageReceivedCallBack(pufferMessageReceived);
-    mLightsArduino.assignSerialMessageReceivedCallBack(sensorMessageReceived);
+    mPufferArduino.assignSerialMessageReceivedCallBack(pufferArduinoMessageReceived);
+    mLightsArduino.assignSerialMessageReceivedCallBack(lightsArduinoMessageReceived);
+    mSensorsArduino.assignSerialMessageReceivedCallBack(sensorsArduinoMessageReceived);
 }
 
 ArduinoServer::~ArduinoServer()
@@ -106,7 +108,7 @@ void ArduinoServer::broadcastStatus()
 //This is called from the arduino devices class upon receiving
 //a message from the arduino thread over the serial port
 //Socket clients are updated using the notifyClients funtion
-void ArduinoServer::sensorMessageReceived(const string& msg)
+void ArduinoServer::lightsArduinoMessageReceived(const string& msg)
 {
 	notifyClients(msg);
 }
@@ -114,7 +116,15 @@ void ArduinoServer::sensorMessageReceived(const string& msg)
 //This is called from the arduino devices class upon receiving
 //a message from the arduino thread over the serial port
 //Socket clients are updated using the notifyClients funtion
-void ArduinoServer::pufferMessageReceived(const string& msg)
+void ArduinoServer::sensorsArduinoMessageReceived(const string& msg)
+{
+	notifyClients(msg);
+}
+
+//This is called from the arduino devices class upon receiving
+//a message from the arduino thread over the serial port
+//Socket clients are updated using the notifyClients funtion
+void ArduinoServer::pufferArduinoMessageReceived(const string& msg)
 {
 	Log(lDebug5) << "Handling puffer message: "<<msg;
 
@@ -155,7 +165,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         msg.unPack();
     }
 
-    //PUFFER ARDUINO MESSAGES
+    //PUFFER ARDUINO MESSAGES ******************************************
     if(startsWith("GET_PUFFER_ARDUINO_STATUS", msg))
     {
     	Log(lInfo) << "Requestiong PUFFER_ARDUINO status";
@@ -286,13 +296,7 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         clientMessage << "AUTO_ZERO_CUT=false";
     }
 
-    //SENSOR ARDUINO MESSAGES
-    else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
-    {
-    	Log(lInfo) << "Requestiong SENSOR_ARDUINO status";
-        mLightsArduino.getStatus();
-    }
-
+    //LIGHTS ARDUINO MESSAGES ******************************************
     else if(startsWith("TURN_ON_LED_LIGHTS", msg))
     {
     	Log(lInfo) << "Turn on LED lights";
@@ -365,26 +369,46 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         }
     }
 
-    else if(startsWith("GET_SENSOR_ARDUINO_STATUS", msg))
+    else if(startsWith("GET_LIGHTS_ARDUINO_STATUS", msg))
     {
-		Log(lInfo) << "Requesting sensor arduino status";
+		Log(lInfo) << "Requesting lights arduino status";
         mLightsArduino.getStatus();
     }
 
-    else if(startsWith("SENSOR_CUSTOM_MESSAGE", msg))
+    else if(startsWith("LIGHTS_CUSTOM_MESSAGE", msg))
     {
     	StringList l(msg,'=');
         if(l.size() == 2)
         {
-	    	Log(lInfo) << "Sending sensor custom message: "<<l[1];
+	    	Log(lInfo) << "Sending custom message to Lights Arduino: "<<l[1];
 	        mLightsArduino.send(l[1]);
+        }
+    }
+
+
+    //SENSORS ARDUINO MESSAGES ******************************************
+    else if(startsWith("GET_SENSORS_ARDUINO_STATUS", msg))
+    {
+		Log(lInfo) << "Requesting sensors Arduino status";
+        mSensorsArduino.getStatus();
+    }
+
+
+    else if(startsWith("SENSORS_CUSTOM_MESSAGE", msg))
+    {
+    	StringList l(msg,'=');
+        if(l.size() == 2)
+        {
+	    	Log(lInfo) << "Sending custom message to Sensors Arduino: "<<l[1];
+	        mSensorsArduino.send(l[1]);
         }
     }
 
     else if(compareStrings(msg, "GET_SERVER_STATUS"))
     {
     	Log(lInfo) << "Broadcast server status";
-        request("GET_SENSOR_ARDUINO_STATUS");
+        request("GET_SENSORS_ARDUINO_STATUS");
+        request("GET_LIGHTS_ARDUINO_STATUS");
         request("GET_PUFFER_ARDUINO_STATUS");
         broadcastStatus();
     }

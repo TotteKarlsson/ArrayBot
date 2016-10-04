@@ -25,7 +25,7 @@ class AB_CORE ArduinoDevice : public ABObject
 {
     public:
         							ArduinoDevice(int portNr, int baudRate = 9600);
-    								~ArduinoDevice();
+    	virtual		    			~ArduinoDevice();
 
 		void						setName(const string& name){mName = name;}
         string						getName(){return mName;}
