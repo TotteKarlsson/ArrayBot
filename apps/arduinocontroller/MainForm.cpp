@@ -41,7 +41,7 @@ __fastcall TMain::TMain(TComponent* Owner)
     mLogLevel(lAny),
     mArduinoServer(-1),
     mPufferArduino(mArduinoServer.getPufferArduino()),
-    mSensorArduino(mArduinoServer.getSensorArduino())
+    mLightsArduino(mArduinoServer.getSensorArduino())
 {
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
@@ -119,8 +119,8 @@ void __fastcall	TMain::setupUIFrames()
     af1->ConnectBtnClick(NULL);
     mFrames.push_back(af1);
 
-    mSensorArduino.setName("SENSOR_ARDUINO");
-    TSensorAndLightArduinoFrame* af2 = new TSensorAndLightArduinoFrame(mArduinoServer, mSensorArduino, mIniFile, this);
+    mLightsArduino.setName("SENSOR_ARDUINO");
+    TSensorAndLightArduinoFrame* af2 = new TSensorAndLightArduinoFrame(mArduinoServer, mLightsArduino, mIniFile, this);
     af2->Parent =  mArduinoSB;
     af2->Align = alLeft;
     af2->ConnectBtnClick(NULL);
@@ -198,6 +198,7 @@ void __fastcall TMain::mArduinoServerStartBtnClick(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMain::mResetCounterBtnClick(TObject *Sender)
 {
 	mArduinoServer.request("RESET_SECTION_COUNT");

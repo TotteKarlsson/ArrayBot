@@ -150,7 +150,7 @@ class TMain : public TRegistryForm
         ArduinoServer					    mArduinoServer;
 
         PufferArduino&					    mPufferArduino;
-        LightsArduino&					    mSensorArduino;
+        LightsArduino&					    mLightsArduino;
 
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,    mlxStructMessage,         AppInBox);
