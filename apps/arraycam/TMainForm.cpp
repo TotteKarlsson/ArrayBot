@@ -70,11 +70,16 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     mProperties.read();
 
     mClientDBSession.connect(mLocalDBFile);
+
 	//Camera rendering mode
     mRenderMode = IS_RENDER_FIT_TO_WINDOW;
-	mLightsArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
+
+	mLightsArduinoClient.assignOnMessageReceivedCallBack(onLightsArduinoMessageReceived);
+    mSensorsArduinoClient.assignOnMessageReceivedCallBack(onSensorsArduinoMessageReceived);
+
     mLightsArduinoClient.onConnected 		= onArduinoClientConnected;
 	mLightsArduinoClient.onDisconnected 	= onArduinoClientDisconnected;
+
     gLogger.setLogLevel(mLogLevel);
 }
 
@@ -133,11 +138,6 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState S
     }
 }
 
-//HWND TMainForm::GetSafeHwnd()
-//{
-//	return this->Handle;
-//}
-
 void __fastcall TMainForm::mMainPanelResize(TObject *Sender)
 {
 //	mFitToScreenButtonClick(Sender);
@@ -157,151 +157,6 @@ void __fastcall TMainForm::ClearLogMemo(TObject *Sender)
 	infoMemo->Clear();
 }
 
-void  TMainForm::updateVideoFileLB()
-{
-//	string fldr = mMoviesFolder;
-//    StringList files = getFilesInDir(fldr, "avi");
-//
-//    for(int i = 0; i < files.count(); i++)
-//    {
-//		files[i] = getFileNameNoPath(files[i]);
-//    }
-//
-//    files.sort();
-//
-//	mMoviesLB->Clear();
-//    for(int i = 0; i < files.count(); i++)
-//    {
-//    	mMoviesLB->AddItem( vclstr(files[i]), NULL );
-//    }
-}
-
-void  TMainForm::updateShotsLB()
-{
-//	string fldr =  mSnapShotFolder;
-//    StringList files = getFilesInDir(fldr, "jpg");
-//
-//    for(int i = 0; i < files.count(); i++)
-//    {
-//		files[i] = getFileNameNoPath(files[i]);
-//    }
-//
-//    files.sort();
-//
-//	mShotsLB->Clear();
-//    for(int i = 0; i < files.count(); i++)
-//    {
-//    	mShotsLB->AddItem( vclstr(files[i]), NULL );
-//    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mMoviesLBDblClick(TObject *Sender)
-{
-//	TListBox* lb = dynamic_cast<TListBox*>(Sender);
-//    if(lb == mMoviesLB)
-//    {
-//        //Check if we have a valid file
-//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-//        string fldr =  mMoviesFolder;
-//
-//        fName = joinPath(fldr, fName);
-//        if(fileExists(fName))
-//        {
-//            ShellExecuteA(NULL, NULL, stdstr(fName).c_str(), 0, 0, SW_SHOWNA);
-//        }
-//    }
-//    else if (lb == mShotsLB)
-//    {
-//        //Check if we have a valid file
-//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-//        string fldr =  mSnapShotFolder;
-//
-//        fName = joinPath(fldr, fName);
-//        if(fileExists(fName))
-//        {
-//            ShellExecuteA(NULL, NULL, stdstr(fName).c_str(), 0, 0, SW_SHOWNA);
-//        }
-//    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::Delete1Click(TObject *Sender)
-{
-//    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
-//
-//   	if(lb && lb->ItemIndex == -1)
-//    {
-//		return;
-//    }
-//
-//    if(lb == mMoviesLB)
-//    {
-//        //Delete current selected item
-//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-//        string fldr  = mMoviesFolder;
-//
-//        fName = joinPath(fldr, fName);
-//        if(fileExists(fName))
-//        {
-//            removeFile(fName);
-//            updateVideoFileLB();
-//        }
-//    }
-//    else if (lb == mShotsLB)
-//    {
-//        //Delete current selected item
-//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-//        string fldr =  mSnapShotFolder;
-//
-//        fName = joinPath(fldr, fName);
-//        if(fileExists(fName))
-//        {
-//            removeFile(fName);
-//            updateShotsLB();
-//        }
-//    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
-{
-//    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
-//
-//   	if(lb && lb->ItemIndex == -1)
-//    {
-//		return;
-//    }
-//
-//    if(lb == mMoviesLB)
-//    {
-//        while(lb->Count)
-//        {
-//            string fName = stdstr(lb->Items->Strings[0]);
-//            string fldr =  mMoviesFolder;
-//            fName = joinPath(fldr, fName);
-//            if(fileExists(fName))
-//            {
-//                removeFile(fName);
-//                updateVideoFileLB();
-//            }
-//        }
-//    }
-//    else if (lb == mShotsLB)
-//    {
-//        while(lb->Count)
-//        {
-//            string fName = stdstr(lb->Items->Strings[0]);
-//            string fldr =  mSnapShotFolder;
-//            fName = joinPath(fldr, fName);
-//            if(fileExists(fName))
-//            {
-//                removeFile(fName);
-//                updateShotsLB();
-//            }
-//        }
-//    }
-}
 
 void __fastcall TMainForm::mCameraStreamPanelDblClick(TObject *Sender)
 {
@@ -329,115 +184,6 @@ void __fastcall TMainForm::mSettingsBtnClick(TObject *Sender)
 }
 
 
-	class TLocalArgs
-    {
-    	public:
-        string msg;
-        void __fastcall onPufferArduinoMessage()
-        {
-        	//If mouse is down.. do not update certain UI objects
-            bool isMouseBtnDown = (bool) GetAsyncKeyState(VK_LBUTTON);
-            if(startsWith("DHT22_DATA", msg))
-            {
-                //Parse the message
-                StringList l(msg,',');
-                if(l.size() == 4)
-                {
-                    //Fourth parameter is sensor number
-                    int sensorNum = toInt(l[3]);
-
-                    MainForm->mEnvReader.addReading(toDouble(l[1]), toDouble(l[2]), toInt(l[3]));
-
-                    //Get average when it makes sense
-                    if(MainForm->mEnvReader.getNumberOfReadings() == MainForm->mEnvReader.getNumberOfSensors())
-                    {
-                        MainForm->mTemperatureLbl->SetValue(MainForm->mEnvReader.getAverageTemperature());
-                        MainForm->mHumidityE->SetValue(MainForm->mEnvReader.getAverageHumidity());
-
-                        //Put the numbers into the DB (change this to be outside the main thread(!)
-                   		vector<SensorReading> readings = MainForm->mEnvReader.getReadings();
-                     	for(int i = 0; i < readings.size(); i++)
-                        {
-							SensorReading r = readings[i];
-                            try
-                            {
-                        		MainForm->mClientDBSession.insertEnvironmentalData(r.mSensorID, r.mTemperature, r.mHumidity);
-                            }
-                            catch(...)
-                            {
-                            	handleSQLiteException();
-                            }
-                        }
-
-                        //Purge reader
-                        MainForm->mEnvReader.purge();
-                    }
-                }
-            }
-
-            else if(startsWith("GET_READY_FOR_ZERO_CUT_2", msg))
-            {
-            	Log(lInfo) <<"Steady for zero cut";
-                MainForm->stopSounds();
-				MainForm->mGetReadyForZeroCutSound.play();
-            }
-
-            else if(startsWith("SET_ZERO_CUT", msg))
-            {
-            	Log(lInfo) <<"Go for zero cut ";
-                MainForm->stopSounds();
-				MainForm->mSetZeroCutSound.play();
-            }
-
-            else if(startsWith("RESTORE_FROM_ZERO_CUT", msg))
-            {
-				Log(lInfo) <<"Restore from zero Cut ";
-                MainForm->stopSounds();
-				//MainForm->mRestoreFromZeroCutSound.play();
-            }
-            else if(startsWith("COAX_DRIVE", msg) && isMouseBtnDown == false )
-            {
-                StringList l(msg,'=');
-                if(l.size() == 2 && MainForm->mSettingsForm)
-                {
-                    MainForm->mSettingsForm->mCoaxTB->Tag = 1;
-                    MainForm->mSettingsForm->mCoaxTB->Position = toInt(l[1]);
-                    MainForm->mSettingsForm->mCoaxTB->Tag = 0;
-                }
-            }
-            else if(startsWith("FRONT_LED_DRIVE", msg) && isMouseBtnDown == false)
-            {
-                StringList l(msg,'=');
-                if(l.size() == 2 && MainForm->mSettingsForm)
-                {
-   	                MainForm->mSettingsForm->mFrontLEDTB->Tag = 1;
-                    MainForm->mSettingsForm->mFrontLEDTB->Position = toInt(l[1]);
-   	                MainForm->mSettingsForm->mFrontLEDTB->Tag = 0;
-                }
-            }
-
-            else if(startsWith("BACK_LED_DRIVE", msg) && isMouseBtnDown == false)
-            {
-                StringList l(msg,'=');
-                if(l.size() == 2 && MainForm->mSettingsForm)
-                {
-   	                MainForm->mSettingsForm->mBackLEDTB->Tag = 1;
-                    MainForm->mSettingsForm->mBackLEDTB->Position = toInt(l[1]);
-   	                MainForm->mSettingsForm->mBackLEDTB->Tag = 0;
-                }
-            }
-        }
-    };
-
-
-void TMainForm::onArduinoMessageReceived(const string& msg)
-{
-    TLocalArgs args;
-    args.msg = msg;
-
-    //This causes this fucntion to be called in the UI thread
-	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mFrontBackLEDBtnClick(TObject *Sender)
@@ -598,7 +344,6 @@ void __fastcall TMainForm::DBMemo1KeyDown(TObject *Sender, WORD &Key, TShiftStat
 void __fastcall TMainForm::mImagesGridCellClick(TColumn *Column)
 {
 	//Retrieve file name and show the image
-//    mImagesGrid->
 	String f =	ImagesAndMoviesDM->imagesCDS->FieldByName("file_name")->AsString;
     string fName = joinPath(mSnapShotFolder, stdstr(f));
 
@@ -646,12 +391,121 @@ void __fastcall TMainForm::Panel3Resize(TObject *Sender)
 	mOneToOneBtn->Width = Panel3->Width / 2;
 	mOneToTwoBtn->Width = Panel3->Width / 2;
 }
-//---------------------------------------------------------------------------
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
 	ImagesAndMoviesDM->sensorsCDS->Active = false;
    	ImagesAndMoviesDM->sensorsCDS->Active = true;
 }
+
+
+
 //---------------------------------------------------------------------------
+void __fastcall TMainForm::mMoviesLBDblClick(TObject *Sender)
+{
+//	TListBox* lb = dynamic_cast<TListBox*>(Sender);
+//    if(lb == mMoviesLB)
+//    {
+//        //Check if we have a valid file
+//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+//        string fldr =  mMoviesFolder;
+//
+//        fName = joinPath(fldr, fName);
+//        if(fileExists(fName))
+//        {
+//            ShellExecuteA(NULL, NULL, stdstr(fName).c_str(), 0, 0, SW_SHOWNA);
+//        }
+//    }
+//    else if (lb == mShotsLB)
+//    {
+//        //Check if we have a valid file
+//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+//        string fldr =  mSnapShotFolder;
+//
+//        fName = joinPath(fldr, fName);
+//        if(fileExists(fName))
+//        {
+//            ShellExecuteA(NULL, NULL, stdstr(fName).c_str(), 0, 0, SW_SHOWNA);
+//        }
+//    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::Delete1Click(TObject *Sender)
+{
+//    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
+//
+//   	if(lb && lb->ItemIndex == -1)
+//    {
+//		return;
+//    }
+//
+//    if(lb == mMoviesLB)
+//    {
+//        //Delete current selected item
+//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+//        string fldr  = mMoviesFolder;
+//
+//        fName = joinPath(fldr, fName);
+//        if(fileExists(fName))
+//        {
+//            removeFile(fName);
+//            updateVideoFileLB();
+//        }
+//    }
+//    else if (lb == mShotsLB)
+//    {
+//        //Delete current selected item
+//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+//        string fldr =  mSnapShotFolder;
+//
+//        fName = joinPath(fldr, fName);
+//        if(fileExists(fName))
+//        {
+//            removeFile(fName);
+//            updateShotsLB();
+//        }
+//    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
+{
+//    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
+//
+//   	if(lb && lb->ItemIndex == -1)
+//    {
+//		return;
+//    }
+//
+//    if(lb == mMoviesLB)
+//    {
+//        while(lb->Count)
+//        {
+//            string fName = stdstr(lb->Items->Strings[0]);
+//            string fldr =  mMoviesFolder;
+//            fName = joinPath(fldr, fName);
+//            if(fileExists(fName))
+//            {
+//                removeFile(fName);
+//                updateVideoFileLB();
+//            }
+//        }
+//    }
+//    else if (lb == mShotsLB)
+//    {
+//        while(lb->Count)
+//        {
+//            string fName = stdstr(lb->Items->Strings[0]);
+//            string fldr =  mSnapShotFolder;
+//            fName = joinPath(fldr, fName);
+//            if(fileExists(fName))
+//            {
+//                removeFile(fName);
+//                updateShotsLB();
+//            }
+//        }
+//    }
+}
 

@@ -123,6 +123,9 @@
         <CppCompile Include="StartingUp.cpp">
             <BuildOrder>9</BuildOrder>
         </CppCompile>
+        <CppCompile Include="SynchronizedFunctions.cpp">
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
         <CppCompile Include="TMainForm.cpp">
             <Form>MainForm</Form>
             <FormType>dfm</FormType>

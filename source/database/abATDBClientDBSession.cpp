@@ -185,7 +185,7 @@ bool ATDBClientDBSession::updateNoteWithID(int noteID, const string& note)
 	return true;
 }
 
-bool ATDBClientDBSession::insertEnvironmentalData(int _id, double _t, double _h)
+bool ATDBClientDBSession::insertSensorData(int _id, double _t, double _h)
 {
     if(!mTheSession)
     {
@@ -201,7 +201,7 @@ bool ATDBClientDBSession::insertEnvironmentalData(int _id, double _t, double _h)
     double t(_t), h(_h);
 
 	Statement s(ses);
-    s << "INSERT INTO environmental_data (device_id, temperature, humidity) VALUES(?,?,?)", use(id), use(t), use(h);
+    s << "INSERT INTO sensor_data (device_id, temperature, humidity) VALUES(?,?,?)", use(id), use(t), use(h);
     s.execute();
     s.reset(ses);
 	return true;

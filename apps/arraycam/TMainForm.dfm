@@ -379,7 +379,7 @@ object MainForm: TMainForm
         Top = 41
         Width = 752
         Height = 535
-        ActivePage = TabSheet5
+        ActivePage = TabSheet3
         Align = alClient
         TabOrder = 0
         object TabSheet3: TTabSheet
@@ -2116,7 +2116,6 @@ object MainForm: TMainForm
               Top = 22
               Width = 252
               Height = 25
-              DataSource = ImagesAndMoviesDM.imagesDS
               VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               TabOrder = 4
             end

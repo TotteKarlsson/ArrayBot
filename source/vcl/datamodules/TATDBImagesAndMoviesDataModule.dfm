@@ -3,6 +3,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
   Height = 591
   Width = 604
   object images: TSQLDataSet
+    Active = True
     CommandText = 'select * from abImage order by date desc'
     MaxBlobSize = -1
     Params = <>
@@ -113,6 +114,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 112
   end
   object imagesCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'imagesProvider'
@@ -183,8 +185,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 256
   end
   object sensors: TSQLDataSet
-    Active = True
-    CommandText = 'select * from environmental_data order by date desc'
+    CommandText = 'select * from sensor_data order by date desc'
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConnection1

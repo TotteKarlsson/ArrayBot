@@ -23,7 +23,7 @@ class AB_CORE ATDBClientDBSession : public ABObject
 		bool							insertImageFile(const string& fName, int userID, const string& note="");
 		bool							insertImageNote(int imageID, int userID, const string& note="");
 
-        bool							insertEnvironmentalData(int id, double t, double h);
+        bool							insertSensorData(int id, double t, double h);
 
 
 		RecordSet* 						getBlocks(ab::dbSQLKeyword kw =ab::dbDescending);

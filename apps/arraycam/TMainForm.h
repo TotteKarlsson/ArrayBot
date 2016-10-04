@@ -17,6 +17,7 @@
 #include "TRegistryForm.h"
 #include "camera/uc480Class.h"
 #include "arduino/abLightsArduinoClient.h"
+#include "arduino/abSensorsArduinoClient.h"
 #include "mtkFloatLabel.h"
 #include <Vcl.Buttons.hpp>
 #include <Vcl.ToolWin.hpp>
@@ -169,27 +170,28 @@ class TMainForm  : public TRegistryForm
                                                 //underlying avi object
 		int 							        mAVIID;
 
-        void							        updateVideoFileLB();
-		void  							        updateShotsLB();
-
         										//!The arduino client connects to
                                                 //an arduino server. The client processes
                                                 //incoming messages over a socket, in
                                                 //onArduinoMessageReceived
 		LightsArduinoClient    			        mLightsArduinoClient;
 
-//        										//!The arduino client connects to
-//                                                //an arduino server. The client processes
-//                                                //incoming messages over a socket, in
-//                                                //onArduinoMessageReceived
-//		SensorsArduinoClient    	   	        mLightsArduinoClient;
+        										//!The arduino client connects to
+                                                //an arduino server. The client processes
+                                                //incoming messages over a socket, in
+                                                //onArduinoMessageReceived
+		SensorsArduinoClient    	   	        mSensorsArduinoClient;
 
         										//Callbacks
         void									onArduinoClientConnected();
         void									onArduinoClientDisconnected();
 
-        										//Callback
-		void 									onArduinoMessageReceived(const string& msg);
+        										//Callbacks
+		void 									onLightsArduinoMessageReceived(const string& msg);
+		void 									onSensorsArduinoMessageReceived(const string& msg);
+		void 									onPufferArduinoMessageReceived(const string& msg);
+
+
         void									enableDisableClientControls(bool enable);
 		void    								populateUsers();
 

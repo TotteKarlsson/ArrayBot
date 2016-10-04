@@ -18,13 +18,13 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	mCameraStreamPanel->Top = 0;
 	mCameraStreamPanel->Left = 0;
 	mFitToScreenButtonClick(Sender);
-	updateVideoFileLB();
-	updateShotsLB();
 
     enableDisableClientControls(false);
 
 	//Try to connect to the arduino server..
 	mLightsArduinoClient.connect(50000);
+
+   	mSensorsArduinoClient.connect(50000);
 
 	//Setup sounds
 	mGetReadyForZeroCutSound.create(this->Handle);

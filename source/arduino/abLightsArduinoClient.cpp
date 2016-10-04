@@ -12,7 +12,7 @@ LightsArduinoClient::LightsArduinoClient()
 void LightsArduinoClient::getBoardStatus()
 {
 	stringstream msg;
-    msg <<"GET_SENSOR_ARDUINO_STATUS";
+    msg <<"GET_LIGHTS_ARDUINO_STATUS";
 	request(msg.str());
 }
 

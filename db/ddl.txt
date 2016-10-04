@@ -1,0 +1,217 @@
+CREATE TABLE [abImage](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, 
+    [file_name] VARCHAR(512) NOT NULL UNIQUE, 
+    [date] DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP);
+
+CREATE TABLE [abImage_note](
+    [image_id] INTEGER NOT NULL REFERENCES abImage([id]) ON DELETE CASCADE, 
+    [note_ID] INTEGER REFERENCES note([id]) ON DELETE CASCADE);
+
+CREATE TABLE [antibody](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [antibodytype] VARCHAR, 
+    [manufacturer] VARCHAR(200), 
+    [lot_number] VARCHAR(200), 
+    [location] VARCHAR(200), 
+    [received] DATETIME, 
+    [notes] VARCHAR(512), 
+    [storage_temp] INTEGER, 
+    [used] BOOLEAN, 
+    [tube_label] VARCHAR(512), 
+    [hostspecies_id] INTEGER REFERENCES species([id]), 
+    [protein_name] VARCHAR(200), 
+    [protein_asc_id] VARCHAR(200), 
+    [targetspecies_id] INTEGER REFERENCES species([id]), 
+    [fluorophore_id] INTEGER REFERENCES fluorophore([id]), 
+    CHECK([used] IN (0, 1)));
+
+CREATE TABLE [block](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT, 
+    [created] DATETIME DEFAULT (DATETIME ('now', 'localtime')), 
+    [created_by] INTEGER REFERENCES user([id]), 
+    [modified] DATETIME DEFAULT (DATETIME ('now', 'localtime')), 
+    [status] INTEGER DEFAULT 0, 
+    [label] VARCHAR(200) DEFAULT none);
+
+CREATE TABLE [block_note](
+    [block_id] INTEGER REFERENCES block([id]) ON DELETE CASCADE ON UPDATE CASCADE, 
+    [note_id] INTEGER REFERENCES note([id]) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE [channelsetting](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [microscoperound_id] INTEGER REFERENCES microscoperound([id]), 
+    [stain_id] INTEGER REFERENCES stain([id]), 
+    [exposure_time] INTEGER, 
+    [z_offset] FLOAT);
+
+CREATE TABLE [fluorophore](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT, 
+    [status] INTEGER, 
+    [created] DATETIME DEFAULT (DATETIME ('now')), 
+    [modified] DATETIME DEFAULT (DATETIME ('now')), 
+    [name] VARCHAR(200), 
+    [excitation_max] INTEGER, 
+    [emission_max] INTEGER);
+
+CREATE TABLE [frame](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [order] INTEGER, 
+    [sectionimageplan_id] INTEGER REFERENCES sectionimageplan([id]), 
+    [pos_x] FLOAT, 
+    [pos_y] FLOAT, 
+    [pos_i] INTEGER, 
+    [pos_j] INTEGER);
+
+CREATE TABLE [image](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [imagepath] VARCHAR(100), 
+    [channel_setting_id] INTEGER REFERENCES channelsetting([id]), 
+    [z_order] INTEGER, 
+    [z_pos] FLOAT, 
+    [frame_id] INTEGER REFERENCES frame([id]));
+
+CREATE TABLE [imageStainSession](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT, 
+    [name] VARCHAR, 
+    [immunoProtocol] INTEGER REFERENCES immunoprotocol([id]));
+
+CREATE TABLE [immunoprotocol](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT, 
+    [status] INTEGER, 
+    [created] DATETIME DEFAULT (DATETIME ('now')), 
+    [modified] DATETIME DEFAULT (DATETIME ('now')), 
+    [name] VARCHAR(100), 
+    [notes] VARCHAR(1024));
+
+CREATE TABLE [lineartransform](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [microscoperound_id] INTEGER REFERENCES microscoperound([id]), 
+    [ribbon_id] INTEGER REFERENCES ribbon([id]), 
+    [a00] FLOAT, 
+    [a10] FLOAT, 
+    [a11] FLOAT, 
+    [a12] FLOAT, 
+    [b0] FLOAT, 
+    [b1] FLOAT);
+
+CREATE TABLE [microscoperound](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [round_id] INTEGER REFERENCES round([id]));
+
+CREATE TABLE [note](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, 
+    [note] TEXT, 
+    [created_on] DATETIME DEFAULT (DATETIME ('now', 'localtime')), 
+    [created_by] VARCHAR(256) REFERENCES user([id]));
+
+CREATE TABLE [ribbon](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [block_id] INTEGER REFERENCES block([id]) ON DELETE CASCADE, 
+    [status] INTEGER DEFAULT 0, 
+    [created] DATETIME DEFAULT (DATETIME ('now', 'localtime')), 
+    [modified] DATETIME, 
+    [cutting_order] INTEGER NOT NULL DEFAULT (- 1), 
+    [notes] TEXT);
+
+CREATE TABLE [round](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME);
+
+CREATE TABLE [round_ribbon](
+    [round_id] INTEGER REFERENCES round([id]), 
+    [ribbon_id] INTEGER REFERENCES ribbon([id]));
+
+CREATE TABLE [section](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [ribbon_id] INTEGER REFERENCES ribbon([id]), 
+    [order] INTEGER, 
+    [pos_x] FLOAT, 
+    [pos_y] FLOAT, 
+    [angle] FLOAT, 
+    [notes] VARCHAR(512));
+
+CREATE TABLE [sectionimageplan](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [volume_id] INTEGER REFERENCES volume([id]), 
+    [section_id] INTEGER REFERENCES section([id]), 
+    [mx] INTEGER, 
+    [my] INTEGER, 
+    [pos_x] FLOAT, 
+    [pos_y] FLOAT, 
+    [overlap] FLOAT);
+
+CREATE TABLE [species](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [name] VARCHAR(200));
+
+CREATE TABLE [stain](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [staintype] VARCHAR, 
+    [fluorophore_id] INTEGER REFERENCES fluorophore([id]), 
+    [primary_antibody_id] INTEGER REFERENCES antibody([id]), 
+    [primary_dilution] INTEGER, 
+    [secondary_antibody_id] INTEGER REFERENCES antibody([id]), 
+    [secondary_dilution] INTEGER);
+
+CREATE TABLE [stainround](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [round_id] INTEGER REFERENCES round([id]), 
+    [immunoprotocol_id] INTEGER REFERENCES immunoprotocol([id]));
+
+CREATE TABLE [stain_stainround](
+    [stainround_id] INTEGER REFERENCES stainround([id]), 
+    [stain_id] INTEGER REFERENCES stain([id]));
+
+CREATE TABLE [user](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [user_name] TEXT UNIQUE DEFAULT "New User", 
+    [created] DATETIME DEFAULT (DATETIME ('now')));
+
+CREATE TABLE [volume](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [status] INTEGER, 
+    [created] DATETIME, 
+    [modified] DATETIME, 
+    [name] VARCHAR(50), 
+    [notes] VARCHAR(512));
+
+CREATE TABLE [volumn_ribbon](
+    [volume_id] INTEGER REFERENCES volume([id]), 
+    [ribbon_id] INTEGER REFERENCES ribbon([id]));
+
+

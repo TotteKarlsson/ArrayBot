@@ -153,7 +153,6 @@ void __fastcall TMainForm::mSnapShotBtnClick(TObject *Sender)
         DBNavigator1->BtnClick(nbRefresh);
 
     }
-	updateShotsLB();
 }
 
 //---------------------------------------------------------------------------
@@ -245,7 +244,6 @@ void __fastcall TMainForm::mRecordMovieBtnClick(TObject *Sender)
             Log(lError) << "There was a ExitAVI error: "<<retVal;
             return;
         }
-        updateVideoFileLB();
     }
 }
 
