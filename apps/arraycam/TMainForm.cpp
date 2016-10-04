@@ -328,10 +328,10 @@ void __fastcall TMainForm::mSettingsBtnClick(TObject *Sender)
 
 }
 
-void TMainForm::onArduinoMessageReceived(const string& msg)
-{
-	struct TLocalArgs
+
+	class TLocalArgs
     {
+    	public:
         string msg;
         void __fastcall onPufferArduinoMessage()
         {
@@ -343,8 +343,35 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
                 StringList l(msg,',');
                 if(l.size() == 4)
                 {
-                    MainForm->mTemperatureLbl->SetValue(toDouble(l[1]));
-                    MainForm->mHumidityE->SetValue(toDouble(l[2]));
+                    //Fourth parameter is sensor number
+                    int sensorNum = toInt(l[3]);
+
+                    MainForm->mEnvReader.addReading(toDouble(l[1]), toDouble(l[2]), toInt(l[3]));
+
+                    //Get average when it makes sense
+                    if(MainForm->mEnvReader.getNumberOfReadings() == MainForm->mEnvReader.getNumberOfSensors())
+                    {
+                        MainForm->mTemperatureLbl->SetValue(MainForm->mEnvReader.getAverageTemperature());
+                        MainForm->mHumidityE->SetValue(MainForm->mEnvReader.getAverageHumidity());
+
+                        //Put the numbers into the DB (change this to be outside the main thread(!)
+                   		vector<SensorReading> readings = MainForm->mEnvReader.getReadings();
+                     	for(int i = 0; i < readings.size(); i++)
+                        {
+							SensorReading r = readings[i];
+                            try
+                            {
+                        		MainForm->mClientDBSession.insertEnvironmentalData(r.mSensorID, r.mTemperature, r.mHumidity);
+                            }
+                            catch(...)
+                            {
+                            	handleSQLiteException();
+                            }
+                        }
+
+                        //Purge reader
+                        MainForm->mEnvReader.purge();
+                    }
                 }
             }
 
@@ -402,6 +429,9 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
         }
     };
 
+
+void TMainForm::onArduinoMessageReceived(const string& msg)
+{
     TLocalArgs args;
     args.msg = msg;
 
@@ -457,14 +487,6 @@ void __fastcall TMainForm::mAddImageFileBtnClick(TObject *Sender)
             mClientDBSession.insertImageFile(getFileNameNoPath(f), getCurrentUserID(mUsersCB), "Note..");
             DBNavigator1->BtnClick(nbRefresh);
             DBNavigator1->BtnClick(nbRefresh);
-
-//			ImagesAndMoviesDM->images->Active = false;
-//			ImagesAndMoviesDM->images->Close();
-//
-//			ImagesAndMoviesDM->images->ExecSQL();
-//
-//			ImagesAndMoviesDM->images->Open();
-//    		ImagesAndMoviesDM->images->Active = true;
         }
         catch(...)
         {
@@ -478,57 +500,6 @@ void TMainForm::stopSounds()
     mGetReadyForZeroCutSound.stop();
     mRestoreFromZeroCutSound.stop();
     mSetZeroCutSound.stop();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::IntensityChange(TObject *Sender)
-{
-//	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
-//    if(!tb)
-//    {
-//    	return;
-//    }
-//
-//   	int pos = tb->Position;
-//    if(tb == mFrontLEDTB)
-//    {
-//    	if(mPairLEDs.getValue() == true)
-//        {
-//        	if(mBackLEDTB->Position != mFrontLEDTB->Position)
-//            {
-//				mBackLEDTB->Position = mFrontLEDTB->Position;
-//            }
-//        }
-//
-//        if(tb->Tag != 1) //Means we are updating UI from thread
-//        {
-//        	stringstream s;
-//	        s<<"SET_FRONT_LED_INTENSITY="<<pos;
-//	        mLightsArduinoClient.request(s.str());
-//        }
-//        mFrontLEDLbl->Caption = "Front LED (" + IntToStr(pos) + ")";
-//    }
-//    else if(tb == mBackLEDTB)
-//    {
-//        if(tb->Tag != 1) //Means we are updating UI
-//        {
-//	        stringstream s;
-//	        s<<"SET_BACK_LED_INTENSITY="<<pos;
-//    	    mLightsArduinoClient.request(s.str());
-//        }
-//        mBackLEDLbl->Caption = "Back LED (" + IntToStr(pos) + ")";
-//
-//    }
-//    else if(tb == mCoaxTB)
-//    {
-//        if(tb->Tag != 1) //Means we are updating UI
-//        {
-//			stringstream s;
-//	        s<<"SET_COAX_INTENSITY="<<pos;
-//    	    mLightsArduinoClient.request(s.str());
-//        }
-//        mCoaxLbl->Caption = "Coax (" + IntToStr(pos) + ")";
-//    }
 }
 
 //---------------------------------------------------------------------------
@@ -674,6 +645,13 @@ void __fastcall TMainForm::Panel3Resize(TObject *Sender)
 {
 	mOneToOneBtn->Width = Panel3->Width / 2;
 	mOneToTwoBtn->Width = Panel3->Width / 2;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::Button1Click(TObject *Sender)
+{
+	ImagesAndMoviesDM->sensorsCDS->Active = false;
+   	ImagesAndMoviesDM->sensorsCDS->Active = true;
 }
 //---------------------------------------------------------------------------
 

@@ -89,6 +89,7 @@ void __fastcall TImagesAndMoviesDM::SQLConnection1AfterConnect(TObject *Sender)
 	notesCDS->Active = true;
     imageNoteCDS->Active = true;
     imagesCDS->Active = true;
+    sensorsCDS->Active = true;
 }
 
 

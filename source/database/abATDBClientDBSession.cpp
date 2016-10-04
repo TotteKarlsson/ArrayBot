@@ -185,6 +185,28 @@ bool ATDBClientDBSession::updateNoteWithID(int noteID, const string& note)
 	return true;
 }
 
+bool ATDBClientDBSession::insertEnvironmentalData(int _id, double _t, double _h)
+{
+    if(!mTheSession)
+    {
+        Log(lError) << "No Session...";
+        return NULL;
+    }
+
+    Session& ses = *mTheSession;
+
+    //We need local variables for the statements..
+
+    int id(_id);
+    double t(_t), h(_h);
+
+	Statement s(ses);
+    s << "INSERT INTO environmental_data (device_id, temperature, humidity) VALUES(?,?,?)", use(id), use(t), use(h);
+    s.execute();
+    s.reset(ses);
+	return true;
+}
+
 bool ATDBClientDBSession::insertImageFile(const string& fName, int userID, const string& note)
 {
     if(!mTheSession)
@@ -207,18 +229,7 @@ bool ATDBClientDBSession::insertImageFile(const string& fName, int userID, const
     s << "SELECT MAX(id) FROM abImage", into(image_id), now;
     s.reset(ses);
 
-
 	return insertImageNote(image_id, userID, note);
-//    int userID(-1);
-//    s << "INSERT INTO note (created_by, note) VALUES(?, ?)", use(userID), use(n), now;
-//    s.reset(ses);
-//
-//    int noteID;
-//    s << "SELECT MAX(id) FROM note", into(noteID), now;
-//    s.reset(ses);
-//
-//    s << "INSERT INTO abImage_note (image_id, note_id) VALUES(?, ?)", use(image_id), use(noteID), now;
-//	return true;
 }
 
 bool ATDBClientDBSession::insertImageNote(int imageID, int userID, const string& note)

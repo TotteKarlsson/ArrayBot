@@ -83,6 +83,8 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <PostBuildEvent><![CDATA[copy $(BDSCOMMONDIR)\dcp\abVCLCore.bpi  $(BDSCOMMONDIR)\dcp\abVCLCore.lib
+$(PostBuildEvent)]]></PostBuildEvent>
         <BCC_whid>false</BCC_whid>
         <ILINK_GenerateLibFile>false</ILINK_GenerateLibFile>
         <BCC_PCHInject>abVCLCorePCH.h</BCC_PCHInject>
@@ -206,20 +208,20 @@
         <PackageImport Include="vclx.bpi">
             <BuildOrder>19</BuildOrder>
         </PackageImport>
-        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="frames\TXYZPositionsFrame.dfm"/>
-        <FormResources Include="frames\TParallellProcessesFrame.dfm"/>
+        <FormResources Include="frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="frames\TPositionalTriggerFrame.dfm"/>
         <FormResources Include="frames\TSequenceInfoFrame.dfm"/>
         <FormResources Include="frames\TXYZUnitFrame.dfm"/>
-        <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
-        <FormResources Include="forms\TTextInputDialog.dfm"/>
-        <FormResources Include="frames\TArduinoServerCommandFrame.dfm"/>
-        <FormResources Include="frames\TMotorFrame.dfm"/>
+        <FormResources Include="frames\TParallellProcessesFrame.dfm"/>
         <FormResources Include="forms\TamFileEditor.dfm"/>
         <FormResources Include="forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="frames\TMotorFrame.dfm"/>
+        <FormResources Include="frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="frames\TArduinoServerCommandFrame.dfm"/>
         <FormResources Include="forms\TStringInputDialog.dfm"/>
+        <FormResources Include="forms\TTextInputDialog.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -281,6 +283,9 @@
                     <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\DuneComponentsDD.bpl">Components by DuneScientific</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\abVCLCore.bpl">ArrayBot VCL Core package</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\ArrayBotPackage.bpl">ArrayBotPackage</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>
@@ -294,4 +299,12 @@
     </ProjectExtensions>
     <Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>copy $(BDSCOMMONDIR)\dcp\abVCLCore.bpi  $(BDSCOMMONDIR)\dcp\abVCLCore.lib</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
 </Project>

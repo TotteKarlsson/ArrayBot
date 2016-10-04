@@ -129,6 +129,10 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DependentOn>abCore.h</DependentOn>
             <BuildOrder>34</BuildOrder>
         </CppCompile>
+        <CppCompile Include="abEnvironmentalSensorReader.cpp">
+            <DependentOn>abEnvironmentalSensorReader.h</DependentOn>
+            <BuildOrder>70</BuildOrder>
+        </CppCompile>
         <CppCompile Include="abExceptions.cpp">
             <DependentOn>abExceptions.h</DependentOn>
             <BuildOrder>35</BuildOrder>

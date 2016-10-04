@@ -83,6 +83,9 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <PostBuildEvent><![CDATA[copy $(BDSCOMMONDIR)\dcp\ArrayBotPackage.bpi  $(BDSCOMMONDIR)\dcp\ArrayBotPackage.lib
+$(PostBuildEvent)]]></PostBuildEvent>
+        <BCC_whid>false</BCC_whid>
         <ILINK_GenerateLibFile>false</ILINK_GenerateLibFile>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(AB_ROOT)\source\vcl\frames;$(AB_ROOT)\source\vcl\forms;$(ILINK_LibraryPath)</ILINK_LibraryPath>
@@ -209,6 +212,9 @@
                     <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\DuneComponentsDD.bpl">Components by DuneScientific</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\abVCLCore.bpl">ArrayBot VCL Core package</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\ArrayBotPackage.bpl">ArrayBotPackage</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>
@@ -222,4 +228,12 @@
     </ProjectExtensions>
     <Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>copy $(BDSCOMMONDIR)\dcp\ArrayBotPackage.bpi  $(BDSCOMMONDIR)\dcp\ArrayBotPackage.lib</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
 </Project>

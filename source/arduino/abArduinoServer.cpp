@@ -385,14 +385,12 @@ bool ArduinoServer::processMessage(IPCMessage& msg)
         }
     }
 
-
     //SENSORS ARDUINO MESSAGES ******************************************
     else if(startsWith("GET_SENSORS_ARDUINO_STATUS", msg))
     {
 		Log(lInfo) << "Requesting sensors Arduino status";
         mSensorsArduino.getStatus();
     }
-
 
     else if(startsWith("SENSORS_CUSTOM_MESSAGE", msg))
     {

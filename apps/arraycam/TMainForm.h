@@ -30,6 +30,7 @@
 
 #include "TATDBDataModule.h"
 #include "TATDBImagesAndMoviesDataModule.h"
+#include "abEnvironmentalSensorReader.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -37,10 +38,12 @@ using mtk::IniFile;
 using mtk::Property;
 
 class TSettingsForm;
+class TLocalArgs;
 //---------------------------------------------------------------------------
 class TMainForm  : public TRegistryForm
 {
 	friend TSettingsForm;
+	friend TLocalArgs;
 
 	__published:	// IDE-managed Components
 	TMemo *infoMemo;
@@ -96,6 +99,9 @@ class TMainForm  : public TRegistryForm
 	TComboBox *mUsersCB;
 	TLabel *Label1;
 	TPanel *Panel3;
+	TTabSheet *TabSheet5;
+	TDBGrid *DBGrid1;
+	TButton *Button1;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -119,7 +125,6 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mFrontBackLEDBtnClick(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mAddImageFileBtnClick(TObject *Sender);
-	void __fastcall IntensityChange(TObject *Sender);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall DBMemo1Change(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
@@ -130,9 +135,9 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mImagesGridCellClick(TColumn *Column);
 	void __fastcall mImagesGridDblClick(TObject *Sender);
 	void __fastcall Panel3Resize(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
 
-
-    private:
+    protected:
         LogFileReader                           mLogFileReader;
         void __fastcall                         logMsg();
 
@@ -173,6 +178,12 @@ class TMainForm  : public TRegistryForm
                                                 //onArduinoMessageReceived
 		LightsArduinoClient    			        mLightsArduinoClient;
 
+//        										//!The arduino client connects to
+//                                                //an arduino server. The client processes
+//                                                //incoming messages over a socket, in
+//                                                //onArduinoMessageReceived
+//		SensorsArduinoClient    	   	        mLightsArduinoClient;
+
         										//Callbacks
         void									onArduinoClientConnected();
         void									onArduinoClientDisconnected();
@@ -183,6 +194,8 @@ class TMainForm  : public TRegistryForm
 		void    								populateUsers();
 
     public:
+    											//The environmenatl reader is accessed from a thread
+    	EnvironmentaSensorReader				mEnvReader;
 		TSettingsForm* 							mSettingsForm;
  			       __fastcall 					TMainForm(TComponent* Owner);
  			       __fastcall 					~TMainForm();

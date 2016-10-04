@@ -333,7 +333,7 @@ object MainForm: TMainForm
     Top = 0
     Width = 786
     Height = 584
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     MultiLine = True
     TabOrder = 2
@@ -379,7 +379,7 @@ object MainForm: TMainForm
         Top = 41
         Width = 752
         Height = 535
-        ActivePage = TabSheet3
+        ActivePage = TabSheet5
         Align = alClient
         TabOrder = 0
         object TabSheet3: TTabSheet
@@ -2168,6 +2168,55 @@ object MainForm: TMainForm
         object TabSheet4: TTabSheet
           Caption = 'Movies'
           ImageIndex = 1
+        end
+        object TabSheet5: TTabSheet
+          Caption = 'Sensor Data'
+          ImageIndex = 2
+          object DBGrid1: TDBGrid
+            Left = 11
+            Top = 11
+            Width = 678
+            Height = 434
+            DataSource = ImagesAndMoviesDM.sensorsDS
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -16
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'device_id'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'date'
+                Width = 110
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'temperature'
+                Width = 105
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'humidity'
+                Visible = True
+              end>
+          end
+          object Button1: TButton
+            Left = 695
+            Top = 23
+            Width = 75
+            Height = 25
+            Caption = 'Refresh'
+            TabOrder = 1
+            OnClick = Button1Click
+          end
         end
       end
       object Panel4: TPanel

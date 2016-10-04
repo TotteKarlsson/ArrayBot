@@ -50,6 +50,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
       'EnableLoadExtension=False'
       'BlobSize=-1')
     AfterConnect = SQLConnection1AfterConnect
+    Connected = True
     Left = 32
     Top = 32
   end
@@ -180,5 +181,60 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     DataSet = notesCDS
     Left = 336
     Top = 256
+  end
+  object sensors: TSQLDataSet
+    Active = True
+    CommandText = 'select * from environmental_data order by date desc'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 40
+    Top = 344
+    object sensorsid: TIntegerField
+      FieldName = 'id'
+    end
+    object sensorsdevice_id: TIntegerField
+      FieldName = 'device_id'
+    end
+    object sensorsdate: TSQLTimeStampField
+      FieldName = 'date'
+    end
+    object sensorstemperature: TFloatField
+      FieldName = 'temperature'
+    end
+    object sensorshumidity: TFloatField
+      FieldName = 'humidity'
+    end
+  end
+  object DataSetProvider3: TDataSetProvider
+    DataSet = sensors
+    Left = 144
+    Top = 344
+  end
+  object sensorsCDS: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProvider3'
+    AfterScroll = imagesCDSAfterScroll
+    Left = 256
+    Top = 344
+    object sensorsCDSdevice_id: TIntegerField
+      FieldName = 'device_id'
+    end
+    object sensorsCDSdate: TSQLTimeStampField
+      FieldName = 'date'
+    end
+    object sensorsCDStemperature: TFloatField
+      FieldName = 'temperature'
+    end
+    object sensorsCDShumidity: TFloatField
+      FieldName = 'humidity'
+    end
+  end
+  object sensorsDS: TDataSource
+    DataSet = sensorsCDS
+    Left = 336
+    Top = 344
   end
 end

@@ -13,9 +13,9 @@ using std::string;
 using namespace mtk;
 
 USEFORM("TSettingsForm.cpp", SettingsForm);
+USEFORM("TMainForm.cpp", MainForm);
 USEFORM("..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp", ImagesAndMoviesDM); /* TDataModule: File Type */
 USEFORM("..\..\source\vcl\datamodules\TATDBDataModule.cpp", atDM); /* TDataModule: File Type */
-USEFORM("TMainForm.cpp", MainForm);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayCam.log";
