@@ -108,7 +108,7 @@ private:	// User declarations
 public:		// User declarations
 				__fastcall TatDM(TComponent* Owner);
 
-		bool _fastcall Connect(const string& DatabaseFile);
+		bool __fastcall Connect(const string& DatabaseFile);
 
 };
 

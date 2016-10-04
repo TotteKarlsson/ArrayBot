@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Array Cam 0.5'
-  ClientHeight = 738
+  ClientHeight = 746
   ClientWidth = 968
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object MainForm: TMainForm
   TextHeight = 19
   object Splitter1: TSplitter
     Left = 0
-    Top = 576
+    Top = 584
     Width = 968
     Height = 3
     Cursor = crVSplit
@@ -33,7 +33,7 @@ object MainForm: TMainForm
   object Splitter2: TSplitter
     Left = 786
     Top = 0
-    Height = 576
+    Height = 584
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
@@ -43,20 +43,19 @@ object MainForm: TMainForm
     Left = 789
     Top = 0
     Width = 179
-    Height = 576
+    Height = 584
     Align = alRight
     TabOrder = 0
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
       Width = 177
-      Height = 574
-      VertScrollBar.Position = 150
+      Height = 582
       Align = alClient
       TabOrder = 0
       object GroupBox5: TGroupBox
         Left = 0
-        Top = -150
+        Top = 0
         Width = 156
         Height = 60
         Align = alTop
@@ -85,7 +84,7 @@ object MainForm: TMainForm
       end
       object GroupBox6: TGroupBox
         Left = 0
-        Top = -90
+        Top = 60
         Width = 156
         Height = 60
         Align = alTop
@@ -114,7 +113,7 @@ object MainForm: TMainForm
       end
       object Button2: TArrayBotButton
         Left = 0
-        Top = 510
+        Top = 615
         Width = 156
         Height = 60
         Align = alBottom
@@ -126,7 +125,7 @@ object MainForm: TMainForm
       end
       object mFitToScreenButton: TArrayBotButton
         Left = 0
-        Top = -30
+        Top = 120
         Width = 156
         Height = 60
         Align = alTop
@@ -138,7 +137,7 @@ object MainForm: TMainForm
       end
       object mFrontBackLEDBtn: TArrayBotButton
         Left = 0
-        Top = 450
+        Top = 555
         Width = 156
         Height = 60
         Align = alBottom
@@ -149,152 +148,121 @@ object MainForm: TMainForm
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
       end
-      object mOneToOneBtn: TArrayBotButton
-        Left = 0
-        Top = 210
-        Width = 156
-        Height = 60
-        Align = alTop
-        Caption = '1:1'
-        ParentDoubleBuffered = True
-        TabOrder = 5
-        OnClick = mOneToOneBtnClick
-        SoundID = 'BUTTON_CLICK_4'
-      end
-      object mOneToTwoBtn: TArrayBotButton
-        Left = 0
-        Top = 270
-        Width = 156
-        Height = 60
-        Align = alTop
-        Caption = '1:2'
-        ParentDoubleBuffered = True
-        TabOrder = 6
-        OnClick = mOneToTwoBtnClick
-        SoundID = 'BUTTON_CLICK_4'
-      end
       object mRecordMovieBtn: TArrayBotButton
         Left = 0
-        Top = 330
+        Top = 435
         Width = 156
         Height = 60
         Align = alTop
         Caption = 'Record Movie'
         ParentDoubleBuffered = True
-        TabOrder = 7
+        TabOrder = 5
         OnClick = mRecordMovieBtnClick
         SoundID = 'BUTTON_CLICK_4'
       end
       object mSettingsBtn: TArrayBotButton
         Left = 0
-        Top = 90
+        Top = 315
         Width = 156
         Height = 60
         Align = alTop
         Caption = 'Settings'
         ParentDoubleBuffered = True
-        TabOrder = 8
+        TabOrder = 6
         OnClick = mSettingsBtnClick
         SoundID = 'BUTTON_CLICK_4'
       end
       object mSnapShotBtn: TArrayBotButton
         Left = 0
-        Top = 150
+        Top = 375
         Width = 156
         Height = 60
         Align = alTop
         Caption = 'Snap Shot'
         ParentDoubleBuffered = True
-        TabOrder = 9
+        TabOrder = 7
         OnClick = mSnapShotBtnClick
         SoundID = 'CAMERA_SHUTTER_1'
       end
       object mToggleCoaxBtn: TArrayBotButton
         Left = 0
-        Top = 390
+        Top = 495
         Width = 156
         Height = 60
         Align = alBottom
         Caption = 'Toggle Coax Light'
         ParentDoubleBuffered = True
-        TabOrder = 10
+        TabOrder = 8
         WordWrap = True
         OnClick = mFrontBackLEDBtnClick
         SoundID = 'BUTTON_CLICK_4'
       end
       object mToggleLogPanelBtn: TArrayBotButton
         Left = 0
-        Top = 30
+        Top = 255
         Width = 156
         Height = 60
         Align = alTop
         Caption = 'Hide Bottom Panel'
         ParentDoubleBuffered = True
-        TabOrder = 11
+        TabOrder = 9
         OnClick = mToggleLogPanelClick
         SoundID = 'BUTTON_CLICK_4'
+      end
+      object Panel3: TPanel
+        Left = 0
+        Top = 180
+        Width = 156
+        Height = 75
+        Align = alTop
+        TabOrder = 10
+        OnResize = Panel3Resize
+        object mOneToOneBtn: TArrayBotButton
+          Left = 1
+          Top = 1
+          Width = 60
+          Height = 73
+          Align = alLeft
+          Caption = '1:1'
+          ParentDoubleBuffered = True
+          TabOrder = 0
+          OnClick = mOneToOneBtnClick
+          SoundID = 'BUTTON_CLICK_4'
+        end
+        object mOneToTwoBtn: TArrayBotButton
+          Left = 61
+          Top = 1
+          Width = 60
+          Height = 73
+          Align = alLeft
+          Caption = '1:2'
+          ParentDoubleBuffered = True
+          TabOrder = 1
+          OnClick = mOneToTwoBtnClick
+          SoundID = 'BUTTON_CLICK_4'
+        end
       end
     end
   end
   object mBottomPanel: TPanel
     Left = 0
-    Top = 579
+    Top = 587
     Width = 968
     Height = 159
     Align = alBottom
     TabOrder = 1
-    object GroupBox3: TGroupBox
-      Left = 105
-      Top = 1
-      Width = 120
-      Height = 157
-      Align = alLeft
-      Caption = 'Snap Shots'
-      TabOrder = 0
-      object mShotsLB: TListBox
-        Left = 2
-        Top = 21
-        Width = 116
-        Height = 134
-        Align = alClient
-        ItemHeight = 19
-        PopupMenu = mMediaPopup
-        TabOrder = 0
-        OnDblClick = mMoviesLBDblClick
-      end
-    end
-    object GroupBox4: TGroupBox
+    object GroupBox8: TGroupBox
       Left = 1
       Top = 1
-      Width = 104
-      Height = 157
-      Align = alLeft
-      Caption = 'Movies'
-      TabOrder = 1
-      object mMoviesLB: TListBox
-        Left = 2
-        Top = 21
-        Width = 100
-        Height = 134
-        Align = alClient
-        ItemHeight = 19
-        PopupMenu = mMediaPopup
-        TabOrder = 0
-        OnDblClick = mMoviesLBDblClick
-      end
-    end
-    object GroupBox8: TGroupBox
-      Left = 513
-      Top = 1
-      Width = 454
+      Width = 966
       Height = 157
       Align = alClient
       Caption = 'Logs'
-      TabOrder = 2
+      TabOrder = 0
       object infoMemo: TMemo
         Left = 2
         Top = 62
-        Width = 450
+        Width = 962
         Height = 93
         Align = alClient
         ScrollBars = ssVertical
@@ -303,7 +271,7 @@ object MainForm: TMainForm
       object Panel1: TPanel
         Left = 2
         Top = 21
-        Width = 450
+        Width = 962
         Height = 41
         Align = alTop
         BevelOuter = bvNone
@@ -311,7 +279,7 @@ object MainForm: TMainForm
         object ToolBar1: TToolBar
           Left = 0
           Top = 0
-          Width = 450
+          Width = 962
           Height = 40
           AutoSize = True
           ButtonHeight = 40
@@ -359,102 +327,24 @@ object MainForm: TMainForm
         end
       end
     end
-    object LightIntensitiesGB: TGroupBox
-      Left = 225
-      Top = 1
-      Width = 288
-      Height = 157
-      Align = alLeft
-      Caption = 'Light Intensities'
-      TabOrder = 3
-      object mCoaxLbl: TLabel
-        Left = 151
-        Top = 112
-        Width = 85
-        Height = 19
-        Caption = 'Coax: (122)'
-      end
-      object mBackLEDLbl: TLabel
-        Left = 151
-        Top = 69
-        Width = 85
-        Height = 19
-        Caption = 'Coax: (122)'
-      end
-      object mFrontLEDLbl: TLabel
-        Left = 151
-        Top = 26
-        Width = 85
-        Height = 19
-        Caption = 'Coax: (122)'
-      end
-      object Panel3: TPanel
-        Left = 2
-        Top = 21
-        Width = 143
-        Height = 134
-        Align = alLeft
-        TabOrder = 0
-        object mBackLEDTB: TTrackBar
-          Left = 1
-          Top = 41
-          Width = 141
-          Height = 40
-          Align = alTop
-          Max = 255
-          TabOrder = 0
-          ThumbLength = 30
-          TickStyle = tsNone
-          OnChange = IntensityChange
-        end
-        object mCoaxTB: TTrackBar
-          Left = 1
-          Top = 81
-          Width = 141
-          Height = 40
-          Align = alTop
-          Max = 255
-          TabOrder = 1
-          ThumbLength = 30
-          TickStyle = tsNone
-          OnChange = IntensityChange
-        end
-        object mFrontLEDTB: TTrackBar
-          Left = 1
-          Top = 1
-          Width = 141
-          Height = 40
-          Align = alTop
-          Max = 255
-          TabOrder = 2
-          ThumbLength = 30
-          TickStyle = tsNone
-          OnChange = IntensityChange
-        end
-      end
-    end
   end
   object PageControl1: TPageControl
     Left = 0
     Top = 0
     Width = 786
-    Height = 576
-    ActivePage = TabSheet2
+    Height = 584
+    ActivePage = TabSheet1
     Align = alClient
     MultiLine = True
     TabOrder = 2
     TabPosition = tpLeft
     object TabSheet1: TTabSheet
       Caption = 'Live'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object mMainPanel: TPanel
         Left = 0
         Top = 0
         Width = 752
-        Height = 568
+        Height = 576
         Align = alClient
         TabOrder = 0
         OnResize = mMainPanelResize
@@ -488,7 +378,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 41
         Width = 752
-        Height = 527
+        Height = 535
         ActivePage = TabSheet3
         Align = alClient
         TabOrder = 0
@@ -498,7 +388,7 @@ object MainForm: TMainForm
             Left = 282
             Top = 0
             Width = 462
-            Height = 493
+            Height = 501
             Align = alClient
             IncrementalDisplay = True
             Picture.Data = {
@@ -2167,7 +2057,7 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 282
-            Height = 493
+            Height = 501
             Align = alLeft
             Caption = 'Images'
             TabOrder = 0
@@ -2182,16 +2072,16 @@ object MainForm: TMainForm
               OnKeyDown = DBMemo1KeyDown
             end
             object mNewNoteBtn: TButton
-              Left = 103
+              Left = 128
               Top = 268
-              Width = 75
+              Width = 59
               Height = 32
               Caption = 'New'
               TabOrder = 1
               OnClick = mNewNoteBtnClick
             end
             object mDeleteNoteBtn: TButton
-              Left = 184
+              Left = 193
               Top = 268
               Width = 75
               Height = 32
@@ -2199,13 +2089,13 @@ object MainForm: TMainForm
               TabOrder = 2
               OnClick = mNewNoteBtnClick
             end
-            object DBGrid2: TDBGrid
-              Left = 103
+            object mNotesGrid: TDBGrid
+              Left = 128
               Top = 53
-              Width = 162
+              Width = 137
               Height = 209
               DataSource = ImagesAndMoviesDM.imageNotes
-              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
               TabOrder = 3
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
@@ -2216,7 +2106,8 @@ object MainForm: TMainForm
                 item
                   Expanded = False
                   FieldName = 'created_on'
-                  Title.Caption = 'Note Date'
+                  Title.Caption = 'Notes'
+                  Width = 100
                   Visible = True
                 end>
             end
@@ -2242,7 +2133,7 @@ object MainForm: TMainForm
             object mImagesGrid: TDBGrid
               Left = 3
               Top = 53
-              Width = 94
+              Width = 119
               Height = 209
               DataSource = ImagesAndMoviesDM.imagesDS
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -2254,12 +2145,11 @@ object MainForm: TMainForm
               TitleFont.Style = []
               OnCellClick = mImagesGridCellClick
               OnDblClick = mImagesGridDblClick
-              OnMouseDown = mImagesGridMouseDown
               Columns = <
                 item
                   Expanded = False
-                  FieldName = 'file_name'
-                  Title.Caption = 'File'
+                  FieldName = 'date'
+                  Width = 100
                   Visible = True
                 end>
             end
@@ -2278,10 +2168,6 @@ object MainForm: TMainForm
         object TabSheet4: TTabSheet
           Caption = 'Movies'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
       object Panel4: TPanel
@@ -2313,19 +2199,19 @@ object MainForm: TMainForm
     Enabled = False
     Interval = 10
     OnTimer = mShutDownTimerTimer
-    Left = 304
-    Top = 640
+    Left = 600
+    Top = 664
   end
   object mCaptureVideoTimer: TTimer
     Enabled = False
     Interval = 1
     OnTimer = mCaptureVideoTimerTimer
-    Left = 224
-    Top = 640
+    Left = 744
+    Top = 672
   end
   object mMediaPopup: TPopupMenu
-    Left = 72
-    Top = 640
+    Left = 80
+    Top = 648
     object Delete1: TMenuItem
       Caption = 'Delete'
       OnClick = Delete1Click

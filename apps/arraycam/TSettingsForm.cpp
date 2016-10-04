@@ -3,7 +3,6 @@
 #include "TSettingsForm.h"
 #include <sstream>
 #include "mtkVCLUtils.h"
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -20,7 +19,7 @@ __fastcall TSettingsForm::TSettingsForm(TMainForm& mf)
 	: TForm(&mf),
     mMainForm(mf)
 {
-	UIUpdateTimer->Enabled = true;
+//	mUIUpdateTimer->Enabled = true;
 
     //Bind properties
     mAutoGainCB->setReference(mMainForm.mAutoGain.getReference());
@@ -57,10 +56,11 @@ void __fastcall TSettingsForm::mASStartBtnClick(TObject *Sender)
 }
 
 //--------------------------------------------------------------------------
-void __fastcall TSettingsForm::UIUpdateTimerTimer(TObject *Sender)
+void __fastcall TSettingsForm::mUIUpdateTimerTimer(TObject *Sender)
 {
    	mASStartBtn->Caption 			= mMainForm.mLightsArduinoClient.isConnected()	? "Stop" : "Start";
 	mArduinoServerPortE->Enabled 	= !mMainForm.mLightsArduinoClient.isConnected();
+   	enableDisableGroupBox(LightIntensitiesGB, !mArduinoServerPortE->Enabled);
 }
 
 //---------------------------------------------------------------------------
@@ -133,14 +133,14 @@ void __fastcall TSettingsForm::AutoParaCBClick(TObject *Sender)
 
 void __fastcall TSettingsForm::Button1Click(TObject *Sender)
 {
-	Close();
+	this->Visible = false;
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TSettingsForm::FormClose(TObject *Sender, TCloseAction &Action)
 
 {
-	UIUpdateTimer->Enabled = false;
+	mUIUpdateTimer->Enabled = false;
 }
 
 void __fastcall TSettingsForm::mPairLEDsCBClick(TObject *Sender)
@@ -222,6 +222,70 @@ the driver file (uc480_usb.sys) do not match. ";
 		case IS_SUCCESS: Log(lInfo) << "Function executed successfully";		break;
         default:  	Log(lInfo) << "Unknown return value";						break;
     }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TSettingsForm::SettingsChange(TObject *Sender)
+{
+	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
+    if(!tb)
+    {
+    	return;
+    }
+
+   	int pos = tb->Position;
+    if(tb == mFrontLEDTB)
+    {
+    	if(mMainForm.mPairLEDs.getValue() == true)
+        {
+        	if(mBackLEDTB->Position != mFrontLEDTB->Position)
+            {
+				mBackLEDTB->Position = mFrontLEDTB->Position;
+            }
+        }
+
+        if(tb->Tag != 1) //Means we are updating UI from thread
+        {
+        	stringstream s;
+	        s<<"SET_FRONT_LED_INTENSITY="<<pos;
+	        mMainForm.mLightsArduinoClient.request(s.str());
+        }
+        mFrontLEDLbl->Caption = "Front LED (" + IntToStr(pos) + ")";
+    }
+    else if(tb == mBackLEDTB)
+    {
+        if(tb->Tag != 1) //Means we are updating UI
+        {
+	        stringstream s;
+	        s<<"SET_BACK_LED_INTENSITY="<<pos;
+    	    mMainForm.mLightsArduinoClient.request(s.str());
+        }
+        mBackLEDLbl->Caption = "Back LED (" + IntToStr(pos) + ")";
+
+    }
+    else if(tb == mCoaxTB)
+    {
+        if(tb->Tag != 1) //Means we are updating UI
+        {
+			stringstream s;
+	        s<<"SET_COAX_INTENSITY="<<pos;
+    	    mMainForm.mLightsArduinoClient.request(s.str());
+        }
+        mCoaxLbl->Caption = "Coax (" + IntToStr(pos) + ")";
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TSettingsForm::FormHide(TObject *Sender)
+{
+	mUIUpdateTimer->Enabled = false;
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TSettingsForm::FormShow(TObject *Sender)
+{
+	mUIUpdateTimer->Enabled = true;
 }
 
 

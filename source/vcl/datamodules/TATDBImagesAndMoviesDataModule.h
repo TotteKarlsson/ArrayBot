@@ -7,7 +7,9 @@
 #include <Data.SqlExpr.hpp>
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
+#include <string>
 //---------------------------------------------------------------------------
+using std::string;
 
 class TImagesAndMoviesDM : public TDataModule
 {
@@ -45,11 +47,17 @@ class TImagesAndMoviesDM : public TDataModule
 	TWideStringField *notesQcreated_by;
         void __fastcall imagesCDSAfterScroll(TDataSet *DataSet);
         void __fastcall SQLConnection1AfterConnect(TObject *Sender);
+	void __fastcall imagesCDSdateGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
+	void __fastcall notesCDScreated_onGetText(TField *Sender, UnicodeString &Text,
+          bool DisplayText);
+	void __fastcall notesCDSAfterScroll(TDataSet *DataSet);
+
 
 	private:	// User declarations
 
 	public:		// User declarations
-		__fastcall TImagesAndMoviesDM(TComponent* Owner);
+				__fastcall TImagesAndMoviesDM(TComponent* Owner);
+		bool 	__fastcall Connect(const string& DatabaseFile);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TImagesAndMoviesDM *ImagesAndMoviesDM;

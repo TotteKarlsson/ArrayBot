@@ -98,14 +98,6 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="..\database\abATDBClientDBSession.cpp">
-            <DependentOn>..\database\abATDBClientDBSession.h</DependentOn>
-            <BuildOrder>23</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\database\abATDBServerSession.cpp">
-            <DependentOn>..\database\abATDBServerSession.h</DependentOn>
-            <BuildOrder>24</BuildOrder>
-        </CppCompile>
         <CppCompile Include="abVCLCore.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>

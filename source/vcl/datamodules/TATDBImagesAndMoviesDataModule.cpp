@@ -1,7 +1,7 @@
 #pragma hdrstop
 #include "TATDBImagesAndMoviesDataModule.h"
 #include "mtkLogger.h"
-
+#include "mtkVCLUtils.h"
 using namespace mtk;
 
 //---------------------------------------------------------------------------
@@ -16,17 +16,56 @@ __fastcall TImagesAndMoviesDM::TImagesAndMoviesDM(TComponent* Owner)
 	: TDataModule(Owner)
 {}
 
+bool __fastcall TImagesAndMoviesDM::Connect(const string& DatabaseFile)
+{
+	try
+    {
+//DriverName=DevartSQLite
+//DriverUnit=DbxDevartSQLite
+//DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver170.bpl
+//MetaDataPackageLoader=TDBXDevartSQLiteMetaDataCommandFactory,DbxDevartSQLiteDriver170.bpl
+//ProductName=DevartSQLite
+//LibraryName=dbexpsqlite40.dll
+//VendorLib=sqlite3.dll
+//Database=C:\Users\matsk\AppData\Local\ArrayBot\atDB.db
+//LocaleCode=0000
+//IsolationLevel=ReadCommitted
+//ASCIIDataBase=False
+//BusyTimeout=0
+//EnableSharedCache=False
+//MaxBlobSize=-1
+//FetchAll=True
+//ForceCreateDatabase=False
+//ForeignKeys=True
+//UseUnicode=True
+//EnableLoadExtension=False
+//BlobSize=-1
+//
+//
+       SQLConnection1->Connected = false;
+       SQLConnection1->Params->Values[_D("Database")] = vclstr(DatabaseFile);
+       SQLConnection1->Connected= true;
+
+    }
+    catch (const Exception &E)
+    {
+       Application->MessageBox(E.Message.c_str(), _D("Error connecting to database"),  MB_ICONSTOP | MB_OK);
+    }
+
+    return SQLConnection1->Connected;
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TImagesAndMoviesDM::imagesCDSAfterScroll(TDataSet *DataSet)
 {
-	if(gAppIsStartingUp == false)
+//	if(gAppIsStartingUp == false)
 	{
-        imageNoteCDS->CancelUpdates();
-		notesCDS->CancelUpdates();
+//        imageNoteCDS->CancelUpdates();
+//		notesCDS->CancelUpdates();
 
 		TField* field = imagesCDS->FieldByName("id");
-		imageNote->Active = false;
-        notesQ->Active = false;
+//		imageNote->Active = false;
+//        notesQ->Active = false;
 		if(field)
 		{
 			String val = field->AsString;
@@ -40,13 +79,43 @@ void __fastcall TImagesAndMoviesDM::imagesCDSAfterScroll(TDataSet *DataSet)
     }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TImagesAndMoviesDM::SQLConnection1AfterConnect(TObject *Sender)
 {
 	Log(lInfo) << "After Connect (Images and Movies)";
-    imagesCDS->Active = true;
-    imageNoteCDS->Active = true;
-	notesCDS->Active = true;
+    Log(lInfo) << "Connected to database: "<< stdstr(SQLConnection1->Params->Values["Database"]);
 
+    notesQ->Active = true;
+	notesCDS->Active = true;
+    imageNoteCDS->Active = true;
+    imagesCDS->Active = true;
+}
+
+
+void __fastcall TImagesAndMoviesDM::imagesCDSdateGetText(TField *Sender, UnicodeString &Text,
+          bool DisplayText)
+{
+	Text = FormatDateTime( "yy-mm-dd", Sender->AsDateTime );
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TImagesAndMoviesDM::notesCDScreated_onGetText(TField *Sender,
+          UnicodeString &Text, bool DisplayText)
+{
+	if(!Sender->IsNull)
+    {
+		Text = FormatDateTime( "yy-mm-dd", Sender->AsDateTime );
+    }
+    else
+    {
+    	Text = "";
+    }
+}
+
+
+void __fastcall TImagesAndMoviesDM::notesCDSAfterScroll(TDataSet *DataSet)
+{
+	Log(lDebug3) <<"Note ID:" << notesCDS->FieldByName("id")->AsInteger;
 }
 //---------------------------------------------------------------------------
 

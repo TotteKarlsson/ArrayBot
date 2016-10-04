@@ -7,7 +7,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConnection1
-    Left = 32
+    Left = 40
     Top = 112
     object imagesid: TIntegerField
       FieldName = 'id'
@@ -50,7 +50,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
       'EnableLoadExtension=False'
       'BlobSize=-1')
     AfterConnect = SQLConnection1AfterConnect
-    Connected = True
     Left = 32
     Top = 32
   end
@@ -128,6 +127,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     end
     object imagesCDSdate: TSQLTimeStampField
       FieldName = 'date'
+      OnGetText = imagesCDSdateGetText
     end
   end
   object imagesDS: TDataSource
@@ -157,6 +157,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider2'
+    AfterScroll = notesCDSAfterScroll
     Left = 256
     Top = 256
     object notesCDSid: TIntegerField
@@ -168,6 +169,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     end
     object notesCDScreated_on: TSQLTimeStampField
       FieldName = 'created_on'
+      OnGetText = notesCDScreated_onGetText
     end
     object notesCDScreated_by: TWideStringField
       FieldName = 'created_by'

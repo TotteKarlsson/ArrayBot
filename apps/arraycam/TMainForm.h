@@ -54,13 +54,9 @@ class TMainForm  : public TRegistryForm
 	TTimer *mCaptureVideoTimer;
 	TPanel *mBottomPanel;
 	TPanel *Panel1;
-	TListBox *mMoviesLB;
 	TPopupMenu *mMediaPopup;
 	TMenuItem *Delete1;
 	TMenuItem *DeleteAll1;
-	TListBox *mShotsLB;
-	TGroupBox *GroupBox3;
-	TGroupBox *GroupBox4;
 	TGroupBox *GroupBox6;
 	mtkFloatLabel *mHumidityE;
 	TGroupBox *GroupBox5;
@@ -80,14 +76,6 @@ class TMainForm  : public TRegistryForm
 	TArrayBotButton *mSnapShotBtn;
 	TArrayBotButton *mToggleCoaxBtn;
 	TArrayBotButton *mToggleLogPanelBtn;
-	TGroupBox *LightIntensitiesGB;
-	TTrackBar *mCoaxTB;
-	TTrackBar *mBackLEDTB;
-	TTrackBar *mFrontLEDTB;
-	TPanel *Panel3;
-	TLabel *mCoaxLbl;
-	TLabel *mBackLEDLbl;
-	TLabel *mFrontLEDLbl;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet1;
 	TTabSheet *TabSheet2;
@@ -96,7 +84,7 @@ class TMainForm  : public TRegistryForm
 	TTabSheet *TabSheet4;
 	TDBGrid *mImagesGrid;
 	TDBNavigator *DBNavigator1;
-	TDBGrid *DBGrid2;
+	TDBGrid *mNotesGrid;
 	TButton *mAddImageFileBtn;
 	TDBMemo *DBMemo1;
 	TButton *mUpdateNoteBtn;
@@ -107,6 +95,7 @@ class TMainForm  : public TRegistryForm
 	TPanel *Panel4;
 	TComboBox *mUsersCB;
 	TLabel *Label1;
+	TPanel *Panel3;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -138,16 +127,13 @@ class TMainForm  : public TRegistryForm
 	void __fastcall DBNavigator2BeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mNewNoteBtnClick(TObject *Sender);
 	void __fastcall DBMemo1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall mImagesGridMouseDown(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y);
 	void __fastcall mImagesGridCellClick(TColumn *Column);
 	void __fastcall mImagesGridDblClick(TObject *Sender);
-
+	void __fastcall Panel3Resize(TObject *Sender);
 
 
     private:
         LogFileReader                           mLogFileReader;
-
         void __fastcall                         logMsg();
 
 		ATDBClientDBSession						mClientDBSession;
@@ -197,6 +183,7 @@ class TMainForm  : public TRegistryForm
 		void    								populateUsers();
 
     public:
+		TSettingsForm* 							mSettingsForm;
  			       __fastcall 					TMainForm(TComponent* Owner);
  			       __fastcall 					~TMainForm();
 

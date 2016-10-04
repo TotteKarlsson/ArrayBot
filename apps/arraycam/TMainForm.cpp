@@ -34,6 +34,7 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	: TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
     	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
         mCaptureVideo(false),
+        mSettingsForm(NULL),
         mAVIID(0),
     	mIniFile(joinPath(gAppDataFolder, "ArrayCam.ini"), true, true),
     	mLogLevel(lAny),
@@ -114,12 +115,13 @@ void TMainForm::onArduinoClientDisconnected()
 void TMainForm::enableDisableClientControls(bool enable)
 {
 	//Disable client related components..
-    enableDisableGroupBox(LightIntensitiesGB, enable);
+    if(mSettingsForm)
+    {
+    	enableDisableGroupBox(mSettingsForm->LightIntensitiesGB, enable);
+    }
 	mToggleCoaxBtn->Enabled = enable;
     mFrontBackLEDBtn->Enabled = enable;
 }
-
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
@@ -157,149 +159,148 @@ void __fastcall TMainForm::ClearLogMemo(TObject *Sender)
 
 void  TMainForm::updateVideoFileLB()
 {
-	string fldr = mMoviesFolder;
-    StringList files = getFilesInDir(fldr, "avi");
-
-    for(int i = 0; i < files.count(); i++)
-    {
-		files[i] = getFileNameNoPath(files[i]);
-    }
-
-    files.sort();
-
-	mMoviesLB->Clear();
-    for(int i = 0; i < files.count(); i++)
-    {
-    	mMoviesLB->AddItem( vclstr(files[i]), NULL );
-    }
+//	string fldr = mMoviesFolder;
+//    StringList files = getFilesInDir(fldr, "avi");
+//
+//    for(int i = 0; i < files.count(); i++)
+//    {
+//		files[i] = getFileNameNoPath(files[i]);
+//    }
+//
+//    files.sort();
+//
+//	mMoviesLB->Clear();
+//    for(int i = 0; i < files.count(); i++)
+//    {
+//    	mMoviesLB->AddItem( vclstr(files[i]), NULL );
+//    }
 }
 
 void  TMainForm::updateShotsLB()
 {
-	string fldr =  mSnapShotFolder;
-    StringList files = getFilesInDir(fldr, "jpg");
-
-    for(int i = 0; i < files.count(); i++)
-    {
-		files[i] = getFileNameNoPath(files[i]);
-    }
-
-    files.sort();
-
-	mShotsLB->Clear();
-    for(int i = 0; i < files.count(); i++)
-    {
-    	mShotsLB->AddItem( vclstr(files[i]), NULL );
-    }
+//	string fldr =  mSnapShotFolder;
+//    StringList files = getFilesInDir(fldr, "jpg");
+//
+//    for(int i = 0; i < files.count(); i++)
+//    {
+//		files[i] = getFileNameNoPath(files[i]);
+//    }
+//
+//    files.sort();
+//
+//	mShotsLB->Clear();
+//    for(int i = 0; i < files.count(); i++)
+//    {
+//    	mShotsLB->AddItem( vclstr(files[i]), NULL );
+//    }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mMoviesLBDblClick(TObject *Sender)
 {
-	TListBox* lb = dynamic_cast<TListBox*>(Sender);
-    if(lb == mMoviesLB)
-    {
-        //Check if we have a valid file
-        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-        string fldr =  mMoviesFolder;
-
-        fName = joinPath(fldr, fName);
-        if(fileExists(fName))
-        {
-            ShellExecuteA(NULL, NULL, stdstr(fName).c_str(), 0, 0, SW_SHOWNA);
-        }
-    }
-    else if (lb == mShotsLB)
-    {
-        //Check if we have a valid file
-        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-        string fldr =  mSnapShotFolder;
-
-        fName = joinPath(fldr, fName);
-        if(fileExists(fName))
-        {
-            ShellExecuteA(NULL, NULL, stdstr(fName).c_str(), 0, 0, SW_SHOWNA);
-        }
-    }
+//	TListBox* lb = dynamic_cast<TListBox*>(Sender);
+//    if(lb == mMoviesLB)
+//    {
+//        //Check if we have a valid file
+//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+//        string fldr =  mMoviesFolder;
+//
+//        fName = joinPath(fldr, fName);
+//        if(fileExists(fName))
+//        {
+//            ShellExecuteA(NULL, NULL, stdstr(fName).c_str(), 0, 0, SW_SHOWNA);
+//        }
+//    }
+//    else if (lb == mShotsLB)
+//    {
+//        //Check if we have a valid file
+//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+//        string fldr =  mSnapShotFolder;
+//
+//        fName = joinPath(fldr, fName);
+//        if(fileExists(fName))
+//        {
+//            ShellExecuteA(NULL, NULL, stdstr(fName).c_str(), 0, 0, SW_SHOWNA);
+//        }
+//    }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::Delete1Click(TObject *Sender)
 {
-
-    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
-
-   	if(lb && lb->ItemIndex == -1)
-    {
-		return;
-    }
-
-    if(lb == mMoviesLB)
-    {
-        //Delete current selected item
-        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-        string fldr  = mMoviesFolder;
-
-        fName = joinPath(fldr, fName);
-        if(fileExists(fName))
-        {
-            removeFile(fName);
-            updateVideoFileLB();
-        }
-    }
-    else if (lb == mShotsLB)
-    {
-        //Delete current selected item
-        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
-        string fldr =  mSnapShotFolder;
-
-        fName = joinPath(fldr, fName);
-        if(fileExists(fName))
-        {
-            removeFile(fName);
-            updateShotsLB();
-        }
-    }
+//    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
+//
+//   	if(lb && lb->ItemIndex == -1)
+//    {
+//		return;
+//    }
+//
+//    if(lb == mMoviesLB)
+//    {
+//        //Delete current selected item
+//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+//        string fldr  = mMoviesFolder;
+//
+//        fName = joinPath(fldr, fName);
+//        if(fileExists(fName))
+//        {
+//            removeFile(fName);
+//            updateVideoFileLB();
+//        }
+//    }
+//    else if (lb == mShotsLB)
+//    {
+//        //Delete current selected item
+//        string fName = stdstr(lb->Items->Strings[lb->ItemIndex]);
+//        string fldr =  mSnapShotFolder;
+//
+//        fName = joinPath(fldr, fName);
+//        if(fileExists(fName))
+//        {
+//            removeFile(fName);
+//            updateShotsLB();
+//        }
+//    }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
 {
-    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
-
-   	if(lb && lb->ItemIndex == -1)
-    {
-		return;
-    }
-
-    if(lb == mMoviesLB)
-    {
-        while(lb->Count)
-        {
-            string fName = stdstr(lb->Items->Strings[0]);
-            string fldr =  mMoviesFolder;
-            fName = joinPath(fldr, fName);
-            if(fileExists(fName))
-            {
-                removeFile(fName);
-                updateVideoFileLB();
-            }
-        }
-    }
-    else if (lb == mShotsLB)
-    {
-        while(lb->Count)
-        {
-            string fName = stdstr(lb->Items->Strings[0]);
-            string fldr =  mSnapShotFolder;
-            fName = joinPath(fldr, fName);
-            if(fileExists(fName))
-            {
-                removeFile(fName);
-                updateShotsLB();
-            }
-        }
-    }
+//    TListBox* lb = dynamic_cast<TListBox*>(mMediaPopup->PopupComponent);
+//
+//   	if(lb && lb->ItemIndex == -1)
+//    {
+//		return;
+//    }
+//
+//    if(lb == mMoviesLB)
+//    {
+//        while(lb->Count)
+//        {
+//            string fName = stdstr(lb->Items->Strings[0]);
+//            string fldr =  mMoviesFolder;
+//            fName = joinPath(fldr, fName);
+//            if(fileExists(fName))
+//            {
+//                removeFile(fName);
+//                updateVideoFileLB();
+//            }
+//        }
+//    }
+//    else if (lb == mShotsLB)
+//    {
+//        while(lb->Count)
+//        {
+//            string fName = stdstr(lb->Items->Strings[0]);
+//            string fldr =  mSnapShotFolder;
+//            fName = joinPath(fldr, fName);
+//            if(fileExists(fName))
+//            {
+//                removeFile(fName);
+//                updateShotsLB();
+//            }
+//        }
+//    }
 }
 
 void __fastcall TMainForm::mCameraStreamPanelDblClick(TObject *Sender)
@@ -317,9 +318,14 @@ void __fastcall TMainForm::Button2Click(TObject *Sender)
 void __fastcall TMainForm::mSettingsBtnClick(TObject *Sender)
 {
 	//Open settings form
-	TSettingsForm* sf = new TSettingsForm(*this);
-    sf->Show();
-//    delete sf;
+    if(!mSettingsForm)
+    {
+		mSettingsForm = new TSettingsForm(*this);
+    }
+
+	this->Visible = true;
+    mSettingsForm->Show();
+
 }
 
 void TMainForm::onArduinoMessageReceived(const string& msg)
@@ -365,32 +371,32 @@ void TMainForm::onArduinoMessageReceived(const string& msg)
             else if(startsWith("COAX_DRIVE", msg) && isMouseBtnDown == false )
             {
                 StringList l(msg,'=');
-                if(l.size() == 2)
+                if(l.size() == 2 && MainForm->mSettingsForm)
                 {
-	                MainForm->mCoaxTB->Tag = 1;
-                    MainForm->mCoaxTB->Position = toInt(l[1]);
-	                MainForm->mCoaxTB->Tag = 0;
+                    MainForm->mSettingsForm->mCoaxTB->Tag = 1;
+                    MainForm->mSettingsForm->mCoaxTB->Position = toInt(l[1]);
+                    MainForm->mSettingsForm->mCoaxTB->Tag = 0;
                 }
             }
             else if(startsWith("FRONT_LED_DRIVE", msg) && isMouseBtnDown == false)
             {
                 StringList l(msg,'=');
-                if(l.size() == 2)
+                if(l.size() == 2 && MainForm->mSettingsForm)
                 {
-   	                MainForm->mFrontLEDTB->Tag = 1;
-                    MainForm->mFrontLEDTB->Position = toInt(l[1]);
-   	                MainForm->mFrontLEDTB->Tag = 0;
+   	                MainForm->mSettingsForm->mFrontLEDTB->Tag = 1;
+                    MainForm->mSettingsForm->mFrontLEDTB->Position = toInt(l[1]);
+   	                MainForm->mSettingsForm->mFrontLEDTB->Tag = 0;
                 }
             }
 
             else if(startsWith("BACK_LED_DRIVE", msg) && isMouseBtnDown == false)
             {
                 StringList l(msg,'=');
-                if(l.size() == 2)
+                if(l.size() == 2 && MainForm->mSettingsForm)
                 {
-   	                MainForm->mBackLEDTB->Tag = 1;
-                    MainForm->mBackLEDTB->Position = toInt(l[1]);
-   	                MainForm->mBackLEDTB->Tag = 0;
+   	                MainForm->mSettingsForm->mBackLEDTB->Tag = 1;
+                    MainForm->mSettingsForm->mBackLEDTB->Position = toInt(l[1]);
+   	                MainForm->mSettingsForm->mBackLEDTB->Tag = 0;
                 }
             }
         }
@@ -477,52 +483,52 @@ void TMainForm::stopSounds()
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::IntensityChange(TObject *Sender)
 {
-	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
-    if(!tb)
-    {
-    	return;
-    }
-
-   	int pos = tb->Position;
-    if(tb == mFrontLEDTB)
-    {
-    	if(mPairLEDs.getValue() == true)
-        {
-        	if(mBackLEDTB->Position != mFrontLEDTB->Position)
-            {
-				mBackLEDTB->Position = mFrontLEDTB->Position;
-            }
-        }
-
-        if(tb->Tag != 1) //Means we are updating UI from thread
-        {
-        	stringstream s;
-	        s<<"SET_FRONT_LED_INTENSITY="<<pos;
-	        mLightsArduinoClient.request(s.str());
-        }
-        mFrontLEDLbl->Caption = "Front LED (" + IntToStr(pos) + ")";
-    }
-    else if(tb == mBackLEDTB)
-    {
-        if(tb->Tag != 1) //Means we are updating UI
-        {
-	        stringstream s;
-	        s<<"SET_BACK_LED_INTENSITY="<<pos;
-    	    mLightsArduinoClient.request(s.str());
-        }
-        mBackLEDLbl->Caption = "Back LED (" + IntToStr(pos) + ")";
-
-    }
-    else if(tb == mCoaxTB)
-    {
-        if(tb->Tag != 1) //Means we are updating UI
-        {
-			stringstream s;
-	        s<<"SET_COAX_INTENSITY="<<pos;
-    	    mLightsArduinoClient.request(s.str());
-        }
-        mCoaxLbl->Caption = "Coax (" + IntToStr(pos) + ")";
-    }
+//	TTrackBar* tb = dynamic_cast<TTrackBar*>(Sender);
+//    if(!tb)
+//    {
+//    	return;
+//    }
+//
+//   	int pos = tb->Position;
+//    if(tb == mFrontLEDTB)
+//    {
+//    	if(mPairLEDs.getValue() == true)
+//        {
+//        	if(mBackLEDTB->Position != mFrontLEDTB->Position)
+//            {
+//				mBackLEDTB->Position = mFrontLEDTB->Position;
+//            }
+//        }
+//
+//        if(tb->Tag != 1) //Means we are updating UI from thread
+//        {
+//        	stringstream s;
+//	        s<<"SET_FRONT_LED_INTENSITY="<<pos;
+//	        mLightsArduinoClient.request(s.str());
+//        }
+//        mFrontLEDLbl->Caption = "Front LED (" + IntToStr(pos) + ")";
+//    }
+//    else if(tb == mBackLEDTB)
+//    {
+//        if(tb->Tag != 1) //Means we are updating UI
+//        {
+//	        stringstream s;
+//	        s<<"SET_BACK_LED_INTENSITY="<<pos;
+//    	    mLightsArduinoClient.request(s.str());
+//        }
+//        mBackLEDLbl->Caption = "Back LED (" + IntToStr(pos) + ")";
+//
+//    }
+//    else if(tb == mCoaxTB)
+//    {
+//        if(tb->Tag != 1) //Means we are updating UI
+//        {
+//			stringstream s;
+//	        s<<"SET_COAX_INTENSITY="<<pos;
+//    	    mLightsArduinoClient.request(s.str());
+//        }
+//        mCoaxLbl->Caption = "Coax (" + IntToStr(pos) + ")";
+//    }
 }
 
 //---------------------------------------------------------------------------
@@ -535,7 +541,7 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
     }
     else
     {
-        if (atDM->Connect(dBase))
+        if (ImagesAndMoviesDM->Connect(dBase))
         {
            // Connection successfull
             Log(lInfo) << "DataModule connected to the database: "<<dBase;
@@ -565,7 +571,6 @@ void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::DBNavigator2Click(TObject *Sender, TNavigateBtn Button)
-
 {
 	//
 }
@@ -619,13 +624,6 @@ void __fastcall TMainForm::DBMemo1KeyDown(TObject *Sender, WORD &Key, TShiftStat
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mImagesGridMouseDown(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y)
-{
-	ImagesAndMoviesDM->imagesCDS->AfterRefresh(NULL);
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::mImagesGridCellClick(TColumn *Column)
 {
 	//Retrieve file name and show the image
@@ -641,8 +639,11 @@ void __fastcall TMainForm::mImagesGridCellClick(TColumn *Column)
     {
     	Log(lError) << "The file: "<<fName<<" could not be found";
     }
-}
 
+
+	mNotesGrid->Width = mNotesGrid->Width + 1;
+	mNotesGrid->Width = mNotesGrid->Width - 1;
+}
 
 void TMainForm::populateUsers()
 {
@@ -652,7 +653,7 @@ void TMainForm::populateUsers()
     }
     catch(...)
     {
-    	handleMySQLException();
+    	handleSQLiteException();
     }
 }
 
@@ -669,4 +670,10 @@ void __fastcall TMainForm::mImagesGridDblClick(TObject *Sender)
 //    }
 }
 
+void __fastcall TMainForm::Panel3Resize(TObject *Sender)
+{
+	mOneToOneBtn->Width = Panel3->Width / 2;
+	mOneToTwoBtn->Width = Panel3->Width / 2;
+}
+//---------------------------------------------------------------------------
 
