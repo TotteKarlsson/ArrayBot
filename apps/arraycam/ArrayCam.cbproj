@@ -150,8 +150,8 @@
             <DependentOn>..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
-        <FormResources Include="TSettingsForm.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="TSettingsForm.dfm"/>
         <FormResources Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.dfm"/>
         <FormResources Include="..\..\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <BuildConfiguration Include="Release">

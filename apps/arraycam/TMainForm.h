@@ -142,7 +142,14 @@ class TMainForm  : public TRegistryForm
         LogFileReader                           mLogFileReader;
         void __fastcall                         logMsg();
 
+
+    	EnvironmentaSensorReader				mEnvReader;
+
+		TSettingsForm* 							mSettingsForm;
+
+
 		ATDBClientDBSession						mClientDBSession;
+
         IniFile						            mIniFile;
         IniFileProperties  			            mProperties;
 		Property<mtk::LogLevel>            		mLogLevel;
@@ -197,8 +204,6 @@ class TMainForm  : public TRegistryForm
 
     public:
     											//The environmenatl reader is accessed from a thread
-    	EnvironmentaSensorReader				mEnvReader;
-		TSettingsForm* 							mSettingsForm;
  			       __fastcall 					TMainForm(TComponent* Owner);
  			       __fastcall 					~TMainForm();
 

@@ -42,6 +42,7 @@ bool __fastcall TImagesAndMoviesDM::Connect(const string& DatabaseFile)
 //BlobSize=-1
 //
 //
+	   Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
        SQLConnection1->Connected = false;
        SQLConnection1->Params->Values[_D("Database")] = vclstr(DatabaseFile);
        SQLConnection1->Connected= true;
@@ -58,40 +59,42 @@ bool __fastcall TImagesAndMoviesDM::Connect(const string& DatabaseFile)
 //---------------------------------------------------------------------------
 void __fastcall TImagesAndMoviesDM::imagesCDSAfterScroll(TDataSet *DataSet)
 {
-//	if(gAppIsStartingUp == false)
-	{
-//        imageNoteCDS->CancelUpdates();
-//		notesCDS->CancelUpdates();
+    Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
+    TField* field = imagesCDS->FieldByName("id");
+    if(field)
+    {
+        String val = field->AsString;
+        imageNote->SQL->Text 	= "SELECT * from abImage_note where image_id ='" + val + "'";
+        notesQ->SQL->Text 		= "SELECT * FROM note WHERE id IN (SELECT note_id FROM abImage_note WHERE image_id = '" + val + "')";
 
-		TField* field = imagesCDS->FieldByName("id");
-//		imageNote->Active = false;
-//        notesQ->Active = false;
-		if(field)
-		{
-			String val = field->AsString;
-			imageNote->SQL->Text 	= "SELECT * from abImage_note where image_id ='" + val + "'";
-            notesQ->SQL->Text 		= "SELECT * FROM note WHERE id IN (SELECT note_id FROM abImage_note WHERE image_id = '" + val + "')";
-			imageNoteCDS->Refresh();
+
+            imageNoteCDS->Refresh();
             notesCDS->Refresh();
-		}
-		imageNote->Active = true;
-        notesQ->Active = true;
     }
-}
+    imageNote->Active = true;
+    notesQ->Active = true;
 
+}
 //---------------------------------------------------------------------------
 void __fastcall TImagesAndMoviesDM::SQLConnection1AfterConnect(TObject *Sender)
 {
+    Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
 	Log(lInfo) << "After Connect (Images and Movies)";
     Log(lInfo) << "Connected to database: "<< stdstr(SQLConnection1->Params->Values["Database"]);
 
-    notesQ->Active = true;
-	notesCDS->Active = true;
-    imageNoteCDS->Active = true;
-    imagesCDS->Active = true;
-    sensorsCDS->Active = true;
+    try
+    {
+        notesQ->Active 			= true;
+        notesCDS->Active 		= true;
+        imageNoteCDS->Active 	= true;
+        imagesCDS->Active 		= true;
+        sensorsCDS->Active 		= true;
+    }
+    catch(...)
+    {
+		Log(lError) << "Failed to make active";
+    }
 }
-
 
 void __fastcall TImagesAndMoviesDM::imagesCDSdateGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText)
@@ -113,10 +116,11 @@ void __fastcall TImagesAndMoviesDM::notesCDScreated_onGetText(TField *Sender,
     }
 }
 
-
+//---------------------------------------------------------------------------
 void __fastcall TImagesAndMoviesDM::notesCDSAfterScroll(TDataSet *DataSet)
 {
+    Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
 	Log(lDebug3) <<"Note ID:" << notesCDS->FieldByName("id")->AsInteger;
 }
-//---------------------------------------------------------------------------
+
 

@@ -3,7 +3,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
   Height = 591
   Width = 604
   object images: TSQLDataSet
-    Active = True
     CommandText = 'select * from abImage order by date desc'
     MaxBlobSize = -1
     Params = <>
@@ -51,7 +50,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
       'EnableLoadExtension=False'
       'BlobSize=-1')
     AfterConnect = SQLConnection1AfterConnect
-    Connected = True
     Left = 32
     Top = 32
   end
@@ -114,7 +112,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 112
   end
   object imagesCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'imagesProvider'
@@ -213,7 +210,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 344
   end
   object sensorsCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider3'

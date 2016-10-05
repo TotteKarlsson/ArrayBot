@@ -8,6 +8,7 @@
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
 #include <string>
+#include "Poco/Mutex.h"
 //---------------------------------------------------------------------------
 using std::string;
 
@@ -69,6 +70,7 @@ class TImagesAndMoviesDM : public TDataModule
 	private:	// User declarations
 
 	public:		// User declarations
+		Poco::Mutex								mSQLiteMutex;
 				__fastcall TImagesAndMoviesDM(TComponent* Owner);
 		bool 	__fastcall Connect(const string& DatabaseFile);
 };

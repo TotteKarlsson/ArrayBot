@@ -282,6 +282,7 @@ void __fastcall TMainForm::DBMemo1Change(TObject *Sender)
 void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
 {
 	//Apply and post updates to database
+    Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
 	ImagesAndMoviesDM->notesCDS->ApplyUpdates(-1);
     mUpdateNoteBtn->Enabled = false;
 }
@@ -395,11 +396,10 @@ void __fastcall TMainForm::Panel3Resize(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
+	Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
 	ImagesAndMoviesDM->sensorsCDS->Active = false;
    	ImagesAndMoviesDM->sensorsCDS->Active = true;
 }
-
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mMoviesLBDblClick(TObject *Sender)

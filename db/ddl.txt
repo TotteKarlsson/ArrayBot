@@ -166,6 +166,13 @@ CREATE TABLE [sectionimageplan](
     [pos_y] FLOAT, 
     [overlap] FLOAT);
 
+CREATE TABLE [sensor_data](
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    [device_id] INTEGER NOT NULL, 
+    [date] DATETIME NOT NULL DEFAULT (datetime('now', 'localtime')), 
+    [temperature] DOUBLE, 
+    [humidity] DOUBLE);
+
 CREATE TABLE [species](
     [id] INTEGER PRIMARY KEY AUTOINCREMENT, 
     [status] INTEGER, 
@@ -213,5 +220,3 @@ CREATE TABLE [volume](
 CREATE TABLE [volumn_ribbon](
     [volume_id] INTEGER REFERENCES volume([id]), 
     [ribbon_id] INTEGER REFERENCES ribbon([id]));
-
-
