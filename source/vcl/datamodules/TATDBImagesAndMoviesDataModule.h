@@ -7,6 +7,7 @@
 #include <Data.SqlExpr.hpp>
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
+#include <Data.DBXMySQL.hpp>
 #include <string>
 #include "Poco/Mutex.h"
 //---------------------------------------------------------------------------
@@ -28,24 +29,10 @@ class TImagesAndMoviesDM : public TDataModule
         TClientDataSet *imageNoteCDS;
         TClientDataSet *notesCDS;
         TDataSource *imageNotes;
-	TIntegerField *imagesCDSid;
-	TWideStringField *imagesCDSfile_name;
-	TSQLTimeStampField *imagesCDSdate;
 	TIntegerField *imageNoteCDSimage_id;
 	TIntegerField *imageNoteCDSnote_ID;
-	TIntegerField *notesCDSid;
-	TWideMemoField *notesCDSnote;
-	TSQLTimeStampField *notesCDScreated_on;
-	TWideStringField *notesCDScreated_by;
 	TIntegerField *imageNoteimage_id;
 	TIntegerField *imageNotenote_ID;
-	TIntegerField *imagesid;
-	TWideStringField *imagesfile_name;
-	TSQLTimeStampField *imagesdate;
-	TIntegerField *notesQid;
-	TWideMemoField *notesQnote;
-	TSQLTimeStampField *notesQcreated_on;
-	TWideStringField *notesQcreated_by;
 	TSQLDataSet *sensors;
 	TDataSetProvider *DataSetProvider3;
 	TClientDataSet *sensorsCDS;
@@ -59,6 +46,20 @@ class TImagesAndMoviesDM : public TDataModule
 	TSQLTimeStampField *sensorsCDSdate;
 	TFloatField *sensorsCDStemperature;
 	TFloatField *sensorsCDShumidity;
+	TIntegerField *imagesid;
+	TStringField *imagesfile_name;
+	TSQLTimeStampField *imagesdate;
+	TIntegerField *imagesCDSid;
+	TStringField *imagesCDSfile_name;
+	TSQLTimeStampField *imagesCDSdate;
+	TIntegerField *notesQid;
+	TMemoField *notesQnote;
+	TSQLTimeStampField *notesQcreated_on;
+	TIntegerField *notesQcreated_by;
+	TIntegerField *notesCDSid;
+	TMemoField *notesCDSnote;
+	TSQLTimeStampField *notesCDScreated_on;
+	TIntegerField *notesCDScreated_by;
         void __fastcall imagesCDSAfterScroll(TDataSet *DataSet);
         void __fastcall SQLConnection1AfterConnect(TObject *Sender);
 	void __fastcall imagesCDSdateGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
@@ -70,9 +71,8 @@ class TImagesAndMoviesDM : public TDataModule
 	private:	// User declarations
 
 	public:		// User declarations
-		Poco::Mutex								mSQLiteMutex;
 				__fastcall TImagesAndMoviesDM(TComponent* Owner);
-		bool 	__fastcall Connect(const string& DatabaseFile);
+		bool 	__fastcall Connect(const string& DatabaseName);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TImagesAndMoviesDM *ImagesAndMoviesDM;

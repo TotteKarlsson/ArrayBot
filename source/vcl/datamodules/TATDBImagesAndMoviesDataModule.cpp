@@ -16,35 +16,36 @@ __fastcall TImagesAndMoviesDM::TImagesAndMoviesDM(TComponent* Owner)
 	: TDataModule(Owner)
 {}
 
-bool __fastcall TImagesAndMoviesDM::Connect(const string& DatabaseFile)
+bool __fastcall TImagesAndMoviesDM::Connect(const string& db)
 {
+
+//DriverUnit=Data.DBXMySQL
+//DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver170.bpl
+//DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borland.Data.DbxCommonDriver,Version=17.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b
+//MetaDataPackageLoader=TDBXMySqlMetaDataCommandFactory,DbxMySQLDriver170.bpl
+//MetaDataAssemblyLoader=Borland.Data.TDBXMySqlMetaDataCommandFactory,Borland.Data.DbxMySQLDriver,Version=17.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b
+//GetDriverFunc=getSQLDriverMYSQL
+//LibraryName=dbxmys.dll
+//LibraryNameOsx=libsqlmys.dylib
+//VendorLib=LIBMYSQL.dll
+//VendorLibWin64=libmysql.dll
+//VendorLibOsx=libmysqlclient.dylib
+//HostName=127.0.0.1
+//Database=umlocal
+//User_Name=atdb_client
+//Password=atdb123
+//MaxBlobSize=-1
+//LocaleCode=0000
+//Compressed=False
+//Encrypted=False
+//BlobSize=-1
+//ErrorResourceFile=
+
+
 	try
     {
-//DriverName=DevartSQLite
-//DriverUnit=DbxDevartSQLite
-//DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver170.bpl
-//MetaDataPackageLoader=TDBXDevartSQLiteMetaDataCommandFactory,DbxDevartSQLiteDriver170.bpl
-//ProductName=DevartSQLite
-//LibraryName=dbexpsqlite40.dll
-//VendorLib=sqlite3.dll
-//Database=C:\Users\matsk\AppData\Local\ArrayBot\atDB.db
-//LocaleCode=0000
-//IsolationLevel=ReadCommitted
-//ASCIIDataBase=False
-//BusyTimeout=0
-//EnableSharedCache=False
-//MaxBlobSize=-1
-//FetchAll=True
-//ForceCreateDatabase=False
-//ForeignKeys=True
-//UseUnicode=True
-//EnableLoadExtension=False
-//BlobSize=-1
-//
-//
-	   Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
        SQLConnection1->Connected = false;
-       SQLConnection1->Params->Values[_D("Database")] = vclstr(DatabaseFile);
+       SQLConnection1->Params->Values[_D("Database")] = vclstr(db);
        SQLConnection1->Connected= true;
 
     }
@@ -59,13 +60,12 @@ bool __fastcall TImagesAndMoviesDM::Connect(const string& DatabaseFile)
 //---------------------------------------------------------------------------
 void __fastcall TImagesAndMoviesDM::imagesCDSAfterScroll(TDataSet *DataSet)
 {
-    Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
     TField* field = imagesCDS->FieldByName("id");
     if(field)
     {
         String val = field->AsString;
-        imageNote->SQL->Text 	= "SELECT * from abImage_note where image_id ='" + val + "'";
-        notesQ->SQL->Text 		= "SELECT * FROM note WHERE id IN (SELECT note_id FROM abImage_note WHERE image_id = '" + val + "')";
+        imageNote->SQL->Text 	= "SELECT * from umimage_note where image_id ='" + val + "'";
+        notesQ->SQL->Text 		= "SELECT * FROM note WHERE id IN (SELECT note_id FROM umimage_note WHERE image_id = '" + val + "')";
 
 
             imageNoteCDS->Refresh();
@@ -73,12 +73,10 @@ void __fastcall TImagesAndMoviesDM::imagesCDSAfterScroll(TDataSet *DataSet)
     }
     imageNote->Active = true;
     notesQ->Active = true;
-
 }
 //---------------------------------------------------------------------------
 void __fastcall TImagesAndMoviesDM::SQLConnection1AfterConnect(TObject *Sender)
 {
-    Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
 	Log(lInfo) << "After Connect (Images and Movies)";
     Log(lInfo) << "Connected to database: "<< stdstr(SQLConnection1->Params->Values["Database"]);
 
@@ -119,7 +117,6 @@ void __fastcall TImagesAndMoviesDM::notesCDScreated_onGetText(TField *Sender,
 //---------------------------------------------------------------------------
 void __fastcall TImagesAndMoviesDM::notesCDSAfterScroll(TDataSet *DataSet)
 {
-    Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
 	Log(lDebug3) <<"Note ID:" << notesCDS->FieldByName("id")->AsInteger;
 }
 

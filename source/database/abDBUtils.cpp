@@ -207,12 +207,8 @@ void handleSQLiteException()
 //		break; // sqlite_step() has finished executing
 //	default:
 //		throw SQLiteException(std::string("Unkown error code: ") + Poco::NumberFormatter::format(rc), addErrMsg);
-
-
-
-
-
 }
+
 void handleMySQLException()
 {
 	try

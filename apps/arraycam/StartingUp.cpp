@@ -3,13 +3,15 @@
 #include "TMainForm.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-
+#include "abDBUtils.h"
+#include "abVCLUtils.h"
 using namespace mtk;
 using namespace ab;
-
+extern bool   gAppIsStartingUp;
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormCreate(TObject *Sender)
 {
+    //Camera stuff
 	mDisplayHandle 	= this->mCameraStreamPanel->Handle;
 	mCameraStartLiveBtnClick(Sender);
 
@@ -20,11 +22,6 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	mFitToScreenButtonClick(Sender);
 
     enableDisableClientControls(false);
-
-	//Try to connect to the arduino server..
-	mLightsArduinoClient.connect(50000);
-
-   	mSensorsArduinoClient.connect(50000);
 
 	//Setup sounds
 	mGetReadyForZeroCutSound.create(this->Handle);
@@ -42,6 +39,17 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 		LogLevelCB->ItemIndex = index;
     }
 
+	//Connect to the arduino server..
+	mLightsArduinoClient.connect(50000);
+   	mSensorsArduinoClient.connect(50000);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::FormShow(TObject *Sender)
+{
+	string dBase(mLocalDBName);
+	//Our low level db connection
+	//Connect to local database
 	try
     {
         if(!mClientDBSession.isConnected())
@@ -51,7 +59,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 
         if(mClientDBSession.isConnected())
         {
-            Log(lInfo) << "Connected to local SQLITE database.";
+            Log(lInfo) << "Connected to local database.";
         }
         else
         {
@@ -60,7 +68,21 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
     }
     catch(...)
     {
-    	handleSQLiteException();
+    	handleMySQLException();
     }
+
+    //UI DB connection
+    if (ImagesAndMoviesDM->Connect(dBase))
+    {
+       // Connection successfull
+        Log(lInfo) << "DataModule connected to the database: "<<dBase;
+        populateUsersCB(mUsersCB, mClientDBSession);
+    }
+    else
+    {
+        Log(lInfo) << "Datamodule failed to connect to database: "<<dBase;
+    }
+
+    gAppIsStartingUp = false;
 }
 

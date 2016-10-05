@@ -3,7 +3,8 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
   Height = 591
   Width = 604
   object images: TSQLDataSet
-    CommandText = 'select * from abImage order by date desc'
+    Active = True
+    CommandText = 'select * from umimage order by date desc'
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConnection1
@@ -11,54 +12,66 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 112
     object imagesid: TIntegerField
       FieldName = 'id'
+      Required = True
     end
-    object imagesfile_name: TWideStringField
+    object imagesfile_name: TStringField
       FieldName = 'file_name'
-      Size = 1024
+      Required = True
+      Size = 512
     end
     object imagesdate: TSQLTimeStampField
       FieldName = 'date'
+      Required = True
     end
   end
   object SQLConnection1: TSQLConnection
     ConnectionName = 'ATDBDebug'
-    DriverName = 'DevartSQLite'
+    DriverName = 'MySQL'
     LoginPrompt = False
     Params.Strings = (
-      'DriverName=DevartSQLite'
-      'DriverUnit=DbxDevartSQLite'
+      'DriverUnit=Data.DBXMySQL'
       
-        'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver170.' +
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver170.' +
         'bpl'
       
-        'MetaDataPackageLoader=TDBXDevartSQLiteMetaDataCommandFactory,Dbx' +
-        'DevartSQLiteDriver170.bpl'
-      'ProductName=DevartSQLite'
-      'LibraryName=dbexpsqlite40.dll'
-      'VendorLib=sqlite3.dll'
-      'Database=C:\Users\matsk\AppData\Local\ArrayBot\atDB.db'
-      'LocaleCode=0000'
-      'IsolationLevel=ReadCommitted'
-      'ASCIIDataBase=False'
-      'BusyTimeout=0'
-      'EnableSharedCache=False'
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=17.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXMySqlMetaDataCommandFactory,DbxMySQLDr' +
+        'iver170.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXMySqlMetaDataCommandFact' +
+        'ory,Borland.Data.DbxMySQLDriver,Version=17.0.0.0,Culture=neutral' +
+        ',PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverMYSQL'
+      'LibraryName=dbxmys.dll'
+      'LibraryNameOsx=libsqlmys.dylib'
+      'VendorLib=LIBMYSQL.dll'
+      'VendorLibWin64=libmysql.dll'
+      'VendorLibOsx=libmysqlclient.dylib'
+      'HostName=127.0.0.1'
+      'Database=umlocal'
+      'User_Name=atdb_client'
+      'Password=atdb123'
       'MaxBlobSize=-1'
-      'FetchAll=True'
-      'ForceCreateDatabase=False'
-      'ForeignKeys=True'
-      'UseUnicode=True'
-      'EnableLoadExtension=False'
-      'BlobSize=-1')
+      'LocaleCode=0000'
+      'Compressed=False'
+      'Encrypted=False'
+      'BlobSize=-1'
+      'ErrorResourceFile=')
     AfterConnect = SQLConnection1AfterConnect
+    Connected = True
     Left = 32
     Top = 32
   end
   object imageNote: TSQLQuery
+    Active = True
     DataSource = image_note
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      'select * from abImage_note where image_id = 5')
+      'select * from umimage_note where image_id = 5')
     SQLConnection = SQLConnection1
     Left = 40
     Top = 184
@@ -70,30 +83,32 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     end
   end
   object notesQ: TSQLQuery
+    Active = True
     DataSource = imageNotes
-    MaxBlobSize = -1
+    MaxBlobSize = 1
     Params = <>
     SQL.Strings = (
       
-        ' SELECT * FROM note WHERE id IN (SELECT note_id FROM abImage_not' +
+        ' SELECT * FROM note WHERE id IN (SELECT note_id FROM umimage_not' +
         'e WHERE image_id = "")')
     SQLConnection = SQLConnection1
     Left = 40
     Top = 256
     object notesQid: TIntegerField
       FieldName = 'id'
+      Required = True
     end
-    object notesQnote: TWideMemoField
+    object notesQnote: TMemoField
       FieldName = 'note'
-      BlobType = ftWideMemo
-      Size = -1
+      BlobType = ftMemo
+      Size = 1
     end
     object notesQcreated_on: TSQLTimeStampField
       FieldName = 'created_on'
     end
-    object notesQcreated_by: TWideStringField
+    object notesQcreated_by: TIntegerField
       FieldName = 'created_by'
-      Size = 512
+      Required = True
     end
   end
   object DataSetProvider2: TDataSetProvider
@@ -112,6 +127,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 112
   end
   object imagesCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'imagesProvider'
@@ -120,14 +136,16 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 112
     object imagesCDSid: TIntegerField
       FieldName = 'id'
+      Required = True
     end
-    object imagesCDSfile_name: TWideStringField
+    object imagesCDSfile_name: TStringField
       FieldName = 'file_name'
-      Size = 1024
+      Required = True
+      Size = 512
     end
     object imagesCDSdate: TSQLTimeStampField
       FieldName = 'date'
-      OnGetText = imagesCDSdateGetText
+      Required = True
     end
   end
   object imagesDS: TDataSource
@@ -141,6 +159,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 184
   end
   object imageNoteCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider1'
@@ -154,6 +173,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     end
   end
   object notesCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider2'
@@ -162,18 +182,19 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 256
     object notesCDSid: TIntegerField
       FieldName = 'id'
+      Required = True
     end
-    object notesCDSnote: TWideMemoField
+    object notesCDSnote: TMemoField
       FieldName = 'note'
-      BlobType = ftWideMemo
+      BlobType = ftMemo
+      Size = 1
     end
     object notesCDScreated_on: TSQLTimeStampField
       FieldName = 'created_on'
-      OnGetText = notesCDScreated_onGetText
     end
-    object notesCDScreated_by: TWideStringField
+    object notesCDScreated_by: TIntegerField
       FieldName = 'created_by'
-      Size = 512
+      Required = True
     end
   end
   object imageNotes: TDataSource
@@ -182,6 +203,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 256
   end
   object sensors: TSQLDataSet
+    Active = True
     CommandText = 'select * from sensor_data order by date desc'
     MaxBlobSize = -1
     Params = <>
@@ -210,6 +232,7 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 344
   end
   object sensorsCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider3'

@@ -48,8 +48,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 		mRestoreFromZeroCutSound("CLOSING_DOWN_1", 15, 350),
         mSnapShotFolder(""),
         mMoviesFolder(""),
-        mLocalDBFile(""),
-        mClientDBSession("")
+        mLocalDBName(""),
+        mClientDBSession("umlocal")
 {
    	mLogFileReader.start(true);
 
@@ -65,11 +65,9 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	mProperties.add((BaseProperty*)  &mPairLEDs.setup(			"PAIR_LEDS",    		true));
     mProperties.add((BaseProperty*)  &mSnapShotFolder.setup(	"SNAP_SHOT_FOLDER",     "C:\\Temp"	));
 	mProperties.add((BaseProperty*)  &mMoviesFolder.setup(		"MOVIES_FOLDER",   		"C:\\Temp"	));
-	mProperties.add((BaseProperty*)  &mLocalDBFile.setup(		"LOCAL_DB",   			joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "atdb.db")	));
+	mProperties.add((BaseProperty*)  &mLocalDBName.setup(		"LOCAL_DB",   			"umlocal.db"));
 
     mProperties.read();
-
-    mClientDBSession.connect(mLocalDBFile);
 
 	//Camera rendering mode
     mRenderMode = IS_RENDER_FIT_TO_WINDOW;
@@ -248,29 +246,6 @@ void TMainForm::stopSounds()
     mSetZeroCutSound.stop();
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::FormShow(TObject *Sender)
-{
-	string dBase(mLocalDBFile);
-    if(!fileExists(dBase))
-    {
-	  	Log(lError) << "The db file: "<<dBase<<" do not exist!";
-    }
-    else
-    {
-        if (ImagesAndMoviesDM->Connect(dBase))
-        {
-           // Connection successfull
-            Log(lInfo) << "DataModule connected to the database: "<<dBase;
-            populateUsersCB(mUsersCB, mClientDBSession);
-        }
-        else
-        {
-            Log(lInfo) << "Datamodule failed to connect to database: "<<dBase;
-        }
-    }
-    gAppIsStartingUp = false;
-}
 
 void __fastcall TMainForm::DBMemo1Change(TObject *Sender)
 {
@@ -282,7 +257,6 @@ void __fastcall TMainForm::DBMemo1Change(TObject *Sender)
 void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
 {
 	//Apply and post updates to database
-    Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
 	ImagesAndMoviesDM->notesCDS->ApplyUpdates(-1);
     mUpdateNoteBtn->Enabled = false;
 }
@@ -357,7 +331,6 @@ void __fastcall TMainForm::mImagesGridCellClick(TColumn *Column)
     	Log(lError) << "The file: "<<fName<<" could not be found";
     }
 
-
 	mNotesGrid->Width = mNotesGrid->Width + 1;
 	mNotesGrid->Width = mNotesGrid->Width - 1;
 }
@@ -396,7 +369,6 @@ void __fastcall TMainForm::Panel3Resize(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
-	Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
 	ImagesAndMoviesDM->sensorsCDS->Active = false;
    	ImagesAndMoviesDM->sensorsCDS->Active = true;
 }

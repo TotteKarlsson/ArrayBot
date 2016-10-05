@@ -5,7 +5,7 @@
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
 USEFORM("TMainForm.cpp", MainForm);
-USEFORM("TatDM.cpp", atDM); /* TDataModule: File Type */
+USEFORM("..\..\..\source\vcl\datamodules\TATDBDataModule.cpp", atDM); /* TDataModule: File Type */
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"

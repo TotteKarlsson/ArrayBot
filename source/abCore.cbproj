@@ -329,6 +329,10 @@ $(PreBuildEvent)]]></PreBuildEvent>
             <DependentOn>database\abATDBServerSession.h</DependentOn>
             <BuildOrder>67</BuildOrder>
         </CppCompile>
+        <CppCompile Include="database\abDBConnection.cpp">
+            <DependentOn>database\abDBConnection.h</DependentOn>
+            <BuildOrder>72</BuildOrder>
+        </CppCompile>
         <CppCompile Include="database\abDBUtils.cpp">
             <BuildOrder>66</BuildOrder>
         </CppCompile>

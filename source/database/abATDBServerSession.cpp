@@ -4,6 +4,7 @@
 #include "Poco/Data/MySQL/MySQLException.h"
 #include "Poco/Data/Session.h"
 #include "Poco/Data/SessionFactory.h"
+#include "Poco/Data/RecordSet.h"|
 #include "abDBUtils.h"
 #include "mtkLogger.h"
 //---------------------------------------------------------------------------
@@ -13,13 +14,9 @@ using namespace ab;
 using namespace Poco::Data;
 using namespace Poco::Data::Keywords;
 
-ATDBServerSession::ATDBServerSession(const string& host, const string& user, const string& password)
+ATDBServerSession::ATDBServerSession(const string& db, const string& host, const string& user, const string& password)
 :
-mDataBaseName("atdb"),
-mHost(host),
-mDataBaseUser(user),
-mDataBasePassword(password),
-mTheSession(NULL)
+DBConnection(db, host, user, password)
 {}
 
 ATDBServerSession::~ATDBServerSession()

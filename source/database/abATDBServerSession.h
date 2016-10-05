@@ -4,7 +4,7 @@
 #include "abABObject.h"
 #include "abDBUtils.h"
 #include <deque>
-#include "Poco/Data/RecordSet.h"
+#include "abDBConnection.h"
 //---------------------------------------------------------------------------
 
 using Poco::Data::RecordSet;
@@ -12,10 +12,10 @@ using Poco::Data::Session;
 
 //!The ATDB server session class encapsulate a database session
 //!with the ATDB MySQL database
-class AB_CORE ATDBServerSession : public ABObject
+class AB_CORE ATDBServerSession : public DBConnection
 {
     public:
-					        	        ATDBServerSession(const string& host="127.0.0.1", const string& user="atdb_client", const string& password="atdb123");
+					        	        ATDBServerSession(const string& db, const string& host="127.0.0.1", const string& user="atdb_client", const string& password="atdb123");
 					        	        ~ATDBServerSession();
 
 										//!Statements

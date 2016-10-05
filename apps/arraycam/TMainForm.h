@@ -160,7 +160,7 @@ class TMainForm  : public TRegistryForm
         Property<bool>						    mPairLEDs;
         Property<string>						mSnapShotFolder;
         Property<string>						mMoviesFolder;
-        Property<string>						mLocalDBFile;
+        Property<string>						mLocalDBName;
 
 								                // Camera variables
         								        //!The camera class

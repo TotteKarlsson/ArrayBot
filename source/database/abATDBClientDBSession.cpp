@@ -1,11 +1,10 @@
 #pragma hdrstop
 #include "abATDBClientDBSession.h"
 #include "mtkLogger.h"
-#include "Poco/Data/SQLite/Connector.h"
+#include "Poco/Data/MySQL/Connector.h"
+#include "Poco/Data/MySQL/MySQLException.h"
 #include "Poco/Data/SessionFactory.h"
-#include "Poco/Data/SQLite/SQLiteException.h"
 #include "mtkFileUtils.h"
-
 
 //---------------------------------------------------------------------------
 using namespace mtk;
@@ -13,80 +12,13 @@ using namespace ab;
 using namespace Poco::Data;
 using namespace Poco::Data::Keywords;
 
-ATDBClientDBSession::ATDBClientDBSession(const string& dbFile)
+ATDBClientDBSession::ATDBClientDBSession(const string& db, const string& host, const string& user, const string& password)
 :
-mDBFileName(dbFile),
-mTheSession(NULL)
+DBConnection(db, host, user, password)
 {}
 
 ATDBClientDBSession::~ATDBClientDBSession()
 {}
-
-bool ATDBClientDBSession::isConnected()
-{
-	return mTheSession ? true : false;
-}
-
-bool ATDBClientDBSession::connect(const string& dbName)
-{
-	try
-    {
-    	if(dbName.size())
-        {
-            mDBFileName = dbName;
-        }
-
-        if(!fileExists(mDBFileName))
-        {
-            return false;
-        }
-
-		//Register DB connector
-	    SQLite::Connector::registerConnector();
-
-    	//Create connection string
-		//string str = "host=127.0.0.1;user=atdb_client;password=atdb123;db=atdb";
-
-		mTheSession = new Poco::Data::Session(Poco::Data::SessionFactory::instance().create(Poco::Data::SQLite::Connector::KEY, mDBFileName ));
-        Log(lInfo) << "Opened SQLite Database: "<<mDBFileName;
-
-        //Enable foreign key support
-        int support;
-        Session& ses = *mTheSession;
-	   	Statement s(ses);
-    	s << "PRAGMA foreign_keys", into(support), now;
-
-        s.reset(ses);
-        Log(lInfo) <<"Foreign key support:" <<support;
-        s << "PRAGMA foreign_keys = ON", now;
-        s.reset(ses);
-
-    	s << "PRAGMA foreign_keys", into(support), now;
-        Log(lInfo) <<"Foreign key support:" <<support;
-        return true;
-    }
-    catch(const Poco::Data::SQLite::SQLiteException& e)
-    {
-        Log(lError) << e.message() << endl;
-        return false;
-    }
-}
-
-bool ATDBClientDBSession::disConnect()
-{
-	try
-    {
-    	delete mTheSession;
-        mTheSession = NULL;
-	    SQLite::Connector::unregisterConnector();
-        return true;
-    }
-    catch(...)
-    {
-    	Log(lError) << "Failed to delete db session..";
-        return false;
-    }
-}
 
 RecordSet* ATDBClientDBSession::getBlocks(dbSQLKeyword kw)
 {

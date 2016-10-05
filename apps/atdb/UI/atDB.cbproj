@@ -43,10 +43,10 @@
         <VCL_Custom_Styles>&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;</VCL_Custom_Styles>
         <ProjectType>CppVCLApplication</ProjectType>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
-        <ILINK_LibraryPath>DataModules\;Core\;Forms\;Frames\;P:\DSL\VCL\Common\;Source\Frames\;Source\Core\;Source\Forms\;Source\DataModules\;Source\;P:\iBot\;P:\iBot\Source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\..\source\vcl\datamodules\;DataModules\;Core\;Forms\;Frames\;P:\DSL\VCL\Common\;Source\Frames\;Source\Core\;Source\Forms\;Source\DataModules\;Source\;P:\iBot\;P:\iBot\Source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <IncludePath>DataModules\;Core\;Forms\;Frames\;P:\DSL\VCL\Common\;Source\Frames\;Source\Core\;Source\Forms\;Source\DataModules\;Source\;P:\iBot\;P:\iBot\Source\;$(IncludePath)</IncludePath>
+        <IncludePath>..\..\..\source\vcl\datamodules\;DataModules\;Core\;Forms\;Frames\;P:\DSL\VCL\Common\;Source\Frames\;Source\Core\;Source\Forms\;Source\DataModules\;Source\;P:\iBot\;P:\iBot\Source\;$(IncludePath)</IncludePath>
         <Multithreaded>true</Multithreaded>
         <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;RaizeComponentsTrialVcl.lib;RaizeComponentsTrialVclDb.lib;HsBarcode1DRun.lib;abVCLCore.lib;ArrayBotPackage.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
@@ -143,13 +143,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="MiscDataBase.cpp">
             <BuildOrder>17</BuildOrder>
         </CppCompile>
-        <CppCompile Include="TatDM.cpp">
-            <Form>atDM</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>TatDM.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
         <CppCompile Include="ThemesLogic.cpp">
             <BuildOrder>27</BuildOrder>
         </CppCompile>
@@ -159,8 +152,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <FormResources Include="TatDM.dfm"/>
+        <CppCompile Include="..\..\..\source\vcl\datamodules\TATDBDataModule.cpp">
+            <Form>atDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>..\..\..\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="..\..\..\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

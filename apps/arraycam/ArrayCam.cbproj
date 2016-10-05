@@ -40,7 +40,7 @@
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;;&quot;Sapphire Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\SapphireKamri.vsf&quot;</VCL_Custom_Styles>
-        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;abVCLCore.lib;vcldb.lib;dbrtl.lib;dsnap.lib;dbexpress.lib;DbxCommonDriver.lib;dbxcds.lib;DbxDevartSQLiteDriver170.lib;vclimg.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;abVCLCore.lib;vcldb.lib;dbrtl.lib;dsnap.lib;dbexpress.lib;DbxCommonDriver.lib;dbxcds.lib;DbxDevartSQLiteDriver170.lib;vclimg.lib;DBXMySQLDriver.lib</AllPackageLibs>
         <ProjectType>CppVCLApplication</ProjectType>
         <IncludePath>..\..\source\database\;..\..\source\vcl\datamodules\;..\..\source\;..\..\source\vcl;$(IncludePath)</IncludePath>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
@@ -101,7 +101,7 @@
         <IncludePath>$(DEBUG_BUILD)\include;$(AB_ROOT)\source;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <_TCHARMapping>char</_TCHARMapping>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;DuneComponents.bpi;vcldb.bpi;dbrtl.bpi;dsnap.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dbxcds.bpi;DbxDevartSQLiteDriver170.bpi;vclimg.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;DuneComponents.bpi;vcldb.bpi;dbrtl.bpi;dsnap.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dbxcds.bpi;DbxDevartSQLiteDriver170.bpi;vclimg.bpi;DBXMySQLDriver.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
@@ -137,12 +137,6 @@
             <DependentOn>TSettingsForm.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\..\source\vcl\datamodules\TATDBDataModule.cpp">
-            <Form>atDM</Form>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>..\..\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
-            <BuildOrder>6</BuildOrder>
-        </CppCompile>
         <CppCompile Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp">
             <Form>ImagesAndMoviesDM</Form>
             <FormType>dfm</FormType>
@@ -151,9 +145,8 @@
             <BuildOrder>10</BuildOrder>
         </CppCompile>
         <FormResources Include="TMainForm.dfm"/>
-        <FormResources Include="TSettingsForm.dfm"/>
         <FormResources Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.dfm"/>
-        <FormResources Include="..\..\source\vcl\datamodules\TATDBDataModule.dfm"/>
+        <FormResources Include="TSettingsForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

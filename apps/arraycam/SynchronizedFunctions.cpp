@@ -3,7 +3,7 @@
 #include "TMainForm.h"
 #include "abVCLUtils.h"
 #include "mtkStringList.h"
-#include "abDBUtils.h"
+#include "abVCLUtils.h"
 #include "TSettingsForm.h"
 using namespace mtk;
 using namespace ab;
@@ -158,20 +158,11 @@ void TMainForm::onSensorsArduinoMessageReceived(const string& msg)
                     SensorReading r = readings[i];
                     try
                     {
-                      	{
-
-							Poco::Timestamp startTime;
-                        	Poco::ScopedLock<Poco::Mutex> lock(ImagesAndMoviesDM->mSQLiteMutex);
-						    Timestamp now;
-						    Poco::Timespan ts(now - startTime);
-                            Log(lInfo) << "Aquired mutex after :"<<ts.milliseconds()<<" ms";
-	                        mClientDBSession.insertSensorData(r.mSensorID, r.mTemperature, r.mHumidity);
-                            Sleep(100);
-                        }
+                        mClientDBSession.insertSensorData(r.mSensorID, r.mTemperature, r.mHumidity);
                     }
                     catch(...)
                     {
-                        handleSQLiteException();
+                        handleMySQLException();
                     }
                 }
 
@@ -180,9 +171,6 @@ void TMainForm::onSensorsArduinoMessageReceived(const string& msg)
             }
         }
     }
-
-
-
 }
 
 

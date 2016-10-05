@@ -237,40 +237,8 @@ Coordinates=1061,1,142,51
 [BindSourceDB1]
 Coordinates=250,215,92,51
 
-[atDM.blocksCDS]
-Visible=False
-Coordinates=970,270,92,177
-
 [mBarCodeImage]
 Coordinates=383,330,96,51
-
-[atDM.blockNotesDSet]
-Coordinates=235,10,121,159
-
-[atDM.blocksDS]
-Coordinates=366,10,89,159
-
-[atDM.blockNotesQ]
-Coordinates=489,330,105,51
-
-[atDM.usersDS]
-Coordinates=910,640,92,123
-Visible=False
-
-[atDM.updateNoteQ]
-Coordinates=604,330,107,51
-
-[atDM.usersClientDataSet]
-Coordinates=10,215,136,105
-
-[atDM.noteDS]
-Coordinates=465,10,78,123
-
-[atDM.notesCDS]
-Coordinates=553,10,91,123
-
-[atDM.mRibbonCDSet]
-Coordinates=10,10,117,195
 
 [DBGrid1]
 Coordinates=488,452,56,33
@@ -280,9 +248,6 @@ Coordinates=278,452,66,33
 
 [atDM.]
 Coordinates=660,613,101,177
-
-[atDM.ribbonsQ]
-Coordinates=137,10,88,177
 
 [mRibbonsNavigator]
 Coordinates=352,215,112,51
