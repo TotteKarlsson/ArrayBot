@@ -137,6 +137,12 @@
             <DependentOn>TSettingsForm.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\..\source\vcl\datamodules\TATDBDataModule.cpp">
+            <Form>atdbDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>..\..\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp">
             <Form>ImagesAndMoviesDM</Form>
             <FormType>dfm</FormType>
@@ -145,8 +151,9 @@
             <BuildOrder>10</BuildOrder>
         </CppCompile>
         <FormResources Include="TMainForm.dfm"/>
-        <FormResources Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.dfm"/>
         <FormResources Include="TSettingsForm.dfm"/>
+        <FormResources Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.dfm"/>
+        <FormResources Include="..\..\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

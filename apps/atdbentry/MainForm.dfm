@@ -14,6 +14,7 @@ object Main: TMain
   OldCreateOrder = False
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
@@ -249,7 +250,7 @@ object Main: TMain
     Enabled = False
     Interval = 200
     OnTimer = ShutDownTimerTimer
-    Left = 352
-    Top = 48
+    Left = 256
+    Top = 24
   end
 end

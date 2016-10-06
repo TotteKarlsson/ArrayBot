@@ -89,12 +89,13 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <_TCHARMapping>char</_TCHARMapping>
         <Icon_MainIcon>AtDBEntry_Icon1.ico</Icon_MainIcon>
         <BCC_whid>false</BCC_whid>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Debugger_DebugSourcePath>P:\ArrayBot\source\vcl\components\;P:\libs\dslib\VCL\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <Defines>POCO_STATIC;$(Defines)</Defines>
-        <VerInfo_Locale>1033</VerInfo_Locale>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;abVCLCore.bpi;DuneComponents.bpi;RaizeComponentsTrialVcl.bpi;dsnap.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dbxcds.bpi;DbxDevartSQLiteDriver170.bpi</LinkPackageImports>
@@ -116,9 +117,6 @@
         <CppCompile Include="Misc.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="pch.h">
-            <BuildOrder>1</BuildOrder>
-        </PCHCompile>
         <CppCompile Include="ShutDownLogic.cpp">
             <BuildOrder>5</BuildOrder>
         </CppCompile>
@@ -126,26 +124,12 @@
             <DependentOn>UIUtilities.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\..\source\database\abATDBClientDBSession.cpp">
-            <BuildOrder>6</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\..\source\database\abATDBServerSession.cpp">
-            <DependentOn>..\..\source\database\abATDBServerSession.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
-        </CppCompile>
         <CppCompile Include="..\..\source\database\forms\TATDBServerEntry.cpp">
             <BuildOrder>8</BuildOrder>
         </CppCompile>
         <CppCompile Include="..\..\source\database\forms\TBlockEntryForm.cpp">
             <BuildOrder>7</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\..\source\vcl\datamodules\TATDBDataModule.cpp">
-            <Form>atDM</Form>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>..\..\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
-            <BuildOrder>9</BuildOrder>
-        </CppCompile>
-        <FormResources Include="..\..\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="MainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

@@ -8,12 +8,13 @@
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
 #include <SimpleDS.hpp>
+#include <Data.DBXMySQL.hpp>
 #include <string>
 
 using std::string;
 //!The TatDM class encapsulate data exchange with the ATDB database
 //---------------------------------------------------------------------------
-class TatDM : public TDataModule
+class TatdbDM : public TDataModule
 {
 __published:	// IDE-managed Components
 	TSQLConnection *SQLConnection1;
@@ -23,95 +24,99 @@ __published:	// IDE-managed Components
 	TSQLDataSet *blocksDS;
 	TSQLDataSet *usersDS;
 	TDataSetProvider *usersProvider;
-	TClientDataSet *usersClientDataSet;
+	TClientDataSet *usersCDS;
 	TDataSource *usersDataSource;
 	TSQLQuery *blockNotesQ;
 	TDataSource *blockNotesDSource;
 	TDataSetProvider *blockNotesProvider;
-	TClientDataSet *blockNotesDSet;
-	TIntegerField *blockNotesDSetid;
-	TWideMemoField *blockNotesDSetnote;
-	TSQLTimeStampField *blockNotesDSetcreated_on;
-	TWideStringField *blockNotesDSetcreated_by;
-	TIntegerField *blockNotesDSetblock_id;
-	TIntegerField *blockNotesDSetnote_id;
-	TSQLQuery *updateNoteQ;
+	TClientDataSet *blockNotesCDS;
 	TSQLDataSet *noteDS;
 	TDataSetProvider *notesProvider;
 	TClientDataSet *notesCDS;
-	TIntegerField *notesCDSid;
-	TWideMemoField *notesCDSnote;
-	TSQLTimeStampField *notesCDScreated_on;
-	TWideStringField *notesCDScreated_by;
 	TDataSource *notesDSource;
+	TDataSetProvider *mRibbonProvider;
+	TClientDataSet *mRibbonCDS;
+	TDataSource *mRibbonDSource;
+	TSQLQuery *ribbonsQ;
 	TIntegerField *usersDSid;
-	TWideMemoField *usersDSuser_name;
+	TStringField *usersDSuser_name;
 	TSQLTimeStampField *usersDScreated;
-	TIntegerField *usersClientDataSetid;
-	TWideMemoField *usersClientDataSetuser_name;
-	TSQLTimeStampField *usersClientDataSetcreated;
-	TIntegerField *blocksCDSid;
-	TSQLTimeStampField *blocksCDScreated;
-	TIntegerField *blocksCDScreated_by;
-	TSQLTimeStampField *blocksCDSmodified;
-	TIntegerField *blocksCDSstatus;
-	TWideStringField *blocksCDSlabel;
+	TIntegerField *usersCDSid;
+	TStringField *usersCDSuser_name;
+	TSQLTimeStampField *usersCDScreated;
 	TIntegerField *blocksDSid;
 	TSQLTimeStampField *blocksDScreated;
 	TIntegerField *blocksDScreated_by;
 	TSQLTimeStampField *blocksDSmodified;
 	TIntegerField *blocksDSstatus;
-	TWideStringField *blocksDSlabel;
-	TDataSetProvider *mRibbonProvider;
-	TClientDataSet *mRibbonCDSet;
-	TDataSource *mRibbonDSource;
-	TIntegerField *mRibbonCDSetid;
-	TIntegerField *mRibbonCDSetblock_id;
-	TIntegerField *mRibbonCDSetstatus;
-	TSQLTimeStampField *mRibbonCDSetcreated;
-	TSQLTimeStampField *mRibbonCDSetmodified;
-	TIntegerField *mRibbonCDSetcutting_order;
-	TWideMemoField *mRibbonCDSetnotes;
-	TSQLQuery *ribbonsQ;
-	TIntegerField *mRibbonCDSetbar_code;
-	TSQLDataSet *abImageDS;
-	TDataSetProvider *mImageProvider;
-	TClientDataSet *mImageClientDS;
-	TDataSource *mABImageDataSource;
-	TIntegerField *abImageDSid;
-	TWideStringField *abImageDSfile_name;
-	TIntegerField *mImageClientDSid;
-	TWideStringField *mImageClientDSfile_name;
-	void __fastcall usersClientDataSetuser_nameGetText(TField *Sender, UnicodeString &Text,
-          bool DisplayText);
-	void __fastcall usersClientDataSetBeforeApplyUpdates(TObject *Sender, OleVariant &OwnerData);
-	void __fastcall usersClientDataSetBeforeInsert(TDataSet *DataSet);
-	void __fastcall usersClientDataSetAfterPost(TDataSet *DataSet);
-	void __fastcall usersClientDataSetAfterDelete(TDataSet *DataSet);
-	void __fastcall usersClientDataSetuser_nameValidate(TField *Sender);
-	void __fastcall usersClientDataSetAfterScroll(TDataSet *DataSet);
-	void __fastcall usersClientDataSetAfterCancel(TDataSet *DataSet);
+	TMemoField *blocksDSlabel;
+	TIntegerField *blocksCDSid;
+	TSQLTimeStampField *blocksCDScreated;
+	TIntegerField *blocksCDScreated_by;
+	TSQLTimeStampField *blocksCDSmodified;
+	TIntegerField *blocksCDSstatus;
+	TMemoField *blocksCDSlabel;
+	TIntegerField *notesCDSid;
+	TMemoField *notesCDSnote;
+	TSQLTimeStampField *notesCDScreated_on;
+	TMemoField *notesCDScreated_by;
+	TStringField *ribbonsQid;
+	TIntegerField *ribbonsQstatus;
+	TSQLTimeStampField *ribbonsQcreated;
+	TSQLTimeStampField *ribbonsQmodified;
+	TIntegerField *ribbonsQblock_id;
+	TIntegerField *ribbonsQcutting_order;
+	TSmallintField *ribbonsQnr_of_sections;
+	TStringField *mRibbonCDSid;
+	TIntegerField *mRibbonCDSstatus;
+	TSQLTimeStampField *mRibbonCDScreated;
+	TSQLTimeStampField *mRibbonCDSmodified;
+	TIntegerField *mRibbonCDSblock_id;
+	TIntegerField *mRibbonCDScutting_order;
+	TSmallintField *mRibbonCDSnr_of_sections;
+	TIntegerField *blockNotesCDSid;
+	TMemoField *blockNotesCDSnote;
+	TSQLTimeStampField *blockNotesCDScreated_on;
+	TMemoField *blockNotesCDScreated_by;
+	TIntegerField *blockNotesCDSblock_id;
+	TIntegerField *blockNotesCDSnote_id;
+	TIntegerField *blockNotesQid;
+	TMemoField *blockNotesQnote;
+	TSQLTimeStampField *blockNotesQcreated_on;
+	TMemoField *blockNotesQcreated_by;
+	TIntegerField *blockNotesQblock_id;
+	TIntegerField *blockNotesQnote_id;
+	void __fastcall usersCDSAfterPost(TDataSet *DataSet);
+	void __fastcall usersCDSAfterDelete(TDataSet *DataSet);
+	void __fastcall usersCDSAfterScroll(TDataSet *DataSet);
+	void __fastcall usersCDSAfterCancel(TDataSet *DataSet);
 	void __fastcall blocksCDSAfterPost(TDataSet *DataSet);
 	void __fastcall blocksCDSAfterDelete(TDataSet *DataSet);
 	void __fastcall blocksCDSAfterScroll(TDataSet *DataSet);
-	void __fastcall blockNotesDSetAfterPost(TDataSet *DataSet);
-	void __fastcall usersDSuser_nameValidate(TField *Sender);
-	void __fastcall usersClientDataSetBeforePost(TDataSet *DataSet);
+	void __fastcall blockNotesCDSAfterPost(TDataSet *DataSet);
 	void __fastcall blocksCDSBeforePost(TDataSet *DataSet);
-	void __fastcall mRibbonCDSetAfterPost(TDataSet *DataSet);
-	void __fastcall mRibbonCDSetBeforePost(TDataSet *DataSet);
-	void __fastcall mRibbonCDSetAfterDelete(TDataSet *DataSet);
-	void __fastcall mRibbonCDSetCalcFields(TDataSet *DataSet);
+	void __fastcall mRibbonCDSAfterPost(TDataSet *DataSet);
+	void __fastcall mRibbonCDSBeforePost(TDataSet *DataSet);
+	void __fastcall mRibbonCDSAfterDelete(TDataSet *DataSet);
+	void __fastcall mRibbonCDSCalcFields(TDataSet *DataSet);
 	void __fastcall SQLConnection1AfterConnect(TObject *Sender);
 	void __fastcall abImageDSBeforeScroll(TDataSet *DataSet);
-private:	// User declarations
-public:		// User declarations
-				__fastcall TatDM(TComponent* Owner);
+	void __fastcall SQLConnection1BeforeConnect(TObject *Sender);
 
-		bool __fastcall Connect(const string& DatabaseFile);
+
+	private:	// User declarations
+    protected:
+    	string		mDataBase;
+		void		updateRibbons();
+	public:
+				__fastcall TatdbDM(TComponent* Owner);
+
+		bool 	__fastcall connect(const string& db);
+        void    __fastcall afterConnect();
+        void    __fastcall afterDisConnect();
 
 };
 
-extern PACKAGE TatDM *atDM;
+extern PACKAGE TatdbDM *atdbDM;
 
 #endif

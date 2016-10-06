@@ -124,18 +124,18 @@ object MainForm: TMainForm
         Caption = 'Overview'
         ImageIndex = 1
         object GroupBox2: TGroupBox
-          Left = 19
-          Top = 15
-          Width = 734
-          Height = 234
+          Left = 23
+          Top = 39
+          Width = 882
+          Height = 219
           Caption = 'Blocks'
           TabOrder = 0
-          object DBGrid4: TDBGrid
+          object mBlocksGrid: TDBGrid
             Left = 15
             Top = 62
-            Width = 695
-            Height = 145
-            DataSource = atDM.blocksDataSource
+            Width = 394
+            Height = 147
+            DataSource = atdbDM.blocksDataSource
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             ReadOnly = True
             TabOrder = 0
@@ -144,11 +144,12 @@ object MainForm: TMainForm
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            OnDblClick = mBlocksGridDblClick
             Columns = <
               item
                 Expanded = False
                 FieldName = 'id'
-                Width = 100
+                Width = 48
                 Visible = True
               end
               item
@@ -173,7 +174,7 @@ object MainForm: TMainForm
           object Panel3: TPanel
             Left = 2
             Top = 15
-            Width = 730
+            Width = 878
             Height = 41
             Align = alTop
             BevelOuter = bvNone
@@ -181,14 +182,14 @@ object MainForm: TMainForm
             object mBlocksNavigator: TDBNavigator
               Left = 13
               Top = 8
-              Width = 240
+              Width = 225
               Height = 25
-              DataSource = atDM.blocksDataSource
-              VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+              DataSource = atdbDM.blocksDataSource
+              VisibleButtons = [nbPrior, nbNext, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               TabOrder = 0
             end
             object mNewBlockBtn: TButton
-              Left = 590
+              Left = 292
               Top = 8
               Width = 115
               Height = 33
@@ -197,31 +198,58 @@ object MainForm: TMainForm
               TabOrder = 1
               OnClick = RegisterNewBlock
             end
-            object ComboBox1: TComboBox
-              Left = 439
-              Top = 12
-              Width = 145
-              Height = 21
-              Style = csDropDownList
-              Sorted = True
+            object Button1: TButton
+              Left = 413
+              Top = 8
+              Width = 76
+              Height = 33
+              Caption = 'New Note'
               TabOrder = 2
-              OnChange = ComboBox1Change
-              OnEnter = ComboBox1Enter
+              OnClick = Button1Click
             end
+          end
+          object mBlockNotesGrid: TDBGrid
+            Left = 415
+            Top = 62
+            Width = 186
+            Height = 147
+            DataSource = atdbDM.blockNotesDSource
+            TabOrder = 2
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+          end
+          object DBMemo1: TDBMemo
+            Left = 630
+            Top = 62
+            Width = 229
+            Height = 147
+            TabOrder = 3
+          end
+          object DBNavigator2: TDBNavigator
+            Left = 519
+            Top = 23
+            Width = 224
+            Height = 25
+            DataSource = atdbDM.blockNotesDSource
+            VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+            TabOrder = 4
           end
         end
         object GroupBox6: TGroupBox
-          Left = 19
-          Top = 255
+          Left = 23
+          Top = 278
           Width = 798
-          Height = 294
+          Height = 251
           Caption = 'Ribbons'
           TabOrder = 1
           object mBarCodeImage: TImage
-            Left = 671
+            Left = 672
             Top = 22
             Width = 98
-            Height = 259
+            Height = 179
             ParentShowHint = False
             Proportional = True
             ShowHint = True
@@ -239,7 +267,7 @@ object MainForm: TMainForm
             Top = 22
             Width = 610
             Height = 184
-            DataSource = atDM.mRibbonDSource
+            DataSource = atdbDM.mRibbonDSource
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
@@ -251,45 +279,60 @@ object MainForm: TMainForm
               item
                 Expanded = False
                 FieldName = 'id'
+                Width = 80
                 Visible = True
               end
               item
                 Expanded = False
-                FieldName = 'block_id'
-                Width = 64
+                FieldName = 'status'
+                Width = 80
                 Visible = True
               end
               item
                 Expanded = False
                 FieldName = 'created'
-                Width = 64
+                Width = 80
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'modified'
+                Width = 80
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'block_id'
+                Width = 80
                 Visible = True
               end
               item
                 Expanded = False
                 FieldName = 'cutting_order'
-                Width = 64
+                Width = 80
                 Visible = True
               end
               item
                 Expanded = False
-                FieldName = 'bar_code'
+                FieldName = 'nr_of_sections'
+                Width = 80
                 Visible = True
               end>
           end
           object mRibbonsNavigator: TDBNavigator
             Left = 15
             Top = 212
-            Width = 210
+            Width = 204
             Height = 25
-            VisibleButtons = [nbInsert, nbDelete]
+            DataSource = atdbDM.mRibbonDSource
+            VisibleButtons = [nbInsert, nbDelete, nbPost, nbRefresh, nbApplyUpdates, nbCancelUpdates]
             ConfirmDelete = False
             TabOrder = 1
             OnClick = RibbonsNavigatorClick
           end
           object PrintBarCodeBtn: TButton
-            Left = 416
-            Top = 212
+            Left = 672
+            Top = 215
             Width = 113
             Height = 25
             Caption = 'PrintBarCodeBtn'
@@ -297,78 +340,119 @@ object MainForm: TMainForm
             OnClick = PrintBarCodeClick
           end
         end
-      end
-      object TabSheet1: TTabSheet
-        Caption = 'Blocks'
-        ImageIndex = 1
-        object DBGrid2: TDBGrid
-          Left = 0
-          Top = 89
-          Width = 983
-          Height = 486
-          Align = alClient
-          Anchors = [akLeft, akRight, akBottom]
-          DataSource = atDM.blocksDataSource
-          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-          TabOrder = 0
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
-        end
-        object Panel1: TPanel
-          Left = 0
-          Top = 0
-          Width = 983
-          Height = 89
-          Align = alTop
-          TabOrder = 1
-          object DBNavigator2: TDBNavigator
-            Left = 0
-            Top = 8
-            Width = 240
-            Height = 25
-            DataSource = atDM.blocksDataSource
-            VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
-            ParentShowHint = False
-            ShowHint = True
-            TabOrder = 0
-          end
+        object mUsersCB: TComboBox
+          Left = 23
+          Top = 12
+          Width = 145
+          Height = 21
+          Style = csDropDownList
+          Sorted = True
+          TabOrder = 2
+          OnChange = mUsersCBChange
+          OnEnter = mUsersCBEnter
         end
       end
       object TabSheet3: TTabSheet
         Caption = 'Users'
         ImageIndex = 2
         object DBGrid3: TDBGrid
-          Left = 21
-          Top = 96
-          Width = 708
-          Height = 120
-          DataSource = atDM.usersDataSource
+          Left = 13
+          Top = 63
+          Width = 340
+          Height = 186
+          DataSource = atdbDM.usersDataSource
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'id'
+              Width = 80
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'user_name'
+              Width = 80
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'created'
+              Width = 121
+              Visible = True
+            end>
         end
-        object Panel2: TPanel
-          Left = 0
-          Top = 0
-          Width = 983
-          Height = 65
-          Align = alTop
+        object DBNavigator1: TDBNavigator
+          Left = 13
+          Top = 20
+          Width = 240
+          Height = 25
+          DataSource = atdbDM.usersDataSource
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
           TabOrder = 1
-          object DBNavigator1: TDBNavigator
-            Left = 29
-            Top = 8
-            Width = 240
-            Height = 25
-            DataSource = atDM.usersDataSource
-            VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
-            TabOrder = 0
-          end
+        end
+        object DBEdit1: TDBEdit
+          Left = 13
+          Top = 268
+          Width = 121
+          Height = 21
+          DataField = 'user_name'
+          DataSource = atdbDM.usersDataSource
+          TabOrder = 2
+        end
+      end
+      object TabSheet4: TTabSheet
+        Caption = 'Notes'
+        ImageIndex = 3
+        object DBNavigator3: TDBNavigator
+          Left = 29
+          Top = 16
+          Width = 240
+          Height = 25
+          DataSource = atdbDM.usersDataSource
+          TabOrder = 0
+        end
+        object DBGrid5: TDBGrid
+          Left = 29
+          Top = 72
+          Width = 468
+          Height = 249
+          DataSource = atdbDM.notesDSource
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
+      end
+      object TabSheet1: TTabSheet
+        Caption = 'DB Server'
+        ImageIndex = 3
+        object STDStringLabeledEdit1: TSTDStringLabeledEdit
+          Left = 16
+          Top = 40
+          Width = 121
+          Height = 21
+          EditLabel.Width = 45
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Server IP'
+          TabOrder = 0
+        end
+        object mATDBServerBtnConnect: TArrayBotButton
+          Left = 143
+          Top = 27
+          Width = 105
+          Height = 48
+          Caption = 'Connect/Disconnect'
+          TabOrder = 1
+          OnClick = mATDBServerBtnConnectClick
+          SoundID = 'BUTTON_CLICK_4'
         end
       end
     end
@@ -448,8 +532,8 @@ object MainForm: TMainForm
     Methods = <>
     OutputConverters = <>
     UseAppManager = True
-    Left = 660
-    Top = 109
+    Left = 804
+    Top = 181
   end
   object Barcode1D_Code391: TBarcode1D_Code39
     Image = mBarCodeImage
@@ -480,18 +564,16 @@ object MainForm: TMainForm
     Top = 48
   end
   object BindSourceDB2: TBindSourceDB
-    DataSet = atDM.usersDS
     ScopeMappings = <>
     Left = 488
     Top = 392
   end
   object mUsersQ: TSQLQuery
-    DataSource = atDM.usersDataSource
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
       'select id,user_name from user')
-    SQLConnection = atDM.SQLConnection1
+    SQLConnection = atdbDM.SQLConnection1
     Left = 776
     Top = 48
   end

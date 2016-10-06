@@ -10,6 +10,7 @@
 #include "TSettingsForm.h"
 #include "abDBUtils.h"
 #include "abVCLUtils.h"
+#include "Poco/Data/RecordSet.h"
 using namespace mtk;
 using namespace ab;
 
@@ -49,8 +50,9 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
         mSnapShotFolder(""),
         mMoviesFolder(""),
         mLocalDBName(""),
-        mClientDBSession("umlocal")
-{
+        mClientDBSession("umlocal"),
+		mServerDBSession("atdb")
+    {
    	mLogFileReader.start(true);
 
 	//Setup UI/INI properties
@@ -343,7 +345,7 @@ void TMainForm::populateUsers()
     }
     catch(...)
     {
-    	handleSQLiteException();
+    	handleMySQLException();
     }
 }
 
@@ -480,4 +482,68 @@ void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
 //        }
 //    }
 }
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
+{
+	if(atdbDM->SQLConnection1->Connected)
+    {
+	    atdbDM->SQLConnection1->Connected = false;
+	    atdbDM->SQLConnection1->Close();
+    }
+    else
+    {
+	    atdbDM->connect("atdb");
+    }
+}
+
+void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
+{
+	atdbDM->afterConnect();
+    enableDisableGroupBox(mATDBServerGB, true);
+    mATDBServerBtnConnect->Caption = "Disconnect";
+}
+
+void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
+{
+	atdbDM->afterDisConnect();
+    enableDisableGroupBox(mATDBServerGB, false);
+    mATDBServerBtnConnect->Caption = "Connect";
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mSyncUsersBtnClick(TObject *Sender)
+{
+	//Get users from server
+    try
+    {
+        Poco::ScopedLock<Poco::Mutex> lock(mClientDBMutex);
+        RecordSet* localUsers = mClientDBSession.getUsers();
+	    RecordSet* remoteUsers = mServerDBSession.getUsers();
+
+        if(!localUsers || !remoteUsers)
+		{
+        	Log(lError) << "Failed to fetch users from database";
+            return;
+        }
+
+		//Insert ot Update users
+        for (RecordSet::Iterator it = remoteUsers->begin(); it != remoteUsers->end(); ++it)
+        {
+        	Poco::Data::Row& row = *it;
+            int id(row[0].convert<int>());
+            string user(row[1].convert<std::string>());
+            Log(lInfo) <<user;
+			mClientDBSession.insertOrUpdateUser(id, user);
+        }
+		populateUsers();
+    }
+    catch(...)
+    {
+    	handleMySQLException();
+    }
+
+}
+
 

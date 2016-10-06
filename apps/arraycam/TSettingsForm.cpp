@@ -19,8 +19,6 @@ __fastcall TSettingsForm::TSettingsForm(TMainForm& mf)
 	: TForm(&mf),
     mMainForm(mf)
 {
-//	mUIUpdateTimer->Enabled = true;
-
     //Bind properties
     mAutoGainCB->setReference(mMainForm.mAutoGain.getReference());
 	mAutoGainCB->Update();

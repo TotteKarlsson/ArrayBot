@@ -30,7 +30,8 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
 	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), &logMsg),
     mIniFile(joinPath(gAppDataFolder, (gApplicationName + ".ini")), true, true),
-    mLogLevel(lAny)
+    mLogLevel(lAny),
+    mServerSession("atdb")
 {
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
@@ -47,8 +48,8 @@ __fastcall TMain::~TMain()
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormShow(TObject *Sender)
 {
-	mLogFileReader.start();
-	mConnectDBBtnClick(Sender);
+
+//	mConnectDBBtnClick(Sender);
 }
 
 //---------------------------------------------------------------------------
@@ -78,13 +79,12 @@ void __fastcall TMain::mConnectDBBtnClick(TObject *Sender)
     }
 }
 
-
 void TMain::syncGrids()
 {
 	try
     {
-		mNotesGrid->ColCount = 0;
-		mNotesGrid->RowCount = 0;
+		mNotesGrid->ColCount = 1;
+		mNotesGrid->RowCount = 1;
         mNotesMemo->Clear();
 
         mBlocksT->ColCount = 0;
@@ -387,6 +387,12 @@ void __fastcall TMain::mUpdateNoteBtnClick(TObject *Sender)
 void __fastcall TMain::mUserCBCloseUp(TObject *Sender)
 {
 	mUserIDLbl->Caption = getCurrentUserID();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::FormCreate(TObject *Sender)
+{
+	mLogFileReader.start();
 }
 
 

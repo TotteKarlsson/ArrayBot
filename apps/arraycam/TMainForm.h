@@ -29,9 +29,10 @@
 #include "abATDBClientDBSession.h"
 #include <Vcl.Imaging.jpeg.hpp>
 
-#include "TATDBDataModule.h"
 #include "TATDBImagesAndMoviesDataModule.h"
+#include "TATDBDataModule.h"
 #include "abEnvironmentalSensorReader.h"
+#include "abATDBServerSession.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -103,6 +104,12 @@ class TMainForm  : public TRegistryForm
 	TTabSheet *TabSheet5;
 	TDBGrid *DBGrid1;
 	TButton *Button1;
+	TTabSheet *TabSheet6;
+	TGroupBox *mATDBServerGB;
+	TButton *mSyncUsersBtn;
+	TGroupBox *GroupBox3;
+	TDBGrid *DBGrid2;
+	TButton *mATDBServerBtnConnect;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -137,6 +144,9 @@ class TMainForm  : public TRegistryForm
 	void __fastcall mImagesGridDblClick(TObject *Sender);
 	void __fastcall Panel3Resize(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
+	void __fastcall mSyncUsersBtnClick(TObject *Sender);
+
 
     protected:
         LogFileReader                           mLogFileReader;
@@ -148,7 +158,11 @@ class TMainForm  : public TRegistryForm
 		TSettingsForm* 							mSettingsForm;
 
 
+        Poco::Mutex								mClientDBMutex;
 		ATDBClientDBSession						mClientDBSession;
+
+		Poco::Mutex								mServerDBMutex;
+		ATDBServerSession						mServerDBSession;
 
         IniFile						            mIniFile;
         IniFileProperties  			            mProperties;
@@ -201,6 +215,8 @@ class TMainForm  : public TRegistryForm
 
         void									enableDisableClientControls(bool enable);
 		void    								populateUsers();
+		void       __fastcall					afterServerConnect(System::TObject* Sender);
+		void       __fastcall					afterServerDisconnect(System::TObject* Sender);
 
     public:
     											//The environmenatl reader is accessed from a thread

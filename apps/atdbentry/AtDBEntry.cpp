@@ -8,7 +8,6 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-USEFORM("..\..\source\vcl\datamodules\TATDBDataModule.cpp", atDM); /* TDataModule: File Type */
 USEFORM("MainForm.cpp", Main);
 //---------------------------------------------------------------------------
 using namespace mtk;
@@ -40,7 +39,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->MainFormOnTaskBar = true;
 		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->CreateForm(__classid(TMain), &Main);
-		Application->CreateForm(__classid(TatDM), &atDM);
 		Application->Run();
 	}
 	catch (Exception &exception)

@@ -3,7 +3,7 @@
 #include "mtkLogger.h"
 #include "TMemoLogger.h"
 //#include "TSplashForm.h"
-
+#include "TATDBDataModule.h"
 using namespace mtk;
 //extern TSplashForm*  gSplashForm;
 //---------------------------------------------------------------------------
@@ -22,9 +22,9 @@ void __fastcall TMainForm::ShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
 	}
 
-    if(atDM->SQLConnection1->Connected)
+    if(atdbDM->SQLConnection1->Connected)
     {
-    	atDM->SQLConnection1->Connected = false;
+    	atdbDM->SQLConnection1->Connected = false;
     }
 
     Close();
@@ -36,7 +36,7 @@ void __fastcall TMainForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 	Log(lInfo) << "Closing down....";
 
 	//Check if we can close.. abort all threads..
-	if(mLogFileReader.isRunning() || atDM->SQLConnection1->Connected)
+	if(mLogFileReader.isRunning() || atdbDM->SQLConnection1->Connected)
     {
 		CanClose = false;
     }

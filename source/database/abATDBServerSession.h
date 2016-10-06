@@ -7,8 +7,18 @@
 #include "abDBConnection.h"
 //---------------------------------------------------------------------------
 
-using Poco::Data::RecordSet;
-using Poco::Data::Session;
+namespace Poco
+{
+	namespace Data
+    {
+        class RecordSet;
+        class Session;
+    }
+}
+
+
+//using Poco::Data::RecordSet;
+//using Poco::Data::Session;
 
 //!The ATDB server session class encapsulate a database session
 //!with the ATDB MySQL database
@@ -19,25 +29,18 @@ class AB_CORE ATDBServerSession : public DBConnection
 					        	        ~ATDBServerSession();
 
 										//!Statements
-		RecordSet* 						getBlocks(ab::dbSQLKeyword kw = ab::dbDescending);
+		Poco::Data::RecordSet* 	    	getBlocks(ab::dbSQLKeyword kw = ab::dbDescending);
         bool							insertBlock(int userID, const string& lbl, const string& note);
         bool							deleteBlock(int bId);
-		RecordSet*        				getNotesForBlockWithID(int blockID);
-		bool							addNoteForBlockWithID(int blockID, int userID);
-		bool							deleteNoteWithID(int noteID);
-		bool							updateNoteWithID(int noteID, const string& note);
 
-		RecordSet* 						getUsers(ab::dbSQLKeyword kw = ab::dbAscending);
+		Poco::Data::RecordSet*      	getNotesForBlock(int blockID);
+		bool							addNoteForBlock(int blockID, int userID, const string& note);
+		bool							deleteNote(int noteID);
+		bool							updateNote(int noteID, const string& note);
 
-		bool							isConnected();//{return mTheSession ? true : false;}
-		bool							connect();
-        bool							disConnect();
+		Poco::Data::RecordSet* 	  		getUsers(ab::dbSQLKeyword kw = ab::dbAscending);
+
 
     protected:
-        string					        mDataBaseName;
-        string					        mHost;
-        string 					        mDataBaseUser;
-        string					        mDataBasePassword;
-		Session*	        			mTheSession;
 };
 #endif

@@ -44,7 +44,7 @@ BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 	static TCHAR buffer[50];
 	GetWindowText(hwnd, buffer, 50);
 
-	if(_tcsstr(buffer, L"atDB"))
+	if(_tcsstr(buffer, "atDB"))
 	{
 		// do something with hwnd here
 		gOtherAppWindow = hwnd;

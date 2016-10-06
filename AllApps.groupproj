@@ -45,11 +45,11 @@
         <Projects Include="apps\atdbentry\AtDBEntry.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="apps\atdb\atDB.cbproj">
+        <Projects Include="apps\atdb\UI\Core\atDBCore-static.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="apps\ibot\iBot.cbproj">
-            <Dependencies/>
+        <Projects Include="apps\atdb\atDB.cbproj">
+            <Dependencies>source\abCore.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -185,32 +185,32 @@
     <Target Name="AtDBEntry:Make">
         <MSBuild Projects="apps\atdbentry\AtDBEntry.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atDB">
+    <Target Name="atDBCore-static">
+        <MSBuild Projects="apps\atdb\UI\Core\atDBCore-static.cbproj"/>
+    </Target>
+    <Target Name="atDBCore-static:Clean">
+        <MSBuild Projects="apps\atdb\UI\Core\atDBCore-static.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDBCore-static:Make">
+        <MSBuild Projects="apps\atdb\UI\Core\atDBCore-static.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDB" DependsOnTargets="abCore">
         <MSBuild Projects="apps\atdb\atDB.cbproj"/>
     </Target>
-    <Target Name="atDB:Clean">
+    <Target Name="atDB:Clean" DependsOnTargets="abCore:Clean">
         <MSBuild Projects="apps\atdb\atDB.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atDB:Make">
+    <Target Name="atDB:Make" DependsOnTargets="abCore:Make">
         <MSBuild Projects="apps\atdb\atDB.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="iBot">
-        <MSBuild Projects="apps\ibot\iBot.cbproj"/>
-    </Target>
-    <Target Name="iBot:Clean">
-        <MSBuild Projects="apps\ibot\iBot.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="iBot:Make">
-        <MSBuild Projects="apps\ibot\iBot.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;mtkDataBase;VCLCommon;DuneComponents;DuneForms;abCore;abVCLCore;ArrayBotPackage;ArduinoController;ArrayCam;ArrayBot;AtDBEntry;atDB;iBot"/>
+        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;mtkDataBase;VCLCommon;DuneComponents;DuneForms;abCore;abVCLCore;ArrayBotPackage;ArduinoController;ArrayCam;ArrayBot;AtDBEntry;atDBCore-static;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;mtkDataBase:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;ArduinoController:Clean;ArrayCam:Clean;ArrayBot:Clean;AtDBEntry:Clean;atDB:Clean;iBot:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;mtkDataBase:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;ArduinoController:Clean;ArrayCam:Clean;ArrayBot:Clean;AtDBEntry:Clean;atDBCore-static:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;mtkDataBase:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;ArduinoController:Make;ArrayCam:Make;ArrayBot:Make;AtDBEntry:Make;atDB:Make;iBot:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;mtkDataBase:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;ArduinoController:Make;ArrayCam:Make;ArrayBot:Make;AtDBEntry:Make;atDBCore-static:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

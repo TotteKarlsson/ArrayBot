@@ -6,7 +6,6 @@
 #include "mtkVCLUtils.h"
 #include "mtkWin32Utils.h"
 #include "mtkLogger.h"
-
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
 using std::string;
@@ -15,6 +14,7 @@ using namespace mtk;
 USEFORM("TMainForm.cpp", MainForm);
 USEFORM("..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp", ImagesAndMoviesDM); /* TDataModule: File Type */
 USEFORM("TSettingsForm.cpp", SettingsForm);
+USEFORM("..\..\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayCam.log";
@@ -35,6 +35,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TSettingsForm), &SettingsForm);
 		Application->CreateForm(__classid(TImagesAndMoviesDM), &ImagesAndMoviesDM);
+		Application->CreateForm(__classid(TatdbDM), &atdbDM);
 		Application->Run();
 	}
 	catch (Exception &exception)

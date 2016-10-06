@@ -4,7 +4,7 @@
 #include "mtkVCLUtils.h"
 #include "mtkStringUtils.h"
 #include "mtkLogger.h"
-
+#include "Poco/Data/RecordSet.h"
 using namespace mtk;
 
 //---------------------------------------------------------------------------

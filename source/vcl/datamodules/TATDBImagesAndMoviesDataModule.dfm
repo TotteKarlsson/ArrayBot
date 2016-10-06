@@ -3,7 +3,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
   Height = 591
   Width = 604
   object images: TSQLDataSet
-    Active = True
     CommandText = 'select * from umimage order by date desc'
     MaxBlobSize = -1
     Params = <>
@@ -61,12 +60,10 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
       'BlobSize=-1'
       'ErrorResourceFile=')
     AfterConnect = SQLConnection1AfterConnect
-    Connected = True
     Left = 32
     Top = 32
   end
   object imageNote: TSQLQuery
-    Active = True
     DataSource = image_note
     MaxBlobSize = -1
     Params = <>
@@ -83,7 +80,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     end
   end
   object notesQ: TSQLQuery
-    Active = True
     DataSource = imageNotes
     MaxBlobSize = 1
     Params = <>
@@ -127,7 +123,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 112
   end
   object imagesCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'imagesProvider'
@@ -159,7 +154,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 184
   end
   object imageNoteCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider1'
@@ -173,7 +167,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     end
   end
   object notesCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider2'
@@ -203,7 +196,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 256
   end
   object sensors: TSQLDataSet
-    Active = True
     CommandText = 'select * from sensor_data order by date desc'
     MaxBlobSize = -1
     Params = <>
@@ -232,7 +224,6 @@ object ImagesAndMoviesDM: TImagesAndMoviesDM
     Top = 344
   end
   object sensorsCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider3'

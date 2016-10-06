@@ -4,7 +4,7 @@
 #include "Poco/Data/MySQL/MySQLException.h"
 #include "Poco/Data/Session.h"
 #include "Poco/Data/SessionFactory.h"
-#include "Poco/Data/RecordSet.h"|
+#include "Poco/Data/RecordSet.h"
 #include "abDBUtils.h"
 #include "mtkLogger.h"
 //---------------------------------------------------------------------------
@@ -22,60 +22,6 @@ DBConnection(db, host, user, password)
 ATDBServerSession::~ATDBServerSession()
 {}
 
-bool ATDBServerSession::isConnected()
-{
-	return mTheSession ? true : false;
-}
-
-bool ATDBServerSession::connect()
-{
-	try
-    {
-		//Register DB connector
-	    MySQL::Connector::registerConnector();
-
-    	//Create connection string
-		//string str = "host=127.0.0.1;user=atdb_client;password=atdb123;db=atdb";
-        stringstream c;
-        c <<"host="<<mHost<<";"<<"user="<<mDataBaseUser<<";"<<"password="<<mDataBasePassword<<";"<<"db="<<mDataBaseName;
-		mTheSession = new Poco::Data::Session(Poco::Data::SessionFactory::instance().create(Poco::Data::MySQL::Connector::KEY, c.str() ));
-
-        Log(lInfo) << "Connected to "<<mHost;
-        return true;
-    }
-  	catch (const Poco::Data::MySQL::ConnectionException& e)
-    {
-        Log(lError) << e.message() <<endl;
-        return false;
-    }
-    catch(const Poco::Data::MySQL::StatementException& e)
-    {
-        Log(lError) << e.message() << endl;
-        return false;
-    }
-    catch(const Poco::Data::MySQL::MySQLException& e)
-    {
-        Log(lError) << e.message() << endl;
-        return false;
-    }
-}
-
-bool ATDBServerSession::disConnect()
-{
-	try
-    {
-    	delete mTheSession;
-        mTheSession = NULL;
-	    MySQL::Connector::unregisterConnector();
-        return true;
-    }
-    catch(...)
-    {
-    	Log(lError) << "Failed to delete db session..";
-        return false;
-    }
-}
-
 RecordSet* ATDBServerSession::getBlocks(dbSQLKeyword kw)
 {
     if(!mTheSession)
@@ -91,7 +37,7 @@ RecordSet* ATDBServerSession::getBlocks(dbSQLKeyword kw)
     return new RecordSet(select);
 }
 
-RecordSet* ATDBServerSession::getNotesForBlockWithID(int blockID)
+RecordSet* ATDBServerSession::getNotesForBlock(int blockID)
 {
     if(!mTheSession)
     {
@@ -109,7 +55,7 @@ RecordSet* ATDBServerSession::getNotesForBlockWithID(int blockID)
     return new RecordSet(s);
 }
 
-bool ATDBServerSession::addNoteForBlockWithID(int blockID, int userID)
+bool ATDBServerSession::addNoteForBlock(int blockID, int userID, const string& _note)
 {
     if(!mTheSession)
     {
@@ -122,7 +68,7 @@ bool ATDBServerSession::addNoteForBlockWithID(int blockID, int userID)
     //We need local variables for the statements..
     int bID(blockID);
     int uID(userID);
-    string note("");
+    string note(_note);
 
 	Statement s(ses);
     s << "INSERT INTO note (created_by, note) VALUES(?, ?)", use(uID), use(note), now;
@@ -136,7 +82,7 @@ bool ATDBServerSession::addNoteForBlockWithID(int blockID, int userID)
 	return true;
 }
 
-bool ATDBServerSession::deleteNoteWithID(int noteID)
+bool ATDBServerSession::deleteNote(int noteID)
 {
     if(!mTheSession)
     {
@@ -154,7 +100,7 @@ bool ATDBServerSession::deleteNoteWithID(int noteID)
 	return true;
 }
 
-bool ATDBServerSession::updateNoteWithID(int noteID, const string& note)
+bool ATDBServerSession::updateNote(int noteID, const string& note)
 {
     if(!mTheSession)
     {
@@ -220,7 +166,6 @@ bool ATDBServerSession::deleteBlock(int bId)
 	return true;
 }
 
-
 RecordSet* ATDBServerSession::getUsers(dbSQLKeyword kw)
 {
     if(!mTheSession)
@@ -232,7 +177,7 @@ RecordSet* ATDBServerSession::getUsers(dbSQLKeyword kw)
     Statement select(*mTheSession);
     select << "SELECT * FROM user";
     int nrRows = select.execute();
-
+    Log(lInfo) <<"Selected "<<nrRows<<" from user table";
     return new RecordSet(select);
 }
 

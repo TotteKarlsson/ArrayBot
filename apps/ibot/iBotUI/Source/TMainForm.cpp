@@ -119,9 +119,9 @@ void __fastcall TMainForm::DBLookupComboBox5CloseUp(TObject *Sender)
     {
     	//Query db for ribbons
         TSQLQuery* q = new TSQLQuery(NULL);
-        q->SQLConnection = atDM->SQLConnection1;
+        q->SQLConnection = atdbDM->SQLConnection1;
     	stringstream qs;
-    	qs << "SELECT * from ribbon where block_id = "<<stdstr(atDM->blocksCDS->FieldByName("id")->AsString);
+    	qs << "SELECT * from ribbon where block_id = "<<stdstr(atdbDM->blocksCDS->FieldByName("id")->AsString);
         string qstr = qs.str();
         q->SQL->Add(qstr.c_str());
         q->Open();

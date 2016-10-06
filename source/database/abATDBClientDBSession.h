@@ -5,10 +5,18 @@
 #include "abDBUtils.h"
 #include <deque>
 #include "abDBConnection.h"
-#include "Poco/Data/RecordSet.h"
 //---------------------------------------------------------------------------
+namespace Poco
+{
+	namespace Data
+    {
+        class RecordSet;
+        class Session;
+    }
+}
 using Poco::Data::RecordSet;
 using Poco::Data::Session;
+
 
 //!The ATDB server session class encapsulate a database session
 //!with the ATDB MySQL database
@@ -23,16 +31,16 @@ class AB_CORE ATDBClientDBSession : public DBConnection
 		bool							insertImageNote(int imageID, int userID, const string& note="");
 
         bool							insertSensorData(int id, double t, double h);
-		RecordSet* 						getBlocks(ab::dbSQLKeyword kw =ab::dbDescending);
+		RecordSet* 	    				getBlocks(ab::dbSQLKeyword kw =ab::dbDescending);
 
         bool							insertBlock(int userID, const string& lbl, const string& note);
         bool							deleteBlock(int bId);
-		RecordSet*        				getNotesForBlockWithID(int blockID);
-		bool							addNoteForBlockWithID(int blockID, int userID);
-		bool							deleteNoteWithID(int noteID);
-		bool							updateNoteWithID(int noteID, const string& note);
 
-		RecordSet* 						getUsers(ab::dbSQLKeyword kw = ab::dbAscending);
+        								//Users
+		RecordSet* 	   					getUsers(ab::dbSQLKeyword kw = ab::dbAscending);
+
+        								//!Maintain user id from server
+        bool							insertOrUpdateUser(int uid, const string& u);
 
     protected:
 };

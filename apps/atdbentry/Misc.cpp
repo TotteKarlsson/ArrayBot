@@ -72,19 +72,8 @@ extern string gApplicationName;
 //This one is called from the reader thread
 void __fastcall TMain::logMsg()
 {
-	string msg = mLogFileReader.getData();
-    if( msg.size() )
-    {
-    	try
-        {
-    		infoMemo->Lines->Insert(0, msg.c_str());
-		    mLogFileReader.purge();
-        }
-        catch(...)
-        {
-
-        }
-    }
+    infoMemo->Lines->Insert(0, (vclstr(mLogFileReader.getData())));
+    mLogFileReader.purge();
 }
 
 //---------------------------------------------------------------------------

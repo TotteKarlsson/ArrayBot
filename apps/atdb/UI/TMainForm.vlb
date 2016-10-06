@@ -3,7 +3,7 @@ Coordinates=695,391,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=394,285,89,33
+Coordinates=278,452,66,33
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -243,9 +243,6 @@ Coordinates=383,330,96,51
 [DBGrid1]
 Coordinates=488,452,56,33
 
-[TabSheet1]
-Coordinates=278,452,66,33
-
 [atDM.]
 Coordinates=660,613,101,177
 
@@ -264,9 +261,6 @@ Coordinates=910,640,92,123
 [PrintBarCodeBtn]
 Coordinates=119,330,97,51
 
-[DBGrid2]
-Coordinates=354,452,56,33
-
 [TabSheet3]
 Coordinates=278,285,66,33
 
@@ -276,23 +270,8 @@ Coordinates=439,400,56,33
 [DBNavigator1]
 Coordinates=682,152,82,51
 
-[DBNavigator2]
-Coordinates=682,504,82,51
-
-[Panel1]
-Coordinates=533,504,47,51
-
-[Panel2]
-Coordinates=502,400,47,51
-
-[DBGrid4]
-Coordinates=258,358,56,33
-
 [Panel3]
 Coordinates=80,480,47,51
-
-[ComboBox1]
-Coordinates=682,1,84,87
 
 [mUsersQ]
 Coordinates=589,152,60,51
@@ -302,4 +281,7 @@ Coordinates=469,569,89,51
 
 [mBlocksNavigator]
 Coordinates=502,152,104,51
+
+[mBlocksGrid]
+Coordinates=258,358,56,33
 

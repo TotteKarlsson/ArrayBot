@@ -60,6 +60,21 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
         if(mClientDBSession.isConnected())
         {
             Log(lInfo) << "Connected to local database.";
+            populateUsersCB(mUsersCB, mClientDBSession);
+        }
+        else
+        {
+            Log(lError) << "Failed to connect to database server...";
+        }
+
+        if(!mServerDBSession.isConnected())
+        {
+            mServerDBSession.connect();
+        }
+
+        if(mServerDBSession.isConnected())
+        {
+            Log(lInfo) << "Connected to remote database.";
         }
         else
         {
@@ -71,12 +86,14 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
     	handleMySQLException();
     }
 
+   	atdbDM->SQLConnection1->AfterConnect 	= afterServerConnect;
+   	atdbDM->SQLConnection1->AfterDisconnect = afterServerDisconnect;
+
     //UI DB connection
     if (ImagesAndMoviesDM->Connect(dBase))
     {
        // Connection successfull
         Log(lInfo) << "DataModule connected to the database: "<<dBase;
-        populateUsersCB(mUsersCB, mClientDBSession);
     }
     else
     {

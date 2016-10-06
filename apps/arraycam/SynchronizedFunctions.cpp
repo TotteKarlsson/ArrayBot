@@ -158,6 +158,7 @@ void TMainForm::onSensorsArduinoMessageReceived(const string& msg)
                     SensorReading r = readings[i];
                     try
                     {
+                        Poco::ScopedLock<Poco::Mutex> lock(mClientDBMutex);
                         mClientDBSession.insertSensorData(r.mSensorID, r.mTemperature, r.mHumidity);
                     }
                     catch(...)

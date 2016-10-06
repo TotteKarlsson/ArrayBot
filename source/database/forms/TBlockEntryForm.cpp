@@ -3,6 +3,7 @@
 #include "TBlockEntryForm.h"
 #include "mtkLogger.h"
 #include <Poco/Data/MySQL/MySQLException.h>
+#include "Poco/Data/RecordSet.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TATDBServerEntry"
@@ -10,7 +11,7 @@
 TBlockEntryForm *BlockEntryForm;
 
 using namespace mtk;
-
+using Poco::Data::RecordSet;
 //---------------------------------------------------------------------------
 __fastcall TBlockEntryForm::TBlockEntryForm(ATDBServerSession& dbs, TComponent* Owner)
 	:

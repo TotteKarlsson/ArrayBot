@@ -9,6 +9,7 @@
 #include "mtkIniSection.h"
 #include "Core/amlUtilities.h"
 #include "Poco/Timezone.h"
+#include "TATDBDataModule.h"
 
 extern bool             gAppIsStartingUp;
 extern bool             gIsDevelopmentRelease;
@@ -99,17 +100,30 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 	SB->Top = MainForm->Top + MainForm->Height + 10;
 	SB->SizeGrip = true;
 
+   	atdbDM->SQLConnection1->AfterConnect 	= afterServerConnect;
+   	atdbDM->SQLConnection1->AfterDisconnect = afterServerDisconnect;
 
-	mLocalDBFile = 	joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "atdb.db") ;
-	string dBase(mLocalDBFile);
-	if (atDM->Connect(dBase))
+	if (atdbDM->connect("atdb"))
     {
-    	Log(lInfo) << "Connected to database: "<<dBase;
-       // Connection successfull
+    	Log(lInfo) << "Connected to database: "<<"atdb";
     }
     else
     {
-    	Log(lInfo) << "Failed to connect to database: "<<dBase;
+    	Log(lInfo) << "Failed to connect to database: "<<"atdb";
+    }
+
+    if(!mServerDBSession.isConnected())
+    {
+        mServerDBSession.connect();
+    }
+
+    if(mServerDBSession.isConnected())
+    {
+        Log(lInfo) << "Connected to remote database.";
+    }
+    else
+    {
+        Log(lError) << "Failed to connect to database server...";
     }
 }
 

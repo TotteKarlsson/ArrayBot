@@ -4,8 +4,8 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-USEFORM("..\..\source\vcl\datamodules\TATDBDataModule.cpp", atDM); /* TDataModule: File Type */
 USEFORM("UI\TMainForm.cpp", MainForm);
+USEFORM("..\..\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -13,7 +13,6 @@ USEFORM("UI\TMainForm.cpp", MainForm);
 #include "mtkRestartApplicationUtils.h"
 #include "mtkLogger.h"
 #include "Core/amlUtilities.h"
-//#include "TATDBSplashForm.h"
 #include "mtkMoleculixException.h"
 #include "mtkSQLite.h"
 #pragma package(smart_init)
@@ -37,11 +36,10 @@ extern bool         gIsDevelopmentRelease       = false;
 
 extern bool         gHideSplash                 = true;
 //extern TSplashForm* gSplashForm                 = NULL;
-extern SQLite       gDB                         ;
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam) ;
 
-SQLite       gDB;
+
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -109,7 +107,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Title = "atDB";
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);
-		Application->CreateForm(__classid(TatDM), &atDM);
+		Application->CreateForm(__classid(TatdbDM), &atdbDM);
 		Application->Run();
 
         // Finish restarting process if needed

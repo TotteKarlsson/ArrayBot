@@ -1,37 +1,46 @@
-object atDM: TatDM
+object atdbDM: TatdbDM
   OldCreateOrder = False
   Height = 720
   Width = 647
   object SQLConnection1: TSQLConnection
-    ConnectionName = 'ATDBDebug'
-    DriverName = 'DevartSQLite'
+    DriverName = 'MySQL'
+    KeepConnection = False
     LoginPrompt = False
     Params.Strings = (
-      'DriverName=DevartSQLite'
-      'DriverUnit=DbxDevartSQLite'
+      'DriverUnit=Data.DBXMySQL'
       
-        'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver170.' +
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver170.' +
         'bpl'
       
-        'MetaDataPackageLoader=TDBXDevartSQLiteMetaDataCommandFactory,Dbx' +
-        'DevartSQLiteDriver170.bpl'
-      'ProductName=DevartSQLite'
-      'LibraryName=dbexpsqlite40.dll'
-      'VendorLib=sqlite3.dll'
-      'Database='
-      'LocaleCode=0000'
-      'IsolationLevel=ReadCommitted'
-      'ASCIIDataBase=False'
-      'BusyTimeout=0'
-      'EnableSharedCache=False'
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=17.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXMySqlMetaDataCommandFactory,DbxMySQLDr' +
+        'iver170.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXMySqlMetaDataCommandFact' +
+        'ory,Borland.Data.DbxMySQLDriver,Version=17.0.0.0,Culture=neutral' +
+        ',PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverMYSQL'
+      'LibraryName=dbxmys.dll'
+      'LibraryNameOsx=libsqlmys.dylib'
+      'VendorLib=LIBMYSQL.dll'
+      'VendorLibWin64=libmysql.dll'
+      'VendorLibOsx=libmysqlclient.dylib'
+      'HostName=localhost'
+      'Database=atdb'
+      'User_Name=atdb_client'
+      'Password=atdb123'
       'MaxBlobSize=-1'
-      'FetchAll=True'
-      'ForceCreateDatabase=False'
-      'ForeignKeys=True'
-      'UseUnicode=True'
-      'EnableLoadExtension=False'
-      'BlobSize=-1')
+      'LocaleCode=0000'
+      'Compressed=False'
+      'Encrypted=False'
+      'BlobSize=-1'
+      'ErrorResourceFile=')
     AfterConnect = SQLConnection1AfterConnect
+    BeforeConnect = SQLConnection1BeforeConnect
+    Connected = True
     Left = 40
     Top = 24
   end
@@ -41,6 +50,7 @@ object atDM: TatDM
     Top = 152
   end
   object blocksCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blocksProvider'
@@ -51,14 +61,16 @@ object atDM: TatDM
     Left = 240
     Top = 152
     object blocksCDSid: TIntegerField
-      Alignment = taLeftJustify
+      AutoGenerateValue = arAutoInc
       FieldName = 'id'
     end
     object blocksCDScreated: TSQLTimeStampField
+      AutoGenerateValue = arDefault
       FieldName = 'created'
     end
     object blocksCDScreated_by: TIntegerField
       FieldName = 'created_by'
+      Required = True
     end
     object blocksCDSmodified: TSQLTimeStampField
       FieldName = 'modified'
@@ -66,9 +78,10 @@ object atDM: TatDM
     object blocksCDSstatus: TIntegerField
       FieldName = 'status'
     end
-    object blocksCDSlabel: TWideStringField
+    object blocksCDSlabel: TMemoField
       FieldName = 'label'
-      Size = 400
+      BlobType = ftMemo
+      Size = 1
     end
   end
   object blocksProvider: TDataSetProvider
@@ -81,7 +94,7 @@ object atDM: TatDM
     ObjectView = True
     CommandText = 'select * from block'
     DataSource = mRibbonDSource
-    MaxBlobSize = -1
+    MaxBlobSize = 1
     Params = <>
     SortFieldNames = 'id'
     SQLConnection = SQLConnection1
@@ -95,6 +108,7 @@ object atDM: TatDM
     end
     object blocksDScreated_by: TIntegerField
       FieldName = 'created_by'
+      Required = True
     end
     object blocksDSmodified: TSQLTimeStampField
       FieldName = 'modified'
@@ -102,9 +116,10 @@ object atDM: TatDM
     object blocksDSstatus: TIntegerField
       FieldName = 'status'
     end
-    object blocksDSlabel: TWideStringField
+    object blocksDSlabel: TMemoField
       FieldName = 'label'
-      Size = 400
+      BlobType = ftMemo
+      Size = 1
     end
   end
   object usersDS: TSQLDataSet
@@ -117,11 +132,10 @@ object atDM: TatDM
     object usersDSid: TIntegerField
       FieldName = 'id'
     end
-    object usersDSuser_name: TWideMemoField
+    object usersDSuser_name: TStringField
       FieldName = 'user_name'
-      OnValidate = usersDSuser_nameValidate
-      BlobType = ftWideMemo
-      Size = -1
+      Required = True
+      Size = 255
     end
     object usersDScreated: TSQLTimeStampField
       FieldName = 'created'
@@ -133,103 +147,132 @@ object atDM: TatDM
     Left = 136
     Top = 88
   end
-  object usersClientDataSet: TClientDataSet
+  object usersCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'usersProvider'
-    BeforeInsert = usersClientDataSetBeforeInsert
-    BeforePost = usersClientDataSetBeforePost
-    AfterPost = usersClientDataSetAfterPost
-    AfterCancel = usersClientDataSetAfterCancel
-    AfterDelete = usersClientDataSetAfterDelete
-    AfterScroll = usersClientDataSetAfterScroll
-    BeforeApplyUpdates = usersClientDataSetBeforeApplyUpdates
+    AfterPost = usersCDSAfterPost
+    AfterCancel = usersCDSAfterCancel
+    AfterDelete = usersCDSAfterDelete
+    AfterScroll = usersCDSAfterScroll
     Left = 240
     Top = 88
-    object usersClientDataSetid: TIntegerField
+    object usersCDSid: TIntegerField
       FieldName = 'id'
     end
-    object usersClientDataSetuser_name: TWideMemoField
+    object usersCDSuser_name: TStringField
       FieldName = 'user_name'
-      OnGetText = usersClientDataSetuser_nameGetText
-      BlobType = ftWideMemo
+      Required = True
+      Size = 255
     end
-    object usersClientDataSetcreated: TSQLTimeStampField
+    object usersCDScreated: TSQLTimeStampField
       FieldName = 'created'
     end
   end
   object usersDataSource: TDataSource
-    DataSet = usersClientDataSet
+    DataSet = usersCDS
     Left = 336
     Top = 88
   end
   object blockNotesQ: TSQLQuery
-    MaxBlobSize = -1
+    Active = True
+    DataSource = blocksDataSource
+    MaxBlobSize = 1
     Params = <
       item
-        DataType = ftUnknown
-        Name = 'blockID'
+        DataType = ftInteger
+        Name = 'id'
         ParamType = ptInput
       end>
     SQL.Strings = (
       'SELECT * FROM note n '
       'INNER JOIN block_note bn '
       'ON (bn.note_id = n.id) '
-      'WHERE block_id = :blockID '
+      'WHERE block_id = :id '
       'ORDER BY created_on ASC')
     SQLConnection = SQLConnection1
-    Left = 232
-    Top = 560
+    Left = 48
+    Top = 392
+    object blockNotesQid: TIntegerField
+      FieldName = 'id'
+    end
+    object blockNotesQnote: TMemoField
+      FieldName = 'note'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object blockNotesQcreated_on: TSQLTimeStampField
+      FieldName = 'created_on'
+    end
+    object blockNotesQcreated_by: TMemoField
+      FieldName = 'created_by'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object blockNotesQblock_id: TIntegerField
+      FieldName = 'block_id'
+      Required = True
+    end
+    object blockNotesQnote_id: TIntegerField
+      FieldName = 'note_id'
+      Required = True
+    end
   end
   object blockNotesDSource: TDataSource
-    DataSet = blockNotesDSet
-    Left = 544
-    Top = 560
+    DataSet = blockNotesCDS
+    Left = 352
+    Top = 392
   end
   object blockNotesProvider: TDataSetProvider
     DataSet = blockNotesQ
-    Left = 336
-    Top = 560
+    Left = 144
+    Top = 392
   end
-  object blockNotesDSet: TClientDataSet
+  object blockNotesCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blockNotesProvider'
-    AfterPost = blockNotesDSetAfterPost
-    Left = 448
-    Top = 560
-    object blockNotesDSetid: TIntegerField
+    AfterPost = blockNotesCDSAfterPost
+    Left = 256
+    Top = 392
+    object blockNotesCDSid: TIntegerField
+      DisplayWidth = 6
       FieldName = 'id'
     end
-    object blockNotesDSetnote: TWideMemoField
+    object blockNotesCDSnote: TMemoField
+      DisplayWidth = 11
       FieldName = 'note'
-      BlobType = ftWideMemo
+      BlobType = ftMemo
+      Size = 1
     end
-    object blockNotesDSetcreated_on: TSQLTimeStampField
+    object blockNotesCDScreated_on: TSQLTimeStampField
+      DisplayWidth = 41
       FieldName = 'created_on'
     end
-    object blockNotesDSetcreated_by: TWideStringField
+    object blockNotesCDScreated_by: TMemoField
+      DisplayWidth = 12
       FieldName = 'created_by'
-      Size = 512
+      BlobType = ftMemo
+      Size = 1
     end
-    object blockNotesDSetblock_id: TIntegerField
+    object blockNotesCDSblock_id: TIntegerField
+      DisplayWidth = 12
       FieldName = 'block_id'
+      Required = True
     end
-    object blockNotesDSetnote_id: TIntegerField
+    object blockNotesCDSnote_id: TIntegerField
+      DisplayWidth = 12
       FieldName = 'note_id'
+      Required = True
     end
-  end
-  object updateNoteQ: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = SQLConnection1
-    Left = 464
-    Top = 632
   end
   object noteDS: TSQLDataSet
+    Active = True
     CommandText = 'select * from note'
     DataSource = blocksDataSource
-    MaxBlobSize = -1
+    MaxBlobSize = 1
     Params = <>
     SQLConnection = SQLConnection1
     Left = 32
@@ -241,6 +284,7 @@ object atDM: TatDM
     Top = 640
   end
   object notesCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'notesProvider'
@@ -248,17 +292,24 @@ object atDM: TatDM
     Top = 640
     object notesCDSid: TIntegerField
       FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
-    object notesCDSnote: TWideMemoField
+    object notesCDSnote: TMemoField
       FieldName = 'note'
-      BlobType = ftWideMemo
+      Required = True
+      BlobType = ftMemo
+      Size = 1
     end
     object notesCDScreated_on: TSQLTimeStampField
       FieldName = 'created_on'
+      Required = True
     end
-    object notesCDScreated_by: TWideStringField
+    object notesCDScreated_by: TMemoField
       FieldName = 'created_by'
-      Size = 512
+      Required = True
+      BlobType = ftMemo
+      Size = 1
     end
   end
   object notesDSource: TDataSource
@@ -271,111 +322,83 @@ object atDM: TatDM
     Left = 128
     Top = 224
   end
-  object mRibbonCDSet: TClientDataSet
+  object mRibbonCDS: TClientDataSet
+    Active = True
     Aggregates = <>
+    MasterFields = 'id'
     Params = <>
     ProviderName = 'mRibbonProvider'
-    BeforePost = mRibbonCDSetBeforePost
-    AfterPost = mRibbonCDSetAfterPost
-    AfterDelete = mRibbonCDSetAfterDelete
-    OnCalcFields = mRibbonCDSetCalcFields
+    BeforePost = mRibbonCDSBeforePost
+    AfterPost = mRibbonCDSAfterPost
+    AfterDelete = mRibbonCDSAfterDelete
+    OnCalcFields = mRibbonCDSCalcFields
     Left = 240
     Top = 224
-    object mRibbonCDSetid: TIntegerField
-      Alignment = taLeftJustify
-      DisplayWidth = 11
+    object mRibbonCDSid: TStringField
       FieldName = 'id'
+      Size = 36
     end
-    object mRibbonCDSetblock_id: TIntegerField
-      Alignment = taLeftJustify
-      DisplayWidth = 12
-      FieldName = 'block_id'
-    end
-    object mRibbonCDSetstatus: TIntegerField
-      DisplayWidth = 12
+    object mRibbonCDSstatus: TIntegerField
       FieldName = 'status'
     end
-    object mRibbonCDSetcreated: TSQLTimeStampField
-      DisplayWidth = 14
+    object mRibbonCDScreated: TSQLTimeStampField
       FieldName = 'created'
     end
-    object mRibbonCDSetmodified: TSQLTimeStampField
-      DisplayWidth = 15
+    object mRibbonCDSmodified: TSQLTimeStampField
       FieldName = 'modified'
     end
-    object mRibbonCDSetcutting_order: TIntegerField
-      DisplayWidth = 13
+    object mRibbonCDSblock_id: TIntegerField
+      FieldName = 'block_id'
+      Required = True
+    end
+    object mRibbonCDScutting_order: TIntegerField
       FieldName = 'cutting_order'
     end
-    object mRibbonCDSetnotes: TWideMemoField
-      DisplayWidth = 12
-      FieldName = 'notes'
-      BlobType = ftWideMemo
-    end
-    object mRibbonCDSetbar_code: TIntegerField
-      FieldKind = fkCalculated
-      FieldName = 'bar_code'
-      Calculated = True
+    object mRibbonCDSnr_of_sections: TSmallintField
+      FieldName = 'nr_of_sections'
     end
   end
   object mRibbonDSource: TDataSource
-    DataSet = mRibbonCDSet
+    DataSet = mRibbonCDS
     Left = 336
     Top = 224
   end
   object ribbonsQ: TSQLQuery
-    DataSource = mRibbonDSource
+    DataSource = blocksDataSource
     MaxBlobSize = -1
     Params = <
       item
         DataType = ftInteger
-        Name = 'ID'
+        Name = 'id'
         ParamType = ptInput
       end>
     SQL.Strings = (
-      'select * from ribbon where block_id = :ID')
+      'select * from ribbon where block_id = :BLOCK_ID')
     SQLConnection = SQLConnection1
     Left = 32
     Top = 224
-  end
-  object abImageDS: TSQLDataSet
-    BeforeScroll = abImageDSBeforeScroll
-    CommandText = 'select * from abImage'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = SQLConnection1
-    Left = 32
-    Top = 304
-    object abImageDSid: TIntegerField
+    object ribbonsQid: TStringField
       FieldName = 'id'
+      Size = 36
     end
-    object abImageDSfile_name: TWideStringField
-      FieldName = 'file_name'
-      Size = 1024
+    object ribbonsQstatus: TIntegerField
+      FieldName = 'status'
     end
-  end
-  object mImageProvider: TDataSetProvider
-    DataSet = abImageDS
-    Left = 120
-    Top = 304
-  end
-  object mImageClientDS: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'mImageProvider'
-    Left = 240
-    Top = 304
-    object mImageClientDSid: TIntegerField
-      FieldName = 'id'
+    object ribbonsQcreated: TSQLTimeStampField
+      FieldName = 'created'
     end
-    object mImageClientDSfile_name: TWideStringField
-      FieldName = 'file_name'
-      Size = 1024
+    object ribbonsQmodified: TSQLTimeStampField
+      FieldName = 'modified'
     end
-  end
-  object mABImageDataSource: TDataSource
-    DataSet = mImageClientDS
-    Left = 336
-    Top = 304
+    object ribbonsQblock_id: TIntegerField
+      FieldName = 'block_id'
+      Required = True
+    end
+    object ribbonsQcutting_order: TIntegerField
+      FieldName = 'cutting_order'
+    end
+    object ribbonsQnr_of_sections: TSmallintField
+      FieldName = 'nr_of_sections'
+    end
   end
 end

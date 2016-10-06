@@ -340,6 +340,10 @@ object MainForm: TMainForm
     TabPosition = tpLeft
     object TabSheet1: TTabSheet
       Caption = 'Live'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object mMainPanel: TPanel
         Left = 0
         Top = 0
@@ -374,16 +378,24 @@ object MainForm: TMainForm
     object TabSheet2: TTabSheet
       Caption = 'History'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
         Top = 41
         Width = 752
         Height = 535
-        ActivePage = TabSheet3
+        ActivePage = TabSheet6
         Align = alClient
         TabOrder = 0
         object TabSheet3: TTabSheet
           Caption = 'Images'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Image1: TImage
             Left = 282
             Top = 0
@@ -2167,10 +2179,18 @@ object MainForm: TMainForm
         object TabSheet4: TTabSheet
           Caption = 'Movies'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object TabSheet5: TTabSheet
           Caption = 'Sensor Data'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object DBGrid1: TDBGrid
             Left = 11
             Top = 11
@@ -2204,6 +2224,7 @@ object MainForm: TMainForm
               item
                 Expanded = False
                 FieldName = 'humidity'
+                Width = 64
                 Visible = True
               end>
           end
@@ -2215,6 +2236,68 @@ object MainForm: TMainForm
             Caption = 'Refresh'
             TabOrder = 1
             OnClick = Button1Click
+          end
+        end
+        object TabSheet6: TTabSheet
+          Caption = 'DB Sync'
+          ImageIndex = 3
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+          object mATDBServerGB: TGroupBox
+            Left = 3
+            Top = 71
+            Width = 566
+            Height = 352
+            Caption = 'ATDB Server'
+            Enabled = False
+            TabOrder = 0
+            object mSyncUsersBtn: TButton
+              Left = 24
+              Top = 53
+              Width = 105
+              Height = 44
+              Caption = 'Sync Users'
+              Enabled = False
+              TabOrder = 0
+              OnClick = mSyncUsersBtnClick
+            end
+            object GroupBox3: TGroupBox
+              Left = 344
+              Top = 28
+              Width = 193
+              Height = 285
+              Caption = 'Remote users'
+              TabOrder = 1
+              object DBGrid2: TDBGrid
+                Left = 24
+                Top = 24
+                Width = 145
+                Height = 233
+                TabOrder = 0
+                TitleFont.Charset = DEFAULT_CHARSET
+                TitleFont.Color = clWindowText
+                TitleFont.Height = -16
+                TitleFont.Name = 'Tahoma'
+                TitleFont.Style = []
+                Columns = <
+                  item
+                    Expanded = False
+                    FieldName = 'user_name'
+                    Visible = True
+                  end>
+              end
+            end
+          end
+          object mATDBServerBtnConnect: TButton
+            Left = 11
+            Top = 21
+            Width = 105
+            Height = 44
+            Caption = 'Connect'
+            TabOrder = 1
+            OnClick = mATDBServerBtnConnectClick
           end
         end
       end

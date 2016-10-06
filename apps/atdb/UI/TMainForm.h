@@ -1,6 +1,5 @@
 #ifndef TMainFormH
 #define TMainFormH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -48,12 +47,13 @@
 #include <Data.FMTBcd.hpp>
 #include <Data.SqlExpr.hpp>
 #include <Vcl.Mask.hpp>
-#include "TATDBDataModule.h"
 #include "pBarcode1D.hpp"
 #include "pUPC.hpp"
 #include "pUPCA.hpp"
 #include "pCode39.hpp"
 #include "pDBBarcode1D.hpp"
+#include "TArrayBotBtn.h"
+#include "database/abATDBServerSession.h"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -101,25 +101,31 @@ class TMainForm : public TRegistryForm
 	TImage *mBarCodeImage;
 	TActionList *ActionList2;
 	TDBGrid *DBGrid1;
-	TTabSheet *TabSheet1;
 	TDBNavigator *mRibbonsNavigator;
 	TGroupBox *GroupBox6;
 	TButton *PrintBarCodeBtn;
 	TDBText *DBText2;
 	TBindSourceDB *BindSourceDB2;
-	TDBGrid *DBGrid2;
 	TTabSheet *TabSheet3;
 	TDBGrid *DBGrid3;
 	TDBNavigator *DBNavigator1;
-	TDBNavigator *DBNavigator2;
-	TPanel *Panel1;
-	TPanel *Panel2;
-	TDBGrid *DBGrid4;
+	TDBGrid *mBlocksGrid;
 	TPanel *Panel3;
 	TDBNavigator *mBlocksNavigator;
 	TButton *mNewBlockBtn;
-	TComboBox *ComboBox1;
 	TSQLQuery *mUsersQ;
+	TComboBox *mUsersCB;
+	TTabSheet *TabSheet4;
+	TDBNavigator *DBNavigator3;
+	TDBGrid *DBGrid5;
+	TDBEdit *DBEdit1;
+	TTabSheet *TabSheet1;
+	TSTDStringLabeledEdit *STDStringLabeledEdit1;
+	TArrayBotButton *mATDBServerBtnConnect;
+	TDBGrid *mBlockNotesGrid;
+	TDBMemo *DBMemo1;
+	TDBNavigator *DBNavigator2;
+	TButton *Button1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -134,21 +140,25 @@ class TMainForm : public TRegistryForm
 	void __fastcall mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mUsersNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall mInsertNewNoteBtnClick(TObject *Sender);
 	void __fastcall mDeleteNoteBtnClick(TObject *Sender);
 	void __fastcall mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall PrintBarCodeClick(TObject *Sender);
 	void __fastcall RegisterNewBlock(TObject *Sender);
-
-	void __fastcall ComboBox1Change(TObject *Sender);
-	void __fastcall ComboBox1Enter(TObject *Sender);
-
+	void __fastcall mUsersCBChange(TObject *Sender);
+	void __fastcall mUsersCBEnter(TObject *Sender);
+	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
+	void __fastcall mBlocksGridDblClick(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
 
     private:	// User declarations
         bool                                            gCanClose;
         TApplicationProperties                          mAppProperties;
+
+		Poco::Mutex										mServerDBMutex;
+		ATDBServerSession								mServerDBSession;
+
 
         TThreadMethod                                   logMsgMethod;
         void __fastcall                                 logMsg();
@@ -179,6 +189,10 @@ class TMainForm : public TRegistryForm
         void                                            setupIniFile();
 
 		void __fastcall                                 AppInBox(mlxStructMessage &Msg);
+
+		void    										populateUsers();
+		void       __fastcall							afterServerConnect(System::TObject* Sender);
+		void       __fastcall							afterServerDisconnect(System::TObject* Sender);
 
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);
