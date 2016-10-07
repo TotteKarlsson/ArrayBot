@@ -56,17 +56,6 @@ __published:	// IDE-managed Components
 	TSQLTimeStampField *blocksCDSmodified;
 	TIntegerField *blocksCDSstatus;
 	TMemoField *blocksCDSlabel;
-	TIntegerField *notesCDSid;
-	TMemoField *notesCDSnote;
-	TSQLTimeStampField *notesCDScreated_on;
-	TMemoField *notesCDScreated_by;
-	TStringField *ribbonsQid;
-	TIntegerField *ribbonsQstatus;
-	TSQLTimeStampField *ribbonsQcreated;
-	TSQLTimeStampField *ribbonsQmodified;
-	TIntegerField *ribbonsQblock_id;
-	TIntegerField *ribbonsQcutting_order;
-	TSmallintField *ribbonsQnr_of_sections;
 	TStringField *mRibbonCDSid;
 	TIntegerField *mRibbonCDSstatus;
 	TSQLTimeStampField *mRibbonCDScreated;
@@ -74,18 +63,25 @@ __published:	// IDE-managed Components
 	TIntegerField *mRibbonCDSblock_id;
 	TIntegerField *mRibbonCDScutting_order;
 	TSmallintField *mRibbonCDSnr_of_sections;
-	TIntegerField *blockNotesCDSid;
-	TMemoField *blockNotesCDSnote;
-	TSQLTimeStampField *blockNotesCDScreated_on;
-	TMemoField *blockNotesCDScreated_by;
-	TIntegerField *blockNotesCDSblock_id;
-	TIntegerField *blockNotesCDSnote_id;
 	TIntegerField *blockNotesQid;
 	TMemoField *blockNotesQnote;
 	TSQLTimeStampField *blockNotesQcreated_on;
-	TMemoField *blockNotesQcreated_by;
-	TIntegerField *blockNotesQblock_id;
-	TIntegerField *blockNotesQnote_id;
+	TIntegerField *blockNotesQcreated_by;
+	TIntegerField *blockNotesCDSid;
+	TMemoField *blockNotesCDSnote;
+	TSQLTimeStampField *blockNotesCDScreated_on;
+	TIntegerField *blockNotesCDScreated_by;
+	TIntegerField *notesCDSid;
+	TMemoField *notesCDSnote;
+	TSQLTimeStampField *notesCDScreated_on;
+	TIntegerField *notesCDScreated_by;
+	TStringField *ribbonsQid;
+	TIntegerField *ribbonsQstatus;
+	TIntegerField *ribbonsQblock_id;
+	TIntegerField *ribbonsQcutting_order;
+	TSmallintField *ribbonsQnr_of_sections;
+	TSQLTimeStampField *ribbonsQcreated;
+	TSQLTimeStampField *ribbonsQmodified;
 	void __fastcall usersCDSAfterPost(TDataSet *DataSet);
 	void __fastcall usersCDSAfterDelete(TDataSet *DataSet);
 	void __fastcall usersCDSAfterScroll(TDataSet *DataSet);
@@ -102,6 +98,12 @@ __published:	// IDE-managed Components
 	void __fastcall SQLConnection1AfterConnect(TObject *Sender);
 	void __fastcall abImageDSBeforeScroll(TDataSet *DataSet);
 	void __fastcall SQLConnection1BeforeConnect(TObject *Sender);
+	void __fastcall blockNotesCDSAfterDelete(TDataSet *DataSet);
+	void __fastcall blockNotesCDSBeforeDelete(TDataSet *DataSet);
+	void __fastcall blocksCDSlabelGetText(TField *Sender, UnicodeString &Text,
+          bool DisplayText);
+	void __fastcall blockNotesCDSAfterScroll(TDataSet *DataSet);
+
 
 
 	private:	// User declarations

@@ -100,7 +100,7 @@ class TMainForm : public TRegistryForm
 	TDBBarcode1D *DBBarcode1D1;
 	TImage *mBarCodeImage;
 	TActionList *ActionList2;
-	TDBGrid *DBGrid1;
+	TDBGrid *mRibbonsGrid;
 	TDBNavigator *mRibbonsNavigator;
 	TGroupBox *GroupBox6;
 	TButton *PrintBarCodeBtn;
@@ -125,7 +125,10 @@ class TMainForm : public TRegistryForm
 	TDBGrid *mBlockNotesGrid;
 	TDBMemo *DBMemo1;
 	TDBNavigator *DBNavigator2;
-	TButton *Button1;
+	TDBMemo *DBMemo2;
+	TLabel *Label1;
+	TButton *mDeleteNoteBtn;
+	TButton *mNewNoteBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -150,7 +153,10 @@ class TMainForm : public TRegistryForm
 	void __fastcall mUsersCBEnter(TObject *Sender);
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall mNewNoteBtnClick(TObject *Sender);
+
+	void __fastcall DBMemo2KeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 
     private:	// User declarations
         bool                                            gCanClose;

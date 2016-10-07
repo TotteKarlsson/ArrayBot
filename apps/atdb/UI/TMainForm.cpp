@@ -177,35 +177,23 @@ void __fastcall TMainForm::mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftS
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mDeleteNoteBtnClick(TObject *Sender)
 {
-//	//To delete a note, first delete data in the relational table,
-//	//    and after that the note itself
 //    int uID 	= atdbDM->usersClientDataSet->FieldByName("id")->AsInteger;
 //    int blockID = atdbDM->blocksCDSid->Value;
-//    int noteID  = mNotesLookupLB->KeyValue;
-//
-//    stringstream q;
-//    TSQLQuery* tq = new TSQLQuery(NULL);
-//    tq->SQLConnection = atdbDM->SQLConnection1;
-//
-//    //Associate
-//    q.str("");
-//    q << "DELETE FROM block_note WHERE note_id="<<noteID;
-//    Log(lInfo) << q.str();
-//
-//    tq->SQL->Add(q.str().c_str());
-//    tq->ExecSQL(true);
-//    tq->SQL->Clear();
-//    q.str("");
-//
-//    q <<"DELETE FROM note WHERE id = "<<noteID;
-//    Log(lInfo) << q.str();
-//
-//
-//    tq->SQL->Add(q.str().c_str());
-//    tq->ExecSQL(true);
-//
-//    delete tq;
-////    mNotesLookupLB->DataSource->DataSet->Prior();
+    int noteID  = atdbDM->blockNotesCDS->FieldByName("id")->AsInteger;
+
+    stringstream q;
+    TSQLQuery* tq = new TSQLQuery(NULL);
+    tq->SQLConnection = atdbDM->SQLConnection1;
+
+    q <<"DELETE FROM note WHERE id = "<<noteID;
+    Log(lInfo) << q.str();
+
+    tq->SQL->Add(q.str().c_str());
+    tq->ExecSQL(true);
+    delete tq;
+
+    atdbDM->blockNotesCDS->Refresh();
+
 }
 
 
@@ -231,6 +219,10 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
         	Log(lInfo) << "Refreshed Ribbons Dataset";
  		break;
     }
+
+	mRibbonsGrid->Width = mRibbonsGrid->Width + 1;
+	mRibbonsGrid->Width = mRibbonsGrid->Width - 1;
+
 }
 
 //---------------------------------------------------------------------------
@@ -334,10 +326,8 @@ void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
 	int bID = mBlocksGrid->DataSource->DataSet->FieldByName("id")->AsInteger;
 }
 
-
-void __fastcall TMainForm::Button1Click(TObject *Sender)
+void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
 {
-
     int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
     int blockID = atdbDM->blocksCDSid->Value;
     string note("<none>");
@@ -351,8 +341,7 @@ void __fastcall TMainForm::Button1Click(TObject *Sender)
     	handleMySQLException();
     }
 
-
-    mBlockNotesGrid->DataSource->DataSet->Refresh();
+	atdbDM->blockNotesCDS->Refresh();
 
 //    TSQLQuery* tq = new TSQLQuery(NULL);
 //    tq->SQLConnection = atdbDM->SQLConnection1;
@@ -376,6 +365,25 @@ void __fastcall TMainForm::Button1Click(TObject *Sender)
 //    tq->ExecSQL(true);
 
 //    delete tq;
+
+}
+
+void __fastcall TMainForm::DBMemo2KeyPress(TObject *Sender, System::WideChar &Key)
+{
+	if(Key == vkReturn)
+    {
+    	Key = NULL;
+        mBlocksNavigator->BtnClick((TNavigateBtn) Vcl::Dbctrls::nbPost);
+        DBMemo2->Lines->Delete(1);
+    }
+
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
+{
+	atdbDM->blockNotesCDS->Post();
+
 
 }
 

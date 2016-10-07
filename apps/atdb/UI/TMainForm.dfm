@@ -130,11 +130,18 @@ object MainForm: TMainForm
           Height = 219
           Caption = 'Blocks'
           TabOrder = 0
+          object Label1: TLabel
+            Left = 20
+            Top = 183
+            Width = 53
+            Height = 13
+            Caption = 'Block label:'
+          end
           object mBlocksGrid: TDBGrid
             Left = 15
             Top = 62
             Width = 394
-            Height = 147
+            Height = 99
             DataSource = atdbDM.blocksDataSource
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             ReadOnly = True
@@ -155,13 +162,13 @@ object MainForm: TMainForm
               item
                 Expanded = False
                 FieldName = 'created_by'
-                Width = 100
+                Width = 77
                 Visible = True
               end
               item
                 Expanded = False
                 FieldName = 'status'
-                Width = 100
+                Width = 62
                 Visible = True
               end
               item
@@ -198,44 +205,81 @@ object MainForm: TMainForm
               TabOrder = 1
               OnClick = RegisterNewBlock
             end
-            object Button1: TButton
-              Left = 413
-              Top = 8
-              Width = 76
-              Height = 33
-              Caption = 'New Note'
-              TabOrder = 2
-              OnClick = Button1Click
-            end
           end
           object mBlockNotesGrid: TDBGrid
             Left = 415
             Top = 62
-            Width = 186
-            Height = 147
+            Width = 209
+            Height = 99
             DataSource = atdbDM.blockNotesDSource
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             TabOrder = 2
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'created_on'
+                Width = 100
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'created_by'
+                Width = 100
+                Visible = True
+              end>
           end
           object DBMemo1: TDBMemo
             Left = 630
             Top = 62
             Width = 229
-            Height = 147
+            Height = 99
+            DataField = 'note'
+            DataSource = atdbDM.blockNotesDSource
             TabOrder = 3
           end
           object DBNavigator2: TDBNavigator
-            Left = 519
-            Top = 23
-            Width = 224
+            Left = 630
+            Top = 167
+            Width = 234
             Height = 25
             DataSource = atdbDM.blockNotesDSource
-            VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+            VisibleButtons = [nbPost, nbCancel]
             TabOrder = 4
+          end
+          object DBMemo2: TDBMemo
+            Left = 79
+            Top = 176
+            Width = 185
+            Height = 25
+            DataField = 'label'
+            DataSource = atdbDM.blocksDataSource
+            TabOrder = 5
+            WantReturns = False
+            WordWrap = False
+            OnKeyPress = DBMemo2KeyPress
+          end
+          object mDeleteNoteBtn: TButton
+            Left = 497
+            Top = 167
+            Width = 75
+            Height = 27
+            Caption = 'Delete Note'
+            TabOrder = 6
+            OnClick = mDeleteNoteBtnClick
+          end
+          object mNewNoteBtn: TButton
+            Left = 415
+            Top = 167
+            Width = 76
+            Height = 27
+            Caption = 'New Note'
+            TabOrder = 7
+            OnClick = mNewNoteBtnClick
           end
         end
         object GroupBox6: TGroupBox
@@ -262,7 +306,7 @@ object MainForm: TMainForm
             Height = 17
             DataField = 'bar_code'
           end
-          object DBGrid1: TDBGrid
+          object mRibbonsGrid: TDBGrid
             Left = 15
             Top = 22
             Width = 610
@@ -291,12 +335,6 @@ object MainForm: TMainForm
               item
                 Expanded = False
                 FieldName = 'created'
-                Width = 80
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'modified'
                 Width = 80
                 Visible = True
               end
@@ -414,15 +452,17 @@ object MainForm: TMainForm
           Top = 16
           Width = 240
           Height = 25
-          DataSource = atdbDM.usersDataSource
+          DataSource = atdbDM.notesDSource
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
           TabOrder = 0
         end
         object DBGrid5: TDBGrid
-          Left = 29
-          Top = 72
+          Left = 13
+          Top = 56
           Width = 468
           Height = 249
           DataSource = atdbDM.notesDSource
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -574,7 +614,7 @@ object MainForm: TMainForm
     SQL.Strings = (
       'select id,user_name from user')
     SQLConnection = atdbDM.SQLConnection1
-    Left = 776
+    Left = 584
     Top = 48
   end
 end

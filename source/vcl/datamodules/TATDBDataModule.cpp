@@ -41,6 +41,12 @@ bool __fastcall TatdbDM::connect(const string& db)
 }
 
 //---------------------------------------------------------------------------
+void __fastcall TatdbDM::SQLConnection1BeforeConnect(TObject *Sender)
+{
+	;
+}
+
+//---------------------------------------------------------------------------
 void __fastcall TatdbDM::SQLConnection1AfterConnect(TObject *Sender)
 {
 	afterConnect();
@@ -51,10 +57,10 @@ void __fastcall TatdbDM::afterConnect()
 	Log(lInfo) << "Connection established to: "<<mDataBase;
 	usersCDS->Active 	    = true;
 	blocksDS->Active 	    = true;
-    blocksCDS->Active 	    = true;
-    mRibbonCDS->Active 	    = true;
-    notesCDS->Active   	    = true;
 	blockNotesCDS->Active  	= true;
+    mRibbonCDS->Active 	    = true;
+    blocksCDS->Active 	    = true;
+    notesCDS->Active   	    = true;
 }
 
 void __fastcall TatdbDM::afterDisConnect()
@@ -150,7 +156,7 @@ void __fastcall TatdbDM::blocksCDSAfterScroll(TDataSet *DataSet)
 	blockNotesQ->Close();
     blockNotesCDS->Refresh();
 
-//    //Fetch associated Ribbons
+    //Fetch associated Ribbons
     mRibbonCDS->Active = false;
     ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + String(bID) + "'";
     ribbonsQ->Open();
@@ -174,8 +180,8 @@ void __fastcall TatdbDM::mRibbonCDSAfterPost(TDataSet *DataSet)
 {
 	mRibbonCDS->ApplyUpdates(0);
 }
-//---------------------------------------------------------------------------
 
+//---------------------------------------------------------------------------
 void __fastcall TatdbDM::mRibbonCDSBeforePost(TDataSet *DataSet)
 {
 	Log(lInfo) << "Before Posting Ribbon Data";
@@ -258,11 +264,43 @@ void __fastcall TatdbDM::abImageDSBeforeScroll(TDataSet *DataSet)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TatdbDM::SQLConnection1BeforeConnect(TObject *Sender)
+void __fastcall TatdbDM::blockNotesCDSAfterDelete(TDataSet *DataSet)
 {
-	;
+//	blockNotesCDS->ApplyUpdates(0);
+//	blockNotesQ->Active = false;
+//	blockNotesCDS->Active = false;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TatdbDM::blockNotesCDSBeforeDelete(TDataSet *DataSet)
+{
+//	blockNotesQ->Active = false;
+//	blockNotesCDS->Active = false;
 }
 
 
+
+void __fastcall TatdbDM::blocksCDSlabelGetText(TField *Sender, UnicodeString &Text,
+          bool DisplayText)
+{
+	Text = blocksCDSlabel->AsString;//, 1, 50);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TatdbDM::blockNotesCDSAfterScroll(TDataSet *DataSet)
+{
+	if(!SQLConnection1->Connected || gAppIsStartingUp)
+    {
+    	return;
+    }
+
+	int bID = blocksCDS->FieldByName("id")->AsInteger;
+
+    if(bID == 0)
+    {
+        return;
+    }
+	//
+}
 
 

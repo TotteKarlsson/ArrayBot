@@ -50,7 +50,6 @@ object atdbDM: TatdbDM
     Top = 152
   end
   object blocksCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blocksProvider'
@@ -80,6 +79,7 @@ object atdbDM: TatdbDM
     end
     object blocksCDSlabel: TMemoField
       FieldName = 'label'
+      OnGetText = blocksCDSlabelGetText
       BlobType = ftMemo
       Size = 1
     end
@@ -148,7 +148,6 @@ object atdbDM: TatdbDM
     Top = 88
   end
   object usersCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'usersProvider'
@@ -196,26 +195,20 @@ object atdbDM: TatdbDM
     Top = 392
     object blockNotesQid: TIntegerField
       FieldName = 'id'
+      Required = True
     end
     object blockNotesQnote: TMemoField
       FieldName = 'note'
+      Required = True
       BlobType = ftMemo
       Size = 1
     end
     object blockNotesQcreated_on: TSQLTimeStampField
       FieldName = 'created_on'
-    end
-    object blockNotesQcreated_by: TMemoField
-      FieldName = 'created_by'
-      BlobType = ftMemo
-      Size = 1
-    end
-    object blockNotesQblock_id: TIntegerField
-      FieldName = 'block_id'
       Required = True
     end
-    object blockNotesQnote_id: TIntegerField
-      FieldName = 'note_id'
+    object blockNotesQcreated_by: TIntegerField
+      FieldName = 'created_by'
       Required = True
     end
   end
@@ -235,43 +228,33 @@ object atdbDM: TatdbDM
     Params = <>
     ProviderName = 'blockNotesProvider'
     AfterPost = blockNotesCDSAfterPost
+    BeforeDelete = blockNotesCDSBeforeDelete
+    AfterDelete = blockNotesCDSAfterDelete
+    AfterScroll = blockNotesCDSAfterScroll
     Left = 256
     Top = 392
     object blockNotesCDSid: TIntegerField
-      DisplayWidth = 6
       FieldName = 'id'
+      Required = True
     end
     object blockNotesCDSnote: TMemoField
-      DisplayWidth = 11
       FieldName = 'note'
+      Required = True
       BlobType = ftMemo
       Size = 1
     end
     object blockNotesCDScreated_on: TSQLTimeStampField
-      DisplayWidth = 41
       FieldName = 'created_on'
-    end
-    object blockNotesCDScreated_by: TMemoField
-      DisplayWidth = 12
-      FieldName = 'created_by'
-      BlobType = ftMemo
-      Size = 1
-    end
-    object blockNotesCDSblock_id: TIntegerField
-      DisplayWidth = 12
-      FieldName = 'block_id'
       Required = True
     end
-    object blockNotesCDSnote_id: TIntegerField
-      DisplayWidth = 12
-      FieldName = 'note_id'
+    object blockNotesCDScreated_by: TIntegerField
+      FieldName = 'created_by'
       Required = True
     end
   end
   object noteDS: TSQLDataSet
-    Active = True
     CommandText = 'select * from note'
-    DataSource = blocksDataSource
+    DataSource = notesDSource
     MaxBlobSize = 1
     Params = <>
     SQLConnection = SQLConnection1
@@ -284,7 +267,6 @@ object atdbDM: TatdbDM
     Top = 640
   end
   object notesCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'notesProvider'
@@ -305,11 +287,9 @@ object atdbDM: TatdbDM
       FieldName = 'created_on'
       Required = True
     end
-    object notesCDScreated_by: TMemoField
+    object notesCDScreated_by: TIntegerField
       FieldName = 'created_by'
       Required = True
-      BlobType = ftMemo
-      Size = 1
     end
   end
   object notesDSource: TDataSource
@@ -323,7 +303,6 @@ object atdbDM: TatdbDM
     Top = 224
   end
   object mRibbonCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     MasterFields = 'id'
     Params = <>
@@ -336,6 +315,7 @@ object atdbDM: TatdbDM
     Top = 224
     object mRibbonCDSid: TStringField
       FieldName = 'id'
+      Required = True
       Size = 36
     end
     object mRibbonCDSstatus: TIntegerField
@@ -368,27 +348,22 @@ object atdbDM: TatdbDM
     MaxBlobSize = -1
     Params = <
       item
-        DataType = ftInteger
+        DataType = ftString
         Name = 'id'
         ParamType = ptInput
       end>
     SQL.Strings = (
-      'select * from ribbon where block_id = :BLOCK_ID')
+      'select * from ribbon where block_id = :id')
     SQLConnection = SQLConnection1
     Left = 32
     Top = 224
     object ribbonsQid: TStringField
       FieldName = 'id'
+      Required = True
       Size = 36
     end
     object ribbonsQstatus: TIntegerField
       FieldName = 'status'
-    end
-    object ribbonsQcreated: TSQLTimeStampField
-      FieldName = 'created'
-    end
-    object ribbonsQmodified: TSQLTimeStampField
-      FieldName = 'modified'
     end
     object ribbonsQblock_id: TIntegerField
       FieldName = 'block_id'
@@ -399,6 +374,12 @@ object atdbDM: TatdbDM
     end
     object ribbonsQnr_of_sections: TSmallintField
       FieldName = 'nr_of_sections'
+    end
+    object ribbonsQcreated: TSQLTimeStampField
+      FieldName = 'created'
+    end
+    object ribbonsQmodified: TSQLTimeStampField
+      FieldName = 'modified'
     end
   end
 end

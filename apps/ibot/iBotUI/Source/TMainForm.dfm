@@ -124,7 +124,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 941
       Height = 545
-      ActivePage = TabSheet2
+      ActivePage = TabSheet4
       Align = alClient
       TabOrder = 0
       object TabSheet4: TTabSheet
@@ -203,7 +203,6 @@ object MainForm: TMainForm
             Height = 21
             KeyField = 'id'
             ListField = 'id'
-            ListSource = atdbDM.blocksDataSource
             TabOrder = 0
             OnCloseUp = DBLookupComboBox5CloseUp
           end
@@ -358,7 +357,6 @@ object MainForm: TMainForm
                   Top = 24
                   Width = 240
                   Height = 25
-                  DataSource = atdbDM.mRibbonDSource
                   TabOrder = 0
                 end
                 object DBGrid1: TDBGrid
@@ -366,7 +364,6 @@ object MainForm: TMainForm
                   Top = 55
                   Width = 882
                   Height = 120
-                  DataSource = atdbDM.mRibbonDSource
                   TabOrder = 1
                   TitleFont.Charset = DEFAULT_CHARSET
                   TitleFont.Color = clWindowText
@@ -388,7 +385,6 @@ object MainForm: TMainForm
                   Top = 57
                   Width = 568
                   Height = 128
-                  DataSource = atdbDM.blocksDataSource
                   Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
                   TabOrder = 0
                   TitleFont.Charset = DEFAULT_CHARSET
@@ -430,7 +426,6 @@ object MainForm: TMainForm
                   Top = 26
                   Width = 240
                   Height = 25
-                  DataSource = atdbDM.blocksDataSource
                   TabOrder = 1
                 end
               end

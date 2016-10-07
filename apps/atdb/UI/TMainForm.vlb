@@ -240,9 +240,6 @@ Coordinates=250,215,92,51
 [mBarCodeImage]
 Coordinates=383,330,96,51
 
-[DBGrid1]
-Coordinates=488,452,56,33
-
 [atDM.]
 Coordinates=660,613,101,177
 
@@ -284,4 +281,7 @@ Coordinates=502,152,104,51
 
 [mBlocksGrid]
 Coordinates=258,358,56,33
+
+[mRibbonsGrid]
+Coordinates=488,452,56,33
 
