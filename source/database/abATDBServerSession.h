@@ -35,6 +35,9 @@ class AB_CORE ATDBServerSession : public DBConnection
 
 		Poco::Data::RecordSet*      	getNotesForBlock(int blockID);
 		bool							addNoteForBlock(int blockID, int userID, const string& note);
+
+		bool							addNoteForRibbon(const string& ribbonID, int userID, const string& note);
+
 		bool							deleteNote(int noteID);
 		bool							updateNote(int noteID, const string& note);
 

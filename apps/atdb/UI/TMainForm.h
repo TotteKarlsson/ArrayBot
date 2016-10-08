@@ -54,6 +54,10 @@
 #include "pDBBarcode1D.hpp"
 #include "TArrayBotBtn.h"
 #include "database/abATDBServerSession.h"
+#include "RzDBEdit.hpp"
+#include "RzEdit.hpp"
+#include "RzDBSpin.hpp"
+#include "RzSpnEdt.hpp"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -104,7 +108,6 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *mRibbonsNavigator;
 	TGroupBox *GroupBox6;
 	TButton *PrintBarCodeBtn;
-	TDBText *DBText2;
 	TBindSourceDB *BindSourceDB2;
 	TTabSheet *TabSheet3;
 	TDBGrid *DBGrid3;
@@ -129,6 +132,21 @@ class TMainForm : public TRegistryForm
 	TLabel *Label1;
 	TButton *mDeleteNoteBtn;
 	TButton *mNewNoteBtn;
+	TScrollBox *ScrollBox1;
+	TDBGrid *DBGrid1;
+	TDBMemo *DBMemo3;
+	TDBNavigator *DBNavigator4;
+	TButton *mNewRibbonNote;
+	TButton *mDeleteRibbonNote;
+	TLabel *Label2;
+	TDBEdit *DBEdit2;
+	TLabel *Label3;
+	TLabel *Label4;
+	TDBEdit *DBEdit3;
+	TDBLookupComboBox *DBLookupComboBox1;
+	TDBLookupComboBox *DBLookupComboBox2;
+	TDBLookupComboBox *DBLookupComboBox3;
+	TDBLookupComboBox *DBLookupComboBox4;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -154,8 +172,6 @@ class TMainForm : public TRegistryForm
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall mNewNoteBtnClick(TObject *Sender);
-
-	void __fastcall DBMemo2KeyPress(TObject *Sender, System::WideChar &Key);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 
     private:	// User declarations

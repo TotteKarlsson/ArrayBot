@@ -3,7 +3,7 @@ Coordinates=695,391,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=278,452,66,33
+Coordinates=317,330,56,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -248,9 +248,6 @@ Coordinates=352,215,112,51
 
 [GroupBox6]
 Coordinates=561,215,70,51
-
-[DBText2]
-Coordinates=317,330,56,51
 
 [BindSourceDB2]
 Coordinates=910,640,92,123

@@ -40,7 +40,6 @@ object atdbDM: TatdbDM
       'ErrorResourceFile=')
     AfterConnect = SQLConnection1AfterConnect
     BeforeConnect = SQLConnection1BeforeConnect
-    Connected = True
     Left = 40
     Top = 24
   end
@@ -175,7 +174,6 @@ object atdbDM: TatdbDM
     Top = 88
   end
   object blockNotesQ: TSQLQuery
-    Active = True
     DataSource = blocksDataSource
     MaxBlobSize = 1
     Params = <
@@ -223,7 +221,6 @@ object atdbDM: TatdbDM
     Top = 392
   end
   object blockNotesCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blockNotesProvider'
@@ -310,6 +307,7 @@ object atdbDM: TatdbDM
     BeforePost = mRibbonCDSBeforePost
     AfterPost = mRibbonCDSAfterPost
     AfterDelete = mRibbonCDSAfterDelete
+    AfterScroll = mRibbonCDSAfterScroll
     OnCalcFields = mRibbonCDSCalcFields
     Left = 240
     Top = 224
@@ -348,7 +346,7 @@ object atdbDM: TatdbDM
     MaxBlobSize = -1
     Params = <
       item
-        DataType = ftString
+        DataType = ftInteger
         Name = 'id'
         ParamType = ptInput
       end>
@@ -381,5 +379,81 @@ object atdbDM: TatdbDM
     object ribbonsQmodified: TSQLTimeStampField
       FieldName = 'modified'
     end
+  end
+  object ribbonNotesQ: TSQLQuery
+    DataSource = mRibbonDSource
+    MaxBlobSize = 1
+    Params = <
+      item
+        DataType = ftString
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'SELECT * FROM note n '
+      'INNER JOIN ribbon_note bn '
+      'ON (bn.note_id = n.id) '
+      'WHERE ribbon_id = :id '
+      'ORDER BY created_on ASC')
+    SQLConnection = SQLConnection1
+    Left = 48
+    Top = 472
+    object IntegerField1: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object MemoField1: TMemoField
+      FieldName = 'note'
+      Required = True
+      BlobType = ftMemo
+      Size = 1
+    end
+    object SQLTimeStampField1: TSQLTimeStampField
+      FieldName = 'created_on'
+      Required = True
+    end
+    object IntegerField2: TIntegerField
+      FieldName = 'created_by'
+      Required = True
+    end
+  end
+  object ribbonNotesProvider: TDataSetProvider
+    DataSet = ribbonNotesQ
+    Left = 144
+    Top = 472
+  end
+  object ribbonNotesCDS: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'ribbonNotesProvider'
+    AfterPost = blockNotesCDSAfterPost
+    BeforeDelete = blockNotesCDSBeforeDelete
+    AfterDelete = blockNotesCDSAfterDelete
+    AfterScroll = blockNotesCDSAfterScroll
+    Left = 256
+    Top = 472
+    object ribbonNotesCDSid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object ribbonNotesCDSnote: TMemoField
+      FieldName = 'note'
+      Required = True
+      BlobType = ftMemo
+      Size = 1
+    end
+    object ribbonNotesCDScreated_on: TSQLTimeStampField
+      FieldName = 'created_on'
+      Required = True
+    end
+    object ribbonNotesCDScreated_by: TIntegerField
+      FieldName = 'created_by'
+      Required = True
+    end
+  end
+  object ribbonNotesDSource: TDataSource
+    DataSet = ribbonNotesCDS
+    Left = 352
+    Top = 472
   end
 end

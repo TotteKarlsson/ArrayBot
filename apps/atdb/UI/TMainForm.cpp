@@ -31,6 +31,10 @@
 #pragma link "pCode39"
 #pragma link "pDBBarcode1D"
 #pragma link "TArrayBotBtn"
+#pragma link "RzDBEdit"
+#pragma link "RzEdit"
+#pragma link "RzDBSpin"
+#pragma link "RzSpnEdt"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -216,6 +220,7 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
 	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
         break;
         case TNavigateBtn::nbRefresh:
+			atdbDM->mRibbonCDS->Refresh();
         	Log(lInfo) << "Refreshed Ribbons Dataset";
  		break;
     }
@@ -267,6 +272,7 @@ void __fastcall TMainForm::mUsersCBChange(TObject *Sender)
 void __fastcall TMainForm::mUsersCBEnter(TObject *Sender)
 {
     mUsersQ->Close();
+    mUsersCB->Clear();
     mUsersQ->Open();
     while(mUsersQ->Eof != true)
     {
@@ -328,20 +334,42 @@ void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
 
 void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
 {
-    int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
-    int blockID = atdbDM->blocksCDSid->Value;
-    string note("<none>");
-
-    try
+	TButton* b = dynamic_cast<TButton*>(Sender);
+    if(b == mNewNoteBtn)
     {
-		mServerDBSession.addNoteForBlock(blockID, uID, note);
-    }
-    catch(...)
-    {
-    	handleMySQLException();
-    }
+        int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
+        int blockID = atdbDM->blocksCDSid->Value;
+        string note("<none>");
 
-	atdbDM->blockNotesCDS->Refresh();
+        try
+        {
+            mServerDBSession.addNoteForBlock(blockID, uID, note);
+        }
+        catch(...)
+        {
+            handleMySQLException();
+        }
+
+        atdbDM->blockNotesCDS->Refresh();
+    }
+    else if(b == mNewRibbonNote)
+    {
+        int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
+        String ribbonID = atdbDM->mRibbonCDSid->AsString;
+        string note("<none>");
+
+        try
+        {
+            mServerDBSession.addNoteForRibbon(stdstr(ribbonID), uID, note);
+        }
+        catch(...)
+        {
+            handleMySQLException();
+        }
+
+        atdbDM->ribbonNotesCDS->Refresh();
+
+    }
 
 //    TSQLQuery* tq = new TSQLQuery(NULL);
 //    tq->SQLConnection = atdbDM->SQLConnection1;
@@ -368,23 +396,10 @@ void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
 
 }
 
-void __fastcall TMainForm::DBMemo2KeyPress(TObject *Sender, System::WideChar &Key)
-{
-	if(Key == vkReturn)
-    {
-    	Key = NULL;
-        mBlocksNavigator->BtnClick((TNavigateBtn) Vcl::Dbctrls::nbPost);
-        DBMemo2->Lines->Delete(1);
-    }
-
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
 {
 	atdbDM->blockNotesCDS->Post();
-
-
 }
 
 

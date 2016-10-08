@@ -82,6 +82,33 @@ bool ATDBServerSession::addNoteForBlock(int blockID, int userID, const string& _
 	return true;
 }
 
+bool ATDBServerSession::addNoteForRibbon(const string& ribbonID, int userID, const string& _note)
+{
+    if(!mTheSession)
+    {
+        Log(lError) << "No Session...";
+        return NULL;
+    }
+
+    Session& ses = *mTheSession;
+
+    //We need local variables for the statements..
+    string rID(ribbonID);
+    int uID(userID);
+    string note(_note);
+
+	Statement s(ses);
+    s << "INSERT INTO note (created_by, note) VALUES(?, ?)", use(uID), use(note), now;
+    s.reset(ses);
+
+    int noteID;
+    s << "SELECT MAX(id) FROM note", into(noteID), now;
+    s.reset(ses);
+
+    s << "INSERT INTO ribbon_note (ribbon_id, note_id) VALUES(?, ?)", use(rID), use(noteID), now;
+	return true;
+}
+
 bool ATDBServerSession::deleteNote(int noteID)
 {
     if(!mTheSession)

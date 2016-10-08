@@ -82,6 +82,18 @@ __published:	// IDE-managed Components
 	TSmallintField *ribbonsQnr_of_sections;
 	TSQLTimeStampField *ribbonsQcreated;
 	TSQLTimeStampField *ribbonsQmodified;
+	TSQLQuery *ribbonNotesQ;
+	TIntegerField *IntegerField1;
+	TMemoField *MemoField1;
+	TSQLTimeStampField *SQLTimeStampField1;
+	TIntegerField *IntegerField2;
+	TDataSetProvider *ribbonNotesProvider;
+	TClientDataSet *ribbonNotesCDS;
+	TDataSource *ribbonNotesDSource;
+	TIntegerField *ribbonNotesCDSid;
+	TMemoField *ribbonNotesCDSnote;
+	TSQLTimeStampField *ribbonNotesCDScreated_on;
+	TIntegerField *ribbonNotesCDScreated_by;
 	void __fastcall usersCDSAfterPost(TDataSet *DataSet);
 	void __fastcall usersCDSAfterDelete(TDataSet *DataSet);
 	void __fastcall usersCDSAfterScroll(TDataSet *DataSet);
@@ -103,6 +115,7 @@ __published:	// IDE-managed Components
 	void __fastcall blocksCDSlabelGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
 	void __fastcall blockNotesCDSAfterScroll(TDataSet *DataSet);
+	void __fastcall mRibbonCDSAfterScroll(TDataSet *DataSet);
 
 
 

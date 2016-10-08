@@ -58,9 +58,11 @@ void __fastcall TatdbDM::afterConnect()
 	usersCDS->Active 	    = true;
 	blocksDS->Active 	    = true;
 	blockNotesCDS->Active  	= true;
+    ribbonNotesCDS->Active  = true;
     mRibbonCDS->Active 	    = true;
     blocksCDS->Active 	    = true;
     notesCDS->Active   	    = true;
+
 }
 
 void __fastcall TatdbDM::afterDisConnect()
@@ -71,6 +73,7 @@ void __fastcall TatdbDM::afterDisConnect()
     mRibbonCDS->Active 	    = false;
     notesCDS->Active	    = false;
 	blockNotesCDS->Active  	= false;
+    ribbonNotesCDS->Active  = false;
 }
 
 //---------------------------------------------------------------------------
@@ -160,14 +163,21 @@ void __fastcall TatdbDM::blocksCDSAfterScroll(TDataSet *DataSet)
     mRibbonCDS->Active = false;
     ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + String(bID) + "'";
     ribbonsQ->Open();
-    mRibbonCDS->Active = true;
     ribbonsQ->Close();
+    mRibbonCDS->Active = true;
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TatdbDM::blockNotesCDSAfterPost(TDataSet *DataSet)
 {
-	blockNotesCDS->ApplyUpdates(0);
+	if(DataSet == blockNotesCDS)
+    {
+		blockNotesCDS->ApplyUpdates(0);
+    }
+    else if(DataSet == ribbonNotesCDS)
+    {
+		ribbonNotesCDS->ApplyUpdates(0);
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -301,6 +311,33 @@ void __fastcall TatdbDM::blockNotesCDSAfterScroll(TDataSet *DataSet)
         return;
     }
 	//
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TatdbDM::mRibbonCDSAfterScroll(TDataSet *DataSet)
+{
+	if(!SQLConnection1->Connected || gAppIsStartingUp)
+    {
+    	return;
+    }
+
+	string rID = stdstr(mRibbonCDS->FieldByName("id")->AsString);
+
+    if(rID.size() == 0)
+    {
+		//mRibbonCDS->Active = false;
+        return;
+    }
+
+    ribbonNotesQ->Close();
+	ribbonNotesQ->Params->ParamByName("id")->AsString = vclstr(rID);
+    ribbonNotesQ->Open();
+
+    //Get notes
+	string note = stdstr(ribbonNotesQ->FieldByName("note")->AsString);
+	Log(lInfo) << "Note is: " << note;
+	ribbonNotesQ->Close();
+    ribbonNotesCDS->Refresh();
 }
 
 
