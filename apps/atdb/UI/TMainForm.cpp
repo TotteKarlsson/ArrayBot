@@ -63,7 +63,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     logMsgMethod(&logMsg),
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
     mLocalDBFile(""),
-	mServerDBSession("atdb")
+	mServerDBSession("atdb"),
+    mDBUserID(0)
 {
     //Close any dataconnection created by stupid TSQLConnection
     mTempFileFolder = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB");
@@ -112,23 +113,64 @@ void __fastcall TMainForm::mUsersNavigatorClick(TObject *Sender, TNavigateBtn Bu
 //    }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbDelete:
+             if(MessageDlg("Deleting this block will delete all associated ribbons and notes!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
+             {
+				Abort();
+             }
+
+			int blockID = atdbDM->blocksCDS->FieldByName("id")->Value;
+            mServerDBSession.deleteNotesForBlock(blockID);
+            mServerDBSession.deleteRibbonsForBlock(blockID);
+        break;
+    }
+}
+
+void __fastcall TMainForm::mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbDelete:
+             if(MessageDlg("Deleting this ribbon will delete all associated notes!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
+             {
+				Abort();
+             }
+
+			String ribbonID = atdbDM->mRibbonCDS->FieldByName("id")->Value;
+            mServerDBSession.deleteNotesForRibbon(stdstr(ribbonID));
+            atdbDM->ribbonNotesCDS->Refresh();
+        break;
+    }
+}
+
 void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
-    	case TNavigateBtn::nbDelete:        break;
+    	case TNavigateBtn::nbDelete:
+        {
+
+        }
+        break;
 
     	case TNavigateBtn::nbInsert:
-//        	if(!mUsersCB->KeyValue.IsNull())
-//            {
-//	        	atdbDM->blocksCDS->FieldByName("created_by")->Value = mUsersCB->KeyValue;
-//				mBlocksNavigator->BtnClick( Data::Bind::Controls::nbPost);
-//            }
-//            else
-//            {
-//            	MessageDlg("Select a user before inserting blocks..", mtInformation, TMsgDlgButtons() << mbOK, 0);
-//            	Log(lError) << "Bad...";
-//            }
+        	if(!mUsersDBCB->KeyValue.IsNull())
+            {
+                atdbDM->blocksCDS->Append();
+	        	atdbDM->blocksCDS->FieldValues["created_by"] = mUsersDBCB->KeyValue;
+				mBlocksNavigator->BtnClick( Data::Bind::Controls::nbPost);
+			    atdbDM->blocksCDS->Last();
+            }
+            else
+            {
+            	MessageDlg("Select a user before inserting blocks..", mtInformation, TMsgDlgButtons() << mbOK, 0);
+            	Log(lError) << "Bad...";
+            }
         break;
         case TNavigateBtn::nbPost:
 //	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
@@ -155,49 +197,32 @@ void __fastcall TMainForm::mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftS
 }
 
 //---------------------------------------------------------------------------
-//void __fastcall TMainForm::Button3Click(TObject *Sender)
-//{
-////    stringstream q;
-////    int nID = atdbDM->blockNotesDSet->FieldByName("id")->AsInteger;
-////
-////    stringstream memo;
-////    for(int i = 0; i <  mBlockNoteMemo->Lines->Count; i++)
-////    {
-////        memo<<stdstr(mBlockNoteMemo->Lines->Strings[i]);
-////        if(i < mBlockNoteMemo->Lines->Count -1 )
-////        {
-////            memo<<endl;
-////        }
-////    }
-////    string s(memo.str());
-////    q << "UPDATE note SET note=\""<< s <<"\" WHERE id=\""<<nID<<"\"";
-////    Log(lInfo) << q.str();
-////
-////    atdbDM->updateNoteQ->SQL->Clear();
-////    atdbDM->updateNoteQ->SQL->Add(q.str().c_str());
-////    atdbDM->updateNoteQ->ExecSQL(true);
-//}
-//
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::mDeleteNoteBtnClick(TObject *Sender)
 {
-//    int uID 	= atdbDM->usersClientDataSet->FieldByName("id")->AsInteger;
-//    int blockID = atdbDM->blocksCDSid->Value;
-    int noteID  = atdbDM->blockNotesCDS->FieldByName("id")->AsInteger;
+	TButton* b = dynamic_cast<TButton*>(Sender);
+
+    TClientDataSet *ds = NULL;
+    if(b == mDeleteBlockNoteBtn)
+	{
+        ds = atdbDM->blockNotesCDS;
+    }
+    else if(b == mDeleteRibbonNoteBtn)
+    {
+        ds = atdbDM->ribbonNotesCDS;
+    }
+    int noteID =  ds->FieldByName("id")->AsInteger;;
 
     stringstream q;
     TSQLQuery* tq = new TSQLQuery(NULL);
     tq->SQLConnection = atdbDM->SQLConnection1;
 
     q <<"DELETE FROM note WHERE id = "<<noteID;
-    Log(lInfo) << q.str();
-
+    Log(lDebug) << q.str();
     tq->SQL->Add(q.str().c_str());
     tq->ExecSQL(true);
     delete tq;
 
-    atdbDM->blockNotesCDS->Refresh();
-
+    ds->Refresh();
 }
 
 
@@ -230,86 +255,45 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
 
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
-{
-	switch(Button)
-    {
-    	case TNavigateBtn::nbDelete:
-             if(MessageDlg("Deleting this block will also delete all associated ribbons!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
-             {
-				Abort();
-             }
-        break;
-    }
-}
 
 void __fastcall TMainForm::PrintBarCodeClick(TObject *Sender)
 {
 	MessageDlg("Not Implemented", mtInformation, TMsgDlgButtons() << mbOK, 0);
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::RegisterNewBlock(TObject *Sender)
-{
-	if(mUsersCB->ItemIndex == -1)
-    {
-        return;
-    }
 
-    int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
-	atdbDM->blocksCDS->Append();
-    atdbDM->blocksCDS->FieldValues["created_by"] = userID;
-	atdbDM->blocksCDS->Post();
-}
-
-void __fastcall TMainForm::mUsersCBChange(TObject *Sender)
-{
-	mNewBlockBtn->Enabled = (mUsersCB->ItemIndex != -1) ?  true : false;
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::mUsersCBEnter(TObject *Sender)
 {
-    mUsersQ->Close();
-    mUsersCB->Clear();
-    mUsersQ->Open();
-    while(mUsersQ->Eof != true)
-    {
-	    int* id = new int;
-		*id = mUsersQ->Fields->Fields[0]->AsInteger;
-        mUsersCB->Items->AddObject(mUsersQ->Fields->Fields[1]->AsString, (TObject*) id);
-        mUsersQ->Next();
-    }
+//    mUsersQ->Close();
+////    mUsersCB->Clear();
+//    mUsersQ->Open();
+//    while(mUsersQ->Eof != true)
+//    {
+//	    int* id = new int;
+//		*id = mUsersQ->Fields->Fields[0]->AsInteger;
+////        mUsersCB->Items->AddObject(mUsersQ->Fields->Fields[1]->AsString, (TObject*) id);
+//        mUsersQ->Next();
+//    }
 }
 
 
 void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
 {
 	atdbDM->afterConnect();
-//    enableDisableGroupBox(mATDBServerGB, true);
+	mUsersDBCB->Enabled = true;
+    mUsersDBCB->KeyValue = mDBUserID.getValue();
     mATDBServerBtnConnect->Caption = "Disconnect";
+    mUsersDBCB->OnCloseUp(NULL);
+
 }
 
 void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
 {
+	mUsersDBCB->Enabled = false;
 	atdbDM->afterDisConnect();
-//    enableDisableGroupBox(mATDBServerGB, false);
+
     mATDBServerBtnConnect->Caption = "Connect";
 }
-
-void TMainForm::populateUsers()
-{
-    try
-    {
-//    	populateUsersCB(mUsersCB, mClientDBSession);
-    }
-    catch(...)
-    {
-//    	handleMySQLException();
-    }
-}
-
 
 void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
 {
@@ -335,7 +319,7 @@ void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
 void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
 {
 	TButton* b = dynamic_cast<TButton*>(Sender);
-    if(b == mNewNoteBtn)
+    if(b == mNewBlockNoteBtn)
     {
         int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
         int blockID = atdbDM->blocksCDSid->Value;
@@ -351,6 +335,7 @@ void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
         }
 
         atdbDM->blockNotesCDS->Refresh();
+        atdbDM->blockNotesCDS->Last();
     }
     else if(b == mNewRibbonNote)
     {
@@ -368,32 +353,8 @@ void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
         }
 
         atdbDM->ribbonNotesCDS->Refresh();
-
+        atdbDM->ribbonNotesCDS->Last();
     }
-
-//    TSQLQuery* tq = new TSQLQuery(NULL);
-//    tq->SQLConnection = atdbDM->SQLConnection1;
-//
-//    stringstream q;
-//    q <<"INSERT INTO note (created_by, note) VALUES ("<<uID<<", \'<none>\');";
-//    q << "SELECT LAST_INSERT_ID() AS lastNoteID;";
-//    Log(lInfo) << q.str();
-//    tq->SQL->Add(q.str().c_str());
-//    tq->Open();
-//    int noteID = tq->FieldByName("noteID")->AsInteger;
-//    tq->Close();
-
-
-//    //Associate
-//    q.str("");
-//    q << "INSERT INTO block_note (block_id, note_id) VALUES("<<blockID<<","<<noteID<<")";
-//    Log(lInfo) << q.str();
-//    tq->SQL->Clear();
-//    tq->SQL->Add(q.str().c_str());
-//    tq->ExecSQL(true);
-
-//    delete tq;
-
 }
 
 //---------------------------------------------------------------------------
@@ -402,4 +363,16 @@ void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
 	atdbDM->blockNotesCDS->Post();
 }
 
-
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mUsersDBCBCloseUp(TObject *Sender)
+{
+	if(mUsersDBCB->KeyValue.IsNull())
+    {
+    	enableDisableGroupBox(mBlocksGB, false);
+    }
+    else
+    {
+    	enableDisableGroupBox(mBlocksGB, true);
+		mDBUserID = mUsersDBCB->KeyValue;
+    }
+}

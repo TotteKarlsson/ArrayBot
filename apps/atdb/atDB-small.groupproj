@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D205F2C9-997F-479F-8C2E-0DC7AF7C3730}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\source\vcl\abVCLCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\atdbentry\AtDBEntry.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="UI\Core\atDBCore-static.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="atDB.cbproj">
+            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="abCore">
+        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abVCLCore">
+        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj"/>
+    </Target>
+    <Target Name="abVCLCore:Clean">
+        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abVCLCore:Make">
+        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="AtDBEntry">
+        <MSBuild Projects="..\atdbentry\AtDBEntry.cbproj"/>
+    </Target>
+    <Target Name="AtDBEntry:Clean">
+        <MSBuild Projects="..\atdbentry\AtDBEntry.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AtDBEntry:Make">
+        <MSBuild Projects="..\atdbentry\AtDBEntry.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDBCore-static">
+        <MSBuild Projects="UI\Core\atDBCore-static.cbproj"/>
+    </Target>
+    <Target Name="atDBCore-static:Clean">
+        <MSBuild Projects="UI\Core\atDBCore-static.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDBCore-static:Make">
+        <MSBuild Projects="UI\Core\atDBCore-static.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDB" DependsOnTargets="abCore">
+        <MSBuild Projects="atDB.cbproj"/>
+    </Target>
+    <Target Name="atDB:Clean" DependsOnTargets="abCore:Clean">
+        <MSBuild Projects="atDB.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDB:Make" DependsOnTargets="abCore:Make">
+        <MSBuild Projects="atDB.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="abCore;abVCLCore;AtDBEntry;atDBCore-static;atDB"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;AtDBEntry:Clean;atDBCore-static:Clean;atDB:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="abCore:Make;abVCLCore:Make;AtDBEntry:Make;atDBCore-static:Make;atDB:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

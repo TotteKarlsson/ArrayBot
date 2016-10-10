@@ -97,27 +97,20 @@ class TMainForm : public TRegistryForm
     TTimer *ShutDownTimer;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet2;
-	TGroupBox *GroupBox2;
-	TBindSourceDB *BindSourceDB1;
+	TGroupBox *mBlocksGB;
 	TBindingsList *BindingsList1;
-	TBarcode1D_Code39 *Barcode1D_Code391;
-	TDBBarcode1D *DBBarcode1D1;
-	TImage *mBarCodeImage;
 	TActionList *ActionList2;
 	TDBGrid *mRibbonsGrid;
 	TDBNavigator *mRibbonsNavigator;
 	TGroupBox *GroupBox6;
 	TButton *PrintBarCodeBtn;
-	TBindSourceDB *BindSourceDB2;
 	TTabSheet *TabSheet3;
 	TDBGrid *DBGrid3;
 	TDBNavigator *DBNavigator1;
 	TDBGrid *mBlocksGrid;
 	TPanel *Panel3;
 	TDBNavigator *mBlocksNavigator;
-	TButton *mNewBlockBtn;
 	TSQLQuery *mUsersQ;
-	TComboBox *mUsersCB;
 	TTabSheet *TabSheet4;
 	TDBNavigator *DBNavigator3;
 	TDBGrid *DBGrid5;
@@ -130,14 +123,14 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *DBNavigator2;
 	TDBMemo *DBMemo2;
 	TLabel *Label1;
-	TButton *mDeleteNoteBtn;
-	TButton *mNewNoteBtn;
+	TButton *mDeleteBlockNoteBtn;
+	TButton *mNewBlockNoteBtn;
 	TScrollBox *ScrollBox1;
 	TDBGrid *DBGrid1;
 	TDBMemo *DBMemo3;
 	TDBNavigator *DBNavigator4;
 	TButton *mNewRibbonNote;
-	TButton *mDeleteRibbonNote;
+	TButton *mDeleteRibbonNoteBtn;
 	TLabel *Label2;
 	TDBEdit *DBEdit2;
 	TLabel *Label3;
@@ -145,8 +138,19 @@ class TMainForm : public TRegistryForm
 	TDBEdit *DBEdit3;
 	TDBLookupComboBox *DBLookupComboBox1;
 	TDBLookupComboBox *DBLookupComboBox2;
-	TDBLookupComboBox *DBLookupComboBox3;
+	TDBLookupComboBox *mUsersDBCB;
 	TDBLookupComboBox *DBLookupComboBox4;
+	TGroupBox *BlockNotesGB;
+	TTabSheet *TabSheet5;
+	TBarcode1D_Code39 *Barcode1D_Code391;
+	TDBBarcode1D *DBBarcode1D1;
+	TImage *mBarCodeImage;
+	TGroupBox *GroupBox1;
+	TPanel *MenuPanel;
+	TSTDStringLabeledEdit *mDBUserE;
+	TSTDStringLabeledEdit *mPasswordE;
+	TGroupBox *GroupBox3;
+	TSTDStringLabeledEdit *mDatabaseE;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -166,13 +170,15 @@ class TMainForm : public TRegistryForm
 	void __fastcall RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall PrintBarCodeClick(TObject *Sender);
-	void __fastcall RegisterNewBlock(TObject *Sender);
-	void __fastcall mUsersCBChange(TObject *Sender);
+
 	void __fastcall mUsersCBEnter(TObject *Sender);
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall mNewNoteBtnClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
+	void __fastcall mUsersDBCBCloseUp(TObject *Sender);
+	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
+
 
     private:	// User declarations
         bool                                            gCanClose;
@@ -201,10 +207,15 @@ class TMainForm : public TRegistryForm
         IniFileProperties	      	                    mGeneralProperties;
         mtk::Property<int>	                            mBottomPanelHeight;
 		mtk::Property<int>	                            mMainTabIndex;
+
+
 		mtk::Property<mtk::LogLevel>	                mLogLevel;
         mtk::Property<string>							mLocalDBFile;
         TRegistryProperties   	  	                    mSplashProperties;
         mtk::Property<bool>                             mShowSplashOnStartup;
+
+		mtk::Property<int>	                            mDBUserID;
+
         void        __fastcall                          PopulateStyleMenu();
 
         bool                                            setupAndReadIniParameters();

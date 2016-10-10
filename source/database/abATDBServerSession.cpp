@@ -188,8 +188,65 @@ bool ATDBServerSession::deleteBlock(int bId)
     int bid(bId);
 
 	Statement s(ses);
-    s << "DELETE FROM block WHERE id = ?", use(bId), now;
 
+    //Delete associated notes
+	s << "DELETE FROM block_note WHERE block_id = ?", use(bId), now;
+
+    s.reset(ses);
+
+    s << "DELETE FROM block WHERE id = ?", use(bId), now;
+	return true;
+}
+
+bool ATDBServerSession::deleteNotesForBlock(int bId)
+{
+    Session& ses = *mTheSession;
+
+    //We need local variables for the statements..
+    int bid(bId);
+
+	Statement s(ses);
+
+    //Delete associated notes
+    s << "DELETE FROM note WHERE id IN (SELECT note_id FROM block_note WHERE block_id = ?)", use(bId), now;
+    s.reset(ses);
+	return true;
+}
+
+bool ATDBServerSession::deleteRibbonsForBlock(int bId)
+{
+    Session& ses = *mTheSession;
+
+    //We need local variables for the statements..
+
+    //Delete any notes
+    int bID(bId);
+
+	Statement s(ses);
+
+    //Delete associated notes
+    //Delete associated notes
+    s << "DELETE FROM note WHERE id IN (SELECT note_id FROM ribbon_note where ribbon_id IN ( \
+    	SELECT ribbon_id FROM ribbon WHERE block_id = ?))", use(bID), now;
+	s.reset(ses);
+
+    s << "DELETE FROM ribbon WHERE block_id = ?", use(bID), now;
+    s.reset(ses);
+	return true;
+}
+
+bool ATDBServerSession::deleteNotesForRibbon(const string& rId)
+{
+    Session& ses = *mTheSession;
+
+    //We need local variables for the statements..
+    string  rID(rId);
+
+	Statement s(ses);
+
+    //Delete associated notes
+    s << "DELETE FROM note WHERE id IN (SELECT note_id FROM ribbon_note WHERE ribbon_id = ?)", use(rID), now;
+    s.reset(ses);
 	return true;
 }
 

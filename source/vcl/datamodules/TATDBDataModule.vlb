@@ -11,23 +11,29 @@ Coordinates=145,179,61,159
 Coordinates=269,125,57,105
 
 [noteDS]
-Coordinates=164,561,57,123
+Coordinates=164,561,50,51
 
 [blockNotesQ]
-Coordinates=312,268,77,51
+Coordinates=312,268,77,123
 
 [notesCDS]
 Coordinates=233,561,63,123
 
 [ribbonsQ]
-Coordinates=127,1,66,177
+Coordinates=127,1,73,177
 
 [usersCDS]
-Coordinates=0,0,108,105
+Coordinates=0,0,63,105
 
 [mRibbonCDS]
-Coordinates=550,330,89,177
+Coordinates=550,330,80,177
 
 [blockNotesCDS]
-Coordinates=312,477,93,159
+Coordinates=312,477,91,123
+
+[ribbonNotesCDS]
+Coordinates=46,321,96,123
+
+[ribbonNotesQ]
+Coordinates=427,143,83,123
 

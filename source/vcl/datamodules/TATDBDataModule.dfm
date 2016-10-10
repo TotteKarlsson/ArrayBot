@@ -170,6 +170,7 @@ object atdbDM: TatdbDM
   end
   object usersDataSource: TDataSource
     DataSet = usersCDS
+    OnDataChange = usersDataSourceDataChange
     Left = 336
     Top = 88
   end

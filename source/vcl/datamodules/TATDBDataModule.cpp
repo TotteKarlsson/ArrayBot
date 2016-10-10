@@ -91,7 +91,7 @@ void __fastcall TatdbDM::usersCDSAfterDelete(TDataSet *DataSet)
 
 void __fastcall TatdbDM::usersCDSAfterScroll(TDataSet *DataSet)
 {
-	;
+;
 }
 
 //---------------------------------------------------------------------------
@@ -123,6 +123,7 @@ void TatdbDM::updateRibbons()
     if(bID == 0)
     {
 		mRibbonCDS->Active = false;
+        ribbonNotesCDS->Active = false;
         return;
     }
     //Fetch associated Ribbons
@@ -131,6 +132,7 @@ void TatdbDM::updateRibbons()
     ribbonsQ->Open();
     ribbonsQ->Close();
     mRibbonCDS->Active = true;
+   ribbonNotesCDS->Active = true;
 }
 
 //---------------------------------------------------------------------------
@@ -143,11 +145,6 @@ void __fastcall TatdbDM::blocksCDSAfterScroll(TDataSet *DataSet)
 
 	int bID = blocksCDS->FieldByName("id")->AsInteger;
 
-    if(bID == 0)
-    {
-		mRibbonCDS->Active = false;
-        return;
-    }
 
     blockNotesQ->Close();
 	blockNotesQ->Params->ParamByName("id")->AsInteger = bID;
@@ -155,16 +152,13 @@ void __fastcall TatdbDM::blocksCDSAfterScroll(TDataSet *DataSet)
 
     //Get notes
 	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
-	Log(lInfo) << "Note is: " << note;
 	blockNotesQ->Close();
     blockNotesCDS->Refresh();
 
     //Fetch associated Ribbons
-    mRibbonCDS->Active = false;
     ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + String(bID) + "'";
     ribbonsQ->Open();
     ribbonsQ->Close();
-    mRibbonCDS->Active = true;
 }
 
 //---------------------------------------------------------------------------
@@ -335,9 +329,16 @@ void __fastcall TatdbDM::mRibbonCDSAfterScroll(TDataSet *DataSet)
 
     //Get notes
 	string note = stdstr(ribbonNotesQ->FieldByName("note")->AsString);
-	Log(lInfo) << "Note is: " << note;
 	ribbonNotesQ->Close();
     ribbonNotesCDS->Refresh();
 }
 
+
+void __fastcall TatdbDM::usersDataSourceDataChange(TObject *Sender, TField *Field)
+
+{
+//    usersDataSource->Enabled = false;
+//    usersDataSource->Enabled = true;
+}
+//---------------------------------------------------------------------------
 

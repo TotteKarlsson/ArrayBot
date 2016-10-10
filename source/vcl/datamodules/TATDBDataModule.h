@@ -116,6 +116,8 @@ __published:	// IDE-managed Components
           bool DisplayText);
 	void __fastcall blockNotesCDSAfterScroll(TDataSet *DataSet);
 	void __fastcall mRibbonCDSAfterScroll(TDataSet *DataSet);
+	void __fastcall usersDataSourceDataChange(TObject *Sender, TField *Field);
+
 
 
 
