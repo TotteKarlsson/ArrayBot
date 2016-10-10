@@ -4,7 +4,6 @@ object atdbDM: TatdbDM
   Width = 647
   object SQLConnection1: TSQLConnection
     DriverName = 'MySQL'
-    KeepConnection = False
     LoginPrompt = False
     Params.Strings = (
       'DriverUnit=Data.DBXMySQL'
@@ -296,13 +295,12 @@ object atdbDM: TatdbDM
     Top = 640
   end
   object mRibbonProvider: TDataSetProvider
-    DataSet = ribbonsQ
+    DataSet = ribbonsDS
     Left = 128
     Top = 224
   end
   object mRibbonCDS: TClientDataSet
     Aggregates = <>
-    MasterFields = 'id'
     Params = <>
     ProviderName = 'mRibbonProvider'
     BeforePost = mRibbonCDSBeforePost
@@ -314,17 +312,10 @@ object atdbDM: TatdbDM
     Top = 224
     object mRibbonCDSid: TStringField
       FieldName = 'id'
-      Required = True
       Size = 36
     end
     object mRibbonCDSstatus: TIntegerField
       FieldName = 'status'
-    end
-    object mRibbonCDScreated: TSQLTimeStampField
-      FieldName = 'created'
-    end
-    object mRibbonCDSmodified: TSQLTimeStampField
-      FieldName = 'modified'
     end
     object mRibbonCDSblock_id: TIntegerField
       FieldName = 'block_id'
@@ -336,50 +327,17 @@ object atdbDM: TatdbDM
     object mRibbonCDSnr_of_sections: TSmallintField
       FieldName = 'nr_of_sections'
     end
+    object mRibbonCDScreated: TSQLTimeStampField
+      FieldName = 'created'
+    end
+    object mRibbonCDSmodified: TSQLTimeStampField
+      FieldName = 'modified'
+    end
   end
   object mRibbonDSource: TDataSource
     DataSet = mRibbonCDS
     Left = 336
     Top = 224
-  end
-  object ribbonsQ: TSQLQuery
-    DataSource = blocksDataSource
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'id'
-        ParamType = ptInput
-      end>
-    SQL.Strings = (
-      'select * from ribbon where block_id = :id')
-    SQLConnection = SQLConnection1
-    Left = 32
-    Top = 224
-    object ribbonsQid: TStringField
-      FieldName = 'id'
-      Required = True
-      Size = 36
-    end
-    object ribbonsQstatus: TIntegerField
-      FieldName = 'status'
-    end
-    object ribbonsQblock_id: TIntegerField
-      FieldName = 'block_id'
-      Required = True
-    end
-    object ribbonsQcutting_order: TIntegerField
-      FieldName = 'cutting_order'
-    end
-    object ribbonsQnr_of_sections: TSmallintField
-      FieldName = 'nr_of_sections'
-    end
-    object ribbonsQcreated: TSQLTimeStampField
-      FieldName = 'created'
-    end
-    object ribbonsQmodified: TSQLTimeStampField
-      FieldName = 'modified'
-    end
   end
   object ribbonNotesQ: TSQLQuery
     DataSource = mRibbonDSource
@@ -456,5 +414,42 @@ object atdbDM: TatdbDM
     DataSet = ribbonNotesCDS
     Left = 352
     Top = 472
+  end
+  object ribbonsDS: TSQLDataSet
+    CommandText = 'SELECT * from ribbon where block_id=:id'
+    DataSource = blocksDataSource
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 32
+    Top = 224
+    object ribbonsDSid: TStringField
+      FieldName = 'id'
+      Size = 36
+    end
+    object ribbonsDSstatus: TIntegerField
+      FieldName = 'status'
+    end
+    object ribbonsDSblock_id: TIntegerField
+      FieldName = 'block_id'
+      Required = True
+    end
+    object ribbonsDScutting_order: TIntegerField
+      FieldName = 'cutting_order'
+    end
+    object ribbonsDSnr_of_sections: TSmallintField
+      FieldName = 'nr_of_sections'
+    end
+    object ribbonsDScreated: TSQLTimeStampField
+      FieldName = 'created'
+    end
+    object ribbonsDSmodified: TSQLTimeStampField
+      FieldName = 'modified'
+    end
   end
 end

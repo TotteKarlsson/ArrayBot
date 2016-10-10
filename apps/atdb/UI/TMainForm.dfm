@@ -115,7 +115,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 1140
       Height = 602
-      ActivePage = TabSheet1
+      ActivePage = TabSheet2
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -243,7 +243,7 @@ object MainForm: TMainForm
               object DBGrid1: TDBGrid
                 Left = 13
                 Top = 29
-                Width = 199
+                Width = 156
                 Height = 187
                 DataSource = atdbDM.ribbonNotesDSource
                 Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -258,7 +258,7 @@ object MainForm: TMainForm
                     Expanded = False
                     FieldName = 'created_on'
                     Title.Caption = 'Date'
-                    Width = 80
+                    Width = 142
                     Visible = True
                   end>
               end
@@ -449,9 +449,9 @@ object MainForm: TMainForm
               end
               object mBlockNotesGrid: TDBGrid
                 Left = 8
-                Top = 24
-                Width = 209
-                Height = 203
+                Top = 50
+                Width = 161
+                Height = 177
                 DataSource = atdbDM.blockNotesDSource
                 Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
                 TabOrder = 3
@@ -465,12 +465,12 @@ object MainForm: TMainForm
                     Expanded = False
                     FieldName = 'created_on'
                     Title.Caption = 'Date'
-                    Width = 100
+                    Width = 161
                     Visible = True
                   end>
               end
               object mDeleteBlockNoteBtn: TButton
-                Left = 106
+                Left = 90
                 Top = 233
                 Width = 75
                 Height = 27
@@ -486,6 +486,18 @@ object MainForm: TMainForm
                 Caption = 'New Note'
                 TabOrder = 5
                 OnClick = mNewNoteBtnClick
+              end
+              object DBNavigator5: TDBNavigator
+                Left = 9
+                Top = 19
+                Width = 160
+                Height = 25
+                DataSource = atdbDM.blockNotesDSource
+                VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
+                ConfirmDelete = False
+                TabOrder = 6
+                BeforeAction = mBlocksNavigatorBeforeAction
+                OnClick = DBNavigator5Click
               end
             end
           end

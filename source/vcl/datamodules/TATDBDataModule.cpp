@@ -54,13 +54,13 @@ bool __fastcall TatdbDM::connect(const string& ip, const string& dbUser, const s
         mDataBaseUserPassword = dbPassword;
         mDBIP = ip;
 
+        SQLConnection1->KeepConnection = true;
     	SQLConnection1->Connected = false;
        	SQLConnection1->Params->Values[_D("HostName")] = vclstr(mDBIP);
        	SQLConnection1->Params->Values[_D("Database")] = vclstr(mDataBase);
        	SQLConnection1->Params->Values[_D("User_Name")] = vclstr(mDataBaseUser);
        	SQLConnection1->Params->Values[_D("Password")] = vclstr(mDataBaseUserPassword);
        	SQLConnection1->Connected= true;
-
     }
     catch (const Exception &E)
     {
@@ -86,12 +86,12 @@ void __fastcall TatdbDM::afterConnect()
 {
 	Log(lInfo) << "Connection established to: "<<mDataBase;
 	usersCDS->Active 	    = true;
-	blocksDS->Active 	    = true;
+    blocksCDS->Active 	    = true;
+    mRibbonCDS->Active 	    = true;
+    notesCDS->Active   	    = true;
+
 	blockNotesCDS->Active  	= true;
     ribbonNotesCDS->Active  = true;
-    mRibbonCDS->Active 	    = true;
-    blocksCDS->Active 	    = true;
-    notesCDS->Active   	    = true;
 
 }
 
@@ -100,7 +100,7 @@ void __fastcall TatdbDM::afterDisConnect()
 	Log(lInfo) << "Closed connection to: "<<mDataBase;
   	usersCDS->Active 	    = false;
     blocksCDS->Active 	    = false;
-    mRibbonCDS->Active 	    = false;
+//    mRibbonCDS->Active 	    = false;
     notesCDS->Active	    = false;
 	blockNotesCDS->Active  	= false;
     ribbonNotesCDS->Active  = false;
@@ -134,9 +134,7 @@ void __fastcall TatdbDM::usersCDSAfterCancel(TDataSet *DataSet)
 void __fastcall TatdbDM::blocksCDSAfterPost(TDataSet *DataSet)
 {
 	blocksCDS->ApplyUpdates(0);
-    blocksDS->Refresh();
     blocksCDS->Refresh();
-	updateRibbons();
 }
 
 //---------------------------------------------------------------------------
@@ -148,21 +146,21 @@ void __fastcall TatdbDM::blocksCDSAfterDelete(TDataSet *DataSet)
 
 void TatdbDM::updateRibbons()
 {
-	int bID = blocksCDS->FieldByName("id")->AsInteger;
-
-    if(bID == 0)
-    {
-		mRibbonCDS->Active = false;
-        ribbonNotesCDS->Active = false;
-        return;
-    }
-    //Fetch associated Ribbons
-    mRibbonCDS->Active = false;
-    ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + String(bID) + "'";
-    ribbonsQ->Open();
-    ribbonsQ->Close();
-    mRibbonCDS->Active = true;
-   ribbonNotesCDS->Active = true;
+//	int bID = blocksCDS->FieldByName("id")->AsInteger;
+//
+//    if(bID == 0)
+//    {
+//		mRibbonCDS->Active = false;
+//        ribbonNotesCDS->Active = false;
+//        return;
+//    }
+//    //Fetch associated Ribbons
+//    mRibbonCDS->Active = false;
+//    ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + String(bID) + "'";
+//    ribbonsQ->Open();
+//    ribbonsQ->Close();
+//    mRibbonCDS->Active = true;
+//   ribbonNotesCDS->Active = true;
 }
 
 //---------------------------------------------------------------------------
@@ -175,21 +173,37 @@ void __fastcall TatdbDM::blocksCDSAfterScroll(TDataSet *DataSet)
 
 	int bID = blocksCDS->FieldByName("id")->AsInteger;
 
+   if(bID == 0)
+    {
+	    blockNotesCDS->Active = false;
+        mRibbonCDS->Active = false;
+    }
+    else
+    {
+	    blockNotesCDS->Active = true;
+        mRibbonCDS->Active = true;
 
-    blockNotesQ->Close();
-	blockNotesQ->Params->ParamByName("id")->AsInteger = bID;
-    blockNotesQ->Open();
-
-    //Get notes
-	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
-	blockNotesQ->Close();
-    blockNotesCDS->Refresh();
+    }
+//
+//    blockNotesQ->Close();
+//	blockNotesQ->Params->ParamByName("id")->AsInteger = bID;
+//    blockNotesQ->Open();
+//
+//    //Get notes
+//	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
+//	blockNotesQ->Close();
+//    blockNotesCDS->Refresh();
 
     //Fetch associated Ribbons
-    ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + String(bID) + "'";
-    ribbonsQ->Open();
-    ribbonsQ->Close();
+//    ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + String(bID) + "'";
+//    ribbonsQ->Open();
+//    ribbonsQ->Close();
+	if(mRibbonCDS->Active)
+	{
+    	mRibbonCDS->Refresh();
+    }
 }
+
 
 //---------------------------------------------------------------------------
 void __fastcall TatdbDM::blockNotesCDSAfterPost(TDataSet *DataSet)
@@ -213,6 +227,7 @@ void __fastcall TatdbDM::blocksCDSBeforePost(TDataSet *DataSet)
 void __fastcall TatdbDM::mRibbonCDSAfterPost(TDataSet *DataSet)
 {
 	mRibbonCDS->ApplyUpdates(0);
+    mRibbonCDS->Refresh();
 }
 
 //---------------------------------------------------------------------------
@@ -340,10 +355,10 @@ void __fastcall TatdbDM::blockNotesCDSAfterScroll(TDataSet *DataSet)
 //---------------------------------------------------------------------------
 void __fastcall TatdbDM::mRibbonCDSAfterScroll(TDataSet *DataSet)
 {
-	if(!SQLConnection1->Connected || gAppIsStartingUp)
-    {
-    	return;
-    }
+//	if(!SQLConnection1->Connected || gAppIsStartingUp)
+//    {
+//    	return;
+//    }
 
 	string rID = stdstr(mRibbonCDS->FieldByName("id")->AsString);
 
@@ -371,4 +386,5 @@ void __fastcall TatdbDM::usersDataSourceDataChange(TObject *Sender, TField *Fiel
 //    usersDataSource->Enabled = true;
 }
 //---------------------------------------------------------------------------
+
 

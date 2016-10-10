@@ -151,6 +151,7 @@ class TMainForm : public TRegistryForm
 	TSTDStringLabeledEdit *mPasswordE;
 	TGroupBox *GroupBox3;
 	TSTDStringLabeledEdit *mDatabaseE;
+	TDBNavigator *DBNavigator5;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -161,7 +162,7 @@ class TMainForm : public TRegistryForm
     void __fastcall ShutDownTimerTimer(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall LogLevelCBChange(TObject *Sender);
-	void __fastcall mUsersCBClick(TObject *Sender);
+
 	void __fastcall mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mUsersNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -178,6 +179,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall mUsersDBCBCloseUp(TObject *Sender);
 	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
+	void __fastcall DBNavigator5Click(TObject *Sender, TNavigateBtn Button);
 
 
     private:	// User declarations

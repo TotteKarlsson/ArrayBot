@@ -9,9 +9,6 @@
         <Projects Include="..\..\source\vcl\abVCLCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\atdbentry\AtDBEntry.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="UI\Core\atDBCore-static.cbproj">
             <Dependencies/>
         </Projects>
@@ -44,15 +41,6 @@
     <Target Name="abVCLCore:Make">
         <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="AtDBEntry">
-        <MSBuild Projects="..\atdbentry\AtDBEntry.cbproj"/>
-    </Target>
-    <Target Name="AtDBEntry:Clean">
-        <MSBuild Projects="..\atdbentry\AtDBEntry.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="AtDBEntry:Make">
-        <MSBuild Projects="..\atdbentry\AtDBEntry.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="atDBCore-static">
         <MSBuild Projects="UI\Core\atDBCore-static.cbproj"/>
     </Target>
@@ -72,13 +60,13 @@
         <MSBuild Projects="atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;abVCLCore;AtDBEntry;atDBCore-static;atDB"/>
+        <CallTarget Targets="abCore;abVCLCore;atDBCore-static;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;AtDBEntry:Clean;atDBCore-static:Clean;atDB:Clean"/>
+        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;atDBCore-static:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;abVCLCore:Make;AtDBEntry:Make;atDBCore-static:Make;atDB:Make"/>
+        <CallTarget Targets="abCore:Make;abVCLCore:Make;atDBCore-static:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

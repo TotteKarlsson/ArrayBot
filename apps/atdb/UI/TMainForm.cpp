@@ -31,16 +31,11 @@
 #pragma link "pCode39"
 #pragma link "pDBBarcode1D"
 #pragma link "TArrayBotBtn"
-#pragma link "RzDBEdit"
-#pragma link "RzEdit"
-#pragma link "RzDBSpin"
-#pragma link "RzSpnEdt"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
 using namespace mtk;
 using namespace ab;
-//using namespace Poco;
 
 extern string gLogFileName;
 extern string gApplicationRegistryRoot;
@@ -79,12 +74,6 @@ void __fastcall TMainForm::logMsg()
 {
     infoMemo->Lines->Add(vclstr(mLogFileReader.getData()));
     mLogFileReader.purge();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mUsersCBClick(TObject *Sender)
-{
-//	Log(lInfo) <<"Selected: " << stdstr(mUsersCB->ListSource->DataSet->FieldByName("user_name")->AsString);
 }
 
 //---------------------------------------------------------------------------
@@ -133,19 +122,19 @@ void __fastcall TMainForm::mBlocksNavigatorBeforeAction(TObject *Sender, TNaviga
 
 void __fastcall TMainForm::mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
 {
-	switch(Button)
-    {
-    	case TNavigateBtn::nbDelete:
-             if(MessageDlg("Deleting this ribbon will delete all associated notes!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
-             {
-				Abort();
-             }
-
-			String ribbonID = atdbDM->mRibbonCDS->FieldByName("id")->Value;
-            mServerDBSession.deleteNotesForRibbon(stdstr(ribbonID));
-            atdbDM->ribbonNotesCDS->Refresh();
-        break;
-    }
+//	switch(Button)
+//    {
+//    	case TNavigateBtn::nbDelete:
+////             if(MessageDlg("Deleting this ribbon will delete all associated notes!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
+////             {
+////				Abort();
+////             }
+//
+////			String ribbonID = atdbDM->mRibbonCDS->FieldByName("id")->Value;
+////            mServerDBSession.deleteNotesForRibbon(stdstr(ribbonID));
+////            atdbDM->ribbonNotesCDS->Refresh();
+//        break;
+//    }
 }
 
 void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
@@ -164,6 +153,7 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
                 atdbDM->blocksCDS->Append();
 	        	atdbDM->blocksCDS->FieldValues["created_by"] = mUsersDBCB->KeyValue;
 				mBlocksNavigator->BtnClick( Data::Bind::Controls::nbPost);
+				mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
 			    atdbDM->blocksCDS->Last();
             }
             else
@@ -231,25 +221,29 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
 	switch(Button)
     {
     	case TNavigateBtn::nbDelete:
+        	Abort();
         break;
 
     	case TNavigateBtn::nbInsert:
-	        atdbDM->mRibbonCDS->FieldByName("id")->Value = getUUID().c_str();
-	        atdbDM->mRibbonCDS->FieldByName("block_id")->Value = atdbDM->blocksCDS->FieldByName("id")->Value;
+        {
+	        atdbDM->mRibbonCDS->FieldByName("id")->Value 		= getUUID().c_str();
+	        atdbDM->mRibbonCDS->FieldByName("block_id")->Value 	= atdbDM->blocksCDS->FieldByName("id")->Value;
 			mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbPost);
+	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbLast);
+        }
         break;
         case TNavigateBtn::nbPost:
-	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
-	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
-	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbLast);
-	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
+//	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
+//	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
+//	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbLast);
+//	        mRibbonsNavigator->BtnClick( (TNavigateBtn) Data::Bind::Controls::nbRefresh);
         break;
         case TNavigateBtn::nbRefresh:
-			atdbDM->mRibbonCDS->Refresh();
+//			atdbDM->mRibbonCDS->Refresh();
         	Log(lInfo) << "Refreshed Ribbons Dataset";
  		break;
     }
-
+//
 	mRibbonsGrid->Width = mRibbonsGrid->Width + 1;
 	mRibbonsGrid->Width = mRibbonsGrid->Width - 1;
 
@@ -377,3 +371,30 @@ void __fastcall TMainForm::mUsersDBCBCloseUp(TObject *Sender)
 		mDBUserID = mUsersDBCB->KeyValue;
     }
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::DBNavigator5Click(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbInsert:
+            int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
+            int blockID = atdbDM->blocksCDSid->Value;
+            string note("Block Note..");
+
+            try
+            {
+                mServerDBSession.addNoteForBlock(blockID, uID, note);
+            }
+            catch(...)
+            {
+                handleMySQLException();
+            }
+
+            atdbDM->blockNotesCDS->Refresh();
+            atdbDM->blockNotesCDS->Last();
+        break;
+    }
+}
+
+
