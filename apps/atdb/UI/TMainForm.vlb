@@ -297,9 +297,6 @@ Coordinates=518,452,66,33
 [DBMemo1]
 Coordinates=376,513,64,33
 
-[STDStringLabeledEdit1]
-Coordinates=603,330,128,51
-
 [Label4]
 Coordinates=741,330,46,51
 
@@ -419,4 +416,7 @@ Coordinates=529,391,129,51
 
 [mBlocksGB]
 Coordinates=10,391,70,51
+
+[mServerIPE]
+Coordinates=603,330,128,51
 

@@ -103,7 +103,8 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
    	atdbDM->SQLConnection1->AfterConnect 	= afterServerConnect;
    	atdbDM->SQLConnection1->AfterDisconnect = afterServerDisconnect;
 
-	if (atdbDM->connect("atdb"))
+    bool connected = atdbDM->connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
+	if (connected)
     {
     	Log(lInfo) << "Connected to database: "<<"atdb";
     }
@@ -156,9 +157,18 @@ bool TMainForm::setupAndReadIniParameters()
 	mGeneralProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
 	mGeneralProperties.add((BaseProperty*)  &mDBUserID.setup( 	                    "ATDB_USER_ID",                    0));
 
+	mGeneralProperties.add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    "ATDB_USER_NAME",                    "none"));
+	mGeneralProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",                "none"));
+	mGeneralProperties.add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			         "none"));
+
 	//Read from file. Create if file do not exist
 	mGeneralProperties.read();
+
 	mSplashProperties.add((BaseProperty*)  &mShowSplashOnStartup.setup(             "ShowOnStartup",                    true));
+
+    mDBUserE->update();
+    mPasswordE->update();
+    mDatabaseE->update();
 
 	if(mSplashProperties.doesSectionExist())
 	{

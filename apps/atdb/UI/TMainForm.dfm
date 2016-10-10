@@ -115,7 +115,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 1140
       Height = 602
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -584,7 +584,7 @@ object MainForm: TMainForm
           Height = 233
           Caption = 'ATDB Connection'
           TabOrder = 0
-          object STDStringLabeledEdit1: TSTDStringLabeledEdit
+          object mServerIPE: TSTDStringLabeledEdit
             Left = 16
             Top = 40
             Width = 121

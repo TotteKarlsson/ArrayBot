@@ -123,12 +123,16 @@ __published:	// IDE-managed Components
 
 	private:	// User declarations
     protected:
-    	string		mDataBase;
+    	string		mDataBaseUser;
+    	string		mDataBaseUserPassword;
+       	string		mDataBase;
+        string 		mDBIP;
+
 		void		updateRibbons();
 	public:
 				__fastcall TatdbDM(TComponent* Owner);
 
-		bool 	__fastcall connect(const string& db);
+		bool 	__fastcall connect(const string& ip, const string& dbUser, const string& dbPassword, const string& db);
         void    __fastcall afterConnect();
         void    __fastcall afterDisConnect();
 

@@ -22,13 +22,43 @@ __fastcall TatdbDM::TatdbDM(TComponent* Owner)
   	SQLConnection1->Connected = false;
 }
 
-bool __fastcall TatdbDM::connect(const string& db)
+// VALID Paramaters
+//DriverUnit=Data.DBXMySQL
+//DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver170.bpl
+//DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borland.Data.DbxCommonDriver,Version=17.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b
+//MetaDataPackageLoader=TDBXMySqlMetaDataCommandFactory,DbxMySQLDriver170.bpl
+//MetaDataAssemblyLoader=Borland.Data.TDBXMySqlMetaDataCommandFactory,Borland.Data.DbxMySQLDriver,Version=17.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b
+//GetDriverFunc=getSQLDriverMYSQL
+//LibraryName=dbxmys.dll
+//LibraryNameOsx=libsqlmys.dylib
+//VendorLib=LIBMYSQL.dll
+//VendorLibWin64=libmysql.dll
+//VendorLibOsx=libmysqlclient.dylib
+//HostName=localhost
+//Database=atdb
+//User_Name=atdb_client
+//Password=atdb123
+//MaxBlobSize=-1
+//LocaleCode=0000
+//Compressed=False
+//Encrypted=False
+//BlobSize=-1
+
+
+bool __fastcall TatdbDM::connect(const string& ip, const string& dbUser, const string& dbPassword, const string& db)
 {
 	try
     {
 	    mDataBase = db;
+        mDataBaseUser = dbUser;
+        mDataBaseUserPassword = dbPassword;
+        mDBIP = ip;
+
     	SQLConnection1->Connected = false;
+       	SQLConnection1->Params->Values[_D("HostName")] = vclstr(mDBIP);
        	SQLConnection1->Params->Values[_D("Database")] = vclstr(mDataBase);
+       	SQLConnection1->Params->Values[_D("User_Name")] = vclstr(mDataBaseUser);
+       	SQLConnection1->Params->Values[_D("Password")] = vclstr(mDataBaseUserPassword);
        	SQLConnection1->Connected= true;
 
     }

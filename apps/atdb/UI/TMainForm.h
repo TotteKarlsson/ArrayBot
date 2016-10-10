@@ -116,7 +116,7 @@ class TMainForm : public TRegistryForm
 	TDBGrid *DBGrid5;
 	TDBEdit *DBEdit1;
 	TTabSheet *TabSheet1;
-	TSTDStringLabeledEdit *STDStringLabeledEdit1;
+	TSTDStringLabeledEdit *mServerIPE;
 	TArrayBotButton *mATDBServerBtnConnect;
 	TDBGrid *mBlockNotesGrid;
 	TDBMemo *DBMemo1;

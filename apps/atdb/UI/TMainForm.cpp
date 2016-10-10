@@ -304,7 +304,8 @@ void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
     }
     else
     {
-	    atdbDM->connect("atdb");
+	//connect(const string& ip, const string& dbUser, const string& dbPassword, const string& db)
+	    atdbDM->connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
     }
 }
 
@@ -323,7 +324,7 @@ void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
     {
         int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
         int blockID = atdbDM->blocksCDSid->Value;
-        string note("<none>");
+        string note("Block Note..");
 
         try
         {
@@ -341,7 +342,7 @@ void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
     {
         int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
         String ribbonID = atdbDM->mRibbonCDSid->AsString;
-        string note("<none>");
+        string note("Ribbon Note..");
 
         try
         {
