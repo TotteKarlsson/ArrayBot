@@ -3,7 +3,7 @@ Coordinates=278,452,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=651,391,122,51
+Coordinates=529,391,129,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -321,9 +321,6 @@ Coordinates=171,556,101,33
 [Label2]
 Coordinates=868,197,46,51
 
-[mNewRibbonNote]
-Coordinates=175,330,103,51
-
 [BlockNotesGB]
 Coordinates=772,197,86,51
 
@@ -404,9 +401,6 @@ Coordinates=769,267,70,51
 
 [mDatabaseE]
 Coordinates=0,0,76,51
-
-[mDeleteRibbonNoteBtn]
-Coordinates=529,391,129,51
 
 [mBlocksGB]
 Coordinates=10,391,70,51

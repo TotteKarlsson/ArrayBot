@@ -128,12 +128,11 @@ object MainForm: TMainForm
           Top = 0
           Width = 1132
           Height = 574
-          VertScrollBar.Position = 99
           Align = alClient
           TabOrder = 0
           object GroupBox6: TGroupBox
             Left = 18
-            Top = 244
+            Top = 343
             Width = 935
             Height = 326
             Caption = 'Ribbons'
@@ -159,6 +158,7 @@ object MainForm: TMainForm
               Height = 187
               DataSource = atdbDM.mRibbonDSource
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+              ReadOnly = True
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
@@ -294,24 +294,6 @@ object MainForm: TMainForm
                 VisibleButtons = [nbPost, nbCancel]
                 TabOrder = 3
               end
-              object mDeleteRibbonNoteBtn: TButton
-                Left = 103
-                Top = 221
-                Width = 75
-                Height = 27
-                Caption = 'Delete Note'
-                TabOrder = 4
-                OnClick = mDeleteNoteBtnClick
-              end
-              object mNewRibbonNote: TButton
-                Left = 21
-                Top = 221
-                Width = 76
-                Height = 27
-                Caption = 'New Note'
-                TabOrder = 5
-                OnClick = mNewNoteBtnClick
-              end
               object DBNavigator6: TDBNavigator
                 Left = 10
                 Top = 27
@@ -320,14 +302,14 @@ object MainForm: TMainForm
                 DataSource = atdbDM.ribbonNotesDSource
                 VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
                 ConfirmDelete = False
-                TabOrder = 6
+                TabOrder = 4
                 OnClick = DBNavigator6Click
               end
             end
           end
           object mBlocksGB: TGroupBox
             Left = 16
-            Top = -87
+            Top = 12
             Width = 934
             Height = 325
             Caption = 'Blocks'
@@ -506,10 +488,6 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Users'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object DBGrid3: TDBGrid
           Left = 13
           Top = 63
@@ -566,10 +544,6 @@ object MainForm: TMainForm
       object TabSheet4: TTabSheet
         Caption = 'Notes'
         ImageIndex = 3
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object DBNavigator3: TDBNavigator
           Left = 13
           Top = 25
@@ -598,10 +572,6 @@ object MainForm: TMainForm
       object TabSheet1: TTabSheet
         Caption = 'DB Server'
         ImageIndex = 3
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 3
           Top = 16
@@ -672,10 +642,6 @@ object MainForm: TMainForm
       object TabSheet5: TTabSheet
         Caption = 'Miscellaneous'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mBarCodeImage: TImage
           Left = 3
           Top = 15

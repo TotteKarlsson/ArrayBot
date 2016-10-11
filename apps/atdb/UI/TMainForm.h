@@ -127,8 +127,6 @@ class TMainForm : public TRegistryForm
 	TDBGrid *DBGrid1;
 	TDBMemo *DBMemo3;
 	TDBNavigator *DBNavigator4;
-	TButton *mNewRibbonNote;
-	TButton *mDeleteRibbonNoteBtn;
 	TLabel *Label2;
 	TDBEdit *DBEdit2;
 	TLabel *Label3;
@@ -164,9 +162,6 @@ class TMainForm : public TRegistryForm
     void __fastcall LogLevelCBChange(TObject *Sender);
 
 	void __fastcall mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall mUsersNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
-	void __fastcall mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall mDeleteNoteBtnClick(TObject *Sender);
 	void __fastcall mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
@@ -175,7 +170,6 @@ class TMainForm : public TRegistryForm
 
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
-	void __fastcall mNewNoteBtnClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall mUsersDBCBCloseUp(TObject *Sender);
 	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
