@@ -53,10 +53,11 @@ object atdbDM: TatdbDM
     Aggregates = <>
     Params = <>
     ProviderName = 'blocksProvider'
-    BeforePost = blocksCDSBeforePost
-    AfterPost = blocksCDSAfterPost
-    AfterDelete = blocksCDSAfterDelete
-    AfterScroll = blocksCDSAfterScroll
+    BeforePost = cdsBeforePost
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterDelete
+    AfterScroll = cdsAfterScroll
+    AfterRefresh = cdsAfterRefresh
     Left = 240
     Top = 152
     object blocksCDSid: TIntegerField
@@ -92,11 +93,9 @@ object atdbDM: TatdbDM
   end
   object blocksDS: TSQLDataSet
     ObjectView = True
-    Active = True
-    CommandText = 'select * from block'
+    CommandText = 'select * from block ORDER by id DESC'
     MaxBlobSize = 1
     Params = <>
-    SortFieldNames = 'id'
     SQLConnection = SQLConnection1
     Left = 40
     Top = 152
@@ -123,6 +122,7 @@ object atdbDM: TatdbDM
     end
   end
   object usersDS: TSQLDataSet
+    Active = True
     CommandText = 'select * from user'
     MaxBlobSize = -1
     Params = <>
@@ -148,13 +148,11 @@ object atdbDM: TatdbDM
     Top = 88
   end
   object usersCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'usersProvider'
-    AfterPost = usersCDSAfterPost
-    AfterCancel = usersCDSAfterCancel
-    AfterDelete = usersCDSAfterDelete
-    AfterScroll = usersCDSAfterScroll
+    AfterPost = cdsAfterPost
     Left = 240
     Top = 88
     object usersCDSid: TIntegerField
@@ -171,7 +169,6 @@ object atdbDM: TatdbDM
   end
   object usersDataSource: TDataSource
     DataSet = usersCDS
-    OnDataChange = usersDataSourceDataChange
     Left = 336
     Top = 88
   end
@@ -190,10 +187,8 @@ object atdbDM: TatdbDM
     Aggregates = <>
     Params = <>
     ProviderName = 'blockNotesProvider'
-    AfterPost = blockNotesCDSAfterPost
-    BeforeDelete = blockNotesCDSBeforeDelete
-    AfterDelete = blockNotesCDSAfterDelete
-    AfterScroll = blockNotesCDSAfterScroll
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterDelete
     Left = 256
     Top = 392
     object blockNotesCDSid: TIntegerField
@@ -233,6 +228,7 @@ object atdbDM: TatdbDM
     Aggregates = <>
     Params = <>
     ProviderName = 'notesProvider'
+    AfterPost = cdsAfterPost
     Left = 232
     Top = 640
     object notesCDSid: TIntegerField
@@ -270,16 +266,16 @@ object atdbDM: TatdbDM
     Aggregates = <>
     Params = <>
     ProviderName = 'mRibbonProvider'
-    BeforePost = mRibbonCDSBeforePost
-    AfterPost = mRibbonCDSAfterPost
-    AfterDelete = mRibbonCDSAfterDelete
-    AfterScroll = mRibbonCDSAfterScroll
+    BeforePost = cdsBeforePost
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterDelete
+    AfterScroll = cdsAfterScroll
+    AfterRefresh = cdsAfterRefresh
     OnCalcFields = mRibbonCDSCalcFields
     Left = 240
     Top = 224
     object mRibbonCDSid: TStringField
       FieldName = 'id'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Size = 36
     end
     object mRibbonCDSstatus: TIntegerField
@@ -316,10 +312,7 @@ object atdbDM: TatdbDM
     Aggregates = <>
     Params = <>
     ProviderName = 'ribbonNotesProvider'
-    AfterPost = blockNotesCDSAfterPost
-    BeforeDelete = blockNotesCDSBeforeDelete
-    AfterDelete = blockNotesCDSAfterDelete
-    AfterScroll = blockNotesCDSAfterScroll
+    AfterPost = cdsAfterPost
     Left = 256
     Top = 472
     object ribbonNotesCDSid: TIntegerField
@@ -347,7 +340,6 @@ object atdbDM: TatdbDM
     Top = 472
   end
   object ribbonsDS: TSQLDataSet
-    Active = True
     CommandText = 'SELECT * from ribbon where block_id=:id'
     DataSource = blocksDataSource
     MaxBlobSize = -1

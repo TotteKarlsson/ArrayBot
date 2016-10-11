@@ -92,10 +92,8 @@ void __fastcall TatdbDM::afterConnect()
 	Log(lInfo) << "Connection established to: "<<mDataBase;
 	usersCDS->Active 	    = true;
     blocksCDS->Active 	    = true;
-
     mRibbonCDS->Active 	    = true;
     notesCDS->Active   	    = true;
-
 	blockNotesCDS->Active  	= true;
     ribbonNotesCDS->Active  = true;
 
@@ -113,109 +111,93 @@ void __fastcall TatdbDM::afterDisConnect()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TatdbDM::usersCDSAfterPost(TDataSet *DataSet)
+void __fastcall TatdbDM::cdsAfterPost(TDataSet *DataSet)
 {
-	usersCDS->ApplyUpdates(0);
-    usersCDS->Refresh();
+	TClientDataSet* cds = dynamic_cast<TClientDataSet*>(DataSet);
+
+    if(!cds)
+    {
+    	return;
+    }
+
+	cds->ApplyUpdates(0);
+    cds->Refresh();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TatdbDM::usersCDSAfterDelete(TDataSet *DataSet)
+void __fastcall TatdbDM::cdsAfterDelete(TDataSet *DataSet)
 {
-	usersCDS->ApplyUpdates(0);
-}
+	TClientDataSet* cds = dynamic_cast<TClientDataSet*>(DataSet);
 
-void __fastcall TatdbDM::usersCDSAfterScroll(TDataSet *DataSet)
-{
-;
-}
+    if(!cds)
+    {
+    	return;
+    }
 
-//---------------------------------------------------------------------------
-void __fastcall TatdbDM::usersCDSAfterCancel(TDataSet *DataSet)
-{
-;
+	cds->ApplyUpdates(0);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TatdbDM::blocksCDSAfterPost(TDataSet *DataSet)
-{
-	blocksCDS->ApplyUpdates(0);
-    blocksCDS->Refresh();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TatdbDM::blocksCDSAfterDelete(TDataSet *DataSet)
-{
-	blocksCDS->ApplyUpdates(0);
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TatdbDM::blocksCDSAfterScroll(TDataSet *DataSet)
+void __fastcall TatdbDM::cdsAfterScroll(TDataSet *DataSet)
 {
 	if(!SQLConnection1->Connected || gAppIsStartingUp)
     {
     	return;
     }
 
-	int bID = blocksCDS->FieldByName("id")->AsInteger;
-
-   if(bID == 0)
+ 	if(DataSet == blocksCDS)
     {
-	    blockNotesCDS->Active = false;
-        mRibbonCDS->Active = false;
-    }
-    else
-    {
-	    blockNotesCDS->Active = true;
-        mRibbonCDS->Active = true;
-    }
-
-	if(mRibbonCDS->Active)
-	{
-    	mRibbonCDS->Refresh();
-    }
-
-    if(blockNotesCDS->Active)
-    {
-	    blockNotesCDS->Refresh();
+        int bID = blocksCDS->FieldByName("id")->AsInteger;
+        if(bID == 0)
+        {
+            blockNotesCDS->Active = false;
+            mRibbonCDS->Active = false;
+        }
+        else
+        {
+            blockNotesCDS->Active = true;
+            mRibbonCDS->Active = true;
+        }
+        cdsAfterRefresh(blocksCDS);
     }
 }
+
+void __fastcall TatdbDM::cdsAfterRefresh(TDataSet *DataSet)
+{
+	if(DataSet == blocksCDS)
+    {
+    	if(mRibbonCDS->Active)
+        {
+    		mRibbonCDS->Refresh();
+        }
+
+        if(blockNotesCDS->Active)
+        {
+			blockNotesCDS->Refresh();
+        }
+    }
+
+    if(DataSet == mRibbonCDS)
+    {
+    	if(ribbonNotesCDS->Active)
+        {
+        	ribbonNotesCDS->Refresh();
+        }
+    }
+}
+
 
 //---------------------------------------------------------------------------
-void __fastcall TatdbDM::blockNotesCDSAfterPost(TDataSet *DataSet)
+void __fastcall TatdbDM::cdsBeforePost(TDataSet *DataSet)
 {
-	if(DataSet == blockNotesCDS)
+	if(DataSet == blocksCDS)
     {
-		blockNotesCDS->ApplyUpdates(0);
+		Log(lInfo) << "Before Posting Block Data";
     }
-    else if(DataSet == ribbonNotesCDS)
+    else if(DataSet == mRibbonCDS)
     {
-		ribbonNotesCDS->ApplyUpdates(0);
+		Log(lInfo) << "Before Posting Ribbon Data";
     }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TatdbDM::blocksCDSBeforePost(TDataSet *DataSet)
-{
-	Log(lInfo) << "Before Posting Block Data";
-}
-
-void __fastcall TatdbDM::mRibbonCDSAfterPost(TDataSet *DataSet)
-{
-	mRibbonCDS->ApplyUpdates(0);
-    mRibbonCDS->Refresh();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TatdbDM::mRibbonCDSBeforePost(TDataSet *DataSet)
-{
-	Log(lInfo) << "Before Posting Ribbon Data";
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TatdbDM::mRibbonCDSAfterDelete(TDataSet *DataSet)
-{
-	mRibbonCDS->ApplyUpdates(0);
 }
 
 string zeroPadLeft(int nr, int width)
@@ -289,88 +271,9 @@ void __fastcall TatdbDM::abImageDSBeforeScroll(TDataSet *DataSet)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TatdbDM::blockNotesCDSAfterDelete(TDataSet *DataSet)
-{
-	if(DataSet == blockNotesCDS)
-    {
-		blockNotesCDS->ApplyUpdates(0);
-		blockNotesCDS->Refresh();
-    }
-    else if(DataSet == ribbonNotesCDS)
-    {
-		ribbonNotesCDS->ApplyUpdates(0);
-		ribbonNotesCDS->Refresh();
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TatdbDM::blockNotesCDSBeforeDelete(TDataSet *DataSet)
-{
-//	blockNotesQ->Active = false;
-//	blockNotesCDS->Active = false;
-}
-
-
-
 void __fastcall TatdbDM::blocksCDSlabelGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText)
 {
-	Text = blocksCDSlabel->AsString;//, 1, 50);
+	Text = blocksCDSlabel->AsString;
 }
-//---------------------------------------------------------------------------
-
-void __fastcall TatdbDM::blockNotesCDSAfterScroll(TDataSet *DataSet)
-{
-	if(!SQLConnection1->Connected || gAppIsStartingUp)
-    {
-    	return;
-    }
-
-	int bID = blocksCDS->FieldByName("id")->AsInteger;
-
-    if(bID == 0)
-    {
-        return;
-    }
-	//
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TatdbDM::mRibbonCDSAfterScroll(TDataSet *DataSet)
-{
-//	if(!SQLConnection1->Connected || gAppIsStartingUp)
-//    {
-//    	return;
-//    }
-
-	string rID = stdstr(mRibbonCDS->FieldByName("id")->AsString);
-
-    if(rID.size() == 0)
-    {
-		//mRibbonCDS->Active = false;
-        return;
-    }
-
-//    ribbonNotesQ->Close();
-//	ribbonNotesQ->Params->ParamByName("id")->AsString = vclstr(rID);
-//    ribbonNotesQ->Open();
-//
-//    //Get notes
-//	string note = stdstr(ribbonNotesQ->FieldByName("note")->AsString);
-//	ribbonNotesQ->Close();
-    if(ribbonNotesCDS->Active)
-    {
-    	ribbonNotesCDS->Refresh();
-    }
-}
-
-
-void __fastcall TatdbDM::usersDataSourceDataChange(TObject *Sender, TField *Field)
-
-{
-//    usersDataSource->Enabled = false;
-//    usersDataSource->Enabled = true;
-}
-//---------------------------------------------------------------------------
-
 

@@ -87,29 +87,25 @@ __published:	// IDE-managed Components
 	TSmallintField *ribbonsDSnr_of_sections;
 	TSQLTimeStampField *ribbonsDScreated;
 	TSQLTimeStampField *ribbonsDSmodified;
-	void __fastcall usersCDSAfterPost(TDataSet *DataSet);
-	void __fastcall usersCDSAfterDelete(TDataSet *DataSet);
-	void __fastcall usersCDSAfterScroll(TDataSet *DataSet);
-	void __fastcall usersCDSAfterCancel(TDataSet *DataSet);
-	void __fastcall blocksCDSAfterPost(TDataSet *DataSet);
-	void __fastcall blocksCDSAfterDelete(TDataSet *DataSet);
-	void __fastcall blocksCDSAfterScroll(TDataSet *DataSet);
-	void __fastcall blockNotesCDSAfterPost(TDataSet *DataSet);
-	void __fastcall blocksCDSBeforePost(TDataSet *DataSet);
-	void __fastcall mRibbonCDSAfterPost(TDataSet *DataSet);
-	void __fastcall mRibbonCDSBeforePost(TDataSet *DataSet);
-	void __fastcall mRibbonCDSAfterDelete(TDataSet *DataSet);
+	TStringField *mRibbonCDSid;
+	TIntegerField *mRibbonCDSstatus;
+	TIntegerField *mRibbonCDSblock_id;
+	TIntegerField *mRibbonCDScutting_order;
+	TSmallintField *mRibbonCDSnr_of_sections;
+	TSQLTimeStampField *mRibbonCDScreated;
+	TSQLTimeStampField *mRibbonCDSmodified;
+	void __fastcall cdsAfterPost(TDataSet *DataSet);
+	void __fastcall cdsAfterDelete(TDataSet *DataSet);
+	void __fastcall cdsAfterScroll(TDataSet *DataSet);
+	void __fastcall cdsBeforePost(TDataSet *DataSet);
 	void __fastcall mRibbonCDSCalcFields(TDataSet *DataSet);
 	void __fastcall SQLConnection1AfterConnect(TObject *Sender);
 	void __fastcall abImageDSBeforeScroll(TDataSet *DataSet);
 	void __fastcall SQLConnection1BeforeConnect(TObject *Sender);
-	void __fastcall blockNotesCDSAfterDelete(TDataSet *DataSet);
-	void __fastcall blockNotesCDSBeforeDelete(TDataSet *DataSet);
 	void __fastcall blocksCDSlabelGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
-	void __fastcall blockNotesCDSAfterScroll(TDataSet *DataSet);
-	void __fastcall mRibbonCDSAfterScroll(TDataSet *DataSet);
-	void __fastcall usersDataSourceDataChange(TObject *Sender, TField *Field);
+	void __fastcall cdsAfterRefresh(TDataSet *DataSet);
+
 
 
 
