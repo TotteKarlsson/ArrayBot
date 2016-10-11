@@ -3,7 +3,7 @@ Coordinates=278,452,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=797,330,89,51
+Coordinates=651,391,122,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -390,9 +390,6 @@ Coordinates=481,10,104,123
 [atdbDM.blocksDS]
 Coordinates=251,10,101,159
 
-[mNewBlockNoteBtn]
-Coordinates=170,391,112,51
-
 [MenuPanel]
 Coordinates=557,267,68,51
 
@@ -407,9 +404,6 @@ Coordinates=769,267,70,51
 
 [mDatabaseE]
 Coordinates=0,0,76,51
-
-[mDeleteBlockNoteBtn]
-Coordinates=651,391,122,51
 
 [mDeleteRibbonNoteBtn]
 Coordinates=529,391,129,51

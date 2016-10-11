@@ -3,17 +3,8 @@
         <ProjectGuid>{D205F2C9-997F-479F-8C2E-0DC7AF7C3730}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="..\..\source\abCore.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="..\..\source\vcl\abVCLCore.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="UI\Core\atDBCore-static.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="atDB.cbproj">
-            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -23,50 +14,23 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="abCore">
-        <MSBuild Projects="..\..\source\abCore.cbproj"/>
-    </Target>
-    <Target Name="abCore:Clean">
-        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="abCore:Make">
-        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="abVCLCore">
-        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj"/>
-    </Target>
-    <Target Name="abVCLCore:Clean">
-        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="abVCLCore:Make">
-        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atDBCore-static">
-        <MSBuild Projects="UI\Core\atDBCore-static.cbproj"/>
-    </Target>
-    <Target Name="atDBCore-static:Clean">
-        <MSBuild Projects="UI\Core\atDBCore-static.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atDBCore-static:Make">
-        <MSBuild Projects="UI\Core\atDBCore-static.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atDB" DependsOnTargets="abCore">
+    <Target Name="atDB">
         <MSBuild Projects="atDB.cbproj"/>
     </Target>
-    <Target Name="atDB:Clean" DependsOnTargets="abCore:Clean">
+    <Target Name="atDB:Clean">
         <MSBuild Projects="atDB.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atDB:Make" DependsOnTargets="abCore:Make">
+    <Target Name="atDB:Make">
         <MSBuild Projects="atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;abVCLCore;atDBCore-static;atDB"/>
+        <CallTarget Targets="atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;atDBCore-static:Clean;atDB:Clean"/>
+        <CallTarget Targets="atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;abVCLCore:Make;atDBCore-static:Make;atDB:Make"/>
+        <CallTarget Targets="atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

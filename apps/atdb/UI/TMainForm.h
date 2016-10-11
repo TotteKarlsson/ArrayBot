@@ -123,8 +123,6 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *DBNavigator2;
 	TDBMemo *DBMemo2;
 	TLabel *Label1;
-	TButton *mDeleteBlockNoteBtn;
-	TButton *mNewBlockNoteBtn;
 	TScrollBox *ScrollBox1;
 	TDBGrid *DBGrid1;
 	TDBMemo *DBMemo3;
@@ -152,6 +150,8 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox3;
 	TSTDStringLabeledEdit *mDatabaseE;
 	TDBNavigator *DBNavigator5;
+	TLabel *Label5;
+	TDBNavigator *DBNavigator6;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -172,7 +172,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall PrintBarCodeClick(TObject *Sender);
 
-	void __fastcall mUsersCBEnter(TObject *Sender);
+
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall mNewNoteBtnClick(TObject *Sender);
@@ -180,7 +180,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mUsersDBCBCloseUp(TObject *Sender);
 	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator5Click(TObject *Sender, TNavigateBtn Button);
-
+	void __fastcall DBNavigator6Click(TObject *Sender, TNavigateBtn Button);
 
     private:	// User declarations
         bool                                            gCanClose;

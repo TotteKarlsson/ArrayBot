@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=127,1,73,177
+Coordinates=427,143,83,123
 
 [blocksCDS]
 Coordinates=58,124,68,159
@@ -12,9 +12,6 @@ Coordinates=269,125,57,105
 
 [noteDS]
 Coordinates=164,561,50,51
-
-[blockNotesQ]
-Coordinates=312,268,77,123
 
 [notesCDS]
 Coordinates=233,561,63,123
@@ -30,7 +27,4 @@ Coordinates=312,477,91,123
 
 [ribbonNotesCDS]
 Coordinates=46,321,96,123
-
-[ribbonNotesQ]
-Coordinates=427,143,83,123
 

@@ -39,6 +39,7 @@ object atdbDM: TatdbDM
       'ErrorResourceFile=')
     AfterConnect = SQLConnection1AfterConnect
     BeforeConnect = SQLConnection1BeforeConnect
+    Connected = True
     Left = 40
     Top = 24
   end
@@ -48,6 +49,7 @@ object atdbDM: TatdbDM
     Top = 152
   end
   object blocksCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blocksProvider'
@@ -90,8 +92,8 @@ object atdbDM: TatdbDM
   end
   object blocksDS: TSQLDataSet
     ObjectView = True
+    Active = True
     CommandText = 'select * from block'
-    DataSource = mRibbonDSource
     MaxBlobSize = 1
     Params = <>
     SortFieldNames = 'id'
@@ -173,54 +175,18 @@ object atdbDM: TatdbDM
     Left = 336
     Top = 88
   end
-  object blockNotesQ: TSQLQuery
-    DataSource = blocksDataSource
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'id'
-        ParamType = ptInput
-      end>
-    SQL.Strings = (
-      'SELECT * FROM note n '
-      'INNER JOIN block_note bn '
-      'ON (bn.note_id = n.id) '
-      'WHERE block_id = :id '
-      'ORDER BY created_on ASC')
-    SQLConnection = SQLConnection1
-    Left = 48
-    Top = 392
-    object blockNotesQid: TIntegerField
-      FieldName = 'id'
-      Required = True
-    end
-    object blockNotesQnote: TMemoField
-      FieldName = 'note'
-      Required = True
-      BlobType = ftMemo
-      Size = 1
-    end
-    object blockNotesQcreated_on: TSQLTimeStampField
-      FieldName = 'created_on'
-      Required = True
-    end
-    object blockNotesQcreated_by: TIntegerField
-      FieldName = 'created_by'
-      Required = True
-    end
-  end
   object blockNotesDSource: TDataSource
     DataSet = blockNotesCDS
     Left = 352
     Top = 392
   end
   object blockNotesProvider: TDataSetProvider
-    DataSet = blockNotesQ
+    DataSet = blockNotesDS
     Left = 144
     Top = 392
   end
   object blockNotesCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blockNotesProvider'
@@ -300,6 +266,7 @@ object atdbDM: TatdbDM
     Top = 224
   end
   object mRibbonCDS: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'mRibbonProvider'
@@ -312,6 +279,7 @@ object atdbDM: TatdbDM
     Top = 224
     object mRibbonCDSid: TStringField
       FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Size = 36
     end
     object mRibbonCDSstatus: TIntegerField
@@ -339,45 +307,8 @@ object atdbDM: TatdbDM
     Left = 336
     Top = 224
   end
-  object ribbonNotesQ: TSQLQuery
-    DataSource = mRibbonDSource
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'id'
-        ParamType = ptInput
-      end>
-    SQL.Strings = (
-      'SELECT * FROM note n '
-      'INNER JOIN ribbon_note bn '
-      'ON (bn.note_id = n.id) '
-      'WHERE ribbon_id = :id '
-      'ORDER BY created_on ASC')
-    SQLConnection = SQLConnection1
-    Left = 48
-    Top = 472
-    object IntegerField1: TIntegerField
-      FieldName = 'id'
-      Required = True
-    end
-    object MemoField1: TMemoField
-      FieldName = 'note'
-      Required = True
-      BlobType = ftMemo
-      Size = 1
-    end
-    object SQLTimeStampField1: TSQLTimeStampField
-      FieldName = 'created_on'
-      Required = True
-    end
-    object IntegerField2: TIntegerField
-      FieldName = 'created_by'
-      Required = True
-    end
-  end
   object ribbonNotesProvider: TDataSetProvider
-    DataSet = ribbonNotesQ
+    DataSet = ribbonNotesDS
     Left = 144
     Top = 472
   end
@@ -416,6 +347,7 @@ object atdbDM: TatdbDM
     Top = 472
   end
   object ribbonsDS: TSQLDataSet
+    Active = True
     CommandText = 'SELECT * from ribbon where block_id=:id'
     DataSource = blocksDataSource
     MaxBlobSize = -1
@@ -450,6 +382,71 @@ object atdbDM: TatdbDM
     end
     object ribbonsDSmodified: TSQLTimeStampField
       FieldName = 'modified'
+    end
+  end
+  object blockNotesDS: TSQLDataSet
+    CommandText = 
+      'SELECT * FROM note n '#13#10'INNER JOIN block_note bn '#13#10'ON (bn.note_id' +
+      ' = n.id) '#13#10'WHERE block_id = :id '#13#10'ORDER BY created_on ASC'
+    DataSource = blocksDataSource
+    MaxBlobSize = 1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 48
+    Top = 392
+    object blockNotesDSid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object blockNotesDSnote: TMemoField
+      FieldName = 'note'
+      Required = True
+      BlobType = ftMemo
+      Size = 1
+    end
+    object blockNotesDScreated_on: TSQLTimeStampField
+      FieldName = 'created_on'
+      Required = True
+    end
+    object blockNotesDScreated_by: TIntegerField
+      FieldName = 'created_by'
+      Required = True
+    end
+  end
+  object ribbonNotesDS: TSQLDataSet
+    CommandText = 
+      'SELECT * FROM note n '#13#10'INNER JOIN ribbon_note rn '#13#10'ON (rn.note_i' +
+      'd = n.id) '#13#10'WHERE ribbon_id = :id '#13#10'ORDER BY created_on ASC'
+    DataSource = mRibbonDSource
+    MaxBlobSize = 1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 40
+    Top = 472
+    object ribbonNotesDSid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object ribbonNotesDSnote: TMemoField
+      FieldName = 'note'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object ribbonNotesDScreated_on: TSQLTimeStampField
+      FieldName = 'created_on'
+    end
+    object ribbonNotesDScreated_by: TIntegerField
+      FieldName = 'created_by'
     end
   end
 end

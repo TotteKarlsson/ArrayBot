@@ -128,11 +128,12 @@ object MainForm: TMainForm
           Top = 0
           Width = 1132
           Height = 574
+          VertScrollBar.Position = 99
           Align = alClient
           TabOrder = 0
           object GroupBox6: TGroupBox
             Left = 18
-            Top = 343
+            Top = 244
             Width = 935
             Height = 326
             Caption = 'Ribbons'
@@ -241,8 +242,8 @@ object MainForm: TMainForm
               Caption = 'Ribbon Notes'
               TabOrder = 5
               object DBGrid1: TDBGrid
-                Left = 13
-                Top = 29
+                Left = 10
+                Top = 58
                 Width = 156
                 Height = 187
                 DataSource = atdbDM.ribbonNotesDSource
@@ -311,21 +312,39 @@ object MainForm: TMainForm
                 TabOrder = 5
                 OnClick = mNewNoteBtnClick
               end
+              object DBNavigator6: TDBNavigator
+                Left = 10
+                Top = 27
+                Width = 156
+                Height = 25
+                DataSource = atdbDM.ribbonNotesDSource
+                VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
+                ConfirmDelete = False
+                TabOrder = 6
+                OnClick = DBNavigator6Click
+              end
             end
           end
           object mBlocksGB: TGroupBox
             Left = 16
-            Top = 12
+            Top = -87
             Width = 934
             Height = 325
             Caption = 'Blocks'
             TabOrder = 1
             object Label1: TLabel
               Left = 20
-              Top = 272
+              Top = 260
               Width = 53
               Height = 13
               Caption = 'Block label:'
+            end
+            object Label5: TLabel
+              Left = 264
+              Top = 264
+              Width = 57
+              Height = 13
+              Caption = 'Entered by:'
             end
             object mBlocksGrid: TDBGrid
               Left = 15
@@ -387,9 +406,9 @@ object MainForm: TMainForm
               end
             end
             object DBMemo2: TDBMemo
-              Left = 79
-              Top = 265
-              Width = 120
+              Left = 20
+              Top = 279
+              Width = 177
               Height = 25
               DataField = 'label'
               DataSource = atdbDM.blocksDataSource
@@ -398,8 +417,8 @@ object MainForm: TMainForm
               WordWrap = False
             end
             object DBLookupComboBox1: TDBLookupComboBox
-              Left = 205
-              Top = 264
+              Left = 264
+              Top = 283
               Width = 145
               Height = 21
               DataField = 'created_by'
@@ -469,24 +488,6 @@ object MainForm: TMainForm
                     Visible = True
                   end>
               end
-              object mDeleteBlockNoteBtn: TButton
-                Left = 90
-                Top = 233
-                Width = 75
-                Height = 27
-                Caption = 'Delete Note'
-                TabOrder = 4
-                OnClick = mDeleteNoteBtnClick
-              end
-              object mNewBlockNoteBtn: TButton
-                Left = 8
-                Top = 233
-                Width = 76
-                Height = 27
-                Caption = 'New Note'
-                TabOrder = 5
-                OnClick = mNewNoteBtnClick
-              end
               object DBNavigator5: TDBNavigator
                 Left = 9
                 Top = 19
@@ -495,8 +496,7 @@ object MainForm: TMainForm
                 DataSource = atdbDM.blockNotesDSource
                 VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
                 ConfirmDelete = False
-                TabOrder = 6
-                BeforeAction = mBlocksNavigatorBeforeAction
+                TabOrder = 4
                 OnClick = DBNavigator5Click
               end
             end
@@ -506,6 +506,10 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Users'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object DBGrid3: TDBGrid
           Left = 13
           Top = 63
@@ -547,6 +551,7 @@ object MainForm: TMainForm
           DataSource = atdbDM.usersDataSource
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
           TabOrder = 1
+          OnClick = mUsersNavigatorClick
         end
         object DBEdit1: TDBEdit
           Left = 13
@@ -561,6 +566,10 @@ object MainForm: TMainForm
       object TabSheet4: TTabSheet
         Caption = 'Notes'
         ImageIndex = 3
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object DBNavigator3: TDBNavigator
           Left = 13
           Top = 25
@@ -589,6 +598,10 @@ object MainForm: TMainForm
       object TabSheet1: TTabSheet
         Caption = 'DB Server'
         ImageIndex = 3
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 3
           Top = 16
@@ -659,6 +672,10 @@ object MainForm: TMainForm
       object TabSheet5: TTabSheet
         Caption = 'Miscellaneous'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object mBarCodeImage: TImage
           Left = 3
           Top = 15
