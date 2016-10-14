@@ -5,6 +5,9 @@
 #include "abDBUtils.h"
 #include <deque>
 #include "abDBConnection.h"
+#include "mtkStringList.h"
+
+
 //---------------------------------------------------------------------------
 
 namespace Poco
@@ -15,9 +18,7 @@ namespace Poco
         class Session;
     }
 }
-
-//using Poco::Data::RecordSet;
-//using Poco::Data::Session;
+using namespace mtk;
 
 //!The ATDB server session class encapsulate a database session
 //!with the ATDB MySQL database
@@ -26,6 +27,8 @@ class AB_CORE ATDBServerSession : public DBConnection
     public:
 					        	        ATDBServerSession(const string& db, const string& host="127.0.0.1", const string& user="atdb_client", const string& password="atdb123");
 					        	        ~ATDBServerSession();
+
+		StringList						getTableNames();
 
 										//!Statements
 		Poco::Data::RecordSet* 	    	getBlocks(ab::dbSQLKeyword kw = ab::dbDescending);

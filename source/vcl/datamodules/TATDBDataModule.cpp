@@ -73,7 +73,7 @@ bool __fastcall TatdbDM::connect(const string& ip, const string& dbUser, const s
 //---------------------------------------------------------------------------
 void __fastcall TatdbDM::SQLConnection1BeforeConnect(TObject *Sender)
 {
-	;
+	Log(lInfo) <<"Trying to connect to SQL server:";
 }
 
 //---------------------------------------------------------------------------
@@ -96,7 +96,7 @@ void __fastcall TatdbDM::afterConnect()
     notesCDS->Active   	    = true;
 	blockNotesCDS->Active  	= true;
     ribbonNotesCDS->Active  = true;
-
+	specimentCDS->Active  = true;
 }
 
 void __fastcall TatdbDM::afterDisConnect()
@@ -186,7 +186,6 @@ void __fastcall TatdbDM::cdsAfterRefresh(TDataSet *DataSet)
     }
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TatdbDM::cdsBeforePost(TDataSet *DataSet)
 {
@@ -271,9 +270,10 @@ void __fastcall TatdbDM::abImageDSBeforeScroll(TDataSet *DataSet)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TatdbDM::blocksCDSlabelGetText(TField *Sender, UnicodeString &Text,
-          bool DisplayText)
+void __fastcall TatdbDM::fixativeTBLAfterPost(TDataSet *DataSet)
 {
-	Text = blocksCDSlabel->AsString;
+	fixativeTBL->ApplyUpdates(0);
+    specimentCDS->Refresh();
 }
+
 

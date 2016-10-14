@@ -1,7 +1,7 @@
 object atdbDM: TatdbDM
   OldCreateOrder = False
-  Height = 720
-  Width = 647
+  Height = 765
+  Width = 887
   object SQLConnection1: TSQLConnection
     DriverName = 'MySQL'
     LoginPrompt = False
@@ -39,7 +39,6 @@ object atdbDM: TatdbDM
       'ErrorResourceFile=')
     AfterConnect = SQLConnection1AfterConnect
     BeforeConnect = SQLConnection1BeforeConnect
-    Connected = True
     Left = 40
     Top = 24
   end
@@ -49,7 +48,6 @@ object atdbDM: TatdbDM
     Top = 152
   end
   object blocksCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blocksProvider'
@@ -78,11 +76,30 @@ object atdbDM: TatdbDM
     object blocksCDSstatus: TIntegerField
       FieldName = 'status'
     end
-    object blocksCDSlabel: TMemoField
+    object blocksCDSfreeze_type: TIntegerField
+      FieldName = 'freeze_type'
+    end
+    object blocksCDSlabel: TStringField
       FieldName = 'label'
-      OnGetText = blocksCDSlabelGetText
-      BlobType = ftMemo
-      Size = 1
+      Size = 255
+    end
+    object blocksCDSlBlockStatus: TStringField
+      FieldKind = fkLookup
+      FieldName = 'lBlockStatus'
+      LookupDataSet = blockstatusDS
+      LookupKeyFields = 'id'
+      LookupResultField = 'status'
+      KeyFields = 'status'
+      Lookup = True
+    end
+    object blocksCDSLFreezeType: TStringField
+      FieldKind = fkLookup
+      FieldName = 'LFreezeType'
+      LookupDataSet = freezeprotocolDS
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'freeze_type'
+      Lookup = True
     end
   end
   object blocksProvider: TDataSetProvider
@@ -115,14 +132,15 @@ object atdbDM: TatdbDM
     object blocksDSstatus: TIntegerField
       FieldName = 'status'
     end
-    object blocksDSlabel: TMemoField
+    object blocksDSfreeze_type: TIntegerField
+      FieldName = 'freeze_type'
+    end
+    object blocksDSlabel: TStringField
       FieldName = 'label'
-      BlobType = ftMemo
-      Size = 1
+      Size = 255
     end
   end
   object usersDS: TSQLDataSet
-    Active = True
     CommandText = 'select * from user'
     MaxBlobSize = -1
     Params = <>
@@ -148,7 +166,6 @@ object atdbDM: TatdbDM
     Top = 88
   end
   object usersCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'usersProvider'
@@ -174,23 +191,22 @@ object atdbDM: TatdbDM
   end
   object blockNotesDSource: TDataSource
     DataSet = blockNotesCDS
-    Left = 352
-    Top = 392
+    Left = 368
+    Top = 224
   end
   object blockNotesProvider: TDataSetProvider
     DataSet = blockNotesDS
-    Left = 144
-    Top = 392
+    Left = 160
+    Top = 224
   end
   object blockNotesCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blockNotesProvider'
     AfterPost = cdsAfterPost
     AfterDelete = cdsAfterDelete
-    Left = 256
-    Top = 392
+    Left = 272
+    Top = 224
     object blockNotesCDSid: TIntegerField
       FieldName = 'id'
       Required = True
@@ -216,21 +232,21 @@ object atdbDM: TatdbDM
     MaxBlobSize = 1
     Params = <>
     SQLConnection = SQLConnection1
-    Left = 32
-    Top = 640
+    Left = 544
+    Top = 88
   end
   object notesProvider: TDataSetProvider
     DataSet = noteDS
-    Left = 128
-    Top = 640
+    Left = 640
+    Top = 88
   end
   object notesCDS: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'notesProvider'
     AfterPost = cdsAfterPost
-    Left = 232
-    Top = 640
+    Left = 744
+    Top = 88
     object notesCDSid: TIntegerField
       FieldName = 'id'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -253,16 +269,15 @@ object atdbDM: TatdbDM
   end
   object notesDSource: TDataSource
     DataSet = notesCDS
-    Left = 328
-    Top = 640
+    Left = 840
+    Top = 88
   end
   object mRibbonProvider: TDataSetProvider
     DataSet = ribbonsDS
     Left = 128
-    Top = 224
+    Top = 304
   end
   object mRibbonCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'mRibbonProvider'
@@ -273,7 +288,7 @@ object atdbDM: TatdbDM
     AfterRefresh = cdsAfterRefresh
     OnCalcFields = mRibbonCDSCalcFields
     Left = 240
-    Top = 224
+    Top = 304
     object mRibbonCDSid: TStringField
       FieldName = 'id'
       Size = 36
@@ -301,20 +316,20 @@ object atdbDM: TatdbDM
   object mRibbonDSource: TDataSource
     DataSet = mRibbonCDS
     Left = 336
-    Top = 224
+    Top = 304
   end
   object ribbonNotesProvider: TDataSetProvider
     DataSet = ribbonNotesDS
-    Left = 144
-    Top = 472
+    Left = 152
+    Top = 384
   end
   object ribbonNotesCDS: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'ribbonNotesProvider'
     AfterPost = cdsAfterPost
-    Left = 256
-    Top = 472
+    Left = 264
+    Top = 384
     object ribbonNotesCDSid: TIntegerField
       FieldName = 'id'
       Required = True
@@ -336,8 +351,8 @@ object atdbDM: TatdbDM
   end
   object ribbonNotesDSource: TDataSource
     DataSet = ribbonNotesCDS
-    Left = 352
-    Top = 472
+    Left = 360
+    Top = 384
   end
   object ribbonsDS: TSQLDataSet
     CommandText = 'SELECT * from ribbon where block_id=:id'
@@ -351,7 +366,7 @@ object atdbDM: TatdbDM
       end>
     SQLConnection = SQLConnection1
     Left = 32
-    Top = 224
+    Top = 304
     object ribbonsDSid: TStringField
       FieldName = 'id'
       Size = 36
@@ -389,8 +404,8 @@ object atdbDM: TatdbDM
         ParamType = ptInput
       end>
     SQLConnection = SQLConnection1
-    Left = 48
-    Top = 392
+    Left = 64
+    Top = 224
     object blockNotesDSid: TIntegerField
       FieldName = 'id'
       Required = True
@@ -423,8 +438,8 @@ object atdbDM: TatdbDM
         ParamType = ptInput
       end>
     SQLConnection = SQLConnection1
-    Left = 40
-    Top = 472
+    Left = 48
+    Top = 384
     object ribbonNotesDSid: TIntegerField
       FieldName = 'id'
       Required = True
@@ -440,5 +455,356 @@ object atdbDM: TatdbDM
     object ribbonNotesDScreated_by: TIntegerField
       FieldName = 'created_by'
     end
+  end
+  object specimentDS: TSQLDataSet
+    CommandText = 'select * from speciment order by id'
+    MaxBlobSize = 1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 40
+    Top = 472
+    object specimentDSid: TIntegerField
+      FieldName = 'id'
+    end
+    object specimentDSspeciment_id: TStringField
+      FieldName = 'speciment_id'
+      Required = True
+      Size = 255
+    end
+    object specimentDSspecies: TIntegerField
+      FieldName = 'species'
+    end
+    object specimentDSadditional_identifier: TStringField
+      FieldName = 'additional_identifier'
+      Size = 255
+    end
+    object specimentDSage: TStringField
+      FieldName = 'age'
+      Size = 255
+    end
+    object specimentDSlims_number: TIntegerField
+      FieldName = 'lims_number'
+    end
+    object specimentDSdeath_date: TDateField
+      FieldName = 'death_date'
+    end
+    object specimentDSpreprocess_treatment: TSmallintField
+      FieldName = 'preprocess_treatment'
+    end
+    object specimentDSfixative: TSmallintField
+      FieldName = 'fixative'
+    end
+    object specimentDSfixation_method: TSmallintField
+      FieldName = 'fixation_method'
+    end
+    object specimentDSbrain_region_dissection: TStringField
+      FieldName = 'brain_region_dissection'
+      Size = 255
+    end
+    object specimentDSpostfix_protocol: TShortintField
+      FieldName = 'postfix_protocol'
+    end
+    object specimentDSdate_received: TDateField
+      FieldName = 'date_received'
+    end
+    object specimentDSdate_embedded: TDateField
+      FieldName = 'date_embedded'
+    end
+    object specimentDScryoprotection_protocol: TShortintField
+      FieldName = 'cryoprotection_protocol'
+    end
+    object specimentDSfreezing_protocol: TShortintField
+      FieldName = 'freezing_protocol'
+    end
+    object specimentDSsubstitution_protocol: TShortintField
+      FieldName = 'substitution_protocol'
+    end
+    object specimentDSinfiltration_protocol: TShortintField
+      FieldName = 'infiltration_protocol'
+    end
+    object specimentDSembedding_protocol: TShortintField
+      FieldName = 'embedding_protocol'
+    end
+  end
+  object specimentProvider: TDataSetProvider
+    DataSet = specimentDS
+    Left = 144
+    Top = 472
+  end
+  object specimentCDS: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'specimentProvider'
+    Left = 256
+    Top = 472
+    object specimentCDSid: TIntegerField
+      FieldName = 'id'
+    end
+    object specimentCDSspeciment_id: TStringField
+      FieldName = 'speciment_id'
+      Required = True
+      Size = 255
+    end
+    object specimentCDSspecies: TIntegerField
+      FieldName = 'species'
+    end
+    object specimentCDSadditional_identifier: TStringField
+      FieldName = 'additional_identifier'
+      Size = 255
+    end
+    object specimentCDSage: TStringField
+      FieldName = 'age'
+      Size = 255
+    end
+    object specimentCDSlims_number: TIntegerField
+      FieldName = 'lims_number'
+    end
+    object specimentCDSdeath_date: TDateField
+      FieldName = 'death_date'
+    end
+    object specimentCDSpreprocess_treatment: TSmallintField
+      FieldName = 'preprocess_treatment'
+    end
+    object specimentCDSfixative: TSmallintField
+      FieldName = 'fixative'
+    end
+    object specimentCDSfixation_method: TSmallintField
+      FieldName = 'fixation_method'
+    end
+    object specimentCDSbrain_region_dissection: TStringField
+      FieldName = 'brain_region_dissection'
+      Size = 255
+    end
+    object specimentCDSpostfix_protocol: TShortintField
+      FieldName = 'postfix_protocol'
+    end
+    object specimentCDSdate_received: TDateField
+      FieldName = 'date_received'
+    end
+    object specimentCDSdate_embedded: TDateField
+      FieldName = 'date_embedded'
+    end
+    object specimentCDScryoprotection_protocol: TShortintField
+      FieldName = 'cryoprotection_protocol'
+    end
+    object specimentCDSfreezing_protocol: TShortintField
+      FieldName = 'freezing_protocol'
+    end
+    object specimentCDSsubstitution_protocol: TShortintField
+      FieldName = 'substitution_protocol'
+    end
+    object specimentCDSinfiltration_protocol: TShortintField
+      FieldName = 'infiltration_protocol'
+    end
+    object specimentCDSembedding_protocol: TShortintField
+      FieldName = 'embedding_protocol'
+    end
+    object specimentCDSLpreproctreat: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Lpreproctreat'
+      LookupDataSet = preprocesstreatmentDS
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'preprocess_treatment'
+      Lookup = True
+    end
+    object specimentCDSLspecie: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Lspecie'
+      LookupDataSet = speciesDS
+      LookupKeyFields = 'id'
+      LookupResultField = 'name'
+      KeyFields = 'species'
+      Lookup = True
+    end
+    object specimentCDSLFixative: TStringField
+      FieldKind = fkLookup
+      FieldName = 'LFixative'
+      LookupDataSet = fixativeTBL
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'fixative'
+      Lookup = True
+    end
+    object specimentCDSLfixationMethod: TStringField
+      FieldKind = fkLookup
+      FieldName = 'LfixationMethod'
+      LookupDataSet = fixationMethodDS
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'fixation_method'
+      Lookup = True
+    end
+    object specimentCDSLpostfix: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Lpostfix'
+      LookupDataSet = postfix
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'postfix_protocol'
+      Lookup = True
+    end
+    object specimentCDSLcryoprotection: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Lcryoprotection'
+      LookupDataSet = cryoprotectionDS
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'cryoprotection_protocol'
+      Lookup = True
+    end
+    object specimentCDSLfreezeProtocol: TStringField
+      FieldKind = fkLookup
+      FieldName = 'LfreezeProtocol'
+      LookupDataSet = freezeprotocolDS
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'freezing_protocol'
+      Lookup = True
+    end
+    object specimentCDSLsubstitutionProtocol: TStringField
+      FieldKind = fkLookup
+      FieldName = 'LsubstitutionProtocol'
+      LookupDataSet = substitutionProtocol
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'substitution_protocol'
+      Lookup = True
+    end
+    object specimentCDSLinfiltration: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Linfiltration'
+      LookupDataSet = infiltrationProtocolDS
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'infiltration_protocol'
+      Lookup = True
+    end
+    object specimentCDSLembedding: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Lembedding'
+      LookupDataSet = embeddingProtocolDS
+      LookupKeyFields = 'id'
+      LookupResultField = 'protocol'
+      KeyFields = 'embedding_protocol'
+      Lookup = True
+    end
+  end
+  object specimentDSrc: TDataSource
+    DataSet = specimentCDS
+    Left = 352
+    Top = 472
+  end
+  object fixativeTBL: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'SELECT * from fixative'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    AfterPost = fixativeTBLAfterPost
+    Left = 472
+    Top = 504
+  end
+  object speciesDS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'SELECT * from species'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 472
+    Top = 568
+  end
+  object preprocesstreatmentDS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'select * from  preprocesstreatment'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 472
+    Top = 632
+  end
+  object fixationMethodDS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'select * from `fixmethod`'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 568
+    Top = 504
+  end
+  object postfix: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'select * from postfix'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 568
+    Top = 568
+  end
+  object cryoprotectionDS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'select * from cryoprotection'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 576
+    Top = 632
+  end
+  object freezeprotocolDS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'select * from freezeprotocol'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 672
+    Top = 504
+  end
+  object substitutionProtocol: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'select * from substitution'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 672
+    Top = 568
+  end
+  object infiltrationProtocolDS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'select * from infiltration'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 672
+    Top = 632
+  end
+  object embeddingProtocolDS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'select * from embedding'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 784
+    Top = 504
+  end
+  object blockstatusDS: TSimpleDataSet
+    Aggregates = <>
+    Connection = SQLConnection1
+    DataSet.CommandText = 'SELECT * from blockstatus'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    AfterPost = fixativeTBLAfterPost
+    Left = 464
+    Top = 192
   end
 end

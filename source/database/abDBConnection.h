@@ -26,11 +26,11 @@ using Poco::Data::Session;
 class AB_CORE DBConnection : public ABObject
 {
     public:
-					        	        DBConnection(const string& db, const string& host="127.0.0.1", const string& user="atdb_client", const string& password="atdb123");
+					        	        DBConnection(const string& host="127.0.0.1", const string& user="atdb_client", const string& password="atdb123", const string& db = "atdb");
 		virtual		        	        ~DBConnection();
 
 		bool							isConnected();
-		bool							connect();
+		bool							connect(const string& host="127.0.0.1", const string& user="atdb_client", const string& password="atdb123", const string& db = "atdb");
         bool							disConnect();
 
         								//ATDB specifics
@@ -42,7 +42,7 @@ class AB_CORE DBConnection : public ABObject
 
     protected:
         string					        mDataBase;
-        string					        mHost;
+        string					        mHostIP;
         string 					        mDataBaseUser;
         string					        mDataBasePassword;
 		Session*	        			mTheSession;

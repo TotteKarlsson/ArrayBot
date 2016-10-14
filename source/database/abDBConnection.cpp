@@ -14,10 +14,10 @@ using namespace ab;
 using namespace Poco::Data;
 using namespace Poco::Data::Keywords;
 
-DBConnection::DBConnection(const string& db, const string& host, const string& user, const string& password)
+DBConnection::DBConnection(const string& hostIP, const string& user, const string& password, const string& db)
 :
 mDataBase(db),
-mHost(host),
+mHostIP(hostIP),
 mDataBaseUser(user),
 mDataBasePassword(password),
 mTheSession(NULL)
@@ -31,19 +31,25 @@ bool DBConnection::isConnected()
 	return mTheSession ? true : false;
 }
 
-bool DBConnection::connect()
+bool DBConnection::connect(const string& ip, const string& user, const string& pwd, const string& db)
 {
 	try
     {
 		//Register DB connector
 	    MySQL::Connector::registerConnector();
 
+		mDataBase 		    = db;
+        mHostIP 		    = ip;
+        mDataBaseUser 	    = user;
+        mDataBasePassword 	= pwd;
+
+
     	//Create connection string
 		//string str = "host=127.0.0.1;user=atdb_client;password=atdb123;db=atdb";
         stringstream c;
-        c <<"host="<<mHost<<";"<<"user="<<mDataBaseUser<<";"<<"password="<<mDataBasePassword<<";"<<"db="<<mDataBase;
+        c <<"host="<<mHostIP<<";"<<"user="<<mDataBaseUser<<";"<<"password="<<mDataBasePassword<<";"<<"db="<<mDataBase;
 		mTheSession = new Poco::Data::Session(Poco::Data::SessionFactory::instance().create(Poco::Data::MySQL::Connector::KEY, c.str() ));
-        Log(lInfo) << "Connected to "<<mHost;
+        Log(lInfo) << "Connected to "<<mHostIP;
         return true;
     }
   	catch (const Poco::Data::MySQL::ConnectionException& e)

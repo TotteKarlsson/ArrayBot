@@ -22,6 +22,31 @@ DBConnection(db, host, user, password)
 ATDBServerSession::~ATDBServerSession()
 {}
 
+StringList ATDBServerSession::getTableNames()
+{
+   if(!mTheSession)
+    {
+        Log(lError) << "No Session...";
+        return StringList();
+    }
+
+    Statement select(*mTheSession);
+    select << "SELECT table_name FROM information_schema.tables WHERE table_schema='atdb'" ;
+
+    int nrRows = select.execute();
+	RecordSet rs(select);
+
+	StringList res;
+    for(int i = 0; i < rs.rowCount(); i++)
+    {
+        Row row(rs.row(i));
+        string val = row[0].convert<std::string>();
+        res.append(val);
+    }
+
+    return res;
+}
+
 RecordSet* ATDBServerSession::getBlocks(dbSQLKeyword kw)
 {
     if(!mTheSession)
