@@ -40,8 +40,8 @@ __published:	// IDE-managed Components
 	TTabSheet *TabSheet3;
 	TPropertyCheckBox *mPairLEDsCB;
 	TLabel *Label1;
-	TTrackBar *TrackBar1;
-	TLabel *Label2;
+	TTrackBar *mGainTB;
+	TLabel *mGainLbl;
 	TGroupBox *GroupBox6;
 	TGroupBox *LightIntensitiesGB;
 	TLabel *mCoaxLbl;
@@ -65,6 +65,7 @@ __published:	// IDE-managed Components
 	void __fastcall SettingsChange(TObject *Sender);
 	void __fastcall FormHide(TObject *Sender);
 	void __fastcall FormShow(TObject *Sender);
+	void __fastcall mGainTBChange(TObject *Sender);
 private:	// User declarations
 
 public:		// User declarations

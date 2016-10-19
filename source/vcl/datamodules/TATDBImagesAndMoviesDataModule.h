@@ -18,21 +18,12 @@ class TImagesAndMoviesDM : public TDataModule
     __published:	// IDE-managed Components
         TSQLDataSet *images;
         TSQLConnection *SQLConnection1;
-        TSQLQuery *imageNote;
-        TSQLQuery *notesQ;
-        TDataSetProvider *DataSetProvider2;
         TDataSetProvider *DataSetProvider1;
         TDataSetProvider *imagesProvider;
         TClientDataSet *imagesCDS;
         TDataSource *imagesDS;
-        TDataSource *image_note;
+	TDataSource *imageNotesDSource;
         TClientDataSet *imageNoteCDS;
-        TClientDataSet *notesCDS;
-        TDataSource *imageNotes;
-	TIntegerField *imageNoteCDSimage_id;
-	TIntegerField *imageNoteCDSnote_ID;
-	TIntegerField *imageNoteimage_id;
-	TIntegerField *imageNotenote_ID;
 	TSQLDataSet *sensors;
 	TDataSetProvider *DataSetProvider3;
 	TClientDataSet *sensorsCDS;
@@ -52,29 +43,49 @@ class TImagesAndMoviesDM : public TDataModule
 	TIntegerField *imagesCDSid;
 	TStringField *imagesCDSfile_name;
 	TSQLTimeStampField *imagesCDSdate;
-	TIntegerField *notesQid;
-	TMemoField *notesQnote;
-	TSQLTimeStampField *notesQcreated_on;
-	TIntegerField *notesQcreated_by;
-	TIntegerField *notesCDSid;
-	TMemoField *notesCDSnote;
-	TSQLTimeStampField *notesCDScreated_on;
-	TIntegerField *notesCDScreated_by;
+	TSQLDataSet *imageNotesDS;
+	TDataSource *notesDSource;
+	TClientDataSet *notesCDS;
+	TIntegerField *IntegerField1;
+	TMemoField *MemoField1;
+	TSQLTimeStampField *SQLTimeStampField1;
+	TIntegerField *IntegerField2;
+	TDataSetProvider *notesProvider;
+	TSQLDataSet *noteDS;
+	TIntegerField *imageNoteCDSid;
+	TMemoField *imageNoteCDSnote;
+	TSQLTimeStampField *imageNoteCDScreated_on;
+	TIntegerField *imageNoteCDScreated_by;
+	TIntegerField *imageNoteCDSimage_id;
+	TIntegerField *imageNoteCDSnote_id;
+	TIntegerField *imageNotesDSid;
+	TMemoField *imageNotesDSnote;
+	TSQLTimeStampField *imageNotesDScreated_on;
+	TIntegerField *imageNotesDScreated_by;
+	TIntegerField *imageNotesDSimage_id;
+	TIntegerField *imageNotesDSnote_id;
         void __fastcall imagesCDSAfterScroll(TDataSet *DataSet);
         void __fastcall SQLConnection1AfterConnect(TObject *Sender);
 	void __fastcall imagesCDSdateGetText(TField *Sender, UnicodeString &Text, bool DisplayText);
 	void __fastcall notesCDScreated_onGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
 	void __fastcall notesCDSAfterScroll(TDataSet *DataSet);
-
+	void __fastcall SQLConnection1BeforeConnect(TObject *Sender);
 
 	private:	// User declarations
+    	string		mDataBaseUser;
+    	string		mDataBaseUserPassword;
+       	string		mDataBase;
+        string 		mDBIP;
 
 	public:		// User declarations
 				__fastcall TImagesAndMoviesDM(TComponent* Owner);
-		bool 	__fastcall Connect(const string& DatabaseName);
+
+		bool 	__fastcall connect(const string& ip, const string& dbUser, const string& dbPassword, const string& db);
+        void    __fastcall afterConnect();
+        void    __fastcall afterDisConnect();
+
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TImagesAndMoviesDM *ImagesAndMoviesDM;
-//---------------------------------------------------------------------------
 #endif

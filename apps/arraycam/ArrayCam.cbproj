@@ -93,7 +93,7 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <BCC_whid>false</BCC_whid>
-        <Debugger_DebugSourcePath>P:\ArrayBot\resources\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\ArrayBot\resources\;P:\libs\dslib\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <LinkPackageStatics>abVCLCore.lib</LinkPackageStatics>
         <Icon_MainIcon>arraycam.ico</Icon_MainIcon>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
@@ -137,12 +137,6 @@
             <DependentOn>TSettingsForm.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\..\source\vcl\datamodules\TATDBDataModule.cpp">
-            <Form>atdbDM</Form>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>..\..\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
-            <BuildOrder>9</BuildOrder>
-        </CppCompile>
         <CppCompile Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp">
             <Form>ImagesAndMoviesDM</Form>
             <FormType>dfm</FormType>
@@ -153,7 +147,6 @@
         <FormResources Include="TMainForm.dfm"/>
         <FormResources Include="TSettingsForm.dfm"/>
         <FormResources Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.dfm"/>
-        <FormResources Include="..\..\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

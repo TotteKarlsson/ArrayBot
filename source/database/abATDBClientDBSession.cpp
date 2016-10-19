@@ -73,11 +73,11 @@ bool ATDBClientDBSession::insertImageFile(const string& fName, int userID, const
     string f(fName), n(note);
 
 	Statement s(ses);
-    s << "INSERT INTO abImage (file_name) VALUES(?)", use(f), now;
+    s << "INSERT INTO umimage (file_name) VALUES(?)", use(f), now;
     s.reset(ses);
 
     int image_id;
-    s << "SELECT MAX(id) FROM abImage", into(image_id), now;
+    s << "SELECT MAX(id) FROM umimage", into(image_id), now;
     s.reset(ses);
 
 	return insertImageNote(image_id, userID, note);
@@ -106,11 +106,9 @@ bool ATDBClientDBSession::insertImageNote(int imageID, int userID, const string&
     s << "SELECT MAX(id) FROM note", into(noteID), now;
     s.reset(ses);
 
-    s << "INSERT INTO abImage_note (image_id, note_id) VALUES(?, ?)", use(id), use(noteID), now;
+    s << "INSERT INTO umimage_note (image_id, note_id) VALUES(?, ?)", use(id), use(noteID), now;
 	return true;
-
 }
-
 
 bool ATDBClientDBSession::insertBlock(int userID, const string& lbl, const string& note)
 {
@@ -145,7 +143,6 @@ bool ATDBClientDBSession::insertBlock(int userID, const string& lbl, const strin
 	return true;
 }
 
-
 bool ATDBClientDBSession::deleteBlock(int bId)
 {
     Session& ses = *mTheSession;
@@ -158,7 +155,6 @@ bool ATDBClientDBSession::deleteBlock(int bId)
 
 	return true;
 }
-
 
 RecordSet* ATDBClientDBSession::getUsers(dbSQLKeyword kw)
 {

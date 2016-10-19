@@ -24,7 +24,7 @@ object SettingsForm: TSettingsForm
     Top = 0
     Width = 578
     Height = 380
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -50,7 +50,7 @@ object SettingsForm: TSettingsForm
         Height = 97
         Caption = 'Gain'
         TabOrder = 0
-        object Label2: TLabel
+        object mGainLbl: TLabel
           Left = 204
           Top = 51
           Width = 6
@@ -66,7 +66,7 @@ object SettingsForm: TSettingsForm
           TabOrder = 0
           OnClick = AutoParaCBClick
         end
-        object TrackBar1: TTrackBar
+        object mGainTB: TTrackBar
           Left = 18
           Top = 42
           Width = 167
@@ -78,7 +78,7 @@ object SettingsForm: TSettingsForm
           TabOrder = 1
           ThumbLength = 35
           TickStyle = tsNone
-          OnChange = mGammaSBChange
+          OnChange = mGainTBChange
         end
       end
       object mGammaSB: TTrackBar
@@ -86,7 +86,8 @@ object SettingsForm: TSettingsForm
         Top = 128
         Width = 150
         Height = 35
-        Max = 1000
+        Max = 300
+        Min = 10
         Position = 100
         ShowSelRange = False
         TabOrder = 1
@@ -188,10 +189,6 @@ object SettingsForm: TSettingsForm
     object TabSheet3: TTabSheet
       Caption = 'Peripherals'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object LightIntensitiesGB: TGroupBox
         Left = 3
         Top = 16

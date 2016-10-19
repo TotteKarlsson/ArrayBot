@@ -54,7 +54,8 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
     {
         if(!mClientDBSession.isConnected())
         {
-            mClientDBSession.connect();
+//        const string& ip, const string& user, const string& pwd, const string& db)
+            mClientDBSession.connect("127.0.0.1", "atdb_client", "atdb123", "umlocal");
         }
 
         if(mClientDBSession.isConnected())
@@ -69,7 +70,7 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 
         if(!mServerDBSession.isConnected())
         {
-            mServerDBSession.connect();
+            mServerDBSession.connect("127.0.0.1", "atdb_client", "atdb123", "atdb");
         }
 
         if(mServerDBSession.isConnected())
@@ -86,11 +87,11 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
     	handleMySQLException();
     }
 
-   	atdbDM->SQLConnection1->AfterConnect 	= afterServerConnect;
-   	atdbDM->SQLConnection1->AfterDisconnect = afterServerDisconnect;
+   	ImagesAndMoviesDM->SQLConnection1->AfterConnect 	= afterServerConnect;
+   	ImagesAndMoviesDM->SQLConnection1->AfterDisconnect = afterServerDisconnect;
 
     //UI DB connection
-    if (ImagesAndMoviesDM->Connect(dBase))
+    if (ImagesAndMoviesDM->connect("127.0.0.1", "atdb_client", "atdb123", dBase))
     {
        // Connection successfull
         Log(lInfo) << "DataModule connected to the database: "<<dBase;

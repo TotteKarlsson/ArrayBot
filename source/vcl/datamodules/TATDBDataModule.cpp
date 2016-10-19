@@ -22,7 +22,7 @@ __fastcall TatdbDM::TatdbDM(TComponent* Owner)
   	SQLConnection1->Connected = false;
 }
 
-// VALID Paramaters
+//VALID Paramaters
 //DriverUnit=Data.DBXMySQL
 //DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver170.bpl
 //DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borland.Data.DbxCommonDriver,Version=17.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b
@@ -91,12 +91,14 @@ void __fastcall TatdbDM::afterConnect()
 
 	Log(lInfo) << "Connection established to: "<<mDataBase;
 	usersCDS->Active 	    = true;
+	specimenCDS->Active  = true;
     blocksCDS->Active 	    = true;
+
     mRibbonCDS->Active 	    = true;
     notesCDS->Active   	    = true;
 	blockNotesCDS->Active  	= true;
     ribbonNotesCDS->Active  = true;
-	specimentCDS->Active  = true;
+	specimenCDS->Active  = true;
 }
 
 void __fastcall TatdbDM::afterDisConnect()
@@ -160,6 +162,30 @@ void __fastcall TatdbDM::cdsAfterScroll(TDataSet *DataSet)
         }
         cdsAfterRefresh(blocksCDS);
     }
+
+ 	if(DataSet == specimenCDS)
+    {
+    	if(blocksCDS->Active)
+        {
+//	        stringstream s;
+//            s << "SELECT * FROM block WHERE process_id IN ";
+//
+//	        blocksCDS->CommandText =
+        	blocksCDS->Refresh();
+        }
+//        if(bID == 0)
+//        {
+//            blockNotesCDS->Active = false;
+//            mRibbonCDS->Active = false;
+//        }
+//        else
+//        {
+//            blockNotesCDS->Active = true;
+//            mRibbonCDS->Active = true;
+//        }
+//        cdsAfterRefresh(blocksCDS);
+    }
+
 }
 
 void __fastcall TatdbDM::cdsAfterRefresh(TDataSet *DataSet)
@@ -234,46 +260,60 @@ void __fastcall TatdbDM::mRibbonCDSCalcFields(TDataSet *DataSet)
 	}
 }
 
-
-void __fastcall TatdbDM::abImageDSBeforeScroll(TDataSet *DataSet)
-{
-	if(!SQLConnection1->Connected)
-    {
-    	return;
-    }
-//
-//	int imageID = mImageClientDS->FieldByName("id")->AsInteger;
-//	blockNotesQ->Params->ParamByName("blockID")->AsInteger = imageID;
-//    blockNotesQ->Open();
-//
-//    //Get notes
-//	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
-//	Log(lInfo) << "Note is: "<<note;
-//	blockNotesQ->Close();
-//
-//	if(gAppIsStartingUp == false && SQLConnection1->Connected)
-//	{
-//		//Update customers orders
-//		mRibbonCDS->Active = false;
-//		TField* field = blocksCDS->FieldByName("id");
-//
-//		if(field)
-//		{
-//			String val = field->AsString;
-//			ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + val + "'";
-//
-////			Log(lDebug) << stdstr((customerOrdersQ->SQL->Text));
-//		}
-//		mRibbonCDS->Active = true;
-//	}
-
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TatdbDM::fixativeTBLAfterPost(TDataSet *DataSet)
 {
 	fixativeTBL->ApplyUpdates(0);
-    specimentCDS->Refresh();
+    specimenCDS->Refresh();
 }
+
+void __fastcall TatdbDM::blocksCDSCalcFields(TDataSet *DataSet)
+{
+	//Generate barcode as being composed of
+	TField* field = blocksCDS->FieldByName("id");
+	if(field)
+	{
+		TField* f = blocksCDS->FieldByName("Cblock_label");
+		if(f)
+		{
+        	stringstream s;
+
+            StringList d(stdstr(blocksCDS->FieldByName("created")->AsString), ' ');
+            if(d.size())
+            {
+	            s << stdstr(d[0]) <<"\n";
+            }
+
+            s << stdstr(blocksCDS->FieldByName("label")->AsString) <<"\n";
+            string str = s.str();
+			f->Value = String(str.c_str());
+		}
+	}
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TatdbDM::blocksCDSblockLabelGetText(TField *Sender, UnicodeString &Text,
+          bool DisplayText)
+{
+	Text = "Test";
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TatdbDM::blocksCDScreatedGetText(TField *Sender, UnicodeString &Text,
+          bool DisplayText)
+{
+	TField* field = dynamic_cast<TField*>(Sender);
+
+	if(field == blocksCDScreated)
+	{
+		StringList d(stdstr(blocksCDScreated->AsString), ' ');
+        if(d.size())
+        {
+			Text = vclstr(d[0]);
+        }
+	}
+
+}
+
 
 

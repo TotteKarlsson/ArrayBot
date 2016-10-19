@@ -157,7 +157,6 @@ void __fastcall TMainForm::ClearLogMemo(TObject *Sender)
 	infoMemo->Clear();
 }
 
-
 void __fastcall TMainForm::mCameraStreamPanelDblClick(TObject *Sender)
 {
 //	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSingle : bsNone;
@@ -182,8 +181,6 @@ void __fastcall TMainForm::mSettingsBtnClick(TObject *Sender)
     mSettingsForm->Show();
 
 }
-
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mFrontBackLEDBtnClick(TObject *Sender)
@@ -266,12 +263,29 @@ void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::DBNavigator2Click(TObject *Sender, TNavigateBtn Button)
 {
-	//
+	switch(Button)
+    {
+    	case TNavigateBtn::nbInsert:
+			{
+                int uID = getCurrentUserID(mUsersCB);
+                int imageID = ImagesAndMoviesDM->imagesCDSid->Value;
+                string note("Image Note..");
+                try
+                {
+                    mClientDBSession.insertImageNote(imageID, uID, note);
+                }
+                catch(...)
+                {
+                    handleMySQLException();
+                }
+
+                ImagesAndMoviesDM->imageNoteCDS->Refresh();
+                ImagesAndMoviesDM->imageNoteCDS->Last();
+            }
+    }
 }
 
-
 void __fastcall TMainForm::DBNavigator2BeforeAction(TObject *Sender, TNavigateBtn Button)
-
 {
 	if(Button == nbInsert)
     {    }
@@ -287,23 +301,23 @@ void __fastcall TMainForm::mNewNoteBtnClick(TObject *Sender)
 
 	try
     {
-        if(b == mNewNoteBtn)
-        {
-        	int userID = getCurrentUserID(mUsersCB);
-            ImagesAndMoviesDM->notesCDS->Active = false;
-            mClientDBSession.insertImageNote(imageID, userID, "New note..");
-            ImagesAndMoviesDM->notesCDS->Active = true;
-            ImagesAndMoviesDM->notesCDS->Refresh();
-        }
-        else if(b == mDeleteNoteBtn)
-        {
-            int noteID = ImagesAndMoviesDM->notesCDS->Fields->FieldByName("id")->Value;
-            Log(lInfo) << "Removing image note with ID: "<<noteID;
-            ImagesAndMoviesDM->notesCDS->Active = false;
-            mClientDBSession.deleteNoteWithID(noteID);
-            ImagesAndMoviesDM->notesCDS->Active = true;
-            ImagesAndMoviesDM->notesCDS->Refresh();
-        }
+//        if(b == mNewNoteBtn)
+//        {
+//        	int userID = getCurrentUserID(mUsersCB);
+//            ImagesAndMoviesDM->notesCDS->Active = false;
+//            mClientDBSession.insertImageNote(imageID, userID, "New note..");
+//            ImagesAndMoviesDM->notesCDS->Active = true;
+//            ImagesAndMoviesDM->notesCDS->Refresh();
+//        }
+//        else if(b == mDeleteNoteBtn)
+//        {
+//            int noteID = ImagesAndMoviesDM->notesCDS->Fields->FieldByName("id")->Value;
+//            Log(lInfo) << "Removing image note with ID: "<<noteID;
+//            ImagesAndMoviesDM->notesCDS->Active = false;
+//            mClientDBSession.deleteNoteWithID(noteID);
+//            ImagesAndMoviesDM->notesCDS->Active = true;
+//            ImagesAndMoviesDM->notesCDS->Refresh();
+//        }
     }
     catch(...)
     {
@@ -320,6 +334,11 @@ void __fastcall TMainForm::DBMemo1KeyDown(TObject *Sender, WORD &Key, TShiftStat
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mImagesGridCellClick(TColumn *Column)
 {
+	loadCurrentImage();
+}
+
+void TMainForm::loadCurrentImage()
+{
 	//Retrieve file name and show the image
 	String f =	ImagesAndMoviesDM->imagesCDS->FieldByName("file_name")->AsString;
     string fName = joinPath(mSnapShotFolder, stdstr(f));
@@ -332,9 +351,6 @@ void __fastcall TMainForm::mImagesGridCellClick(TColumn *Column)
     {
     	Log(lError) << "The file: "<<fName<<" could not be found";
     }
-
-	mNotesGrid->Width = mNotesGrid->Width + 1;
-	mNotesGrid->Width = mNotesGrid->Width - 1;
 }
 
 void TMainForm::populateUsers()
@@ -487,27 +503,27 @@ void __fastcall TMainForm::DeleteAll1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
 {
-	if(atdbDM->SQLConnection1->Connected)
+	if(ImagesAndMoviesDM->SQLConnection1->Connected)
     {
-	    atdbDM->SQLConnection1->Connected = false;
-	    atdbDM->SQLConnection1->Close();
+	    ImagesAndMoviesDM->SQLConnection1->Connected = false;
+	    ImagesAndMoviesDM->SQLConnection1->Close();
     }
     else
     {
-	    atdbDM->connect("atdb");
+	    ImagesAndMoviesDM->connect("atdb", "atdb_client", "atdb123", "umlocal");
     }
 }
 
 void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
 {
-	atdbDM->afterConnect();
+	ImagesAndMoviesDM->afterConnect();
     enableDisableGroupBox(mATDBServerGB, true);
     mATDBServerBtnConnect->Caption = "Disconnect";
 }
 
 void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
 {
-	atdbDM->afterDisConnect();
+	ImagesAndMoviesDM->afterDisConnect();
     enableDisableGroupBox(mATDBServerGB, false);
     mATDBServerBtnConnect->Caption = "Connect";
 }
@@ -519,8 +535,8 @@ void __fastcall TMainForm::mSyncUsersBtnClick(TObject *Sender)
     try
     {
         Poco::ScopedLock<Poco::Mutex> lock(mClientDBMutex);
-        RecordSet* localUsers = mClientDBSession.getUsers();
-	    RecordSet* remoteUsers = mServerDBSession.getUsers();
+        RecordSet* localUsers 	= mClientDBSession.getUsers();
+	    RecordSet* remoteUsers 	= mServerDBSession.getUsers();
 
         if(!localUsers || !remoteUsers)
 		{
@@ -543,7 +559,11 @@ void __fastcall TMainForm::mSyncUsersBtnClick(TObject *Sender)
     {
     	handleMySQLException();
     }
-
 }
 
+void __fastcall TMainForm::mImagesGridKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	loadCurrentImage();
+}
+//---------------------------------------------------------------------------
 

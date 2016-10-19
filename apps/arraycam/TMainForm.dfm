@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Array Cam 0.5'
-  ClientHeight = 746
+  ClientHeight = 862
   ClientWidth = 968
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object MainForm: TMainForm
   TextHeight = 19
   object Splitter1: TSplitter
     Left = 0
-    Top = 584
+    Top = 700
     Width = 968
     Height = 3
     Cursor = crVSplit
@@ -33,7 +33,7 @@ object MainForm: TMainForm
   object Splitter2: TSplitter
     Left = 786
     Top = 0
-    Height = 584
+    Height = 700
     Align = alRight
     ExplicitLeft = 784
     ExplicitTop = 184
@@ -43,20 +43,20 @@ object MainForm: TMainForm
     Left = 789
     Top = 0
     Width = 179
-    Height = 584
+    Height = 700
     Align = alRight
     TabOrder = 0
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
       Width = 177
-      Height = 582
+      Height = 698
       Align = alClient
       TabOrder = 0
       object GroupBox5: TGroupBox
         Left = 0
         Top = 0
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Temperature (C)'
@@ -85,7 +85,7 @@ object MainForm: TMainForm
       object GroupBox6: TGroupBox
         Left = 0
         Top = 60
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Relative Humidity (%)'
@@ -113,8 +113,8 @@ object MainForm: TMainForm
       end
       object Button2: TArrayBotButton
         Left = 0
-        Top = 615
-        Width = 156
+        Top = 634
+        Width = 173
         Height = 60
         Align = alBottom
         Caption = 'Exit'
@@ -126,7 +126,7 @@ object MainForm: TMainForm
       object mFitToScreenButton: TArrayBotButton
         Left = 0
         Top = 120
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Fit to screen'
@@ -137,8 +137,8 @@ object MainForm: TMainForm
       end
       object mFrontBackLEDBtn: TArrayBotButton
         Left = 0
-        Top = 555
-        Width = 156
+        Top = 574
+        Width = 173
         Height = 60
         Align = alBottom
         Caption = 'Toggle LED Light'
@@ -151,7 +151,7 @@ object MainForm: TMainForm
       object mRecordMovieBtn: TArrayBotButton
         Left = 0
         Top = 435
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Record Movie'
@@ -163,7 +163,7 @@ object MainForm: TMainForm
       object mSettingsBtn: TArrayBotButton
         Left = 0
         Top = 315
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Settings'
@@ -175,7 +175,7 @@ object MainForm: TMainForm
       object mSnapShotBtn: TArrayBotButton
         Left = 0
         Top = 375
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Snap Shot'
@@ -186,8 +186,8 @@ object MainForm: TMainForm
       end
       object mToggleCoaxBtn: TArrayBotButton
         Left = 0
-        Top = 495
-        Width = 156
+        Top = 514
+        Width = 173
         Height = 60
         Align = alBottom
         Caption = 'Toggle Coax Light'
@@ -200,7 +200,7 @@ object MainForm: TMainForm
       object mToggleLogPanelBtn: TArrayBotButton
         Left = 0
         Top = 255
-        Width = 156
+        Width = 173
         Height = 60
         Align = alTop
         Caption = 'Hide Bottom Panel'
@@ -212,7 +212,7 @@ object MainForm: TMainForm
       object Panel3: TPanel
         Left = 0
         Top = 180
-        Width = 156
+        Width = 173
         Height = 75
         Align = alTop
         TabOrder = 10
@@ -246,7 +246,7 @@ object MainForm: TMainForm
   end
   object mBottomPanel: TPanel
     Left = 0
-    Top = 587
+    Top = 703
     Width = 968
     Height = 159
     Align = alBottom
@@ -332,7 +332,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 786
-    Height = 584
+    Height = 700
     ActivePage = TabSheet2
     Align = alClient
     MultiLine = True
@@ -348,7 +348,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 752
-        Height = 576
+        Height = 692
         Align = alClient
         TabOrder = 0
         OnResize = mMainPanelResize
@@ -378,29 +378,21 @@ object MainForm: TMainForm
     object TabSheet2: TTabSheet
       Caption = 'History'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
         Top = 41
         Width = 752
-        Height = 535
-        ActivePage = TabSheet6
+        Height = 651
+        ActivePage = TabSheet3
         Align = alClient
         TabOrder = 0
         object TabSheet3: TTabSheet
           Caption = 'Images'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object Image1: TImage
             Left = 282
             Top = 0
             Width = 462
-            Height = 501
+            Height = 617
             Align = alClient
             IncrementalDisplay = True
             Picture.Data = {
@@ -2069,46 +2061,28 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 282
-            Height = 501
+            Height = 617
             Align = alLeft
             Caption = 'Images'
             TabOrder = 0
             object DBMemo1: TDBMemo
               Left = 3
-              Top = 309
+              Top = 397
               Width = 262
               Height = 142
               DataField = 'note'
-              DataSource = ImagesAndMoviesDM.imageNotes
+              DataSource = ImagesAndMoviesDM.notesDSource
               TabOrder = 0
               OnKeyDown = DBMemo1KeyDown
             end
-            object mNewNoteBtn: TButton
-              Left = 128
-              Top = 268
-              Width = 59
-              Height = 32
-              Caption = 'New'
-              TabOrder = 1
-              OnClick = mNewNoteBtnClick
-            end
-            object mDeleteNoteBtn: TButton
-              Left = 193
-              Top = 268
-              Width = 75
-              Height = 32
-              Caption = 'Delete'
-              TabOrder = 2
-              OnClick = mNewNoteBtnClick
-            end
             object mNotesGrid: TDBGrid
-              Left = 128
-              Top = 53
-              Width = 137
-              Height = 209
-              DataSource = ImagesAndMoviesDM.imageNotes
+              Left = 3
+              Top = 223
+              Width = 262
+              Height = 88
+              DataSource = ImagesAndMoviesDM.imageNotesDSource
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
-              TabOrder = 3
+              TabOrder = 1
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
               TitleFont.Height = -16
@@ -2119,36 +2093,37 @@ object MainForm: TMainForm
                   Expanded = False
                   FieldName = 'created_on'
                   Title.Caption = 'Notes'
-                  Width = 100
+                  Width = 179
                   Visible = True
                 end>
             end
             object DBNavigator1: TDBNavigator
-              Left = 11
+              Left = 3
               Top = 22
-              Width = 252
+              Width = 256
               Height = 25
-              VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
-              TabOrder = 4
+              DataSource = ImagesAndMoviesDM.imagesDS
+              VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+              TabOrder = 2
             end
             object mAddImageFileBtn: TButton
               Left = 119
-              Top = 457
+              Top = 545
               Width = 131
               Height = 43
               Caption = 'Add Image File'
-              TabOrder = 5
+              TabOrder = 3
               Visible = False
               OnClick = mAddImageFileBtnClick
             end
             object mImagesGrid: TDBGrid
               Left = 3
               Top = 53
-              Width = 119
-              Height = 209
+              Width = 262
+              Height = 164
               DataSource = ImagesAndMoviesDM.imagesDS
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-              TabOrder = 6
+              TabOrder = 4
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
               TitleFont.Height = -16
@@ -2156,23 +2131,33 @@ object MainForm: TMainForm
               TitleFont.Style = []
               OnCellClick = mImagesGridCellClick
               OnDblClick = mImagesGridDblClick
+              OnKeyDown = mImagesGridKeyDown
               Columns = <
                 item
                   Expanded = False
                   FieldName = 'date'
-                  Width = 100
+                  Width = 233
                   Visible = True
                 end>
             end
             object mUpdateNoteBtn: TButton
               Left = 3
-              Top = 457
+              Top = 545
               Width = 81
               Height = 38
               Caption = 'Update'
               Enabled = False
-              TabOrder = 7
+              TabOrder = 5
               OnClick = mUpdateNoteBtnClick
+            end
+            object DBNavigator2: TDBNavigator
+              Left = 3
+              Top = 317
+              Width = 260
+              Height = 25
+              DataSource = ImagesAndMoviesDM.imageNotesDSource
+              TabOrder = 6
+              OnClick = DBNavigator2Click
             end
           end
         end

@@ -30,7 +30,6 @@
 #include <Vcl.Imaging.jpeg.hpp>
 
 #include "TATDBImagesAndMoviesDataModule.h"
-#include "TATDBDataModule.h"
 #include "abEnvironmentalSensorReader.h"
 #include "abATDBServerSession.h"
 
@@ -93,8 +92,6 @@ class TMainForm  : public TRegistryForm
 	TButton *mAddImageFileBtn;
 	TDBMemo *DBMemo1;
 	TButton *mUpdateNoteBtn;
-	TButton *mNewNoteBtn;
-	TButton *mDeleteNoteBtn;
 	TImage *Image1;
 	TGroupBox *GroupBox1;
 	TPanel *Panel4;
@@ -110,6 +107,7 @@ class TMainForm  : public TRegistryForm
 	TGroupBox *GroupBox3;
 	TDBGrid *DBGrid2;
 	TButton *mATDBServerBtnConnect;
+	TDBNavigator *DBNavigator2;
 	void __fastcall mCameraStartLiveBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormCreate(TObject *Sender);
@@ -146,12 +144,14 @@ class TMainForm  : public TRegistryForm
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mSyncUsersBtnClick(TObject *Sender);
+	void __fastcall mImagesGridKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
 
     protected:
         LogFileReader                           mLogFileReader;
         void __fastcall                         logMsg();
-
+		void 									loadCurrentImage();
 
     	EnvironmentaSensorReader				mEnvReader;
 

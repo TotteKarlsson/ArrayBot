@@ -106,6 +106,7 @@ void __fastcall TSettingsForm::AutoParaCBClick(TObject *Sender)
 
     if(cb == mAutoGainCB)
     {
+    	mGainTB->Enabled = !cb->Checked;
 	    mAutoGainCB->OnClick(Sender);
 	    //Enable auto gain control:
 	    ret = is_SetAutoParameter (hCam, IS_SET_ENABLE_AUTO_GAIN, &dEnable, 0);
@@ -187,38 +188,56 @@ void __fastcall TSettingsForm::BrowseForFolder(TObject *Sender)
 void __fastcall TSettingsForm::mGammaSBChange(TObject *Sender)
 {
 	int pos = mGammaSB->Position;
-    mGamma->Caption = mtk::toString(pos/100.0).c_str();
+    mGamma->Caption = mtk::toString((double) pos/100.0).c_str();
 
     HCAM hCam = mMainForm.mCamera.GetCameraHandle();
 	int ret = is_SetGamma (hCam, pos);
 
     switch(ret)
     {
-	    case IS_GET_GAMMA:    		Log(lInfo) << "Gamma setting succeded";		break;
+	    case IS_GET_GAMMA:
+        	Log(lInfo) << "Gamma setting succeded";
+        break;
 
 		case IS_CANT_COMMUNICATE_WITH_DRIVER:
         	Log(lError) << "Communication with the driver failed because no driver has been loaded.";
 		break;
+
         case IS_CANT_OPEN_DEVICE:
         	Log(lError) << "An attempt to initialize or select the camera failed (no camera connected or initialization error).";
     	break;
-		case IS_INVALID_CAMERA_HANDLE: Log(lError) << "Invalid camera handle";  break;
+
+		case IS_INVALID_CAMERA_HANDLE:
+        	Log(lError) << "Invalid camera handle";
+        break;
+
 		case IS_INVALID_PARAMETER:
         	Log(lError) << "One of the submitted parameters is outside the \
 valid range or is not supported for this sensor or \
 is not available in this mode.";
 		break;
+
         case IS_IO_REQUEST_FAILED:
         	Log(lError) << "An IO request from the uc480 driver failed. \
 Possibly the versions of the uc480.dll (API) and \
 the driver file (uc480_usb.sys) do not match. ";
 		break;
-        case IS_NO_SUCCESS:        	Log(lError) << "General error message";		break;
+
+        case IS_NO_SUCCESS:
+        	Log(lError) << "General error message";
+        break;
+
         case IS_NOT_SUPPORTED:
         	Log(lError) <<"The camera model used here does not support this function or setting.";
 		break;
-		case IS_SUCCESS: Log(lInfo) << "Function executed successfully";		break;
-        default:  	Log(lInfo) << "Unknown return value";						break;
+
+		case IS_SUCCESS:
+        	Log(lInfo) << "Function executed successfully";
+        break;
+
+        default:
+        	Log(lInfo) << "Unknown return value";
+        break;
     }
 }
 
@@ -284,6 +303,64 @@ void __fastcall TSettingsForm::FormHide(TObject *Sender)
 void __fastcall TSettingsForm::FormShow(TObject *Sender)
 {
 	mUIUpdateTimer->Enabled = true;
+}
+
+
+void __fastcall TSettingsForm::mGainTBChange(TObject *Sender)
+{
+	int pos = mGainTB->Position/10;
+    mGainLbl->Caption = mtk::toString(pos).c_str();
+
+    HCAM hCam = mMainForm.mCamera.GetCameraHandle();
+	int ret = is_SetHardwareGain(hCam, pos, pos, pos ,pos);
+
+    switch(ret)
+    {
+	    case IS_GET_GAMMA:
+        	Log(lInfo) << "Gamma setting succeded";
+        break;
+
+		case IS_CANT_COMMUNICATE_WITH_DRIVER:
+        	Log(lError) << "Communication with the driver failed because no driver has been loaded.";
+		break;
+
+        case IS_CANT_OPEN_DEVICE:
+        	Log(lError) << "An attempt to initialize or select the camera failed (no camera connected or initialization error).";
+    	break;
+
+		case IS_INVALID_CAMERA_HANDLE:
+        	Log(lError) << "Invalid camera handle";
+        break;
+
+		case IS_INVALID_PARAMETER:
+        	Log(lError) << "One of the submitted parameters is outside the \
+valid range or is not supported for this sensor or \
+is not available in this mode.";
+		break;
+
+        case IS_IO_REQUEST_FAILED:
+        	Log(lError) << "An IO request from the uc480 driver failed. \
+Possibly the versions of the uc480.dll (API) and \
+the driver file (uc480_usb.sys) do not match. ";
+		break;
+
+        case IS_NO_SUCCESS:
+        	Log(lError) << "General error message";
+        break;
+
+        case IS_NOT_SUPPORTED:
+        	Log(lError) <<"The camera model used here does not support this function or setting.";
+		break;
+
+		case IS_SUCCESS:
+        	Log(lInfo) << "Function executed successfully";
+        break;
+
+        default:
+        	Log(lInfo) << "Unknown return value";
+        break;
+    }
+
 }
 
 
