@@ -67,7 +67,7 @@ object atdbDM: TatdbDM
       AutoGenerateValue = arDefault
       DisplayLabel = 'Created On'
       FieldName = 'created'
-      OnGetText = blocksCDScreatedGetText
+      OnGetText = TimeStampGetText
     end
     object blocksCDScreated_by: TIntegerField
       FieldName = 'created_by'
@@ -341,6 +341,7 @@ object atdbDM: TatdbDM
     end
     object mRibbonCDScreated: TSQLTimeStampField
       FieldName = 'created'
+      OnGetText = TimeStampGetText
     end
     object mRibbonCDSmodified: TSQLTimeStampField
       FieldName = 'modified'
@@ -571,6 +572,8 @@ object atdbDM: TatdbDM
     ProviderName = 'specimenProvider'
     AfterPost = cdsAfterPost
     AfterScroll = cdsAfterScroll
+    BeforeRefresh = cdsBeforeRefresh
+    AfterRefresh = cdsAfterRefresh
     Left = 248
     Top = 160
     object specimenCDSprocess_id: TIntegerField
@@ -820,9 +823,46 @@ object atdbDM: TatdbDM
     DataSet.CommandText = 'select * from substitution'
     DataSet.MaxBlobSize = -1
     DataSet.Params = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        Attributes = [faRequired]
+        DataType = ftSmallint
+      end
+      item
+        Name = 'protocol'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'document_id'
+        DataType = ftInteger
+      end>
+    IndexDefs = <>
     Params = <>
-    Left = 672
-    Top = 568
+    StoreDefs = True
+    Left = 720
+    Top = 408
+    object substitutionProtocolid: TSmallintField
+      FieldName = 'id'
+      Required = True
+    end
+    object substitutionProtocolprotocol: TStringField
+      FieldName = 'protocol'
+      Size = 255
+    end
+    object substitutionProtocoldocument_id: TIntegerField
+      FieldName = 'document_id'
+    end
+    object substitutionProtocolLDocument: TStringField
+      FieldKind = fkLookup
+      FieldName = 'LDocument'
+      LookupDataSet = documentsCDS
+      LookupKeyFields = 'document_name'
+      LookupResultField = 'id'
+      KeyFields = 'document_id'
+      Lookup = True
+    end
   end
   object infiltrationProtocolDS: TSimpleDataSet
     Aggregates = <>
@@ -864,5 +904,66 @@ object atdbDM: TatdbDM
     Params = <>
     Left = 552
     Top = 264
+  end
+  object documentsDS: TSQLDataSet
+    CommandText = 'SELECT * from documents'
+    MaxBlobSize = 1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 32
+    Top = 576
+    object documentsDSid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object documentsDSdocument_name: TStringField
+      FieldName = 'document_name'
+      Required = True
+      Size = 255
+    end
+    object documentsDSdocument: TBlobField
+      FieldName = 'document'
+      Size = 1
+    end
+    object documentsDStype: TStringField
+      FieldName = 'type'
+      Size = 16
+    end
+  end
+  object documentsProvider: TDataSetProvider
+    DataSet = documentsDS
+    Left = 136
+    Top = 576
+  end
+  object documentsCDS: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'documentsProvider'
+    Left = 224
+    Top = 576
+    object documentsCDSid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object documentsCDSdocument_name: TStringField
+      DisplayLabel = 'Name'
+      FieldName = 'document_name'
+      Required = True
+      Size = 255
+    end
+    object documentsCDSdocument: TBlobField
+      FieldName = 'document'
+      Size = 1
+    end
+    object documentsCDStype: TStringField
+      DisplayLabel = 'Type'
+      FieldName = 'type'
+      Size = 16
+    end
+  end
+  object documentsDSource: TDataSource
+    DataSet = documentsCDS
+    Left = 336
+    Top = 584
   end
 end

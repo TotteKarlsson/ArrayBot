@@ -165,6 +165,22 @@ __published:	// IDE-managed Components
 	TSmallintField *blocksDSserial;
 	TSmallintField *blocksCDSserial;
 	TStringField *blocksCDSCBlockLabel;
+	TSQLDataSet *documentsDS;
+	TDataSetProvider *documentsProvider;
+	TClientDataSet *documentsCDS;
+	TDataSource *documentsDSource;
+	TIntegerField *documentsDSid;
+	TBlobField *documentsDSdocument;
+	TStringField *documentsDStype;
+	TStringField *documentsDSdocument_name;
+	TIntegerField *documentsCDSid;
+	TStringField *documentsCDSdocument_name;
+	TBlobField *documentsCDSdocument;
+	TStringField *documentsCDStype;
+	TSmallintField *substitutionProtocolid;
+	TStringField *substitutionProtocolprotocol;
+	TIntegerField *substitutionProtocoldocument_id;
+	TStringField *substitutionProtocolLDocument;
 	void __fastcall cdsAfterPost(TDataSet *DataSet);
 	void __fastcall cdsAfterDelete(TDataSet *DataSet);
 	void __fastcall cdsAfterScroll(TDataSet *DataSet);
@@ -178,8 +194,10 @@ __published:	// IDE-managed Components
 	void __fastcall blocksCDSCalcFields(TDataSet *DataSet);
 	void __fastcall blocksCDSblockLabelGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
-	void __fastcall blocksCDScreatedGetText(TField *Sender, UnicodeString &Text,
+	void __fastcall TimeStampGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
+	void __fastcall cdsBeforeRefresh(TDataSet *DataSet);
+
 
 
 	private:	// User declarations

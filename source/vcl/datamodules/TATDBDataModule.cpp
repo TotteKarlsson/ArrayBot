@@ -91,14 +91,15 @@ void __fastcall TatdbDM::afterConnect()
 
 	Log(lInfo) << "Connection established to: "<<mDataBase;
 	usersCDS->Active 	    = true;
-	specimenCDS->Active  = true;
+	specimenCDS->Active  	= true;
     blocksCDS->Active 	    = true;
 
     mRibbonCDS->Active 	    = true;
     notesCDS->Active   	    = true;
 	blockNotesCDS->Active  	= true;
     ribbonNotesCDS->Active  = true;
-	specimenCDS->Active  = true;
+	specimenCDS->Active  	= true;
+    documentsCDS->Active  	= true;
 }
 
 void __fastcall TatdbDM::afterDisConnect()
@@ -110,6 +111,7 @@ void __fastcall TatdbDM::afterDisConnect()
     notesCDS->Active	    = false;
 	blockNotesCDS->Active  	= false;
     ribbonNotesCDS->Active  = false;
+	specimenCDS->Active  = false;
 }
 
 //---------------------------------------------------------------------------
@@ -147,22 +149,6 @@ void __fastcall TatdbDM::cdsAfterScroll(TDataSet *DataSet)
     	return;
     }
 
- 	if(DataSet == blocksCDS)
-    {
-        int bID = blocksCDS->FieldByName("id")->AsInteger;
-        if(bID == 0)
-        {
-            blockNotesCDS->Active = false;
-            mRibbonCDS->Active = false;
-        }
-        else
-        {
-            blockNotesCDS->Active = true;
-            mRibbonCDS->Active = true;
-        }
-        cdsAfterRefresh(blocksCDS);
-    }
-
  	if(DataSet == specimenCDS)
     {
     	if(blocksCDS->Active)
@@ -184,6 +170,37 @@ void __fastcall TatdbDM::cdsAfterScroll(TDataSet *DataSet)
 //            mRibbonCDS->Active = true;
 //        }
 //        cdsAfterRefresh(blocksCDS);
+    }
+
+ 	if(DataSet == blocksCDS)
+    {
+        int bID = blocksCDS->FieldByName("id")->AsInteger;
+        if(bID == 0)
+        {
+            blockNotesCDS->Active = false;
+            mRibbonCDS->Active = false;
+        }
+        else
+        {
+            blockNotesCDS->Active = true;
+            mRibbonCDS->Active = true;
+        }
+        cdsAfterRefresh(blocksCDS);
+    }
+
+	if(DataSet == mRibbonCDS)
+    {
+        String rID = mRibbonCDS->FieldByName("id")->AsString;
+        if(rID == "")
+        {
+            ribbonNotesCDS->Active = false;
+        }
+        else
+        {
+            ribbonNotesCDS->Active = true;
+
+        }
+        cdsAfterRefresh(mRibbonCDS);
     }
 
 }
@@ -299,7 +316,7 @@ void __fastcall TatdbDM::blocksCDSblockLabelGetText(TField *Sender, UnicodeStrin
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TatdbDM::blocksCDScreatedGetText(TField *Sender, UnicodeString &Text,
+void __fastcall TatdbDM::TimeStampGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText)
 {
 	TField* field = dynamic_cast<TField*>(Sender);
@@ -312,7 +329,23 @@ void __fastcall TatdbDM::blocksCDScreatedGetText(TField *Sender, UnicodeString &
 			Text = vclstr(d[0]);
         }
 	}
-
+    else if	(field == mRibbonCDScreated)
+	{
+		StringList d(stdstr(mRibbonCDScreated->AsString), ' ');
+        if(d.size())
+        {
+			Text = vclstr(d[0]);
+        }
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TatdbDM::cdsBeforeRefresh(TDataSet *DataSet)
+{
+//	if(DataSet == specimenCDS)
+//    {
+//		specimenCDS->Active = false;
+//		specimenCDS->Active = true;
+//    }
 }
 
 
