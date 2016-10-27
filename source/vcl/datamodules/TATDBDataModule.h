@@ -200,6 +200,8 @@ __published:	// IDE-managed Components
 
 
 
+
+
 	private:	// User declarations
     protected:
     	string		mDataBaseUser;

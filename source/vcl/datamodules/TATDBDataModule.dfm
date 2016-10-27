@@ -491,7 +491,7 @@ object atdbDM: TatdbDM
     end
   end
   object specimenDS: TSQLDataSet
-    CommandText = 'select * from specimen order by process_id DESC'
+    CommandText = 'SELECT * from specimen order by process_id'
     MaxBlobSize = 1
     Params = <>
     SQLConnection = SQLConnection1
@@ -568,8 +568,11 @@ object atdbDM: TatdbDM
   end
   object specimenCDS: TClientDataSet
     Aggregates = <>
+    FieldDefs = <>
+    IndexDefs = <>
     Params = <>
     ProviderName = 'specimenProvider'
+    StoreDefs = True
     AfterPost = cdsAfterPost
     AfterScroll = cdsAfterScroll
     BeforeRefresh = cdsBeforeRefresh
@@ -577,69 +580,89 @@ object atdbDM: TatdbDM
     Left = 248
     Top = 160
     object specimenCDSprocess_id: TIntegerField
+      DisplayLabel = 'Process ID'
       FieldName = 'process_id'
     end
     object specimenCDSspeciment_id: TStringField
+      DisplayLabel = 'Specimen ID'
       FieldName = 'specimen_id'
       Required = True
       Size = 255
     end
     object specimenCDSspecies: TIntegerField
+      DisplayLabel = 'Species'
       FieldName = 'species'
     end
     object specimenCDSadditional_identifier: TStringField
+      DisplayLabel = 'Additional Identifier'
       FieldName = 'additional_identifier'
       Size = 255
     end
     object specimenCDSage: TStringField
+      DisplayLabel = 'Age'
       FieldName = 'age'
       Size = 255
     end
     object specimenCDSlims_number: TIntegerField
+      DisplayLabel = 'LIMS'
       FieldName = 'lims_number'
     end
     object specimenCDSdeath_date: TDateField
+      DisplayLabel = 'DOD'
       FieldName = 'death_date'
     end
     object specimenCDSpreprocess_treatment: TSmallintField
+      DisplayLabel = 'Preprocess Treatment'
       FieldName = 'preprocess_treatment'
     end
     object specimenCDSfixative: TSmallintField
+      DisplayLabel = 'Fixative'
       FieldName = 'fixative'
     end
     object specimenCDSfixation_method: TSmallintField
+      DisplayLabel = 'Fixation Method'
       DisplayWidth = 50
       FieldName = 'fixation_method'
     end
     object specimenCDSbrain_region_dissection: TStringField
+      DisplayLabel = 'From Brain Region'
       FieldName = 'brain_region_dissection'
       Size = 255
     end
     object specimenCDSpostfix_protocol: TShortintField
+      DisplayLabel = 'Postfix Protocol'
       FieldName = 'postfix_protocol'
     end
     object specimenCDSdate_received: TDateField
+      DisplayLabel = 'Date Received'
       FieldName = 'date_received'
     end
     object specimenCDSdate_embedded: TDateField
+      DisplayLabel = 'Date Embedded'
       FieldName = 'date_embedded'
     end
     object specimenCDScryoprotection_protocol: TShortintField
+      DisplayLabel = 'Cryoprotection Protocol'
       FieldName = 'cryoprotection_protocol'
     end
     object specimenCDSfreezing_protocol: TShortintField
+      DisplayLabel = 'Freezing Protocol'
       FieldName = 'freezing_protocol'
     end
     object specimenCDSsubstitution_protocol: TShortintField
+      DisplayLabel = 'Substitution Protocol'
       FieldName = 'substitution_protocol'
     end
     object specimenCDSinfiltration_protocol: TShortintField
+      DisplayLabel = 'Infiltration Protocol'
       FieldName = 'infiltration_protocol'
     end
     object specimenCDSembedding_protocol: TShortintField
+      DisplayLabel = 'Embedding Protocol'
       FieldName = 'embedding_protocol'
     end
     object specimenCDSLpreproctreat: TStringField
+      DisplayLabel = 'PreProcess Treatment'
       FieldKind = fkLookup
       FieldName = 'Lpreproctreat'
       LookupDataSet = preprocesstreatmentDS
@@ -650,6 +673,7 @@ object atdbDM: TatdbDM
       Lookup = True
     end
     object specimenCDSLspecie: TStringField
+      DisplayLabel = 'Specie'
       FieldKind = fkLookup
       FieldName = 'Lspecie'
       LookupDataSet = speciesDS
@@ -670,6 +694,7 @@ object atdbDM: TatdbDM
       Lookup = True
     end
     object specimenCDSLfixationMethod: TStringField
+      DisplayLabel = 'Fixation Method'
       DisplayWidth = 60
       FieldKind = fkLookup
       FieldName = 'LfixationMethod'
@@ -681,6 +706,7 @@ object atdbDM: TatdbDM
       Lookup = True
     end
     object specimenCDSLpostfix: TStringField
+      DisplayLabel = 'PostFix'
       FieldKind = fkLookup
       FieldName = 'Lpostfix'
       LookupDataSet = postfix
@@ -691,6 +717,7 @@ object atdbDM: TatdbDM
       Lookup = True
     end
     object specimenCDSLcryoprotection: TStringField
+      DisplayLabel = 'Cryo Protection'
       FieldKind = fkLookup
       FieldName = 'Lcryoprotection'
       LookupDataSet = cryoprotectionDS
@@ -701,6 +728,7 @@ object atdbDM: TatdbDM
       Lookup = True
     end
     object specimenCDSLfreezeProtocol: TStringField
+      DisplayLabel = 'Freeze Protocol'
       FieldKind = fkLookup
       FieldName = 'LfreezeProtocol'
       LookupDataSet = freezeprotocolDS
@@ -711,6 +739,7 @@ object atdbDM: TatdbDM
       Lookup = True
     end
     object specimenCDSLsubstitutionProtocol: TStringField
+      DisplayLabel = 'Substitution Protocol'
       FieldKind = fkLookup
       FieldName = 'LsubstitutionProtocol'
       LookupDataSet = substitutionProtocol
@@ -721,6 +750,7 @@ object atdbDM: TatdbDM
       Lookup = True
     end
     object specimenCDSLinfiltration: TStringField
+      DisplayLabel = 'Infilatration'
       FieldKind = fkLookup
       FieldName = 'Linfiltration'
       LookupDataSet = infiltrationProtocolDS
@@ -731,6 +761,7 @@ object atdbDM: TatdbDM
       Lookup = True
     end
     object specimenCDSLembedding: TStringField
+      DisplayLabel = 'Embedding'
       FieldKind = fkLookup
       FieldName = 'Lembedding'
       LookupDataSet = embeddingProtocolDS

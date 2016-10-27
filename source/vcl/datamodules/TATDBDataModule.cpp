@@ -294,16 +294,17 @@ void __fastcall TatdbDM::blocksCDSCalcFields(TDataSet *DataSet)
 		if(f)
 		{
         	stringstream s;
-
+            //Capture date with no time
             StringList d(stdstr(blocksCDS->FieldByName("created")->AsString), ' ');
             if(d.size())
             {
 	            s << stdstr(d[0]) <<"\n";
             }
 
-            s << stdstr(blocksCDS->FieldByName("label")->AsString) <<"\n";
-            string str = s.str();
-			f->Value = String(str.c_str());
+            s << stdstr(blocksCDS->FieldByName("label")->AsString);
+            s <<"\n";
+
+			f->Value = String(s.str().c_str());
 		}
 	}
 }
@@ -347,6 +348,9 @@ void __fastcall TatdbDM::cdsBeforeRefresh(TDataSet *DataSet)
 //		specimenCDS->Active = true;
 //    }
 }
+
+
+
 
 
 
