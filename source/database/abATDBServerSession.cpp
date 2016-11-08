@@ -31,7 +31,7 @@ StringList ATDBServerSession::getTableNames()
     }
 
     Statement select(*mTheSession);
-    select << "SELECT table_name FROM information_schema.tables WHERE table_schema='atdb'" ;
+    select << "SELECT table_name FROM information_schema.tables WHERE table_schema='"<<mDataBase<<"'" ;
 
     int nrRows = select.execute();
 	RecordSet rs(select);

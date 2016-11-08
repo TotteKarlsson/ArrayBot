@@ -86,16 +86,11 @@ __published:	// IDE-managed Components
 	TSmallintField *mRibbonCDSnr_of_sections;
 	TSQLTimeStampField *mRibbonCDScreated;
 	TSQLTimeStampField *mRibbonCDSmodified;
-	TIntegerField *blocksDSid;
-	TSQLTimeStampField *blocksDScreated;
-	TIntegerField *blocksDScreated_by;
-	TSQLTimeStampField *blocksDSmodified;
 	TSQLDataSet *specimenDS;
 	TDataSetProvider *specimenProvider;
 	TClientDataSet *specimenCDS;
 	TDataSource *specimenDSrc;
 	TStringField *specimenCDSspeciment_id;
-	TIntegerField *specimenCDSspecies;
 	TStringField *specimenCDSLspecie;
 	TStringField *specimenCDSadditional_identifier;
 	TStringField *specimenCDSage;
@@ -114,7 +109,6 @@ __published:	// IDE-managed Components
 	TShortintField *specimenCDSinfiltration_protocol;
 	TShortintField *specimenCDSembedding_protocol;
 	TStringField *specimenCDSLpreproctreat;
-	TStringField *blocksDSlabel;
 	TStringField *blocksCDSlabel;
 	TSimpleDataSet *fixativeTBL;
 	TStringField *specimenCDSLFixative;
@@ -135,16 +129,14 @@ __published:	// IDE-managed Components
 	TSimpleDataSet *embeddingProtocolDS;
 	TStringField *specimenCDSLembedding;
 	TSimpleDataSet *blockstatusDS;
-	TIntegerField *blocksDSprocess_id;
 	TIntegerField *blocksCDSprocess_id;
 	TIntegerField *specimenCDSprocess_id;
 	TSimpleDataSet *processIDDS;
 	TIntegerField *blocksCDSLprocess_id;
-	TSmallintField *blocksDSstatus;
 	TSmallintField *blocksCDSstatus;
 	TIntegerField *specimenDSprocess_id;
 	TStringField *specimenDSspecimen_id;
-	TSmallintField *specimenDSspecies;
+	TSmallintField *specimenDSspecie;
 	TStringField *specimenDSadditional_identifier;
 	TStringField *specimenDSage;
 	TIntegerField *specimenDSlims_number;
@@ -162,7 +154,6 @@ __published:	// IDE-managed Components
 	TSmallintField *specimenDSinfiltration_protocol;
 	TSmallintField *specimenDSembedding_protocol;
 	TStringField *blocksCDSLBlockStatus;
-	TSmallintField *blocksDSserial;
 	TSmallintField *blocksCDSserial;
 	TStringField *blocksCDSCBlockLabel;
 	TSQLDataSet *documentsDS;
@@ -181,6 +172,14 @@ __published:	// IDE-managed Components
 	TStringField *substitutionProtocolprotocol;
 	TIntegerField *substitutionProtocoldocument_id;
 	TStringField *substitutionProtocolLDocument;
+	TIntegerField *blocksDSid;
+	TIntegerField *blocksDSprocess_id;
+	TSQLTimeStampField *blocksDScreated;
+	TIntegerField *blocksDScreated_by;
+	TSQLTimeStampField *blocksDSmodified;
+	TSmallintField *blocksDSstatus;
+	TStringField *blocksDSlabel;
+	TSmallintField *blocksDSserial;
 	void __fastcall cdsAfterPost(TDataSet *DataSet);
 	void __fastcall cdsAfterDelete(TDataSet *DataSet);
 	void __fastcall cdsAfterScroll(TDataSet *DataSet);
@@ -197,10 +196,7 @@ __published:	// IDE-managed Components
 	void __fastcall TimeStampGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
 	void __fastcall cdsBeforeRefresh(TDataSet *DataSet);
-
-
-
-
+	void __fastcall specimenCDSBeforeClose(TDataSet *DataSet);
 
 	private:	// User declarations
     protected:
@@ -215,7 +211,6 @@ __published:	// IDE-managed Components
 		bool 	__fastcall connect(const string& ip, const string& dbUser, const string& dbPassword, const string& db);
         void    __fastcall afterConnect();
         void    __fastcall afterDisConnect();
-
 };
 
 extern PACKAGE TatdbDM *atdbDM;

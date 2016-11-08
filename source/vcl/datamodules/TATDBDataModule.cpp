@@ -17,69 +17,40 @@ extern bool gAppIsStartingUp;
 
 //---------------------------------------------------------------------------
 __fastcall TatdbDM::TatdbDM(TComponent* Owner)
-	: TDataModule(Owner)
+	:
+    TDataModule(Owner)
 {
   	SQLConnection1->Connected = false;
 }
 
-//VALID Paramaters
-//DriverUnit=Data.DBXMySQL
-//DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver170.bpl
-//DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borland.Data.DbxCommonDriver,Version=17.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b
-//MetaDataPackageLoader=TDBXMySqlMetaDataCommandFactory,DbxMySQLDriver170.bpl
-//MetaDataAssemblyLoader=Borland.Data.TDBXMySqlMetaDataCommandFactory,Borland.Data.DbxMySQLDriver,Version=17.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b
-//GetDriverFunc=getSQLDriverMYSQL
-//LibraryName=dbxmys.dll
-//LibraryNameOsx=libsqlmys.dylib
-//VendorLib=LIBMYSQL.dll
-//VendorLibWin64=libmysql.dll
-//VendorLibOsx=libmysqlclient.dylib
-//HostName=localhost
-//Database=atdb
-//User_Name=atdb_client
-//Password=atdb123
-//MaxBlobSize=-1
-//LocaleCode=0000
-//Compressed=False
-//Encrypted=False
-//BlobSize=-1
-
-
 bool __fastcall TatdbDM::connect(const string& ip, const string& dbUser, const string& dbPassword, const string& db)
 {
-	try
-    {
-	    mDataBase = db;
-        mDataBaseUser = dbUser;
-        mDataBaseUserPassword = dbPassword;
-        mDBIP = ip;
+    mDataBase = db;
+    mDataBaseUser = dbUser;
+    mDataBaseUserPassword = dbPassword;
+    mDBIP = ip;
 
-        SQLConnection1->KeepConnection = true;
-    	SQLConnection1->Connected = false;
-       	SQLConnection1->Params->Values[_D("HostName")] = vclstr(mDBIP);
-       	SQLConnection1->Params->Values[_D("Database")] = vclstr(mDataBase);
-       	SQLConnection1->Params->Values[_D("User_Name")] = vclstr(mDataBaseUser);
-       	SQLConnection1->Params->Values[_D("Password")] = vclstr(mDataBaseUserPassword);
-       	SQLConnection1->Connected= true;
-    }
-    catch (const Exception &E)
-    {
-       Application->MessageBox(E.Message.c_str(), _D("Error connecting to database"),  MB_ICONSTOP | MB_OK);
-    }
-
+    SQLConnection1->KeepConnection = true;
+    SQLConnection1->Connected = false;
+    SQLConnection1->Params->Values[_D("HostName")] = vclstr(mDBIP);
+    SQLConnection1->Params->Values[_D("Database")] = vclstr(mDataBase);
+    SQLConnection1->Params->Values[_D("User_Name")] = vclstr(mDataBaseUser);
+    SQLConnection1->Params->Values[_D("Password")] = vclstr(mDataBaseUserPassword);
+    SQLConnection1->Connected= true;
     return SQLConnection1->Connected;
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TatdbDM::SQLConnection1BeforeConnect(TObject *Sender)
 {
-	Log(lInfo) <<"Trying to connect to SQL server:";
+	Log(lInfo) <<"Trying to connect to SQL server:" <<stdstr(SQLConnection1->Params->Values[_D("Database")]);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TatdbDM::SQLConnection1AfterConnect(TObject *Sender)
 {
 	afterConnect();
+//    initCSDM();
 }
 
 void __fastcall TatdbDM::afterConnect()
@@ -91,6 +62,7 @@ void __fastcall TatdbDM::afterConnect()
 
 	Log(lInfo) << "Connection established to: "<<mDataBase;
 	usersCDS->Active 	    = true;
+
 	specimenCDS->Active  	= true;
     blocksCDS->Active 	    = true;
 
@@ -111,7 +83,7 @@ void __fastcall TatdbDM::afterDisConnect()
     notesCDS->Active	    = false;
 	blockNotesCDS->Active  	= false;
     ribbonNotesCDS->Active  = false;
-	specimenCDS->Active  = false;
+	specimenCDS->Active  	= false;
 }
 
 //---------------------------------------------------------------------------
@@ -153,23 +125,8 @@ void __fastcall TatdbDM::cdsAfterScroll(TDataSet *DataSet)
     {
     	if(blocksCDS->Active)
         {
-//	        stringstream s;
-//            s << "SELECT * FROM block WHERE process_id IN ";
-//
-//	        blocksCDS->CommandText =
         	blocksCDS->Refresh();
         }
-//        if(bID == 0)
-//        {
-//            blockNotesCDS->Active = false;
-//            mRibbonCDS->Active = false;
-//        }
-//        else
-//        {
-//            blockNotesCDS->Active = true;
-//            mRibbonCDS->Active = true;
-//        }
-//        cdsAfterRefresh(blocksCDS);
     }
 
  	if(DataSet == blocksCDS)
@@ -219,8 +176,7 @@ void __fastcall TatdbDM::cdsAfterRefresh(TDataSet *DataSet)
 			blockNotesCDS->Refresh();
         }
     }
-
-    if(DataSet == mRibbonCDS)
+    else if(DataSet == mRibbonCDS)
     {
     	if(ribbonNotesCDS->Active)
         {
@@ -350,7 +306,8 @@ void __fastcall TatdbDM::cdsBeforeRefresh(TDataSet *DataSet)
 }
 
 
-
-
-
-
+//---------------------------------------------------------------------------
+void __fastcall TatdbDM::specimenCDSBeforeClose(TDataSet *DataSet)
+{
+    //delete runtime indices
+}

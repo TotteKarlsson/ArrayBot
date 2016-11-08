@@ -28,7 +28,7 @@ object atdbDM: TatdbDM
       'VendorLibWin64=libmysql.dll'
       'VendorLibOsx=libmysqlclient.dylib'
       'HostName=localhost'
-      'Database=atdb'
+      'Database=atdb_demo'
       'User_Name=atdb_client'
       'Password=atdb123'
       'MaxBlobSize=-1'
@@ -129,7 +129,6 @@ object atdbDM: TatdbDM
     Top = 240
   end
   object blocksDS: TSQLDataSet
-    ObjectView = True
     CommandText = 
       'select * from block WHERE process_id = :process_id ORDER by id D' +
       'ESC'
@@ -137,7 +136,7 @@ object atdbDM: TatdbDM
     MaxBlobSize = 1
     Params = <
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'process_id'
         ParamType = ptInput
       end>
@@ -146,6 +145,9 @@ object atdbDM: TatdbDM
     Top = 240
     object blocksDSid: TIntegerField
       FieldName = 'id'
+    end
+    object blocksDSprocess_id: TIntegerField
+      FieldName = 'process_id'
     end
     object blocksDScreated: TSQLTimeStampField
       FieldName = 'created'
@@ -157,16 +159,14 @@ object atdbDM: TatdbDM
     object blocksDSmodified: TSQLTimeStampField
       FieldName = 'modified'
     end
-    object blocksDSlabel: TStringField
-      FieldName = 'label'
-      Size = 255
-    end
-    object blocksDSprocess_id: TIntegerField
-      FieldName = 'process_id'
-    end
     object blocksDSstatus: TSmallintField
       FieldName = 'status'
       Required = True
+    end
+    object blocksDSlabel: TStringField
+      FieldName = 'label'
+      Required = True
+      Size = 255
     end
     object blocksDSserial: TSmallintField
       FieldName = 'serial'
@@ -505,8 +505,8 @@ object atdbDM: TatdbDM
       Required = True
       Size = 255
     end
-    object specimenDSspecies: TSmallintField
-      FieldName = 'species'
+    object specimenDSspecie: TSmallintField
+      FieldName = 'specie'
     end
     object specimenDSadditional_identifier: TStringField
       FieldName = 'additional_identifier'
@@ -568,11 +568,93 @@ object atdbDM: TatdbDM
   end
   object specimenCDS: TClientDataSet
     Aggregates = <>
-    FieldDefs = <>
+    FieldDefs = <
+      item
+        Name = 'process_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'specimen_id'
+        Attributes = [faRequired]
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'specie'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'additional_identifier'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'age'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'lims_number'
+        DataType = ftInteger
+      end
+      item
+        Name = 'death_date'
+        DataType = ftDate
+      end
+      item
+        Name = 'preprocess_treatment'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'fixative'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'fixation_method'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'brain_region_dissection'
+        DataType = ftString
+        Size = 255
+      end
+      item
+        Name = 'postfix_protocol'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'date_received'
+        DataType = ftDate
+      end
+      item
+        Name = 'date_embedded'
+        DataType = ftDate
+      end
+      item
+        Name = 'cryoprotection_protocol'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'freezing_protocol'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'substitution_protocol'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'infiltration_protocol'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'embedding_protocol'
+        DataType = ftSmallint
+      end>
     IndexDefs = <>
     Params = <>
     ProviderName = 'specimenProvider'
     StoreDefs = True
+    BeforeClose = specimenCDSBeforeClose
     AfterPost = cdsAfterPost
     AfterScroll = cdsAfterScroll
     BeforeRefresh = cdsBeforeRefresh
@@ -591,7 +673,7 @@ object atdbDM: TatdbDM
     end
     object specimenCDSspecies: TIntegerField
       DisplayLabel = 'Species'
-      FieldName = 'species'
+      FieldName = 'specie'
     end
     object specimenCDSadditional_identifier: TStringField
       DisplayLabel = 'Additional Identifier'
@@ -679,7 +761,7 @@ object atdbDM: TatdbDM
       LookupDataSet = speciesDS
       LookupKeyFields = 'id'
       LookupResultField = 'name'
-      KeyFields = 'species'
+      KeyFields = 'specie'
       Size = 255
       Lookup = True
     end
@@ -791,7 +873,7 @@ object atdbDM: TatdbDM
   object speciesDS: TSimpleDataSet
     Aggregates = <>
     Connection = SQLConnection1
-    DataSet.CommandText = 'SELECT * from species'
+    DataSet.CommandText = 'SELECT * from specie'
     DataSet.MaxBlobSize = -1
     DataSet.Params = <>
     Params = <>
@@ -937,7 +1019,7 @@ object atdbDM: TatdbDM
     Top = 264
   end
   object documentsDS: TSQLDataSet
-    CommandText = 'SELECT * from documents'
+    CommandText = 'SELECT * from document'
     MaxBlobSize = 1
     Params = <>
     SQLConnection = SQLConnection1

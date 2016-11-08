@@ -333,17 +333,13 @@ object MainForm: TMainForm
     Top = 0
     Width = 786
     Height = 700
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     MultiLine = True
     TabOrder = 2
     TabPosition = tpLeft
     object TabSheet1: TTabSheet
       Caption = 'Live'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object mMainPanel: TPanel
         Left = 0
         Top = 0
