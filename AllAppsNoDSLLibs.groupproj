@@ -24,6 +24,12 @@
         <Projects Include="UI\ArrayBot.cbproj">
             <Dependencies>UI\lib\ArrayBotPackage.cbproj</Dependencies>
         </Projects>
+        <Projects Include="P:\atDB\UI\Core\atDBCore-static.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\atDB\atDB.cbproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -95,14 +101,32 @@
     <Target Name="ArrayBot:Make" DependsOnTargets="ArrayBotPackage:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="atDBCore-static">
+        <MSBuild Projects="P:\atDB\UI\Core\atDBCore-static.cbproj"/>
+    </Target>
+    <Target Name="atDBCore-static:Clean">
+        <MSBuild Projects="P:\atDB\UI\Core\atDBCore-static.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDBCore-static:Make">
+        <MSBuild Projects="P:\atDB\UI\Core\atDBCore-static.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDB">
+        <MSBuild Projects="P:\atDB\atDB.cbproj"/>
+    </Target>
+    <Target Name="atDB:Clean">
+        <MSBuild Projects="P:\atDB\atDB.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDB:Make">
+        <MSBuild Projects="P:\atDB\atDB.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="abResources;abCore;abVCLCore;ArrayBotPackage;ArrayCam;ArduinoController;ArrayBot"/>
+        <CallTarget Targets="abResources;abCore;abVCLCore;ArrayBotPackage;ArrayCam;ArduinoController;ArrayBot;atDBCore-static;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abResources:Clean;abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;ArrayCam:Clean;ArduinoController:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="abResources:Clean;abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;ArrayCam:Clean;ArduinoController:Clean;ArrayBot:Clean;atDBCore-static:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abResources:Make;abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;ArrayCam:Make;ArduinoController:Make;ArrayBot:Make"/>
+        <CallTarget Targets="abResources:Make;abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;ArrayCam:Make;ArduinoController:Make;ArrayBot:Make;atDBCore-static:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
