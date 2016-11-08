@@ -5,8 +5,8 @@
 #include "mtkUtils.h"
 #include "mtkWin32Utils.h"
 #include "camera/uc480_tools.h"
-#include "abVCLUtils.h"
-#include "abDBUtils.h"
+#include "vcl/abVCLUtils.h"
+#include "database/abDBUtils.h"
 using namespace mtk;
 using namespace ab;
 

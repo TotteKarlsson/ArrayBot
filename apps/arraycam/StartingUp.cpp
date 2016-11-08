@@ -3,8 +3,8 @@
 #include "TMainForm.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-#include "abDBUtils.h"
-#include "abVCLUtils.h"
+#include "database/abDBUtils.h"
+#include "vcl/abVCLUtils.h"
 using namespace mtk;
 using namespace ab;
 extern bool   gAppIsStartingUp;

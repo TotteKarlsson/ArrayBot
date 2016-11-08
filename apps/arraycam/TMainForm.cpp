@@ -1,15 +1,14 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMainForm.h"
-#include "abVCLUtils.h"
+#include "vcl/abVCLUtils.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "mtkWin32Utils.h"
 #include "mtkUtils.h"
 #include "camera/uc480_tools.h"
 #include "TSettingsForm.h"
-#include "abDBUtils.h"
-#include "abVCLUtils.h"
+#include "database/abDBUtils.h"
 #include "Poco/Data/RecordSet.h"
 using namespace mtk;
 using namespace ab;

@@ -26,12 +26,12 @@
 #include <Vcl.DBCtrls.hpp>
 #include <Vcl.DBGrids.hpp>
 #include <Vcl.Grids.hpp>
-#include "abATDBClientDBSession.h"
 #include <Vcl.Imaging.jpeg.hpp>
 
 #include "TATDBImagesAndMoviesDataModule.h"
-#include "abEnvironmentalSensorReader.h"
-#include "abATDBServerSession.h"
+#include "arraybot/abEnvironmentalSensorReader.h"
+#include "database/abATDBServerSession.h"
+#include "/database/abATDBClientDBSession.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;

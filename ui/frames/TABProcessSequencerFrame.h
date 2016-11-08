@@ -7,7 +7,7 @@
 #include "TFloatLabeledEdit.h"
 #include "TSTDStringLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "abProcessSequencer.h"
+#include "process/abProcessSequencer.h"
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include "frames/TMotorMoveProcessFrame.h"

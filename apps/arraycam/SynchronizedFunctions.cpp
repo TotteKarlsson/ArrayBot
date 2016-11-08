@@ -1,9 +1,8 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMainForm.h"
-#include "abVCLUtils.h"
+#include "vcl/abVCLUtils.h"
 #include "mtkStringList.h"
-#include "abVCLUtils.h"
 #include "TSettingsForm.h"
 using namespace mtk;
 using namespace ab;

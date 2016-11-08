@@ -7,7 +7,7 @@
 #include "mtkApplicationInfo.h"
 #include "../abApplicationMessages.h"
 #include "mtkLogger.h"
-#include "../source/vcl/forms/TShowFileContentForm.h"
+//#include "../source/vcl/forms/TShowFileContentForm.h"
 #include "Poco/DateTimeFormatter.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

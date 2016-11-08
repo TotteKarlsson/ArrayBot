@@ -2,7 +2,7 @@
 #define MainFormH
 #include "abApplicationMessages.h"
 #include "arduino/abPufferArduinoClient.h"
-#include "abArrayBot.h"
+#include "arraybot/abArrayBot.h"
 #include "abUIDataStructures.h"
 #include "InitArrayBotThread.h"
 #include "mtkIniFileProperties.h"

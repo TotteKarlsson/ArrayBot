@@ -13,7 +13,7 @@ using namespace mtk;
 
 USEFORM("TMainForm.cpp", MainForm);
 USEFORM("TSettingsForm.cpp", SettingsForm);
-USEFORM("..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp", ImagesAndMoviesDM); /* TDataModule: File Type */
+USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp", ImagesAndMoviesDM); /* TDataModule: File Type */
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "ArrayCam.log";

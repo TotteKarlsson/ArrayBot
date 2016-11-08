@@ -42,9 +42,9 @@
         <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;;&quot;Sapphire Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\SapphireKamri.vsf&quot;</VCL_Custom_Styles>
         <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;abVCLCore.lib;vcldb.lib;dbrtl.lib;dsnap.lib;dbexpress.lib;DbxCommonDriver.lib;dbxcds.lib;DbxDevartSQLiteDriver170.lib;vclimg.lib;DBXMySQLDriver.lib</AllPackageLibs>
         <ProjectType>CppVCLApplication</ProjectType>
-        <IncludePath>..\..\source\database\;..\..\source\vcl\datamodules\;..\..\source\;..\..\source\vcl;$(IncludePath)</IncludePath>
+        <IncludePath>P:\libs\atapi\source\vcl\datamodules\;..\..\source\database\;..\..\source\vcl\datamodules\;..\..\source\;..\..\source\vcl;$(IncludePath)</IncludePath>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <ILINK_LibraryPath>..\..\source\database\;..\..\source\vcl\datamodules\;..\..\source\;P:\thorCam\borland\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>P:\libs\atapi\source\vcl\datamodules\;..\..\source\database\;..\..\source\vcl\datamodules\;..\..\source\;P:\thorCam\borland\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <Multithreaded>true</Multithreaded>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
@@ -98,7 +98,7 @@
         <Icon_MainIcon>arraycam.ico</Icon_MainIcon>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <IncludePath>$(DEBUG_BUILD)\include;$(AB_ROOT)\source;$(IncludePath)</IncludePath>
+        <IncludePath>$(DEBUG_BUILD)\include;$(AT_ROOT)\source;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <_TCHARMapping>char</_TCHARMapping>
         <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;DuneComponents.bpi;vcldb.bpi;dbrtl.bpi;dsnap.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dbxcds.bpi;DbxDevartSQLiteDriver170.bpi;vclimg.bpi;DBXMySQLDriver.bpi</LinkPackageImports>
@@ -137,16 +137,15 @@
             <DependentOn>TSettingsForm.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp">
+        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp">
             <Form>ImagesAndMoviesDM</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
-            <DependentOn>..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
+            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.h</DependentOn>
+            <BuildOrder>8</BuildOrder>
         </CppCompile>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.dfm"/>
         <FormResources Include="TSettingsForm.dfm"/>
-        <FormResources Include="..\..\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -208,6 +207,7 @@
                     <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\ArrayBotPackage.bpl">ArrayBotPackage</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>

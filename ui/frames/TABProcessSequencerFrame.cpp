@@ -1,12 +1,12 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TABProcessSequencerFrame.h"
-#include "abXYZUnit.h"
+
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "apt/abAPTMotor.h"
-#include "abParallellProcess.h"
-#include "abArrayBot.h"
+#include "process/abParallellProcess.h"
+#include "arraybot/abArrayBot.h"
 #include "abTimeDelay.h"
 #include "abApplicationMessages.h"
 #include "UIUtilities.h"
