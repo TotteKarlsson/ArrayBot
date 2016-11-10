@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include <System.Classes.hpp>
 #include "InitArrayBotThread.h"
-#include "arraybot/abArrayBot.h"
+#include "arraybot/atArrayBot.h"
 #include "mtkLogger.h"
 #pragma package(smart_init)
 

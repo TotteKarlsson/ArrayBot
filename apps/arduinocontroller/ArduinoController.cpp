@@ -6,7 +6,7 @@
 #include <Vcl.Themes.hpp>
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-#include "abExceptions.h"
+#include "atExceptions.h"
 #include "TArduinoControllerSplashForm.h"
 #include "mtkRestartApplicationUtils.h"
 
@@ -135,7 +135,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	#pragma comment(lib, "mtkIPC.lib")
 #endif
 
-#pragma comment(lib, "abCore.lib")
+#pragma comment(lib, "atCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "tinyxml2-static.lib")
 #pragma comment(lib, "VCLCommon.bpi")

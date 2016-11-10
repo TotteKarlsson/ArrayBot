@@ -9,8 +9,8 @@
 	#pragma comment(lib, "mtkIPC.lib")
 #endif
 
-#pragma comment(lib, "abCore.lib")
-#pragma comment(lib, "abVCLCore.bpi")
+#pragma comment(lib, "atCore.lib")
+#pragma comment(lib, "atVCLCore.bpi")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "tinyxml2-static.lib")
 

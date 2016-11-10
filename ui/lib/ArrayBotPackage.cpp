@@ -30,7 +30,7 @@ extern "C" int _libmain(unsigned long reason)
 #pragma comment(lib, "tinyxml2-static.lib")
 
 
-#pragma comment(lib, "abCore.lib")
-#pragma comment(lib, "abVCLCore.bpi")
+#pragma comment(lib, "atCore.lib")
+#pragma comment(lib, "atVCLCore.bpi")
 
 
