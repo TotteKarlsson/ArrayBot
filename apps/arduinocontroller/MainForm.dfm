@@ -223,15 +223,11 @@ object Main: TMain
       Top = 1
       Width = 984
       Height = 418
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alTop
       TabOrder = 1
       object TabSheet1: TTabSheet
         Caption = 'Controls'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 3
           Top = 85
@@ -395,10 +391,6 @@ object Main: TMain
       object TabSheet2: TTabSheet
         Caption = 'Board Settings'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mArduinoSB: TScrollBox
           Left = 0
           Top = 0

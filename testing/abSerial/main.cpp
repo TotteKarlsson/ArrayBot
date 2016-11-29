@@ -1,9 +1,9 @@
 #pragma hdrstop
 #pragma argsused
-#include "abArduinoServer.h"
+#include "arduino/atArduinoServer.h"
 #include "mtkLogger.h"
 #include "mtkUtils.h"
-#include "abArduinoDevice.h"
+#include "atArduinoDevice.h"
 #include <signal.h>
 
 using namespace mtk;
@@ -24,12 +24,12 @@ int main()
     mtk::LogOutput::mLogToConsole  		= true;
 
 	signal (SIGINT,my_handler);
-    Serial	mSerial(4, 115200);
+    Serial	mSerial(10, 9600);
 
     while(mSerial.isConnected() && gKeepGoing)
     {
     	sleep(30);
-        mSerial.assignMessageReceivedCallBack(messageCallBack);
+        mSerial.assignMessageReceivedCallBackC(messageCallBack);
 
 //        while(mSerial.hasMessage())
 //        {
@@ -55,5 +55,5 @@ void messageCallBack(const string& msg)
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "mtkIPC.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
-#pragma comment(lib, "abCore.lib")
+#pragma comment(lib, "atCore.lib")
 
