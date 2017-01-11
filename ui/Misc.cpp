@@ -44,7 +44,7 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
             }
             else
             {
-               	info << "not part of ArrayBot system";
+               	info << "Motor with serial: "<<serials[j]<<" is not part of ArrayBot system";
             }
             info << endl;
         }
