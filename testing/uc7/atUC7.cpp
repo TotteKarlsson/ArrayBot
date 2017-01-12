@@ -4,25 +4,15 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-USEFORM("UI\Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
-USEFORM("UI\Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("UI\TMainForm.cpp", MainForm);
-USEFORM("source\vcl\TImagesDataModule.cpp", imageDM); /* TDataModule: File Type */
-USEFORM("source\vcl\TNewBlockForm.cpp", NewBlockForm);
-USEFORM("source\vcl\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
-USEFORM("UI\Forms\TAboutATDBForm.cpp", AboutATDBForm);
-USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
-USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
 #include "mtkIniKey.h"
 #include "mtkRestartApplicationUtils.h"
 #include "mtkLogger.h"
-#include "Core/atDBUtilities.h"
 #include "mtkMoleculixException.h"
 #include "mtkSQLite.h"
-#include "datamodules/TATDBDataModule.h"
 #pragma package(smart_init)
 
 using namespace mtk;
@@ -31,22 +21,22 @@ using std::string;
 extern HWND         gOtherAppWindow             = NULL;
 extern string       gApplicationRegistryRoot    = "\\Software\\Smith Lab\\uc7";
 extern string       gDefaultAppTheme            = "Iceberg Classico";
-extern string       gAppMutexName           	= "ATDBAppMutex";
+extern string       gAppMutexName           	= "UC7AppMutex";
 extern bool 		gAppIsStartingUp 			= true;
-extern string       gRestartMutexName           = "ATDBRestartMutex";
+extern string       gRestartMutexName           = "UC7RestartMutex";
 extern string       gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
 extern string       gDateFormat                 = "%Y-%m-%d";
 extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern string       gLogFileLocation            = "";
-extern string       gLogFileName                = "atDB.log";
-extern bool         gIsDevelopmentRelease       = false;
-
-extern bool         gHideSplash                 = true;
+extern string       gLogFileName                = "atUC7.log";
+//extern bool         gIsDevelopmentRelease       = true;
+//extern bool         gHideSplash                 = true;
 //extern TSplashForm* gSplashForm                 = NULL;
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam) ;
 
+void setupLogging();
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -84,7 +74,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Log(lInfo) << "The Logfile was opened..";
 
         //Setup globals
-        gCommonAppDataLocation = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB");
+        gCommonAppDataLocation = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atUC7");
         if(!folderExists(gCommonAppDataLocation))
         {
             Log(lError) << "The local app data folder("<<gCommonAppDataLocation<<") don't exists! Catastrophe..";
@@ -93,31 +83,10 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Application->Initialize();
         Application->MainFormOnTaskBar = true;
 
-        //Load Styles from files
-//        loadStyles();
-//        setupApplicationTheme();
-
-//        gSplashForm = new TSplashForm(Application);
-//        if(!gHideSplash)
-//        {
-//            Application->ShowMainForm = false;
-//            gSplashForm->Show();
-//            gSplashForm->Update();
-//        }
-//        else
-//        {
-//            gSplashForm->Close();
-//        }
-
 		TStyleManager::TrySetStyle(gDefaultAppTheme.c_str());
-		Application->Title = "atDB";
+		Application->Title = "atUC7";
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);
-		Application->CreateForm(__classid(TatdbDM), &atdbDM);
-		Application->CreateForm(__classid(TcsDM), &csDM);
-		Application->CreateForm(__classid(TimageDM), &imageDM);
-		Application->CreateForm(__classid(TPrintLabelForm), &PrintLabelForm);
-		Application->CreateForm(__classid(TNewSpecimenForm), &NewSpecimenForm);
 		Application->Run();
 
         // Finish restarting process if needed
@@ -144,4 +113,23 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		}
 	}
 	return 0;
+}
+
+void setupLogging()
+{
+	//Get Application folder
+	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atUC7");
+	if(!folderExists(fldr))
+	{
+		createFolder(fldr);
+	}
+
+	gLogFileLocation = fldr;
+	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
+	clearFile(fullLogFileName);
+	mtk::gLogger.logToFile(fullLogFileName);
+	LogOutput::mShowLogLevel = true;
+	LogOutput::mShowLogTime = false;
+	LogOutput::mUseLogTabs = false;
+	Log(lInfo) << "Logger was setup";
 }

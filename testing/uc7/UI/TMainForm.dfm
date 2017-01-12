@@ -37,8 +37,6 @@ object MainForm: TMainForm
     Height = 480
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 1
-    ExplicitHeight = 209
   end
   object SB: TStatusBar
     Left = 0
@@ -54,7 +52,6 @@ object MainForm: TMainForm
     Height = 302
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 480
     object infoMemo: TMemo
       Left = 1
       Top = 49
@@ -64,8 +61,6 @@ object MainForm: TMainForm
       Lines.Strings = (
         'infoMemo')
       TabOrder = 0
-      ExplicitTop = 392
-      ExplicitHeight = 205
     end
     object Panel1: TPanel
       Left = 1
@@ -74,13 +69,26 @@ object MainForm: TMainForm
       Height = 48
       Align = alTop
       TabOrder = 1
-      object LogLevelCB: TComboBox
+      object Button1: TButton
         Left = 8
-        Top = 16
+        Top = 12
+        Width = 75
+        Height = 25
+        Caption = 'Clear'
+        TabOrder = 0
+        OnClick = ClearMemoAExecute
+      end
+      object LogLevelCB: TComboBox
+        Left = 89
+        Top = 12
         Width = 145
         Height = 21
-        TabOrder = 0
-        Text = 'LogLevelCB'
+        ItemIndex = 0
+        TabOrder = 1
+        Text = 'INFO'
+        Items.Strings = (
+          'INFO'
+          'Everything')
       end
     end
   end

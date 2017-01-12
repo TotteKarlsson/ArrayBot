@@ -2,13 +2,13 @@
 #include "TMainForm.h"
 #include "mtkLogger.h"
 #include "TMemoLogger.h"
-//#include "TSplashForm.h"
-#include "TATDBDataModule.h"
 #include "mtkVCLUtils.h"
-using namespace mtk;
-//extern TSplashForm*  gSplashForm;
-extern string gCommonAppDataLocation;
 //---------------------------------------------------------------------------
+
+using namespace mtk;
+extern string gCommonAppDataLocation;
+
+
 __fastcall TMainForm::~TMainForm()
 {
 	//Save grid column settings to files into AppData/Grids folder...
@@ -32,11 +32,6 @@ void __fastcall TMainForm::ShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
 	}
 
-    if(atdbDM->SQLConnection1->Connected)
-    {
-    	atdbDM->SQLConnection1->Connected = false;
-    }
-
     Close();
 }
 
@@ -46,7 +41,7 @@ void __fastcall TMainForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 	Log(lInfo) << "Closing down....";
 
 	//Check if we can close.. abort all threads..
-	if(mLogFileReader.isRunning() || atdbDM->SQLConnection1->Connected)
+	if(mLogFileReader.isRunning() )
     {
 		CanClose = false;
     }

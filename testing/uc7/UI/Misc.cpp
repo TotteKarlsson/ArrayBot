@@ -83,7 +83,6 @@ void __fastcall TMainForm::AppInBox(mlxStructMessage &msg)
         {
             case amSplashWasClosed:
                 Log(lDebug2) << "Splash form sent message that it was closed";
-//                gSplashForm = NULL;
             break;
 
             default:

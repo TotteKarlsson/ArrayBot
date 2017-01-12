@@ -51,13 +51,6 @@
 #include "database/atATDBServerSession.h"
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
-#include "TTableFrame.h"
-#include "pBarcode2D.hpp"
-#include "pCore2D.hpp"
-#include "pDataMatrix.hpp"
-#include "pDBBarcode2D.hpp"
-#include "pQRCode.hpp"
-#include "TIntLabel.h"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -89,6 +82,7 @@ class TMainForm : public TRegistryForm
 	TMemo *infoMemo;
 	TPanel *BottomPanel;
 	TPanel *Panel1;
+	TButton *Button1;
 	TComboBox *LogLevelCB;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);

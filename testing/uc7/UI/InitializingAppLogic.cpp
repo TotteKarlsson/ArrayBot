@@ -1,17 +1,12 @@
 #pragma hdrstop
 #include "TMainForm.h"
-//#include "TSplashForm.h"
 #include "TMemoLogger.h"
 #include "mtkVCLUtils.h"
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormatter.h"
 #include "mtkLogger.h"
 #include "mtkIniSection.h"
-#include "Core/atDBUtilities.h"
 #include "Poco/Timezone.h"
-#include "TATDBDataModule.h"
-#include "database/atDBUtils.h"
-#include "TCoverSlipDataModule.h"
 
 extern bool             gAppIsStartingUp;
 extern bool             gIsDevelopmentRelease;
@@ -34,23 +29,6 @@ using Poco::DateTimeFormatter;
 void __fastcall TMainForm::FormCreate(TObject *Sender)
 {
     TMemoLogger::mMemoIsEnabled = false;
-//    if(gSplashForm)
-//    {
-//		gSplashForm->mMainAppIsRunning = true;
-//
-//		this->Visible = true;
-//		while(gSplashForm->isOnShowTime() == true)
-//		{
-//			//In order to show whats going on on the splash screen
-//			Application->ProcessMessages();
-//			if(gSplashForm->Visible == false)
-//			{
-//				break;
-//			}
-//		}
-//
-//		gSplashForm->Close();
-//    }	gLogger.setLogLevel(mLogLevel);
 
 	setupWindowTitle();
 	if(mLogLevel == lInfo)

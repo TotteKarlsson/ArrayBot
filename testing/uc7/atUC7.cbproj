@@ -135,68 +135,11 @@
         <CppCompile Include="atUC7.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <CppCompile Include="source\vcl\atdbVCLUtils.cpp">
-            <DependentOn>source\vcl\atdbVCLUtils.h</DependentOn>
-            <BuildOrder>15</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="source\vcl\TCoverSlipDataModule.cpp">
-            <Form>csDM</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>source\vcl\TCoverSlipDataModule.h</DependentOn>
-            <BuildOrder>13</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="source\vcl\TImagesDataModule.cpp">
-            <Form>imageDM</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>source\vcl\TImagesDataModule.h</DependentOn>
-            <BuildOrder>14</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="source\vcl\TNewBlockForm.cpp">
-            <Form>NewBlockForm</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>source\vcl\TNewBlockForm.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="source\vcl\TNewSpecimenForm.cpp">
-            <Form>NewSpecimenForm</Form>
-            <DependentOn>source\vcl\TNewSpecimenForm.h</DependentOn>
-            <BuildOrder>19</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="source\vcl\TTableFrame.cpp">
-            <Form>TableFrame</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>source\vcl\TTableFrame.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
         <CppCompile Include="UI\auto_link.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
         <CppCompile Include="UI\ClosingAppLogic.cpp">
             <BuildOrder>19</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="UI\Forms\TAboutATDBForm.cpp">
-            <Form>AboutATDBForm</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>UI\Forms\TAboutATDBForm.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="UI\Forms\TATDBSplashForm.cpp">
-            <BuildOrder>29</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="UI\Forms\TPrintLabelForm.cpp">
-            <Form>PrintLabelForm</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>UI\Forms\TPrintLabelForm.h</DependentOn>
-            <BuildOrder>17</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="UI\Forms\TRegisterFreshCSBatchForm.cpp">
-            <Form>RegisterFreshCSBatchForm</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>UI\Forms\TRegisterFreshCSBatchForm.h</DependentOn>
-            <BuildOrder>16</BuildOrder>
         </CppCompile>
         <CppCompile Include="UI\InitializingAppLogic.cpp">
             <BuildOrder>20</BuildOrder>
@@ -216,22 +159,7 @@
             <DependentOn>UI\TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\database\atQueryBuilder.cpp">
-            <DependentOn>P:\libs\atapi\source\database\atQueryBuilder.h</DependentOn>
-            <BuildOrder>19</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp">
-            <BuildOrder>15</BuildOrder>
-        </CppCompile>
-        <FormResources Include="UI\Forms\TRegisterFreshCSBatchForm.dfm"/>
-        <FormResources Include="UI\Forms\TPrintLabelForm.dfm"/>
         <FormResources Include="UI\TMainForm.dfm"/>
-        <FormResources Include="source\vcl\TImagesDataModule.dfm"/>
-        <FormResources Include="source\vcl\TNewBlockForm.dfm"/>
-        <FormResources Include="source\vcl\TCoverSlipDataModule.dfm"/>
-        <FormResources Include="UI\Forms\TAboutATDBForm.dfm"/>
-        <FormResources Include="source\vcl\TNewSpecimenForm.dfm"/>
-        <FormResources Include="source\vcl\TTableFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
