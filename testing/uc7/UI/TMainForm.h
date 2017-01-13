@@ -64,6 +64,9 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox1;
 	TComboBox *mComportCB;
 	TButton *mConnectUC7Btn;
+	TGroupBox *GroupBox2;
+	TSTDStringLabeledEdit *mSendRAW1;
+	TButton *mSendBtn1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -75,6 +78,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mConnectUC7BtnClick(TObject *Sender);
+	void __fastcall mSendBtn1Click(TObject *Sender);
 
 
     private:
@@ -112,7 +116,8 @@ class TMainForm : public TRegistryForm
         void                                            setupIniFile();
 
 		void __fastcall                                 AppInBox(mlxStructMessage &Msg);
-
+		void __fastcall 								onConnectedToUC7();
+        void __fastcall 								onDisConnectedToUC7();
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);
                     __fastcall                          ~TMainForm();

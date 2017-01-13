@@ -37,12 +37,12 @@ object MainForm: TMainForm
     Height = 437
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 480
     object GroupBox1: TGroupBox
-      Left = 9
-      Top = 24
-      Width = 232
-      Height = 297
+      Left = 1
+      Top = 1
+      Width = 360
+      Height = 435
+      Align = alLeft
       Caption = 'UC7'
       TabOrder = 0
       object mComportCB: TComboBox
@@ -84,6 +84,38 @@ object MainForm: TMainForm
         TabOrder = 1
         OnClick = mConnectUC7BtnClick
       end
+      object GroupBox2: TGroupBox
+        Left = 2
+        Top = 328
+        Width = 356
+        Height = 105
+        Align = alBottom
+        Caption = 'Send Raw'
+        TabOrder = 2
+        ExplicitLeft = 1
+        object mSendRAW1: TSTDStringLabeledEdit
+          Left = 14
+          Top = 24
+          Width = 275
+          Height = 21
+          EditLabel.Width = 3
+          EditLabel.Height = 13
+          Enabled = False
+          TabOrder = 0
+          Text = 's10'
+          Value = 's10'
+        end
+        object mSendBtn1: TButton
+          Left = 295
+          Top = 24
+          Width = 50
+          Height = 25
+          Caption = '->'
+          Enabled = False
+          TabOrder = 1
+          OnClick = mSendBtn1Click
+        end
+      end
     end
   end
   object SB: TStatusBar
@@ -92,7 +124,6 @@ object MainForm: TMainForm
     Width = 973
     Height = 19
     Panels = <>
-    ExplicitTop = 785
   end
   object BottomPanel: TPanel
     Left = 0
@@ -101,7 +132,6 @@ object MainForm: TMainForm
     Height = 302
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 483
     object infoMemo: TMemo
       Left = 1
       Top = 49
@@ -141,8 +171,8 @@ object MainForm: TMainForm
     end
   end
   object ActionList1: TActionList
-    Left = 616
-    Top = 32
+    Left = 592
+    Top = 152
     object ClearMemoA: TAction
       Category = 'Memo'
       Caption = 'Clear Messages'
@@ -188,7 +218,7 @@ object MainForm: TMainForm
     Enabled = False
     Interval = 50
     OnTimer = ShutDownTimerTimer
-    Left = 290
+    Left = 818
     Top = 8
   end
 end

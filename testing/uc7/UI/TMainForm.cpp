@@ -66,12 +66,10 @@ void __fastcall TMainForm::mConnectUC7BtnClick(TObject *Sender)
         if(mUC7.connect(getCOMPortNumber()))
         {
             Log(lInfo) << "Connected to a UC7 device";
-            mConnectUC7Btn->Caption = "Close";
         }
         else
         {
             Log(lInfo) << "Connection failed";
-            mConnectUC7Btn->Caption = "Open";
         }
     }
     else
@@ -80,7 +78,17 @@ void __fastcall TMainForm::mConnectUC7BtnClick(TObject *Sender)
         {
 			Log(lError) << "Failed to close serial port";
         }
-        mConnectUC7Btn->Caption = "Open";
+    }
+
+    if(mUC7.isConnected())
+    {
+	    onConnectedToUC7();
+        mConnectUC7Btn->Caption = "Close";
+    }
+    else
+    {
+		onDisConnectedToUC7();
+    	mConnectUC7Btn->Caption = "Open";
     }
 }
 
@@ -90,4 +98,19 @@ int	TMainForm::getCOMPortNumber()
 	return mComportCB->ItemIndex + 1;
 }
 
+void __fastcall TMainForm::mSendBtn1Click(TObject *Sender)
+{
+	mUC7.sendRawMessage(mSendRAW1->getValue());
+}
 
+void __fastcall TMainForm::onConnectedToUC7()
+{
+	mSendRAW1->Enabled = true;
+	mSendBtn1->Enabled = true;
+}
+
+void __fastcall TMainForm::onDisConnectedToUC7()
+{
+	mSendRAW1->Enabled = false;
+	mSendBtn1->Enabled = false;
+}
