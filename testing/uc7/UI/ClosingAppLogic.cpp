@@ -11,14 +11,7 @@ extern string gCommonAppDataLocation;
 
 __fastcall TMainForm::~TMainForm()
 {
-	//Save grid column settings to files into AppData/Grids folder...
-    if(!folderExists(joinPath(gCommonAppDataLocation, "Grids")))
-    {
-    	createFolder(joinPath(gCommonAppDataLocation, "Grids"));
-    }
-
-	Log(lInfo) << "Saving column states";
-
+	Log(lInfo) << "Destructor in Main Form";
 }
 
 //---------------------------------------------------------------------------
@@ -64,8 +57,9 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
 	Log(lInfo) << "In main forms destructor";
 
 	//Save project history
-//	mBottomPanelHeight          	= BottomPanel->Height;
+	mBottomPanelHeight          	= BottomPanel->Height;
 
+	mCOMPort = mComportCB->ItemIndex + 1;
 	mGeneralProperties.write();
 
 	//Write to file

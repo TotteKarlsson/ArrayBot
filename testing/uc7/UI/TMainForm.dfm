@@ -37,6 +37,53 @@ object MainForm: TMainForm
     Height = 480
     Align = alClient
     TabOrder = 0
+    object GroupBox1: TGroupBox
+      Left = 9
+      Top = 24
+      Width = 232
+      Height = 113
+      Caption = 'UC7'
+      TabOrder = 0
+      object mComportCB: TComboBox
+        Left = 16
+        Top = 24
+        Width = 145
+        Height = 21
+        ItemIndex = 0
+        TabOrder = 0
+        Text = 'COM1'
+        Items.Strings = (
+          'COM1'
+          'COM2'
+          'COM3'
+          'COM4'
+          'COM5'
+          'COM6'
+          'COM7'
+          'COM8'
+          'COM9'
+          'COM10'
+          'COM11'
+          'COM12'
+          'COM13'
+          'COM14'
+          'COM15'
+          'COM16'
+          'COM17'
+          'COM18'
+          'COM19'
+          'COM20')
+      end
+      object mConnectUC7Btn: TButton
+        Left = 16
+        Top = 72
+        Width = 75
+        Height = 25
+        Caption = 'Connect'
+        TabOrder = 1
+        OnClick = mConnectUC7BtnClick
+      end
+    end
   end
   object SB: TStatusBar
     Left = 0
@@ -58,8 +105,6 @@ object MainForm: TMainForm
       Width = 971
       Height = 252
       Align = alClient
-      Lines.Strings = (
-        'infoMemo')
       TabOrder = 0
     end
     object Panel1: TPanel
@@ -117,7 +162,7 @@ object MainForm: TMainForm
     end
   end
   object mIniFileC: mtkIniFileC
-    IniFileName = 'atDB.ini'
+    IniFileName = 'atUC7.ini'
     RootFolder = '.'
     Left = 394
   end

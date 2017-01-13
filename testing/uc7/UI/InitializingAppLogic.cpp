@@ -78,13 +78,14 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 	//transfer INI values
 	BottomPanel->Height     = mBottomPanelHeight + 1;
 	SB->Top = MainForm->Top + MainForm->Height + 10;
+
 	SB->SizeGrip = true;
 }
 
 void TMainForm::setupIniFile()
 {
 	string fldr = getSpecialFolder(CSIDL_LOCAL_APPDATA);
-	fldr =  joinPath(fldr, "atDB");
+	fldr =  joinPath(fldr, "atUC7");
 
 	if(!folderExists(fldr))
 	{
@@ -108,13 +109,14 @@ bool TMainForm::setupAndReadIniParameters()
 	mGeneralProperties.add((BaseProperty*)  &mBottomPanelHeight.setup( 	            "HEIGHT_OF_BOTTOM_PANEL",    	    205));
 
 	mGeneralProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
+	mGeneralProperties.add((BaseProperty*)  &mCOMPort.setup( 	                    "COM_PORT",    	                	0));
 
 	//Read from file. Create if file do not exist
 	mGeneralProperties.read();
 
 	//Setup UI elements
 	mSplashProperties.add((BaseProperty*)  &mShowSplashOnStartup.setup(             "ShowOnStartup",                    true));
-
+	mComportCB->ItemIndex = mCOMPort - 1;
 
 	if(mSplashProperties.doesSectionExist())
 	{

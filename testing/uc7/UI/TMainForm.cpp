@@ -20,6 +20,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
+#pragma link "mtkIniFileC"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -42,9 +43,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     mLogLevel(lAny),
     mIsStyleMenuPopulated(false),
     gCanClose(true),
-    logMsgMethod(&logMsg),
-    mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod)
-
+    mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atUC7", gLogFileName), &logMsg),
+    mCOMPort(0)
 {
     //Close any dataconnection created by stupid TSQLConnection
     TMemoLogger::mMemoIsEnabled = false;
@@ -52,12 +52,29 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     setupAndReadIniParameters();
 }
 
-
 //This one is called from the reader thread
 void __fastcall TMainForm::logMsg()
 {
     infoMemo->Lines->Add(vclstr(mLogFileReader.getData()));
     mLogFileReader.purge();
+}
+
+void __fastcall TMainForm::mConnectUC7BtnClick(TObject *Sender)
+{
+	if(mUC7.connect(getCOMPortNumber()))
+    {
+    	Log(lInfo) << "Connected to a UC7 device";
+    }
+    else
+    {
+    	Log(lInfo) << "Connection failed";
+    }
+}
+
+//---------------------------------------------------------------------------
+int	TMainForm::getCOMPortNumber()
+{
+	return mComportCB->ItemIndex + 1;
 }
 
 

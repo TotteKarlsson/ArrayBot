@@ -7,6 +7,10 @@
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Grids.hpp>
+#include <System.Actions.hpp>
+#include <Vcl.ActnList.hpp>
+#include <Vcl.Menus.hpp>
+#include <Vcl.StdActns.hpp>
 //---------------------------------------------------------------------------
 #include "Core/atDBApplicationMessages.h"
 #include "Core/atDBDataStructures.h"
@@ -21,36 +25,9 @@
 #include "TRegistryForm.h"
 #include "TRegistryProperties.h"
 #include "TSTDStringLabeledEdit.h"
-#include <System.Actions.hpp>
-#include <System.Bindings.Outputs.hpp>
-#include <System.Rtti.hpp>
-#include <Vcl.ActnList.hpp>
-#include <Vcl.AppEvnts.hpp>
-#include <Vcl.Bind.Editors.hpp>
-#include <Vcl.Bind.Grid.hpp>
-#include <Vcl.Buttons.hpp>
-#include <Vcl.CheckLst.hpp>
-#include <Vcl.DBCtrls.hpp>
-#include <Vcl.DBGrids.hpp>
-#include <Vcl.ImgList.hpp>
-#include <Vcl.Menus.hpp>
-#include <Vcl.StdActns.hpp>
-#include <Vcl.ToolWin.hpp>
-#include "TIntegerLabeledEdit.h"
-#include <Data.Bind.Components.hpp>
-#include <Data.Bind.DBScope.hpp>
-#include <Data.Bind.EngExt.hpp>
-#include <Data.Bind.Grid.hpp>
-#include <Vcl.Bind.DBEngExt.hpp>
-#include <Vcl.Bind.Navigator.hpp>
-#include <Data.DB.hpp>
-#include <Data.FMTBcd.hpp>
-#include <Data.SqlExpr.hpp>
-#include <Vcl.Mask.hpp>
-#include "TArrayBotBtn.h"
 #include "database/atATDBServerSession.h"
-#include <Datasnap.DBClient.hpp>
-#include <Datasnap.Provider.hpp>
+#include "mtkIniFileC.h"
+#include "atUC7.h"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -84,6 +61,9 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel1;
 	TButton *Button1;
 	TComboBox *LogLevelCB;
+	TGroupBox *GroupBox1;
+	TComboBox *mComportCB;
+	TButton *mConnectUC7Btn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -94,14 +74,16 @@ class TMainForm : public TRegistryForm
     void __fastcall ShutDownTimerTimer(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall LogLevelCBChange(TObject *Sender);
-
+	void __fastcall mConnectUC7BtnClick(TObject *Sender);
 
 
     private:
         bool                                            gCanClose;
         TApplicationProperties                          mAppProperties;
 
-        TThreadMethod                                   logMsgMethod;
+
+		UC7												mUC7;
+        int												getCOMPortNumber();
         void __fastcall                                 logMsg();
 		LogFileReader                                   mLogFileReader;
 		bool                                            mIsStyleMenuPopulated;
@@ -120,6 +102,7 @@ class TMainForm : public TRegistryForm
         IniFileProperties	      	                    mGeneralProperties;
         mtk::Property<int>	                            mBottomPanelHeight;
 		mtk::Property<mtk::LogLevel>	                mLogLevel;
+		mtk::Property<int>	                			mCOMPort;
         TRegistryProperties   	  	                    mSplashProperties;
         mtk::Property<bool>                             mShowSplashOnStartup;
 

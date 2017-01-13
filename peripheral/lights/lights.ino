@@ -70,7 +70,7 @@ void setup()
     pinMode(pushButton_5, INPUT); // front-back ALT
 
     // setup serial port
-    Serial.begin(57600);
+    Serial.begin(19200);
     sendInfo();    
 }
 

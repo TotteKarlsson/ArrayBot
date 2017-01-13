@@ -17,8 +17,8 @@ double sketchVersion = 1.0;
 
 // Setup global DHT22 instances
 DHT gDHT22_1(DHT22_1_PIN, DHTTYPE);
-DHT gDHT22_2(DHT22_2_PIN, DHTTYPE);
-DHT gDHT22_3(DHT22_3_PIN, DHTTYPE);
+//DHT gDHT22_2(DHT22_2_PIN, DHTTYPE);
+//DHT gDHT22_3(DHT22_3_PIN, DHTTYPE);
 
 void readEnvironmentalSensors(DHT& gDHT22, int sensorNum);
 
@@ -33,7 +33,7 @@ template<class T> inline Print &operator <<(Print &o, T arg) { o.print(arg); ret
 void setup() 
 {
     // setup serial port
-    Serial.begin(57600);
+    Serial.begin(19200);
     sendInfo();    
 }
 
@@ -51,8 +51,8 @@ void loop()
     {
         lastReadTime = currentReadTime;
         readEnvironmentalSensors(gDHT22_1, 1);    
-        readEnvironmentalSensors(gDHT22_2, 2);    
-        readEnvironmentalSensors(gDHT22_3, 3);            
+//        readEnvironmentalSensors(gDHT22_2, 2);    
+       //readEnvironmentalSensors(gDHT22_3, 3);            
     }   
 }
   
