@@ -61,13 +61,26 @@ void __fastcall TMainForm::logMsg()
 
 void __fastcall TMainForm::mConnectUC7BtnClick(TObject *Sender)
 {
-	if(mUC7.connect(getCOMPortNumber()))
+	if(mConnectUC7Btn->Caption == "Open")
     {
-    	Log(lInfo) << "Connected to a UC7 device";
+        if(mUC7.connect(getCOMPortNumber()))
+        {
+            Log(lInfo) << "Connected to a UC7 device";
+            mConnectUC7Btn->Caption = "Close";
+        }
+        else
+        {
+            Log(lInfo) << "Connection failed";
+            mConnectUC7Btn->Caption = "Open";
+        }
     }
     else
     {
-    	Log(lInfo) << "Connection failed";
+        if(!mUC7.disConnect())
+        {
+			Log(lError) << "Failed to close serial port";
+        }
+        mConnectUC7Btn->Caption = "Open";
     }
 }
 

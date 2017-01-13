@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'atDB'
-  ClientHeight = 804
+  ClientHeight = 761
   ClientWidth = 973
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -22,7 +22,7 @@ object MainForm: TMainForm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 480
+    Top = 437
     Width = 973
     Height = 3
     Cursor = crVSplit
@@ -34,14 +34,15 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 973
-    Height = 480
+    Height = 437
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 480
     object GroupBox1: TGroupBox
       Left = 9
       Top = 24
       Width = 232
-      Height = 113
+      Height = 297
       Caption = 'UC7'
       TabOrder = 0
       object mComportCB: TComboBox
@@ -76,10 +77,10 @@ object MainForm: TMainForm
       end
       object mConnectUC7Btn: TButton
         Left = 16
-        Top = 72
+        Top = 51
         Width = 75
         Height = 25
-        Caption = 'Connect'
+        Caption = 'Open'
         TabOrder = 1
         OnClick = mConnectUC7BtnClick
       end
@@ -87,18 +88,20 @@ object MainForm: TMainForm
   end
   object SB: TStatusBar
     Left = 0
-    Top = 785
+    Top = 742
     Width = 973
     Height = 19
     Panels = <>
+    ExplicitTop = 785
   end
   object BottomPanel: TPanel
     Left = 0
-    Top = 483
+    Top = 440
     Width = 973
     Height = 302
     Align = alBottom
     TabOrder = 2
+    ExplicitTop = 483
     object infoMemo: TMemo
       Left = 1
       Top = 49
