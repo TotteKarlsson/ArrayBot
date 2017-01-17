@@ -41,9 +41,42 @@ void __fastcall TMainForm::LogLevelCBChange(TObject *Sender)
 {
     if(LogLevelCB->ItemIndex == 0)
     {
-        mLogLevel = lInfo;
+        mLogLevel = lError;
     }
     else if(LogLevelCB->ItemIndex == 1)
+    {
+        mLogLevel = lWarning;
+    }
+    else if(LogLevelCB->ItemIndex == 2)
+    {
+        mLogLevel = lInfo;
+    }
+    else if(LogLevelCB->ItemIndex == 3)
+    {
+        mLogLevel = lDebug;
+    }
+    else if(LogLevelCB->ItemIndex == 4)
+    {
+        mLogLevel = lDebug1;
+    }
+    else if(LogLevelCB->ItemIndex == 5)
+    {
+        mLogLevel = lDebug2;
+    }
+    else if(LogLevelCB->ItemIndex == 6)
+    {
+        mLogLevel = lDebug3;
+    }
+    else if(LogLevelCB->ItemIndex == 7)
+    {
+        mLogLevel = lDebug4;
+    }
+    else if(LogLevelCB->ItemIndex == 8)
+    {
+        mLogLevel = lDebug5;
+    }
+
+    else if(LogLevelCB->ItemIndex == 9)
     {
         mLogLevel = lAny;
     }

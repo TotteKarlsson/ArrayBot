@@ -54,7 +54,6 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
 	Log(lInfo) << "In FormClose";
 	mIniFileC->clear();
-	Log(lInfo) << "In main forms destructor";
 
 	//Save project history
 	mBottomPanelHeight          	= BottomPanel->Height;

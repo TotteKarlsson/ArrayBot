@@ -4,7 +4,7 @@
         <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
-        <MainSource>atUC7.cpp</MainSource>
+        <MainSource>atUC7Main.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -112,7 +112,7 @@
         <_TCHARMapping>char</_TCHARMapping>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <LinkPackageStatics>HsBarcode1DRun.lib;HsBarcode2DRun.lib;atVCLCore.lib</LinkPackageStatics>
-        <Debugger_DebugSourcePath>P:\libs\dslib\VCL\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\Common\;P:\libs\atapi\source\serial\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\libs\dslib\VCL\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\Common\;P:\libs\atapi\source\serial\;P:\libs\dslib\Common\IPC\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <BCC_PCHInject>pch.h</BCC_PCHInject>
         <BCC_PCHCache>true</BCC_PCHCache>
         <Icon_MainIcon>UI\Resources\atDB.ico</Icon_MainIcon>
@@ -132,7 +132,7 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="atUC7.cpp">
+        <CppCompile Include="atUC7Main.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
         <CppCompile Include="UI\auto_link.cpp">
@@ -159,8 +159,7 @@
             <DependentOn>UI\TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\UC7\atUC7.cpp">
-            <Suffix>_0</Suffix>
+        <CppCompile Include="P:\libs\atapi\source\UC7\atUC7Command.cpp">
             <BuildOrder>8</BuildOrder>
         </CppCompile>
         <FormResources Include="UI\TMainForm.dfm"/>
@@ -182,7 +181,7 @@
         <BorlandProject>
             <CPlusPlusBuilder.Personality>
                 <Source>
-                    <Source Name="MainSource">atUC7.cpp</Source>
+                    <Source Name="MainSource">atUC7Main.cpp</Source>
                 </Source>
                 <VersionInfo>
                     <VersionInfo Name="IncludeVerInfo">False</VersionInfo>

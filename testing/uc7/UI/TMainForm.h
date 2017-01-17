@@ -61,12 +61,14 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel1;
 	TButton *Button1;
 	TComboBox *LogLevelCB;
-	TGroupBox *GroupBox1;
 	TComboBox *mComportCB;
 	TButton *mConnectUC7Btn;
-	TGroupBox *GroupBox2;
 	TSTDStringLabeledEdit *mSendRAW1;
 	TButton *mSendBtn1;
+	TButton *mStartStopBtn;
+	TGroupBox *GroupBox3;
+	TPanel *mTopPanel;
+	TButton *mResetBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -79,7 +81,7 @@ class TMainForm : public TRegistryForm
     void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mConnectUC7BtnClick(TObject *Sender);
 	void __fastcall mSendBtn1Click(TObject *Sender);
-
+	void __fastcall mStartStopBtnClick(TObject *Sender);
 
     private:
         bool                                            gCanClose;
@@ -94,13 +96,10 @@ class TMainForm : public TRegistryForm
 		void                                            setupWindowTitle();
 		void                                            updateWindowTitle();
 
-
 														//Threads can drop messages into the
 														//Message container. The main thread pops them
 														//using the messageProcessor
 		MessageContainer                                mMessages;
-
-
 
                                                         //INI Parameters...
         IniFileProperties	      	                    mGeneralProperties;
@@ -118,6 +117,7 @@ class TMainForm : public TRegistryForm
 		void __fastcall                                 AppInBox(mlxStructMessage &Msg);
 		void __fastcall 								onConnectedToUC7();
         void __fastcall 								onDisConnectedToUC7();
+
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);
                     __fastcall                          ~TMainForm();

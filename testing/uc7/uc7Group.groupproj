@@ -1,0 +1,96 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{0FC5F94A-9A7D-4EFF-A350-B191D50840A5}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dslib\Common\mtkCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\atCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Components\DuneComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Forms\DuneForms.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="atUC7Main.cbproj">
+            <Dependencies>P:\libs\atapi\source\atCore.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mtkCommon">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj"/>
+    </Target>
+    <Target Name="mtkCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atCore">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj"/>
+    </Target>
+    <Target Name="atCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLCommon">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
+    </Target>
+    <Target Name="VCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DuneComponents">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj"/>
+    </Target>
+    <Target Name="DuneComponents:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneComponents:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DuneForms">
+        <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj"/>
+    </Target>
+    <Target Name="DuneForms:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneForms:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atUC7Main" DependsOnTargets="atCore">
+        <MSBuild Projects="atUC7Main.cbproj"/>
+    </Target>
+    <Target Name="atUC7Main:Clean" DependsOnTargets="atCore:Clean">
+        <MSBuild Projects="atUC7Main.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atUC7Main:Make" DependsOnTargets="atCore:Make">
+        <MSBuild Projects="atUC7Main.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mtkCommon;atCore;VCLCommon;DuneComponents;DuneForms;atUC7Main"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mtkCommon:Clean;atCore:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;atUC7Main:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mtkCommon:Make;atCore:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;atUC7Main:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

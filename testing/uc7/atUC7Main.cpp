@@ -19,7 +19,7 @@ using namespace mtk;
 using std::string;
 
 extern HWND         gOtherAppWindow             = NULL;
-extern string       gApplicationRegistryRoot    = "\\Software\\Smith Lab\\uc7";
+extern string       gApplicationRegistryRoot    = "\\Software\\Allen Institute\\UC7";
 extern string       gDefaultAppTheme            = "Iceberg Classico";
 extern string       gAppMutexName           	= "UC7AppMutex";
 extern bool 		gAppIsStartingUp 			= true;

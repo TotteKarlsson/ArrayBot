@@ -37,7 +37,7 @@ extern bool gIsDevelopmentRelease;
 __fastcall TMainForm::TMainForm(TComponent* Owner)
     : TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
 
-    mBottomPanelHeight(205),
+    mBottomPanelHeight(190),
     mSplashProperties(gApplicationRegistryRoot, "Splash"),
     mShowSplashOnStartup(true),
     mLogLevel(lAny),
@@ -83,12 +83,10 @@ void __fastcall TMainForm::mConnectUC7BtnClick(TObject *Sender)
     if(mUC7.isConnected())
     {
 	    onConnectedToUC7();
-        mConnectUC7Btn->Caption = "Close";
     }
     else
     {
 		onDisConnectedToUC7();
-    	mConnectUC7Btn->Caption = "Open";
     }
 }
 
@@ -105,12 +103,37 @@ void __fastcall TMainForm::mSendBtn1Click(TObject *Sender)
 
 void __fastcall TMainForm::onConnectedToUC7()
 {
-	mSendRAW1->Enabled = true;
-	mSendBtn1->Enabled = true;
+    mConnectUC7Btn->Caption = "Close";
+	mSendRAW1->Enabled 		= true;
+	mSendBtn1->Enabled 		= true;
+    mStartStopBtn->Enabled 	= true;
+    mResetBtn->Enabled 		= true;
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::onDisConnectedToUC7()
 {
-	mSendRAW1->Enabled = false;
-	mSendBtn1->Enabled = false;
+    mConnectUC7Btn->Caption = "Open";
+	mSendRAW1->Enabled 		= false;
+	mSendBtn1->Enabled 		= false;
+    mStartStopBtn->Enabled 	= false;
+    mResetBtn->Enabled 	= false;
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mStartStopBtnClick(TObject *Sender)
+{
+	if(mStartStopBtn->Caption == "Start")
+    {
+    	Log(lInfo) << "Starting cutter";
+	    mUC7.startCutter();
+	}
+    else
+    {
+	   	Log(lInfo) << "Stopping cutter";
+	    mUC7.stopCutter();
+    }
+}
+
+
+

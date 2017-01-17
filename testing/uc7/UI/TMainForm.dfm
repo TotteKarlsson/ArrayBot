@@ -1,9 +1,9 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
-  Caption = 'atDB'
-  ClientHeight = 761
-  ClientWidth = 973
+  Caption = 'UC7 Controller'
+  ClientHeight = 543
+  ClientWidth = 873
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,6 +14,7 @@ object MainForm: TMainForm
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poDefault
+  Scaled = False
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -22,131 +23,80 @@ object MainForm: TMainForm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 437
-    Width = 973
+    Top = 331
+    Width = 873
     Height = 3
     Cursor = crVSplit
     Align = alBottom
     ExplicitLeft = 88
     ExplicitTop = 430
+    ExplicitWidth = 973
   end
   object TopPanel: TPanel
     Left = 0
-    Top = 0
-    Width = 973
-    Height = 437
+    Top = 41
+    Width = 873
+    Height = 290
     Align = alClient
     TabOrder = 0
-    object GroupBox1: TGroupBox
+    ExplicitWidth = 626
+    object GroupBox3: TGroupBox
       Left = 1
       Top = 1
-      Width = 360
-      Height = 435
+      Width = 392
+      Height = 288
       Align = alLeft
-      Caption = 'UC7'
+      Caption = 'Controls'
       TabOrder = 0
-      object mComportCB: TComboBox
+      ExplicitLeft = -2
+      ExplicitTop = -1
+      object mStartStopBtn: TButton
         Left = 16
-        Top = 24
-        Width = 145
-        Height = 21
-        ItemIndex = 0
+        Top = 40
+        Width = 121
+        Height = 89
+        Caption = 'Start'
+        Enabled = False
         TabOrder = 0
-        Text = 'COM1'
-        Items.Strings = (
-          'COM1'
-          'COM2'
-          'COM3'
-          'COM4'
-          'COM5'
-          'COM6'
-          'COM7'
-          'COM8'
-          'COM9'
-          'COM10'
-          'COM11'
-          'COM12'
-          'COM13'
-          'COM14'
-          'COM15'
-          'COM16'
-          'COM17'
-          'COM18'
-          'COM19'
-          'COM20')
-      end
-      object mConnectUC7Btn: TButton
-        Left = 16
-        Top = 51
-        Width = 75
-        Height = 25
-        Caption = 'Open'
-        TabOrder = 1
-        OnClick = mConnectUC7BtnClick
-      end
-      object GroupBox2: TGroupBox
-        Left = 2
-        Top = 328
-        Width = 356
-        Height = 105
-        Align = alBottom
-        Caption = 'Send Raw'
-        TabOrder = 2
-        ExplicitLeft = 1
-        object mSendRAW1: TSTDStringLabeledEdit
-          Left = 14
-          Top = 24
-          Width = 275
-          Height = 21
-          EditLabel.Width = 3
-          EditLabel.Height = 13
-          Enabled = False
-          TabOrder = 0
-          Text = 's10'
-          Value = 's10'
-        end
-        object mSendBtn1: TButton
-          Left = 295
-          Top = 24
-          Width = 50
-          Height = 25
-          Caption = '->'
-          Enabled = False
-          TabOrder = 1
-          OnClick = mSendBtn1Click
-        end
+        OnClick = mStartStopBtnClick
       end
     end
   end
   object SB: TStatusBar
     Left = 0
-    Top = 742
-    Width = 973
+    Top = 524
+    Width = 873
     Height = 19
     Panels = <>
+    ExplicitWidth = 626
   end
   object BottomPanel: TPanel
     Left = 0
-    Top = 440
-    Width = 973
-    Height = 302
+    Top = 334
+    Width = 873
+    Height = 190
     Align = alBottom
     TabOrder = 2
+    ExplicitWidth = 626
     object infoMemo: TMemo
       Left = 1
       Top = 49
-      Width = 971
-      Height = 252
+      Width = 871
+      Height = 140
       Align = alClient
+      ScrollBars = ssBoth
       TabOrder = 0
+      WordWrap = False
+      ExplicitWidth = 624
     end
     object Panel1: TPanel
       Left = 1
       Top = 1
-      Width = 971
+      Width = 871
       Height = 48
       Align = alTop
       TabOrder = 1
+      ExplicitWidth = 624
       object Button1: TButton
         Left = 8
         Top = 12
@@ -161,18 +111,111 @@ object MainForm: TMainForm
         Top = 12
         Width = 145
         Height = 21
-        ItemIndex = 0
         TabOrder = 1
         Text = 'INFO'
+        OnChange = LogLevelCBChange
         Items.Strings = (
+          'ERRORS'
+          'WARNINGS'
           'INFO'
-          'Everything')
+          'DEBUG'
+          'DEBUG1'
+          'DEBUG2'
+          'DEBUG3'
+          'DEBUG4'
+          'DEBUG5'
+          'EVERYTHING')
       end
     end
   end
+  object mTopPanel: TPanel
+    Left = 0
+    Top = 0
+    Width = 873
+    Height = 41
+    Align = alTop
+    TabOrder = 3
+    ExplicitWidth = 626
+    DesignSize = (
+      873
+      41)
+    object mComportCB: TComboBox
+      Left = 8
+      Top = 12
+      Width = 145
+      Height = 21
+      ItemIndex = 0
+      TabOrder = 0
+      Text = 'COM1'
+      Items.Strings = (
+        'COM1'
+        'COM2'
+        'COM3'
+        'COM4'
+        'COM5'
+        'COM6'
+        'COM7'
+        'COM8'
+        'COM9'
+        'COM10'
+        'COM11'
+        'COM12'
+        'COM13'
+        'COM14'
+        'COM15'
+        'COM16'
+        'COM17'
+        'COM18'
+        'COM19'
+        'COM20')
+    end
+    object mConnectUC7Btn: TButton
+      Left = 165
+      Top = 10
+      Width = 50
+      Height = 25
+      Caption = 'Open'
+      TabOrder = 1
+      OnClick = mConnectUC7BtnClick
+    end
+    object mSendBtn1: TButton
+      Left = 396
+      Top = 10
+      Width = 50
+      Height = 25
+      Caption = '->'
+      Enabled = False
+      TabOrder = 2
+      OnClick = mSendBtn1Click
+    end
+    object mSendRAW1: TSTDStringLabeledEdit
+      Left = 245
+      Top = 12
+      Width = 145
+      Height = 21
+      EditLabel.Width = 62
+      EditLabel.Height = 13
+      EditLabel.Caption = 'mSendRAW1'
+      Enabled = False
+      TabOrder = 3
+      Text = 's10'
+      Value = 's10'
+    end
+    object mResetBtn: TButton
+      Left = 772
+      Top = 5
+      Width = 85
+      Height = 30
+      Anchors = [akTop, akRight]
+      Caption = 'Reset UC7'
+      Enabled = False
+      TabOrder = 4
+      ExplicitLeft = 525
+    end
+  end
   object ActionList1: TActionList
-    Left = 592
-    Top = 152
+    Left = 584
+    Top = 192
     object ClearMemoA: TAction
       Category = 'Memo'
       Caption = 'Clear Messages'
@@ -188,8 +231,8 @@ object MainForm: TMainForm
     end
   end
   object PopupMenu1: TPopupMenu
-    Left = 808
-    Top = 216
+    Left = 512
+    Top = 232
     object ClearMemoA1: TMenuItem
       Action = ClearMemoA
     end
@@ -197,10 +240,12 @@ object MainForm: TMainForm
   object mIniFileC: mtkIniFileC
     IniFileName = 'atUC7.ini'
     RootFolder = '.'
-    Left = 394
+    Left = 482
+    Top = 88
   end
   object MainMenu1: TMainMenu
-    Left = 469
+    Left = 533
+    Top = 136
     object File1: TMenuItem
       Caption = 'File'
       object Exit1: TMenuItem
@@ -218,7 +263,7 @@ object MainForm: TMainForm
     Enabled = False
     Interval = 50
     OnTimer = ShutDownTimerTimer
-    Left = 818
-    Top = 8
+    Left = 578
+    Top = 72
   end
 end

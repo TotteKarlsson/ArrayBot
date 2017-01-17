@@ -31,9 +31,10 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
     TMemoLogger::mMemoIsEnabled = false;
 
 	setupWindowTitle();
+	LogLevelCB->ItemIndex = mLogLevel;
 	if(mLogLevel == lInfo)
 	{
-		LogLevelCB->ItemIndex = 0;
+
 		StringList logs = getLinesInFile(joinPath(gLogFileLocation, gLogFileName));
 
 		StringList msgs;
@@ -52,11 +53,10 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	}
 	else if(mLogLevel == lAny)
 	{
-		LogLevelCB->ItemIndex = 1;
 		StringList logs = getLinesInFile(joinPath(gLogFileLocation, gLogFileName));
 
 		//Only add lines to log window with lInfo and "igher"
-		for(int i = 0; i < logs.size(); i++)
+		for(uint i = 0; i < logs.size(); i++)
 		{
 			infoMemo->Lines->Add(vclstr(logs[i]));
 		}
@@ -78,7 +78,6 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 	//transfer INI values
 	BottomPanel->Height     = mBottomPanelHeight + 1;
 	SB->Top = MainForm->Top + MainForm->Height + 10;
-
 	SB->SizeGrip = true;
 }
 
@@ -117,6 +116,8 @@ bool TMainForm::setupAndReadIniParameters()
 	//Setup UI elements
 	mSplashProperties.add((BaseProperty*)  &mShowSplashOnStartup.setup(             "ShowOnStartup",                    true));
 	mComportCB->ItemIndex = mCOMPort - 1;
+
+    gLogger.setLogLevel(mLogLevel);
 
 	if(mSplashProperties.doesSectionExist())
 	{
