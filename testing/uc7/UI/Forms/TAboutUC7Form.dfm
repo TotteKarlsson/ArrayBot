@@ -26,8 +26,6 @@ object AboutATDBForm: TAboutATDBForm
     Align = alClient
     Caption = 'Change Log'
     TabOrder = 0
-    ExplicitWidth = 727
-    ExplicitHeight = 391
     object Memo1: TMemo
       Left = 2
       Top = 15
@@ -47,9 +45,8 @@ object AboutATDBForm: TAboutATDBForm
     Height = 185
     Align = alTop
     TabOrder = 1
-    ExplicitWidth = 727
     object Image1: TImage
-      Left = 530
+      Left = 538
       Top = 16
       Width = 177
       Height = 161
@@ -7577,7 +7574,7 @@ object AboutATDBForm: TAboutATDBForm
       Transparent = True
     end
     object versionLabel: TLabel
-      Left = 174
+      Left = 278
       Top = 27
       Width = 104
       Height = 39
@@ -7592,9 +7589,9 @@ object AboutATDBForm: TAboutATDBForm
     object Label1: TLabel
       Left = 34
       Top = 16
-      Width = 134
+      Width = 144
       Height = 52
-      Caption = 'ATDB -'
+      Caption = 'AT-UC7'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -43

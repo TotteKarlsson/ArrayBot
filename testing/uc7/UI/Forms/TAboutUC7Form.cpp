@@ -1,6 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TAboutATDBForm.h"
+#include "TAboutUC7Form.h"
 #include "mtkApplicationInfo.h"
 #include "mtkLogger.h"
 #include <sstream>

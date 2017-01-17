@@ -1,5 +1,5 @@
-#ifndef TAboutATDBFormH
-#define TAboutATDBFormH
+#ifndef TAboutUC7FormH
+#define TAboutUC7FormH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>

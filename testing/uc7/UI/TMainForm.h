@@ -12,8 +12,8 @@
 #include <Vcl.Menus.hpp>
 #include <Vcl.StdActns.hpp>
 //---------------------------------------------------------------------------
-#include "Core/atDBApplicationMessages.h"
-#include "Core/atDBDataStructures.h"
+#include "source/atUC7ApplicationMessages.h"
+#include "source/atUC7DataStructures.h"
 #include "mtkIniFileC.h"
 #include "mtkIniFileProperties.h"
 #include "mtkLogFileReader.h"

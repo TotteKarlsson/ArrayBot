@@ -1,5 +1,5 @@
-#ifndef atDBDataStructuresH
-#define atDBDataStructuresH
+#ifndef atUC7DataStructuresH
+#define atUC7DataStructuresH
 #include "Poco/DateTime.h"
 #include <System.hpp>
 
@@ -10,10 +10,10 @@ enum ApplicationMessageEnum
 
 using Poco::DateTime;
 
-struct DBStatistics
-{
-	int 		mNumberOfRecs;
-};
+//struct DBStatistics
+//{
+//	int 		mNumberOfRecs;
+//};
 
 struct AppMessageStruct;
 
