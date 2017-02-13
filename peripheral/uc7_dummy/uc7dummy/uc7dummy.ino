@@ -1,7 +1,7 @@
 double sketchVersion = 1.0;
 void processByte(char ch); 
 
-int gNROfMessages = 50;
+int gNROfMessages = 0;
 const char* gMessages[] = 
 {
 "þ5CA4",
@@ -105,9 +105,23 @@ void processByte(char ch)
         case 'i': //Return info about current HW state
             sendInfo();
         break;
-        
+
+        case '!': //read until carriage return is received
+        {
+            Serial << "Got ! char"; 
+            char ch = Serial.read();
+            while  (ch != '\r')
+            {
+                Serial << " ch: " << ch;
+                char ch = Serial.read();                
+            }
+            
+            Serial << "Got carriage return"; 
+        }
+        break;    
+                
         default: //Do nothing
-            Serial << "!UNHANDLED_CHAR_RECEIVED:'"<<ch<<"'\r";
+            Serial << "!UNHANDLED_CHAR_RECEIVED:"<<hex<<ch<<'\r';
         ;
     }    
 }

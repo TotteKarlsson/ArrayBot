@@ -34,10 +34,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "P:\AppReleases\ArrayBot\ArrayBot.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "P:\ArrayBot\db\atDB.db";      DestDir: "{localappdata}\ArrayBot"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "P:\AppReleases\ArrayBot\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "P:\AppReleases\ArrayBot\*";            DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "P:\ArrayBot\db\atDB.db";               DestDir: "{localappdata}\ArrayBot"; Flags: ignoreversion recursesubdirs createallsubdirs
 
+; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 [Icons]
 Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
