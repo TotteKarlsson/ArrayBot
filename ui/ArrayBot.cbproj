@@ -112,8 +112,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dslib\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\ThirdParty\Poco\Foundation\src\;P:\libs\dslib\VCL\Forms\;P:\libs\dslib\VCL\Common\;P:\libs\dslib\Common\Math\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;adortl.bpi;dbrtl.bpi</LinkPackageImports>
-        <IncludePath>$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl;P:\ArrayBot\source;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(AB_ROOT)\source\vcl\frames;$(AB_ROOT)\source\vcl\forms;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -206,6 +206,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <VersionInfoKeys Name="CFBundleExecutable"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\DuneComponentsDD.bpl">Components by DuneScientific</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\atVCLCore.bpl">ArrayBot VCL Core package</Excluded_Packages>
                     <Excluded_Packages Name="P:\build\xe3_ide\BPL\ArrayBotPackage.bpl">ArrayBotPackage</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>

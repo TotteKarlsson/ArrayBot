@@ -15,16 +15,19 @@
         <Projects Include="P:\libs\atapi\source\atCore.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\libs\atapi\source\database\atDatabase.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="P:\libs\dslib\VCL\Components\DuneComponents.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="ui\lib\ArrayBotPackage.cbproj">
+        <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
+        <Projects Include="ui\lib\ArrayBotPackage.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="P:\ArrayCam\ArrayCam.cbproj">
@@ -80,6 +83,15 @@
     <Target Name="atCore:Make">
         <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="atDatabase">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj"/>
+    </Target>
+    <Target Name="atDatabase:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDatabase:Make">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="VCLCommon">
         <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
     </Target>
@@ -98,15 +110,6 @@
     <Target Name="DuneComponents:Make">
         <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBotPackage">
-        <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj"/>
-    </Target>
-    <Target Name="ArrayBotPackage:Clean">
-        <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ArrayBotPackage:Make">
-        <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="atVCLCore">
         <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
     </Target>
@@ -115,6 +118,15 @@
     </Target>
     <Target Name="atVCLCore:Make">
         <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayBotPackage">
+        <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Clean">
+        <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Make">
+        <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj" Targets="Make"/>
     </Target>
     <Target Name="ArrayCam">
         <MSBuild Projects="P:\ArrayCam\ArrayCam.cbproj"/>
@@ -144,13 +156,13 @@
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;atCore;VCLCommon;DuneComponents;ArrayBotPackage;atVCLCore;ArrayCam;ArduinoController;ArrayBot"/>
+        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;atCore;atDatabase;VCLCommon;DuneComponents;atVCLCore;ArrayBotPackage;ArrayCam;ArduinoController;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;atCore:Clean;VCLCommon:Clean;DuneComponents:Clean;ArrayBotPackage:Clean;atVCLCore:Clean;ArrayCam:Clean;ArduinoController:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;atCore:Clean;atDatabase:Clean;VCLCommon:Clean;DuneComponents:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArrayCam:Clean;ArduinoController:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;atCore:Make;VCLCommon:Make;DuneComponents:Make;ArrayBotPackage:Make;atVCLCore:Make;ArrayCam:Make;ArduinoController:Make;ArrayBot:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;atCore:Make;atDatabase:Make;VCLCommon:Make;DuneComponents:Make;atVCLCore:Make;ArrayBotPackage:Make;ArrayCam:Make;ArduinoController:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

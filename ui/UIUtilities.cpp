@@ -42,7 +42,7 @@ void setupApplicationTheme(const string& appRegRoot, string& theme)
 		StringList paras(cmdLine,'-');
 
 		//Create iniKeys for easy parsing
-		for(int i = 0; i < paras.size(); i++)
+		for(uint i = 0; i < paras.size(); i++)
 		{
 			string record = paras[i];
 			IniKey aKey(record);
@@ -85,7 +85,7 @@ void loadStyles()
 	if(DirectoryExists(themeFolder.c_str()))
 	{
 		StringList list = getFilesInDir(themeFolder, "vsf");
-		for(int i = 0; i < list.size(); i++)
+		for(uint i = 0; i < list.size(); i++)
 		{
 			string styleFile(list[i]);
 			try
