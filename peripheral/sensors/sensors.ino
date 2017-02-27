@@ -17,8 +17,8 @@ double sketchVersion = 1.0;
 
 // Setup global DHT22 instances
 DHT gDHT22_1(DHT22_1_PIN, DHTTYPE);
-//DHT gDHT22_2(DHT22_2_PIN, DHTTYPE);
-//DHT gDHT22_3(DHT22_3_PIN, DHTTYPE);
+DHT gDHT22_2(DHT22_2_PIN, DHTTYPE);
+DHT gDHT22_3(DHT22_3_PIN, DHTTYPE);
 
 void readEnvironmentalSensors(DHT& gDHT22, int sensorNum);
 
@@ -51,8 +51,8 @@ void loop()
     {
         lastReadTime = currentReadTime;
         readEnvironmentalSensors(gDHT22_1, 1);    
-//        readEnvironmentalSensors(gDHT22_2, 2);    
-       //readEnvironmentalSensors(gDHT22_3, 3);            
+        readEnvironmentalSensors(gDHT22_2, 2);    
+        readEnvironmentalSensors(gDHT22_3, 3);            
     }   
 }
   
@@ -66,13 +66,13 @@ void processByte(char ch)
         
         default: //Do nothing
             Serial << "[UNHANDLED_CHAR_RECEIVED:'"<<ch<<"']";
-        ;
+        break;                        
     }    
 }
 
 void sendInfo()
 {
-    Serial << "[ARRAYBOT LIGHTS VERSION="<<sketchVersion<<"]";    
+    Serial << "[ARRAYBOT SENSOR ARDUINO VERSION="<<sketchVersion<<"]";    
 }
 
 void readEnvironmentalSensors(DHT& s, int sensorNum)
