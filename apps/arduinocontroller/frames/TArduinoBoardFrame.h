@@ -9,8 +9,8 @@
 #include <Vcl.ExtCtrls.hpp>
 #include "mtkIniFile.h"
 #include "mtkIniFileProperties.h"
-#include "arduino/abArduinoDevice.h"
-#include "arduino/abArduinoServer.h"
+#include "arduino/atArduinoDevice.h"
+#include "arduino/atArduinoServer.h"
 #include "mtkIniFileProperties.h"
 #include "TSTDStringLabeledEdit.h"
 
@@ -33,7 +33,6 @@ __published:	// IDE-managed Components
 	void __fastcall mCheckConnectionTimerTimer(TObject *Sender);
 
 	protected:
-
     	ArduinoServer&					mServer;
         ArduinoDevice&					mArduinoDevice;
 

@@ -7,7 +7,7 @@
 #include "TFloatLabeledEdit.h"
 #include "TSTDStringLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "joystick/abJoyStickSetting.h";
+#include "joystick/atJoyStickSetting.h";
 //---------------------------------------------------------------------------
 
 class PACKAGE TAddJoyStickSettingForm : public TForm

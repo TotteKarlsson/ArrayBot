@@ -11,13 +11,12 @@
 #include "mtkLogLevel.h"
 #include <Vcl.ExtCtrls.hpp>
 
-#include "database/abATDBServerSession.h"
+#include "database/atATDBServerSession.h"
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
 #include "RzGrids.hpp"
 #include <Vcl.Grids.hpp>
 #include <Vcl.ComCtrls.hpp>
-
 
 //---------------------------------------------------------------------------
 
@@ -65,7 +64,7 @@ __published:	// IDE-managed Components
 	void __fastcall mAddNoteBtnClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall mUserCBCloseUp(TObject *Sender);
-
+	void __fastcall FormCreate(TObject *Sender);
 
 private:	// User declarations
         LogFileReader                       mLogFileReader;
@@ -75,7 +74,7 @@ private:	// User declarations
 		mtk::Property<mtk::LogLevel>        mLogLevel;
         ATDBServerSession					mServerSession;
         void 							   	syncGrids();
-		void								populateNotes(RecordSet* notes);
+		void								populateNotes(Poco::Data::RecordSet* notes);
 		void    							populateUsers();
 	    int  								getCurrentBlockID();
 	    int  								getCurrentUserID();

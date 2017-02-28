@@ -3,23 +3,35 @@
         <ProjectGuid>{D205F2C9-997F-479F-8C2E-0DC7AF7C3730}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="source\abCore.cbproj">
+        <Projects Include="P:\libs\atapi\source\resources\atResources.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="source\vcl\abVCLCore.cbproj">
+        <Projects Include="P:\libs\atapi\source\atCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\database\atDatabase.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="UI\lib\ArrayBotPackage.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="apps\arraycam\ArrayCam.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="apps\arduinocontroller\ArduinoController.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\atDB\UI\Core\atDBCore-static.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\ArrayCam\ArrayCam.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\atDB\atDB.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
-            <Dependencies>source\abCore.cbproj;source\vcl\abVCLCore.cbproj;UI\lib\ArrayBotPackage.cbproj</Dependencies>
+            <Dependencies>UI\lib\ArrayBotPackage.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -29,23 +41,41 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="abCore">
-        <MSBuild Projects="source\abCore.cbproj"/>
+    <Target Name="atResources">
+        <MSBuild Projects="P:\libs\atapi\source\resources\atResources.cbproj"/>
     </Target>
-    <Target Name="abCore:Clean">
-        <MSBuild Projects="source\abCore.cbproj" Targets="Clean"/>
+    <Target Name="atResources:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\resources\atResources.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="abCore:Make">
-        <MSBuild Projects="source\abCore.cbproj" Targets="Make"/>
+    <Target Name="atResources:Make">
+        <MSBuild Projects="P:\libs\atapi\source\resources\atResources.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="abVCLCore">
-        <MSBuild Projects="source\vcl\abVCLCore.cbproj"/>
+    <Target Name="atCore">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj"/>
     </Target>
-    <Target Name="abVCLCore:Clean">
-        <MSBuild Projects="source\vcl\abVCLCore.cbproj" Targets="Clean"/>
+    <Target Name="atCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="abVCLCore:Make">
-        <MSBuild Projects="source\vcl\abVCLCore.cbproj" Targets="Make"/>
+    <Target Name="atCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDatabase">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj"/>
+    </Target>
+    <Target Name="atDatabase:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDatabase:Make">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLCore">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
+    </Target>
+    <Target Name="atVCLCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
     </Target>
     <Target Name="ArrayBotPackage">
         <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj"/>
@@ -56,15 +86,6 @@
     <Target Name="ArrayBotPackage:Make">
         <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayCam">
-        <MSBuild Projects="apps\arraycam\ArrayCam.cbproj"/>
-    </Target>
-    <Target Name="ArrayCam:Clean">
-        <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ArrayCam:Make">
-        <MSBuild Projects="apps\arraycam\ArrayCam.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="ArduinoController">
         <MSBuild Projects="apps\arduinocontroller\ArduinoController.cbproj"/>
     </Target>
@@ -74,23 +95,50 @@
     <Target Name="ArduinoController:Make">
         <MSBuild Projects="apps\arduinocontroller\ArduinoController.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBot" DependsOnTargets="abCore;abVCLCore;ArrayBotPackage">
+    <Target Name="atDBCore-static">
+        <MSBuild Projects="P:\atDB\UI\Core\atDBCore-static.cbproj"/>
+    </Target>
+    <Target Name="atDBCore-static:Clean">
+        <MSBuild Projects="P:\atDB\UI\Core\atDBCore-static.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDBCore-static:Make">
+        <MSBuild Projects="P:\atDB\UI\Core\atDBCore-static.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayCam">
+        <MSBuild Projects="P:\ArrayCam\ArrayCam.cbproj"/>
+    </Target>
+    <Target Name="ArrayCam:Clean">
+        <MSBuild Projects="P:\ArrayCam\ArrayCam.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayCam:Make">
+        <MSBuild Projects="P:\ArrayCam\ArrayCam.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDB">
+        <MSBuild Projects="P:\atDB\atDB.cbproj"/>
+    </Target>
+    <Target Name="atDB:Clean">
+        <MSBuild Projects="P:\atDB\atDB.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDB:Make">
+        <MSBuild Projects="P:\atDB\atDB.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayBot" DependsOnTargets="ArrayBotPackage">
         <MSBuild Projects="UI\ArrayBot.cbproj"/>
     </Target>
-    <Target Name="ArrayBot:Clean" DependsOnTargets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean">
+    <Target Name="ArrayBot:Clean" DependsOnTargets="ArrayBotPackage:Clean">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make">
+    <Target Name="ArrayBot:Make" DependsOnTargets="ArrayBotPackage:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;abVCLCore;ArrayBotPackage;ArrayCam;ArduinoController;ArrayBot"/>
+        <CallTarget Targets="atResources;atCore;atDatabase;atVCLCore;ArrayBotPackage;ArduinoController;atDBCore-static;ArrayCam;atDB;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;ArrayCam:Clean;ArduinoController:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="atResources:Clean;atCore:Clean;atDatabase:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArduinoController:Clean;atDBCore-static:Clean;ArrayCam:Clean;atDB:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;ArrayCam:Make;ArduinoController:Make;ArrayBot:Make"/>
+        <CallTarget Targets="atResources:Make;atCore:Make;atDatabase:Make;atVCLCore:Make;ArrayBotPackage:Make;ArduinoController:Make;atDBCore-static:Make;ArrayCam:Make;atDB:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

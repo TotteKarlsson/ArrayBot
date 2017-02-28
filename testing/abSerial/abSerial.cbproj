@@ -34,9 +34,12 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <Manifest_File>None</Manifest_File>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <ILINK_LibraryPath>..\abSerial\;..\..\source\;P:\ArrayBot\testing\arduino_server\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <IncludePath>..\abSerial\;..\..\source\;P:\ArrayBot\testing\arduino_server\;$(IncludePath)</IncludePath>
+        <IncludePath>..\abSerial\;$(AT_ROOT)\source;$(AT_ROOT)\source\arduino;$(IncludePath)</IncludePath>
         <_TCHARMapping>char</_TCHARMapping>
         <ProjectType>CppConsoleApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
@@ -77,7 +80,6 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <BCC_PCHInject>test_arduino_serverPCH1.h</BCC_PCHInject>
         <Manifest_File>None</Manifest_File>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
@@ -150,8 +152,8 @@
                     <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\abVCLCore.bpl">File P:\build\xe3_ide\BPL\abVCLCore.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\ArrayBotPackage.bpl">ArrayBotPackage</Excluded_Packages>
                 </Excluded_Packages>
             </CPlusPlusBuilder.Personality>
             <Deployment/>

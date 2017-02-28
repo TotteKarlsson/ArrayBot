@@ -26,13 +26,14 @@
 #include "abUIDataStructures.h"
 #include "abApplicationMessages.h"
 #include "mtkIniFile.h"
-#include "arduino/abArduinoServer.h"
+#include "arduino/atArduinoServer.h"
 #include "mtkFloatLabel.h"
 #include "TIntLabel.h"
 #include "TPropertyCheckBox.h"
 #include "TArrayBotBtn.h"
-#include "arduino/abPufferArduino.h"
-#include "arduino/abLightsArduino.h"
+#include "arduino/atPufferArduino.h"
+#include "arduino/atLightsArduino.h"
+#include "arduino/atSensorsArduino.h"
 using Poco::Timestamp;
 using mtk::IniFileProperties;
 using mtk::IniFile;
@@ -149,8 +150,10 @@ class TMain : public TRegistryForm
 
         ArduinoServer					    mArduinoServer;
 
+           									//References to arduino objects
         PufferArduino&					    mPufferArduino;
-        LightsArduino&					    mSensorArduino;
+        LightsArduino&					    mLightsArduino;
+        SensorsArduino&					    mSensorsArduino;
 
         BEGIN_MESSAGE_MAP
             MESSAGE_HANDLER(UWM_MESSAGE,    mlxStructMessage,         AppInBox);

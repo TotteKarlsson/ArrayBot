@@ -46,13 +46,13 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>..\UI\frames\;frames\;forms\;P:\dslib\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>frames\;forms\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
-        <IncludePath>..\..\source\;..\UI\frames\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;abVCLCore.lib</AllPackageLibs>
+        <IncludePath>frames\;forms\;forms;frames;$(IncludePath)</IncludePath>
+        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;atVCLCore.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -102,14 +102,14 @@
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
         <PostBuildEvent><![CDATA[xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y
 $(PostBuildEvent)]]></PostBuildEvent>
-        <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;ArrayBotPackage.lib;abVCLCore.lib</LinkPackageStatics>
+        <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;ArrayBotPackage.lib;atVCLCore.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dslib\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\ThirdParty\Poco\Foundation\src\;P:\libs\dslib\VCL\Forms\;P:\libs\dslib\VCL\Common\;P:\libs\dslib\Common\Math\;P:\libs\dslib\Common\IPC\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;adortl.bpi;dbrtl.bpi</LinkPackageImports>
-        <IncludePath>P:\ArrayBot\source;$(DSL_ROOT)\Common;$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(AB_ROOT)\source\vcl\frames;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>$(DSL_ROOT)\Common;$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common\Math;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -145,17 +145,20 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>frames\TArduinoBoardFrame.h</DependentOn>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <CppCompile Include="frames\TLightsArduinoFrame.cpp">
+            <Form>LightsArduinoFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frames\TLightsArduinoFrame.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
         <CppCompile Include="frames\TPufferArduinoBoardFrame.cpp">
             <Form>PufferArduinoBoardFrame</Form>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>frames\TPufferArduinoBoardFrame.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
-        <CppCompile Include="frames\TSensorAndLightArduinoFrame.cpp">
-            <Form>SensorAndLightArduinoFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>frames\TSensorAndLightArduinoFrame.h</DependentOn>
-            <BuildOrder>9</BuildOrder>
+        <CppCompile Include="frames\TSensorsArduinoFrame.cpp">
+            <BuildOrder>11</BuildOrder>
         </CppCompile>
         <CppCompile Include="MainForm.cpp">
             <Form>Main</Form>
@@ -173,10 +176,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
         <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="frames\TSensorAndLightArduinoFrame.dfm"/>
         <FormResources Include="frames\TPufferArduinoBoardFrame.dfm"/>
-        <FormResources Include="forms\TAboutArduinoControllerForm.dfm"/>
         <FormResources Include="forms\TArduinoControllerSplashForm.dfm"/>
+        <FormResources Include="forms\TAboutArduinoControllerForm.dfm"/>
+        <FormResources Include="frames\TLightsArduinoFrame.dfm"/>
         <FormResources Include="frames\TArduinoBoardFrame.dfm"/>
         <FormResources Include="frames\TAboutArduinoServerFrame.dfm"/>
         <BuildConfiguration Include="Release">
@@ -235,6 +238,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <VersionInfoKeys Name="CFBundleExecutable"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\DuneComponentsDD.bpl">Components by DuneScientific</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\atVCLCore.bpl">ArrayBot VCL Core package</Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\ArrayBotPackage.bpl">ArrayBotPackage</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>

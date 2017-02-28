@@ -1,0 +1,233 @@
+CREATE TABLE antibody (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	antibodytype VARCHAR, 
+	manufacturer VARCHAR(200), 
+	lot_number VARCHAR(200), 
+	location VARCHAR(200), 
+	received DATETIME, 
+	notes VARCHAR(512), 
+	storage_temp INTEGER, 
+	used BOOLEAN, 
+	tube_label VARCHAR(512), 
+	hostspecies_id INTEGER, 
+	protein_name VARCHAR(200), 
+	protein_asc_id VARCHAR(200), 
+	targetspecies_id INTEGER, 
+	fluorophore_id INTEGER, 
+	CHECK (used IN (0, 1)), 
+	FOREIGN KEY(hostspecies_id) REFERENCES species (id), 
+	FOREIGN KEY(targetspecies_id) REFERENCES species (id), 
+	FOREIGN KEY(fluorophore_id) REFERENCES fluorophore (id)
+);
+
+CREATE TABLE block (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	label VARCHAR(200)
+);
+
+CREATE TABLE channelsetting (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	microscoperound_id INTEGER, 
+	stain_id INTEGER, 
+	exposure_time INTEGER, 
+	z_offset FLOAT, 
+	FOREIGN KEY(microscoperound_id) REFERENCES microscoperound (id), 
+	FOREIGN KEY(stain_id) REFERENCES stain (id)
+);
+
+CREATE TABLE fluorophore (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	name VARCHAR(200), 
+	excitation_max INTEGER, 
+	emission_max INTEGER
+);
+
+CREATE TABLE frame (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	"order" INTEGER, 
+	sectionimageplan_id INTEGER, 
+	pos_x FLOAT, 
+	pos_y FLOAT, 
+	pos_i INTEGER, 
+	pos_j INTEGER, 
+	FOREIGN KEY(sectionimageplan_id) REFERENCES sectionimageplan (id)
+);
+
+CREATE TABLE image (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	imagepath VARCHAR(100), 
+	channel_setting_id INTEGER, 
+	z_order INTEGER, 
+	z_pos FLOAT, 
+	frame_id INTEGER, 
+	FOREIGN KEY(channel_setting_id) REFERENCES channelsetting (id), 
+	FOREIGN KEY(frame_id) REFERENCES frame (id)
+);
+
+CREATE TABLE immunoprotocol (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	name VARCHAR(100), 
+	notes VARCHAR(1024)
+);
+
+CREATE TABLE lineartransform (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	microscoperound_id INTEGER, 
+	ribbon_id INTEGER, 
+	a00 FLOAT, 
+	a10 FLOAT, 
+	a11 FLOAT, 
+	a12 FLOAT, 
+	b0 FLOAT, 
+	b1 FLOAT, 
+	FOREIGN KEY(microscoperound_id) REFERENCES microscoperound (id), 
+	FOREIGN KEY(ribbon_id) REFERENCES ribbon (id)
+);
+
+CREATE TABLE microscoperound (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	round_id INTEGER, 
+	FOREIGN KEY(round_id) REFERENCES round (id)
+);
+
+CREATE TABLE ribbon (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	block_id INTEGER, 
+	"order" INTEGER, 
+	notes VARCHAR(512), 
+	FOREIGN KEY(block_id) REFERENCES block (id)
+);
+
+CREATE TABLE round (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME
+);
+
+CREATE TABLE roundribbon_association (
+	round_id INTEGER, 
+	ribbon_id INTEGER, 
+	FOREIGN KEY(round_id) REFERENCES round (id), 
+	FOREIGN KEY(ribbon_id) REFERENCES ribbon (id)
+);
+
+CREATE TABLE section (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	ribbon_id INTEGER, 
+	"order" INTEGER, 
+	pos_x FLOAT, 
+	pos_y FLOAT, 
+	angle FLOAT, 
+	notes VARCHAR(512), 
+	FOREIGN KEY(ribbon_id) REFERENCES ribbon (id)
+);
+
+CREATE TABLE sectionimageplan (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	volume_id INTEGER, 
+	section_id INTEGER, 
+	mx INTEGER, 
+	my INTEGER, 
+	pos_x FLOAT, 
+	pos_y FLOAT, 
+	overlap FLOAT, 
+	FOREIGN KEY(volume_id) REFERENCES volume (id), 
+	FOREIGN KEY(section_id) REFERENCES section (id)
+);
+
+CREATE TABLE species (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	name VARCHAR(200)
+);
+
+CREATE TABLE stain (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	staintype VARCHAR, 
+	fluorophore_id INTEGER, 
+	primary_antibody_id INTEGER, 
+	primary_dilution INTEGER, 
+	secondary_antibody_id INTEGER, 
+	secondary_dilution INTEGER, 
+	FOREIGN KEY(fluorophore_id) REFERENCES fluorophore (id), 
+	FOREIGN KEY(primary_antibody_id) REFERENCES antibody (id), 
+	FOREIGN KEY(secondary_antibody_id) REFERENCES antibody (id)
+);
+
+CREATE TABLE stainround (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	round_id INTEGER, 
+	immunoprotocol_id INTEGER, 
+	FOREIGN KEY(round_id) REFERENCES round (id), 
+	FOREIGN KEY(immunoprotocol_id) REFERENCES immunoprotocol (id)
+);
+
+CREATE TABLE stain_association (
+	stainround_id INTEGER, 
+	stain_id INTEGER, 
+	FOREIGN KEY(stainround_id) REFERENCES stainround (id), 
+	FOREIGN KEY(stain_id) REFERENCES stain (id)
+);
+
+CREATE TABLE volume (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	status INTEGER, 
+	created DATETIME, 
+	modified DATETIME, 
+	name VARCHAR(50), 
+	notes VARCHAR(512)
+);
+
+CREATE TABLE volumnribbon_association (
+	volume_id INTEGER, 
+	ribbon_id INTEGER, 
+	FOREIGN KEY(volume_id) REFERENCES volume (id), 
+	FOREIGN KEY(ribbon_id) REFERENCES ribbon (id)
+);
+
+

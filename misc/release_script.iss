@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ArrayBot"
-#define MyAppVersion "0.8.3"
+#define MyAppVersion "0.8.5"
 #define MyAppPublisher "Smith Lab"
 #define MyAppURL "http://www.example.com/"
 #define MyAppExeName "ArrayBot.exe"
@@ -34,9 +34,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "P:\AppReleases\ArrayBot\ArrayBot.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "P:\AppReleases\ArrayBot\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "P:\AppReleases\ArrayBot\*";            DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "P:\ArrayBot\db\atDB.db";               DestDir: "{localappdata}\ArrayBot"; Flags: ignoreversion recursesubdirs createallsubdirs
 
+; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 [Icons]
 Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon

@@ -20,7 +20,6 @@ __fastcall TSensorAndLightArduinoFrame::TSensorAndLightArduinoFrame(ArduinoServe
 {
 	mProperties.add((BaseProperty*)  &mSendMSGE->getProperty()->setup(    	       "SEND_TEXT", 	 		 "i"));
     mProperties.read();
-
 	mSendMSGE->update();
 }
 

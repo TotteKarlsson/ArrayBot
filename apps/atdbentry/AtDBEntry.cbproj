@@ -35,12 +35,15 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <Manifest_File>None</Manifest_File>
         <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;</VCL_Custom_Styles>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
-        <ILINK_LibraryPath>..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\source\vcl\datamodules\;..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <ProjectType>CppVCLApplication</ProjectType>
-        <IncludePath>..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;abVCLCore.lib;DuneComponents.lib;RaizeComponentsTrialVcl.lib</AllPackageLibs>
+        <IncludePath>..\..\source\vcl\datamodules\;..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;..\..\source\vcl;$(IncludePath)</IncludePath>
+        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;abVCLCore.lib;DuneComponents.lib;RaizeComponentsTrialVcl.lib;dsnap.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dbxcds.lib;DbxDevartSQLiteDriver170.lib</AllPackageLibs>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <Multithreaded>true</Multithreaded>
         <_TCHARMapping>wchar_t</_TCHARMapping>
@@ -86,15 +89,16 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <_TCHARMapping>char</_TCHARMapping>
         <Icon_MainIcon>AtDBEntry_Icon1.ico</Icon_MainIcon>
         <BCC_whid>false</BCC_whid>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Debugger_DebugSourcePath>P:\ArrayBot\source\vcl\components\;P:\libs\dslib\VCL\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <Defines>POCO_STATIC;$(Defines)</Defines>
-        <VerInfo_Locale>1033</VerInfo_Locale>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;abVCLCore.bpi;DuneComponents.bpi;RaizeComponentsTrialVcl.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;abVCLCore.bpi;DuneComponents.bpi;RaizeComponentsTrialVcl.bpi;dsnap.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dbxcds.bpi;DbxDevartSQLiteDriver170.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
@@ -113,18 +117,12 @@
         <CppCompile Include="Misc.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="pch.h">
-            <BuildOrder>1</BuildOrder>
-        </PCHCompile>
         <CppCompile Include="ShutDownLogic.cpp">
             <BuildOrder>5</BuildOrder>
         </CppCompile>
         <CppCompile Include="UIUtilities.cpp">
             <DependentOn>UIUtilities.h</DependentOn>
             <BuildOrder>4</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\..\source\database\abATDBServerSession.cpp">
-            <BuildOrder>6</BuildOrder>
         </CppCompile>
         <CppCompile Include="..\..\source\database\forms\TATDBServerEntry.cpp">
             <BuildOrder>8</BuildOrder>

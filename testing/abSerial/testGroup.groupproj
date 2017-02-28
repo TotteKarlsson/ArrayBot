@@ -12,11 +12,11 @@
         <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\..\source\abCore.cbproj">
+        <Projects Include="P:\libs\atapi\source\atCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\abSerial\abSerial.cbproj">
-            <Dependencies>P:\libs\dslib\Common\mtkCommon.cbproj;P:\libs\dslib\Common\IPC\mtkIPC.cbproj;..\..\source\abCore.cbproj</Dependencies>
+        <Projects Include="abSerial.cbproj">
+            <Dependencies>P:\libs\dslib\Common\mtkCommon.cbproj;P:\libs\dslib\Common\IPC\mtkIPC.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -53,32 +53,32 @@
     <Target Name="VCLCommon:Make">
         <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="abCore">
-        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    <Target Name="atCore">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj"/>
     </Target>
-    <Target Name="abCore:Clean">
-        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    <Target Name="atCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="abCore:Make">
-        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    <Target Name="atCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="abSerial" DependsOnTargets="mtkCommon;mtkIPC;abCore">
-        <MSBuild Projects="..\abSerial\abSerial.cbproj"/>
+    <Target Name="abSerial" DependsOnTargets="mtkCommon;mtkIPC">
+        <MSBuild Projects="abSerial.cbproj"/>
     </Target>
-    <Target Name="abSerial:Clean" DependsOnTargets="mtkCommon:Clean;mtkIPC:Clean;abCore:Clean">
-        <MSBuild Projects="..\abSerial\abSerial.cbproj" Targets="Clean"/>
+    <Target Name="abSerial:Clean" DependsOnTargets="mtkCommon:Clean;mtkIPC:Clean">
+        <MSBuild Projects="abSerial.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="abSerial:Make" DependsOnTargets="mtkCommon:Make;mtkIPC:Make;abCore:Make">
-        <MSBuild Projects="..\abSerial\abSerial.cbproj" Targets="Make"/>
+    <Target Name="abSerial:Make" DependsOnTargets="mtkCommon:Make;mtkIPC:Make">
+        <MSBuild Projects="abSerial.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkIPC;VCLCommon;abCore;abSerial"/>
+        <CallTarget Targets="mtkCommon;mtkIPC;VCLCommon;atCore;abSerial"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;VCLCommon:Clean;abCore:Clean;abSerial:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;VCLCommon:Clean;atCore:Clean;abSerial:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;VCLCommon:Make;abCore:Make;abSerial:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;VCLCommon:Make;atCore:Make;abSerial:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -2,7 +2,7 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'Main'
-  ClientHeight = 647
+  ClientHeight = 712
   ClientWidth = 905
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,13 +14,14 @@ object Main: TMain
   OldCreateOrder = False
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 512
+    Top = 577
     Width = 905
     Height = 3
     Cursor = crVSplit
@@ -33,19 +34,15 @@ object Main: TMain
     Left = 0
     Top = 114
     Width = 905
-    Height = 398
+    Height = 463
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 755
-    ExplicitHeight = 434
     object TabSheet1: TTabSheet
       Caption = 'Blocks'
-      ExplicitWidth = 747
-      ExplicitHeight = 385
       DesignSize = (
         897
-        370)
+        435)
       object Label1: TLabel
         Left = 20
         Top = 272
@@ -72,7 +69,6 @@ object Main: TMain
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goRowSelect]
         TabOrder = 0
         OnClick = mBlocksTClick
-        ExplicitWidth = 688
       end
       object mDeleteRowB: TButton
         Left = 167
@@ -149,8 +145,6 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Ribbons'
       ImageIndex = 1
-      ExplicitWidth = 747
-      ExplicitHeight = 406
       object mBlockIDEdit: TLabeledEdit
         Left = 4
         Top = 24
@@ -171,7 +165,6 @@ object Main: TMain
     Height = 73
     Align = alTop
     TabOrder = 1
-    ExplicitWidth = 755
     object mConnectDBBtn: TArrayBotButton
       Left = 1
       Top = 1
@@ -186,14 +179,12 @@ object Main: TMain
   end
   object Panel2: TPanel
     Left = 0
-    Top = 515
+    Top = 580
     Width = 905
     Height = 132
     Align = alBottom
     Caption = 'Panel2'
     TabOrder = 2
-    ExplicitTop = 512
-    ExplicitWidth = 755
     object infoMemo: TMemo
       Left = 1
       Top = 42
@@ -204,10 +195,6 @@ object Main: TMain
         'infoMemo')
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 486
-      ExplicitWidth = 755
-      ExplicitHeight = 158
     end
     object Panel3: TPanel
       Left = 1
@@ -216,9 +203,6 @@ object Main: TMain
       Height = 41
       Align = alTop
       TabOrder = 1
-      ExplicitLeft = 376
-      ExplicitTop = 56
-      ExplicitWidth = 185
       object Button2: TButton
         Left = 1
         Top = 1
@@ -228,9 +212,6 @@ object Main: TMain
         Caption = 'Clear'
         TabOrder = 0
         OnClick = Button2Click
-        ExplicitLeft = 96
-        ExplicitTop = 5
-        ExplicitHeight = 25
       end
     end
   end
@@ -241,9 +222,6 @@ object Main: TMain
     Height = 41
     Align = alTop
     TabOrder = 3
-    ExplicitLeft = 536
-    ExplicitTop = 88
-    ExplicitWidth = 185
     object Label3: TLabel
       Left = 8
       Top = 14
@@ -272,7 +250,7 @@ object Main: TMain
     Enabled = False
     Interval = 200
     OnTimer = ShutDownTimerTimer
-    Left = 352
-    Top = 48
+    Left = 256
+    Top = 24
   end
 end

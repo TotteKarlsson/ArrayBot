@@ -3,7 +3,7 @@
 #include "MainForm.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-#include "apt/abAPTMotor.h"
+#include "apt/atAPTMotor.h"
 #include "TSplashForm.h"
 #include "forms/TTextInputDialog.h"
 #include "frames/TXYZUnitFrame.h"
@@ -44,7 +44,7 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
             }
             else
             {
-               	info << "not part of ArrayBot system";
+               	info << "Motor with serial: "<<serials[j]<<" is not part of ArrayBot system";
             }
             info << endl;
         }
