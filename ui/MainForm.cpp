@@ -579,7 +579,7 @@ void TMain::onArduinoMessageReceived(const string& msg)
                 StringList l(msg, '=');
                 if(l.size() == 2)
                 {
-                    Main->mSectionCountLbl->SetValue(toInt(l[1]));
+                    Main->mSectionCountLbl->setValue(toInt(l[1]));
                 }
             }
             else if(startsWith("AUTO_PUFF=", msg))
