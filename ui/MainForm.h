@@ -29,16 +29,17 @@
 #include "TIntLabel.h"
 #include "TPropertyCheckBox.h"
 #include "TArrayBotBtn.h"
-
+#include "atMotorWiggler.h"
+#include "cspin.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
-
 class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
 class TXYZUnitFrame;
 class TSequencerButtonsFrame;
 class TNewRibbonForm;
+
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
 {
@@ -57,7 +58,7 @@ class TMain : public TRegistryForm
         TApplicationEvents *ApplicationEvents1;
 	TAction *reInitBotA;
         TAction *ShutDownA;
-	TPanel *mButtonPanel;
+	TPanel *mRightPanel;
 	TFileExit *FileExit1;
 	TPanel *TopPanel;
 	TPageControl *PageControl1;
@@ -85,7 +86,7 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mAngleControllerAccE;
 	TTimer *UIUpdateTimer;
 	TRadioGroup *mXYCtrlRG;
-	TGroupBox *LiftGB;
+	TGroupBox *mRibbonCreationGB;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
 	TPanel *BottomBtnPanel;
@@ -96,8 +97,7 @@ class TMain : public TRegistryForm
 	TComboBox *LogLevelCB;
 	TTabSheet *mMoveSequencesPage;
 	TTimer *WaitForDeviceInitTimer;
-	TPanel *mBottomPanel;
-	TPanel *mTopPanel;
+	TPanel *mSequencesPanel;
 	TTabSheet *RibbonLifterTabSheet;
 	TPanel *Panel1;
 	TBitBtn *mCheckDevicesBtn;
@@ -108,29 +108,27 @@ class TMain : public TRegistryForm
 	TLabel *mJSStatusL;
 	TRadioGroup *mUnitControlRG;
 	TPanel *Panel2;
-	TGroupBox *GroupBox2;
-	TIntLabel *mSectionCountLbl;
-	TGroupBox *GroupBox4;
-	TIntegerLabeledEdit *mRibbonLengthE;
-	TPropertyCheckBox *mAutoSeparationCB;
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mArduinoServerPortE;
 	TButton *mASStartBtn;
 	TTabSheet *TabSheet3;
 	TAboutArrayBotFrame_2 *TAboutArrayBotFrame_21;
-	TArrayBotButton *mResetCountBtn;
 	TArrayBotButton *Button5;
 	TArrayBotButton *Button7;
-	TArrayBotButton *mStartNewRibbonBtn;
-	TGroupBox *mPufferGB;
-	TArrayBotButton *mPuffBtn;
-	TArrayBotButton *mEnablePuffBtn;
-	TGroupBox *GroupBox5;
-	TLabel *Label1;
-	TArrayBotButton *mSetZeroCutThicknessBtn;
-	TArrayBotButton *mSetPresetCutBtn;
-	TComboBox *mLeicaCutThicknessLB;
 	TArrayBotButton *LiftBtn;
+	TGroupBox *mLiftGB;
+	TGroupBox *GroupBox3;
+	TFloatLabeledEdit *mWigglerAmplitudeE;
+	TFloatLabeledEdit *mWigglerAccelerationE;
+	TArrayBotButton *mWiggleBtn;
+	TFloatLabeledEdit *mWigglerVelocityE;
+	TCSpinButton *mWiggleSpinButton;
+	TGroupBox *GroupBox2;
+	TFloatLabeledEdit *mWigglerAmplitudeStepE;
+	TArrayBotButton *mPullRibbonBtn;
+	TComboBox *mPullCB;
+	TLabel *Label1;
+	TArrayBotButton *mRelaxBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -159,16 +157,16 @@ class TMain : public TRegistryForm
 	void __fastcall UIUpdateTimerTimer(TObject *Sender);
 	void __fastcall mUnitControlRGClick(TObject *Sender);
 	void __fastcall PageControl1Change(TObject *Sender);
-	void __fastcall mASStartBtnClick(TObject *Sender);
-	void __fastcall RibbonControlBtnClick(TObject *Sender);
-	void __fastcall mAutoSeparationCBClick(TObject *Sender);
-	void __fastcall mButtonPanelDblClick(TObject *Sender);
-	void __fastcall mRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
-          TShiftState Shift);
+	void __fastcall mRightPanelDblClick(TObject *Sender);
+	void __fastcall mWiggleBtnClick(TObject *Sender);
+	void __fastcall mWiggleSpinButtonDownClick(TObject *Sender);
+	void __fastcall mWiggleSpinButtonUpClick(TObject *Sender);
+void __fastcall mASStartBtnClick(TObject *Sender);
+	void __fastcall mPullRibbonBtnClick(TObject *Sender);
 
     private:
-		enum PageControlTabs 					{pcMain = 0,  pcMotors = 1,
-        										pcMoveSequences = 2, pcSettings = 3,
+		enum PageControlTabs 					{pcMain = 0,  pcMoveSequences = 1,
+        										pcMotors = 2, pcSettings = 3,
                                                 pcLogs = 4, pcAbout = 5};
 
         void									enableDisableUI(bool enable);
@@ -216,6 +214,10 @@ class TMain : public TRegistryForm
 		void __fastcall		                    OnException();
 
         TRibbonLifterFrame* 			        mRibbonLifterFrame;
+
+        										//!The Motor wiggler wiggles the ribbon
+        MotorWiggler							mTheWiggler;
+
 
         								        //JS button 5 cycles XY control
         void						            onJSButton5Click();

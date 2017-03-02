@@ -30,6 +30,9 @@
         <Projects Include="ui\lib\ArrayBotPackage.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\libs\atapi\source\resources\atResources.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
             <Dependencies/>
         </Projects>
@@ -122,6 +125,15 @@
     <Target Name="ArrayBotPackage:Make">
         <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="atResources">
+        <MSBuild Projects="P:\libs\atapi\source\resources\atResources.cbproj"/>
+    </Target>
+    <Target Name="atResources:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\resources\atResources.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atResources:Make">
+        <MSBuild Projects="P:\libs\atapi\source\resources\atResources.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="ArrayBot">
         <MSBuild Projects="UI\ArrayBot.cbproj"/>
     </Target>
@@ -132,13 +144,13 @@
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;atCore;atDatabase;VCLCommon;DuneComponents;atVCLCore;ArrayBotPackage;ArrayBot"/>
+        <CallTarget Targets="mtkCommon;mtkMath;mtkIPC;atCore;atDatabase;VCLCommon;DuneComponents;atVCLCore;ArrayBotPackage;atResources;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;atCore:Clean;atDatabase:Clean;VCLCommon:Clean;DuneComponents:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkMath:Clean;mtkIPC:Clean;atCore:Clean;atDatabase:Clean;VCLCommon:Clean;DuneComponents:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;atResources:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;atCore:Make;atDatabase:Make;VCLCommon:Make;DuneComponents:Make;atVCLCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkMath:Make;mtkIPC:Make;atCore:Make;atDatabase:Make;VCLCommon:Make;DuneComponents:Make;atVCLCore:Make;ArrayBotPackage:Make;atResources:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

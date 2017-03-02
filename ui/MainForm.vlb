@@ -46,9 +46,6 @@ Coordinates=299,284,60,51
 [mMaxZJogVelocityJoystick]
 Coordinates=368,1,148,51
 
-[LiftGB]
-Coordinates=17,195,45,51
-
 [mJSSpeedFastBtn]
 Coordinates=944,209,105,33
 
@@ -92,14 +89,14 @@ Coordinates=776,533,81,33
 Coordinates=159,373,128,33
 
 []
-Coordinates=227,462,47,33
-
-[mBottomPanel]
 Coordinates=750,333,87,51
-
-[mButtonPanel]
-Coordinates=234,195,58,51
 
 [mFrontPage]
 Coordinates=276,462,66,33
+
+[mRibbonCreationGB]
+Coordinates=17,195,45,51
+
+[mRightPanel]
+Coordinates=234,195,58,51
 

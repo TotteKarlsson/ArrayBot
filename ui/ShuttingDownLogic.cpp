@@ -5,7 +5,6 @@
 #include "mtkVCLUtils.h"
 #include "apt/atAPTMotor.h"
 #include "TSplashForm.h"
-//#include "frames/TRibbonLifterFrame.h"
 #include "frames/TXYZUnitFrame.h"
 
 using namespace mtk;
@@ -17,16 +16,11 @@ extern TSplashForm*  gSplashForm;
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 {
 	ShutDownTimer->Enabled = false;
-//    if(TRibbonLifterFrame::gIsFrameOpen)
-//    {
-//    	mRibbonLifterFrame->close();
-//    }
 
-	if(mLogFileReader.isRunning())
-	{
-		Log(lDebug) << "Shutting down log file reader";
-		mLogFileReader.stop();
-	}
+    if(mTheWiggler.isRunning())
+    {
+    	mTheWiggler.stopWiggle();
+    }
 
     if(UIUpdateTimer->Enabled)
     {
@@ -68,6 +62,13 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
             mAB->shutDown();
         }
     }
+
+	if(mLogFileReader.isRunning())
+	{
+		Log(lDebug) << "Shutting down log file reader";
+		mLogFileReader.stop();
+	}
+
 	Close();
 }
 
@@ -102,9 +103,9 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
     	|| 	mAB->isActive()
         || 	UIUpdateTimer->Enabled
         || 	(gSplashForm && gSplashForm->isOnShowTime())
-//		|| 	TRibbonLifterFrame::gIsFrameOpen
         ||  mPufferArduinoClient.isConnected()
         ||  mFrames.size()
+        || mTheWiggler.isRunning()
       )
     {
   		CanClose = false;

@@ -35,18 +35,18 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Cyan Night|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\CyanNight.vsf&quot;;&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;;&quot;Sapphire Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\SapphireKamri.vsf&quot;;&quot;Smokey Quartz Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\SmokeyQuartzKamri.vsf&quot;</VCL_Custom_Styles>
+        <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Carbon|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Carbon.vsf&quot;;&quot;Cobalt XEMedia|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\CobaltXEMedia.vsf&quot;;&quot;Cyan Night|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\CyanNight.vsf&quot;;&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;;&quot;Obsidian|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Obsidian.vsf&quot;;&quot;Sapphire Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\SapphireKamri.vsf&quot;;&quot;Smokey Quartz Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\SmokeyQuartzKamri.vsf&quot;</VCL_Custom_Styles>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;P:\dslib\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>lib\;..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;P:\dslib\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
-        <IncludePath>..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;atVCLCore.lib</AllPackageLibs>
+        <IncludePath>lib\;..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
+        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib;bcbsmp.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -106,12 +106,12 @@ xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y
 xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y
 xcopy $(OUTPUTDIR)*.exe $(APP_RELEASES)\ArrayBot /y
 $(PostBuildEvent)]]></PostBuildEvent>
-        <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;ArrayBotPackage.lib;atVCLCore.lib</LinkPackageStatics>
+        <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dslib\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\ThirdParty\Poco\Foundation\src\;P:\libs\dslib\VCL\Forms\;P:\libs\dslib\VCL\Common\;P:\libs\dslib\Common\Math\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;adortl.bpi;dbrtl.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;adortl.bpi;dbrtl.bpi;bcbsmp.bpi</LinkPackageImports>
         <IncludePath>$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -127,14 +127,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="auto_link.cpp">
             <BuildOrder>13</BuildOrder>
         </CppCompile>
-        <CppCompile Include="forms\TNewRibbonForm.cpp">
-            <Form>NewRibbonForm</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>forms\TNewRibbonForm.h</DependentOn>
-            <BuildOrder>6</BuildOrder>
-        </CppCompile>
         <CppCompile Include="JoyStickRelated.cpp">
             <BuildOrder>6</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="lib\atMotorWiggler.cpp">
+            <DependentOn>lib\atMotorWiggler.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
         </CppCompile>
         <CppCompile Include="MainForm.cpp">
             <Form>Main</Form>
@@ -149,7 +147,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
         <FormResources Include="MainForm.dfm"/>
-        <FormResources Include="forms\TNewRibbonForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -206,9 +203,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <VersionInfoKeys Name="CFBundleExecutable"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\DuneComponentsDD.bpl">Components by DuneScientific</Excluded_Packages>
-                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\atVCLCore.bpl">ArrayBot VCL Core package</Excluded_Packages>
-                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\ArrayBotPackage.bpl">ArrayBotPackage</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>

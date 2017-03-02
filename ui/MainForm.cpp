@@ -14,11 +14,9 @@
 #include "TSplashForm.h"
 #include "sound/atSounds.h"
 #include "atCore.h"
-#include "TNewRibbonForm.h"
 
 #include "frames/TABProcessSequencerFrame.h"
 #include "frames/TXYZPositionsFrame.h"
-//#include "frames/TRibbonLifterFrame.h"
 #include "frames/TXYZUnitFrame.h"
 #include "frames/TSequencerButtonsFrame.h"
 
@@ -31,6 +29,8 @@
 #pragma link "TAboutArrayBotFrame"
 #pragma link "TAboutArrayBot_2Frame"
 #pragma link "TPropertyCheckBox"
+
+#pragma link "cspin"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -42,6 +42,7 @@ extern bool             gAppIsStartingUp;
 extern string 			gApplicationRegistryRoot;
 
 using namespace mtk;
+
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
@@ -51,7 +52,8 @@ __fastcall TMain::TMain(TComponent* Owner)
     mLogLevel(lAny),
     mInitBotThread(),
 	mABProcessSequencerFrame(NULL),
-    mRibbonLifterFrame(NULL)
+    mRibbonLifterFrame(NULL),
+    mTheWiggler(NULL, NULL)
 {
     //Init the DLL -> give intra messages their ID's
 	initABCoreLib();
@@ -78,11 +80,17 @@ __fastcall TMain::TMain(TComponent* Owner)
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
 
-	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
-	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup("SERVER_PORT",    	 50000));
+	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	                lAny));
+	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup(	"SERVER_PORT",    	 				50000));
+	mProperties.add((BaseProperty*)  &mWigglerAmplitudeStepE->getProperty()->setup(	"WIGGLER_AMPLITUDE",    	 		0.5));
+	mProperties.add((BaseProperty*)  &mWigglerAmplitudeE->getProperty()->setup(		"WIGGLER_AMPLITUDE_STEP",    		0.1));
+
+
     mProperties.read();
 
 	mArduinoServerPortE->update();
+	mWigglerAmplitudeE->update();
+	mWigglerAmplitudeStepE->update();
 
 	//Load motors in a thread
     mInitBotThread.assingBot(mAB);
@@ -92,6 +100,10 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mInitBotThread.start();
 
 	WaitForDeviceInitTimer->Enabled = true;
+
+    mTheWiggler.mMaxVelocity.setReference(&mWigglerVelocityE->getReference());
+    mTheWiggler.mAmplitude.setReference(&mWigglerAmplitudeE->getReference());
+    mTheWiggler.mMaxAcceleration.setReference(&mWigglerAccelerationE->getReference());
 
 	mPufferArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
     mPufferArduinoClient.onConnected 		= onArduinoClientConnected;
@@ -164,10 +176,10 @@ void TMain::enableDisableUI(bool e)
 {
 	PageControl1->Visible = e;
 
-	enableDisablePanel(mButtonPanel, e);
-	enableDisablePanel(mTopPanel, e);
+	enableDisablePanel(mRightPanel, e);
+	enableDisablePanel(mSequencesPanel, e);
     enableDisableGroupBox(JSGB, e);
-    enableDisableGroupBox(LiftGB, e);
+    enableDisableGroupBox(mRibbonCreationGB, e);
 }
 
 void __fastcall TMain::WndProc(TMessage& Message)
@@ -230,8 +242,8 @@ void TMain::onArduinoClientDisconnected()
 void TMain::enableDisableArduinoClientControls(bool enable)
 {
 	//Disable client related components..
-    enableDisablePanel(mBottomPanel, enable);
-    enableDisableGroupBox(mPufferGB, enable);
+//    enableDisablePanel(mBottomPanel, enable);
+//    enableDisableGroupBox(mPufferGB, enable);
 }
 
 //---------------------------------------------------------------------------
@@ -247,15 +259,15 @@ void __fastcall	TMain::setupUIFrames()
 {
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
-    f1->Parent = this->mButtonPanel;
+    f1->Parent = this->mRightPanel;
     f1->Align = alBottom;
 
     TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
-    f2->Parent = this->mButtonPanel;
+    f2->Parent = this->mRightPanel;
     f2->Align = alBottom;
 
-    this->mTopPanel->Top = 0;
-    this->mTopPanel->Refresh();
+    this->mSequencesPanel->Top = 0;
+    this->mSequencesPanel->Refresh();
 
 	//Setup JoyStick;
 
@@ -323,8 +335,8 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->init();
 
 
-	mSequencerButtons = new TSequencerButtonsFrame(*(mAB), mBottomPanel);
-	mSequencerButtons->Parent = mTopPanel;
+	mSequencerButtons = new TSequencerButtonsFrame(*(mAB), mSequencesPanel);
+	mSequencerButtons->Parent = mSequencesPanel;
     mSequencerButtons->Align = alClient;
 	mSequencerButtons->update();
 }
@@ -352,6 +364,7 @@ void __fastcall TMain::reInitBotAExecute(TObject *Sender)
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
 	mAB->stopAll();
+    mTheWiggler.stopWiggle();
 }
 
 //---------------------------------------------------------------------------
@@ -446,6 +459,13 @@ void __fastcall	TMain::onFinishedInitBot()
 {
 	Log(lInfo) << "Synching ArrayBot UI";
     ReInitBotBtn->Action = ShutDownA;
+
+    //Setup the wiggler
+    mTheWiggler.setAmplitude(mWigglerAmplitudeE->getValue());
+    mTheWiggler.setMaxVelocity(mWigglerVelocityE->getValue());
+    mTheWiggler.setMaxAcceleration(mWigglerAccelerationE->getValue());
+    mTheWiggler.assignMotors(mAB->getWhiskerUnit().getXMotor(), mAB->getWhiskerUnit().getYMotor());
+
 }
 
 //---------------------------------------------------------------------------
@@ -548,12 +568,12 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     {
     	//Reload the currently selected sequence
 		mABProcessSequencerFrame->mSequencesCBChange(Sender);
-        mTopPanel->Parent = mMoveSequencesPage;
+//        mSequencesPanel->Parent = mMoveSequencesPage;
     }
 
     else if(PageControl1->TabIndex == pcMain)
     {
-        mTopPanel->Parent = mFrontPage;
+        mSequencesPanel->Parent = mFrontPage;
     }
     else if(PageControl1->TabIndex == pcMotors)
     {
@@ -566,6 +586,11 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     }
 }
 
+void __fastcall TMain::mRightPanelDblClick(TObject *Sender)
+{
+	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSizeable : bsNone;
+}
+
 void TMain::onArduinoMessageReceived(const string& msg)
 {
 	struct TLocalArgs
@@ -573,46 +598,6 @@ void TMain::onArduinoMessageReceived(const string& msg)
         string msg;
         void __fastcall onPufferArduinoMessage()
         {
-            if(startsWith("SECTION_COUNT", msg))
-            {
-                //Parse the message
-                StringList l(msg, '=');
-                if(l.size() == 2)
-                {
-                    Main->mSectionCountLbl->setValue(toInt(l[1]));
-                }
-            }
-            else if(startsWith("AUTO_PUFF=", msg))
-            {
-                //Parse the message
-                StringList l(msg, '=');
-                if(l.size() == 2)
-                {
-                    Main->mAutoSeparationCB->Checked = (toBool(l[1])) ? true : false;
-                }
-            }
-            else if(startsWith("DESIRED_RIBBON_LENGTH", msg))
-            {
-                //Parse the message
-                StringList l(msg, '=');
-                if(l.size() == 2)
-                {
-                    Main->mRibbonLengthE->setValue(toInt(l[1]));
-                }
-            }
-            else if(startsWith("RIBBON_IS_SEPARATING", msg))
-            {
-//            	if(!Main->mNewRibbonForm)
-//                {
-//					//Create the new ribbon form..
-//	                Main->mNewRibbonForm = new TNewRibbonForm(NULL);
-//	                Main->mNewRibbonForm->Show();
-//                }
-//                else if(Main->mNewRibbonForm->Visible == false)
-//                {
-//                	Main->mNewRibbonForm->Show();
-//                }
-            }
         }
     };
 
@@ -636,77 +621,67 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
     	mPufferArduinoClient.disConnect();
     }
 }
-
 //---------------------------------------------------------------------------
-void __fastcall TMain::RibbonControlBtnClick(TObject *Sender)
+void __fastcall TMain::mWiggleBtnClick(TObject *Sender)
 {
-    TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
-    if(b == mResetCountBtn)
+	//Start/Stop wiggle timer
+    if(!mTheWiggler.isRunning())
     {
-		//Send a request to reset the counter
-		mPufferArduinoClient.resetSectionCounter();
-    }
-    else if(b == mPuffBtn)
-    {
-		mPufferArduinoClient.puff();
-    }
-    else if(b == mEnablePuffBtn)
-    {
-		mPufferArduinoClient.enablePuffer();
-    }
-    else if(b == mStartNewRibbonBtn)
-    {
-		mPufferArduinoClient.startNewRibbon();
-    }
-    else if(b == mSetZeroCutThicknessBtn)
-    {
-		mPufferArduinoClient.setCutPreset(1);
-    }
-    else if (b == mSetPresetCutBtn)
-    {
-    	//Check the listbox for current preset
-        String txt  = mLeicaCutThicknessLB->Text;
-        int indx = mLeicaCutThicknessLB->Items->IndexOf(txt);
-        if(indx != -1)
-        {
-            mPufferArduinoClient.setCutPreset(indx + 1);
-        }
-        else
-        {
-            Log(lError) <<"Error setting cut preset!";
-        }
-    }
-}
-
-void __fastcall TMain::mAutoSeparationCBClick(TObject *Sender)
-{
-	if(mAutoSeparationCB->Checked)
-    {
-		mPufferArduinoClient.enableAutoPuff();
-        mPufferArduinoClient.enableAutoZeroCut();
+        mAB->disableJoyStickAxes();
+        Log(lInfo) << "Wiggler Center Position: "<<mTheWiggler.getCenterPosition();
+        mTheWiggler.startWiggle();
+		mWiggleBtn->Caption = "Stop Wiggle";
     }
     else
     {
-		mPufferArduinoClient.disableAutoPuff();
-        mPufferArduinoClient.disableAutoZeroCut();
+        mTheWiggler.stopWiggle();
+	    mAB->getWhiskerUnit().getXMotor()->stop();
+        mAB->enableJoyStickAxes();
+    	mWiggleBtn->Caption = "Start Wiggle";
     }
-}
-
-void __fastcall TMain::mButtonPanelDblClick(TObject *Sender)
-{
-	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSizeable : bsNone;
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mRibbonLengthEKeyDown(TObject *Sender, WORD &Key,
-          TShiftState Shift)
+void __fastcall TMain::mWiggleSpinButtonDownClick(TObject *Sender)
 {
-	if(Key == vkReturn)
+	mWigglerAmplitudeE->setValue(mWigglerAmplitudeE->getValue() - mWigglerAmplitudeStepE->getValue());
+    if(mWigglerAmplitudeE->getValue() < 0)
     {
-		mPufferArduinoClient.setDesiredRibbonLength(mRibbonLengthE->getValue());
+		mWigglerAmplitudeE->setValue(0.0);
     }
+
+    mWigglerAmplitudeE->update();
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::mWiggleSpinButtonUpClick(TObject *Sender)
+{
+	mWigglerAmplitudeE->setValue(mWigglerAmplitudeE->getValue() + mWigglerAmplitudeStepE->getValue());
+    mWigglerAmplitudeE->update();
+}
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::mPullRibbonBtnClick(TObject *Sender)
+{
+
+    int ii = mPullCB->ItemIndex;
+	if(mPullCB->ItemIndex == -1)
+    {
+    	return;
+    }
+
+	double step = mPullCB->Items->Strings[ii].ToDouble();
+
+    TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
+
+    if(b == mPullRibbonBtn)
+    {
+    	mTheWiggler.pull(step);
+    }
+    else
+    {
+    	mTheWiggler.relax(step);
+    }
+}
 
 
