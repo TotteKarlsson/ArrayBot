@@ -106,21 +106,18 @@ void loadStyles()
 void setupLogging(const string& logFileLocation, const string& logFileName)
 {
 	//Get Application folder
-//	string fldr =  joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 	if(!folderExists(logFileLocation))
 	{
 		createFolder(logFileLocation);
 	}
-
-//	gLogFileLocation = fldr;
 
 	string fullLogFileName(joinPath(logFileLocation, logFileName));
 	clearFile(fullLogFileName);
 	mtk::gLogger.logToFile(fullLogFileName);
     mtk::gLogger.setLogLevel(lInfo);
 	LogOutput::mShowLogLevel = true;
-//	LogOutput::mShowLogTime = true;
+	LogOutput::mShowLogTime = true;
 	LogOutput::mUseLogTabs 	= true;
-	Log(lInfo) << "Logger was setup";
+	Log(lInfo) << "The Logger was setup";
 }
 

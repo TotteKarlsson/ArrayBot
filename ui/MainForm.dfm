@@ -452,6 +452,10 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
@@ -459,6 +463,10 @@ object Main: TMain
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
@@ -523,8 +531,8 @@ object Main: TMain
       Caption = 'Settings'
       ImageIndex = 2
       object JoyStickGB2: TGroupBox
-        Left = 11
-        Top = 24
+        Left = 43
+        Top = 416
         Width = 422
         Height = 345
         Caption = 'JoyStick Velocities'
@@ -680,6 +688,10 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0

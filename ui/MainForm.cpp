@@ -85,7 +85,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mProperties.add((BaseProperty*)  &mWigglerAmplitudeStepE->getProperty()->setup(	"WIGGLER_AMPLITUDE",    	 		0.5));
 	mProperties.add((BaseProperty*)  &mWigglerAmplitudeE->getProperty()->setup(		"WIGGLER_AMPLITUDE_STEP",    		0.1));
 
-
     mProperties.read();
 
 	mArduinoServerPortE->update();
@@ -334,7 +333,6 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->Align = alClient;
     mABProcessSequencerFrame->init();
 
-
 	mSequencerButtons = new TSequencerButtonsFrame(*(mAB), mSequencesPanel);
 	mSequencerButtons->Parent = mSequencesPanel;
     mSequencerButtons->Align = alClient;
@@ -568,7 +566,6 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     {
     	//Reload the currently selected sequence
 		mABProcessSequencerFrame->mSequencesCBChange(Sender);
-//        mSequencesPanel->Parent = mMoveSequencesPage;
     }
 
     else if(PageControl1->TabIndex == pcMain)
@@ -683,5 +680,6 @@ void __fastcall TMain::mPullRibbonBtnClick(TObject *Sender)
     	mTheWiggler.relax(step);
     }
 }
+
 
 

@@ -36,7 +36,7 @@ void __fastcall TSplashForm::logMsg()
     {
    		TAboutArrayBotFrame1->logLabel->Caption = lmsg.c_str();
     }
-	mLogFileReader.purge();
+//	mLogFileReader.purge();
     Application->ProcessMessages();
 }
 

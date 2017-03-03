@@ -219,13 +219,13 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         MotorWiggler							mTheWiggler;
 
 
-        								        //JS button 5 cycles XY control
+        								        //JS button #5 cycles XY control
         void						            onJSButton5Click();
 
-        								        //JS button 6 cycles joystick speeds
+        								        //JS button #6 cycles joystick speeds
         void						            onJSButton6Click();
 
-        							            //!Button 14 stops everything
+        							            //!Button #14 stops everything
         void						            onJSButton14Click();
 
         void __fastcall 				        FrameClosed(TObject *Sender);

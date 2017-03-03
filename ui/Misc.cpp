@@ -97,8 +97,12 @@ void __fastcall TMain::BitBtn3Click(TObject *Sender)
 //This one is called from the reader thread
 void __fastcall TMain::logMsg()
 {
+	if(infoMemo->Lines->Count > 500)
+    {
+		infoMemo->Clear();
+    }
+
     infoMemo->Lines->Insert(0, (vclstr(mLogFileReader.getData())));
-    mLogFileReader.purge();
 }
 
 //---------------------------------------------------------------------------
