@@ -106,7 +106,7 @@ object Main: TMain
     Top = 0
     Width = 920
     Height = 900
-    ActivePage = TabSheet1
+    ActivePage = mFrontPage
     Align = alClient
     TabHeight = 60
     TabOrder = 1
@@ -453,6 +453,10 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
@@ -523,6 +527,10 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object JoyStickGB2: TGroupBox
         Left = 43
         Top = 416
@@ -713,6 +721,10 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0
