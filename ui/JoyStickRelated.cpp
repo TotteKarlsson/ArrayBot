@@ -3,9 +3,11 @@
 #include "MainForm.h"
 #include "mtkLogger.h"
 #include "abAddJoyStickSettingForm.h"
+#include "sound/atSounds.h"
 using namespace mtk;
 using namespace std;
 
+extern bool gAppIsStartingUp;
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mJoyStickRGClick(TObject *Sender)
@@ -38,24 +40,27 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
 	 	mAB->disableJoyStick();
     }
 
+    if(mAB->getJoyStick().isEnabled())
+    {
+        //There is a 'bug' regarding speed settings
+        //Programatically apply currently selected setting
+        if(mJSSpeedFastBtn->Down)
+        {
+            mJSSpeedFastBtn->Click();
+        }
+
+        if(mJSSpeedMediumBtn->Down)
+        {
+            mJSSpeedMediumBtn->Click();
+        }
+
+        if(mJSSpeedSlowBtn->Down)
+        {
+            mJSSpeedSlowBtn->Click();
+        }
+    }
+
     btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
-
-    //There is a 'bug' regarding speed settings
-    //Programatically apply currently selected setting
-	if(mJSSpeedFastBtn->Down)
-    {
-		mJSSpeedFastBtn->Click();
-    }
-
-	if(mJSSpeedMediumBtn->Down)
-    {
-		mJSSpeedMediumBtn->Click();
-    }
-
-	if(mJSSpeedSlowBtn->Down)
-    {
-		mJSSpeedSlowBtn->Click();
-    }
 }
 
 void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
@@ -65,14 +70,30 @@ void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
     {
     	//Apply "FAST" JS setting
         mAB->applyJoyStickSetting("Fast");
+
+        if(!gAppIsStartingUp)
+        {
+        	playABSound(absFastSpeed, SND_ASYNC);
+        	playABSound(absFastSpeed, SND_ASYNC);
+        	playABSound(absFastSpeed, SND_ASYNC);
+        }
     }
     else if (btn == mJSSpeedMediumBtn)
     {
         mAB->applyJoyStickSetting("Medium");
+        if(!gAppIsStartingUp)
+        {
+           	playABSound(absMediumSpeed, SND_ASYNC);
+        }
     }
     else if (btn == mJSSpeedSlowBtn)
     {
         mAB->applyJoyStickSetting("Slow");
+        if(!gAppIsStartingUp)
+        {
+	        playABSound(absSlowSpeed, SND_ASYNC);
+
+        }
     }
 }
 

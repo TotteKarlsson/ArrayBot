@@ -49,9 +49,6 @@ Coordinates=368,1,148,51
 [mJSSpeedFastBtn]
 Coordinates=944,209,105,33
 
-[BitBtn2]
-Coordinates=25,106,50,51
-
 [BottomPanel]
 Coordinates=554,351,77,51
 
@@ -99,4 +96,7 @@ Coordinates=17,195,45,51
 
 [mRightPanel]
 Coordinates=234,195,58,51
+
+[mClearLogWindowBtn]
+Coordinates=25,106,50,51
 

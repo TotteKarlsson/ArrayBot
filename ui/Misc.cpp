@@ -31,20 +31,29 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
             APTMotor* m = mAB->getMotorWithSerial(serials[j]);
             if(m)
             {
-            	info << "Device ("<<m->getName()<<") of type '"<<::toString((DeviceTypeID) i)<<"' with serial " <<serials[j]<<" is ";
+            	info << "Device ("<<m->getName()<<") of type '"<<::toString((DeviceTypeID) i)<<"' with serial " <<serials[j];
 
                 if(m->isHomed())
                 {
-                    info <<"homed";
+                    info <<" is homed";
                 }
                 else
                 {
-            		info << "NOT HOMED";
+            		info << " is NOT HOMED.";
+                }
+
+                if(m->isEnabled())
+                {
+                	info <<" and is enabled.";
+                }
+                else
+                {
+                	info <<" and is NOT ENABLED.";
                 }
             }
             else
             {
-               	info << "Motor with serial: "<<serials[j]<<" is not part of ArrayBot system";
+               	info << "Motor with serial: "<<serials[j]<<" is not part of the ArrayBot system";
             }
             info << endl;
         }

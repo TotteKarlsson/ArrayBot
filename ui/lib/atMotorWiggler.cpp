@@ -3,7 +3,6 @@
 #include "apt/atAPTMotor.h"
 //---------------------------------------------------------------------------
 
-
 MotorWiggler::MotorWiggler(APTMotor* xmtr, APTMotor* ymtr)
 :
 mMaxVelocity(0),
@@ -11,6 +10,8 @@ mMaxAcceleration(0),
 mAmplitude(0),
 mXMotor(xmtr),
 mYMotor(ymtr),
+mPullRelaxVelocity(0),
+mPullRelaxAcceleration(0),
 mTimer(Poco::Timespan(100*Poco::Timespan::MILLISECONDS))
 {
 	mTimer.assignTimerFunction(onTimer);
@@ -69,6 +70,7 @@ bool MotorWiggler::pull(double distance)
 {
 	if(mYMotor)
     {
+    	mYMotor->setVelocityParameters(mPullRelaxVelocity, mPullRelaxAcceleration);
 		mYMotor->moveRelative(distance);
 		return true;
     }
@@ -77,8 +79,9 @@ bool MotorWiggler::pull(double distance)
 
 bool MotorWiggler::relax(double distance)
 {
-	if(mXMotor)
+	if(mYMotor)
     {
+    	mYMotor->setVelocityParameters(mPullRelaxVelocity, mPullRelaxAcceleration);
 		mYMotor->moveRelative(distance*(-1));
 		return true;
     }

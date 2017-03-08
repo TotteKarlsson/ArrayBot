@@ -80,7 +80,7 @@ class TMain : public TRegistryForm
 	TPanel *BottomPanel;
 	TMemo *infoMemo;
 	TToolBar *ToolBar1;
-	TBitBtn *BitBtn2;
+	TBitBtn *mClearLogWindowBtn;
 	TButton *AddJsSettingBtn;
 	TFloatLabeledEdit *mAngleControlVelE;
 	TFloatLabeledEdit *mAngleControllerAccE;
@@ -129,6 +129,9 @@ class TMain : public TRegistryForm
 	TComboBox *mPullCB;
 	TLabel *Label1;
 	TArrayBotButton *mRelaxBtn;
+	TFloatLabeledEdit *mPullRelaxAccE;
+	TFloatLabeledEdit *mPullRelaxVelocityE;
+	TGroupBox *GroupBox4;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -163,6 +166,7 @@ class TMain : public TRegistryForm
 	void __fastcall mWiggleSpinButtonUpClick(TObject *Sender);
 void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall mPullRibbonBtnClick(TObject *Sender);
+	void __fastcall mSequencesPanelResize(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMoveSequences = 1,

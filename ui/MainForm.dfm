@@ -106,7 +106,7 @@ object Main: TMain
     Top = 0
     Width = 920
     Height = 900
-    ActivePage = mFrontPage
+    ActivePage = TabSheet1
     Align = alClient
     TabHeight = 60
     TabOrder = 1
@@ -200,7 +200,7 @@ object Main: TMain
             TabOrder = 1
             object Label1: TLabel
               Left = 256
-              Top = 307
+              Top = 403
               Width = 158
               Height = 23
               Caption = 'Pull Distance (mm)'
@@ -302,7 +302,7 @@ object Main: TMain
             end
             object mPullCB: TComboBox
               Left = 256
-              Top = 336
+              Top = 432
               Width = 145
               Height = 33
               Style = csDropDownList
@@ -325,8 +325,8 @@ object Main: TMain
                 '2')
             end
             object mRelaxBtn: TArrayBotButton
-              Left = 56
-              Top = 415
+              Left = 248
+              Top = 296
               Width = 153
               Height = 73
               Caption = 'Relax'
@@ -345,6 +345,7 @@ object Main: TMain
         Align = alBottom
         AutoSize = True
         TabOrder = 1
+        OnResize = mSequencesPanelResize
       end
       object TopPanel: TPanel
         Left = 0
@@ -452,10 +453,6 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
@@ -463,10 +460,6 @@ object Main: TMain
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
@@ -667,12 +660,12 @@ object Main: TMain
       object GroupBox2: TGroupBox
         Left = 466
         Top = 208
-        Width = 257
-        Height = 161
+        Width = 383
+        Height = 329
         Caption = 'Wiggler'
         TabOrder = 2
         object mWigglerAmplitudeStepE: TFloatLabeledEdit
-          Left = 16
+          Left = 32
           Top = 64
           Width = 129
           Height = 31
@@ -683,15 +676,43 @@ object Main: TMain
           Text = '0.50'
           Value = 0.500000000000000000
         end
+        object GroupBox4: TGroupBox
+          Left = 29
+          Top = 120
+          Width = 249
+          Height = 153
+          Caption = 'Pull/Relax Parameterss'
+          TabOrder = 1
+          object mPullRelaxAccE: TFloatLabeledEdit
+            Left = 133
+            Top = 82
+            Width = 105
+            Height = 31
+            EditLabel.Width = 101
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Acceleration'
+            TabOrder = 0
+            Text = '5.00'
+            Value = 5.000000000000000000
+          end
+          object mPullRelaxVelocityE: TFloatLabeledEdit
+            Left = 16
+            Top = 82
+            Width = 105
+            Height = 31
+            EditLabel.Width = 63
+            EditLabel.Height = 23
+            EditLabel.Caption = 'Velocity'
+            TabOrder = 1
+            Text = '3.00'
+            Value = 3.000000000000000000
+          end
+        end
       end
     end
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0
@@ -725,7 +746,7 @@ object Main: TMain
           ButtonHeight = 30
           Caption = 'ToolBar1'
           TabOrder = 1
-          object BitBtn2: TBitBtn
+          object mClearLogWindowBtn: TBitBtn
             Left = 0
             Top = 0
             Width = 75

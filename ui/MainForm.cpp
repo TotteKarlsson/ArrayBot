@@ -85,11 +85,17 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mProperties.add((BaseProperty*)  &mWigglerAmplitudeStepE->getProperty()->setup(	"WIGGLER_AMPLITUDE",    	 		0.5));
 	mProperties.add((BaseProperty*)  &mWigglerAmplitudeE->getProperty()->setup(		"WIGGLER_AMPLITUDE_STEP",    		0.1));
 
+	mProperties.add((BaseProperty*)  &mPullRelaxVelocityE->getProperty()->setup(	"WIGGLER_PULL_RELAX_VELOCITY",   	0.5));
+	mProperties.add((BaseProperty*)  &mPullRelaxAccE->getProperty()->setup(			"WIGGLER_PULL_RELAX_ACCELERATION",  0.1));
+
     mProperties.read();
 
 	mArduinoServerPortE->update();
 	mWigglerAmplitudeE->update();
 	mWigglerAmplitudeStepE->update();
+
+	mPullRelaxVelocityE->update();
+	mPullRelaxAccE->update();
 
 	//Load motors in a thread
     mInitBotThread.assingBot(mAB);
@@ -103,6 +109,10 @@ __fastcall TMain::TMain(TComponent* Owner)
     mTheWiggler.mMaxVelocity.setReference(&mWigglerVelocityE->getReference());
     mTheWiggler.mAmplitude.setReference(&mWigglerAmplitudeE->getReference());
     mTheWiggler.mMaxAcceleration.setReference(&mWigglerAccelerationE->getReference());
+
+
+    mTheWiggler.mPullRelaxVelocity.setReference(&mPullRelaxVelocityE->getReference());
+    mTheWiggler.mPullRelaxAcceleration.setReference(&mPullRelaxAccE->getReference());
 
 	mPufferArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
     mPufferArduinoClient.onConnected 		= onArduinoClientConnected;
@@ -124,7 +134,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	this->Visible = true;
 	setupWindowTitle();
 
-	gAppIsStartingUp = false;
     enableDisableArduinoClientControls(false);
 
     if(this->BorderStyle == bsNone)
@@ -169,6 +178,8 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
+
+	gAppIsStartingUp = false;
 }
 
 void TMain::enableDisableUI(bool e)
@@ -671,6 +682,7 @@ void __fastcall TMain::mPullRibbonBtnClick(TObject *Sender)
 
     TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
 
+    mAB->disableJoyStickAxes();
     if(b == mPullRibbonBtn)
     {
     	mTheWiggler.pull(step);
@@ -681,5 +693,11 @@ void __fastcall TMain::mPullRibbonBtnClick(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::mSequencesPanelResize(TObject *Sender)
+{
+	//
+    mSequencerButtons->update();
+}
 
 

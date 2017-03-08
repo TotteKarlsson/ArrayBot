@@ -14,7 +14,7 @@ typedef void (__closure *OnTimer)();
 class MotorWiggler : public ABObject
 {
 	public:
-    							MotorWiggler(APTMotor* xmtr, APTMotor* ymtr);
+    							MotorWiggler(APTMotor* xmtr = NULL, APTMotor* ymtr = NULL);
     							~MotorWiggler();
 		void					assignMotors(APTMotor* xmtr, APTMotor* ymtr);
         bool					isRunning(){return mTimer.isRunning();}
@@ -30,10 +30,16 @@ class MotorWiggler : public ABObject
         bool					setMaxAcceleration(double a){mMaxAcceleration.setValue(a);return true;}
         bool					setMaxVelocity(double v){mMaxVelocity.setValue(v);return true;}
 
+        bool					setPullRelaxAcceleration(double a){mMaxAcceleration.setValue(a);return true;}
+        bool					setPullRelaxVelocity(double v){mMaxVelocity.setValue(v);return true;}
 
-    	mtk::Property<double> 	mMaxVelocity;
+    	Property<double> 		mMaxVelocity;
         Property<double>		mMaxAcceleration;
         Property<double>		mAmplitude;
+
+      	Property<double> 		mPullRelaxVelocity;
+        Property<double>		mPullRelaxAcceleration;
+
 
 	protected:
     	Timer    				mTimer;
