@@ -572,6 +572,7 @@ void __fastcall TMain::mUnitControlRGClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::PageControl1Change(TObject *Sender)
 {
+
 	//Check what tab got selected
 	if(PageControl1->TabIndex == pcMoveSequences)
     {
@@ -592,6 +593,9 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     {
 		TAboutArrayBotFrame_21->populate();
     }
+
+    //Play a sound
+    playABSound(absDefaultClick);
 }
 
 void __fastcall TMain::mRightPanelDblClick(TObject *Sender)
@@ -699,6 +703,3 @@ void __fastcall TMain::mSequencesPanelResize(TObject *Sender)
 	//
     mSequencerButtons->update();
 }
-
-
-
