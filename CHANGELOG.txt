@@ -1,3 +1,83 @@
+Release 0.8.5 (March 16)
+=======================
+* Merging wiggler branch
+* Added sound when user switches the page control
+* Updated sequences checklist
+* Added sound to alert form for sequences
+* Added confirmation dialog when executing a sequence
+* Added/updated wiggler with a pull/relax feature
+* Created an ArrayBot checklist
+* Added for motor enabled and disabled check when checking status
+* Added sounds when switching JS speeds
+* Checking logs overflow. Clear Logmemo when more then 1000 lines
+* Enabled log times to logger
+* Added a Motor wiggler
+* Added buttons/functionality to gently pull the ribbon
+* Removed obsolete arduino code
+* Fixed compilation
+* Moved all Arduino stuff to the Arduino controller project
+* Updated Arduino sketches, before moving to the ArduinoController project
+* Cleanup
+* Creating proper distribution structure
+* Getting UI functional
+* Added a simple UC7 Arduino serial port simulator
+* Added Close/Open logic
+* Getting UC7 test app up and running
+* Getting testapp up to spec
+* Adding UC7 API test application
+* Updating to new hardware configuration
+* Worked on serial test program for barcode reader
+* refactored ab->at
+* Moved ArrayCam to its own repository
+* Moved most backend code to the ATAPI repository
+* Before refactoring api's into the atapi repository
+* Improved calculated fields for block label creation
+* Finished wrapping label printer dll
+* Added labelprinter class wrapping printer dll
+* Updated ArrayCam MySQL connection properties
+* Added some calculated fields to ATDB (DB modules may be moved to separate "AT repository"
+* Upgraded db connection
+* Added getTableNames function
+* Moved atdb to separate github repo at git@github.com:TotteKarlsson/atDB.git
+* Cleaning up atdb
+* Fixed 'required' fields
+* Removing the queries from the ATDB datamodule
+* Added database credentials to ini file
+* Added queries for deleting ribbons and notes when deleting a block
+* Simplifying the atDB datamodule
+* Added notes for ribbons to UI
+* Adding ribbon notes UI
+* A lot of database work
+* Cleaning up DB Connections
+* May abandon SQLite db cause of multiple threads
+* Adding multi threaded db inserts to avoid sluggish UI
+* Added environmental readings to local database
+* Added Sensor Arduino classes and code
+* Removed Sensor arduino code from lights Arduino sketch
+* Splitting up Light and Sensor arduino into two separate hardware/software modules.
+* Moved light controls to settings form
+* Fixed image notes grids to show a condensed date.
+* Added connect to ImagesAndMovies datamodule.
+* Added panel for 1:1 and 1:2 buttons on main UI
+* Got foreign keys working properly for the local SQlite DB (pragma foreign_keys = ON)
+* Added some db utility functions related to handling of current user
+* Getting db implementation up
+* Configuring the camera
+* Added Images data module to handle images and notes
+* Added slider to set gamma for the camera.
+* Added automatic insertion of image meta data into local database
+* Changed jpg creation to newer updated format
+* Figured out nested queries using dbExpress
+* Getting SQLite embedded DB stuff working trough class ATDBClientDBSession
+* Adding Poco SQLite support
+* Organizing usage of shared database modules
+* Added ibot application to arraybot repository
+* Adding the ATDB application to ArrayBot repository
+* Adding local database to arraybot - to be used with atdbentry application
+* Fixed location for saving images and movies
+
+============================= 2017 ========================================================
+
 Release 0.8.4 (Sept 28)
 =======================
 * Added ability to specify output folders for snapshots and movies in ArrayCam
