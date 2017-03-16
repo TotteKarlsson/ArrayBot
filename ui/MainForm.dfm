@@ -192,22 +192,22 @@ object Main: TMain
             end
           end
           object GroupBox3: TGroupBox
-            Left = 16
-            Top = 33
-            Width = 505
+            Left = 26
+            Top = 43
+            Width = 471
             Height = 512
             Caption = 'Wiggler'
             TabOrder = 1
             object Label1: TLabel
-              Left = 256
-              Top = 403
+              Left = 72
+              Top = 165
               Width = 158
               Height = 23
               Caption = 'Pull Distance (mm)'
             end
             object mWigglerAmplitudeE: TFloatLabeledEdit
-              Left = 296
-              Top = 59
+              Left = 24
+              Top = 307
               Width = 105
               Height = 31
               EditLabel.Width = 84
@@ -218,8 +218,8 @@ object Main: TMain
               Value = 1.000000000000000000
             end
             object mWigglerAccelerationE: TFloatLabeledEdit
-              Left = 133
-              Top = 59
+              Left = 151
+              Top = 239
               Width = 105
               Height = 31
               EditLabel.Width = 101
@@ -230,10 +230,10 @@ object Main: TMain
               Value = 5.000000000000000000
             end
             object mWiggleBtn: TArrayBotButton
-              Left = 16
-              Top = 120
-              Width = 222
-              Height = 137
+              Left = 171
+              Top = 320
+              Width = 278
+              Height = 171
               Caption = 'Wiggle'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
@@ -246,8 +246,8 @@ object Main: TMain
               SoundID = 'BUTTON_CLICK_4'
             end
             object mWigglerVelocityE: TFloatLabeledEdit
-              Left = 16
-              Top = 59
+              Left = 24
+              Top = 239
               Width = 105
               Height = 31
               EditLabel.Width = 63
@@ -258,8 +258,8 @@ object Main: TMain
               Value = 3.000000000000000000
             end
             object mWiggleSpinButton: TCSpinButton
-              Left = 296
-              Top = 120
+              Left = 24
+              Top = 354
               Width = 105
               Height = 137
               Margins.Left = 0
@@ -291,18 +291,18 @@ object Main: TMain
               OnUpClick = mWiggleSpinButtonUpClick
             end
             object mPullRibbonBtn: TArrayBotButton
-              Left = 56
-              Top = 296
-              Width = 153
-              Height = 73
+              Left = 240
+              Top = 42
+              Width = 209
+              Height = 112
               Caption = 'Pull'
               TabOrder = 5
               OnClick = mPullRibbonBtnClick
               SoundID = 'SHORT_BEEP_1'
             end
             object mPullCB: TComboBox
-              Left = 256
-              Top = 432
+              Left = 304
+              Top = 165
               Width = 145
               Height = 33
               Style = csDropDownList
@@ -325,8 +325,8 @@ object Main: TMain
                 '2')
             end
             object mRelaxBtn: TArrayBotButton
-              Left = 248
-              Top = 296
+              Left = 24
+              Top = 42
               Width = 153
               Height = 73
               Caption = 'Relax'
@@ -461,9 +461,17 @@ object Main: TMain
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
