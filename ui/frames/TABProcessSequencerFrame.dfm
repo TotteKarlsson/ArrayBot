@@ -159,6 +159,10 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         inherited GroupBox2: TGroupBox
           Width = 302
           ExplicitWidth = 302
+          inherited mUpdatePositionsBtn: TArrayBotButton
+            Width = 272
+            ExplicitWidth = 272
+          end
         end
         inherited mSequenceAL: TActionList
           Left = 112
