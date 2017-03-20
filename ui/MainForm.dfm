@@ -1,10 +1,10 @@
 object Main: TMain
   Left = 0
   Top = 0
-  BorderStyle = bsNone
+  BorderStyle = bsSingle
   Caption = 'ArrayBot Version 0.5.8'
-  ClientHeight = 900
-  ClientWidth = 1103
+  ClientHeight = 872
+  ClientWidth = 1097
   Color = clBtnFace
   Constraints.MinHeight = 900
   Constraints.MinWidth = 1100
@@ -24,10 +24,10 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 23
   object mRightPanel: TPanel
-    Left = 920
+    Left = 914
     Top = 0
     Width = 183
-    Height = 900
+    Height = 872
     Align = alRight
     TabOrder = 0
     OnDblClick = mRightPanelDblClick
@@ -55,7 +55,7 @@ object Main: TMain
     end
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 647
+      Top = 619
       Width = 181
       Height = 252
       Align = alBottom
@@ -104,8 +104,8 @@ object Main: TMain
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 920
-    Height = 900
+    Width = 914
+    Height = 872
     ActivePage = mFrontPage
     Align = alClient
     TabHeight = 60
@@ -117,16 +117,16 @@ object Main: TMain
       object mMiddlePanel: TPanel
         Left = 0
         Top = 97
-        Width = 912
-        Height = 588
+        Width = 906
+        Height = 560
         Align = alClient
         AutoSize = True
         TabOrder = 0
         object mRibbonCreationGB: TGroupBox
           Left = 1
           Top = 1
-          Width = 910
-          Height = 586
+          Width = 904
+          Height = 558
           Align = alClient
           Caption = 'Ribbon Creation'
           Font.Charset = DEFAULT_CHARSET
@@ -339,8 +339,8 @@ object Main: TMain
       end
       object mSequencesPanel: TPanel
         Left = 0
-        Top = 685
-        Width = 912
+        Top = 657
+        Width = 906
         Height = 145
         Align = alBottom
         AutoSize = True
@@ -350,7 +350,7 @@ object Main: TMain
       object TopPanel: TPanel
         Left = 0
         Top = 0
-        Width = 912
+        Width = 906
         Height = 97
         Align = alTop
         TabOrder = 2
@@ -461,14 +461,22 @@ object Main: TMain
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
-        Width = 912
-        Height = 725
+        Width = 906
+        Height = 697
         HorzScrollBar.Smooth = True
         VertScrollBar.Tracking = True
         Align = alClient
@@ -481,8 +489,8 @@ object Main: TMain
       end
       object Panel1: TPanel
         Left = 0
-        Top = 725
-        Width = 912
+        Top = 697
+        Width = 906
         Height = 105
         Align = alBottom
         TabOrder = 1
@@ -528,8 +536,8 @@ object Main: TMain
       Caption = 'Settings'
       ImageIndex = 2
       object JoyStickGB2: TGroupBox
-        Left = 43
-        Top = 416
+        Left = 38
+        Top = 56
         Width = 422
         Height = 345
         Caption = 'JoyStick Velocities'
@@ -638,6 +646,7 @@ object Main: TMain
         Width = 257
         Height = 155
         Caption = 'Arduino Client'
+        Enabled = False
         TabOrder = 1
         object mArduinoServerPortE: TIntegerLabeledEdit
           Left = 16
@@ -717,18 +726,22 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0
-        Width = 912
-        Height = 830
+        Width = 906
+        Height = 802
         Align = alClient
         TabOrder = 0
         object infoMemo: TMemo
           Left = 1
           Top = 31
-          Width = 910
-          Height = 798
+          Width = 904
+          Height = 770
           Align = alClient
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -744,7 +757,7 @@ object Main: TMain
         object ToolBar1: TToolBar
           Left = 1
           Top = 1
-          Width = 910
+          Width = 904
           Height = 30
           AutoSize = True
           ButtonHeight = 30
@@ -792,31 +805,31 @@ object Main: TMain
       inline TAboutArrayBotFrame_21: TAboutArrayBotFrame_2
         Left = 0
         Top = 0
-        Width = 912
-        Height = 830
+        Width = 906
+        Height = 802
         Align = alClient
         TabOrder = 0
-        ExplicitWidth = 912
-        ExplicitHeight = 830
+        ExplicitWidth = 906
+        ExplicitHeight = 802
         inherited GroupBox1: TGroupBox
-          Width = 912
-          Height = 644
-          ExplicitWidth = 912
-          ExplicitHeight = 644
+          Width = 906
+          Height = 616
+          ExplicitWidth = 906
+          ExplicitHeight = 616
           inherited Memo1: TMemo
             Top = 25
-            Width = 908
-            Height = 617
+            Width = 902
+            Height = 589
             ExplicitTop = 25
-            ExplicitWidth = 908
-            ExplicitHeight = 617
+            ExplicitWidth = 902
+            ExplicitHeight = 589
           end
         end
         inherited Panel1: TPanel
-          Width = 912
-          ExplicitWidth = 912
+          Width = 906
+          ExplicitWidth = 906
           inherited Image1: TImage
-            Left = 726
+            Left = 720
             ExplicitLeft = 708
           end
         end

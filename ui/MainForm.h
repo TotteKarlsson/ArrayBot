@@ -1,7 +1,7 @@
 #ifndef MainFormH
 #define MainFormH
 #include "abApplicationMessages.h"
-#include "arduino/atPufferArduinoClient.h"
+//#include "arduino/atPufferArduinoClient.h"
 #include "arraybot/atArrayBot.h"
 #include "abUIDataStructures.h"
 #include "InitArrayBotThread.h"
@@ -188,12 +188,12 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         IniFileProperties  			            mProperties;
 		mtk::Property<mtk::LogLevel>            mLogLevel;
         vector<TFrame*>					        mFrames;
-
-        										//!The puffer arduino client connects to
-                                                //an arduino server. The client processes
-                                                //incoming messages over a socket, in
-                                                //onArduinoMessageReceived
-		PufferArduinoClient				        mPufferArduinoClient;
+//
+//        										//!The puffer arduino client connects to
+//                                                //an arduino server. The client processes
+//                                                //incoming messages over a socket, in
+//                                                //onArduinoMessageReceived
+//		PufferArduinoClient				        mPufferArduinoClient;
 
         										//Callback
 		void 									onArduinoMessageReceived(const string& msg);

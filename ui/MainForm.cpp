@@ -73,7 +73,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 
     if(mAB)
     {
-	   	mAB->setArduinoClient(&mPufferArduinoClient);
+//	   	mAB->setArduinoClient(&mPufferArduinoClient);
     }
 
 	//Setup UI properties
@@ -114,9 +114,9 @@ __fastcall TMain::TMain(TComponent* Owner)
     mTheWiggler.mPullRelaxVelocity.setReference(&mPullRelaxVelocityE->getReference());
     mTheWiggler.mPullRelaxAcceleration.setReference(&mPullRelaxAccE->getReference());
 
-	mPufferArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
-    mPufferArduinoClient.onConnected 		= onArduinoClientConnected;
-	mPufferArduinoClient.onDisconnected 	= onArduinoClientDisconnected;
+//	mPufferArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
+//    mPufferArduinoClient.onConnected 		= onArduinoClientConnected;
+//	mPufferArduinoClient.onDisconnected 	= onArduinoClientDisconnected;
 }
 
 __fastcall TMain::~TMain()
@@ -174,7 +174,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	}
 
 	//Try to connect to the arduino server..
-	mPufferArduinoClient.connect(50000);
+//	mPufferArduinoClient.connect(50000);
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
@@ -239,7 +239,7 @@ void TMain::onArduinoClientConnected()
     Log(lDebug) << "ArduinoClient was connected..";
 
     //Send message to update UI
-    mPufferArduinoClient.getServerStatus();
+//    mPufferArduinoClient.getServerStatus();
     enableDisableArduinoClientControls(true);
 }
 
@@ -540,8 +540,8 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
        	mJSCSBtn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
     }
 
-   	mASStartBtn->Caption 			= mPufferArduinoClient.isConnected()	? "Stop" : "Start";
-	mArduinoServerPortE->Enabled 	= !mPufferArduinoClient.isConnected();
+//   	mASStartBtn->Caption 			= mPufferArduinoClient.isConnected()	? "Stop" : "Start";
+//	mArduinoServerPortE->Enabled 	= !mPufferArduinoClient.isConnected();
 }
 
 //---------------------------------------------------------------------------
@@ -625,12 +625,12 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 {
 	if(mASStartBtn->Caption == "Start")
     {
-    	mPufferArduinoClient.connect(mArduinoServerPortE->getValue());
+//    	mPufferArduinoClient.connect(mArduinoServerPortE->getValue());
         mASStartBtn->Caption == "Connecting";
     }
     else
     {
-    	mPufferArduinoClient.disConnect();
+//    	mPufferArduinoClient.disConnect();
     }
 }
 //---------------------------------------------------------------------------
