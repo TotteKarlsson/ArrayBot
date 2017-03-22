@@ -229,7 +229,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(BDSCOMMONDIR)\dcp\ArrayBotPackage.bpi  $(BDSCOMMONDIR)\dcp\ArrayBotPackage.lib</PostBuildEvent>
+        <PostBuildEvent>copy $(BDSCOMMONDIR)\dcp\ArrayBotPackage.bpi  $(BDSCOMMONDIR)\dcp\ArrayBotPackage.lib</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

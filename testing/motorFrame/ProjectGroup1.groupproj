@@ -3,13 +3,13 @@
         <ProjectGuid>{971FD8E4-5253-46A0-B66E-D356C6973489}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="P:\libs\dslib\Common\mtkCommon.cbproj">
+        <Projects Include="P:\libs\dsl\Common\mtkCommon.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
+        <Projects Include="P:\libs\dsl\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dslib\VCL\Components\DuneComponents.cbproj">
+        <Projects Include="P:\libs\dsl\VCL\Components\DuneComponents.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="..\..\source\abCore.cbproj">
@@ -27,31 +27,31 @@
         </BorlandProject>
     </ProjectExtensions>
     <Target Name="mtkCommon">
-        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj"/>
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj"/>
     </Target>
     <Target Name="mtkCommon:Clean">
-        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="mtkCommon:Make">
-        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Make"/>
     </Target>
     <Target Name="VCLCommon">
-        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
+        <MSBuild Projects="P:\libs\dsl\VCL\Common\VCLCommon.cbproj"/>
     </Target>
     <Target Name="VCLCommon:Clean">
-        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dsl\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="VCLCommon:Make">
-        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dsl\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
     </Target>
     <Target Name="DuneComponents">
-        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj"/>
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj"/>
     </Target>
     <Target Name="DuneComponents:Clean">
-        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="DuneComponents:Make">
-        <MSBuild Projects="P:\libs\dslib\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
     </Target>
     <Target Name="abCore">
         <MSBuild Projects="..\..\source\abCore.cbproj"/>

@@ -66,7 +66,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 		mAB = new ArrayBot(mIniFile, gAppDataFolder);
         mProcessSequencer = &(mAB->getProcessSequencer());
     }
-    catch(const ABException& e)
+    catch(const ATException& e)
     {
 		MessageDlg(e.Message().c_str(), mtWarning, TMsgDlgButtons() << mbOK, 0);
     }

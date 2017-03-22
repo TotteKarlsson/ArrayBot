@@ -1,6 +1,6 @@
 #ifndef atMotorWigglerH
 #define atMotorWigglerH
-#include "atABObject.h"
+#include "atATObject.h"
 #include "mtkProperty.h"
 #include "mtkTimer.h"
 //---------------------------------------------------------------------------
@@ -11,7 +11,7 @@ class APTMotor;
 
 typedef void (__closure *OnTimer)();
 
-class MotorWiggler : public ABObject
+class MotorWiggler : public ATObject
 {
 	public:
     							MotorWiggler(APTMotor* xmtr = NULL, APTMotor* ymtr = NULL);

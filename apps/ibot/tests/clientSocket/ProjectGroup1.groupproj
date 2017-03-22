@@ -3,7 +3,7 @@
         <ProjectGuid>{ED82AEF0-570D-46E3-A5CA-2D0CF512D3CC}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="P:\libs\dslib\IPC\mtkIPC.cbproj">
+        <Projects Include="P:\libs\dsl\IPC\mtkIPC.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="clientSocketApp.cbproj">
@@ -18,13 +18,13 @@
         </BorlandProject>
     </ProjectExtensions>
     <Target Name="mtkIPC">
-        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj"/>
+        <MSBuild Projects="P:\libs\dsl\IPC\mtkIPC.cbproj"/>
     </Target>
     <Target Name="mtkIPC:Clean">
-        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dsl\IPC\mtkIPC.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="mtkIPC:Make">
-        <MSBuild Projects="P:\libs\dslib\IPC\mtkIPC.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dsl\IPC\mtkIPC.cbproj" Targets="Make"/>
     </Target>
     <Target Name="clientSocketApp">
         <MSBuild Projects="clientSocketApp.cbproj"/>
