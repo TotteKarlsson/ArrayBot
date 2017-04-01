@@ -46,6 +46,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 	TArrayBotButton *mDeleteSequenceBtn;
 	TArrayBotButton *mRenameButton;
 	TScrollBox *mProcessPanel;
+	TSplitter *Splitter1;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
         void __fastcall mStartBtnClick(TObject *Sender);

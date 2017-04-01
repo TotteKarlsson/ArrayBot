@@ -106,7 +106,7 @@ object Main: TMain
     Top = 0
     Width = 914
     Height = 872
-    ActivePage = mFrontPage
+    ActivePage = mMoveSequencesPage
     Align = alClient
     TabHeight = 60
     TabOrder = 1
@@ -114,6 +114,10 @@ object Main: TMain
     OnChange = PageControl1Change
     object mFrontPage: TTabSheet
       Caption = 'The Bot'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object mMiddlePanel: TPanel
         Left = 0
         Top = 97
@@ -461,10 +465,6 @@ object Main: TMain
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
@@ -535,6 +535,10 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object JoyStickGB2: TGroupBox
         Left = 38
         Top = 56

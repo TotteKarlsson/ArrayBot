@@ -2,7 +2,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
   Left = 0
   Top = 0
   Width = 1001
-  Height = 723
+  Height = 821
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -12,7 +12,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
   TabOrder = 0
   object Panel1: TPanel
     Left = 0
-    Top = 628
+    Top = 726
     Width = 1001
     Height = 95
     Align = alBottom
@@ -73,31 +73,42 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Left = 0
     Top = 0
     Width = 1001
-    Height = 628
+    Height = 726
     Align = alClient
     TabOrder = 0
+    object Splitter1: TSplitter
+      Left = 385
+      Top = 1
+      Height = 724
+      ExplicitLeft = 433
+      ExplicitTop = 2
+    end
     object mLeftPanel: TPanel
       Left = 1
       Top = 1
-      Width = 304
-      Height = 626
+      Width = 384
+      Height = 724
       Align = alLeft
       TabOrder = 0
       object GroupBox2: TGroupBox
         Left = 1
         Top = 1
-        Width = 302
+        Width = 382
         Height = 128
         Align = alTop
         Caption = 'Select Sequence'
         Padding.Top = 10
         TabOrder = 0
+        DesignSize = (
+          382
+          128)
         object mSequencesCB: TComboBox
           Left = 15
           Top = 33
-          Width = 270
+          Width = 358
           Height = 31
           Style = csDropDownList
+          Anchors = [akLeft, akTop, akRight]
           ItemIndex = 0
           TabOrder = 0
           Text = 'MoveSequence'
@@ -108,8 +119,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         object mAddSeqBtn: TArrayBotButton
           Left = 15
           Top = 78
-          Width = 74
+          Width = 154
           Height = 44
+          Anchors = [akLeft, akTop, akRight]
           Caption = 'New'
           ParentDoubleBuffered = True
           TabOrder = 1
@@ -117,10 +129,11 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           SoundID = 'BUTTON_CLICK_4'
         end
         object mDeleteSequenceBtn: TArrayBotButton
-          Left = 95
+          Left = 180
           Top = 78
           Width = 98
           Height = 44
+          Anchors = [akTop, akRight]
           Caption = 'Delete'
           ParentDoubleBuffered = True
           TabOrder = 2
@@ -128,10 +141,11 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           SoundID = 'BUTTON_CLICK_4'
         end
         object mRenameButton: TArrayBotButton
-          Left = 199
+          Left = 287
           Top = 78
           Width = 86
           Height = 44
+          Anchors = [akTop, akRight]
           Caption = 'Rename'
           ParentDoubleBuffered = True
           TabOrder = 3
@@ -142,9 +156,10 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       inline TSequenceInfoFrame1: TSequenceInfoFrame
         Left = 1
         Top = 129
-        Width = 302
-        Height = 496
+        Width = 382
+        Height = 594
         Align = alClient
+        AutoSize = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -19
@@ -154,14 +169,35 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         TabOrder = 1
         ExplicitLeft = 1
         ExplicitTop = 129
-        ExplicitWidth = 302
-        ExplicitHeight = 496
+        ExplicitWidth = 382
+        ExplicitHeight = 594
         inherited GroupBox2: TGroupBox
-          Width = 302
-          ExplicitWidth = 302
-          inherited mUpdatePositionsBtn: TArrayBotButton
-            Width = 272
-            ExplicitWidth = 272
+          Width = 382
+          ExplicitWidth = 382
+          inherited Panel1: TPanel
+            Width = 378
+            ExplicitWidth = 378
+            inherited mProcessesLB: TListBox
+              Width = 273
+              ExplicitWidth = 273
+            end
+            inherited Panel2: TPanel
+              Left = 273
+              ExplicitLeft = 273
+            end
+          end
+          inherited Panel3: TPanel
+            Width = 378
+            ExplicitWidth = 378
+            inherited mAddMoveBtn: TArrayBotButton
+              Width = 376
+              Caption = 'New Master Process'
+              ExplicitWidth = 376
+            end
+            inherited mUpdatePositionsBtn: TArrayBotButton
+              Width = 376
+              ExplicitWidth = 376
+            end
           end
         end
         inherited mSequenceAL: TActionList
@@ -171,10 +207,10 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       end
     end
     object mProcessPanel: TScrollBox
-      Left = 305
+      Left = 388
       Top = 1
-      Width = 695
-      Height = 626
+      Width = 612
+      Height = 724
       Align = alClient
       BevelInner = bvNone
       BevelOuter = bvRaised
