@@ -86,7 +86,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <Debugger_DebugSourcePath>P:\ArrayBot\source\;P:\libs\dslib\VCL\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\ArrayBot\source\;P:\libs\dsl\VCL\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <_TCHARMapping>char</_TCHARMapping>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>

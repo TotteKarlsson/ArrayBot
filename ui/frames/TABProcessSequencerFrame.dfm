@@ -173,21 +173,31 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         ExplicitHeight = 594
         inherited GroupBox2: TGroupBox
           Width = 382
+          Height = 594
           ExplicitWidth = 382
+          ExplicitHeight = 594
           inherited Panel1: TPanel
             Width = 378
+            Height = 438
             ExplicitWidth = 378
+            ExplicitHeight = 438
             inherited mProcessesLB: TListBox
               Width = 273
+              Height = 438
               ExplicitWidth = 273
+              ExplicitHeight = 438
             end
             inherited Panel2: TPanel
               Left = 273
+              Height = 438
               ExplicitLeft = 273
+              ExplicitHeight = 438
             end
           end
           inherited Panel3: TPanel
+            Top = 463
             Width = 378
+            ExplicitTop = 463
             ExplicitWidth = 378
             inherited mAddMoveBtn: TArrayBotButton
               Width = 376

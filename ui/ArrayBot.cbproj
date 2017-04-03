@@ -40,12 +40,12 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>P:\libs\dslib\VCL\Forms\;lib\;..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;P:\dslib\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>P:\libs\dsl\VCL\Forms\;lib\;..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;P:\dsl\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
-        <IncludePath>P:\libs\dslib\VCL\Forms\;lib\;..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
+        <IncludePath>P:\libs\dsl\VCL\Forms\;lib\;..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
         <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib;bcbsmp.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
@@ -109,7 +109,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
-        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dslib\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\ThirdParty\Poco\Foundation\src\;P:\libs\dslib\VCL\Forms\;P:\libs\dslib\VCL\Common\;P:\libs\dslib\Common\Math\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dsl\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\ThirdParty\Poco\Foundation\src\;P:\libs\dsl\VCL\Forms\;P:\libs\dsl\VCL\Common\;P:\libs\dsl\Common\Math\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;adortl.bpi;dbrtl.bpi;bcbsmp.bpi</LinkPackageImports>
         <IncludePath>$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl;$(IncludePath)</IncludePath>
@@ -226,7 +226,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.exe $(APP_RELEASES)\ArrayBot /y</PostBuildEvent>
+        <PostBuildEvent>xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y
+&amp;&amp;xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy $(OUTPUTDIR)*.exe $(APP_RELEASES)\ArrayBot /y
+</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

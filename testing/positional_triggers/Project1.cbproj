@@ -79,7 +79,7 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <DynamicRTL>true</DynamicRTL>
-        <Debugger_DebugSourcePath>P:\libs\dslib\Common\;P:\ArrayBot\source\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <VerInfo_Locale>1033</VerInfo_Locale>
