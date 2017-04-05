@@ -1,3 +1,10 @@
+Release 0.8.8 (April 5)
+=======================
+* Added functionality to pause/resume a move sequence by adding a stop/resume action to the process sequences
+* Improved usability of steps programming
+* Refactored dslib -> dsl
+* Removed references to the puffer arduino
+
 Release 0.8.5 (March 16)
 =======================
 * Merging wiggler branch
