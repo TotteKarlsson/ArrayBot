@@ -29,7 +29,6 @@
 #pragma link "TAboutArrayBotFrame"
 #pragma link "TAboutArrayBot_2Frame"
 #pragma link "TPropertyCheckBox"
-
 #pragma link "cspin"
 #pragma resource "*.dfm"
 TMain *Main;
@@ -344,6 +343,8 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->Align = alClient;
     mABProcessSequencerFrame->init();
 
+
+    //The sequencer buttons frame holds shortcut buttons for preprogrammed sequences
 	mSequencerButtons = new TSequencerButtonsFrame(*(mAB), mSequencesPanel);
 	mSequencerButtons->Parent = mSequencesPanel;
     mSequencerButtons->Align = alClient;
@@ -474,7 +475,6 @@ void __fastcall	TMain::onFinishedInitBot()
     mTheWiggler.setMaxVelocity(mWigglerVelocityE->getValue());
     mTheWiggler.setMaxAcceleration(mWigglerAccelerationE->getValue());
     mTheWiggler.assignMotors(mAB->getWhiskerUnit().getXMotor(), mAB->getWhiskerUnit().getYMotor());
-
 }
 
 //---------------------------------------------------------------------------
@@ -539,9 +539,6 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
         mJSCSBtn->Enabled = true;
        	mJSCSBtn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
     }
-
-//   	mASStartBtn->Caption 			= mPufferArduinoClient.isConnected()	? "Stop" : "Start";
-//	mArduinoServerPortE->Enabled 	= !mPufferArduinoClient.isConnected();
 }
 
 //---------------------------------------------------------------------------

@@ -3,17 +3,17 @@
         <ProjectGuid>{9D7B788E-1612-4D2A-99DA-365D58720234}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="source\abCore.cbproj">
+        <Projects Include="P:\libs\atapi\source\atCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="source\vcl\abVCLCore.cbproj">
+        <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="UI\lib\ArrayBotPackage.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="UI\ArrayBot.cbproj">
-            <Dependencies>source\abCore.cbproj;source\vcl\abVCLCore.cbproj;UI\lib\ArrayBotPackage.cbproj</Dependencies>
+            <Dependencies>UI\lib\ArrayBotPackage.cbproj;P:\libs\atapi\source\vcl\atVCLCore.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -23,23 +23,23 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="abCore">
-        <MSBuild Projects="source\abCore.cbproj"/>
+    <Target Name="atCore">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj"/>
     </Target>
-    <Target Name="abCore:Clean">
-        <MSBuild Projects="source\abCore.cbproj" Targets="Clean"/>
+    <Target Name="atCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="abCore:Make">
-        <MSBuild Projects="source\abCore.cbproj" Targets="Make"/>
+    <Target Name="atCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="abVCLCore">
-        <MSBuild Projects="source\vcl\abVCLCore.cbproj"/>
+    <Target Name="atVCLCore">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
     </Target>
-    <Target Name="abVCLCore:Clean">
-        <MSBuild Projects="source\vcl\abVCLCore.cbproj" Targets="Clean"/>
+    <Target Name="atVCLCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="abVCLCore:Make">
-        <MSBuild Projects="source\vcl\abVCLCore.cbproj" Targets="Make"/>
+    <Target Name="atVCLCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
     </Target>
     <Target Name="ArrayBotPackage">
         <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj"/>
@@ -50,23 +50,23 @@
     <Target Name="ArrayBotPackage:Make">
         <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBot" DependsOnTargets="abCore;abVCLCore;ArrayBotPackage">
+    <Target Name="ArrayBot" DependsOnTargets="ArrayBotPackage;atVCLCore">
         <MSBuild Projects="UI\ArrayBot.cbproj"/>
     </Target>
-    <Target Name="ArrayBot:Clean" DependsOnTargets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean">
+    <Target Name="ArrayBot:Clean" DependsOnTargets="ArrayBotPackage:Clean;atVCLCore:Clean">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ArrayBot:Make" DependsOnTargets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make">
+    <Target Name="ArrayBot:Make" DependsOnTargets="ArrayBotPackage:Make;atVCLCore:Make">
         <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;abVCLCore;ArrayBotPackage;ArrayBot"/>
+        <CallTarget Targets="atCore;atVCLCore;ArrayBotPackage;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="atCore:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
+        <CallTarget Targets="atCore:Make;atVCLCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

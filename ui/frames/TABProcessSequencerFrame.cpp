@@ -162,6 +162,24 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
         string pName = mProcessSequencer.getCurrentProcessName();
         selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
     }
+	else if(startsWith("Resume", stdstr(mStartBtn->Caption)))
+    {
+        if(mProcessSequencer.resume())
+        {
+	        mAB.disableJoyStickAxes();
+    		mProcessSequencer.continueExecution();
+    		mSequenceStatusTimer->Enabled = true;
+        	string pName = mProcessSequencer.getCurrentProcessName();
+            selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
+        }
+        else
+        {
+        	//Something bad is going on
+           	mProcessSequencer.stop();
+			mProcessSequencer.reset();
+			mSequenceStatusTimer->Enabled = true;
+        }
+    }
     else if(startsWith("Continue", stdstr(mStartBtn->Caption)))
     {
         if(mProcessSequencer.forward())
@@ -204,6 +222,10 @@ void __fastcall TABProcessSequencerFrame::mSequenceTimerTimer(TObject *Sender)
     {
     	mStartBtn->Caption = "Stop";
         mStatusLbl->Caption = "Working on: " + vclstr(mProcessSequencer.getCurrentProcessName());
+    }
+    else if(mProcessSequencer.isPaused())
+    {
+		mStartBtn->Caption = "Resume";
     }
     else
     {

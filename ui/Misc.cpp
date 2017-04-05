@@ -66,7 +66,6 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 	t->mCancelBtn->Visible = false;
     t->setText(info.str());
     t->ShowModal();
-
     delete t;
 }
 
