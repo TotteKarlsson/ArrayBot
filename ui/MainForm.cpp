@@ -70,17 +70,12 @@ __fastcall TMain::TMain(TComponent* Owner)
 		MessageDlg(e.Message().c_str(), mtWarning, TMsgDlgButtons() << mbOK, 0);
     }
 
-    if(mAB)
-    {
-//	   	mAB->setArduinoClient(&mPufferArduinoClient);
-    }
-
 	//Setup UI properties
     mProperties.setSection("UI");
 	mProperties.setIniFile(&mIniFile);
 
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	                lAny));
-	mProperties.add((BaseProperty*)  &mArduinoServerPortE->getProperty()->setup(	"SERVER_PORT",    	 				50000));
+	mProperties.add((BaseProperty*)  &mArrayCamServerPortE->getProperty()->setup(	"ARRAY_CAM_SERVER_PORT",     		50001));
 	mProperties.add((BaseProperty*)  &mWigglerAmplitudeStepE->getProperty()->setup(	"WIGGLER_AMPLITUDE",    	 		0.5));
 	mProperties.add((BaseProperty*)  &mWigglerAmplitudeE->getProperty()->setup(		"WIGGLER_AMPLITUDE_STEP",    		0.1));
 
@@ -89,7 +84,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 
     mProperties.read();
 
-	mArduinoServerPortE->update();
+	mArrayCamServerPortE->update();
 	mWigglerAmplitudeE->update();
 	mWigglerAmplitudeStepE->update();
 
@@ -113,9 +108,9 @@ __fastcall TMain::TMain(TComponent* Owner)
     mTheWiggler.mPullRelaxVelocity.setReference(&mPullRelaxVelocityE->getReference());
     mTheWiggler.mPullRelaxAcceleration.setReference(&mPullRelaxAccE->getReference());
 
-//	mPufferArduinoClient.assignOnMessageReceivedCallBack(onArduinoMessageReceived);
-//    mPufferArduinoClient.onConnected 		= onArduinoClientConnected;
-//	mPufferArduinoClient.onDisconnected 	= onArduinoClientDisconnected;
+	mArrayCamClient.assignOnMessageReceivedCallBack(onArrayCamMessageReceived);
+    mArrayCamClient.onConnected 				= onArrayCamClientConnected;
+	mArrayCamClient.onDisconnected 				= onArrayCamClientDisconnected;
 }
 
 __fastcall TMain::~TMain()
@@ -133,7 +128,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	this->Visible = true;
 	setupWindowTitle();
 
-    enableDisableArduinoClientControls(false);
+    enableDisableArrayCamClientControls(false);
 
     if(this->BorderStyle == bsNone)
     {
@@ -173,7 +168,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	}
 
 	//Try to connect to the arduino server..
-//	mPufferArduinoClient.connect(50000);
+	mArrayCamClient.connect(50001);
 
 	TMemoLogger::mMemoIsEnabled = true;
     UIUpdateTimer->Enabled = true;
@@ -233,26 +228,35 @@ void __fastcall TMain::WndProc(TMessage& Message)
 }
 
 //Callback from socket client class
-void TMain::onArduinoClientConnected()
+void TMain::onArrayCamClientConnected()
 {
-    Log(lDebug) << "ArduinoClient was connected..";
+    Log(lDebug) << "ArrayCamClient was connected..";
 
     //Send message to update UI
-//    mPufferArduinoClient.getServerStatus();
-    enableDisableArduinoClientControls(true);
+    enableDisableArrayCamClientControls(true);
+	mASStartBtn->Caption = "Disconnect";
 }
 
-void TMain::onArduinoClientDisconnected()
+void TMain::onArrayCamClientDisconnected()
 {
-    Log(lDebug) << "Arduino Client was disconnected..";
-    enableDisableArduinoClientControls(false);
+    Log(lDebug) << "ArrayCam Client was disconnected..";
+    enableDisableArrayCamClientControls(false);
+	mASStartBtn->Caption = "Connect";
 }
 
-void TMain::enableDisableArduinoClientControls(bool enable)
+void TMain::enableDisableArrayCamClientControls(bool enable)
 {
-	//Disable client related components..
-//    enableDisablePanel(mBottomPanel, enable);
-//    enableDisableGroupBox(mPufferGB, enable);
+	//Disable ArrayCam client related components..
+	if(enable == true)
+    {
+	    mArrayCamConnectionStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GREEN_LED");
+		mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GREEN_LED");
+    }
+    else
+    {
+		mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GRAY_LED");
+	    mArrayCamConnectionStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GRAY_LED");
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -600,36 +604,47 @@ void __fastcall TMain::mRightPanelDblClick(TObject *Sender)
 	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSizeable : bsNone;
 }
 
-void TMain::onArduinoMessageReceived(const string& msg)
+void TMain::onArrayCamMessageReceived(const string& msg)
 {
 	struct TLocalArgs
     {
+        TLocalArgs(TMain& _f, const string& m) : f(_f), msg(m){}
+        TMain& f;
         string msg;
-        void __fastcall onPufferArduinoMessage()
+        void __fastcall onMessage()
         {
+            if(msg == "IS_RECORDING=false")
+            {
+                f.mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GREEN_LED");
+            }
+            else if(msg == "IS_RECORDING=true")
+            {
+                f.mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"RED_LED");
+            }
         }
     };
 
-    TLocalArgs args;
-    args.msg = msg;
+    TLocalArgs args(*this, msg);
+
 
     //This causes this function to be called in the UI thread
-	TThread::Synchronize(NULL, &args.onPufferArduinoMessage);
+	TThread::Synchronize(NULL, &args.onMessage);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 {
-	if(mASStartBtn->Caption == "Start")
+	if(mASStartBtn->Caption == "Connect")
     {
-//    	mPufferArduinoClient.connect(mArduinoServerPortE->getValue());
+    	mArrayCamClient.connect(mArrayCamServerPortE->getValue());
         mASStartBtn->Caption == "Connecting";
     }
     else
     {
-//    	mPufferArduinoClient.disConnect();
+    	mArrayCamClient.disConnect();
     }
 }
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::mWiggleBtnClick(TObject *Sender)
 {
@@ -697,6 +712,7 @@ void __fastcall TMain::mPullRibbonBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::mSequencesPanelResize(TObject *Sender)
 {
-	//
     mSequencerButtons->update();
 }
+
+

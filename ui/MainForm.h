@@ -1,7 +1,7 @@
 #ifndef MainFormH
 #define MainFormH
 #include "abApplicationMessages.h"
-//#include "arduino/atPufferArduinoClient.h"
+#include "ArrayCamClient.h"
 #include "arraybot/atArrayBot.h"
 #include "abUIDataStructures.h"
 #include "InitArrayBotThread.h"
@@ -31,6 +31,8 @@
 #include "TArrayBotBtn.h"
 #include "atMotorWiggler.h"
 #include "cspin.h"
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.Graphics.hpp>
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -109,7 +111,7 @@ class TMain : public TRegistryForm
 	TRadioGroup *mUnitControlRG;
 	TPanel *Panel2;
 	TGroupBox *GroupBox1;
-	TIntegerLabeledEdit *mArduinoServerPortE;
+	TIntegerLabeledEdit *mArrayCamServerPortE;
 	TButton *mASStartBtn;
 	TTabSheet *TabSheet3;
 	TAboutArrayBotFrame_2 *TAboutArrayBotFrame_21;
@@ -132,6 +134,11 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mPullRelaxAccE;
 	TFloatLabeledEdit *mPullRelaxVelocityE;
 	TGroupBox *GroupBox4;
+	TGroupBox *GroupBox5;
+	TLabel *mVideoRecordingStatusLbl;
+	TImage *mArrayCamStatusLED;
+	TLabel *Label2;
+	TImage *mArrayCamConnectionStatusLED;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -188,20 +195,20 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         IniFileProperties  			            mProperties;
 		mtk::Property<mtk::LogLevel>            mLogLevel;
         vector<TFrame*>					        mFrames;
-//
-//        										//!The puffer arduino client connects to
-//                                                //an arduino server. The client processes
-//                                                //incoming messages over a socket, in
-//                                                //onArduinoMessageReceived
-//		PufferArduinoClient				        mPufferArduinoClient;
+
+        										//!The ArrayCam client connects to
+                                                //an ArrayCam server. The client processes
+                                                //incoming messages over a socket, in
+                                                //onArrayCamMessageReceived
+		ArrayCamClient				        	mArrayCamClient;
 
         										//Callback
-		void 									onArduinoMessageReceived(const string& msg);
+		void 									onArrayCamMessageReceived(const string& msg);
 
       											//Callbacks
-        void									onArduinoClientConnected();
-        void									onArduinoClientDisconnected();
-        void									enableDisableArduinoClientControls(bool enable);
+        void									onArrayCamClientConnected();
+        void									onArrayCamClientDisconnected();
+        void									enableDisableArrayCamClientControls(bool enable);
 
         							            //!Arraybot is allocated on the stack.
                                                 //!So that we can catch exceptions in the
