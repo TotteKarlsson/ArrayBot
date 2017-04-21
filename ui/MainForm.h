@@ -205,11 +205,11 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         							            //!Arraybot is allocated on the heap.
                                                 //!So that we can catch init exceptions in the
                                                 //!constructor of the main form
-        ArrayBot					            mAB;
+        ArrayBot					            *mAB;
 
-          										//!The Process sequencer allow individual
-                                                //!processes to be executed in sequence
-   	    ProcessSequencer  						mProcessSequencer;
+//          										//!The Process sequencer allow individual
+//                                                //!processes to be executed in sequence
+   	    ProcessSequencer  						*mProcessSequencer;
 
         										//Callback
 		void 									onArrayCamMessageReceived(const string& msg);

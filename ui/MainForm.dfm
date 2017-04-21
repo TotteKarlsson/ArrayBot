@@ -46,12 +46,11 @@ object Main: TMain
     object mJSStatusL: TLabel
       Left = 1
       Top = 225
-      Width = 181
+      Width = 96
       Height = 23
       Align = alTop
       Caption = 'mJSStatusL'
       WordWrap = True
-      ExplicitWidth = 96
     end
     object BottomBtnPanel: TPanel
       Left = 1
@@ -114,6 +113,10 @@ object Main: TMain
     OnChange = PageControl1Change
     object mFrontPage: TTabSheet
       Caption = 'The Bot'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object mMiddlePanel: TPanel
         Left = 0
         Top = 97
@@ -24271,6 +24274,10 @@ object Main: TMain
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'

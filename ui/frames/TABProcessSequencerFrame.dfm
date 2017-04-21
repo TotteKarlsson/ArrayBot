@@ -153,6 +153,68 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           SoundID = 'BUTTON_CLICK_4'
         end
       end
+      inline TSequenceInfoFrame1: TSequenceInfoFrame
+        Left = 1
+        Top = 129
+        Width = 382
+        Height = 594
+        Align = alClient
+        AutoSize = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+        ExplicitLeft = 1
+        ExplicitTop = 129
+        ExplicitWidth = 382
+        ExplicitHeight = 594
+        inherited GroupBox2: TGroupBox
+          Width = 382
+          Height = 594
+          ExplicitWidth = 382
+          ExplicitHeight = 594
+          inherited Panel1: TPanel
+            Width = 378
+            Height = 438
+            ExplicitWidth = 378
+            ExplicitHeight = 438
+            inherited mProcessesLB: TListBox
+              Width = 273
+              Height = 438
+              ExplicitWidth = 273
+              ExplicitHeight = 438
+            end
+            inherited Panel2: TPanel
+              Left = 273
+              Height = 438
+              ExplicitLeft = 273
+              ExplicitHeight = 438
+            end
+          end
+          inherited Panel3: TPanel
+            Top = 463
+            Width = 378
+            ExplicitTop = 463
+            ExplicitWidth = 378
+            inherited mAddMoveBtn: TArrayBotButton
+              Width = 376
+              Caption = 'New Master Process'
+              ExplicitWidth = 376
+            end
+            inherited mUpdatePositionsBtn: TArrayBotButton
+              Width = 376
+              ExplicitWidth = 376
+            end
+          end
+        end
+        inherited mSequenceAL: TActionList
+          Left = 112
+          Top = 32
+        end
+      end
     end
     object mProcessPanel: TScrollBox
       Left = 388

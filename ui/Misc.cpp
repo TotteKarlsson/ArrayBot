@@ -28,7 +28,7 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 		StringList serials = getSerialsForDeviceType((DeviceTypeID) i);
         for(u_int j = 0; j < serials.count(); j++)
         {
-            APTMotor* m = mAB.getMotorWithSerial(serials[j]);
+            APTMotor* m = mAB->getMotorWithSerial(serials[j]);
             if(m)
             {
             	info << "Device ("<<m->getName()<<") of type '"<<::toString((DeviceTypeID) i)<<"' with serial " <<serials[j];
