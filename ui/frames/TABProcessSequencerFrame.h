@@ -38,7 +38,6 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 	TAction *addTimeDelayProcess;
 	TPanel *mMainPanel;
 	TPanel *mLeftPanel;
-	TSequenceInfoFrame *TSequenceInfoFrame1;
 	TPanel *Panel2;
 	TCheckBox *mSteppedExecutionCB;
 	TButton *mRewindButton;
@@ -66,8 +65,10 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 		static int 					mFrameNr;
 		void						saveSequence();
 
+        							//Create this one dynamically
+		TSequenceInfoFrame*			TSequenceInfoFrame1;
 	public:
-						 __fastcall TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner);
+						 __fastcall TABProcessSequencerFrame(ProcessSequencer& ab, const string& appFolder, TComponent* Owner);
         void						init();
 };
 

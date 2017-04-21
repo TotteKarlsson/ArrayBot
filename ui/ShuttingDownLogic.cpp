@@ -27,9 +27,14 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         UIUpdateTimer->Enabled = false;
     }
 
-	if(mAB->getJoyStick().isEnabled())
+	if(mAB.getJoyStick().isEnabled())
     {
-		mAB->getJoyStick().disable();
+		mAB.getJoyStick().disable();
+    }
+
+    if(mArrayCamClient.isConnected())
+    {
+    	mArrayCamClient.disConnect();
     }
 
 //    if(mPufferArduinoClient.isConnected())
@@ -48,18 +53,18 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
         mFrames.clear();
     }
 
-	if(mAB->isActive())
+	if(mAB.isActive())
     {
-    	if(!mAB->isShuttingDown())
+    	if(!mAB.isShuttingDown())
         {
 	        mXYZUnitFrame1->disable();
     	    mXYZUnitFrame2->disable();
-	    	mAB->shutDown();
+	    	mAB.shutDown();
         }
         else
         {
         	//Weird..
-            mAB->shutDown();
+            mAB.shutDown();
         }
     }
 
@@ -74,14 +79,14 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 
 void __fastcall TMain::ShutDownAExecute(TObject *Sender)
 {
-    mAB->getJoyStick().disable();
+    mAB.getJoyStick().disable();
     mXYZUnitFrame1->disable();
     mXYZUnitFrame2->disable();
 
     //The shutdown disconnects all devices
-    mAB->shutDown();
+    mAB.shutDown();
 
-	while(mAB->isActive())
+	while(mAB.isActive())
     {
     	sleep(100);
     }
@@ -94,18 +99,17 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
 	Log(lInfo) << "Closing down....";
 
-	//Check if we can close.. abort all threads..
-	CanClose = (mLogFileReader.isRunning()) ? false : true;
-
 	//Check if active stuff is going on.. if so call the ShutDown in the
     //Timer fire
-	if(		mAB->getJoyStick().isEnabled()
-    	|| 	mAB->isActive()
-        || 	UIUpdateTimer->Enabled
-        || 	(gSplashForm && gSplashForm->isOnShowTime())
+	if(	   mAB.getJoyStick().isEnabled()
+    	|| mAB.isActive()
+        || UIUpdateTimer->Enabled
+        || (gSplashForm && gSplashForm->isOnShowTime())
+        || mArrayCamClient.isConnected()
 //        ||  mPufferArduinoClient.isConnected()
-        ||  mFrames.size()
+        || mFrames.size()
         || mTheWiggler.isRunning()
+        || mLogFileReader.isRunning()
       )
     {
   		CanClose = false;

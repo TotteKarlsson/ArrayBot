@@ -40,12 +40,12 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>P:\libs\atapi\source\vcl\forms\;P:\libs\dsl\VCL\Forms\;lib\;..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;P:\dsl\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>P:\libs\atapi\source\clients\;P:\libs\atapi\source\vcl\forms\;P:\libs\dsl\VCL\Forms\;lib\;..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;P:\dsl\VCL\Components\;..\source\VCL\;..\source\;..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
-        <IncludePath>P:\libs\atapi\source\vcl\forms\;P:\libs\dsl\VCL\Forms\;lib\;..\source\vcl\forms\;..\source\vcl\frames\;..\source\frames\;..\source\forms\;..\apps\arraycam\;frames\;forms\;..\source\VCL\;..\source\;P:\ArrayBot\testing\GetDeviceInfo\;forms;frames;$(IncludePath)</IncludePath>
+        <IncludePath>P:\libs\atapi\source\clients\;P:\libs\atapi\source\vcl\forms\;P:\libs\dsl\VCL\Forms\;lib\;frames\;forms\;forms;frames;$(IncludePath)</IncludePath>
         <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib;bcbsmp.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
@@ -59,10 +59,8 @@
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <PackageImports>vtk;bindcompfmx;DBXSqliteDriver;vcldbx;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;vclie;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;Intraweb;IndyCore;vcl;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;inet;vclx;inetdbxpress;webdsnap;bdertl;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
@@ -130,12 +128,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="JoyStickRelated.cpp">
             <BuildOrder>6</BuildOrder>
         </CppCompile>
-        <CppCompile Include="lib\ArrayCamClient.cpp">
-            <BuildOrder>8</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="lib\ArrayCamMessageProcessor.cpp">
-            <BuildOrder>7</BuildOrder>
-        </CppCompile>
         <CppCompile Include="lib\atMotorWiggler.cpp">
             <DependentOn>lib\atMotorWiggler.h</DependentOn>
             <BuildOrder>7</BuildOrder>
@@ -163,6 +155,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </RcItem>
         <CppCompile Include="ShuttingDownLogic.cpp">
             <BuildOrder>3</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="P:\libs\atapi\source\clients\ArrayCamClient.cpp">
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="P:\libs\atapi\source\clients\atArrayCamMessageProcessor.cpp">
+            <BuildOrder>7</BuildOrder>
         </CppCompile>
         <FormResources Include="MainForm.dfm"/>
         <BuildConfiguration Include="Release">

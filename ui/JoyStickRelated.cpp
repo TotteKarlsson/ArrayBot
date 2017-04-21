@@ -12,9 +12,9 @@ extern bool gAppIsStartingUp;
 //---------------------------------------------------------------------------
 void __fastcall TMain::mJoyStickRGClick(TObject *Sender)
 {
-	if(mAB->getJoyStick().enableJoyStickWithID(mJoyStickRG->ItemIndex))
+	if(mAB.getJoyStick().enableJoyStickWithID(mJoyStickRG->ItemIndex))
     {
-    	mAB->enableJoyStick();
+    	mAB.enableJoyStick();
     	Log(lInfo) << "Joystick was enabled.";
     }
     else
@@ -30,17 +30,17 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
     TSpeedButton* btn = dynamic_cast<TSpeedButton*>(Sender);
     if(btn->Caption == "Enable JS")
     {
-		if(!mAB->enableJoyStick())
+		if(!mAB.enableJoyStick())
         {
         	MessageDlg("Failed enabling current JoyStick. \r ", mtWarning, TMsgDlgButtons() << mbOK, 0);
         }
     }
     else
     {
-	 	mAB->disableJoyStick();
+	 	mAB.disableJoyStick();
     }
 
-    if(mAB->getJoyStick().isEnabled())
+    if(mAB.getJoyStick().isEnabled())
     {
         //There is a 'bug' regarding speed settings
         //Programatically apply currently selected setting
@@ -60,7 +60,7 @@ void __fastcall TMain::JSControlClick(TObject *Sender)
         }
     }
 
-    btn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
+    btn->Caption = (mAB.getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
 }
 
 void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
@@ -69,7 +69,7 @@ void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
 	if(btn == mJSSpeedFastBtn)
     {
     	//Apply "FAST" JS setting
-        mAB->applyJoyStickSetting("Fast");
+        mAB.applyJoyStickSetting("Fast");
 
         if(!gAppIsStartingUp)
         {
@@ -80,7 +80,7 @@ void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
     }
     else if (btn == mJSSpeedMediumBtn)
     {
-        mAB->applyJoyStickSetting("Medium");
+        mAB.applyJoyStickSetting("Medium");
         if(!gAppIsStartingUp)
         {
            	playABSound(absMediumSpeed, SND_ASYNC);
@@ -88,7 +88,7 @@ void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
     }
     else if (btn == mJSSpeedSlowBtn)
     {
-        mAB->applyJoyStickSetting("Slow");
+        mAB.applyJoyStickSetting("Slow");
         if(!gAppIsStartingUp)
         {
 	        playABSound(absSlowSpeed, SND_ASYNC);
@@ -124,7 +124,7 @@ void __fastcall TMain::JoyStickValueEdit(TObject *Sender, WORD &Key, TShiftState
              mAngleControlVelE->getValue(),         mAngleControllerAccE->getValue()
              );
 
-	mAB->writeINIParameters();
+	mAB.writeINIParameters();
     mIniFile.save();
 }
 
@@ -133,31 +133,31 @@ void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
 {
 	if(mXYCtrlRG->ItemIndex == 0)//Both X&Y
     {
-        mAB->getJoyStick().getY1Axis().enable();
-        mAB->getJoyStick().getY2Axis().enable();
-        mAB->getJoyStick().getX1Axis().enable();
-        mAB->getJoyStick().getX2Axis().enable();
+        mAB.getJoyStick().getY1Axis().enable();
+        mAB.getJoyStick().getY2Axis().enable();
+        mAB.getJoyStick().getX1Axis().enable();
+        mAB.getJoyStick().getX2Axis().enable();
     }
     else if(mXYCtrlRG->ItemIndex == 1)//Only X
     {
-        mAB->getJoyStick().getX1Axis().enable();
-        mAB->getJoyStick().getX2Axis().enable();
-        mAB->getJoyStick().getY1Axis().disable();
-        mAB->getJoyStick().getY2Axis().disable();
+        mAB.getJoyStick().getX1Axis().enable();
+        mAB.getJoyStick().getX2Axis().enable();
+        mAB.getJoyStick().getY1Axis().disable();
+        mAB.getJoyStick().getY2Axis().disable();
     }
     else if(mXYCtrlRG->ItemIndex == 2)//Only Z
     {
-        mAB->getJoyStick().getY1Axis().enable();
-        mAB->getJoyStick().getY2Axis().enable();
-        mAB->getJoyStick().getX1Axis().disable();
-        mAB->getJoyStick().getX2Axis().disable();
+        mAB.getJoyStick().getY1Axis().enable();
+        mAB.getJoyStick().getY2Axis().enable();
+        mAB.getJoyStick().getX1Axis().disable();
+        mAB.getJoyStick().getX2Axis().disable();
     }
     else
     {
-        mAB->getJoyStick().getY1Axis().disable();
-        mAB->getJoyStick().getY2Axis().disable();
-        mAB->getJoyStick().getX1Axis().disable();
-        mAB->getJoyStick().getX2Axis().disable();
+        mAB.getJoyStick().getY1Axis().disable();
+        mAB.getJoyStick().getY2Axis().disable();
+        mAB.getJoyStick().getX1Axis().disable();
+        mAB.getJoyStick().getX2Axis().disable();
     }
 }
 
@@ -208,7 +208,7 @@ void __fastcall TMain::AddJsSettingBtnClick(TObject *Sender)
     {
     	//Create a new setting
         JoyStickSetting jss(f->getSetting());
-	 	JoyStickSettings& js = mAB->getJoyStickSettings();
+	 	JoyStickSettings& js = mAB.getJoyStickSettings();
         JoyStickSetting* jsp = js.add(jss);
 
 	    //Update the drop down

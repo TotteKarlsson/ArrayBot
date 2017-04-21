@@ -40,6 +40,7 @@ bool MotorWiggler::startWiggle()
     mNextPosition = mCenterPosition + mAmplitude/2.;
     mXMotor->moveToPosition(mNextPosition);
     mTimer.start();
+    return true;
 }
 
 bool MotorWiggler::stopWiggle()

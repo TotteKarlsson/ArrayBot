@@ -30,15 +30,19 @@ TABProcessSequencerFrame *ABProcessSequencerFrame;
 using namespace mtk;
 
 int TABProcessSequencerFrame::mFrameNr = 0;
-__fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner)
+__fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ProcessSequencer& ps, const string& appFolder, TComponent* Owner)
 	: TFrame(Owner),
-    mAB(ab),
-    mProcessSequencer(mAB.getProcessSequencer()),
+    mAB(ps.getArrayBot()),
+    mProcessSequencer(ps),
     mAppDataFolder(appFolder)
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
     mProcessFileExtension = "abp";
-    TSequenceInfoFrame1->assignArrayBot(&ab);
+//    TSequenceInfoFrame1->assignProcessSequencer(ps);
+
+	TSequenceInfoFrame1 = new TSequenceInfoFrame(mProcessSequencer, this);
+	TSequenceInfoFrame1->Parent = mLeftPanel;
+    TSequenceInfoFrame1->Align = alClient;
     refreshSequencesCB();
 }
 
@@ -85,7 +89,7 @@ void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 {
     //Save current sequence, if any
     mProcessSequencer.saveCurrent();
-	ProcessSequence* s = new ProcessSequence(mAB);
+	ProcessSequence* s = new ProcessSequence(mProcessSequencer.getArrayBot());
 
     mProcessSequencer.addSequence(s);
 
