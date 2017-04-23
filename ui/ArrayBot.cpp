@@ -26,12 +26,10 @@ extern string       gRestartMutexName           = "arrayBotRestartMutex";
 extern string       gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
 extern string       gDateFormat                 = "%Y-%m-%d";
 extern string       gTimeFormat                 = "%H:%M:%S";
-extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern bool         gIsDevelopmentRelease       = false;
 extern bool         gAppIsStartingUp            = true;
-extern bool         gHideSplash                 = false;
+extern bool         gHideSplash                 = true;
 extern TSplashForm* gSplashForm                 = NULL;
-//extern SQLite       gDB                         ;
 
 int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam);
 

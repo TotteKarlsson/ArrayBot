@@ -1,7 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TABProcessSequencerFrame.h"
-
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
 #include "apt/atAPTMotor.h"
@@ -26,19 +25,22 @@
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
 
-//extern string gAppDataFolder;
 using namespace mtk;
 
 int TABProcessSequencerFrame::mFrameNr = 0;
-__fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner)
+
+//---------------------------------------------------------------------------
+__fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ProcessSequencer& ps, const string& appFolder, TComponent* Owner)
 	: TFrame(Owner),
-    mAB(ab),
-    mProcessSequencer(mAB.getProcessSequencer()),
+    mProcessSequencer(ps),
+    mAB(ps.getArrayBot()),
     mAppDataFolder(appFolder)
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
     mProcessFileExtension = "abp";
-    TSequenceInfoFrame1->assignArrayBot(&ab);
+	TSequenceInfoFrame1 = new TSequenceInfoFrame(ps, this);
+	TSequenceInfoFrame1->Parent = mLeftPanel;
+	TSequenceInfoFrame1->Align = alClient;
     refreshSequencesCB();
 }
 
@@ -76,7 +78,7 @@ void __fastcall TABProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sende
     //Send a message to main ui to update sequence shortcuts
     if(sendAppMessage(abSequencerUpdate) != true)
     {
-        Log(lDebug)<<"Sending sequencer update was unsuccesful";
+        Log(lDebug)<<"Sending sequencer update to UI was unsuccesful";
     }
 }
 
@@ -96,7 +98,7 @@ void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
     //Send a message to main ui to update sequence shortcuts
     if(sendAppMessage(abSequencerUpdate) != true)
     {
-        Log(lDebug)<<"Sending sequencer update was unsuccesful";
+        Log(lDebug)<<"Sending sequencer update to UI was unsuccesful";
     }
 }
 
@@ -149,6 +151,7 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
 {
     if(mStartBtn->Caption == "Start" )
@@ -210,6 +213,7 @@ void __fastcall TABProcessSequencerFrame::mSaveSequenceBtnClick(TObject *Sender)
 	saveSequence();
 }
 
+//---------------------------------------------------------------------------
 void TABProcessSequencerFrame::saveSequence()
 {
     mProcessSequencer.saveCurrent();
@@ -266,6 +270,7 @@ void __fastcall TABProcessSequencerFrame::mRewindButtonClick(TObject *Sender)
 	mStartBtn->Caption = "Start";
 }
 
+//---------------------------------------------------------------------------
 string TABProcessSequencerFrame::getCurrentlySelectedSequence()
 {
 	int indx = mSequencesCB->ItemIndex;

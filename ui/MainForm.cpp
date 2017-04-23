@@ -49,7 +49,8 @@ __fastcall TMain::TMain(TComponent* Owner)
     mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
     mLogLevel(lAny),
     mInitBotThread(),
-//    mProcessSequencer(mAB, mArrayCamClient, gAppDataFolder),
+    mAB(mIniFile, gAppDataFolder),
+    mProcessSequencer(mAB, mArrayCamClient, gAppDataFolder),
 	mABProcessSequencerFrame(NULL),
     mRibbonLifterFrame(NULL),
     mTheWiggler(NULL, NULL)
@@ -59,16 +60,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
-
-    try
-    {
-		mAB = new ArrayBot(mIniFile, gAppDataFolder);
-        mProcessSequencer = &(mAB->getProcessSequencer());
-    }
-    catch(const ATException& e)
-    {
-		MessageDlg(e.Message().c_str(), mtWarning, TMsgDlgButtons() << mbOK, 0);
-    }
 
 	//Setup UI properties
     mProperties.setSection("UI");
@@ -91,7 +82,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mPullRelaxAccE->update();
 
 	//Load motors in a thread
-    mInitBotThread.assingBot(mAB);
+    mInitBotThread.assingBot(&mAB);
     mInitBotThread.onFinishedInit = this->onFinishedInitBot;
 
     //We will setup UI frames after the bot is initialized
@@ -114,7 +105,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 
 __fastcall TMain::~TMain()
 {
-	delete mAB;
 	mProperties.write();
     mIniFile.save();
 }
@@ -151,11 +141,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 		gSplashForm->Close();
     }
 
-    setupUIFrames();
+
 
 	gLogger.setLogLevel(mLogLevel);
-
-	enableDisableUI(true);
 
 	if(mLogLevel == lInfo)
 	{
@@ -190,7 +178,7 @@ void __fastcall TMain::WndProc(TMessage& Message)
     if (Message.Msg == getABCoreMessageID("MOTOR_WARNING_MESSAGE") && getABCoreMessageID("MOTOR_WARNING_MESSAGE") != 0)
     {
     	MotorMessageData* msg = reinterpret_cast<MotorMessageData*>(Message.WParam);
-       	APTMotor* mtr = mAB->getMotorWithSerial(msg->mSerial);
+       	APTMotor* mtr = mAB.getMotorWithSerial(msg->mSerial);
 
         if(!mtr)
         {
@@ -264,17 +252,32 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
 	if(!mInitBotThread.isRunning()) //Not waiting for devices any more
     {
 		WaitForDeviceInitTimer->Enabled = false;
+
+        //Create MoveSequencer frame
+        mABProcessSequencerFrame = new TABProcessSequencerFrame(mProcessSequencer, gAppDataFolder, mMoveSequencesPage);
+        mABProcessSequencerFrame->Parent = mMoveSequencesPage;
+        mABProcessSequencerFrame->Align = alClient;
+        mABProcessSequencerFrame->init();
+
+        //The sequencer buttons frame holds shortcut buttons for preprogrammed sequences
+        mSequencerButtons = new TSequencerButtonsFrame(mProcessSequencer, mSequencesPanel);
+        mSequencerButtons->Parent = mSequencesPanel;
+        mSequencerButtons->Align = alClient;
+        mSequencerButtons->update();
+
+        setupUIFrames();
+        enableDisableUI(true);
     }
 }
 
 void __fastcall	TMain::setupUIFrames()
 {
     //Create frames showing motor positions
-    TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB->getCoverSlipUnit());
+    TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
     f1->Parent = this->mRightPanel;
     f1->Align = alBottom;
 
-    TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB->getWhiskerUnit());
+    TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB.getWhiskerUnit());
     f2->Parent = this->mRightPanel;
     f2->Align = alBottom;
 
@@ -284,14 +287,14 @@ void __fastcall	TMain::setupUIFrames()
 	//Setup JoyStick;
 
     //Over ride joysticks button events  (cycle speeds and XY motions)
-    mAB->getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
-    mAB->getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
+    mAB.getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
+    mAB.getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
 
     //!Button 14 emergency stop
-    mAB->getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
+    mAB.getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
 
     //JoyStick Settings CB
-    JoyStickSettings& js = mAB->getJoyStickSettings();
+    JoyStickSettings& js = mAB.getJoyStickSettings();
     JoyStickSetting* jss = js.getFirst();
     while(jss)
     {
@@ -303,20 +306,20 @@ void __fastcall	TMain::setupUIFrames()
     JoyStickSettingsCB->OnChange(NULL);
     mJSSpeedMediumBtn->Click();
     //mJSCSBtn->Click();
-	mAB->enableJoyStick();
+	mAB.enableJoyStick();
 
     //XY velocity parameters
-    mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
-    mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
+    mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getX1Axis().getMaxVelocity());
+    mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getX1Axis().getAcceleration());
 
-    if(mAB->getCoverSlipUnit().getZMotor())
+    if(mAB.getCoverSlipUnit().getZMotor())
     {
-        mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
-        mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
+        mMaxZJogVelocityJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getVelocity());
+        mZJogAccelerationJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
     }
 
     //Lift Settings CB
-    PairedMoves& pms = mAB->getLiftMoves();
+    PairedMoves& pms = mAB.getLiftMoves();
     PairedMove* pm = pms.getFirst();
     while(pm)
     {
@@ -330,45 +333,32 @@ void __fastcall	TMain::setupUIFrames()
 
 	//Create and setup XYZ unit frames
     mXYZUnitFrame1 = new TXYZUnitFrame(this);
-    mXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
+    mXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
     mXYZUnitFrame1->Parent = ScrollBox1;
     mXYZUnitFrame1->Left = 10;
 
     mXYZUnitFrame2 = new TXYZUnitFrame(this);
-    mXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
+    mXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
     mXYZUnitFrame2->Parent = ScrollBox1;
     mXYZUnitFrame2->Left = 10;
     mXYZUnitFrame2->Top = mXYZUnitFrame1->Top + mXYZUnitFrame1->Height;
-
-    //Create MoveSequencer frame
-    mABProcessSequencerFrame = new TABProcessSequencerFrame(*(mAB), gAppDataFolder, mMoveSequencesPage);
-    mABProcessSequencerFrame->Parent = mMoveSequencesPage;
-    mABProcessSequencerFrame->Align = alClient;
-    mABProcessSequencerFrame->init();
-
-
-    //The sequencer buttons frame holds shortcut buttons for preprogrammed sequences
-	mSequencerButtons = new TSequencerButtonsFrame(*(mAB), mSequencesPanel);
-	mSequencerButtons->Parent = mSequencesPanel;
-    mSequencerButtons->Align = alClient;
-	mSequencerButtons->update();
 }
 
 void __fastcall TMain::reInitBotAExecute(TObject *Sender)
 {
-	mAB->initialize();
+	mAB.initialize();
 
-	mXYZUnitFrame1->assignUnit(&mAB->getCoverSlipUnit());
-	mXYZUnitFrame2->assignUnit(&mAB->getWhiskerUnit());
+	mXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
+	mXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
 
     //ArrayBotJoyStick stuff.....
-    mMaxXYJogVelocityJoystick->setValue(mAB->getJoyStick().getX1Axis().getMaxVelocity());
-    mXYJogAccelerationJoystick->setValue(mAB->getJoyStick().getX1Axis().getAcceleration());
+    mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getX1Axis().getMaxVelocity());
+    mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getX1Axis().getAcceleration());
 
-    if(mAB->getCoverSlipUnit().getZMotor())
+    if(mAB.getCoverSlipUnit().getZMotor())
     {
-    	mMaxZJogVelocityJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getVelocity());
-    	mZJogAccelerationJoystick->setValue(mAB->getCoverSlipUnit().getZMotor()->getAcceleration());
+    	mMaxZJogVelocityJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getVelocity());
+    	mZJogAccelerationJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
     }
 
     ReInitBotBtn->Action = ShutDownA;
@@ -376,14 +366,14 @@ void __fastcall TMain::reInitBotAExecute(TObject *Sender)
 
 void __fastcall TMain::stopAllAExecute(TObject *Sender)
 {
-	mAB->stopAll();
+	mAB.stopAll();
     mTheWiggler.stopWiggle();
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::mLiftTimerTimer(TObject *Sender)
 {
-	if(mAB->isActive())
+	if(mAB.isActive())
     {
     	LiftBtn->Action = abortLiftA;
     }
@@ -393,18 +383,18 @@ void __fastcall TMain::mLiftTimerTimer(TObject *Sender)
 		mLiftTimer->Enabled = false;
 
     	//Re-enable the joystick.
-		mAB->enableJoyStick();
+		mAB.enableJoyStick();
     }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::abortLiftAExecute(TObject *Sender)
 {
-	mAB->stopAll();
+	mAB.stopAll();
     Log(lInfo) << "The lift was aborted";
 
     //Re-enable the joystick.
-	mAB->enableJoyStick();
+	mAB.enableJoyStick();
 }
 
 PairedMove* TMain::getCurrentPairedMove()
@@ -421,8 +411,8 @@ void __fastcall TMain::liftAExecute(TObject *Sender)
 {
 	PairedMove* pm = getCurrentPairedMove();
 
-    pm->assignMotor1(mAB->getCoverSlipUnit().getZMotor());
-    pm->assignMotor2(mAB->getWhiskerUnit().getZMotor());
+    pm->assignMotor1(mAB.getCoverSlipUnit().getZMotor());
+    pm->assignMotor2(mAB.getWhiskerUnit().getZMotor());
     if(!pm)
     {
     	Log(lError) << "Can't carry out this move.. at least one motor is absent";
@@ -437,7 +427,7 @@ void __fastcall TMain::liftAExecute(TObject *Sender)
     }
 
     //Re-enable the joystick after finish.
-	mAB->disableJoyStick();
+	mAB.disableJoyStick();
     pm->execute();
     mLiftTimer->Enabled = true;
    	LiftBtn->Action = abortLiftA;
@@ -477,7 +467,7 @@ void __fastcall	TMain::onFinishedInitBot()
     mTheWiggler.setAmplitude(mWigglerAmplitudeE->getValue());
     mTheWiggler.setMaxVelocity(mWigglerVelocityE->getValue());
     mTheWiggler.setMaxAcceleration(mWigglerAccelerationE->getValue());
-    mTheWiggler.assignMotors(mAB->getWhiskerUnit().getXMotor(), mAB->getWhiskerUnit().getYMotor());
+    mTheWiggler.assignMotors(mAB.getWhiskerUnit().getXMotor(), mAB.getWhiskerUnit().getYMotor());
 }
 
 //---------------------------------------------------------------------------
@@ -519,9 +509,9 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
   	//TODO: Clean up joystick mess..
 
 	//Check if Joystick is working and update radiogroup if not
-	if(mJoyStickRG->ItemIndex != mAB->getJoyStick().getID())
+	if(mJoyStickRG->ItemIndex != mAB.getJoyStick().getID())
     {
-    	int indx = mAB->getJoyStick().getID();
+    	int indx = mAB.getJoyStick().getID();
         if(indx != -1)
         {
 			mJoyStickRG->ItemIndex = indx;
@@ -531,7 +521,7 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
 	int indx = mJoyStickRG->ItemIndex;
 
     //Check validity
-    if(!mAB->getJoyStick().isValid())
+    if(!mAB.getJoyStick().isValid())
     {
         mJSStatusL->Caption = "Current joystick could not be found!";
         mJSCSBtn->Enabled = false;
@@ -540,7 +530,7 @@ void __fastcall TMain::UIUpdateTimerTimer(TObject *Sender)
     {
         mJSStatusL->Caption = "";
         mJSCSBtn->Enabled = true;
-       	mJSCSBtn->Caption = (mAB->getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
+       	mJSCSBtn->Caption = (mAB.getJoyStick().isEnabled()) ? "Disable JS" : "Enable JS";
     }
 }
 
@@ -549,23 +539,23 @@ void __fastcall TMain::mUnitControlRGClick(TObject *Sender)
 {
 	if(mUnitControlRG->ItemIndex == 0)//Both W and CS
     {
-        mAB->enableCoverSlipUnit();
-        mAB->enableWhiskerUnit();
+        mAB.enableCoverSlipUnit();
+        mAB.enableWhiskerUnit();
     }
     else if(mUnitControlRG->ItemIndex == 1)//Only CS
     {
-        mAB->enableCoverSlipUnit();
-        mAB->disableWhiskerUnit();
+        mAB.enableCoverSlipUnit();
+        mAB.disableWhiskerUnit();
     }
     else if(mUnitControlRG->ItemIndex == 2)//Only Z
     {
-        mAB->disableCoverSlipUnit();
-        mAB->enableWhiskerUnit();
+        mAB.disableCoverSlipUnit();
+        mAB.enableWhiskerUnit();
     }
     else
     {
-        mAB->disableCoverSlipUnit();
-        mAB->disableWhiskerUnit();
+        mAB.disableCoverSlipUnit();
+        mAB.disableWhiskerUnit();
     }
 }
 
@@ -650,7 +640,7 @@ void __fastcall TMain::mWiggleBtnClick(TObject *Sender)
 	//Start/Stop wiggle timer
     if(!mTheWiggler.isRunning())
     {
-        mAB->disableJoyStickAxes();
+        mAB.disableJoyStickAxes();
         Log(lInfo) << "Wiggler Center Position: "<<mTheWiggler.getCenterPosition();
         mTheWiggler.startWiggle();
 		mWiggleBtn->Caption = "Stop Wiggle";
@@ -658,8 +648,8 @@ void __fastcall TMain::mWiggleBtnClick(TObject *Sender)
     else
     {
         mTheWiggler.stopWiggle();
-	    mAB->getWhiskerUnit().getXMotor()->stop();
-        mAB->enableJoyStickAxes();
+	    mAB.getWhiskerUnit().getXMotor()->stop();
+        mAB.enableJoyStickAxes();
     	mWiggleBtn->Caption = "Start Wiggle";
     }
 }
@@ -697,7 +687,7 @@ void __fastcall TMain::mPullRibbonBtnClick(TObject *Sender)
 
     TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
 
-    mAB->disableJoyStickAxes();
+    mAB.disableJoyStickAxes();
     if(b == mPullRibbonBtn)
     {
     	mTheWiggler.pull(step);

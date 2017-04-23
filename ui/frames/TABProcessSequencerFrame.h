@@ -38,7 +38,6 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 	TAction *addTimeDelayProcess;
 	TPanel *mMainPanel;
 	TPanel *mLeftPanel;
-	TSequenceInfoFrame *TSequenceInfoFrame1;
 	TPanel *Panel2;
 	TCheckBox *mSteppedExecutionCB;
 	TButton *mRewindButton;
@@ -57,17 +56,21 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 		void __fastcall mRenameButtonClick(TObject *Sender);
 
 	private:	// User declarations
-        ArrayBot&					mAB;
+		static int 					mFrameNr;
+
 	    ProcessSequencer&  			mProcessSequencer;
+        ArrayBot&					mAB;
         string 						mProcessFileExtension;
         string 						mAppDataFolder;
         string						getCurrentlySelectedSequence();
 		void __fastcall 			refreshSequencesCB();
-		static int 					mFrameNr;
 		void						saveSequence();
 
+        							//!The SequenceInfo frame is dynamically allocated
+		TSequenceInfoFrame*			TSequenceInfoFrame1;
+
 	public:
-						 __fastcall TABProcessSequencerFrame(ArrayBot& ab, const string& appFolder, TComponent* Owner);
+						 __fastcall TABProcessSequencerFrame(ProcessSequencer& ps, const string& appFolder, TComponent* Owner);
         void						init();
 };
 

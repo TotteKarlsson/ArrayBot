@@ -65,7 +65,6 @@ void TSplashForm::setShowTime(int ms)
     mMinimumTimeShowing = (ms*Poco::Timespan::SECONDS);
 }
 
-
 void __fastcall TSplashForm::CreateParams(TCreateParams& Params)
 {
   TForm::CreateParams(Params);
