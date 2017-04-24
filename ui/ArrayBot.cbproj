@@ -128,10 +128,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="JoyStickRelated.cpp">
             <BuildOrder>6</BuildOrder>
         </CppCompile>
-        <CppCompile Include="lib\atMotorWiggler.cpp">
-            <DependentOn>lib\atMotorWiggler.h</DependentOn>
-            <BuildOrder>7</BuildOrder>
-        </CppCompile>
         <CppCompile Include="MainForm.cpp">
             <Form>Main</Form>
             <FormType>dfm</FormType>
