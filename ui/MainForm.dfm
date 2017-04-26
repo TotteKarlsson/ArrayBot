@@ -46,11 +46,12 @@ object Main: TMain
     object mJSStatusL: TLabel
       Left = 1
       Top = 225
-      Width = 96
+      Width = 181
       Height = 23
       Align = alTop
       Caption = 'mJSStatusL'
       WordWrap = True
+      ExplicitWidth = 96
     end
     object BottomBtnPanel: TPanel
       Left = 1
@@ -113,10 +114,6 @@ object Main: TMain
     OnChange = PageControl1Change
     object mFrontPage: TTabSheet
       Caption = 'The Bot'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object mMiddlePanel: TPanel
         Left = 0
         Top = 97
@@ -354,9 +351,9 @@ object Main: TMain
             end
             object mArrayCamStatusLED: TImage
               Left = 230
-              Top = 131
-              Width = 41
-              Height = 41
+              Top = 141
+              Width = 25
+              Height = 25
               Picture.Data = {
                 07544269746D617066CD0500424D66CD05000000000036000000280000006401
                 000064010000010018000000000030CD0500C30E0000C30E0000000000000000
@@ -12255,9 +12252,9 @@ object Main: TMain
             end
             object mArrayCamConnectionStatusLED: TImage
               Left = 230
-              Top = 40
-              Width = 41
-              Height = 41
+              Top = 50
+              Width = 25
+              Height = 25
               Picture.Data = {
                 07544269746D617066CD0500424D66CD05000000000036000000280000006401
                 000064010000010018000000000030CD0500C30E0000C30E0000000000000000
@@ -24266,25 +24263,13 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
@@ -24348,10 +24333,6 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object JoyStickGB2: TGroupBox
         Left = 38
         Top = 73
@@ -24542,10 +24523,6 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0

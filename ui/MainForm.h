@@ -174,6 +174,7 @@ class TMain : public TRegistryForm
 void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall mPullRibbonBtnClick(TObject *Sender);
 	void __fastcall mSequencesPanelResize(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMoveSequences = 1,

@@ -50,10 +50,12 @@ __fastcall TMain::TMain(TComponent* Owner)
     mLogLevel(lAny),
     mInitBotThread(),
     mAB(mIniFile, gAppDataFolder),
+    mArrayCamClient(),
     mProcessSequencer(mAB, mArrayCamClient, gAppDataFolder),
 	mABProcessSequencerFrame(NULL),
     mRibbonLifterFrame(NULL),
     mTheWiggler(NULL, NULL)
+
 {
     //Init the CoreLibDLL -> give intra messages their ID's
 	initABCoreLib();
@@ -702,6 +704,12 @@ void __fastcall TMain::mPullRibbonBtnClick(TObject *Sender)
 void __fastcall TMain::mSequencesPanelResize(TObject *Sender)
 {
     mSequencerButtons->update();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::Button1Click(TObject *Sender)
+{
+	mArrayCamClient.startVideo();
 }
 
 

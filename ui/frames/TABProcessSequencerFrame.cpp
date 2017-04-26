@@ -87,7 +87,7 @@ void __fastcall TABProcessSequencerFrame::mAddSeqBtnClick(TObject *Sender)
 {
     //Save current sequence, if any
     mProcessSequencer.saveCurrent();
-	ProcessSequence* s = new ProcessSequence(mAB);
+	ProcessSequence* s = new ProcessSequence(mAB, mProcessSequencer.getArrayCamClient());
 
     mProcessSequencer.addSequence(s);
 
