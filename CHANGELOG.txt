@@ -1,4 +1,101 @@
-Release 0.8.8 (April 5)
+Release 0.8.7 (April 5)
+=======================
+* Below are changelogs realted to atapi, as well as to the ArrayBot UI
+* Moved MotorWigglerunit to core library
+* Moved motor wiggler into coreLibs
+* Preparing Arraybot for processes that can communicate with ArrayCam
+* Made arraybot an object instead of pointer within main UI
+* Added code for dealing with ArrayCam Client requests
+* Significant simplifications of how processes are handled internally
+* Moved arrayCamClient to the main library, atlib
+* Added client components for the ArrayCam server
+* Added UI LED's to indicate state of ArrayCamServer
+* Updated the release script
+* General changes to VCL frames that are dynamically created -> Pass references instead of pointers
+* Added Start, Stop Video, enable disable barcodescanner and other useful requests to the ArrayCamClient class
+* Added ability to subscribe to arraycams message processor using a modified observer/subject pattern
+* Added more robust handling of arraycam responses
+* Simplified XML reading writing of processes
+* Got a semi robust handling of arraycamrequests at client side
+* Renamed arraycamrequest to arraycamrequestprocess
+* Firmed up the actual ArraCam request protocol using a static map
+* Some renaming of units
+* Added a ArrayCamProtocol class holding message specs, request definitions
+* Moved motorwiggler into core
+* Removed ProcessSequencer from ArrayBot class
+* Added functions and properties to ArrayCamRequest class
+* Populating frames with objects in stead of pointers
+* Restored state from previous version having arraybot being a pointer in most frames..
+* Many changes to processes logic - need testing!!
+* Added units for arraycam requests
+* Updated code for the labelprinter to accept commands stored in the database
+* Added database lookup table enum
+* Added utility function to atdb data module: getBlockID
+* Fixed some inconsistencies in the CoverSlip datamodule.
+* Added a Ribbons datamodule, that might be used for ribbons specific dataprocessing
+* Added a ribbonOnCS client dataset
+* Added a getLastCount to counter class
+* Added getLastNumber of sections property to UC7 component
+* Added counter for ribbon order.
+* Added field for ribbon creator in ribbons table
+* Added a Zebra scanner frame to deal with scanner logic
+* Fixed barcode reader crash bug -> needed dynamic lining with runtime libraries
+* Added a TCoverSlipDataModule to vcl/datamodules
+* Fixed enabling/disabling of joystickaxes while a motorsequence is executed
+* Added atdb connection Frame
+* Added form to control, start and stop a sequence of processes
+* Added Thorlabs library files for Borland
+* Added Kinesis files
+* Added class for stop and resume operation
+* Adding stop and resume process
+* Fixing ab->at namespace
+* Reorganized thirdparty folder somewhat
+* Moved doxygen file to new folder
+* Improved usability of programmed robot moves frames
+* Removed obsolete SendWidowMessage function and cleaned up unnecessary white space
+* Added datamatrix parameter structure
+* Added satrt/stop decode session functions for barcode scanner
+* Simplifying scanner code (SSIDLL)
+* Added info about errors
+* Added specimententered date field
+* Added entered_by field to specimen table
+* Added function to hand out the barcode readers memory
+* Added a isconnected API call to SSIDLL
+* Refactoring ABObject -> ATObject
+* Renamed top level ABObject to ATObject
+* Added unit for barcodereader class
+* Added barcodereader module
+* Added ssidll to thirdparty folder
+* Adding atSSI dll project code
+* Added ssidll code
+* Implementing sensor database logging
+* Adding db writing from arduinoCOntroller application
+* Re-enabling sensors arduino
+* Cleaning up arduino code
+* Cleaning up arduino controller code
+* Added a few sound ID's
+* Added usage of YesNo form on position confirmation on AB sequences page
+* Changed buttons on sequence frame to be ArraybotButtons, i.e. adding sound
+* Removed OnEnter 'update'
+* Updated reticle to accept a custom origin
+* Changed arduino message processor to not start unless a connection is made
+* Added a Reticle class for arrayCam
+* Added Yes/No form to VCL library
+* Added handling of UC7 system commands.
+* Added UC7 north knife stage position max position
+* Started work on a threaded soundplayer
+* Updated how arraybot shortcut buttons are placed
+* Added logic to handle joystick axis deadzones
+* Changed motorprocessing delay to 150ms from 50 ms
+* Fixed long travelstage stop profiled command to be executed in thread
+* Some UC7 fixes regarding moving of the knife stage
+* Re=enabled sounds using atResources.dll
+* Fixed a motor shutdown bug, related to its status timer
+* Removed arduino
+* Fixed a VERY nasty bug regarding usage of serialport
+* Removed code related to PufferArduino
+
+Release 0.8.6 (April 5)
 =======================
 * Added functionality to pause/resume a move sequence by adding a stop/resume action to the process sequences
 * Improved usability of steps programming
