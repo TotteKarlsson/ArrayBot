@@ -230,9 +230,9 @@ object Main: TMain
               Value = 5.000000000000000000
             end
             object mWiggleBtn: TArrayBotButton
-              Left = 171
+              Left = 151
               Top = 320
-              Width = 278
+              Width = 298
               Height = 171
               Caption = 'Wiggle'
               Font.Charset = DEFAULT_CHARSET
@@ -301,9 +301,9 @@ object Main: TMain
               SoundID = 'SHORT_BEEP_1'
             end
             object mPullCB: TComboBox
-              Left = 304
+              Left = 240
               Top = 165
-              Width = 145
+              Width = 209
               Height = 33
               Style = csDropDownList
               Font.Charset = DEFAULT_CHARSET
@@ -327,7 +327,7 @@ object Main: TMain
             object mRelaxBtn: TArrayBotButton
               Left = 24
               Top = 42
-              Width = 153
+              Width = 105
               Height = 73
               Caption = 'Relax'
               TabOrder = 7
@@ -344,14 +344,14 @@ object Main: TMain
             TabOrder = 2
             object mVideoRecordingStatusLbl: TLabel
               Left = 16
-              Top = 139
+              Top = 111
               Width = 208
               Height = 23
               Caption = 'Video Recording Status: '
             end
             object mArrayCamStatusLED: TImage
               Left = 230
-              Top = 141
+              Top = 109
               Width = 25
               Height = 25
               Picture.Data = {
@@ -24144,6 +24144,15 @@ object Main: TMain
               Stretch = True
               Transparent = True
             end
+            object mASStartBtn: TButton
+              Left = 15
+              Top = 168
+              Width = 104
+              Height = 41
+              Caption = 'Connect'
+              TabOrder = 0
+              OnClick = mASStartBtnClick
+            end
           end
         end
       end
@@ -24456,15 +24465,6 @@ object Main: TMain
           TabOrder = 0
           Text = '50000'
           Value = 50000
-        end
-        object mASStartBtn: TButton
-          Left = 143
-          Top = 40
-          Width = 104
-          Height = 97
-          Caption = 'Connect'
-          TabOrder = 1
-          OnClick = mASStartBtnClick
         end
       end
       object GroupBox2: TGroupBox

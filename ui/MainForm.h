@@ -112,7 +112,6 @@ class TMain : public TRegistryForm
 	TPanel *Panel2;
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mArrayCamServerPortE;
-	TButton *mASStartBtn;
 	TTabSheet *TabSheet3;
 	TAboutArrayBotFrame_2 *TAboutArrayBotFrame_21;
 	TArrayBotButton *Button5;
@@ -139,6 +138,7 @@ class TMain : public TRegistryForm
 	TImage *mArrayCamStatusLED;
 	TLabel *Label2;
 	TImage *mArrayCamConnectionStatusLED;
+	TButton *mASStartBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
