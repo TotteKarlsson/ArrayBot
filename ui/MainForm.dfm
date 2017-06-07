@@ -24272,25 +24272,13 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
@@ -24354,184 +24342,220 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
-      object JoyStickGB2: TGroupBox
-        Left = 38
-        Top = 73
-        Width = 422
-        Height = 345
-        Caption = 'JoyStick Velocities'
+      object PageControl2: TPageControl
+        Left = 0
+        Top = 0
+        Width = 906
+        Height = 802
+        ActivePage = TabSheet4
+        Align = alClient
         TabOrder = 0
-        object mZJogAccelerationJoystick: TFloatLabeledEdit
-          Left = 247
-          Top = 198
-          Width = 66
-          Height = 31
-          EditLabel.Width = 118
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Z Acceleration'
-          TabOrder = 3
-          Text = '0.00'
-          OnKeyDown = JoyStickValueEdit
-        end
-        object mXYJogAccelerationJoystick: TFloatLabeledEdit
-          Left = 247
-          Top = 108
-          Width = 66
-          Height = 31
-          EditLabel.Width = 129
-          EditLabel.Height = 23
-          EditLabel.Caption = 'XY Acceleration'
-          TabOrder = 1
-          Text = '0.00'
-          OnKeyDown = JoyStickValueEdit
-        end
-        object mMaxZJogVelocityJoystick: TFloatLabeledEdit
-          Left = 16
-          Top = 198
-          Width = 66
-          Height = 31
-          EditLabel.Width = 120
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Max Z Velocity'
-          TabOrder = 2
-          Text = '0.00'
-          OnKeyDown = JoyStickValueEdit
-        end
-        object mMaxXYJogVelocityJoystick: TFloatLabeledEdit
-          Left = 16
-          Top = 108
-          Width = 66
-          Height = 31
-          EditLabel.Width = 131
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Max XY Velocity'
-          TabOrder = 0
-          Text = '0.00'
-          OnKeyDown = JoyStickValueEdit
-        end
-        object JoyStickSettingsCB: TComboBox
-          Left = 16
-          Top = 24
-          Width = 291
-          Height = 31
-          Style = csDropDownList
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 6
-          OnChange = JoyStickSettingsCBChange
-        end
-        object AddJsSettingBtn: TButton
-          Left = 313
-          Top = 23
-          Width = 32
-          Height = 33
-          Caption = '+'
-          TabOrder = 7
-          Visible = False
-          OnClick = AddJsSettingBtnClick
-        end
-        object mAngleControlVelE: TFloatLabeledEdit
-          Left = 16
-          Top = 286
-          Width = 66
-          Height = 31
-          EditLabel.Width = 156
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Angle Ctrl. Velocity'
-          TabOrder = 4
-          Text = '0.00'
-          OnKeyDown = JoyStickValueEdit
-        end
-        object mAngleControllerAccE: TFloatLabeledEdit
-          Left = 247
-          Top = 286
-          Width = 66
-          Height = 31
-          EditLabel.Width = 122
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Angle Ctrl Acc.'
-          TabOrder = 5
-          Text = '0.00'
-          OnKeyDown = JoyStickValueEdit
-        end
-      end
-      object GroupBox1: TGroupBox
-        Left = 466
-        Top = 73
-        Width = 257
-        Height = 155
-        Caption = 'Arraycam Client'
-        TabOrder = 1
-        object mArrayCamServerPortE: TIntegerLabeledEdit
-          Left = 16
-          Top = 56
-          Width = 121
-          Height = 31
-          EditLabel.Width = 108
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Network Port'
-          TabOrder = 0
-          Text = '50000'
-          Value = 50000
-        end
-      end
-      object GroupBox2: TGroupBox
-        Left = 38
-        Top = 432
-        Width = 383
-        Height = 329
-        Caption = 'Wiggler'
-        TabOrder = 2
-        object mWigglerAmplitudeStepE: TFloatLabeledEdit
-          Left = 32
-          Top = 64
-          Width = 129
-          Height = 31
-          EditLabel.Width = 128
-          EditLabel.Height = 23
-          EditLabel.Caption = 'Amplitude Step'
-          TabOrder = 0
-          Text = '0.50'
-          Value = 0.500000000000000000
-        end
-        object GroupBox4: TGroupBox
-          Left = 29
-          Top = 120
-          Width = 249
-          Height = 153
-          Caption = 'Pull/Relax Parameterss'
-          TabOrder = 1
-          object mPullRelaxAccE: TFloatLabeledEdit
-            Left = 133
-            Top = 82
-            Width = 105
-            Height = 31
-            EditLabel.Width = 101
-            EditLabel.Height = 23
-            EditLabel.Caption = 'Acceleration'
+        ExplicitLeft = 131
+        ExplicitTop = 73
+        ExplicitWidth = 678
+        ExplicitHeight = 670
+        object TabSheet4: TTabSheet
+          Caption = 'Joystick'
+          ExplicitWidth = 281
+          ExplicitHeight = 155
+          object JoyStickGB2: TGroupBox
+            Left = 14
+            Top = 17
+            Width = 422
+            Height = 345
+            Caption = 'JoyStick Velocities'
             TabOrder = 0
-            Text = '5.00'
-            Value = 5.000000000000000000
+            object mZJogAccelerationJoystick: TFloatLabeledEdit
+              Left = 247
+              Top = 198
+              Width = 66
+              Height = 31
+              EditLabel.Width = 118
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Z Acceleration'
+              TabOrder = 3
+              Text = '0.00'
+              OnKeyDown = JoyStickValueEdit
+            end
+            object mXYJogAccelerationJoystick: TFloatLabeledEdit
+              Left = 247
+              Top = 108
+              Width = 66
+              Height = 31
+              EditLabel.Width = 129
+              EditLabel.Height = 23
+              EditLabel.Caption = 'XY Acceleration'
+              TabOrder = 1
+              Text = '0.00'
+              OnKeyDown = JoyStickValueEdit
+            end
+            object mMaxZJogVelocityJoystick: TFloatLabeledEdit
+              Left = 16
+              Top = 198
+              Width = 66
+              Height = 31
+              EditLabel.Width = 120
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Max Z Velocity'
+              TabOrder = 2
+              Text = '0.00'
+              OnKeyDown = JoyStickValueEdit
+            end
+            object mMaxXYJogVelocityJoystick: TFloatLabeledEdit
+              Left = 16
+              Top = 108
+              Width = 66
+              Height = 31
+              EditLabel.Width = 131
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Max XY Velocity'
+              TabOrder = 0
+              Text = '0.00'
+              OnKeyDown = JoyStickValueEdit
+            end
+            object JoyStickSettingsCB: TComboBox
+              Left = 16
+              Top = 24
+              Width = 291
+              Height = 31
+              Style = csDropDownList
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -19
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 6
+              OnChange = JoyStickSettingsCBChange
+            end
+            object AddJsSettingBtn: TButton
+              Left = 313
+              Top = 23
+              Width = 32
+              Height = 33
+              Caption = '+'
+              TabOrder = 7
+              Visible = False
+              OnClick = AddJsSettingBtnClick
+            end
+            object mAngleControlVelE: TFloatLabeledEdit
+              Left = 16
+              Top = 286
+              Width = 66
+              Height = 31
+              EditLabel.Width = 156
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Angle Ctrl. Velocity'
+              TabOrder = 4
+              Text = '0.00'
+              OnKeyDown = JoyStickValueEdit
+            end
+            object mAngleControllerAccE: TFloatLabeledEdit
+              Left = 247
+              Top = 286
+              Width = 66
+              Height = 31
+              EditLabel.Width = 122
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Angle Ctrl Acc.'
+              TabOrder = 5
+              Text = '0.00'
+              OnKeyDown = JoyStickValueEdit
+            end
           end
-          object mPullRelaxVelocityE: TFloatLabeledEdit
-            Left = 16
-            Top = 82
-            Width = 105
-            Height = 31
-            EditLabel.Width = 63
-            EditLabel.Height = 23
-            EditLabel.Caption = 'Velocity'
-            TabOrder = 1
-            Text = '3.00'
-            Value = 3.000000000000000000
+        end
+        object TabSheet7: TTabSheet
+          Caption = 'Wiggler'
+          ImageIndex = 2
+          ExplicitWidth = 670
+          ExplicitHeight = 632
+          object GroupBox2: TGroupBox
+            Left = 14
+            Top = 15
+            Width = 383
+            Height = 329
+            Caption = 'Wiggler'
+            TabOrder = 0
+            object mWigglerAmplitudeStepE: TFloatLabeledEdit
+              Left = 32
+              Top = 64
+              Width = 129
+              Height = 31
+              EditLabel.Width = 128
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Amplitude Step'
+              TabOrder = 0
+              Text = '0.50'
+              Value = 0.500000000000000000
+            end
+            object GroupBox4: TGroupBox
+              Left = 29
+              Top = 120
+              Width = 249
+              Height = 153
+              Caption = 'Pull/Relax Parameterss'
+              TabOrder = 1
+              object mPullRelaxAccE: TFloatLabeledEdit
+                Left = 133
+                Top = 82
+                Width = 105
+                Height = 31
+                EditLabel.Width = 101
+                EditLabel.Height = 23
+                EditLabel.Caption = 'Acceleration'
+                TabOrder = 0
+                Text = '5.00'
+                Value = 5.000000000000000000
+              end
+              object mPullRelaxVelocityE: TFloatLabeledEdit
+                Left = 16
+                Top = 82
+                Width = 105
+                Height = 31
+                EditLabel.Width = 63
+                EditLabel.Height = 23
+                EditLabel.Caption = 'Velocity'
+                TabOrder = 1
+                Text = '3.00'
+                Value = 3.000000000000000000
+              end
+            end
+          end
+        end
+        object TabSheet6: TTabSheet
+          Caption = 'Sounds'
+          ImageIndex = 1
+          ExplicitLeft = 170
+          ExplicitTop = 6
+          ExplicitWidth = 670
+          ExplicitHeight = 632
+        end
+        object TabSheet8: TTabSheet
+          Caption = 'ArrayCam Connection'
+          ImageIndex = 3
+          ExplicitLeft = 68
+          ExplicitTop = 386
+          ExplicitWidth = 670
+          ExplicitHeight = 632
+          object GroupBox1: TGroupBox
+            Left = 37
+            Top = 33
+            Width = 257
+            Height = 155
+            Caption = 'Arraycam Client'
+            TabOrder = 0
+            object mArrayCamServerPortE: TIntegerLabeledEdit
+              Left = 16
+              Top = 56
+              Width = 121
+              Height = 31
+              EditLabel.Width = 108
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Network Port'
+              TabOrder = 0
+              Text = '50000'
+              Value = 50000
+            end
           end
         end
       end
@@ -24539,10 +24563,6 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0

@@ -195,7 +195,7 @@ void __fastcall TMain::WndProc(TMessage& Message)
             	if(mtr->getLastCommand() != mcStopHard)
                 {
             		mtr->stop();
-	                playABSound(absMotorWarning);
+	                //playABSound(absMotorWarning);
     	            Log(lInfo) << "Stopped motor: "<<mtr->getName();
                 }
             }
@@ -203,7 +203,7 @@ void __fastcall TMain::WndProc(TMessage& Message)
 
         if(mtr->isInDangerZone())
         {
-        	playABSound(absMotorWarning);
+        	//playABSound(absMotorWarning);
         }
 
 
@@ -711,5 +711,6 @@ void __fastcall TMain::Button1Click(TObject *Sender)
 {
 	mArrayCamClient.startVideo();
 }
+
 
 

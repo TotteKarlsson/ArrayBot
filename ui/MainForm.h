@@ -139,6 +139,11 @@ class TMain : public TRegistryForm
 	TLabel *Label2;
 	TImage *mArrayCamConnectionStatusLED;
 	TButton *mASStartBtn;
+	TPageControl *PageControl2;
+	TTabSheet *TabSheet4;
+	TTabSheet *TabSheet6;
+	TTabSheet *TabSheet7;
+	TTabSheet *TabSheet8;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
