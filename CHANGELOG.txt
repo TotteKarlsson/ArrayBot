@@ -1,3 +1,13 @@
+Release 0.8.8 (June 7)
+=======================
+* Added frames for user selection os application sounds
+* Added application sound properties
+* Added pagecontrol component to settings page
+* Updated sound test application
+* Re-enabled the splashscren
+* Moved the ArrayCam connect button to the frontpage
+* Updated release script
+
 Release 0.8.7 (April 5)
 =======================
 * Below are changelogs realted to atapi, as well as to the ArrayBot UI
