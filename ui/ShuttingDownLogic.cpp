@@ -12,6 +12,14 @@ using namespace mtk;
 static HWND gOtherAppWindow = NULL;
 extern TSplashForm*  gSplashForm;
 
+
+__fastcall TMain::~TMain()
+{
+	mProperties.write();
+	mSoundProperties.write();
+    mIniFile.save();
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 {
@@ -42,11 +50,6 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 	    gSplashForm->setShowTime(0);
     	Log(lDebug) << "Waiting for splash..";
     }
-
-//    if(mPufferArduinoClient.isConnected())
-//    {
-//    	mPufferArduinoClient.disConnect();
-//    }
 
     //This will save any ini parameters in the frame
     if(mFrames.size())
@@ -107,12 +110,11 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 
 	//Check if active stuff is going on.. if so call the ShutDown in the
     //Timer fire
-	if(		mAB.getJoyStick().isEnabled()
-    	|| 	mAB.isActive()
-        || 	UIUpdateTimer->Enabled
-        || 	(gSplashForm && gSplashForm->isOnShowTime())
+	if(	   mAB.getJoyStick().isEnabled()
+    	|| mAB.isActive()
+        || UIUpdateTimer->Enabled
+        || (gSplashForm && gSplashForm->isOnShowTime())
         || mArrayCamClient.isConnected()
-//        ||  mPufferArduinoClient.isConnected()
         || mFrames.size()
         || mTheWiggler.isRunning()
         || mLogFileReader.isRunning()

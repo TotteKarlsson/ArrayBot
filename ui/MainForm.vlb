@@ -25,9 +25,6 @@ Coordinates=554,71,151,51
 [mJSSpeedSlowBtn]
 Coordinates=944,1,108,33
 
-[mXYCtrlRG]
-Coordinates=253,71,70,51
-
 [TabSheet1]
 Coordinates=750,453,66,33
 
@@ -86,7 +83,7 @@ Coordinates=776,533,81,33
 Coordinates=159,373,128,33
 
 []
-Coordinates=750,333,87,51
+Coordinates=253,71,70,51
 
 [mFrontPage]
 Coordinates=276,462,66,33

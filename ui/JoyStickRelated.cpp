@@ -70,30 +70,17 @@ void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
     {
     	//Apply "FAST" JS setting
         mAB.applyJoyStickSetting("Fast");
-
-        if(!gAppIsStartingUp)
-        {
-        	playABSound(absFastSpeed, SND_ASYNC);
-        	playABSound(absFastSpeed, SND_ASYNC);
-        	playABSound(absFastSpeed, SND_ASYNC);
-        }
+       	mEnableFastSpeedSound.getReference().play();
     }
     else if (btn == mJSSpeedMediumBtn)
     {
         mAB.applyJoyStickSetting("Medium");
-        if(!gAppIsStartingUp)
-        {
-           	playABSound(absMediumSpeed, SND_ASYNC);
-        }
+       	mEnableMediumSpeedSound.getReference().play();
     }
     else if (btn == mJSSpeedSlowBtn)
     {
         mAB.applyJoyStickSetting("Slow");
-        if(!gAppIsStartingUp)
-        {
-	        playABSound(absSlowSpeed, SND_ASYNC);
-
-        }
+      	mEnableSlowSpeedSound.getReference().play();
     }
 }
 

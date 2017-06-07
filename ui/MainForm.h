@@ -33,6 +33,9 @@
 #include "cspin.h"
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.Graphics.hpp>
+#include "TApplicationSounds.h"
+#include "TSoundsFrame.h"
+#include "sound/atApplicationSound.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -87,7 +90,6 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mAngleControlVelE;
 	TFloatLabeledEdit *mAngleControllerAccE;
 	TTimer *UIUpdateTimer;
-	TRadioGroup *mXYCtrlRG;
 	TGroupBox *mRibbonCreationGB;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
@@ -108,7 +110,6 @@ class TMain : public TRegistryForm
 	TSpeedButton *mJSCSBtn;
 	TRadioGroup *mJoyStickRG;
 	TLabel *mJSStatusL;
-	TRadioGroup *mUnitControlRG;
 	TPanel *Panel2;
 	TGroupBox *GroupBox1;
 	TIntegerLabeledEdit *mArrayCamServerPortE;
@@ -144,6 +145,10 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet6;
 	TTabSheet *TabSheet7;
 	TTabSheet *TabSheet8;
+	TSoundsFrame *TSoundsFrame1;
+	TApplicationSounds *TApplicationSounds1;
+	TRadioGroup *mUnitControlRG;
+	TRadioGroup *mXYCtrlRG;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -200,6 +205,16 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         IniFile						            mIniFile;
         IniFileProperties  			            mProperties;
 		mtk::Property<mtk::LogLevel>            mLogLevel;
+
+
+                										//Sound properties
+		void									setupProperties();
+        IniFileProperties  			            mSoundProperties;
+        Property<ApplicationSound>				mEnableSlowSpeedSound;
+        Property<ApplicationSound>				mEnableMediumSpeedSound;
+        Property<ApplicationSound>				mEnableFastSpeedSound;
+        Property<ApplicationSound>				mMainPageControlChangeSound;
+
         vector<TFrame*>					        mFrames;
 
         										//!The ArrayCam client connects to

@@ -2,6 +2,7 @@
 #pragma hdrstop
 #include "MainForm.h"
 #include "TMemoLogger.h"
+#include "TSplashForm.h"
 #include "mtkStringList.h"
 #include "atUtilities.h"
 #include "apt/atAPTMotor.h"
@@ -11,7 +12,6 @@
 #include <bitset>
 #include "mtkMathUtils.h"
 #include "atExceptions.h"
-#include "TSplashForm.h"
 #include "sound/atSounds.h"
 #include "atCore.h"
 #include "frames/TABProcessSequencerFrame.h"
@@ -29,6 +29,8 @@
 #pragma link "TAboutArrayBot_2Frame"
 #pragma link "TPropertyCheckBox"
 #pragma link "cspin"
+#pragma link "TApplicationSounds"
+#pragma link "TSoundsFrame"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -54,7 +56,11 @@ __fastcall TMain::TMain(TComponent* Owner)
     mProcessSequencer(mAB, mArrayCamClient, gAppDataFolder),
 	mABProcessSequencerFrame(NULL),
     mRibbonLifterFrame(NULL),
-    mTheWiggler(NULL, NULL)
+    mTheWiggler(NULL, NULL),
+    mEnableSlowSpeedSound(ApplicationSound("")),
+    mEnableMediumSpeedSound(ApplicationSound("")),
+    mEnableFastSpeedSound(ApplicationSound("")),
+	mMainPageControlChangeSound(ApplicationSound(""))
 
 {
     //Init the CoreLibDLL -> give intra messages their ID's
@@ -63,18 +69,16 @@ __fastcall TMain::TMain(TComponent* Owner)
 	TMemoLogger::mMemoIsEnabled = false;
    	mLogFileReader.start(true);
 
-	//Setup UI properties
-    mProperties.setSection("UI");
-	mProperties.setIniFile(&mIniFile);
-
-	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	                lAny));
-	mProperties.add((BaseProperty*)  &mArrayCamServerPortE->getProperty()->setup(	"ARRAY_CAM_SERVER_PORT",     		50001));
-	mProperties.add((BaseProperty*)  &mWigglerAmplitudeStepE->getProperty()->setup(	"WIGGLER_AMPLITUDE",    	 		0.5));
-	mProperties.add((BaseProperty*)  &mWigglerAmplitudeE->getProperty()->setup(		"WIGGLER_AMPLITUDE_STEP",    		0.1));
-	mProperties.add((BaseProperty*)  &mPullRelaxVelocityE->getProperty()->setup(	"WIGGLER_PULL_RELAX_VELOCITY",   	0.5));
-	mProperties.add((BaseProperty*)  &mPullRelaxAccE->getProperty()->setup(			"WIGGLER_PULL_RELAX_ACCELERATION",  0.1));
+    setupProperties();
 
     mProperties.read();
+    mSoundProperties.read();
+
+    //Give all sounds a Handle
+  	mEnableSlowSpeedSound.getReference().setHandle(this->Handle);
+  	mEnableMediumSpeedSound.getReference().setHandle(this->Handle);
+  	mEnableFastSpeedSound.getReference().setHandle(this->Handle);
+	mMainPageControlChangeSound.getReference().setHandle(this->Handle);
 
 	mArrayCamServerPortE->update();
 	mWigglerAmplitudeE->update();
@@ -103,66 +107,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mArrayCamClient.assignOnMessageReceivedCallBack(onArrayCamMessageReceived);
     mArrayCamClient.onConnected 				= onArrayCamClientConnected;
 	mArrayCamClient.onDisconnected 				= onArrayCamClientDisconnected;
-}
-
-__fastcall TMain::~TMain()
-{
-	mProperties.write();
-    mIniFile.save();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormCreate(TObject *Sender)
-{
-	enableDisableUI(false);
-
-	this->Visible = true;
-	setupWindowTitle();
-
-    enableDisableArrayCamClientControls(false);
-
-    if(this->BorderStyle == bsNone)
-    {
-    	this->WindowState = wsMaximized;
-    }
-
-	TMemoLogger::mMemoIsEnabled = true;
-    if(gSplashForm)
-    {
-		gSplashForm->mMainAppIsRunning = true;
-
-        while(gSplashForm->isOnShowTime() == true || mInitBotThread.isAlive())
-        {
-            Application->ProcessMessages();
-            //In order to show whats going on on the splash screen
-            if(gSplashForm->Visible == false)
-            {
-                break;
-            }
-        }
-		gSplashForm->Close();
-    }
-
-
-
-	gLogger.setLogLevel(mLogLevel);
-
-	if(mLogLevel == lInfo)
-	{
-		LogLevelCB->ItemIndex = 0;
-	}
-	else if(mLogLevel == lAny)
-	{
-		LogLevelCB->ItemIndex = 1;
-	}
-
-	//Try to connect to the arduino server..
-	mArrayCamClient.connect(50001);
-
-	TMemoLogger::mMemoIsEnabled = true;
-    UIUpdateTimer->Enabled = true;
-
-	gAppIsStartingUp = false;
 }
 
 void TMain::enableDisableUI(bool e)
@@ -564,7 +508,6 @@ void __fastcall TMain::mUnitControlRGClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::PageControl1Change(TObject *Sender)
 {
-
 	//Check what tab got selected
 	if(PageControl1->TabIndex == pcMoveSequences)
     {
@@ -585,9 +528,7 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     {
 		TAboutArrayBotFrame_21->populate();
     }
-
-    //Play a sound
-    playABSound(absDefaultClick);
+    mMainPageControlChangeSound.getReference().play();
 }
 
 void __fastcall TMain::mRightPanelDblClick(TObject *Sender)

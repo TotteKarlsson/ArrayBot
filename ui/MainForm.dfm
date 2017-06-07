@@ -24173,48 +24173,12 @@ object Main: TMain
         Height = 97
         Align = alTop
         TabOrder = 2
-        object mUnitControlRG: TRadioGroup
-          Left = 462
-          Top = 1
-          Width = 240
-          Height = 95
-          Align = alLeft
-          Caption = 'Unit Control'
-          Columns = 2
-          DoubleBuffered = False
-          ItemIndex = 0
-          Items.Strings = (
-            'Both'
-            'Coverslip'
-            'Whisker'
-            'None')
-          ParentDoubleBuffered = False
-          TabOrder = 0
-          OnClick = mUnitControlRGClick
-        end
-        object mXYCtrlRG: TRadioGroup
-          Left = 702
-          Top = 1
-          Width = 224
-          Height = 95
-          Align = alLeft
-          Caption = 'XY Control'
-          Columns = 2
-          ItemIndex = 0
-          Items.Strings = (
-            'X && Y'
-            'X'
-            'Y'
-            'None')
-          TabOrder = 1
-          OnClick = mXYCtrlRGClick
-        end
         object JSGB: TGroupBox
           Left = 1
           Top = 1
-          Width = 461
+          Width = 904
           Height = 95
-          Align = alLeft
+          Align = alClient
           Caption = 'Motor Speed'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -24222,47 +24186,46 @@ object Main: TMain
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 0
+          ExplicitWidth = 461
           object Panel2: TPanel
             Left = 2
             Top = 27
-            Width = 457
+            Width = 900
             Height = 50
             Align = alTop
             TabOrder = 0
+            ExplicitWidth = 457
             object mJSSpeedFastBtn: TSpeedButton
-              Left = 301
+              Left = 501
               Top = 1
-              Width = 150
+              Width = 250
               Height = 48
               Align = alLeft
               GroupIndex = 15
               Caption = 'Fast'
               OnClick = JSSpeedBtnClick
-              ExplicitHeight = 50
             end
             object mJSSpeedMediumBtn: TSpeedButton
-              Left = 151
+              Left = 251
               Top = 1
-              Width = 150
+              Width = 250
               Height = 48
               Align = alLeft
               GroupIndex = 15
               Down = True
               Caption = 'Medium'
               OnClick = JSSpeedBtnClick
-              ExplicitLeft = 157
             end
             object mJSSpeedSlowBtn: TSpeedButton
               Left = 1
               Top = 1
-              Width = 150
+              Width = 250
               Height = 48
               Align = alLeft
               GroupIndex = 15
               Caption = 'Slow'
               OnClick = JSSpeedBtnClick
-              ExplicitHeight = 50
             end
           end
         end
@@ -24350,14 +24313,8 @@ object Main: TMain
         ActivePage = TabSheet4
         Align = alClient
         TabOrder = 0
-        ExplicitLeft = 131
-        ExplicitTop = 73
-        ExplicitWidth = 678
-        ExplicitHeight = 670
         object TabSheet4: TTabSheet
           Caption = 'Joystick'
-          ExplicitWidth = 281
-          ExplicitHeight = 155
           object JoyStickGB2: TGroupBox
             Left = 14
             Top = 17
@@ -24463,12 +24420,44 @@ object Main: TMain
               OnKeyDown = JoyStickValueEdit
             end
           end
+          object mUnitControlRG: TRadioGroup
+            Left = 454
+            Top = 24
+            Width = 422
+            Height = 60
+            Caption = 'Unit Control'
+            Columns = 4
+            DoubleBuffered = False
+            ItemIndex = 0
+            Items.Strings = (
+              'Both'
+              'Coverslip'
+              'Whisker'
+              'None')
+            ParentDoubleBuffered = False
+            TabOrder = 1
+            OnClick = mUnitControlRGClick
+          end
+          object mXYCtrlRG: TRadioGroup
+            Left = 454
+            Top = 90
+            Width = 422
+            Height = 58
+            Caption = 'XY Control'
+            Columns = 4
+            ItemIndex = 0
+            Items.Strings = (
+              'X && Y'
+              'X'
+              'Y'
+              'None')
+            TabOrder = 2
+            OnClick = mXYCtrlRGClick
+          end
         end
         object TabSheet7: TTabSheet
           Caption = 'Wiggler'
           ImageIndex = 2
-          ExplicitWidth = 670
-          ExplicitHeight = 632
           object GroupBox2: TGroupBox
             Left = 14
             Top = 15
@@ -24525,18 +24514,81 @@ object Main: TMain
         object TabSheet6: TTabSheet
           Caption = 'Sounds'
           ImageIndex = 1
-          ExplicitLeft = 170
-          ExplicitTop = 6
-          ExplicitWidth = 670
-          ExplicitHeight = 632
+          inline TSoundsFrame1: TSoundsFrame
+            Left = 0
+            Top = 241
+            Width = 898
+            Height = 523
+            Align = alClient
+            AutoSize = True
+            TabOrder = 0
+            ExplicitTop = 241
+            ExplicitWidth = 898
+            ExplicitHeight = 523
+            inherited GroupBox1: TGroupBox
+              Width = 898
+              Height = 523
+              Align = alClient
+              ExplicitWidth = 898
+              ExplicitHeight = 523
+              inherited SoundsLB: TListBox
+                Top = 25
+                Height = 496
+                ItemHeight = 23
+                ExplicitTop = 25
+                ExplicitHeight = 496
+              end
+              inherited RepeatSoundCB: TCheckBox
+                Width = 115
+                ExplicitWidth = 115
+              end
+            end
+          end
+          inline TApplicationSounds1: TApplicationSounds
+            Left = 0
+            Top = 0
+            Width = 898
+            Height = 241
+            Align = alTop
+            AutoSize = True
+            TabOrder = 1
+            ExplicitWidth = 898
+            inherited GroupBox1: TGroupBox
+              Width = 898
+              ExplicitWidth = 898
+              inherited ApplicationSoundsLB: TListBox
+                Top = 25
+                Width = 368
+                Height = 214
+                ItemHeight = 23
+                ExplicitTop = 25
+                ExplicitWidth = 368
+                ExplicitHeight = 214
+              end
+              inherited GroupBox2: TGroupBox
+                Left = 370
+                Top = 25
+                Width = 526
+                Height = 214
+                ExplicitLeft = 370
+                ExplicitTop = 25
+                ExplicitWidth = 526
+                ExplicitHeight = 214
+                inherited SoundCB: TComboBox
+                  Height = 31
+                  ExplicitHeight = 31
+                end
+              end
+            end
+            inherited BindingsList1: TBindingsList
+              Left = 692
+              Top = 117
+            end
+          end
         end
         object TabSheet8: TTabSheet
           Caption = 'ArrayCam Connection'
           ImageIndex = 3
-          ExplicitLeft = 68
-          ExplicitTop = 386
-          ExplicitWidth = 670
-          ExplicitHeight = 632
           object GroupBox1: TGroupBox
             Left = 37
             Top = 33

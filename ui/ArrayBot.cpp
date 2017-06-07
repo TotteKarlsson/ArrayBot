@@ -15,21 +15,23 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
+USEFORM("P:\libs\atapi\source\vcl\frames\TSoundsFrame.cpp", SoundsFrame); /* TFrame: File Type */
+USEFORM("P:\libs\atapi\source\vcl\frames\TApplicationSounds.cpp", ApplicationSounds); /* TFrame: File Type */
 //---------------------------------------------------------------------------
-extern string       gLogFileLocation            = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
-extern string       gLogFileName                = "ArrayBot.log";
-extern string 		gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArrayBot\\0.5.0";
-extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
-static HWND         gOtherAppWindow             = NULL;
-extern string       gDefaultAppTheme            = "Iceberg Classico";
-extern string       gRestartMutexName           = "arrayBotRestartMutex";
-extern string       gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
-extern string       gDateFormat                 = "%Y-%m-%d";
-extern string       gTimeFormat                 = "%H:%M:%S";
-extern bool         gIsDevelopmentRelease       = false;
-extern bool         gAppIsStartingUp            = true;
-extern bool         gHideSplash                 = false;
-extern TSplashForm* gSplashForm                 = NULL;
+string              gLogFileLocation            = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
+string              gLogFileName                = "ArrayBot.log";
+string 		        gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArrayBot\\0.5.0";
+string 		        gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
+HWND                gOtherAppWindow             = NULL;
+string              gDefaultAppTheme            = "Iceberg Classico";
+string              gRestartMutexName           = "arrayBotRestartMutex";
+string              gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
+string              gDateFormat                 = "%Y-%m-%d";
+string              gTimeFormat                 = "%H:%M:%S";
+bool                gIsDevelopmentRelease       = false;
+bool                gAppIsStartingUp            = true;
+bool                gHideSplash                 = false;
+TSplashForm*        gSplashForm                 = NULL;
 
 int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam);
 
@@ -90,6 +92,8 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Title = "ArrayBot - Software for Robots";
 		TStyleManager::TrySetStyle("Obsidian");
 		Application->CreateForm(__classid(TMain), &Main);
+		Application->CreateForm(__classid(TSoundsFrame), &SoundsFrame);
+		Application->CreateForm(__classid(TApplicationSounds), &ApplicationSounds);
 		Application->ShowMainForm = false;
 		Application->Run();
 	}
