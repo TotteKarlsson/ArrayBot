@@ -35,5 +35,5 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 
 //---------------------------------------------------------------------------
 #pragma comment(lib, "mtkCommon.lib")
-#pragma comment(lib, "abCore.lib")
-#pragma comment(lib, "abResources.lib")
+#pragma comment(lib, "atCore.lib")
+#pragma comment(lib, "atResources.lib")

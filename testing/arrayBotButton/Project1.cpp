@@ -83,8 +83,8 @@ void setupLogging()
 	#pragma comment(lib, "mtkIPC.lib")
 #endif
 
-#pragma comment(lib, "abCore.lib")
-#pragma comment(lib, "abResources.lib")
+#pragma comment(lib, "atCore.lib")
+#pragma comment(lib, "atResources.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "uc480_B.lib")
 #pragma comment(lib, "uc480_tools_B.lib")

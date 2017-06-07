@@ -39,7 +39,7 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <VCL_Custom_Styles>&quot;Auric|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Auric.vsf&quot;;&quot;Cobalt XEMedia|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\CobaltXEMedia.vsf&quot;;&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;;&quot;Luna|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Luna.vsf&quot;;&quot;Sapphire Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\SapphireKamri.vsf&quot;</VCL_Custom_Styles>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <AllPackageLibs>rtl.lib;vcl.lib;abVCLCore.lib;DuneComponents.lib;vclactnband.lib;vclx.lib;VCLCommon.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;DuneComponents.lib;vclactnband.lib;vclx.lib;VCLCommon.lib;atVCLCore.lib</AllPackageLibs>
         <ILINK_LibraryPath>..\..\source\vcl\components\;P:\ArrayBot\testing\arrayBotButton\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
@@ -86,12 +86,13 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <LinkPackageStatics>atVCLCore.lib</LinkPackageStatics>
         <Debugger_DebugSourcePath>P:\ArrayBot\source\;P:\libs\dsl\VCL\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <_TCHARMapping>char</_TCHARMapping>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Defines>POCO_STATIC;$(Defines)</Defines>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;abVCLCore.bpi;DuneComponents.bpi;vclactnband.bpi;vclx.bpi;VCLCommon.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;DuneComponents.bpi;vclactnband.bpi;vclx.bpi;VCLCommon.bpi</LinkPackageImports>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
@@ -171,7 +172,7 @@
                 <ProjectProperties>
                     <ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
                     <ProjectProperties Name="ManagePaths">True</ProjectProperties>
-                    <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
+                    <ProjectProperties Name="VerifyPackages">False</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
