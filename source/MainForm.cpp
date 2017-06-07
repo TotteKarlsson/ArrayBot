@@ -558,7 +558,6 @@ void TMain::onArrayCamMessageReceived(const string& msg)
 
     TLocalArgs args(*this, msg);
 
-
     //This causes this function to be called in the UI thread
 	TThread::Synchronize(NULL, &args.onMessage);
 }
