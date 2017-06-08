@@ -18,10 +18,10 @@
         <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="ui\lib\ArrayBotPackage.cbproj">
+        <Projects Include="source\lib\ArrayBotPackage.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="UI\ArrayBot.cbproj">
+        <Projects Include="source\ArrayBot.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -78,22 +78,22 @@
         <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
     </Target>
     <Target Name="ArrayBotPackage">
-        <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj"/>
+        <MSBuild Projects="source\lib\ArrayBotPackage.cbproj"/>
     </Target>
     <Target Name="ArrayBotPackage:Clean">
-        <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
+        <MSBuild Projects="source\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="ArrayBotPackage:Make">
-        <MSBuild Projects="ui\lib\ArrayBotPackage.cbproj" Targets="Make"/>
+        <MSBuild Projects="source\lib\ArrayBotPackage.cbproj" Targets="Make"/>
     </Target>
     <Target Name="ArrayBot">
-        <MSBuild Projects="UI\ArrayBot.cbproj"/>
+        <MSBuild Projects="source\ArrayBot.cbproj"/>
     </Target>
     <Target Name="ArrayBot:Clean">
-        <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Clean"/>
+        <MSBuild Projects="source\ArrayBot.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="ArrayBot:Make">
-        <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
+        <MSBuild Projects="source\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
         <CallTarget Targets="atCore;atDatabase;VCLCommon;DuneComponents;atVCLCore;ArrayBotPackage;ArrayBot"/>
