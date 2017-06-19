@@ -31,6 +31,7 @@ extern "C" int _libmain(unsigned long reason)
 
 
 #pragma comment(lib, "atCore.lib")
+#pragma comment(lib, "atArrayBotCore.lib")
 #pragma comment(lib, "atVCLCore.bpi")
 
 

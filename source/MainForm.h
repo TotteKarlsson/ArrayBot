@@ -1,7 +1,7 @@
 #ifndef MainFormH
 #define MainFormH
 #include "abApplicationMessages.h"
-#include "clients/atArrayCamClient.h"
+#include "arraycam/atArrayCamClient.h"
 #include "arraybot/atArrayBot.h"
 #include "abUIDataStructures.h"
 #include "InitArrayBotThread.h"
@@ -29,7 +29,7 @@
 #include "TIntLabel.h"
 #include "TPropertyCheckBox.h"
 #include "TArrayBotBtn.h"
-#include "apt/atMotorWiggler.h"
+#include "arraybot/apt/atMotorWiggler.h"
 #include "cspin.h"
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.Graphics.hpp>

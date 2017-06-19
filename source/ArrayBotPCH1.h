@@ -15,10 +15,10 @@
 #include "mtkBaseProperty.h"
 #include "mtkMathUtils.h"
 
-#include "joystick/atArrayBotJoyStick.h"
+#include "arraybot/joystick/atArrayBotJoyStick.h"
 
 #include "MainForm.h"
-#include "apt/atAPTMotor.h"
+#include "arraybot/apt/atAPTMotor.h"
 
 
 

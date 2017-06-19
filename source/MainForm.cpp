@@ -5,8 +5,8 @@
 #include "TSplashForm.h"
 #include "mtkStringList.h"
 #include "atUtilities.h"
-#include "apt/atAPTMotor.h"
-#include "apt/atTCubeDCServo.h"
+#include "arraybot/apt/atAPTMotor.h"
+#include "arraybot/apt/atTCubeDCServo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 #include <bitset>
