@@ -4,7 +4,7 @@
 #include "arraybot/process/atParallellProcess.h"
 #include "arraybot/process/atProcessSequence.h"
 #include "mtkVCLUtils.h"
-#include "TStringInputDialog.h"
+#include "vcl/forms/TStringInputDialog.h"
 #include "arraybot/process/atTimeDelay.h"
 #include "arraybot/process/atArrayCamRequestProcess.h"
 #include "arraybot/process/atStopAndResumeProcess.h"
@@ -14,7 +14,7 @@
 #include "frames/TArrayCamRequestFrame.h"
 #include "atVCLUtils.h"
 #include "mtkLogger.h"
-#include "TSelectProcessTypeDialog.h"
+#include "vcl/forms/TSelectProcessTypeDialog.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"

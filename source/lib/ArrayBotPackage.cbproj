@@ -103,6 +103,11 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\forms\abAddJoyStickSettingForm.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\forms\TProcessSequenceControlForm.cpp">
+            <Form>ProcessSequenceControlForm</Form>
+            <DependentOn>..\forms\TProcessSequenceControlForm.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\forms\TSplashForm.cpp">
             <Form>SplashForm</Form>
             <DependentOn>..\forms\TSplashForm.h</DependentOn>
@@ -112,19 +117,71 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <Form>AboutArrayBotFrame</Form>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>..\frames\TAboutArrayBotFrame.h</DependentOn>
-            <BuildOrder>4</BuildOrder>
+            <BuildOrder>16</BuildOrder>
         </CppCompile>
         <CppCompile Include="..\frames\TAboutArrayBot_2Frame.cpp">
             <Form>AboutArrayBotFrame_2</Form>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>..\frames\TAboutArrayBot_2Frame.h</DependentOn>
-            <BuildOrder>3</BuildOrder>
+            <BuildOrder>16</BuildOrder>
         </CppCompile>
         <CppCompile Include="..\frames\TABProcessSequencerFrame.cpp">
-            <Form>ABProcessSequencerFrame</Form>
-            <DesignClass>TFrame</DesignClass>
             <DependentOn>..\frames\TABProcessSequencerFrame.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TArrayCamRequestFrame.cpp">
+            <Form>ArrayCamRequestFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TArrayCamRequestFrame.h</DependentOn>
+            <BuildOrder>20</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TMotorFrame.cpp">
+            <Form>MotorFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TMotorFrame.h</DependentOn>
+            <BuildOrder>17</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TMotorMoveProcessFrame.cpp">
+            <DependentOn>..\frames\TMotorMoveProcessFrame.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TParallellProcessesFrame.cpp">
+            <DependentOn>..\frames\TParallellProcessesFrame.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TPositionalTriggerFrame.cpp">
+            <Form>PositionalTriggerFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TPositionalTriggerFrame.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TSequenceInfoFrame.cpp">
+            <DependentOn>..\frames\TSequenceInfoFrame.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TSequencerButtonsFrame.cpp">
+            <Form>SequencerButtonsFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TSequencerButtonsFrame.h</DependentOn>
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TTimeDelayFrame.cpp">
+            <Form>TimeDelayFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TTimeDelayFrame.h</DependentOn>
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TXYZPositionsFrame.cpp">
+            <Form>XYZPositionsFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TXYZPositionsFrame.h</DependentOn>
+            <BuildOrder>15</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TXYZUnitFrame.cpp">
+            <Form>XYZUnitFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TXYZUnitFrame.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
         </CppCompile>
         <CppCompile Include="..\InitArrayBotThread.cpp">
             <DependentOn>..\InitArrayBotThread.h</DependentOn>
@@ -148,9 +205,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </CppCompile>
         <FormResources Include="..\forms\TSplashForm.dfm"/>
         <FormResources Include="..\forms\abAddJoyStickSettingForm.dfm"/>
-        <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
-        <FormResources Include="..\frames\TABProcessSequencerFrame.dfm"/>
+        <FormResources Include="..\frames\TPositionalTriggerFrame.dfm"/>
+        <FormResources Include="..\frames\TSequencerButtonsFrame.dfm"/>
+        <FormResources Include="..\frames\TXYZPositionsFrame.dfm"/>
+        <FormResources Include="..\frames\TXYZUnitFrame.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
+        <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
+        <FormResources Include="..\frames\TMotorFrame.dfm"/>
+        <FormResources Include="..\frames\TTimeDelayFrame.dfm"/>
+        <FormResources Include="..\frames\TArrayCamRequestFrame.dfm"/>
+        <FormResources Include="..\forms\TProcessSequenceControlForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

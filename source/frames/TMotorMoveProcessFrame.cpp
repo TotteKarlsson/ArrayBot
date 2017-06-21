@@ -9,7 +9,7 @@
 #include "arraybot/atArrayBot.h"
 #include "arraybot/apt/atAbsoluteMove.h"
 #include "arraybot/process/atTriggerFunction.h"
-#include "TTextInputDialog.h"
+#include "vcl/forms/TTextInputDialog.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

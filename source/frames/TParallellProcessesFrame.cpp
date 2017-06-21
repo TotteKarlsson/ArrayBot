@@ -12,10 +12,10 @@
 #include "atVCLUtils.h"
 #include "mtkMathUtils.h"
 #include "arraybot/process/atTriggerFunction.h"
-#include "TStringInputDialog.h"
+#include "vcl/forms/TStringInputDialog.h"
 #include "arduino/atArduinoServerCommand.h"
-#include "TArduinoServerCommandFrame.h"
-#include "TYesNoForm.h"
+#include "vcl/frames/TArduinoServerCommandFrame.h"
+#include "vcl/forms/TYesNoForm.h"
 #include "frames/TArrayCamRequestFrame.h"
 #include "arraybot/process/atArrayCamRequestProcess.h"
 

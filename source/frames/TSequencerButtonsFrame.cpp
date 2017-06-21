@@ -3,7 +3,7 @@
 #include <Buttons.hpp>
 #include "TSequencerButtonsFrame.h"
 #include "mtkVCLUtils.h"
-#include "TYesNoForm.h"
+#include "vcl/forms/TYesNoForm.h"
 #include <sstream>
 #include "mtkLogger.h"
 #include "forms/TProcessSequenceControlForm.h"
