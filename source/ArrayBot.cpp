@@ -15,7 +15,6 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
-USEFORM("P:\libs\atapi\source\vcl\frames\TApplicationSoundsFrame.cpp", ApplicationSoundsFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 string              gLogFileLocation            = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 string              gLogFileName                = "ArrayBot.log";
@@ -29,7 +28,7 @@ string              gDateFormat                 = "%Y-%m-%d";
 string              gTimeFormat                 = "%H:%M:%S";
 bool                gIsDevelopmentRelease       = false;
 bool                gAppIsStartingUp            = true;
-bool                gHideSplash                 = false;
+bool                gHideSplash                 = true;
 TSplashForm*        gSplashForm                 = NULL;
 
 int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam);
@@ -76,22 +75,22 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 
-        gSplashForm = new TSplashForm(gLogFileName, Application);
+
         if(!gHideSplash)
         {
+	        gSplashForm = new TSplashForm(gLogFileName, Application);
             Application->ShowMainForm = false;
             gSplashForm->Show();
             gSplashForm->Update();
         }
         else
         {
-            gSplashForm->Close();
+            gSplashForm = NULL;
         }
 
-		Application->Title = "ArrayBot - Software for Robots";
-		TStyleManager::TrySetStyle("Cobalt XEMedia");
+		Application->Title = "ArrayBot - Software for Microtomes";
+		TStyleManager::TrySetStyle("Turquoise Gray");
 		Application->CreateForm(__classid(TMain), &Main);
-		Application->CreateForm(__classid(TApplicationSoundsFrame), &ApplicationSoundsFrame);
 		Application->ShowMainForm = false;
 		Application->Run();
 	}

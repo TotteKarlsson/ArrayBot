@@ -11,11 +11,11 @@ object SequenceInfoFrame: TSequenceInfoFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  object GroupBox2: TGroupBox
+  object MasterProcessGB: TGroupBox
     Left = 0
     Top = 0
     Width = 441
-    Height = 561
+    Height = 327
     Align = alClient
     Caption = 'Master Processes'
     TabOrder = 0
@@ -23,7 +23,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
       Left = 2
       Top = 25
       Width = 437
-      Height = 405
+      Height = 300
       Align = alClient
       BevelEdges = []
       BevelOuter = bvNone
@@ -32,7 +32,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Left = 0
         Top = 0
         Width = 332
-        Height = 405
+        Height = 300
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
@@ -42,12 +42,12 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Left = 332
         Top = 0
         Width = 105
-        Height = 405
+        Height = 300
         Align = alRight
         TabOrder = 1
         object mDeleteMoveBtn: TArrayBotButton
           Left = 1
-          Top = 1
+          Top = 241
           Width = 103
           Height = 60
           Action = RemoveProcessA
@@ -59,7 +59,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         end
         object mMoveSequenceDownBtn: TArrayBotButton
           Left = 1
-          Top = 121
+          Top = 61
           Width = 103
           Height = 60
           Align = alTop
@@ -71,7 +71,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         end
         object mMoveSequenceUpBtn: TArrayBotButton
           Left = 1
-          Top = 61
+          Top = 1
           Width = 103
           Height = 60
           Align = alTop
@@ -83,7 +83,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         end
         object mRenameBtn: TArrayBotButton
           Left = 1
-          Top = 181
+          Top = 121
           Width = 103
           Height = 60
           Align = alTop
@@ -94,7 +94,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         end
         object mAddMoveBtn: TArrayBotButton
           Left = 1
-          Top = 241
+          Top = 181
           Width = 103
           Height = 60
           Action = AddCombinedMoveA
@@ -106,25 +106,54 @@ object SequenceInfoFrame: TSequenceInfoFrame
         end
       end
     end
-    object Panel3: TPanel
-      Left = 2
-      Top = 430
-      Width = 437
-      Height = 129
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 327
+    Width = 441
+    Height = 105
+    Align = alBottom
+    Caption = 'Miscellaneous'
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 16
+      Top = 27
+      Width = 74
+      Height = 23
+      Caption = 'Category'
+    end
+    object CategoryCB: TComboBox
+      Left = 16
+      Top = 56
+      Width = 185
+      Height = 31
+      ItemIndex = 0
+      TabOrder = 0
+      Text = 'Preset'
+      OnCloseUp = CategoryCBCloseUp
+      Items.Strings = (
+        'Preset'
+        'General')
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 432
+    Width = 441
+    Height = 129
+    Align = alBottom
+    TabOrder = 2
+    object mUpdatePositionsBtn: TArrayBotButton
+      Left = 1
+      Top = 1
+      Width = 439
+      Height = 127
       Align = alBottom
-      TabOrder = 1
-      object mUpdatePositionsBtn: TArrayBotButton
-        Left = 1
-        Top = 1
-        Width = 435
-        Height = 127
-        Align = alClient
-        ParentDoubleBuffered = True
-        TabOrder = 0
-        Visible = False
-        OnClick = mUpdatePositionsBtnClick
-        SoundID = 'BUTTON_CLICK_4'
-      end
+      ParentDoubleBuffered = True
+      TabOrder = 0
+      Visible = False
+      OnClick = mUpdatePositionsBtnClick
+      SoundID = 'BUTTON_CLICK_4'
     end
   end
   object mSequenceAL: TActionList

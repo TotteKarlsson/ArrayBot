@@ -23926,7 +23926,7 @@ object Main: TMain
     Top = 0
     Width = 914
     Height = 872
-    ActivePage = TabSheet2
+    ActivePage = mMoveSequencesPage
     Align = alClient
     TabHeight = 60
     TabOrder = 1
@@ -23934,6 +23934,10 @@ object Main: TMain
     OnChange = PageControl1Change
     object mFrontPage: TTabSheet
       Caption = 'The Bot'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object mMiddlePanel: TPanel
         Left = 0
         Top = 97
@@ -24234,6 +24238,10 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
@@ -24241,6 +24249,10 @@ object Main: TMain
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
@@ -24314,6 +24326,10 @@ object Main: TMain
         TabOrder = 0
         object TabSheet4: TTabSheet
           Caption = 'Joystick'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object JoyStickGB2: TGroupBox
             Left = 14
             Top = 17
@@ -24525,20 +24541,21 @@ object Main: TMain
             Align = alClient
             AutoSize = True
             TabOrder = 0
+            ExplicitTop = 241
             ExplicitWidth = 898
-            ExplicitHeight = 764
+            ExplicitHeight = 523
             inherited GroupBox1: TGroupBox
               Width = 898
               Height = 523
               Align = alClient
               ExplicitWidth = 898
-              ExplicitHeight = 764
+              ExplicitHeight = 523
               inherited SoundsLB: TListBox
                 Top = 25
                 Height = 496
                 ItemHeight = 23
                 ExplicitTop = 25
-                ExplicitHeight = 737
+                ExplicitHeight = 496
               end
               inherited RepeatSoundCB: TCheckBox
                 Width = 115
@@ -24554,10 +24571,10 @@ object Main: TMain
             Align = alTop
             AutoSize = True
             TabOrder = 1
-            ExplicitLeft = 328
-            ExplicitTop = 32
+            ExplicitWidth = 898
             inherited GroupBox1: TGroupBox
               Width = 898
+              ExplicitWidth = 898
               inherited ApplicationSoundsLB: TListBox
                 Top = 25
                 Height = 214
@@ -24570,6 +24587,7 @@ object Main: TMain
                 Width = 647
                 Height = 214
                 ExplicitTop = 25
+                ExplicitWidth = 647
                 ExplicitHeight = 214
                 inherited SoundCB: TComboBox
                   Height = 31
@@ -24612,6 +24630,10 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0

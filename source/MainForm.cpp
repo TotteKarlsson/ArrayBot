@@ -19,7 +19,6 @@
 #include "frames/TXYZUnitFrame.h"
 #include "frames/TSequencerButtonsFrame.h"
 //---------------------------------------------------------------------------
-
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TFloatLabeledEdit"
@@ -61,7 +60,6 @@ __fastcall TMain::TMain(TComponent* Owner)
     mEnableMediumSpeedSound(ApplicationSound("")),
     mEnableFastSpeedSound(ApplicationSound("")),
 	mMainPageControlChangeSound(ApplicationSound(""))
-
 {
     //Init the CoreLibDLL -> give intra messages their ID's
 	initABCoreLib();
@@ -100,7 +98,6 @@ __fastcall TMain::TMain(TComponent* Owner)
     mTheWiggler.mAmplitude.setReference(&mWigglerAmplitudeE->getReference());
     mTheWiggler.mMaxAcceleration.setReference(&mWigglerAccelerationE->getReference());
 
-
     mTheWiggler.mPullRelaxVelocity.setReference(&mPullRelaxVelocityE->getReference());
     mTheWiggler.mPullRelaxAcceleration.setReference(&mPullRelaxAccE->getReference());
 
@@ -112,7 +109,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 void TMain::enableDisableUI(bool e)
 {
 	PageControl1->Visible = e;
-
 	enableDisablePanel(mRightPanel, e);
 	enableDisablePanel(mSequencesPanel, e);
     enableDisableGroupBox(JSGB, e);
@@ -160,38 +156,6 @@ void __fastcall TMain::WndProc(TMessage& Message)
     }
 }
 
-//Callback from socket client class
-void TMain::onArrayCamClientConnected()
-{
-    Log(lDebug) << "ArrayCamClient was connected..";
-
-    //Send message to update UI
-    enableDisableArrayCamClientControls(true);
-	mASStartBtn->Caption = "Disconnect";
-}
-
-void TMain::onArrayCamClientDisconnected()
-{
-    Log(lDebug) << "ArrayCam Client was disconnected..";
-    enableDisableArrayCamClientControls(false);
-	mASStartBtn->Caption = "Connect";
-}
-
-void TMain::enableDisableArrayCamClientControls(bool enable)
-{
-	//Disable ArrayCam client related components..
-	if(enable == true)
-    {
-	    mArrayCamConnectionStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GREEN_LED");
-		mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GREEN_LED");
-    }
-    else
-    {
-		mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GRAY_LED");
-	    mArrayCamConnectionStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GRAY_LED");
-    }
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
 {
@@ -214,80 +178,6 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
         setupUIFrames();
         enableDisableUI(true);
     }
-}
-
-void __fastcall	TMain::setupUIFrames()
-{
-    //Create frames showing motor positions
-    TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
-    f1->Parent = this->mRightPanel;
-    f1->Align = alBottom;
-
-    TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB.getWhiskerUnit());
-    f2->Parent = this->mRightPanel;
-    f2->Align = alBottom;
-
-    this->mSequencesPanel->Top = 0;
-    this->mSequencesPanel->Refresh();
-
-	//Setup JoyStick;
-
-    //Over ride joysticks button events  (cycle speeds and XY motions)
-    mAB.getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
-    mAB.getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
-
-    //!Button 14 emergency stop
-    mAB.getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
-
-    //JoyStick Settings CB
-    JoyStickSettings& js = mAB.getJoyStickSettings();
-    JoyStickSetting* jss = js.getFirst();
-    while(jss)
-    {
-        JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
-        jss = js.getNext();
-    }
-
-    JoyStickSettingsCB->ItemIndex = 0;
-    JoyStickSettingsCB->OnChange(NULL);
-    mJSSpeedMediumBtn->Click();
-    //mJSCSBtn->Click();
-	mAB.enableJoyStick();
-
-    //XY velocity parameters
-    mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getX1Axis().getMaxVelocity());
-    mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getX1Axis().getAcceleration());
-
-    if(mAB.getCoverSlipUnit().getZMotor())
-    {
-        mMaxZJogVelocityJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getVelocity());
-        mZJogAccelerationJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
-    }
-
-    //Lift Settings CB
-    PairedMoves& pms = mAB.getLiftMoves();
-    PairedMove* pm = pms.getFirst();
-    while(pm)
-    {
-        string key = pm->mLabel;
-        mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
-        pm = pms.getNext();
-    }
-
-    mLiftCB->ItemIndex = 0;
-    mLiftCB->OnChange(NULL);
-
-	//Create and setup XYZ unit frames
-    mXYZUnitFrame1 = new TXYZUnitFrame(this);
-    mXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
-    mXYZUnitFrame1->Parent = ScrollBox1;
-    mXYZUnitFrame1->Left = 10;
-
-    mXYZUnitFrame2 = new TXYZUnitFrame(this);
-    mXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
-    mXYZUnitFrame2->Parent = ScrollBox1;
-    mXYZUnitFrame2->Left = 10;
-    mXYZUnitFrame2->Top = mXYZUnitFrame1->Top + mXYZUnitFrame1->Height;
 }
 
 void __fastcall TMain::reInitBotAExecute(TObject *Sender)
@@ -387,33 +277,6 @@ void __fastcall TMain::mLiftCBChange(TObject *Sender)
 	PairedMove* pm = getCurrentPairedMove();
 	mMoveVelocityVerticalE->setReference(pm->mVelocity);
 	mMoveAccelerationE->setReference(pm->mAcceleration);
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::LogLevelCBChange(TObject *Sender)
-{
-    if(LogLevelCB->ItemIndex == 0)
-    {
-        mLogLevel = lInfo;
-    }
-    else if(LogLevelCB->ItemIndex == 1)
-    {
-        mLogLevel = lAny;
-    }
-
-    gLogger.setLogLevel(mLogLevel);
-}
-
-void __fastcall	TMain::onFinishedInitBot()
-{
-	Log(lInfo) << "Synching ArrayBot UI";
-    ReInitBotBtn->Action = ShutDownA;
-
-    //Setup the wiggler
-    mTheWiggler.setAmplitude(mWigglerAmplitudeE->getValue());
-    mTheWiggler.setMaxVelocity(mWigglerVelocityE->getValue());
-    mTheWiggler.setMaxAcceleration(mWigglerAccelerationE->getValue());
-    mTheWiggler.assignMotors(mAB.getWhiskerUnit().getXMotor(), mAB.getWhiskerUnit().getYMotor());
 }
 
 //---------------------------------------------------------------------------
@@ -531,37 +394,6 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     mMainPageControlChangeSound.getReference().play();
 }
 
-void __fastcall TMain::mRightPanelDblClick(TObject *Sender)
-{
-	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSizeable : bsNone;
-}
-
-void TMain::onArrayCamMessageReceived(const string& msg)
-{
-	struct TLocalArgs
-    {
-        TLocalArgs(TMain& _f, const string& m) : f(_f), msg(m){}
-        TMain& f;
-        string msg;
-        void __fastcall onMessage()
-        {
-            if(msg == "IS_RECORDING=false")
-            {
-                f.mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GREEN_LED");
-            }
-            else if(msg == "IS_RECORDING=true")
-            {
-                f.mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"RED_LED");
-            }
-        }
-    };
-
-    TLocalArgs args(*this, msg);
-
-    //This causes this function to be called in the UI thread
-	TThread::Synchronize(NULL, &args.onMessage);
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 {
@@ -573,70 +405,6 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
     else
     {
     	mArrayCamClient.disConnect();
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::mWiggleBtnClick(TObject *Sender)
-{
-	//Start/Stop wiggle timer
-    if(!mTheWiggler.isRunning())
-    {
-        mAB.disableJoyStickAxes();
-        Log(lInfo) << "Wiggler Center Position: "<<mTheWiggler.getCenterPosition();
-        mTheWiggler.startWiggle();
-		mWiggleBtn->Caption = "Stop Wiggle";
-    }
-    else
-    {
-        mTheWiggler.stopWiggle();
-	    mAB.getWhiskerUnit().getXMotor()->stop();
-        mAB.enableJoyStickAxes();
-    	mWiggleBtn->Caption = "Start Wiggle";
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::mWiggleSpinButtonDownClick(TObject *Sender)
-{
-	mWigglerAmplitudeE->setValue(mWigglerAmplitudeE->getValue() - mWigglerAmplitudeStepE->getValue());
-    if(mWigglerAmplitudeE->getValue() < 0)
-    {
-		mWigglerAmplitudeE->setValue(0.0);
-    }
-
-    mWigglerAmplitudeE->update();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::mWiggleSpinButtonUpClick(TObject *Sender)
-{
-	mWigglerAmplitudeE->setValue(mWigglerAmplitudeE->getValue() + mWigglerAmplitudeStepE->getValue());
-    mWigglerAmplitudeE->update();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::mPullRibbonBtnClick(TObject *Sender)
-{
-
-    int ii = mPullCB->ItemIndex;
-	if(mPullCB->ItemIndex == -1)
-    {
-    	return;
-    }
-
-	double step = mPullCB->Items->Strings[ii].ToDouble();
-
-    TArrayBotButton* b = dynamic_cast<TArrayBotButton*>(Sender);
-
-    mAB.disableJoyStickAxes();
-    if(b == mPullRibbonBtn)
-    {
-    	mTheWiggler.pull(step);
-    }
-    else
-    {
-    	mTheWiggler.relax(step);
     }
 }
 

@@ -118,8 +118,8 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object mAddSeqBtn: TArrayBotButton
           Left = 15
-          Top = 78
-          Width = 154
+          Top = 72
+          Width = 80
           Height = 44
           Anchors = [akLeft, akTop, akRight]
           Caption = 'New'
@@ -129,9 +129,9 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           SoundID = 'BUTTON_CLICK_4'
         end
         object mDeleteSequenceBtn: TArrayBotButton
-          Left = 180
-          Top = 78
-          Width = 98
+          Left = 196
+          Top = 72
+          Width = 80
           Height = 44
           Anchors = [akTop, akRight]
           Caption = 'Delete'
@@ -142,14 +142,26 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
         end
         object mRenameButton: TArrayBotButton
           Left = 287
-          Top = 78
-          Width = 86
+          Top = 72
+          Width = 80
           Height = 44
           Anchors = [akTop, akRight]
           Caption = 'Rename'
           ParentDoubleBuffered = True
           TabOrder = 3
           OnClick = mRenameButtonClick
+          SoundID = 'BUTTON_CLICK_4'
+        end
+        object ArrayBotButton1: TArrayBotButton
+          Left = 105
+          Top = 72
+          Width = 80
+          Height = 44
+          Anchors = [akLeft, akTop, akRight]
+          Caption = 'Save'
+          ParentDoubleBuffered = True
+          TabOrder = 4
+          OnClick = BtnClick
           SoundID = 'BUTTON_CLICK_4'
         end
       end

@@ -14,8 +14,6 @@
 #include "frames/TParallellProcessesFrame.h"
 #include "TSTDStringLabeledEdit.h"
 #include "frames/TTimeDelayFrame.h"
-
-#include "frames\TTimeDelayFrame.h"
 #include "frames\TSequenceInfoFrame.h"
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
@@ -46,6 +44,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 	TArrayBotButton *mRenameButton;
 	TScrollBox *mProcessPanel;
 	TSplitter *Splitter1;
+	TArrayBotButton *ArrayBotButton1;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
         void __fastcall mStartBtnClick(TObject *Sender);
@@ -54,6 +53,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
         void __fastcall mSequenceTimerTimer(TObject *Sender);
 		void __fastcall mRewindButtonClick(TObject *Sender);
 		void __fastcall mRenameButtonClick(TObject *Sender);
+	void __fastcall BtnClick(TObject *Sender);
 
 	private:
 		static int 					mFrameNr;

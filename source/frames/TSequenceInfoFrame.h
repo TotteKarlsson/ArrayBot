@@ -27,7 +27,7 @@ class PACKAGE TSequenceInfoFrame : public TFrame
         TAction *RemoveProcessA;
 	TAction *AddCombinedMoveA;
 	TListBox *mProcessesLB;
-	TGroupBox *GroupBox2;
+	TGroupBox *MasterProcessGB;
 	TArrayBotButton *mRenameBtn;
 	TArrayBotButton *mAddMoveBtn;
 	TArrayBotButton *mDeleteMoveBtn;
@@ -37,6 +37,9 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	TPanel *Panel1;
 	TPanel *Panel2;
 	TPanel *Panel3;
+	TComboBox *CategoryCB;
+	TGroupBox *GroupBox1;
+	TLabel *Label1;
     void __fastcall mMoveSequenceUpBtnClick(TObject *Sender);
     void __fastcall RemoveProcessAExecute(TObject *Sender);
 	void __fastcall mMoveSequenceDownBtnClick(TObject *Sender);
@@ -44,6 +47,7 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	void __fastcall AddCombinedMoveAExecute(TObject *Sender);
 	void __fastcall mUpdatePositionsBtnClick(TObject *Sender);
 	void __fastcall mRenameBtnClick(TObject *Sender);
+	void __fastcall CategoryCBCloseUp(TObject *Sender);
 
     private:
 		ProcessSequence*		        mSequence;

@@ -3,6 +3,10 @@
 #include "MainForm.h"
 #include "TMemoLogger.h"
 #include "TSplashForm.h"
+#include "TXYZUnitFrame.h"
+#include "TXYZPositionsFrame.h"
+#include "arraybot/apt/atAPTMotor.h"
+
 
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
@@ -84,3 +88,90 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     UIUpdateTimer->Enabled = true;
 	gAppIsStartingUp = false;
 }
+
+void __fastcall	TMain::setupUIFrames()
+{
+    //Create frames showing motor positions
+    TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
+    f1->Parent = this->mRightPanel;
+    f1->Align = alBottom;
+
+    TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB.getWhiskerUnit());
+    f2->Parent = this->mRightPanel;
+    f2->Align = alBottom;
+
+    this->mSequencesPanel->Top = 0;
+    this->mSequencesPanel->Refresh();
+
+	//Setup JoyStick;
+
+    //Over ride joysticks button events  (cycle speeds and XY motions)
+    mAB.getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
+    mAB.getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
+
+    //!Button 14 emergency stop
+    mAB.getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
+
+    //JoyStick Settings CB
+    JoyStickSettings& js = mAB.getJoyStickSettings();
+    JoyStickSetting* jss = js.getFirst();
+    while(jss)
+    {
+        JoyStickSettingsCB->Items->AddObject(jss->getLabel().c_str(), (TObject*) jss);
+        jss = js.getNext();
+    }
+
+    JoyStickSettingsCB->ItemIndex = 0;
+    JoyStickSettingsCB->OnChange(NULL);
+    mJSSpeedMediumBtn->Click();
+    //mJSCSBtn->Click();
+	mAB.enableJoyStick();
+
+    //XY velocity parameters
+    mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getX1Axis().getMaxVelocity());
+    mXYJogAccelerationJoystick->setValue(mAB.getJoyStick().getX1Axis().getAcceleration());
+
+    if(mAB.getCoverSlipUnit().getZMotor())
+    {
+        mMaxZJogVelocityJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getVelocity());
+        mZJogAccelerationJoystick->setValue(mAB.getCoverSlipUnit().getZMotor()->getAcceleration());
+    }
+
+    //Lift Settings CB
+    PairedMoves& pms = mAB.getLiftMoves();
+    PairedMove* pm = pms.getFirst();
+    while(pm)
+    {
+        string key = pm->mLabel;
+        mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
+        pm = pms.getNext();
+    }
+
+    mLiftCB->ItemIndex = 0;
+    mLiftCB->OnChange(NULL);
+
+	//Create and setup XYZ unit frames
+    mXYZUnitFrame1 = new TXYZUnitFrame(this);
+    mXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
+    mXYZUnitFrame1->Parent = ScrollBox1;
+    mXYZUnitFrame1->Left = 10;
+
+    mXYZUnitFrame2 = new TXYZUnitFrame(this);
+    mXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
+    mXYZUnitFrame2->Parent = ScrollBox1;
+    mXYZUnitFrame2->Left = 10;
+    mXYZUnitFrame2->Top = mXYZUnitFrame1->Top + mXYZUnitFrame1->Height;
+}
+
+void __fastcall	TMain::onFinishedInitBot()
+{
+	Log(lInfo) << "Synching ArrayBot UI";
+    ReInitBotBtn->Action = ShutDownA;
+
+    //Setup the wiggler
+    mTheWiggler.setAmplitude(mWigglerAmplitudeE->getValue());
+    mTheWiggler.setMaxVelocity(mWigglerVelocityE->getValue());
+    mTheWiggler.setMaxAcceleration(mWigglerAccelerationE->getValue());
+    mTheWiggler.assignMotors(mAB.getWhiskerUnit().getXMotor(), mAB.getWhiskerUnit().getYMotor());
+}
+

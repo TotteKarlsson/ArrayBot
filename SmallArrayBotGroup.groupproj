@@ -3,20 +3,20 @@
         <ProjectGuid>{9D7B788E-1612-4D2A-99DA-365D58720234}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="P:\libs\dsl\Common\IPC\mtkIPC.cbproj">
+        <Projects Include="P:\libs\atapi\source\atCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\atapi\source\atCore.cbproj">
+        <Projects Include="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="UI\lib\ArrayBotPackage.cbproj">
+        <Projects Include="source\lib\ArrayBotPackage.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="UI\ArrayBot.cbproj">
-            <Dependencies>UI\lib\ArrayBotPackage.cbproj;P:\libs\atapi\source\vcl\atVCLCore.cbproj</Dependencies>
+        <Projects Include="source\ArrayBot.cbproj">
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -26,15 +26,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="mtkIPC">
-        <MSBuild Projects="P:\libs\dsl\Common\IPC\mtkIPC.cbproj"/>
-    </Target>
-    <Target Name="mtkIPC:Clean">
-        <MSBuild Projects="P:\libs\dsl\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="mtkIPC:Make">
-        <MSBuild Projects="P:\libs\dsl\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="atCore">
         <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj"/>
     </Target>
@@ -43,6 +34,15 @@
     </Target>
     <Target Name="atCore:Make">
         <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atArrayBotCore">
+        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj"/>
+    </Target>
+    <Target Name="atArrayBotCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atArrayBotCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj" Targets="Make"/>
     </Target>
     <Target Name="atVCLCore">
         <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
@@ -54,31 +54,31 @@
         <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
     </Target>
     <Target Name="ArrayBotPackage">
-        <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj"/>
+        <MSBuild Projects="source\lib\ArrayBotPackage.cbproj"/>
     </Target>
     <Target Name="ArrayBotPackage:Clean">
-        <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
+        <MSBuild Projects="source\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="ArrayBotPackage:Make">
-        <MSBuild Projects="UI\lib\ArrayBotPackage.cbproj" Targets="Make"/>
+        <MSBuild Projects="source\lib\ArrayBotPackage.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBot" DependsOnTargets="ArrayBotPackage;atVCLCore">
-        <MSBuild Projects="UI\ArrayBot.cbproj"/>
+    <Target Name="ArrayBot">
+        <MSBuild Projects="source\ArrayBot.cbproj"/>
     </Target>
-    <Target Name="ArrayBot:Clean" DependsOnTargets="ArrayBotPackage:Clean;atVCLCore:Clean">
-        <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Clean"/>
+    <Target Name="ArrayBot:Clean">
+        <MSBuild Projects="source\ArrayBot.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ArrayBot:Make" DependsOnTargets="ArrayBotPackage:Make;atVCLCore:Make">
-        <MSBuild Projects="UI\ArrayBot.cbproj" Targets="Make"/>
+    <Target Name="ArrayBot:Make">
+        <MSBuild Projects="source\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkIPC;atCore;atVCLCore;ArrayBotPackage;ArrayBot"/>
+        <CallTarget Targets="atCore;atArrayBotCore;atVCLCore;ArrayBotPackage;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkIPC:Clean;atCore:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="atCore:Clean;atArrayBotCore:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkIPC:Make;atCore:Make;atVCLCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
+        <CallTarget Targets="atCore:Make;atArrayBotCore:Make;atVCLCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

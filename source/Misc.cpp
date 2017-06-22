@@ -74,6 +74,21 @@ void __fastcall TMain::FrameClosed(TObject *Sender)
 	;
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::LogLevelCBChange(TObject *Sender)
+{
+    if(LogLevelCB->ItemIndex == 0)
+    {
+        mLogLevel = lInfo;
+    }
+    else if(LogLevelCB->ItemIndex == 1)
+    {
+        mLogLevel = lAny;
+    }
+
+    gLogger.setLogLevel(mLogLevel);
+}
+
 void TMain::enableDisableUI(bool enable)
 {
 	this->Visible = enable;
@@ -151,5 +166,10 @@ int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam)
 	}
 
 	return true;
+}
+
+void __fastcall TMain::mRightPanelDblClick(TObject *Sender)
+{
+	this->BorderStyle = (this->BorderStyle == bsNone) ? bsSizeable : bsNone;
 }
 

@@ -26,7 +26,6 @@ TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
 
 using namespace mtk;
-
 int TABProcessSequencerFrame::mFrameNr = 0;
 
 //---------------------------------------------------------------------------
@@ -64,12 +63,15 @@ void __fastcall TABProcessSequencerFrame::mDeleteSequenceBtnClick(TObject *Sende
     if(idx > -1)
     {
     	string seqName = stdstr(mSequencesCB->Items->Strings[idx]);
-        mProcessSequencer.deleteSequence(seqName);
-		mSequencesCB->DeleteSelected();
-        mSequencesCB->Update();
-		if(mSequencesCB->Items->Count)
+        if(MessageDlg("Are you sure you want to delete the sequence: " + String(seqName.c_str()), mtWarning, TMsgDlgButtons() << mbYes<<mbCancel, 0) == mrYes)
         {
-	        mSequencesCB->ItemIndex = 0;
+            mProcessSequencer.deleteSequence(seqName);
+            mSequencesCB->DeleteSelected();
+            mSequencesCB->Update();
+            if(mSequencesCB->Items->Count)
+            {
+                mSequencesCB->ItemIndex = 0;
+            }
         }
     }
 
@@ -319,6 +321,19 @@ void __fastcall TABProcessSequencerFrame::mRenameButtonClick(TObject *Sender)
         }
     }
     delete t;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TABProcessSequencerFrame::BtnClick(TObject *Sender)
+{
+	int idx = mSequencesCB->ItemIndex;
+    if(mSequencesCB->ItemIndex == -1)
+    {
+    	return;
+    }
+
+  	string seqName = stdstr(mSequencesCB->Items->Strings[idx]);
+    mProcessSequencer.saveCurrent();
 }
 
 

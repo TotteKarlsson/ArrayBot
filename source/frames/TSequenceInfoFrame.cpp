@@ -38,8 +38,6 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
 
     mArrayCamRequestFrame = new TArrayCamRequestFrame(ps, Owner);
     mArrayCamRequestFrame->Visible = false;
-
-
 	mUpdatePositionsBtn->Action = mParallellProcessesFrame->mUpdateFinalPositionsA;
 }
 
@@ -75,6 +73,9 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TScrollBox* processPanel
     {
         mProcessesLB->ItemIndex = 0;
     }
+
+    //Setup the category
+    selectItem(CategoryCB, mSequence->getCategory());
 
     EnableDisableFrame(this, true);
     mProcessesLBClick(NULL);
@@ -347,9 +348,23 @@ void __fastcall TSequenceInfoFrame::mRenameBtnClick(TObject *Sender)
         	//bad..
             Log(lError) << "Failed to select item: "<<newName;
         }
-
     }
     delete t;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TSequenceInfoFrame::CategoryCBCloseUp(TObject *Sender)
+{
+	//Change category for the current session
+	if(!mSequence)
+    {
+    	Log(lError) << "Tried to change category for NULL sequence";
+    	return;
+    }
+
+	string category = getSelectedItem(CategoryCB);
+    mSequence->setCategory(category);
+    mSequence->write();
 }
 
 

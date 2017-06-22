@@ -48,6 +48,8 @@ void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
     if(gSplashForm && gSplashForm->isOnShowTime())
     {
 	    gSplashForm->setShowTime(0);
+        gSplashForm->Close();
+
     	Log(lDebug) << "Waiting for splash..";
     }
 
