@@ -79,7 +79,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
     //Populate misc frames
 	TSoundsFrame1->populate();
-    TApplicationSounds1->populate(mSoundProperties);
+    TApplicationSoundsFrame1->populate(mSoundProperties);
 
     UIUpdateTimer->Enabled = true;
 	gAppIsStartingUp = false;

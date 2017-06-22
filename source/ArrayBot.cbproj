@@ -155,21 +155,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="StartingUp.cpp">
             <BuildOrder>11</BuildOrder>
         </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TApplicationSounds.cpp">
-            <Form>ApplicationSounds</Form>
+        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TApplicationSoundsFrame.cpp">
+            <Form>ApplicationSoundsFrame</Form>
             <DesignClass>TFrame</DesignClass>
-            <DependentOn>P:\libs\atapi\source\vcl\frames\TApplicationSounds.h</DependentOn>
+            <DependentOn>P:\libs\atapi\source\vcl\frames\TApplicationSoundsFrame.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TSoundsFrame.cpp">
-            <Form>SoundsFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>P:\libs\atapi\source\vcl\frames\TSoundsFrame.h</DependentOn>
-            <BuildOrder>9</BuildOrder>
-        </CppCompile>
-        <FormResources Include="P:\libs\atapi\source\vcl\frames\TSoundsFrame.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\frames\TApplicationSounds.dfm"/>
         <FormResources Include="MainForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TApplicationSoundsFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

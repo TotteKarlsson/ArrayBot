@@ -33,9 +33,9 @@
 #include "cspin.h"
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.Graphics.hpp>
-#include "TApplicationSounds.h"
 #include "TSoundsFrame.h"
 #include "sound/atApplicationSound.h"
+#include "TApplicationSoundsFrame.h"
 
 using Poco::Timestamp;
 using mtk::IniFileProperties;
@@ -146,9 +146,9 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet7;
 	TTabSheet *TabSheet8;
 	TSoundsFrame *TSoundsFrame1;
-	TApplicationSounds *TApplicationSounds1;
 	TRadioGroup *mUnitControlRG;
 	TRadioGroup *mXYCtrlRG;
+	TApplicationSoundsFrame *TApplicationSoundsFrame1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);

@@ -55,7 +55,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 		void __fastcall mRewindButtonClick(TObject *Sender);
 		void __fastcall mRenameButtonClick(TObject *Sender);
 
-	private:	// User declarations
+	private:
 		static int 					mFrameNr;
 
 	    ProcessSequencer&  			mProcessSequencer;

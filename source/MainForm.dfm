@@ -108,9 +108,6 @@ object Main: TMain
       Align = alBottom
       Caption = 'ArrayCam'
       TabOrder = 2
-      ExplicitLeft = -1
-      ExplicitTop = 322
-      ExplicitWidth = 184
       object mVideoRecordingStatusLbl: TLabel
         Left = 16
         Top = 111
@@ -23929,7 +23926,7 @@ object Main: TMain
     Top = 0
     Width = 914
     Height = 872
-    ActivePage = mFrontPage
+    ActivePage = TabSheet2
     Align = alClient
     TabHeight = 60
     TabOrder = 1
@@ -24312,7 +24309,7 @@ object Main: TMain
         Top = 0
         Width = 906
         Height = 802
-        ActivePage = TabSheet4
+        ActivePage = TabSheet6
         Align = alClient
         TabOrder = 0
         object TabSheet4: TTabSheet
@@ -24460,6 +24457,10 @@ object Main: TMain
         object TabSheet7: TTabSheet
           Caption = 'Wiggler'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GroupBox2: TGroupBox
             Left = 14
             Top = 15
@@ -24524,21 +24525,20 @@ object Main: TMain
             Align = alClient
             AutoSize = True
             TabOrder = 0
-            ExplicitTop = 241
             ExplicitWidth = 898
-            ExplicitHeight = 523
+            ExplicitHeight = 764
             inherited GroupBox1: TGroupBox
               Width = 898
               Height = 523
               Align = alClient
               ExplicitWidth = 898
-              ExplicitHeight = 523
+              ExplicitHeight = 764
               inherited SoundsLB: TListBox
                 Top = 25
                 Height = 496
                 ItemHeight = 23
                 ExplicitTop = 25
-                ExplicitHeight = 496
+                ExplicitHeight = 737
               end
               inherited RepeatSoundCB: TCheckBox
                 Width = 115
@@ -24546,7 +24546,7 @@ object Main: TMain
               end
             end
           end
-          inline TApplicationSounds1: TApplicationSounds
+          inline TApplicationSoundsFrame1: TApplicationSoundsFrame
             Left = 0
             Top = 0
             Width = 898
@@ -24554,27 +24554,22 @@ object Main: TMain
             Align = alTop
             AutoSize = True
             TabOrder = 1
-            ExplicitWidth = 898
+            ExplicitLeft = 328
+            ExplicitTop = 32
             inherited GroupBox1: TGroupBox
               Width = 898
-              ExplicitWidth = 898
               inherited ApplicationSoundsLB: TListBox
                 Top = 25
-                Width = 368
                 Height = 214
                 ItemHeight = 23
                 ExplicitTop = 25
-                ExplicitWidth = 368
                 ExplicitHeight = 214
               end
               inherited GroupBox2: TGroupBox
-                Left = 370
                 Top = 25
-                Width = 526
+                Width = 647
                 Height = 214
-                ExplicitLeft = 370
                 ExplicitTop = 25
-                ExplicitWidth = 526
                 ExplicitHeight = 214
                 inherited SoundCB: TComboBox
                   Height = 31
@@ -24582,15 +24577,15 @@ object Main: TMain
                 end
               end
             end
-            inherited BindingsList1: TBindingsList
-              Left = 692
-              Top = 117
-            end
           end
         end
         object TabSheet8: TTabSheet
           Caption = 'ArrayCam Connection'
           ImageIndex = 3
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 37
             Top = 33

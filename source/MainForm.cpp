@@ -29,8 +29,8 @@
 #pragma link "TAboutArrayBot_2Frame"
 #pragma link "TPropertyCheckBox"
 #pragma link "cspin"
-#pragma link "TApplicationSounds"
 #pragma link "TSoundsFrame"
+#pragma link "TApplicationSoundsFrame"
 #pragma resource "*.dfm"
 TMain *Main;
 
