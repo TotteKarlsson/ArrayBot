@@ -90,7 +90,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         }
 
 		Application->Title = "ArrayBot - Software for Robots";
-		TStyleManager::TrySetStyle("Obsidian");
+		TStyleManager::TrySetStyle("Cobalt XEMedia");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->CreateForm(__classid(TSoundsFrame), &SoundsFrame);
 		Application->CreateForm(__classid(TApplicationSounds), &ApplicationSounds);

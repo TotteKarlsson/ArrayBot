@@ -134,7 +134,7 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mPullRelaxAccE;
 	TFloatLabeledEdit *mPullRelaxVelocityE;
 	TGroupBox *GroupBox4;
-	TGroupBox *GroupBox5;
+	TGroupBox *ACGB;
 	TLabel *mVideoRecordingStatusLbl;
 	TImage *mArrayCamStatusLED;
 	TLabel *Label2;
