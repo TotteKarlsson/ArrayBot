@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include "TTimeDelayFrame.h"
 #include "mtkVCLUtils.h"
-#include "atProcess.h"
+#include "core/atProcess.h"
 #include "arraybot/process/atTimeDelay.h"
 #include "mtkLogger.h"
 #include "arraybot/atArrayBot.h"

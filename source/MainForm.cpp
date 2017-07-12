@@ -4,16 +4,16 @@
 #include "TMemoLogger.h"
 #include "TSplashForm.h"
 #include "mtkStringList.h"
-#include "atUtilities.h"
+#include "core/atUtilities.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "arraybot/apt/atTCubeDCServo.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 #include <bitset>
 #include "mtkMathUtils.h"
-#include "atExceptions.h"
+#include "core/atExceptions.h"
 #include "sound/atSounds.h"
-#include "atCore.h"
+#include "core/atCore.h"
 #include "frames/TABProcessSequencerFrame.h"
 #include "frames/TXYZPositionsFrame.h"
 #include "frames/TXYZUnitFrame.h"
@@ -381,6 +381,8 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     else if(PageControl1->TabIndex == pcMain)
     {
         mSequencesPanel->Parent = mFrontPage;
+        mSequencerButtons->update();
+
     }
     else if(PageControl1->TabIndex == pcMotors)
     {

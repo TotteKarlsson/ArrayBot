@@ -6,7 +6,7 @@
 #include <Vcl.Themes.hpp>
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-#include "atExceptions.h"
+#include "core/atExceptions.h"
 #include "TSplashForm.h"
 #include "mtkRestartApplicationUtils.h"
 #include "UIUtilities.h"
@@ -14,6 +14,7 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
+USEFORM("P:\libs\atapi\source\vcl\frames\TApplicationSoundsFrame.cpp", ApplicationSoundsFrame); /* TFrame: File Type */
 USEFORM("MainForm.cpp", Main);
 //---------------------------------------------------------------------------
 string              gLogFileLocation            = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");

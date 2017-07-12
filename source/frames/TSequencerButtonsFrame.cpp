@@ -47,30 +47,34 @@ void TSequencerButtonsFrame::update()
     int btnNr(0);
     while(ps)
     {
-        TArrayBotButton* btn = new TArrayBotButton(this->Parent);
-        mButtons.push_back(btn);
+    	if(ps->getCategory() == "General")
+        {
+            TArrayBotButton* btn = new TArrayBotButton(this->Parent);
+            mButtons.push_back(btn);
 
-        btn->Parent = this;
-        btn->Caption = vclstr(ps->getName());
-        btn->OnClick = click;
-        btn->SoundID = "button_click_5";
+            btn->Parent = this;
+            btn->Caption = vclstr(ps->getName());
+            btn->OnClick = click;
+            btn->SoundID = "button_click_5";
 
-        btn->Font->Size = 12;
+            btn->Font->Size = 12;
+            btn->Width = 150;
+            btn->Height = 150;
+
+            if(btnNr == 0)
+            {
+                btn->Left = 3;
+            }
+            else
+            {
+                btn->Left = 3 + btnNr * (btn->Width + btn->Width / 4);
+            }
+
+            btn->Top = 0;
+            btnNr +=1 ;
+        }
+
         ps = pss.getNext();
-        btn->Width = 150;
-        btn->Height = 150;
-
-        if(btnNr == 0)
-        {
-	        btn->Left = 3;
-        }
-        else
-        {
-			btn->Left = 3 + btnNr * (btn->Width + btn->Width / 4);
-        }
-
-        btn->Top = 0;
-        btnNr +=1 ;
     }
 
     //Restore back to the sequence wich was selected

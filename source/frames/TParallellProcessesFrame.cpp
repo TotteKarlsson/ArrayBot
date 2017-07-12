@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include "TParallellProcessesFrame.h"
 #include "mtkVCLUtils.h"
-#include "atProcess.h"
+#include "core/atProcess.h"
 #include "arraybot/apt/atMove.h"
 #include "arraybot/process/atParallellProcess.h"
 #include "mtkLogger.h"
