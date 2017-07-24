@@ -125,7 +125,7 @@ class TMain : public TRegistryForm
 	TArrayBotButton *mWiggleBtn;
 	TFloatLabeledEdit *mWigglerVelocityE;
 	TCSpinButton *mWiggleSpinButton;
-	TGroupBox *GroupBox2;
+	TGroupBox *WigglerGB;
 	TFloatLabeledEdit *mWigglerAmplitudeStepE;
 	TArrayBotButton *mPullRibbonBtn;
 	TComboBox *mPullCB;
@@ -133,7 +133,7 @@ class TMain : public TRegistryForm
 	TArrayBotButton *mRelaxBtn;
 	TFloatLabeledEdit *mPullRelaxAccE;
 	TFloatLabeledEdit *mPullRelaxVelocityE;
-	TGroupBox *GroupBox4;
+	TGroupBox *PullGB;
 	TGroupBox *ACGB;
 	TLabel *mVideoRecordingStatusLbl;
 	TImage *mArrayCamStatusLED;
@@ -148,7 +148,7 @@ class TMain : public TRegistryForm
 	TSoundsFrame *TSoundsFrame1;
 	TRadioGroup *mUnitControlRG;
 	TRadioGroup *mXYCtrlRG;
-	TApplicationSoundsFrame *TApplicationSoundsFrame1;
+	TApplicationSoundsFrame *ApplicationSoundsFrame1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);

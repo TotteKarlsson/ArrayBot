@@ -83,9 +83,12 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
     //Populate misc frames
 	TSoundsFrame1->populate();
-    TApplicationSoundsFrame1->populate(mSoundProperties);
+    ApplicationSoundsFrame1->populate(mSoundProperties);
 
     UIUpdateTimer->Enabled = true;
+
+    //Switch main page control to first page,
+    PageControl1->TabIndex = 0;
 	gAppIsStartingUp = false;
 }
 

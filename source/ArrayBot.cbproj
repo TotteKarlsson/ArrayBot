@@ -46,7 +46,7 @@
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
         <IncludePath>P:\libs\atapi\source\vcl\frames\;P:\libs\atapi\source\arraycam\;P:\libs\atapi\source\vcl\forms\;P:\libs\dsl\VCL\Forms\;lib\;frames\;forms\;forms;frames;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib;bcbsmp.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;DuneComponents.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib;bcbsmp.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;DuneForms.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -104,7 +104,7 @@ xcopy p:\redist\ArrayBot\*.bpl $(APP_RELEASES)\ArrayBot /y
 xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y
 xcopy $(OUTPUTDIR)*.exe $(APP_RELEASES)\ArrayBot /y
 $(PostBuildEvent)]]></PostBuildEvent>
-        <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib</LinkPackageStatics>
+        <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib;DuneForms.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dsl\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\ThirdParty\Poco\Foundation\src\;P:\libs\dsl\VCL\Forms\;P:\libs\dsl\VCL\Common\;P:\libs\dsl\Common\Math\;P:\libs\dsl\Common\IPC\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>

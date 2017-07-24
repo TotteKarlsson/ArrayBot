@@ -90,7 +90,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         }
 
 		Application->Title = "ArrayBot - Software for Microtomes";
-		TStyleManager::TrySetStyle("Turquoise Gray");
+		TStyleManager::TrySetStyle("Obsidian");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->ShowMainForm = false;
 		Application->Run();
