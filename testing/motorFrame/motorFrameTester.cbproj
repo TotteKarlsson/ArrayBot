@@ -46,7 +46,7 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>None</Manifest_File>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <ILINK_LibraryPath>..\..\source\frames\;..\..\UI\frames\;P:\dslib\VCL\Components\;..\..\source\VCL\;..\..\source\;..\..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\source\frames\;..\..\UI\frames\;P:\dsl\VCL\Components\;..\..\source\VCL\;..\..\source\;..\..\..\source\;P:\ArrayBot\testing\GetDeviceInfo\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
@@ -104,7 +104,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
-        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayB..\..\source\;P:\libs\dslib\Common\;P:\libs\dslib\VCL\Components\;P:\ArrayBot\source\;P:\libs\dslib\ThirdParty\Poco\Foundation\src\;P:\libs\dslib\VCL\Forms\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayB..\..\source\;P:\libs\dsl\Common\;P:\libs\dsl\VCL\Components\;P:\ArrayBot\source\;P:\libs\dsl\ThirdParty\Poco\Foundation\src\;P:\libs\dsl\VCL\Forms\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi</LinkPackageImports>
         <IncludePath>$(DSL_ROOT)\Common;$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common\Math;$(AB_ROOT)\source;$(IncludePath)</IncludePath>
@@ -214,7 +214,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y</PostBuildEvent>
+        <PostBuildEvent>xcopy $(OUTPUTDIR)*.dll $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy $(OUTPUTDIR)*.ini $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy p:\redist\*.dll $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy p:\redist\*.bpl $(APP_RELEASES)\ArrayBot /y
+&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl $(APP_RELEASES)\ArrayBot /y
+</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

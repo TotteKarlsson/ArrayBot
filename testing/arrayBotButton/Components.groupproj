@@ -3,17 +3,11 @@
         <ProjectGuid>{62E70745-9BE3-4E16-BB18-1D60EB19E945}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="..\..\source\abCore.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="..\..\source\vcl\abVCLCore.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="..\..\UI\lib\ArrayBotPackage.cbproj">
+        <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="Project1.cbproj">
-            <Dependencies>..\..\source\vcl\abVCLCore.cbproj</Dependencies>
+            <Dependencies/>
         </Projects>
         <Projects Include="..\abDirectSound\DirectSound.cbproj">
             <Dependencies/>
@@ -26,40 +20,22 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="abCore">
-        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    <Target Name="atVCLCore">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
     </Target>
-    <Target Name="abCore:Clean">
-        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    <Target Name="atVCLCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="abCore:Make">
-        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    <Target Name="atVCLCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="abVCLCore">
-        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj"/>
-    </Target>
-    <Target Name="abVCLCore:Clean">
-        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="abVCLCore:Make">
-        <MSBuild Projects="..\..\source\vcl\abVCLCore.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="ArrayBotPackage">
-        <MSBuild Projects="..\..\UI\lib\ArrayBotPackage.cbproj"/>
-    </Target>
-    <Target Name="ArrayBotPackage:Clean">
-        <MSBuild Projects="..\..\UI\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ArrayBotPackage:Make">
-        <MSBuild Projects="..\..\UI\lib\ArrayBotPackage.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="Project1" DependsOnTargets="abVCLCore">
+    <Target Name="Project1">
         <MSBuild Projects="Project1.cbproj"/>
     </Target>
-    <Target Name="Project1:Clean" DependsOnTargets="abVCLCore:Clean">
+    <Target Name="Project1:Clean">
         <MSBuild Projects="Project1.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="Project1:Make" DependsOnTargets="abVCLCore:Make">
+    <Target Name="Project1:Make">
         <MSBuild Projects="Project1.cbproj" Targets="Make"/>
     </Target>
     <Target Name="DirectSound">
@@ -72,13 +48,13 @@
         <MSBuild Projects="..\abDirectSound\DirectSound.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="abCore;abVCLCore;ArrayBotPackage;Project1;DirectSound"/>
+        <CallTarget Targets="atVCLCore;Project1;DirectSound"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="abCore:Clean;abVCLCore:Clean;ArrayBotPackage:Clean;Project1:Clean;DirectSound:Clean"/>
+        <CallTarget Targets="atVCLCore:Clean;Project1:Clean;DirectSound:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="abCore:Make;abVCLCore:Make;ArrayBotPackage:Make;Project1:Make;DirectSound:Make"/>
+        <CallTarget Targets="atVCLCore:Make;Project1:Make;DirectSound:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

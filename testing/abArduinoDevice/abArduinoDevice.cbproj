@@ -81,7 +81,7 @@
         <Manifest_File>None</Manifest_File>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <Debugger_DebugSourcePath>P:\libs\dslib\Common\IPC\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\libs\dsl\Common\IPC\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">

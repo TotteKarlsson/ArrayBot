@@ -6,10 +6,10 @@
         <Projects Include="AtDBEntry.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dslib\Examples\SQL\mysql\session\sql_session.cbproj">
+        <Projects Include="P:\libs\dsl\Examples\SQL\mysql\session\sql_session.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj">
+        <Projects Include="P:\libs\dsl\Examples\SQL\mysql\inserts\sql_insert.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -30,22 +30,22 @@
         <MSBuild Projects="AtDBEntry.cbproj" Targets="Make"/>
     </Target>
     <Target Name="sql_session">
-        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\session\sql_session.cbproj"/>
+        <MSBuild Projects="P:\libs\dsl\Examples\SQL\mysql\session\sql_session.cbproj"/>
     </Target>
     <Target Name="sql_session:Clean">
-        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\session\sql_session.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dsl\Examples\SQL\mysql\session\sql_session.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="sql_session:Make">
-        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\session\sql_session.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dsl\Examples\SQL\mysql\session\sql_session.cbproj" Targets="Make"/>
     </Target>
     <Target Name="sql_insert">
-        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj"/>
+        <MSBuild Projects="P:\libs\dsl\Examples\SQL\mysql\inserts\sql_insert.cbproj"/>
     </Target>
     <Target Name="sql_insert:Clean">
-        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dsl\Examples\SQL\mysql\inserts\sql_insert.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="sql_insert:Make">
-        <MSBuild Projects="P:\libs\dslib\Examples\SQL\mysql\inserts\sql_insert.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dsl\Examples\SQL\mysql\inserts\sql_insert.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
         <CallTarget Targets="AtDBEntry;sql_session;sql_insert"/>

@@ -4,7 +4,9 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "abDirectSound.h"
+#include "sound/atDirectSound.h"
+#include "TArrayBotBtn.h"
+#include <Vcl.Buttons.hpp>
 //---------------------------------------------------------------------------
 
 
@@ -12,6 +14,7 @@ class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
 	TButton *Button1;
+	TArrayBotButton *ArrayBotButton1;
 	void __fastcall Button1Click(TObject *Sender);
 
 

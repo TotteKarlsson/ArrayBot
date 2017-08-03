@@ -3,20 +3,20 @@
         <ProjectGuid>{A06BCC60-8D0E-46A5-9C3D-6B26C4680959}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="P:\libs\dslib\Common\mtkCommon.cbproj">
+        <Projects Include="P:\libs\dsl\Common\mtkCommon.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dslib\Common\IPC\mtkIPC.cbproj">
+        <Projects Include="P:\libs\dsl\Common\IPC\mtkIPC.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
+        <Projects Include="P:\libs\dsl\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="P:\libs\atapi\source\atCore.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="abSerial.cbproj">
-            <Dependencies>P:\libs\dslib\Common\mtkCommon.cbproj;P:\libs\dslib\Common\IPC\mtkIPC.cbproj</Dependencies>
+            <Dependencies>P:\libs\dsl\Common\mtkCommon.cbproj;P:\libs\dsl\Common\IPC\mtkIPC.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -27,31 +27,31 @@
         </BorlandProject>
     </ProjectExtensions>
     <Target Name="mtkCommon">
-        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj"/>
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj"/>
     </Target>
     <Target Name="mtkCommon:Clean">
-        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="mtkCommon:Make">
-        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Make"/>
     </Target>
     <Target Name="mtkIPC">
-        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj"/>
+        <MSBuild Projects="P:\libs\dsl\Common\IPC\mtkIPC.cbproj"/>
     </Target>
     <Target Name="mtkIPC:Clean">
-        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dsl\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="mtkIPC:Make">
-        <MSBuild Projects="P:\libs\dslib\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dsl\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
     </Target>
     <Target Name="VCLCommon">
-        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
+        <MSBuild Projects="P:\libs\dsl\VCL\Common\VCLCommon.cbproj"/>
     </Target>
     <Target Name="VCLCommon:Clean">
-        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+        <MSBuild Projects="P:\libs\dsl\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="VCLCommon:Make">
-        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
+        <MSBuild Projects="P:\libs\dsl\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
     </Target>
     <Target Name="atCore">
         <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj"/>

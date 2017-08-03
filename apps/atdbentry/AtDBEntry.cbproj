@@ -94,7 +94,7 @@
         <Icon_MainIcon>AtDBEntry_Icon1.ico</Icon_MainIcon>
         <BCC_whid>false</BCC_whid>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <Debugger_DebugSourcePath>P:\ArrayBot\source\vcl\components\;P:\libs\dslib\VCL\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\ArrayBot\source\vcl\components\;P:\libs\dsl\VCL\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
