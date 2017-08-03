@@ -1,0 +1,144 @@
+<sequence_project>
+    <version>0.6</version>
+    <name>Lift Ribbon</name>
+    <sequence>
+        <process type="parallellProcess" name="Z lift">
+            <info>Process Information..(click me!)</info>
+            <process type="absoluteMove" name="Move 1">
+                <info>Process Information..(click me!)</info>
+                <motor_name>COVERSLIP UNIT_Z</motor_name>
+                <final_position>55.450000</final_position>
+                <max_velocity>1.000000</max_velocity>
+                <acc>1.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+            <process type="absoluteMove" name="Move 4">
+                <info>Process Information..(click me!)</info>
+                <motor_name>WHISKER UNIT_Z</motor_name>
+                <final_position>92.000000</final_position>
+                <max_velocity>1.000000</max_velocity>
+                <acc>1.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+        </process>
+        <process type="parallellProcess" name="Move whisker X &amp; Y">
+            <info>Process Information..(click me!)</info>
+            <process type="absoluteMove" name="Action 1">
+                <info>Process Information..(click me!)</info>
+                <motor_name>WHISKER UNIT_X</motor_name>
+                <final_position>17.740000</final_position>
+                <max_velocity>40.000000</max_velocity>
+                <acc>25.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+            <process type="absoluteMove" name="Action 2">
+                <info>Process Information..(click me!)</info>
+                <motor_name>COVERSLIP UNIT_Angle</motor_name>
+                <final_position>0.000000</final_position>
+                <max_velocity>25.000000</max_velocity>
+                <acc>30.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+            <process type="absoluteMove" name="Action 3">
+                <info>Process Information..(click me!)</info>
+                <motor_name>WHISKER UNIT_Y</motor_name>
+                <final_position>154.500000</final_position>
+                <max_velocity>40.000000</max_velocity>
+                <acc>25.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+        </process>
+        <process type="stopAndResumeProcess" name="Register Ribbon in DB">
+            <info>Process Information..(click me!)</info>
+        </process>
+        <process type="parallellProcess" name="Prepare drop off">
+            <info>Process Information..(click me!)</info>
+            <process type="absoluteMove" name="Action 2">
+                <info>Process Information..(click me!)</info>
+                <motor_name>COVERSLIP UNIT_X</motor_name>
+                <final_position>9.515361</final_position>
+                <max_velocity>40.000000</max_velocity>
+                <acc>25.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+            <process type="absoluteMove" name="Action 3">
+                <info>Process Information..(click me!)</info>
+                <motor_name>COVERSLIP UNIT_Y</motor_name>
+                <final_position>123.246958</final_position>
+                <max_velocity>40.000000</max_velocity>
+                <acc>25.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+            <process type="absoluteMove" name="Action 3">
+                <info>Process Information..(click me!)</info>
+                <motor_name>WHISKER UNIT_Z</motor_name>
+                <final_position>123.000000</final_position>
+                <max_velocity>10.000000</max_velocity>
+                <acc>15.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+        </process>
+        <process type="parallellProcess" name="Drop CS">
+            <info>Process Information..(click me!)</info>
+            <process type="absoluteMove" name="Action 1">
+                <info>Process Information..(click me!)</info>
+                <motor_name>COVERSLIP UNIT_Z</motor_name>
+                <final_position>145.200000</final_position>
+                <max_velocity>25.000000</max_velocity>
+                <acc>25.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+        </process>
+        <process type="parallellProcess" name="Wiggle off CS">
+            <info>Process Information..(click me!)</info>
+            <process type="absoluteMove" name="Action 1">
+                <info>Process Information..(click me!)</info>
+                <motor_name>COVERSLIP UNIT_Angle</motor_name>
+                <final_position>90.000000</final_position>
+                <max_velocity>10.000000</max_velocity>
+                <acc>30.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <trigger type="positionalTrigger" subject="">
+                    <position>65.000000</position>
+                    <operator>&gt;</operator>
+                    <trigger_function type="absoluteMove" motor_name="COVERSLIP UNIT_Z">
+                        <final_position>90.000000</final_position>
+                        <max_velocity>40.000000</max_velocity>
+                        <acceleration>25.000000</acceleration>
+                    </trigger_function>
+                </trigger>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+        </process>
+        <process type="parallellProcess" name="Lift CS Arm">
+            <info>Process Information..(click me!)</info>
+            <process type="absoluteMove" name="Action 1">
+                <info>Process Information..(click me!)</info>
+                <motor_name>COVERSLIP UNIT_Z</motor_name>
+                <final_position>65.000000</final_position>
+                <max_velocity>40.000000</max_velocity>
+                <acc>25.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <trigger type="positionalTrigger" subject="">
+                    <position>130.000000</position>
+                    <operator>&lt;</operator>
+                    <trigger_function type="absoluteMove" motor_name="COVERSLIP UNIT_Angle">
+                        <final_position>0.000000</final_position>
+                        <max_velocity>25.000000</max_velocity>
+                        <acceleration>25.000000</acceleration>
+                    </trigger_function>
+                </trigger>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+        </process>
+    </sequence>
+</sequence_project>
