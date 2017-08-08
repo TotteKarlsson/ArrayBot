@@ -22,6 +22,9 @@ __fastcall TSequencerButtonsFrame::TSequencerButtonsFrame(ProcessSequencer& ps, 
     mAB(ps.getArrayBot())
 {}
 
+__fastcall TSequencerButtonsFrame::~TSequencerButtonsFrame()
+{}
+
 //--------------------------------------------------------------------------
 void TSequencerButtonsFrame::update()
 {

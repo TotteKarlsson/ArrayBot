@@ -14,9 +14,9 @@
 class PACKAGE TSequencerButtonsFrame : public TFrame
 {
     __published:
-        TTimer *mSequenceStatusTimer;
-        void __fastcall mSequenceStatusTimerTimer(TObject *Sender);
-        void __fastcall click(TObject *Sender);
+        TTimer*						mSequenceStatusTimer;
+        void __fastcall 			mSequenceStatusTimerTimer(TObject *Sender);
+        void __fastcall 			click(TObject *Sender);
 
     private:
 		ProcessSequencer&	  		mProcessSequencer;
@@ -25,6 +25,7 @@ class PACKAGE TSequencerButtonsFrame : public TFrame
 
 	public:
 					__fastcall 		TSequencerButtonsFrame(ProcessSequencer& ps, TComponent* Owner);
+					__fastcall 		~TSequencerButtonsFrame();
     	void						update();
 };
 

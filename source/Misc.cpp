@@ -102,7 +102,7 @@ void __fastcall	TMain::OnException()
 //---------------------------------------------------------------------------
 void __fastcall TMain::ApplicationEvents1Exception(TObject *Sender, Exception *E)
 {
-	Log(lInfo) << "Application Exception...."<<stdstr(E->Message);
+	Log(lInfo) << "Application Exception: "<<stdstr(E->Message);
 }
 
 //---------------------------------------------------------------------------

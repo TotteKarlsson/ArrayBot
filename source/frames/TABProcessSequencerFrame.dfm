@@ -185,7 +185,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Enabled = False
     Interval = 100
     OnTimer = mSequenceTimerTimer
-    Left = 320
+    Left = 256
     Top = 560
   end
   object Actions: TActionList

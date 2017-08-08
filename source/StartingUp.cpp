@@ -6,10 +6,13 @@
 #include "TXYZUnitFrame.h"
 #include "TXYZPositionsFrame.h"
 #include "arraybot/apt/atAPTMotor.h"
-
-
+#include "TSequencerButtonsFrame.h"
+#include "frames/TABProcessSequencerFrame.h"
+//---------------------------------------------------------------------------
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
+extern string           gAppDataFolder;
+
 
 void TMain::setupProperties()
 {
@@ -30,7 +33,6 @@ void TMain::setupProperties()
 	mSoundProperties.add((BaseProperty*)  &mEnableMediumSpeedSound.setup( 	      	"ENABLE_MEDIUM_SPEED_SOUND",     ApplicationSound("BUTTON_CLICK_1")));
 	mSoundProperties.add((BaseProperty*)  &mEnableFastSpeedSound.setup( 	      	"ENABLE_FAST_SPEED_SOUND",       ApplicationSound("BUTTON_CLICK_1")));
 	mSoundProperties.add((BaseProperty*)  &mMainPageControlChangeSound.setup( 	   	"MAIN_PC_CHANGE_SOUND", 	     ApplicationSound("BUTTON_CLICK_1")));
-
 }
 
 //---------------------------------------------------------------------------
@@ -94,12 +96,23 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 void __fastcall	TMain::setupUIFrames()
 {
+    //Create MoveSequencer frame
+    mABProcessSequencerFrame = new TABProcessSequencerFrame(mProcessSequencer, gAppDataFolder, mMoveSequencesPage);
+    mABProcessSequencerFrame->Parent = mMoveSequencesPage;
+    mABProcessSequencerFrame->Align = alClient;
+    mABProcessSequencerFrame->init();
+
+    //The sequencer buttons frame holds shortcut buttons for preprogrammed sequences
+    mSequencerButtons = new TSequencerButtonsFrame(mProcessSequencer, mSequencesPanel);
+    mSequencerButtons->Parent = mSequencesPanel;
+    mSequencerButtons->Align = alClient;
+
     //Create frames showing motor positions
-    TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
+    auto_ptr<TXYZPositionsFrame> f1 = auto_ptr<TXYZPositionsFrame>(new TXYZPositionsFrame(this, mAB.getCoverSlipUnit()));
     f1->Parent = this->mRightPanel;
     f1->Align = alBottom;
 
-    TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB.getWhiskerUnit());
+    auto_ptr<TXYZPositionsFrame> f2 = auto_ptr<TXYZPositionsFrame>(new TXYZPositionsFrame(this, mAB.getWhiskerUnit()));
     f2->Parent = this->mRightPanel;
     f2->Align = alBottom;
 

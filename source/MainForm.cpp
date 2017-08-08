@@ -47,19 +47,20 @@ __fastcall TMain::TMain(TComponent* Owner)
 :
 	TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
 	mLogFileReader(joinPath(gAppDataFolder, gLogFileName), &logMsg),
+    mInitBotThread(),
     mIniFile(joinPath(gAppDataFolder, "ArrayBot.ini"), true, true),
     mLogLevel(lAny),
-    mInitBotThread(),
-    mAB(mIniFile, gAppDataFolder),
-    mArrayCamClient(),
-    mProcessSequencer(mAB, mArrayCamClient, gAppDataFolder),
-	mABProcessSequencerFrame(NULL),
-    mRibbonLifterFrame(NULL),
-    mTheWiggler(NULL, NULL),
     mEnableSlowSpeedSound(ApplicationSound("")),
     mEnableMediumSpeedSound(ApplicationSound("")),
     mEnableFastSpeedSound(ApplicationSound("")),
-	mMainPageControlChangeSound(ApplicationSound(""))
+	mMainPageControlChangeSound(ApplicationSound("")),
+    mArrayCamClient(),
+    mAB(mIniFile, gAppDataFolder),
+    mProcessSequencer(mAB, mArrayCamClient, gAppDataFolder),
+	mABProcessSequencerFrame(NULL),
+    mSequencerButtons(NULL),
+    mRibbonLifterFrame(NULL),
+    mTheWiggler(NULL, NULL)
 {
     //Init the CoreLibDLL -> give intra messages their ID's
 	initABCoreLib();
@@ -146,7 +147,6 @@ void __fastcall TMain::WndProc(TMessage& Message)
         	//playABSound(absMotorWarning);
         }
 
-
         //Message is now consumed.. delete it
         delete msg;
     }
@@ -163,18 +163,6 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
     {
 		WaitForDeviceInitTimer->Enabled = false;
 
-        //Create MoveSequencer frame
-        mABProcessSequencerFrame = new TABProcessSequencerFrame(mProcessSequencer, gAppDataFolder, mMoveSequencesPage);
-        mABProcessSequencerFrame->Parent = mMoveSequencesPage;
-        mABProcessSequencerFrame->Align = alClient;
-        mABProcessSequencerFrame->init();
-
-        //The sequencer buttons frame holds shortcut buttons for preprogrammed sequences
-        mSequencerButtons = new TSequencerButtonsFrame(mProcessSequencer, mSequencesPanel);
-        mSequencerButtons->Parent = mSequencesPanel;
-        mSequencerButtons->Align = alClient;
-        mSequencerButtons->update();
-
         setupUIFrames();
         enableDisableUI(true);
     }
@@ -184,8 +172,15 @@ void __fastcall TMain::reInitBotAExecute(TObject *Sender)
 {
 	mAB.initialize();
 
-	mXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
-	mXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
+    if(mXYZUnitFrame1)
+    {
+		mXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
+    }
+
+    if(mXYZUnitFrame2)
+    {
+		mXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
+    }
 
     //ArrayBotJoyStick stuff.....
     mMaxXYJogVelocityJoystick->setValue(mAB.getJoyStick().getX1Axis().getMaxVelocity());
@@ -275,8 +270,11 @@ void __fastcall TMain::mLiftCBChange(TObject *Sender)
 	//Update edits
     //Assign editbox references to Lifting parameters
 	PairedMove* pm = getCurrentPairedMove();
-	mMoveVelocityVerticalE->setReference(pm->mVelocity);
-	mMoveAccelerationE->setReference(pm->mAcceleration);
+    if(pm)
+    {
+		mMoveVelocityVerticalE->setReference(pm->mVelocity);
+		mMoveAccelerationE->setReference(pm->mAcceleration);
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -300,7 +298,10 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 
             case abSequencerUpdate:
                 Log(lDebug2) << "Update sequencer shortcuts";
-                mSequencerButtons->update();
+                if(mSequencerButtons)
+                {
+                	mSequencerButtons->update();
+                }
             break;
             default:
             break ;
@@ -372,7 +373,7 @@ void __fastcall TMain::mUnitControlRGClick(TObject *Sender)
 void __fastcall TMain::PageControl1Change(TObject *Sender)
 {
 	//Check what tab got selected
-	if(PageControl1->TabIndex == pcMoveSequences)
+	if(PageControl1->TabIndex == pcMoveSequences && mABProcessSequencerFrame != NULL)
     {
     	//Reload the currently selected sequence
 		mABProcessSequencerFrame->mSequencesCBChange(Sender);
@@ -381,7 +382,10 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
     else if(PageControl1->TabIndex == pcMain)
     {
         mSequencesPanel->Parent = mFrontPage;
-        mSequencerButtons->update();
+        if(mSequencerButtons)
+        {
+        	mSequencerButtons->update();
+        }
 
     }
     else if(PageControl1->TabIndex == pcMotors)
@@ -413,7 +417,10 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::mSequencesPanelResize(TObject *Sender)
 {
-    mSequencerButtons->update();
+    if(mSequencerButtons)
+    {
+    	mSequencerButtons->update();
+    }
 }
 
 //---------------------------------------------------------------------------

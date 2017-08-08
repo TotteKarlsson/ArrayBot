@@ -71,6 +71,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 
 	public:
 						 __fastcall TABProcessSequencerFrame(ProcessSequencer& ps, const string& appFolder, TComponent* Owner);
+						 __fastcall ~TABProcessSequencerFrame();
         void						init();
 };
 

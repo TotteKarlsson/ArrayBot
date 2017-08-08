@@ -15,6 +15,11 @@ extern TSplashForm*  gSplashForm;
 
 __fastcall TMain::~TMain()
 {
+//	delete mSequencerButtons;
+
+//    delete mABProcessSequencerFrame;
+//	delete mXYZUnitFrame1;
+//	delete mXYZUnitFrame2;
 	mProperties.write();
 	mSoundProperties.write();
     mIniFile.save();

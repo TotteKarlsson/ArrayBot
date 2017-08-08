@@ -212,6 +212,12 @@ void __fastcall TMain::AddJsSettingBtnClick(TObject *Sender)
 void __fastcall TMain::JoyStickSettingsCBChange(TObject *Sender)
 {
 	//Update edits
+    if(JoyStickSettingsCB->ItemIndex == -1)
+    {
+    	Log(lInfo) << "No joystick settings are available!";
+        return;
+    }
+
 	JoyStickSetting* js = (JoyStickSetting*) JoyStickSettingsCB->Items->Objects[JoyStickSettingsCB->ItemIndex];
     if(js)
     {
