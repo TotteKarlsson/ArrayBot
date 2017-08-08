@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ArrayBot"
-#define MyAppVersion "0.8.9b"
+#define MyAppVersion "0.8.9"
 #define MyAppPublisher "Smith Lab"
 #define MyAppURL "http://www.example.com/"
 #define MyAppExeName "ArrayBot.exe"

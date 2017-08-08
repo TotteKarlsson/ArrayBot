@@ -1,7 +1,21 @@
 Release 0.8.9 (Aug 8)
 =======================
-
-
+* Moved Wiggler to Wiggler tab
+* Renamed PageControl1 to MainPC
+* Fixed bug causing sequence with no category field to not load
+* Fixing startup and shutdown issues
+* Added arraybot template sequences
+* Updated ini file template
+* Changed Baud
+* Added required libraries to large arraybot compile group
+* Added two CPP files for arraycam communications and Wiggler logic
+* Added logic to deal with processsequence categories
+* Renamed application sounds frame
+* Moved ArrayCam GB to the right panel
+* Moved out frames from atapi
+* After restructure of atapi
+* Creating Navitar test application
+* Renamed ui folder -> source
 
 Release 0.8.8 (June 7)
 =======================
