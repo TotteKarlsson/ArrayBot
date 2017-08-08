@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot Version 0.5.8'
-  ClientHeight = 862
-  ClientWidth = 1087
+  ClientHeight = 885
+  ClientWidth = 1436
   Color = clBtnFace
   Constraints.MinHeight = 900
   Constraints.MinWidth = 1100
@@ -23,28 +23,16 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 23
   object mRightPanel: TPanel
-    Left = 904
+    Left = 1253
     Top = 0
     Width = 183
-    Height = 862
+    Height = 885
     Align = alRight
     TabOrder = 0
     OnDblClick = mRightPanelDblClick
-    object mJSCSBtn: TSpeedButton
-      Left = 1
-      Top = 1
-      Width = 181
-      Height = 138
-      Align = alTop
-      AllowAllUp = True
-      Caption = 'Enable JS'
-      OnClick = JSControlClick
-      ExplicitLeft = 6
-      ExplicitTop = 347
-    end
     object mJSStatusL: TLabel
       Left = 1
-      Top = 225
+      Top = 1
       Width = 181
       Height = 23
       Align = alTop
@@ -54,59 +42,21 @@ object Main: TMain
     end
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 609
+      Top = 757
       Width = 181
-      Height = 252
+      Height = 127
       Align = alBottom
       AutoSize = True
       TabOrder = 0
-      object Button5: TArrayBotButton
-        Left = 1
-        Top = 126
-        Width = 179
-        Height = 125
-        Action = FileExit1
-        Align = alBottom
-        Caption = 'E&xit'
-        TabOrder = 0
-        SoundID = 'BUTTON_CLICK_4'
-      end
-      object Button7: TArrayBotButton
-        Left = 1
-        Top = 1
-        Width = 179
-        Height = 125
-        Action = stopAllA
-        Align = alBottom
-        BiDiMode = bdLeftToRight
-        Caption = 'Stop All'
-        ParentBiDiMode = False
-        TabOrder = 1
-        SoundID = 'BUTTON_CLICK_4'
-      end
-    end
-    object mJoyStickRG: TRadioGroup
-      Left = 1
-      Top = 139
-      Width = 181
-      Height = 86
-      Align = alTop
-      Caption = 'JoyStick'
-      ItemIndex = 0
-      Items.Strings = (
-        'Blue'
-        'White')
-      TabOrder = 1
-      OnClick = mJoyStickRGClick
     end
     object ACGB: TGroupBox
       Left = 1
-      Top = 386
+      Top = 534
       Width = 181
       Height = 223
       Align = alBottom
       Caption = 'ArrayCam'
-      TabOrder = 2
+      TabOrder = 1
       object mVideoRecordingStatusLbl: TLabel
         Left = 16
         Top = 111
@@ -23920,32 +23870,32 @@ object Main: TMain
       end
     end
   end
-  object PageControl1: TPageControl
+  object MainPC: TPageControl
     Left = 0
     Top = 0
-    Width = 904
-    Height = 862
+    Width = 1253
+    Height = 885
     ActivePage = mFrontPage
     Align = alClient
     TabHeight = 60
     TabOrder = 1
     TabWidth = 150
-    OnChange = PageControl1Change
+    OnChange = MainPCChange
     object mFrontPage: TTabSheet
       Caption = 'The Bot'
       object mMiddlePanel: TPanel
         Left = 0
         Top = 97
-        Width = 896
-        Height = 550
+        Width = 1245
+        Height = 573
         Align = alClient
         AutoSize = True
         TabOrder = 0
         object mRibbonCreationGB: TGroupBox
           Left = 1
           Top = 1
-          Width = 894
-          Height = 548
+          Width = 1243
+          Height = 571
           Align = alClient
           Caption = 'Ribbon Creation'
           Font.Charset = DEFAULT_CHARSET
@@ -23955,9 +23905,12 @@ object Main: TMain
           Font.Style = []
           ParentFont = False
           TabOrder = 0
+          DesignSize = (
+            1243
+            571)
           object mLiftGB: TGroupBox
-            Left = 537
-            Top = 28
+            Left = 17
+            Top = 36
             Width = 304
             Height = 288
             Caption = 'Simple Lift'
@@ -24010,156 +23963,25 @@ object Main: TMain
               Text = '0.00'
             end
           end
-          object GroupBox3: TGroupBox
-            Left = 26
-            Top = 28
-            Width = 471
-            Height = 512
-            Caption = 'Wiggler'
+          object StopButton: TArrayBotButton
+            Left = 3
+            Top = 379
+            Width = 279
+            Height = 180
+            Action = stopAllA
+            Anchors = [akLeft, akBottom]
+            BiDiMode = bdLeftToRight
+            Caption = 'Stop All Motors'
+            ParentBiDiMode = False
             TabOrder = 1
-            object Label1: TLabel
-              Left = 72
-              Top = 165
-              Width = 158
-              Height = 23
-              Caption = 'Pull Distance (mm)'
-            end
-            object mWigglerAmplitudeE: TFloatLabeledEdit
-              Left = 24
-              Top = 307
-              Width = 105
-              Height = 31
-              EditLabel.Width = 84
-              EditLabel.Height = 23
-              EditLabel.Caption = 'Amplitude'
-              TabOrder = 0
-              Text = '1.00'
-              Value = 1.000000000000000000
-            end
-            object mWigglerAccelerationE: TFloatLabeledEdit
-              Left = 151
-              Top = 239
-              Width = 105
-              Height = 31
-              EditLabel.Width = 101
-              EditLabel.Height = 23
-              EditLabel.Caption = 'Acceleration'
-              TabOrder = 1
-              Text = '5.00'
-              Value = 5.000000000000000000
-            end
-            object mWiggleBtn: TArrayBotButton
-              Left = 151
-              Top = 320
-              Width = 298
-              Height = 171
-              Caption = 'Wiggle'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -16
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentFont = False
-              TabOrder = 2
-              OnClick = mWiggleBtnClick
-              SoundID = 'BUTTON_CLICK_4'
-            end
-            object mWigglerVelocityE: TFloatLabeledEdit
-              Left = 24
-              Top = 239
-              Width = 105
-              Height = 31
-              EditLabel.Width = 63
-              EditLabel.Height = 23
-              EditLabel.Caption = 'Velocity'
-              TabOrder = 3
-              Text = '3.00'
-              Value = 3.000000000000000000
-            end
-            object mWiggleSpinButton: TCSpinButton
-              Left = 24
-              Top = 354
-              Width = 105
-              Height = 137
-              Margins.Left = 0
-              Margins.Top = 0
-              Margins.Right = 0
-              Margins.Bottom = 0
-              DownGlyph.Data = {
-                0E010000424D0E01000000000000360000002800000009000000060000000100
-                200000000000D800000000000000000000000000000000000000008080000080
-                8000008080000080800000808000008080000080800000808000008080000080
-                8000008080000080800000808000000000000080800000808000008080000080
-                8000008080000080800000808000000000000000000000000000008080000080
-                8000008080000080800000808000000000000000000000000000000000000000
-                0000008080000080800000808000000000000000000000000000000000000000
-                0000000000000000000000808000008080000080800000808000008080000080
-                800000808000008080000080800000808000}
-              TabOrder = 4
-              UpGlyph.Data = {
-                0E010000424D0E01000000000000360000002800000009000000060000000100
-                200000000000D800000000000000000000000000000000000000008080000080
-                8000008080000080800000808000008080000080800000808000008080000080
-                8000000000000000000000000000000000000000000000000000000000000080
-                8000008080000080800000000000000000000000000000000000000000000080
-                8000008080000080800000808000008080000000000000000000000000000080
-                8000008080000080800000808000008080000080800000808000000000000080
-                8000008080000080800000808000008080000080800000808000008080000080
-                800000808000008080000080800000808000}
-              OnDownClick = mWiggleSpinButtonDownClick
-              OnUpClick = mWiggleSpinButtonUpClick
-            end
-            object mPullRibbonBtn: TArrayBotButton
-              Left = 240
-              Top = 42
-              Width = 209
-              Height = 112
-              Caption = 'Pull'
-              TabOrder = 5
-              OnClick = mPullRibbonBtnClick
-              SoundID = 'SHORT_BEEP_1'
-            end
-            object mPullCB: TComboBox
-              Left = 240
-              Top = 165
-              Width = 209
-              Height = 33
-              Style = csDropDownList
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -21
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ItemIndex = 3
-              ParentFont = False
-              TabOrder = 6
-              Text = '0.5'
-              Items.Strings = (
-                '0.01'
-                '0.05'
-                '0.1'
-                '0.5'
-                '1'
-                '1.5'
-                '2')
-            end
-            object mRelaxBtn: TArrayBotButton
-              Left = 24
-              Top = 42
-              Width = 105
-              Height = 73
-              Caption = 'Relax'
-              TabOrder = 7
-              OnClick = mPullRibbonBtnClick
-              SoundID = 'SHORT_BEEP_1'
-            end
+            SoundID = 'BUTTON_CLICK_4'
           end
         end
       end
       object mSequencesPanel: TPanel
         Left = 0
-        Top = 647
-        Width = 896
+        Top = 670
+        Width = 1245
         Height = 145
         Align = alBottom
         AutoSize = True
@@ -24169,14 +23991,14 @@ object Main: TMain
       object TopPanel: TPanel
         Left = 0
         Top = 0
-        Width = 896
+        Width = 1245
         Height = 97
         Align = alTop
         TabOrder = 2
         object JSGB: TGroupBox
           Left = 1
           Top = 1
-          Width = 894
+          Width = 1243
           Height = 95
           Align = alClient
           Caption = 'Motor Speed'
@@ -24190,7 +24012,7 @@ object Main: TMain
           object Panel2: TPanel
             Left = 2
             Top = 27
-            Width = 890
+            Width = 1239
             Height = 50
             Align = alTop
             TabOrder = 0
@@ -24225,6 +24047,33 @@ object Main: TMain
               Caption = 'Slow'
               OnClick = JSSpeedBtnClick
             end
+            object mJSCSBtn: TSpeedButton
+              Left = 1100
+              Top = 1
+              Width = 138
+              Height = 48
+              Align = alRight
+              AllowAllUp = True
+              Caption = 'Enable JS'
+              OnClick = JSControlClick
+              ExplicitLeft = 1
+              ExplicitHeight = 1237
+            end
+            object mJoyStickRG: TRadioGroup
+              Left = 904
+              Top = 1
+              Width = 196
+              Height = 48
+              Align = alRight
+              Caption = 'JoyStick'
+              Columns = 2
+              ItemIndex = 0
+              Items.Strings = (
+                'Blue'
+                'White')
+              TabOrder = 0
+              OnClick = mJoyStickRGClick
+            end
           end
         end
       end
@@ -24243,8 +24092,8 @@ object Main: TMain
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
-        Width = 896
-        Height = 687
+        Width = 1245
+        Height = 710
         HorzScrollBar.Smooth = True
         VertScrollBar.Tracking = True
         Align = alClient
@@ -24257,8 +24106,8 @@ object Main: TMain
       end
       object Panel1: TPanel
         Left = 0
-        Top = 687
-        Width = 896
+        Top = 710
+        Width = 1245
         Height = 105
         Align = alBottom
         TabOrder = 1
@@ -24306,8 +24155,8 @@ object Main: TMain
       object PageControl2: TPageControl
         Left = 0
         Top = 0
-        Width = 896
-        Height = 792
+        Width = 1245
+        Height = 815
         ActivePage = TabSheet4
         Align = alClient
         TabOrder = 0
@@ -24508,6 +24357,145 @@ object Main: TMain
               end
             end
           end
+          object GroupBox2: TGroupBox
+            Left = 586
+            Top = 28
+            Width = 471
+            Height = 512
+            Caption = 'Wiggler'
+            TabOrder = 1
+            object Label1: TLabel
+              Left = 72
+              Top = 165
+              Width = 158
+              Height = 23
+              Caption = 'Pull Distance (mm)'
+            end
+            object mWigglerAmplitudeE: TFloatLabeledEdit
+              Left = 24
+              Top = 307
+              Width = 105
+              Height = 31
+              EditLabel.Width = 84
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Amplitude'
+              TabOrder = 0
+              Text = '1.00'
+              Value = 1.000000000000000000
+            end
+            object mWigglerAccelerationE: TFloatLabeledEdit
+              Left = 151
+              Top = 239
+              Width = 105
+              Height = 31
+              EditLabel.Width = 101
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Acceleration'
+              TabOrder = 1
+              Text = '5.00'
+              Value = 5.000000000000000000
+            end
+            object mWiggleBtn: TArrayBotButton
+              Left = 151
+              Top = 320
+              Width = 298
+              Height = 171
+              Caption = 'Wiggle'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -16
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+              SoundID = 'BUTTON_CLICK_4'
+            end
+            object mWigglerVelocityE: TFloatLabeledEdit
+              Left = 24
+              Top = 239
+              Width = 105
+              Height = 31
+              EditLabel.Width = 63
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Velocity'
+              TabOrder = 3
+              Text = '3.00'
+              Value = 3.000000000000000000
+            end
+            object mWiggleSpinButton: TCSpinButton
+              Left = 24
+              Top = 354
+              Width = 105
+              Height = 137
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Margins.Bottom = 0
+              DownGlyph.Data = {
+                0E010000424D0E01000000000000360000002800000009000000060000000100
+                200000000000D800000000000000000000000000000000000000008080000080
+                8000008080000080800000808000008080000080800000808000008080000080
+                8000008080000080800000808000000000000080800000808000008080000080
+                8000008080000080800000808000000000000000000000000000008080000080
+                8000008080000080800000808000000000000000000000000000000000000000
+                0000008080000080800000808000000000000000000000000000000000000000
+                0000000000000000000000808000008080000080800000808000008080000080
+                800000808000008080000080800000808000}
+              TabOrder = 4
+              UpGlyph.Data = {
+                0E010000424D0E01000000000000360000002800000009000000060000000100
+                200000000000D800000000000000000000000000000000000000008080000080
+                8000008080000080800000808000008080000080800000808000008080000080
+                8000000000000000000000000000000000000000000000000000000000000080
+                8000008080000080800000000000000000000000000000000000000000000080
+                8000008080000080800000808000008080000000000000000000000000000080
+                8000008080000080800000808000008080000080800000808000000000000080
+                8000008080000080800000808000008080000080800000808000008080000080
+                800000808000008080000080800000808000}
+            end
+            object mPullRibbonBtn: TArrayBotButton
+              Left = 240
+              Top = 42
+              Width = 209
+              Height = 112
+              Caption = 'Pull'
+              TabOrder = 5
+              SoundID = 'SHORT_BEEP_1'
+            end
+            object mPullCB: TComboBox
+              Left = 240
+              Top = 165
+              Width = 209
+              Height = 33
+              Style = csDropDownList
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -21
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ItemIndex = 3
+              ParentFont = False
+              TabOrder = 6
+              Text = '0.5'
+              Items.Strings = (
+                '0.01'
+                '0.05'
+                '0.1'
+                '0.5'
+                '1'
+                '1.5'
+                '2')
+            end
+            object mRelaxBtn: TArrayBotButton
+              Left = 24
+              Top = 42
+              Width = 105
+              Height = 73
+              Caption = 'Relax'
+              TabOrder = 7
+              SoundID = 'SHORT_BEEP_1'
+            end
+          end
         end
         object TabSheet6: TTabSheet
           Caption = 'Sounds'
@@ -24515,26 +24503,26 @@ object Main: TMain
           inline TSoundsFrame1: TSoundsFrame
             Left = 0
             Top = 241
-            Width = 888
-            Height = 513
+            Width = 1237
+            Height = 536
             Align = alClient
             AutoSize = True
             TabOrder = 0
             ExplicitTop = 241
-            ExplicitWidth = 888
-            ExplicitHeight = 513
+            ExplicitWidth = 1237
+            ExplicitHeight = 536
             inherited GroupBox1: TGroupBox
-              Width = 888
-              Height = 513
+              Width = 1237
+              Height = 536
               Align = alClient
-              ExplicitWidth = 888
-              ExplicitHeight = 513
+              ExplicitWidth = 1237
+              ExplicitHeight = 536
               inherited SoundsLB: TListBox
                 Top = 25
-                Height = 486
+                Height = 509
                 ItemHeight = 23
                 ExplicitTop = 25
-                ExplicitHeight = 486
+                ExplicitHeight = 509
               end
               inherited RepeatSoundCB: TCheckBox
                 Width = 115
@@ -24545,7 +24533,7 @@ object Main: TMain
           object ApplicationSoundsFrame1: TApplicationSoundsFrame
             Left = 0
             Top = 0
-            Width = 888
+            Width = 1237
             Height = 241
             Align = alTop
             AutoSize = True
@@ -24584,15 +24572,15 @@ object Main: TMain
       object BottomPanel: TPanel
         Left = 0
         Top = 0
-        Width = 896
-        Height = 792
+        Width = 1245
+        Height = 815
         Align = alClient
         TabOrder = 0
         object infoMemo: TMemo
           Left = 1
           Top = 31
-          Width = 894
-          Height = 760
+          Width = 1243
+          Height = 783
           Align = alClient
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -24608,7 +24596,7 @@ object Main: TMain
         object ToolBar1: TToolBar
           Left = 1
           Top = 1
-          Width = 894
+          Width = 1243
           Height = 30
           AutoSize = True
           ButtonHeight = 30
@@ -24656,31 +24644,31 @@ object Main: TMain
       inline TAboutArrayBotFrame_21: TAboutArrayBotFrame_2
         Left = 0
         Top = 0
-        Width = 896
-        Height = 792
+        Width = 1245
+        Height = 815
         Align = alClient
         TabOrder = 0
-        ExplicitWidth = 896
-        ExplicitHeight = 792
+        ExplicitWidth = 1245
+        ExplicitHeight = 815
         inherited GroupBox1: TGroupBox
-          Width = 896
-          Height = 606
-          ExplicitWidth = 896
-          ExplicitHeight = 606
+          Width = 1245
+          Height = 629
+          ExplicitWidth = 1245
+          ExplicitHeight = 629
           inherited Memo1: TMemo
             Top = 25
-            Width = 892
-            Height = 579
+            Width = 1241
+            Height = 602
             ExplicitTop = 25
-            ExplicitWidth = 892
-            ExplicitHeight = 579
+            ExplicitWidth = 1241
+            ExplicitHeight = 602
           end
         end
         inherited Panel1: TPanel
-          Width = 896
-          ExplicitWidth = 896
+          Width = 1245
+          ExplicitWidth = 1245
           inherited Image1: TImage
-            Left = 710
+            Left = 1059
             ExplicitLeft = 708
           end
         end

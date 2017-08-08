@@ -37,9 +37,9 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ProcessSequencer& 
 {
     TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
     mProcessFileExtension = "abp";
-//	TSequenceInfoFrame1 = new TSequenceInfoFrame(ps, this);
-//	TSequenceInfoFrame1->Parent = mLeftPanel;
-//	TSequenceInfoFrame1->Align = alClient;
+	TSequenceInfoFrame1 = new TSequenceInfoFrame(ps, this);
+	TSequenceInfoFrame1->Parent = mLeftPanel;
+	TSequenceInfoFrame1->Align = alClient;
     refreshSequencesCB();
 }
 

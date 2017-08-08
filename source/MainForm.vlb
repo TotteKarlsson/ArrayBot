@@ -76,9 +76,6 @@ Coordinates=554,141,133,51
 [AddJsSettingBtn]
 Coordinates=135,195,97,51
 
-[PageControl1]
-Coordinates=776,533,81,33
-
 [mMoveSequencesPage]
 Coordinates=159,373,128,33
 
@@ -96,4 +93,7 @@ Coordinates=234,195,58,51
 
 [mClearLogWindowBtn]
 Coordinates=25,106,50,51
+
+[MainPC]
+Coordinates=776,533,81,33
 

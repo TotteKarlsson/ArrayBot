@@ -1,3 +1,8 @@
+Release 0.8.9 (Aug 8)
+=======================
+
+
+
 Release 0.8.8 (June 7)
 =======================
 * Added frames for user selection os application sounds

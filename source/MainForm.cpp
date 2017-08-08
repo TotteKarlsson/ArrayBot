@@ -109,7 +109,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 
 void TMain::enableDisableUI(bool e)
 {
-	PageControl1->Visible = e;
+	MainPC->Visible = e;
 	enableDisablePanel(mRightPanel, e);
 	enableDisablePanel(mSequencesPanel, e);
     enableDisableGroupBox(JSGB, e);
@@ -370,16 +370,16 @@ void __fastcall TMain::mUnitControlRGClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::PageControl1Change(TObject *Sender)
+void __fastcall TMain::MainPCChange(TObject *Sender)
 {
 	//Check what tab got selected
-	if(PageControl1->TabIndex == pcMoveSequences && mABProcessSequencerFrame != NULL)
+	if(MainPC->TabIndex == pcMoveSequences && mABProcessSequencerFrame != NULL)
     {
     	//Reload the currently selected sequence
 		mABProcessSequencerFrame->mSequencesCBChange(Sender);
     }
 
-    else if(PageControl1->TabIndex == pcMain)
+    else if(MainPC->TabIndex == pcMain)
     {
         mSequencesPanel->Parent = mFrontPage;
         if(mSequencerButtons)
@@ -388,12 +388,12 @@ void __fastcall TMain::PageControl1Change(TObject *Sender)
         }
 
     }
-    else if(PageControl1->TabIndex == pcMotors)
+    else if(MainPC->TabIndex == pcMotors)
     {
     	//
     }
 
-	else if(PageControl1->TabIndex == pcAbout)
+	else if(MainPC->TabIndex == pcAbout)
     {
 		TAboutArrayBotFrame_21->populate();
     }

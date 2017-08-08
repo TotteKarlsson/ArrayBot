@@ -46,7 +46,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     enableDisableArrayCamClientControls(false);
 
     //Init pagecontrols
-	PageControl1->TabIndex = 0;
+	MainPC->TabIndex = 0;
     PageControl2->TabIndex = 0;
 
 
@@ -90,7 +90,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     UIUpdateTimer->Enabled = true;
 
     //Switch main page control to first page,
-    PageControl1->TabIndex = 0;
+    MainPC->TabIndex = 0;
 	gAppIsStartingUp = false;
 }
 
@@ -108,13 +108,13 @@ void __fastcall	TMain::setupUIFrames()
     mSequencerButtons->Align = alClient;
 
     //Create frames showing motor positions
-    auto_ptr<TXYZPositionsFrame> f1 = auto_ptr<TXYZPositionsFrame>(new TXYZPositionsFrame(this, mAB.getCoverSlipUnit()));
+    TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
     f1->Parent = this->mRightPanel;
-    f1->Align = alBottom;
+    f1->Align = alTop;
 
-    auto_ptr<TXYZPositionsFrame> f2 = auto_ptr<TXYZPositionsFrame>(new TXYZPositionsFrame(this, mAB.getWhiskerUnit()));
+    TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB.getWhiskerUnit());
     f2->Parent = this->mRightPanel;
-    f2->Align = alBottom;
+    f2->Align = alTop;
 
     this->mSequencesPanel->Top = 0;
     this->mSequencesPanel->Refresh();
