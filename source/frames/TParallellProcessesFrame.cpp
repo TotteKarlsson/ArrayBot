@@ -239,7 +239,7 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
                 TYesNoForm* f = new TYesNoForm(this);
                 f->Caption = "";
                 f->mInfoLabel->Caption = msg.str().c_str();
-                f->Width = Application->MainForm->Width * 0.8;
+//                f->Width = Application->MainForm->Width * 0.8;
                 int res = f->ShowModal();
 
                 if(res == mrYes)
@@ -250,6 +250,10 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
                     mProcessSequencer.saveCurrent();
                 }
                 delete f;
+            }
+            else
+            {
+            	MessageDlg("We failed to get a reference to the selected motor.\nMake sure the motor are connected!", mtError, TMsgDlgButtons() << mbOK, 0);
             }
 
             //Check if this move has a trigger

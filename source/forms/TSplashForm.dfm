@@ -23,11 +23,13 @@ object SplashForm: TSplashForm
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 289
-    Top = 325
-    Width = 311
+    Left = 128
+    Top = 321
+    Width = 440
     Height = 30
-    Caption = 'Smith Lab.  - Allen institute 2016'
+    Margins.Right = 15
+    AutoSize = False
+    Caption = 'Smith Lab.  - Allen Institute 2016-2017'
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack

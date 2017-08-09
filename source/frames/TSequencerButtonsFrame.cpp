@@ -61,7 +61,7 @@ void TSequencerButtonsFrame::update()
             btn->SoundID = "button_click_5";
 
             btn->Font->Size = 12;
-            btn->Width = 150;
+            btn->Width = 190;
             btn->Height = 150;
 
             if(btnNr == 0)

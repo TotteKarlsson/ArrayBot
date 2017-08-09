@@ -27,6 +27,7 @@ class PACKAGE TProcessSequenceControlForm : public TForm
         void __fastcall mStartResumeButtonClick(TObject *Sender);
         void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
         void __fastcall mStopBtnClick(TObject *Sender);
+	void __fastcall mPauseBtnClick(TObject *Sender);
 
     private:
 		enum ProcessStatus {psNotStarted, psRunning, psPaused, psFinished, psUnknown};

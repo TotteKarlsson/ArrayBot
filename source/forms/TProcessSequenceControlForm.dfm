@@ -98,6 +98,7 @@ object ProcessSequenceControlForm: TProcessSequenceControlForm
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnClick = mPauseBtnClick
       SoundID = 'BUTTON_CLICK_4'
     end
     object mStopBtn: TArrayBotButton

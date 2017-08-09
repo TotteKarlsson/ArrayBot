@@ -430,4 +430,13 @@ void __fastcall TMain::Button1Click(TObject *Sender)
 }
 
 
+//---------------------------------------------------------------------------
+void __fastcall TMain::HomeAllDevicesAExecute(TObject *Sender)
+{
+	if(MessageDlg("ATTENTION: Make sure all motors have a free path to their home position before executing!", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrOk)
+    {
+		mAB.homeAll();
+    }
+}
+
 

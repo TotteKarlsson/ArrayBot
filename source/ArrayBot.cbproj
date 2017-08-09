@@ -161,13 +161,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="WigglerLogic.cpp">
             <BuildOrder>11</BuildOrder>
         </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TApplicationSoundsFrame.cpp">
-            <Form>ApplicationSoundsFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>P:\libs\atapi\source\vcl\frames\TApplicationSoundsFrame.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
-        <FormResources Include="P:\libs\atapi\source\vcl\frames\TApplicationSoundsFrame.dfm"/>
         <FormResources Include="MainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

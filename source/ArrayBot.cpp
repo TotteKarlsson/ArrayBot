@@ -14,7 +14,6 @@ using namespace mtk;
 using namespace std;
 
 //---------------------------------------------------------------------------
-USEFORM("P:\libs\atapi\source\vcl\frames\TApplicationSoundsFrame.cpp", ApplicationSoundsFrame); /* TFrame: File Type */
 USEFORM("MainForm.cpp", Main);
 //---------------------------------------------------------------------------
 string              gLogFileLocation            = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
@@ -90,7 +89,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         }
 
 		Application->Title = "ArrayBot - Software for Microtomes";
-		TStyleManager::TrySetStyle("Obsidian");
+		TStyleManager::TrySetStyle("Amakrits");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->ShowMainForm = false;
 		Application->Run();

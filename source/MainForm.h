@@ -148,6 +148,8 @@ class TMain : public TRegistryForm
 	TArrayBotButton *mPullRibbonBtn;
 	TComboBox *mPullCB;
 	TArrayBotButton *mRelaxBtn;
+	TBitBtn *BitBtn1;
+	TAction *HomeAllDevicesA;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -184,6 +186,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall mPullRibbonBtnClick(TObject *Sender);
 	void __fastcall mSequencesPanelResize(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall HomeAllDevicesAExecute(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMoveSequences = 1,
