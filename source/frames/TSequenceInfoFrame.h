@@ -10,6 +10,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
+#include <Vcl.Menus.hpp>
 //---------------------------------------------------------------------------
 
 class ProcessSequence;
@@ -40,6 +41,9 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	TComboBox *CategoryCB;
 	TGroupBox *GroupBox1;
 	TLabel *Label1;
+	TArrayBotButton *NewSequenceCategoryBtn;
+	TPopupMenu *PopupMenu1;
+	TMenuItem *LogXML1;
     void __fastcall mMoveSequenceUpBtnClick(TObject *Sender);
     void __fastcall RemoveProcessAExecute(TObject *Sender);
 	void __fastcall mMoveSequenceDownBtnClick(TObject *Sender);
@@ -48,6 +52,8 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	void __fastcall mUpdatePositionsBtnClick(TObject *Sender);
 	void __fastcall mRenameBtnClick(TObject *Sender);
 	void __fastcall CategoryCBCloseUp(TObject *Sender);
+	void __fastcall NewSequenceCategoryBtnClick(TObject *Sender);
+	void __fastcall LogXML1Click(TObject *Sender);
 
     private:
 		ProcessSequence*		        mSequence;

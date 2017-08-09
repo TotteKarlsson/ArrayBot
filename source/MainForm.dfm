@@ -26,27 +26,30 @@ object Main: TMain
     Left = 1253
     Top = 0
     Width = 183
-    Height = 608
+    Height = 578
     Align = alRight
     TabOrder = 0
     OnDblClick = mRightPanelDblClick
+    ExplicitHeight = 608
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 480
+      Top = 450
       Width = 181
       Height = 127
       Align = alBottom
       AutoSize = True
       TabOrder = 0
+      ExplicitTop = 480
     end
     object ACGB: TGroupBox
       Left = 1
-      Top = 257
+      Top = 227
       Width = 181
       Height = 223
       Align = alBottom
       Caption = 'ArrayCam'
       TabOrder = 1
+      ExplicitTop = 257
       object mVideoRecordingStatusLbl: TLabel
         Left = 16
         Top = 111
@@ -23864,28 +23867,31 @@ object Main: TMain
     Left = 0
     Top = 0
     Width = 1253
-    Height = 608
-    ActivePage = TabSheet1
+    Height = 578
+    ActivePage = mFrontPage
     Align = alClient
     TabHeight = 60
     TabOrder = 1
     TabWidth = 150
     OnChange = MainPCChange
+    ExplicitHeight = 608
     object mFrontPage: TTabSheet
       Caption = 'The Bot'
+      ExplicitHeight = 538
       object mMiddlePanel: TPanel
         Left = 0
         Top = 145
         Width = 1245
-        Height = 393
+        Height = 363
         Align = alClient
         AutoSize = True
         TabOrder = 0
+        ExplicitHeight = 393
         object mRibbonCreationGB: TGroupBox
           Left = 1
           Top = 1
           Width = 1243
-          Height = 391
+          Height = 361
           Align = alClient
           Caption = 'Ribbon Creation'
           Font.Charset = DEFAULT_CHARSET
@@ -23895,6 +23901,7 @@ object Main: TMain
           Font.Style = []
           ParentFont = False
           TabOrder = 0
+          ExplicitHeight = 391
           object mLiftGB: TGroupBox
             Left = 17
             Top = 36
@@ -23967,18 +23974,21 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
+      ExplicitHeight = 538
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
+      ExplicitHeight = 538
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
+      ExplicitHeight = 538
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
         Width = 1245
-        Height = 433
+        Height = 403
         HorzScrollBar.Smooth = True
         VertScrollBar.Tracking = True
         Align = alClient
@@ -23988,14 +23998,16 @@ object Main: TMain
         Padding.Right = 5
         Padding.Bottom = 5
         TabOrder = 0
+        ExplicitHeight = 433
       end
       object Panel1: TPanel
         Left = 0
-        Top = 433
+        Top = 403
         Width = 1245
         Height = 105
         Align = alBottom
         TabOrder = 1
+        ExplicitTop = 433
         object mCheckDevicesBtn: TBitBtn
           Left = 354
           Top = 1
@@ -24055,16 +24067,19 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
+      ExplicitHeight = 538
       object PageControl2: TPageControl
         Left = 0
         Top = 0
         Width = 1245
-        Height = 538
+        Height = 508
         ActivePage = TabSheet4
         Align = alClient
         TabOrder = 0
+        ExplicitHeight = 538
         object TabSheet4: TTabSheet
           Caption = 'Joystick'
+          ExplicitHeight = 500
           object JoyStickGB2: TGroupBox
             Left = 14
             Top = 17
@@ -24208,6 +24223,7 @@ object Main: TMain
         object TabSheet7: TTabSheet
           Caption = 'Wiggler'
           ImageIndex = 2
+          ExplicitHeight = 500
           object WigglerGB: TGroupBox
             Left = 14
             Top = 15
@@ -24403,11 +24419,12 @@ object Main: TMain
         object TabSheet6: TTabSheet
           Caption = 'Sounds'
           ImageIndex = 1
+          ExplicitHeight = 500
           inline TSoundsFrame1: TSoundsFrame
             Left = 0
             Top = 241
             Width = 1237
-            Height = 259
+            Height = 229
             Align = alClient
             AutoSize = True
             TabOrder = 0
@@ -24416,13 +24433,13 @@ object Main: TMain
             ExplicitHeight = 259
             inherited GroupBox1: TGroupBox
               Width = 1237
-              Height = 259
+              Height = 229
               Align = alClient
               ExplicitWidth = 1237
               ExplicitHeight = 259
               inherited SoundsLB: TListBox
                 Top = 25
-                Height = 232
+                Height = 202
                 ItemHeight = 23
                 ExplicitTop = 25
                 ExplicitHeight = 232
@@ -24446,6 +24463,7 @@ object Main: TMain
         object TabSheet8: TTabSheet
           Caption = 'ArrayCam Connection'
           ImageIndex = 3
+          ExplicitHeight = 500
           object GroupBox1: TGroupBox
             Left = 37
             Top = 33
@@ -24472,18 +24490,20 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
+      ExplicitHeight = 538
       object BottomPanel: TPanel
         Left = 0
         Top = 0
         Width = 1245
-        Height = 538
+        Height = 508
         Align = alClient
         TabOrder = 0
+        ExplicitHeight = 538
         object infoMemo: TMemo
           Left = 1
           Top = 31
           Width = 1243
-          Height = 506
+          Height = 476
           Align = alClient
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -24495,6 +24515,7 @@ object Main: TMain
           ScrollBars = ssBoth
           TabOrder = 0
           WordWrap = False
+          ExplicitHeight = 506
         end
         object ToolBar1: TToolBar
           Left = 1
@@ -24544,24 +24565,25 @@ object Main: TMain
     object TabSheet3: TTabSheet
       Caption = 'About'
       ImageIndex = 6
+      ExplicitHeight = 538
       inline TAboutArrayBotFrame_21: TAboutArrayBotFrame_2
         Left = 0
         Top = 0
         Width = 1245
-        Height = 538
+        Height = 508
         Align = alClient
         TabOrder = 0
         ExplicitWidth = 1245
         ExplicitHeight = 538
         inherited GroupBox1: TGroupBox
           Width = 1245
-          Height = 352
+          Height = 322
           ExplicitWidth = 1245
           ExplicitHeight = 352
           inherited Memo1: TMemo
             Top = 25
             Width = 1241
-            Height = 325
+            Height = 295
             ExplicitTop = 25
             ExplicitWidth = 1241
             ExplicitHeight = 325
@@ -24579,10 +24601,15 @@ object Main: TMain
     end
   end
   object StopButton: TArrayBotButton
-    Left = 0
-    Top = 705
-    Width = 1436
+    AlignWithMargins = True
+    Left = 15
+    Top = 690
+    Width = 1406
     Height = 180
+    Margins.Left = 15
+    Margins.Top = 15
+    Margins.Right = 15
+    Margins.Bottom = 15
     Action = stopAllA
     Align = alBottom
     BiDiMode = bdLeftToRight
@@ -24591,14 +24618,18 @@ object Main: TMain
     Style = bsNew
     TabOrder = 3
     SoundID = 'BUTTON_CLICK_4'
+    ExplicitLeft = 0
+    ExplicitTop = 705
+    ExplicitWidth = 1436
   end
   object TopPanel: TPanel
     Left = 0
-    Top = 608
+    Top = 578
     Width = 1436
     Height = 97
     Align = alBottom
     TabOrder = 2
+    ExplicitTop = 608
     object JSGB: TGroupBox
       Left = 1
       Top = 1

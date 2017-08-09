@@ -114,6 +114,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
     Height = 105
     Align = alBottom
     Caption = 'Miscellaneous'
+    PopupMenu = PopupMenu1
     TabOrder = 1
     object Label1: TLabel
       Left = 16
@@ -134,6 +135,16 @@ object SequenceInfoFrame: TSequenceInfoFrame
       Items.Strings = (
         'Preset'
         'General')
+    end
+    object NewSequenceCategoryBtn: TArrayBotButton
+      Left = 232
+      Top = 48
+      Width = 129
+      Height = 41
+      Caption = 'New Category'
+      TabOrder = 1
+      OnClick = NewSequenceCategoryBtnClick
+      SoundID = 'BUTTON_CLICK_4'
     end
   end
   object Panel3: TPanel
@@ -166,6 +177,14 @@ object SequenceInfoFrame: TSequenceInfoFrame
     object AddCombinedMoveA: TAction
       Caption = 'New Master Process'
       OnExecute = AddCombinedMoveAExecute
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 176
+    Top = 232
+    object LogXML1: TMenuItem
+      Caption = 'Log XML'
+      OnClick = LogXML1Click
     end
   end
 end

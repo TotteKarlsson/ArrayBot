@@ -75,7 +75,7 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TScrollBox* processPanel
     }
 
     //Setup the category
-    selectItem(CategoryCB, mSequence->getCategory());
+    selectItem(CategoryCB, mSequence->getCategory(), true);
 
     EnableDisableFrame(this, true);
     mProcessesLBClick(NULL);
@@ -365,6 +365,68 @@ void __fastcall TSequenceInfoFrame::CategoryCBCloseUp(TObject *Sender)
 	string category = getSelectedItem(CategoryCB);
     mSequence->setCategory(category);
     mSequence->write();
+}
+
+
+void __fastcall TSequenceInfoFrame::NewSequenceCategoryBtnClick(TObject *Sender)
+{
+	//Change category for the current session
+	if(!mSequence)
+    {
+    	Log(lError) << "Tried to change category for NULL sequence";
+    	return;
+    }
+
+	//Open string input form
+	TStringInputDialog* t = new TStringInputDialog(this);
+    t->Caption = "Add Process Category";
+
+	string currentCategory(mSequence->getCategory());
+    t->setText(currentCategory);
+
+    if(t->ShowModal() == mrOk)
+    {
+		//Rename the currently selected sequence
+    	string newCategory(t->getText());
+
+        if(newCategory != currentCategory)
+        {
+            mSequence->setCategory(newCategory);
+            mSequence->write();
+            CategoryCB->AddItem(vclstr(newCategory), NULL);
+
+            if(selectAndClickComboBoxItem(CategoryCB, newCategory) == false)
+            {
+                //bad..
+                Log(lError) << "Failed to select item: "<<newCategory;
+            }
+        }
+    }
+    delete t;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TSequenceInfoFrame::LogXML1Click(TObject *Sender)
+{
+	//Log the process sequence XML.
+	//Change category for the current session
+	if(!mSequence)
+    {
+    	Log(lError) << "Tried to change category for NULL sequence";
+    	return;
+    }
+
+    StringList s(mSequence->getXML(), '\n');
+
+    //Reverse list
+    s.reverse();
+
+    for(int i = 0; i < s.count(); i++)
+    {
+	    Log(lInfo) << s[i];
+    }
+
+
 }
 
 
