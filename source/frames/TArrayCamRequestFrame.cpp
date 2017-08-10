@@ -27,13 +27,15 @@ __fastcall TArrayCamRequestFrame::TArrayCamRequestFrame(ProcessSequencer& ps, TC
 	mArrayCamRequestCB->Clear();
 
 	ArrayCamProtocol ap;
-    string test = ap[acrStartVideoRecorder];
+	//    string test = ap[acrStartVideoRecorder];
+
     //The combox items holds Arraycam requests text and enum values
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStartVideoRecorder]),		reinterpret_cast<TObject*>(acrStartVideoRecorder));
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStopVideoRecorder]), 		reinterpret_cast<TObject*>(acrStopVideoRecorder));
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrTakeSnapShot]), 			reinterpret_cast<TObject*>(acrTakeSnapShot));
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrEnableBarcodeScanner]), 	reinterpret_cast<TObject*>(acrEnableBarcodeScanner));
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrDisableBarcodeScanner]), 	reinterpret_cast<TObject*>(acrDisableBarcodeScanner));
+	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetZoomAndFocus]), 		reinterpret_cast<TObject*>(acrSetZoomAndFocus));
 }
 
 void TArrayCamRequestFrame::populate(Process* p)
@@ -77,7 +79,6 @@ void __fastcall TArrayCamRequestFrame::mEditKeyDown(TObject *Sender, WORD &Key,
 //---------------------------------------------------------------------------
 void __fastcall TArrayCamRequestFrame::mArrayCamRequestCBCloseUp(TObject *Sender)
 {
-
     if(mArrayCamRequest)
     {
 		ACMessageID r = (ACMessageID) mArrayCamRequestCB->Items->Objects[mArrayCamRequestCB->ItemIndex];

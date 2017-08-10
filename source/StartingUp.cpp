@@ -38,6 +38,7 @@ void TMain::setupProperties()
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
 {
+	this->ReadRegistry();
 	enableDisableUI(false);
 
 	this->Visible = true;

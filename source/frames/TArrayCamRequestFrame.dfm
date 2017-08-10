@@ -38,9 +38,7 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
       Width = 260
       Height = 31
       Style = csDropDownList
-      ItemIndex = 0
       TabOrder = 0
-      Text = 'Start Video Recorder'
       OnCloseUp = mArrayCamRequestCBCloseUp
       Items.Strings = (
         'Start Video Recorder'
@@ -48,7 +46,8 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
         'Take SnapShoot'
         'Enable Barcode Scanner'
         'Disable Barcode Scanner'
-        'Validate Barcode')
+        'Validate Barcode'
+        'Set Camera Zoom and Focus')
     end
   end
 end

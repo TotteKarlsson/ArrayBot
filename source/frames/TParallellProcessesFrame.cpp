@@ -168,7 +168,7 @@ void TParallellProcessesFrame::selectItem(Process* p)
 
 	if(dynamic_cast<AbsoluteMove*>(p))
     {
-        mTMotorMoveProcessFrame->populate(dynamic_cast<AbsoluteMove*>(p));
+	        mTMotorMoveProcessFrame->populate(dynamic_cast<AbsoluteMove*>(p));
         mTMotorMoveProcessFrame->Visible = true;
 	    EnableDisableFrame(mTMotorMoveProcessFrame, true);
     }
@@ -193,9 +193,8 @@ void __fastcall TParallellProcessesFrame::mSubProcessesLBClick(TObject *Sender)
     }
 
 	//Get Current itemIndex, retrieve the move and populate the move frame
-//	string moveName = stdstr(mSubProcessesLB->Items->Strings[mSubProcessesLB->ItemIndex]);
     Process* subProcess = (Process*) mSubProcessesLB->Items->Objects[mSubProcessesLB->ItemIndex];
-    //Process* p = mParallell->getProcess(moveName);
+
     Process* p = mParallell->getProcess(subProcess);
     selectItem(p);
 }

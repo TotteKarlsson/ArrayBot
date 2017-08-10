@@ -174,7 +174,7 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
     mTimeDelayFrame->Visible 			= false;
     mArrayCamRequestFrame->Visible     	= false;
 
-    //Check what kind of process we have, Pause, or CombinedMove
+    //Check what kind of process we have
     Process* p = getCurrentlySelectedProcess();
     if(dynamic_cast<ParallellProcess*>(p) != NULL)
     {
@@ -182,8 +182,6 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
         mParallellProcessesFrame->populate(pp);
         mParallellProcessesFrame->mSubProcessesLB->ItemIndex = 0;
         mParallellProcessesFrame->mSubProcessesLB->OnClick(NULL);
-
-
         mParallellProcessesFrame->Visible 	= true;
 		mUpdatePositionsBtn->Visible 		= true;
         mUpdatePositionsBtn->Enabled 		= true;

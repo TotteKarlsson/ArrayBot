@@ -32,10 +32,10 @@ void __fastcall TSplashForm::logMsg()
 {
 	string lmsg = mLogFileReader.getData();
 
-    if(::contains("INFO", lmsg))
-    {
-   		TAboutArrayBotFrame1->logLabel->Caption = lmsg.c_str();
-    }
+	lmsg = stripToAlpha(lmsg);
+	TAboutArrayBotFrame1->logLabel->Caption = lmsg.c_str();
+    TAboutArrayBotFrame1->logLabel->Color = clRed;
+
 //	mLogFileReader.purge();
     Application->ProcessMessages();
 }

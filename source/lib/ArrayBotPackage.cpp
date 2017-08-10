@@ -2,18 +2,20 @@
 
 #include <System.hpp>
 #pragma hdrstop
-USEFORM("..\forms\TSplashForm.cpp", SplashForm);
-USEFORM("..\forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
-USEFORM("..\frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
-USEFORM("..\frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
 USEFORM("..\frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
 USEFORM("..\frames\TXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
-USEFORM("..\frames\TAboutArrayBot_2Frame.cpp", AboutArrayBotFrame_2); /* TFrame: File Type */
-USEFORM("..\frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame); /* TFrame: File Type */
-USEFORM("..\frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
 USEFORM("..\frames\TTimeDelayFrame.cpp", TimeDelayFrame); /* TFrame: File Type */
-USEFORM("..\frames\TArrayCamRequestFrame.cpp", ArrayCamRequestFrame); /* TFrame: File Type */
+USEFORM("..\frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
+USEFORM("..\frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame); /* TFrame: File Type */
+USEFORM("..\frames\TAboutArrayBot_2Frame.cpp", AboutArrayBotFrame_2); /* TFrame: File Type */
+USEFORM("..\forms\TSplashForm.cpp", SplashForm);
+USEFORM("..\forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 USEFORM("..\forms\TProcessSequenceControlForm.cpp", ProcessSequenceControlForm);
+USEFORM("..\frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
+USEFORM("..\frames\TArrayCamZoomAndFocusRequestFrame.cpp", ArrayCamZoomAndFocusRequestFrame);
+USEFORM("..\frames\TArrayCamRequestFrame.cpp", ArrayCamRequestFrame); /* TFrame: File Type */
+USEFORM("..\frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("..\frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 //---------------------------------------------------------------------------
