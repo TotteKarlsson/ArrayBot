@@ -23975,6 +23975,10 @@ object Main: TMain
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
@@ -24065,6 +24069,10 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
         Top = 0
@@ -24078,7 +24086,7 @@ object Main: TMain
           ExplicitLeft = 0
           ExplicitTop = 0
           ExplicitWidth = 0
-          ExplicitHeight = 500
+          ExplicitHeight = 0
           object JoyStickGB2: TGroupBox
             Left = 14
             Top = 17
@@ -24225,7 +24233,7 @@ object Main: TMain
           ExplicitLeft = 0
           ExplicitTop = 0
           ExplicitWidth = 0
-          ExplicitHeight = 500
+          ExplicitHeight = 0
           object WigglerGB: TGroupBox
             Left = 14
             Top = 15
@@ -24497,7 +24505,7 @@ object Main: TMain
       ExplicitLeft = 0
       ExplicitTop = 0
       ExplicitWidth = 0
-      ExplicitHeight = 538
+      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0
@@ -24505,7 +24513,6 @@ object Main: TMain
         Height = 508
         Align = alClient
         TabOrder = 0
-        ExplicitHeight = 538
         object infoMemo: TMemo
           Left = 1
           Top = 31

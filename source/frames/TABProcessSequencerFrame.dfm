@@ -17,7 +17,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Height = 95
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 1001
     object mStartBtn: TButton
       Left = 1
       Top = 1
@@ -35,7 +34,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Height = 93
       Align = alRight
       TabOrder = 1
-      ExplicitLeft = 640
       object mStatusLbl: TLabel
         Left = 50
         Top = 35
@@ -69,7 +67,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Caption = 'Reset Sequence'
       TabOrder = 3
       OnClick = mRewindButtonClick
-      ExplicitLeft = 464
     end
   end
   object mMainPanel: TPanel
@@ -79,7 +76,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     Height = 726
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1001
     object Splitter1: TSplitter
       Left = 385
       Top = 1
@@ -183,7 +179,6 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       ParentBackground = True
       ParentColor = False
       TabOrder = 1
-      ExplicitWidth = 612
     end
   end
   object mSequenceStatusTimer: TTimer

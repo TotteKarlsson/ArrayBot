@@ -25,9 +25,7 @@ __fastcall TArrayCamRequestFrame::TArrayCamRequestFrame(ProcessSequencer& ps, TC
      mProcessSequencer(ps)
 {
     TFrame::Name = vclstr("ArrayCamFrame_" + mtk::toString(++mFrameNr));
-
 	mArrayCamRequestCB->Clear();
-
 	ArrayCamProtocol ap;
 	//    string test = ap[acrStartVideoRecorder];
 
