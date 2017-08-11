@@ -1,3 +1,18 @@
+Release 0.9.0 (Aug 11)
+=======================
+* Fixed "Can't get referenced motor" message
+* Got arrycam request for focus and zoom partially working
+* Added frame to set zoom and focus parameters for IPC message
+* Stripped Log time for log messages sent to splash screen
+* Fixed reading registry parameters -> proper size of application
+* Added ability to add new sequence category to a sequence
+* Added ability to log a sequence XML to logfile
+* Changed UI style.
+* Added ability to Home all motors at once.
+* Connected Pause button on sequence control form.
+* Updated year on splash form.
+* Simplified MotorMove process frame
+
 Release 0.8.9 (Aug 8)
 =======================
 * Moved Wiggler to Wiggler tab
