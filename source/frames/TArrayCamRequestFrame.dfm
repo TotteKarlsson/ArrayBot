@@ -2,8 +2,7 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
   Left = 0
   Top = 0
   Width = 313
-  Height = 207
-  AutoSize = True
+  Height = 304
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -15,8 +14,8 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
     Left = 0
     Top = 0
     Width = 313
-    Height = 207
-    Align = alLeft
+    Height = 193
+    Align = alTop
     Caption = 'ArrayCam Request'
     TabOrder = 0
     object mNameEdit: TSTDStringLabeledEdit
@@ -48,6 +47,42 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
         'Disable Barcode Scanner'
         'Validate Barcode'
         'Set Camera Zoom and Focus')
+    end
+  end
+  object FocusZoomGB: TGroupBox
+    Left = 0
+    Top = 193
+    Width = 313
+    Height = 111
+    Align = alClient
+    Caption = 'Parameters'
+    Padding.Left = 15
+    Padding.Right = 15
+    TabOrder = 1
+    Visible = False
+    object FocusE: TIntegerLabeledEdit
+      Left = 16
+      Top = 59
+      Width = 105
+      Height = 31
+      EditLabel.Width = 59
+      EditLabel.Height = 23
+      EditLabel.Caption = 'FocusE'
+      TabOrder = 0
+      Text = '0'
+      OnKeyDown = IntEditKeyDown
+    end
+    object ZoomE: TIntegerLabeledEdit
+      Left = 128
+      Top = 59
+      Width = 105
+      Height = 31
+      EditLabel.Width = 58
+      EditLabel.Height = 23
+      EditLabel.Caption = 'ZoomE'
+      TabOrder = 1
+      Text = '0'
+      OnKeyDown = IntEditKeyDown
     end
   end
 end

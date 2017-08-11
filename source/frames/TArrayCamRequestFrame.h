@@ -10,6 +10,8 @@
 #include "arraybot/atArrayBot.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "TSTDStringLabeledEdit.h"
+#include "TFloatLabeledEdit.h"
+#include "TIntegerLabeledEdit.h"
 
 class Process;
 class ArrayCamRequestProcess;
@@ -20,8 +22,13 @@ class PACKAGE TArrayCamRequestFrame : public TFrame
         TGroupBox *GroupBox1;
         TSTDStringLabeledEdit *mNameEdit;
 		TComboBox *mArrayCamRequestCB;
+	TGroupBox *FocusZoomGB;
+	TIntegerLabeledEdit *FocusE;
+	TIntegerLabeledEdit *ZoomE;
         void __fastcall mEditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mArrayCamRequestCBCloseUp(TObject *Sender);
+	void __fastcall IntEditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 
     private:
         ProcessSequencer&				mProcessSequencer;

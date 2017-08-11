@@ -231,14 +231,12 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
             if(mtr && isEqual(am->getPosition(), mtr->getPosition(), 1.e-4) == false)
             {
                 stringstream msg;
-                msg <<
-                "Update final motor position for motor: "<<am->getMotorName() <<
-                "\n("<<am->getPosition()<<" -> "<< mtr->getPosition()<<")";
+                msg <<"Update final motor position for motor, device: "<<am->getMotorName() <<"\n("
+                	<<am->getPosition()<<" -> "<< mtr->getPosition()<<")";
 
                 TYesNoForm* f = new TYesNoForm(this);
                 f->Caption = "";
                 f->mInfoLabel->Caption = msg.str().c_str();
-//                f->Width = Application->MainForm->Width * 0.8;
                 int res = f->ShowModal();
 
                 if(res == mrYes)
@@ -252,7 +250,10 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
             }
             else
             {
-            	MessageDlg("We failed to get a reference to the selected motor.\nMake sure the motor are connected!", mtError, TMsgDlgButtons() << mbOK, 0);
+            	if(!mtr)
+                {
+            		MessageDlg("We failed to get a reference to the selected motor.\nMake sure the motor are connected!", mtError, TMsgDlgButtons() << mbOK, 0);
+                }
             }
 
             //Check if this move has a trigger

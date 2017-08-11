@@ -9,6 +9,8 @@
 #include "arraycam/atArrayCamProtocol.h"
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"
+#pragma link "TFloatLabeledEdit"
+#pragma link "TIntegerLabeledEdit"
 #pragma resource "*.dfm"
 
 using namespace mtk;
@@ -30,6 +32,7 @@ __fastcall TArrayCamRequestFrame::TArrayCamRequestFrame(ProcessSequencer& ps, TC
 	//    string test = ap[acrStartVideoRecorder];
 
     //The combox items holds Arraycam requests text and enum values
+    //If new type of request is added, it have to be made available the the user here
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStartVideoRecorder]),		reinterpret_cast<TObject*>(acrStartVideoRecorder));
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStopVideoRecorder]), 		reinterpret_cast<TObject*>(acrStopVideoRecorder));
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrTakeSnapShot]), 			reinterpret_cast<TObject*>(acrTakeSnapShot));
@@ -58,10 +61,20 @@ void TArrayCamRequestFrame::populate(Process* p)
 		if(mArrayCamRequest->getRequest() == ar)
         {
         	mArrayCamRequestCB->ItemIndex = i;
+
+            if(ar == acrSetZoomAndFocus)
+            {
+	           	FocusZoomGB->Visible = true;
+                FocusE->setValue(mArrayCamRequest->getParameter1().getValue());
+                ZoomE->setValue(mArrayCamRequest->getParameter2().getValue());
+            }
+            else
+            {
+	           	FocusZoomGB->Visible = false;
+            }
             break;
         }
     }
-
 
   	EnableDisableFrame(this, true);
 }
@@ -83,7 +96,28 @@ void __fastcall TArrayCamRequestFrame::mArrayCamRequestCBCloseUp(TObject *Sender
     {
 		ACMessageID r = (ACMessageID) mArrayCamRequestCB->Items->Objects[mArrayCamRequestCB->ItemIndex];
         mArrayCamRequest->setRequest(r);
+       	FocusZoomGB->Visible = r == acrSetZoomAndFocus ? true : false;
         mProcessSequencer.saveCurrent();
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TArrayCamRequestFrame::IntEditKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+	TIntegerLabeledEdit* e = dynamic_cast<TIntegerLabeledEdit*>(Sender);
+
+	if(Key == vkReturn)
+    {
+        if(e == FocusE)
+        {
+        	mArrayCamRequest->getParameter1().setValue(e->getValue());
+        }
+
+        if(e == ZoomE)
+        {
+        	mArrayCamRequest->getParameter2().setValue(e->getValue());
+        }
     }
 }
 

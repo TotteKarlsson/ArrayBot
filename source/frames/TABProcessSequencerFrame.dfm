@@ -1,7 +1,7 @@
 object ABProcessSequencerFrame: TABProcessSequencerFrame
   Left = 0
   Top = 0
-  Width = 1001
+  Width = 1399
   Height = 821
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,10 +13,11 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
   object Panel1: TPanel
     Left = 0
     Top = 726
-    Width = 1001
+    Width = 1399
     Height = 95
     Align = alBottom
     TabOrder = 1
+    ExplicitWidth = 1001
     object mStartBtn: TButton
       Left = 1
       Top = 1
@@ -28,12 +29,13 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       OnClick = mStartBtnClick
     end
     object Panel2: TPanel
-      Left = 640
+      Left = 1038
       Top = 1
       Width = 360
       Height = 93
       Align = alRight
       TabOrder = 1
+      ExplicitLeft = 640
       object mStatusLbl: TLabel
         Left = 50
         Top = 35
@@ -59,7 +61,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       TabOrder = 2
     end
     object mRewindButton: TButton
-      Left = 464
+      Left = 862
       Top = 1
       Width = 176
       Height = 93
@@ -67,15 +69,17 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Caption = 'Reset Sequence'
       TabOrder = 3
       OnClick = mRewindButtonClick
+      ExplicitLeft = 464
     end
   end
   object mMainPanel: TPanel
     Left = 0
     Top = 0
-    Width = 1001
+    Width = 1399
     Height = 726
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 1001
     object Splitter1: TSplitter
       Left = 385
       Top = 1
@@ -169,7 +173,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
     object mProcessPanel: TScrollBox
       Left = 388
       Top = 1
-      Width = 612
+      Width = 1010
       Height = 724
       Align = alClient
       BevelInner = bvNone
@@ -179,6 +183,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       ParentBackground = True
       ParentColor = False
       TabOrder = 1
+      ExplicitWidth = 612
     end
   end
   object mSequenceStatusTimer: TTimer

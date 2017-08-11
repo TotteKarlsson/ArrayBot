@@ -160,6 +160,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
       Width = 439
       Height = 127
       Align = alBottom
+      Caption = 'Update Positions'
       ParentDoubleBuffered = True
       TabOrder = 0
       Visible = False
