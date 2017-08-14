@@ -56,6 +56,8 @@ class PACKAGE TMotorFrame : public TFrame
 	TFloatLabeledEdit *mPotentiometerSettingE;
 	TButton *EnableDisableBtn;
 	TPropertyCheckBox *mEnableDisableLimits;
+	TRadioGroup *JogModeRG;
+	TFloatLabeledEdit *mJogStepE;
         void __fastcall mMotorStatusTimerTimer(TObject *Sender);
         void __fastcall identifyExecute(TObject *Sender);
         void __fastcall homeExecute(TObject *Sender);
@@ -69,6 +71,7 @@ class PACKAGE TMotorFrame : public TFrame
         void __fastcall EnableDisableBtnClick(TObject *Sender);
         void __fastcall StopBtnClick(TObject *Sender);
 	void __fastcall mEnableDisableLimitsClick(TObject *Sender);
+	void __fastcall JogModeRGClick(TObject *Sender);
 
     private:
         APTMotor*				mMotor;

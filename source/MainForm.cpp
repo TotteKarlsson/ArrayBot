@@ -390,13 +390,20 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
     }
     else if(MainPC->TabIndex == pcMotors)
     {
-    	//
+		//Disable joystick
+	 	mAB.disableJoyStick();
     }
 
 	else if(MainPC->TabIndex == pcAbout)
     {
 		TAboutArrayBotFrame_21->populate();
     }
+
+    if(MainPC->TabIndex != pcMotors)
+    {
+   	 	mAB.enableJoyStick();
+    }
+
     mMainPageControlChangeSound.getReference().play();
 }
 

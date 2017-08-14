@@ -238,19 +238,19 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\UIUtilities.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
+        <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
+        <FormResources Include="..\frames\TMotorFrame.dfm"/>
+        <FormResources Include="..\frames\TArrayCamRequestFrame.dfm"/>
+        <FormResources Include="..\forms\TProcessSequenceControlForm.dfm"/>
+        <FormResources Include="..\forms\abAddJoyStickSettingForm.dfm"/>
+        <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
+        <FormResources Include="..\forms\TSplashForm.dfm"/>
         <FormResources Include="..\frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="..\frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="..\frames\TXYZUnitFrame.dfm"/>
         <FormResources Include="..\frames\TXYZPositionsFrame.dfm"/>
         <FormResources Include="..\frames\TMotorMoveProcessFrame.dfm"/>
         <FormResources Include="..\frames\TPositionalTriggerFrame.dfm"/>
-        <FormResources Include="..\forms\abAddJoyStickSettingForm.dfm"/>
-        <FormResources Include="..\frames\TArrayCamRequestFrame.dfm"/>
-        <FormResources Include="..\frames\TMotorFrame.dfm"/>
-        <FormResources Include="..\forms\TSplashForm.dfm"/>
-        <FormResources Include="..\forms\TProcessSequenceControlForm.dfm"/>
-        <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
-        <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

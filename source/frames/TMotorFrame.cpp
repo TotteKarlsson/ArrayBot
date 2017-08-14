@@ -33,6 +33,15 @@ void TMotorFrame::assignMotor(APTMotor* m)
     if(mMotor)
     {
     	MotorGB->Caption = vclstr(mMotor->getName() + " [" + mMotor->getSerial() + "]");
+
+        switch(mMotor->getJogMoveMode())
+        {
+        	case jmContinuous: 			JogModeRG->ItemIndex = 0; break;
+        	case jmSingleStep: 			JogModeRG->ItemIndex = 1; break;
+        	case jmJogModeUndefined: 	JogModeRG->ItemIndex = -1; break;
+        }
+
+        mJogStepE->setValue(mMotor->getJogStep());
         mJogVelocity->setValue(mMotor->getManualJogVelocity());
         mJogAcc->setValue(mMotor->getManualJogAcceleration());
 	    mPotentiometerSettingE->setValue(mMotor->getPotentiometerVelocity());
@@ -155,26 +164,29 @@ void __fastcall TMotorFrame::DevEdit(TObject *Sender, WORD &Key, TShiftState Shi
     }
 
 	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
+    double value = e->getValue();
     if(e == mJogVelocity)
     {
-        double vel = mJogVelocity->getValue();
-        Log(lDebug) << "New JOG velocity (mm/s): " <<vel;
-		mMotor->setManualJogVelocity(vel);
-        mMotor->setJogVelocity(vel);
-        mMotor->setPotentiometerVelocity(vel);
+        Log(lDebug) << "New JOG velocity (mm/s): " <<value;
+		mMotor->setManualJogVelocity(value);
+        mMotor->setJogVelocity(value);
+        mMotor->setPotentiometerVelocity(value);
     }
     else if(e == mJogAcc)
     {
-        double a = mJogAcc->getValue();
-        Log(lDebug) << "New JOG acceleration (mm/(s*s)): " <<a;
-		mMotor->setManualJogAcceleration(a);
-        mMotor->setJogAcceleration(a);
+        Log(lDebug) << "New JOG acceleration (mm/(s*s)): " <<value;
+		mMotor->setManualJogAcceleration(value);
+        mMotor->setJogAcceleration(value);
     }
     else if(e == mPotentiometerSettingE)
     {
-        double v = mPotentiometerSettingE->getValue();
-        Log(lDebug) << "New Pot vel (mm/(s)): " <<v;
-		mMotor->setPotentiometerVelocity(v);
+        Log(lDebug) << "New Pot vel (mm/(s)): " <<value;
+		mMotor->setPotentiometerVelocity(value);
+    }
+    else if(e == mJogStepE)
+    {
+        Log(lDebug) << "Setting JogStep: (mm): " <<value;
+        mMotor->setJogStep(value);
     }
 }
 
@@ -238,5 +250,26 @@ void __fastcall TMotorFrame::mEnableDisableLimitsClick(TObject *Sender)
 	mEnableDisableLimits->OnClick(Sender);
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMotorFrame::JogModeRGClick(TObject *Sender)
+{
+	if(!mMotor)
+    {
+    	return;
+    }
+
+	//Setup jogmode
+	int itemIndex =JogModeRG->ItemIndex;
+    switch(itemIndex)
+    {
+    	case 0:
+        	mMotor->setJogMoveMode(jmContinuous);
+        break;
+
+        case 1:
+        	mMotor->setJogMoveMode(jmSingleStep);
+        break;
+    }
+}
 
 

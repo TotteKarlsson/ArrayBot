@@ -2,8 +2,7 @@ object MotorFrame: TMotorFrame
   Left = 0
   Top = 0
   Width = 297
-  Height = 393
-  AutoSize = True
+  Height = 453
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -16,7 +15,7 @@ object MotorFrame: TMotorFrame
     Left = 0
     Top = 0
     Width = 297
-    Height = 393
+    Height = 433
     Caption = 'Motor'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -27,13 +26,12 @@ object MotorFrame: TMotorFrame
     TabOrder = 0
     object StatusGB: TGroupBox
       Left = 2
-      Top = 306
+      Top = 346
       Width = 293
       Height = 85
       Align = alBottom
       Caption = 'Status'
       TabOrder = 2
-      ExplicitTop = 330
       object Label1: TLabel
         Left = 10
         Top = 23
@@ -210,13 +208,12 @@ object MotorFrame: TMotorFrame
     end
     object JoggingGB: TGroupBox
       Left = 2
-      Top = 232
+      Top = 231
       Width = 293
-      Height = 74
+      Height = 115
       Align = alBottom
       Caption = 'Jogging'
       TabOrder = 3
-      ExplicitTop = 256
       object mFwdBtn: TButton
         Left = 162
         Top = 19
@@ -261,16 +258,42 @@ object MotorFrame: TMotorFrame
         Text = '0.00'
         OnKeyDown = DevEdit
       end
+      object JogModeRG: TRadioGroup
+        Left = 3
+        Top = 63
+        Width = 153
+        Height = 46
+        Caption = 'JogMode'
+        Columns = 2
+        ItemIndex = 0
+        Items.Strings = (
+          'Continous'
+          'Step')
+        TabOrder = 4
+        OnClick = JogModeRGClick
+      end
+      object mJogStepE: TFloatLabeledEdit
+        Left = 177
+        Top = 88
+        Width = 55
+        Height = 21
+        EditLabel.Width = 69
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Jog Step (mm)'
+        TabOrder = 5
+        Text = '5.00'
+        OnKeyDown = DevEdit
+        Value = 5.000000000000000000
+      end
     end
     object GroupBox1: TGroupBox
       Left = 2
-      Top = 136
+      Top = 135
       Width = 293
       Height = 96
       Align = alBottom
       Caption = 'Range && Limits (mm)'
       TabOrder = 4
-      ExplicitTop = 137
       object mPositionRangeMaxE: TFloatLabeledEdit
         Left = 10
         Top = 34
@@ -361,8 +384,8 @@ object MotorFrame: TMotorFrame
     Enabled = False
     Interval = 250
     OnTimer = mMotorStatusTimerTimer
-    Left = 120
-    Top = 328
+    Left = 216
+    Top = 376
   end
   object ActionList1: TActionList
     Left = 272
