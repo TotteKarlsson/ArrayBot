@@ -2,7 +2,8 @@ object SequencerButtonsFrame: TSequencerButtonsFrame
   Left = 0
   Top = 0
   Width = 669
-  Height = 123
+  Height = 433
+  AutoSize = True
   TabOrder = 0
   object mSequenceStatusTimer: TTimer
     Enabled = False

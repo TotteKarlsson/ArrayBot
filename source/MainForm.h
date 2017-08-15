@@ -96,12 +96,11 @@ class TMain : public TRegistryForm
 	TComboBox *LogLevelCB;
 	TTabSheet *mMoveSequencesPage;
 	TTimer *WaitForDeviceInitTimer;
-	TPanel *SequencesPanel1;
 	TTabSheet *RibbonLifterTabSheet;
 	TPanel *Panel1;
 	TBitBtn *mCheckDevicesBtn;
 	TBitBtn *ReInitBotBtn;
-	TPanel *mMiddlePanel;
+	TPanel *MiddlePanel;
 	TSpeedButton *mJSCSBtn;
 	TRadioGroup *mJoyStickRG;
 	TLabel *mJSStatusL;
@@ -151,8 +150,10 @@ class TMain : public TRegistryForm
 	TComboBox *LiftCB1;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
-	TPanel *SequencesPanel2;
 	TTimer *WaitForHandleTimer;
+	TCategoryPanelGroup *CategoryPanelGroup1;
+	TCategoryPanel *CategoryPanel1;
+	TCategoryPanel *CategoryPanel2;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);

@@ -18,7 +18,9 @@ class PACKAGE TSequencerButtonsFrame : public TFrame
         void __fastcall 			mSequenceStatusTimerTimer(TObject *Sender);
         void __fastcall 			click(TObject *Sender);
 
+
     private:
+    	static int				  	mFrameCount;
 		ProcessSequencer&	  		mProcessSequencer;
 		ArrayBot&					mAB;
         vector<TArrayBotButton*> 	mButtons;
@@ -28,6 +30,7 @@ class PACKAGE TSequencerButtonsFrame : public TFrame
 					__fastcall 		TSequencerButtonsFrame(ProcessSequencer& ps, const string& category, TComponent* Owner);
 					__fastcall 		~TSequencerButtonsFrame();
     	void						update();
+        string						getCategory();
 };
 
 

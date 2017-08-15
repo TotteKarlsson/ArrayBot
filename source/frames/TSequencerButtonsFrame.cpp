@@ -15,16 +15,25 @@
 using namespace mtk;
 using std::stringstream;
 TSequencerButtonsFrame *SequencerButtonsFrame;
+
+int TSequencerButtonsFrame::mFrameCount = 0;
 //---------------------------------------------------------------------------
 __fastcall TSequencerButtonsFrame::TSequencerButtonsFrame(ProcessSequencer& ps, const string& category, TComponent* Owner)
 	: TFrame(Owner),
     mProcessSequencer(ps),
     mAB(ps.getArrayBot()),
     mCategory(category)
-{}
+{
+	this->Name = this->Name + "_" + IntToStr(mFrameCount++);
+}
 
 __fastcall TSequencerButtonsFrame::~TSequencerButtonsFrame()
 {}
+
+string TSequencerButtonsFrame::getCategory()
+{
+	return mCategory;
+}
 
 //--------------------------------------------------------------------------
 void TSequencerButtonsFrame::update()
@@ -47,7 +56,6 @@ void TSequencerButtonsFrame::update()
     int pWidth = this->Width;
     int pHeight = this->Height;
 
-
     int btnNr(0);
     while(ps)
     {
@@ -63,7 +71,7 @@ void TSequencerButtonsFrame::update()
 
             btn->Font->Size = 12;
             btn->Width = 190;
-            btn->Height = 150;
+            btn->Height = pHeight;
 
             if(btnNr == 0)
             {
@@ -115,3 +123,4 @@ void __fastcall TSequencerButtonsFrame::click(TObject *Sender)
         mAB.enableJoyStickAxes();
     }
 }
+

@@ -9,6 +9,9 @@
 #include "TSequencerButtonsFrame.h"
 #include "frames/TABProcessSequencerFrame.h"
 #include "UIUtilities.h"
+#include "mtkVCLUtils.h"
+
+
 //---------------------------------------------------------------------------
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
@@ -110,13 +113,15 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->init();
 
     //The sequencer buttons frame holds shortcut buttons for preprogrammed sequences
-    mSequencerButtons1 = new TSequencerButtonsFrame(mProcessSequencer, "Cutting", SequencesPanel1);
-    mSequencerButtons1->Parent = SequencesPanel1;
+    mSequencerButtons1 = new TSequencerButtonsFrame(mProcessSequencer, "Cutting", MiddlePanel);
+    mSequencerButtons1->Parent = CategoryPanel1;
     mSequencerButtons1->Align = alClient;
+    CategoryPanel1->Caption = vclstr(mSequencerButtons1->getCategory());
 
-    mSequencerButtons2 = new TSequencerButtonsFrame(mProcessSequencer, "Setup", SequencesPanel2);
-    mSequencerButtons2->Parent = SequencesPanel2;
+    mSequencerButtons2 = new TSequencerButtonsFrame(mProcessSequencer, "Setup", MiddlePanel);
+    mSequencerButtons2->Parent = CategoryPanel2;
     mSequencerButtons2->Align = alClient;
+    CategoryPanel2->Caption = vclstr(mSequencerButtons2->getCategory());
 
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
@@ -126,9 +131,6 @@ void __fastcall	TMain::setupUIFrames()
     TXYZPositionsFrame* f2 = new TXYZPositionsFrame(this, mAB.getWhiskerUnit());
     f2->Parent = this->mRightPanel;
     f2->Align = alTop;
-
-    this->SequencesPanel1->Top = 0;
-    this->SequencesPanel1->Refresh();
 
 	//Setup JoyStick;
 

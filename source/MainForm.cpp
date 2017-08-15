@@ -112,7 +112,7 @@ void TMain::enableDisableUI(bool e)
 {
 	MainPC->Visible = e;
 	enableDisablePanel(mRightPanel, e);
-	enableDisablePanel(SequencesPanel1, e);
+	enableDisablePanel(MiddlePanel, e);
     enableDisableGroupBox(JSGB, e);
 }
 

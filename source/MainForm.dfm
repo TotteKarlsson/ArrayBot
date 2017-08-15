@@ -23909,24 +23909,14 @@ object Main: TMain
     OnChange = MainPCChange
     object mFrontPage: TTabSheet
       Caption = 'The Bot'
-      object mMiddlePanel: TPanel
-        Left = 0
-        Top = 147
-        Width = 1295
-        Height = 320
-        Align = alClient
-        AutoSize = True
-        TabOrder = 0
-      end
-      object SequencesPanel1: TPanel
+      object MiddlePanel: TPanel
         Left = 0
         Top = 0
         Width = 1295
-        Height = 147
-        Align = alTop
+        Height = 612
+        Align = alClient
         AutoSize = True
-        TabOrder = 1
-        OnResize = SequencesPanel1Resize
+        TabOrder = 0
       end
       object JSGB: TGroupBox
         Left = 0
@@ -23941,7 +23931,7 @@ object Main: TMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 1
         object Panel2: TPanel
           Left = 2
           Top = 27
@@ -24028,17 +24018,53 @@ object Main: TMain
           end
         end
       end
-      object SequencesPanel2: TPanel
+      object CategoryPanelGroup1: TCategoryPanelGroup
         Left = 0
-        Top = 467
+        Top = 0
         Width = 1295
-        Height = 145
-        Align = alBottom
-        AutoSize = True
-        TabOrder = 3
-        OnResize = SequencesPanel1Resize
-        ExplicitLeft = -1
-        ExplicitTop = 473
+        Height = 612
+        VertScrollBar.Tracking = True
+        Align = alClient
+        ChevronColor = clRed
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -29
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        GradientDirection = gdHorizontal
+        HeaderFont.Charset = DEFAULT_CHARSET
+        HeaderFont.Color = clWindowText
+        HeaderFont.Height = -21
+        HeaderFont.Name = 'Tahoma'
+        HeaderFont.Style = []
+        HeaderHeight = 50
+        HeaderStyle = hsImage
+        ParentFont = False
+        TabOrder = 2
+        ExplicitLeft = 1
+        ExplicitTop = 1
+        ExplicitWidth = 1293
+        ExplicitHeight = 610
+        object CategoryPanel2: TCategoryPanel
+          Top = 176
+          Height = 176
+          Caption = 'CategoryPanel2'
+          TabOrder = 0
+          ExplicitWidth = 1291
+        end
+        object CategoryPanel1: TCategoryPanel
+          Top = 0
+          Height = 176
+          Caption = 'CategoryPanel1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          ExplicitWidth = 1291
+        end
       end
     end
     object RibbonLifterTabSheet: TTabSheet
@@ -24816,7 +24842,7 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = WaitForHandleTimerTimer
-    Left = 48
-    Top = 256
+    Left = 480
+    Top = 496
   end
 end
