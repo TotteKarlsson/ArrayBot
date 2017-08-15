@@ -22,9 +22,10 @@ class PACKAGE TSequencerButtonsFrame : public TFrame
 		ProcessSequencer&	  		mProcessSequencer;
 		ArrayBot&					mAB;
         vector<TArrayBotButton*> 	mButtons;
+        string						mCategory;
 
 	public:
-					__fastcall 		TSequencerButtonsFrame(ProcessSequencer& ps, TComponent* Owner);
+					__fastcall 		TSequencerButtonsFrame(ProcessSequencer& ps, const string& category, TComponent* Owner);
 					__fastcall 		~TSequencerButtonsFrame();
     	void						update();
 };

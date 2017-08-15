@@ -16,10 +16,11 @@ using namespace mtk;
 using std::stringstream;
 TSequencerButtonsFrame *SequencerButtonsFrame;
 //---------------------------------------------------------------------------
-__fastcall TSequencerButtonsFrame::TSequencerButtonsFrame(ProcessSequencer& ps, TComponent* Owner)
+__fastcall TSequencerButtonsFrame::TSequencerButtonsFrame(ProcessSequencer& ps, const string& category, TComponent* Owner)
 	: TFrame(Owner),
     mProcessSequencer(ps),
-    mAB(ps.getArrayBot())
+    mAB(ps.getArrayBot()),
+    mCategory(category)
 {}
 
 __fastcall TSequencerButtonsFrame::~TSequencerButtonsFrame()
@@ -50,7 +51,7 @@ void TSequencerButtonsFrame::update()
     int btnNr(0);
     while(ps)
     {
-    	if(ps->getCategory() == "General")
+    	if(ps->getCategory() == mCategory)
         {
             TArrayBotButton* btn = new TArrayBotButton(this->Parent);
             mButtons.push_back(btn);

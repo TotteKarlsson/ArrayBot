@@ -18,6 +18,7 @@
 #include "frames/TXYZPositionsFrame.h"
 #include "frames/TXYZUnitFrame.h"
 #include "frames/TSequencerButtonsFrame.h"
+#include "UIUtilities.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -58,8 +59,8 @@ __fastcall TMain::TMain(TComponent* Owner)
     mAB(mIniFile, gAppDataFolder),
     mProcessSequencer(mAB, mArrayCamClient, gAppDataFolder),
 	mABProcessSequencerFrame(NULL),
-    mSequencerButtons(NULL),
-    mRibbonLifterFrame(NULL),
+    mSequencerButtons1(NULL),
+    mSequencerButtons2(NULL),
     mTheWiggler(NULL, NULL)
 {
     //Init the CoreLibDLL -> give intra messages their ID's
@@ -113,7 +114,6 @@ void TMain::enableDisableUI(bool e)
 	enableDisablePanel(mRightPanel, e);
 	enableDisablePanel(SequencesPanel1, e);
     enableDisableGroupBox(JSGB, e);
-    enableDisableGroupBox(mRibbonCreationGB, e);
 }
 
 void __fastcall TMain::WndProc(TMessage& Message)
@@ -202,7 +202,7 @@ void __fastcall TMain::stopAllAExecute(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mLiftTimerTimer(TObject *Sender)
+void __fastcall TMain::LiftTimerTimer(TObject *Sender)
 {
 	if(mAB.isActive())
     {
@@ -211,7 +211,7 @@ void __fastcall TMain::mLiftTimerTimer(TObject *Sender)
     else
     {
     	LiftBtn->Action = liftA;
-		mLiftTimer->Enabled = false;
+		LiftTimer->Enabled = false;
 
     	//Re-enable the joystick.
 		mAB.enableJoyStick();
@@ -263,7 +263,7 @@ void __fastcall TMain::liftAExecute(TObject *Sender)
     //Re-enable the joystick after finish.
 	mAB.disableJoyStick();
     pm->execute();
-    mLiftTimer->Enabled = true;
+    LiftTimer->Enabled = true;
    	LiftBtn->Action = abortLiftA;
 }
 
@@ -310,10 +310,16 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 
             case abSequencerUpdate:
                 Log(lDebug2) << "Update sequencer shortcuts";
-                if(mSequencerButtons)
+                if(mSequencerButtons1)
                 {
-                	mSequencerButtons->update();
+                	mSequencerButtons1->update();
                 }
+
+                if(mSequencerButtons2)
+                {
+                	mSequencerButtons2->update();
+                }
+
             break;
             default:
             break ;
@@ -393,10 +399,15 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
 
     else if(MainPC->TabIndex == pcMain)
     {
-        SequencesPanel1->Parent = mFrontPage;
-        if(mSequencerButtons)
+//        SequencesPanel1->Parent = mFrontPage;
+        if(mSequencerButtons1)
         {
-        	mSequencerButtons->update();
+        	mSequencerButtons1->update();
+        }
+
+        if(mSequencerButtons2)
+        {
+        	mSequencerButtons2->update();
         }
     }
     else if(MainPC->TabIndex == pcMotors)
@@ -443,10 +454,16 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::SequencesPanel1Resize(TObject *Sender)
 {
-    if(mSequencerButtons)
+    if(mSequencerButtons1)
     {
-    	mSequencerButtons->update();
+    	mSequencerButtons1->update();
     }
+
+    if(mSequencerButtons2)
+    {
+    	mSequencerButtons2->update();
+    }
+
 }
 
 //---------------------------------------------------------------------------
@@ -455,13 +472,27 @@ void __fastcall TMain::Button1Click(TObject *Sender)
 	mArrayCamClient.startVideo();
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::HomeAllDevicesAExecute(TObject *Sender)
 {
 	if(MessageDlg("ATTENTION: Make sure all motors have a free path to their home position before executing!", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrOk)
     {
 		mAB.homeAll();
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::WaitForHandleTimerTimer(TObject *Sender)
+{
+    if(Application->MainForm->Handle)
+    {
+        WaitForHandleTimer->Enabled = false;
+
+        //Send a message to main ui to update sequence shortcuts
+        if(sendAppMessage(abSequencerUpdate) != true)
+        {
+            Log(lDebug)<<"Sending sequencer update to UI was unsuccesful";
+        }
     }
 }
 

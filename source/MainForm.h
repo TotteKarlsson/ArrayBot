@@ -90,7 +90,7 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mAngleControllerAccE;
 	TTimer *UIUpdateTimer;
 	TPanel *BottomBtnPanel;
-	TTimer *mLiftTimer;
+	TTimer *LiftTimer;
 	TAction *abortLiftA;
 	TAction *liftA;
 	TComboBox *LogLevelCB;
@@ -151,6 +151,8 @@ class TMain : public TRegistryForm
 	TComboBox *LiftCB1;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
+	TPanel *SequencesPanel2;
+	TTimer *WaitForHandleTimer;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -169,7 +171,7 @@ class TMain : public TRegistryForm
 	void __fastcall AddJsSettingBtnClick(TObject *Sender);
 	void __fastcall JoyStickSettingsCBChange(TObject *Sender);
 	void __fastcall mXYCtrlRGClick(TObject *Sender);
-	void __fastcall mLiftTimerTimer(TObject *Sender);
+	void __fastcall LiftTimerTimer(TObject *Sender);
 	void __fastcall abortLiftAExecute(TObject *Sender);
 	void __fastcall liftAExecute(TObject *Sender);
 	void __fastcall LiftCBChange(TObject *Sender);
@@ -188,6 +190,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall SequencesPanel1Resize(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall HomeAllDevicesAExecute(TObject *Sender);
+	void __fastcall WaitForHandleTimerTimer(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMoveSequences = 1,
@@ -251,10 +254,10 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 		TXYZUnitFrame*					        mXYZUnitFrame2;
 
 		TABProcessSequencerFrame*		        mABProcessSequencerFrame;
-        TSequencerButtonsFrame*			        mSequencerButtons;
-		void __fastcall		                    OnException();
+        TSequencerButtonsFrame*			        mSequencerButtons1;
+        TSequencerButtonsFrame*			        mSequencerButtons2;
 
-        TRibbonLifterFrame* 			        mRibbonLifterFrame;
+		void __fastcall		                    OnException();
 
         										//!The Motor wiggler wiggles the ribbon
         MotorWiggler							mTheWiggler;

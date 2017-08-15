@@ -105,13 +105,6 @@ void __fastcall TMain::ApplicationEvents1Exception(TObject *Sender, Exception *E
 	Log(lInfo) << "Application Exception: "<<stdstr(E->Message);
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::FormShow(TObject *Sender)
-{
-	this->Height = this->Height - 1;
-	this->Height = this->Height + 1;
-}
-
 void __fastcall TMain::BitBtn3Click(TObject *Sender)
 {
 	infoMemo->Clear();

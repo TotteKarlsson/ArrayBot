@@ -23911,9 +23911,9 @@ object Main: TMain
       Caption = 'The Bot'
       object mMiddlePanel: TPanel
         Left = 0
-        Top = 145
+        Top = 147
         Width = 1295
-        Height = 467
+        Height = 320
         Align = alClient
         AutoSize = True
         TabOrder = 0
@@ -23922,7 +23922,7 @@ object Main: TMain
         Left = 0
         Top = 0
         Width = 1295
-        Height = 145
+        Height = 147
         Align = alTop
         AutoSize = True
         TabOrder = 1
@@ -24027,6 +24027,18 @@ object Main: TMain
             OnClick = mJoyStickRGClick
           end
         end
+      end
+      object SequencesPanel2: TPanel
+        Left = 0
+        Top = 467
+        Width = 1295
+        Height = 145
+        Align = alBottom
+        AutoSize = True
+        TabOrder = 3
+        OnResize = SequencesPanel1Resize
+        ExplicitLeft = -1
+        ExplicitTop = 473
       end
     end
     object RibbonLifterTabSheet: TTabSheet
@@ -24786,12 +24798,12 @@ object Main: TMain
     Left = 468
     Top = 752
   end
-  object mLiftTimer: TTimer
+  object LiftTimer: TTimer
     Enabled = False
     Interval = 200
-    OnTimer = mLiftTimerTimer
-    Left = 328
-    Top = 760
+    OnTimer = LiftTimerTimer
+    Left = 1392
+    Top = 256
   end
   object WaitForDeviceInitTimer: TTimer
     Enabled = False
@@ -24799,5 +24811,12 @@ object Main: TMain
     OnTimer = WaitForDeviceInitTimerTimer
     Left = 576
     Top = 752
+  end
+  object WaitForHandleTimer: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = WaitForHandleTimerTimer
+    Left = 48
+    Top = 256
   end
 end

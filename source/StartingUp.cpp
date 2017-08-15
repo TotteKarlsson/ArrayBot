@@ -8,32 +8,12 @@
 #include "arraybot/apt/atAPTMotor.h"
 #include "TSequencerButtonsFrame.h"
 #include "frames/TABProcessSequencerFrame.h"
+#include "UIUtilities.h"
 //---------------------------------------------------------------------------
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
 extern string           gAppDataFolder;
 
-
-void TMain::setupProperties()
-{
-	//Setup UI properties
-    mProperties.setSection("UI");
-	mProperties.setIniFile(&mIniFile);
-
-	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	                lAny));
-	mProperties.add((BaseProperty*)  &mArrayCamServerPortE->getProperty()->setup(	"ARRAY_CAM_SERVER_PORT",     		50001));
-	mProperties.add((BaseProperty*)  &mWigglerAmplitudeStepE->getProperty()->setup(	"WIGGLER_AMPLITUDE",    	 		0.5));
-	mProperties.add((BaseProperty*)  &mWigglerAmplitudeE->getProperty()->setup(		"WIGGLER_AMPLITUDE_STEP",    		0.1));
-	mProperties.add((BaseProperty*)  &mPullRelaxVelocityE->getProperty()->setup(	"WIGGLER_PULL_RELAX_VELOCITY",   	0.5));
-	mProperties.add((BaseProperty*)  &mPullRelaxAccE->getProperty()->setup(			"WIGGLER_PULL_RELAX_ACCELERATION",  0.1));
-
-    mSoundProperties.setSection("SOUNDS");
-	mSoundProperties.setIniFile(&mIniFile);
-	mSoundProperties.add((BaseProperty*)  &mEnableSlowSpeedSound.setup( 	      	"ENABLE_SLOW_SPEED_SOUND",       ApplicationSound("BUTTON_CLICK_1")));
-	mSoundProperties.add((BaseProperty*)  &mEnableMediumSpeedSound.setup( 	      	"ENABLE_MEDIUM_SPEED_SOUND",     ApplicationSound("BUTTON_CLICK_1")));
-	mSoundProperties.add((BaseProperty*)  &mEnableFastSpeedSound.setup( 	      	"ENABLE_FAST_SPEED_SOUND",       ApplicationSound("BUTTON_CLICK_1")));
-	mSoundProperties.add((BaseProperty*)  &mMainPageControlChangeSound.setup( 	   	"MAIN_PC_CHANGE_SOUND", 	     ApplicationSound("BUTTON_CLICK_1")));
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
@@ -45,11 +25,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	setupWindowTitle();
 
     enableDisableArrayCamClientControls(false);
-
-    //Init pagecontrols
-	MainPC->TabIndex = 0;
-    PageControl2->TabIndex = 0;
-
 
 	TMemoLogger::mMemoIsEnabled = true;
     if(gSplashForm)
@@ -90,9 +65,40 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
     UIUpdateTimer->Enabled = true;
 
-    //Switch main page control to first page,
-    MainPC->TabIndex = 0;
+    //Init pagecontrols
+	MainPC->TabIndex = 0;
+    PageControl2->TabIndex = 0;
+
 	gAppIsStartingUp = false;
+
+	WaitForHandleTimer->Enabled = true;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::FormShow(TObject *Sender)
+{
+
+}
+
+void TMain::setupProperties()
+{
+	//Setup UI properties
+    mProperties.setSection("UI");
+	mProperties.setIniFile(&mIniFile);
+
+	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	                lAny));
+	mProperties.add((BaseProperty*)  &mArrayCamServerPortE->getProperty()->setup(	"ARRAY_CAM_SERVER_PORT",     		50001));
+	mProperties.add((BaseProperty*)  &mWigglerAmplitudeStepE->getProperty()->setup(	"WIGGLER_AMPLITUDE",    	 		0.5));
+	mProperties.add((BaseProperty*)  &mWigglerAmplitudeE->getProperty()->setup(		"WIGGLER_AMPLITUDE_STEP",    		0.1));
+	mProperties.add((BaseProperty*)  &mPullRelaxVelocityE->getProperty()->setup(	"WIGGLER_PULL_RELAX_VELOCITY",   	0.5));
+	mProperties.add((BaseProperty*)  &mPullRelaxAccE->getProperty()->setup(			"WIGGLER_PULL_RELAX_ACCELERATION",  0.1));
+
+    mSoundProperties.setSection("SOUNDS");
+	mSoundProperties.setIniFile(&mIniFile);
+	mSoundProperties.add((BaseProperty*)  &mEnableSlowSpeedSound.setup( 	      	"ENABLE_SLOW_SPEED_SOUND",       ApplicationSound("BUTTON_CLICK_1")));
+	mSoundProperties.add((BaseProperty*)  &mEnableMediumSpeedSound.setup( 	      	"ENABLE_MEDIUM_SPEED_SOUND",     ApplicationSound("BUTTON_CLICK_1")));
+	mSoundProperties.add((BaseProperty*)  &mEnableFastSpeedSound.setup( 	      	"ENABLE_FAST_SPEED_SOUND",       ApplicationSound("BUTTON_CLICK_1")));
+	mSoundProperties.add((BaseProperty*)  &mMainPageControlChangeSound.setup( 	   	"MAIN_PC_CHANGE_SOUND", 	     ApplicationSound("BUTTON_CLICK_1")));
 }
 
 void __fastcall	TMain::setupUIFrames()
@@ -104,9 +110,13 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->init();
 
     //The sequencer buttons frame holds shortcut buttons for preprogrammed sequences
-    mSequencerButtons = new TSequencerButtonsFrame(mProcessSequencer, SequencesPanel1);
-    mSequencerButtons->Parent = SequencesPanel1;
-    mSequencerButtons->Align = alClient;
+    mSequencerButtons1 = new TSequencerButtonsFrame(mProcessSequencer, "Cutting", SequencesPanel1);
+    mSequencerButtons1->Parent = SequencesPanel1;
+    mSequencerButtons1->Align = alClient;
+
+    mSequencerButtons2 = new TSequencerButtonsFrame(mProcessSequencer, "Setup", SequencesPanel2);
+    mSequencerButtons2->Parent = SequencesPanel2;
+    mSequencerButtons2->Align = alClient;
 
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
@@ -191,5 +201,6 @@ void __fastcall	TMain::onFinishedInitBot()
     mTheWiggler.setMaxVelocity(mWigglerVelocityE->getValue());
     mTheWiggler.setMaxAcceleration(mWigglerAccelerationE->getValue());
     mTheWiggler.assignMotors(mAB.getWhiskerUnit().getXMotor(), mAB.getWhiskerUnit().getYMotor());
+
 }
 
