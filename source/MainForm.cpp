@@ -111,7 +111,7 @@ void TMain::enableDisableUI(bool e)
 {
 	MainPC->Visible = e;
 	enableDisablePanel(mRightPanel, e);
-	enableDisablePanel(mSequencesPanel, e);
+	enableDisablePanel(SequencesPanel1, e);
     enableDisableGroupBox(JSGB, e);
     enableDisableGroupBox(mRibbonCreationGB, e);
 }
@@ -228,11 +228,14 @@ void __fastcall TMain::abortLiftAExecute(TObject *Sender)
 	mAB.enableJoyStick();
 }
 
-PairedMove* TMain::getCurrentPairedMove()
+PairedMove* TMain::getCurrentPairedMove(TComboBox* cb)
 {
-	if(mLiftCB->ItemIndex > -1)
+	if(cb != NULL)
     {
-    	return (PairedMove*) mLiftCB->Items->Objects[mLiftCB->ItemIndex];
+        if(cb->ItemIndex > -1)
+        {
+            return (PairedMove*) cb->Items->Objects[cb->ItemIndex];
+        }
     }
     return NULL;
 }
@@ -240,7 +243,7 @@ PairedMove* TMain::getCurrentPairedMove()
 //---------------------------------------------------------------------------
 void __fastcall TMain::liftAExecute(TObject *Sender)
 {
-	PairedMove* pm = getCurrentPairedMove();
+	PairedMove* pm = getCurrentPairedMove(LiftCB2);
 
     pm->assignMotor1(mAB.getCoverSlipUnit().getZMotor());
     pm->assignMotor2(mAB.getWhiskerUnit().getZMotor());
@@ -265,15 +268,24 @@ void __fastcall TMain::liftAExecute(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mLiftCBChange(TObject *Sender)
+void __fastcall TMain::LiftCBChange(TObject *Sender)
 {
-	//Update edits
-    //Assign editbox references to Lifting parameters
-	PairedMove* pm = getCurrentPairedMove();
-    if(pm)
+	TComboBox* cb = dynamic_cast<TComboBox*>(Sender);
+
+    if(cb == LiftCB1)
     {
-		mMoveVelocityVerticalE->setReference(pm->mVelocity);
-		mMoveAccelerationE->setReference(pm->mAcceleration);
+        //Update edits
+        //Assign editbox references to Lifting parameters
+        PairedMove* pm = getCurrentPairedMove(cb);
+        if(pm)
+        {
+            mMoveVelocityVerticalE->setReference(pm->mVelocity);
+            mMoveAccelerationE->setReference(pm->mAcceleration);
+        }
+    }
+    else if(cb == LiftCB2)
+    {
+
     }
 }
 
@@ -381,12 +393,11 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
 
     else if(MainPC->TabIndex == pcMain)
     {
-        mSequencesPanel->Parent = mFrontPage;
+        SequencesPanel1->Parent = mFrontPage;
         if(mSequencerButtons)
         {
         	mSequencerButtons->update();
         }
-
     }
     else if(MainPC->TabIndex == pcMotors)
     {
@@ -430,7 +441,7 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::mSequencesPanelResize(TObject *Sender)
+void __fastcall TMain::SequencesPanel1Resize(TObject *Sender)
 {
     if(mSequencerButtons)
     {

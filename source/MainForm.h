@@ -89,18 +89,14 @@ class TMain : public TRegistryForm
 	TFloatLabeledEdit *mAngleControlVelE;
 	TFloatLabeledEdit *mAngleControllerAccE;
 	TTimer *UIUpdateTimer;
-	TGroupBox *mRibbonCreationGB;
-	TFloatLabeledEdit *mMoveAccelerationE;
-	TFloatLabeledEdit *mMoveVelocityVerticalE;
 	TPanel *BottomBtnPanel;
 	TTimer *mLiftTimer;
 	TAction *abortLiftA;
 	TAction *liftA;
-	TComboBox *mLiftCB;
 	TComboBox *LogLevelCB;
 	TTabSheet *mMoveSequencesPage;
 	TTimer *WaitForDeviceInitTimer;
-	TPanel *mSequencesPanel;
+	TPanel *SequencesPanel1;
 	TTabSheet *RibbonLifterTabSheet;
 	TPanel *Panel1;
 	TBitBtn *mCheckDevicesBtn;
@@ -115,8 +111,6 @@ class TMain : public TRegistryForm
 	TTabSheet *TabSheet3;
 	TAboutArrayBotFrame_2 *TAboutArrayBotFrame_21;
 	TArrayBotButton *StopButton;
-	TArrayBotButton *LiftBtn;
-	TGroupBox *mLiftGB;
 	TGroupBox *WigglerGB;
 	TFloatLabeledEdit *mWigglerAmplitudeStepE;
 	TFloatLabeledEdit *mPullRelaxAccE;
@@ -149,6 +143,14 @@ class TMain : public TRegistryForm
 	TArrayBotButton *mRelaxBtn;
 	TBitBtn *BitBtn1;
 	TAction *HomeAllDevicesA;
+	TGroupBox *GroupBox3;
+	TArrayBotButton *LiftBtn;
+	TComboBox *LiftCB2;
+	TTabSheet *TabSheet9;
+	TGroupBox *mLiftGB;
+	TComboBox *LiftCB1;
+	TFloatLabeledEdit *mMoveAccelerationE;
+	TFloatLabeledEdit *mMoveVelocityVerticalE;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -170,7 +172,7 @@ class TMain : public TRegistryForm
 	void __fastcall mLiftTimerTimer(TObject *Sender);
 	void __fastcall abortLiftAExecute(TObject *Sender);
 	void __fastcall liftAExecute(TObject *Sender);
-	void __fastcall mLiftCBChange(TObject *Sender);
+	void __fastcall LiftCBChange(TObject *Sender);
 	void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall WaitForDeviceInitTimerTimer(TObject *Sender);
 	void __fastcall mJoyStickRGClick(TObject *Sender);
@@ -183,7 +185,7 @@ class TMain : public TRegistryForm
 	void __fastcall mWiggleSpinButtonUpClick(TObject *Sender);
 void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall mPullRibbonBtnClick(TObject *Sender);
-	void __fastcall mSequencesPanelResize(TObject *Sender);
+	void __fastcall SequencesPanel1Resize(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall HomeAllDevicesAExecute(TObject *Sender);
 
@@ -243,7 +245,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 
 
 
-		PairedMove* 				            getCurrentPairedMove();
+		PairedMove* 				            getCurrentPairedMove(TComboBox* cb);
 
 		TXYZUnitFrame*					        mXYZUnitFrame1;
 		TXYZUnitFrame*					        mXYZUnitFrame2;

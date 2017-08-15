@@ -31,9 +31,6 @@ Coordinates=750,453,66,33
 [mXYJogAccelerationJoystick]
 Coordinates=554,1,158,51
 
-[mLiftCB]
-Coordinates=0,0,84,87
-
 [LogLevelCB]
 Coordinates=368,141,84,87
 
@@ -52,9 +49,6 @@ Coordinates=103,1,112,87
 [ScrollBox1]
 Coordinates=20,462,68,33
 
-[mMoveAccelerationE]
-Coordinates=366,336,118,51
-
 [BottomBtnPanel]
 Coordinates=200,284,95,51
 
@@ -67,9 +61,6 @@ Coordinates=84,106,42,51
 [TabSheet2]
 Coordinates=944,521,66,33
 
-[mMoveVelocityVerticalE]
-Coordinates=554,141,133,51
-
 [AddJsSettingBtn]
 Coordinates=135,195,97,51
 
@@ -77,13 +68,10 @@ Coordinates=135,195,97,51
 Coordinates=159,373,128,33
 
 []
-Coordinates=299,284,60,51
+Coordinates=17,195,45,51
 
 [mFrontPage]
 Coordinates=276,462,66,33
-
-[mRibbonCreationGB]
-Coordinates=17,195,45,51
 
 [mRightPanel]
 Coordinates=234,195,58,51

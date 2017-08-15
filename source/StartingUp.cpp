@@ -104,8 +104,8 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->init();
 
     //The sequencer buttons frame holds shortcut buttons for preprogrammed sequences
-    mSequencerButtons = new TSequencerButtonsFrame(mProcessSequencer, mSequencesPanel);
-    mSequencerButtons->Parent = mSequencesPanel;
+    mSequencerButtons = new TSequencerButtonsFrame(mProcessSequencer, SequencesPanel1);
+    mSequencerButtons->Parent = SequencesPanel1;
     mSequencerButtons->Align = alClient;
 
     //Create frames showing motor positions
@@ -117,8 +117,8 @@ void __fastcall	TMain::setupUIFrames()
     f2->Parent = this->mRightPanel;
     f2->Align = alTop;
 
-    this->mSequencesPanel->Top = 0;
-    this->mSequencesPanel->Refresh();
+    this->SequencesPanel1->Top = 0;
+    this->SequencesPanel1->Refresh();
 
 	//Setup JoyStick;
 
@@ -160,12 +160,13 @@ void __fastcall	TMain::setupUIFrames()
     while(pm)
     {
         string key = pm->mLabel;
-        mLiftCB->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
+        LiftCB1->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
+        LiftCB2->Items->AddObject(pm->mLabel.c_str(), (TObject*) pm);
         pm = pms.getNext();
     }
 
-    mLiftCB->ItemIndex = 0;
-    mLiftCB->OnChange(NULL);
+    LiftCB2->ItemIndex = 0;
+    LiftCB2->OnChange(NULL);
 
 	//Create and setup XYZ unit frames
     mXYZUnitFrame1 = new TXYZUnitFrame(this);

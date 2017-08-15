@@ -23859,6 +23859,42 @@ object Main: TMain
         OnClick = mASStartBtnClick
       end
     end
+    object GroupBox3: TGroupBox
+      Left = 1
+      Top = 225
+      Width = 181
+      Height = 206
+      Align = alBottom
+      Caption = 'Simple Lift'
+      TabOrder = 2
+      object LiftBtn: TArrayBotButton
+        Left = 2
+        Top = 68
+        Width = 177
+        Height = 136
+        Action = liftA
+        Align = alBottom
+        Caption = 'Lift'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+        SoundID = 'BUTTON_CLICK_4'
+      end
+      object LiftCB2: TComboBox
+        Left = 2
+        Top = 25
+        Width = 177
+        Height = 31
+        Align = alTop
+        TabOrder = 0
+        Text = '<none>'
+        OnChange = LiftCBChange
+      end
+    end
   end
   object MainPC: TPageControl
     Left = 0
@@ -23881,78 +23917,8 @@ object Main: TMain
         Align = alClient
         AutoSize = True
         TabOrder = 0
-        object mRibbonCreationGB: TGroupBox
-          Left = 1
-          Top = 1
-          Width = 1293
-          Height = 465
-          Align = alClient
-          Caption = 'Ribbon Creation'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-          object mLiftGB: TGroupBox
-            Left = 17
-            Top = 36
-            Width = 304
-            Height = 288
-            Caption = 'Simple Lift'
-            TabOrder = 0
-            object LiftBtn: TArrayBotButton
-              Left = 18
-              Top = 129
-              Width = 264
-              Height = 136
-              Action = liftA
-              Caption = 'Lift'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -16
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentFont = False
-              TabOrder = 3
-              SoundID = 'BUTTON_CLICK_4'
-            end
-            object mLiftCB: TComboBox
-              Left = 15
-              Top = 32
-              Width = 267
-              Height = 31
-              TabOrder = 0
-              Text = '<none>'
-              OnChange = mLiftCBChange
-            end
-            object mMoveAccelerationE: TFloatLabeledEdit
-              Left = 178
-              Top = 92
-              Width = 104
-              Height = 31
-              EditLabel.Width = 101
-              EditLabel.Height = 23
-              EditLabel.Caption = 'Acceleration'
-              TabOrder = 2
-              Text = '0.00'
-            end
-            object mMoveVelocityVerticalE: TFloatLabeledEdit
-              Left = 18
-              Top = 92
-              Width = 73
-              Height = 31
-              EditLabel.Width = 63
-              EditLabel.Height = 23
-              EditLabel.Caption = 'Velocity'
-              TabOrder = 1
-              Text = '0.00'
-            end
-          end
-        end
       end
-      object mSequencesPanel: TPanel
+      object SequencesPanel1: TPanel
         Left = 0
         Top = 0
         Width = 1295
@@ -23960,7 +23926,7 @@ object Main: TMain
         Align = alTop
         AutoSize = True
         TabOrder = 1
-        OnResize = mSequencesPanelResize
+        OnResize = SequencesPanel1Resize
       end
       object JSGB: TGroupBox
         Left = 0
@@ -24567,6 +24533,49 @@ object Main: TMain
               TabOrder = 0
               Text = '50000'
               Value = 50000
+            end
+          end
+        end
+        object TabSheet9: TTabSheet
+          Caption = 'Miscelaneous'
+          ImageIndex = 4
+          object mLiftGB: TGroupBox
+            Left = 22
+            Top = 12
+            Width = 307
+            Height = 198
+            Caption = 'Simple Lift'
+            TabOrder = 0
+            object LiftCB1: TComboBox
+              Left = 15
+              Top = 32
+              Width = 267
+              Height = 31
+              TabOrder = 0
+              Text = '<none>'
+              OnChange = LiftCBChange
+            end
+            object mMoveAccelerationE: TFloatLabeledEdit
+              Left = 178
+              Top = 92
+              Width = 104
+              Height = 31
+              EditLabel.Width = 101
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Acceleration'
+              TabOrder = 2
+              Text = '0.00'
+            end
+            object mMoveVelocityVerticalE: TFloatLabeledEdit
+              Left = 18
+              Top = 92
+              Width = 73
+              Height = 31
+              EditLabel.Width = 63
+              EditLabel.Height = 23
+              EditLabel.Caption = 'Velocity'
+              TabOrder = 1
+              Text = '0.00'
             end
           end
         end
