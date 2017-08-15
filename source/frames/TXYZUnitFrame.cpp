@@ -28,7 +28,6 @@ __fastcall TXYZUnitFrame::TXYZUnitFrame(TComponent* Owner)
 void TXYZUnitFrame::assignUnit(XYZUnit* u)
 {
 	mUnit = u;
-
     if(mUnit)
     {
         vector<APTMotor*> mtrs = mUnit->getAllMotors();
@@ -39,7 +38,6 @@ void TXYZUnitFrame::assignUnit(XYZUnit* u)
             f->SetParentComponent(this);
             f->Align = alLeft;
             f->assignMotor(mtrs[i]);
-//            f->Color = this->Color;
             mFrames.push_back(f);
             if(i == 0)
             {
@@ -54,8 +52,17 @@ void TXYZUnitFrame::disable()
 {
 	for(int i = 0; i < mFrames.size(); i++)
     {
-		mFrames[i]->mMotorStatusTimer->Enabled = false;
+		mFrames[i]->MotorStatusTimer->Enabled = false;
     }
 }
+
+void TXYZUnitFrame::enable()
+{
+	for(int i = 0; i < mFrames.size(); i++)
+    {
+		mFrames[i]->MotorStatusTimer->Enabled = true;
+    }
+}
+
 
 

@@ -2,7 +2,8 @@ object MotorFrame: TMotorFrame
   Left = 0
   Top = 0
   Width = 297
-  Height = 453
+  Height = 433
+  AutoSize = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -332,9 +333,9 @@ object MotorFrame: TMotorFrame
       end
       object mEnableDisableLimits: TPropertyCheckBox
         Left = 11
-        Top = 56
-        Width = 110
-        Height = 41
+        Top = 68
+        Width = 202
+        Height = 12
         Caption = 'Use Position Limits'
         TabOrder = 3
         WordWrap = True
@@ -380,10 +381,10 @@ object MotorFrame: TMotorFrame
       OnKeyDown = DevEdit
     end
   end
-  object mMotorStatusTimer: TTimer
+  object MotorStatusTimer: TTimer
     Enabled = False
     Interval = 250
-    OnTimer = mMotorStatusTimerTimer
+    OnTimer = MotorStatusTimerTimer
     Left = 216
     Top = 376
   end

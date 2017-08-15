@@ -31,7 +31,7 @@ class PACKAGE TMotorFrame : public TFrame
         TLabel *mIsHomingLabel;
         TLabel *mIsReversingLabel;
         TFloatLabeledEdit *mMotorPositionE;
-        TTimer *mMotorStatusTimer;
+	TTimer *MotorStatusTimer;
         TButton *Button1;
         TActionList *ActionList1;
         TAction *identify;
@@ -58,7 +58,7 @@ class PACKAGE TMotorFrame : public TFrame
 	TPropertyCheckBox *mEnableDisableLimits;
 	TRadioGroup *JogModeRG;
 	TFloatLabeledEdit *mJogStepE;
-        void __fastcall mMotorStatusTimerTimer(TObject *Sender);
+        void __fastcall MotorStatusTimerTimer(TObject *Sender);
         void __fastcall identifyExecute(TObject *Sender);
         void __fastcall homeExecute(TObject *Sender);
         void __fastcall BtnDown(TObject *Sender, TMouseButton Button, TShiftState Shift,

@@ -2,8 +2,8 @@ object Main: TMain
   Left = 0
   Top = 0
   Caption = 'ArrayBot Version 0.5.8'
-  ClientHeight = 885
-  ClientWidth = 1436
+  ClientHeight = 992
+  ClientWidth = 1486
   Color = clBtnFace
   Constraints.MinHeight = 900
   Constraints.MinWidth = 1100
@@ -23,16 +23,16 @@ object Main: TMain
   PixelsPerInch = 96
   TextHeight = 23
   object mRightPanel: TPanel
-    Left = 1253
+    Left = 1303
     Top = 0
     Width = 183
-    Height = 578
+    Height = 782
     Align = alRight
     TabOrder = 0
     OnDblClick = mRightPanelDblClick
     object BottomBtnPanel: TPanel
       Left = 1
-      Top = 450
+      Top = 654
       Width = 181
       Height = 127
       Align = alBottom
@@ -41,7 +41,7 @@ object Main: TMain
     end
     object ACGB: TGroupBox
       Left = 1
-      Top = 227
+      Top = 431
       Width = 181
       Height = 223
       Align = alBottom
@@ -23863,8 +23863,8 @@ object Main: TMain
   object MainPC: TPageControl
     Left = 0
     Top = 0
-    Width = 1253
-    Height = 578
+    Width = 1303
+    Height = 782
     ActivePage = mFrontPage
     Align = alClient
     TabHeight = 60
@@ -23876,16 +23876,16 @@ object Main: TMain
       object mMiddlePanel: TPanel
         Left = 0
         Top = 145
-        Width = 1245
-        Height = 363
+        Width = 1295
+        Height = 467
         Align = alClient
         AutoSize = True
         TabOrder = 0
         object mRibbonCreationGB: TGroupBox
           Left = 1
           Top = 1
-          Width = 1243
-          Height = 361
+          Width = 1293
+          Height = 465
           Align = alClient
           Caption = 'Ribbon Creation'
           Font.Charset = DEFAULT_CHARSET
@@ -23955,12 +23955,112 @@ object Main: TMain
       object mSequencesPanel: TPanel
         Left = 0
         Top = 0
-        Width = 1245
+        Width = 1295
         Height = 145
         Align = alTop
         AutoSize = True
         TabOrder = 1
         OnResize = mSequencesPanelResize
+      end
+      object JSGB: TGroupBox
+        Left = 0
+        Top = 612
+        Width = 1295
+        Height = 100
+        Align = alBottom
+        Caption = 'Motor Speed'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+        object Panel2: TPanel
+          Left = 2
+          Top = 27
+          Width = 1291
+          Height = 61
+          Align = alTop
+          TabOrder = 0
+          object mJSSpeedFastBtn: TSpeedButton
+            Left = 501
+            Top = 1
+            Width = 250
+            Height = 59
+            Align = alLeft
+            GroupIndex = 15
+            Caption = 'Fast'
+            OnClick = JSSpeedBtnClick
+            ExplicitHeight = 48
+          end
+          object mJSSpeedMediumBtn: TSpeedButton
+            Left = 251
+            Top = 1
+            Width = 250
+            Height = 59
+            Align = alLeft
+            GroupIndex = 15
+            Down = True
+            Caption = 'Medium'
+            OnClick = JSSpeedBtnClick
+            ExplicitHeight = 48
+          end
+          object mJSSpeedSlowBtn: TSpeedButton
+            Left = 1
+            Top = 1
+            Width = 250
+            Height = 59
+            Align = alLeft
+            GroupIndex = 15
+            Caption = 'Slow'
+            OnClick = JSSpeedBtnClick
+            ExplicitHeight = 48
+          end
+          object mJSCSBtn: TSpeedButton
+            Left = 1152
+            Top = 1
+            Width = 138
+            Height = 59
+            Align = alRight
+            AllowAllUp = True
+            Caption = 'Enable JS'
+            OnClick = JSControlClick
+            ExplicitLeft = 1
+            ExplicitHeight = 1237
+          end
+          object mJSStatusL: TLabel
+            Left = 751
+            Top = 1
+            Width = 86
+            Height = 59
+            Align = alLeft
+            Caption = 'JS Status'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clRed
+            Font.Height = -21
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            Layout = tlCenter
+            ExplicitHeight = 25
+          end
+          object mJoyStickRG: TRadioGroup
+            Left = 1040
+            Top = 1
+            Width = 112
+            Height = 59
+            Align = alRight
+            Caption = 'Joystick'
+            Columns = 2
+            ItemIndex = 0
+            Items.Strings = (
+              '1'
+              '2')
+            TabOrder = 0
+            OnClick = mJoyStickRGClick
+          end
+        end
       end
     end
     object RibbonLifterTabSheet: TTabSheet
@@ -23977,8 +24077,8 @@ object Main: TMain
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
-        Width = 1245
-        Height = 403
+        Width = 1190
+        Height = 712
         HorzScrollBar.Smooth = True
         VertScrollBar.Tracking = True
         Align = alClient
@@ -23990,19 +24090,19 @@ object Main: TMain
         TabOrder = 0
       end
       object Panel1: TPanel
-        Left = 0
-        Top = 403
-        Width = 1245
-        Height = 105
-        Align = alBottom
+        Left = 1190
+        Top = 0
+        Width = 105
+        Height = 712
+        Align = alRight
         TabOrder = 1
         object mCheckDevicesBtn: TBitBtn
-          Left = 354
-          Top = 1
-          Width = 176
-          Height = 103
+          Left = 1
+          Top = 177
+          Width = 103
+          Height = 176
           Action = checkForDevices
-          Align = alLeft
+          Align = alTop
           BiDiMode = bdLeftToRight
           Caption = 'Devices Check'
           Font.Charset = DEFAULT_CHARSET
@@ -24013,14 +24113,15 @@ object Main: TMain
           ParentBiDiMode = False
           ParentFont = False
           TabOrder = 0
+          WordWrap = True
         end
         object ReInitBotBtn: TBitBtn
           Left = 1
-          Top = 1
-          Width = 177
-          Height = 103
+          Top = 353
+          Width = 103
+          Height = 177
           Action = reInitBotA
-          Align = alLeft
+          Align = alTop
           BiDiMode = bdLeftToRight
           Caption = 'Reinitialize Devices'
           Font.Charset = DEFAULT_CHARSET
@@ -24031,14 +24132,15 @@ object Main: TMain
           ParentBiDiMode = False
           ParentFont = False
           TabOrder = 1
+          WordWrap = True
         end
         object BitBtn1: TBitBtn
-          Left = 178
+          Left = 1
           Top = 1
-          Width = 176
-          Height = 103
+          Width = 103
+          Height = 176
           Action = HomeAllDevicesA
-          Align = alLeft
+          Align = alTop
           BiDiMode = bdLeftToRight
           Caption = 'Home All'
           Font.Charset = DEFAULT_CHARSET
@@ -24049,6 +24151,7 @@ object Main: TMain
           ParentBiDiMode = False
           ParentFont = False
           TabOrder = 2
+          WordWrap = True
         end
       end
     end
@@ -24058,8 +24161,8 @@ object Main: TMain
       object PageControl2: TPageControl
         Left = 0
         Top = 0
-        Width = 1245
-        Height = 508
+        Width = 1295
+        Height = 712
         ActivePage = TabSheet4
         Align = alClient
         TabOrder = 0
@@ -24406,26 +24509,26 @@ object Main: TMain
           inline TSoundsFrame1: TSoundsFrame
             Left = 0
             Top = 241
-            Width = 1237
-            Height = 229
+            Width = 1287
+            Height = 433
             Align = alClient
             AutoSize = True
             TabOrder = 0
             ExplicitTop = 241
-            ExplicitWidth = 1237
-            ExplicitHeight = 229
+            ExplicitWidth = 1287
+            ExplicitHeight = 433
             inherited GroupBox1: TGroupBox
-              Width = 1237
-              Height = 229
+              Width = 1287
+              Height = 433
               Align = alClient
-              ExplicitWidth = 1237
-              ExplicitHeight = 229
+              ExplicitWidth = 1287
+              ExplicitHeight = 433
               inherited SoundsLB: TListBox
                 Top = 25
-                Height = 202
+                Height = 406
                 ItemHeight = 23
                 ExplicitTop = 25
-                ExplicitHeight = 202
+                ExplicitHeight = 406
               end
               inherited RepeatSoundCB: TCheckBox
                 Width = 115
@@ -24436,7 +24539,7 @@ object Main: TMain
           object ApplicationSoundsFrame1: TApplicationSoundsFrame
             Left = 0
             Top = 0
-            Width = 1237
+            Width = 1287
             Height = 241
             Align = alTop
             AutoSize = True
@@ -24475,15 +24578,15 @@ object Main: TMain
       object BottomPanel: TPanel
         Left = 0
         Top = 0
-        Width = 1245
-        Height = 508
+        Width = 1295
+        Height = 712
         Align = alClient
         TabOrder = 0
         object infoMemo: TMemo
           Left = 1
           Top = 31
-          Width = 1243
-          Height = 476
+          Width = 1293
+          Height = 680
           Align = alClient
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -24499,7 +24602,7 @@ object Main: TMain
         object ToolBar1: TToolBar
           Left = 1
           Top = 1
-          Width = 1243
+          Width = 1293
           Height = 30
           AutoSize = True
           ButtonHeight = 30
@@ -24547,31 +24650,31 @@ object Main: TMain
       inline TAboutArrayBotFrame_21: TAboutArrayBotFrame_2
         Left = 0
         Top = 0
-        Width = 1245
-        Height = 508
+        Width = 1295
+        Height = 712
         Align = alClient
         TabOrder = 0
-        ExplicitWidth = 1245
-        ExplicitHeight = 508
+        ExplicitWidth = 1295
+        ExplicitHeight = 712
         inherited GroupBox1: TGroupBox
-          Width = 1245
-          Height = 322
-          ExplicitWidth = 1245
-          ExplicitHeight = 322
+          Width = 1295
+          Height = 526
+          ExplicitWidth = 1295
+          ExplicitHeight = 526
           inherited Memo1: TMemo
             Top = 25
-            Width = 1241
-            Height = 295
+            Width = 1291
+            Height = 499
             ExplicitTop = 25
-            ExplicitWidth = 1241
-            ExplicitHeight = 295
+            ExplicitWidth = 1291
+            ExplicitHeight = 499
           end
         end
         inherited Panel1: TPanel
-          Width = 1245
-          ExplicitWidth = 1245
+          Width = 1295
+          ExplicitWidth = 1295
           inherited Image1: TImage
-            Left = 1059
+            Left = 1109
             ExplicitLeft = 708
           end
         end
@@ -24581,8 +24684,8 @@ object Main: TMain
   object StopButton: TArrayBotButton
     AlignWithMargins = True
     Left = 15
-    Top = 690
-    Width = 1406
+    Top = 797
+    Width = 1456
     Height = 180
     Margins.Left = 15
     Margins.Top = 15
@@ -24594,116 +24697,8 @@ object Main: TMain
     Caption = 'Stop All Motors'
     ParentBiDiMode = False
     Style = bsNew
-    TabOrder = 3
-    SoundID = 'BUTTON_CLICK_4'
-  end
-  object TopPanel: TPanel
-    Left = 0
-    Top = 578
-    Width = 1436
-    Height = 97
-    Align = alBottom
     TabOrder = 2
-    object JSGB: TGroupBox
-      Left = 1
-      Top = 1
-      Width = 1434
-      Height = 95
-      Align = alClient
-      Caption = 'Motor Speed'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -21
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 0
-      object Panel2: TPanel
-        Left = 2
-        Top = 27
-        Width = 1430
-        Height = 61
-        Align = alTop
-        TabOrder = 0
-        object mJSSpeedFastBtn: TSpeedButton
-          Left = 501
-          Top = 1
-          Width = 250
-          Height = 59
-          Align = alLeft
-          GroupIndex = 15
-          Caption = 'Fast'
-          OnClick = JSSpeedBtnClick
-          ExplicitHeight = 48
-        end
-        object mJSSpeedMediumBtn: TSpeedButton
-          Left = 251
-          Top = 1
-          Width = 250
-          Height = 59
-          Align = alLeft
-          GroupIndex = 15
-          Down = True
-          Caption = 'Medium'
-          OnClick = JSSpeedBtnClick
-          ExplicitHeight = 48
-        end
-        object mJSSpeedSlowBtn: TSpeedButton
-          Left = 1
-          Top = 1
-          Width = 250
-          Height = 59
-          Align = alLeft
-          GroupIndex = 15
-          Caption = 'Slow'
-          OnClick = JSSpeedBtnClick
-          ExplicitHeight = 48
-        end
-        object mJSCSBtn: TSpeedButton
-          Left = 1291
-          Top = 1
-          Width = 138
-          Height = 59
-          Align = alRight
-          AllowAllUp = True
-          Caption = 'Enable JS'
-          OnClick = JSControlClick
-          ExplicitLeft = 1
-          ExplicitHeight = 1237
-        end
-        object mJSStatusL: TLabel
-          Left = 751
-          Top = 1
-          Width = 86
-          Height = 59
-          Align = alLeft
-          Caption = 'JS Status'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clRed
-          Font.Height = -21
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          Layout = tlCenter
-          ExplicitHeight = 25
-        end
-        object mJoyStickRG: TRadioGroup
-          Left = 1095
-          Top = 1
-          Width = 196
-          Height = 59
-          Align = alRight
-          Caption = 'Joystick'
-          Columns = 2
-          ItemIndex = 0
-          Items.Strings = (
-            'Blue'
-            'White')
-          TabOrder = 0
-          OnClick = mJoyStickRGClick
-        end
-      end
-    end
+    SoundID = 'BUTTON_CLICK_4'
   end
   object ActionList1: TActionList
     Left = 764

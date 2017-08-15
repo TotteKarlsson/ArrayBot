@@ -25,6 +25,7 @@ class PACKAGE TXYZUnitFrame : public TFrame
         __fastcall 			    TXYZUnitFrame(TComponent* Owner);
         void				    assignUnit(XYZUnit* u);
         void				    disable();
+        void				    enable();
         vector<TMotorFrame*> 	mFrames;
 };
 extern PACKAGE TXYZUnitFrame *XYZUnitFrame;

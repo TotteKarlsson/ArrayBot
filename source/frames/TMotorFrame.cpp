@@ -45,7 +45,6 @@ void TMotorFrame::assignMotor(APTMotor* m)
         mJogVelocity->setValue(mMotor->getManualJogVelocity());
         mJogAcc->setValue(mMotor->getManualJogAcceleration());
 	    mPotentiometerSettingE->setValue(mMotor->getPotentiometerVelocity());
-    	mMotorStatusTimer->Enabled = true;
 
         //Tie UI elements to underlying motor properties
         mPositionRangeMaxE->setReference(m->mPositionRange.getReference().getMaxReference());
@@ -59,13 +58,13 @@ void TMotorFrame::assignMotor(APTMotor* m)
     }
     else
     {
-    	mMotorStatusTimer->Enabled = false;
+    	MotorStatusTimer->Enabled = false;
     	EnableDisableFrame(this, false);
     }
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMotorFrame::mMotorStatusTimerTimer(TObject *Sender)
+void __fastcall TMotorFrame::MotorStatusTimerTimer(TObject *Sender)
 {
     if(!mMotor)
     {
@@ -91,7 +90,6 @@ void __fastcall TMotorFrame::mMotorStatusTimerTimer(TObject *Sender)
     mIsEnabledLbl->Caption  	= (mMotor->isEnabled()) 	? "True" : "False";
 
     EnableDisableBtn->Caption 	= (mMotor->isEnabled())    	? "Disable" : "Enable";
-
     mIsHomedLabel->Font->Color 	= (mIsHomedLabel->Caption == "False") ?  clRed : clGreen;
 }
 
@@ -194,7 +192,7 @@ void __fastcall TMotorFrame::DevEdit(TObject *Sender, WORD &Key, TShiftState Shi
 void __fastcall TMotorFrame::mMotorPositionEKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
-	mMotorStatusTimer->Enabled = false;
+	MotorStatusTimer->Enabled = false;
 	if(Key != vkReturn)
     {
     	return;
@@ -212,7 +210,7 @@ void __fastcall TMotorFrame::mMotorPositionEKeyUp(TObject *Sender, WORD &Key,
 {
 	if(Key == vkReturn)
     {
-		mMotorStatusTimer->Enabled = true;
+		MotorStatusTimer->Enabled = true;
     	return;
     }
 }

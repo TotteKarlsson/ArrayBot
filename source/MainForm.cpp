@@ -392,6 +392,10 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
     {
 		//Disable joystick
 	 	mAB.disableJoyStick();
+
+        //Disable motor status timers
+        mXYZUnitFrame1->enable();
+        mXYZUnitFrame2->enable();
     }
 
 	else if(MainPC->TabIndex == pcAbout)
@@ -402,6 +406,10 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
     if(MainPC->TabIndex != pcMotors)
     {
    	 	mAB.enableJoyStick();
+
+        //Disable motor status timers
+        mXYZUnitFrame1->disable();
+        mXYZUnitFrame2->disable();
     }
 
     mMainPageControlChangeSound.getReference().play();

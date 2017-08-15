@@ -65,7 +65,6 @@ class TMain : public TRegistryForm
         TAction *ShutDownA;
 	TPanel *mRightPanel;
 	TFileExit *FileExit1;
-	TPanel *TopPanel;
 	TPageControl *MainPC;
 	TTabSheet *mFrontPage;
 	TGroupBox *JSGB;
