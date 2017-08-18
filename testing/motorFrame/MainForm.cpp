@@ -4,7 +4,6 @@
 #include "arraybot/apt/atAPTMotor.h"
 #include "arraybot/apt/atDeviceManager.h"
 #include "arraybot/apt/atMove.h"
-//#include "arraybot/core/atPosition.h"
 #include "arraybot/apt/atTCubeDCServo.h"
 #include "core/atUtilities.h"
 #include "mtkLogger.h"
@@ -57,14 +56,21 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	TMemoLogger::mMemoIsEnabled = true;
 	mLogFileReader.start(true);
 
-    DeviceManager dm;
-    dm.connectAllDevices();
 
+    mDeviceManager.connectAllDevices();
 
-	//Creates frames for each motor
-//    createMotorFrame(mXYZUnit.getXMotor());
-//    createMotorFrame(mXYZUnit.getYMotor());
-//    createMotorFrame(mXYZUnit.getZMotor());
+    APTDevice* dev = mDeviceManager.getFirst();
+    if(dev)
+    {
+    	dev->setName("test");
+    }
+	createMotorFrame(dynamic_cast<APTMotor*> (dev));
+    while(mDeviceManager.getNext())
+    {
+
+		createMotorFrame(dynamic_cast<APTMotor*> (mDeviceManager.getCurrent()));
+    }
+
 }
 
 //void __fastcall TMain::WndProc(TMessage& Message)
@@ -118,6 +124,8 @@ bool TMain::createMotorFrame(APTMotor* mtr)
    	f->assignMotor(mtr);
     f->Parent = ScrollBox1;
     f->Align = alTop;
+
+	f->MotorStatusTimer->Enabled = true;
     return true;
 }
 

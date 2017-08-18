@@ -15,7 +15,7 @@
 #include "TFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
 #include "Poco/Timestamp.h"
-
+#include "arraybot/apt/atDeviceManager.h"
 #include "TSTDStringLabeledEdit.h"
 #include "frames/TXYZUnitFrame.h"
 #include "frames/TMotorFrame.h"
@@ -85,7 +85,7 @@ class TMain : public TRegistryForm
         IniFileProperties  			        mProperties;
 
         IniFile						        mIniFile;
-//        XYZUnit						        mXYZUnit;
+	    DeviceManager 						mDeviceManager;
 
 		void __fastcall		                OnException();
 		bool 						        createMotorFrame(APTMotor* mtr);

@@ -164,6 +164,8 @@ object Main: TMain
         ExplicitHeight = 626
         object TabSheet4: TTabSheet
           Caption = 'The Bot'
+          ExplicitLeft = 0
+          ExplicitTop = 0
           ExplicitWidth = 747
           ExplicitHeight = 556
           object ScrollBox1: TScrollBox

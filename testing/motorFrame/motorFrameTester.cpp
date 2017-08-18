@@ -6,13 +6,11 @@
 #include <Vcl.Themes.hpp>
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-
+//---------------------------------------------------------------------------
 using namespace mtk;
 using namespace std;
-
-//---------------------------------------------------------------------------
 USEFORM("MainForm.cpp", Main);
-//---------------------------------------------------------------------------
+
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "MotorTester.log";
 extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");

@@ -153,7 +153,10 @@ void __fastcall TMotorFrame::BtnUp(TObject *Sender, TMouseButton Button,
 	TButton* btn = (TButton*)(Sender);
     if(btn == mFwdBtn || btn == mRewBtn)
     {
-  		mMotor->stop();
+    	if(JogModeRG->ItemIndex == 0)
+        {
+  			mMotor->stop();
+        }
     }
 }
 
