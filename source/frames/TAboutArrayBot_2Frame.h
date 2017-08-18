@@ -20,11 +20,12 @@
 #include<string>
 using std::string;
 using namespace mtk;
+
 //---------------------------------------------------------------------------
 class PACKAGE TAboutArrayBotFrame_2 : public TFrame
 {
 __published:	// IDE-managed Components
-    TLabel *Label1;
+	TLabel *AppNameLabel;
     TLabel *versionLabel;
     TActionList *ActionList1;
     TAction *StartUnlockProcedureA;
@@ -49,7 +50,7 @@ __published:	// IDE-managed Components
                                             __fastcall  TAboutArrayBotFrame_2(TComponent* Owner);
         void                                            populate();
 };
-//---------------------------------------------------------------------------
+
+
 extern PACKAGE TAboutArrayBotFrame_2 *AboutArrayBotFrame_2;
-//---------------------------------------------------------------------------
 #endif

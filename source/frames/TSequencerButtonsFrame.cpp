@@ -22,7 +22,8 @@ __fastcall TSequencerButtonsFrame::TSequencerButtonsFrame(ProcessSequencer& ps, 
 	: TFrame(Owner),
     mProcessSequencer(ps),
     mAB(ps.getArrayBot()),
-    mCategory(category)
+    mCategory(category),
+    mButtonWidth(190)
 {
 	this->Name = this->Name + "_" + IntToStr(mFrameCount++);
 }
@@ -33,6 +34,11 @@ __fastcall TSequencerButtonsFrame::~TSequencerButtonsFrame()
 string TSequencerButtonsFrame::getCategory()
 {
 	return mCategory;
+}
+
+void TSequencerButtonsFrame::setButtonWidth(int w)
+{
+	mButtonWidth = w;
 }
 
 //--------------------------------------------------------------------------
@@ -70,7 +76,7 @@ void TSequencerButtonsFrame::update()
             btn->SoundID = "button_click_5";
 
             btn->Font->Size = 12;
-            btn->Width = 190;
+            btn->Width = mButtonWidth;
             btn->Height = pHeight;
 
             if(btnNr == 0)

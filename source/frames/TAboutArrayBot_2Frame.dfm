@@ -875,7 +875,7 @@ object AboutArrayBotFrame_2: TAboutArrayBotFrame_2
       ExplicitTop = 9
       ExplicitHeight = 168
     end
-    object Label1: TLabel
+    object AppNameLabel: TLabel
       Left = 34
       Top = 16
       Width = 193

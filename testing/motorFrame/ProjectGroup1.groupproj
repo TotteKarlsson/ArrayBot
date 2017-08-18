@@ -12,11 +12,11 @@
         <Projects Include="P:\libs\dsl\VCL\Components\DuneComponents.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\..\source\abCore.cbproj">
+        <Projects Include="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="motorFrameTester.cbproj">
-            <Dependencies>..\..\source\abCore.cbproj</Dependencies>
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -53,32 +53,32 @@
     <Target Name="DuneComponents:Make">
         <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="abCore">
-        <MSBuild Projects="..\..\source\abCore.cbproj"/>
+    <Target Name="atArrayBotCore">
+        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj"/>
     </Target>
-    <Target Name="abCore:Clean">
-        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Clean"/>
+    <Target Name="atArrayBotCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="abCore:Make">
-        <MSBuild Projects="..\..\source\abCore.cbproj" Targets="Make"/>
+    <Target Name="atArrayBotCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="motorFrameTester" DependsOnTargets="abCore">
+    <Target Name="motorFrameTester">
         <MSBuild Projects="motorFrameTester.cbproj"/>
     </Target>
-    <Target Name="motorFrameTester:Clean" DependsOnTargets="abCore:Clean">
+    <Target Name="motorFrameTester:Clean">
         <MSBuild Projects="motorFrameTester.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="motorFrameTester:Make" DependsOnTargets="abCore:Make">
+    <Target Name="motorFrameTester:Make">
         <MSBuild Projects="motorFrameTester.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;VCLCommon;DuneComponents;abCore;motorFrameTester"/>
+        <CallTarget Targets="mtkCommon;VCLCommon;DuneComponents;atArrayBotCore;motorFrameTester"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;DuneComponents:Clean;abCore:Clean;motorFrameTester:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;DuneComponents:Clean;atArrayBotCore:Clean;motorFrameTester:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;DuneComponents:Make;abCore:Make;motorFrameTester:Make"/>
+        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;DuneComponents:Make;atArrayBotCore:Make;motorFrameTester:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

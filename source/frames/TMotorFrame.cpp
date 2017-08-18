@@ -54,6 +54,17 @@ void TMotorFrame::assignMotor(APTMotor* m)
 
 
 		mEnableDisableLimits->setReference(m->mPositionLimitsEnabled.getReference());
+
+        mJogStepE->update();
+        mJogVelocity->update();
+        mJogAcc->update();
+        mPotentiometerSettingE->update();
+
+        //Tie UI elements to underlying mo
+        mPositionRangeMaxE->update();
+        mMinPositionLimitE->update();
+        mMaxPositionLimitE->update();
+        mEnableDisableLimits->update();
     	EnableDisableFrame(this, true);
     }
     else
@@ -269,5 +280,6 @@ void __fastcall TMotorFrame::JogModeRGClick(TObject *Sender)
         break;
     }
 }
+
 
 

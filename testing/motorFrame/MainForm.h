@@ -20,7 +20,7 @@
 #include "frames/TXYZUnitFrame.h"
 #include "frames/TMotorFrame.h"
 #include "TRegistryForm.h"
-#include "abArrayBot.h"
+#include "arraybot/atArrayBot.h"
 #include "mtkIniFileProperties.h"
 #include <mmsystem.h>
 #include <Vcl.StdActns.hpp>
@@ -63,6 +63,8 @@ class TMain : public TRegistryForm
 	TToolBar *ToolBar1;
 	TBitBtn *BitBtn2;
 	TScrollBox *ScrollBox1;
+	TSplitter *Splitter1;
+	TPanel *MainPanel;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -83,22 +85,22 @@ class TMain : public TRegistryForm
         IniFileProperties  			        mProperties;
 
         IniFile						        mIniFile;
-        XYZUnit						        mXYZUnit;
+//        XYZUnit						        mXYZUnit;
 
 		void __fastcall		                OnException();
 		bool 						        createMotorFrame(APTMotor* mtr);
 		void __fastcall				        refreshSequencesCB();
 
-		 void __fastcall 					WndProc(TMessage& Message);
+//		 void __fastcall 					WndProc(TMessage& Message);
 
 	public:		// User declarations
 		__fastcall 					        TMain(TComponent* Owner);
 		__fastcall 					        ~TMain();
-		void __fastcall                     AppInBox(TMessage& Msg);
-
-        BEGIN_MESSAGE_MAP
-
-        END_MESSAGE_MAP(TForm)
+//		void __fastcall                     AppInBox(TMessage& Msg);
+//
+//        BEGIN_MESSAGE_MAP
+//
+//        END_MESSAGE_MAP(TForm)
 };
 
 extern PACKAGE TMain *Main;

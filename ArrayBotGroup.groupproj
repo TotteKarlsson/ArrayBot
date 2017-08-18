@@ -18,6 +18,9 @@
         <Projects Include="P:\libs\dsl\VCL\Components\DuneComponents.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\libs\dsl\VCL\Forms\DuneForms.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="P:\libs\atapi\source\core\atCore.cbproj">
             <Dependencies/>
         </Projects>
@@ -100,6 +103,15 @@
     </Target>
     <Target Name="DuneComponents:Make">
         <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DuneForms">
+        <MSBuild Projects="P:\libs\dsl\VCL\Forms\DuneForms.cbproj"/>
+    </Target>
+    <Target Name="DuneForms:Clean">
+        <MSBuild Projects="P:\libs\dsl\VCL\Forms\DuneForms.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneForms:Make">
+        <MSBuild Projects="P:\libs\dsl\VCL\Forms\DuneForms.cbproj" Targets="Make"/>
     </Target>
     <Target Name="atCore">
         <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj"/>
@@ -192,13 +204,13 @@
         <MSBuild Projects="source\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;VCLCommon;DuneComponents;atCore;atSerialAPI;atArduino;atArrayBotCore;atDatabase;atSSI;atBarcodeReader;atVCLCore;ArrayBotPackage;ArrayBot"/>
+        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;VCLCommon;DuneComponents;DuneForms;atCore;atSerialAPI;atArduino;atArrayBotCore;atDatabase;atSSI;atBarcodeReader;atVCLCore;ArrayBotPackage;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;VCLCommon:Clean;DuneComponents:Clean;atCore:Clean;atSerialAPI:Clean;atArduino:Clean;atArrayBotCore:Clean;atDatabase:Clean;atSSI:Clean;atBarcodeReader:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;atCore:Clean;atSerialAPI:Clean;atArduino:Clean;atArrayBotCore:Clean;atDatabase:Clean;atSSI:Clean;atBarcodeReader:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;VCLCommon:Make;DuneComponents:Make;atCore:Make;atSerialAPI:Make;atArduino:Make;atArrayBotCore:Make;atDatabase:Make;atSSI:Make;atBarcodeReader:Make;atVCLCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;atCore:Make;atSerialAPI:Make;atArduino:Make;atArrayBotCore:Make;atDatabase:Make;atSSI:Make;atBarcodeReader:Make;atVCLCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

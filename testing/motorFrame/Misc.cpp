@@ -1,7 +1,7 @@
 #include "MainForm.h"
 #include "mtkLogger.h"
 #include "mtkVCLUtils.h"
-#include "abAPTMotor.h"
+#include "arraybot/apt/atAPTMotor.h"
 using namespace mtk;
 
 //---------------------------------------------------------------------------

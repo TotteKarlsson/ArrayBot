@@ -25,12 +25,14 @@ class PACKAGE TSequencerButtonsFrame : public TFrame
 		ArrayBot&					mAB;
         vector<TArrayBotButton*> 	mButtons;
         string						mCategory;
+        int							mButtonWidth;
 
 	public:
 					__fastcall 		TSequencerButtonsFrame(ProcessSequencer& ps, const string& category, TComponent* Owner);
 					__fastcall 		~TSequencerButtonsFrame();
     	void						update();
         string						getCategory();
+        void						setButtonWidth(int w);
 };
 
 

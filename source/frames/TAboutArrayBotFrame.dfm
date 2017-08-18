@@ -846,7 +846,7 @@ object AboutArrayBotFrame: TAboutArrayBotFrame
     Stretch = True
     Transparent = True
   end
-  object Label1: TLabel
+  object AppNameLabel: TLabel
     Left = 34
     Top = 16
     Width = 193

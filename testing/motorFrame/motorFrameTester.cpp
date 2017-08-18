@@ -14,9 +14,9 @@ using namespace std;
 USEFORM("MainForm.cpp", Main);
 //---------------------------------------------------------------------------
 extern string       gLogFileLocation            = "";
-extern string       gLogFileName                = "Sequencer.log";
+extern string       gLogFileName                = "MotorTester.log";
 extern string 		gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
-extern string 		gApplicationRegistryRoot  = "\\Software\\Dune Scientific\\Sequencer\\0.5.0";
+extern string 		gApplicationRegistryRoot  	= "\\Software\\AllenInstitute\\MotorTester\\0.5.0";
 void setupLogging();
 
 //---------------------------------------------------------------------------
@@ -30,7 +30,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         setupLogging();
         Log(lInfo) << "The Logfile was opened..";
 
-		TStyleManager::TrySetStyle("Aqua Light Slate");
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->Run();
 	}
@@ -77,7 +76,9 @@ void setupLogging()
 //---------------------------------------------------------------------------
 #pragma comment(lib, "mtkCommon.lib")
 #pragma comment(lib, "mtkMath.lib")
-#pragma comment(lib, "abCore.lib")
+#pragma comment(lib, "atCore.lib")
+#pragma comment(lib, "atArrayBotCore.lib")
+
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "VCLCommon.lib")
 #pragma comment(lib, "DuneForms.lib")

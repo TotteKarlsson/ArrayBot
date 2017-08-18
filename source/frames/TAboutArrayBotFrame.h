@@ -24,7 +24,7 @@ using namespace mtk;
 class PACKAGE TAboutArrayBotFrame : public TFrame
 {
 __published:	// IDE-managed Components
-    TLabel *Label1;
+	TLabel *AppNameLabel;
     TLabel *versionLabel;
     TActionList *ActionList1;
     TAction *StartUnlockProcedureA;

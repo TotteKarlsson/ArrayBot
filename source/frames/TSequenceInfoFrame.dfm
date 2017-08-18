@@ -2,8 +2,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
   Left = 0
   Top = 0
   Width = 441
-  Height = 561
-  AutoSize = True
+  Height = 754
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -15,15 +14,16 @@ object SequenceInfoFrame: TSequenceInfoFrame
     Left = 0
     Top = 0
     Width = 441
-    Height = 327
+    Height = 504
     Align = alClient
     Caption = 'Master Processes'
+    Constraints.MinHeight = 330
     TabOrder = 0
     object Panel1: TPanel
       Left = 2
       Top = 25
       Width = 437
-      Height = 300
+      Height = 477
       Align = alClient
       BevelEdges = []
       BevelOuter = bvNone
@@ -32,7 +32,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Left = 0
         Top = 0
         Width = 332
-        Height = 300
+        Height = 477
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
@@ -42,7 +42,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Left = 332
         Top = 0
         Width = 105
-        Height = 300
+        Height = 477
         Align = alRight
         TabOrder = 1
         object mDeleteMoveBtn: TArrayBotButton
@@ -109,9 +109,9 @@ object SequenceInfoFrame: TSequenceInfoFrame
   end
   object GroupBox1: TGroupBox
     Left = 0
-    Top = 327
+    Top = 504
     Width = 441
-    Height = 105
+    Height = 121
     Align = alBottom
     Caption = 'Miscellaneous'
     PopupMenu = PopupMenu1
@@ -149,7 +149,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
   end
   object Panel3: TPanel
     Left = 0
-    Top = 432
+    Top = 625
     Width = 441
     Height = 129
     Align = alBottom
