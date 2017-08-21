@@ -19,6 +19,7 @@
 #pragma resource "*.dfm"
 TMotorMoveProcessFrame *MotorMoveProcessFrame;
 
+static int frameNr = 1;
 //---------------------------------------------------------------------------
 __fastcall TMotorMoveProcessFrame::TMotorMoveProcessFrame(ProcessSequencer& ps, TComponent* Owner)
 	: TFrame(Owner),
@@ -30,6 +31,8 @@ __fastcall TMotorMoveProcessFrame::TMotorMoveProcessFrame(ProcessSequencer& ps, 
     mPosTriggerFrame->Parent = mTriggerPanel;
     mPosTriggerFrame->Align = alClient;
     mPosTriggerFrame->Visible = false;
+
+    this->Name = this->Name + IntToStr(frameNr++);
 }
 
 void TMotorMoveProcessFrame::populate(AbsoluteMove* m)

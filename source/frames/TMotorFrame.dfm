@@ -200,7 +200,7 @@ object MotorFrame: TMotorFrame
       OnKeyUp = mMotorPositionEKeyUp
     end
     object Button1: TButton
-      Left = 13
+      Left = 79
       Top = 18
       Width = 60
       Height = 40
@@ -352,7 +352,7 @@ object MotorFrame: TMotorFrame
       OnClick = EnableDisableBtnClick
     end
     object Button4: TButton
-      Left = 79
+      Left = 13
       Top = 18
       Width = 60
       Height = 40

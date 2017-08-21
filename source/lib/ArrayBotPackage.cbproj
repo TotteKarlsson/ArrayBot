@@ -147,6 +147,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\frames\TMotorMoveProcessFrame.h</DependentOn>
             <BuildOrder>22</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\frames\TMotorPositionFrame.cpp">
+            <Form>XYZPositionsFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TMotorPositionFrame.h</DependentOn>
+            <BuildOrder>15</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\frames\TParallellProcessesFrame.cpp">
             <DependentOn>..\frames\TParallellProcessesFrame.h</DependentOn>
             <BuildOrder>11</BuildOrder>
@@ -172,12 +178,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>..\frames\TTimeDelayFrame.h</DependentOn>
             <BuildOrder>19</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TXYZPositionsFrame.cpp">
-            <Form>XYZPositionsFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TXYZPositionsFrame.h</DependentOn>
-            <BuildOrder>15</BuildOrder>
         </CppCompile>
         <CppCompile Include="..\frames\TXYZUnitFrame.cpp">
             <Form>XYZUnitFrame</Form>
@@ -245,10 +245,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="..\forms\abAddJoyStickSettingForm.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="..\forms\TSplashForm.dfm"/>
-        <FormResources Include="..\frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="..\frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="..\frames\TXYZUnitFrame.dfm"/>
-        <FormResources Include="..\frames\TXYZPositionsFrame.dfm"/>
+        <FormResources Include="..\frames\TTimeDelayFrame.dfm"/>
+        <FormResources Include="..\frames\TMotorPositionFrame.dfm"/>
         <FormResources Include="..\frames\TMotorMoveProcessFrame.dfm"/>
         <FormResources Include="..\frames\TPositionalTriggerFrame.dfm"/>
         <BuildConfiguration Include="Release">

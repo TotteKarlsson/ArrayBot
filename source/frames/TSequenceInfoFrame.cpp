@@ -3,6 +3,7 @@
 #include "TSequenceInfoFrame.h"
 #include "arraybot/process/atParallellProcess.h"
 #include "arraybot/process/atProcessSequence.h"
+#include "arraybot/apt/atAbsoluteMove.h"
 #include "mtkVCLUtils.h"
 #include "vcl/forms/TStringInputDialog.h"
 #include "arraybot/process/atTimeDelay.h"
@@ -38,6 +39,11 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
 
     mArrayCamRequestFrame = new TArrayCamRequestFrame(ps, Owner);
     mArrayCamRequestFrame->Visible = false;
+
+    mMotorMoveProcessFrame = new TMotorMoveProcessFrame(ps, Owner);
+    mMotorMoveProcessFrame->Visible = false;
+    ////////////////////////////////////////////////////////////////////
+
 	mUpdatePositionsBtn->Action = mParallellProcessesFrame->mUpdateFinalPositionsA;
 }
 
@@ -56,6 +62,7 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TScrollBox* processPanel
 		mParallellProcessesFrame->Parent 	= mProcessPanel;
         mTimeDelayFrame->Parent 			= mProcessPanel;
         mArrayCamRequestFrame->Parent 		= mProcessPanel;
+        mMotorMoveProcessFrame->Parent 		= mProcessPanel;
     }
 
     mProcessesLB->Clear();
@@ -173,6 +180,7 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
 	mUpdatePositionsBtn->Visible 		= false;
     mTimeDelayFrame->Visible 			= false;
     mArrayCamRequestFrame->Visible     	= false;
+    mMotorMoveProcessFrame->Visible     	= false;
 
     //Check what kind of process we have
     Process* p = getCurrentlySelectedProcess();
@@ -201,6 +209,15 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
         mArrayCamRequestFrame->Visible = true;
         mArrayCamRequestFrame->Align = alClient;
     }
+
+    else if(dynamic_cast<AbsoluteMove*>(p) != NULL)
+    {
+		AbsoluteMove* am = dynamic_cast<AbsoluteMove*>(p);
+        mMotorMoveProcessFrame->populate(am);
+        mMotorMoveProcessFrame->Visible = true;
+        mMotorMoveProcessFrame->Align = alClient;
+    }
+
     else
     {
 		mParallellProcessesFrame->Visible 	= false;
@@ -251,15 +268,19 @@ void __fastcall TSequenceInfoFrame::AddCombinedMoveAExecute(TObject *Sender)
         {
         	p = new TimeDelay("Process " + mtk::toString(nr));
         }
-        else if(pType == 2) //Stop/Start Dialog
+        else if(pType == 2) //Stop and Resume process
         {
         	p = new StopAndResumeProcess("Process " + mtk::toString(nr));
         }
-        else if(pType == 3) //Stop/Start Dialog
+        else if(pType == 3) //Arraycam Request
         {
         	p = new ArrayCamRequestProcess(mProcessSequencer.getArrayCamClient(), "Process " + mtk::toString(nr));
         }
 
+        else if(pType == 4) //Absolute move
+        {
+        	p = new AbsoluteMove("Process " + mtk::toString(nr));
+        }
         else
         {
         	Log(lError) << "Process Type Selection is not Suported!";

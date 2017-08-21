@@ -20,6 +20,7 @@ class TArrayCamRequestFrame;
 class Process;
 class ArrayBot;
 class ProcessSequencer;
+class TMotorMoveProcessFrame;
 
 class PACKAGE TSequenceInfoFrame : public TFrame
 {
@@ -60,9 +61,12 @@ class PACKAGE TSequenceInfoFrame : public TFrame
         string					        mSequencesFolder;
         ProcessSequencer&  		        mProcessSequencer;
         TScrollBox*					    mProcessPanel;
+
+        								//!Different Types of processes
         TParallellProcessesFrame*		mParallellProcessesFrame;
         TTimeDelayFrame*				mTimeDelayFrame;
         TArrayCamRequestFrame*	 		mArrayCamRequestFrame;
+		TMotorMoveProcessFrame*			mMotorMoveProcessFrame;
 
 		void		__fastcall          empty();
         void							disableEnableButtons(bool enabled);

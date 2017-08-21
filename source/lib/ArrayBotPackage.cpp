@@ -2,19 +2,22 @@
 
 #include <System.hpp>
 #pragma hdrstop
+USEFORM("..\frames\TAboutArrayBot_2Frame.cpp", AboutArrayBotFrame_2); /* TFrame: File Type */
+USEFORM("..\frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
+USEFORM("..\frames\TArrayCamRequestFrame.cpp", ArrayCamRequestFrame); /* TFrame: File Type */
+USEFORM("..\forms\TProcessSequenceControlForm.cpp", ProcessSequenceControlForm);
+USEFORM("..\forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
+USEFORM("..\frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame); /* TFrame: File Type */
+USEFORM("..\forms\TSplashForm.cpp", SplashForm);
 USEFORM("..\frames\TTimeDelayFrame.cpp", TimeDelayFrame); /* TFrame: File Type */
 USEFORM("..\frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
 USEFORM("..\frames\TXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
-USEFORM("..\frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
+USEFORM("..\frames\TMotorPositionFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
 USEFORM("..\frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 USEFORM("..\frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
-USEFORM("..\forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
-USEFORM("..\frames\TArrayCamRequestFrame.cpp", ArrayCamRequestFrame); /* TFrame: File Type */
-USEFORM("..\frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("..\forms\TSplashForm.cpp", SplashForm);
-USEFORM("..\forms\TProcessSequenceControlForm.cpp", ProcessSequenceControlForm);
-USEFORM("..\frames\TAboutArrayBot_2Frame.cpp", AboutArrayBotFrame_2); /* TFrame: File Type */
-USEFORM("..\frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame); /* TFrame: File Type */
+
+#include "TMotorFrame.h"
+#include "TMotorPositionFrame.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 //---------------------------------------------------------------------------
@@ -22,6 +25,34 @@ USEFORM("..\frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame); /* TFrame: Fil
 //   Package source.
 //---------------------------------------------------------------------------
 
+
+static inline void ValidCtrCheck(TMotorFrame *)
+{
+  new TMotorFrame("", NULL);
+}
+
+namespace Tmotorframe
+{
+    void __fastcall PACKAGE Register()
+    {
+        TComponentClass classes[1] = {__classid(TMotorFrame)};
+        RegisterComponents("AIComponents", classes, 0);
+    }
+}
+
+static inline void ValidCtrCheck(TMotorPositionFrame *)
+{
+  new TMotorPositionFrame(NULL, NULL);
+}
+
+namespace Tmotorpositionframe
+{
+    void __fastcall PACKAGE Register()
+    {
+        TComponentClass classes[1] = {__classid(TMotorPositionFrame)};
+        RegisterComponents("AIComponents", classes, 0);
+    }
+}
 
 #pragma argsused
 extern "C" int _libmain(unsigned long reason)
