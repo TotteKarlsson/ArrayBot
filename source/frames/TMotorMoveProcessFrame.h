@@ -19,6 +19,7 @@ class ProcessSequencer;
 class ArrayBot;
 class XYZUnit;
 
+//!This should perhaps be reanamed to TAbsoluteMoveFrame
 class PACKAGE TMotorMoveProcessFrame : public TFrame
 {
 __published:	// IDE-managed Components

@@ -19,6 +19,7 @@
 #include "frames/TXYZUnitFrame.h"
 #include "frames/TSequencerButtonsFrame.h"
 #include "UIUtilities.h"
+#include "arraybot/apt/atGeneralIPCMessageData.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
@@ -126,6 +127,8 @@ void __fastcall TMain::WndProc(TMessage& Message)
         if(!mtr)
         {
         	//real bad....
+            Log(lError) << "Got Motor warning message, but motor not present!";
+			return;
         }
 
 		//Handle the warning..
@@ -147,8 +150,14 @@ void __fastcall TMain::WndProc(TMessage& Message)
         	//playABSound(absMotorWarning);
         }
 
-        //Message is now consumed.. delete it
         delete msg;
+    }
+    else if(Message.Msg == getABCoreMessageID("INFO_MESSAGE_DIALOG") && getABCoreMessageID("INFO_MESSAGE_DIALOG") != 0)
+    {
+       	GeneralIPCMessageData* msg = reinterpret_cast<GeneralIPCMessageData*>(Message.WParam);
+    	//We are to show a dialog box..
+        MessageDlg(msg->mContent.c_str(), mtInformation, TMsgDlgButtons() << mbOK, 0);
+        delete  msg;
     }
     else
     {

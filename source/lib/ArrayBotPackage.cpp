@@ -9,13 +9,15 @@ USEFORM("..\forms\TProcessSequenceControlForm.cpp", ProcessSequenceControlForm);
 USEFORM("..\forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 USEFORM("..\frames\TAboutArrayBotFrame.cpp", AboutArrayBotFrame); /* TFrame: File Type */
 USEFORM("..\forms\TSplashForm.cpp", SplashForm);
+USEFORM("..\frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 USEFORM("..\frames\TTimeDelayFrame.cpp", TimeDelayFrame); /* TFrame: File Type */
 USEFORM("..\frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
 USEFORM("..\frames\TXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
-USEFORM("..\frames\TMotorPositionFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
-USEFORM("..\frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
+USEFORM("..\frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
+USEFORM("..\frames\TMotorPositionFrame.cpp", MotorPositionFrame); /* TFrame: File Type */
 USEFORM("..\frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
-
+USEFORM("..\frames\TStopAndResumeFrame.cpp", StopAndResumeFrame); /* TFrame: File Type */
+//---------------------------------------------------------------------------
 #include "TMotorFrame.h"
 #include "TMotorPositionFrame.h"
 //---------------------------------------------------------------------------

@@ -13,6 +13,7 @@
 #include "frames/TParallellProcessesFrame.h"
 #include "frames/TTimeDelayFrame.h"
 #include "frames/TArrayCamRequestFrame.h"
+#include "frames/TStopAndResumeFrame.h"
 #include "atVCLUtils.h"
 #include "mtkLogger.h"
 #include "vcl/forms/TSelectProcessTypeDialog.h"
@@ -42,6 +43,9 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
 
     mMotorMoveProcessFrame = new TMotorMoveProcessFrame(ps, Owner);
     mMotorMoveProcessFrame->Visible = false;
+
+    mStopAndResumeFrame = new TStopAndResumeFrame(Owner);
+    mStopAndResumeFrame->Visible = false;
     ////////////////////////////////////////////////////////////////////
 
 	mUpdatePositionsBtn->Action = mParallellProcessesFrame->mUpdateFinalPositionsA;
@@ -63,6 +67,7 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TScrollBox* processPanel
         mTimeDelayFrame->Parent 			= mProcessPanel;
         mArrayCamRequestFrame->Parent 		= mProcessPanel;
         mMotorMoveProcessFrame->Parent 		= mProcessPanel;
+        mStopAndResumeFrame->Parent 		= mProcessPanel;
     }
 
     mProcessesLB->Clear();
@@ -176,11 +181,13 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
 
 	updateSequenceArrows();
 
+    //Available processtype frames
 	mParallellProcessesFrame->Visible 	= false;
 	mUpdatePositionsBtn->Visible 		= false;
     mTimeDelayFrame->Visible 			= false;
     mArrayCamRequestFrame->Visible     	= false;
-    mMotorMoveProcessFrame->Visible     	= false;
+    mMotorMoveProcessFrame->Visible    	= false;
+    mStopAndResumeFrame->Visible    	= false;
 
     //Check what kind of process we have
     Process* p = getCurrentlySelectedProcess();
@@ -216,6 +223,14 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
         mMotorMoveProcessFrame->populate(am);
         mMotorMoveProcessFrame->Visible = true;
         mMotorMoveProcessFrame->Align = alClient;
+        mUpdatePositionsBtn->Enabled   	= true;
+    }
+    else if(dynamic_cast<StopAndResumeProcess*>(p) != NULL)
+    {
+		StopAndResumeProcess* am = dynamic_cast<StopAndResumeProcess*>(p);
+        mStopAndResumeFrame->populate(am);
+        mStopAndResumeFrame->Visible = true;
+        mStopAndResumeFrame->Align = alClient;
     }
 
     else
