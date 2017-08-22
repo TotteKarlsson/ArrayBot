@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 
 class ProcessSequence;
-class TParallellProcessesFrame;
+class TParallelProcessesFrame;
 class TTimeDelayFrame;
 class TArrayCamRequestFrame;
 class TMotorMoveProcessFrame;
@@ -66,7 +66,7 @@ class PACKAGE TSequenceInfoFrame : public TFrame
         TScrollBox*					    mProcessPanel;
 
         								//!Different Types of processes
-        TParallellProcessesFrame*		mParallellProcessesFrame;
+        TParallelProcessesFrame*		mParallelProcessesFrame;
         TTimeDelayFrame*				mTimeDelayFrame;
         TArrayCamRequestFrame*	 		mArrayCamRequestFrame;
 		TMotorMoveProcessFrame*			mMotorMoveProcessFrame;

@@ -1,4 +1,4 @@
-object ParallellProcessesFrame: TParallellProcessesFrame
+object ParallelProcessesFrame: TParallelProcessesFrame
   Left = 0
   Top = 0
   Width = 233

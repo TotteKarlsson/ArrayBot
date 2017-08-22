@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TSequenceInfoFrame.h"
-#include "arraybot/process/atParallellProcess.h"
+#include "arraybot/process/atParallelProcess.h"
 #include "arraybot/process/atProcessSequence.h"
 #include "arraybot/apt/atAbsoluteMove.h"
 #include "mtkVCLUtils.h"
@@ -10,7 +10,7 @@
 #include "arraybot/process/atArrayCamRequestProcess.h"
 #include "arraybot/process/atStopAndResumeProcess.h"
 #include "frames/TMotorMoveProcessFrame.h"
-#include "frames/TParallellProcessesFrame.h"
+#include "frames/TParallelProcessesFrame.h"
 #include "frames/TTimeDelayFrame.h"
 #include "frames/TArrayCamRequestFrame.h"
 #include "frames/TStopAndResumeFrame.h"
@@ -32,8 +32,8 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
     mProcessSequencer(ps)
 {
     //Create frames
-	mParallellProcessesFrame = new TParallellProcessesFrame(ps, Owner);
-    mParallellProcessesFrame->Visible = false;
+	mParallelProcessesFrame = new TParallelProcessesFrame(ps, Owner);
+    mParallelProcessesFrame->Visible = false;
 
     mTimeDelayFrame = new TTimeDelayFrame(Owner);
     mTimeDelayFrame->Visible = false;
@@ -48,7 +48,7 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
     mStopAndResumeFrame->Visible = false;
     ////////////////////////////////////////////////////////////////////
 
-	mUpdatePositionsBtn->Action = mParallellProcessesFrame->mUpdateFinalPositionsA;
+	mUpdatePositionsBtn->Action = mParallelProcessesFrame->mUpdateFinalPositionsA;
 }
 
 //---------------------------------------------------------------------------
@@ -63,7 +63,7 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TScrollBox* processPanel
     if(processPanel)
     {
     	mProcessPanel 						= processPanel;
-		mParallellProcessesFrame->Parent 	= mProcessPanel;
+		mParallelProcessesFrame->Parent 	= mProcessPanel;
         mTimeDelayFrame->Parent 			= mProcessPanel;
         mArrayCamRequestFrame->Parent 		= mProcessPanel;
         mMotorMoveProcessFrame->Parent 		= mProcessPanel;
@@ -182,7 +182,7 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
 	updateSequenceArrows();
 
     //Available processtype frames
-	mParallellProcessesFrame->Visible 	= false;
+	mParallelProcessesFrame->Visible 	= false;
 	mUpdatePositionsBtn->Visible 		= false;
     mTimeDelayFrame->Visible 			= false;
     mArrayCamRequestFrame->Visible     	= false;
@@ -191,16 +191,16 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
 
     //Check what kind of process we have
     Process* p = getCurrentlySelectedProcess();
-    if(dynamic_cast<ParallellProcess*>(p) != NULL)
+    if(dynamic_cast<ParallelProcess*>(p) != NULL)
     {
-    	ParallellProcess* pp = dynamic_cast<ParallellProcess*>(p);
-        mParallellProcessesFrame->populate(pp);
-        mParallellProcessesFrame->mSubProcessesLB->ItemIndex = 0;
-        mParallellProcessesFrame->mSubProcessesLB->OnClick(NULL);
-        mParallellProcessesFrame->Visible 	= true;
+    	ParallelProcess* pp = dynamic_cast<ParallelProcess*>(p);
+        mParallelProcessesFrame->populate(pp);
+        mParallelProcessesFrame->mSubProcessesLB->ItemIndex = 0;
+        mParallelProcessesFrame->mSubProcessesLB->OnClick(NULL);
+        mParallelProcessesFrame->Visible 	= true;
 		mUpdatePositionsBtn->Visible 		= true;
         mUpdatePositionsBtn->Enabled 		= true;
-        mParallellProcessesFrame->Align = alClient;
+        mParallelProcessesFrame->Align = alClient;
     }
     else if(dynamic_cast<TimeDelay*>(p) != NULL)
     {
@@ -235,7 +235,7 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
 
     else
     {
-		mParallellProcessesFrame->Visible 	= false;
+		mParallelProcessesFrame->Visible 	= false;
 		mUpdatePositionsBtn->Enabled 		= false;
 		mUpdatePositionsBtn->Visible 		= false;
     }
@@ -274,10 +274,10 @@ void __fastcall TSequenceInfoFrame::AddCombinedMoveAExecute(TObject *Sender)
 
     	//get process type
         int pType = pTypeForm->mProcTypeRG->ItemIndex;
-        if(pType == 0) //Parallell process
+        if(pType == 0) //Parallel process
         {
 			//Create and add a process to the sequence
-	        p = new ParallellProcess("Process " + mtk::toString(nr));
+	        p = new ParallelProcess("Process " + mtk::toString(nr));
         }
         else if(pType == 1) //Time delay
         {
@@ -344,7 +344,7 @@ void TSequenceInfoFrame::updateSequenceArrows()
 //---------------------------------------------------------------------------
 void __fastcall TSequenceInfoFrame::mUpdatePositionsBtnClick(TObject *Sender)
 {
-	mParallellProcessesFrame->mUpdateFinalPositionsAExecute(Sender);
+	mParallelProcessesFrame->mUpdateFinalPositionsAExecute(Sender);
 }
 
 //---------------------------------------------------------------------------

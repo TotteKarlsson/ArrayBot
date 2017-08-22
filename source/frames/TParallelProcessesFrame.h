@@ -1,5 +1,5 @@
-#ifndef TParallellProcessesFrameH
-#define TParallellProcessesFrameH
+#ifndef TParallelProcessesFrameH
+#define TParallelProcessesFrameH
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -15,12 +15,12 @@
 //---------------------------------------------------------------------------
 
 class Process;
-class ParallellProcess;
+class ParallelProcess;
 class XYZUnit;
 class TArduinoServerCommandFrame;
 class TArrayCamRequestFrame;
 
-class PACKAGE TParallellProcessesFrame : public TFrame
+class PACKAGE TParallelProcessesFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TListBox *mSubProcessesLB;
@@ -44,7 +44,7 @@ __published:	// IDE-managed Components
 
     private:
 		ProcessSequencer&				mProcessSequencer;
-		ParallellProcess*				mParallell;
+		ParallelProcess*				mParallel;
 		void					    	selectItem(Process* mv);
 		Process*						getCurrentlySelectedSubProcess();
 		TMotorMoveProcessFrame*			mTMotorMoveProcessFrame;
@@ -52,11 +52,11 @@ __published:	// IDE-managed Components
         TArrayCamRequestFrame*	 		mArrayCamRequestFrame;
 
 	public:
-							__fastcall  TParallellProcessesFrame(ProcessSequencer& pss, TComponent* Owner);
-							__fastcall  ~TParallellProcessesFrame();
+							__fastcall  TParallelProcessesFrame(ProcessSequencer& pss, TComponent* Owner);
+							__fastcall  ~TParallelProcessesFrame();
     	void							populate(Process* p);
 
 };
 
-extern PACKAGE TParallellProcessesFrame *ParallellProcessesFrame;
+extern PACKAGE TParallelProcessesFrame *ParallelProcessesFrame;
 #endif

@@ -11,7 +11,7 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include "frames/TMotorMoveProcessFrame.h"
-#include "frames/TParallellProcessesFrame.h"
+#include "frames/TParallelProcessesFrame.h"
 #include "TSTDStringLabeledEdit.h"
 #include "frames/TTimeDelayFrame.h"
 #include "frames\TSequenceInfoFrame.h"

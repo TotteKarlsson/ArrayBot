@@ -1,10 +1,10 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TParallellProcessesFrame.h"
+#include "TParallelProcessesFrame.h"
 #include "mtkVCLUtils.h"
 #include "core/atProcess.h"
 #include "arraybot/apt/atMove.h"
-#include "arraybot/process/atParallellProcess.h"
+#include "arraybot/process/atParallelProcess.h"
 #include "mtkLogger.h"
 #include "arraybot/atArrayBot.h"
 #include "arraybot/apt/atAPTMotor.h"
@@ -27,9 +27,9 @@
 
 using namespace mtk;
 
-TParallellProcessesFrame *ParallellProcessesFrame;
+TParallelProcessesFrame *ParallelProcessesFrame;
 //---------------------------------------------------------------------------
-__fastcall TParallellProcessesFrame::TParallellProcessesFrame(ProcessSequencer& ps, TComponent* Owner)
+__fastcall TParallelProcessesFrame::TParallelProcessesFrame(ProcessSequencer& ps, TComponent* Owner)
 	: TFrame(Owner),
     mProcessSequencer(ps)
 {
@@ -49,13 +49,13 @@ __fastcall TParallellProcessesFrame::TParallellProcessesFrame(ProcessSequencer& 
     mArrayCamRequestFrame->Align = alClient;
 }
 
-__fastcall TParallellProcessesFrame::~TParallellProcessesFrame()
+__fastcall TParallelProcessesFrame::~TParallelProcessesFrame()
 {
 	delete mTArduinoServerCommandFrame;
     delete mTMotorMoveProcessFrame;
 }
 
-void TParallellProcessesFrame::populate(Process* pp)
+void TParallelProcessesFrame::populate(Process* pp)
 {
 	mSubProcessesLB->Clear();
     if(!pp)
@@ -70,12 +70,12 @@ void TParallellProcessesFrame::populate(Process* pp)
 	mUpdateFinalPositionsA->Caption =  vclstr(c.str());
 
 	//Populate, update frame with data from process
-    mParallell = dynamic_cast<ParallellProcess*>(pp);
+    mParallel = dynamic_cast<ParallelProcess*>(pp);
 
     //Fill out the listbox with moves
-    for(int i = 0; i < mParallell->getNumberOfProcesses(); i++)
+    for(int i = 0; i < mParallel->getNumberOfProcesses(); i++)
     {
-    	Process* p = mParallell->getProcess(i);
+    	Process* p = mParallel->getProcess(i);
         if(p)
         {
         	mSubProcessesLB->Items->AddObject(vclstr(p->getProcessName()), (TObject*) p);
@@ -95,10 +95,10 @@ void TParallellProcessesFrame::populate(Process* pp)
     }
 }
 
-void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
+void __fastcall TParallelProcessesFrame::addMoveAExecute(TObject *Sender)
 {
 	//Add a move to current process
-    if(!mParallell)
+    if(!mParallel)
     {
     	Log(lError) << "This is something else...!";
         return;
@@ -107,10 +107,10 @@ void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
     Process* lm = new AbsoluteMove("");
 
     //Add the move to the container.. this will give the move a name
-    mParallell->addProcess(lm);
+    mParallel->addProcess(lm);
 
-    lm->assignProcessSequence(mParallell->getProcessSequence());
-    mParallell->write();
+    lm->assignProcessSequence(mParallel->getProcessSequence());
+    mParallel->write();
 
     //Add move to Listbox
     int indx = mSubProcessesLB->Items->AddObject(lm->getProcessName().c_str(), (TObject*) lm);
@@ -121,10 +121,10 @@ void __fastcall TParallellProcessesFrame::addMoveAExecute(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TParallellProcessesFrame::newArrayCamRequestAExecute(TObject *Sender)
+void __fastcall TParallelProcessesFrame::newArrayCamRequestAExecute(TObject *Sender)
 {
 	//Add a move to current process
-    if(!mParallell)
+    if(!mParallel)
     {
     	Log(lError) << "This is something else...!";
         return;
@@ -133,10 +133,10 @@ void __fastcall TParallellProcessesFrame::newArrayCamRequestAExecute(TObject *Se
    	Process* p = new ArrayCamRequestProcess(mProcessSequencer.getArrayCamClient(), "ArrayCam Process");
 
     //Add the move to the container.. this will give the move a name
-    mParallell->addProcess(p);
+    mParallel->addProcess(p);
 
-    p->assignProcessSequence(mParallell->getProcessSequence());
-    mParallell->write();
+    p->assignProcessSequence(mParallel->getProcessSequence());
+    mParallel->write();
 
     //Add move to Listbox
     int indx = mSubProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
@@ -147,20 +147,20 @@ void __fastcall TParallellProcessesFrame::newArrayCamRequestAExecute(TObject *Se
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TParallellProcessesFrame::removeMoveAExecute(TObject *Sender)
+void __fastcall TParallelProcessesFrame::removeMoveAExecute(TObject *Sender)
 {
 	//Get selected move
     int index = mSubProcessesLB->ItemIndex;
     if(index != -1)
     {
     	string moveName = stdstr(mSubProcessesLB->Items->Strings[index]);
-        mParallell->removeProcess(moveName);
-        mParallell->write();
-		populate(mParallell);
+        mParallel->removeProcess(moveName);
+        mParallel->write();
+		populate(mParallel);
     }
 }
 
-void TParallellProcessesFrame::selectItem(Process* p)
+void TParallelProcessesFrame::selectItem(Process* p)
 {
     mTMotorMoveProcessFrame->Visible = false;
    	mTArduinoServerCommandFrame->Visible = false;
@@ -185,9 +185,9 @@ void TParallellProcessesFrame::selectItem(Process* p)
     }
 }
 
-void __fastcall TParallellProcessesFrame::mSubProcessesLBClick(TObject *Sender)
+void __fastcall TParallelProcessesFrame::mSubProcessesLBClick(TObject *Sender)
 {
-	if(mSubProcessesLB->ItemIndex == -1 || mParallell == NULL)
+	if(mSubProcessesLB->ItemIndex == -1 || mParallel == NULL)
     {
     	return;
     }
@@ -195,28 +195,28 @@ void __fastcall TParallellProcessesFrame::mSubProcessesLBClick(TObject *Sender)
 	//Get Current itemIndex, retrieve the move and populate the move frame
     Process* subProcess = (Process*) mSubProcessesLB->Items->Objects[mSubProcessesLB->ItemIndex];
 
-    Process* p = mParallell->getProcess(subProcess);
+    Process* p = mParallel->getProcess(subProcess);
     selectItem(p);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject *Sender)
+void __fastcall TParallelProcessesFrame::mUpdateFinalPositionsAExecute(TObject *Sender)
 {
 	//Populate, update frame with data from process
-    if(!mParallell)
+    if(!mParallel)
     {
     	return;
     }
 
-    if(mParallell->getNumberOfProcesses() == 0)
+    if(mParallel->getNumberOfProcesses() == 0)
     {
     	MessageDlg("There are no moves to update", mtInformation, TMsgDlgButtons() << mbOK, 0);
     }
 
     //Fill out the listbox with moves
-    for(int i = 0; i < mParallell->getNumberOfProcesses(); i++)
+    for(int i = 0; i < mParallel->getNumberOfProcesses(); i++)
     {
-    	Process* p = mParallell->getProcess(i);
+    	Process* p = mParallel->getProcess(i);
         if(!p)
         {
         	continue;
@@ -290,7 +290,7 @@ void __fastcall TParallellProcessesFrame::mUpdateFinalPositionsAExecute(TObject 
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TParallellProcessesFrame::mRenameBtnClick(TObject *Sender)
+void __fastcall TParallelProcessesFrame::mRenameBtnClick(TObject *Sender)
 {
 	//Open string input form
 	TStringInputDialog* t = new TStringInputDialog(this);
@@ -325,7 +325,7 @@ void __fastcall TParallellProcessesFrame::mRenameBtnClick(TObject *Sender)
     delete t;
 }
 
-Process* TParallellProcessesFrame::getCurrentlySelectedSubProcess()
+Process* TParallelProcessesFrame::getCurrentlySelectedSubProcess()
 {
 	if(mSubProcessesLB->Count > 0 && mSubProcessesLB->ItemIndex != -1)
     {
