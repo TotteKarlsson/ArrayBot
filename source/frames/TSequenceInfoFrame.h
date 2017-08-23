@@ -19,11 +19,12 @@ class TTimeDelayFrame;
 class TArrayCamRequestFrame;
 class TMotorMoveProcessFrame;
 class TStopAndResumeFrame;
+class TLiftAtAngleProcessFrame;
 
 class Process;
 class ArrayBot;
 class ProcessSequencer;
-
+using std::vector;
 
 class PACKAGE TSequenceInfoFrame : public TFrame
 {
@@ -64,13 +65,17 @@ class PACKAGE TSequenceInfoFrame : public TFrame
         string					        mSequencesFolder;
         ProcessSequencer&  		        mProcessSequencer;
         TScrollBox*					    mProcessPanel;
-
+        vector<TFrame*>					mFrames;
         								//!Different Types of processes
         TParallelProcessesFrame*		mParallelProcessesFrame;
         TTimeDelayFrame*				mTimeDelayFrame;
         TArrayCamRequestFrame*	 		mArrayCamRequestFrame;
 		TMotorMoveProcessFrame*			mMotorMoveProcessFrame;
 		TStopAndResumeFrame*			mStopAndResumeFrame;
+		TLiftAtAngleProcessFrame*  		mLiftAtAngleProcessFrame;
+		bool 							setFramesVisibility(bool vis);
+		bool 							setFramesParent(TScrollBox* p);
+
 
 		void		__fastcall          empty();
         void							disableEnableButtons(bool enabled);

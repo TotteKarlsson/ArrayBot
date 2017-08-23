@@ -493,7 +493,7 @@ void __fastcall TMain::HomeAllDevicesAExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMain::WaitForHandleTimerTimer(TObject *Sender)
 {
-    if(Application->MainForm->Handle)
+    if(Application->MainForm->HandleAllocated())
     {
         WaitForHandleTimer->Enabled = false;
 

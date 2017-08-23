@@ -15,19 +15,21 @@ object MotorPositionFrame: TMotorPositionFrame
     object mPosL: TLabel
       Left = 2
       Top = 15
-      Width = 30
-      Height = 13
+      Width = 157
+      Height = 64
       Align = alClient
       Alignment = taCenter
-      Caption = 'mPosL'
+      Caption = 'N/A'
       Layout = tlCenter
+      ExplicitWidth = 18
+      ExplicitHeight = 13
     end
   end
   object PullPosTimer: TTimer
     Enabled = False
     Interval = 300
     OnTimer = PullPosTimerTimer
-    Left = 80
-    Top = 80
+    Left = 90
+    Top = 34
   end
 end

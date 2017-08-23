@@ -23989,7 +23989,7 @@ object Main: TMain
             Left = 751
             Top = 1
             Width = 86
-            Height = 59
+            Height = 25
             Align = alLeft
             Caption = 'JS Status'
             Font.Charset = DEFAULT_CHARSET
@@ -23999,7 +23999,6 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             Layout = tlCenter
-            ExplicitHeight = 25
           end
           object mJoyStickRG: TRadioGroup
             Left = 1040
@@ -24073,6 +24072,10 @@ object Main: TMain
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
@@ -24164,6 +24167,10 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
         Top = 0

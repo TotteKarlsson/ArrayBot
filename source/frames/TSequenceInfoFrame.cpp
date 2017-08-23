@@ -9,11 +9,13 @@
 #include "arraybot/process/atTimeDelay.h"
 #include "arraybot/process/atArrayCamRequestProcess.h"
 #include "arraybot/process/atStopAndResumeProcess.h"
+#include "arraybot/process/atLiftAtAngleProcess.h"
 #include "frames/TMotorMoveProcessFrame.h"
 #include "frames/TParallelProcessesFrame.h"
 #include "frames/TTimeDelayFrame.h"
 #include "frames/TArrayCamRequestFrame.h"
 #include "frames/TStopAndResumeFrame.h"
+#include "frames/TLiftAtAngleProcessFrame.h"
 #include "atVCLUtils.h"
 #include "mtkLogger.h"
 #include "vcl/forms/TSelectProcessTypeDialog.h"
@@ -32,22 +34,23 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
     mProcessSequencer(ps)
 {
     //Create frames
-	mParallelProcessesFrame = new TParallelProcessesFrame(ps, Owner);
-    mParallelProcessesFrame->Visible = false;
+	mParallelProcessesFrame 	= new TParallelProcessesFrame(ps, Owner);
+    mTimeDelayFrame 			= new TTimeDelayFrame(Owner);
+    mArrayCamRequestFrame 		= new TArrayCamRequestFrame(ps, Owner);
+    mMotorMoveProcessFrame 		= new TMotorMoveProcessFrame(ps, Owner);
+    mStopAndResumeFrame 		= new TStopAndResumeFrame(Owner);
+    mLiftAtAngleProcessFrame   	= new TLiftAtAngleProcessFrame(ps, Owner);
 
-    mTimeDelayFrame = new TTimeDelayFrame(Owner);
-    mTimeDelayFrame->Visible = false;
+    mFrames.push_back(mParallelProcessesFrame);
+	mFrames.push_back(mTimeDelayFrame);
+	mFrames.push_back(mArrayCamRequestFrame);
+	mFrames.push_back(mMotorMoveProcessFrame);
+	mFrames.push_back(mStopAndResumeFrame);
+	mFrames.push_back(mLiftAtAngleProcessFrame);
 
-    mArrayCamRequestFrame = new TArrayCamRequestFrame(ps, Owner);
-    mArrayCamRequestFrame->Visible = false;
+    setFramesVisibility(false);
 
-    mMotorMoveProcessFrame = new TMotorMoveProcessFrame(ps, Owner);
-    mMotorMoveProcessFrame->Visible = false;
-
-    mStopAndResumeFrame = new TStopAndResumeFrame(Owner);
-    mStopAndResumeFrame->Visible = false;
     ////////////////////////////////////////////////////////////////////
-
 	mUpdatePositionsBtn->Action = mParallelProcessesFrame->mUpdateFinalPositionsA;
 }
 
@@ -62,12 +65,8 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TScrollBox* processPanel
 
     if(processPanel)
     {
-    	mProcessPanel 						= processPanel;
-		mParallelProcessesFrame->Parent 	= mProcessPanel;
-        mTimeDelayFrame->Parent 			= mProcessPanel;
-        mArrayCamRequestFrame->Parent 		= mProcessPanel;
-        mMotorMoveProcessFrame->Parent 		= mProcessPanel;
-        mStopAndResumeFrame->Parent 		= mProcessPanel;
+    	mProcessPanel = processPanel;
+        setFramesParent(mProcessPanel);
     }
 
     mProcessesLB->Clear();
@@ -182,62 +181,83 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
 	updateSequenceArrows();
 
     //Available processtype frames
-	mParallelProcessesFrame->Visible 	= false;
-	mUpdatePositionsBtn->Visible 		= false;
-    mTimeDelayFrame->Visible 			= false;
-    mArrayCamRequestFrame->Visible     	= false;
-    mMotorMoveProcessFrame->Visible    	= false;
-    mStopAndResumeFrame->Visible    	= false;
+    setFramesVisibility(false);
 
     //Check what kind of process we have
     Process* p = getCurrentlySelectedProcess();
-    if(dynamic_cast<ParallelProcess*>(p) != NULL)
-    {
-    	ParallelProcess* pp = dynamic_cast<ParallelProcess*>(p);
-        mParallelProcessesFrame->populate(pp);
-        mParallelProcessesFrame->mSubProcessesLB->ItemIndex = 0;
-        mParallelProcessesFrame->mSubProcessesLB->OnClick(NULL);
-        mParallelProcessesFrame->Visible 	= true;
-		mUpdatePositionsBtn->Visible 		= true;
-        mUpdatePositionsBtn->Enabled 		= true;
-        mParallelProcessesFrame->Align = alClient;
-    }
-    else if(dynamic_cast<TimeDelay*>(p) != NULL)
-    {
-		TimeDelay* tdp = dynamic_cast<TimeDelay*>(p);
-        mTimeDelayFrame->populate(tdp);
-        mTimeDelayFrame->Visible = true;
-        mTimeDelayFrame->Align = alClient;
-    }
-    else if(dynamic_cast<ArrayCamRequestProcess*>(p) != NULL)
-    {
-		ArrayCamRequestProcess* tdp = dynamic_cast<ArrayCamRequestProcess*>(p);
-        mArrayCamRequestFrame->populate(tdp);
-        mArrayCamRequestFrame->Visible = true;
-        mArrayCamRequestFrame->Align = alClient;
-    }
 
-    else if(dynamic_cast<AbsoluteMove*>(p) != NULL)
-    {
-		AbsoluteMove* am = dynamic_cast<AbsoluteMove*>(p);
-        mMotorMoveProcessFrame->populate(am);
-        mMotorMoveProcessFrame->Visible = true;
-        mMotorMoveProcessFrame->Align = alClient;
-        mUpdatePositionsBtn->Enabled   	= true;
-    }
-    else if(dynamic_cast<StopAndResumeProcess*>(p) != NULL)
-    {
-		StopAndResumeProcess* am = dynamic_cast<StopAndResumeProcess*>(p);
-        mStopAndResumeFrame->populate(am);
-        mStopAndResumeFrame->Visible = true;
-        mStopAndResumeFrame->Align = alClient;
-    }
+    ProcessType type = p != NULL ? p->getProcessType() : ptUnknown;
 
-    else
+    switch(type)
     {
-		mParallelProcessesFrame->Visible 	= false;
-		mUpdatePositionsBtn->Enabled 		= false;
-		mUpdatePositionsBtn->Visible 		= false;
+		case ptParallel:
+		{
+            ParallelProcess* pp = dynamic_cast<ParallelProcess*>(p);
+            mParallelProcessesFrame->populate(pp);
+            mParallelProcessesFrame->mSubProcessesLB->ItemIndex = 0;
+            mParallelProcessesFrame->mSubProcessesLB->OnClick(NULL);
+            mUpdatePositionsBtn->Enabled 		= true;
+            mUpdatePositionsBtn->Visible 		= true;
+
+            mParallelProcessesFrame->Visible 	= true;
+            mParallelProcessesFrame->Align = alClient;
+        }
+        break;
+
+        case ptLiftAtAngleProcess:
+        {
+            LiftAtAngleProcess* pp = dynamic_cast<LiftAtAngleProcess*>(p);
+            mLiftAtAngleProcessFrame->populate(pp);
+
+            mLiftAtAngleProcessFrame->Visible = true;
+            mLiftAtAngleProcessFrame->Align = alClient;
+        }
+        break;
+
+		case ptTimeDelay:
+        {
+            TimeDelay* tdp = dynamic_cast<TimeDelay*>(p);
+            mTimeDelayFrame->populate(tdp);
+
+            mTimeDelayFrame->Visible = true;
+            mTimeDelayFrame->Align = alClient;
+        }
+		break;
+
+        case ptArrayCamRequestProcess:
+        {
+            ArrayCamRequestProcess* tdp = dynamic_cast<ArrayCamRequestProcess*>(p);
+            mArrayCamRequestFrame->populate(tdp);
+            mArrayCamRequestFrame->Visible = true;
+            mArrayCamRequestFrame->Align = alClient;
+        }
+        break;
+
+        case ptAbsoluteMove:
+        {
+            AbsoluteMove* am = dynamic_cast<AbsoluteMove*>(p);
+            mMotorMoveProcessFrame->populate(am);
+            mMotorMoveProcessFrame->Visible = true;
+            mMotorMoveProcessFrame->Align = alClient;
+            mUpdatePositionsBtn->Enabled   	= true;
+        }
+        break;
+
+        case ptStopAndResumeProcess:
+        {
+            StopAndResumeProcess* am = dynamic_cast<StopAndResumeProcess*>(p);
+            mStopAndResumeFrame->populate(am);
+            mStopAndResumeFrame->Visible = true;
+            mStopAndResumeFrame->Align = alClient;
+        }
+        break;
+
+        default:
+        {
+			setFramesVisibility(false);
+            mUpdatePositionsBtn->Enabled 		= false;
+            mUpdatePositionsBtn->Visible 		= false;
+        }
     }
 }
 
@@ -296,6 +316,12 @@ void __fastcall TSequenceInfoFrame::AddCombinedMoveAExecute(TObject *Sender)
         {
         	p = new AbsoluteMove("Process " + mtk::toString(nr));
         }
+        else if(pType == 5) //Absolute move
+        {
+        	MessageDlg("LiftAtAngle not implemented yet", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        	p = new LiftAtAngleProcess("Process " + mtk::toString(nr));
+        }
+
         else
         {
         	Log(lError) << "Process Type Selection is not Suported!";
@@ -459,8 +485,20 @@ void __fastcall TSequenceInfoFrame::LogXML1Click(TObject *Sender)
     {
 	    Log(lInfo) << s[i];
     }
-
-
 }
 
+bool TSequenceInfoFrame::setFramesVisibility(bool visible)
+{
+	for(int i = 0; i < mFrames.size(); i++)
+    {
+    	mFrames[i]->Visible = visible;
+    }
+}
 
+bool TSequenceInfoFrame::setFramesParent(TScrollBox* parent)
+{
+	for(int i = 0; i < mFrames.size(); i++)
+    {
+    	mFrames[i]->Parent = parent;
+    }
+}

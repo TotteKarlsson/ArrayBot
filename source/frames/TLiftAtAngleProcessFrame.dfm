@@ -1,4 +1,4 @@
-object MotorMoveProcessFrame: TMotorMoveProcessFrame
+object LiftAtAngleProcessFrame: TLiftAtAngleProcessFrame
   Left = 0
   Top = 0
   Width = 451
@@ -128,7 +128,7 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
     Left = 0
     Top = 465
     Width = 451
-    Height = 260
+    Height = 328
     Align = alClient
     TabOrder = 0
     object GroupBox1: TGroupBox

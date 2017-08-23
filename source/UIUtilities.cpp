@@ -15,7 +15,7 @@ using namespace mtk;
 //---------------------------------------------------------------------------
 bool sendAppMessage(ApplicationMessageEnum msgID, void* s)
 {
-	if(!Application || !Application->MainForm || !Application->MainForm->Handle)
+	if(!Application || !Application->MainForm || !Application->MainForm->HandleAllocated())
     {
     	Log(lError) << "Failed to get a valid handle when trying to send application message";
         return false;
