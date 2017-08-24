@@ -6,7 +6,7 @@
 
 enum ApplicationMessageEnum
 {
-    abSplashWasClosed,
+    abSplashWasClosed = WM_USER,
     abSequencerUpdate
 };
 

@@ -1,8 +1,8 @@
 object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Left = 0
   Top = 0
-  Width = 826
-  Height = 735
+  Width = 451
+  Height = 304
   Align = alClient
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,19 +11,16 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   Font.Style = []
   ParentFont = False
   TabOrder = 0
-  ExplicitWidth = 451
-  ExplicitHeight = 304
   object mMainGB: TGroupBox
     Left = 0
     Top = 0
-    Width = 826
+    Width = 451
     Height = 465
     Align = alTop
     Caption = 'Action Properties'
     Padding.Left = 15
     Padding.Right = 15
     TabOrder = 1
-    ExplicitWidth = 451
     object Panel2: TPanel
       Left = 17
       Top = 25
@@ -130,12 +127,10 @@ object MotorMoveProcessFrame: TMotorMoveProcessFrame
   object mTriggerPanel: TPanel
     Left = 0
     Top = 465
-    Width = 826
+    Width = 451
     Height = 270
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 451
-    ExplicitHeight = 260
     object GroupBox1: TGroupBox
       Left = 377
       Top = 32

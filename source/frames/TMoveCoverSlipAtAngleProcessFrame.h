@@ -17,7 +17,6 @@
 class MoveCoverSlipAtAngleProcess;
 class TPositionalTriggerFrame;
 class ProcessSequencer;
-
 class ArrayBot;
 class XYZUnit;
 
@@ -41,6 +40,7 @@ __published:	// IDE-managed Components
 	void __fastcall EditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
 	void __fastcall mActionInfoClick(TObject *Sender);
+	void __fastcall EnableParallelWhiskerMoveCBClick(TObject *Sender);
 
     private:	// User declarations
         MoveCoverSlipAtAngleProcess*        mMoveCoverSlipAtAngleProcess;
@@ -49,9 +49,9 @@ __published:	// IDE-managed Components
         TPositionalTriggerFrame*	        mPosTriggerFrame;
 
     public:		// User declarations
-                        __fastcall TMoveCoverSlipAtAngleProcessFrame(ProcessSequencer& ps, TComponent* Owner);
-        void            		   populate(MoveCoverSlipAtAngleProcess* m);
-        void            		   rePopulate(MoveCoverSlipAtAngleProcess* m);
+                        __fastcall 			TMoveCoverSlipAtAngleProcessFrame(ProcessSequencer& ps, TComponent* Owner);
+        void            		   			populate(MoveCoverSlipAtAngleProcess* m);
+        void            		   			rePopulate(MoveCoverSlipAtAngleProcess* m);
 };
 
 extern PACKAGE TMoveCoverSlipAtAngleProcessFrame *MoveCoverSlipAtAngleProcessFrame;

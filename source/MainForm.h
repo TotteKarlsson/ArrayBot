@@ -150,7 +150,6 @@ class TMain : public TRegistryForm
 	TComboBox *LiftCB1;
 	TFloatLabeledEdit *mMoveAccelerationE;
 	TFloatLabeledEdit *mMoveVelocityVerticalE;
-	TTimer *WaitForHandleTimer;
 	TCategoryPanelGroup *CategoryPanelGroup1;
 	TCategoryPanel *CategoryPanel1;
 	TCategoryPanel *CategoryPanel2;
@@ -191,7 +190,6 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall SequencesPanel1Resize(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall HomeAllDevicesAExecute(TObject *Sender);
-	void __fastcall WaitForHandleTimerTimer(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMoveSequences = 1,

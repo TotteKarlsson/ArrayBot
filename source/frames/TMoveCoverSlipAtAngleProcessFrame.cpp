@@ -45,11 +45,13 @@ void TMoveCoverSlipAtAngleProcessFrame::populate(MoveCoverSlipAtAngleProcess* m)
     }
 
     mMoveCoverSlipAtAngleProcess = m;
-    mActionInfo->Caption = vclstr(mMoveCoverSlipAtAngleProcess->getInfoText());
-	mLiftVelocityE->setValue(mMoveCoverSlipAtAngleProcess->getLiftVelocity());
-	mLiftAccE->setValue(mMoveCoverSlipAtAngleProcess->getLiftAcceleration());
-	mLiftAngleE->setValue(mMoveCoverSlipAtAngleProcess->getLiftAngle());
-	mLiftHeightE->setValue(mMoveCoverSlipAtAngleProcess->getLiftHeight());
+    mActionInfo->Caption = vclstr(	mMoveCoverSlipAtAngleProcess->getInfoText());
+	mLiftVelocityE->setValue(	    mMoveCoverSlipAtAngleProcess->getLiftVelocity());
+	mLiftAccE->setValue(		    mMoveCoverSlipAtAngleProcess->getLiftAcceleration());
+	mLiftAngleE->setValue(		    mMoveCoverSlipAtAngleProcess->getLiftAngle());
+	mLiftHeightE->setValue(		    mMoveCoverSlipAtAngleProcess->getLiftHeight());
+
+    EnableParallelWhiskerMoveCB->Checked = mMoveCoverSlipAtAngleProcess->getMoveWhiskerInParallel();
 
     //Validate motors
     if(!mAB.getCoverSlipUnit().getZMotor() || !mAB.getCoverSlipUnit().getYMotor() || !mAB.getWhiskerUnit().getZMotor() || !mAB.getWhiskerUnit().getYMotor())
@@ -63,6 +65,7 @@ void TMoveCoverSlipAtAngleProcessFrame::populate(MoveCoverSlipAtAngleProcess* m)
     	string msg("All motors for carrying out lift at angle are present.");
     	Log(lInfo) << msg;
     }
+
 
 	mMoveCoverSlipAtAngleProcess->calculateLift();
 	LatVelL->SetValue(mMoveCoverSlipAtAngleProcess->getLateralVelocity());
@@ -83,13 +86,13 @@ void __fastcall TMoveCoverSlipAtAngleProcessFrame::EditKeyDown(TObject *Sender, 
 
 	mProcessSequencer.saveCurrent();
     populate(mMoveCoverSlipAtAngleProcess);
-
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMoveCoverSlipAtAngleProcessFrame::mActionInfoClick(TObject *Sender)
 {
-    if(!mMoveCoverSlipAtAngleProcess)
+	Process* p =  mMoveCoverSlipAtAngleProcess;
+    if(!p)
     {
     	return;
     }
@@ -98,18 +101,24 @@ void __fastcall TMoveCoverSlipAtAngleProcessFrame::mActionInfoClick(TObject *Sen
 	//Open text edit form
 	TTextInputDialog* t = new TTextInputDialog(this);
     t->Caption = "Update Action Information";
-	Process* p =  mMoveCoverSlipAtAngleProcess;
 
-    t->setText(mMoveCoverSlipAtAngleProcess->getInfoText());
+    t->setText(p->getInfoText());
 
     if(t->ShowModal() == mrOk)
     {
     	string newText(t->getText());
-		mMoveCoverSlipAtAngleProcess->setInfoText(newText);
-		mMoveCoverSlipAtAngleProcess->write();
+		p->setInfoText(newText);
+		p->write();
         mActionInfo->Caption = vclstr(newText);
     }
     delete t;
+}
+
+
+void __fastcall TMoveCoverSlipAtAngleProcessFrame::EnableParallelWhiskerMoveCBClick(TObject *Sender)
+{
+	mMoveCoverSlipAtAngleProcess->setMoveWhiskerInParallel(EnableParallelWhiskerMoveCB->Checked);
+	mProcessSequencer.saveCurrent();
 }
 
 

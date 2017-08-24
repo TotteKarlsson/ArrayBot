@@ -73,8 +73,6 @@ void __fastcall TMain::FormCreate(TObject *Sender)
     PageControl2->TabIndex = 0;
 
 	gAppIsStartingUp = false;
-
-	WaitForHandleTimer->Enabled = true;
 }
 
 //---------------------------------------------------------------------------
@@ -203,6 +201,5 @@ void __fastcall	TMain::onFinishedInitBot()
     mTheWiggler.setMaxVelocity(mWigglerVelocityE->getValue());
     mTheWiggler.setMaxAcceleration(mWigglerAccelerationE->getValue());
     mTheWiggler.assignMotors(mAB.getWhiskerUnit().getXMotor(), mAB.getWhiskerUnit().getYMotor());
-
 }
 

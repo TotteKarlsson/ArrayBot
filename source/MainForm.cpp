@@ -174,6 +174,11 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
 
         setupUIFrames();
         enableDisableUI(true);
+       //Send a message to main ui to update sequence shortcuts
+        if(sendAppMessage(abSequencerUpdate) != true)
+        {
+            Log(lDebug)<<"Sending sequencer update to UI was unsuccesful";
+        }
     }
 }
 
@@ -487,21 +492,6 @@ void __fastcall TMain::HomeAllDevicesAExecute(TObject *Sender)
 	if(MessageDlg("ATTENTION: Make sure all motors have a free path to their home position before executing!", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrOk)
     {
 		mAB.homeAll();
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMain::WaitForHandleTimerTimer(TObject *Sender)
-{
-    if(Application->MainForm->HandleAllocated())
-    {
-        WaitForHandleTimer->Enabled = false;
-
-        //Send a message to main ui to update sequence shortcuts
-        if(sendAppMessage(abSequencerUpdate) != true)
-        {
-            Log(lDebug)<<"Sending sequencer update to UI was unsuccesful";
-        }
     }
 }
 

@@ -70,9 +70,9 @@ object MoveCoverSlipAtAngleProcessFrame: TMoveCoverSlipAtAngleProcessFrame
     Caption = 'Move at Angle Parameters'
     TabOrder = 0
     object mActionInfo: TLabel
-      Left = 297
+      Left = 337
       Top = 25
-      Width = 627
+      Width = 587
       Height = 245
       Align = alClient
       AutoSize = False
@@ -87,7 +87,7 @@ object MoveCoverSlipAtAngleProcessFrame: TMoveCoverSlipAtAngleProcessFrame
     object Panel2: TPanel
       Left = 2
       Top = 25
-      Width = 295
+      Width = 335
       Height = 245
       Align = alLeft
       BevelOuter = bvNone
@@ -147,6 +147,7 @@ object MoveCoverSlipAtAngleProcessFrame: TMoveCoverSlipAtAngleProcessFrame
         Height = 17
         Caption = 'Enable Parallel Whisker Move'
         TabOrder = 4
+        OnClick = EnableParallelWhiskerMoveCBClick
       end
     end
   end
