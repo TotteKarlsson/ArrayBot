@@ -19,7 +19,7 @@ class TTimeDelayFrame;
 class TArrayCamRequestFrame;
 class TMotorMoveProcessFrame;
 class TStopAndResumeFrame;
-class TLiftAtAngleProcessFrame;
+class TMoveCoverSlipAtAngleProcessFrame;
 
 class Process;
 class ArrayBot;
@@ -72,9 +72,9 @@ class PACKAGE TSequenceInfoFrame : public TFrame
         TArrayCamRequestFrame*	 		mArrayCamRequestFrame;
 		TMotorMoveProcessFrame*			mMotorMoveProcessFrame;
 		TStopAndResumeFrame*			mStopAndResumeFrame;
-		TLiftAtAngleProcessFrame*  		mLiftAtAngleProcessFrame;
-		bool 							setFramesVisibility(bool vis);
-		bool 							setFramesParent(TScrollBox* p);
+		TMoveCoverSlipAtAngleProcessFrame*  		mMoveCoverSlipAtAngleProcessFrame;
+		void 							setFramesVisibility(bool vis);
+		void 							setFramesParent(TScrollBox* p);
 
 
 		void		__fastcall          empty();

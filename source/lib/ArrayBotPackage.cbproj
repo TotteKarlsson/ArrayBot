@@ -135,12 +135,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\frames\TArrayCamRequestFrame.h</DependentOn>
             <BuildOrder>20</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\frames\TLiftAtAngleProcessFrame.cpp">
-            <Form>LiftAtAngleProcessFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TLiftAtAngleProcessFrame.h</DependentOn>
-            <BuildOrder>22</BuildOrder>
-        </CppCompile>
         <CppCompile Include="..\frames\TMotorFrame.cpp">
             <Form>MotorFrame</Form>
             <DesignClass>TFrame</DesignClass>
@@ -158,6 +152,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>..\frames\TMotorPositionFrame.h</DependentOn>
             <BuildOrder>32</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.cpp">
+            <Form>MoveCoverSlipAtAngleProcessFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>..\frames\TMoveCoverSlipAtAngleProcessFrame.h</DependentOn>
+            <BuildOrder>22</BuildOrder>
         </CppCompile>
         <CppCompile Include="..\frames\TParallelProcessesFrame.cpp">
             <Form>ParallelProcessesFrame</Form>
@@ -259,22 +259,22 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
         <FormResources Include="..\frames\TXYZUnitFrame.dfm"/>
-        <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
-        <FormResources Include="..\frames\TLiftAtAngleProcessFrame.dfm"/>
         <FormResources Include="..\frames\TArrayCamRequestFrame.dfm"/>
+        <FormResources Include="..\frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="..\frames\TMotorFrame.dfm"/>
+        <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
         <FormResources Include="..\forms\TProcessSequenceControlForm.dfm"/>
         <FormResources Include="..\forms\abAddJoyStickSettingForm.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="..\forms\TSplashForm.dfm"/>
-        <FormResources Include="..\frames\TMotorFrame.dfm"/>
         <FormResources Include="..\frames\TStopAndResumeFrame.dfm"/>
         <FormResources Include="..\frames\TSequencerButtonsFrame.dfm"/>
         <FormResources Include="..\frames\TXYZPositionsFrame.dfm"/>
         <FormResources Include="..\frames\TTimeDelayFrame.dfm"/>
-        <FormResources Include="..\frames\TParallelProcessesFrame.dfm"/>
+        <FormResources Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.dfm"/>
         <FormResources Include="..\frames\TMotorPositionFrame.dfm"/>
         <FormResources Include="..\frames\TPositionalTriggerFrame.dfm"/>
-        <FormResources Include="..\frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="..\frames\TParallelProcessesFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

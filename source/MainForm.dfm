@@ -23989,7 +23989,7 @@ object Main: TMain
             Left = 751
             Top = 1
             Width = 86
-            Height = 25
+            Height = 59
             Align = alLeft
             Caption = 'JS Status'
             Font.Charset = DEFAULT_CHARSET
@@ -23999,6 +23999,7 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             Layout = tlCenter
+            ExplicitHeight = 25
           end
           object mJoyStickRG: TRadioGroup
             Left = 1040

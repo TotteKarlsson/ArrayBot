@@ -9,13 +9,13 @@
 #include "arraybot/process/atTimeDelay.h"
 #include "arraybot/process/atArrayCamRequestProcess.h"
 #include "arraybot/process/atStopAndResumeProcess.h"
-#include "arraybot/process/atLiftAtAngleProcess.h"
+#include "arraybot/process/atMoveCoverSlipAtAngleProcess.h"
 #include "frames/TMotorMoveProcessFrame.h"
 #include "frames/TParallelProcessesFrame.h"
 #include "frames/TTimeDelayFrame.h"
 #include "frames/TArrayCamRequestFrame.h"
 #include "frames/TStopAndResumeFrame.h"
-#include "frames/TLiftAtAngleProcessFrame.h"
+#include "frames/TMoveCoverSlipAtAngleProcessFrame.h"
 #include "atVCLUtils.h"
 #include "mtkLogger.h"
 #include "vcl/forms/TSelectProcessTypeDialog.h"
@@ -34,19 +34,19 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
     mProcessSequencer(ps)
 {
     //Create frames
-	mParallelProcessesFrame 	= new TParallelProcessesFrame(ps, Owner);
-    mTimeDelayFrame 			= new TTimeDelayFrame(Owner);
-    mArrayCamRequestFrame 		= new TArrayCamRequestFrame(ps, Owner);
-    mMotorMoveProcessFrame 		= new TMotorMoveProcessFrame(ps, Owner);
-    mStopAndResumeFrame 		= new TStopAndResumeFrame(Owner);
-    mLiftAtAngleProcessFrame   	= new TLiftAtAngleProcessFrame(ps, Owner);
+	mParallelProcessesFrame 	        = new TParallelProcessesFrame(ps, Owner);
+    mTimeDelayFrame 			        = new TTimeDelayFrame(Owner);
+    mArrayCamRequestFrame 		        = new TArrayCamRequestFrame(ps, Owner);
+    mMotorMoveProcessFrame 		        = new TMotorMoveProcessFrame(ps, Owner);
+    mStopAndResumeFrame 		        = new TStopAndResumeFrame(Owner);
+    mMoveCoverSlipAtAngleProcessFrame  	= new TMoveCoverSlipAtAngleProcessFrame(ps, Owner);
 
     mFrames.push_back(mParallelProcessesFrame);
 	mFrames.push_back(mTimeDelayFrame);
 	mFrames.push_back(mArrayCamRequestFrame);
 	mFrames.push_back(mMotorMoveProcessFrame);
 	mFrames.push_back(mStopAndResumeFrame);
-	mFrames.push_back(mLiftAtAngleProcessFrame);
+	mFrames.push_back(mMoveCoverSlipAtAngleProcessFrame);
 
     setFramesVisibility(false);
 
@@ -183,6 +183,8 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
     //Available processtype frames
     setFramesVisibility(false);
 
+    //This button only makes sense for certain actions
+    mUpdatePositionsBtn->Visible 	 = false;
     //Check what kind of process we have
     Process* p = getCurrentlySelectedProcess();
 
@@ -204,13 +206,13 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
         }
         break;
 
-        case ptLiftAtAngleProcess:
+        case ptMoveCoverSlipAtAngle:
         {
-            LiftAtAngleProcess* pp = dynamic_cast<LiftAtAngleProcess*>(p);
-            mLiftAtAngleProcessFrame->populate(pp);
+            MoveCoverSlipAtAngleProcess* pp = dynamic_cast<MoveCoverSlipAtAngleProcess*>(p);
+            mMoveCoverSlipAtAngleProcessFrame->populate(pp);
 
-            mLiftAtAngleProcessFrame->Visible = true;
-            mLiftAtAngleProcessFrame->Align = alClient;
+            mMoveCoverSlipAtAngleProcessFrame->Visible = true;
+            mMoveCoverSlipAtAngleProcessFrame->Align = alClient;
         }
         break;
 
@@ -224,7 +226,7 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
         }
 		break;
 
-        case ptArrayCamRequestProcess:
+        case ptArrayCamRequest:
         {
             ArrayCamRequestProcess* tdp = dynamic_cast<ArrayCamRequestProcess*>(p);
             mArrayCamRequestFrame->populate(tdp);
@@ -243,7 +245,7 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
         }
         break;
 
-        case ptStopAndResumeProcess:
+        case ptStopAndResume:
         {
             StopAndResumeProcess* am = dynamic_cast<StopAndResumeProcess*>(p);
             mStopAndResumeFrame->populate(am);
@@ -319,7 +321,7 @@ void __fastcall TSequenceInfoFrame::AddCombinedMoveAExecute(TObject *Sender)
         else if(pType == 5) //Absolute move
         {
         	MessageDlg("LiftAtAngle not implemented yet", mtWarning, TMsgDlgButtons() << mbOK, 0);
-        	p = new LiftAtAngleProcess("Process " + mtk::toString(nr));
+        	p = new MoveCoverSlipAtAngleProcess("Process " + mtk::toString(nr));
         }
 
         else
@@ -487,7 +489,7 @@ void __fastcall TSequenceInfoFrame::LogXML1Click(TObject *Sender)
     }
 }
 
-bool TSequenceInfoFrame::setFramesVisibility(bool visible)
+void TSequenceInfoFrame::setFramesVisibility(bool visible)
 {
 	for(int i = 0; i < mFrames.size(); i++)
     {
@@ -495,7 +497,7 @@ bool TSequenceInfoFrame::setFramesVisibility(bool visible)
     }
 }
 
-bool TSequenceInfoFrame::setFramesParent(TScrollBox* parent)
+void TSequenceInfoFrame::setFramesParent(TScrollBox* parent)
 {
 	for(int i = 0; i < mFrames.size(); i++)
     {
