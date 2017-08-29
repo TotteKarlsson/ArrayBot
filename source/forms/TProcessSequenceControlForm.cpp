@@ -116,6 +116,7 @@ void __fastcall TProcessSequenceControlForm::mStopBtnClick(TObject *Sender)
 void __fastcall TProcessSequenceControlForm::mPauseBtnClick(TObject *Sender)
 {
 	mPS.pause();
+//	mPS.stop();
 }
 
 

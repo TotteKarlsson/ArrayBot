@@ -37,10 +37,12 @@ __published:	// IDE-managed Components
 	mtkFloatLabel *LatVelL;
 	mtkFloatLabel *LatAccL;
 	TPropertyCheckBox *EnableParallelWhiskerMoveCB;
+	TPropertyCheckBox *FetchAngleFromCSAngleMotorCB;
 	void __fastcall EditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
 	void __fastcall mActionInfoClick(TObject *Sender);
 	void __fastcall EnableParallelWhiskerMoveCBClick(TObject *Sender);
+	void __fastcall FetchAngleFromCSAngleMotorCBClick(TObject *Sender);
 
     private:	// User declarations
         MoveCoverSlipAtAngleProcess*        mMoveCoverSlipAtAngleProcess;

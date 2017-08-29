@@ -1,23 +1,44 @@
-//---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
-
+#include "mtkLogger.h"
 #include "Unit1.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+//---------------------------------------------------------------------------
+
 TForm1 *Form1;
+
+using namespace mtk;
+
+
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
 {}
 
-void __fastcall TForm1::UserStructHandler(TMyStruct &msg)
-{
-    MessageDlg("Struct received: " + IntToStr(msg.lparam->m_a) + " " + IntToStr(msg.lparam->m_b),
-            mtInformation, TMsgDlgButtons() << mbOK, 0);
-}
+//void __fastcall TForm1::UserStructHandler(TMyStruct &msg)
+//{
+//    MessageDlg("Struct received: " + IntToStr(msg.lparam->m_a) + " " + IntToStr(msg.lparam->m_b),
+//            mtInformation, TMsgDlgButtons() << mbOK, 0);
+//}
 
+void __fastcall TForm1::WndProc(TMessage& Message)
+{
+	switch (Message.Msg)
+    {
+
+		case WM_GETDLGCODE:
+	    	Log(lInfo) << "Got WM_GETDLGCODE";
+        break;
+		case CM_WANTSPECIALKEY:
+	    	Log(lInfo) << "Got WM_WANTSPECIALKEY";
+        break;
+    }
+
+    TForm::WndProc(Message);
+
+}
 //void __fastcall TForm1::Button1Click(TObject *Sender)
 //{
 //    int wparam = 0;

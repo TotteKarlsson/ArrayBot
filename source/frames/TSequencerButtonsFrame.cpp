@@ -53,6 +53,8 @@ void TSequencerButtonsFrame::update()
 
     ProcessSequencer& psr = mProcessSequencer;
     ProcessSequences& pss = psr.getSequences();
+    pss.sortOnCategory();
+    pss.sortOnOrder();
 
 	ProcessSequence*  current = pss.getCurrent();
     ProcessSequence*  ps = pss.getFirst();

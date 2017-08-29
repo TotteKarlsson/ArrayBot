@@ -41,7 +41,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 	TButton *mRewindButton;
 	TArrayBotButton *mAddSeqBtn;
 	TArrayBotButton *mDeleteSequenceBtn;
-	TArrayBotButton *mRenameButton;
+	TArrayBotButton *EditBtn;
 	TScrollBox *mProcessPanel;
 	TSplitter *Splitter1;
 	TArrayBotButton *ArrayBotButton1;
@@ -52,7 +52,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
         void __fastcall mSequencesCBChange(TObject *Sender);
         void __fastcall mSequenceTimerTimer(TObject *Sender);
 		void __fastcall mRewindButtonClick(TObject *Sender);
-		void __fastcall mRenameButtonClick(TObject *Sender);
+		void __fastcall EditBtnClick(TObject *Sender);
 	void __fastcall BtnClick(TObject *Sender);
 
 	private:
@@ -62,7 +62,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
         ArrayBot&					mAB;
         string 						mProcessFileExtension;
         string 						mAppDataFolder;
-        string						getCurrentlySelectedSequence();
+        string						getCurrentlySelectedSequenceName();
 		void __fastcall 			refreshSequencesCB();
 		void						saveSequence();
 

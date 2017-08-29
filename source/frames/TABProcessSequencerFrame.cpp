@@ -7,10 +7,10 @@
 #include "arraybot/process/atParallelProcess.h"
 #include "arraybot/atArrayBot.h"
 #include "arraybot/process/atTimeDelay.h"
-//#include "abApplicationMessages.h"
 #include "UIUtilities.h"
 #include "atVCLUtils.h"
 #include "forms\TStringInputDialog.h"
+#include "TEditSequenceForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
@@ -278,7 +278,7 @@ void __fastcall TABProcessSequencerFrame::mRewindButtonClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-string TABProcessSequencerFrame::getCurrentlySelectedSequence()
+string TABProcessSequencerFrame::getCurrentlySelectedSequenceName()
 {
 	int indx = mSequencesCB->ItemIndex;
     if(indx > -1)
@@ -292,21 +292,31 @@ string TABProcessSequencerFrame::getCurrentlySelectedSequence()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::mRenameButtonClick(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::EditBtnClick(TObject *Sender)
 {
 	//Open string input form
-	TStringInputDialog* t = new TStringInputDialog(this);
+	//TStringInputDialog* t = new TStringInputDialog(this);
+	auto_ptr<TEditSequenceForm> f = auto_ptr<TEditSequenceForm>(new TEditSequenceForm(this));
+    f->Caption = "Edit Sequence";
 
-    t->Caption = "Rename Move Sequence";
-    t->setText(getCurrentlySelectedSequence());
+	ProcessSequence* s = mProcessSequencer.getCurrentSequence();
+    if(!s)
+    {
+    	return;
+    }
 
-    if(t->ShowModal() == mrOk)
+	f->SequenceNameE->setValue(s->getName());
+	f->SequenceOrderE->setValue(s->getOrder());
+
+
+    if(f->ShowModal() == mrOk)
     {
 		//Rename the currently selected sequence
-    	string newName(t->getText());
+    	string 	newName(f->SequenceNameE->getValue());
+    	int 	newOrder(f->SequenceOrderE->getValue());
 
-		ProcessSequence* s = mProcessSequencer.getCurrentSequence();
         s->setProjectName(newName);
+        s->setOrder(newOrder);
         saveSequence();
 
     	//Change name of sequence in CB
@@ -325,7 +335,6 @@ void __fastcall TABProcessSequencerFrame::mRenameButtonClick(TObject *Sender)
             Log(lDebug)<<"Sending sequencer update was unsuccesful";
         }
     }
-    delete t;
 }
 
 //---------------------------------------------------------------------------

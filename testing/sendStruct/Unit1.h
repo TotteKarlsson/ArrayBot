@@ -70,22 +70,23 @@ private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
 
+	void __fastcall WndProc(TMessage& Message);
 
-//    Furthermore it uses 4 message handling functions described in the
-//    header along with a message map:
-
-//    MESSAGE void __fastcall UserIntHandler(TMyIntMessage &msg);
-    MESSAGE void __fastcall UserStructHandler(TMyStruct &msg);
-//    MESSAGE void __fastcall UserGetStructHandler(TMyStruct &msg);
-//    MESSAGE void __fastcall UserTextHandler(TMyTextMessage &msg);
-
-    BEGIN_MESSAGE_MAP
- //       MESSAGE_HANDLER(WM_INTMESSAGE, 			TMyIntMessage, 	UserIntHandler);
-//        MESSAGE_HANDLER(WM_GETSTRUCTMESSAGE, 	TMyStruct, 		UserGetStructHandler);
-        MESSAGE_HANDLER(WM_STRUCTMESSAGE, 		TMyStruct, 		UserStructHandler);
-//        MESSAGE_HANDLER(WM_TEXTMESSAGE, 		TMyTextMessage, UserTextHandler);
-    END_MESSAGE_MAP(TComponent)
-
+////    Furthermore it uses 4 message handling functions described in the
+////    header along with a message map:
+//
+////    MESSAGE void __fastcall UserIntHandler(TMyIntMessage &msg);
+//    MESSAGE void __fastcall UserStructHandler(TMyStruct &msg);
+////    MESSAGE void __fastcall UserGetStructHandler(TMyStruct &msg);
+////    MESSAGE void __fastcall UserTextHandler(TMyTextMessage &msg);
+//
+//    BEGIN_MESSAGE_MAP
+// //       MESSAGE_HANDLER(WM_INTMESSAGE, 			TMyIntMessage, 	UserIntHandler);
+////        MESSAGE_HANDLER(WM_GETSTRUCTMESSAGE, 	TMyStruct, 		UserGetStructHandler);
+//        MESSAGE_HANDLER(WM_STRUCTMESSAGE, 		TMyStruct, 		UserStructHandler);
+////        MESSAGE_HANDLER(WM_TEXTMESSAGE, 		TMyTextMessage, UserTextHandler);
+//    END_MESSAGE_MAP(TComponent)
+//
 
 
 

@@ -25,6 +25,7 @@ TMoveCoverSlipAtAngleProcessFrame *MoveCoverSlipAtAngleProcessFrame;
 
 using namespace mtk;
 static int frameNr = 1;
+
 //---------------------------------------------------------------------------
 __fastcall TMoveCoverSlipAtAngleProcessFrame::TMoveCoverSlipAtAngleProcessFrame(ProcessSequencer& ps, TComponent* Owner)
 	: TFrame(Owner),
@@ -36,6 +37,7 @@ __fastcall TMoveCoverSlipAtAngleProcessFrame::TMoveCoverSlipAtAngleProcessFrame(
     this->Name = this->Name + IntToStr(frameNr++);
 }
 
+//---------------------------------------------------------------------------
 void TMoveCoverSlipAtAngleProcessFrame::populate(MoveCoverSlipAtAngleProcess* m)
 {
 	//Populate the frame
@@ -66,12 +68,25 @@ void TMoveCoverSlipAtAngleProcessFrame::populate(MoveCoverSlipAtAngleProcess* m)
     	Log(lInfo) << msg;
     }
 
-
-	mMoveCoverSlipAtAngleProcess->calculateLift();
+	mMoveCoverSlipAtAngleProcess->calculateLift(mAB);
 	LatVelL->SetValue(mMoveCoverSlipAtAngleProcess->getLateralVelocity());
     LatAccL->SetValue(mMoveCoverSlipAtAngleProcess->getLateralAcceleration());
+
+    if(FetchAngleFromCSAngleMotorCB->Checked)
+    {
+	    mLiftAngleE->Enabled = false;
+        if(mAB.getCoverSlipAngleController())
+        {
+        	mLiftAngleE->setValue(mAB.getCoverSlipAngleController()->getPosition());
+        }
+    }
+    else
+    {
+	    mLiftAngleE->Enabled = true;
+    }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMoveCoverSlipAtAngleProcessFrame::EditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     if(Key != vkReturn || mMoveCoverSlipAtAngleProcess == NULL)
@@ -114,11 +129,31 @@ void __fastcall TMoveCoverSlipAtAngleProcessFrame::mActionInfoClick(TObject *Sen
     delete t;
 }
 
-
+//---------------------------------------------------------------------------
 void __fastcall TMoveCoverSlipAtAngleProcessFrame::EnableParallelWhiskerMoveCBClick(TObject *Sender)
 {
 	mMoveCoverSlipAtAngleProcess->setMoveWhiskerInParallel(EnableParallelWhiskerMoveCB->Checked);
 	mProcessSequencer.saveCurrent();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMoveCoverSlipAtAngleProcessFrame::FetchAngleFromCSAngleMotorCBClick(TObject *Sender)
+{
+	mMoveCoverSlipAtAngleProcess->setFetchAngleFromCSAngleMotor(FetchAngleFromCSAngleMotorCB->Checked);
+	mProcessSequencer.saveCurrent();
+
+    if(FetchAngleFromCSAngleMotorCB->Checked)
+    {
+	    mLiftAngleE->Enabled = false;
+        if(mAB.getCoverSlipAngleController())
+        {
+        	mLiftAngleE->setValue(mAB.getCoverSlipAngleController()->getPosition());
+        }
+    }
+    else
+    {
+	    mLiftAngleE->Enabled = true;
+    }
 }
 
 

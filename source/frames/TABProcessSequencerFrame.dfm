@@ -140,16 +140,16 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
           OnClick = mDeleteSequenceBtnClick
           SoundID = 'BUTTON_CLICK_4'
         end
-        object mRenameButton: TArrayBotButton
+        object EditBtn: TArrayBotButton
           Left = 287
           Top = 72
           Width = 80
           Height = 44
           Anchors = [akTop, akRight]
-          Caption = 'Rename'
+          Caption = 'Edit'
           ParentDoubleBuffered = True
           TabOrder = 3
-          OnClick = mRenameButtonClick
+          OnClick = EditBtnClick
           SoundID = 'BUTTON_CLICK_4'
         end
         object ArrayBotButton1: TArrayBotButton

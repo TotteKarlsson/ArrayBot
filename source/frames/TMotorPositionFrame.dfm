@@ -29,7 +29,7 @@ object MotorPositionFrame: TMotorPositionFrame
     Enabled = False
     Interval = 300
     OnTimer = PullPosTimerTimer
-    Left = 90
-    Top = 34
+    Left = 26
+    Top = 18
   end
 end

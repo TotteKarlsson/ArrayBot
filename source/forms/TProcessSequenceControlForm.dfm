@@ -4,7 +4,7 @@ object ProcessSequenceControlForm: TProcessSequenceControlForm
   BorderStyle = bsDialog
   Caption = 'Sequencer Control'
   ClientHeight = 327
-  ClientWidth = 636
+  ClientWidth = 798
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -60,16 +60,16 @@ object ProcessSequenceControlForm: TProcessSequenceControlForm
   object mControlPanel: TPanel
     Left = 0
     Top = 140
-    Width = 636
+    Width = 798
     Height = 187
     Align = alBottom
     TabOrder = 0
     DesignSize = (
-      636
+      798
       187)
     object mStartResumeButton: TArrayBotButton
-      Left = 30
-      Top = 41
+      Left = 7
+      Top = 42
       Width = 170
       Height = 120
       Anchors = [akTop]
@@ -85,7 +85,7 @@ object ProcessSequenceControlForm: TProcessSequenceControlForm
       SoundID = 'BUTTON_CLICK_4'
     end
     object mPauseBtn: TArrayBotButton
-      Left = 241
+      Left = 315
       Top = 42
       Width = 170
       Height = 120
@@ -102,7 +102,7 @@ object ProcessSequenceControlForm: TProcessSequenceControlForm
       SoundID = 'BUTTON_CLICK_4'
     end
     object mStopBtn: TArrayBotButton
-      Left = 453
+      Left = 614
       Top = 42
       Width = 170
       Height = 120

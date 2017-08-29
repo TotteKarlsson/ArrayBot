@@ -142,12 +142,22 @@ object MoveCoverSlipAtAngleProcessFrame: TMoveCoverSlipAtAngleProcessFrame
       end
       object EnableParallelWhiskerMoveCB: TPropertyCheckBox
         Left = 19
-        Top = 168
+        Top = 153
         Width = 270
         Height = 17
         Caption = 'Enable Parallel Whisker Move'
         TabOrder = 4
         OnClick = EnableParallelWhiskerMoveCBClick
+      end
+      object FetchAngleFromCSAngleMotorCB: TPropertyCheckBox
+        Left = 19
+        Top = 185
+        Width = 286
+        Height = 51
+        Caption = 'Fetch Angle from CS Angle Motor'
+        TabOrder = 5
+        WordWrap = True
+        OnClick = FetchAngleFromCSAngleMotorCBClick
       end
     end
   end

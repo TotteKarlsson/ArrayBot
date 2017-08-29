@@ -43,21 +43,7 @@ void __fastcall TSplashForm::logMsg()
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
-	if(this->Visible == false)
-    {
-		Action = caFree;
-
-    }
-    else
-    {
-        //Send message to application that the splash form is closing
-        if(sendAppMessage(abSplashWasClosed) != true)
-        {
-            Log(lDebug)<<"Sending UWM_SPLASH_IS_CLOSING was unsuccesful";
-        }
-
-        Action = caFree;
-    }
+    Log(lDebug)<<"In SplashForms FormClose";
 }
 
 void TSplashForm::setShowTime(int ms)
@@ -74,11 +60,7 @@ void __fastcall TSplashForm::CreateParams(TCreateParams& Params)
 //---------------------------------------------------------------------------
 void __fastcall TSplashForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
-    if(isOnShowTime())
-    {
-    	CanClose = false;
-    }
-    else if(mLogFileReader.isRunning())
+    if(isOnShowTime() || mLogFileReader.isRunning())
     {
         CanClose = false;
     }
@@ -91,7 +73,6 @@ void __fastcall TSplashForm::FormCloseQuery(TObject *Sender, bool &CanClose)
     {
     	closeTimer->Enabled = true;
     }
-
 }
 
 //---------------------------------------------------------------------------
@@ -136,8 +117,3 @@ void __fastcall TSplashForm::Image2Click(TObject *Sender)
     this->Visible = false;
     Close();
 }
-
-
-
-
-

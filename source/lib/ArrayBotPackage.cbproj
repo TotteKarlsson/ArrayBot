@@ -103,6 +103,11 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\forms\abAddJoyStickSettingForm.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
+        <CppCompile Include="..\forms\TEditSequenceForm.cpp">
+            <Form>EditSequenceForm</Form>
+            <DependentOn>..\forms\TEditSequenceForm.h</DependentOn>
+            <BuildOrder>36</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\forms\TProcessSequenceControlForm.cpp">
             <Form>ProcessSequenceControlForm</Form>
             <DependentOn>..\forms\TProcessSequenceControlForm.h</DependentOn>
@@ -275,6 +280,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="..\frames\TMotorPositionFrame.dfm"/>
         <FormResources Include="..\frames\TPositionalTriggerFrame.dfm"/>
         <FormResources Include="..\frames\TParallelProcessesFrame.dfm"/>
+        <FormResources Include="..\forms\TEditSequenceForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
