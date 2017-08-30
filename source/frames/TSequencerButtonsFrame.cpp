@@ -121,13 +121,24 @@ void __fastcall TSequencerButtonsFrame::click(TObject *Sender)
     }
 
     ProcessSequencer& psr = mProcessSequencer;
+
     if(psr.selectSequence(stdstr(b->Caption)))
     {
+    	ProcessSequence* s = psr.getCurrentSequence();
+
         mSequenceStatusTimer->Enabled = true;
-        mAB.disableJoyStickAxes();
-        TProcessSequenceControlForm* f = new TProcessSequenceControlForm(mProcessSequencer, this);
-        f->ShowModal();
-        delete f;
+
+        if(s && !s->getUseProcessController())
+        {
+        	psr.start();
+        }
+        else
+        {
+	        mAB.disableJoyStickAxes();
+        	TProcessSequenceControlForm* f = new TProcessSequenceControlForm(mProcessSequencer, this);
+	        f->ShowModal();
+    	    delete f;
+        }
         mAB.enableJoyStickAxes();
     }
 }

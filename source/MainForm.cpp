@@ -62,6 +62,7 @@ __fastcall TMain::TMain(TComponent* Owner)
 	mABProcessSequencerFrame(NULL),
     mSequencerButtons1(NULL),
     mSequencerButtons2(NULL),
+    mSequencerButtons3(NULL),
     mTheWiggler(NULL, NULL)
 {
     //Init the CoreLibDLL -> give intra messages their ID's
@@ -334,6 +335,11 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
                 	mSequencerButtons2->update();
                 }
 
+                if(mSequencerButtons3)
+                {
+                	mSequencerButtons3->update();
+                }
+
             break;
             default:
             break ;
@@ -413,7 +419,6 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
 
     else if(MainPC->TabIndex == pcMain)
     {
-//        SequencesPanel1->Parent = mFrontPage;
         if(mSequencerButtons1)
         {
         	mSequencerButtons1->update();
@@ -423,6 +428,12 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
         {
         	mSequencerButtons2->update();
         }
+
+        if(mSequencerButtons3)
+        {
+        	mSequencerButtons3->update();
+        }
+
     }
     else if(MainPC->TabIndex == pcMotors)
     {
@@ -478,6 +489,10 @@ void __fastcall TMain::SequencesPanel1Resize(TObject *Sender)
     	mSequencerButtons2->update();
     }
 
+    if(mSequencerButtons3)
+    {
+    	mSequencerButtons3->update();
+    }
 }
 
 //---------------------------------------------------------------------------

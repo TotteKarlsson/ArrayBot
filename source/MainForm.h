@@ -153,6 +153,7 @@ class TMain : public TRegistryForm
 	TCategoryPanelGroup *CategoryPanelGroup1;
 	TCategoryPanel *CategoryPanel1;
 	TCategoryPanel *CategoryPanel2;
+	TCategoryPanel *CategoryPanel3;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -255,6 +256,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 		TABProcessSequencerFrame*		        mABProcessSequencerFrame;
         TSequencerButtonsFrame*			        mSequencerButtons1;
         TSequencerButtonsFrame*			        mSequencerButtons2;
+        TSequencerButtonsFrame*			        mSequencerButtons3;
 
 		void __fastcall		                    OnException();
 

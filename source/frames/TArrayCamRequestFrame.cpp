@@ -37,6 +37,8 @@ __fastcall TArrayCamRequestFrame::TArrayCamRequestFrame(ProcessSequencer& ps, TC
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrEnableBarcodeScanner]), 	reinterpret_cast<TObject*>(acrEnableBarcodeScanner));
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrDisableBarcodeScanner]), 	reinterpret_cast<TObject*>(acrDisableBarcodeScanner));
 	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetZoomAndFocus]), 		reinterpret_cast<TObject*>(acrSetZoomAndFocus));
+	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStartUC7]), 				reinterpret_cast<TObject*>(acrStartUC7));
+	mArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStopUC7]), 				reinterpret_cast<TObject*>(acrStopUC7));
 }
 
 void TArrayCamRequestFrame::populate(Process* p)
@@ -90,7 +92,7 @@ void __fastcall TArrayCamRequestFrame::mEditKeyDown(TObject *Sender, WORD &Key,
 //---------------------------------------------------------------------------
 void __fastcall TArrayCamRequestFrame::mArrayCamRequestCBCloseUp(TObject *Sender)
 {
-    if(mArrayCamRequest)
+    if(mArrayCamRequest && mArrayCamRequestCB->ItemIndex >= 0)
     {
 		ACMessageID r = (ACMessageID) mArrayCamRequestCB->Items->Objects[mArrayCamRequestCB->ItemIndex];
         mArrayCamRequest->setRequest(r);

@@ -6,6 +6,7 @@
 #pragma link "TArrayBotBtn"
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
+#pragma link "TPropertyCheckBox"
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------\
 
@@ -15,4 +16,5 @@ __fastcall TEditSequenceForm::TEditSequenceForm(TComponent* Owner)
 	: TForm(Owner)
 {
 }
+
 

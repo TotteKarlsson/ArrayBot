@@ -4,8 +4,8 @@ object EditSequenceForm: TEditSequenceForm
   ActiveControl = SequenceOrderE
   BorderStyle = bsDialog
   Caption = 'Edit Sequence Form'
-  ClientHeight = 240
-  ClientWidth = 425
+  ClientHeight = 275
+  ClientWidth = 485
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -33,7 +33,7 @@ object EditSequenceForm: TEditSequenceForm
     TabOrder = 0
   end
   object SequenceOrderE: TIntegerLabeledEdit
-    Left = 256
+    Left = 308
     Top = 48
     Width = 121
     Height = 33
@@ -50,8 +50,8 @@ object EditSequenceForm: TEditSequenceForm
     Text = '0'
   end
   object OKBtn: TArrayBotButton
-    Left = 247
-    Top = 136
+    Left = 279
+    Top = 184
     Width = 150
     Height = 80
     Caption = 'OK'
@@ -60,13 +60,27 @@ object EditSequenceForm: TEditSequenceForm
     SoundID = 'BUTTON_CLICK_4'
   end
   object CancelBtn: TArrayBotButton
-    Left = 16
-    Top = 136
+    Left = 32
+    Top = 184
     Width = 150
     Height = 80
     Caption = 'Cancel'
     ModalResult = 2
     TabOrder = 3
     SoundID = 'BUTTON_CLICK_4'
+  end
+  object UseProcessControllerCB: TPropertyCheckBox
+    Left = 32
+    Top = 112
+    Width = 473
+    Height = 33
+    Caption = 'Use Process Controller Form when Running'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
   end
 end

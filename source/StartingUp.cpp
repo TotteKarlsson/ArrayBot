@@ -121,6 +121,11 @@ void __fastcall	TMain::setupUIFrames()
     mSequencerButtons2->Align = alClient;
     CategoryPanel2->Caption = vclstr(mSequencerButtons2->getCategory());
 
+    mSequencerButtons3 = new TSequencerButtonsFrame(mProcessSequencer, "UC7", MiddlePanel);
+    mSequencerButtons3->Parent = CategoryPanel3;
+    mSequencerButtons3->Align = alClient;
+    CategoryPanel3->Caption = vclstr(mSequencerButtons3->getCategory());
+
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
     f1->Parent = this->mRightPanel;

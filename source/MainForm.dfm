@@ -23901,7 +23901,7 @@ object Main: TMain
     Top = 0
     Width = 1303
     Height = 782
-    ActivePage = mMoveSequencesPage
+    ActivePage = mFrontPage
     Align = alClient
     TabHeight = 60
     TabOrder = 1
@@ -23989,7 +23989,7 @@ object Main: TMain
             Left = 751
             Top = 1
             Width = 86
-            Height = 25
+            Height = 59
             Align = alLeft
             Caption = 'JS Status'
             Font.Charset = DEFAULT_CHARSET
@@ -23999,6 +23999,7 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             Layout = tlCenter
+            ExplicitHeight = 25
           end
           object mJoyStickRG: TRadioGroup
             Left = 1040
@@ -24040,11 +24041,16 @@ object Main: TMain
         HeaderStyle = hsImage
         ParentFont = False
         TabOrder = 2
+        object CategoryPanel3: TCategoryPanel
+          Top = 352
+          Caption = 'CategoryPanel3'
+          TabOrder = 0
+        end
         object CategoryPanel2: TCategoryPanel
           Top = 176
           Height = 176
           Caption = 'CategoryPanel2'
-          TabOrder = 0
+          TabOrder = 1
         end
         object CategoryPanel1: TCategoryPanel
           Top = 0
@@ -24056,7 +24062,7 @@ object Main: TMain
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 1
+          TabOrder = 2
         end
       end
     end
@@ -24072,6 +24078,10 @@ object Main: TMain
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'

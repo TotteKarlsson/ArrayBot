@@ -307,6 +307,7 @@ void __fastcall TABProcessSequencerFrame::EditBtnClick(TObject *Sender)
 
 	f->SequenceNameE->setValue(s->getName());
 	f->SequenceOrderE->setValue(s->getOrder());
+	f->UseProcessControllerCB->Checked = s->getUseProcessController();
 
 
     if(f->ShowModal() == mrOk)
@@ -314,9 +315,11 @@ void __fastcall TABProcessSequencerFrame::EditBtnClick(TObject *Sender)
 		//Rename the currently selected sequence
     	string 	newName(f->SequenceNameE->getValue());
     	int 	newOrder(f->SequenceOrderE->getValue());
+        bool	newuseProcessController(f->UseProcessControllerCB->Checked);
 
         s->setProjectName(newName);
         s->setOrder(newOrder);
+        s->setUseProcessController(newuseProcessController);
         saveSequence();
 
     	//Change name of sequence in CB
@@ -327,7 +330,6 @@ void __fastcall TABProcessSequencerFrame::EditBtnClick(TObject *Sender)
         }
 
         mSequencesCB->ItemIndex = selectAndClickComboBoxItem(mSequencesCB, newName);
-
 
         //Send a message to main ui to update sequence shortcuts
         if(sendAppMessage(abSequencerUpdate) != true)
