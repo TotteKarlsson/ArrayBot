@@ -10,8 +10,6 @@
 #include "frames/TABProcessSequencerFrame.h"
 #include "UIUtilities.h"
 #include "mtkVCLUtils.h"
-
-
 //---------------------------------------------------------------------------
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
@@ -77,9 +75,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormShow(TObject *Sender)
-{
-
-}
+{}
 
 void TMain::setupProperties()
 {
@@ -116,15 +112,25 @@ void __fastcall	TMain::setupUIFrames()
     mSequencerButtons1->Align = alClient;
     CategoryPanel1->Caption = vclstr(mSequencerButtons1->getCategory());
 
-    mSequencerButtons2 = new TSequencerButtonsFrame(mProcessSequencer, "Setup", MiddlePanel);
+    mSequencerButtons2 = new TSequencerButtonsFrame(mProcessSequencer, "UC7", MiddlePanel);
     mSequencerButtons2->Parent = CategoryPanel2;
     mSequencerButtons2->Align = alClient;
     CategoryPanel2->Caption = vclstr(mSequencerButtons2->getCategory());
 
-    mSequencerButtons3 = new TSequencerButtonsFrame(mProcessSequencer, "UC7", MiddlePanel);
+    mSequencerButtons3 = new TSequencerButtonsFrame(mProcessSequencer, "Camera", MiddlePanel);
     mSequencerButtons3->Parent = CategoryPanel3;
     mSequencerButtons3->Align = alClient;
     CategoryPanel3->Caption = vclstr(mSequencerButtons3->getCategory());
+
+    mSequencerButtons4 = new TSequencerButtonsFrame(mProcessSequencer, "Setup", MiddlePanel);
+    mSequencerButtons4->Parent = CategoryPanel4;
+    mSequencerButtons4->Align = alClient;
+    CategoryPanel4->Caption = vclstr(mSequencerButtons4->getCategory());
+
+    mSequencerButtons5 = new TSequencerButtonsFrame(mProcessSequencer, "Testing", MiddlePanel);
+    mSequencerButtons5->Parent = CategoryPanel5;
+    mSequencerButtons5->Align = alClient;
+    CategoryPanel5->Caption = vclstr(mSequencerButtons5->getCategory());
 
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
@@ -187,12 +193,10 @@ void __fastcall	TMain::setupUIFrames()
     mXYZUnitFrame1 = new TXYZUnitFrame(this);
     mXYZUnitFrame1->assignUnit(&mAB.getCoverSlipUnit());
     mXYZUnitFrame1->Parent = ScrollBox1;
-    mXYZUnitFrame1->Left = 10;
 
     mXYZUnitFrame2 = new TXYZUnitFrame(this);
     mXYZUnitFrame2->assignUnit(&mAB.getWhiskerUnit());
     mXYZUnitFrame2->Parent = ScrollBox1;
-    mXYZUnitFrame2->Left = 10;
     mXYZUnitFrame2->Top = mXYZUnitFrame1->Top + mXYZUnitFrame1->Height;
 }
 

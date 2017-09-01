@@ -24028,7 +24028,7 @@ object Main: TMain
         ChevronColor = clRed
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -29
+        Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = []
         GradientDirection = gdHorizontal
@@ -24037,32 +24037,63 @@ object Main: TMain
         HeaderFont.Height = -21
         HeaderFont.Name = 'Tahoma'
         HeaderFont.Style = []
-        HeaderHeight = 50
+        HeaderHeight = 80
         HeaderStyle = hsImage
         ParentFont = False
         TabOrder = 2
-        object CategoryPanel3: TCategoryPanel
-          Top = 352
-          Caption = 'CategoryPanel3'
+        object CategoryPanel5: TCategoryPanel
+          Top = 344
+          Height = 86
+          Caption = 'CategoryPanel5'
+          Collapsed = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
+          OnExpand = CategoryPanel5Expand
+        end
+        object CategoryPanel4: TCategoryPanel
+          Top = 258
+          Height = 86
+          Caption = 'CategoryPanel4'
+          Collapsed = True
+          TabOrder = 1
+          OnExpand = CategoryPanel4Expand
+        end
+        object CategoryPanel3: TCategoryPanel
+          Top = 172
+          Height = 86
+          Caption = 'CategoryPanel3'
+          Collapsed = True
+          TabOrder = 2
+          OnExpand = CategoryPanel3Expand
         end
         object CategoryPanel2: TCategoryPanel
-          Top = 176
-          Height = 176
+          Top = 86
+          Height = 86
           Caption = 'CategoryPanel2'
-          TabOrder = 1
+          Collapsed = True
+          TabOrder = 3
+          OnExpand = CategoryPanel2Expand
+          ExpandedHeight = 176
         end
         object CategoryPanel1: TCategoryPanel
           Top = 0
-          Height = 176
+          Height = 86
           Caption = 'CategoryPanel1'
+          Collapsed = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = 12
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 4
+          OnExpand = CategoryPanel1Expand
+          ExpandedHeight = 176
         end
       end
     end
@@ -24070,25 +24101,13 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
@@ -24173,24 +24192,16 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
         Top = 0
         Width = 1295
         Height = 712
-        ActivePage = TabSheet4
+        ActivePage = TabSheet9
         Align = alClient
         TabOrder = 0
         object TabSheet4: TTabSheet
           Caption = 'Joystick'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object JoyStickGB2: TGroupBox
             Left = 14
             Top = 17
@@ -24334,10 +24345,6 @@ object Main: TMain
         object TabSheet7: TTabSheet
           Caption = 'Wiggler'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object WigglerGB: TGroupBox
             Left = 14
             Top = 15
@@ -24576,10 +24583,6 @@ object Main: TMain
         object TabSheet8: TTabSheet
           Caption = 'ArrayCam Connection'
           ImageIndex = 3
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 37
             Top = 33
@@ -24604,10 +24607,6 @@ object Main: TMain
         object TabSheet9: TTabSheet
           Caption = 'Miscelaneous'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object mLiftGB: TGroupBox
             Left = 22
             Top = 12
@@ -24653,10 +24652,6 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0

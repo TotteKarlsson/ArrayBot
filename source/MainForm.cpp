@@ -63,6 +63,8 @@ __fastcall TMain::TMain(TComponent* Owner)
     mSequencerButtons1(NULL),
     mSequencerButtons2(NULL),
     mSequencerButtons3(NULL),
+    mSequencerButtons4(NULL),
+    mSequencerButtons5(NULL),
     mTheWiggler(NULL, NULL)
 {
     //Init the CoreLibDLL -> give intra messages their ID's
@@ -325,21 +327,7 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
 
             case abSequencerUpdate:
                 Log(lDebug2) << "Update sequencer shortcuts";
-                if(mSequencerButtons1)
-                {
-                	mSequencerButtons1->update();
-                }
-
-                if(mSequencerButtons2)
-                {
-                	mSequencerButtons2->update();
-                }
-
-                if(mSequencerButtons3)
-                {
-                	mSequencerButtons3->update();
-                }
-
+                updateAllSequenceButtons();
             break;
             default:
             break ;
@@ -419,20 +407,7 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
 
     else if(MainPC->TabIndex == pcMain)
     {
-        if(mSequencerButtons1)
-        {
-        	mSequencerButtons1->update();
-        }
-
-        if(mSequencerButtons2)
-        {
-        	mSequencerButtons2->update();
-        }
-
-        if(mSequencerButtons3)
-        {
-        	mSequencerButtons3->update();
-        }
+        updateAllSequenceButtons();
 
     }
     else if(MainPC->TabIndex == pcMotors)
@@ -496,17 +471,87 @@ void __fastcall TMain::SequencesPanel1Resize(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::Button1Click(TObject *Sender)
-{
-	mArrayCamClient.startVideo();
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::HomeAllDevicesAExecute(TObject *Sender)
 {
 	if(MessageDlg("ATTENTION: Make sure all motors have a free path to their home position before executing!", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrOk)
     {
 		mAB.homeAll();
+    }
+}
+
+void __fastcall TMain::updateAllSequenceButtons()
+{
+    if(mSequencerButtons1)
+    {
+        mSequencerButtons1->update();
+    }
+
+    if(mSequencerButtons2)
+    {
+        mSequencerButtons2->update();
+    }
+
+    if(mSequencerButtons3)
+    {
+        mSequencerButtons3->update();
+    }
+
+    if(mSequencerButtons4)
+    {
+        mSequencerButtons4->update();
+    }
+
+    if(mSequencerButtons5)
+    {
+        mSequencerButtons5->update();
+    }
+    this->Paint();
+    this->Refresh();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::CategoryPanel1Expand(TObject *Sender)
+{
+//	updateAllSequenceButtons();
+    if(mSequencerButtons1)
+    {
+        mSequencerButtons1->update();
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::CategoryPanel2Expand(TObject *Sender)
+{
+    if(mSequencerButtons2)
+    {
+        mSequencerButtons2->update();
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::CategoryPanel3Expand(TObject *Sender)
+{
+    if(mSequencerButtons3)
+    {
+        mSequencerButtons3->update();
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::CategoryPanel4Expand(TObject *Sender)
+{
+    if(mSequencerButtons4)
+    {
+        mSequencerButtons4->update();
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMain::CategoryPanel5Expand(TObject *Sender)
+{
+    if(mSequencerButtons5)
+    {
+        mSequencerButtons5->update();
     }
 }
 

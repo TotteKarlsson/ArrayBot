@@ -154,6 +154,8 @@ class TMain : public TRegistryForm
 	TCategoryPanel *CategoryPanel1;
 	TCategoryPanel *CategoryPanel2;
 	TCategoryPanel *CategoryPanel3;
+	TCategoryPanel *CategoryPanel4;
+	TCategoryPanel *CategoryPanel5;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -189,8 +191,12 @@ class TMain : public TRegistryForm
 void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall mPullRibbonBtnClick(TObject *Sender);
 	void __fastcall SequencesPanel1Resize(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall HomeAllDevicesAExecute(TObject *Sender);
+	void __fastcall CategoryPanel1Expand(TObject *Sender);
+	void __fastcall CategoryPanel2Expand(TObject *Sender);
+	void __fastcall CategoryPanel3Expand(TObject *Sender);
+	void __fastcall CategoryPanel4Expand(TObject *Sender);
+	void __fastcall CategoryPanel5Expand(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMoveSequences = 1,
@@ -257,6 +263,8 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         TSequencerButtonsFrame*			        mSequencerButtons1;
         TSequencerButtonsFrame*			        mSequencerButtons2;
         TSequencerButtonsFrame*			        mSequencerButtons3;
+        TSequencerButtonsFrame*			        mSequencerButtons4;
+        TSequencerButtonsFrame*			        mSequencerButtons5;
 
 		void __fastcall		                    OnException();
 
@@ -274,7 +282,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         void						            onJSButton14Click();
 
         void __fastcall 				        FrameClosed(TObject *Sender);
-
+		void __fastcall 						updateAllSequenceButtons();
 
 	public:		// User declarations
 		__fastcall 					            TMain(TComponent* Owner);

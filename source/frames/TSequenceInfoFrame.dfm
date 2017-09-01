@@ -128,13 +128,15 @@ object SequenceInfoFrame: TSequenceInfoFrame
       Top = 56
       Width = 185
       Height = 31
-      ItemIndex = 0
       TabOrder = 0
       Text = 'Preset'
       OnCloseUp = CategoryCBCloseUp
       Items.Strings = (
-        'Preset'
-        'General')
+        'Cutting'
+        'UC7'
+        'Camera'
+        'Setup'
+        'Testing')
     end
     object NewSequenceCategoryBtn: TArrayBotButton
       Left = 232

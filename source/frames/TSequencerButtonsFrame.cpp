@@ -44,12 +44,12 @@ void TSequencerButtonsFrame::setButtonWidth(int w)
 //--------------------------------------------------------------------------
 void TSequencerButtonsFrame::update()
 {
-    for(int i = 0; i < mButtons.size(); i++)
-    {
-    	delete mButtons[i];
-    }
+//    for(int i = 0; i < mButtons.size(); i++)
+//    {
+//    	delete mButtons[i];
+//    }
 
-	mButtons.clear();
+//	mButtons.clear();
 
     ProcessSequencer& psr = mProcessSequencer;
     ProcessSequences& pss = psr.getSequences();
@@ -69,10 +69,22 @@ void TSequencerButtonsFrame::update()
     {
     	if(ps->getCategory() == mCategory)
         {
-            TArrayBotButton* btn = new TArrayBotButton(this->Parent);
-            mButtons.push_back(btn);
+            TArrayBotButton* btn(NULL);
 
-            btn->Parent = this;
+        	if(mButtons.size() < btnNr + 1)
+            {
+            	btn = new TArrayBotButton(this->Parent);
+	            btn->Parent = this;
+    	        btn->Visible = false;
+	            mButtons.push_back(btn);
+            }
+            else
+            {
+                btn = mButtons[btnNr];
+            }
+
+
+
             btn->Caption = vclstr(ps->getName());
             btn->OnClick = click;
             btn->SoundID = "button_click_5";
@@ -91,7 +103,8 @@ void TSequencerButtonsFrame::update()
             }
 
             btn->Top = 0;
-            btnNr +=1 ;
+            btnNr += 1 ;
+            btn->Visible = true;
         }
 
         ps = pss.getNext();
@@ -125,7 +138,6 @@ void __fastcall TSequencerButtonsFrame::click(TObject *Sender)
     if(psr.selectSequence(stdstr(b->Caption)))
     {
     	ProcessSequence* s = psr.getCurrentSequence();
-
         mSequenceStatusTimer->Enabled = true;
 
         if(s && !s->getUseProcessController())
@@ -138,8 +150,8 @@ void __fastcall TSequencerButtonsFrame::click(TObject *Sender)
         	TProcessSequenceControlForm* f = new TProcessSequenceControlForm(mProcessSequencer, this);
 	        f->ShowModal();
     	    delete f;
+	        mAB.enableJoyStickAxes();
         }
-        mAB.enableJoyStickAxes();
     }
 }
 
