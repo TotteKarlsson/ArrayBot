@@ -20,6 +20,7 @@ class TArrayCamRequestFrame;
 class TMotorMoveProcessFrame;
 class TStopAndResumeFrame;
 class TMoveCoverSlipAtAngleProcessFrame;
+class THomeMotorProcessFrame;
 
 class Process;
 class ArrayBot;
@@ -32,7 +33,7 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	TActionList *mSequenceAL;
         TAction *RemoveProcessA;
 	TAction *AddCombinedMoveA;
-	TListBox *mProcessesLB;
+	TListBox *ProcessesLB;
 	TGroupBox *MasterProcessGB;
 	TArrayBotButton *mRenameBtn;
 	TArrayBotButton *mAddMoveBtn;
@@ -52,7 +53,7 @@ class PACKAGE TSequenceInfoFrame : public TFrame
     void __fastcall mMoveSequenceUpBtnClick(TObject *Sender);
     void __fastcall RemoveProcessAExecute(TObject *Sender);
 	void __fastcall mMoveSequenceDownBtnClick(TObject *Sender);
-	void __fastcall mProcessesLBClick(TObject *Sender);
+	void __fastcall ProcessesLBClick(TObject *Sender);
 	void __fastcall AddCombinedMoveAExecute(TObject *Sender);
 	void __fastcall UpdatePositionsBtnClick(TObject *Sender);
 	void __fastcall mRenameBtnClick(TObject *Sender);
@@ -61,30 +62,32 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	void __fastcall LogXML1Click(TObject *Sender);
 
     private:
-		ProcessSequence*		        mSequence;
-        string					        mSequencesFolder;
-        ProcessSequencer&  		        mProcessSequencer;
-        TScrollBox*					    mProcessPanel;
-        vector<TFrame*>					mFrames;
-        								//!Different Types of processes
-        TParallelProcessesFrame*		mParallelProcessesFrame;
-        TTimeDelayFrame*				mTimeDelayFrame;
-        TArrayCamRequestFrame*	 		mArrayCamRequestFrame;
-		TMotorMoveProcessFrame*			mMotorMoveProcessFrame;
-		TStopAndResumeFrame*			mStopAndResumeFrame;
-		TMoveCoverSlipAtAngleProcessFrame*  		mMoveCoverSlipAtAngleProcessFrame;
-		void 							setFramesVisibility(bool vis);
-		void 							setFramesParent(TScrollBox* p);
+		ProcessSequence*		                mSequence;
+        string					                mSequencesFolder;
+        ProcessSequencer&  		                mProcessSequencer;
+        TScrollBox*					            mProcessPanel;
+        vector<TFrame*>					        mFrames;
+        								        //!Different Types of processes
+        TParallelProcessesFrame*		        mParallelProcessesFrame;
+        TTimeDelayFrame*				        mTimeDelayFrame;
+        TArrayCamRequestFrame*	 		        mArrayCamRequestFrame;
+		TMotorMoveProcessFrame*			        mMotorMoveProcessFrame;
+		TStopAndResumeFrame*			        mStopAndResumeFrame;
+		TMoveCoverSlipAtAngleProcessFrame*  	mMoveCoverSlipAtAngleProcessFrame;
+		THomeMotorProcessFrame*  		  		mHomeMotorProcessFrame;
+
+		void 									setFramesVisibility(bool vis);
+		void 									setFramesParent(TScrollBox* p);
 
 
-		void		__fastcall          empty();
-        void							disableEnableButtons(bool enabled);
-		void       				        updateSequenceArrows();
-        Process*				        getCurrentlySelectedProcess();
+		void		__fastcall                  empty();
+        void							        disableEnableButtons(bool enabled);
+		void       				                updateSequenceArrows();
+        Process*				                getCurrentlySelectedProcess();
 
     public:
-        			__fastcall 	        TSequenceInfoFrame(ProcessSequencer& ps, TComponent* Owner);
-		bool					        populate(ProcessSequence* seq, TScrollBox* processPanel = NULL);
+        			__fastcall 	                TSequenceInfoFrame(ProcessSequencer& ps, TComponent* Owner);
+		bool					                populate(ProcessSequence* seq, TScrollBox* processPanel = NULL);
 };
 
 extern PACKAGE TSequenceInfoFrame *SequenceInfoFrame;

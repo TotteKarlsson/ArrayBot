@@ -170,7 +170,7 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
 
 		mSequenceStatusTimer->Enabled = true;
         string pName = mProcessSequencer.getCurrentProcessName();
-        selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
+        selectAndClickListBoxItem(this->TSequenceInfoFrame1->ProcessesLB, pName);
     }
 	else if(startsWith("Resume", stdstr(mStartBtn->Caption)))
     {
@@ -180,7 +180,7 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
     		mProcessSequencer.continueExecution();
     		mSequenceStatusTimer->Enabled = true;
         	string pName = mProcessSequencer.getCurrentProcessName();
-            selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
+            selectAndClickListBoxItem(this->TSequenceInfoFrame1->ProcessesLB, pName);
         }
         else
         {
@@ -198,7 +198,7 @@ void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
     		mProcessSequencer.continueExecution();
     		mSequenceStatusTimer->Enabled = true;
         	string pName = mProcessSequencer.getCurrentProcessName();
-            selectAndClickListBoxItem(this->TSequenceInfoFrame1->mProcessesLB, pName);
+            selectAndClickListBoxItem(this->TSequenceInfoFrame1->ProcessesLB, pName);
         }
         else
         {

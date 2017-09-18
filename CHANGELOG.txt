@@ -1,3 +1,31 @@
+Release 0.9.1 (Sept 18)
+=======================
+* Added a homing process, allowing to put homing into a ProcessSequence
+* Added updateMoveToPosition utility function, for both Absolute and Parallel moves
+* Updated the ArrayCamRequest frame to be more robust
+* Added more sequencer buttons
+* Sped up population of sequence buttons
+* Added ability to bypass process control form for a process sequence
+* Implemented ability to sort sequences on the front panels by using an 'order' parameter.
+* Added a Edit Sequence form
+* Simplified the splash form
+* Getting the MoveCS at angle process implemented
+* Added a LiftAtAngle frame
+* Made improvements to the SequenceInfoFrame
+* Refactoring: Parallell to Parallel
+* Added message hook for custom information messages needing to display a message box
+* Added more code to deal with the StopAndResume process
+* Added a single motor position frame
+* Added ability to have an Absolute move being added without using a parallel process object
+* Updated motorframe tester
+* Adding support for Thorlabs Benchtop Stepper motor controllers
+* Added usage of a Category panel for move sequences
+* Fixed so that sequences with different categories shows up at designated UI areas
+* Added second shortcuts panel to main page
+* Moved around and simplified the SimpleLift logic
+* Fixed so that motorframes timers are only avitve when frames are visible
+* Added ability to set a motors jogmode and jogstep
+
 Release 0.9.0 (Aug 11)
 =======================
 * Fixed "Can't get referenced motor" message

@@ -10,12 +10,14 @@
 #include "arraybot/process/atArrayCamRequestProcess.h"
 #include "arraybot/process/atStopAndResumeProcess.h"
 #include "arraybot/process/atMoveCoverSlipAtAngleProcess.h"
+#include "arraybot/apt/atHomeMotor.h"
 #include "frames/TMotorMoveProcessFrame.h"
 #include "frames/TParallelProcessesFrame.h"
 #include "frames/TTimeDelayFrame.h"
 #include "frames/TArrayCamRequestFrame.h"
 #include "frames/TStopAndResumeFrame.h"
 #include "frames/TMoveCoverSlipAtAngleProcessFrame.h"
+#include "frames/THomeMotorProcessFrame.h"
 #include "atVCLUtils.h"
 #include "mtkLogger.h"
 #include "vcl/forms/TSelectProcessTypeDialog.h"
@@ -44,6 +46,7 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
     mMotorMoveProcessFrame 		        = new TMotorMoveProcessFrame(ps, Owner);
     mStopAndResumeFrame 		        = new TStopAndResumeFrame(Owner);
     mMoveCoverSlipAtAngleProcessFrame  	= new TMoveCoverSlipAtAngleProcessFrame(ps, Owner);
+    mHomeMotorProcessFrame   			= new THomeMotorProcessFrame(ps, Owner);
 
     mFrames.push_back(mParallelProcessesFrame);
 	mFrames.push_back(mTimeDelayFrame);
@@ -51,11 +54,9 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
 	mFrames.push_back(mMotorMoveProcessFrame);
 	mFrames.push_back(mStopAndResumeFrame);
 	mFrames.push_back(mMoveCoverSlipAtAngleProcessFrame);
+	mFrames.push_back(mHomeMotorProcessFrame);
 
     setFramesVisibility(false);
-
-    ////////////////////////////////////////////////////////////////////
-//	UpdatePositionsBtn->Action = mParallelProcessesFrame->mUpdateFinalPositionsA;
 }
 
 //---------------------------------------------------------------------------
@@ -73,27 +74,27 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TScrollBox* processPanel
         setFramesParent(mProcessPanel);
     }
 
-    mProcessesLB->Clear();
+    ProcessesLB->Clear();
 	mSequence = seq;
 
     Process* p = seq->getFirst();
     while(p)
     {
-        mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
+        ProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
         p = seq->getNext();
     }
 
     //Select the first move in the sequence
-    if(mProcessesLB->Count)
+    if(ProcessesLB->Count)
     {
-        mProcessesLB->ItemIndex = 0;
+        ProcessesLB->ItemIndex = 0;
     }
 
     //Setup the category
     selectItem(CategoryCB, mSequence->getCategory(), true);
 
     EnableDisableFrame(this, true);
-    mProcessesLBClick(NULL);
+    ProcessesLBClick(NULL);
 	updateSequenceArrows();
     return true;
 }
@@ -102,8 +103,8 @@ bool TSequenceInfoFrame::populate(ProcessSequence* seq, TScrollBox* processPanel
 void __fastcall TSequenceInfoFrame::mMoveSequenceUpBtnClick(TObject *Sender)
 {
 	//Get selected sequence
-    int i = mProcessesLB->ItemIndex;
-    Process* p = (Process*) mProcessesLB->Items->Objects[i];
+    int i = ProcessesLB->ItemIndex;
+    Process* p = (Process*) ProcessesLB->Items->Objects[i];
     if(p && mSequence)
     {
 		mSequence->moveBack(p);
@@ -112,7 +113,7 @@ void __fastcall TSequenceInfoFrame::mMoveSequenceUpBtnClick(TObject *Sender)
 		populate(mSequence);
 
         //Select process
-        selectAndClickListBoxItem(mProcessesLB, (TObject*) p);
+        selectAndClickListBoxItem(ProcessesLB, (TObject*) p);
     }
 }
 
@@ -120,8 +121,8 @@ void __fastcall TSequenceInfoFrame::mMoveSequenceUpBtnClick(TObject *Sender)
 void __fastcall TSequenceInfoFrame::mMoveSequenceDownBtnClick(TObject *Sender)
 {
 	//Get selected sequence
-    int i = mProcessesLB->ItemIndex;
-    Process* p = (Process*) mProcessesLB->Items->Objects[i];
+    int i = ProcessesLB->ItemIndex;
+    Process* p = (Process*) ProcessesLB->Items->Objects[i];
     if(p && mSequence)
     {
     	mSequence->moveForward(p);
@@ -131,7 +132,7 @@ void __fastcall TSequenceInfoFrame::mMoveSequenceDownBtnClick(TObject *Sender)
 		populate(mSequence);
 
         //Select process
-        selectAndClickListBoxItem(mProcessesLB, (TObject*) p);
+        selectAndClickListBoxItem(ProcessesLB, (TObject*) p);
     }
 }
 
@@ -144,16 +145,16 @@ void __fastcall TSequenceInfoFrame::RemoveProcessAExecute(TObject *Sender)
     	return;
     }
 
-    int i = mProcessesLB->ItemIndex;
-    Process* p = (Process*) mProcessesLB->Items->Objects[i];
+    int i = ProcessesLB->ItemIndex;
+    Process* p = (Process*) ProcessesLB->Items->Objects[i];
 
     mSequence->remove(p);
-    mProcessesLB->DeleteSelected();
+    ProcessesLB->DeleteSelected();
 
-    if(mProcessesLB->Count > -1)
+    if(ProcessesLB->Count > -1)
     {
-		mProcessesLB->ItemIndex = 0;
-		mProcessesLBClick(NULL);
+		ProcessesLB->ItemIndex = 0;
+		ProcessesLBClick(NULL);
     }
 
     mSequence->write();
@@ -161,22 +162,22 @@ void __fastcall TSequenceInfoFrame::RemoveProcessAExecute(TObject *Sender)
 
 Process* TSequenceInfoFrame::getCurrentlySelectedProcess()
 {
-	if(mProcessesLB->Count > 0)
+	if(ProcessesLB->Count > 0)
     {
-	    Process* p = (Process*) mProcessesLB->Items->Objects[mProcessesLB->ItemIndex];
+	    Process* p = (Process*) ProcessesLB->Items->Objects[ProcessesLB->ItemIndex];
         return p;
     }
     return NULL;
 }
 
-void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
+void __fastcall TSequenceInfoFrame::ProcessesLBClick(TObject *Sender)
 {
-	if(mProcessesLB->Count == 0)
+	if(ProcessesLB->Count == 0)
     {
     	disableEnableButtons(false);
     }
 
-	if(mProcessesLB->Count == 1)
+	if(ProcessesLB->Count == 1)
     {
 	   	disableEnableButtons(false);
 		mDeleteMoveBtn->Enabled = true;
@@ -189,9 +190,9 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
 
     //This button only makes sense for certain actions
     UpdatePositionsBtn->Visible 	 = false;
+
     //Check what kind of process we have
     Process* p = getCurrentlySelectedProcess();
-
     ProcessType type = p != NULL ? p->getProcessType() : ptUnknown;
 
     switch(type)
@@ -204,7 +205,6 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
             mParallelProcessesFrame->mSubProcessesLB->OnClick(NULL);
             UpdatePositionsBtn->Enabled 		= true;
             UpdatePositionsBtn->Visible 		= true;
-
             mParallelProcessesFrame->Visible 	= true;
             mParallelProcessesFrame->Align = alClient;
         }
@@ -260,6 +260,15 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
         }
         break;
 
+        case ptHomeMotor:
+        {
+            HomeMotor* hm = dynamic_cast<HomeMotor*>(p);
+            mHomeMotorProcessFrame->populate(hm);
+            mHomeMotorProcessFrame->Visible = true;
+            mHomeMotorProcessFrame->Align = alClient;
+        }
+        break;
+
         default:
         {
 			setFramesVisibility(false);
@@ -278,7 +287,7 @@ void TSequenceInfoFrame::disableEnableButtons(bool enabled)
 //---------------------------------------------------------------------------
 void __fastcall TSequenceInfoFrame::empty()
 {
- 	mProcessesLB->Clear();
+ 	ProcessesLB->Clear();
     EnableDisableFrame(this, false);
 }
 
@@ -324,12 +333,15 @@ void __fastcall TSequenceInfoFrame::AddCombinedMoveAExecute(TObject *Sender)
         {
         	p = new AbsoluteMove("Process " + mtk::toString(nr));
         }
-        else if(pType == 5) //Absolute move
+        else if(pType == 5) //Move at angle
         {
-        	MessageDlg("LiftAtAngle not implemented yet", mtWarning, TMsgDlgButtons() << mbOK, 0);
         	p = new MoveCoverSlipAtAngleProcess("Process " + mtk::toString(nr));
         }
 
+        else if(pType == 6) //Home motor
+        {
+        	p = new HomeMotor("Process " + mtk::toString(nr));
+        }
         else
         {
         	Log(lError) << "Process Type Selection is not Suported!";
@@ -340,14 +352,14 @@ void __fastcall TSequenceInfoFrame::AddCombinedMoveAExecute(TObject *Sender)
         mSequence->write();
 
         //Update LB
-        mProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
-        selectAndClickListBoxItem(mProcessesLB, (TObject*) p);
+        ProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
+        selectAndClickListBoxItem(ProcessesLB, (TObject*) p);
    }
 }
 
 void TSequenceInfoFrame::updateSequenceArrows()
 {
-	if(mProcessesLB->Count <= 1)
+	if(ProcessesLB->Count <= 1)
     {
 		mMoveSequenceUpBtn->Enabled = false;
 		mMoveSequenceDownBtn->Enabled = false;
@@ -357,13 +369,13 @@ void TSequenceInfoFrame::updateSequenceArrows()
 	//Depending which item is selected, enable/disable items
 
 	//Last item
-    if(mProcessesLB->ItemIndex > 0 && (mProcessesLB->ItemIndex + 1) == mProcessesLB->Count)
+    if(ProcessesLB->ItemIndex > 0 && (ProcessesLB->ItemIndex + 1) == ProcessesLB->Count)
     {
 		mMoveSequenceUpBtn->Enabled 	= true;
 		mMoveSequenceDownBtn->Enabled 	= false;
     }
     //First item
-    else if(mProcessesLB->ItemIndex == 0)
+    else if(ProcessesLB->ItemIndex == 0)
     {
 		mMoveSequenceUpBtn->Enabled 	= false;
 		mMoveSequenceDownBtn->Enabled 	= true;
@@ -512,13 +524,13 @@ void __fastcall TSequenceInfoFrame::mRenameBtnClick(TObject *Sender)
         mSequence->write();
 
     	//Change name of sequence in ListBox
-        int indx = mProcessesLB->ItemIndex;
-        if(updateListBoxItemCaption(mProcessesLB, indx, newName) == false)
+        int indx = ProcessesLB->ItemIndex;
+        if(updateListBoxItemCaption(ProcessesLB, indx, newName) == false)
         {
 
         }
 
-        if(selectAndClickListBoxItem(mProcessesLB, newName) == false)
+        if(selectAndClickListBoxItem(ProcessesLB, newName) == false)
         {
         	//bad..
             Log(lError) << "Failed to select item: "<<newName;

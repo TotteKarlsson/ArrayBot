@@ -28,7 +28,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
       BevelEdges = []
       BevelOuter = bvNone
       TabOrder = 0
-      object mProcessesLB: TListBox
+      object ProcessesLB: TListBox
         Left = 0
         Top = 0
         Width = 332
@@ -36,7 +36,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
         Align = alClient
         ItemHeight = 23
         TabOrder = 0
-        OnClick = mProcessesLBClick
+        OnClick = ProcessesLBClick
       end
       object Panel2: TPanel
         Left = 332
