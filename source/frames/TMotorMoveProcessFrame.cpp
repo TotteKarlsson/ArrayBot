@@ -35,6 +35,11 @@ __fastcall TMotorMoveProcessFrame::TMotorMoveProcessFrame(ProcessSequencer& ps, 
     this->Name = this->Name + IntToStr(frameNr++);
 }
 
+void TMotorMoveProcessFrame::update()
+{
+	rePopulate(mMove);
+}
+
 void TMotorMoveProcessFrame::populate(AbsoluteMove* m)
 {
     MotorsCB->Clear();

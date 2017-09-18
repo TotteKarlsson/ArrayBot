@@ -20,13 +20,15 @@ class PACKAGE TArrayCamRequestFrame : public TFrame
 {
 	__published:
         TGroupBox *GroupBox1;
-        TSTDStringLabeledEdit *mNameEdit;
-		TComboBox *mArrayCamRequestCB;
+	TSTDStringLabeledEdit *NameEdit;
+	TComboBox *ArrayCamRequestCB;
 	TGroupBox *FocusZoomGB;
 	TIntegerLabeledEdit *FocusE;
 	TIntegerLabeledEdit *ZoomE;
-        void __fastcall mEditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall mArrayCamRequestCBCloseUp(TObject *Sender);
+	TGroupBox *LEDIntensityGB;
+	TIntegerLabeledEdit *LEDIntensityE;
+        void __fastcall EditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall ArrayCamRequestCBCloseUp(TObject *Sender);
 	void __fastcall IntEditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
 

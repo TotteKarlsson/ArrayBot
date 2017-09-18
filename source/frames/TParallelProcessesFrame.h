@@ -30,7 +30,6 @@ __published:	// IDE-managed Components
 	TActionList *ActionList1;
 	TAction *addMoveA;
 	TAction *removeMoveA;
-	TAction *mUpdateFinalPositionsA;
 	TArrayBotButton *mRenameBtn;
 	TButton *Button3;
 	TAction *newArrayCamRequestA;
@@ -38,7 +37,7 @@ __published:	// IDE-managed Components
 	void __fastcall addMoveAExecute(TObject *Sender);
 	void __fastcall mSubProcessesLBClick(TObject *Sender);
 	void __fastcall removeMoveAExecute(TObject *Sender);
-	void __fastcall mUpdateFinalPositionsAExecute(TObject *Sender);
+//	void __fastcall mUpdateFinalPositionsAExecute(TObject *Sender);
 	void __fastcall mRenameBtnClick(TObject *Sender);
 	void __fastcall newArrayCamRequestAExecute(TObject *Sender);
 

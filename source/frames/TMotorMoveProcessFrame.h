@@ -54,6 +54,7 @@ __published:	// IDE-managed Components
                         __fastcall TMotorMoveProcessFrame(ProcessSequencer& ps, TComponent* Owner);
         void            		   populate(AbsoluteMove* m);
         void            		   rePopulate(AbsoluteMove* m);
+        void            		   update();
 };
 
 extern PACKAGE TMotorMoveProcessFrame *MotorMoveProcessFrame;

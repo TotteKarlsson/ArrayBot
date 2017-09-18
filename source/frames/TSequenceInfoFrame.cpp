@@ -19,12 +19,16 @@
 #include "atVCLUtils.h"
 #include "mtkLogger.h"
 #include "vcl/forms/TSelectProcessTypeDialog.h"
+#include "arraybot/apt/atAPTMotor.h"
+#include "vcl/forms/TYesNoForm.h"
+#include "arraybot/process/atTriggerFunction.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 TSequenceInfoFrame *SequenceInfoFrame;
+bool updateMoveToPosition(Process* p, ArrayBot& ab);
 
 using namespace mtk;
 //---------------------------------------------------------------------------
@@ -51,7 +55,7 @@ __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TCompone
     setFramesVisibility(false);
 
     ////////////////////////////////////////////////////////////////////
-	mUpdatePositionsBtn->Action = mParallelProcessesFrame->mUpdateFinalPositionsA;
+//	UpdatePositionsBtn->Action = mParallelProcessesFrame->mUpdateFinalPositionsA;
 }
 
 //---------------------------------------------------------------------------
@@ -184,7 +188,7 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
     setFramesVisibility(false);
 
     //This button only makes sense for certain actions
-    mUpdatePositionsBtn->Visible 	 = false;
+    UpdatePositionsBtn->Visible 	 = false;
     //Check what kind of process we have
     Process* p = getCurrentlySelectedProcess();
 
@@ -198,8 +202,8 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
             mParallelProcessesFrame->populate(pp);
             mParallelProcessesFrame->mSubProcessesLB->ItemIndex = 0;
             mParallelProcessesFrame->mSubProcessesLB->OnClick(NULL);
-            mUpdatePositionsBtn->Enabled 		= true;
-            mUpdatePositionsBtn->Visible 		= true;
+            UpdatePositionsBtn->Enabled 		= true;
+            UpdatePositionsBtn->Visible 		= true;
 
             mParallelProcessesFrame->Visible 	= true;
             mParallelProcessesFrame->Align = alClient;
@@ -241,7 +245,9 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
             mMotorMoveProcessFrame->populate(am);
             mMotorMoveProcessFrame->Visible = true;
             mMotorMoveProcessFrame->Align = alClient;
-            mUpdatePositionsBtn->Enabled   	= true;
+            UpdatePositionsBtn->Enabled = true;
+            UpdatePositionsBtn->Enabled = true;
+            UpdatePositionsBtn->Visible = true;
         }
         break;
 
@@ -257,8 +263,8 @@ void __fastcall TSequenceInfoFrame::mProcessesLBClick(TObject *Sender)
         default:
         {
 			setFramesVisibility(false);
-            mUpdatePositionsBtn->Enabled 		= false;
-            mUpdatePositionsBtn->Visible 		= false;
+            UpdatePositionsBtn->Enabled 		= false;
+            UpdatePositionsBtn->Visible 		= false;
         }
     }
 }
@@ -370,10 +376,117 @@ void TSequenceInfoFrame::updateSequenceArrows()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TSequenceInfoFrame::mUpdatePositionsBtnClick(TObject *Sender)
+void __fastcall TSequenceInfoFrame::UpdatePositionsBtnClick(TObject *Sender)
 {
-	mParallelProcessesFrame->mUpdateFinalPositionsAExecute(Sender);
+	//Check what current process is, AbsoluteMove or a Parallell process?
+    Process* p = getCurrentlySelectedProcess();
+    if(!p)
+    {
+    	return;
+    }
+
+	updateMoveToPosition(p, mProcessSequencer.getArrayBot());
+
+	if(dynamic_cast<ParallelProcess*>(p))
+    {
+    	//Update UI
+		selectAndClickListBoxItem(mParallelProcessesFrame->mSubProcessesLB, 0);
+    }
+    else if(dynamic_cast<AbsoluteMove*>(p))
+    {
+    	mMotorMoveProcessFrame->update();
+    }
+
+    //Save updated sequence
+    mProcessSequencer.saveCurrent();
 }
+
+bool updateMoveToPosition(Process* p, ArrayBot& ab)
+{
+	//Check what current process is, AbsoluteMove or a Parallell process?
+    if(!p)
+    {
+    	return false;
+    }
+
+	if(dynamic_cast<ParallelProcess*>(p))
+    {
+	    ParallelProcess* pp = dynamic_cast<ParallelProcess*>(p);
+
+        for(int i = 0; i < pp->getNumberOfProcesses(); i++)
+        {
+            Process* p = pp->getProcess(i);
+            if(!p)
+            {
+                continue;
+            }
+
+            //Check if the process is a move process, and if so check if we can
+            //update its final position
+            AbsoluteMove* am = dynamic_cast<AbsoluteMove*>(p);
+            if(am)
+            {
+            	updateMoveToPosition(am, ab);
+            }
+    	}
+    }
+    else if(dynamic_cast<AbsoluteMove*>(p))
+    {
+	    AbsoluteMove* am = dynamic_cast<AbsoluteMove*>(p);
+    	APTMotor* mtr = ab.getMotorWithName(am->getMotorName());
+
+        if(!mtr)
+        {
+            MessageDlg("We failed to get a reference to the selected motor.\nMake sure the motor is connected!", mtError, TMsgDlgButtons() << mbOK, 0);
+            return false;
+        }
+
+        if(isEqual(am->getPosition(), mtr->getPosition(), 1.e-4) == false)
+        {
+            stringstream msg;
+            msg <<"Update final motor position for motor, device: "<<am->getMotorName() <<"\n("
+                <<am->getPosition()<<" -> "<< mtr->getPosition()<<")";
+
+            TYesNoForm* f = new TYesNoForm(NULL);
+            f->Caption = "";
+            f->mInfoLabel->Caption = msg.str().c_str();
+            int res = f->ShowModal();
+
+            if(res == mrYes)
+            {
+                am->setPosition(mtr->getPosition());
+            }
+            delete f;
+        }
+
+        //Check if this move has a trigger
+        PositionalTrigger* pt = dynamic_cast<PositionalTrigger*>(am->getTrigger());
+        if(pt)
+        {
+            //Get the trigger function
+            MoveAbsolute *fn = dynamic_cast<MoveAbsolute*>(pt->getTriggerFunction());
+            APTMotor* mtr = dynamic_cast<APTMotor*>(pt->getSubject());
+            if(mtr && fn)
+            {
+                if(isEqual(fn->getPosition(), mtr->getPosition(), 1.e-4) == false)
+                {
+                    stringstream msg;
+                    msg <<
+                    "Update final TRIGGERED motor position for motor: "<<mtr->getName() <<
+                    "\n("<<fn->getPosition()<<" -> "<< mtr->getPosition()<<")";
+
+                    if(MessageDlg(vclstr(msg.str()), mtConfirmation, TMsgDlgButtons() << mbYes<<mbNo, 0) == mrYes)
+                    {
+                        fn->setPosition(mtr->getPosition());
+                    }
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
 
 //---------------------------------------------------------------------------
 void __fastcall TSequenceInfoFrame::mRenameBtnClick(TObject *Sender)

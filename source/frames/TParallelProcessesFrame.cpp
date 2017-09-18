@@ -67,7 +67,7 @@ void TParallelProcessesFrame::populate(Process* pp)
     stringstream c;
     c << "Update Final Process Positions \n";
     c << "("<<pp->getProcessName()<<")";
-	mUpdateFinalPositionsA->Caption =  vclstr(c.str());
+//	mUpdateFinalPositionsA->Caption =  vclstr(c.str());
 
 	//Populate, update frame with data from process
     mParallel = dynamic_cast<ParallelProcess*>(pp);
@@ -200,94 +200,93 @@ void __fastcall TParallelProcessesFrame::mSubProcessesLBClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TParallelProcessesFrame::mUpdateFinalPositionsAExecute(TObject *Sender)
-{
-	//Populate, update frame with data from process
-    if(!mParallel)
-    {
-    	return;
-    }
-
-    if(mParallel->getNumberOfProcesses() == 0)
-    {
-    	MessageDlg("There are no moves to update", mtInformation, TMsgDlgButtons() << mbOK, 0);
-    }
-
-    //Fill out the listbox with moves
-    for(int i = 0; i < mParallel->getNumberOfProcesses(); i++)
-    {
-    	Process* p = mParallel->getProcess(i);
-        if(!p)
-        {
-        	continue;
-        }
-
-        //Check if the process is a move process, and if so check if we can
-        //update its final position
-        AbsoluteMove* am = dynamic_cast<AbsoluteMove*>(p);
-        if(am)
-        {
-            APTMotor* mtr = mProcessSequencer.getArrayBot().getMotorWithName(am->getMotorName());
-            if(mtr && isEqual(am->getPosition(), mtr->getPosition(), 1.e-4) == false)
-            {
-                stringstream msg;
-                msg <<"Update final motor position for motor, device: "<<am->getMotorName() <<"\n("
-                	<<am->getPosition()<<" -> "<< mtr->getPosition()<<")";
-
-                TYesNoForm* f = new TYesNoForm(this);
-                f->Caption = "";
-                f->mInfoLabel->Caption = msg.str().c_str();
-                int res = f->ShowModal();
-
-                if(res == mrYes)
-                {
-                	am->setPosition(mtr->getPosition());
-
-                    //Save updated sequence
-                    mProcessSequencer.saveCurrent();
-                }
-                delete f;
-            }
-            else
-            {
-            	if(!mtr)
-                {
-            		MessageDlg("We failed to get a reference to the selected motor.\nMake sure the motor are connected!", mtError, TMsgDlgButtons() << mbOK, 0);
-                }
-            }
-
-            //Check if this move has a trigger
-            PositionalTrigger* pt = dynamic_cast<PositionalTrigger*>(am->getTrigger());
-            if(pt)
-            {
-            	//Get the trigger function
-                MoveAbsolute *fn = dynamic_cast<MoveAbsolute*>(pt->getTriggerFunction());
-            	APTMotor* mtr = dynamic_cast<APTMotor*>(pt->getSubject());
-                if(mtr && fn)
-                {
-                    if(isEqual(fn->getPosition(), mtr->getPosition(), 1.e-4) == false)
-                    {
-                        stringstream msg;
-                        msg <<
-                        "Update final TRIGGERED motor position for motor: "<<mtr->getName() <<
-                        "\n("<<fn->getPosition()<<" -> "<< mtr->getPosition()<<")";
-
-                        if(MessageDlg(vclstr(msg.str()), mtConfirmation, TMsgDlgButtons() << mbYes<<mbNo, 0) == mrYes)
-                        {
-                            fn->setPosition(mtr->getPosition());
-
-                            //Save updated sequence
-                            mProcessSequencer.saveCurrent();
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    //Update UI
-	selectAndClickListBoxItem(mSubProcessesLB, 0);
-}
+//id __fastcall TParallelProcessesFrame::mUpdateFinalPositionsAExecute(TObject *Sender)
+//
+//	//Populate, update frame with data from process
+//    if(!mParallel)
+//    {
+//    	return;
+//    }
+//
+//    if(mParallel->getNumberOfProcesses() == 0)
+//    {
+//    	MessageDlg("There are no moves to update", mtInformation, TMsgDlgButtons() << mbOK, 0);
+//    }
+//
+//    for(int i = 0; i < mParallel->getNumberOfProcesses(); i++)
+//    {
+//    	Process* p = mParallel->getProcess(i);
+//        if(!p)
+//        {
+//        	continue;
+//        }
+//
+//        //Check if the process is a move process, and if so check if we can
+//        //update its final position
+//        AbsoluteMove* am = dynamic_cast<AbsoluteMove*>(p);
+//        if(am)
+//        {
+//            APTMotor* mtr = mProcessSequencer.getArrayBot().getMotorWithName(am->getMotorName());
+//            if(mtr && isEqual(am->getPosition(), mtr->getPosition(), 1.e-4) == false)
+//            {
+//                stringstream msg;
+//                msg <<"Update final motor position for motor, device: "<<am->getMotorName() <<"\n("
+//                	<<am->getPosition()<<" -> "<< mtr->getPosition()<<")";
+//
+//                TYesNoForm* f = new TYesNoForm(this);
+//                f->Caption = "";
+//                f->mInfoLabel->Caption = msg.str().c_str();
+//                int res = f->ShowModal();
+//
+//                if(res == mrYes)
+//                {
+//                	am->setPosition(mtr->getPosition());
+//
+//                    //Save updated sequence
+//                    mProcessSequencer.saveCurrent();
+//                }
+//                delete f;
+//            }
+//            else
+//            {
+//            	if(!mtr)
+//                {
+//            		MessageDlg("We failed to get a reference to the selected motor.\nMake sure the motor are connected!", mtError, TMsgDlgButtons() << mbOK, 0);
+//                }
+//            }
+//
+//            //Check if this move has a trigger
+//            PositionalTrigger* pt = dynamic_cast<PositionalTrigger*>(am->getTrigger());
+//            if(pt)
+//            {
+//            	//Get the trigger function
+//                MoveAbsolute *fn = dynamic_cast<MoveAbsolute*>(pt->getTriggerFunction());
+//            	APTMotor* mtr = dynamic_cast<APTMotor*>(pt->getSubject());
+//                if(mtr && fn)
+//                {
+//                    if(isEqual(fn->getPosition(), mtr->getPosition(), 1.e-4) == false)
+//                    {
+//                        stringstream msg;
+//                        msg <<
+//                        "Update final TRIGGERED motor position for motor: "<<mtr->getName() <<
+//                        "\n("<<fn->getPosition()<<" -> "<< mtr->getPosition()<<")";
+//
+//                        if(MessageDlg(vclstr(msg.str()), mtConfirmation, TMsgDlgButtons() << mbYes<<mbNo, 0) == mrYes)
+//                        {
+//                            fn->setPosition(mtr->getPosition());
+//
+//                            //Save updated sequence
+//                            mProcessSequencer.saveCurrent();
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    //Update UI
+//	selectAndClickListBoxItem(mSubProcessesLB, 0);
+//}
 
 //---------------------------------------------------------------------------
 void __fastcall TParallelProcessesFrame::mRenameBtnClick(TObject *Sender)

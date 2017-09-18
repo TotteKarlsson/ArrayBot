@@ -92,10 +92,6 @@ object ParallelProcessesFrame: TParallelProcessesFrame
       Caption = 'Remove'
       OnExecute = removeMoveAExecute
     end
-    object mUpdateFinalPositionsA: TAction
-      Caption = 'Update Final Positions'
-      OnExecute = mUpdateFinalPositionsAExecute
-    end
     object newArrayCamRequestA: TAction
       Caption = 'Command'
       OnExecute = newArrayCamRequestAExecute

@@ -49,7 +49,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="source\ArrayBot.cbproj">
-            <Dependencies/>
+            <Dependencies>source\lib\ArrayBotPackage.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -194,13 +194,13 @@
     <Target Name="ArrayBotPackage:Make">
         <MSBuild Projects="source\lib\ArrayBotPackage.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBot">
+    <Target Name="ArrayBot" DependsOnTargets="ArrayBotPackage">
         <MSBuild Projects="source\ArrayBot.cbproj"/>
     </Target>
-    <Target Name="ArrayBot:Clean">
+    <Target Name="ArrayBot:Clean" DependsOnTargets="ArrayBotPackage:Clean">
         <MSBuild Projects="source\ArrayBot.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ArrayBot:Make">
+    <Target Name="ArrayBot:Make" DependsOnTargets="ArrayBotPackage:Make">
         <MSBuild Projects="source\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">

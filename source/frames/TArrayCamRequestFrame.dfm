@@ -1,8 +1,8 @@
 object ArrayCamRequestFrame: TArrayCamRequestFrame
   Left = 0
   Top = 0
-  Width = 313
-  Height = 304
+  Width = 441
+  Height = 457
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -13,12 +13,12 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 313
+    Width = 441
     Height = 193
     Align = alTop
     Caption = 'ArrayCam Request'
     TabOrder = 0
-    object mNameEdit: TSTDStringLabeledEdit
+    object NameEdit: TSTDStringLabeledEdit
       Left = 21
       Top = 64
       Width = 260
@@ -29,16 +29,16 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
       Enabled = False
       ReadOnly = True
       TabOrder = 1
-      OnKeyDown = mEditKeyDown
+      OnKeyDown = EditKeyDown
     end
-    object mArrayCamRequestCB: TComboBox
+    object ArrayCamRequestCB: TComboBox
       Left = 21
       Top = 128
       Width = 260
       Height = 31
       Style = csDropDownList
       TabOrder = 0
-      OnCloseUp = mArrayCamRequestCBCloseUp
+      OnCloseUp = ArrayCamRequestCBCloseUp
       Items.Strings = (
         'Start Video Recorder'
         'Stop Video Recorder'
@@ -50,11 +50,10 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
     end
   end
   object FocusZoomGB: TGroupBox
-    Left = 0
-    Top = 193
-    Width = 313
+    Left = 27
+    Top = 209
+    Width = 314
     Height = 111
-    Align = alClient
     Caption = 'Parameters'
     Padding.Left = 15
     Padding.Right = 15
@@ -65,9 +64,9 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
       Top = 59
       Width = 105
       Height = 31
-      EditLabel.Width = 59
+      EditLabel.Width = 54
       EditLabel.Height = 23
-      EditLabel.Caption = 'FocusE'
+      EditLabel.Caption = 'Focus '
       TabOrder = 0
       Text = '0'
       OnKeyDown = IntEditKeyDown
@@ -77,10 +76,31 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
       Top = 59
       Width = 105
       Height = 31
-      EditLabel.Width = 58
+      EditLabel.Width = 47
       EditLabel.Height = 23
-      EditLabel.Caption = 'ZoomE'
+      EditLabel.Caption = 'Zoom'
       TabOrder = 1
+      Text = '0'
+      OnKeyDown = IntEditKeyDown
+    end
+  end
+  object LEDIntensityGB: TGroupBox
+    Left = 59
+    Top = 349
+    Width = 185
+    Height = 105
+    Caption = 'Parameters'
+    TabOrder = 2
+    Visible = False
+    object LEDIntensityE: TIntegerLabeledEdit
+      Left = 16
+      Top = 56
+      Width = 121
+      Height = 31
+      EditLabel.Width = 139
+      EditLabel.Height = 23
+      EditLabel.Caption = 'Intensity (0-255)'
+      TabOrder = 0
       Text = '0'
       OnKeyDown = IntEditKeyDown
     end

@@ -156,7 +156,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
     Height = 129
     Align = alBottom
     TabOrder = 2
-    object mUpdatePositionsBtn: TArrayBotButton
+    object UpdatePositionsBtn: TArrayBotButton
       Left = 1
       Top = 1
       Width = 439
@@ -166,7 +166,7 @@ object SequenceInfoFrame: TSequenceInfoFrame
       ParentDoubleBuffered = True
       TabOrder = 0
       Visible = False
-      OnClick = mUpdatePositionsBtnClick
+      OnClick = UpdatePositionsBtnClick
       SoundID = 'BUTTON_CLICK_4'
     end
   end

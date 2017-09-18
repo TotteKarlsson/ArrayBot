@@ -39,7 +39,7 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	TArrayBotButton *mDeleteMoveBtn;
 	TArrayBotButton *mMoveSequenceDownBtn;
 	TArrayBotButton *mMoveSequenceUpBtn;
-	TArrayBotButton *mUpdatePositionsBtn;
+	TArrayBotButton *UpdatePositionsBtn;
 	TPanel *Panel1;
 	TPanel *Panel2;
 	TPanel *Panel3;
@@ -54,7 +54,7 @@ class PACKAGE TSequenceInfoFrame : public TFrame
 	void __fastcall mMoveSequenceDownBtnClick(TObject *Sender);
 	void __fastcall mProcessesLBClick(TObject *Sender);
 	void __fastcall AddCombinedMoveAExecute(TObject *Sender);
-	void __fastcall mUpdatePositionsBtnClick(TObject *Sender);
+	void __fastcall UpdatePositionsBtnClick(TObject *Sender);
 	void __fastcall mRenameBtnClick(TObject *Sender);
 	void __fastcall CategoryCBCloseUp(TObject *Sender);
 	void __fastcall NewSequenceCategoryBtnClick(TObject *Sender);
