@@ -156,6 +156,9 @@ class TMain : public TRegistryForm
 	TCategoryPanel *CategoryPanel3;
 	TCategoryPanel *CategoryPanel4;
 	TCategoryPanel *CategoryPanel5;
+	TPopupMenu *PopupMenu1;
+	TMenuItem *CollapseAll1;
+	TMenuItem *ExpandAll1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -190,13 +193,12 @@ class TMain : public TRegistryForm
 	void __fastcall mWiggleSpinButtonUpClick(TObject *Sender);
 void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall mPullRibbonBtnClick(TObject *Sender);
-	void __fastcall SequencesPanel1Resize(TObject *Sender);
+
 	void __fastcall HomeAllDevicesAExecute(TObject *Sender);
-	void __fastcall CategoryPanel1Expand(TObject *Sender);
-	void __fastcall CategoryPanel2Expand(TObject *Sender);
-	void __fastcall CategoryPanel3Expand(TObject *Sender);
-	void __fastcall CategoryPanel4Expand(TObject *Sender);
-	void __fastcall CategoryPanel5Expand(TObject *Sender);
+	void __fastcall CategoryPanelExpand(TObject *Sender);
+	void __fastcall CategoryPanelCollapse(TObject *Sender);
+	void __fastcall CollapseAll1Click(TObject *Sender);
+	void __fastcall ExpandAll1Click(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMoveSequences = 1,
@@ -265,6 +267,9 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         TSequencerButtonsFrame*			        mSequencerButtons3;
         TSequencerButtonsFrame*			        mSequencerButtons4;
         TSequencerButtonsFrame*			        mSequencerButtons5;
+        vector<TSequencerButtonsFrame*>	 		mSequenceButtonsFrames;
+        vector<TCategoryPanel*>					mSequenceCategoryPanels;
+		void __fastcall							updateForCategoryPanelGlitch();
 
 		void __fastcall		                    OnException();
 
@@ -283,7 +288,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 
         void __fastcall 				        FrameClosed(TObject *Sender);
 		void __fastcall 						updateAllSequenceButtons();
-
+		void __fastcall							setupShortCutButtonsAndFrames();
 	public:		// User declarations
 		__fastcall 					            TMain(TComponent* Owner);
 		__fastcall 					            ~TMain();

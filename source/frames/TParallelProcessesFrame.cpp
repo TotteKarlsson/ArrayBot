@@ -15,10 +15,12 @@
 #include "vcl/forms/TStringInputDialog.h"
 #include "arduino/atArduinoServerCommand.h"
 #include "vcl/frames/TArduinoServerCommandFrame.h"
+#include "TMotorMoveProcessFrame.h"
+#include "THomeMotorProcessFrame.h"
 #include "vcl/forms/TYesNoForm.h"
 #include "frames/TArrayCamRequestFrame.h"
 #include "arraybot/process/atArrayCamRequestProcess.h"
-
+#include "arraybot/apt/atHomeMotor.h"
 #pragma package(smart_init)
 #pragma link "TMotorMoveProcessFrame"
 #pragma link "TSTDStringLabeledEdit"
@@ -47,12 +49,20 @@ __fastcall TParallelProcessesFrame::TParallelProcessesFrame(ProcessSequencer& ps
     mArrayCamRequestFrame->Visible = false;
     mArrayCamRequestFrame->Parent = this;
     mArrayCamRequestFrame->Align = alClient;
+
+	mTHomeMotorProcessFrame = new THomeMotorProcessFrame(mProcessSequencer, Owner);
+    mTHomeMotorProcessFrame->Visible = false;
+    mTHomeMotorProcessFrame->Parent = this;
+    mTHomeMotorProcessFrame->Align = alClient;
+
 }
 
 __fastcall TParallelProcessesFrame::~TParallelProcessesFrame()
 {
 	delete mTArduinoServerCommandFrame;
     delete mTMotorMoveProcessFrame;
+    delete mArrayCamRequestFrame;
+    delete mTHomeMotorProcessFrame;
 }
 
 void TParallelProcessesFrame::populate(Process* pp)
@@ -121,6 +131,32 @@ void __fastcall TParallelProcessesFrame::addMoveAExecute(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
+void __fastcall TParallelProcessesFrame::HomeMotorAExecute(TObject *Sender)
+{
+	//Add a move to current process
+    if(!mParallel)
+    {
+    	Log(lError) << "This is something else...!";
+        return;
+    }
+
+    Process* hm = new HomeMotor("");
+
+    //Add the move to the container.. this will give the move a name
+    mParallel->addProcess(hm);
+
+    hm->assignProcessSequence(mParallel->getProcessSequence());
+    mParallel->write();
+
+    //Add move to Listbox
+    int indx = mSubProcessesLB->Items->AddObject(hm->getProcessName().c_str(), (TObject*) hm);
+	mSubProcessesLB->ItemIndex = indx;
+
+	//Select the new process
+    selectItem(hm);
+}
+
+//---------------------------------------------------------------------------
 void __fastcall TParallelProcessesFrame::newArrayCamRequestAExecute(TObject *Sender)
 {
 	//Add a move to current process
@@ -165,12 +201,19 @@ void TParallelProcessesFrame::selectItem(Process* p)
     mTMotorMoveProcessFrame->Visible = false;
    	mTArduinoServerCommandFrame->Visible = false;
     mArrayCamRequestFrame->Visible = false;
+	mTHomeMotorProcessFrame->Visible = false;
 
 	if(dynamic_cast<AbsoluteMove*>(p))
     {
-	        mTMotorMoveProcessFrame->populate(dynamic_cast<AbsoluteMove*>(p));
+    	mTMotorMoveProcessFrame->populate(dynamic_cast<AbsoluteMove*>(p));
         mTMotorMoveProcessFrame->Visible = true;
 	    EnableDisableFrame(mTMotorMoveProcessFrame, true);
+    }
+	else if(dynamic_cast<HomeMotor*>(p))
+    {
+    	mTHomeMotorProcessFrame->populate(dynamic_cast<HomeMotor*>(p));
+        mTHomeMotorProcessFrame->Visible = true;
+	    EnableDisableFrame(mTHomeMotorProcessFrame, true);
     }
     else if(dynamic_cast<ArduinoServerCommand*>(p))
     {
@@ -185,7 +228,7 @@ void TParallelProcessesFrame::selectItem(Process* p)
     }
 }
 
-void __fastcall TParallelProcessesFrame::mSubProcessesLBClick(TObject *Sender)
+void __fastcall TParallelProcessesFrame::SubProcessesLBClick(TObject *Sender)
 {
 	if(mSubProcessesLB->ItemIndex == -1 || mParallel == NULL)
     {
@@ -333,6 +376,4 @@ Process* TParallelProcessesFrame::getCurrentlySelectedSubProcess()
     }
     return NULL;
 }
-
-
 

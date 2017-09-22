@@ -75,7 +75,9 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormShow(TObject *Sender)
-{}
+{
+
+}
 
 void TMain::setupProperties()
 {
@@ -107,30 +109,7 @@ void __fastcall	TMain::setupUIFrames()
     mABProcessSequencerFrame->init();
 
     //The sequencer buttons frame holds shortcut buttons for preprogrammed sequences
-    mSequencerButtons1 = new TSequencerButtonsFrame(mProcessSequencer, "Cutting", MiddlePanel);
-    mSequencerButtons1->Parent = CategoryPanel1;
-    mSequencerButtons1->Align = alClient;
-    CategoryPanel1->Caption = vclstr(mSequencerButtons1->getCategory());
-
-    mSequencerButtons2 = new TSequencerButtonsFrame(mProcessSequencer, "UC7", MiddlePanel);
-    mSequencerButtons2->Parent = CategoryPanel2;
-    mSequencerButtons2->Align = alClient;
-    CategoryPanel2->Caption = vclstr(mSequencerButtons2->getCategory());
-
-    mSequencerButtons3 = new TSequencerButtonsFrame(mProcessSequencer, "Camera", MiddlePanel);
-    mSequencerButtons3->Parent = CategoryPanel3;
-    mSequencerButtons3->Align = alClient;
-    CategoryPanel3->Caption = vclstr(mSequencerButtons3->getCategory());
-
-    mSequencerButtons4 = new TSequencerButtonsFrame(mProcessSequencer, "Setup", MiddlePanel);
-    mSequencerButtons4->Parent = CategoryPanel4;
-    mSequencerButtons4->Align = alClient;
-    CategoryPanel4->Caption = vclstr(mSequencerButtons4->getCategory());
-
-    mSequencerButtons5 = new TSequencerButtonsFrame(mProcessSequencer, "Testing", MiddlePanel);
-    mSequencerButtons5->Parent = CategoryPanel5;
-    mSequencerButtons5->Align = alClient;
-    CategoryPanel5->Caption = vclstr(mSequencerButtons5->getCategory());
+    //setupShortCutButtonsAndFrames();
 
     //Create frames showing motor positions
     TXYZPositionsFrame* f1 = new TXYZPositionsFrame(this, mAB.getCoverSlipUnit());
@@ -210,5 +189,53 @@ void __fastcall	TMain::onFinishedInitBot()
     mTheWiggler.setMaxVelocity(mWigglerVelocityE->getValue());
     mTheWiggler.setMaxAcceleration(mWigglerAccelerationE->getValue());
     mTheWiggler.assignMotors(mAB.getWhiskerUnit().getXMotor(), mAB.getWhiskerUnit().getYMotor());
+	setupShortCutButtonsAndFrames();
+
+}
+
+void __fastcall	TMain::setupShortCutButtonsAndFrames()
+{
+    CategoryPanelGroup1->ExpandAll();
+    mSequencerButtons1 = new TSequencerButtonsFrame(mProcessSequencer, "Cutting", MiddlePanel);
+    mSequencerButtons1->Parent = CategoryPanel1;
+    CategoryPanel1->InsertComponent(mSequencerButtons1);
+    mSequencerButtons1->Align = alClient;
+    CategoryPanel1->Caption = vclstr(mSequencerButtons1->getCategory());
+
+    mSequencerButtons2 = new TSequencerButtonsFrame(mProcessSequencer, "UC7", MiddlePanel);
+    mSequencerButtons2->Parent = CategoryPanel2;
+    CategoryPanel2->InsertComponent(mSequencerButtons2);
+    mSequencerButtons2->Align = alClient;
+    CategoryPanel2->Caption = vclstr(mSequencerButtons2->getCategory());
+
+    mSequencerButtons3 = new TSequencerButtonsFrame(mProcessSequencer, "Camera", MiddlePanel);
+    mSequencerButtons3->Parent = CategoryPanel3;
+    CategoryPanel3->InsertComponent(mSequencerButtons3);
+    mSequencerButtons3->Align = alClient;
+    CategoryPanel3->Caption = vclstr(mSequencerButtons3->getCategory());
+
+    mSequencerButtons4 = new TSequencerButtonsFrame(mProcessSequencer, "Setup", MiddlePanel);
+    mSequencerButtons4->Parent = CategoryPanel4;
+    CategoryPanel4->InsertComponent(mSequencerButtons4);
+    mSequencerButtons4->Align = alClient;
+    CategoryPanel4->Caption = vclstr(mSequencerButtons4->getCategory());
+
+    mSequencerButtons5 = new TSequencerButtonsFrame(mProcessSequencer, "Testing", MiddlePanel);
+    mSequencerButtons5->Parent = CategoryPanel5;
+    CategoryPanel5->InsertComponent(mSequencerButtons5);
+    mSequencerButtons5->Align = alClient;
+    CategoryPanel5->Caption = vclstr(mSequencerButtons5->getCategory());
+
+    mSequenceButtonsFrames.push_back(mSequencerButtons1);
+    mSequenceButtonsFrames.push_back(mSequencerButtons2);
+    mSequenceButtonsFrames.push_back(mSequencerButtons3);
+    mSequenceButtonsFrames.push_back(mSequencerButtons4);
+    mSequenceButtonsFrames.push_back(mSequencerButtons5);
+
+	mSequenceCategoryPanels.push_back(CategoryPanel1);
+	mSequenceCategoryPanels.push_back(CategoryPanel2);
+	mSequenceCategoryPanels.push_back(CategoryPanel3);
+	mSequenceCategoryPanels.push_back(CategoryPanel4);
+	mSequenceCategoryPanels.push_back(CategoryPanel5);
 }
 

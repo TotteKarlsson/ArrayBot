@@ -24003,17 +24003,19 @@ object Main: TMain
             ExplicitHeight = 25
           end
           object mJoyStickRG: TRadioGroup
-            Left = 1040
+            Left = 976
             Top = 1
-            Width = 112
+            Width = 176
             Height = 59
             Align = alRight
             Caption = 'Joystick'
-            Columns = 2
+            Columns = 4
             ItemIndex = 0
             Items.Strings = (
               '1'
-              '2')
+              '2'
+              '3'
+              '4')
             TabOrder = 0
             OnClick = mJoyStickRGClick
           end
@@ -24043,6 +24045,7 @@ object Main: TMain
         HeaderStyle = hsImage
         ParentDoubleBuffered = False
         ParentFont = False
+        PopupMenu = PopupMenu1
         TabOrder = 2
         object CategoryPanel5: TCategoryPanel
           Top = 344
@@ -24056,7 +24059,7 @@ object Main: TMain
           Font.Style = []
           ParentFont = False
           TabOrder = 0
-          OnExpand = CategoryPanel5Expand
+          OnExpand = CategoryPanelExpand
         end
         object CategoryPanel4: TCategoryPanel
           Top = 258
@@ -24064,7 +24067,7 @@ object Main: TMain
           Caption = 'CategoryPanel4'
           Collapsed = True
           TabOrder = 1
-          OnExpand = CategoryPanel4Expand
+          OnExpand = CategoryPanelExpand
         end
         object CategoryPanel3: TCategoryPanel
           Top = 172
@@ -24072,7 +24075,7 @@ object Main: TMain
           Caption = 'CategoryPanel3'
           Collapsed = True
           TabOrder = 2
-          OnExpand = CategoryPanel3Expand
+          OnExpand = CategoryPanelExpand
         end
         object CategoryPanel2: TCategoryPanel
           Top = 86
@@ -24080,7 +24083,7 @@ object Main: TMain
           Caption = 'CategoryPanel2'
           Collapsed = True
           TabOrder = 3
-          OnExpand = CategoryPanel2Expand
+          OnExpand = CategoryPanelExpand
           ExpandedHeight = 176
         end
         object CategoryPanel1: TCategoryPanel
@@ -24095,7 +24098,8 @@ object Main: TMain
           Font.Style = []
           ParentFont = False
           TabOrder = 4
-          OnExpand = CategoryPanel1Expand
+          OnCollapse = CategoryPanelCollapse
+          OnExpand = CategoryPanelExpand
           ExpandedHeight = 176
         end
       end
@@ -24906,5 +24910,17 @@ object Main: TMain
     OnTimer = WaitForDeviceInitTimerTimer
     Left = 576
     Top = 752
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 80
+    Top = 560
+    object CollapseAll1: TMenuItem
+      Caption = 'Collapse All'
+      OnClick = CollapseAll1Click
+    end
+    object ExpandAll1: TMenuItem
+      Caption = 'Expand All'
+      OnClick = ExpandAll1Click
+    end
   end
 end

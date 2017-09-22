@@ -44,6 +44,10 @@ void __fastcall TSplashForm::logMsg()
 void __fastcall TSplashForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
     Log(lDebug)<<"In SplashForms FormClose";
+    if(sendAppMessage(abSplashWasClosed) != true)
+    {
+        Log(lDebug)<<"Sending messge from Splash was unsuccesful";
+    }
 }
 
 void TSplashForm::setShowTime(int ms)

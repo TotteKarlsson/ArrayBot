@@ -4,7 +4,6 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "TMotorMoveProcessFrame.h"
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include "arraybot/atArrayBot.h"
@@ -19,6 +18,8 @@ class ParallelProcess;
 class XYZUnit;
 class TArduinoServerCommandFrame;
 class TArrayCamRequestFrame;
+class TMotorMoveProcessFrame;
+class THomeMotorProcessFrame;
 
 class PACKAGE TParallelProcessesFrame : public TFrame
 {
@@ -34,12 +35,15 @@ __published:	// IDE-managed Components
 	TButton *Button3;
 	TAction *newArrayCamRequestA;
 	TPanel *Panel1;
+	TArrayBotButton *ArrayBotButton1;
+	TAction *HomeMotorA;
 	void __fastcall addMoveAExecute(TObject *Sender);
-	void __fastcall mSubProcessesLBClick(TObject *Sender);
+	void __fastcall SubProcessesLBClick(TObject *Sender);
 	void __fastcall removeMoveAExecute(TObject *Sender);
 //	void __fastcall mUpdateFinalPositionsAExecute(TObject *Sender);
 	void __fastcall mRenameBtnClick(TObject *Sender);
 	void __fastcall newArrayCamRequestAExecute(TObject *Sender);
+	void __fastcall HomeMotorAExecute(TObject *Sender);
 
     private:
 		ProcessSequencer&				mProcessSequencer;
@@ -47,6 +51,7 @@ __published:	// IDE-managed Components
 		void					    	selectItem(Process* mv);
 		Process*						getCurrentlySelectedSubProcess();
 		TMotorMoveProcessFrame*			mTMotorMoveProcessFrame;
+		THomeMotorProcessFrame*			mTHomeMotorProcessFrame;
         TArduinoServerCommandFrame*		mTArduinoServerCommandFrame;
         TArrayCamRequestFrame*	 		mArrayCamRequestFrame;
 

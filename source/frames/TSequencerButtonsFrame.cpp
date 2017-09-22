@@ -44,13 +44,6 @@ void TSequencerButtonsFrame::setButtonWidth(int w)
 //--------------------------------------------------------------------------
 void TSequencerButtonsFrame::update()
 {
-//    for(int i = 0; i < mButtons.size(); i++)
-//    {
-//    	delete mButtons[i];
-//    }
-
-//	mButtons.clear();
-
     ProcessSequencer& psr = mProcessSequencer;
     ProcessSequences& pss = psr.getSequences();
     pss.sortOnCategory();
@@ -83,8 +76,6 @@ void TSequencerButtonsFrame::update()
                 btn = mButtons[btnNr];
             }
 
-
-
             btn->Caption = vclstr(ps->getName());
             btn->OnClick = click;
             btn->SoundID = "button_click_5";
@@ -105,6 +96,7 @@ void TSequencerButtonsFrame::update()
             btn->Top = 0;
             btnNr += 1 ;
             btn->Visible = true;
+            btn->Invalidate();
         }
 
         ps = pss.getNext();

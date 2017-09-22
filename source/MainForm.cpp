@@ -323,6 +323,7 @@ void __fastcall TMain::AppInBox(mlxStructMessage &msg)
             case abSplashWasClosed:
                 Log(lDebug2) << "Splash form sent message that it was closed";
                 gSplashForm = NULL;
+                updateAllSequenceButtons();
             break;
 
             case abSequencerUpdate:
@@ -452,25 +453,6 @@ void __fastcall TMain::mASStartBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::SequencesPanel1Resize(TObject *Sender)
-{
-    if(mSequencerButtons1)
-    {
-    	mSequencerButtons1->update();
-    }
-
-    if(mSequencerButtons2)
-    {
-    	mSequencerButtons2->update();
-    }
-
-    if(mSequencerButtons3)
-    {
-    	mSequencerButtons3->update();
-    }
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMain::HomeAllDevicesAExecute(TObject *Sender)
 {
 	if(MessageDlg("ATTENTION: Make sure all motors have a free path to their home position before executing!", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrOk)
@@ -481,78 +463,65 @@ void __fastcall TMain::HomeAllDevicesAExecute(TObject *Sender)
 
 void __fastcall TMain::updateAllSequenceButtons()
 {
-    if(mSequencerButtons1)
+	for(int i = 0; i < mSequenceButtonsFrames.size(); i++)
     {
-        mSequencerButtons1->update();
+	    mSequenceButtonsFrames[i]->update();
     }
 
-    if(mSequencerButtons2)
-    {
-        mSequencerButtons2->update();
-    }
-
-    if(mSequencerButtons3)
-    {
-        mSequencerButtons3->update();
-    }
-
-    if(mSequencerButtons4)
-    {
-        mSequencerButtons4->update();
-    }
-
-    if(mSequencerButtons5)
-    {
-        mSequencerButtons5->update();
-    }
-    this->Paint();
-    this->Refresh();
+	updateForCategoryPanelGlitch();
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::CategoryPanel1Expand(TObject *Sender)
+void __fastcall TMain::CategoryPanelExpand(TObject *Sender)
 {
-//	updateAllSequenceButtons();
-    if(mSequencerButtons1)
+	TCategoryPanel* p = dynamic_cast<TCategoryPanel*>(Sender);
+
+	//Update frame content
+    if(p)
     {
-        mSequencerButtons1->update();
+	    for(int i = 0; i < p->ComponentCount; i++)
+        {
+        	TComponent* c = CategoryPanel1->Components[i];
+        	TSequencerButtonsFrame* f = dynamic_cast<TSequencerButtonsFrame*>(c);
+
+            if(f)
+            {
+            	f->update();
+            }
+        }
     }
+
+    //Update for categorypanel glitch
+	updateForCategoryPanelGlitch();
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMain::CategoryPanel2Expand(TObject *Sender)
+void __fastcall TMain::updateForCategoryPanelGlitch()
 {
-    if(mSequencerButtons2)
+    for(int i = 0; i < mSequenceCategoryPanels.size(); i++)
     {
-        mSequencerButtons2->update();
+    	TCategoryPanel* p = mSequenceCategoryPanels[i];
+        if(p && !p->Collapsed)
+        {
+            p->Left = 1;
+        }
     }
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::CategoryPanel3Expand(TObject *Sender)
+void __fastcall TMain::CategoryPanelCollapse(TObject *Sender)
 {
-    if(mSequencerButtons3)
-    {
-        mSequencerButtons3->update();
-    }
+	updateForCategoryPanelGlitch();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::CategoryPanel4Expand(TObject *Sender)
+void __fastcall TMain::CollapseAll1Click(TObject *Sender)
 {
-    if(mSequencerButtons4)
-    {
-        mSequencerButtons4->update();
-    }
+	CategoryPanelGroup1->CollapseAll();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMain::CategoryPanel5Expand(TObject *Sender)
+void __fastcall TMain::ExpandAll1Click(TObject *Sender)
 {
-    if(mSequencerButtons5)
-    {
-        mSequencerButtons5->update();
-    }
+	CategoryPanelGroup1->ExpandAll();
 }
 
 
