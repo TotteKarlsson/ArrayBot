@@ -148,17 +148,16 @@ void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
     }
 }
 
-void TMain::onJSButton5Click()
+void TMain::onJSButton5Down()
 {
-//	//Cycle xy setting
-//	if(mXYCtrlRG->ItemIndex < 3)
-//    {
-//    	mXYCtrlRG->ItemIndex++;
-//    }
-//    else
-//    {
-//    	mXYCtrlRG->ItemIndex = 0;
-//    }
+	//ZoomIN navitar
+    mArrayCamClient.zoomIn(500);
+}
+
+void TMain::onJSButton7Down()
+{
+	//ZoomIN navitar
+    mArrayCamClient.zoomOut(500);
 }
 
 void TMain::onJSButton6Click()

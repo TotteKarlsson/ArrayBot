@@ -20,40 +20,40 @@ class TArduinoServerCommandFrame;
 class TArrayCamRequestFrame;
 class TMotorMoveProcessFrame;
 class THomeMotorProcessFrame;
+class TMoveCoverSlipAtAngleProcessFrame;
 
 class PACKAGE TParallelProcessesFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TListBox *mSubProcessesLB;
-	TButton *Button1;
 	TButton *Button2;
 	TGroupBox *GroupBox1;
 	TActionList *ActionList1;
 	TAction *addMoveA;
 	TAction *removeMoveA;
 	TArrayBotButton *mRenameBtn;
-	TButton *Button3;
 	TAction *newArrayCamRequestA;
 	TPanel *Panel1;
-	TArrayBotButton *ArrayBotButton1;
 	TAction *HomeMotorA;
+	TButton *Button4;
 	void __fastcall addMoveAExecute(TObject *Sender);
 	void __fastcall SubProcessesLBClick(TObject *Sender);
 	void __fastcall removeMoveAExecute(TObject *Sender);
-//	void __fastcall mUpdateFinalPositionsAExecute(TObject *Sender);
 	void __fastcall mRenameBtnClick(TObject *Sender);
 	void __fastcall newArrayCamRequestAExecute(TObject *Sender);
 	void __fastcall HomeMotorAExecute(TObject *Sender);
+	void __fastcall addProcess(TObject *Sender);
 
     private:
-		ProcessSequencer&				mProcessSequencer;
-		ParallelProcess*				mParallel;
-		void					    	selectItem(Process* mv);
-		Process*						getCurrentlySelectedSubProcess();
-		TMotorMoveProcessFrame*			mTMotorMoveProcessFrame;
-		THomeMotorProcessFrame*			mTHomeMotorProcessFrame;
-        TArduinoServerCommandFrame*		mTArduinoServerCommandFrame;
-        TArrayCamRequestFrame*	 		mArrayCamRequestFrame;
+		ProcessSequencer&				        mProcessSequencer;
+		ParallelProcess*				        mParallel;
+		void					    	        selectItem(Process* mv);
+		Process*						        getCurrentlySelectedSubProcess();
+		TMotorMoveProcessFrame*			        mTMotorMoveProcessFrame;
+		THomeMotorProcessFrame*			        mTHomeMotorProcessFrame;
+        TArduinoServerCommandFrame*		        mTArduinoServerCommandFrame;
+        TArrayCamRequestFrame*	 		        mArrayCamRequestFrame;
+        TMoveCoverSlipAtAngleProcessFrame*		mMoveCoverSlipAtAngleProcessFrame;
 
 	public:
 							__fastcall  TParallelProcessesFrame(ProcessSequencer& pss, TComponent* Owner);

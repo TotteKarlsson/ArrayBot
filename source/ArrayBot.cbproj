@@ -85,14 +85,14 @@
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Release>2</VerInfo_Release>
         <_TCHARMapping>char</_TCHARMapping>
         <BCC_wcsu>false</BCC_wcsu>
         <BCC_PCHInject>ArrayBotPCH1.h</BCC_PCHInject>
         <Icon_MainIcon>ArrayBot_Icon1.ico</Icon_MainIcon>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_MinorVer>9</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileDescription=;FileVersion=0.9.1.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileDescription=;FileVersion=0.9.2.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
         <PostBuildEvent><![CDATA[xcopy ..\CHANGELOG.txt $(OUTPUTDIR) /y
 xcopy ..\*.txt $(APP_RELEASES)\ArrayBot /y
@@ -106,7 +106,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <LinkPackageStatics>VCLCommon.lib;DuneComponents.lib;ArrayBotPackage.lib;atVCLCore.lib;RaizeComponentsTrialVcl.lib;DuneForms.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
-        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dsl\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\ThirdParty\Poco\Foundation\src\;P:\libs\dsl\VCL\Forms\;P:\libs\dsl\VCL\Common\;P:\libs\dsl\Common\Math\;P:\libs\dsl\Common\IPC\;P:\ArrayBot\source\frames\;P:\libs\atapi\source\arraybot\process\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dsl\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\ThirdParty\Poco\Foundation\src\;P:\libs\dsl\VCL\Forms\;P:\libs\dsl\VCL\Common\;P:\libs\dsl\Common\Math\;P:\libs\dsl\Common\IPC\;P:\ArrayBot\source\frames\;P:\libs\atapi\source\arraybot\process\;P:\libs\atapi\source\arraybot\joystick\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;adortl.bpi;dbrtl.bpi;bcbsmp.bpi;bindengine.bpi;bindcomp.bpi;bindcompvcl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dbxcds.bpi;dsnap.bpi;DBXMySQLDriver.bpi</LinkPackageImports>
         <IncludePath>$(DEBUG_BUILD)\include;$(DSL_ROOT)\Common;$(DSL_ROOT)\Common\Math;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl;$(IncludePath)</IncludePath>

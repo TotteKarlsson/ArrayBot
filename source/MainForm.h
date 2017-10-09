@@ -253,9 +253,6 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         void									onArrayCamClientConnected();
         void									onArrayCamClientDisconnected();
         void									enableDisableArrayCamClientControls(bool enable);
-
-
-
 		PairedMove* 				            getCurrentPairedMove(TComboBox* cb);
 
 		TXYZUnitFrame*					        mXYZUnitFrame1;
@@ -277,8 +274,9 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         MotorWiggler							mTheWiggler;
 
 
-        								        //JS button #5 cycles XY control
-        void						            onJSButton5Click();
+        								        //JS button #5 and 7 controls camera zoom cycles XY control
+        void						            onJSButton5Down();
+        void						            onJSButton7Down();
 
         								        //JS button #6 cycles joystick speeds
         void						            onJSButton6Click();

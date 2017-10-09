@@ -5,6 +5,7 @@
 #include "core/atProcess.h"
 #include "arraybot/apt/atMove.h"
 #include "arraybot/process/atParallelProcess.h"
+#include "arraybot/process/atMoveCoverSlipAtAngleProcess.h"
 #include "mtkLogger.h"
 #include "arraybot/atArrayBot.h"
 #include "arraybot/apt/atAPTMotor.h"
@@ -21,8 +22,11 @@
 #include "frames/TArrayCamRequestFrame.h"
 #include "arraybot/process/atArrayCamRequestProcess.h"
 #include "arraybot/apt/atHomeMotor.h"
+#include "vcl/forms/TSelectProcessTypeDialog.h"
+#include "TMoveCoverSlipAtAngleProcessFrame.h"
 #pragma package(smart_init)
 #pragma link "TMotorMoveProcessFrame"
+
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
@@ -55,6 +59,10 @@ __fastcall TParallelProcessesFrame::TParallelProcessesFrame(ProcessSequencer& ps
     mTHomeMotorProcessFrame->Parent = this;
     mTHomeMotorProcessFrame->Align = alClient;
 
+    mMoveCoverSlipAtAngleProcessFrame  	= new TMoveCoverSlipAtAngleProcessFrame(mProcessSequencer, Owner);
+    mMoveCoverSlipAtAngleProcessFrame->Visible = false;
+    mMoveCoverSlipAtAngleProcessFrame->Parent = this;
+    mMoveCoverSlipAtAngleProcessFrame->Align = alClient;
 }
 
 __fastcall TParallelProcessesFrame::~TParallelProcessesFrame()
@@ -77,7 +85,6 @@ void TParallelProcessesFrame::populate(Process* pp)
     stringstream c;
     c << "Update Final Process Positions \n";
     c << "("<<pp->getProcessName()<<")";
-//	mUpdateFinalPositionsA->Caption =  vclstr(c.str());
 
 	//Populate, update frame with data from process
     mParallel = dynamic_cast<ParallelProcess*>(pp);
@@ -131,6 +138,71 @@ void __fastcall TParallelProcessesFrame::addMoveAExecute(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
+void __fastcall TParallelProcessesFrame::addProcess(TObject *Sender)
+{
+	if(!mParallel)
+    {
+    	Log(lError) << "Tried to add process to NULL sequence";
+    	return;
+    }
+
+    //Ask the user for type of process/event to create
+   	TSelectProcessTypeDialog* pTypeForm = new TSelectProcessTypeDialog(this);
+
+    //We will need to disable some items on this form
+	pTypeForm->setOpenedForParallelProcess();
+   	int mr = pTypeForm->ShowModal();
+
+   	if(mr != mrOk)
+	{
+    	return;
+    }
+
+    Process *p = NULL;
+
+    //get process type
+    int pType = pTypeForm->mProcTypeRG->ItemIndex;
+
+    if(pType == 3) //Arraycam Request
+    {
+    	p = new ArrayCamRequestProcess(mProcessSequencer.getArrayCamClient(), "ArrayCam Process");
+    }
+
+    else if(pType == 4) //Absolute move
+    {
+        p = new AbsoluteMove("");
+    }
+    else if(pType == 5) //Move at angle
+    {
+        p = new MoveCoverSlipAtAngleProcess("");
+    }
+
+    else if(pType == 6) //Home motor
+    {
+        p = new HomeMotor("");
+    }
+    else
+    {
+        Log(lError) << "Process Type Selection is not Suported!";
+        return;
+    }
+
+    //Add the move to the container.. this will give the move a name
+    mParallel->addProcess(p);
+
+    p->assignProcessSequence(mParallel->getProcessSequence());
+    mParallel->write();
+
+    //Add process to Listbox
+    int indx = mSubProcessesLB->Items->AddObject(p->getProcessName().c_str(), (TObject*) p);
+    mSubProcessesLB->ItemIndex = indx;
+
+    //Select the new process
+    selectItem(p);
+}
+
+
+//---------------------------------------------------------------------------
 void __fastcall TParallelProcessesFrame::HomeMotorAExecute(TObject *Sender)
 {
 	//Add a move to current process
@@ -148,7 +220,7 @@ void __fastcall TParallelProcessesFrame::HomeMotorAExecute(TObject *Sender)
     hm->assignProcessSequence(mParallel->getProcessSequence());
     mParallel->write();
 
-    //Add move to Listbox
+    //Add process to Listbox
     int indx = mSubProcessesLB->Items->AddObject(hm->getProcessName().c_str(), (TObject*) hm);
 	mSubProcessesLB->ItemIndex = indx;
 
@@ -202,7 +274,7 @@ void TParallelProcessesFrame::selectItem(Process* p)
    	mTArduinoServerCommandFrame->Visible = false;
     mArrayCamRequestFrame->Visible = false;
 	mTHomeMotorProcessFrame->Visible = false;
-
+    mMoveCoverSlipAtAngleProcessFrame->Visible = false;
 	if(dynamic_cast<AbsoluteMove*>(p))
     {
     	mTMotorMoveProcessFrame->populate(dynamic_cast<AbsoluteMove*>(p));
@@ -226,6 +298,12 @@ void TParallelProcessesFrame::selectItem(Process* p)
         mArrayCamRequestFrame->populate(dynamic_cast<ArrayCamRequestProcess*>(p));
         mArrayCamRequestFrame->Visible = true;
     }
+    else if(dynamic_cast<MoveCoverSlipAtAngleProcess*>(p) != NULL)
+    {
+        mMoveCoverSlipAtAngleProcessFrame->populate(dynamic_cast<MoveCoverSlipAtAngleProcess*>(p));
+        mMoveCoverSlipAtAngleProcessFrame->Visible = true;
+    }
+
 }
 
 void __fastcall TParallelProcessesFrame::SubProcessesLBClick(TObject *Sender)
@@ -241,95 +319,6 @@ void __fastcall TParallelProcessesFrame::SubProcessesLBClick(TObject *Sender)
     Process* p = mParallel->getProcess(subProcess);
     selectItem(p);
 }
-
-//---------------------------------------------------------------------------
-//id __fastcall TParallelProcessesFrame::mUpdateFinalPositionsAExecute(TObject *Sender)
-//
-//	//Populate, update frame with data from process
-//    if(!mParallel)
-//    {
-//    	return;
-//    }
-//
-//    if(mParallel->getNumberOfProcesses() == 0)
-//    {
-//    	MessageDlg("There are no moves to update", mtInformation, TMsgDlgButtons() << mbOK, 0);
-//    }
-//
-//    for(int i = 0; i < mParallel->getNumberOfProcesses(); i++)
-//    {
-//    	Process* p = mParallel->getProcess(i);
-//        if(!p)
-//        {
-//        	continue;
-//        }
-//
-//        //Check if the process is a move process, and if so check if we can
-//        //update its final position
-//        AbsoluteMove* am = dynamic_cast<AbsoluteMove*>(p);
-//        if(am)
-//        {
-//            APTMotor* mtr = mProcessSequencer.getArrayBot().getMotorWithName(am->getMotorName());
-//            if(mtr && isEqual(am->getPosition(), mtr->getPosition(), 1.e-4) == false)
-//            {
-//                stringstream msg;
-//                msg <<"Update final motor position for motor, device: "<<am->getMotorName() <<"\n("
-//                	<<am->getPosition()<<" -> "<< mtr->getPosition()<<")";
-//
-//                TYesNoForm* f = new TYesNoForm(this);
-//                f->Caption = "";
-//                f->mInfoLabel->Caption = msg.str().c_str();
-//                int res = f->ShowModal();
-//
-//                if(res == mrYes)
-//                {
-//                	am->setPosition(mtr->getPosition());
-//
-//                    //Save updated sequence
-//                    mProcessSequencer.saveCurrent();
-//                }
-//                delete f;
-//            }
-//            else
-//            {
-//            	if(!mtr)
-//                {
-//            		MessageDlg("We failed to get a reference to the selected motor.\nMake sure the motor are connected!", mtError, TMsgDlgButtons() << mbOK, 0);
-//                }
-//            }
-//
-//            //Check if this move has a trigger
-//            PositionalTrigger* pt = dynamic_cast<PositionalTrigger*>(am->getTrigger());
-//            if(pt)
-//            {
-//            	//Get the trigger function
-//                MoveAbsolute *fn = dynamic_cast<MoveAbsolute*>(pt->getTriggerFunction());
-//            	APTMotor* mtr = dynamic_cast<APTMotor*>(pt->getSubject());
-//                if(mtr && fn)
-//                {
-//                    if(isEqual(fn->getPosition(), mtr->getPosition(), 1.e-4) == false)
-//                    {
-//                        stringstream msg;
-//                        msg <<
-//                        "Update final TRIGGERED motor position for motor: "<<mtr->getName() <<
-//                        "\n("<<fn->getPosition()<<" -> "<< mtr->getPosition()<<")";
-//
-//                        if(MessageDlg(vclstr(msg.str()), mtConfirmation, TMsgDlgButtons() << mbYes<<mbNo, 0) == mrYes)
-//                        {
-//                            fn->setPosition(mtr->getPosition());
-//
-//                            //Save updated sequence
-//                            mProcessSequencer.saveCurrent();
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    //Update UI
-//	selectAndClickListBoxItem(mSubProcessesLB, 0);
-//}
 
 //---------------------------------------------------------------------------
 void __fastcall TParallelProcessesFrame::mRenameBtnClick(TObject *Sender)
@@ -376,4 +365,3 @@ Process* TParallelProcessesFrame::getCurrentlySelectedSubProcess()
     }
     return NULL;
 }
-

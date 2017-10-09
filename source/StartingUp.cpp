@@ -123,11 +123,15 @@ void __fastcall	TMain::setupUIFrames()
 	//Setup JoyStick;
 
     //Over ride joysticks button events  (cycle speeds and XY motions)
-    mAB.getJoyStick().setButtonEvents(5,  NULL, onJSButton5Click);
-    mAB.getJoyStick().setButtonEvents(6,  NULL, onJSButton6Click);
+    //5 and 7, control the zoom
+    mAB.getJoyStick().setButtonEvents(5,  onJSButton5Down, NULL);
+    mAB.getJoyStick().setButtonEvents(7,  onJSButton7Down, NULL);
 
-    //!Button 14 emergency stop
-    mAB.getJoyStick().setButtonEvents(14, NULL, onJSButton14Click);
+    //Cycle speeds
+    mAB.getJoyStick().setButtonEvents(6,  onJSButton6Click, NULL);
+
+    //!Button 14: emergency stop
+    mAB.getJoyStick().setButtonEvents(14, onJSButton14Click, NULL);
 
     //JoyStick Settings CB
     JoyStickSettings& js = mAB.getJoyStickSettings();

@@ -38,11 +38,18 @@ __published:	// IDE-managed Components
 	mtkFloatLabel *LatAccL;
 	TPropertyCheckBox *EnableParallelWhiskerMoveCB;
 	TPropertyCheckBox *FetchAngleFromCSAngleMotorCB;
+	TGroupBox *StayAtBeachGB;
+	TFloatLabeledEdit *DeltaZE;
+	TFloatLabeledEdit *YMoveE;
+	TPropertyCheckBox *LeaveWhiskeratBeachCB;
+	TFloatLabeledEdit *ZMoveE;
+	TFloatLabeledEdit *YMoveScalingE;
 	void __fastcall EditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
 	void __fastcall mActionInfoClick(TObject *Sender);
 	void __fastcall EnableParallelWhiskerMoveCBClick(TObject *Sender);
 	void __fastcall FetchAngleFromCSAngleMotorCBClick(TObject *Sender);
+	void __fastcall LeaveWhiskeratBeachCBClick(TObject *Sender);
 
     private:	// User declarations
         MoveCoverSlipAtAngleProcess*        mMoveCoverSlipAtAngleProcess;
@@ -53,7 +60,6 @@ __published:	// IDE-managed Components
     public:		// User declarations
                         __fastcall 			TMoveCoverSlipAtAngleProcessFrame(ProcessSequencer& ps, TComponent* Owner);
         void            		   			populate(MoveCoverSlipAtAngleProcess* m);
-        void            		   			rePopulate(MoveCoverSlipAtAngleProcess* m);
 };
 
 extern PACKAGE TMoveCoverSlipAtAngleProcessFrame *MoveCoverSlipAtAngleProcessFrame;

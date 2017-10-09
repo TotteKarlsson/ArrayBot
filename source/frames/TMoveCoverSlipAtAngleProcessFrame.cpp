@@ -40,7 +40,6 @@ __fastcall TMoveCoverSlipAtAngleProcessFrame::TMoveCoverSlipAtAngleProcessFrame(
 //---------------------------------------------------------------------------
 void TMoveCoverSlipAtAngleProcessFrame::populate(MoveCoverSlipAtAngleProcess* m)
 {
-	//Populate the frame
 	if(!m)
     {
     	return;
@@ -53,7 +52,13 @@ void TMoveCoverSlipAtAngleProcessFrame::populate(MoveCoverSlipAtAngleProcess* m)
 	mLiftAngleE->setValue(		    mMoveCoverSlipAtAngleProcess->getLiftAngle());
 	mLiftHeightE->setValue(		    mMoveCoverSlipAtAngleProcess->getLiftHeight());
 
-    EnableParallelWhiskerMoveCB->Checked = mMoveCoverSlipAtAngleProcess->getMoveWhiskerInParallel();
+	DeltaZE->setValue(				mMoveCoverSlipAtAngleProcess->getLWBBDeltaZ());
+	YMoveE->setValue( 				mMoveCoverSlipAtAngleProcess->getLWBB_Y_Move());
+	ZMoveE->setValue( 				mMoveCoverSlipAtAngleProcess->getLWBB_Z_Move());
+	YMoveScalingE->setValue(   		mMoveCoverSlipAtAngleProcess->getYMoveScaling());
+
+    EnableParallelWhiskerMoveCB->Checked 	= mMoveCoverSlipAtAngleProcess->getMoveWhiskerInParallel();
+	LeaveWhiskeratBeachCB->Checked	 		= mMoveCoverSlipAtAngleProcess->getLeaveWhiskerByBeach();
 
     //Validate motors
     if(!mAB.getCoverSlipUnit().getZMotor() || !mAB.getCoverSlipUnit().getYMotor() || !mAB.getWhiskerUnit().getZMotor() || !mAB.getWhiskerUnit().getYMotor())
@@ -71,6 +76,25 @@ void TMoveCoverSlipAtAngleProcessFrame::populate(MoveCoverSlipAtAngleProcess* m)
 	mMoveCoverSlipAtAngleProcess->calculateLift(mAB);
 	LatVelL->SetValue(mMoveCoverSlipAtAngleProcess->getLateralVelocity());
     LatAccL->SetValue(mMoveCoverSlipAtAngleProcess->getLateralAcceleration());
+
+    //Stay at beach?
+	if(EnableParallelWhiskerMoveCB->Checked)
+    {
+	    LeaveWhiskeratBeachCB->Enabled = true;
+		if(LeaveWhiskeratBeachCB->Checked)
+    	{
+    		enableDisableGroupBox(StayAtBeachGB, true);
+        }
+        else
+        {
+    		enableDisableGroupBox(StayAtBeachGB, false);
+        }
+    }
+    else
+    {
+	    LeaveWhiskeratBeachCB->Enabled 		= false;
+    	enableDisableGroupBox(StayAtBeachGB, false);
+    }
 
     if(FetchAngleFromCSAngleMotorCB->Checked)
     {
@@ -94,13 +118,17 @@ void __fastcall TMoveCoverSlipAtAngleProcessFrame::EditKeyDown(TObject *Sender, 
     	return;
     }
 
-    mMoveCoverSlipAtAngleProcess->setLiftVelocity(mLiftVelocityE->getValue());
-    mMoveCoverSlipAtAngleProcess->setLiftAcceleration(mLiftAccE->getValue());
-    mMoveCoverSlipAtAngleProcess->setLiftAngle(mLiftAngleE->getValue());
-    mMoveCoverSlipAtAngleProcess->setLiftHeight(mLiftHeightE->getValue());
+    mMoveCoverSlipAtAngleProcess->setLiftVelocity(		mLiftVelocityE->getValue());
+    mMoveCoverSlipAtAngleProcess->setLiftAcceleration(	mLiftAccE->getValue());
+    mMoveCoverSlipAtAngleProcess->setLiftAngle(         mLiftAngleE->getValue());
+    mMoveCoverSlipAtAngleProcess->setLiftHeight(        mLiftHeightE->getValue());
+	mMoveCoverSlipAtAngleProcess->setLWBBDeltaZ(        DeltaZE->getValue());
+	mMoveCoverSlipAtAngleProcess->setLWBB_Y_Move(       YMoveE->getValue());
+	mMoveCoverSlipAtAngleProcess->setLWBB_Z_Move(       ZMoveE->getValue());
+	mMoveCoverSlipAtAngleProcess->setYMoveScaling(      YMoveScalingE->getValue());
 
-	mProcessSequencer.saveCurrent();
     populate(mMoveCoverSlipAtAngleProcess);
+	mProcessSequencer.saveCurrent();
 }
 
 //---------------------------------------------------------------------------
@@ -127,12 +155,14 @@ void __fastcall TMoveCoverSlipAtAngleProcessFrame::mActionInfoClick(TObject *Sen
         mActionInfo->Caption = vclstr(newText);
     }
     delete t;
+	mProcessSequencer.saveCurrent();
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMoveCoverSlipAtAngleProcessFrame::EnableParallelWhiskerMoveCBClick(TObject *Sender)
 {
 	mMoveCoverSlipAtAngleProcess->setMoveWhiskerInParallel(EnableParallelWhiskerMoveCB->Checked);
+    populate(mMoveCoverSlipAtAngleProcess);
 	mProcessSequencer.saveCurrent();
 }
 
@@ -154,6 +184,16 @@ void __fastcall TMoveCoverSlipAtAngleProcessFrame::FetchAngleFromCSAngleMotorCBC
     {
 	    mLiftAngleE->Enabled = true;
     }
+    populate(mMoveCoverSlipAtAngleProcess);
+	mProcessSequencer.saveCurrent();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMoveCoverSlipAtAngleProcessFrame::LeaveWhiskeratBeachCBClick(TObject *Sender)
+{
+	mMoveCoverSlipAtAngleProcess->setLeaveWhiskerByBeach(LeaveWhiskeratBeachCB->Checked);
+    populate(mMoveCoverSlipAtAngleProcess);
+	mProcessSequencer.saveCurrent();
 }
 
 

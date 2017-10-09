@@ -2,7 +2,7 @@ object ParallelProcessesFrame: TParallelProcessesFrame
   Left = 0
   Top = 0
   Width = 233
-  Height = 593
+  Height = 732
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -14,7 +14,7 @@ object ParallelProcessesFrame: TParallelProcessesFrame
     Left = 0
     Top = 0
     Width = 233
-    Height = 593
+    Height = 732
     Align = alLeft
     Caption = 'Actions'
     TabOrder = 0
@@ -22,7 +22,7 @@ object ParallelProcessesFrame: TParallelProcessesFrame
       Left = 2
       Top = 25
       Width = 229
-      Height = 199
+      Height = 303
       Align = alClient
       ItemHeight = 23
       TabOrder = 0
@@ -30,64 +30,43 @@ object ParallelProcessesFrame: TParallelProcessesFrame
     end
     object Panel1: TPanel
       Left = 2
-      Top = 224
+      Top = 328
       Width = 229
-      Height = 367
+      Height = 402
       Align = alBottom
       TabOrder = 1
       DesignSize = (
         229
-        367)
-      object Button1: TButton
-        Left = 13
-        Top = 22
-        Width = 200
-        Height = 60
-        Action = addMoveA
-        Anchors = [akLeft, akTop, akRight]
-        Caption = 'New Move'
-        TabOrder = 0
-      end
+        402)
       object Button2: TButton
         Left = 13
-        Top = 224
+        Top = 71
         Width = 200
         Height = 60
         Action = removeMoveA
         Anchors = [akLeft, akTop, akRight]
-        TabOrder = 1
-      end
-      object Button3: TButton
-        Left = 13
-        Top = 157
-        Width = 200
-        Height = 60
-        Action = newArrayCamRequestA
-        Anchors = [akLeft, akTop, akRight]
-        Caption = 'ArrayCam Request'
-        TabOrder = 2
+        TabOrder = 0
       end
       object mRenameBtn: TArrayBotButton
         Left = 13
-        Top = 292
+        Top = 139
         Width = 200
         Height = 60
         Anchors = [akLeft, akTop, akRight]
         Caption = 'Rename'
-        TabOrder = 3
+        TabOrder = 1
         OnClick = mRenameBtnClick
         SoundID = 'BUTTON_CLICK_4'
       end
-      object ArrayBotButton1: TArrayBotButton
+      object Button4: TButton
         Left = 13
-        Top = 89
+        Top = 3
         Width = 200
         Height = 60
-        Action = HomeMotorA
         Anchors = [akLeft, akTop, akRight]
-        Caption = 'Home Motor'
-        TabOrder = 4
-        SoundID = 'BUTTON_CLICK_4'
+        Caption = 'Add Process'
+        TabOrder = 2
+        OnClick = addProcess
       end
     end
   end

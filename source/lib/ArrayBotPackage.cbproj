@@ -266,6 +266,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="..\frames\TXYZUnitFrame.dfm"/>
         <FormResources Include="..\frames\TXYZPositionsFrame.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
+        <FormResources Include="..\frames\THomeMotorProcessFrame.dfm"/>
         <FormResources Include="..\frames\TArrayCamRequestFrame.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="..\forms\TEditSequenceForm.dfm"/>
@@ -280,7 +281,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="..\frames\TMotorFrame.dfm"/>
         <FormResources Include="..\frames\TParallelProcessesFrame.dfm"/>
         <FormResources Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.dfm"/>
-        <FormResources Include="..\frames\THomeMotorProcessFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
