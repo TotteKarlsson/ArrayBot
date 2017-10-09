@@ -1,3 +1,9 @@
+Release 0.9.2 (Oct 9)
+=======================
+* Added zoom in and out to joystick
+* Updated move CS at angle Process
+* Various JS button improvements
+
 Release 0.9.1 (Sept 18)
 =======================
 * Added a homing process, allowing to put homing into a ProcessSequence

@@ -88,7 +88,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
             gSplashForm = NULL;
         }
 
-		TStyleManager::TrySetStyle("Amakrits");
+		TStyleManager::TrySetStyle("Carbon");
 		Application->Title = "ArrayBot - Software for Microtomes";
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->ShowMainForm = false;
