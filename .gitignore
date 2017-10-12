@@ -47,3 +47,4 @@ Debug
 /apps/ArduinoServer/crash_dump_2
 /misc/Backup_of_graphics.cdr
 *.aps
+*.~dsk
