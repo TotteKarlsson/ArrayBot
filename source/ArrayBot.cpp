@@ -67,6 +67,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
                 Log(lInfo) << "Arraybot is already running!";
             }
 
+			MessageDlg("Arraybot is already running.\nPlease close or kill application before starting new instance.", mtWarning, TMsgDlgButtons() << mbOK, 0);
             return(1); // Exit program
         }
 

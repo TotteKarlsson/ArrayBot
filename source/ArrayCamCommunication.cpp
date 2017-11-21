@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
-
+#include "arraybot/apt/atAPTMotor.h"
 
 //---------------------------------------------------------------------------
 //Callback from socket client class
@@ -55,6 +55,34 @@ void TMain::onArrayCamMessageReceived(const string& msg)
             else if(msg == "IS_RECORDING=true")
             {
                 f.mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"RED_LED");
+            }
+            else if(startsWith("Move Whisker Forward", msg))
+            {
+                	StringList l(msg, ',');
+
+                //Second parameter is the distance
+                if(l.size() > 1)
+                {
+                	double distance = toDouble(l[1]);
+	                Log(lInfo) << "Moving whisker forward with distance: "<<distance;
+
+                    APTMotor* mtr = f.mAB.getWhiskerUnit().getYMotor();
+                    if(mtr)
+                    {
+                    	f.mAB.disableJoyStickAxes();
+                        double a = mtr->getAcceleration();
+                        double v = mtr->getVelocity();
+
+                        mtr->setVelocityParameters(5, 5, false);
+                    	mtr->moveRelative(distance, false);
+						mtr->setVelocityParameters(v, a, false);
+                    	f.mAB.enableJoyStickAxes();
+                    }
+                }
+                else
+                {
+                	Log(lError) << "The message: "<<msg<<" has bad format";
+                }
             }
         }
     };

@@ -237,10 +237,6 @@ void __fastcall mASStartBtnClick(TObject *Sender);
                                                 //onArrayCamMessageReceived
 		ArrayCamClient				        	mArrayCamClient;
 
-        							            //!Arraybot is allocated on the heap.
-                                                //!So that we can catch init exceptions in the
-                                                //!constructor of the main form
-        ArrayBot					            mAB;
 
           										//!The Process sequencer allow individual
                                                 //!processes to be executed in sequence
@@ -297,6 +293,13 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         END_MESSAGE_MAP(TForm)
 
 		TNewRibbonForm* 						mNewRibbonForm;
+
+
+        							            //!Arraybot is allocated on the heap.
+                                                //!So that we can catch init exceptions in the
+                                                //!constructor of the main form
+        ArrayBot					            mAB;
+
 };
 
 extern PACKAGE TMain *Main;
