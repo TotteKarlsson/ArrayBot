@@ -57,6 +57,19 @@ object ProcessSequenceControlForm: TProcessSequenceControlForm
     Font.Style = []
     ParentFont = False
   end
+  object ActiveLbl: TLabel
+    Left = 536
+    Top = 48
+    Width = 62
+    Height = 25
+    Caption = '... .. ...'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
   object mControlPanel: TPanel
     Left = 0
     Top = 140
@@ -115,7 +128,7 @@ object ProcessSequenceControlForm: TProcessSequenceControlForm
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      OnClick = mStopBtnClick
+      OnClick = StopBtnClick
       SoundID = 'BUTTON_CLICK_4'
     end
   end
@@ -123,7 +136,7 @@ object ProcessSequenceControlForm: TProcessSequenceControlForm
     Enabled = False
     Interval = 100
     OnTimer = mStatusTimerTimer
-    Left = 528
+    Left = 320
     Top = 24
   end
 end

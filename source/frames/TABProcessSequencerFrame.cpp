@@ -159,7 +159,7 @@ void __fastcall TABProcessSequencerFrame::mSequencesCBChange(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TABProcessSequencerFrame::mStartBtnClick(TObject *Sender)
+void __fastcall TABProcessSequencerFrame::StartBtnClick(TObject *Sender)
 {
     if(mStartBtn->Caption == "Start" )
     {

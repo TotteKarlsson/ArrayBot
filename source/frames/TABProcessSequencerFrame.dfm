@@ -25,7 +25,7 @@ object ABProcessSequencerFrame: TABProcessSequencerFrame
       Align = alLeft
       Caption = 'Start'
       TabOrder = 0
-      OnClick = mStartBtnClick
+      OnClick = StartBtnClick
     end
     object Panel2: TPanel
       Left = 1038

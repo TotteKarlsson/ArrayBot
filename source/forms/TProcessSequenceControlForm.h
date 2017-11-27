@@ -22,20 +22,23 @@ class PACKAGE TProcessSequenceControlForm : public TForm
         TLabel *mSequenceNameLbl;
         TLabel *mProcessNameLbl;
         TLabel *mNextProcessNameLbl;
+	TLabel *ActiveLbl;
         void __fastcall FormShow(TObject *Sender);
         void __fastcall mStatusTimerTimer(TObject *Sender);
         void __fastcall mStartResumeButtonClick(TObject *Sender);
         void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-        void __fastcall mStopBtnClick(TObject *Sender);
+        void __fastcall StopBtnClick(TObject *Sender);
 	void __fastcall mPauseBtnClick(TObject *Sender);
 
     private:
 		enum ProcessStatus {psNotStarted, psRunning, psPaused, psFinished, psUnknown};
     	ProcessSequencer&		mPS;
         ProcessStatus			mStatus;
+        string					mProgressString;
 
     public:
-        __fastcall TProcessSequenceControlForm(ProcessSequencer& s, TComponent* Owner);
+			        __fastcall TProcessSequenceControlForm(ProcessSequencer& s, TComponent* Owner);
+			        __fastcall TProcessSequenceControlForm::~TProcessSequenceControlForm();
 };
 
 extern PACKAGE TProcessSequenceControlForm *ProcessSequenceControlForm;

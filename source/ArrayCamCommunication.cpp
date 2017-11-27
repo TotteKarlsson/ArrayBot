@@ -28,13 +28,13 @@ void TMain::enableDisableArrayCamClientControls(bool enable)
 	//Disable ArrayCam client related components..
 	if(enable == true)
     {
-	    mArrayCamConnectionStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GREEN_LED");
-		mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GREEN_LED");
+	    mArrayCamConnectionStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, 	L"GREEN_LED");
+		mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, 			L"GREEN_LED");
     }
     else
     {
-		mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GRAY_LED");
-	    mArrayCamConnectionStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, L"GRAY_LED");
+		mArrayCamStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, 			L"GRAY_LED");
+	    mArrayCamConnectionStatusLED->Picture->Bitmap->LoadFromResourceName(NULL, 	L"GRAY_LED");
     }
 }
 
@@ -58,7 +58,7 @@ void TMain::onArrayCamMessageReceived(const string& msg)
             }
             else if(startsWith("Move Whisker Forward", msg))
             {
-                	StringList l(msg, ',');
+            	StringList l(msg, ',');
 
                 //Second parameter is the distance
                 if(l.size() > 1)
@@ -69,14 +69,12 @@ void TMain::onArrayCamMessageReceived(const string& msg)
                     APTMotor* mtr = f.mAB.getWhiskerUnit().getYMotor();
                     if(mtr)
                     {
-                    	f.mAB.disableJoyStickAxes();
                         double a = mtr->getAcceleration();
                         double v = mtr->getVelocity();
 
                         mtr->setVelocityParameters(5, 5, false);
                     	mtr->moveRelative(distance, false);
 						mtr->setVelocityParameters(v, a, false);
-                    	f.mAB.enableJoyStickAxes();
                     }
                 }
                 else

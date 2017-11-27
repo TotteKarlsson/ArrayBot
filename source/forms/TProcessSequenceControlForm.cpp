@@ -3,6 +3,7 @@
 #include "TProcessSequenceControlForm.h"
 #include "arraybot/process/atProcessSequencer.h"
 #include "mtkVCLUtils.h"
+#include "mtkLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TArrayBotBtn"
@@ -10,12 +11,18 @@
 TProcessSequenceControlForm *ProcessSequenceControlForm;
 
 using namespace mtk;
-
+string updateProgressString(const string& s);
 //---------------------------------------------------------------------------
 __fastcall TProcessSequenceControlForm::TProcessSequenceControlForm(ProcessSequencer& s, TComponent* Owner)
 	: TForm(Owner),
-    mPS(s)
+    mPS(s),
+    mProgressString("   .   ..   ...   .   ..   ...   ")
 {}
+
+__fastcall TProcessSequenceControlForm::~TProcessSequenceControlForm()
+{
+	Log(lDebug) << "Processing form is being destroyed";
+}
 
 //---------------------------------------------------------------------------
 void __fastcall TProcessSequenceControlForm::FormShow(TObject *Sender)
@@ -39,6 +46,8 @@ void __fastcall TProcessSequenceControlForm::mStatusTimerTimer(TObject *Sender)
     if(mPS.isRunning())
     {
 	    mStatus = psRunning;
+        mProgressString = updateProgressString(mProgressString);
+        ActiveLbl->Caption = vclstr(mProgressString);
     }
     else if(mPS.isPaused())
     {
@@ -105,7 +114,7 @@ void __fastcall TProcessSequenceControlForm::FormClose(TObject *Sender, TCloseAc
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TProcessSequenceControlForm::mStopBtnClick(TObject *Sender)
+void __fastcall TProcessSequenceControlForm::StopBtnClick(TObject *Sender)
 {
     mStatusTimer->Enabled = false;
 	mPS.stop();
@@ -118,4 +127,10 @@ void __fastcall TProcessSequenceControlForm::mPauseBtnClick(TObject *Sender)
 	mPS.pause();
 }
 
+string updateProgressString(const string& s)
+{
+	string newS(s);
 
+    std::rotate(newS.rbegin(), newS.rbegin() + 1, newS.rend());
+	return newS;
+}

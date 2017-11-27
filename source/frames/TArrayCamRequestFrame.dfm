@@ -18,11 +18,15 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
     Align = alTop
     Caption = 'ArrayCam Request'
     TabOrder = 0
+    DesignSize = (
+      441
+      193)
     object NameEdit: TSTDStringLabeledEdit
       Left = 21
       Top = 64
-      Width = 260
+      Width = 404
       Height = 31
+      Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 49
       EditLabel.Height = 23
       EditLabel.Caption = 'Name'
@@ -34,9 +38,10 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
     object ArrayCamRequestCB: TComboBox
       Left = 21
       Top = 128
-      Width = 260
+      Width = 404
       Height = 31
       Style = csDropDownList
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
       OnCloseUp = ArrayCamRequestCBCloseUp
       Items.Strings = (

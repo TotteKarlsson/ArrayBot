@@ -47,7 +47,7 @@ class PACKAGE TABProcessSequencerFrame : public TFrame
 	TArrayBotButton *ArrayBotButton1;
         void __fastcall mDeleteSequenceBtnClick(TObject *Sender);
         void __fastcall mAddSeqBtnClick(TObject *Sender);
-        void __fastcall mStartBtnClick(TObject *Sender);
+        void __fastcall StartBtnClick(TObject *Sender);
         void __fastcall mSaveSequenceBtnClick(TObject *Sender);
         void __fastcall mSequencesCBChange(TObject *Sender);
         void __fastcall mSequenceTimerTimer(TObject *Sender);

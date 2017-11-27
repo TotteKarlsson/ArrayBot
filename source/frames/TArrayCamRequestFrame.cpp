@@ -31,15 +31,17 @@ __fastcall TArrayCamRequestFrame::TArrayCamRequestFrame(ProcessSequencer& ps, TC
 
     //The combox items holds Arraycam requests text and enum values
     //If new type of request is added, it have to be made available the the user here
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStartVideoRecorder]),		reinterpret_cast<TObject*>(acrStartVideoRecorder));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStopVideoRecorder]), 		reinterpret_cast<TObject*>(acrStopVideoRecorder));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrTakeSnapShot]), 			reinterpret_cast<TObject*>(acrTakeSnapShot));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrEnableBarcodeScanner]), 	reinterpret_cast<TObject*>(acrEnableBarcodeScanner));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrDisableBarcodeScanner]), 	reinterpret_cast<TObject*>(acrDisableBarcodeScanner));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetZoomAndFocus]), 		reinterpret_cast<TObject*>(acrSetZoomAndFocus));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStartUC7]), 				reinterpret_cast<TObject*>(acrStartUC7));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStopUC7]), 				reinterpret_cast<TObject*>(acrStopUC7));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetLEDIntensity]), 	   	reinterpret_cast<TObject*>(acrSetLEDIntensity));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStartVideoRecorder]),		    reinterpret_cast<TObject*>(acrStartVideoRecorder));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStopVideoRecorder]), 		    reinterpret_cast<TObject*>(acrStopVideoRecorder));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrTakeSnapShot]), 			    reinterpret_cast<TObject*>(acrTakeSnapShot));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrEnableBarcodeScanner]), 	    reinterpret_cast<TObject*>(acrEnableBarcodeScanner));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrDisableBarcodeScanner]), 	    reinterpret_cast<TObject*>(acrDisableBarcodeScanner));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetZoomAndFocus]), 		    reinterpret_cast<TObject*>(acrSetZoomAndFocus));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStartUC7]), 				    reinterpret_cast<TObject*>(acrStartUC7));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStopUC7]), 				    reinterpret_cast<TObject*>(acrStopUC7));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetLEDIntensity]), 	   	    reinterpret_cast<TObject*>(acrSetLEDIntensity));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetMoveWhiskerForwardOff]),    reinterpret_cast<TObject*>(acrSetMoveWhiskerForwardOff));
+	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetMoveWhiskerForwardOn]),    	reinterpret_cast<TObject*>(acrSetMoveWhiskerForwardOn));
 }
 
 void TArrayCamRequestFrame::populate(Process* p)
@@ -76,16 +78,13 @@ void TArrayCamRequestFrame::populate(Process* p)
     }
 
     ArrayCamRequestCBCloseUp(NULL);
-
     FocusZoomGB->Align 	= alClient;
     LEDIntensityGB->Align 	= alClient;
-
   	EnableDisableFrame(this, true);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TArrayCamRequestFrame::EditKeyDown(TObject *Sender, WORD &Key,
-          TShiftState Shift)
+void __fastcall TArrayCamRequestFrame::EditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
 	if(Key == vkReturn)
     {

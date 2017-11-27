@@ -413,9 +413,6 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
     }
     else if(MainPC->TabIndex == pcMotors)
     {
-		//Disable joystick
-	 	mAB.disableJoyStick();
-
         //Disable motor status timers
         mXYZUnitFrame1->enable();
         mXYZUnitFrame2->enable();
