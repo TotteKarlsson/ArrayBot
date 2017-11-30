@@ -121,9 +121,14 @@ void __fastcall	TMain::setupUIFrames()
     f2->Align = alTop;
 
 	//Setup JoyStick;
+	//Button 9 Trigger ribbon separator
+    mAB.getJoyStick().setButtonEvents(9,  onJSButton9Down, NULL);
+
+	//Button 8 (front bottom right) toggles if 5 and 7 are doing zoom
+    mAB.getJoyStick().setButtonEvents(8,  onJSButton8Down, NULL);
 
     //Over ride joysticks button events  (cycle speeds and XY motions)
-    //5 and 7, control the zoom
+    //5 and 7, control the zoom, or focus
     mAB.getJoyStick().setButtonEvents(5,  onJSButton5Down, NULL);
     mAB.getJoyStick().setButtonEvents(7,  onJSButton7Down, NULL);
 

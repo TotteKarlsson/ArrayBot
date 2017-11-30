@@ -148,16 +148,42 @@ void __fastcall TMain::mXYCtrlRGClick(TObject *Sender)
     }
 }
 
+void TMain::onJSButton9Down()
+{
+	//Fire the ribbon separator
+   	mArrayCamClient.triggerRibbonSeparator();
+}
+
+void TMain::onJSButton8Down()
+{
+	//Don't really do anyting...
+}
+
 void TMain::onJSButton5Down()
 {
 	//ZoomIN navitar
-    mArrayCamClient.zoomIn(500);
+    //Check if jsButton 8 is down
+    if(mAB.getJoyStick().getButton(8).isDown())
+    {
+    	mArrayCamClient.focusIn(300);
+    }
+    else
+    {
+    	mArrayCamClient.zoomIn(500);
+    }
 }
 
 void TMain::onJSButton7Down()
 {
 	//ZoomIN navitar
-    mArrayCamClient.zoomOut(500);
+    if(mAB.getJoyStick().getButton(8).isDown())
+    {
+	    mArrayCamClient.focusOut(500);
+    }
+    else
+    {
+	    mArrayCamClient.zoomOut(500);
+    }
 }
 
 void TMain::onJSButton6Click()

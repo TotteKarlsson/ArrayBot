@@ -270,9 +270,13 @@ void __fastcall mASStartBtnClick(TObject *Sender);
         MotorWiggler							mTheWiggler;
 
 
-        								        //JS button #5 and 7 controls camera zoom cycles XY control
+        								        //JS button #5 and 7 controls camera zoom, or focus, if btn8 is pressed
+        void						            onJSButton8Down();
         void						            onJSButton5Down();
         void						            onJSButton7Down();
+
+												//Fire the ribbon separator
+        void						            onJSButton9Down();
 
         								        //JS button #6 cycles joystick speeds
         void						            onJSButton6Click();
