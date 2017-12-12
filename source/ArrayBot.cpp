@@ -28,7 +28,7 @@ string              gDateFormat                 = "%Y-%m-%d";
 string              gTimeFormat                 = "%H:%M:%S";
 bool                gIsDevelopmentRelease       = false;
 bool                gAppIsStartingUp            = true;
-bool                gHideSplash                 = true;
+bool                gHideSplash                 = false;
 TSplashForm*        gSplashForm                 = NULL;
 
 int __stdcall FindOtherWindow(HWND hwnd, LPARAM lParam);
