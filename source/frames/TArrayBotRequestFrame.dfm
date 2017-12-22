@@ -35,7 +35,7 @@ object ArrayBotRequestFrame: TArrayBotRequestFrame
       TabOrder = 1
       OnKeyDown = EditKeyDown
     end
-    object ArrayCamRequestCB: TComboBox
+    object ArrayBotRequestCB: TComboBox
       Left = 21
       Top = 128
       Width = 404
@@ -43,7 +43,7 @@ object ArrayBotRequestFrame: TArrayBotRequestFrame
       Style = csDropDownList
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
-      OnCloseUp = ArrayCamRequestCBCloseUp
+      OnCloseUp = ArrayBotRequestCBCloseUp
       Items.Strings = (
         'Start Video Recorder'
         'Stop Video Recorder'

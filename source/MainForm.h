@@ -299,11 +299,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 		TNewRibbonForm* 						mNewRibbonForm;
 
 
-        							            //!Arraybot is allocated on the heap.
-                                                //!So that we can catch init exceptions in the
-                                                //!constructor of the main form
         ArrayBot					            mAB;
-
 };
 
 extern PACKAGE TMain *Main;

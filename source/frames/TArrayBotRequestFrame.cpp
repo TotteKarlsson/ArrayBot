@@ -1,12 +1,13 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TArrayBotRequestFrame.h"
+
+//#include "core/atProcess.h"
+#include "arraybot/process/atArrayBotRequestProcess.h"
+//#include "mtkLogger.h"
+//#include "arraybot/atArrayBot.h"
+#include "arraybot/atArrayBotProtocol.h"
 #include "mtkVCLUtils.h"
-#include "core/atProcess.h"
-#include "arraybot/process/atArrayCamRequestProcess.h"
-#include "mtkLogger.h"
-#include "arraybot/atArrayBot.h"
-#include "arraycam/atArrayCamProtocol.h"
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TFloatLabeledEdit"
@@ -19,65 +20,55 @@ TArrayBotRequestFrame *ArrayBotRequestFrame;
 
 int TArrayBotRequestFrame::mFrameNr = 0;
 
-extern ArrayCamProtocol gArrayCamProtocol;
+extern ArrayBotProtocol gArrayBotProtocol;
 __fastcall TArrayBotRequestFrame::TArrayBotRequestFrame(ProcessSequencer& ps, TComponent* Owner)
 	: TFrame(Owner),
      mProcessSequencer(ps)
 {
-    TFrame::Name = vclstr("ArrayCamFrame_" + mtk::toString(++mFrameNr));
-	ArrayCamRequestCB->Clear();
-	ArrayCamProtocol ap;
+    TFrame::Name = vclstr("ArrayBotFrame_" + mtk::toString(++mFrameNr));
+	ArrayBotRequestCB->Clear();
+	ArrayBotProtocol ap;
 	//    string test = ap[acrStartVideoRecorder];
 
-    //The combox items holds Arraycam requests text and enum values
+    //The combox items holds ArrayBot requests text and enum values
     //If new type of request is added, it have to be made available the the user here
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStartVideoRecorder]),		    reinterpret_cast<TObject*>(acrStartVideoRecorder));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStopVideoRecorder]), 		    reinterpret_cast<TObject*>(acrStopVideoRecorder));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrTakeSnapShot]), 			    reinterpret_cast<TObject*>(acrTakeSnapShot));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrEnableBarcodeScanner]), 	    reinterpret_cast<TObject*>(acrEnableBarcodeScanner));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrDisableBarcodeScanner]), 	    reinterpret_cast<TObject*>(acrDisableBarcodeScanner));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetZoomAndFocus]), 		    reinterpret_cast<TObject*>(acrSetZoomAndFocus));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStartUC7]), 				    reinterpret_cast<TObject*>(acrStartUC7));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrStopUC7]), 				    reinterpret_cast<TObject*>(acrStopUC7));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetLEDIntensity]), 	   	    reinterpret_cast<TObject*>(acrSetLEDIntensity));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetMoveWhiskerForwardOff]),    reinterpret_cast<TObject*>(acrSetMoveWhiskerForwardOff));
-	ArrayCamRequestCB->Items->AddObject(vclstr(ap[acrSetMoveWhiskerForwardOn]),    	reinterpret_cast<TObject*>(acrSetMoveWhiskerForwardOn));
+//	ArrayBotRequestCB->Items->AddObject(vclstr(ap[acrSetMoveWhiskerForwardOn]),    	reinterpret_cast<TObject*>(acrSetMoveWhiskerForwardOn));
 }
 
 void TArrayBotRequestFrame::populate(Process* p)
 {
 	//Populate, update frame with data from process
-    mArrayCamRequest = dynamic_cast<ArrayCamRequestProcess*>(p);
+    mArrayBotRequest = dynamic_cast<ArrayBotRequestProcess*>(p);
     if(!p)
     {
     	EnableDisableFrame(this, false);
         return;
     }
 
-    NameEdit->setValue(mArrayCamRequest->getProcessName());
+    NameEdit->setValue(mArrayBotRequest->getProcessName());
 
     //What kind of request do we have?
-    for(int i = 0; i < ArrayCamRequestCB->Items->Count; i++)
+    for(int i = 0; i < ArrayBotRequestCB->Items->Count; i++)
     {
-    	ACMessageID ar = (ACMessageID) ArrayCamRequestCB->Items->Objects[i];
-		if(mArrayCamRequest->getRequest() == ar)
+    	ABMessageID ar = (ABMessageID) ArrayBotRequestCB->Items->Objects[i];
+		if(mArrayBotRequest->getRequest() == ar)
         {
-        	ArrayCamRequestCB->ItemIndex = i;
+        	ArrayBotRequestCB->ItemIndex = i;
 
-            if(ar == acrSetZoomAndFocus)
-            {
-                FocusE->setValue(mArrayCamRequest->getParameter1().getValue());
-                ZoomE->setValue(mArrayCamRequest->getParameter2().getValue());
-            }
-            else if (ar == acrSetLEDIntensity)
-            {
-	            LEDIntensityE->setValue(mArrayCamRequest->getParameter1().getValue());
-            }
+//            if(ar == acrSetZoomAndFocus)
+//            {
+//                FocusE->setValue(mArrayBotRequest->getParameter1().getValue());
+//                ZoomE->setValue(mArrayBotRequest->getParameter2().getValue());
+//            }
+//            else if (ar == acrSetLEDIntensity)
+//            {
+//	            LEDIntensityE->setValue(mArrayBotRequest->getParameter1().getValue());
+//            }
             break;
         }
     }
 
-    ArrayCamRequestCBCloseUp(NULL);
+    ArrayBotRequestCBCloseUp(NULL);
     FocusZoomGB->Align 	= alClient;
     LEDIntensityGB->Align 	= alClient;
   	EnableDisableFrame(this, true);
@@ -88,33 +79,33 @@ void __fastcall TArrayBotRequestFrame::EditKeyDown(TObject *Sender, WORD &Key, T
 {
 	if(Key == vkReturn)
     {
-    	mArrayCamRequest->setProcessName(NameEdit->getValue());
+    	mArrayBotRequest->setProcessName(NameEdit->getValue());
    	    mProcessSequencer.saveCurrent();
     }
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TArrayBotRequestFrame::ArrayCamRequestCBCloseUp(TObject *Sender)
+void __fastcall TArrayBotRequestFrame::ArrayBotRequestCBCloseUp(TObject *Sender)
 {
-    if(mArrayCamRequest && ArrayCamRequestCB->ItemIndex >= 0)
+    if(mArrayBotRequest && ArrayBotRequestCB->ItemIndex >= 0)
     {
-		ACMessageID r = (ACMessageID) ArrayCamRequestCB->Items->Objects[ArrayCamRequestCB->ItemIndex];
-        mArrayCamRequest->setRequest(r);
+		ABMessageID r = (ABMessageID) ArrayBotRequestCB->Items->Objects[ArrayBotRequestCB->ItemIndex];
+        mArrayBotRequest->setRequest(r);
 
        	FocusZoomGB->Visible 	= false;
        	LEDIntensityGB->Visible = false;
         switch(r)
         {
-            case acrSetZoomAndFocus:
-            	FocusZoomGB->Visible = true;
-	            FocusZoomGB->Align = alClient;
-            break;
-
-            case acrSetLEDIntensity:
-            	LEDIntensityGB->Visible = true;
-                LEDIntensityGB->Align = alClient;
-
-            break;
+//            case acrSetZoomAndFocus:
+//            	FocusZoomGB->Visible = true;
+//	            FocusZoomGB->Align = alClient;
+//            break;
+//
+//            case acrSetLEDIntensity:
+//            	LEDIntensityGB->Visible = true;
+//                LEDIntensityGB->Align = alClient;
+//
+//            break;
         }
 
         mProcessSequencer.saveCurrent();
@@ -131,17 +122,17 @@ void __fastcall TArrayBotRequestFrame::IntEditKeyDown(TObject *Sender, WORD &Key
     {
         if(e == FocusE)
         {
-        	mArrayCamRequest->getParameter1().setValue(e->getValue());
+        	mArrayBotRequest->getParameter1().setValue(e->getValue());
         }
 
         if(e == ZoomE)
         {
-        	mArrayCamRequest->getParameter2().setValue(e->getValue());
+        	mArrayBotRequest->getParameter2().setValue(e->getValue());
         }
 
         if(e == LEDIntensityE)
         {
-        	mArrayCamRequest->getParameter1().setValue(e->getValue());
+        	mArrayBotRequest->getParameter1().setValue(e->getValue());
         }
 	    mProcessSequencer.saveCurrent();
     }

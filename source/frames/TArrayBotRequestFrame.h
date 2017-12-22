@@ -1,6 +1,5 @@
 #ifndef TArrayBotRequestFrameH
 #define TArrayBotRequestFrameH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -12,29 +11,30 @@
 #include "TSTDStringLabeledEdit.h"
 #include "TFloatLabeledEdit.h"
 #include "TIntegerLabeledEdit.h"
-
+//---------------------------------------------------------------------------
 class Process;
 class ArrayBotRequestProcess;
+
 //---------------------------------------------------------------------------
 class PACKAGE TArrayBotRequestFrame : public TFrame
 {
 	__published:
         TGroupBox *GroupBox1;
 	TSTDStringLabeledEdit *NameEdit;
-	TComboBox *ArrayCamRequestCB;
+	TComboBox *ArrayBotRequestCB;
 	TGroupBox *FocusZoomGB;
 	TIntegerLabeledEdit *FocusE;
 	TIntegerLabeledEdit *ZoomE;
 	TGroupBox *LEDIntensityGB;
 	TIntegerLabeledEdit *LEDIntensityE;
         void __fastcall EditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall ArrayCamRequestCBCloseUp(TObject *Sender);
+	void __fastcall ArrayBotRequestCBCloseUp(TObject *Sender);
 	void __fastcall IntEditKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
 
     private:
         ProcessSequencer&				mProcessSequencer;
-		ArrayCamRequestProcess*			mArrayCamRequest;
+		ArrayBotRequestProcess*			mArrayBotRequest;
 		static int						mFrameNr;
 	public:
 							__fastcall  TArrayBotRequestFrame(ProcessSequencer& ps, TComponent* Owner);
