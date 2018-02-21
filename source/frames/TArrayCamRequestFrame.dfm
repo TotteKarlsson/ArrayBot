@@ -1,8 +1,8 @@
 object ArrayCamRequestFrame: TArrayCamRequestFrame
   Left = 0
   Top = 0
-  Width = 441
-  Height = 457
+  Width = 450
+  Height = 477
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -19
@@ -13,18 +13,18 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 441
+    Width = 450
     Height = 193
     Align = alTop
     Caption = 'ArrayCam Request'
     TabOrder = 0
     DesignSize = (
-      441
+      450
       193)
     object NameEdit: TSTDStringLabeledEdit
       Left = 21
       Top = 64
-      Width = 404
+      Width = 413
       Height = 31
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 49
@@ -38,7 +38,7 @@ object ArrayCamRequestFrame: TArrayCamRequestFrame
     object ArrayCamRequestCB: TComboBox
       Left = 21
       Top = 128
-      Width = 404
+      Width = 413
       Height = 31
       Style = csDropDownList
       Anchors = [akLeft, akTop, akRight]

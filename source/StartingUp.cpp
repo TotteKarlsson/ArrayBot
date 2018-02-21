@@ -75,9 +75,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormShow(TObject *Sender)
-{
-
-}
+{}
 
 void TMain::setupProperties()
 {
