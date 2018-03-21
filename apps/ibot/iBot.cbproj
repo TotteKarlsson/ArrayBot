@@ -57,7 +57,7 @@
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <IncludePath>..\..\source\vcl\datamodules\;iBotUI\Source\;iBotUI\Source\Core\;iBotUI\Source\Frames\;..\..\;$(IncludePath)</IncludePath>
         <Multithreaded>true</Multithreaded>
-        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;abVCLCore.lib;ArrayBotPackage.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver250.lib;vcldb.lib;dbxcds.lib;;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;abVCLCore.lib;ArrayBotPackage.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -74,13 +74,13 @@
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <PackageImports>bindcompvcl;TeeUI;CSKGenerator;adortl;DbxDevartSQLiteDriver170;DuneComponents;VCLCommon;RaizeComponentsTrialVclDb;vcltouch;bcbsmp;bindcompfmx;DBXSqliteDriver;CustomIPTransport;RaizeComponentsTrialVcl;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;TeeDB;IndyCore;IndySystem;dsnapcon;DBXInterBaseDriver;Tee;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;IndyProtocols;bdertl;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;$(PackageImports)</PackageImports>
+        <PackageImports>bindcompvcl;TeeUI;CSKGenerator;adortl;DbxDevartSQLiteDriver250;DuneComponents;;RaizeComponentsTrialVclDb;vcltouch;bcbsmp;bindcompfmx;DBXSqliteDriver;CustomIPTransport;RaizeComponentsTrialVcl;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;TeeDB;IndyCore;IndySystem;dsnapcon;DBXInterBaseDriver;Tee;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;IndyProtocols;bdertl;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;$(PackageImports)</PackageImports>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
-        <PackageImports>bindcompvcl;TeeUI;adortl;VCLCommon;RaizeComponentsTrialVclDb;vcltouch;bindcompfmx;DBXSqliteDriver;CustomIPTransport;RaizeComponentsTrialVcl;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;TeeDB;dsnapcon;DBXInterBaseDriver;Tee;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;$(PackageImports)</PackageImports>
+        <PackageImports>bindcompvcl;TeeUI;adortl;;RaizeComponentsTrialVclDb;vcltouch;bindcompfmx;DBXSqliteDriver;CustomIPTransport;RaizeComponentsTrialVcl;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;TeeDB;dsnapcon;DBXInterBaseDriver;Tee;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;$(PackageImports)</PackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
@@ -119,11 +119,11 @@
 REM mkdir $(OUTPUTDIR)\styles
 REM xcopy ..\Redist\styles $(OUTPUTDIR)\styles /e /y
 $(PostBuildEvent)]]></PostBuildEvent>
-        <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
-        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <IncludePath>$(DEBUG_BUILD)\include;$(AB_ROOT)\source\vcl\datamodules;$(IncludePath)</IncludePath>
+        <FinalOutputDir>$(DEBUG_BCC32)\bin</FinalOutputDir>
+        <ILINK_LibraryPath>$(DEBUG_BCC32)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>$(DEBUG_BCC32)\include;$(AB_ROOT)\source\vcl\datamodules;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dsnap.bpi;DbxDevartSQLiteDriver170.bpi;vcldb.bpi;dbxcds.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;CSKGenerator.bpi;adortl.bpi;DuneComponents.bpi;bindengine.bpi;bindcomp.bpi;bindcompvcl.bpi;TeeDB.bpi;TeeUI.bpi;Tee.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dsnap.bpi;DbxDevartSQLiteDriver250.bpi;vcldb.bpi;dbxcds.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;CSKGenerator.bpi;adortl.bpi;DuneComponents.bpi;bindengine.bpi;bindcomp.bpi;bindcompvcl.bpi;TeeDB.bpi;TeeUI.bpi;Tee.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>

@@ -44,13 +44,13 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		// Initialize restart code
 		// Check if this instance is restarted and
 		// wait while previos instance finish
-		if (mtk::checkForCommandLineFlag("--Restart"))
-		{
-            //TODO: Fix this.. not working properly..
-            //            MessageDlg("Wait...", mtWarning, TMsgDlgButtons() << mbOK, 0);
-			mtk::WaitForPreviousProcessToFinish(gRestartMutexName);
-            Sleep(1000);
-		}
+//		if (mtk::checkForCommandLineFlag("--Restart"))
+//		{
+//            //TODO: Fix this.. not working properly..
+//            //            MessageDlg("Wait...", mtWarning, TMsgDlgButtons() << mbOK, 0);
+//			mtk::WaitForPreviousProcessToFinish(gRestartMutexName);
+//            Sleep(1000);
+//		}
 
         //Look at this later... does not work yet
         const char appMutexName [] = "arrayBotAppMutex";

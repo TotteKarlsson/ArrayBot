@@ -1,8 +1,6 @@
 #ifndef amlDataStructuresH
 #define amlDataStructuresH
-
-#include "Poco/DateTime.h"
-#include <System.hpp>
+#include <windows.h>
 
 enum ApplicationMessageEnum
 {
@@ -10,13 +8,11 @@ enum ApplicationMessageEnum
     abSequencerUpdate
 };
 
-using Poco::DateTime;
-
 struct AppMessageStruct;
 
 struct mlxStructMessage
 {
-	Cardinal            Msg;
+	unsigned int         Msg;
 	int                 wparam;
 	AppMessageStruct*   lparam;
 	LRESULT             Result;
@@ -28,6 +24,5 @@ struct AppMessageStruct
 	void*                   mData;
 
 };
-
 
 #endif

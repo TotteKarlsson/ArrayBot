@@ -43,7 +43,7 @@
         <ILINK_LibraryPath>..\..\source\vcl\datamodules\;..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <ProjectType>CppVCLApplication</ProjectType>
         <IncludePath>..\..\source\vcl\datamodules\;..\..\source\database\forms\;..\..\source\database\;P:\ArrayBot\apps\atdbentry\;..\..\source\vcl;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;abVCLCore.lib;DuneComponents.lib;RaizeComponentsTrialVcl.lib;dsnap.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dbxcds.lib;DbxDevartSQLiteDriver170.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;;vclactnband.lib;vclx.lib;abVCLCore.lib;DuneComponents.lib;RaizeComponentsTrialVcl.lib;dsnap.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dbxcds.lib;DbxDevartSQLiteDriver250.lib</AllPackageLibs>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <Multithreaded>true</Multithreaded>
         <_TCHARMapping>wchar_t</_TCHARMapping>
@@ -58,7 +58,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <PackageImports>CSKGenerator;VCLCommon;ArrayBotPackage;fs17;frx17;bindcompfmx;DBXSqliteDriver;vcldbx;RaizeComponentsTrialVcl;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;DbxDevartSQLiteDriver170;vclie;HsBarcode1DRun;RaizeComponentsTrialVclDb;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;IndyCore;vcl;fmxase;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;frxDB17;inet;fsDB17;fmxobj;abVCLCore;vclx;frxe17;inetdbxpress;webdsnap;fmxdae;bdertl;DuneComponents;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
+        <PackageImports>CSKGenerator;;ArrayBotPackage;fs17;frx17;bindcompfmx;DBXSqliteDriver;vcldbx;RaizeComponentsTrialVcl;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;DbxDevartSQLiteDriver250;vclie;HsBarcode1DRun;RaizeComponentsTrialVclDb;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;IndyCore;vcl;fmxase;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;frxDB17;inet;fsDB17;fmxobj;abVCLCore;vclx;frxe17;inetdbxpress;webdsnap;fmxdae;bdertl;DuneComponents;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
@@ -93,12 +93,12 @@
         <_TCHARMapping>char</_TCHARMapping>
         <Icon_MainIcon>AtDBEntry_Icon1.ico</Icon_MainIcon>
         <BCC_whid>false</BCC_whid>
-        <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>$(DEBUG_BCC32)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <Debugger_DebugSourcePath>P:\ArrayBot\source\vcl\components\;P:\libs\dsl\VCL\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <Defines>POCO_STATIC;$(Defines)</Defines>
-        <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
+        <IncludePath>$(DEBUG_BCC32)\include;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;abVCLCore.bpi;DuneComponents.bpi;RaizeComponentsTrialVcl.bpi;dsnap.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dbxcds.bpi;DbxDevartSQLiteDriver170.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;vclactnband.bpi;vclx.bpi;abVCLCore.bpi;DuneComponents.bpi;RaizeComponentsTrialVcl.bpi;dsnap.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dbxcds.bpi;DbxDevartSQLiteDriver250.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>

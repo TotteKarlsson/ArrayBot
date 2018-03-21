@@ -1,13 +1,13 @@
+#include <vcl.h>
 #pragma hdrstop
-#include <Winapi.Messages.hpp> //Have to put this one first :(
 #include "UIUtilities.h"
 #include "mtkLogger.h"
-#include "mtkUtils.h"
+//#include "mtkUtils.h"
 #include "mtkVCLUtils.h"
 #include "mtkRestartApplicationUtils.h"
 #include "abApplicationMessages.h"
-#include "mtkMoleculixException.h"
-#include "Poco/DateTimeFormatter.h"
+//#include "mtkMoleculixException.h"
+//#include "Poco/DateTimeFormatter.h"
 #pragma package(smart_init)
 
 using namespace mtk;

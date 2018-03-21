@@ -1,4 +1,3 @@
-//---------------------------------------------------------------------------
 #if defined DSL_STATIC
 	#pragma comment(lib, "mtkCommon-static.lib")
 	#pragma comment(lib, "mtkMath-static.lib")
@@ -17,4 +16,4 @@
 
 #pragma comment(lib, "ArrayBotPackage.bpi")
 #pragma comment(lib, "VCLCommon.bpi")
-#pragma comment(lib, "DuneForms.lib")
+#pragma comment(lib, "DuneForms.bpi")

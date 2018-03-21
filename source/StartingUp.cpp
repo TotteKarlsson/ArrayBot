@@ -19,7 +19,7 @@ extern string           gAppDataFolder;
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
 {
-	this->ReadRegistry();
+	this->readRegistry();
 	enableDisableUI(false);
 
 	this->Visible = true;

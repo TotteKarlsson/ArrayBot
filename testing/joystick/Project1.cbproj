@@ -38,7 +38,7 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <ILINK_LibraryPath>P:\tests\joystick\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <IncludePath>P:\tests\joystick\;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;Tee.lib;vclimg.lib;VCLCommon.lib;vclactnband.lib;vclx.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;Tee.lib;vclimg.lib;;vclactnband.lib;vclx.lib</AllPackageLibs>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
@@ -59,7 +59,7 @@
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <PackageImports>vtk;VCLCommon;bindcompfmx;DBXSqliteDriver;vcldbx;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;vclie;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;Intraweb;IndyCore;vcl;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;inet;vclx;inetdbxpress;webdsnap;bdertl;DuneComponents;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
+        <PackageImports>vtk;;bindcompfmx;DBXSqliteDriver;vcldbx;fmx;rtl;dbrtl;DbxClientDriver;IndySystem;TeeDB;bindcomp;inetdb;vclib;inetdbbde;DBXInterBaseDriver;Tee;DataSnapCommon;xmlrtl;ibxpress;DbxCommonDriver;vclimg;IndyProtocols;dbxcds;DBXMySQLDriver;MetropolisUILiveTile;soaprtl;vclactnband;bindengine;vcldb;bindcompdbx;vcldsnap;bindcompvcl;FMXTee;TeeUI;vclie;vcltouch;bcbsmp;websnap;CustomIPTransport;vclribbon;dsnap;IndyIPServer;Intraweb;IndyCore;vcl;IndyIPCommon;CloudService;dsnapcon;FmxTeeUI;inet;vclx;inetdbxpress;webdsnap;bdertl;DuneComponents;dbexpress;adortl;bcbie;IndyIPClient;$(PackageImports)</PackageImports>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
@@ -85,7 +85,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <LinkPackageImports>rtl.bpi;vcl.bpi;Tee.bpi;vclimg.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;Tee.bpi;vclimg.bpi;vclactnband.bpi;vclx.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>

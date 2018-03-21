@@ -29,7 +29,7 @@ object SplashForm: TSplashForm
     Height = 30
     Margins.Right = 15
     AutoSize = False
-    Caption = 'Smith Lab.  - Allen Institute 2016-2017'
+    Caption = 'Smith Lab.  - Allen Institute 2016-2018'
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -51,6 +51,16 @@ object SplashForm: TSplashForm
     inherited Image1: TImage
       Width = 164
       ExplicitWidth = 164
+    end
+    inherited logLabel: TLabel
+      Top = 216
+      Width = 534
+      Height = 69
+      AutoSize = False
+      WordWrap = True
+      ExplicitTop = 216
+      ExplicitWidth = 534
+      ExplicitHeight = 69
     end
     inherited Image2: TImage
       Width = 615

@@ -1,8 +1,10 @@
 #ifndef UIUtilitiesH
 #define UIUtilitiesH
+#include <windows.h>
 #include "abUIDataStructures.h"
 #include "mtkStringList.h"
 
+#define PACKAGE __declspec(package)
 //---------------------------------------------------------------------------
 PACKAGE void loadStyles();
 PACKAGE void setupApplicationTheme(const string& appRegRoot, string& theme);
