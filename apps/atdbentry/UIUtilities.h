@@ -1,11 +1,11 @@
 #ifndef UIUtilitiesH
 #define UIUtilitiesH
 //#include "abUIDataStructures.h"
-#include "mtkSQLite.h"
-#include "mtkStringList.h"
+#include "dslSQLite.h"
+#include "dslStringList.h"
 
-using mtk::SQLite;
-using mtk::StringList;
+using dsl::SQLite;
+using dsl::StringList;
 //#define AML_CORE
 //---------------------------------------------------------------------------
 //AML_CORE void loadStyles();

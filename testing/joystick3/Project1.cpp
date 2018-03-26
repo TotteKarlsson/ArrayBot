@@ -3,12 +3,12 @@
 #pragma hdrstop
 #include <tchar.h>
 #include <string>
-#include "mtkStringUtils.h"
-#include "mtkFileUtils.h"
-#include "mtkLogger.h"
+#include "dslStringUtils.h"
+#include "dslFileUtils.h"
+#include "dslLogger.h"
 
 using std::string;
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 USEFORM("TMain.cpp", Main);
@@ -44,7 +44,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 }
 
 //---------------------------------------------------------------------------
-#pragma comment(lib, "mtkCommon.lib")
+#pragma comment(lib, "dslCommon.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "abCore.lib")
 
@@ -58,8 +58,8 @@ void setupLogging()
 	LogOutput::mShowLogLevel 	= true;
 	LogOutput::mShowLogTime 	= true;
 	LogOutput::mUseLogTabs 		= true;
-//	mtk::gLogger.setLogLevel(lInfo);
-	mtk::gLogger.setLogLevel(lDebug5);
+//	dsl::gLogger.setLogLevel(lInfo);
+	dsl::gLogger.setLogLevel(lDebug5);
 	Log(lInfo) << "Logger was setup";
 }
 

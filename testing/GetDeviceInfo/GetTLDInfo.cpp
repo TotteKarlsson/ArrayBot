@@ -2,9 +2,9 @@
 #pragma hdrstop
 #include <tchar.h>
 #include <string>
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
-using namespace mtk;
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
+using namespace dsl;
 using namespace std;
 
 //---------------------------------------------------------------------------
@@ -59,7 +59,7 @@ void setupLogging()
 
 	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
 	clearFile(fullLogFileName);
-	mtk::gLogger.logToFile(fullLogFileName);
+	dsl::gLogger.logToFile(fullLogFileName);
 	LogOutput::mShowLogLevel = true;
 	LogOutput::mShowLogTime = false;
 	LogOutput::mUseLogTabs = false;
@@ -67,7 +67,7 @@ void setupLogging()
 }
 
 //---------------------------------------------------------------------------
-#pragma comment(lib, "mtkCommon.lib")
+#pragma comment(lib, "dslCommon.lib")
 #pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "VCLCommon.lib")

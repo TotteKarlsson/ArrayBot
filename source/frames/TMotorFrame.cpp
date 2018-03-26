@@ -9,10 +9,10 @@
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TFloatLabeledEdit"
-#pragma link "TIntLabel"
-#pragma link "dslFloatLabel"
-#pragma link "TPropertyCheckBox"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTIntLabel"
+#pragma link "dslTFloatLabel"
+#pragma link "dslTPropertyCheckBox"
 #pragma resource "*.dfm"
 TMotorFrame *MotorFrame;
 

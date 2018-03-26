@@ -1,15 +1,15 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMainForm.h"
-#include "TMemoLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslTMemoLogger.h"
+#include "dslVCLUtils.h"
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TIntegerLabeledEdit"
-#pragma link "mtkSTDStringEdit"
+#pragma link "dslTIntegerLabeledEdit"
+#pragma link "dslSTDStringEdit"
 #pragma resource "*.dfm"
 TMainForm *MainForm;
 //---------------------------------------------------------------------------

@@ -8,9 +8,9 @@
 #include <Vcl.ActnList.hpp>
 #include "arraybot/atArrayBot.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "TSTDStringLabeledEdit.h"
-#include "TFloatLabeledEdit.h"
-#include "TIntegerLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
+#include "dslTSTDStringLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
 //---------------------------------------------------------------------------
 class Process;
 class ArrayBotRequestProcess;

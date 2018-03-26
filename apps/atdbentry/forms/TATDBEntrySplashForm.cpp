@@ -1,17 +1,17 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TATDBEntrySplashForm.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "abApplicationMessages.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "UIUtilities.h"
-#include "mtkApplicationLicenseController.h"
+#include "dslApplicationLicenseController.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TAboutATDBEntryFrame"
 #pragma resource "*.dfm"
 
-using namespace mtk;
+using namespace dsl;
 
 extern string gApplicationRegistryRoot;
 extern string gLogFileLocation;

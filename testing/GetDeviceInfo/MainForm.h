@@ -12,10 +12,10 @@
 #include <Vcl.ActnList.hpp>
 
 #include "abDeviceManager.h"
-#include "mtkLogFileReader.h"
+#include "dslLogFileReader.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "TIntegerLabeledEdit.h"
-#include "TFloatLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
 
 #include "Poco/Timestamp.h"

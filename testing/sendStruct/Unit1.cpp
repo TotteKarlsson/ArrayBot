@@ -1,6 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "Unit1.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -9,7 +9,7 @@
 
 TForm1 *Form1;
 
-using namespace mtk;
+using namespace dsl;
 
 
 //---------------------------------------------------------------------------

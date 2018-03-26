@@ -8,12 +8,11 @@
 #include "dslApplicationLicenseController.h"
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
-#include "dslURLLabel.h"
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include "dslGetRemoteTextFileDataThread.h"
 #include "dslVersion.h"
-#include "dslURLLabel.h"
+#include "dslTURLLabel.h"
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.Imaging.jpeg.hpp>
 #include <Vcl.Graphics.hpp>

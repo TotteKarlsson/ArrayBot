@@ -7,11 +7,14 @@
 #include "dslLogger.h"
 #include "arraybot/atArrayBot.h"
 #include "arraycam/atArrayCamProtocol.h"
+//---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TSTDStringLabeledEdit"
-#pragma link "TFloatLabeledEdit"
-#pragma link "TIntegerLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTIntegerLabeledEdit"
 #pragma resource "*.dfm"
+//---------------------------------------------------------------------------
+
 
 using namespace dsl;
 TArrayCamRequestFrame *ArrayCamRequestFrame;

@@ -4,10 +4,10 @@
 #include <string>
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 
-using namespace mtk;
+using namespace dsl;
 using namespace std;
 
 //---------------------------------------------------------------------------
@@ -67,18 +67,18 @@ void setupLogging()
 
 	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
 	clearFile(fullLogFileName);
-	mtk::gLogger.logToFile(fullLogFileName);
+	dsl::gLogger.logToFile(fullLogFileName);
 	LogOutput::mShowLogLevel = true;
 	LogOutput::mShowLogTime = false;
 	LogOutput::mUseLogTabs = false;
-//	mtk::gLogger.setLogLevel(lInfo);
-	mtk::gLogger.setLogLevel(lDebug5);
+//	dsl::gLogger.setLogLevel(lInfo);
+	dsl::gLogger.setLogLevel(lDebug5);
 	Log(lInfo) << "Logger was setup";
 }
 
 //---------------------------------------------------------------------------
-#pragma comment(lib, "mtkCommon.lib")
-#pragma comment(lib, "mtkMath.lib")
+#pragma comment(lib, "dslCommon.lib")
+#pragma comment(lib, "dslMath.lib")
 #pragma comment(lib, "abCore.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "VCLCommon.lib")

@@ -1,9 +1,9 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "abAPTMotor.h"
-using namespace mtk;
+using namespace dsl;
 using namespace std;
 
 bool sameSign(double x, double y)

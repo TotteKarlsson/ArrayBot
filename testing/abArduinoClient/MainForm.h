@@ -9,37 +9,37 @@
 #include <Vcl.Buttons.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
-#include "mtkLogFileReader.h"
+#include "dslLogFileReader.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "TIntegerLabeledEdit.h"
-#include "TFloatLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
 #include "Poco/Timestamp.h"
-#include "TSTDStringLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include "TRegistryForm.h"
-#include "mtkIniFileProperties.h"
+#include "dslIniFileProperties.h"
 #include <mmsystem.h>
 #include <Vcl.StdActns.hpp>
 #include <Vcl.Menus.hpp>
 #include <Vcl.Mask.hpp>
-#include "mtkLogLevel.h"
+#include "dslLogLevel.h"
 #include "abUIDataStructures.h"
 #include "abApplicationMessages.h"
-#include "mtkIniFile.h"
+#include "dslIniFile.h"
 #include "abArduinoClient.h"
-#include "TIntLabel.h"
-#include "mtkFloatLabel.h"
-#include "TPropertyCheckBox.h"
+#include "dslTIntLabel.h"
+#include "dslTFloatLabel.h"
+#include "dslTPropertyCheckBox.h"
 
 #include <vector>
 using Poco::Timestamp;
-using mtk::IniFileProperties;
+using dsl::IniFileProperties;
 
 class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
 class TXYZUnitFrame;
 class TSequencerButtonsFrame;
-using mtk::IniFile;
+using dsl::IniFile;
 using std::vector;
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
@@ -81,9 +81,9 @@ class TMain : public TRegistryForm
 	TIntLabel *mSectionCountLbl;
 	TButton *mResetCountBtn;
 	TGroupBox *GroupBox3;
-	mtkFloatLabel *mHumidityE;
+	TFloatLabel *mHumidityE;
 	TGroupBox *GroupBox4;
-	mtkFloatLabel *mTemperatureLbl;
+	TFloatLabel *mTemperatureLbl;
 	TGroupBox *GroupBox6;
 	TButton *PuffNowBtn;
 	TGroupBox *GroupBox5;
@@ -114,7 +114,7 @@ class TMain : public TRegistryForm
 
         IniFile						            mIniFile;
         IniFileProperties  			            mProperties;
-		mtk::Property<mtk::LogLevel>            mLogLevel;
+		dsl::Property<dsl::LogLevel>            mLogLevel;
 
 		void __fastcall		                    OnException();
         vector<TFrame*>					        mFrames;

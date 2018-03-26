@@ -1,9 +1,9 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "mtkUtils.h"
-#include "mtkVCLUtils.h"
+#include "dslUtils.h"
+#include "dslVCLUtils.h"
 #include "Unit1.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TArrayBotBtn"
@@ -17,7 +17,7 @@ extern string gLogFileName;
 extern string gAppDataFolder;
 extern bool   gAppIsStartingUp;
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)

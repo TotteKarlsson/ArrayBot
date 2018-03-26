@@ -1,12 +1,12 @@
 #pragma hdrstop
 #include "TMainForm.h"
 //#include "TSplashForm.h"
-#include "TMemoLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslTMemoLogger.h"
+#include "dslVCLUtils.h"
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormatter.h"
-#include "mtkLogger.h"
-#include "mtkIniSection.h"
+#include "dslLogger.h"
+#include "dslIniSection.h"
 #include "ibUtilities.h"
 #include "Poco/Timezone.h"
 
@@ -22,7 +22,7 @@ extern string           gTimeFormat;
 //extern TSplashForm*     gSplashForm;
 extern string           gTimeFormat;
 
-using namespace mtk;
+using namespace dsl;
 using Poco::DateTime;
 using Poco::DateTimeFormatter;
 

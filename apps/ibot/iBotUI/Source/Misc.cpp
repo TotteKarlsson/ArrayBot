@@ -1,11 +1,11 @@
 #pragma hdrstop
 #include "TMainForm.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
 #pragma package(smart_init)
 using Poco::DateTimeFormatter;
 
-using namespace mtk;
+using namespace dsl;
 
 static HWND         gOtherAppWindow             = NULL;
 

@@ -9,18 +9,18 @@ USEFORM("TMainForm.cpp", MainForm);
 USEFORM("P:\atDB\UI\TatDM.cpp", atDM); /* TDataModule: File Type */
 USEFORM("Frames\TSlotFrame.cpp", SlotFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
-#include "mtkUtils.h"
-#include "mtkVCLUtils.h"
-#include "mtkIniKey.h"
-#include "mtkRestartApplicationUtils.h"
-#include "mtkLogger.h"
+#include "dslUtils.h"
+#include "dslVCLUtils.h"
+#include "dslIniKey.h"
+#include "dslRestartApplicationUtils.h"
+#include "dslLogger.h"
 #include "ibUtilities.h"
 //#include "TSplashForm.h"
-#include "mtkMoleculixException.h"
-#include "mtkSQLite.h"
+#include "dslMoleculixException.h"
+#include "dslSQLite.h"
 #pragma package(smart_init)
 
-using namespace mtk;
+using namespace dsl;
 using std::string;
 
 static HWND         gOtherAppWindow             = NULL;
@@ -53,11 +53,11 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		// Initialize restart code
 		// Check if this instance is restarted and
 		// wait while previos instance finish
-		if (mtk::checkForCommandLineFlag("--Restart"))
+		if (dsl::checkForCommandLineFlag("--Restart"))
 		{
             //TODO: Fix this.. not working properly..
             //            MessageDlg("Wait...", mtWarning, TMsgDlgButtons() << mbOK, 0);
-			mtk::WaitForPreviousProcessToFinish(gRestartMutexName);
+			dsl::WaitForPreviousProcessToFinish(gRestartMutexName);
 		}
 
         //Look at this later... does not work yet

@@ -2,16 +2,16 @@
 #pragma hdrstop
 #include "TAboutATDBEntry.h"
 #include "TShowFileContentForm.h"
-#include "mtkApplicationInfo.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslApplicationInfo.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TAboutATDBEntryFrame"
 #pragma resource "*.dfm"
 TAboutATDBEntry *AboutATDBEntry;
 
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 __fastcall TAboutATDBEntry::TAboutATDBEntry(TComponent* Owner)
     : TForm(Owner)

@@ -2,15 +2,15 @@
 #pragma hdrstop
 #include <tchar.h>
 #include <string>
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 #include "abExceptions.h"
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
 USEFORM("MainForm.cpp", Main);
 //---------------------------------------------------------------------------
-using namespace mtk;
+using namespace dsl;
 using namespace std;
 
 extern string		gApplicationName			= "ATDBData Entry";
@@ -64,13 +64,13 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 }
 //---------------------------------------------------------------------------
 #if defined DSL_STATIC
-	#pragma comment(lib, "mtkCommon-static.lib")
-	#pragma comment(lib, "mtkMath-static.lib")
-	#pragma comment(lib, "mtkIPC-static.lib")
+	#pragma comment(lib, "dslCommon-static.lib")
+	#pragma comment(lib, "dslMath-static.lib")
+	#pragma comment(lib, "dslIPC-static.lib")
 #else
-	#pragma comment(lib, "mtkCommon.lib")
-	#pragma comment(lib, "mtkMath.lib")
-	#pragma comment(lib, "mtkIPC.lib")
+	#pragma comment(lib, "dslCommon.lib")
+	#pragma comment(lib, "dslMath.lib")
+	#pragma comment(lib, "dslIPC.lib")
 #endif
 
 #pragma comment(lib, "abCore.lib")

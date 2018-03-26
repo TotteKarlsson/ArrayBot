@@ -139,7 +139,7 @@ object MotorFrame: TMotorFrame
         Height = 13
         Caption = 'Jog Acc.:'
       end
-      object mJogAccLbl: mtkFloatLabel
+      object mJogAccLbl: TFloatLabel
         Left = 236
         Top = 61
         Width = 26
@@ -159,7 +159,7 @@ object MotorFrame: TMotorFrame
         TheFont.Name = 'Tahoma'
         TheFont.Style = []
       end
-      object mJogVelLbl: mtkFloatLabel
+      object mJogVelLbl: TFloatLabel
         Left = 72
         Top = 61
         Width = 26

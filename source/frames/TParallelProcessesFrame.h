@@ -7,7 +7,7 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include "arraybot/atArrayBot.h"
-#include "TSTDStringLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>

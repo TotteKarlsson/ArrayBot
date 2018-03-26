@@ -8,7 +8,8 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include <Vcl.ExtCtrls.hpp>
-#include "TSTDStringLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
+#include "dslTSTDStringLabeledEdit.h"
 
 class Process;
 class StopAndResumeProcess;

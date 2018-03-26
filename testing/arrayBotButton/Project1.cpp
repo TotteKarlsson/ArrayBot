@@ -5,15 +5,15 @@
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
 #include <string>
-#include "mtkUtils.h"
-#include "mtkVCLUtils.h"
-#include "mtkWin32Utils.h"
-#include "mtkLogger.h"
+#include "dslUtils.h"
+#include "dslVCLUtils.h"
+#include "dslWin32Utils.h"
+#include "dslLogger.h"
 
 USEFORM("Unit1.cpp", Form1);
 //---------------------------------------------------------------------------
 using std::string;
-using namespace mtk;
+using namespace dsl;
 
 
 extern string       gLogFileLocation            = "";
@@ -64,8 +64,8 @@ void setupLogging()
 
 	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
 	clearFile(fullLogFileName);
-	mtk::gLogger.logToFile(fullLogFileName);
-    mtk::gLogger.setLogLevel(lDebug5);
+	dsl::gLogger.logToFile(fullLogFileName);
+    dsl::gLogger.setLogLevel(lDebug5);
 	LogOutput::mShowLogLevel = true;
 	LogOutput::mShowLogTime = true;
 	LogOutput::mUseLogTabs 	= true;
@@ -74,13 +74,13 @@ void setupLogging()
 
 //---------------------------------------------------------------------------
 #if defined DSL_STATIC
-	#pragma comment(lib, "mtkCommon-static.lib")
-	#pragma comment(lib, "mtkMath-static.lib")
-	#pragma comment(lib, "mtkIPC-static.lib")
+	#pragma comment(lib, "dslCommon-static.lib")
+	#pragma comment(lib, "dslMath-static.lib")
+	#pragma comment(lib, "dslIPC-static.lib")
 #else
-	#pragma comment(lib, "mtkCommon.lib")
-	#pragma comment(lib, "mtkMath.lib")
-	#pragma comment(lib, "mtkIPC.lib")
+	#pragma comment(lib, "dslCommon.lib")
+	#pragma comment(lib, "dslMath.lib")
+	#pragma comment(lib, "dslIPC.lib")
 #endif
 
 #pragma comment(lib, "atCore.lib")

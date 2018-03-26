@@ -7,8 +7,8 @@
 #include "InitArrayBotThread.h"
 #include "dslIniFileProperties.h"
 #include "dslLogFileReader.h"
-#include "TRegistryForm.h"
-#include "TSTDStringLabeledEdit.h"
+#include "dslTRegistryForm.h"
+#include "dslTSTDStringLabeledEdit.h"
 #include <System.Actions.hpp>
 #include <System.Classes.hpp>
 #include <Vcl.ActnList.hpp>
@@ -24,10 +24,10 @@
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.ToolWin.hpp>
 #include "TAboutArrayBot_2Frame.h"
-#include "TFloatLabeledEdit.h"
-#include "TIntegerLabeledEdit.h"
-#include "TIntLabel.h"
-#include "TPropertyCheckBox.h"
+#include "dslTFloatLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
+#include "dslTIntLabel.h"
+#include "dslTPropertyCheckBox.h"
 #include "TArrayBotBtn.h"
 #include "arraybot/apt/atMotorWiggler.h"
 #include "cspin.h"

@@ -32,7 +32,7 @@ object MoveCoverSlipAtAngleProcessFrame: TMoveCoverSlipAtAngleProcessFrame
       Height = 23
       Caption = 'Lateral Acceleration:'
     end
-    object LatVelL: mtkFloatLabel
+    object LatVelL: TFloatLabel
       Left = 224
       Top = 40
       Width = 26
@@ -46,7 +46,7 @@ object MoveCoverSlipAtAngleProcessFrame: TMoveCoverSlipAtAngleProcessFrame
       TheFont.Name = 'Tahoma'
       TheFont.Style = []
     end
-    object LatAccL: mtkFloatLabel
+    object LatAccL: TFloatLabel
       Left = 224
       Top = 69
       Width = 26

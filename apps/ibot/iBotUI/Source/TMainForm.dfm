@@ -477,7 +477,7 @@ object MainForm: TMainForm
     Left = 880
     Top = 96
   end
-  object mIniFileC: mtkIniFileC
+  object mIniFileC: dslIniFileC
     IniFileName = 'iBot.ini'
     RootFolder = '.'
     Left = 706

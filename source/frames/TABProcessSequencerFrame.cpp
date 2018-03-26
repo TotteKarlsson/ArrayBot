@@ -13,11 +13,11 @@
 #include "TEditSequenceForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TFloatLabeledEdit"
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma link "TMotorMoveProcessFrame"
 #pragma link "TParallelProcessesFrame"
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma link "TTimeDelayFrame"
 #pragma link "TSequenceInfoFrame"
 #pragma link "TArrayBotBtn"

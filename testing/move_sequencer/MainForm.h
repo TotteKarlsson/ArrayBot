@@ -9,19 +9,19 @@
 #include <Vcl.Buttons.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
-#include "mtkLogFileReader.h"
+#include "dslLogFileReader.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "TIntegerLabeledEdit.h"
-#include "TFloatLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
 #include "Poco/Timestamp.h"
 
-#include "TSTDStringLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include "abXYZUnitFrame.h"
 #include "abMotorFrame.h"
 #include "TRegistryForm.h"
 #include "abArrayBot.h"
-#include "mtkIniFileProperties.h"
+#include "dslIniFileProperties.h"
 #include <mmsystem.h>
 #include <Vcl.StdActns.hpp>
 #include <Vcl.Menus.hpp>
@@ -29,7 +29,7 @@
 #include <Vcl.Grids.hpp>
 
 using Poco::Timestamp;
-using mtk::IniFileProperties;
+using dsl::IniFileProperties;
 
 class APTMotor;
 

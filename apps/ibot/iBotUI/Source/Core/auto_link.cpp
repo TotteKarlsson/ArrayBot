@@ -1,5 +1,5 @@
-#pragma comment(lib, "mtkCommon.lib")
-#pragma comment(lib, "mtkDataBase.lib")
+#pragma comment(lib, "dslCommon.lib")
+#pragma comment(lib, "dslDataBase.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 
 //#pragma comment(lib, "amalyticoCore-static.lib")

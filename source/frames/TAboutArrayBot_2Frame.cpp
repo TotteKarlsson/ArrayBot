@@ -11,7 +11,7 @@
 #include "Poco/DateTimeFormatter.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "dslURLLabel"
+#pragma link "dslTURLLabel"
 #pragma resource "*.dfm"
 TAboutArrayBotFrame_2 *AboutArrayBotFrame_2;
 

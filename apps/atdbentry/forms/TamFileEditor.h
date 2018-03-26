@@ -12,13 +12,13 @@
 #include <StdActns.hpp>
 #include <System.Actions.hpp>
 #include <vector>
-#include "mtkStringList.h"
+#include "dslStringList.h"
 //---------------------------------------------------------------------------
 using std::string;
 using std::vector;
-using mtk::StringList;
+using dsl::StringList;
 
-//Make this to a mtkChild
+//Make this to a dslChild
 class PACKAGE TamFileEditor : public TForm
 {
 __published:    // IDE-managed Components

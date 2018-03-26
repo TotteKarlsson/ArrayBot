@@ -1,12 +1,12 @@
 #pragma hdrstop
 #pragma argsused
 #include "abArduinoServer.h"
-#include "mtkLogger.h"
-#include "mtkUtils.h"
-#include "mtkRandom.h"
+#include "dslLogger.h"
+#include "dslUtils.h"
+#include "dslRandom.h"
 #include <signal.h>
 
-using namespace mtk;
+using namespace dsl;
 
 bool gKeepGoing(true);
 int  gDelay = 0;
@@ -23,9 +23,9 @@ void my_handler(int s)
 
 int main()
 {
-	mtk::gLogger.setLogLevel(lDebug4);
-    mtk::LogOutput::mShowLogTime  		= true;
-    mtk::LogOutput::mLogToConsole  		= true;
+	dsl::gLogger.setLogLevel(lDebug4);
+    dsl::LogOutput::mShowLogTime  		= true;
+    dsl::LogOutput::mLogToConsole  		= true;
 
 	signal (SIGINT,my_handler);
 
@@ -68,9 +68,9 @@ int main()
     return 0;
 }
 
-#pragma comment(lib, "mtkCommon.lib")
-#pragma comment(lib, "mtkIPC.lib")
-#pragma comment(lib, "mtkMath.lib")
+#pragma comment(lib, "dslCommon.lib")
+#pragma comment(lib, "dslIPC.lib")
+#pragma comment(lib, "dslMath.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "abCore.lib")
 

@@ -2,12 +2,12 @@
 #pragma argsused
 #include "abPositionalTrigger.h"
 #include <iostream>
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "abArrayBot.h"
-#include "mtkIniFile.h"
+#include "dslIniFile.h"
 #include "abAPTMotor.h"
 #include "abTriggerFunction.h"
-using namespace mtk;
+using namespace dsl;
 using namespace std;
 using namespace std::tr1;
 
@@ -78,7 +78,7 @@ int main()
 }
 
 #pragma comment(lib, "abCore.lib")
-#pragma comment(lib, "mtkCommon.lib")
-#pragma comment(lib, "mtkMath.lib")
+#pragma comment(lib, "dslCommon.lib")
+#pragma comment(lib, "dslMath.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 

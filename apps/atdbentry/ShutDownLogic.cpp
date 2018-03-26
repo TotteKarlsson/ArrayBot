@@ -1,7 +1,7 @@
 #pragma hdrstop
 #include "MainForm.h"
-#include "mtkLogger.h"
-using namespace mtk;
+#include "dslLogger.h"
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)

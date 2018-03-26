@@ -13,11 +13,11 @@
 #include "dslLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TFloatLabeledEdit"
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma link "TArrayBotBtn"
-#pragma link "dslFloatLabel"
-#pragma link "TPropertyCheckBox"
+#pragma link "dslTFloatLabel"
+#pragma link "dslTPropertyCheckBox"
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
 

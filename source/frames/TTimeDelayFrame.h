@@ -8,10 +8,11 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include "arraybot/atArrayBot.h"
-#include "TFloatLabeledEdit.h"
+#include "dslTSTDStringLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "TIntegerLabeledEdit.h"
-#include "TSTDStringLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 
 class Process;
 class TimeDelay;

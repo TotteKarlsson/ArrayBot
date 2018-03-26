@@ -4,14 +4,14 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "TFloatLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.ComCtrls.hpp>
-#include "TSTDStringLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
-#include "dslFloatLabel.h"
-#include "TPropertyCheckBox.h"
+#include "dslTFloatLabel.h"
+#include "dslTPropertyCheckBox.h"
 //---------------------------------------------------------------------------
 
 class MoveCoverSlipAtAngleProcess;
@@ -34,8 +34,8 @@ __published:	// IDE-managed Components
 	TPanel *Panel2;
 	TLabel *A;
 	TLabel *Label1;
-	dslFloatLabel *LatVelL;
-	dslFloatLabel *LatAccL;
+	TFloatLabel *LatVelL;
+	TFloatLabel *LatAccL;
 	TPropertyCheckBox *EnableParallelWhiskerMoveCB;
 	TPropertyCheckBox *FetchAngleFromCSAngleMotorCB;
 	TGroupBox *StayAtBeachGB;

@@ -4,8 +4,8 @@
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)
-#pragma link "TFloatLabeledEdit"
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 TAddJoyStickSettingForm *AddJoyStickSettingForm;
 

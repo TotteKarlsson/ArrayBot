@@ -1,10 +1,10 @@
 #pragma hdrstop
 #include "TMainForm.h"
-#include "mtkLogger.h"
-#include "TMemoLogger.h"
+#include "dslLogger.h"
+#include "dslTMemoLogger.h"
 //#include "TSplashForm.h"
 
-using namespace mtk;
+using namespace dsl;
 //extern TSplashForm*  gSplashForm;
 //---------------------------------------------------------------------------
 __fastcall TMainForm::~TMainForm()

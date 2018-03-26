@@ -1,10 +1,10 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMainForm.h"
-#include "mtkRestartApplicationUtils.h"
-#include "mtkVCLUtils.h"
+#include "dslRestartApplicationUtils.h"
+#include "dslVCLUtils.h"
 
-using namespace mtk;
+using namespace dsl;
 extern string gRestartMutexName ;
 extern string gDefaultAppTheme;
 

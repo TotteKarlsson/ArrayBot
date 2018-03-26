@@ -5,15 +5,15 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "TIntegerLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include <Vcl.ExtCtrls.hpp>
-#include "mtkProperties.h"
-#include "TPropertyCheckBox.h"
+#include "dslProperties.h"
+#include "dslTPropertyCheckBox.h"
 #include "TApplicationProperties.h"
 
-using mtk::Properties;
+using dsl::Properties;
 class TOptionsForm;
 //---------------------------------------------------------------------------
 class PACKAGE TGeneralOptionsFrame : public TFrame

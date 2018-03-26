@@ -4,12 +4,12 @@
 #include <string>
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 #include "abExceptions.h"
-#include "mtkRestartApplicationUtils.h"
+#include "dslRestartApplicationUtils.h"
 
-using namespace mtk;
+using namespace dsl;
 using namespace std;
 
 //---------------------------------------------------------------------------
@@ -44,11 +44,11 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		// Initialize restart code
 		// Check if this instance is restarted and
 		// wait while previos instance finish
-		if (mtk::checkForCommandLineFlag("--Restart"))
+		if (dsl::checkForCommandLineFlag("--Restart"))
 		{
             //TODO: Fix this.. not working properly..
             //            MessageDlg("Wait...", mtWarning, TMsgDlgButtons() << mbOK, 0);
-			mtk::WaitForPreviousProcessToFinish(gRestartMutexName);
+			dsl::WaitForPreviousProcessToFinish(gRestartMutexName);
             Sleep(1000);
 		}
 
@@ -105,13 +105,13 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 //---------------------------------------------------------------------------
 
 #if defined DSL_STATIC
-	#pragma comment(lib, "mtkCommon-static.lib")
-	#pragma comment(lib, "mtkMath-static.lib")
-	#pragma comment(lib, "mtkIPC-static.lib")
+	#pragma comment(lib, "dslCommon-static.lib")
+	#pragma comment(lib, "dslMath-static.lib")
+	#pragma comment(lib, "dslIPC-static.lib")
 #else
-	#pragma comment(lib, "mtkCommon.lib")
-	#pragma comment(lib, "mtkMath.lib")
-	#pragma comment(lib, "mtkIPC.lib")
+	#pragma comment(lib, "dslCommon.lib")
+	#pragma comment(lib, "dslMath.lib")
+	#pragma comment(lib, "dslIPC.lib")
 #endif
 
 #pragma comment(lib, "abCore.lib")

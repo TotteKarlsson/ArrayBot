@@ -2,13 +2,13 @@
 #pragma hdrstop
 #include <sstream>
 #include "TAboutATDBEntryFrame.h"
-#include "mtkStringList.h"
-#include "mtkVCLUtils.h"
-#include "mtkApplicationInfo.h"
+#include "dslStringList.h"
+#include "dslVCLUtils.h"
+#include "dslApplicationInfo.h"
 #include "abApplicationMessages.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "Poco/DateTimeFormatter.h"
-#include "mtkVersion.h"
+#include "dslVersion.h"
 
 
 //---------------------------------------------------------------------------
@@ -17,7 +17,7 @@
 TAboutATDBDataEntryFrame *AboutATDBDataEntryFrame;
 
 using namespace std;
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 __fastcall TAboutATDBDataEntryFrame::TAboutATDBDataEntryFrame(TComponent* Owner)
 :
@@ -28,7 +28,7 @@ TFrame(Owner)
 void TAboutATDBDataEntryFrame::populate()
 {
     stringstream ss;
-    mtkApplicationInfo appInfo(Application);
+    dslApplicationInfo appInfo(Application);
 
     //Current Version Info
     Version version(stdstr(appInfo.mVersion));

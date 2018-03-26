@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
-#include "TMemoLogger.h"
+#include "dslTMemoLogger.h"
 #include "TSplashForm.h"
 #include "TXYZUnitFrame.h"
 #include "TXYZPositionsFrame.h"

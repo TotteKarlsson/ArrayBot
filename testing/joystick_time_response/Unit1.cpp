@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include "unit1.h"
 //---------------------------------------------------------------------------
-#pragma link "TFloatLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
 #pragma resource "*.dfm"
 TForm1 *Form1;
 //---------------------------------------------------------------------------

@@ -66,17 +66,19 @@ extern "C" int _libmain(unsigned long reason)
 }
 
 //---------------------------------------------------------------------------
-#pragma comment(lib, "dslCommon.lib")
+#pragma comment(lib, "dslFoundation.lib")
+#pragma comment(lib, "dslVCLCommon.lib")
+#pragma comment(lib, "dslVCLComponents.bpi")
+#pragma comment(lib, "dslVisuals.bpi")
 
-#pragma comment(lib, "VCLCommon.bpi")
-#pragma comment(lib, "DuneComponents.bpi")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "tinyxml2-static.lib")
+//---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
-#pragma comment(lib, "atCore.lib")
-#pragma comment(lib, "atArduino.lib")
-#pragma comment(lib, "atArrayBotCore.lib")
-#pragma comment(lib, "atVCLCore.bpi")
+#pragma comment(lib, "atFoundation.lib")
+#pragma comment(lib, "atVCLCommon.lib")
+#pragma comment(lib, "atComponents.bpi")
+#pragma comment(lib, "atVisualComponents.bpi")
 //---------------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "unit1.h"
-#include "TMemoLogger.h"
+#include "dslTMemoLogger.h"
 //---------------------------------------------------------------------------
 #pragma resource "*.dfm"
 TForm1 *Form1;

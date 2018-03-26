@@ -1,25 +1,25 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
-#include "TMemoLogger.h"
-#include "mtkStringList.h"
+#include "dslTMemoLogger.h"
+#include "dslStringList.h"
 #include "abUtilities.h"
 #include "abAPTMotor.h"
 #include "abTCubeDCServo.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
 #include <bitset>
-#include "mtkMathUtils.h"
+#include "dslMathUtils.h"
 #include "abExceptions.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TIntegerLabeledEdit"
-#pragma link "TFloatLabeledEdit"
-#pragma link "TSTDStringLabeledEdit"
-#pragma link "TIntLabel"
-#pragma link "mtkFloatLabel"
-#pragma link "TPropertyCheckBox"
+#pragma link "dslTIntegerLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
+#pragma link "dslTIntLabel"
+#pragma link "dslTFloatLabel"
+#pragma link "dslTPropertyCheckBox"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -27,7 +27,7 @@ extern string           gLogFileLocation;
 extern string           gLogFileName;
 extern string           gAppDataFolder;
 extern bool             gAppIsStartingUp;
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)

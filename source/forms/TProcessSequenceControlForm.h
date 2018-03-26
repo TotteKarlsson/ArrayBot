@@ -7,9 +7,11 @@
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
 #include <Vcl.ExtCtrls.hpp>
+#include <string>
 //---------------------------------------------------------------------------
 
 class ProcessSequencer;
+using std::string;
 class PACKAGE TProcessSequenceControlForm : public TForm
 {
 

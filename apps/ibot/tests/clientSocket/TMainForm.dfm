@@ -43,7 +43,7 @@ object MainForm: TMainForm
       TabOrder = 1
       OnClick = Button1Click
     end
-    object mSendStr: mtkSTDStringEdit
+    object mSendStr: TSTDStringEdit
       Left = 16
       Top = 112
       Width = 105

@@ -1,21 +1,21 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TSQLiteDBFrame.h"
-#include "mtkLogger.h"
-#include "mtkSQLiteTable.h"
-#include "mtkSQLiteQuery.h"
-#include "mtkMoleculixException.h"
+#include "dslLogger.h"
+#include "dslSQLiteTable.h"
+#include "dslSQLiteQuery.h"
+#include "dslMoleculixException.h"
 #include "ibUtilities.h"
-#include "mtkUtils.h"
-#include "mtkWin32Utils.h"
+#include "dslUtils.h"
+#include "dslWin32Utils.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TIntLabel"
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTIntLabel"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 TSQLiteDBFrame *SQLiteDBFrame;
 
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 __fastcall TSQLiteDBFrame::TSQLiteDBFrame(TComponent* Owner)
     : TFrame(Owner)

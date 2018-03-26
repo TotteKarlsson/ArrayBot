@@ -1,7 +1,7 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
-#include "TMemoLogger.h"
+#include "dslTMemoLogger.h"
 #include "TSplashForm.h"
 #include "dslStringList.h"
 #include "core/atUtilities.h"
@@ -22,13 +22,13 @@
 #include "arraybot/apt/atGeneralIPCMessageData.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TIntegerLabeledEdit"
-#pragma link "TFloatLabeledEdit"
-#pragma link "TSTDStringLabeledEdit"
-#pragma link "dslFloatLabel"
+#pragma link "dslTIntegerLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
+#pragma link "dslTFloatLabel"
 #pragma link "TAboutArrayBotFrame"
 #pragma link "TAboutArrayBot_2Frame"
-#pragma link "TPropertyCheckBox"
+#pragma link "dslTPropertyCheckBox"
 #pragma link "cspin"
 #pragma link "TSoundsFrame"
 #pragma link "TApplicationSoundsFrame"

@@ -9,14 +9,14 @@
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.Imaging.jpeg.hpp>
-#include "mtkTimer.h"
-#include "mtkMessageContainer.h"
+#include "dslTimer.h"
+#include "dslMessageContainer.h"
 #include "TAboutATDBEntryFrame.h"
-#include "mtkLogFileReader.h"
+#include "dslLogFileReader.h"
 #include "TAboutATDBEntryFrame.h"
 
 using Poco::Timespan;
-using mtk::MessageContainer;
+using dsl::MessageContainer;
 //---------------------------------------------------------------------------
 class PACKAGE TArduinoControllerSplashForm : public TForm
 {
@@ -45,7 +45,7 @@ class PACKAGE TArduinoControllerSplashForm : public TForm
 										__fastcall          ~TArduinoControllerSplashForm();
         bool                                                mMainAppIsRunning;
 
-        mtk::Timer                                          mShowTimer;
+        dsl::Timer                                          mShowTimer;
         bool                                                isOnShowTime();
         void                                                setShowTime(int ms);
         TAboutATDBDataEntryFrame*                          	mAFrame;

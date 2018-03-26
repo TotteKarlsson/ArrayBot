@@ -1,30 +1,30 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TMemoLogger.h"
+#include "dslTMemoLogger.h"
 #include "TMainForm.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "Poco/Glob.h"
-#include "mtkMoleculixException.h"
+#include "dslMoleculixException.h"
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormatter.h"
-#include "mtkStringUtils.h"
-#include "mtkSQLiteQuery.h"
-#include "mtkLogger.h"
-#include "mtkSQLiteTable.h"
-#include "mtkSQLiteException.h"
+#include "dslStringUtils.h"
+#include "dslSQLiteQuery.h"
+#include "dslLogger.h"
+#include "dslSQLiteTable.h"
+#include "dslSQLiteException.h"
 #include "Poco/DateTimeFormat.h"
 #include "Poco/Timezone.h"
 #include "iBotDataModule.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "mtkIniFileC"
-#pragma link "TIntegerLabeledEdit"
+#pragma link "dslIniFileC"
+#pragma link "dslTIntegerLabeledEdit"
 #pragma link "TSlotFrame"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
-using namespace mtk;
+using namespace dsl;
 using namespace Poco;
 
 extern string gLogFileName;

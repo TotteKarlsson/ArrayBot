@@ -5,11 +5,12 @@
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
 #include "TArrayBotBtn.h"
-#include "TIntegerLabeledEdit.h"
-#include "TSTDStringLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <Vcl.Buttons.hpp>
 #include <Vcl.ExtCtrls.hpp>
-#include "TPropertyCheckBox.h"
+#include "dslTPropertyCheckBox.h"
+#include "dslTSTDStringLabeledEdit.h"
 //---------------------------------------------------------------------------
 
 class PACKAGE TEditSequenceForm : public TForm

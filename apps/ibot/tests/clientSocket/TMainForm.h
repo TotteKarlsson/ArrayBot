@@ -5,10 +5,10 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "TIntegerLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
 #include <System.Win.ScktComp.hpp>
 #include <Vcl.ExtCtrls.hpp>
-#include "mtkSTDStringEdit.h"
+#include "dslSTDStringEdit.h"
 
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
@@ -19,7 +19,7 @@ __published:	// IDE-managed Components
 	TButton *Button1;
 	TClientSocket *ClientSocket1;
 	TMemo *infoMemo;
-	mtkSTDStringEdit *mSendStr;
+	dslSTDStringEdit *mSendStr;
 	TButton *Button2;
 	void __fastcall ClientSocket1Connect(TObject *Sender, TCustomWinSocket *Socket);
 	void __fastcall FormCreate(TObject *Sender);

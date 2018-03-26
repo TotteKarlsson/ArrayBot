@@ -9,7 +9,7 @@
 #include "vcl/forms/TTextInputDialog.h"
 
 #pragma package(smart_init)
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 
 using namespace dsl;

@@ -5,13 +5,13 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "TIntLabel.h"
-#include "TSTDStringLabeledEdit.h"
+#include "dslTIntLabel.h"
+#include "dslTFloatLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "mtkSQLite.h"
+#include "dslSQLite.h"
 #include <Vcl.ComCtrls.hpp>
 //---------------------------------------------------------------------------
-using mtk::SQLite;
+using dsl::SQLite;
 class TSQLiteDBFrame : public TFrame
 {
 __published:	// IDE-managed Components

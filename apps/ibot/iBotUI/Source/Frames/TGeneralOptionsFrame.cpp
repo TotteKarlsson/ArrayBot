@@ -1,19 +1,19 @@
 #pragma hdrstop
 #include "TGeneralOptionsFrame.h"
-#include "mtkIniFileProperties.h"
+#include "dslIniFileProperties.h"
 #include "TOptionsForm.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "amlApplicationMessages.h"
 #include "ApplicationUtilities.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TIntegerLabeledEdit"
-#pragma link "TPropertyCheckBox"
+#pragma link "dslTIntegerLabeledEdit"
+#pragma link "dslTPropertyCheckBox"
 #pragma resource "*.dfm"
 TGeneralOptionsFrame *GeneralOptionsFrame;
 //---------------------------------------------------------------------------
 
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 __fastcall TGeneralOptionsFrame::TGeneralOptionsFrame(TApplicationProperties& props, TComponent* Owner)
 :

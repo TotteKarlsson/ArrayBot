@@ -6,7 +6,7 @@
 #include <Vcl.Forms.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include "abArrayBotJoyStick.h"
-#include "mtkLogFileReader.h"
+#include "dslLogFileReader.h"
 //---------------------------------------------------------------------------
 
 class TMain : public TForm

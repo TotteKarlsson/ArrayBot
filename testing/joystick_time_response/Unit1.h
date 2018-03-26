@@ -11,7 +11,7 @@
 #include <VCLTee.Series.hpp>
 #include <VCLTee.TeEngine.hpp>
 #include <VCLTee.TeeProcs.hpp>
-#include "TFloatLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <vcl.Controls.hpp>
 #include <vcl.StdCtrls.hpp>
 #include <vcl.Forms.hpp>

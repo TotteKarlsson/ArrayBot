@@ -26,7 +26,7 @@
 #include "arraybot/process/atTriggerFunction.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 TSequenceInfoFrame *SequenceInfoFrame;

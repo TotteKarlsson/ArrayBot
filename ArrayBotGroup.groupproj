@@ -3,46 +3,19 @@
         <ProjectGuid>{9D7B788E-1612-4D2A-99DA-365D58720234}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="P:\libs\dsl\Common\mtkCommon.cbproj">
+        <Projects Include="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dsl\Common\IPC\mtkIPC.cbproj">
+        <Projects Include="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dsl\Common\Math\mtkMath.cbproj">
+        <Projects Include="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dsl\VCL\Common\VCLCommon.cbproj">
+        <Projects Include="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\dsl\VCL\Components\DuneComponents.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\dsl\VCL\Forms\DuneForms.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\atapi\source\core\atCore.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\atapi\source\serial\atSerialAPI.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\atapi\source\arduino\atArduino.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\atapi\source\database\atDatabase.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\atapi\source\barcodereader\atBarcodeReader.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
+        <Projects Include="P:\libs\atapi\builds\atVCLVisualComponents\atVisualComponents.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="source\lib\ArrayBotPackage.cbproj">
@@ -59,131 +32,50 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="mtkCommon">
-        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj"/>
+    <Target Name="dslVCLComponents">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj"/>
     </Target>
-    <Target Name="mtkCommon:Clean">
-        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Clean"/>
+    <Target Name="dslVCLComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="mtkCommon:Make">
-        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Make"/>
+    <Target Name="dslVCLComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="mtkIPC">
-        <MSBuild Projects="P:\libs\dsl\Common\IPC\mtkIPC.cbproj"/>
+    <Target Name="dslVCLCommon">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj"/>
     </Target>
-    <Target Name="mtkIPC:Clean">
-        <MSBuild Projects="P:\libs\dsl\Common\IPC\mtkIPC.cbproj" Targets="Clean"/>
+    <Target Name="dslVCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="mtkIPC:Make">
-        <MSBuild Projects="P:\libs\dsl\Common\IPC\mtkIPC.cbproj" Targets="Make"/>
+    <Target Name="dslVCLCommon:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="mtkMath">
-        <MSBuild Projects="P:\libs\dsl\Common\Math\mtkMath.cbproj"/>
+    <Target Name="atFoundation">
+        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj"/>
     </Target>
-    <Target Name="mtkMath:Clean">
-        <MSBuild Projects="P:\libs\dsl\Common\Math\mtkMath.cbproj" Targets="Clean"/>
+    <Target Name="atFoundation:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="mtkMath:Make">
-        <MSBuild Projects="P:\libs\dsl\Common\Math\mtkMath.cbproj" Targets="Make"/>
+    <Target Name="atFoundation:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="VCLCommon">
-        <MSBuild Projects="P:\libs\dsl\VCL\Common\VCLCommon.cbproj"/>
+    <Target Name="atVCLCommon">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj"/>
     </Target>
-    <Target Name="VCLCommon:Clean">
-        <MSBuild Projects="P:\libs\dsl\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+    <Target Name="atVCLCommon:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="VCLCommon:Make">
-        <MSBuild Projects="P:\libs\dsl\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
+    <Target Name="atVCLCommon:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="DuneComponents">
-        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj"/>
+    <Target Name="atVisualComponents">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVisualComponents.cbproj"/>
     </Target>
-    <Target Name="DuneComponents:Clean">
-        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+    <Target Name="atVisualComponents:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVisualComponents.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="DuneComponents:Make">
-        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="DuneForms">
-        <MSBuild Projects="P:\libs\dsl\VCL\Forms\DuneForms.cbproj"/>
-    </Target>
-    <Target Name="DuneForms:Clean">
-        <MSBuild Projects="P:\libs\dsl\VCL\Forms\DuneForms.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="DuneForms:Make">
-        <MSBuild Projects="P:\libs\dsl\VCL\Forms\DuneForms.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atCore">
-        <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj"/>
-    </Target>
-    <Target Name="atCore:Clean">
-        <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atCore:Make">
-        <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atSerialAPI">
-        <MSBuild Projects="P:\libs\atapi\source\serial\atSerialAPI.cbproj"/>
-    </Target>
-    <Target Name="atSerialAPI:Clean">
-        <MSBuild Projects="P:\libs\atapi\source\serial\atSerialAPI.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atSerialAPI:Make">
-        <MSBuild Projects="P:\libs\atapi\source\serial\atSerialAPI.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atArduino">
-        <MSBuild Projects="P:\libs\atapi\source\arduino\atArduino.cbproj"/>
-    </Target>
-    <Target Name="atArduino:Clean">
-        <MSBuild Projects="P:\libs\atapi\source\arduino\atArduino.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atArduino:Make">
-        <MSBuild Projects="P:\libs\atapi\source\arduino\atArduino.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atArrayBotCore">
-        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj"/>
-    </Target>
-    <Target Name="atArrayBotCore:Clean">
-        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atArrayBotCore:Make">
-        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atDatabase">
-        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj"/>
-    </Target>
-    <Target Name="atDatabase:Clean">
-        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atDatabase:Make">
-        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atSSI">
-        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj"/>
-    </Target>
-    <Target Name="atSSI:Clean">
-        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atSSI:Make">
-        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atBarcodeReader">
-        <MSBuild Projects="P:\libs\atapi\source\barcodereader\atBarcodeReader.cbproj"/>
-    </Target>
-    <Target Name="atBarcodeReader:Clean">
-        <MSBuild Projects="P:\libs\atapi\source\barcodereader\atBarcodeReader.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atBarcodeReader:Make">
-        <MSBuild Projects="P:\libs\atapi\source\barcodereader\atBarcodeReader.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="atVCLCore">
-        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
-    </Target>
-    <Target Name="atVCLCore:Clean">
-        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atVCLCore:Make">
-        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
+    <Target Name="atVisualComponents:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVisualComponents.cbproj" Targets="Make"/>
     </Target>
     <Target Name="ArrayBotPackage">
         <MSBuild Projects="source\lib\ArrayBotPackage.cbproj"/>
@@ -204,13 +96,13 @@
         <MSBuild Projects="source\ArrayBot.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;VCLCommon;DuneComponents;DuneForms;atCore;atSerialAPI;atArduino;atArrayBotCore;atDatabase;atSSI;atBarcodeReader;atVCLCore;ArrayBotPackage;ArrayBot"/>
+        <CallTarget Targets="dslVCLComponents;dslVCLCommon;atFoundation;atVCLCommon;atVisualComponents;ArrayBotPackage;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;atCore:Clean;atSerialAPI:Clean;atArduino:Clean;atArrayBotCore:Clean;atDatabase:Clean;atSSI:Clean;atBarcodeReader:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="dslVCLComponents:Clean;dslVCLCommon:Clean;atFoundation:Clean;atVCLCommon:Clean;atVisualComponents:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;atCore:Make;atSerialAPI:Make;atArduino:Make;atArrayBotCore:Make;atDatabase:Make;atSSI:Make;atBarcodeReader:Make;atVCLCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
+        <CallTarget Targets="dslVCLComponents:Make;dslVCLCommon:Make;atFoundation:Make;atVCLCommon:Make;atVisualComponents:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

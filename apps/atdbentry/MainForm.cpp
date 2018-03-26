@@ -1,8 +1,8 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "MainForm.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "forms/TBlockEntryForm.h"
 #include "Poco/Data/RecordSet.h"
 #include <Poco/Data/MySQL/MySQLException.h>
@@ -21,7 +21,7 @@ extern string           gAppDataFolder;
 extern string 			gApplicationRegistryRoot;
 extern string 			gApplicationName;
 extern bool             gAppIsStartingUp;
-using namespace mtk;
+using namespace dsl;
 using namespace ab;
 
 //---------------------------------------------------------------------------
@@ -223,7 +223,7 @@ void __fastcall TMain::mBlocksTClick(TObject *Sender)
             populateNotes(notes);
         }
 
-        mBlockIDEdit->Text = vclstr(mtk::toString(blockID));
+        mBlockIDEdit->Text = vclstr(dsl::toString(blockID));
         Log(lInfo) << s.str();
         mDeleteRowB->Enabled = (r > -1) ? true : false;
     }

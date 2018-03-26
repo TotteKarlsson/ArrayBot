@@ -4,14 +4,14 @@
 #include <signal.h>
 #include <stdio.h>
 #include "abArduinoClient.h"
-#include "mtkLogger.h"
-#include "mtkUtils.h"
+#include "dslLogger.h"
+#include "dslUtils.h"
 
 bool gKeepGoing(true);
 int  gDelay = 0;
 bool gSetDelay = false;
 
-using namespace mtk;
+using namespace dsl;
 
 void my_handler(int s)
 {
@@ -24,9 +24,9 @@ void my_handler(int s)
 
 int main()
 {
-	mtk::gLogger.setLogLevel(lDebug4);
-    mtk::LogOutput::mShowLogTime  		= true;
-    mtk::LogOutput::mLogToConsole  		= true;
+	dsl::gLogger.setLogLevel(lDebug4);
+    dsl::LogOutput::mShowLogTime  		= true;
+    dsl::LogOutput::mLogToConsole  		= true;
 
 	signal (SIGINT,my_handler);
 	ArduinoClient ac;
@@ -59,7 +59,7 @@ int main()
 }
 
 #pragma comment(lib, "abCore.lib")
-#pragma comment(lib, "mtkCommon.lib")
-#pragma comment(lib, "mtkIPC.lib")
+#pragma comment(lib, "dslCommon.lib")
+#pragma comment(lib, "dslIPC.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 

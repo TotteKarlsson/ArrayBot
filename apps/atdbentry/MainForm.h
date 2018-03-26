@@ -4,11 +4,11 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "mtkLogFileReader.h"
+#include "dslLogFileReader.h"
 #include "TRegistryForm.h"
-#include "mtkIniFile.h"
-#include "mtkIniFileProperties.h"
-#include "mtkLogLevel.h"
+#include "dslIniFile.h"
+#include "dslIniFileProperties.h"
+#include "dslLogLevel.h"
 #include <Vcl.ExtCtrls.hpp>
 
 #include "database/atATDBServerSession.h"
@@ -20,7 +20,7 @@
 
 //---------------------------------------------------------------------------
 
-using namespace mtk;
+using namespace dsl;
 class TMain : public TRegistryForm
 {
 __published:	// IDE-managed Components
@@ -71,7 +71,7 @@ private:	// User declarations
         void __fastcall                     logMsg();
         IniFile						        mIniFile;
         IniFileProperties  			        mProperties;
-		mtk::Property<mtk::LogLevel>        mLogLevel;
+		dsl::Property<dsl::LogLevel>        mLogLevel;
         ATDBServerSession					mServerSession;
         void 							   	syncGrids();
 		void								populateNotes(Poco::Data::RecordSet* notes);

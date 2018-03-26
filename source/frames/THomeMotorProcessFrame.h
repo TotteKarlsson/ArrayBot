@@ -4,10 +4,10 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "TFloatLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.ComCtrls.hpp>
-#include "TSTDStringLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
 //---------------------------------------------------------------------------

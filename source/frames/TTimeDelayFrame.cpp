@@ -8,9 +8,9 @@
 #include "arraybot/atArrayBot.h"
 
 #pragma package(smart_init)
-#pragma link "TFloatLabeledEdit"
-#pragma link "TIntegerLabeledEdit"
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTIntegerLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 
 using namespace dsl;

@@ -8,7 +8,7 @@
 #include "arraybot/atWhiskerUnit.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma link "TMotorFrame"
 #pragma resource "*.dfm"
 

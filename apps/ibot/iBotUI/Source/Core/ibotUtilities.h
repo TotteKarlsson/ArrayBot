@@ -2,11 +2,11 @@
 #define ibotUtilitiesH
 #include "ibCoreExporter.h"
 #include "ibDataStructures.h"
-#include "mtkSQLite.h"
-#include "mtkStringList.h"
+#include "dslSQLite.h"
+#include "dslStringList.h"
 
-using mtk::SQLite;
-using mtk::StringList;
+using dsl::SQLite;
+using dsl::StringList;
 
 //---------------------------------------------------------------------------
 IB_CORE void loadStyles();

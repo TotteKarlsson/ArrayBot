@@ -1,10 +1,10 @@
 #pragma hdrstop
 #include "MainForm.h"
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 //#include "TAboutATDBEntry.h"
-#include "mtkLogger.h"
-using namespace mtk;
+#include "dslLogger.h"
+using namespace dsl;
 
 static HWND gOtherAppWindow = NULL;
 extern string gApplicationName;

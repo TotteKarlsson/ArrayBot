@@ -1,8 +1,8 @@
 #include "MainForm.h"
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 #include "abAPTMotor.h"
-using namespace mtk;
+using namespace dsl;
 
 
 APTMotor* TMain::getCurrentMotor()

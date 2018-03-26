@@ -14,7 +14,7 @@
 #include <Vcl.Graphics.hpp>
 #include<string>
 using std::string;
-//using namespace mtk;
+//using namespace dsl;
 //---------------------------------------------------------------------------
 class PACKAGE TAboutATDBDataEntryFrame : public TFrame
 {

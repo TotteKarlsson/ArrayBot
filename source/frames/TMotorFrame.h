@@ -4,13 +4,13 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "TFloatLabeledEdit.h"
-#include "TIntLabel.h"
+#include "dslTFloatLabeledEdit.h"
+#include "dslTIntLabel.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
-#include "dslFloatLabel.h"
-#include "TPropertyCheckBox.h"
+#include "dslTFloatLabel.h"
+#include "dslTPropertyCheckBox.h"
 //---------------------------------------------------------------------------
 
 class APTMotor;
@@ -44,8 +44,8 @@ class PACKAGE TMotorFrame : public TFrame
         TAction *home;
         TLabel *Label4;
         TLabel *Label5;
-        dslFloatLabel *mJogVelLbl;
-        dslFloatLabel *mJogAccLbl;
+        TFloatLabel *mJogVelLbl;
+        TFloatLabel *mJogAccLbl;
         TLabel *Label6;
         TLabel *mIsEnabledLbl;
         TButton *StopBtn;

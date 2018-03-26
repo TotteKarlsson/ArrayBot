@@ -15,7 +15,7 @@
 class TGeneralOptionsFrame;
 using std::vector;
 
-namespace mtk
+namespace dsl
 {
 class IniFileProperties;
 class RegistryProperties;

@@ -1,12 +1,12 @@
 #pragma hdrstop
 #include "TOptionsForm.h"
 #include "TGeneralOptionsFrame.h"
-#include "mtkIniFileProperties.h"
+#include "dslIniFileProperties.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TOptionsForm *OptionsForm;
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 __fastcall TOptionsForm::TOptionsForm(TApplicationProperties& props, TComponent* Owner)
     :

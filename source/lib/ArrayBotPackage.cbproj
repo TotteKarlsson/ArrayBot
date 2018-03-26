@@ -276,9 +276,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>2</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
-        <PackageImport Include="atVCLCore.bpi">
-            <BuildOrder>27</BuildOrder>
-        </PackageImport>
         <PackageImport Include="dbexpress.bpi">
             <BuildOrder>28</BuildOrder>
         </PackageImport>
@@ -297,9 +294,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PackageImport Include="dsnap.bpi">
             <BuildOrder>32</BuildOrder>
         </PackageImport>
-        <PackageImport Include="DuneComponents.bpi">
-            <BuildOrder>23</BuildOrder>
-        </PackageImport>
         <PackageImport Include="rtl.bpi">
             <BuildOrder>1</BuildOrder>
         </PackageImport>
@@ -316,9 +310,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\UIUtilities.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
+        <FormResources Include="..\frames\TStopAndResumeFrame.dfm"/>
+        <FormResources Include="..\frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="..\frames\TXYZPositionsFrame.dfm"/>
         <FormResources Include="..\frames\TXYZUnitFrame.dfm"/>
-        <FormResources Include="..\frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
         <FormResources Include="..\frames\TArrayBotRequestFrame.dfm"/>
         <FormResources Include="..\frames\TArrayCamRequestFrame.dfm"/>
@@ -327,15 +322,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="..\forms\TEditSequenceForm.dfm"/>
         <FormResources Include="..\forms\TProcessSequenceControlForm.dfm"/>
         <FormResources Include="..\forms\TSplashForm.dfm"/>
+        <FormResources Include="..\frames\TParallelProcessesFrame.dfm"/>
         <FormResources Include="..\frames\TPositionalTriggerFrame.dfm"/>
         <FormResources Include="..\frames\TSequencerButtonsFrame.dfm"/>
-        <FormResources Include="..\frames\TStopAndResumeFrame.dfm"/>
-        <FormResources Include="..\frames\TParallelProcessesFrame.dfm"/>
+        <FormResources Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.dfm"/>
         <FormResources Include="..\frames\THomeMotorProcessFrame.dfm"/>
         <FormResources Include="..\frames\TMotorFrame.dfm"/>
-        <FormResources Include="..\frames\TMotorPositionFrame.dfm"/>
-        <FormResources Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.dfm"/>
         <FormResources Include="..\frames\TMotorMoveProcessFrame.dfm"/>
+        <FormResources Include="..\frames\TMotorPositionFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

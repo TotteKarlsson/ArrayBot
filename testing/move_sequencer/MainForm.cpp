@@ -7,19 +7,19 @@
 #include "abPosition.h"
 #include "abTCubeDCServo.h"
 #include "abUtilities.h"
-#include "mtkLogger.h"
-#include "mtkMathUtils.h"
-#include "mtkStringList.h"
-#include "mtkVCLUtils.h"
-#include "TMemoLogger.h"
+#include "dslLogger.h"
+#include "dslMathUtils.h"
+#include "dslStringList.h"
+#include "dslVCLUtils.h"
+#include "dslTMemoLogger.h"
 #include <bitset>
 #include "TMoveSequencerFrame.h"
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)
-#pragma link "TIntegerLabeledEdit"
-#pragma link "TFloatLabeledEdit"
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTIntegerLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma link "abXYZUnitFrame"
 #pragma link "abMotorFrame"
 #pragma resource "*.dfm"
@@ -29,7 +29,7 @@ extern string gLogFileLocation;
 extern string gLogFileName;
 extern string gAppDataFolder;
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)

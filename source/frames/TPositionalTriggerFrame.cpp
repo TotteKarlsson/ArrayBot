@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 
 #pragma package(smart_init)
-#pragma link "TFloatLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
 #pragma resource "*.dfm"
 
 TPositionalTriggerFrame *PositionalTriggerFrame;

@@ -8,7 +8,7 @@
 #include <Vcl.Buttons.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include "TArrayBotBtn.h"
-#include "mtkLogFileReader.h"
+#include "dslLogFileReader.h"
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {

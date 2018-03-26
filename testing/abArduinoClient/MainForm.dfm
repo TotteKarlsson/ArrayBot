@@ -52,7 +52,7 @@ object Main: TMain
       Align = alTop
       Caption = 'Humidity'
       TabOrder = 1
-      object mHumidityE: mtkFloatLabel
+      object mHumidityE: TFloatLabel
         Left = 30
         Top = 31
         Width = 43
@@ -75,7 +75,7 @@ object Main: TMain
       Align = alTop
       Caption = 'Temperature'
       TabOrder = 2
-      object mTemperatureLbl: mtkFloatLabel
+      object mTemperatureLbl: TFloatLabel
         Left = 40
         Top = 31
         Width = 43

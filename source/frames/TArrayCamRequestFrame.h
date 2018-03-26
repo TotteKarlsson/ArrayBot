@@ -9,9 +9,9 @@
 #include <Vcl.ActnList.hpp>
 #include "arraybot/atArrayBot.h"
 #include <Vcl.ExtCtrls.hpp>
-#include "TSTDStringLabeledEdit.h"
-#include "TFloatLabeledEdit.h"
-#include "TIntegerLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
+#include "dslTSTDStringLabeledEdit.h"
 
 class Process;
 class ArrayCamRequestProcess;

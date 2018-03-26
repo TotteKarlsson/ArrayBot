@@ -11,17 +11,17 @@
 //---------------------------------------------------------------------------
 #include "ibApplicationMessages.h"
 #include "ibDataStructures.h"
-#include "mtkIniFileC.h"
-#include "mtkIniFileProperties.h"
-#include "mtkLogFileReader.h"
-#include "mtkLogLevel.h"
-#include "mtkMessageContainer.h"
-#include "mtkProperty.h"
-#include "mtkSQLite.h"
+#include "dslIniFileC.h"
+#include "dslIniFileProperties.h"
+#include "dslLogFileReader.h"
+#include "dslLogLevel.h"
+#include "dslMessageContainer.h"
+#include "dslProperty.h"
+#include "dslSQLite.h"
 #include "TApplicationProperties.h"
 #include "TRegistryForm.h"
 #include "TRegistryProperties.h"
-#include "TSTDStringLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include <System.Actions.hpp>
 #include <System.Bindings.Outputs.hpp>
 #include <System.Rtti.hpp>
@@ -37,7 +37,7 @@
 #include <Vcl.Menus.hpp>
 #include <Vcl.StdActns.hpp>
 #include <Vcl.ToolWin.hpp>
-#include "TIntegerLabeledEdit.h"
+#include "dslTIntegerLabeledEdit.h"
 #include <Data.Bind.Components.hpp>
 #include <Data.Bind.DBScope.hpp>
 #include <Data.Bind.EngExt.hpp>
@@ -48,11 +48,11 @@
 #include "iBotDataModule.h"
 #include "TSlotFrame.h"
 
-using mtk::Property;
-using mtk::SQLite;
-using mtk::MessageContainer;
-using mtk::IniFileProperties;
-using mtk::TRegistryProperties;
+using dsl::Property;
+using dsl::SQLite;
+using dsl::MessageContainer;
+using dsl::IniFileProperties;
+using dsl::TRegistryProperties;
 
 extern string gApplicationRegistryRoot;
 
@@ -69,7 +69,7 @@ class TMainForm : public TRegistryForm
         TTimer *StartupTimer;
     TSplitter *Splitter1;
     TPanel *TopPanel;
-    mtkIniFileC *mIniFileC;
+    dslIniFileC *mIniFileC;
     TMainMenu *MainMenu1;
     TMenuItem *File1;
     TMenuItem *Help1;
@@ -160,12 +160,12 @@ class TMainForm : public TRegistryForm
 
                                                         //Parameters...
         IniFileProperties	      	                    mGeneralProperties;
-        mtk::Property<int>	                            mBottomPanelHeight;
-		mtk::Property<int>	                            mMainTabIndex;
+        dsl::Property<int>	                            mBottomPanelHeight;
+		dsl::Property<int>	                            mMainTabIndex;
 
-		mtk::Property<mtk::LogLevel>	                mLogLevel;
+		dsl::Property<dsl::LogLevel>	                mLogLevel;
         TRegistryProperties   	  	                    mSplashProperties;
-        mtk::Property<bool>                             mShowSplashOnStartup;
+        dsl::Property<bool>                             mShowSplashOnStartup;
         void        __fastcall                          PopulateStyleMenu();
 
         bool                                            setupAndReadIniParameters();

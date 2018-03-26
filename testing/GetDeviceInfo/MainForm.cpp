@@ -1,25 +1,25 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
-#include "TMemoLogger.h"
-#include "mtkStringList.h"
+#include "dslTMemoLogger.h"
+#include "dslStringList.h"
 #include "abUtilities.h"
 #include "abAPTMotor.h"
 #include "abTCubeDCServo.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
 #include <bitset>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TIntegerLabeledEdit"
-#pragma link "TFloatLabeledEdit"
+#pragma link "dslTIntegerLabeledEdit"
+#pragma link "dslTFloatLabeledEdit"
 #pragma resource "*.dfm"
 TMain *Main;
 
 extern string       gLogFileLocation;
 extern string       gLogFileName;
 
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
 :
@@ -322,7 +322,7 @@ void __fastcall TMain::mDeviceValueEdit(TObject *Sender, WORD &Key, TShiftState 
         return;
     }
 
-	TFloatLabeledEdit* e = dynamic_cast<TFloatLabeledEdit*>(Sender);
+	dslTFloatLabeledEdit* e = dynamic_cast<dslTFloatLabeledEdit*>(Sender);
     if(e == mMaxVelocity)
     {
         double vel = mMaxVelocity->GetValue();
