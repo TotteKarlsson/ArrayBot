@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include "TXYZUnitFrame.h"
 #include "arraybot/atXYZUnit.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "TMotorFrame.h"
 #include "arraybot/atWhiskerUnit.h"
@@ -14,14 +14,14 @@
 
 TXYZUnitFrame *XYZUnitFrame;
 
-using namespace mtk;
+using namespace dsl;
 int TXYZUnitFrame::mFrameNr = 0;
 //---------------------------------------------------------------------------
 __fastcall TXYZUnitFrame::TXYZUnitFrame(TComponent* Owner)
 	: TFrame(Owner),
     mUnit(NULL)
 {
-    TFrame::Name = vclstr("XYZUnitFrame_" + mtk::toString(++mFrameNr));
+    TFrame::Name = vclstr("XYZUnitFrame_" + dsl::toString(++mFrameNr));
 }
 
 //---------------------------------------------------------------------------

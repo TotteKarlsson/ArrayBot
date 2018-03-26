@@ -1,8 +1,8 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TABProcessSequencerFrame.h"
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "arraybot/process/atParallelProcess.h"
 #include "arraybot/atArrayBot.h"
@@ -25,7 +25,7 @@
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
 
-using namespace mtk;
+using namespace dsl;
 int TABProcessSequencerFrame::mFrameNr = 0;
 
 //---------------------------------------------------------------------------
@@ -35,7 +35,7 @@ __fastcall TABProcessSequencerFrame::TABProcessSequencerFrame(ProcessSequencer& 
     mAB(ps.getArrayBot()),
     mAppDataFolder(appFolder)
 {
-    TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + mtk::toString(++mFrameNr));
+    TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', "MoveSequenceFrame") + dsl::toString(++mFrameNr));
     mProcessFileExtension = "abp";
 	TSequenceInfoFrame1 = new TSequenceInfoFrame(ps, this);
 	TSequenceInfoFrame1->Parent = mLeftPanel;

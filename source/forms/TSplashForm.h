@@ -9,13 +9,13 @@
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.Imaging.jpeg.hpp>
-#include "mtkTimer.h"
-#include "mtkMessageContainer.h"
+#include "dslTimer.h"
+#include "dslMessageContainer.h"
 #include "TAboutArrayBotFrame.h"
-#include "mtkLogFileReader.h"
+#include "dslLogFileReader.h"
 
 using Poco::Timespan;
-using mtk::MessageContainer;
+using dsl::MessageContainer;
 //---------------------------------------------------------------------------
 class PACKAGE TSplashForm : public TForm
 {
@@ -45,7 +45,7 @@ class PACKAGE TSplashForm : public TForm
 										__fastcall          ~TSplashForm();
         bool                                                mMainAppIsRunning;
 
-        mtk::Timer                                          mShowTimer;
+        dsl::Timer                                          mShowTimer;
         bool                                                isOnShowTime();
         void                                                setShowTime(int ms);
         TAboutArrayBotFrame*                               	mAFrame;

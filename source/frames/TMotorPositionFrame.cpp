@@ -1,10 +1,10 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMotorPositionFrame.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "arraybot/apt/atAPTMotor.h"
 
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -16,7 +16,7 @@ __fastcall TMotorPositionFrame::TMotorPositionFrame(TComponent* Owner, const APT
 	: TFrame(Owner),
     mMotor(mtr)
 {
-    TFrame::Name = vclstr("PosFrame_" + mtk::toString(++mFrameNr));
+    TFrame::Name = vclstr("PosFrame_" + dsl::toString(++mFrameNr));
 	PullPosTimer->Enabled = true;
     MotorPositionGB->Caption = vclstr(mtr->getName());
 }
@@ -32,7 +32,7 @@ void __fastcall TMotorPositionFrame::PullPosTimerTimer(TObject *Sender)
 	string dblFormat("%.3f");
     if(mMotor)
     {
-        mPosL->Caption = vclstr(mtk::toString(mMotor->getPosition(), dblFormat));
+        mPosL->Caption = vclstr(dsl::toString(mMotor->getPosition(), dblFormat));
     }
     else
     {

@@ -66,7 +66,7 @@ extern "C" int _libmain(unsigned long reason)
 }
 
 //---------------------------------------------------------------------------
-#pragma comment(lib, "mtkCommon.lib")
+#pragma comment(lib, "dslCommon.lib")
 
 #pragma comment(lib, "VCLCommon.bpi")
 #pragma comment(lib, "DuneComponents.bpi")

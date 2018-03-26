@@ -4,17 +4,17 @@
 
 //#include "core/atProcess.h"
 #include "arraybot/process/atArrayBotRequestProcess.h"
-//#include "mtkLogger.h"
+//#include "dslLogger.h"
 //#include "arraybot/atArrayBot.h"
 #include "arraybot/atArrayBotProtocol.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TFloatLabeledEdit"
 #pragma link "TIntegerLabeledEdit"
 #pragma resource "*.dfm"
 
-using namespace mtk;
+using namespace dsl;
 TArrayBotRequestFrame *ArrayBotRequestFrame;
 //---------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ __fastcall TArrayBotRequestFrame::TArrayBotRequestFrame(ProcessSequencer& ps, TC
 	: TFrame(Owner),
      mProcessSequencer(ps)
 {
-    TFrame::Name = vclstr("ArrayBotFrame_" + mtk::toString(++mFrameNr));
+    TFrame::Name = vclstr("ArrayBotFrame_" + dsl::toString(++mFrameNr));
 	ArrayBotRequestCB->Clear();
 	ArrayBotProtocol ap;
 	//    string test = ap[acrStartVideoRecorder];

@@ -1,10 +1,10 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TStopAndResumeFrame.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "core/atProcess.h"
 #include "arraybot/process/atStopAndResumeProcess.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "arraybot/atArrayBot.h"
 #include "vcl/forms/TTextInputDialog.h"
 
@@ -12,7 +12,7 @@
 #pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 
-using namespace mtk;
+using namespace dsl;
 
 TStopAndResumeFrame *StopAndResumeFrame;
 //---------------------------------------------------------------------------

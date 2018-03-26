@@ -5,8 +5,8 @@
 #include "arraybot/atArrayBot.h"
 #include "abUIDataStructures.h"
 #include "InitArrayBotThread.h"
-#include "mtkIniFileProperties.h"
-#include "mtkLogFileReader.h"
+#include "dslIniFileProperties.h"
+#include "dslLogFileReader.h"
 #include "TRegistryForm.h"
 #include "TSTDStringLabeledEdit.h"
 #include <System.Actions.hpp>
@@ -38,7 +38,7 @@
 #include "TApplicationSoundsFrame.h"
 
 using Poco::Timestamp;
-using mtk::IniFileProperties;
+using dsl::IniFileProperties;
 class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
 class TXYZUnitFrame;
@@ -218,7 +218,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 
         IniFile						            mIniFile;
         IniFileProperties  			            mProperties;
-		mtk::Property<mtk::LogLevel>            mLogLevel;
+		dsl::Property<dsl::LogLevel>            mLogLevel;
 
 
                 										//Sound properties

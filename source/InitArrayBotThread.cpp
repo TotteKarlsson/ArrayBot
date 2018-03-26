@@ -3,10 +3,10 @@
 #include <System.Classes.hpp>
 #include "InitArrayBotThread.h"
 #include "arraybot/atArrayBot.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #pragma package(smart_init)
 
-using namespace mtk;
+using namespace dsl;
 InitBotThread::InitBotThread()
 :
 mTheBot(NULL)

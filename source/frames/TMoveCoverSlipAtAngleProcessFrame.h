@@ -10,7 +10,7 @@
 #include "TSTDStringLabeledEdit.h"
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
-#include "mtkFloatLabel.h"
+#include "dslFloatLabel.h"
 #include "TPropertyCheckBox.h"
 //---------------------------------------------------------------------------
 
@@ -34,8 +34,8 @@ __published:	// IDE-managed Components
 	TPanel *Panel2;
 	TLabel *A;
 	TLabel *Label1;
-	mtkFloatLabel *LatVelL;
-	mtkFloatLabel *LatAccL;
+	dslFloatLabel *LatVelL;
+	dslFloatLabel *LatAccL;
 	TPropertyCheckBox *EnableParallelWhiskerMoveCB;
 	TPropertyCheckBox *FetchAngleFromCSAngleMotorCB;
 	TGroupBox *StayAtBeachGB;

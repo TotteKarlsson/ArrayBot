@@ -9,7 +9,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
-#include "mtkFloatLabel.h"
+#include "dslFloatLabel.h"
 #include "TPropertyCheckBox.h"
 //---------------------------------------------------------------------------
 
@@ -44,8 +44,8 @@ class PACKAGE TMotorFrame : public TFrame
         TAction *home;
         TLabel *Label4;
         TLabel *Label5;
-        mtkFloatLabel *mJogVelLbl;
-        mtkFloatLabel *mJogAccLbl;
+        dslFloatLabel *mJogVelLbl;
+        dslFloatLabel *mJogAccLbl;
         TLabel *Label6;
         TLabel *mIsEnabledLbl;
         TButton *StopBtn;

@@ -3,27 +3,27 @@
 #include "TMotorFrame.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include <bitset>
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
-#include "mtkStringUtils.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
+#include "dslStringUtils.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
 #pragma link "TIntLabel"
-#pragma link "mtkFloatLabel"
+#pragma link "dslFloatLabel"
 #pragma link "TPropertyCheckBox"
 #pragma resource "*.dfm"
 TMotorFrame *MotorFrame;
 
-using namespace mtk;
+using namespace dsl;
 int TMotorFrame::mFrameNr = 0;
 //---------------------------------------------------------------------------
 __fastcall TMotorFrame::TMotorFrame(const string& name, TComponent* Owner)
 	: TFrame(Owner),
     mMotor(NULL)
 {
-    TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', name) + mtk::toString(++mFrameNr));
+    TFrame::Name = vclstr("Frame_" + replaceCharacter('-', '_', name) + dsl::toString(++mFrameNr));
 }
 
 //---------------------------------------------------------------------------

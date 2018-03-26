@@ -1,13 +1,13 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "MainForm.h"
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "TSplashForm.h"
 #include "frames/TXYZUnitFrame.h"
 
-using namespace mtk;
+using namespace dsl;
 
 static HWND gOtherAppWindow = NULL;
 extern TSplashForm*  gSplashForm;

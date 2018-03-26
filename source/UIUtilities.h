@@ -2,7 +2,7 @@
 #define UIUtilitiesH
 #include <windows.h>
 #include "abUIDataStructures.h"
-#include "mtkStringList.h"
+#include "dslStringList.h"
 
 #define PACKAGE __declspec(package)
 //---------------------------------------------------------------------------

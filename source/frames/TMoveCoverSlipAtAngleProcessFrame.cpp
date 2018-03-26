@@ -4,26 +4,26 @@
 #include "TPositionalTriggerFrame.h"
 #include "arraybot/apt/atMove.h"
 #include "arraybot/apt/atAPTMotor.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "arraybot/atXYZUnit.h"
 #include "arraybot/atArrayBot.h"
 #include "arraybot/process/atMoveCoverSlipAtAngleProcess.h"
 #include "arraybot/process/atTriggerFunction.h"
 #include "vcl/forms/TTextInputDialog.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TArrayBotBtn"
-#pragma link "mtkFloatLabel"
+#pragma link "dslFloatLabel"
 #pragma link "TPropertyCheckBox"
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
 
 TMoveCoverSlipAtAngleProcessFrame *MoveCoverSlipAtAngleProcessFrame;
 
-using namespace mtk;
+using namespace dsl;
 static int frameNr = 1;
 
 //---------------------------------------------------------------------------

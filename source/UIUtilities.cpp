@@ -1,16 +1,16 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "UIUtilities.h"
-#include "mtkLogger.h"
-//#include "mtkUtils.h"
-#include "mtkVCLUtils.h"
-#include "mtkRestartApplicationUtils.h"
+#include "dslLogger.h"
+//#include "dslUtils.h"
+#include "dslVCLUtils.h"
+#include "dslRestartApplicationUtils.h"
 #include "abApplicationMessages.h"
-//#include "mtkMoleculixException.h"
+//#include "dslMoleculixException.h"
 //#include "Poco/DateTimeFormatter.h"
 #pragma package(smart_init)
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 bool sendAppMessage(ApplicationMessageEnum msgID, void* s)
@@ -39,7 +39,7 @@ bool sendAppMessage(ApplicationMessageEnum msgID, void* s)
 //---------------------------------------------------------------------------
 void setupApplicationTheme(const string& appRegRoot, string& theme)
 {
-	if(mtk::checkForCommandLineFlag("-Theme="))
+	if(dsl::checkForCommandLineFlag("-Theme="))
 	{
 		string cmdLine = stdstr(GetCommandLineA());
 		//User is changing the theme.
@@ -118,8 +118,8 @@ void setupLogging(const string& logFileLocation, const string& logFileName)
 
 	string fullLogFileName(joinPath(logFileLocation, logFileName));
 	clearFile(fullLogFileName);
-	mtk::gLogger.logToFile(fullLogFileName);
-    mtk::gLogger.setLogLevel(lInfo);
+	dsl::gLogger.logToFile(fullLogFileName);
+    dsl::gLogger.setLogLevel(lInfo);
 	LogOutput::mShowLogLevel = true;
 	LogOutput::mShowLogTime = true;
 	LogOutput::mUseLogTabs 	= true;

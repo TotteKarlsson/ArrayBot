@@ -1,11 +1,11 @@
 #if defined DSL_STATIC
-	#pragma comment(lib, "mtkCommon-static.lib")
-	#pragma comment(lib, "mtkMath-static.lib")
-	#pragma comment(lib, "mtkIPC-static.lib")
+	#pragma comment(lib, "dslCommon-static.lib")
+	#pragma comment(lib, "dslMath-static.lib")
+	#pragma comment(lib, "dslIPC-static.lib")
 #else
-	#pragma comment(lib, "mtkCommon.lib")
-	#pragma comment(lib, "mtkMath.lib")
-	#pragma comment(lib, "mtkIPC.lib")
+	#pragma comment(lib, "dslCommon.lib")
+	#pragma comment(lib, "dslMath.lib")
+	#pragma comment(lib, "dslIPC.lib")
 #endif
 
 #pragma comment(lib, "atCore.lib")

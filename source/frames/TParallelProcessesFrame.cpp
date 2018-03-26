@@ -1,17 +1,17 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TParallelProcessesFrame.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "core/atProcess.h"
 #include "arraybot/apt/atMove.h"
 #include "arraybot/process/atParallelProcess.h"
 #include "arraybot/process/atMoveCoverSlipAtAngleProcess.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "arraybot/atArrayBot.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "arraybot/apt/atAbsoluteMove.h"
 #include "atVCLUtils.h"
-#include "mtkMathUtils.h"
+#include "dslMathUtils.h"
 #include "arraybot/process/atTriggerFunction.h"
 #include "vcl/forms/TStringInputDialog.h"
 #include "arduino/atArduinoServerCommand.h"
@@ -31,7 +31,7 @@
 #pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 
-using namespace mtk;
+using namespace dsl;
 
 TParallelProcessesFrame *ParallelProcessesFrame;
 //---------------------------------------------------------------------------

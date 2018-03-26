@@ -2,11 +2,11 @@
 #pragma hdrstop
 #include <sstream>
 #include "TAboutArrayBotFrame.h"
-#include "mtkStringList.h"
-#include "mtkVCLUtils.h"
-#include "mtkApplicationInfo.h"
+#include "dslStringList.h"
+#include "dslVCLUtils.h"
+#include "dslApplicationInfo.h"
 #include "../abApplicationMessages.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 //#include "../source/vcl/forms/TShowFileContentForm.h"
 #include "Poco/DateTimeFormatter.h"
 //---------------------------------------------------------------------------
@@ -15,7 +15,7 @@
 TAboutArrayBotFrame *AboutArrayBotFrame;
 
 using namespace std;
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 __fastcall TAboutArrayBotFrame::TAboutArrayBotFrame(TComponent* Owner)
 :
@@ -26,7 +26,7 @@ TFrame(Owner)
 void TAboutArrayBotFrame::populate()
 {
     stringstream ss;
-    mtkApplicationInfo appInfo(Application);
+    dslApplicationInfo appInfo(Application);
 
     //Current Version Info
     Version version(stdstr(appInfo.mVersion));

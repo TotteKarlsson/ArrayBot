@@ -1,10 +1,10 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TArrayCamRequestFrame.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "core/atProcess.h"
 #include "arraybot/process/atArrayCamRequestProcess.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "arraybot/atArrayBot.h"
 #include "arraycam/atArrayCamProtocol.h"
 #pragma package(smart_init)
@@ -13,7 +13,7 @@
 #pragma link "TIntegerLabeledEdit"
 #pragma resource "*.dfm"
 
-using namespace mtk;
+using namespace dsl;
 TArrayCamRequestFrame *ArrayCamRequestFrame;
 //---------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ __fastcall TArrayCamRequestFrame::TArrayCamRequestFrame(ProcessSequencer& ps, TC
     : TFrame(Owner),
      mProcessSequencer(ps)
 {
-    TFrame::Name = vclstr("ArrayCamFrame_" + mtk::toString(++mFrameNr));
+    TFrame::Name = vclstr("ArrayCamFrame_" + dsl::toString(++mFrameNr));
     ArrayCamRequestCB->Clear();
     ArrayCamProtocol ap;
     //    string test = ap[acrStartVideoRecorder];

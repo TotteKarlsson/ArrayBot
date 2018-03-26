@@ -9,7 +9,7 @@
 #include "TSequencerButtonsFrame.h"
 #include "frames/TABProcessSequencerFrame.h"
 #include "UIUtilities.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 //---------------------------------------------------------------------------
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;

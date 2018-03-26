@@ -1,15 +1,15 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TSplashForm.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "../abApplicationMessages.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "../UIUtilities.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TSplashForm::TSplashForm(const string& logFileName, TComponent* Owner)

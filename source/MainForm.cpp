@@ -3,14 +3,14 @@
 #include "MainForm.h"
 #include "TMemoLogger.h"
 #include "TSplashForm.h"
-#include "mtkStringList.h"
+#include "dslStringList.h"
 #include "core/atUtilities.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "arraybot/apt/atTCubeDCServo.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
 #include <bitset>
-#include "mtkMathUtils.h"
+#include "dslMathUtils.h"
 #include "core/atExceptions.h"
 #include "sound/atSounds.h"
 #include "core/atCore.h"
@@ -25,7 +25,7 @@
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
-#pragma link "mtkFloatLabel"
+#pragma link "dslFloatLabel"
 #pragma link "TAboutArrayBotFrame"
 #pragma link "TAboutArrayBot_2Frame"
 #pragma link "TPropertyCheckBox"
@@ -42,7 +42,7 @@ extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
 extern string 			gApplicationRegistryRoot;
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)

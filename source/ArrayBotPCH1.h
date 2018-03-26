@@ -9,11 +9,11 @@
 #include "Poco/TimeStamp.h"
 #include "Poco/Timespan.h"
 
-#include "mtkLogger.h"
-#include "mtkUtils.h"
-#include "mtkTimer.h"
-#include "mtkBaseProperty.h"
-#include "mtkMathUtils.h"
+#include "dslLogger.h"
+#include "dslUtils.h"
+#include "dslTimer.h"
+#include "dslBaseProperty.h"
+#include "dslMathUtils.h"
 
 #include "arraybot/joystick/atArrayBotJoyStick.h"
 

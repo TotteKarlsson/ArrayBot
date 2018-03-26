@@ -2,10 +2,10 @@
 #pragma hdrstop
 #include "TXYZPositionsFrame.h"
 #include "arraybot/atXYZUnit.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "arraybot/apt/atAPTMotor.h"
 
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -17,7 +17,7 @@ __fastcall TXYZPositionsFrame::TXYZPositionsFrame(TComponent* Owner, const XYZUn
 	: TFrame(Owner),
     mUnit(u)
 {
-    TFrame::Name = vclstr("PosFrame_" + mtk::toString(++mFrameNr));
+    TFrame::Name = vclstr("PosFrame_" + dsl::toString(++mFrameNr));
 	PullPosTimer->Enabled = true;
     GroupBox1->Caption = vclstr(u.getName());
 }
@@ -27,7 +27,7 @@ void __fastcall TXYZPositionsFrame::PullPosTimerTimer(TObject *Sender)
 	string dblFormat("%.3f");
     if(mUnit.getXMotor())
     {
-        mXPosL->Caption = vclstr(mtk::toString(mUnit.getXMotor()->getPosition(), dblFormat));
+        mXPosL->Caption = vclstr(dsl::toString(mUnit.getXMotor()->getPosition(), dblFormat));
     }
     else
     {
@@ -36,7 +36,7 @@ void __fastcall TXYZPositionsFrame::PullPosTimerTimer(TObject *Sender)
 
     if(mUnit.getYMotor())
     {
-        mYPosL->Caption = vclstr(mtk::toString(mUnit.getYMotor()->getPosition(), dblFormat));
+        mYPosL->Caption = vclstr(dsl::toString(mUnit.getYMotor()->getPosition(), dblFormat));
     }
     else
     {
@@ -45,7 +45,7 @@ void __fastcall TXYZPositionsFrame::PullPosTimerTimer(TObject *Sender)
 
     if(mUnit.getZMotor())
     {
-        mZPosL->Caption = vclstr(mtk::toString(mUnit.getZMotor()->getPosition(), dblFormat));
+        mZPosL->Caption = vclstr(dsl::toString(mUnit.getZMotor()->getPosition(), dblFormat));
     }
     else
     {
@@ -54,7 +54,7 @@ void __fastcall TXYZPositionsFrame::PullPosTimerTimer(TObject *Sender)
 
     if(mUnit.getAngleMotor())
     {
-        mAnglePosL->Caption = vclstr(mtk::toString(mUnit.getAngleMotor()->getPosition(), dblFormat));
+        mAnglePosL->Caption = vclstr(dsl::toString(mUnit.getAngleMotor()->getPosition(), dblFormat));
     }
     else
     {

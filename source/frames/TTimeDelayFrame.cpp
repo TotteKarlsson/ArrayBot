@@ -1,10 +1,10 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TTimeDelayFrame.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "core/atProcess.h"
 #include "arraybot/process/atTimeDelay.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "arraybot/atArrayBot.h"
 
 #pragma package(smart_init)
@@ -13,7 +13,7 @@
 #pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 
-using namespace mtk;
+using namespace dsl;
 
 TTimeDelayFrame *TimeDelayFrame;
 //---------------------------------------------------------------------------

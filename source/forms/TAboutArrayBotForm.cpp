@@ -2,16 +2,16 @@
 #pragma hdrstop
 #include "TAboutArrayBotForm.h"
 #include "../source/vcl/forms/TShowFileContentForm.h"
-#include "mtkApplicationInfo.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslApplicationInfo.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TAboutArrayBotFrame"
 #pragma resource "*.dfm"
 TAboutArrayBotForm *AboutArrayBotForm;
 
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 __fastcall TAboutArrayBotForm::TAboutArrayBotForm(TComponent* Owner)
     : TForm(Owner)

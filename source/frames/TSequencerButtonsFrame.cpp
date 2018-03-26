@@ -2,17 +2,17 @@
 #pragma hdrstop
 #include <Buttons.hpp>
 #include "TSequencerButtonsFrame.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "vcl/forms/TYesNoForm.h"
 #include <sstream>
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "forms/TProcessSequenceControlForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 
-using namespace mtk;
+using namespace dsl;
 using std::stringstream;
 TSequencerButtonsFrame *SequencerButtonsFrame;
 

@@ -1,14 +1,14 @@
 #ifndef InitArrayBotThreadH
 #define InitArrayBotThreadH
-#include "mtkThread.h"
+#include "dslThread.h"
 
-using mtk::Thread;
+using dsl::Thread;
 //---------------------------------------------------------------------------
 typedef void __fastcall (__closure *callback)(void);
 
 class ArrayBot;
 
-class PACKAGE InitBotThread : public mtk::Thread
+class PACKAGE InitBotThread : public dsl::Thread
 {
 	public:
     					InitBotThread();

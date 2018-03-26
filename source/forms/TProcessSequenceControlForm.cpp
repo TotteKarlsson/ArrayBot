@@ -2,15 +2,15 @@
 #pragma hdrstop
 #include "TProcessSequenceControlForm.h"
 #include "arraybot/process/atProcessSequencer.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TArrayBotBtn"
 #pragma resource "*.dfm"
 TProcessSequenceControlForm *ProcessSequenceControlForm;
 
-using namespace mtk;
+using namespace dsl;
 string updateProgressString(const string& s);
 //---------------------------------------------------------------------------
 __fastcall TProcessSequenceControlForm::TProcessSequenceControlForm(ProcessSequencer& s, TComponent* Owner)

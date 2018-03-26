@@ -4,7 +4,7 @@
 #include "arraybot/process/atParallelProcess.h"
 #include "arraybot/process/atProcessSequence.h"
 #include "arraybot/apt/atAbsoluteMove.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "vcl/forms/TStringInputDialog.h"
 #include "arraybot/process/atTimeDelay.h"
 #include "arraybot/process/atArrayCamRequestProcess.h"
@@ -19,7 +19,7 @@
 #include "frames/TMoveCoverSlipAtAngleProcessFrame.h"
 #include "frames/THomeMotorProcessFrame.h"
 #include "atVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "vcl/forms/TSelectProcessTypeDialog.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "vcl/forms/TYesNoForm.h"
@@ -32,7 +32,7 @@
 TSequenceInfoFrame *SequenceInfoFrame;
 bool updateCurrentProcessState(Process* p, ArrayBot& ab);
 
-using namespace mtk;
+using namespace dsl;
 //---------------------------------------------------------------------------
 __fastcall TSequenceInfoFrame::TSequenceInfoFrame(ProcessSequencer& ps, TComponent* Owner)
     : TFrame(Owner),
@@ -314,33 +314,33 @@ void __fastcall TSequenceInfoFrame::AddCombinedMoveAExecute(TObject *Sender)
         if(pType == 0) //Parallel process
         {
             //Create and add a process to the sequence
-            p = new ParallelProcess("Process " + mtk::toString(nr));
+            p = new ParallelProcess("Process " + dsl::toString(nr));
         }
         else if(pType == 1) //Time delay
         {
-            p = new TimeDelay("Process " + mtk::toString(nr));
+            p = new TimeDelay("Process " + dsl::toString(nr));
         }
         else if(pType == 2) //Stop and Resume process
         {
-            p = new StopAndResumeProcess("Process " + mtk::toString(nr));
+            p = new StopAndResumeProcess("Process " + dsl::toString(nr));
         }
         else if(pType == 3) //Arraycam Request
         {
-            p = new ArrayCamRequestProcess(mProcessSequencer.getArrayCamClient(), "Process " + mtk::toString(nr));
+            p = new ArrayCamRequestProcess(mProcessSequencer.getArrayCamClient(), "Process " + dsl::toString(nr));
         }
 
         else if(pType == 4) //Absolute move
         {
-            p = new AbsoluteMove("Process " + mtk::toString(nr));
+            p = new AbsoluteMove("Process " + dsl::toString(nr));
         }
         else if(pType == 5) //Move at angle
         {
-            p = new MoveCoverSlipAtAngleProcess("Process " + mtk::toString(nr));
+            p = new MoveCoverSlipAtAngleProcess("Process " + dsl::toString(nr));
         }
 
         else if(pType == 6) //Home motor
         {
-            p = new HomeMotor("Process " + mtk::toString(nr));
+            p = new HomeMotor("Process " + dsl::toString(nr));
         }
         else
         {
