@@ -1,3 +1,20 @@
+Release 0.9.3 (March 27)
+=======================
+* Added .gitattributes to deal with bash shell scripts
+* Refactored mtk -> dsl
+* compiled with Tokyo
+* Added wiper sequence
+* Adding ability to embed Arraybot request in a sequence
+* Added ability to focus navitar camera using joystick
+* Added fire ribbon separator function to the joystick
+* Added new arraycam services to the arraycamrequest frame
+* Added progress string to TProcessSequenceControlForm
+* Fixed so that the joystick is enabled even when the motor frame is visible
+* Added logic to move whisker forward as section is cutting
+* On windows10
+
+------ 2018 ------
+
 Release 0.9.2 (Oct 9)
 =======================
 * Added zoom in and out to joystick

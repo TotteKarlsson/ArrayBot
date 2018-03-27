@@ -90,18 +90,18 @@
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Release>2</VerInfo_Release>
+        <VerInfo_Release>3</VerInfo_Release>
         <_TCHARMapping>char</_TCHARMapping>
         <BCC_wcsu>false</BCC_wcsu>
         <BCC_PCHInject>ArrayBotPCH1.h</BCC_PCHInject>
         <Icon_MainIcon>ArrayBot_Icon1.ico</Icon_MainIcon>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_MinorVer>9</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileVersion=0.9.2.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileVersion=0.9.3.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
         <PostBuildEvent><![CDATA[C:\cygwin\bin\sh postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)
 $(PostBuildEvent)]]></PostBuildEvent>
-        <LinkPackageStatics>DbxDevartPostgreSQLDriver250.lib</LinkPackageStatics>
+        <LinkPackageStatics>ArrayBotPackage.lib;DbxDevartPostgreSQLDriver250.lib;dslVCLComponents.lib;atVisualComponents.lib;atComponents.lib;dslVisuals.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dsl\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\ThirdParty\Poco\Foundation\src\;P:\libs\dsl\VCL\Forms\;P:\libs\dsl\VCL\Common\;P:\libs\dsl\Common\Math\;P:\libs\dsl\Common\IPC\;P:\ArrayBot\source\frames\;P:\libs\atapi\source\arraybot\process\;P:\libs\atapi\source\arraybot\joystick\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
@@ -217,10 +217,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <VersionInfoKeys Name="CFBundleExecutable"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="p:\build\debug\BPL\dslVisualComponents.bpl">File p:\build\debug\BPL\dslVisualComponents.bpl not found</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k250.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp250.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="d:\build\debug\BPL\DuneComponentsDD.bpl">File d:\build\debug\BPL\DuneComponentsDD.bpl not found</Excluded_Packages>
                 </Excluded_Packages>
                 <ProjectProperties>
                     <ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
@@ -705,4 +703,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
     <Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
     <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>C:\cygwin\bin\sh postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
 </Project>

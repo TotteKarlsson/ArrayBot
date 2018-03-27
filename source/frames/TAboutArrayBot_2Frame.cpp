@@ -7,7 +7,6 @@
 #include "dslApplicationInfo.h"
 #include "../abApplicationMessages.h"
 #include "dslLogger.h"
-
 #include "Poco/DateTimeFormatter.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -26,15 +25,23 @@ TFrame(Owner)
 //---------------------------------------------------------------------------
 void TAboutArrayBotFrame_2::populate()
 {
-    stringstream ss;
-    dslApplicationInfo appInfo(Application);
+    string f("CHANGELOG.txt");
+    try
+    {
+        stringstream ss;
+        dslApplicationInfo appInfo(Application);
 
-    //Current Version Info
-    Version version(stdstr(appInfo.mVersion));
-    ss <<version.getMajor()<<"."<<version.getMinor()<<"."<<version.getPatch();
-    String versionMajorMinorPatch(ss.str().c_str());
-    versionLabel->Caption = String("Version: ") + versionMajorMinorPatch;
-    Memo1->Lines->LoadFromFile("CHANGELOG.txt");
+        //Current Version Info
+         Version version(stdstr(appInfo.mVersion));
+        ss <<version.getMajor()<<"."<<version.getMinor()<<"."<<version.getPatch();
+        String versionMajorMinorPatch(ss.str().c_str());
+        versionLabel->Caption = String("Version: ") + versionMajorMinorPatch;
+        Memo1->Lines->LoadFromFile(f.c_str());
+    }
+    catch(const EFOpenError& e)
+    {
+        Log(lError) << "EFileOpenError: " << stdstr(e.Message);
+    }
 }
 
 //---------------------------------------------------------------------------
