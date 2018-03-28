@@ -99,7 +99,7 @@
         <VerInfo_MinorVer>9</VerInfo_MinorVer>
         <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileVersion=0.9.3.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <PostBuildEvent><![CDATA[C:\cygwin\bin\sh postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)
+        <PostBuildEvent><![CDATA[$(SH_EXE) postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)
 $(PostBuildEvent)]]></PostBuildEvent>
         <LinkPackageStatics>ArrayBotPackage.lib;DbxDevartPostgreSQLDriver250.lib;dslVCLComponents.lib;atVisualComponents.lib;atComponents.lib;dslVisuals.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
@@ -708,7 +708,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>C:\cygwin\bin\sh postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)</PostBuildEvent>
+        <PostBuildEvent>$(SH_EXE) postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

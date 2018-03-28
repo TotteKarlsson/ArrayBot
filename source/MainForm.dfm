@@ -24106,13 +24106,25 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
@@ -24197,6 +24209,10 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
         Top = 0
@@ -24207,6 +24223,10 @@ object Main: TMain
         TabOrder = 0
         object TabSheet4: TTabSheet
           Caption = 'Joystick'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object JoyStickGB2: TGroupBox
             Left = 14
             Top = 17
@@ -24350,6 +24370,10 @@ object Main: TMain
         object TabSheet7: TTabSheet
           Caption = 'Wiggler'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object WigglerGB: TGroupBox
             Left = 14
             Top = 15
@@ -24545,6 +24569,7 @@ object Main: TMain
         object TabSheet6: TTabSheet
           Caption = 'Sounds'
           ImageIndex = 1
+          ExplicitWidth = 105
           inline TSoundsFrame1: TSoundsFrame
             Left = 0
             Top = 241
@@ -24554,13 +24579,13 @@ object Main: TMain
             AutoSize = True
             TabOrder = 0
             ExplicitTop = 241
-            ExplicitWidth = 1287
+            ExplicitWidth = 105
             ExplicitHeight = 433
             inherited GroupBox1: TGroupBox
               Width = 1287
               Height = 433
               Align = alClient
-              ExplicitWidth = 1287
+              ExplicitWidth = 105
               ExplicitHeight = 433
               inherited SoundsLB: TListBox
                 Top = 25
@@ -24583,10 +24608,10 @@ object Main: TMain
             Align = alTop
             AutoSize = True
             TabOrder = 1
-            ExplicitWidth = 1287
+            ExplicitWidth = 105
             inherited GBS: TGroupBox
               Width = 1287
-              ExplicitWidth = 1287
+              ExplicitWidth = 105
               inherited ApplicationSoundsLB: TListBox
                 Top = 25
                 Height = 214
@@ -24622,6 +24647,10 @@ object Main: TMain
         object TabSheet8: TTabSheet
           Caption = 'ArrayCam Connection'
           ImageIndex = 3
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 37
             Top = 33
@@ -24646,6 +24675,10 @@ object Main: TMain
         object TabSheet9: TTabSheet
           Caption = 'Miscellaneous'
           ImageIndex = 4
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object mLiftGB: TGroupBox
             Left = 694
             Top = 92
@@ -24702,6 +24735,10 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0
@@ -24786,7 +24823,7 @@ object Main: TMain
         inherited GroupBox1: TGroupBox
           Width = 1295
           Height = 526
-          ExplicitWidth = 1295
+          ExplicitWidth = 113
           ExplicitHeight = 526
           inherited Memo1: TMemo
             Top = 25

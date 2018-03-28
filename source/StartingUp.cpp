@@ -22,28 +22,11 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	this->readRegistry();
 	enableDisableUI(false);
 
-	this->Visible = true;
 	setupWindowTitle();
 
     enableDisableArrayCamClientControls(false);
 
 	TMemoLogger::mMemoIsEnabled = true;
-    if(gSplashForm)
-    {
-		gSplashForm->mMainAppIsRunning = true;
-
-        while(gSplashForm->isOnShowTime() == true || mInitBotThread.isAlive())
-        {
-            Application->ProcessMessages();
-            //In order to show whats going on on the splash screen
-            if(gSplashForm->Visible == false)
-            {
-                break;
-            }
-        }
-		gSplashForm->Close();
-    }
-
 	gLogger.setLogLevel(mLogLevel);
 
 	if(mLogLevel == lInfo)
@@ -70,13 +53,30 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	MainPC->TabIndex = 0;
     PageControl2->TabIndex = 0;
 
+    if(gSplashForm)
+    {
+		gSplashForm->mMainAppIsRunning = true;
+        while(gSplashForm->isOnShowTime() == true || mInitBotThread.isAlive())
+        {
+            Application->ProcessMessages();
+            //In order to show whats going on on the splash screen
+            if(gSplashForm->Visible == false)
+            {
+                break;
+            }
+        }
+		gSplashForm->Close();
+    }
+
+
 	gAppIsStartingUp = false;
+	WaitForDeviceInitTimer->Enabled = true;
+	this->Visible = true;
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormShow(TObject *Sender)
 {
-//    populateStyleMenu(ThemesMenu, ThemesMenuClick);
 	populateStyleRG(ThemesRG);
 }
 

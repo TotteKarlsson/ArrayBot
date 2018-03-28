@@ -75,22 +75,16 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 
-
         if(!gHideSplash)
         {
-	        gSplashForm = new TSplashForm(gLogFileName, Application);
             Application->ShowMainForm = false;
+	        gSplashForm = new TSplashForm(gLogFileName, Application);
             gSplashForm->Show();
             gSplashForm->Update();
-        }
-        else
-        {
-            gSplashForm = NULL;
         }
 
 		Application->Title = "ArrayBot - Software for Microtomes";
 		Application->CreateForm(__classid(TMain), &Main);
-		Application->ShowMainForm = false;
 		Application->Run();
 	}
 	catch (Exception &exception)

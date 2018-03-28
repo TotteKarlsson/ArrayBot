@@ -98,9 +98,6 @@ __fastcall TMain::TMain(TComponent* Owner)
 
     //We will setup UI frames after the bot is initialized
 	mInitBotThread.start();
-
-	WaitForDeviceInitTimer->Enabled = true;
-
     mTheWiggler.mMaxVelocity.setReference(&mWigglerVelocityE->getReference());
     mTheWiggler.mAmplitude.setReference(&mWigglerAmplitudeE->getReference());
     mTheWiggler.mMaxAcceleration.setReference(&mWigglerAccelerationE->getReference());
@@ -178,7 +175,8 @@ void __fastcall TMain::WaitForDeviceInitTimerTimer(TObject *Sender)
 
         setupUIFrames();
         enableDisableUI(true);
-       //Send a message to main ui to update sequence shortcuts
+
+        //Send a message to main ui to update sequence shortcuts
         if(sendAppMessage(abSequencerUpdate) != true)
         {
             Log(lDebug)<<"Sending sequencer update to UI was unsuccesful";

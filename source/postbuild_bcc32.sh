@@ -25,8 +25,8 @@ mkdir $APP_RELEASES/$APPNAME
 
 dest=$APP_RELEASES/$APPNAME
 
-cp ./../*.txt $dest
-cp $OUTPUTDIR/$OUTPUTFILENAME $dest
+cp ./../*.txt                                   $dest
+cp $OUTPUTDIR/$OUTPUTFILENAME                   $dest
 
 #DS Binaries
  cp $OUTPUTDIR/mtkCommon.dll                    $dest
@@ -87,6 +87,6 @@ cp $miscRedist/Thorlabs.MotionControl.IntegratedStepperMotors.dll   $OUTPUTDIR
 cp $miscRedist/Thorlabs.MotionControl.TCube.DCServo.dll             $OUTPUTDIR
 cp $miscRedist/Thorlabs.MotionControl.Benchtop.StepperMotor.dll     $OUTPUTDIR
 cp $miscRedist/Thorlabs.MotionControl.DeviceManager.dll             $OUTPUTDIR
-
+cp ./../*.txt                                                       $OUTPUTDIR
 
 #Copy Thorlabs dll's too
