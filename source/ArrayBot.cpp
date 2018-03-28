@@ -21,7 +21,7 @@ string              gLogFileName                = "ArrayBot.log";
 string 		        gApplicationRegistryRoot  	= "\\Software\\Allen Institute\\ArrayBot\\0.5.0";
 string 		        gAppDataFolder 				= joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot");
 HWND                gOtherAppWindow             = NULL;
-string              gDefaultAppTheme            = "Iceberg Classico";
+string              gApplicationStyle           = "Iceberg Classico";
 string              gRestartMutexName           = "arrayBotRestartMutex";
 string              gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
 string              gDateFormat                 = "%Y-%m-%d";
@@ -41,17 +41,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 
 	try
 	{
-		// Initialize restart code
-		// Check if this instance is restarted and
-		// wait while previos instance finish
-//		if (dsl::checkForCommandLineFlag("--Restart"))
-//		{
-//            //TODO: Fix this.. not working properly..
-//            //            MessageDlg("Wait...", mtWarning, TMsgDlgButtons() << mbOK, 0);
-//			dsl::WaitForPreviousProcessToFinish(gRestartMutexName);
-//            Sleep(1000);
-//		}
-
         //Look at this later... does not work yet
         const char appMutexName [] = "arrayBotAppMutex";
         appMutex = ::CreateMutexA(NULL, FALSE, appMutexName);
@@ -69,6 +58,16 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 
 			MessageDlg("Arraybot is already running.\nPlease close or kill application before starting new instance.", mtWarning, TMsgDlgButtons() << mbOK, 0);
             return(1); // Exit program
+        }
+
+        try
+        {
+        	gApplicationStyle = readStringFromRegistry(gApplicationRegistryRoot, "", "Theme",  gApplicationStyle);
+			TStyleManager::TrySetStyle(gApplicationStyle.c_str());
+			TStyleManager::SetStyle(gApplicationStyle.c_str());
+        }
+        catch(...)
+        {
         }
 
         setupLogging(gLogFileLocation, gLogFileName);
@@ -89,7 +88,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
             gSplashForm = NULL;
         }
 
-		TStyleManager::TrySetStyle("Carbon");
 		Application->Title = "ArrayBot - Software for Microtomes";
 		Application->CreateForm(__classid(TMain), &Main);
 		Application->ShowMainForm = false;

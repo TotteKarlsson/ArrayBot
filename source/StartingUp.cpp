@@ -75,7 +75,10 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormShow(TObject *Sender)
-{}
+{
+//    populateStyleMenu(ThemesMenu, ThemesMenuClick);
+	populateStyleRG(ThemesRG);
+}
 
 void TMain::setupProperties()
 {

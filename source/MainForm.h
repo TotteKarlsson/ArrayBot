@@ -36,6 +36,7 @@
 #include "TSoundsFrame.h"
 #include "sound/atApplicationSound.h"
 #include "TApplicationSoundsFrame.h"
+#include <Vcl.CheckLst.hpp>
 
 using Poco::Timestamp;
 using dsl::IniFileProperties;
@@ -159,6 +160,7 @@ class TMain : public TRegistryForm
 	TPopupMenu *PopupMenu1;
 	TMenuItem *CollapseAll1;
 	TMenuItem *ExpandAll1;
+	TRadioGroup *ThemesRG;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall checkForDevicesExecute(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
@@ -199,6 +201,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 	void __fastcall CategoryPanelCollapse(TObject *Sender);
 	void __fastcall CollapseAll1Click(TObject *Sender);
 	void __fastcall ExpandAll1Click(TObject *Sender);
+	void __fastcall ThemesRGClick(TObject *Sender);
 
     private:
 		enum PageControlTabs 					{pcMain = 0,  pcMoveSequences = 1,

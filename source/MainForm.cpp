@@ -41,6 +41,7 @@ extern string           gAppDataFolder;
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
 extern string 			gApplicationRegistryRoot;
+extern string 			gApplicationStyle;
 
 using namespace dsl;
 
@@ -519,6 +520,29 @@ void __fastcall TMain::CollapseAll1Click(TObject *Sender)
 void __fastcall TMain::ExpandAll1Click(TObject *Sender)
 {
 	CategoryPanelGroup1->ExpandAll();
+}
+
+
+void __fastcall TMain::ThemesRGClick(TObject *Sender)
+{
+    if(ThemesRG->ItemIndex < 0)
+    {
+        return;
+    }
+
+	String theme = ThemesRG->Items->Strings[ThemesRG->ItemIndex];
+    if(theme == TStyleManager::ActiveStyle->Name)
+    {
+        return;
+    }
+
+	TStyleManager::SetStyle(theme);
+
+
+	//Write to registry
+	gApplicationStyle = stdstr(theme);
+	writeStringToRegistry(gApplicationRegistryRoot, "", "Theme", gApplicationStyle);
+
 }
 
 

@@ -18,6 +18,9 @@
         <Projects Include="source\ArrayBot.cbproj">
             <Dependencies>P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj;source\lib\ArrayBotPackage.cbproj</Dependencies>
         </Projects>
+        <Projects Include="P:\atDB\source\atDB.cbproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +74,23 @@
     <Target Name="ArrayBot:Make" DependsOnTargets="atArrayBotCore:Make;ArrayBotPackage:Make">
         <MSBuild Projects="source\ArrayBot.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="atDB">
+        <MSBuild Projects="P:\atDB\source\atDB.cbproj"/>
+    </Target>
+    <Target Name="atDB:Clean">
+        <MSBuild Projects="P:\atDB\source\atDB.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDB:Make">
+        <MSBuild Projects="P:\atDB\source\atDB.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="atCore;atVCLCore;atArrayBotCore;ArrayBotPackage;ArrayBot"/>
+        <CallTarget Targets="atCore;atVCLCore;atArrayBotCore;ArrayBotPackage;ArrayBot;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="atCore:Clean;atVCLCore:Clean;atArrayBotCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="atCore:Clean;atVCLCore:Clean;atArrayBotCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="atCore:Make;atVCLCore:Make;atArrayBotCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
+        <CallTarget Targets="atCore:Make;atVCLCore:Make;atArrayBotCore:Make;ArrayBotPackage:Make;ArrayBot:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -23990,7 +23990,7 @@ object Main: TMain
             Left = 751
             Top = 1
             Width = 86
-            Height = 25
+            Height = 59
             Align = alLeft
             Caption = 'JS Status'
             Font.Charset = DEFAULT_CHARSET
@@ -24000,6 +24000,7 @@ object Main: TMain
             Font.Style = []
             ParentFont = False
             Layout = tlCenter
+            ExplicitHeight = 25
           end
           object mJoyStickRG: TRadioGroup
             Left = 976
@@ -24008,13 +24009,11 @@ object Main: TMain
             Height = 59
             Align = alRight
             Caption = 'Joystick'
-            Columns = 4
+            Columns = 2
             ItemIndex = 0
             Items.Strings = (
               '1'
-              '2'
-              '3'
-              '4')
+              '2')
             TabOrder = 0
             OnClick = mJoyStickRGClick
           end
@@ -24107,25 +24106,13 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
@@ -24210,10 +24197,6 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
         Top = 0
@@ -24224,10 +24207,6 @@ object Main: TMain
         TabOrder = 0
         object TabSheet4: TTabSheet
           Caption = 'Joystick'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object JoyStickGB2: TGroupBox
             Left = 14
             Top = 17
@@ -24371,10 +24350,6 @@ object Main: TMain
         object TabSheet7: TTabSheet
           Caption = 'Wiggler'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object WigglerGB: TGroupBox
             Left = 14
             Top = 15
@@ -24391,7 +24366,7 @@ object Main: TMain
               EditLabel.Height = 23
               EditLabel.Caption = 'Amplitude Step'
               TabOrder = 0
-              Text = '0.50'
+              Text = '0.5000'
               Value = 0.500000000000000000
             end
             object PullGB: TGroupBox
@@ -24410,7 +24385,7 @@ object Main: TMain
                 EditLabel.Height = 23
                 EditLabel.Caption = 'Acceleration'
                 TabOrder = 0
-                Text = '5.00'
+                Text = '5.0000'
                 Value = 5.000000000000000000
               end
               object mPullRelaxVelocityE: TFloatLabeledEdit
@@ -24422,7 +24397,7 @@ object Main: TMain
                 EditLabel.Height = 23
                 EditLabel.Caption = 'Velocity'
                 TabOrder = 1
-                Text = '3.00'
+                Text = '3.0000'
                 Value = 3.000000000000000000
               end
             end
@@ -24450,7 +24425,7 @@ object Main: TMain
               EditLabel.Height = 23
               EditLabel.Caption = 'Amplitude'
               TabOrder = 0
-              Text = '1.00'
+              Text = '1.0000'
               Value = 1.000000000000000000
             end
             object mWigglerAccelerationE: TFloatLabeledEdit
@@ -24462,7 +24437,7 @@ object Main: TMain
               EditLabel.Height = 23
               EditLabel.Caption = 'Acceleration'
               TabOrder = 1
-              Text = '5.00'
+              Text = '5.0000'
               Value = 5.000000000000000000
             end
             object mWiggleBtn: TArrayBotButton
@@ -24489,7 +24464,7 @@ object Main: TMain
               EditLabel.Height = 23
               EditLabel.Caption = 'Velocity'
               TabOrder = 3
-              Text = '3.00'
+              Text = '3.0000'
               Value = 3.000000000000000000
             end
             object mWiggleSpinButton: TCSpinButton
@@ -24600,7 +24575,7 @@ object Main: TMain
               end
             end
           end
-          object ApplicationSoundsFrame1: TApplicationSoundsFrame
+          inline ApplicationSoundsFrame1: TApplicationSoundsFrame
             Left = 0
             Top = 0
             Width = 1287
@@ -24608,15 +24583,45 @@ object Main: TMain
             Align = alTop
             AutoSize = True
             TabOrder = 1
+            ExplicitWidth = 1287
+            inherited GBS: TGroupBox
+              Width = 1287
+              ExplicitWidth = 1287
+              inherited ApplicationSoundsLB: TListBox
+                Top = 25
+                Height = 214
+                ItemHeight = 23
+                ExplicitTop = 25
+                ExplicitHeight = 214
+              end
+              inherited SoundPropsGB: TGroupBox
+                Top = 25
+                Width = 1036
+                Height = 214
+                ExplicitTop = 25
+                ExplicitWidth = 1036
+                ExplicitHeight = 214
+                inherited SoundCB: TComboBox
+                  Height = 31
+                  ExplicitHeight = 31
+                end
+                inherited FloatLabeledEdit1: TFloatLabeledEdit
+                  Height = 31
+                  EditLabel.Width = 147
+                  EditLabel.Height = 23
+                  EditLabel.ExplicitLeft = 56
+                  EditLabel.ExplicitTop = 158
+                  EditLabel.ExplicitWidth = 147
+                  EditLabel.ExplicitHeight = 23
+                  ExplicitHeight = 31
+                end
+              end
+            end
           end
         end
         object TabSheet8: TTabSheet
           Caption = 'ArrayCam Connection'
           ImageIndex = 3
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GroupBox1: TGroupBox
             Left = 37
             Top = 33
@@ -24639,15 +24644,11 @@ object Main: TMain
           end
         end
         object TabSheet9: TTabSheet
-          Caption = 'Miscelaneous'
+          Caption = 'Miscellaneous'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object mLiftGB: TGroupBox
-            Left = 22
-            Top = 12
+            Left = 694
+            Top = 92
             Width = 307
             Height = 198
             Caption = 'Simple Lift'
@@ -24684,16 +24685,23 @@ object Main: TMain
               Text = '0.00'
             end
           end
+          object ThemesRG: TRadioGroup
+            Left = 0
+            Top = 0
+            Width = 305
+            Height = 674
+            Align = alLeft
+            Caption = 'Themes'
+            TabOrder = 1
+            OnClick = ThemesRGClick
+            ExplicitTop = 5
+          end
         end
       end
     end
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0
