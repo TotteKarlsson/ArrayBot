@@ -1,3 +1,7 @@
+Release 0.9.4 (March 29)
+=======================
+* Added code for switching Application Themes
+
 Release 0.9.3 (March 27)
 =======================
 * Added .gitattributes to deal with bash shell scripts
