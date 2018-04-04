@@ -3,22 +3,17 @@
 #include "MainForm.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "arraybot/apt/atDeviceManager.h"
-#include "arraybot/apt/atMove.h"
-#include "arraybot/apt/atTCubeDCServo.h"
 #include "core/atUtilities.h"
 #include "dslLogger.h"
-#include "dslMathUtils.h"
-#include "dslStringList.h"
 #include "dslVCLUtils.h"
-#include "dslTMemoLogger.h"
-#include <bitset>
 #include "core/atCore.h"
-#include "sound/atSounds.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "dslTIntegerLabeledEdit"
 #pragma link "dslTFloatLabeledEdit"
 #pragma link "dslTSTDStringLabeledEdit"
+#pragma link "dslTLogMemoFrame"
 #pragma resource "*.dfm"
 TMain *Main;
 
@@ -31,12 +26,9 @@ using namespace dsl;
 __fastcall TMain::TMain(TComponent* Owner)
 :
 	TRegistryForm("Test", "MainForm", Owner),
-	logMsgMethod(&logMsg),
-	mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", gLogFileName), logMsgMethod),
     mIniFile(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "ArrayBot", "motor_frame_tester.ini"), true, true)
 {
 	initABCoreLib();
-	TMemoLogger::mMemoIsEnabled = false;
 
 	//Setup UI properties
     mProperties.setSection("UI");
@@ -53,10 +45,7 @@ __fastcall TMain::~TMain()
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
 {
-	TMemoLogger::mMemoIsEnabled = true;
-	mLogFileReader.start(true);
-
-
+	TLogMemoFrame1->init();
     mDeviceManager.connectAllDevices();
 
     APTDevice* dev = mDeviceManager.getFirst();
@@ -67,10 +56,8 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 	createMotorFrame(dynamic_cast<APTMotor*> (dev));
     while(mDeviceManager.getNext())
     {
-
 		createMotorFrame(dynamic_cast<APTMotor*> (mDeviceManager.getCurrent()));
     }
-
 }
 
 //void __fastcall TMain::WndProc(TMessage& Message)
@@ -128,10 +115,4 @@ bool TMain::createMotorFrame(APTMotor* mtr)
 	f->MotorStatusTimer->Enabled = true;
     return true;
 }
-
-void __fastcall TMain::ShutDownAExecute(TObject *Sender)
-{
-	StatusTimer->Enabled = false;
-}
-
 

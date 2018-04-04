@@ -29,22 +29,19 @@ cp ./../*.txt                                   $dest
 cp $OUTPUTDIR/$OUTPUTFILENAME                   $dest
 
 #DS Binaries
- cp $OUTPUTDIR/mtkCommon.dll                    $dest
- cp $OUTPUTDIR/mtkMath.dll                      $dest
- cp $OUTPUTDIR/mtkIPC.dll                       $dest
- cp $OUTPUTDIR/atCore.dll                       $dest
- cp $OUTPUTDIR/atDatabase.dll                   $dest
- cp $OUTPUTDIR/atResources.dll                  $dest
- cp $OUTPUTDIR/atArduino.dll                    $dest
- cp $OUTPUTDIR/atArrayBotCore.dll               $dest
- cp $OUTPUTDIR/atBarcodereader.dll              $dest
- cp $OUTPUTDIR/atSSI.dll                        $dest
- cp $OUTPUTDIR/atSerialAPI.dll                  $dest
+cp $OUTPUTDIR/dslFoundation.dll                 $dest
+cp $OUTPUTDIR/dslVCLCommon.dll                  $dest
 
- cp $BDSCOMMONDIR/BPL/atVCLCoreBCC32D.bpl       $dest    
- cp $BDSCOMMONDIR/BPL/DuneComponentsBCC32D.bpl  $dest
- cp $BDSCOMMONDIR/BPL/DuneFormsBCC32D.bpl       $dest
- cp $BDSCOMMONDIR/BPL/VCLCommonBCC32D.bpl       $dest
+
+cp $OUTPUTDIR/atFoundation.dll                  $dest
+cp $OUTPUTDIR/atResources.dll                   $dest
+cp $OUTPUTDIR/atVCLCommon.dll                   $dest
+cp $OUTPUTDIR/atSSI.dll                         $dest
+cp $OUTPUTDIR/atSerialAPI.dll                   $dest
+
+ cp $BDSCOMMONDIR/BPL/dslVCLComponents.bpl      $dest
+ cp $BDSCOMMONDIR/BPL/dslVisuals.bpl            $dest
+ cp $BDSCOMMONDIR/BPL/atComponents.bpl          $dest    
  cp $BDSCOMMONDIR/BPL/ArrayBotPackage.bpl       $dest
 
 #Borland Packages and dll's

@@ -5,7 +5,6 @@
 #include "dslVCLUtils.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "TMotorFrame.h"
-#include "arraybot/atWhiskerUnit.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "dslTSTDStringLabeledEdit"

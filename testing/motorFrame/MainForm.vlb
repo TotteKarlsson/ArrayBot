@@ -7,30 +7,18 @@ Coordinates=279,409,81,33
 [TabSheet4]
 Coordinates=131,409,66,33
 
-[BottomPanel]
-Coordinates=39,320,77,51
-
 [Button7]
 Coordinates=457,211,53,51
 
 [Btnpanel]
 Coordinates=44,106,58,51
 
-[BitBtn2]
-Coordinates=216,71,50,51
-
-[infoMemo]
-Coordinates=335,71,62,51
-
 [TopPanel]
 Coordinates=335,141,60,51
-
-[ToolBar1]
-Coordinates=608,313,58,33
 
 [Button5]
 Coordinates=197,320,53,51
 
 []
-Coordinates=608,261,66,33
+Coordinates=39,320,77,51
 

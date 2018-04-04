@@ -1,22 +1,22 @@
 #include <vcl.h>
 #pragma hdrstop
+#include <bitset>
 #include "TMotorFrame.h"
 #include "arraybot/apt/atAPTMotor.h"
-#include <bitset>
+
 #include "dslVCLUtils.h"
 #include "dslLogger.h"
 #include "dslStringUtils.h"
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "dslTFloatLabeledEdit"
-#pragma link "dslTIntLabel"
 #pragma link "dslTFloatLabel"
 #pragma link "dslTPropertyCheckBox"
 #pragma resource "*.dfm"
 TMotorFrame *MotorFrame;
 
 using namespace dsl;
+using namespace std;
 int TMotorFrame::mFrameNr = 0;
 //---------------------------------------------------------------------------
 __fastcall TMotorFrame::TMotorFrame(const string& name, TComponent* Owner)

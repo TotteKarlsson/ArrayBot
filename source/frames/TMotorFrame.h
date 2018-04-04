@@ -5,7 +5,6 @@
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
 #include "dslTFloatLabeledEdit.h"
-#include "dslTIntLabel.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>

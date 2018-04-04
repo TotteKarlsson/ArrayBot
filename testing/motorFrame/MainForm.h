@@ -1,37 +1,27 @@
 #ifndef MainFormH
 #define MainFormH
-#include <System.Classes.hpp>
-#include <Vcl.Controls.hpp>
-#include <Vcl.StdCtrls.hpp>
-#include <Vcl.Forms.hpp>
-#include <Vcl.ComCtrls.hpp>
-#include <Vcl.ToolWin.hpp>
-#include <Vcl.Buttons.hpp>
 #include <System.Actions.hpp>
+#include <System.Classes.hpp>
 #include <Vcl.ActnList.hpp>
-#include "dslLogFileReader.h"
-#include <Vcl.ExtCtrls.hpp>
-#include "dslTIntegerLabeledEdit.h"
-#include "dslTFloatLabeledEdit.h"
 #include <Vcl.AppEvnts.hpp>
-#include "Poco/Timestamp.h"
-#include "arraybot/apt/atDeviceManager.h"
-#include "dslTFloatLabeledEdit.h"
-#include "frames/TXYZUnitFrame.h"
-#include "frames/TMotorFrame.h"
-#include "TRegistryForm.h"
-#include "arraybot/atArrayBot.h"
-#include "dslIniFileProperties.h"
-#include <mmsystem.h>
-#include <Vcl.StdActns.hpp>
-#include <Vcl.Menus.hpp>
-#include <Vcl.Mask.hpp>
+#include <Vcl.Buttons.hpp>
+#include <Vcl.ComCtrls.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Forms.hpp>
 #include <Vcl.Grids.hpp>
+#include <Vcl.Mask.hpp>
+#include <Vcl.Menus.hpp>
+#include <Vcl.StdActns.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.ToolWin.hpp>
+#include "arraybot/apt/atDeviceManager.h"
+#include "dslIniFileProperties.h"
+#include "dslTLogMemoFrame.h"
+#include "dslTRegistryForm.h"
+#include "frames/TMotorFrame.h"
 
-using Poco::Timestamp;
 using dsl::IniFileProperties;
-
-class APTMotor;
 
 //---------------------------------------------------------------------------
 class TMain : public TRegistryForm
@@ -49,22 +39,19 @@ class TMain : public TRegistryForm
         TAction *moveBackward;
         TAction *stopAllA;
         TButton *Button7;
-        TTimer *StatusTimer;
-	TAction *initBotA;
+		TAction *initBotA;
         TAction *ShutDownA;
-	TPanel *Btnpanel;
-	TButton *Button5;
-	TFileExit *FileExit1;
-	TPanel *TopPanel;
-	TPageControl *PageControl1;
-	TTabSheet *TabSheet4;
-	TPanel *BottomPanel;
-	TMemo *infoMemo;
-	TToolBar *ToolBar1;
-	TBitBtn *BitBtn2;
-	TScrollBox *ScrollBox1;
-	TSplitter *Splitter1;
-	TPanel *MainPanel;
+	    TPanel *Btnpanel;
+	    TButton *Button5;
+	    TFileExit *FileExit1;
+	    TPanel *TopPanel;
+	    TPageControl *PageControl1;
+	    TTabSheet *TabSheet4;
+	    TScrollBox *ScrollBox1;
+	    TSplitter *Splitter1;
+	    TPanel *MainPanel;
+	    TLogMemoFrame *TLogMemoFrame1;
+		TButton *Button1;
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
         void __fastcall checkForDevicesExecute(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
@@ -72,28 +59,18 @@ class TMain : public TRegistryForm
         void __fastcall ShutDownTimerTimer(TObject *Sender);
         void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
         void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
-        void __fastcall BitBtn3Click(TObject *Sender);
-        void __fastcall ShutDownAExecute(TObject *Sender);
+		void __fastcall FormShow(TObject *Sender);
 
-	void __fastcall FormShow(TObject *Sender);
-
-
-    private:	// User declarations
-        TThreadMethod                       logMsgMethod;
-        LogFileReader                       mLogFileReader;
-        void __fastcall                     logMsg();
+    private:
         IniFileProperties  			        mProperties;
-
         IniFile						        mIniFile;
 	    DeviceManager 						mDeviceManager;
 
 		void __fastcall		                OnException();
 		bool 						        createMotorFrame(APTMotor* mtr);
-		void __fastcall				        refreshSequencesCB();
-
 //		 void __fastcall 					WndProc(TMessage& Message);
 
-	public:		// User declarations
+	public:
 		__fastcall 					        TMain(TComponent* Owner);
 		__fastcall 					        ~TMain();
 //		void __fastcall                     AppInBox(TMessage& Msg);

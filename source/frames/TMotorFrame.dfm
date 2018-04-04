@@ -282,7 +282,7 @@ object MotorFrame: TMotorFrame
         EditLabel.Height = 13
         EditLabel.Caption = 'Jog Step (mm)'
         TabOrder = 5
-        Text = '5.00'
+        Text = '5.0000'
         OnKeyDown = DevEdit
         Value = 5.000000000000000000
       end
@@ -304,7 +304,7 @@ object MotorFrame: TMotorFrame
         EditLabel.Height = 13
         EditLabel.Caption = 'Max Position'
         TabOrder = 0
-        Text = '-1.00'
+        Text = '-1.0000'
         Value = -1.000000000000000000
       end
       object mMinPositionLimitE: TFloatLabeledEdit
@@ -316,7 +316,7 @@ object MotorFrame: TMotorFrame
         EditLabel.Height = 13
         EditLabel.Caption = 'Min Position Limit'
         TabOrder = 1
-        Text = '-1.00'
+        Text = '-1.0000'
         Value = -1.000000000000000000
       end
       object mMaxPositionLimitE: TFloatLabeledEdit
@@ -328,7 +328,7 @@ object MotorFrame: TMotorFrame
         EditLabel.Height = 13
         EditLabel.Caption = 'Max Position Limit'
         TabOrder = 2
-        Text = '-1.00'
+        Text = '-1.0000'
         Value = -1.000000000000000000
       end
       object mEnableDisableLimits: TPropertyCheckBox
@@ -385,8 +385,8 @@ object MotorFrame: TMotorFrame
     Enabled = False
     Interval = 250
     OnTimer = MotorStatusTimerTimer
-    Left = 216
-    Top = 376
+    Left = 152
+    Top = 368
   end
   object ActionList1: TActionList
     Left = 272

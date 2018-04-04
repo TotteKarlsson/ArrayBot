@@ -24,14 +24,13 @@ object Main: TMain
     Left = 956
     Top = 0
     Width = 127
-    Height = 854
+    Height = 654
     Align = alRight
     TabOrder = 0
-    ExplicitLeft = 757
-    ExplicitHeight = 631
+    ExplicitHeight = 854
     object Button7: TButton
       Left = 1
-      Top = 731
+      Top = 531
       Width = 125
       Height = 60
       Action = stopAllA
@@ -45,11 +44,11 @@ object Main: TMain
       ParentBiDiMode = False
       ParentFont = False
       TabOrder = 0
-      ExplicitTop = 508
+      ExplicitTop = 731
     end
     object Button5: TButton
       Left = 1
-      Top = 791
+      Top = 591
       Width = 125
       Height = 62
       Action = FileExit1
@@ -61,21 +60,38 @@ object Main: TMain
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      ExplicitTop = 568
+      ExplicitTop = 791
+    end
+    object Button1: TButton
+      Left = 1
+      Top = 471
+      Width = 125
+      Height = 60
+      Action = checkForDevices
+      Align = alBottom
+      BiDiMode = bdLeftToRight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBiDiMode = False
+      ParentFont = False
+      TabOrder = 2
+      ExplicitTop = 731
     end
   end
   object MainPanel: TPanel
     Left = 0
     Top = 0
     Width = 956
-    Height = 854
+    Height = 654
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 757
-    ExplicitHeight = 695
+    ExplicitHeight = 854
     object Splitter1: TSplitter
       Left = 1
-      Top = 508
+      Top = 650
       Width = 954
       Height = 3
       Cursor = crVSplit
@@ -84,107 +100,68 @@ object Main: TMain
       ExplicitTop = 387
       ExplicitWidth = 755
     end
-    object BottomPanel: TPanel
-      Left = 1
-      Top = 511
-      Width = 954
-      Height = 342
-      Align = alBottom
-      TabOrder = 0
-      ExplicitTop = 288
-      ExplicitWidth = 755
-      object infoMemo: TMemo
-        Left = 1
-        Top = 51
-        Width = 952
-        Height = 290
-        Align = alClient
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        ScrollBars = ssVertical
-        TabOrder = 0
-        WordWrap = False
-        ExplicitWidth = 882
-        ExplicitHeight = 91
-      end
-      object ToolBar1: TToolBar
-        Left = 1
-        Top = 1
-        Width = 952
-        Height = 50
-        ButtonHeight = 44
-        Caption = 'ToolBar1'
-        TabOrder = 1
-        ExplicitWidth = 882
-        object BitBtn2: TBitBtn
-          Left = 0
-          Top = 0
-          Width = 75
-          Height = 44
-          Caption = 'Clear'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-          OnClick = BitBtn3Click
-        end
-      end
-    end
     object TopPanel: TPanel
       Left = 1
       Top = 1
       Width = 954
-      Height = 507
+      Height = 649
       Align = alClient
       Constraints.MinHeight = 348
       Constraints.MinWidth = 670
-      TabOrder = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 757
-      ExplicitHeight = 628
+      TabOrder = 0
+      ExplicitHeight = 507
       object PageControl1: TPageControl
         Left = 1
         Top = 1
         Width = 952
-        Height = 505
+        Height = 647
         ActivePage = TabSheet4
         Align = alClient
         TabHeight = 60
         TabOrder = 0
         TabWidth = 100
-        ExplicitWidth = 755
-        ExplicitHeight = 626
+        ExplicitHeight = 505
         object TabSheet4: TTabSheet
           Caption = 'The Bot'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 747
-          ExplicitHeight = 556
+          ExplicitHeight = 435
           object ScrollBox1: TScrollBox
             Left = 0
             Top = 0
             Width = 944
-            Height = 435
+            Height = 577
             Align = alClient
             TabOrder = 0
-            ExplicitWidth = 747
-            ExplicitHeight = 556
+            ExplicitHeight = 777
           end
         end
       end
     end
   end
+  inline TLogMemoFrame1: TLogMemoFrame
+    Left = 0
+    Top = 654
+    Width = 1083
+    Height = 200
+    Align = alBottom
+    TabOrder = 2
+    ExplicitTop = 654
+    ExplicitWidth = 1083
+    ExplicitHeight = 200
+    inherited Panel1: TPanel
+      Width = 1083
+      Height = 200
+      inherited GroupBox1: TGroupBox
+        Width = 1081
+      end
+      inherited infoMemo: TMemo
+        Width = 1081
+        Height = 148
+      end
+    end
+  end
   object ActionList1: TActionList
-    Left = 304
-    Top = 648
+    Left = 96
+    Top = 304
     object checkForDevices: TAction
       Caption = 'Devices Check'
       OnExecute = checkForDevicesExecute
@@ -218,7 +195,6 @@ object Main: TMain
     end
     object ShutDownA: TAction
       Caption = 'ShutDown'
-      OnExecute = ShutDownAExecute
     end
     object FileExit1: TFileExit
       Caption = 'E&xit'
@@ -230,13 +206,7 @@ object Main: TMain
     Enabled = False
     Interval = 100
     OnTimer = ShutDownTimerTimer
-    Left = 32
-    Top = 648
-  end
-  object StatusTimer: TTimer
-    Enabled = False
-    Interval = 500
-    Left = 120
-    Top = 648
+    Left = 88
+    Top = 504
   end
 end

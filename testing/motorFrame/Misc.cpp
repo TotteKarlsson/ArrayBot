@@ -1,7 +1,7 @@
 #include "MainForm.h"
 #include "dslLogger.h"
 #include "dslVCLUtils.h"
-#include "arraybot/apt/atAPTMotor.h"
+
 using namespace dsl;
 
 //---------------------------------------------------------------------------
@@ -27,12 +27,6 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 void __fastcall TMain::ShutDownTimerTimer(TObject *Sender)
 {
 	ShutDownTimer->Enabled = false;
-	if(mLogFileReader.isRunning())
-	{
-		Log(lDebug) << "Shutting down log file reader";
-		mLogFileReader.stop();
-	}
-
 	Close();
 }
 
@@ -42,8 +36,6 @@ void __fastcall TMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 	Log(lInfo) << "Closing down....";
 
 	//Check if we can close.. abort all threads..
-	CanClose = (mLogFileReader.isRunning()) ? false : true;
-
 	if(CanClose == false)
 	{
 		ShutDownTimer->Enabled = true;
@@ -72,18 +64,6 @@ void __fastcall TMain::FormShow(TObject *Sender)
 {
 }
 
-void __fastcall TMain::BitBtn3Click(TObject *Sender)
-{
-	infoMemo->Clear();
-}
-
-//This one is called from the reader thread
-void __fastcall TMain::logMsg()
-{
-    infoMemo->Lines->Add(vclstr(mLogFileReader.getData()));
-    mLogFileReader.purge();
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
@@ -92,10 +72,4 @@ void __fastcall TMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift
     	Close();
     }
 }
-
-void __fastcall CSAngleButtonDownLeftClick(TObject *Sender)
-{}
-
-void __fastcall CSAngleButtonUpRightClick(TObject *Sender)
-{}
 
