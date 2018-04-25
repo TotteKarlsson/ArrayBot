@@ -1,12 +1,8 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TArrayBotRequestFrame.h"
-
-//#include "core/atProcess.h"
 #include "arraybot/process/atArrayBotRequestProcess.h"
-//#include "dslLogger.h"
-//#include "arraybot/atArrayBot.h"
-#include "arraybot/atArrayBotProtocol.h"
+#include "core/atArrayBotProtocol.h"
 #include "dslVCLUtils.h"
 #pragma package(smart_init)
 #pragma link "dslTSTDStringLabeledEdit"

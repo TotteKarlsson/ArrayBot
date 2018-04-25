@@ -46,7 +46,7 @@
         <ProjectType>CppVCLApplication</ProjectType>
         <Multithreaded>true</Multithreaded>
         <IncludePath>P:\libs\atapi\source\arraybot\;P:\libs\atapi\source\arraybot\process\;P:\libs\atapi\source\vcl\frames\;P:\libs\atapi\source\arraycam\;P:\libs\atapi\source\vcl\forms\;P:\libs\dsl\VCL\Forms\;lib\;frames\;forms\;forms;frames;$(IncludePath)</IncludePath>
-        <AllPackageLibs>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;bcbsmp.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;dbexpress.lib;DbxCommonDriver.lib;dbxcds.lib;dsnap.lib;DBXMySQLDriver.lib;DbxDevartPostgreSQLDriver250.lib;dslVCLComponents.lib;atVisualComponents.lib;atComponents.lib;dslVisuals.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;vclactnband.lib;vclx.lib;vclimg.lib;adortl.lib;dbrtl.lib;ArrayBotPackage.lib;bcbsmp.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;dbexpress.lib;DbxCommonDriver.lib;dbxcds.lib;dsnap.lib;DBXMySQLDriver.lib;DbxDevartPostgreSQLDriver250.lib;dslVCLComponents.lib;atVisualComponents.lib;atComponents.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -99,9 +99,9 @@
         <VerInfo_MinorVer>9</VerInfo_MinorVer>
         <VerInfo_Keys>CompanyName=Allen Institute for Brain Science;FileVersion=0.9.4.0;InternalName=;LegalCopyright=Smith Lab;LegalTrademarks=ArrayBot;OriginalFilename=;ProductName=ArrayBot;ProductVersion=0.5;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <PostBuildEvent><![CDATA[$(SH_EXE) postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)
+        <PostBuildEvent><![CDATA[$(SH_EXE) postbuild.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)
 $(PostBuildEvent)]]></PostBuildEvent>
-        <LinkPackageStatics>ArrayBotPackage.lib;DbxDevartPostgreSQLDriver250.lib;dslVCLComponents.lib;atVisualComponents.lib;atComponents.lib;dslVisuals.lib</LinkPackageStatics>
+        <LinkPackageStatics>ArrayBotPackage.lib;DbxDevartPostgreSQLDriver250.lib;dslVCLComponents.lib;atVisualComponents.lib;atComponents.lib</LinkPackageStatics>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Defines>POCO_STATIC;$(Defines)</Defines>
         <Debugger_DebugSourcePath>P:\libs\dsl\Common\;P:\ArrayBot\source\;P:\libs\dsl\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\ThirdParty\Poco\Foundation\src\;P:\libs\dsl\VCL\Forms\;P:\libs\dsl\VCL\Common\;P:\libs\dsl\Common\Math\;P:\libs\dsl\Common\IPC\;P:\ArrayBot\source\frames\;P:\libs\atapi\source\arraybot\process\;P:\libs\atapi\source\arraybot\joystick\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
@@ -217,6 +217,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <VersionInfoKeys Name="CFBundleExecutable"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="p:\build\debug\BPL\dslVCLVisualComponents.bpl">Dune Frames</Excluded_Packages>
+                    <Excluded_Packages Name="p:\build\debug\BPL\atVisualComponents.bpl">AT Frames and Forms</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k250.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp250.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>
@@ -708,7 +710,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>$(SH_EXE) postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)</PostBuildEvent>
+        <PostBuildEvent>$(SH_EXE) postbuild.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

@@ -1,11 +1,10 @@
 #include <System.hpp>
 #pragma hdrstop
-#include "TMotorFrame.h"
-#include "TMotorPositionFrame.h"
 //---------------------------------------------------------------------------
+USEFORM("..\frames\TStopAndResumeFrame.cpp", StopAndResumeFrame); /* TFrame: File Type */
+USEFORM("..\frames\TTimeDelayFrame.cpp", TimeDelayFrame); /* TFrame: File Type */
 USEFORM("..\frames\TXYZPositionsFrame.cpp", XYZPositionsFrame); /* TFrame: File Type */
 USEFORM("..\frames\TXYZUnitFrame.cpp", XYZUnitFrame); /* TFrame: File Type */
-USEFORM("..\frames\TTimeDelayFrame.cpp", TimeDelayFrame); /* TFrame: File Type */
 USEFORM("..\frames\TAboutArrayBot_2Frame.cpp", AboutArrayBotFrame_2); /* TFrame: File Type */
 USEFORM("..\frames\TArrayBotRequestFrame.cpp", ArrayBotRequestFrame); /* TFrame: File Type */
 USEFORM("..\frames\TArrayCamRequestFrame.cpp", ArrayCamRequestFrame); /* TFrame: File Type */
@@ -14,14 +13,11 @@ USEFORM("..\forms\abAddJoyStickSettingForm.cpp", AddJoyStickSettingForm);
 USEFORM("..\forms\TEditSequenceForm.cpp", EditSequenceForm);
 USEFORM("..\forms\TProcessSequenceControlForm.cpp", ProcessSequenceControlForm);
 USEFORM("..\forms\TSplashForm.cpp", SplashForm);
+USEFORM("..\frames\TParallelProcessesFrame.cpp", ParallelProcessesFrame); /* TFrame: File Type */
 USEFORM("..\frames\TPositionalTriggerFrame.cpp", PositionalTriggerFrame); /* TFrame: File Type */
 USEFORM("..\frames\TSequencerButtonsFrame.cpp", SequencerButtonsFrame); /* TFrame: File Type */
-USEFORM("..\frames\TStopAndResumeFrame.cpp", StopAndResumeFrame); /* TFrame: File Type */
-USEFORM("..\frames\TParallelProcessesFrame.cpp", ParallelProcessesFrame); /* TFrame: File Type */
-USEFORM("..\frames\THomeMotorProcessFrame.cpp", HomeMotorProcessFrame); /* TFrame: File Type */
-USEFORM("..\frames\TMotorFrame.cpp", MotorFrame); /* TFrame: File Type */
-USEFORM("..\frames\TMotorPositionFrame.cpp", MotorPositionFrame); /* TFrame: File Type */
 USEFORM("..\frames\TMoveCoverSlipAtAngleProcessFrame.cpp", MoveCoverSlipAtAngleProcessFrame); /* TFrame: File Type */
+USEFORM("..\frames\THomeMotorProcessFrame.cpp", HomeMotorProcessFrame); /* TFrame: File Type */
 USEFORM("..\frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -31,34 +27,6 @@ USEFORM("..\frames\TMotorMoveProcessFrame.cpp", MotorMoveProcessFrame); /* TFram
 //---------------------------------------------------------------------------
 
 
-static inline void ValidCtrCheck(TMotorFrame *)
-{
-  new TMotorFrame("", NULL);
-}
-
-namespace Tmotorframe
-{
-    void __fastcall PACKAGE Register()
-    {
-        TComponentClass classes[1] = {__classid(TMotorFrame)};
-        RegisterComponents("AIComponents", classes, 0);
-    }
-}
-
-static inline void ValidCtrCheck(TMotorPositionFrame *)
-{
-  new TMotorPositionFrame(NULL, NULL);
-}
-
-namespace Tmotorpositionframe
-{
-    void __fastcall PACKAGE Register()
-    {
-        TComponentClass classes[1] = {__classid(TMotorPositionFrame)};
-        RegisterComponents("AIComponents", classes, 0);
-    }
-}
-
 #pragma argsused
 extern "C" int _libmain(unsigned long reason)
 {
@@ -66,10 +34,10 @@ extern "C" int _libmain(unsigned long reason)
 }
 
 //---------------------------------------------------------------------------
-#pragma comment(lib, "dslFoundation.lib")
+#pragma comment(lib, "dslCommon.lib")
 #pragma comment(lib, "dslVCLCommon.lib")
 #pragma comment(lib, "dslVCLComponents.bpi")
-#pragma comment(lib, "dslVisuals.bpi")
+
 
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "tinyxml2-static.lib")
@@ -77,8 +45,10 @@ extern "C" int _libmain(unsigned long reason)
 
 //---------------------------------------------------------------------------
 #pragma comment(lib, "atFoundation.lib")
+#pragma comment(lib, "atArraybotCore.lib")
 #pragma comment(lib, "atVCLCommon.lib")
 #pragma comment(lib, "atComponents.bpi")
 #pragma comment(lib, "atVisualComponents.bpi")
+#pragma comment(lib, "atAPTFrames.bpi")
 //---------------------------------------------------------------------------
 

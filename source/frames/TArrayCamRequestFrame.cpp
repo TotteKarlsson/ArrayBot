@@ -6,7 +6,7 @@
 #include "arraybot/process/atArrayCamRequestProcess.h"
 #include "dslLogger.h"
 #include "arraybot/atArrayBot.h"
-#include "arraycam/atArrayCamProtocol.h"
+#include "core/atArrayCamProtocol.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "dslTSTDStringLabeledEdit"

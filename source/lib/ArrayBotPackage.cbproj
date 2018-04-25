@@ -194,24 +194,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\frames\THomeMotorProcessFrame.h</DependentOn>
             <BuildOrder>36</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\frames\TMotorFrame.cpp">
-            <Form>MotorFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TMotorFrame.h</DependentOn>
-            <BuildOrder>17</BuildOrder>
-        </CppCompile>
         <CppCompile Include="..\frames\TMotorMoveProcessFrame.cpp">
             <Form>MotorMoveProcessFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>..\frames\TMotorMoveProcessFrame.h</DependentOn>
             <BuildOrder>37</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TMotorPositionFrame.cpp">
-            <Form>MotorPositionFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TMotorPositionFrame.h</DependentOn>
-            <BuildOrder>32</BuildOrder>
         </CppCompile>
         <CppCompile Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.cpp">
             <Form>MoveCoverSlipAtAngleProcessFrame</Form>
@@ -310,26 +298,24 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\UIUtilities.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
-        <FormResources Include="..\frames\TStopAndResumeFrame.dfm"/>
         <FormResources Include="..\frames\TTimeDelayFrame.dfm"/>
         <FormResources Include="..\frames\TXYZPositionsFrame.dfm"/>
         <FormResources Include="..\frames\TXYZUnitFrame.dfm"/>
+        <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
         <FormResources Include="..\frames\TArrayBotRequestFrame.dfm"/>
-        <FormResources Include="..\frames\TArrayCamRequestFrame.dfm"/>
-        <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="..\forms\abAddJoyStickSettingForm.dfm"/>
         <FormResources Include="..\forms\TEditSequenceForm.dfm"/>
         <FormResources Include="..\forms\TProcessSequenceControlForm.dfm"/>
         <FormResources Include="..\forms\TSplashForm.dfm"/>
-        <FormResources Include="..\frames\TParallelProcessesFrame.dfm"/>
+        <FormResources Include="..\frames\TArrayCamRequestFrame.dfm"/>
         <FormResources Include="..\frames\TPositionalTriggerFrame.dfm"/>
         <FormResources Include="..\frames\TSequencerButtonsFrame.dfm"/>
-        <FormResources Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.dfm"/>
+        <FormResources Include="..\frames\TStopAndResumeFrame.dfm"/>
         <FormResources Include="..\frames\THomeMotorProcessFrame.dfm"/>
-        <FormResources Include="..\frames\TMotorFrame.dfm"/>
         <FormResources Include="..\frames\TMotorMoveProcessFrame.dfm"/>
-        <FormResources Include="..\frames\TMotorPositionFrame.dfm"/>
+        <FormResources Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.dfm"/>
+        <FormResources Include="..\frames\TParallelProcessesFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -422,7 +408,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="p:\build\tokyo\BPL\ArrayBotPackage.tds" Configuration="Debug" Class="DebugSymbols">
+                <DeployFile LocalName="p:\build\debug\BPL\ArrayBotPackage.tds" Configuration="Debug" Class="DebugSymbols">
                     <Platform Name="Win32">
                         <RemoteName>ArrayBotPackage.tds</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -438,7 +424,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="p:\build\tokyo\BPL\ArrayBotPackage.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="p:\build\debug\BPL\ArrayBotPackage.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>ArrayBotPackage.bpl</RemoteName>
                         <Overwrite>true</Overwrite>

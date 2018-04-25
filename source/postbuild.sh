@@ -86,4 +86,3 @@ cp $miscRedist/Thorlabs.MotionControl.Benchtop.StepperMotor.dll     $OUTPUTDIR
 cp $miscRedist/Thorlabs.MotionControl.DeviceManager.dll             $OUTPUTDIR
 cp ./../*.txt                                                       $OUTPUTDIR
 
-#Copy Thorlabs dll's too
