@@ -7,7 +7,7 @@
 #include "arraybot/process/atParallelProcess.h"
 #include "arraybot/atArrayBot.h"
 #include "arraybot/process/atTimeDelay.h"
-#include "UIUtilities.h"
+//#include "UIUtilities.h"
 #include "atVCLUtils.h"
 #include "forms\TStringInputDialog.h"
 #include "TEditSequenceForm.h"
@@ -24,6 +24,31 @@
 #pragma resource "*.dfm"
 TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
+
+enum ApplicationMessageEnum
+{
+    abSplashWasClosed = WM_USER,
+    abSequencerUpdate
+};
+
+struct AppMessageStruct;
+
+struct mlxStructMessage
+{
+	unsigned int         Msg;
+	int                 wparam;
+	AppMessageStruct*   lparam;
+	LRESULT             Result;
+};
+
+struct AppMessageStruct
+{
+	ApplicationMessageEnum 	mMessageEnum;
+	void*                   mData;
+
+};
+
+PACKAGE bool sendAppMessage(ApplicationMessageEnum msg, void* struc = NULL);
 
 using namespace dsl;
 int TABProcessSequencerFrame::mFrameNr = 0;
@@ -352,4 +377,27 @@ void __fastcall TABProcessSequencerFrame::BtnClick(TObject *Sender)
     mProcessSequencer.saveCurrent();
 }
 
+//---------------------------------------------------------------------------
+bool sendAppMessage(ApplicationMessageEnum msgID, void* s)
+{
+	if(!Application || !Application->MainForm || !Application->MainForm->HandleAllocated())
+    {
+    	Log(lError) << "Failed to get a valid handle when trying to send application message";
+        return false;
+    }
+    HWND h = Application->MainForm->Handle;
+
+	AppMessageStruct data;
+	data.mMessageEnum = msgID;
+	data.mData = s;
+
+	LRESULT res =  SendStructMessage(h, UWM_MESSAGE, 0, &data);
+	if(res)
+	{
+		Log(lError) << "Sending message: "<<msgID<<" was unsuccesful";
+		return false;
+	}
+
+	return true;
+}
 

@@ -10,11 +10,11 @@
 #include "arraybot/process/atProcessSequencer.h"
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
-#include "frames/TMotorMoveProcessFrame.h"
-#include "frames/TParallelProcessesFrame.h"
+#include "TMotorMoveProcessFrame.h"
+#include "TParallelProcessesFrame.h"
 #include "dslTFloatLabeledEdit.h"
-#include "frames/TTimeDelayFrame.h"
-#include "frames\TSequenceInfoFrame.h"
+#include "TTimeDelayFrame.h"
+#include "TSequenceInfoFrame.h"
 #include "TArrayBotBtn.h"
 #include <Vcl.Buttons.hpp>
 //---------------------------------------------------------------------------
