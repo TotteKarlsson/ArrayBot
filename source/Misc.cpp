@@ -6,7 +6,7 @@
 #include "arraybot/apt/atAPTMotor.h"
 #include "TSplashForm.h"
 #include "forms/TTextInputDialog.h"
-#include "frames/TXYZUnitFrame.h"
+#include "TXYZUnitFrame.h"
 
 using namespace dsl;
 

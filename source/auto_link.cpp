@@ -13,7 +13,7 @@
 #pragma comment(lib, "atFoundation.lib")
 #pragma comment(lib, "atArraybotCore.lib")
 #pragma comment(lib, "atVCLCommon.lib")
-#pragma comment(lib, "atComponents.bpi")
-#pragma comment(lib, "atVisualComponents.bpi")
+#pragma comment(lib, "atVCLComponents.bpi")
+#pragma comment(lib, "atVCLVisualComponents.bpi")
 //---------------------------------------------------------------------------
 

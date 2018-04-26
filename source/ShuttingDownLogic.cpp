@@ -5,7 +5,7 @@
 #include "dslVCLUtils.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "TSplashForm.h"
-#include "frames/TXYZUnitFrame.h"
+#include "TXYZUnitFrame.h"
 
 using namespace dsl;
 

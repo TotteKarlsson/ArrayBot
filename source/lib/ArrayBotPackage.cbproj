@@ -145,16 +145,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\forms\abAddJoyStickSettingForm.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\forms\TEditSequenceForm.cpp">
-            <Form>EditSequenceForm</Form>
-            <DependentOn>..\forms\TEditSequenceForm.h</DependentOn>
-            <BuildOrder>36</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\forms\TProcessSequenceControlForm.cpp">
-            <Form>ProcessSequenceControlForm</Form>
-            <DependentOn>..\forms\TProcessSequenceControlForm.h</DependentOn>
-            <BuildOrder>21</BuildOrder>
-        </CppCompile>
         <CppCompile Include="..\forms\TSplashForm.cpp">
             <Form>SplashForm</Form>
             <DependentOn>..\forms\TSplashForm.h</DependentOn>
@@ -176,83 +166,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\frames\TABProcessSequencerFrame.h</DependentOn>
             <BuildOrder>16</BuildOrder>
         </CppCompile>
-        <CppCompile Include="..\frames\TArrayBotRequestFrame.cpp">
-            <Form>ArrayBotRequestFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TArrayBotRequestFrame.h</DependentOn>
-            <BuildOrder>37</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TArrayCamRequestFrame.cpp">
-            <Form>ArrayCamRequestFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TArrayCamRequestFrame.h</DependentOn>
-            <BuildOrder>36</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\THomeMotorProcessFrame.cpp">
-            <Form>HomeMotorProcessFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\THomeMotorProcessFrame.h</DependentOn>
-            <BuildOrder>36</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TMotorMoveProcessFrame.cpp">
-            <Form>MotorMoveProcessFrame</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TMotorMoveProcessFrame.h</DependentOn>
-            <BuildOrder>37</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.cpp">
-            <Form>MoveCoverSlipAtAngleProcessFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TMoveCoverSlipAtAngleProcessFrame.h</DependentOn>
-            <BuildOrder>36</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TParallelProcessesFrame.cpp">
-            <Form>ParallelProcessesFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TParallelProcessesFrame.h</DependentOn>
-            <BuildOrder>34</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TPositionalTriggerFrame.cpp">
-            <Form>PositionalTriggerFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TPositionalTriggerFrame.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TSequenceInfoFrame.cpp">
-            <DependentOn>..\frames\TSequenceInfoFrame.h</DependentOn>
-            <BuildOrder>13</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TSequencerButtonsFrame.cpp">
-            <Form>SequencerButtonsFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TSequencerButtonsFrame.h</DependentOn>
-            <BuildOrder>14</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TStopAndResumeFrame.cpp">
-            <Form>StopAndResumeFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TStopAndResumeFrame.h</DependentOn>
-            <BuildOrder>34</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TTimeDelayFrame.cpp">
-            <Form>TimeDelayFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TTimeDelayFrame.h</DependentOn>
-            <BuildOrder>19</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TXYZPositionsFrame.cpp">
-            <Form>XYZPositionsFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TXYZPositionsFrame.h</DependentOn>
-            <BuildOrder>33</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="..\frames\TXYZUnitFrame.cpp">
-            <Form>XYZUnitFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>..\frames\TXYZUnitFrame.h</DependentOn>
-            <BuildOrder>16</BuildOrder>
-        </CppCompile>
         <CppCompile Include="..\InitArrayBotThread.cpp">
             <DependentOn>..\InitArrayBotThread.h</DependentOn>
             <BuildOrder>8</BuildOrder>
@@ -260,10 +173,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="ArrayBotPackage.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="ArraybotPackagePCH.h">
-            <BuildOrder>2</BuildOrder>
-            <PCH>true</PCH>
-        </PCHCompile>
         <PackageImport Include="dbexpress.bpi">
             <BuildOrder>28</BuildOrder>
         </PackageImport>
@@ -298,24 +207,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>..\UIUtilities.h</DependentOn>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
-        <FormResources Include="..\frames\TTimeDelayFrame.dfm"/>
-        <FormResources Include="..\frames\TXYZPositionsFrame.dfm"/>
-        <FormResources Include="..\frames\TXYZUnitFrame.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBotFrame.dfm"/>
         <FormResources Include="..\frames\TAboutArrayBot_2Frame.dfm"/>
-        <FormResources Include="..\frames\TArrayBotRequestFrame.dfm"/>
         <FormResources Include="..\forms\abAddJoyStickSettingForm.dfm"/>
-        <FormResources Include="..\forms\TEditSequenceForm.dfm"/>
-        <FormResources Include="..\forms\TProcessSequenceControlForm.dfm"/>
         <FormResources Include="..\forms\TSplashForm.dfm"/>
-        <FormResources Include="..\frames\TArrayCamRequestFrame.dfm"/>
-        <FormResources Include="..\frames\TPositionalTriggerFrame.dfm"/>
-        <FormResources Include="..\frames\TSequencerButtonsFrame.dfm"/>
-        <FormResources Include="..\frames\TStopAndResumeFrame.dfm"/>
-        <FormResources Include="..\frames\THomeMotorProcessFrame.dfm"/>
-        <FormResources Include="..\frames\TMotorMoveProcessFrame.dfm"/>
-        <FormResources Include="..\frames\TMoveCoverSlipAtAngleProcessFrame.dfm"/>
-        <FormResources Include="..\frames\TParallelProcessesFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
