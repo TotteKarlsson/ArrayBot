@@ -23902,7 +23902,7 @@ object Main: TMain
     Top = 0
     Width = 1303
     Height = 782
-    ActivePage = mFrontPage
+    ActivePage = TabSheet2
     Align = alClient
     TabHeight = 60
     TabOrder = 1
@@ -24106,25 +24106,13 @@ object Main: TMain
       Caption = 'The Pickup'
       ImageIndex = 5
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object mMoveSequencesPage: TTabSheet
       Caption = 'Sequences'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
     object TabSheet1: TTabSheet
       Caption = 'Motors'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ScrollBox1: TScrollBox
         Left = 0
         Top = 0
@@ -24209,16 +24197,12 @@ object Main: TMain
     object TabSheet2: TTabSheet
       Caption = 'Settings'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object PageControl2: TPageControl
         Left = 0
         Top = 0
         Width = 1295
         Height = 712
-        ActivePage = TabSheet9
+        ActivePage = TabSheet6
         Align = alClient
         TabOrder = 0
         object TabSheet4: TTabSheet
@@ -24569,7 +24553,6 @@ object Main: TMain
         object TabSheet6: TTabSheet
           Caption = 'Sounds'
           ImageIndex = 1
-          ExplicitWidth = 105
           inline TSoundsFrame1: TSoundsFrame
             Left = 0
             Top = 241
@@ -24579,13 +24562,13 @@ object Main: TMain
             AutoSize = True
             TabOrder = 0
             ExplicitTop = 241
-            ExplicitWidth = 105
+            ExplicitWidth = 1287
             ExplicitHeight = 433
             inherited GroupBox1: TGroupBox
               Width = 1287
               Height = 433
               Align = alClient
-              ExplicitWidth = 105
+              ExplicitWidth = 1287
               ExplicitHeight = 433
               inherited SoundsLB: TListBox
                 Top = 25
@@ -24608,10 +24591,10 @@ object Main: TMain
             Align = alTop
             AutoSize = True
             TabOrder = 1
-            ExplicitWidth = 105
+            ExplicitWidth = 1287
             inherited GBS: TGroupBox
               Width = 1287
-              ExplicitWidth = 105
+              ExplicitWidth = 1287
               inherited ApplicationSoundsLB: TListBox
                 Top = 25
                 Height = 214
@@ -24628,16 +24611,6 @@ object Main: TMain
                 ExplicitHeight = 214
                 inherited SoundCB: TComboBox
                   Height = 31
-                  ExplicitHeight = 31
-                end
-                inherited FloatLabeledEdit1: TFloatLabeledEdit
-                  Height = 31
-                  EditLabel.Width = 147
-                  EditLabel.Height = 23
-                  EditLabel.ExplicitLeft = 56
-                  EditLabel.ExplicitTop = 158
-                  EditLabel.ExplicitWidth = 147
-                  EditLabel.ExplicitHeight = 23
                   ExplicitHeight = 31
                 end
               end
@@ -24675,10 +24648,6 @@ object Main: TMain
         object TabSheet9: TTabSheet
           Caption = 'Miscellaneous'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object mLiftGB: TGroupBox
             Left = 694
             Top = 92
@@ -24727,7 +24696,6 @@ object Main: TMain
             Caption = 'Themes'
             TabOrder = 1
             OnClick = ThemesRGClick
-            ExplicitTop = 5
           end
         end
       end
@@ -24735,10 +24703,6 @@ object Main: TMain
     object TabSheet5: TTabSheet
       Caption = 'Logging'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object BottomPanel: TPanel
         Left = 0
         Top = 0
@@ -24823,7 +24787,7 @@ object Main: TMain
         inherited GroupBox1: TGroupBox
           Width = 1295
           Height = 526
-          ExplicitWidth = 113
+          ExplicitWidth = 1295
           ExplicitHeight = 526
           inherited Memo1: TMemo
             Top = 25
