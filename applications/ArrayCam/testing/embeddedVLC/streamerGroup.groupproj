@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8CDBDF80-D821-416A-9D26-0F8B71168B52}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dsl\Common\mtkCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\vcl\components\vlc\vlcComponent.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\VCL\Components\DuneComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="vlcEmbedded.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="mtkCommon">
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj"/>
+    </Target>
+    <Target Name="mtkCommon:Clean">
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkCommon:Make">
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="vlcComponent">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\components\vlc\vlcComponent.cbproj"/>
+    </Target>
+    <Target Name="vlcComponent:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\components\vlc\vlcComponent.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="vlcComponent:Make">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\components\vlc\vlcComponent.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DuneComponents">
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj"/>
+    </Target>
+    <Target Name="DuneComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="vlcEmbedded">
+        <MSBuild Projects="vlcEmbedded.cbproj"/>
+    </Target>
+    <Target Name="vlcEmbedded:Clean">
+        <MSBuild Projects="vlcEmbedded.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="vlcEmbedded:Make">
+        <MSBuild Projects="vlcEmbedded.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="mtkCommon;vlcComponent;DuneComponents;vlcEmbedded"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="mtkCommon:Clean;vlcComponent:Clean;DuneComponents:Clean;vlcEmbedded:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="mtkCommon:Make;vlcComponent:Make;DuneComponents:Make;vlcEmbedded:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

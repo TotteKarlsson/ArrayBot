@@ -1,0 +1,2 @@
+DEBUG:root:Executing the Python Plugin
+INFO:MODSLAVE/18100:goodbye [127.0.0.1]:62927

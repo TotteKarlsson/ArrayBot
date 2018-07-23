@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{DDEDB045-6847-4A41-86E2-AD0DD3FA04E7}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\atapi\source\core\atCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\database\atDatabase.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="videoFrame.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="atCore">
+        <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj"/>
+    </Target>
+    <Target Name="atCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDatabase">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj"/>
+    </Target>
+    <Target Name="atDatabase:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDatabase:Make">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLCore">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
+    </Target>
+    <Target Name="atVCLCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="videoFrame">
+        <MSBuild Projects="videoFrame.cbproj"/>
+    </Target>
+    <Target Name="videoFrame:Clean">
+        <MSBuild Projects="videoFrame.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="videoFrame:Make">
+        <MSBuild Projects="videoFrame.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="atCore;atDatabase;atVCLCore;videoFrame"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="atCore:Clean;atDatabase:Clean;atVCLCore:Clean;videoFrame:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="atCore:Make;atDatabase:Make;atVCLCore:Make;videoFrame:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

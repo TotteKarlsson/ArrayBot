@@ -1,3 +1,0 @@
-GRAY_LED BITMAP "resources\\gray.bmp"
-GREEN_LED BITMAP "resources\\green.bmp"
-RED_LED BITMAP "resources\\red.bmp"

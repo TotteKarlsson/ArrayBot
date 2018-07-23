@@ -1,0 +1,96 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{AA3803DA-9A9D-4AA8-B269-11D034F376AE}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\MXPTiny\CLI\bm.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atVCLUC7VisualComponents\atVCLUC7VisualComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\app\ArrayCamPackage.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\app\ArrayCam.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="bm">
+        <MSBuild Projects="P:\MXPTiny\CLI\bm.cbproj"/>
+    </Target>
+    <Target Name="bm:Clean">
+        <MSBuild Projects="P:\MXPTiny\CLI\bm.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="bm:Make">
+        <MSBuild Projects="P:\MXPTiny\CLI\bm.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atSSI">
+        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj"/>
+    </Target>
+    <Target Name="atSSI:Clean">
+        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atSSI:Make">
+        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atFoundation">
+        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj"/>
+    </Target>
+    <Target Name="atFoundation:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atFoundation:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLUC7VisualComponents">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLUC7VisualComponents\atVCLUC7VisualComponents.cbproj"/>
+    </Target>
+    <Target Name="atVCLUC7VisualComponents:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLUC7VisualComponents\atVCLUC7VisualComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLUC7VisualComponents:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLUC7VisualComponents\atVCLUC7VisualComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayCamPackage">
+        <MSBuild Projects="..\app\ArrayCamPackage.cbproj"/>
+    </Target>
+    <Target Name="ArrayCamPackage:Clean">
+        <MSBuild Projects="..\app\ArrayCamPackage.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayCamPackage:Make">
+        <MSBuild Projects="..\app\ArrayCamPackage.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayCam">
+        <MSBuild Projects="..\app\ArrayCam.cbproj"/>
+    </Target>
+    <Target Name="ArrayCam:Clean">
+        <MSBuild Projects="..\app\ArrayCam.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayCam:Make">
+        <MSBuild Projects="..\app\ArrayCam.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="bm;atSSI;atFoundation;atVCLUC7VisualComponents;ArrayCamPackage;ArrayCam"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="bm:Clean;atSSI:Clean;atFoundation:Clean;atVCLUC7VisualComponents:Clean;ArrayCamPackage:Clean;ArrayCam:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="bm:Make;atSSI:Make;atFoundation:Make;atVCLUC7VisualComponents:Make;ArrayCamPackage:Make;ArrayCam:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,8 +1,0 @@
-Release 0.5.0 (June 6)
-=======================
-* Initial commit
-
------- 2016 ------
-
-This changelog contain messasges for changes related both to the IBOT API, as
-well as the IBOT UI.

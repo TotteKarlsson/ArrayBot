@@ -1,0 +1,8 @@
+The ArrayBot library and applications was primarily designed and developed by
+
+    Totte Karlsson (totte@dunescientific.com)
+
+In addition, the following people have contributed in various ways
+
+Stephen Smith <stephens@alleninstitute.org>
+Forrest Collman <forrestc@alleninstitute.org>

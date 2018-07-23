@@ -1,0 +1,120 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{92C423A9-6BFC-465F-AA5A-EF528BE94F67}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dsl\builds\dslCommon\dslCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslMath\dslMath.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslPlugins\dslPlugins.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PluginManager.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="dslCommon">
+        <MSBuild Projects="P:\libs\dsl\builds\dslCommon\dslCommon.cbproj"/>
+    </Target>
+    <Target Name="dslCommon:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslCommon\dslCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslCommon:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslCommon\dslCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslMath">
+        <MSBuild Projects="P:\libs\dsl\builds\dslMath\dslMath.cbproj"/>
+    </Target>
+    <Target Name="dslMath:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslMath\dslMath.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslMath:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslMath\dslMath.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslPlugins">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPlugins\dslPlugins.cbproj"/>
+    </Target>
+    <Target Name="dslPlugins:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPlugins\dslPlugins.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslPlugins:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPlugins\dslPlugins.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslPythonPlugins">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj"/>
+    </Target>
+    <Target Name="dslPythonPlugins:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslPythonPlugins:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLCommon">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj"/>
+    </Target>
+    <Target Name="dslVCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLCommon:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLComponents">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj"/>
+    </Target>
+    <Target Name="dslVCLComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLVisualComponents">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj"/>
+    </Target>
+    <Target Name="dslVCLVisualComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLVisualComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="PluginManager">
+        <MSBuild Projects="PluginManager.cbproj"/>
+    </Target>
+    <Target Name="PluginManager:Clean">
+        <MSBuild Projects="PluginManager.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PluginManager:Make">
+        <MSBuild Projects="PluginManager.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="dslCommon;dslMath;dslPlugins;dslPythonPlugins;dslVCLCommon;dslVCLComponents;dslVCLVisualComponents;PluginManager"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="dslCommon:Clean;dslMath:Clean;dslPlugins:Clean;dslPythonPlugins:Clean;dslVCLCommon:Clean;dslVCLComponents:Clean;dslVCLVisualComponents:Clean;PluginManager:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="dslCommon:Make;dslMath:Make;dslPlugins:Make;dslPythonPlugins:Make;dslVCLCommon:Make;dslVCLComponents:Make;dslVCLVisualComponents:Make;PluginManager:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

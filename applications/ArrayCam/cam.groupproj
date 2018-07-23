@@ -1,0 +1,180 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{AA3803DA-9A9D-4AA8-B269-11D034F376AE}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\MXPTiny\CLI\bm.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atCamera\atCamera.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atNavitar\atNavitar.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atBarcodeReader\atBarcodeReader.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atVCLComponents\atVCLComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atVCLDataModules\atVCLDataModules.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atVCLVisualComponents\atVCLVisualComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atVCLNavitar\atVCLNavitar.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="app\ArrayCamPackage.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="app\ArrayCam.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="bm">
+        <MSBuild Projects="P:\MXPTiny\CLI\bm.cbproj"/>
+    </Target>
+    <Target Name="bm:Clean">
+        <MSBuild Projects="P:\MXPTiny\CLI\bm.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="bm:Make">
+        <MSBuild Projects="P:\MXPTiny\CLI\bm.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atSSI">
+        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj"/>
+    </Target>
+    <Target Name="atSSI:Clean">
+        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atSSI:Make">
+        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atFoundation">
+        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj"/>
+    </Target>
+    <Target Name="atFoundation:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atFoundation:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atCamera">
+        <MSBuild Projects="P:\libs\atapi\builds\atCamera\atCamera.cbproj"/>
+    </Target>
+    <Target Name="atCamera:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atCamera\atCamera.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atCamera:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atCamera\atCamera.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atNavitar">
+        <MSBuild Projects="P:\libs\atapi\builds\atNavitar\atNavitar.cbproj"/>
+    </Target>
+    <Target Name="atNavitar:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atNavitar\atNavitar.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atNavitar:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atNavitar\atNavitar.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atBarcodeReader">
+        <MSBuild Projects="P:\libs\atapi\builds\atBarcodeReader\atBarcodeReader.cbproj"/>
+    </Target>
+    <Target Name="atBarcodeReader:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atBarcodeReader\atBarcodeReader.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atBarcodeReader:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atBarcodeReader\atBarcodeReader.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLCommon">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj"/>
+    </Target>
+    <Target Name="atVCLCommon:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLCommon:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLComponents">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLComponents\atVCLComponents.cbproj"/>
+    </Target>
+    <Target Name="atVCLComponents:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLComponents\atVCLComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLComponents:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLComponents\atVCLComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLDataModules">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLDataModules\atVCLDataModules.cbproj"/>
+    </Target>
+    <Target Name="atVCLDataModules:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLDataModules\atVCLDataModules.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLDataModules:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLDataModules\atVCLDataModules.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLVisualComponents">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVCLVisualComponents.cbproj"/>
+    </Target>
+    <Target Name="atVCLVisualComponents:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVCLVisualComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLVisualComponents:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVCLVisualComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLNavitar">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLNavitar\atVCLNavitar.cbproj"/>
+    </Target>
+    <Target Name="atVCLNavitar:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLNavitar\atVCLNavitar.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLNavitar:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLNavitar\atVCLNavitar.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayCamPackage">
+        <MSBuild Projects="app\ArrayCamPackage.cbproj"/>
+    </Target>
+    <Target Name="ArrayCamPackage:Clean">
+        <MSBuild Projects="app\ArrayCamPackage.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayCamPackage:Make">
+        <MSBuild Projects="app\ArrayCamPackage.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayCam">
+        <MSBuild Projects="app\ArrayCam.cbproj"/>
+    </Target>
+    <Target Name="ArrayCam:Clean">
+        <MSBuild Projects="app\ArrayCam.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayCam:Make">
+        <MSBuild Projects="app\ArrayCam.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="bm;atSSI;atFoundation;atCamera;atNavitar;atBarcodeReader;atVCLCommon;atVCLComponents;atVCLDataModules;atVCLVisualComponents;atVCLNavitar;ArrayCamPackage;ArrayCam"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="bm:Clean;atSSI:Clean;atFoundation:Clean;atCamera:Clean;atNavitar:Clean;atBarcodeReader:Clean;atVCLCommon:Clean;atVCLComponents:Clean;atVCLDataModules:Clean;atVCLVisualComponents:Clean;atVCLNavitar:Clean;ArrayCamPackage:Clean;ArrayCam:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="bm:Make;atSSI:Make;atFoundation:Make;atCamera:Make;atNavitar:Make;atBarcodeReader:Make;atVCLCommon:Make;atVCLComponents:Make;atVCLDataModules:Make;atVCLVisualComponents:Make;atVCLNavitar:Make;ArrayCamPackage:Make;ArrayCam:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

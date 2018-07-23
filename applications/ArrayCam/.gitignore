@@ -1,0 +1,49 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.local
+*.ilc
+*.ild
+*.ilf
+*.#00
+*.ils
+*.map
+Win32
+Debug
+*.bpl
+*.pdb
+*.user
+*.tlog
+*.unsuccessfulbuild
+*.lastbuildstate
+*.dsk
+/*.dsk
+/apps/ArduinoServer/crash_dump
+/apps/ArduinoServer/crash_dump_2
+*.stat
+*.pyc

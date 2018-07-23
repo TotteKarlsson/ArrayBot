@@ -1,0 +1,3 @@
+ArrayBot is a C++ library for the control of Thorlabs motor devices.
+
+No install instructions at this time.. 

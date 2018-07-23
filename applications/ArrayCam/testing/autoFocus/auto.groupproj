@@ -1,0 +1,120 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{7F235730-040C-4AEA-BF85-091BEA17FB3C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\dsl\builds\dslFoundation\dslFoundation.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\Examples\vcl\pluginmanager\PluginManager.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="AutoFocusTester.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\Examples\CXX\Common\plugin_callbacks\plugin_callbacks.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="dslFoundation">
+        <MSBuild Projects="P:\libs\dsl\builds\dslFoundation\dslFoundation.cbproj"/>
+    </Target>
+    <Target Name="dslFoundation:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslFoundation\dslFoundation.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslFoundation:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslFoundation\dslFoundation.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslPythonPlugins">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj"/>
+    </Target>
+    <Target Name="dslPythonPlugins:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslPythonPlugins:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslPythonPlugins\dslPythonPlugins.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLCommon">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj"/>
+    </Target>
+    <Target Name="dslVCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLCommon:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLComponents">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj"/>
+    </Target>
+    <Target Name="dslVCLComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLVisualComponents">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj"/>
+    </Target>
+    <Target Name="dslVCLVisualComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLVisualComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="PluginManager">
+        <MSBuild Projects="P:\libs\dsl\Examples\vcl\pluginmanager\PluginManager.cbproj"/>
+    </Target>
+    <Target Name="PluginManager:Clean">
+        <MSBuild Projects="P:\libs\dsl\Examples\vcl\pluginmanager\PluginManager.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PluginManager:Make">
+        <MSBuild Projects="P:\libs\dsl\Examples\vcl\pluginmanager\PluginManager.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="AutoFocusTester">
+        <MSBuild Projects="AutoFocusTester.cbproj"/>
+    </Target>
+    <Target Name="AutoFocusTester:Clean">
+        <MSBuild Projects="AutoFocusTester.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AutoFocusTester:Make">
+        <MSBuild Projects="AutoFocusTester.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="plugin_callbacks">
+        <MSBuild Projects="P:\libs\dsl\Examples\CXX\Common\plugin_callbacks\plugin_callbacks.cbproj"/>
+    </Target>
+    <Target Name="plugin_callbacks:Clean">
+        <MSBuild Projects="P:\libs\dsl\Examples\CXX\Common\plugin_callbacks\plugin_callbacks.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="plugin_callbacks:Make">
+        <MSBuild Projects="P:\libs\dsl\Examples\CXX\Common\plugin_callbacks\plugin_callbacks.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="dslFoundation;dslPythonPlugins;dslVCLCommon;dslVCLComponents;dslVCLVisualComponents;PluginManager;AutoFocusTester;plugin_callbacks"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="dslFoundation:Clean;dslPythonPlugins:Clean;dslVCLCommon:Clean;dslVCLComponents:Clean;dslVCLVisualComponents:Clean;PluginManager:Clean;AutoFocusTester:Clean;plugin_callbacks:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="dslFoundation:Make;dslPythonPlugins:Make;dslVCLCommon:Make;dslVCLComponents:Make;dslVCLVisualComponents:Make;PluginManager:Make;AutoFocusTester:Make;plugin_callbacks:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

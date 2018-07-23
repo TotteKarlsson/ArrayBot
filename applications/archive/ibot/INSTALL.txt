@@ -1,0 +1,3 @@
+iBot is a C++ library and UI integrating one staining robot with Mosaic Planner.
+
+No install instructions at this time.. 
