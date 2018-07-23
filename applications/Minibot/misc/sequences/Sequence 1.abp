@@ -1,0 +1,18 @@
+<sequence_project>
+    <version>0.6</version>
+    <name>Fill Boat</name>
+    <sequence category="Cutting">
+        <process type="parallellProcess" name="Fill Boat">
+            <info>Process Information..(click me!)</info>
+            <process type="absoluteMove" name="Action 1">
+                <info>Process Information..(click me!)</info>
+                <motor_name>COVERSLIP UNIT_Z</motor_name>
+                <final_position>10.000000</final_position>
+                <max_velocity>15.000000</max_velocity>
+                <acc>15.000000</acc>
+                <pre_dwell_time>0.000000</pre_dwell_time>
+                <post_dwell_time>0.000000</post_dwell_time>
+            </process>
+        </process>
+    </sequence>
+</sequence_project>

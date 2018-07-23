@@ -1,0 +1,26 @@
+Revision History for Navitar .Net Demo Application
+==================================================
+
+V1.8.0:
+- Check for lack of stability in the +24V rail and inform the user if the rail is not stable
+- When connected to the 2-Phase controller, check for the identification of the motor on each axis and inform the user
+
+V1.7.0:
+- Corrected dependencies
+- Updated installer to use project-relative paths rather than solution relative
+- Added error message when dfuprog fails
+
+V1.6.0:
+- Corrected setup parameter labels for new encoded servo controller
+- Cleaned up warnings about unused exception variables
+- Added solution file to repository
+
+V1.5.0:
+- Production release for the 2 and 5 phase controllers
+- Implemented default settings for legacy controllers and improved behavior of setup dialog
+- New installer build for 2-phase development
+- Corrected several issues with stop button, auto step mode, etc
+
+V1.0.0.0:
+- Added product serial number for 2nd gen controllers
+

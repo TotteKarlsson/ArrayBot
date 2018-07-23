@@ -1,0 +1,3 @@
+
+EXPORTS
+  PyInit__atfoundation=_PyInit__atfoundation

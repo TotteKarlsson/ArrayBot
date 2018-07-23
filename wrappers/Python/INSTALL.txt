@@ -1,0 +1,14 @@
+ATExplorer for Python is a python package for Array Tomography tasks
+
+ATExplorer is installed by executing the setup.py python file. 
+That will install the ATExplorer python package into your Python environment. 
+
+Typical location:
+    Windows
+    c:\Python27\Lib\site_packages\atexplorer
+
+
+To verify a succesfull install, import the atexplorer module from a python prompt, i.e. type 
+>>import atexplorer
+
+The above statement will return no errors if the install of the atexplorer package was succesfull.

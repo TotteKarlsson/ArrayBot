@@ -1,0 +1,351 @@
+// scm1b0Dlg.cpp : implementation file
+//
+
+#include "stdafx.h"
+#include "scm1b0.h"
+#include "scm1b0Dlg.h"
+
+#include "navserAPI.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+
+
+
+
+int serHandle1;
+long motorType1;
+long temp;
+char buff[128];
+
+
+#define COM1 1
+#define COM2 2
+#define COM3 3
+#define COM4 4
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// CAboutDlg dialog used for App About
+
+class CAboutDlg : public CDialog
+{
+public:
+	CAboutDlg();
+
+// Dialog Data
+	//{{AFX_DATA(CAboutDlg)
+	enum { IDD = IDD_ABOUTBOX };
+	//}}AFX_DATA
+
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(CAboutDlg)
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	//}}AFX_VIRTUAL
+
+// Implementation
+protected:
+	//{{AFX_MSG(CAboutDlg)
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+};
+
+CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
+{
+	//{{AFX_DATA_INIT(CAboutDlg)
+	//}}AFX_DATA_INIT
+}
+
+void CAboutDlg::DoDataExchange(CDataExchange* pDX)
+{
+	CDialog::DoDataExchange(pDX);
+	//{{AFX_DATA_MAP(CAboutDlg)
+	//}}AFX_DATA_MAP
+}
+
+BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
+	//{{AFX_MSG_MAP(CAboutDlg)
+		// No message handlers
+	//}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+
+/////////////////////////////////////////////////////////////////////////////
+// CScm1b0Dlg dialog
+
+CScm1b0Dlg::CScm1b0Dlg(CWnd* pParent /*=NULL*/)
+	: CDialog(CScm1b0Dlg::IDD, pParent)
+{
+	//{{AFX_DATA_INIT(CScm1b0Dlg)
+		// NOTE: the ClassWizard will add member initialization here
+	//}}AFX_DATA_INIT
+	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
+	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+}
+
+void CScm1b0Dlg::DoDataExchange(CDataExchange* pDX)
+{
+	CDialog::DoDataExchange(pDX);
+	//{{AFX_DATA_MAP(CScm1b0Dlg)
+	DDX_Control(pDX, IDC_MOTORTYPE1, m_motorType1);
+	//}}AFX_DATA_MAP
+}
+
+BEGIN_MESSAGE_MAP(CScm1b0Dlg, CDialog)
+	//{{AFX_MSG_MAP(CScm1b0Dlg)
+	ON_WM_SYSCOMMAND()
+	ON_WM_DESTROY()
+	ON_WM_PAINT()
+	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON_1_HOME1, OnButton1Home1)
+	ON_BN_CLICKED(IDC_BUTTON_1_MINUS1, OnButton1Minus1)
+	ON_BN_CLICKED(IDC_BUTTON_1_1000G1, OnButton11000g1)
+	ON_BN_CLICKED(IDC_BUTTON_1_PLUS1, OnButton1Plus1)
+	ON_BN_CLICKED(IDC_BUTTON_1_LIMIT1, OnButton1Limit1)
+	ON_BN_CLICKED(IDC_BUTTON_2_HOME1, OnButton2Home1)
+	ON_BN_CLICKED(IDC_BUTTON_2_MINUS1, OnButton2Minus1)
+	ON_BN_CLICKED(IDC_BUTTON_2_1000G1, OnButton21000g1)
+	ON_BN_CLICKED(IDC_BUTTON_2_PLUS1, OnButton2Plus1)
+	ON_BN_CLICKED(IDC_BUTTON_2_LIMIT1, OnButton2Limit1)
+	ON_WM_TIMER()
+	//}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+
+/////////////////////////////////////////////////////////////////////////////
+// CScm1b0Dlg message handlers
+
+BOOL CScm1b0Dlg::OnInitDialog()
+{
+	CDialog::OnInitDialog();
+
+	// Add "About..." menu item to system menu.
+
+	// IDM_ABOUTBOX must be in the system command range.
+	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
+	ASSERT(IDM_ABOUTBOX < 0xF000);
+
+	CMenu* pSysMenu = GetSystemMenu(FALSE);
+	if (pSysMenu != NULL)
+	{
+		CString strAboutMenu;
+		strAboutMenu.LoadString(IDS_ABOUTBOX);
+		if (!strAboutMenu.IsEmpty())
+		{
+			pSysMenu->AppendMenu(MF_SEPARATOR);
+			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
+		}
+	}
+
+	// Set the icon for this dialog.  The framework does this automatically
+	//  when the application's main window is not a dialog
+	SetIcon(m_hIcon, TRUE);			// Set big icon
+	SetIcon(m_hIcon, FALSE);		// Set small icon
+	
+	// TODO: Add extra initialization here
+
+//	FindUSBinterfaces();
+
+	serHandle1 = SerConnectionConnect(COM1,DEF_MOTOR_CONTROLLER);
+
+	while ( serHandle1 == 0)
+	{
+		int resp;
+		resp = AfxMessageBox("Could not connect to motor 1",MB_ABORTRETRYIGNORE,0);
+		if (resp == IDABORT)
+			exit(1);
+		else if ( resp == IDRETRY )
+			serHandle1 = SerConnectionConnect(COM1,DEF_MOTOR_CONTROLLER);
+		else 
+			break;
+	}
+
+
+	
+	SerConnectionRead(serHandle1,REG_SYS_PRODUCTID_SUBCLASS,&motorType1);
+	switch (motorType1)
+	{
+	default:	// if an unknown value is returned. assume it is subclass 1;
+				// the first controller version did not support this and returned 0xffffffd9
+	case 1:
+		GetDlgItem(IDC_MOTORTYPE1)->SetWindowText("MicroMo Stepper");
+		break;
+	case 2:
+		GetDlgItem(IDC_MOTORTYPE1)->SetWindowText("Vexta 5-Phase");
+		break;
+	case 3:
+		GetDlgItem(IDC_MOTORTYPE1)->SetWindowText("2-Axis DC");
+		break;
+	}
+
+
+	if ( serHandle1 == NULL )
+		GetDlgItem(IDC_MOTORTYPE1)->SetWindowText("no motor");
+
+
+	SerConnectionRead(serHandle1,REG_USER_CURRENT_1,&temp);
+	sprintf(buff,"%d",temp);
+	GetDlgItem(IDC_EDIT_1_LOC1)->SetWindowText(buff);
+
+	SerConnectionRead(serHandle1,REG_USER_STATUS_1,&temp);
+	sprintf(buff,"0x%03X",temp);
+	GetDlgItem(IDC_EDIT_1_STATE1)->SetWindowText(buff);
+
+	SerConnectionRead(serHandle1,REG_USER_CURRENT_2,&temp);
+	sprintf(buff,"%d",temp);
+	GetDlgItem(IDC_EDIT_2_LOC1)->SetWindowText(buff);
+
+	SerConnectionRead(serHandle1,REG_USER_STATUS_2,&temp);
+	sprintf(buff,"0x%03X",temp);
+	GetDlgItem(IDC_EDIT_2_STATE1)->SetWindowText(buff);
+
+
+	SetTimer(1,250,NULL);
+
+	return TRUE;  // return TRUE  unless you set the focus to a control
+}
+
+void CScm1b0Dlg::OnSysCommand(UINT nID, LPARAM lParam)
+{
+	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
+	{
+		CAboutDlg dlgAbout;
+		dlgAbout.DoModal();
+	}
+	else
+	{
+		CDialog::OnSysCommand(nID, lParam);
+	}
+}
+
+void CScm1b0Dlg::OnDestroy()
+{
+	WinHelp(0L, HELP_QUIT);
+	CDialog::OnDestroy();
+}
+
+// If you add a minimize button to your dialog, you will need the code below
+//  to draw the icon.  For MFC applications using the document/view model,
+//  this is automatically done for you by the framework.
+
+void CScm1b0Dlg::OnPaint() 
+{
+	if (IsIconic())
+	{
+		CPaintDC dc(this); // device context for painting
+
+		SendMessage(WM_ICONERASEBKGND, (WPARAM) dc.GetSafeHdc(), 0);
+
+		// Center icon in client rectangle
+		int cxIcon = GetSystemMetrics(SM_CXICON);
+		int cyIcon = GetSystemMetrics(SM_CYICON);
+		CRect rect;
+		GetClientRect(&rect);
+		int x = (rect.Width() - cxIcon + 1) / 2;
+		int y = (rect.Height() - cyIcon + 1) / 2;
+
+		// Draw the icon
+		dc.DrawIcon(x, y, m_hIcon);
+	}
+	else
+	{
+		CDialog::OnPaint();
+	}
+}
+
+// The system calls this to obtain the cursor to display while the user drags
+//  the minimized window.
+HCURSOR CScm1b0Dlg::OnQueryDragIcon()
+{
+	return (HCURSOR) m_hIcon;
+}
+
+
+void CScm1b0Dlg::OnTimer(UINT nIDEvent) 
+{
+	SerConnectionRead(serHandle1,REG_USER_CURRENT_1,&temp);
+	sprintf(buff,"%d",temp);
+	GetDlgItem(IDC_EDIT_1_LOC1)->SetWindowText(buff);
+
+	SerConnectionRead(serHandle1,REG_USER_STATUS_1,&temp);
+	sprintf(buff,"0x%03X",temp);
+	GetDlgItem(IDC_EDIT_1_STATE1)->SetWindowText(buff);
+
+	SerConnectionRead(serHandle1,REG_USER_CURRENT_2,&temp);
+	sprintf(buff,"%d",temp);
+	GetDlgItem(IDC_EDIT_2_LOC1)->SetWindowText(buff);
+
+	SerConnectionRead(serHandle1,REG_USER_STATUS_2,&temp);
+	sprintf(buff,"0x%03X",temp);
+	GetDlgItem(IDC_EDIT_2_STATE1)->SetWindowText(buff);
+	
+
+	CDialog::OnTimer(nIDEvent);
+}
+
+
+void CScm1b0Dlg::OnButton1Home1() 
+{
+	temp = 0;
+	SerConnectionWrite(serHandle1, REG_USER_LIMIT_1, &temp);
+}
+
+void CScm1b0Dlg::OnButton1Minus1() 
+{
+	temp = -100;
+	SerConnectionWrite(serHandle1, REG_USER_INCREMENT_1, &temp);
+}
+
+void CScm1b0Dlg::OnButton11000g1() 
+{
+	temp = 1000;
+	SerConnectionWrite(serHandle1, REG_USER_TARGET_1, &temp);
+}
+
+void CScm1b0Dlg::OnButton1Plus1() 
+{
+	temp = +100;
+	SerConnectionWrite(serHandle1, REG_USER_INCREMENT_1, &temp);
+}
+
+void CScm1b0Dlg::OnButton1Limit1() 
+{
+	temp = 1;
+	SerConnectionWrite(serHandle1, REG_USER_LIMIT_1, &temp);
+}
+
+void CScm1b0Dlg::OnButton2Home1() 
+{
+	temp = 0;
+	SerConnectionWrite(serHandle1, REG_USER_LIMIT_2, &temp);
+}
+
+void CScm1b0Dlg::OnButton2Minus1() 
+{
+	temp = -100;
+	SerConnectionWrite(serHandle1, REG_USER_INCREMENT_2, &temp);
+}
+
+void CScm1b0Dlg::OnButton21000g1() 
+{
+	temp = 1000;
+	SerConnectionWrite(serHandle1, REG_USER_TARGET_2, &temp);
+}
+
+void CScm1b0Dlg::OnButton2Plus1() 
+{
+	temp = +100;
+	SerConnectionWrite(serHandle1, REG_USER_INCREMENT_2, &temp);
+}
+
+void CScm1b0Dlg::OnButton2Limit1() 
+{
+	temp = 1;
+	SerConnectionWrite(serHandle1, REG_USER_LIMIT_2, &temp);
+}
+

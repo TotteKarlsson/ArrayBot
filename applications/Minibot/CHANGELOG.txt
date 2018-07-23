@@ -1,0 +1,20 @@
+Release 0.5.2 (Aug 29)
+=======================
+* Added simple Help panel
+* Added ability to use a foot switch (emitting the letter 'T')
+* Added motor position frame
+* Fixed up/down arrows
+* Changed minibot to move coverslip instead of changing water level
+* Getting arrow keys working
+
+Release 0.5.1 (Aug 21)
+=======================
+* Fixed so nudging the fill position is always saved
+* Removed many obsolete files
+* Added to the sequence manager, and UI frames, the ability to create single Absolute moves, without having to create a Parallel Process
+* Simplified the UI
+
+Release 0.5.0 (Aug 18)
+=======================
+* Initial application release
+----- 2017 ------

@@ -1,0 +1,163 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: scm0b1 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP163.bat" with contents
+[
+@echo off
+copy "hlp\scm0b1.cnt" .\Release
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP163.bat"
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP164.bat" with contents
+[
+@echo off
+echo. >"hlp\scm0b1.hm"
+echo // Commands (ID_* and IDM_*) >>"hlp\scm0b1.hm"
+makehm ID_,HID_,0x10000 IDM_,HIDM_,0x10000 resource.h >>"hlp\scm0b1.hm"
+echo. >>"hlp\scm0b1.hm"
+echo // Prompts (IDP_*) >>"hlp\scm0b1.hm"
+makehm IDP_,HIDP_,0x30000 resource.h >>"hlp\scm0b1.hm"
+echo. >>"hlp\scm0b1.hm"
+echo // Resources (IDR_*) >>"hlp\scm0b1.hm"
+makehm IDR_,HIDR_,0x20000 resource.h >>"hlp\scm0b1.hm"
+echo. >>"hlp\scm0b1.hm"
+echo // Dialogs (IDD_*) >>"hlp\scm0b1.hm"
+makehm IDD_,HIDD_,0x20000 resource.h >>"hlp\scm0b1.hm"
+echo. >>"hlp\scm0b1.hm"
+echo // Frame Controls (IDW_*) >>"hlp\scm0b1.hm"
+makehm IDW_,HIDW_,0x50000 resource.h >>"hlp\scm0b1.hm"
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP164.bat"
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP165.bat" with contents
+[
+@echo off
+start /wait hcw /C /E /M "hlp\scm0b1.hpj"
+if errorlevel 1 goto :Error
+if not exist "hlp\scm0b1.hlp" goto :Error
+copy "hlp\scm0b1.hlp" .\Release
+goto :done
+:Error
+echo hlp\scm0b1.hpj(1) : error:
+type "hlp\scm0b1.log"
+:done
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP165.bat"
+Creating command line "rc.exe /l 0x409 /fo"Release/scm0b1.res" /d "NDEBUG" /d "_AFXDLL" "C:\projects\projectn\samples\VC\scm0b1\scm0b1.rc"" 
+Copying contents file...
+        1 file(s) copied.
+Making help include file...
+Making help file...
+        1 file(s) copied.
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP166.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/scm0b1.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\projects\projectn\samples\VC\scm0b1\scm0b1.cpp"
+"C:\projects\projectn\samples\VC\scm0b1\scm0b1Dlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mark\LOCALS~1\Temp\RSP166.tmp" 
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP167.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/scm0b1.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\projects\projectn\samples\VC\scm0b1\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mark\LOCALS~1\Temp\RSP167.tmp" 
+Creating command line "link.exe navserAPI.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/scm0b1.pdb" /machine:I386 /out:"Release/scm0b1.exe"  .\Release\scm0b1.obj .\Release\scm0b1Dlg.obj .\Release\StdAfx.obj .\Release\scm0b1.res "
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+scm0b1.cpp
+scm0b1Dlg.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+scm0b1.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: scm0b1 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP169.bat" with contents
+[
+@echo off
+copy "hlp\scm0b1.cnt" .\Debug
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP169.bat"
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP16A.bat" with contents
+[
+@echo off
+echo. >"hlp\scm0b1.hm"
+echo // Commands (ID_* and IDM_*) >>"hlp\scm0b1.hm"
+makehm ID_,HID_,0x10000 IDM_,HIDM_,0x10000 resource.h >>"hlp\scm0b1.hm"
+echo. >>"hlp\scm0b1.hm"
+echo // Prompts (IDP_*) >>"hlp\scm0b1.hm"
+makehm IDP_,HIDP_,0x30000 resource.h >>"hlp\scm0b1.hm"
+echo. >>"hlp\scm0b1.hm"
+echo // Resources (IDR_*) >>"hlp\scm0b1.hm"
+makehm IDR_,HIDR_,0x20000 resource.h >>"hlp\scm0b1.hm"
+echo. >>"hlp\scm0b1.hm"
+echo // Dialogs (IDD_*) >>"hlp\scm0b1.hm"
+makehm IDD_,HIDD_,0x20000 resource.h >>"hlp\scm0b1.hm"
+echo. >>"hlp\scm0b1.hm"
+echo // Frame Controls (IDW_*) >>"hlp\scm0b1.hm"
+makehm IDW_,HIDW_,0x50000 resource.h >>"hlp\scm0b1.hm"
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP16A.bat"
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP16B.bat" with contents
+[
+@echo off
+start /wait hcw /C /E /M "hlp\scm0b1.hpj"
+if errorlevel 1 goto :Error
+if not exist "hlp\scm0b1.hlp" goto :Error
+copy "hlp\scm0b1.hlp" .\Debug
+goto :done
+:Error
+echo hlp\scm0b1.hpj(1) : error:
+type "hlp\scm0b1.log"
+:done
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP16B.bat"
+Creating command line "rc.exe /l 0x409 /fo"Debug/scm0b1.res" /d "_DEBUG" /d "_AFXDLL" "C:\projects\projectn\samples\VC\scm0b1\scm0b1.rc"" 
+Copying contents file...
+        1 file(s) copied.
+Making help include file...
+Making help file...
+        1 file(s) copied.
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP16C.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/scm0b1.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\projects\projectn\samples\VC\scm0b1\scm0b1.cpp"
+"C:\projects\projectn\samples\VC\scm0b1\scm0b1Dlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mark\LOCALS~1\Temp\RSP16C.tmp" 
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP16D.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/scm0b1.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\projects\projectn\samples\VC\scm0b1\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mark\LOCALS~1\Temp\RSP16D.tmp" 
+Creating command line "link.exe navserAPI.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/scm0b1.pdb" /debug /machine:I386 /out:"Debug/scm0b1.exe" /pdbtype:sept  .\Debug\scm0b1.obj .\Debug\scm0b1Dlg.obj .\Debug\StdAfx.obj .\Debug\scm0b1.res "
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+scm0b1.cpp
+scm0b1Dlg.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+scm0b1.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,263 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\scm2b2.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\scm2b2.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About scm2b2"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "scm2b2 Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2005",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_SCM2B2_DIALOG DIALOGEX 0, 0, 577, 212
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "scm2b2"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Motor 1",IDC_MOTORTYPE1,50,14,154,183
+    LTEXT           "Axis 1",IDC_STATIC,76,34,20,8
+    LTEXT           "Axis 2",IDC_STATIC,156,34,20,8
+    LTEXT           "Location",IDC_STATIC,14,55,28,8
+    LTEXT           "State",IDC_STATIC,14,74,18,8
+    EDITTEXT        IDC_EDIT_1_LOC1,62,52,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_2_LOC1,142,52,50,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_1_STATE1,62,71,50,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_2_STATE1,142,71,50,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Home",IDC_BUTTON_1_HOME1,62,98,50,14
+    PUSHBUTTON      "- 100",IDC_BUTTON_1_MINUS1,62,116,50,14
+    PUSHBUTTON      "GOTO 1000",IDC_BUTTON_1_1000G1,62,134,50,14
+    PUSHBUTTON      "+ 100",IDC_BUTTON_1_PLUS1,62,151,50,14
+    PUSHBUTTON      "Limit",IDC_BUTTON_1_LIMIT1,62,170,50,14
+    PUSHBUTTON      "Home",IDC_BUTTON_2_HOME1,142,98,50,14
+    PUSHBUTTON      "- 100",IDC_BUTTON_2_MINUS1,142,116,50,14
+    PUSHBUTTON      "GOTO 1000",IDC_BUTTON_2_1000G1,142,134,50,14
+    PUSHBUTTON      "+ 100",IDC_BUTTON_2_PLUS1,142,151,50,14
+    PUSHBUTTON      "Limit",IDC_BUTTON_2_LIMIT1,142,170,50,14
+    GROUPBOX        "Motor 2",IDC_MOTORTYPE2,212,14,154,183
+    LTEXT           "Axis 1",IDC_STATIC,238,34,20,8
+    LTEXT           "Axis 2",IDC_STATIC,318,34,20,8
+    EDITTEXT        IDC_EDIT_1_LOC2,222,52,50,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_2_LOC2,302,52,50,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_1_STATE2,222,71,50,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_2_STATE2,302,71,50,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Home",IDC_BUTTON_1_HOME2,222,98,50,14
+    PUSHBUTTON      "- 100",IDC_BUTTON_1_MINUS2,222,116,50,14
+    PUSHBUTTON      "GOTO 1000",IDC_BUTTON_1_1000G2,222,134,50,14
+    PUSHBUTTON      "+ 100",IDC_BUTTON_1_PLUS2,222,151,50,14
+    PUSHBUTTON      "Limit",IDC_BUTTON_1_LIMIT2,222,170,50,14
+    PUSHBUTTON      "Home",IDC_BUTTON_2_HOME2,302,98,50,14
+    PUSHBUTTON      "- 100",IDC_BUTTON_2_MINUS2,302,116,50,14
+    PUSHBUTTON      "GOTO 1000",IDC_BUTTON_2_100G2,302,134,50,14
+    PUSHBUTTON      "+ 100",IDC_BUTTON_2_PLUS2,302,151,50,14
+    PUSHBUTTON      "Limit",IDC_BUTTON_2_LIMIT2,302,170,50,14
+    GROUPBOX        "BrightLight 1",IDC_BRIGHTLIGHT1,380,14,86,184
+    EDITTEXT        IDC_Value1,398,50,50,15,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Off",IDC_BUTTON_OFF1,398,98,50,14
+    PUSHBUTTON      "- 10 %",IDC_BUTTON_MINUS1,398,116,50,14
+    PUSHBUTTON      " 50 %",IDC_BUTTON_MID1,398,134,50,14
+    PUSHBUTTON      "+ 10 %",IDC_BUTTON_PLUS1,398,151,50,14
+    PUSHBUTTON      "Full On",IDC_BUTTON_FULLON1,398,170,50,14
+    GROUPBOX        "BrightLight 2",IDC_BRIGHTLIGHT2,474,14,88,184
+    EDITTEXT        IDC_Value2,494,50,50,15,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Off",IDC_BUTTON_OFF2,494,98,50,14
+    PUSHBUTTON      "- 10 %",IDC_BUTTON_MINUS2,494,116,50,14
+    PUSHBUTTON      " 50 %",IDC_BUTTON_MID2,494,134,50,14
+    PUSHBUTTON      "+ 10 %",IDC_BUTTON_PLUS2,494,151,50,14
+    PUSHBUTTON      "Full On",IDC_BUTTON_FULLON2,494,170,50,14
+    LTEXT           "COM1",IDC_STATIC,115,28,21,8
+    LTEXT           "COM2",IDC_STATIC,275,27,21,8
+    LTEXT           "COM3",IDC_STATIC,410,28,21,8
+    LTEXT           "COM4",IDC_STATIC,503,27,21,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "scm2b2 MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "scm2b2\0"
+            VALUE "LegalCopyright", "Copyright (C) 2005\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "scm2b2.EXE\0"
+            VALUE "ProductName", "scm2b2 Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_SCM2B2_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 570
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About scm2b2..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\scm2b2.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

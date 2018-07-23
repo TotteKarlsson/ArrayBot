@@ -1,0 +1,163 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ucm2b2 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D0.bat" with contents
+[
+@echo off
+copy "hlp\ucm2b2.cnt" .\Release
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D0.bat"
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D1.bat" with contents
+[
+@echo off
+echo. >"hlp\ucm2b2.hm"
+echo // Commands (ID_* and IDM_*) >>"hlp\ucm2b2.hm"
+makehm ID_,HID_,0x10000 IDM_,HIDM_,0x10000 resource.h >>"hlp\ucm2b2.hm"
+echo. >>"hlp\ucm2b2.hm"
+echo // Prompts (IDP_*) >>"hlp\ucm2b2.hm"
+makehm IDP_,HIDP_,0x30000 resource.h >>"hlp\ucm2b2.hm"
+echo. >>"hlp\ucm2b2.hm"
+echo // Resources (IDR_*) >>"hlp\ucm2b2.hm"
+makehm IDR_,HIDR_,0x20000 resource.h >>"hlp\ucm2b2.hm"
+echo. >>"hlp\ucm2b2.hm"
+echo // Dialogs (IDD_*) >>"hlp\ucm2b2.hm"
+makehm IDD_,HIDD_,0x20000 resource.h >>"hlp\ucm2b2.hm"
+echo. >>"hlp\ucm2b2.hm"
+echo // Frame Controls (IDW_*) >>"hlp\ucm2b2.hm"
+makehm IDW_,HIDW_,0x50000 resource.h >>"hlp\ucm2b2.hm"
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D1.bat"
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D2.bat" with contents
+[
+@echo off
+start /wait hcw /C /E /M "hlp\ucm2b2.hpj"
+if errorlevel 1 goto :Error
+if not exist "hlp\ucm2b2.hlp" goto :Error
+copy "hlp\ucm2b2.hlp" .\Release
+goto :done
+:Error
+echo hlp\ucm2b2.hpj(1) : error:
+type "hlp\ucm2b2.log"
+:done
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D2.bat"
+Creating command line "rc.exe /l 0x409 /fo"Release/ucm2b2.res" /d "NDEBUG" /d "_AFXDLL" "C:\projects\projectn\samples\VC\ucm2b2\ucm2b2.rc"" 
+Copying contents file...
+        1 file(s) copied.
+Making help include file...
+Making help file...
+        1 file(s) copied.
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D3.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/ucm2b2.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\projects\projectn\samples\VC\ucm2b2\ucm2b2.cpp"
+"C:\projects\projectn\samples\VC\ucm2b2\ucm2b2Dlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D3.tmp" 
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D4.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/ucm2b2.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\projects\projectn\samples\VC\ucm2b2\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D4.tmp" 
+Creating command line "link.exe navusbAPI.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/ucm2b2.pdb" /machine:I386 /out:"Release/ucm2b2.exe"  .\Release\StdAfx.obj .\Release\ucm2b2.obj .\Release\ucm2b2Dlg.obj .\Release\ucm2b2.res "
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+ucm2b2.cpp
+ucm2b2Dlg.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+ucm2b2.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: ucm2b2 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D6.bat" with contents
+[
+@echo off
+copy "hlp\ucm2b2.cnt" .\Debug
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D6.bat"
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D7.bat" with contents
+[
+@echo off
+echo. >"hlp\ucm2b2.hm"
+echo // Commands (ID_* and IDM_*) >>"hlp\ucm2b2.hm"
+makehm ID_,HID_,0x10000 IDM_,HIDM_,0x10000 resource.h >>"hlp\ucm2b2.hm"
+echo. >>"hlp\ucm2b2.hm"
+echo // Prompts (IDP_*) >>"hlp\ucm2b2.hm"
+makehm IDP_,HIDP_,0x30000 resource.h >>"hlp\ucm2b2.hm"
+echo. >>"hlp\ucm2b2.hm"
+echo // Resources (IDR_*) >>"hlp\ucm2b2.hm"
+makehm IDR_,HIDR_,0x20000 resource.h >>"hlp\ucm2b2.hm"
+echo. >>"hlp\ucm2b2.hm"
+echo // Dialogs (IDD_*) >>"hlp\ucm2b2.hm"
+makehm IDD_,HIDD_,0x20000 resource.h >>"hlp\ucm2b2.hm"
+echo. >>"hlp\ucm2b2.hm"
+echo // Frame Controls (IDW_*) >>"hlp\ucm2b2.hm"
+makehm IDW_,HIDW_,0x50000 resource.h >>"hlp\ucm2b2.hm"
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D7.bat"
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D8.bat" with contents
+[
+@echo off
+start /wait hcw /C /E /M "hlp\ucm2b2.hpj"
+if errorlevel 1 goto :Error
+if not exist "hlp\ucm2b2.hlp" goto :Error
+copy "hlp\ucm2b2.hlp" .\Debug
+goto :done
+:Error
+echo hlp\ucm2b2.hpj(1) : error:
+type "hlp\ucm2b2.log"
+:done
+]
+Creating command line "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D8.bat"
+Creating command line "rc.exe /l 0x409 /fo"Debug/ucm2b2.res" /d "_DEBUG" /d "_AFXDLL" "C:\projects\projectn\samples\VC\ucm2b2\ucm2b2.rc"" 
+Copying contents file...
+        1 file(s) copied.
+Making help include file...
+Making help file...
+        1 file(s) copied.
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D9.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/ucm2b2.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\projects\projectn\samples\VC\ucm2b2\ucm2b2.cpp"
+"C:\projects\projectn\samples\VC\ucm2b2\ucm2b2Dlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1D9.tmp" 
+Creating temporary file "C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1DA.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/ucm2b2.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\projects\projectn\samples\VC\ucm2b2\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\mark\LOCALS~1\Temp\RSP1DA.tmp" 
+Creating command line "link.exe navusbAPI.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ucm2b2.pdb" /debug /machine:I386 /out:"Debug/ucm2b2.exe" /pdbtype:sept  .\Debug\StdAfx.obj .\Debug\ucm2b2.obj .\Debug\ucm2b2Dlg.obj .\Debug\ucm2b2.res "
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+ucm2b2.cpp
+ucm2b2Dlg.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+ucm2b2.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

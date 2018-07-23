@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="8E21EEA8-E5AA-4524-A21B-11BF39E3CF61" Name="DemoApplication" Language="1033" Version="1.8.0.0" Manufacturer="Navitar" UpgradeCode="a3bb860c-5b6b-4864-91b0-6c74ccaae2d9">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<!--<MediaTemplate />-->
+
+		<Feature Id="ProductFeature" Title="DemoApplication" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ProgramMenuDir" />
+      <ComponentRef Id="DfuProgComponent" />
+    </Feature>
+
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    <UIRef Id="WixUI_Minimal" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+    
+    <Icon Id="demo.exe" SourceFile="$(var.nav_demo_app.ProjectDir)navitar_icon.ico" />
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id="Navitar" Name="Navitar">
+          <Directory Id="INSTALLFOLDER" Name="DemoApplication" />
+        </Directory>
+			</Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="Programs" >
+        <Directory Id="ProgramMenuDir" Name="Navitar" >
+          <Component Id="ProgramMenuDir" Guid="{8518163A-FF74-417A-966C-92BA2942B94E}" >
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+            <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ProductComponent" Guid="{B0D2BF5E-0361-4BE9-B163-AC626D4DC637}">
+        <File Source="$(var.nav_demo_app.TargetPath)" KeyPath="yes" >
+          <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuDir" Name="DemoApplication" Icon="demo.exe" IconIndex="0" Advertise="yes" />
+          <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="DemoApplication" Icon="demo.exe" IconIndex="0" Advertise="yes" />
+        </File>
+      </Component>
+      <Component Id="SDKComponent" Guid="{A9F722B5-CD51-40FF-8B3A-647BE892F74A}">
+        <File Source="$(var.nav_sdk.TargetPath)" KeyPath="yes" />
+      </Component>
+      <Component Id="DfuProgComponent" Guid="{1744363A-D320-4C96-8633-9EC77EC4F151}">
+        <File Id="DfuProgExe" KeyPath="yes" Source="$(var.DfuProgDir)\dfuprog.exe" />
+        <File Id="TiDfuDll" Source="$(var.TiDfuDir)\tidfu.dll" />
+        <File Id="TiUsbDll" Source="$(var.TiUsbDir)\tiusbdll.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
