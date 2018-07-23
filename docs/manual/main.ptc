@@ -1,0 +1,115 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\@mypartnumtocformat {I}{Part One}}{3}{part.1}
+\ttl@starttoc {default@1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Overview of ArrayBot{} Software Applications}{5}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Introduction}{5}{section.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Arraybot UI's}{7}{section.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.1}ArrayBot{} UI}{7}{subsection.1.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.2}ArrayCam{} UI}{9}{subsection.1.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.3}ArduinoController{} UI}{11}{subsection.1.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Arraybot Hardware Setup}{13}{section.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.1}Motors}{13}{subsection.1.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.2}Arduinos}{13}{subsection.1.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.3}The Camera}{13}{subsection.1.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Software Design and Software Components}{15}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Rough Software setup - picture}{15}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}IPC}{17}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Serial Communication}{17}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}The socket server and socket clients}{17}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Process Sequencer}{19}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.1}Process Sequence}{19}{subsection.4.0.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.2}Process }{19}{subsection.4.0.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.3}XML}{19}{subsection.4.0.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.4}Triggers}{19}{subsection.4.0.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}The JoyStick}{21}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.0.1}JoyStickMessageDispatcher}{21}{subsection.5.0.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Controlling the motors}{23}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}DeviceManager}{23}{section.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}APTDevice}{23}{section.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.1}APTMotor}{23}{subsection.6.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.2}LongTravelStage}{23}{subsection.6.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.3}TCube Stepper Motor}{23}{subsection.6.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.4}TCube DCServo}{23}{subsection.6.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.5}Angle Controller}{23}{subsection.6.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}XYZUnit}{23}{section.6.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}The Arduino Server}{25}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Messages exchanged with the Arduino Server}{25}{section.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.1}Incoming messages}{26}{subsection.7.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1.2}Outgoing messages}{27}{subsection.7.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}The Puffer and ribbon separation}{28}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.1}Puffer Arduino Communication Protocol}{28}{subsection.7.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Sensors and Lights}{29}{section.7.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.4}Hardware Setup}{31}{section.7.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.4.1}Arduino setup}{31}{subsection.7.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Appendices}{33}{section*.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Get the source code}{35}{Appendix.1.A}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {B}Software API's}{37}{Appendix.1.B}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.1}ArrayBot Software API's}{37}{section.1.B.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.1.1}abCore}{37}{subsection.1.B.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.1.2}abVCLCore}{37}{subsection.1.B.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.2}ThirdParty libraries}{37}{section.1.B.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.2.1}Poco}{37}{subsection.1.B.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.2.2}libcurl}{37}{subsection.1.B.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.2.3}SQLite}{37}{subsection.1.B.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.2.4}tinyxml2}{37}{subsection.1.B.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.2.5}uc480 and uc480\_tools}{37}{subsection.1.B.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.2.6}Dune Scientific's libraries: mtkCommon, mtkMath, mtkIPC and mtkVCL}{37}{subsection.1.B.2.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {C}Arduino wiring}{39}{Appendix.1.C}
+\contentsfinish 
