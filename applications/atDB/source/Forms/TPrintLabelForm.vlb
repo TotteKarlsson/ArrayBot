@@ -1,0 +1,12 @@
+﻿[mPrintButton]
+Coordinates=46,70,80,51
+
+[mLblToPrint]
+Coordinates=0,0,74,51
+
+[mCopiesLbl]
+Coordinates=65,1,73,51
+
+[Button1]
+Coordinates=176,1,53,51
+

@@ -1,0 +1,120 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{14DD28EE-43BF-42B3-B467-1F3602F37384}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="P:\libs\atapi\source\core\atCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\database\atDatabase.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\arduino\atArduino.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\serial\atSerialAPI.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\ArrayBot\source\lib\ArrayBotPackage.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="source\ArduinoController.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="atCore">
+        <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj"/>
+    </Target>
+    <Target Name="atCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\core\atCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDatabase">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj"/>
+    </Target>
+    <Target Name="atDatabase:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDatabase:Make">
+        <MSBuild Projects="P:\libs\atapi\source\database\atDatabase.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atArduino">
+        <MSBuild Projects="P:\libs\atapi\source\arduino\atArduino.cbproj"/>
+    </Target>
+    <Target Name="atArduino:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\arduino\atArduino.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atArduino:Make">
+        <MSBuild Projects="P:\libs\atapi\source\arduino\atArduino.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atSerialAPI">
+        <MSBuild Projects="P:\libs\atapi\source\serial\atSerialAPI.cbproj"/>
+    </Target>
+    <Target Name="atSerialAPI:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\serial\atSerialAPI.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atSerialAPI:Make">
+        <MSBuild Projects="P:\libs\atapi\source\serial\atSerialAPI.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atArrayBotCore">
+        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj"/>
+    </Target>
+    <Target Name="atArrayBotCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atArrayBotCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\arraybot\atArrayBotCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLCore">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
+    </Target>
+    <Target Name="atVCLCore:Clean">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLCore:Make">
+        <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayBotPackage">
+        <MSBuild Projects="P:\ArrayBot\source\lib\ArrayBotPackage.cbproj"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Clean">
+        <MSBuild Projects="P:\ArrayBot\source\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Make">
+        <MSBuild Projects="P:\ArrayBot\source\lib\ArrayBotPackage.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArduinoController">
+        <MSBuild Projects="source\ArduinoController.cbproj"/>
+    </Target>
+    <Target Name="ArduinoController:Clean">
+        <MSBuild Projects="source\ArduinoController.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArduinoController:Make">
+        <MSBuild Projects="source\ArduinoController.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="atCore;atDatabase;atArduino;atSerialAPI;atArrayBotCore;atVCLCore;ArrayBotPackage;ArduinoController"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="atCore:Clean;atDatabase:Clean;atArduino:Clean;atSerialAPI:Clean;atArrayBotCore:Clean;atVCLCore:Clean;ArrayBotPackage:Clean;ArduinoController:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="atCore:Make;atDatabase:Make;atArduino:Make;atSerialAPI:Make;atArrayBotCore:Make;atVCLCore:Make;ArrayBotPackage:Make;ArduinoController:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

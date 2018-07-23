@@ -1,0 +1,29 @@
+Release 0.5.3 (Feb 20)
+=======================
+* First version using Geist watchdog sensors and server
+* Removed all old Arduino temperature sensing
+* May wanna rename this application
+* Adding classes to deal with SNMP server
+
+Release 0.5.2 (Nov 16)
+=======================
+* Switched to use PostGres database instead of MySQL
+* Fixed so that the lights Trackbar can be updated from the arduino, and vice versa
+* Re enabled Lights code
+* Reviving control of Arraybot LED
+
+Release 0.5.1 (Aug 3)
+=======================
+* Fixed some shutdown thread issues
+* Added int label showing number of connected server clients
+* Removed dependency on non DBExpress database code
+* Added DBExpress db code in order to populate environmental data in the database
+* Refactored dslib -> dsl
+* Changed temp reading to every 10 seconds
+* Getting environmental sensor logging
+* Added ability to hide bottom log panel
+* Removed code related to the Puffer Arduino
+
+Release 0.5.0 (Feb 27)
+=======================
+* Initial commit of the Arduino Controller application code, from ArrayBot.

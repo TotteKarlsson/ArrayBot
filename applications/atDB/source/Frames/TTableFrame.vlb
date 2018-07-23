@@ -1,0 +1,15 @@
+﻿[SQLDataSet1]
+Coordinates=10,71,79,51
+
+[DBGrid1]
+Coordinates=99,71,56,33
+
+[DBNavigator1]
+Coordinates=107,10,82,51
+
+[GroupBox1]
+Coordinates=199,10,70,51
+
+[ClientDataSet1]
+Coordinates=10,10,87,51
+

@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>
+<html>
+<head>
+<title>Knife table</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>-->
+<link rel="shortcut icon" href="https://www.dbschema.com/images/favicon.ico">
+<style type='text/css'>
+body {
+    font-family: 'Segoe UI', 'Lucida sans', Dialog;
+    font-size: 13px;
+    background-color:#f5f5f5;
+    margin: 10px;
+}
+</style>
+</head>
+
+<body>
+<object data='knife_table.svg' width='660' height='500' type='image/svg+xml' >
+<embed src='knife_table.svg' width='660' height='500' type='image/svg+xml' />
+<p>The <a href="http://www.adobe.com/svg/viewer/install/main.html">Adobe SVG Viewer</a> is required to view this image !</p></object>
+<br/><br/>
+<div class='card'><div class='card-block'><a name='knife' onclick='window.scrollTo(70, 45);return false;' style='cursor:pointer;'><h4 class='card-title'>Table knife</h4></a>
+<p class="text-muted">Diamond knifes that are used when cutting ribbons</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='knife.id'>id</a></td>
+		<td> integer   </td>
+		<td> Unique id for the knife </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='knife.date_entered'>date&#95;entered</a></td>
+		<td> date   DEFAULT CURRENT_DATE </td>
+		<td> Date knife was entered into the system </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;knife&#95;id</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='knife_notes' onclick='window.scrollTo(60, 90);return false;' style='cursor:pointer;'><h4 class='card-title'>Table knife_notes</h4></a>
+<p class="text-muted">Relational table for knife notes</p>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='knife_notes.knife_id'>knife&#95;id</a></td>
+		<td> integer   </td>
+		<td> Knife ID </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='knife_notes.note_id'>note&#95;id</a></td>
+		<td> integer   </td>
+		<td> ID for a note </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;knife&#95;notes&#95;knife&#95;id</td>
+		<td> ON knife&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;knife&#95;notes&#95;note&#95;id</td>
+		<td> ON note&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_knife_notes_knife</td>
+		<td > ( knife&#95;id ) ref <a href='#knife'>knife</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_knife_notes_notes</td>
+		<td > ( note&#95;id ) ref <a href='#notes'>notes</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='notes' onclick='window.scrollTo(60, 240);return false;' style='cursor:pointer;'><h4 class='card-title'>Table notes</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='notes.id'>id</a></td>
+		<td> serial   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='notes.note'>note</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='notes.created_on'>created&#95;on</a></td>
+		<td> timestamp   DEFAULT CURRENT_TIMESTAMP </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='notes.created_by'>created&#95;by</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>notes&#95;pkey</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<br/><br/>
+<div class='card'><div class='card-block'><a name='ribbons' onclick='window.scrollTo(265, 45);return false;' style='cursor:pointer;'><h4 class='card-title'>Table ribbons</h4></a>
+<table class='table-sm table-bordered'>
+<thead>
+<tr><th>Indexes</th><th>Field Name</th><th>Data Type</th><th>Description</th></tr></thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='ribbons.id'>id</a></td>
+		<td> varchar&#40; 36 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='ribbons.status'>status</a></td>
+		<td> integer   DEFAULT 1 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='ribbons.block_id'>block&#95;id</a></td>
+		<td> integer   DEFAULT '-1'::integer </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='ribbons.cutting_order'>cutting&#95;order</a></td>
+		<td> integer   DEFAULT '-1'::integer </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='ribbons.nr_of_sections'>nr&#95;of&#95;sections</a></td>
+		<td> smallint   DEFAULT 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='ribbons.created_on'>created&#95;on</a></td>
+		<td> timestamp   DEFAULT CURRENT_TIMESTAMP </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='ribbons.modified'>modified</a></td>
+		<td> timestamp   DEFAULT CURRENT_TIMESTAMP </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='ribbons.created_by'>created&#95;by</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='ribbons.coverslip_id'>coverslip&#95;id</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='ribbons.knife_id'>knife&#95;id</a></td>
+		<td> integer   DEFAULT -1 </td>
+		<td> Reference the knife that cut the ribbon </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>ribbons&#95;pkey1</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>ribbons&#95;block&#95;id&#95;idx</td>
+		<td> ON block&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>ribbons&#95;coverslip&#95;id&#95;idx</td>
+		<td> ON coverslip&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>ribbons&#95;created&#95;by&#95;idx</td>
+		<td> ON created&#95;by</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>ribbons&#95;status&#95;idx</td>
+		<td> ON status</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>idx&#95;ribbons&#95;cut&#95;by&#95;knife</td>
+		<td> ON knife&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>ribbons_ibfk_1</td>
+		<td > ( block&#95;id ) ref <a href='#blocks'>blocks</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>ribbons_ibfk_3</td>
+		<td > ( coverslip&#95;id ) ref <a href='#coverslips'>coverslips</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>ribbons_ibfk_4</td>
+		<td > ( status ) ref <a href='#ribbonstatuses'>ribbonstatuses</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>ribbons_ibfk_2</td>
+		<td > ( created&#95;by ) ref <a href='#users'>users</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>fk_ribbons_knife</td>
+		<td > ( knife&#95;id ) ref <a href='#knife'>knife</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table></div></div>
+
+<p align='right'><a href='https://www.dbschema.com' style='color:#aaa'>Powered by DbSchema</a></p></body></html>

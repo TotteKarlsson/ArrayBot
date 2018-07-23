@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8" collation="utf8_general_ci">atdb</database>
+</source>
+<canvas zoom="90">
+<tables>
+<table name="coverslips" view="colnames">
+<left>472</left>
+<top>261</top>
+<width>126</width>
+<height>188</height>
+<sql_create_table>CREATE TABLE `coverslips` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` int(11) NOT NULL COMMENT 'The coverslips state',
+  `type` int(11) NOT NULL COMMENT 'Type of cs',
+  `notes` text,
+  `freshCSBatch` int(11) NOT NULL COMMENT 'Typcially a 100 count box',
+  `cleanCSBatch` int(11) DEFAULT NULL,
+  `carboncoatbatch` int(11) DEFAULT NULL,
+  `from_lot` varchar(128) DEFAULT NULL COMMENT 'Coverslip LOT',
+  PRIMARY KEY (`id`),
+  KEY `status` (`status`),
+  KEY `type` (`type`),
+  KEY `coverslip_ibfk_3` (`freshCSBatch`),
+  KEY `cleanCSBatch` (`cleanCSBatch`),
+  KEY `carboncoatbatch` (`carboncoatbatch`),
+  CONSTRAINT `coverslips_ibfk_1` FOREIGN KEY (`status`) REFERENCES `coverslipstatuses` (`id`),
+  CONSTRAINT `coverslips_ibfk_2` FOREIGN KEY (`type`) REFERENCES `coversliptypes` (`id`),
+  CONSTRAINT `coverslips_ibfk_3` FOREIGN KEY (`freshCSBatch`) REFERENCES `freshcsbatches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `coverslips_ibfk_4` FOREIGN KEY (`cleanCSBatch`) REFERENCES `cleancsbatches` (`id`),
+  CONSTRAINT `coverslips_ibfk_5` FOREIGN KEY (`carboncoatbatch`) REFERENCES `carboncoatedcsbatches` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3306 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="cleancsbatches" view="colnames">
+<left>172</left>
+<top>450</top>
+<width>123</width>
+<height>142</height>
+<sql_create_table>CREATE TABLE `cleancsbatches` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user` int(11) NOT NULL,
+  `note` text,
+  `count` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  CONSTRAINT `cleancsbatches_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="coverslipdustassays" view="colnames">
+<left>778</left>
+<top>87</top>
+<width>140</width>
+<height>188</height>
+<sql_create_table>CREATE TABLE `coverslipdustassays` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `coverslip_id` int(11) NOT NULL,
+  `background_image` varchar(36) DEFAULT NULL,
+  `coverslip_image` varchar(36) DEFAULT NULL,
+  `result_image` varchar(36) DEFAULT NULL,
+  `coverslip_status` int(11) NOT NULL COMMENT 'Status of coverslip at time of control',
+  `note` text,
+  PRIMARY KEY (`id`),
+  KEY `coverslip_id` (`coverslip_id`),
+  KEY `coverslip_status` (`coverslip_status`),
+  CONSTRAINT `coverslipdustassays_ibfk_1` FOREIGN KEY (`coverslip_id`) REFERENCES `coverslips` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="carboncoatedcsbatches" view="colnames">
+<left>168</left>
+<top>619</top>
+<width>160</width>
+<height>127</height>
+<sql_create_table>CREATE TABLE `carboncoatedcsbatches` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `count` int(11) DEFAULT NULL,
+  `user` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="freshcsbatches" view="colnames">
+<left>174</left>
+<top>269</top>
+<width>109</width>
+<height>158</height>
+<sql_create_table>CREATE TABLE `freshcsbatches` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `count` int(11) DEFAULT NULL COMMENT 'Typically 100',
+  `type` int(11) NOT NULL,
+  `lot_number` varchar(128) NOT NULL,
+  `box_number` int(11) NOT NULL COMMENT 'Typically the box that holds 100 coverslips',
+  PRIMARY KEY (`id`),
+  KEY `type` (`type`),
+  CONSTRAINT `freshcsbatches_ibfk_1` FOREIGN KEY (`type`) REFERENCES `coversliptypes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="coversliptypes" view="colnames">
+<left>24</left>
+<top>154</top>
+<width>127</width>
+<height>95</height>
+<sql_create_table>CREATE TABLE `coversliptypes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL,
+  `note` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="coverslipstatuses" view="colnames">
+<left>780</left>
+<top>318</top>
+<width>128</width>
+<height>133</height>
+<sql_create_table>CREATE TABLE `coverslipstatuses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(255) NOT NULL,
+  `note` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="users" view="colnames">
+<left>24</left>
+<top>384</top>
+<width>99</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_name` (`user_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

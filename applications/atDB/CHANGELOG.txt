@@ -1,0 +1,227 @@
+Release 0.7.0 (April 2)
+=======================
+* Fixed some build issues
+* atDB is not using atFoundation, but smaller dll's
+
+Release 0.6.9 (March 22)
+=======================
+* Getting styles working 
+* Fixing redistribution
+* Running on Tokyo
+* Compiled with the latest
+* Setting up a new postbuild workflow
+
+Release 0.6.8 (March 20)
+=======================
+* Removed All Blocks tab
+* Added code to deal with ribbon notes on the ribbon scans frame
+* Working on ribbon scan form
+* Added frame and form to provide data for a scanned coverslip
+* Removed references to obsolete ATDBServerSession
+* Adding better block/ribbon browsing support
+* Changed, simplified the view of ribbons
+* New version - got knife handling implemented
+
+Release 0.6.7 (Jan 3)
+=======================
+* Added knifes table
+* Added knife_notes table
+* Added knife_id field in ribbons table
+* Changed some fields with capital letters to lowercase (freshCSBatches -> freshcsbatches)
+
+------ 2018 ------
+
+Release 0.6.6 (Dec 21)
+=======================
+* Added code to populate all tables dropdown
+* Tracking bug when changing settings
+
+Release 0.6.5 (Nov 14)
+=======================
+* Fixed addition of notes to multiple coverslips MySQL IFNULL == COALESCE in PostGres
+* Consolidated navigator actions and grid double clicks
+* Checked working of foreign keys when deleting batches and individual coverslips
+* Moved bunch of frames to package
+* Fixed issues with datamodule creations
+* Moved all navigator logic to separate CPP file
+* Got block and ribbon notes working again
+* Added Navigator logic file
+* Fixed deletion of blocks and block notes
+* Converting to Postgres
+* Phasing out all MySQL stuff
+* Transferring logic in the lowlevel MySQl connector to PostGres datamodule (Don't have a low level postgres connector)
+* Added pragma for Postgres driver
+* Changing MySQL to Postgres
+* Adding test to migrate to PostGres
+* Added sync to Postgres frame
+* Changed button for creating silanized batch
+* Hide box number when creating new batch
+* Added images frame
+
+Release 0.6.4 (Oct 17)
+=======================
+* Added movie page, to watch ribbon cutting movies
+* Compiled on windows 10
+* Added SimpleGrid application
+* Changed position of Human/Mouse toggler
+* Changed title for "virus"
+* Added code for preset of blocks data in a series
+
+Release 0.6.3 (July 31)
+=======================
+* Added Slices Form
+* Renamed TNewBlockForm -> TBlockForm
+* Added filter for Human vs Mouse
+* Added new lookup fields reflecting DB changes.
+* Redoing some DB stuff
+* Adding document for tracking changes to the database
+* Major changes to database naming of tables fields etc..
+* Added password protection of the all tables page
+* Added lockout timer logic to the alltables frame
+* Added a dbsensors datamodule
+* Many changes to atdbDataModule due to schema changes
+* Need more research on how to use datamodule from package
+* Some minor compilation speed updates
+* Added frames and datamodules to atVCLCore package
+* Added common pch header
+* Restructered: core files into core folder
+* Preparing some frames for packaging.
+* Added lookup fields in case Client dataset
+* Changed schema to use "cases"
+* ProcessID -> specimen_id
+* Added client datasets, and associated components for cases data
+* Refactored ab -> at
+
+Release 0.6.2 (June 29)
+=======================
+* Added form for adding new cases
+* Bunch of changes as schema changed
+* Implementing cases table
+* process_id is now specimen_id
+* Changed Schema,
+* Added case and cultured_time_point table
+* Cleaned up the atdb repository somewhat
+
+Release 0.6.1 (June 27)
+=======================
+* Added form to inspect a scanned coverslip
+* Added ability to read barcodes in ATDB
+* Removed old print labels code
+* Removed docs features
+* Added an Archived area in source repository
+* Added ability to change coverslip statuses for a set of coverslips
+* Renamed release script
+
+Release 0.6.0 (April 14)
+=======================
+* Added grid for related ribbons when browsing coverslips
+* Added proper printing of CS box labels
+* Added new Ribbons datamodule for specific ribbons database stuff
+* Cleaned up the table frame unit
+
+Release 0.5.9 (April 11)
+=======================
+* Fixed users Dropdown to be a dataaware control
+* Moved some db logic into the atdb datamodule
+* Moved Coverslip datamodule to main api
+* Added a RegisterNewRibbon form
+* Added printing properties
+* Added ability to add, append notes to one or more coverslips.
+* Added a 'C' prefix to coverslip barcodes
+
+Release 0.5.8 (March 23)
+=======================
+* Fixed default DB value error when entering a new specimen.
+* Re organizing atDB sources
+* Refactored dslib -> dsl
+* Removed references to splash and style selections
+* Updated backup script and windows task
+* Tracking atdb schema
+
+Release 0.5.7 (Jan 9)
+=======================
+* Changed underlying DB schema
+* Added blocks form 
+* Moved all protocol fields from specimen table to blocks table
+
+------ 2017 ------
+
+Release 0.5.6 (Dec 1)
+=======================
+* Added creation of cleaning batches
+* Added creation of carbon coated batches
+* Added printing of coverslip labels
+* Added a SQLBuilder class
+* Added carboncoated table to atdb schema
+* Adding latest schemas
+
+Release 0.5.5 (Nov 29)
+=======================
+* Added printing of fresh batch labels
+* Added registering of fresh coverslip batches
+* Starting monitoring db schema more closely
+* Adding a new batch form
+* Finished refactoring ab->at
+* Added a few UI improvements
+* Changed database table names to be all singular
+* Created new demo database
+* Added code for deleting assay files when deleted from database
+* Changed storing scheme for assay image files, store by month
+* Added onDustAssay dataset changed callback
+* Added a atdbVCLUtils unit
+* Added a CoverSlip data module
+* Linked dustassays data with coverslip master dataset
+
+Release 0.5.4 (Oct 27)
+=======================
+* Last excel import from tissue to block
+* Added printing labels ability when selecting multiple blocks
+* Added sorting ascending and descending of database grids
+* Added 2D Barcodes for coverslips
+* Improved calculated fields for block label creation
+* Finished wrapping label printer dll
+* Added labelprinter class wrapping printer dll
+* Updated ArrayCam MySQL connection properties
+* Added some calculated fields to ATDB (DB modules may be moved to separate "AT repository"
+* Upgraded db connection
+* Added getTableNames function
+* Moved atdb to separate github repo at git@github.com:TotteKarlsson/atDB.git
+* Fixed 'required' fields
+* Removing the queries from the ATDB datamodule
+* Added database credentials to ini file
+* Added queries for deleting ribbons and notes when deleting a block
+* Simplifying the atDB datamodule
+
+Release 0.5.3 (Oct 21)
+=======================
+* Added about box
+* Changed Icon
+* Added ability to post documents to a documents table
+* Added saving/reading of grid column formats
+* Added python script to populate db from csv file
+
+Release 0.5.2 (Oct 19)
+=======================
+* Added new Specimen Form
+* Added ability to filter blocks trough selection of one or multiple process ids
+* Updated schema
+* Got excel data imported into database
+* Fixed db connection bug
+* Added preprocess treatment lookup table
+* Added frame with all tables
+* Added Table updater form
+
+Release 0.5.1 (Oct 11)
+=======================
+* Added tables for block status and freeze type
+
+Release 0.5.0 (Oct 11)
+=======================
+* Initial UI interfacing with remote MySQL database
+* Support for initial data entry of user, block and ribbon data
+
+Release 0.5.0 (June 6)
+=======================
+* Initial commit
+
+------ 2016 ------

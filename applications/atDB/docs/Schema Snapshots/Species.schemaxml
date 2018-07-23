@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8" collation="utf8_general_ci">atdb</database>
+</source>
+<canvas zoom="90">
+<tables>
+<table name="ribbons" view="colnames">
+<left>498</left>
+<top>295</top>
+<width>116</width>
+<height>203</height>
+<sql_create_table>CREATE TABLE `ribbons` (
+  `id` varchar(36) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  `block_id` int(11) NOT NULL DEFAULT '-1',
+  `cutting_order` int(11) NOT NULL DEFAULT '-1',
+  `nr_of_sections` smallint(6) DEFAULT '0',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` int(11) NOT NULL,
+  `coverslip_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `block_id` (`block_id`),
+  KEY `created_by` (`created_by`),
+  KEY `coverslip_id` (`coverslip_id`),
+  KEY `status` (`status`),
+  CONSTRAINT `ribbons_ibfk_1` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `ribbons_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
+  CONSTRAINT `ribbons_ibfk_3` FOREIGN KEY (`coverslip_id`) REFERENCES `coverslips` (`id`),
+  CONSTRAINT `ribbons_ibfk_4` FOREIGN KEY (`status`) REFERENCES `ribbonstatuses` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ribbon_note" view="colnames">
+<left>702</left>
+<top>188</top>
+<width>140</width>
+<height>96</height>
+<sql_create_table>CREATE TABLE `ribbon_note` (
+  `ribbon_id` varchar(36) DEFAULT NULL,
+  `note_id` int(11) DEFAULT NULL,
+  KEY `ribbon_id` (`ribbon_id`),
+  KEY `note_id` (`note_id`),
+  CONSTRAINT `ribbon_note_ibfk_1` FOREIGN KEY (`ribbon_id`) REFERENCES `ribbons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ribbon_note_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `notes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="blocks" view="colnames">
+<left>74</left>
+<top>327</top>
+<width>203</width>
+<height>275</height>
+<sql_create_table>CREATE TABLE `blocks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `process_id` int(11) DEFAULT NULL COMMENT 'This ID relates a block with a specimen process_id in the  specimen table',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` smallint(11) NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL,
+  `modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `label` varchar(255) NOT NULL DEFAULT 'XXXXXX',
+  `serial` smallint(5) unsigned NOT NULL COMMENT 'The serial starts at 1 and is related to the process_id',
+  `date_embedded` date DEFAULT NULL,
+  `preprocess_treatment_protocol` smallint(6) DEFAULT '0',
+  `fixative_protocol` smallint(6) DEFAULT '0',
+  `fixation_protocol` smallint(6) DEFAULT '0',
+  `postfix_protocol` smallint(6) DEFAULT '0',
+  `cryoprotection_protocol` smallint(6) DEFAULT '0',
+  `freezing_protocol` smallint(6) DEFAULT '0',
+  `substitution_protocol` smallint(6) DEFAULT '0',
+  `infiltration_protocol` smallint(6) DEFAULT '0',
+  `embedding_protocol` smallint(6) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `block_ibfk_1` (`created_by`),
+  KEY `process_id` (`process_id`),
+  KEY `status` (`status`),
+  KEY `preprocess_treatment` (`preprocess_treatment_protocol`),
+  KEY `fixative` (`fixative_protocol`),
+  KEY `fixation_protocol` (`fixation_protocol`),
+  KEY `postfix_protocol` (`postfix_protocol`),
+  KEY `cryoprotection_protocol` (`cryoprotection_protocol`),
+  KEY `embedding_protocol` (`embedding_protocol`),
+  KEY `freezing_protocol` (`freezing_protocol`),
+  KEY `infiltration_protocol` (`infiltration_protocol`),
+  KEY `substitution_protocol` (`substitution_protocol`),
+  CONSTRAINT `blocks_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `blocks_ibfk_10` FOREIGN KEY (`freezing_protocol`) REFERENCES `freezeprotocols` (`id`),
+  CONSTRAINT `blocks_ibfk_11` FOREIGN KEY (`infiltration_protocol`) REFERENCES `infiltrationprotocols` (`id`),
+  CONSTRAINT `blocks_ibfk_12` FOREIGN KEY (`substitution_protocol`) REFERENCES `substitutionprotocols` (`id`),
+  CONSTRAINT `blocks_ibfk_2` FOREIGN KEY (`process_id`) REFERENCES `specimens` (`process_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `blocks_ibfk_3` FOREIGN KEY (`status`) REFERENCES `blockstatuses` (`id`),
+  CONSTRAINT `blocks_ibfk_4` FOREIGN KEY (`preprocess_treatment_protocol`) REFERENCES `preprocesstreatmentprotocols` (`id`),
+  CONSTRAINT `blocks_ibfk_5` FOREIGN KEY (`fixative_protocol`) REFERENCES `fixativeprotocols` (`id`),
+  CONSTRAINT `blocks_ibfk_6` FOREIGN KEY (`fixation_protocol`) REFERENCES `fixationprotocols` (`id`),
+  CONSTRAINT `blocks_ibfk_7` FOREIGN KEY (`postfix_protocol`) REFERENCES `postfixprotocols` (`id`),
+  CONSTRAINT `blocks_ibfk_8` FOREIGN KEY (`cryoprotection_protocol`) REFERENCES `cryoprotectionprotocols` (`id`),
+  CONSTRAINT `blocks_ibfk_9` FOREIGN KEY (`embedding_protocol`) REFERENCES `embeddingprotocols` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="specimens" view="colnames">
+<left>389</left>
+<top>48</top>
+<width>163</width>
+<height>234</height>
+<sql_create_table>CREATE TABLE `specimens` (
+  `process_id` int(11) NOT NULL AUTO_INCREMENT,
+  `lims_number` int(11) DEFAULT NULL,
+  `specimen_id` varchar(255) NOT NULL,
+  `specie` smallint(11) DEFAULT NULL,
+  `additional_identifier` varchar(255) DEFAULT NULL,
+  `age` varchar(255) DEFAULT NULL,
+  `death_date` date DEFAULT NULL,
+  `brain_region_dissection` varchar(255) DEFAULT NULL,
+  `date_received` date DEFAULT NULL,
+  `date_entered` datetime DEFAULT CURRENT_TIMESTAMP,
+  `entered_by` int(11) NOT NULL,
+  PRIMARY KEY (`process_id`),
+  KEY `species` (`specie`),
+  CONSTRAINT `specimens_ibfk_10` FOREIGN KEY (`specie`) REFERENCES `species` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=925 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="users" view="colnames">
+<left>352</left>
+<top>553</top>
+<width>99</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_name` (`user_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="species" view="colnames">
+<left>648</left>
+<top>9</top>
+<width>79</width>
+<height>96</height>
+<sql_create_table>CREATE TABLE `species` (
+  `id` smallint(6) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

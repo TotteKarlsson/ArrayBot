@@ -1,0 +1,40 @@
+
+
+Sync started at Wed Jun 28 11:49:11 2017
+
+`block_note`                     8        0         8        0        0
+`blocks`                        15        0        15        0        0
+`blockstatuses`                  5        0         5        0        0
+`carboncoatedcsbatches`         51        0        51        0        0
+`cleancsbatches`                33        0        33        0        0
+`coverslipdustassays`            0        0         0        0        0
+`coverslips`                   686        0       686        0        0
+`coverslipstatuses`              8        0         8        0        0
+`coversliptypes`                 2        0         2        0        0
+`cryoprotectionprotocols`        3        0         3        0        0
+`documents`                      0        0         0        0        0
+`embeddingprotocols`             7        0         7        0        0
+`fixationprotocols`              5        0         5        0        0
+`fixativeprotocols`              5        0         5        0        0
+`freezeprotocols`                4        0         4        0        0
+`freshcsbatches`                12        0        12        0        0
+`images`                        76        0        76        0        0
+`infiltrationprotocols`          5        0         5        0        0
+`modificationlog`                3        0         3        0        0
+`movies`                       150        0       150        0        0
+`notes`                         42        0        42        0        0
+`postfixprotocols`              12        0        12        0        0
+`preprocesstreatmentprotocols`       21        0        21        0        0
+`ribbon_note`                   24        0        24        0        0
+`ribbons`                      102        0       102        0        0
+`ribbonstatuses`                 9        0         9        0        0
+`sensordata`                292208        0    292208        0        0
+`settings`                       3        0         3        0        0
+`species`                        5        0         5        0        0
+`specimens`                      6        0         6        0        0
+`substitutionprotocols`          9        0         9        0        0
+`users`                          6        0         6        0        0
+
+Total time taken - 26 sec(s)
+
+

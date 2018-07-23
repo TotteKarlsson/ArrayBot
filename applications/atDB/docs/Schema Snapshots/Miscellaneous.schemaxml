@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8" collation="utf8_general_ci">atdb</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="users" view="colnames">
+<left>46</left>
+<top>89</top>
+<width>110</width>
+<height>124</height>
+<sql_create_table>CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_name` (`user_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="documents" view="colnames">
+<left>541</left>
+<top>41</top>
+<width>141</width>
+<height>141</height>
+<sql_create_table>CREATE TABLE `documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_name` varchar(255) NOT NULL,
+  `document` longblob,
+  `type` varchar(16) DEFAULT NULL COMMENT 'document extension',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="images" view="colnames">
+<left>299</left>
+<top>35</top>
+<width>118</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `images` (
+  `id` varchar(36) NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fileextension` varchar(16) DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `coverslip_id` int(11) NOT NULL DEFAULT '0' COMMENT 'For now, this is not enforced that it need to exist in the DB',
+  `block_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `created_by` (`created_by`),
+  CONSTRAINT `images_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="movies" view="colnames">
+<left>298</left>
+<top>265</top>
+<width>118</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `movies` (
+  `id` varchar(36) NOT NULL,
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fileextension` varchar(16) DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `coverslip_id` int(11) NOT NULL DEFAULT '0',
+  `block_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="notes" view="colnames">
+<left>302</left>
+<top>483</top>
+<width>110</width>
+<height>141</height>
+<sql_create_table>CREATE TABLE `notes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `note` mediumtext NOT NULL,
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="sensordata" view="colnames">
+<left>74</left>
+<top>487</top>
+<width>103</width>
+<height>141</height>
+<sql_create_table>CREATE TABLE `sensordata` (
+  `sensor_id` int(11) DEFAULT NULL,
+  `data1` double DEFAULT NULL,
+  `data2` double DEFAULT NULL,
+  `date_time` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="settings" view="colnames">
+<left>563</left>
+<top>359</top>
+<width>181</width>
+<height>107</height>
+<sql_create_table>CREATE TABLE `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label_printer_command` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
