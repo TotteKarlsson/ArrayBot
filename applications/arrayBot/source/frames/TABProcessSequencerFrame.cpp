@@ -26,6 +26,7 @@ TABProcessSequencerFrame *ABProcessSequencerFrame;
 //---------------------------------------------------------------------------
 
 using namespace dsl;
+using namespace at;
 int TABProcessSequencerFrame::mFrameNr = 0;
 
 //---------------------------------------------------------------------------

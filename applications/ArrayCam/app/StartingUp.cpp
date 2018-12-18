@@ -16,7 +16,7 @@ extern ArrayCamUtilities acu;
 void TMainForm::setupProperties()
 {
 	//Setup UI/INI properties
-    mGeneralProperties->setSection("GENERAL");
+    mGeneralProperties->setSectionName("GENERAL");
 	mGeneralProperties->setIniFile(&mIniFile);
 
 	mGeneralProperties->add((BaseProperty*)  &mLogLevel.setup( 	    	                    "LOG_LEVEL",    					lAny));
@@ -59,7 +59,7 @@ void TMainForm::setupProperties()
 	mGeneralProperties->add((BaseProperty*)  &mZebraCOMPort.setup( 	                    	"ZEBRA_COM_PORT",                   0));
 	mGeneralProperties->add((BaseProperty*)  &mZebraBaudRate.setup( 	                	"ZEBRA_BAUD_RATE",                  9600));
 
-    mSoundProperties->setSection("SOUNDS");
+    mSoundProperties->setSectionName("SOUNDS");
 	mSoundProperties->setIniFile(&mIniFile);
 	mSoundProperties->add((BaseProperty*)  &mKnifeBeforeCuttingSound.setup( 	           	"KNIFE_BEFORE_CUTTING_SOUND",       ApplicationSound("BUTTON_CLICK_1")));
 	mSoundProperties->add((BaseProperty*)  &mKnifeCuttingSound.setup( 	               		"KNIFE_CUTTING_SOUND",              ApplicationSound("BUTTON_CLICK_1")));

@@ -33,7 +33,7 @@ bool TPGConnectionFrame::init(IniFile* inifile, const string& iniFileSection, TS
     mProperties.setIniFile(mIniFile);
     mDBConnection = dbConnection;
 
-    mProperties.setSection(iniFileSection);
+    mProperties.setSectionName(iniFileSection);
 	mProperties.add((BaseProperty*)  &mServerIPE->getProperty()->setup( 	    "SERVER_IP",        		      	"127.0.0.1"));
 	mProperties.add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    	"DB_USER_NAME",                   "none"));
 	mProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "DB_USER_PASSWORD",               "none"));

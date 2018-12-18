@@ -40,6 +40,10 @@
 
 using Poco::Timestamp;
 using dsl::IniFileProperties;
+using at::ArrayCamClient;
+using at::ProcessSequencer;
+using at::PairedMove;
+using at::ArrayBot;
 class TABProcessSequencerFrame;
 class TRibbonLifterFrame;
 class TXYZUnitFrame;
@@ -270,7 +274,7 @@ void __fastcall mASStartBtnClick(TObject *Sender);
 		void __fastcall		                    OnException();
 
         										//!The Motor wiggler wiggles the ribbon
-        MotorWiggler							mTheWiggler;
+        at::MotorWiggler	  					mTheWiggler;
 
 
         								        //JS button #5 and 7 controls camera zoom, or focus, if btn8 is pressed

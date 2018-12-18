@@ -20,7 +20,7 @@ DewPointOID("1.7"),
 mLocationID(0),
 mReadCycleTime(0)
 {
-    mProperties.setSection("WATCHDOG_SERVER");
+    mProperties.setSectionName("WATCHDOG_SERVER");
 	mProperties.add((BaseProperty*)  &mServerIP.setup(				"SERVER_IP",    	 		"192.168.123.123"));
 	mProperties.add((BaseProperty*)  &mInBuiltSensorID.setup(		"INBUILT_SENSOR_ID",    	"-1"));
 	mProperties.add((BaseProperty*)  &mLocationID.setup(			"LOCATION_ID",    			-1));

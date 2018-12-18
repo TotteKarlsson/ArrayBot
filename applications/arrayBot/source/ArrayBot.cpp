@@ -91,7 +91,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	{
 		Application->ShowException(&exception);
 	}
-    catch(const ATException& e)
+    catch(const at::ATException& e)
     {
 		Application->ShowException(&Exception(e.what()));
     }

@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include "UIUtilities.h"
 #include "dslLogger.h"
-//#include "dslUtils.h"
+#include "dslFileUtils.h"
 #include "dslVCLUtils.h"
 #include "dslRestartApplicationUtils.h"
 #include "abApplicationMessages.h"
@@ -89,7 +89,7 @@ void loadStyles()
 	themeFolder = joinPath(getCWD(), themeFolder);
 	if(DirectoryExists(themeFolder.c_str()))
 	{
-		StringList list = getFilesInDir(themeFolder, "vsf");
+		StringList list = getFilesInFolder(themeFolder, "vsf");
 		for(uint i = 0; i < list.size(); i++)
 		{
 			string styleFile(list[i]);

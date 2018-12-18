@@ -10,6 +10,8 @@
 #include "arraybot/joystick/atJoyStickSetting.h";
 //---------------------------------------------------------------------------
 
+using at::JoyStickSetting;
+
 class PACKAGE TAddJoyStickSettingForm : public TForm
 {
 __published:	// IDE-managed Components

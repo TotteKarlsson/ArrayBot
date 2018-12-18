@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include "MainForm.h"
 #include "arraybot/apt/atAPTMotor.h"
-
+using namespace at;
 //---------------------------------------------------------------------------
 //Callback from socket client class
 void TMain::onArrayCamClientConnected()

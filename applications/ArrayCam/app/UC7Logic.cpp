@@ -116,7 +116,7 @@ bool TMainForm::handleUC7Message(const UC7Message& msg)
                 {
                 	Log(lDebug3) << "Retracting";
                 	mUC7.setStrokeState(ssRetracting);
-					mArmRetractingSound.getReference().play();
+					mArmRetractingSound.getValueReference().play();
                     UC7Shape->Left = 624;
                     UC7Shape->Width = 73;
                     mACServer.broadcast(acmRetracting);
@@ -125,7 +125,7 @@ bool TMainForm::handleUC7Message(const UC7Message& msg)
                 {
                    	Log(lDebug3) << "Before Cutting";
                    	mUC7.setStrokeState(ssBeforeCutting);
-	                mKnifeBeforeCuttingSound.getReference().play();
+	                mKnifeBeforeCuttingSound.getValueReference().play();
                     UC7Shape->Left = 32;
                     UC7Shape->Width = 100;
                     mACServer.broadcast(acmBeforeCutting);
@@ -135,7 +135,7 @@ bool TMainForm::handleUC7Message(const UC7Message& msg)
                    	Log(lDebug3) << "Cutting";
                    	mUC7.getSectionCounter().increase();
                    	mUC7.setStrokeState(ssCutting);
-                    mKnifeCuttingSound.getReference().play();
+                    mKnifeCuttingSound.getValueReference().play();
                     UC7Shape->Left = 264;
                     UC7Shape->Width = 52;
                     mACServer.broadcast(acmCutting);
@@ -145,7 +145,7 @@ bool TMainForm::handleUC7Message(const UC7Message& msg)
                    	Log(lDebug3) << "After Cutting";
                    	mUC7.setStrokeState(ssAfterCutting);
 					RibbonOrderCountLabel->update();
-	                mKnifeAfterCuttingSound.getReference().play();
+	                mKnifeAfterCuttingSound.getValueReference().play();
                     UC7Shape->Left = 432;
                     UC7Shape->Width = 93;
                     RibbonLengthLbl->SetValue(BlockFaceHeight->getValue() * SectionCounterLabel->getValue());

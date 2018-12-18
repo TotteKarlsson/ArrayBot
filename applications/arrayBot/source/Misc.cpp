@@ -7,12 +7,14 @@
 #include "TSplashForm.h"
 #include "forms/TTextInputDialog.h"
 #include "TXYZUnitFrame.h"
+#include "atDeviceManager.h"
+//---------------------------------------------------------------------------
 
 using namespace dsl;
-
+using namespace at;
 static HWND gOtherAppWindow = NULL;
-
 extern TSplashForm*  gSplashForm;
+
 //---------------------------------------------------------------------------
 void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
 {
@@ -31,7 +33,7 @@ void __fastcall TMain::checkForDevicesExecute(TObject *Sender)
             APTMotor* m = mAB.getMotorWithSerial(serials[j]);
             if(m)
             {
-            	info << "Device ("<<m->getName()<<") of type '"<<::toString((DeviceTypeID) i)<<"' with serial " <<serials[j];
+            	info << "Device ("<<m->getName()<<") of type '"<<at::toString((DeviceTypeID) i)<<"' with serial " <<serials[j];
 
                 if(m->isHomed())
                 {

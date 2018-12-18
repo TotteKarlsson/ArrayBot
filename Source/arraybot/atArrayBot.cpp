@@ -14,7 +14,7 @@ namespace at
     mAppDataFolder(appFolder),
     mIniFile(ini),
     mJoyStickID(-1),
-    mJoyStick(mJoyStickID.getReference()),
+    mJoyStick(mJoyStickID.getValueReference()),
 
     mRightJoyStickXLeftDeadZone(0),
     mRightJoyStickXRightDeadZone(0),
@@ -33,7 +33,7 @@ namespace at
     //mServer(*this)
     {
     	//Setup UI properties
-        mProperties.setSection("ARRAYBOT_GENERAL");
+        mProperties.setSectionName("ARRAYBOT_GENERAL");
     	mProperties.setIniFile(&mIniFile);
     	mProperties.add((BaseProperty*)  &mJoyStickID.setup( 	                "JOYSTICK_ID",    	                1));
 

@@ -15,12 +15,6 @@
         <Projects Include="P:\libs\atapi\builds\atArrayBotCore\atArrayBotCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\source\lib\ArrayBotPackage.cbproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="..\source\ArrayBot.cbproj">
-            <Dependencies>..\source\lib\ArrayBotPackage.cbproj</Dependencies>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -65,32 +59,14 @@
     <Target Name="atArrayBotCore:Make">
         <MSBuild Projects="P:\libs\atapi\builds\atArrayBotCore\atArrayBotCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBotPackage">
-        <MSBuild Projects="..\source\lib\ArrayBotPackage.cbproj"/>
-    </Target>
-    <Target Name="ArrayBotPackage:Clean">
-        <MSBuild Projects="..\source\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ArrayBotPackage:Make">
-        <MSBuild Projects="..\source\lib\ArrayBotPackage.cbproj" Targets="Make"/>
-    </Target>
-    <Target Name="ArrayBot" DependsOnTargets="ArrayBotPackage">
-        <MSBuild Projects="..\source\ArrayBot.cbproj"/>
-    </Target>
-    <Target Name="ArrayBot:Clean" DependsOnTargets="ArrayBotPackage:Clean">
-        <MSBuild Projects="..\source\ArrayBot.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ArrayBot:Make" DependsOnTargets="ArrayBotPackage:Make">
-        <MSBuild Projects="..\source\ArrayBot.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="atVCLComponents;atVCLVisualComponents;atVCLAPTVisualComponents;atArrayBotCore;ArrayBotPackage;ArrayBot"/>
+        <CallTarget Targets="atVCLComponents;atVCLVisualComponents;atVCLAPTVisualComponents;atArrayBotCore"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="atVCLComponents:Clean;atVCLVisualComponents:Clean;atVCLAPTVisualComponents:Clean;atArrayBotCore:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="atVCLComponents:Clean;atVCLVisualComponents:Clean;atVCLAPTVisualComponents:Clean;atArrayBotCore:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="atVCLComponents:Make;atVCLVisualComponents:Make;atVCLAPTVisualComponents:Make;atArrayBotCore:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
+        <CallTarget Targets="atVCLComponents:Make;atVCLVisualComponents:Make;atVCLAPTVisualComponents:Make;atArrayBotCore:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

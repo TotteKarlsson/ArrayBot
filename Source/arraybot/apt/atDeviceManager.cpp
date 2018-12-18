@@ -15,7 +15,6 @@ namespace at
 {
 AT_AB string 		toString(DeviceTypeID value);
 AT_AB string 		toString(const TLI_DeviceInfo& val);
-AT_AB StringList 	getSerialsForDeviceType(DeviceTypeID deviceID);
 AT_AB DeviceTypeID  getDeviceTypeID(const string& id);
 //AT_CORE DeviceTypeID getDeviceTypeID(const string& level);
 

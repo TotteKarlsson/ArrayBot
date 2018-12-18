@@ -6,7 +6,7 @@
 #include "sound/atSounds.h"
 using namespace dsl;
 using namespace std;
-
+using namespace at;
 extern bool gAppIsStartingUp;
 
 //---------------------------------------------------------------------------
@@ -70,17 +70,17 @@ void __fastcall TMain::JSSpeedBtnClick(TObject *Sender)
     {
     	//Apply "FAST" JS setting
         mAB.applyJoyStickSetting("Fast");
-       	mEnableFastSpeedSound.getReference().play();
+       	mEnableFastSpeedSound.getValueReference().play();
     }
     else if (btn == mJSSpeedMediumBtn)
     {
         mAB.applyJoyStickSetting("Medium");
-       	mEnableMediumSpeedSound.getReference().play();
+       	mEnableMediumSpeedSound.getValueReference().play();
     }
     else if (btn == mJSSpeedSlowBtn)
     {
         mAB.applyJoyStickSetting("Slow");
-      	mEnableSlowSpeedSound.getReference().play();
+      	mEnableSlowSpeedSound.getValueReference().play();
     }
 }
 

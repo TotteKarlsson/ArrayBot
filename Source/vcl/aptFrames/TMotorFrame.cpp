@@ -48,13 +48,13 @@ void TMotorFrame::assignMotor(APTMotor* m)
 	    mPotentiometerSettingE->setValue(mMotor->getPotentiometerVelocity());
 
         //Tie UI elements to underlying motor properties
-        mPositionRangeMaxE->setReference(m->mPositionRange.getReference().getMaxReference());
+        mPositionRangeMaxE->setReference(m->mPositionRange.getValueReference().getMaxReference());
 
-		mMinPositionLimitE->setReference(m->mPositionLimits.getReference().getMinReference());
-        mMaxPositionLimitE->setReference(m->mPositionLimits.getReference().getMaxReference());
+		mMinPositionLimitE->setReference(m->mPositionLimits.getValueReference().getMinReference());
+        mMaxPositionLimitE->setReference(m->mPositionLimits.getValueReference().getMaxReference());
 
 
-		mEnableDisableLimits->setReference(m->mPositionLimitsEnabled.getReference());
+		mEnableDisableLimits->setReference(m->mPositionLimitsEnabled.getValueReference());
 
         mJogStepE->update();
         mJogVelocity->update();

@@ -32,7 +32,7 @@ void __fastcall TMainForm::CameraHCSectionClick(THeaderControl *HeaderControl,
 		if(mReticleForm.get() == NULL)
         {
         	mReticleForm = auto_ptr<TReticlePopupForm>(new TReticlePopupForm(mReticle, this));
-            mReticleForm->mReticleVisibilityCB->setReference(mReticleVisible.getReference());
+            mReticleForm->mReticleVisibilityCB->setReference(mReticleVisible.getValueReference());
 			mReticleForm->mReticleVisibilityCB->update();
         }
 

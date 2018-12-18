@@ -1,5 +1,6 @@
 //---------------------------------------------------------------------------
 #pragma comment(lib, "dslFoundation.lib")
+#pragma comment(lib, "dslVCLCommon.lib")
 #pragma comment(lib, "dslVCLComponents.bpi")
 #pragma comment(lib, "dslVCLVisualComponents.bpi")
 

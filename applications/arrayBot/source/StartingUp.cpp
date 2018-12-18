@@ -14,7 +14,7 @@
 extern TSplashForm*  	gSplashForm;
 extern bool             gAppIsStartingUp;
 extern string           gAppDataFolder;
-
+using namespace at;
 
 //---------------------------------------------------------------------------
 void __fastcall TMain::FormCreate(TObject *Sender)
@@ -83,7 +83,7 @@ void __fastcall TMain::FormShow(TObject *Sender)
 void TMain::setupProperties()
 {
 	//Setup UI properties
-    mProperties.setSection("UI");
+    mProperties.setSectionName("UI");
 	mProperties.setIniFile(&mIniFile);
 
 	mProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    		"LOG_LEVEL",    	                lAny));
@@ -93,7 +93,7 @@ void TMain::setupProperties()
 	mProperties.add((BaseProperty*)  &mPullRelaxVelocityE->getProperty()->setup(	"WIGGLER_PULL_RELAX_VELOCITY",   	0.5));
 	mProperties.add((BaseProperty*)  &mPullRelaxAccE->getProperty()->setup(			"WIGGLER_PULL_RELAX_ACCELERATION",  0.1));
 
-    mSoundProperties.setSection("SOUNDS");
+    mSoundProperties.setSectionName("SOUNDS");
 	mSoundProperties.setIniFile(&mIniFile);
 	mSoundProperties.add((BaseProperty*)  &mEnableSlowSpeedSound.setup( 	      	"ENABLE_SLOW_SPEED_SOUND",       ApplicationSound("BUTTON_CLICK_1")));
 	mSoundProperties.add((BaseProperty*)  &mEnableMediumSpeedSound.setup( 	      	"ENABLE_MEDIUM_SPEED_SOUND",     ApplicationSound("BUTTON_CLICK_1")));

@@ -34,7 +34,7 @@ TMainForm *MainForm;
 
 extern ArrayCamUtilities acu;
 using namespace dsl;
-
+using namespace at;
 //---------------------------------------------------------------------------
 __fastcall TMainForm::TMainForm(TComponent* Owner)
 	:
@@ -114,11 +114,11 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	gLogger.setLogLevel(mLogLevel);
 
     //Give all sounds a Handle (create a sound container..)
-	mKnifeBeforeCuttingSound.getReference().setHandle(this->Handle);
-	mBeforeKnifeBackOffSound.getReference().setHandle(this->Handle);
-    mKnifeCuttingSound.getReference().setHandle(this->Handle);
-	mKnifeAfterCuttingSound.getReference().setHandle(this->Handle);
-	mArmRetractingSound.getReference().setHandle(this->Handle);
+	mKnifeBeforeCuttingSound.getValueReference().setHandle(this->Handle);
+	mBeforeKnifeBackOffSound.getValueReference().setHandle(this->Handle);
+    mKnifeCuttingSound.getValueReference().setHandle(this->Handle);
+	mKnifeAfterCuttingSound.getValueReference().setHandle(this->Handle);
+	mArmRetractingSound.getValueReference().setHandle(this->Handle);
 
     //Setup callbacks
 	mLightsArduinoClient.assignOnMessageReceivedCallBack(onLightsArduinoMessageReceived);

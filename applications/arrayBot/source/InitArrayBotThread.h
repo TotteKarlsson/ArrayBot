@@ -6,7 +6,12 @@ using dsl::Thread;
 //---------------------------------------------------------------------------
 typedef void __fastcall (__closure *callback)(void);
 
-class ArrayBot;
+namespace at
+{
+	class ArrayBot;
+}
+
+using at::ArrayBot;
 
 class PACKAGE InitBotThread : public dsl::Thread
 {

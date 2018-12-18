@@ -58,7 +58,7 @@ void __fastcall TApplicationSoundsFrame::ApplicationSoundsLBClick(TObject *Sende
     	Property<ApplicationSound>* p = getCurrentSoundProperty();
         if(p)
         {
-			ApplicationSound& s = p->getReference();
+			ApplicationSound& s = p->getValueReference();
             VolumeTB->Position = s.getVolume();
             RepeatCB->Checked = s.repeats();
             EnabledCB->Checked = s.enabled();
@@ -78,7 +78,7 @@ void __fastcall TApplicationSoundsFrame::SoundCBCloseUp(TObject *Sender)
     	Property<ApplicationSound>* p = getCurrentSoundProperty();
         if(p)
         {
-			ApplicationSound& s = p->getReference();
+			ApplicationSound& s = p->getValueReference();
             s.setName(item);
         }
     }
@@ -102,7 +102,7 @@ void __fastcall TApplicationSoundsFrame::PlayBtnClick(TObject *Sender)
 	Property<ApplicationSound>* p = getCurrentSoundProperty();
     if(p)
     {
-    	p->getReference().play();
+    	p->getValueReference().play();
     }
 }
 
@@ -115,7 +115,7 @@ void __fastcall TApplicationSoundsFrame::VolumeTBChange(TObject *Sender)
     	Property<ApplicationSound>* p = getCurrentSoundProperty();
         if(p)
         {
-			ApplicationSound& s = p->getReference();
+			ApplicationSound& s = p->getValueReference();
             s.setVolume(VolumeTB->Position);
         }
     }
@@ -130,7 +130,7 @@ void __fastcall TApplicationSoundsFrame::EnabledCBClick(TObject *Sender)
     	Property<ApplicationSound>* p = getCurrentSoundProperty();
         if(p)
         {
-			ApplicationSound& s = p->getReference();
+			ApplicationSound& s = p->getValueReference();
             s.setVolume(VolumeTB->Position);
             EnabledCB->Checked ? s.enable() : s.disable();
         }

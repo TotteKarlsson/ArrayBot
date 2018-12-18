@@ -48,7 +48,7 @@ namespace at
 
     bool NavitarPreset::setup(const string& iniSection, IniFile& iniFile)
     {
-    	setSection(iniSection);
+    	setSectionName(iniSection);
         setIniFile(&iniFile);
 
        	add((BaseProperty*)  &mZoom.setup( 	    	                    "ZOOM",    						0));

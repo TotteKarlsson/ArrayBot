@@ -39,6 +39,10 @@ namespace at
             bool                                    open(const string& fName = dsl::gEmptyString);
             string                                  getPresentXMLModelVersion();
 
+            virtual dsl::XMLElement*           		addToXMLDocument(dsl::XMLDocument& doc, dsl::XMLNode* docRoot){return nullptr;}
+            virtual dsl::XMLElement*                addToXMLDocumentAsChild(dsl::XMLDocument& doc, dsl::XMLElement* node){return nullptr;}
+
+
         protected:
             ProcessSequence&                        mProcessSequence;
             ArrayCamClient&							mArrayCamClient;

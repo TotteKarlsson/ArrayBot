@@ -3,6 +3,18 @@
         <ProjectGuid>{AA3803DA-9A9D-4AA8-B269-11D034F376AE}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="P:\libs\dsl\Builds\dslFoundation\dslFoundation.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\Builds\dslVCLCommon\dslVCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\Builds\dslVCLComponents\dslVCLComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\Builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="P:\MXPTiny\CLI\bm.cbproj">
             <Dependencies/>
         </Projects>
@@ -36,6 +48,9 @@
         <Projects Include="P:\libs\atapi\builds\atVCLNavitar\atVCLNavitar.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="P:\libs\atapi\builds\atVCLUC7VisualComponents\atVCLUC7VisualComponents.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="app\ArrayCamPackage.cbproj">
             <Dependencies/>
         </Projects>
@@ -50,6 +65,42 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="dslFoundation">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslFoundation\dslFoundation.cbproj"/>
+    </Target>
+    <Target Name="dslFoundation:Clean">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslFoundation\dslFoundation.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslFoundation:Make">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslFoundation\dslFoundation.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLCommon">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLCommon\dslVCLCommon.cbproj"/>
+    </Target>
+    <Target Name="dslVCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLCommon:Make">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLComponents">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLComponents\dslVCLComponents.cbproj"/>
+    </Target>
+    <Target Name="dslVCLComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLVisualComponents">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj"/>
+    </Target>
+    <Target Name="dslVCLVisualComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLVisualComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="bm">
         <MSBuild Projects="P:\MXPTiny\CLI\bm.cbproj"/>
     </Target>
@@ -149,6 +200,15 @@
     <Target Name="atVCLNavitar:Make">
         <MSBuild Projects="P:\libs\atapi\builds\atVCLNavitar\atVCLNavitar.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="atVCLUC7VisualComponents">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLUC7VisualComponents\atVCLUC7VisualComponents.cbproj"/>
+    </Target>
+    <Target Name="atVCLUC7VisualComponents:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLUC7VisualComponents\atVCLUC7VisualComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLUC7VisualComponents:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLUC7VisualComponents\atVCLUC7VisualComponents.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="ArrayCamPackage">
         <MSBuild Projects="app\ArrayCamPackage.cbproj"/>
     </Target>
@@ -168,13 +228,13 @@
         <MSBuild Projects="app\ArrayCam.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="bm;atSSI;atFoundation;atCamera;atNavitar;atBarcodeReader;atVCLCommon;atVCLComponents;atVCLDataModules;atVCLVisualComponents;atVCLNavitar;ArrayCamPackage;ArrayCam"/>
+        <CallTarget Targets="dslFoundation;dslVCLCommon;dslVCLComponents;dslVCLVisualComponents;bm;atSSI;atFoundation;atCamera;atNavitar;atBarcodeReader;atVCLCommon;atVCLComponents;atVCLDataModules;atVCLVisualComponents;atVCLNavitar;atVCLUC7VisualComponents;ArrayCamPackage;ArrayCam"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="bm:Clean;atSSI:Clean;atFoundation:Clean;atCamera:Clean;atNavitar:Clean;atBarcodeReader:Clean;atVCLCommon:Clean;atVCLComponents:Clean;atVCLDataModules:Clean;atVCLVisualComponents:Clean;atVCLNavitar:Clean;ArrayCamPackage:Clean;ArrayCam:Clean"/>
+        <CallTarget Targets="dslFoundation:Clean;dslVCLCommon:Clean;dslVCLComponents:Clean;dslVCLVisualComponents:Clean;bm:Clean;atSSI:Clean;atFoundation:Clean;atCamera:Clean;atNavitar:Clean;atBarcodeReader:Clean;atVCLCommon:Clean;atVCLComponents:Clean;atVCLDataModules:Clean;atVCLVisualComponents:Clean;atVCLNavitar:Clean;atVCLUC7VisualComponents:Clean;ArrayCamPackage:Clean;ArrayCam:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="bm:Make;atSSI:Make;atFoundation:Make;atCamera:Make;atNavitar:Make;atBarcodeReader:Make;atVCLCommon:Make;atVCLComponents:Make;atVCLDataModules:Make;atVCLVisualComponents:Make;atVCLNavitar:Make;ArrayCamPackage:Make;ArrayCam:Make"/>
+        <CallTarget Targets="dslFoundation:Make;dslVCLCommon:Make;dslVCLComponents:Make;dslVCLVisualComponents:Make;bm:Make;atSSI:Make;atFoundation:Make;atCamera:Make;atNavitar:Make;atBarcodeReader:Make;atVCLCommon:Make;atVCLComponents:Make;atVCLDataModules:Make;atVCLVisualComponents:Make;atVCLNavitar:Make;atVCLUC7VisualComponents:Make;ArrayCamPackage:Make;ArrayCam:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

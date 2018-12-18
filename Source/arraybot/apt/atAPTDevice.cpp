@@ -13,7 +13,7 @@ APTDevice::APTDevice(int serial)
     mDeviceTypeID(didUnknown),
     mName("<none>")
 {
-    mProperties.setSection(dsl::toString(serial));
+    mProperties.setSectionName(dsl::toString(serial));
     mProperties.add((BaseProperty*) &mName.setup("NAME", 			"<none>", true));
 }
 

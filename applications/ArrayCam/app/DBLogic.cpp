@@ -9,7 +9,7 @@
 #include "TPGCoverSlipDataModule.h"
 #include "ArrayCamUtils.h"
 #include "atVCLUtils.h"
-#include "atUtilities.h"
+#include "atUtils.h"
 #include "dslVCLUtils.h"
 
 //---------------------------------------------------------------------------

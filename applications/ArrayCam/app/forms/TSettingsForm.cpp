@@ -332,26 +332,26 @@ void __fastcall TSettingsForm::mAutoCheckConnectionCBClick(TObject *Sender)
 void __fastcall TSettingsForm::FormCreate(TObject *Sender)
 {
     //Bind properties
-    mAutoExposureCB->setReference(mMainForm.mAutoExposure.getReference());
+    mAutoExposureCB->setReference(mMainForm.mAutoExposure.getValueReference());
 	mAutoExposureCB->Update();
 
-    mAutoBlackLevelCB->setReference(mMainForm.mAutoBlackLevel.getReference());
+    mAutoBlackLevelCB->setReference(mMainForm.mAutoBlackLevel.getValueReference());
     mAutoBlackLevelCB->Update();
 
-    mAutoGainCB->setReference(mMainForm.mAutoGain.getReference());
+    mAutoGainCB->setReference(mMainForm.mAutoGain.getValueReference());
 	mAutoGainCB->Update();
 
-    mAutoWhiteBalanceCB->setReference(mMainForm.mAutoWhiteBalance.getReference());
+    mAutoWhiteBalanceCB->setReference(mMainForm.mAutoWhiteBalance.getValueReference());
 	mAutoWhiteBalanceCB->Update();
 
 
-	mSoftwareGammaLbl->SetReference(mMainForm.mSoftwareGamma.getReference());
+	mSoftwareGammaLbl->SetReference(mMainForm.mSoftwareGamma.getValueReference());
 	mGammaSB->Position = 100.0 *mMainForm.mSoftwareGamma;
 
-    mVerticalMirrorCB->setReference(mMainForm.mVerticalMirror.getReference());
+    mVerticalMirrorCB->setReference(mMainForm.mVerticalMirror.getValueReference());
 	mVerticalMirrorCB->Update();
 
-    mHorizontalMirrorCB->setReference(mMainForm.mHorizontalMirror.getReference());
+    mHorizontalMirrorCB->setReference(mMainForm.mHorizontalMirror.getValueReference());
 	mHorizontalMirrorCB->Update();
 
     if(mMainForm.mAutoExposure == false)

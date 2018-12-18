@@ -5,7 +5,6 @@
 #include <algorithm>
 #include "dslUtils.h"
 #include "dslLogger.h"
-
 //---------------------------------------------------------------------------
 using namespace dsl;
 using namespace std;
@@ -63,7 +62,7 @@ int	ProcessSequences::loadAll(const string& fileFolder)
 	// Load all sequences in the current fileFolder, first clear out old ones...
     clear();
 	int count(0);
-    StringList files = getFilesInDir(mFileFolder, mFileExtension);
+    StringList files = getFilesInFolder(mFileFolder, mFileExtension);
     for(int i = 0; i < files.size(); i++)
     {
     	bool res = load(getFileNameNoPathNoExtension(files[i]));

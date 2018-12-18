@@ -28,7 +28,7 @@ void __fastcall TMainForm::OpenLoggerForm1Click(TObject *Sender)
 	if(!LoggerForm)
     {
     	LoggerForm = new TLoggerForm(acu.AppRegistryRoot, this);
-		mLogLevel.setReference(&(LoggerForm->mLogLevel));
+		mLogLevel.setValueReference((LoggerForm->mLogLevel));
         LoggerForm->Show();
     }
     else

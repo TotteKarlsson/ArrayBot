@@ -26,7 +26,7 @@ namespace at
 
     {
     	//Setup properties
-        mProperties.setSection(name);
+        mProperties.setSectionName(name);
         mProperties.add((BaseProperty*) &mXMotorSerialNr.setup("XMotorSerial", -1, true));
         mProperties.add((BaseProperty*) &mYMotorSerialNr.setup("YMotorSerial", -1, true));
         mProperties.add((BaseProperty*) &mZMotorSerialNr.setup("ZMotorSerial", -1, true));

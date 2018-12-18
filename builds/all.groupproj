@@ -3,6 +3,15 @@
         <ProjectGuid>{029F25A0-05BA-400F-B292-F86D433AD968}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="P:\libs\dsl\Builds\dslFoundation\dslFoundation.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\Builds\dslVCLCommon\dslVCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\Builds\dslVCLComponents\dslVCLComponents.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="..\thirdparty\ssidll\atSSI.cbproj">
             <Dependencies/>
         </Projects>
@@ -30,6 +39,12 @@
         <Projects Include="atVCLAPTVisualComponents\atVCLAPTVisualComponents.cbproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\applications\arrayBot\source\lib\ArrayBotPackage.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\applications\arrayBot\source\ArrayBot.cbproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -38,6 +53,33 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="dslFoundation">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslFoundation\dslFoundation.cbproj"/>
+    </Target>
+    <Target Name="dslFoundation:Clean">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslFoundation\dslFoundation.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslFoundation:Make">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslFoundation\dslFoundation.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLCommon">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLCommon\dslVCLCommon.cbproj"/>
+    </Target>
+    <Target Name="dslVCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLCommon:Make">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLCommon\dslVCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dslVCLComponents">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLComponents\dslVCLComponents.cbproj"/>
+    </Target>
+    <Target Name="dslVCLComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dslVCLComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\Builds\dslVCLComponents\dslVCLComponents.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="atSSI">
         <MSBuild Projects="..\thirdparty\ssidll\atSSI.cbproj"/>
     </Target>
@@ -119,14 +161,32 @@
     <Target Name="atVCLAPTVisualComponents:Make">
         <MSBuild Projects="atVCLAPTVisualComponents\atVCLAPTVisualComponents.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="ArrayBotPackage">
+        <MSBuild Projects="..\applications\arrayBot\source\lib\ArrayBotPackage.cbproj"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Clean">
+        <MSBuild Projects="..\applications\arrayBot\source\lib\ArrayBotPackage.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayBotPackage:Make">
+        <MSBuild Projects="..\applications\arrayBot\source\lib\ArrayBotPackage.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayBot">
+        <MSBuild Projects="..\applications\arrayBot\source\ArrayBot.cbproj"/>
+    </Target>
+    <Target Name="ArrayBot:Clean">
+        <MSBuild Projects="..\applications\arrayBot\source\ArrayBot.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayBot:Make">
+        <MSBuild Projects="..\applications\arrayBot\source\ArrayBot.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="atSSI;atResources;atFoundation;atVCLCommon;atArrayBotCore;atVCLComponents;atVCLDataModules;atVCLVisualComponents;atVCLAPTVisualComponents"/>
+        <CallTarget Targets="dslFoundation;dslVCLCommon;dslVCLComponents;atSSI;atResources;atFoundation;atVCLCommon;atArrayBotCore;atVCLComponents;atVCLDataModules;atVCLVisualComponents;atVCLAPTVisualComponents;ArrayBotPackage;ArrayBot"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="atSSI:Clean;atResources:Clean;atFoundation:Clean;atVCLCommon:Clean;atArrayBotCore:Clean;atVCLComponents:Clean;atVCLDataModules:Clean;atVCLVisualComponents:Clean;atVCLAPTVisualComponents:Clean"/>
+        <CallTarget Targets="dslFoundation:Clean;dslVCLCommon:Clean;dslVCLComponents:Clean;atSSI:Clean;atResources:Clean;atFoundation:Clean;atVCLCommon:Clean;atArrayBotCore:Clean;atVCLComponents:Clean;atVCLDataModules:Clean;atVCLVisualComponents:Clean;atVCLAPTVisualComponents:Clean;ArrayBotPackage:Clean;ArrayBot:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="atSSI:Make;atResources:Make;atFoundation:Make;atVCLCommon:Make;atArrayBotCore:Make;atVCLComponents:Make;atVCLDataModules:Make;atVCLVisualComponents:Make;atVCLAPTVisualComponents:Make"/>
+        <CallTarget Targets="dslFoundation:Make;dslVCLCommon:Make;dslVCLComponents:Make;atSSI:Make;atResources:Make;atFoundation:Make;atVCLCommon:Make;atArrayBotCore:Make;atVCLComponents:Make;atVCLDataModules:Make;atVCLVisualComponents:Make;atVCLAPTVisualComponents:Make;ArrayBotPackage:Make;ArrayBot:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

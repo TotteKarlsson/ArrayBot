@@ -33,7 +33,7 @@ string TFFMPEGFrame::getOutFileArguments()
 }
 void TFFMPEGFrame::setupProperties(dsl::IniFile& ini)
 {
-    mFrameProperties.setSection("FFMPEG_COMPRESSION");
+    mFrameProperties.setSectionName("FFMPEG_COMPRESSION");
 	mFrameProperties.setIniFile(&ini);
 
    	mFrameProperties.add((BaseProperty*)  &FFMPEGThreads->getProperty()->setup( 	    	    "NUMBER_OF_THREADS",    					1));

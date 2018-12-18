@@ -4,7 +4,7 @@
 #include "dslTMemoLogger.h"
 #include "TSplashForm.h"
 #include "dslStringList.h"
-#include "core/atUtilities.h"
+#include "core/atUtils.h"
 #include "arraybot/apt/atAPTMotor.h"
 #include "arraybot/apt/atTCubeDCServo.h"
 #include "dslVCLUtils.h"
@@ -44,6 +44,7 @@ extern string 			gApplicationRegistryRoot;
 extern string 			gApplicationStyle;
 
 using namespace dsl;
+using namespace at;
 
 //---------------------------------------------------------------------------
 __fastcall TMain::TMain(TComponent* Owner)
@@ -80,10 +81,10 @@ __fastcall TMain::TMain(TComponent* Owner)
     mSoundProperties.read();
 
     //Give all sounds a Handle
-  	mEnableSlowSpeedSound.getReference().setHandle(this->Handle);
-  	mEnableMediumSpeedSound.getReference().setHandle(this->Handle);
-  	mEnableFastSpeedSound.getReference().setHandle(this->Handle);
-	mMainPageControlChangeSound.getReference().setHandle(this->Handle);
+  	mEnableSlowSpeedSound.getValueReference().setHandle(this->Handle);
+  	mEnableMediumSpeedSound.getValueReference().setHandle(this->Handle);
+  	mEnableFastSpeedSound.getValueReference().setHandle(this->Handle);
+	mMainPageControlChangeSound.getValueReference().setHandle(this->Handle);
 
 	mArrayCamServerPortE->update();
 	mWigglerAmplitudeE->update();
@@ -98,12 +99,12 @@ __fastcall TMain::TMain(TComponent* Owner)
 
     //We will setup UI frames after the bot is initialized
 	mInitBotThread.start();
-    mTheWiggler.mMaxVelocity.setReference(&mWigglerVelocityE->getReference());
-    mTheWiggler.mAmplitude.setReference(&mWigglerAmplitudeE->getReference());
-    mTheWiggler.mMaxAcceleration.setReference(&mWigglerAccelerationE->getReference());
+    mTheWiggler.mMaxVelocity.setValueReference(mWigglerVelocityE->getReference());
+    mTheWiggler.mAmplitude.setValueReference(mWigglerAmplitudeE->getReference());
+    mTheWiggler.mMaxAcceleration.setValueReference(mWigglerAccelerationE->getReference());
 
-    mTheWiggler.mPullRelaxVelocity.setReference(&mPullRelaxVelocityE->getReference());
-    mTheWiggler.mPullRelaxAcceleration.setReference(&mPullRelaxAccE->getReference());
+    mTheWiggler.mPullRelaxVelocity.setValueReference(mPullRelaxVelocityE->getReference());
+    mTheWiggler.mPullRelaxAcceleration.setValueReference(mPullRelaxAccE->getReference());
 
 	mArrayCamClient.assignOnMessageReceivedCallBack(onArrayCamMessageReceived);
     mArrayCamClient.onConnected 				= onArrayCamClientConnected;
@@ -431,7 +432,7 @@ void __fastcall TMain::MainPCChange(TObject *Sender)
         mXYZUnitFrame2->disable();
     }
 
-    mMainPageControlChangeSound.getReference().play();
+    mMainPageControlChangeSound.getValueReference().play();
 }
 
 //---------------------------------------------------------------------------

@@ -89,7 +89,7 @@ using Poco::Timestamp;
 using dsl::IniFileProperties;
 using dsl::IniFile;
 using dsl::Property;
-using dsl::shared_ptr;
+//using dsl::shared_ptr;
 using at::UC7;
 using at::EnvironmentaSensorReader;
 using at::LightsArduinoClient;
